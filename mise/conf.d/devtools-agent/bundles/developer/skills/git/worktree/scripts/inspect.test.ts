@@ -6,7 +6,7 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { inspectTicket } from "./inspect";
-import { loadTicketWorkflow } from "./workflow";
+import { loadExplorerSnapshot, loadTicketWorkflow } from "./workflow";
 import { recoveryDecision } from "./recovery";
 import { inspectWorkflow } from "./inspection";
 import type { Exec, SharedAgentContext } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
@@ -69,6 +69,43 @@ test("canonical CLI inspection resolves the current adapter and prints real JSON
     expect(json.decision).toMatchObject({ action: "start" });
     expect(await run("git", ["-C", context.repositoryRoot, "status", "--porcelain=v1"])).toBe(status);
   }
+}, 60_000);
+
+test("jira inspection reads one ticket and its blockers through the configured cli", async () => {
+  const { context } = await fixture();
+  await put(join(context.repositoryRoot, "docs/agents/issue-tracker.md"), "---\nbackend: jira\nsite: https://example.atlassian.net\ncli: jira-fixture --flag\n---\n");
+  const jira = "https://example.atlassian.net/browse/ABC-7";
+  const calls: string[][] = [];
+  const issue = (blockerCategory: string) => JSON.stringify({ key: "ABC-7", fields: {
+    summary: "Fix lodgement", status: { name: "To Do", statusCategory: { key: "new" } }, issuetype: { name: "Dev bug" }, description: "Body",
+    issuelinks: [
+      { type: { inward: "is blocked by" }, inwardIssue: { key: "ABC-3", fields: { status: { name: "Code Review", statusCategory: { key: blockerCategory } } } } },
+      { type: { inward: "is blocked by" }, outwardIssue: { key: "ABC-9", fields: { status: { name: "To Do", statusCategory: { key: "new" } } } } },
+      { type: { inward: "relates to" }, inwardIssue: { key: "ABC-5", fields: { status: { name: "To Do", statusCategory: { key: "new" } } } } },
+    ],
+  } });
+  let blockerCategory = "indeterminate";
+  const execute: Exec = async (command, args, cwd) => {
+    if (command === "jira-fixture") { calls.push([...args, cwd ?? ""]); return { code: 0, stdout: issue(blockerCategory) }; }
+    if (command === "wt") return { code: 0, stdout: JSON.stringify({ schema: 2, items: [] }) };
+    return exec(command, args, cwd);
+  };
+  const jiraContext: SharedAgentContext = { ...context, routes: { ...context.routes, tickets: { adapter: "jira" } } };
+  await expect(loadExplorerSnapshot(jiraContext, execute)).rejects.toThrow("one ticket at a time");
+  await expect(loadExplorerSnapshot(jiraContext, execute, { ref: "https://other.atlassian.net/browse/ABC-7" })).rejects.toThrow("/browse/<KEY>");
+  const decide = async () => {
+    const snapshot = await loadExplorerSnapshot(jiraContext, execute, { ref: jira });
+    const ticket = snapshot.tickets.find(item => item.ref === jira)!;
+    return { ticket, decision: recoveryDecision(ticket, snapshot, await loadTicketWorkflow(jiraContext, ticket, execute)) };
+  };
+  const blocked = await decide();
+  expect(calls[0]).toEqual(["--flag", "get-issue", "ABC-7", "summary,status,issuetype,issuelinks,description", "0", context.repositoryRoot]);
+  expect(blocked.ticket).toMatchObject({ id: "ABC-7", backend: "jira", status: "todo", fields: { issueType: "Dev bug", status: "To Do" }, documentType: "issue", blockedBy: ["ABC-3"], body: "Body" });
+  expect(blocked.decision).toMatchObject({ mode: "blocked", reason: "Unresolved prerequisites: ABC-3." });
+  blockerCategory = "done";
+  expect((await decide()).decision).toMatchObject({ action: "start", mode: "begin" });
+  blockerCategory = "archived";
+  await expect(loadExplorerSnapshot(jiraContext, execute, { ref: jira })).rejects.toThrow("category archived");
 }, 60_000);
 
 test("removed source permits finish recovery only after exact squash mapping and remote reachability", async () => {

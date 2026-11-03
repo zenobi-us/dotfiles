@@ -11,7 +11,7 @@ export async function inspectTicket(ref: string, exec: Exec, cwd = process.cwd()
   const context = await resolveSharedContext(exec, cwd);
   if (!context) throw new Error("Inspection requires a repository with a canonical origin and configured ticket adapter.");
   if (context.error) throw new Error(context.error);
-  const snapshot = await loadExplorerSnapshot(context, exec);
+  const snapshot = await loadExplorerSnapshot(context, exec, { ref });
   const ticket = snapshot.tickets.find(ticket => ticket.ref === ref);
   if (!ticket) throw new Error("No ticket matches the canonical reference. Use the resolved ticket adapter's exact reference.");
   const workflow = await loadTicketWorkflow(context, ticket, exec);

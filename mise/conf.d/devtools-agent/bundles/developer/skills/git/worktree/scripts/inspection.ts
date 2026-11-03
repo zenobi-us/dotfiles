@@ -110,10 +110,10 @@ async function inspectCommits(context: SharedAgentContext, ticket: ExplorerTicke
     const paths = await run(exec, "git", ["-C", context.repositoryRoot, "log", "--all", "--format=%H", "--", ticket.ref]);
     for (const commit of paths.trim().split("\n").filter(Boolean)) candidates.add(commit);
   }
-  const tracker = await resolveContextRecord(context, { kind: "tickets" });
+  const tracker = context.routes.tickets.adapter === "local-markdown" ? [await resolveContextRecord(context, { kind: "tickets" })] : [];
   const initiatives = await resolveContextRecord(context, { kind: "initiatives" });
   const workflows = await resolveContextRecord(context, { kind: "workflow", id: ticket.backend === "github" ? `GH-${ticket.id}` : ticket.id });
-  const metadataRoots = [tracker, initiatives, workflows].filter(route => route.path && route.store === "repository").map(route => relative(context.repositoryRoot, route.path!).split("\\").join("/"));
+  const metadataRoots = [...tracker, initiatives, workflows].filter(route => route.path && route.store === "repository").map(route => relative(context.repositoryRoot, route.path!).split("\\").join("/"));
   metadataRoots.push(context.layout?.tracker ?? "tracker");
   metadataRoots.push(workflows.store === "repository" && workflows.path ? relative(context.repositoryRoot, resolve(workflows.path, "..")).split("\\").join("/") : "workflows");
   const token = new RegExp(`(?:^|[^A-Za-z0-9])${ticket.id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?:$|[^A-Za-z0-9])`, "i");
