@@ -221,6 +221,28 @@ test("a start written before its pane opens and a result with no evidence run st
   expect(workflow.error).toContain("receipt evidence ref");
 });
 
+test("a review artifact ref relative to the workflow folder resolves inside it", async () => {
+  const { context, ticket } = await fixture();
+  const root = context.repositoryRoot;
+  await put(join(root, ".git/info/exclude"), "/workflows/\n");
+  const commit = await run("git", ["-C", root, "rev-parse", "HEAD"]);
+  const tree = await run("git", ["-C", root, "rev-parse", "HEAD^{tree}"]);
+  const workflowRoot = "workflows/T-1";
+  const common = {
+    schema: "worktree-receipt/v1", workflow_id: ticket.id, attempt: 1, repository: root, worktree: root, workspace_path: root,
+    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "hrdx", agent: "pi", pane_id: "1", session_id: null,
+    ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
+    workflow: { root, store: "repository", ref: workflowRoot }, inputs: [],
+  };
+  const review = { ...common, receipt_id: "review-1", parent_receipt: null, phase: "review", event: "phase-result", status: "completed", verdict: "FAILURE", created_at: "2026-10-01T00:00:00Z", outputs: [{ kind: "review-artifact", ref: "artifacts/reviews/review-review-1.md" }] };
+  await put(join(root, workflowRoot, "events/review-1.json"), JSON.stringify(review));
+  await put(join(root, workflowRoot, "artifacts/reviews/review-review-1.md"), `# Review\n\nReviewed ${commit}. FAILURE.\n`);
+  const readOnly: Exec = async (command, args, cwd) => command === "wt" ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "main", worktree: { path: root } }] }) } : exec(command, args, cwd);
+  const workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(workflow.inspection?.artifacts).toMatchObject([{ receiptId: "review-1", state: "readable", matchesSource: true }]);
+  expect(recoveryDecision(ticket, { tickets: [ticket] }, workflow)).toMatchObject({ action: "review", mode: "reconcile" });
+});
+
 test("checksum-bound history supplements repair envelopes without rewriting receipts or losing parents", async () => {
   const { context, ticket } = await fixture();
   const root = context.repositoryRoot;

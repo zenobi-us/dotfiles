@@ -48,7 +48,8 @@ write workflow state to `.scratch/`, `<ticket>/local/`, the ticket collection, o
 - Link each receipt to its parent receipt.
 - Treat chat, pane output, and `/tmp` handoffs as transport only. They are not workflow state.
 - Treat `manifest.yaml` and `projections/` as generated views.
-- Name each review artifact `artifacts/reviews/review-<receipt-id>.md`.
+- Name each review artifact `artifacts/reviews/review-<receipt-id>.md`. A relative artifact `ref` that is not found from the repository root resolves inside the receipt's `workflow.ref` folder.
+- Put `verdict` only on the review phase-result receipt. The inspector reads the verdict and artifact from the result that a review phase-complete receipt names as its parent.
 
 ## Shared recovery decision
 
