@@ -1,0 +1,104 @@
+{
+  "recorded_at": "2026-11-03T06:16:24.775863+00:00",
+  "status": "PROPOSAL_ONLY_NOT_APPROVED_NOT_EXECUTED",
+  "files": [
+    {
+      "path": "investigate.sh",
+      "sha256": "6c489063c69a9b1f35d236fb5259ddbdcddb616d3c26a530fb0d30ae6a58a8d1"
+    },
+    {
+      "path": "host.sh",
+      "sha256": "cafd2a97c6c6d85f1d2096f6fc4a9e2808c2144703bcaa1fa4fdbca4df31e1b8"
+    },
+    {
+      "path": "approval-scope.txt",
+      "sha256": "0e5a6b259cc7b30c8daed9178f457bfef15f42336b2ac175e95c6837481caee4"
+    }
+  ],
+  "offline_checks": {
+    "syntax": [
+      {
+        "argv": [
+          "sh",
+          "-n",
+          "/tmp/pi-ink-recovery-investigation-0026/investigate.sh"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "sh",
+          "-n",
+          "/tmp/pi-ink-recovery-investigation-0026/host.sh"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "wrapper_without_approval": {
+      "exit_code": 1,
+      "stdout": "ABORT: separate exact service ownership investigation approval required\n",
+      "stderr": ""
+    },
+    "actual_extracted_actor_parser": [
+      {
+        "case": "valid",
+        "exit_code": 0,
+        "stdout": "ACTOR_PHASE=rollback ACTOR_MANIFEST=9ce7ecaa8bd9607e938ea75ea7cae957728e6592a7d2bdb4b329f06e0939a57c ACTOR_PID=12345\n",
+        "stderr": ""
+      },
+      {
+        "case": "extra-field",
+        "exit_code": 0,
+        "stdout": "ACTOR_MULTILINE_OR_PARSE_UNKNOWN_REDACTED\n",
+        "stderr": ""
+      },
+      {
+        "case": "second-line",
+        "exit_code": 0,
+        "stdout": "ACTOR_MULTILINE_OR_PARSE_UNKNOWN_REDACTED\n",
+        "stderr": ""
+      },
+      {
+        "case": "unterminated-second-line",
+        "exit_code": 0,
+        "stdout": "ACTOR_MULTILINE_OR_PARSE_UNKNOWN_REDACTED\n",
+        "stderr": ""
+      },
+      {
+        "case": "unknown-phase",
+        "exit_code": 0,
+        "stdout": "ACTOR_PHASE_UNKNOWN_REDACTED\n",
+        "stderr": ""
+      },
+      {
+        "case": "unknown-manifest",
+        "exit_code": 0,
+        "stdout": "ACTOR_MANIFEST_UNKNOWN_REDACTED\n",
+        "stderr": ""
+      },
+      {
+        "case": "invalid-pid",
+        "exit_code": 0,
+        "stdout": "ACTOR_PID_UNKNOWN_REDACTED\n",
+        "stderr": ""
+      },
+      {
+        "case": "missing-newline",
+        "exit_code": 0,
+        "stdout": "ACTOR_MULTILINE_OR_PARSE_UNKNOWN_REDACTED\n",
+        "stderr": ""
+      }
+    ]
+  },
+  "retained_activation_evidence": [
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/preflight-phase-a-resource.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/preinstall-baseline.json"
+  ],
+  "current_baseline_leaf_status": "BASELINE_MISSING_OR_INACCESSIBLE",
+  "no_baseline_leaf_rerun": true,
+  "no_mutations_or_restarts_authorized": true
+}

@@ -1,0 +1,64 @@
+{
+  "recorded_at": "2026-11-03T06:21:01.231112+00:00",
+  "raw_result_ref": "recovery-investigation.json",
+  "status": "read_only_investigation_completed_recovery_not_authorized",
+  "observed_service": {
+    "FragmentPath": "/usr/lib/systemd/system/xochitl.service",
+    "ActiveState": "active",
+    "MainPID": 112810,
+    "Job": "IDLE",
+    "ExecStart_known_single_path_argv": "MATCH",
+    "DropInPaths_original_set_order": "MISMATCH",
+    "known_dropins_present": [
+      "50-computed-widgets-01-preflight.conf",
+      "xochitl-service-override.conf"
+    ],
+    "known_dropins_not_reported": [
+      "00-xovi.conf",
+      "qt-resource-rebuilder.conf"
+    ],
+    "environment_original_whole_value": "MISMATCH",
+    "known_xovi_preload_and_root_tokens": "NOT_CONFIRMED"
+  },
+  "observed_files": {
+    "stock_service": "known hash MATCH",
+    "preflight_dropin": "known hash MATCH",
+    "vendor_override": "known hash MATCH",
+    "qt_resource_rebuilder_dropin": "FILE_MISSING_OR_INACCESSIBLE",
+    "original_proxy_active": "FILE_MISSING_OR_INACCESSIBLE",
+    "original_proxy_quarantine": {
+      "known_hash": "MATCH",
+      "stat": "644 0 0 8453696 1793049401"
+    },
+    "owned_adapter_active": {
+      "known_hash": "MATCH",
+      "stat": "644 0 0 504280 1793658681"
+    },
+    "owned_adapter_retained": "Parent STOP_PARENT_MISSING_OR_INACCESSIBLE; leaf not inspected"
+  },
+  "observed_actor": {
+    "phase": "rollback",
+    "manifest": "9ce7ecaa8bd9607e938ea75ea7cae957728e6592a7d2bdb4b329f06e0939a57c",
+    "pid": 125204,
+    "presence": "ABSENT_INACCESSIBLE_OR_UNSAFE",
+    "stat": "regular file 600 0 0 81"
+  },
+  "restart_accounting": {
+    "this_child_restart_commands": 0,
+    "last_known_prior_total": 3,
+    "current_total": "UNKNOWN: current PID112810 differs from earlier111850; cause, actor, time and number of intervening restarts not established. Do not infer remaining allowance from old count."
+  },
+  "unresolved": [
+    "Intended service activation and provenance of changed effective drop-ins/environment/PID",
+    "Runtime XOVI mappings and listeners not inspected",
+    "Current owned client state not queried",
+    "Actor PID identity/shutdown not proved by path-presence classification",
+    "Original proxy not restored",
+    "Retained experiment credentials/code not cleaned",
+    "Latest UI not deployed or observed"
+  ],
+  "next_prerequisite": "Parent/owner must resolve actual intended service state and change provenance before a separate exact recovery proposal. No hash bypass or stale service recreation.",
+  "no_new_mutation_authority": true,
+  "parent_notified": true,
+  "phase_open": true
+}

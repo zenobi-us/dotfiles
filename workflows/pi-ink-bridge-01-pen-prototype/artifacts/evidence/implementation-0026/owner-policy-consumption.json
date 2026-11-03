@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-11-03T08:43:26.147823+00:00",
+  "consumed_parent_record": "owner-recovery-intent.json",
+  "owner_reported_ground_truth": {
+    "another_operator_changed_or_restarted_tablet": true,
+    "activation_policy": "Preserve current configuration"
+  },
+  "coordination_unresolved": [
+    "Other operator identity",
+    "Active or handed-off state",
+    "Fresh exact recovery/cleanup scope after coordination"
+  ],
+  "device_gate": "No further device commands, including diagnostics, until coordination and separate exact approval.",
+  "prohibited": [
+    "Recreating00-xovi.conf or qt-resource-rebuilder.conf",
+    "Reactivating old XOVI configuration",
+    "Assuming current total restart count",
+    "Acquiring locks or changing history",
+    "Terminating or duplicating another operator"
+  ],
+  "phase": "Keep same active session open; result0026 not finalized.",
+  "parent_authored_file": "Untouched and unstaged by child."
+}

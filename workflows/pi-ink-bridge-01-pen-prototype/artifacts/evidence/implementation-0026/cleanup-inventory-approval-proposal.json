@@ -1,0 +1,76 @@
+{
+  "schema": "pi-ink-bounded-inventory-proposal/v1",
+  "status": "OFFLINE PROPOSAL ONLY; NOT APPROVED; NOT EXECUTED",
+  "prerequisite": "Resolve failed restoration under a separately approved recovery scope, verify original baseline, then obtain approval for this inventory before any device access. This proposal authorizes neither recovery nor deletion.",
+  "transport": "Retain direct USB10.11.99.1, source10.11.99.10, interfaceenp2s0f0u4c2, exact pinned physical syspath, strict existing keys, no mux/proxy/fallback; 45s host deadline. Freeze exact inventory script/hash and obtain explicit approval before execution.",
+  "roots": [
+    "/home/root/pi-ink-bridge-0020",
+    "/home/root/pi-ink-bridge-retained-0020",
+    "/home/root/pi-ink-webserver-remote-backup-0020",
+    "/home/root/pi-ink-rollback-owned-0020",
+    "/home/root/pi-ink-sidebar-backup-0020",
+    "/home/root/pi-ink-native-button-stage-0020",
+    "/home/root/pi-ink-native-button-backup-0020",
+    "/home/root/pi-ink-ui-stage-0023",
+    "/home/root/pi-ink-ui-backup-0023",
+    "/home/root/pi-ink-operation-0020",
+    "/home/root/pi-ink-operation-history-0020"
+  ],
+  "fixed_active_paths": [
+    "/home/root/xovi/extensions.d/pi-ink-loopback-0020.so",
+    "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd",
+    "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0020-next",
+    "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0023-ui-next"
+  ],
+  "read_boundary": {
+    "maximum_depth_below_each_root": 4,
+    "maximum_entries_total": 1000,
+    "symlinks": "Report lstat metadata only; do not follow. Abort unexpected root symlink or scope escape.",
+    "per_entry": [
+      "exact path",
+      "type",
+      "mode",
+      "uid",
+      "gid",
+      "size",
+      "mtime"
+    ],
+    "hash_allowlist_basenames": [
+      "owner.txt",
+      "actor.txt",
+      "pi-ink-tablet",
+      "adapter.so",
+      "pi-ink-bridge.qmd",
+      "live-pi-ink-bridge.qmd",
+      "PiInkToolbar.qml",
+      "payload-sha256.txt",
+      "webserver-remote.so",
+      "interrupted-patch.0020-next",
+      "interrupted-patch.0023-ui-next"
+    ],
+    "hash_exclusion": "Config, token, key, CA, trust and opaque state: metadata only; no contents or hashes. Unknown files metadata only.",
+    "metadata_units": [
+      "pi-ink-bridge-0020.service",
+      "pi-ink-bridge-sidebar-0020.service"
+    ],
+    "unit_fields": [
+      "LoadState",
+      "ActiveState",
+      "MainPID",
+      "Transient",
+      "FragmentPath",
+      "DropInPaths"
+    ],
+    "forbidden": [
+      "Private notebook/library traversal",
+      "Document names or contents",
+      "General journal/process/environment/config collection",
+      "Unbounded discovery of other experiment paths",
+      "Network/settings/account/cloud/cache/boot changes",
+      "State/config/key contents",
+      "Any deletion, mutation, restart, client start or pairing"
+    ]
+  },
+  "cleanup_gate": "Future deletion requires observed inventory plus explicit exact path/ownership/hash approval. Unknown bytes/owners/symlinks/collisions abort. Preserve SOURCE and BASE evidence/history and synthetic documents. Retention is not cleanup completion.",
+  "not_claimed": "No baseline restoration, credentials removal or full acceptance established."
+}

@@ -1,0 +1,113 @@
+{
+  "recorded_at": "2026-11-03T05:31:21.004691+00:00",
+  "checks": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/approval-plan.txt",
+      "matches": true
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/approval-plan.txt",
+      "matches": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/offline-validation.json",
+      "matches": true
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/offline-validation.json",
+      "matches": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/host.sh",
+      "matches": true
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/host.sh",
+      "matches": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/verify-restored.sh",
+      "matches": true
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/verify-restored.sh",
+      "matches": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/restore.sh",
+      "matches": true
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/restore.sh",
+      "matches": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/reload.sh",
+      "matches": true
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/reload.sh",
+      "matches": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/prepare.sh",
+      "matches": true
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/prepare.sh",
+      "matches": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/payload/owner.txt",
+      "matches": true
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/payload/owner.txt",
+      "matches": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/payload/payload-sha256.txt",
+      "matches": true
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/payload/payload-sha256.txt",
+      "matches": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/payload/pi-ink-bridge.qmd",
+      "matches": true
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/payload/pi-ink-bridge.qmd",
+      "matches": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/payload/PiInkToolbar.qml",
+      "matches": true
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/payload/PiInkToolbar.qml",
+      "matches": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/final-validation.json",
+      "matches": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ui-validation-plan-0023/planning-identity.json",
+      "matches": true
+    }
+  ],
+  "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+  "source_clean": true,
+  "session_id": "01a19fe2-4d68-770a-a05b-0a20eca7c412",
+  "pane_id": "w6N:p5",
+  "ownership": "Parent w64:pY retained; only this fresh source agent observed",
+  "base_unrelated_changes": [
+    "mise.toml"
+  ],
+  "workflow_store": "repository",
+  "evidence_store": "repository",
+  "approval_ref": "approval.json"
+}

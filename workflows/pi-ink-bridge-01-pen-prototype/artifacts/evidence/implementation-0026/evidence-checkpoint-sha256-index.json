@@ -1,0 +1,111 @@
+{
+  "schema": "pi-ink-evidence-sha256/v1",
+  "recorded_at": "2026-11-03T20:42:02.378582+00:00",
+  "scope": "Child evidence checkpoint; parent-authored files excluded; this index excludes itself",
+  "files": [
+    {
+      "path": "baseline-diagnostic-outcome.json",
+      "sha256": "c7af7e9b380940c23aab1e5d8d0480acc22c9cbcfc67a47fdda24d41198f29b2"
+    },
+    {
+      "path": "baseline-diagnostic-proposal/approval-scope.txt",
+      "sha256": "d99cba2f3180a4edc40be44fd3de7b85baab24b816d924b2afe5451a57f30c6d"
+    },
+    {
+      "path": "baseline-diagnostic-proposal/diagnose.sh",
+      "sha256": "50d6f6b806fe0333eda3f206d139ba9cb2400293f3c9e5ee51fb4b94f9d5b0e7"
+    },
+    {
+      "path": "baseline-diagnostic-proposal/host.sh",
+      "sha256": "326a0364f3b2dd14908292e7383d3b9906cca88315db51ace2666392909bf60e"
+    },
+    {
+      "path": "baseline-diagnostic-proposal/sha256-index.json",
+      "sha256": "fc3584cc6631827ea424a9a7582d2ed9a6299d67c5bca8da283fe85331f20743"
+    },
+    {
+      "path": "baseline-diagnostic.json",
+      "sha256": "f94f4fe7b6f6b26baf136ff7fcf500f731ebb9f390f799ec243ac109982e857b"
+    },
+    {
+      "path": "cleanup-inventory-approval-proposal.json",
+      "sha256": "390f3d7ee2825cf89cf1fd175d5151606aa433eb90f562156b0e0d119604f48e"
+    },
+    {
+      "path": "current-inventory-proposal/approval-scope.txt",
+      "sha256": "9ddf0b78ccbd47df627b2c9fc8a70f4f5e2018a88934beaad3d9364a9fd6a36f"
+    },
+    {
+      "path": "current-inventory-proposal/fixed-paths.json",
+      "sha256": "7f4c4d369f880545b6458ca676f2dc9225165cda02b7a9215b4d7036105e3d12"
+    },
+    {
+      "path": "current-inventory-proposal/host.sh",
+      "sha256": "2eac726b101357b10911fcb6f523b3905c9181da11bb20c7740d93bca59f83ae"
+    },
+    {
+      "path": "current-inventory-proposal/inventory.sh",
+      "sha256": "68aead774e8a2bd756a21ef1d03db09efc6f8ef750db631aa057b6697a1b5482"
+    },
+    {
+      "path": "current-inventory-proposal/sha256-index.json",
+      "sha256": "6cad7acdfda1912681b88931e77d24479488d9495debf1eaaa66cb4a114889d2"
+    },
+    {
+      "path": "owner-policy-consumption.json",
+      "sha256": "c04cea8e40753487996fef4e35b44ad9674579880610cf80b678ec887f6acb70"
+    },
+    {
+      "path": "preflight-integrity.json",
+      "sha256": "148c167f5975052eca657ae30fb011aff9c31fc3b7d86ab152d1173179c9ae84"
+    },
+    {
+      "path": "prepare-abort-boundary.json",
+      "sha256": "14aa5ddeefa0ddd35c855d50bc132c0818f1241da7893efc6d9940cd0889ea49"
+    },
+    {
+      "path": "prepare-abort-interpretation-correction.json",
+      "sha256": "344c7ba781145257d26760d02d90cafa50b93ea651971d4fde03c10d1e49042f"
+    },
+    {
+      "path": "prepare.json",
+      "sha256": "9cb2cd2722838dbb753890b30d73e5a7e737cb774b95d261dc0ed8790383c51e"
+    },
+    {
+      "path": "recovery-investigation-outcome.json",
+      "sha256": "723c9a993be6457e0d69fd5e1bf9404e23109145d21e8f9a6dcae375586274be"
+    },
+    {
+      "path": "recovery-investigation-proposal/approval-scope.txt",
+      "sha256": "0e5a6b259cc7b30c8daed9178f457bfef15f42336b2ac175e95c6837481caee4"
+    },
+    {
+      "path": "recovery-investigation-proposal/host.sh",
+      "sha256": "cafd2a97c6c6d85f1d2096f6fc4a9e2808c2144703bcaa1fa4fdbca4df31e1b8"
+    },
+    {
+      "path": "recovery-investigation-proposal/investigate.sh",
+      "sha256": "6c489063c69a9b1f35d236fb5259ddbdcddb616d3c26a530fb0d30ae6a58a8d1"
+    },
+    {
+      "path": "recovery-investigation-proposal/sha256-index.json",
+      "sha256": "393499f4a5de74040dbce09c67480aec0a84950332e439585dc753d6e44a519b"
+    },
+    {
+      "path": "recovery-investigation.json",
+      "sha256": "4b22f4d0c481126aaa6d23399fd8b6c54a47698cd10146ce9d5e845acd9b3c3e"
+    },
+    {
+      "path": "restoration-outcome.json",
+      "sha256": "93f098694e8d3d64ae1af0844d09fddcee158bd0d04fba1704ec7af42192980f"
+    },
+    {
+      "path": "restore.json",
+      "sha256": "fa9e8aeb30abdca4de8f911994b1211ba45d8d10d6419dc6d213456d6b7e3a93"
+    },
+    {
+      "path": "evidence-checkpoint-validation.json",
+      "sha256": "33dcf2d5121ea2e96d4142d49c4ca409a7bb18d4a8970882bdd43f3e44374d5b"
+    }
+  ]
+}

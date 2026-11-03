@@ -1,0 +1,16 @@
+{
+  "started_at": "2026-11-03T06:08:54.386709+00:00",
+  "finished_at": "2026-11-03T06:08:54.667303+00:00",
+  "argv": [
+    "sh",
+    "/tmp/pi-ink-baseline-diagnostic-0026/host.sh"
+  ],
+  "environment": {
+    "PI_INK_DIAGNOSTIC_APPROVED": "baseline-path-0026"
+  },
+  "approval_ref": "approval-baseline-diagnostic.json",
+  "exit_code": 0,
+  "stdout": "/tmp/pi-ink-baseline-diagnostic-0026/diagnose.sh: OK\nEXACT_USB_GUARD_PASSED_READ_ONLY_DIAGNOSTIC\nFIXED_PARENT /\nTYPE=directory MODE=755 UID=0 GID=0 SIZE=4096 MTIME=1793679381\nFIXED_PARENT /etc\nTYPE=directory MODE=755 UID=0 GID=0 SIZE=180 MTIME=1793676285\nFIXED_PARENT /etc/systemd\nTYPE=directory MODE=755 UID=0 GID=0 SIZE=60 MTIME=1787830527\nFIXED_PARENT /etc/systemd/system\nTYPE=directory MODE=775 UID=0 GID=0 SIZE=60 MTIME=1791169733\nFIXED_PARENT /etc/systemd/system/xochitl.service.d\nTYPE=directory MODE=755 UID=0 GID=0 SIZE=4096 MTIME=1791162708\nFIXED_BASELINE /etc/systemd/system/xochitl.service.d/00-xovi.conf\nBASELINE_MISSING_OR_INACCESSIBLE\nREAD_ONLY_BASELINE_DIAGNOSTIC_COMPLETE_NO_REPAIR\n",
+  "stderr": "",
+  "no_automatic_retry": true
+}

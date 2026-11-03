@@ -1,0 +1,17 @@
+{
+  "started_at": "2026-11-03T05:56:25.006378+00:00",
+  "finished_at": "2026-11-03T05:56:25.306227+00:00",
+  "argv": [
+    "sh",
+    "/tmp/pi-ink-ui-validation-0023/host.sh",
+    "restore"
+  ],
+  "environment": {
+    "PI_INK_EXACT_PLAN_APPROVED": "ui-0023-reload4-restore5",
+    "PI_INK_SAVED_CLOSED": "confirmed-for-this-restart"
+  },
+  "exit_code": 1,
+  "stdout": "/tmp/pi-ink-ui-validation-0023/restore.sh: OK\n/home/root/pi-ink-operation-history-0020/owner.txt: OK\n/home/root/pi-ink-bridge-0020/owner.txt: OK\n",
+  "stderr": "",
+  "no_automatic_retry": true
+}

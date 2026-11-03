@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-11-03T06:09:14.838586+00:00",
+  "status": "read_only_diagnostic_completed",
+  "raw_result_ref": "baseline-diagnostic.json",
+  "observations": {
+    "exact_usb_guard": "passed",
+    "fixed_parent_chain": "All listed parents are non-symlink directories owned uid0/gid0. /etc/systemd/system mode775; others755.",
+    "fixed_leaf": "/etc/systemd/system/xochitl.service.d/00-xovi.conf",
+    "leaf_status": "BASELINE_MISSING_OR_INACCESSIBLE",
+    "leaf_metadata_or_hash_returned": false
+  },
+  "inference": "Absent or inaccessible baseline path is consistent with the first regular-file check aborting. Cause or timing of baseline change remains unknown.",
+  "not_established": [
+    "Definite absence versus access failure",
+    "Current effective systemd configuration",
+    "Current Xochitl/client ownership or listener state",
+    "Original proxy restoration",
+    "Operation-lock/history final state",
+    "UI acceptance",
+    "Cleanup completion"
+  ],
+  "next_prerequisite": "Separate exact bounded recovery investigation/approval for current service baseline and operation ownership. No baseline file recreation, hash bypass, script amendment or restart authorized.",
+  "new_restart_commands": 0,
+  "source_changes": [],
+  "phase": "Open; parent requested no final receipt yet."
+}

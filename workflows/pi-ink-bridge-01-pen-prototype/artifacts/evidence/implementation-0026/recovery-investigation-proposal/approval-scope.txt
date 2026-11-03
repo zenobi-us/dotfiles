@@ -1,0 +1,126 @@
+SERVICE/OWNERSHIP RECOVERY INVESTIGATION — PROSPECTIVE READ-ONLY APPROVAL
+Ticket: tracker/tickets/pi-ink-bridge-01-pen-prototype.md
+Active child: w6N:p5 / session01a19fe2-4d68-770a-a05b-0a20eca7c412
+Source unchanged: bb5df500f4a06c61ebde6073470ef5ed51f4b006 / tree9a9acbfbc65d17f87eb44f2e0a7898000b1d735b.
+
+OBSERVED PROBLEM
+The approved baseline-path diagnostic returned BASELINE_MISSING_OR_INACCESSIBLE
+for /etc/systemd/system/xochitl.service.d/00-xovi.conf. Preserve that exact
+status. Do not repeat that filesystem check, create that file or bypass the
+restoration baseline hash. The failed restore may have changed operation-lock
+or history metadata. No original-proxy restoration or cleanup is established.
+Three restart commands were last observed; this investigation adds ZERO.
+
+DECISION REQUESTED
+Approve the frozen command below ONCE. This approval permits no device writes,
+lock acquisition, restoration, unit change or restart. It gathers only the
+minimum fixed service and operation identity needed for a later recovery plan.
+Any recovery must preserve the actual intended service configuration and needs
+new exact approval after this evidence. Unknown values are not repair authority.
+
+FROZEN FILES
+6c489063c69a9b1f35d236fb5259ddbdcddb616d3c26a530fb0d30ae6a58a8d1  investigate.sh
+cafd2a97c6c6d85f1d2096f6fc4a9e2808c2144703bcaa1fa4fdbca4df31e1b8  host.sh
+Directory: /tmp/pi-ink-recovery-investigation-0026
+Durable identical copies: BASE/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/recovery-investigation-proposal
+Changed bytes require new exact approval.
+
+EXACT COMMAND — ONLY AFTER SEPARATE OWNER APPROVAL
+PI_INK_RECOVERY_INVESTIGATION_APPROVED=service-ownership-0026 sh /tmp/pi-ink-recovery-investigation-0026/host.sh
+Run once. Preserve argv, approval variable, timestamps, exit code, stdout and
+stderr. No retry, extra SSH, SCP, fallback or modification to pass a guard.
+
+EFFECTIVE SERVICE METADATA
+Query only xochitl FragmentPath, DropInPaths, ActiveState, MainPID and Job.
+Compare FragmentPath with the retained /usr/lib/systemd/system/xochitl.service.
+Compare DropInPaths with the exact retained four-path set/order and print only
+membership of those four known paths. Unknown path values stay redacted. Do
+not open, follow, list or hash paths obtained from systemctl. The absent-path
+diagnostic is NOT repeated; a known00-xovi.conf name in DropInPaths is metadata.
+Print only allowlisted ActiveState values, bounded numeric MainPID and idle or
+bounded numeric Job. Unknown values stay redacted; pending Job is not repaired.
+
+Compare effective ExecStart with the known single path/argv definition
+/usr/bin/xochitl --system; reject additional path/argv entries. Output only
+MATCH/MISMATCH, never raw argv. Compare effective Environment with the exact
+retained six-value string and separately test the known LD_PRELOAD and XOVI_ROOT
+tokens. Output only comparison statuses, never environment values. No process
+environment or process command line is read. Configuration comparisons do NOT
+prove current XOVI mappings or runtime identity.
+Retained environment expectation:
+LD_PRELOAD=/home/root/xovi/xovi.so XOVI_ROOT=/home/root/xovi/services/xochitl.service/ QML_DISABLE_DISK_CACHE=1 QML_XHR_ALLOW_FILE_WRITE=1 QML_XHR_ALLOW_FILE_READ=1 MALLOC_ARENA_MAX=8
+Authority: implementation-0020/preflight-phase-a-resource.json and
+implementation-0014/preinstall-baseline.json. No stale service file is restored.
+
+FOUR FIXED SERVICE FILES — METADATA AND BOUNDED HASH ONLY
+1. /usr/lib/systemd/system/xochitl.service
+   Reason: preserve the stock service definition and original command.
+2. /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf
+   Reason: preserve the existing mount/preflight integration.
+3. /etc/systemd/system/xochitl.service.d/qt-resource-rebuilder.conf
+   Reason: preserve the existing QML activation settings.
+4. /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf
+   Reason: preserve the original vendor environment override.
+Before each access, validate every parent from / in order. Emit only fixed-path
+lstat-style type, mode, uid/gid, size and mtime. Stop that file's inspection at
+a parent symlink, missing/inaccessible path or non-directory. For the leaf,
+report a symlink without following it; report missing/inaccessible or nonregular
+status without opening it. Only a non-symlink regular leaf<=65536bytes may be
+hashed. Output SHA256 and comparison with the retained known hash, never file
+contents. Unknown hashes are evidence, not permission to substitute a baseline.
+Do not recheck the00-xovi.conf leaf or discover alternative service files.
+
+CURRENT OWNED OPERATION ACTOR — ONE FIXED RECORD
+Inspect only /home/root/pi-ink-operation-0020/actor.txt and its fixed parents.
+No operation-history traversal, directory listing or lock acquisition.
+Require parent non-symlink directory uid0/gid0/mode700. Require leaf non-symlink
+regular uid0/gid0/mode600 and size<=256bytes before a bounded record read.
+Require exactly one newline-terminated record, no extra fields or second line.
+Validate phase as load|repair|rollback; manifest as one of the three exact
+known0020/current0023 manifest hashes embedded in the frozen script; PID as
+numeric, at most10digits and greater than1. Unknown fields remain redacted.
+Only after full validation emit phase/manifest/PID. Classify /proc/PID directory
+presence after checking / and /proc parents. No /proc file contents, argv,
+environment, mappings, sockets or signals. PID presence is NOT actor identity
+or permission for a concurrent operation. Absent/inaccessible/unsafe remains
+an unresolved classification. Do not infer target shutdown from a host timeout.
+
+FOUR FIXED EXTENSION POSITIONS — METADATA AND BOUNDED HASH ONLY
+5. /home/root/xovi/extensions.d/webserver-remote.so
+6. /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so
+   Reason: establish which known position holds the original proxy; preserve
+   its exact bytes/metadata for a separately approved restoration decision.
+7. /home/root/xovi/extensions.d/pi-ink-loopback-0020.so
+8. /home/root/pi-ink-rollback-owned-0020/adapter.so
+   Reason: establish which known position holds the owned loopback adapter.
+Apply the same parent-chain and leaf guards. These fixed binary assets alone
+have a9000000byte hash cap each, because the known original proxy is8453696bytes.
+Report type/mode/uid/gid/size/mtime, digest and known-hash comparison. No binary
+contents. Missing/collision/unknown bytes are not repaired. No other extension,
+manifest, config, CA, token, state, trust or document path is read.
+
+EXACT TRANSPORT AND DEADLINE
+Direct10.11.99.1 via enp2s0f0u4c2/source10.11.99.10, no gateway. Exact physical
+syspath /sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0.
+Reject wireless/phy80211. Bind SSH to this interface/address. Strict existing
+host keys, BatchMode, no mux, ProxyCommand, ProxyJump or fallback. Host SSH
+timeout45seconds, ConnectTimeout8seconds. No target timeout assumption. No host
+network changes or target installation. Keep USB connected. Report an abort;
+do not modify a guard or repeat the command.
+
+EXCLUSIONS AND LIMITS
+No device writes, deletion, move, mkdir, lock acquisition, service/unit change,
+restart, signal, package, pairing, settings/cache/boot/account/cloud change,
+import/draw/Send/Clip/export, screenshot, private notebook traversal, config/
+key/token/CA/state contents, broad logs, listings or arbitrary file discovery.
+No approved earlier script changes. No baseline hash bypass. No full builds,
+browser tests or new implementation. This investigation is not restoration,
+cleanup, physical UI acceptance or a completed integration. Production remains
+blocked. Result0026 stays open until parent directs durable result delivery.
+
+OFFLINE CHECKS
+Both scripts pass sh -n. Actual wrapper without approval exits1 before route
+or SSH. The actual extracted actor parser accepts the known record and rejects
+extra fields, second lines, unterminated second lines, unknown phase/manifest,
+invalid PID and missing newline without printing unknown values. These checks
+do not simulate the tablet. No target investigation has run.

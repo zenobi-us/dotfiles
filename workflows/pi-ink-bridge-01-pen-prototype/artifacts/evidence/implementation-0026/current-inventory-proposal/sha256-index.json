@@ -1,0 +1,109 @@
+{
+  "schema": "pi-ink-evidence-sha256/v1",
+  "recorded_at": "2026-11-03T20:37:41.932032+00:00",
+  "status": "OFFLINE_PROPOSAL_NOT_APPROVED_NOT_EXECUTED",
+  "required_before_target_access": [
+    "Explicit other-operator identity and handoff confirming ALL other tablet work stopped",
+    "Fresh exact one-shot read-only inventory approval"
+  ],
+  "files": [
+    {
+      "path": "inventory.sh",
+      "sha256": "68aead774e8a2bd756a21ef1d03db09efc6f8ef750db631aa057b6697a1b5482"
+    },
+    {
+      "path": "host.sh",
+      "sha256": "2eac726b101357b10911fcb6f523b3905c9181da11bb20c7740d93bca59f83ae"
+    },
+    {
+      "path": "fixed-paths.json",
+      "sha256": "7f4c4d369f880545b6458ca676f2dc9225165cda02b7a9215b4d7036105e3d12"
+    },
+    {
+      "path": "approval-scope.txt",
+      "sha256": "9ddf0b78ccbd47df627b2c9fc8a70f4f5e2018a88934beaad3d9364a9fd6a36f"
+    }
+  ],
+  "host_only_validation": [
+    {
+      "name": "shell-syntax",
+      "argv": [
+        "sh",
+        "-n",
+        "/tmp/pi-ink-current-inventory-0026/inventory.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell-syntax",
+      "argv": [
+        "sh",
+        "-n",
+        "/tmp/pi-ink-current-inventory-0026/host.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "no-approval",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-current-inventory-0026/host.sh"
+      ],
+      "approval_variable": null,
+      "handoff_variable": null,
+      "exit_code": 1,
+      "stdout": "ABORT: fresh exact preserve-current inventory approval required\n",
+      "stderr": "",
+      "boundary": "Stopped before hash/route/SSH"
+    },
+    {
+      "name": "no-handoff",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-current-inventory-0026/host.sh"
+      ],
+      "approval_variable": "preserve-current-0026",
+      "handoff_variable": null,
+      "exit_code": 1,
+      "stdout": "ABORT: all other tablet work must stop and control must be handed back\n",
+      "stderr": "",
+      "boundary": "Stopped before hash/route/SSH"
+    },
+    {
+      "name": "handoff-without-approval",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-current-inventory-0026/host.sh"
+      ],
+      "approval_variable": null,
+      "handoff_variable": "confirmed-to-parent",
+      "exit_code": 1,
+      "stdout": "ABORT: fresh exact preserve-current inventory approval required\n",
+      "stderr": "",
+      "boundary": "Stopped before hash/route/SSH"
+    }
+  ],
+  "runtime_limits": {
+    "inventory_records": 128,
+    "public_hash_file_max_bytes": 9000000,
+    "public_hash_total_budget_bytes": 67108864,
+    "owner_marker_max_bytes": 256,
+    "actor_max_bytes": 256,
+    "map_rows": 4096,
+    "network_rows_per_family": 4096,
+    "relevant_listeners_per_family": 8,
+    "fd_numbers_per_candidate": 512,
+    "candidate_processes_max": 3
+  },
+  "fixed_inventory_count_including_roots": 102,
+  "preserve_current_configuration": true,
+  "no_mutation_authority": true,
+  "no_target_execution": true,
+  "no_source_changes": true,
+  "no_result_receipt_finalized": true,
+  "parent_commit_boundary": "Parent reports d1e57755 committed six parent-owned records; child performs no BASE staging/commit before final-delivery authority."
+}

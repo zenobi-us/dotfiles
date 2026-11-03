@@ -1,0 +1,95 @@
+{
+  "status": "not approved; not executed on target",
+  "recorded_at": "2026-11-03T06:00:33.232711+00:00",
+  "files": [
+    {
+      "path": "diagnose.sh",
+      "sha256": "50d6f6b806fe0333eda3f206d139ba9cb2400293f3c9e5ee51fb4b94f9d5b0e7"
+    },
+    {
+      "path": "host.sh",
+      "sha256": "326a0364f3b2dd14908292e7383d3b9906cca88315db51ace2666392909bf60e"
+    },
+    {
+      "path": "approval-scope.txt",
+      "sha256": "d99cba2f3180a4edc40be44fd3de7b85baab24b816d924b2afe5451a57f30c6d"
+    }
+  ],
+  "offline_validation": {
+    "syntax": [
+      {
+        "argv": [
+          "sh",
+          "-n",
+          "/tmp/pi-ink-baseline-diagnostic-0026/diagnose.sh"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "sh",
+          "-n",
+          "/tmp/pi-ink-baseline-diagnostic-0026/host.sh"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "no_approval_smoke": {
+      "exit_code": 1,
+      "stdout": "ABORT: separate exact baseline diagnostic approval required\n",
+      "stderr": ""
+    }
+  },
+  "prior_metadata": [
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/preinstall-baseline.json",
+      "matching_output_lines": [
+        "# /etc/systemd/system/xochitl.service.d/00-xovi.conf",
+        "DropInPaths=/etc/systemd/system/xochitl.service.d/00-xovi.conf /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf /etc/systemd/system/xochitl.service.d/qt-resource-rebuilder.conf /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf"
+      ]
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-baseline.json",
+      "matching_output_lines": [
+        "# /etc/systemd/system/xochitl.service.d/00-xovi.conf",
+        "DropInPaths=/etc/systemd/system/xochitl.service.d/00-xovi.conf /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf /etc/systemd/system/xochitl.service.d/qt-resource-rebuilder.conf /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf"
+      ]
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-a-attribution.json",
+      "matching_output_lines": [
+        "709b65cd44766e98763e00577bfbe7d8f36f55c0f34894bfdbf0663d56b12a7a  /etc/systemd/system/xochitl.service.d/00-xovi.conf"
+      ]
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-b-preinstall-guards.json",
+      "matching_output_lines": [
+        "/etc/systemd/system/xochitl.service.d/00-xovi.conf: OK"
+      ]
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/preflight-phase-a-resource.json",
+      "matching_output_lines": [
+        "# /etc/systemd/system/xochitl.service.d/00-xovi.conf",
+        "DropInPaths=/etc/systemd/system/xochitl.service.d/00-xovi.conf /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf /etc/systemd/system/xochitl.service.d/qt-resource-rebuilder.conf /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf"
+      ]
+    }
+  ],
+  "prior_metadata_limit": "Prior output records hashes and systemd drop-in references, not lstat type/symlink/parent-chain metadata for the fixed baseline path. They do not establish current file state.",
+  "hypotheses": [
+    "Missing or inaccessible fixed baseline path",
+    "Symlink at fixed baseline path",
+    "Nonregular fixed baseline path"
+  ],
+  "scope_exclusions": [
+    "No device execution until separate owner approval",
+    "No config contents",
+    "No unknown-link dereference",
+    "No device writes or guard repair",
+    "No final receipt yet"
+  ]
+}

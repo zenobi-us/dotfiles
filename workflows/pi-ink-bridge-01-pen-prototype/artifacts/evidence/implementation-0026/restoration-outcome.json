@@ -1,0 +1,20 @@
+{
+  "recorded_at": "2026-11-03T05:57:42.588805+00:00",
+  "status": "failed_before_restoration",
+  "approval_ref": "approval-restoration.json",
+  "raw_result_ref": "restore.json",
+  "target_execution": "Established by target owner-hash output. acquire_operation rollback completed far enough to pass subsequent payload owner hash; operation/history metadata changed or may have changed.",
+  "abort_boundary": "After payload owner check (restore.sh line81), before first preserved baseline hash check emits OK (line82); exact failing guard UNKNOWN.",
+  "baseline_restored": false,
+  "restoration_verified": false,
+  "verify_restored_invocations": 0,
+  "reason_verification_skipped": "Exact restore failed; parent instructed stop with no further device command.",
+  "restart_commands_this_session": 0,
+  "restart_commands_last_observed_total": 3,
+  "restart_reasoning": "No reload invoked. Target restore aborted before baseline checks, owned client stop, active file moves and restart statement. No restart allowance spent.",
+  "latest_ui_deployed": false,
+  "cleanup_complete": false,
+  "source_changed": false,
+  "owner_ui_observations": [],
+  "open_gate": "Fresh exact bounded diagnostics/recovery approval required; no silent repair or retry."
+}

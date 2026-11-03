@@ -1,0 +1,18 @@
+{
+  "recorded_at": "2026-11-03T05:32:22.687360+00:00",
+  "prepare_exit_code": 1,
+  "observed": "Eight frozen wrapper hash checks printed OK; no target baseline output; stderr empty.",
+  "inference": "Host USB guard aborted before run_target invokes SSH. Exact failing test not observed; do not claim route, address or syspath mismatch as established.",
+  "stage_invocations": 0,
+  "reload_invocations": 0,
+  "restart_commands_this_session": 0,
+  "restart_commands_last_known_total": 3,
+  "latest_ui_deployed": false,
+  "owner_ui_checks_requested": false,
+  "restore_invocations": 0,
+  "restore_gate": "Separate renewed saved/closed plus connected-cable confirmation pending parent relay. No restoration or restored-state claim.",
+  "no_retry": true,
+  "no_unapproved_device_access": true,
+  "source_changed": false,
+  "parent_notified": true
+}

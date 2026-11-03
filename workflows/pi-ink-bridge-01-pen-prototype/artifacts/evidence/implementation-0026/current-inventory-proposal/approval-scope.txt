@@ -1,0 +1,132 @@
+PRESERVE-CURRENT RECOVERY INVENTORY — FRESH READ-ONLY APPROVAL AND HANDOFF REQUIRED
+Ticket: tracker/tickets/pi-ink-bridge-01-pen-prototype.md
+Same child: w6N:p5 / session01a19fe2-4d68-770a-a05b-0a20eca7c412
+Source remains bb5df500f4a06c61ebde6073470ef5ed51f4b006, tree9a9acbfbc65d17f87eb44f2e0a7898000b1d735b.
+STATUS: OFFLINE PROPOSAL. NOT APPROVED. NOT EXECUTED ON TABLET.
+
+TWO REQUIRED OWNER CONFIRMATIONS BEFORE ANY TARGET COMMAND
+1. ALL other tablet work has stopped. The other operator has handed control
+   back to the parent. Resolve identity/active-or-handoff state explicitly.
+2. Approve this exact fresh one-shot READ-ONLY scope and pinned bytes.
+Record both durably before execution. Environment guards do not replace these
+confirmations and confer NO mutation authority. Preserve CURRENT service
+configuration. Do not recreate unavailable drop-ins or reactivate old XOVI.
+Prior observations are stale because another operator changed/restarted the
+tablet. Do not assume a current total restart count or remaining allowance.
+
+FROZEN FILES
+68aead774e8a2bd756a21ef1d03db09efc6f8ef750db631aa057b6697a1b5482  inventory.sh
+2eac726b101357b10911fcb6f523b3905c9181da11bb20c7740d93bca59f83ae  host.sh
+7f4c4d369f880545b6458ca676f2dc9225165cda02b7a9215b4d7036105e3d12  fixed-paths.json
+Directory: /tmp/pi-ink-current-inventory-0026
+Durable identical copies: BASE/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/current-inventory-proposal
+Changed bytes require fresh exact approval. Only inventory.sh is streamed as
+the target program. Host helper source fragments are not target payloads.
+
+EXACT COMMAND — RUN ONCE ONLY AFTER BOTH CONFIRMATIONS
+PI_INK_CURRENT_INVENTORY_APPROVED=preserve-current-0026 PI_INK_OPERATOR_HANDOFF=confirmed-to-parent sh /tmp/pi-ink-current-inventory-0026/host.sh
+Retain actual argv, these two variables, timestamps, exit code, stdout/stderr.
+No retry, previous-script retry, fallback, amended guard or additional SSH.
+
+MINIMUM CURRENT RUNTIME FACTS
+- Query xochitl FragmentPath, DropInPaths, ActiveState, MainPID and Job.
+  Emit only known-path comparisons/membership, allowlisted state and bounded
+  numeric PID/Job. Unknown path/value output is redacted. No systemctl-returned
+  path becomes a filesystem input. Do not probe00-xovi.conf or other unavailable
+  service-file leaves again. Effective ExecStart/Environment comparisons use
+  retained known values only; raw argv/environment never leave the script.
+  A comparison with old activation describes a difference; it does not request
+  or authorize restoration of that activation.
+- After numeric PID and exact known /proc/PID/exe link comparison, read at most
+ 4096xochitl map rows internally. Emit only booleans for five known XOVI,
+  adapter, original-proxy, rebuilder and AppLoad paths. Recognize both normal
+  and deleted-path mappings. Never emit unrelated mappings or paths. Emit
+  incomplete status if the cap is reached. No absence claim beyond that bound.
+- Query only pi-ink-bridge-sidebar-0020.service and pi-ink-bridge-0020.service:
+  LoadState, ActiveState, Transient, MainPID and an exact known single-command
+  comparison. Never print raw ExecStart or configuration contents. Unknown or
+  nontransient ownership skips process inspection. A client PID qualifies for
+  listener attribution only after its known executable link matches. No
+  process argv/environment, stop, signal or unit mutation.
+- Read at most4096kernel TCP rows per family, internally filtering only LISTEN
+  sockets on80/81/9821. Emit only family, port and loopback/wildcard/other-redacted
+  binding class. Never emit connections, peers or other ports. Match relevant
+  listener inodes against fixed fd numbers0..511 of at most three qualified
+  candidates (xochitl and the two owned units). Read only fd link TEXT; never
+  follow a link target. Never print unrelated fd targets/inodes. Print bounded
+  match or NOT_FOUND_WITHIN_BOUND, not a false exhaustive ownership claim.
+  At most eight relevant listener rows per family. Read /proc/target-shell-PID/
+  net/tcp and tcp6, avoiding the /proc/net and /proc/self symlinks. Recheck
+  xochitl MainPID once; changed state is reported, not retried or repaired.
+- Inspect only the current fixed operation actor record. Require parent
+  uid0/gid0/mode700 and regular non-symlink actor uid0/gid0/mode600<=256bytes.
+  Validate exactly one newline-terminated phase/known-manifest/numeric-PID
+  record. Unknown values remain redacted. Emit validated fields and bounded
+  /proc/PID directory-presence classification only. No signal, lock acquisition,
+  process contents, history alteration or assumption that a PID absence means
+  every other operator has stopped. Owner handoff remains a separate gate.
+
+FIXED OWNED-ARTIFACT FACTS — NO DISCOVERY OR RECURSIVE TRAVERSAL
+The exact102fixed root/file entries and provenance are pinned in fixed-paths.json
+and embedded as literals in inventory.sh. They come from actual prior commands
+in implementation-0020/phase-c-final-command-scripts.json, the original phase-b
+staging record, the component-repair approval, and the frozen0023scripts.
+Retained payload children follow the exact approved payload-root move; they are
+not newly invented scratch paths. No notebook or synthetic-document path.
+
+The eleven explicit experimental roots cover active/retained payload, original
+proxy quarantine, rollback-owned files, sidebar stage/backup, native-button
+stage/backup, latest-UI stage/backup and operation history. Require each root
+non-symlink uid0/gid0/mode700 plus its exact known owner-marker hash before any
+fixed child inspection. A missing, unknown or unowned root is preserved and
+reported; its children are skipped. No directory listing. Operation-history
+PID subtrees and all unknown siblings remain uninventoried and preserved.
+This deliberately bounded inventory cannot justify recursive deletion or a
+claim that every credential copy has been found.
+
+For each fixed file, validate every parent from / in order as non-symlink,
+uid0/gid0 directory before leaf access. Report unsafe/missing/inaccessible
+parents, links, wrong owner/type or unknown bytes without repair. Emit fixed
+leaf type, numeric mode/uid/gid, size and mtime. Report leaf links without
+following them or printing link targets. Directories get metadata only.
+Config.json variants, state.json, trust directories and CA files get METADATA
+ONLY: no contents and no hashes. No key/token/config/state values are output.
+
+Only explicit public code/QML/QMD/manifest/owner/proxy/adapter names may be
+hashed after regular non-symlink uid0/gid0 checks. Compare against the exact
+known prior hashes; unknown digest means PRESERVE, never permission to remove.
+Each public file is capped at9000000bytes; public hashing has a64MiB aggregate
+budget, plus at most eleven256byte owner-marker checks. Fixed inventory stops
+above128records. No arbitrary files are opened. Five fixed active extension/
+QMD positions receive the same guarded metadata/hash checks without listing
+their shared parent directories. Preserve the original proxy regardless of
+position; its future disposition requires an explicit separate decision that
+preserves current activation and original bytes/metadata.
+
+TRANSPORT AND LIMITS
+Direct USB10.11.99.1 via enp2s0f0u4c2/source10.11.99.10, no gateway. Exact
+physical syspath /sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0.
+Reject wireless/phy80211. Strict existing host keys; BatchMode; bind exact
+interface/address; no connection sharing, proxy, jump, Wi-Fi or fallback.
+Host SSH deadline45seconds and ConnectTimeout8seconds. No target timeout
+assumption. No host network changes. The one target program contains no
+writes, installation, deletion, mkdir/move, restart, service changes, signal,
+lock acquisition, history change, pairing, cache/boot/settings/account/cloud
+change, imports, drawing, Send, Clip, export, screenshots, private notebook
+access or general logs. Output contains only the bounded fixed records above.
+No full implementation/build/browser tests or source changes.
+
+FUTURE RECOVERY GATE
+This read-only inventory is not restoration or cleanup approval. Before any
+future mutation, resolve ownership and current intended state, freeze a new
+exact preserve-current plan, obtain explicit approval, and recheck fresh
+mutation-specific facts. Unknown/missing paths remain preserved. Inactive
+credential/code retention is NOT cleanup completion. Original restoration,
+cleanup, latest UI deployment and full production acceptance remain unproved.
+Keep the ticket claimed and production blocked. Keep result0026/session open.
+
+EXERCISED HOST-ONLY CHECKS
+Both frozen scripts pass sh -n. Actual host wrapper rejects no approval,
+approval-without-handoff, and handoff-without-approval with exact exit1 messages
+before hash/route/SSH. No target inventory has run. These are local gate checks,
+not device-state, listener, UI or cleanup proof.

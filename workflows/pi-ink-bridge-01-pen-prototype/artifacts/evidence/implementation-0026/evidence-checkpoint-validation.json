@@ -1,0 +1,256 @@
+{
+  "schema": "pi-ink-evidence-checkpoint-validation/v1",
+  "recorded_at": "2026-11-03T20:42:02.378223+00:00",
+  "scope": "Child evidence checkpoint only; no final implementation result, snapshot, projection, source or device change.",
+  "source_identity": "Parent continuation inspection reports unique clean bb5df500f4a06c61ebde6073470ef5ed51f4b006/tree9a9acbfbc65d17f87eb44f2e0a7898000b1d735b; no source commands repeated.",
+  "ownership": {
+    "child_session": "01a19fe2-4d68-770a-a05b-0a20eca7c412",
+    "child_pane": "w6N:p5",
+    "parent_commit_reported": "d1e57755",
+    "staged_scope": "Exact listed child-created files only",
+    "parent_approvals_intent_monitoring_continuation": "Excluded; reserve approval-current-inventory-with-handoff.json",
+    "unrelated_mise_toml_and_hk_pending_stash": "Untouched"
+  },
+  "validated_child_files": [
+    "baseline-diagnostic-outcome.json",
+    "baseline-diagnostic-proposal/approval-scope.txt",
+    "baseline-diagnostic-proposal/diagnose.sh",
+    "baseline-diagnostic-proposal/host.sh",
+    "baseline-diagnostic-proposal/sha256-index.json",
+    "baseline-diagnostic.json",
+    "cleanup-inventory-approval-proposal.json",
+    "current-inventory-proposal/approval-scope.txt",
+    "current-inventory-proposal/fixed-paths.json",
+    "current-inventory-proposal/host.sh",
+    "current-inventory-proposal/inventory.sh",
+    "current-inventory-proposal/sha256-index.json",
+    "owner-policy-consumption.json",
+    "preflight-integrity.json",
+    "prepare-abort-boundary.json",
+    "prepare-abort-interpretation-correction.json",
+    "prepare.json",
+    "recovery-investigation-outcome.json",
+    "recovery-investigation-proposal/approval-scope.txt",
+    "recovery-investigation-proposal/host.sh",
+    "recovery-investigation-proposal/investigate.sh",
+    "recovery-investigation-proposal/sha256-index.json",
+    "recovery-investigation.json",
+    "restoration-outcome.json",
+    "restore.json"
+  ],
+  "frozen_indices": [
+    {
+      "path": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/baseline-diagnostic-proposal/diagnose.sh",
+      "sha256": "50d6f6b806fe0333eda3f206d139ba9cb2400293f3c9e5ee51fb4b94f9d5b0e7",
+      "durable_and_frozen_match": true
+    },
+    {
+      "path": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/baseline-diagnostic-proposal/host.sh",
+      "sha256": "326a0364f3b2dd14908292e7383d3b9906cca88315db51ace2666392909bf60e",
+      "durable_and_frozen_match": true
+    },
+    {
+      "path": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/baseline-diagnostic-proposal/approval-scope.txt",
+      "sha256": "d99cba2f3180a4edc40be44fd3de7b85baab24b816d924b2afe5451a57f30c6d",
+      "durable_and_frozen_match": true
+    },
+    {
+      "path": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/recovery-investigation-proposal/investigate.sh",
+      "sha256": "6c489063c69a9b1f35d236fb5259ddbdcddb616d3c26a530fb0d30ae6a58a8d1",
+      "durable_and_frozen_match": true
+    },
+    {
+      "path": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/recovery-investigation-proposal/host.sh",
+      "sha256": "cafd2a97c6c6d85f1d2096f6fc4a9e2808c2144703bcaa1fa4fdbca4df31e1b8",
+      "durable_and_frozen_match": true
+    },
+    {
+      "path": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/recovery-investigation-proposal/approval-scope.txt",
+      "sha256": "0e5a6b259cc7b30c8daed9178f457bfef15f42336b2ac175e95c6837481caee4",
+      "durable_and_frozen_match": true
+    },
+    {
+      "path": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/current-inventory-proposal/inventory.sh",
+      "sha256": "68aead774e8a2bd756a21ef1d03db09efc6f8ef750db631aa057b6697a1b5482",
+      "durable_and_frozen_match": true
+    },
+    {
+      "path": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/current-inventory-proposal/host.sh",
+      "sha256": "2eac726b101357b10911fcb6f523b3905c9181da11bb20c7740d93bca59f83ae",
+      "durable_and_frozen_match": true
+    },
+    {
+      "path": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/current-inventory-proposal/fixed-paths.json",
+      "sha256": "7f4c4d369f880545b6458ca676f2dc9225165cda02b7a9215b4d7036105e3d12",
+      "durable_and_frozen_match": true
+    },
+    {
+      "path": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/current-inventory-proposal/approval-scope.txt",
+      "sha256": "9ddf0b78ccbd47df627b2c9fc8a70f4f5e2018a88934beaad3d9364a9fd6a36f",
+      "durable_and_frozen_match": true
+    }
+  ],
+  "durable_record_references": [
+    {
+      "field": "raw_result_ref",
+      "ref": "baseline-diagnostic.json",
+      "resolved": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/baseline-diagnostic.json"
+    },
+    {
+      "field": "ref",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/preinstall-baseline.json",
+      "resolved": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/preinstall-baseline.json"
+    },
+    {
+      "field": "ref",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-baseline.json",
+      "resolved": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-baseline.json"
+    },
+    {
+      "field": "ref",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-a-attribution.json",
+      "resolved": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-a-attribution.json"
+    },
+    {
+      "field": "ref",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-b-preinstall-guards.json",
+      "resolved": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-b-preinstall-guards.json"
+    },
+    {
+      "field": "ref",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/preflight-phase-a-resource.json",
+      "resolved": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/preflight-phase-a-resource.json"
+    },
+    {
+      "field": "approval_ref",
+      "ref": "approval-baseline-diagnostic.json",
+      "resolved": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/approval-baseline-diagnostic.json"
+    },
+    {
+      "field": "consumed_parent_record",
+      "ref": "owner-recovery-intent.json",
+      "resolved": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/owner-recovery-intent.json"
+    },
+    {
+      "field": "approval_ref",
+      "ref": "approval.json",
+      "resolved": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/approval.json"
+    },
+    {
+      "field": "supersedes_interpretation_in",
+      "ref": "prepare-abort-boundary.json",
+      "resolved": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/prepare-abort-boundary.json"
+    },
+    {
+      "field": "raw_result_ref",
+      "ref": "recovery-investigation.json",
+      "resolved": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/recovery-investigation.json"
+    },
+    {
+      "field": "approval_ref",
+      "ref": "approval-recovery-investigation.json",
+      "resolved": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/approval-recovery-investigation.json"
+    },
+    {
+      "field": "approval_ref",
+      "ref": "approval-restoration.json",
+      "resolved": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/approval-restoration.json"
+    },
+    {
+      "field": "raw_result_ref",
+      "ref": "restore.json",
+      "resolved": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/restore.json"
+    }
+  ],
+  "credential_scan": {
+    "patterns": [
+      "Private-key PEM headers",
+      "Bearer credential values",
+      "URL user/password authority",
+      "JWT-like credentials"
+    ],
+    "findings": [],
+    "limit": "Pattern scan plus authored-output review; not an exhaustive credential detector. Scope contains known guard values and known public hashes, not device credential contents."
+  },
+  "markdown_link_validation": "Not applicable: checkpoint creates no Markdown artifacts. JSON durable ref fields resolved from actual artifact directory/evidence root/repository root as appropriate.",
+  "host_only_current_inventory_checks": [
+    {
+      "name": "shell-syntax",
+      "argv": [
+        "sh",
+        "-n",
+        "/tmp/pi-ink-current-inventory-0026/inventory.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell-syntax",
+      "argv": [
+        "sh",
+        "-n",
+        "/tmp/pi-ink-current-inventory-0026/host.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "no-approval",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-current-inventory-0026/host.sh"
+      ],
+      "approval_variable": null,
+      "handoff_variable": null,
+      "exit_code": 1,
+      "stdout": "ABORT: fresh exact preserve-current inventory approval required\n",
+      "stderr": "",
+      "boundary": "Stopped before hash/route/SSH"
+    },
+    {
+      "name": "no-handoff",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-current-inventory-0026/host.sh"
+      ],
+      "approval_variable": "preserve-current-0026",
+      "handoff_variable": null,
+      "exit_code": 1,
+      "stdout": "ABORT: all other tablet work must stop and control must be handed back\n",
+      "stderr": "",
+      "boundary": "Stopped before hash/route/SSH"
+    },
+    {
+      "name": "handoff-without-approval",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-current-inventory-0026/host.sh"
+      ],
+      "approval_variable": null,
+      "handoff_variable": "confirmed-to-parent",
+      "exit_code": 1,
+      "stdout": "ABORT: fresh exact preserve-current inventory approval required\n",
+      "stderr": "",
+      "boundary": "Stopped before hash/route/SSH"
+    }
+  ],
+  "interpretation_precedence": {
+    "prepare_failure": "Exact abort point UNKNOWN; prepare-abort-interpretation-correction.json supersedes early host-guard hypothesis in prepare-abort-boundary.json",
+    "restart_accounting": "This child issued zero restart commands. Later recovery-investigation-outcome.json supersedes stale last-known totals: intervening operator changed/restarted device; current total UNKNOWN.",
+    "owner_policy": "Preserve CURRENT configuration; parent owner-recovery-intent.json is authoritative, choosing policy is not mutation approval."
+  },
+  "open_gates": [
+    "ALL other tablet work stopped and explicit operator handoff",
+    "Fresh exact current inventory approval before any device command",
+    "New preserve-current exact recovery/cleanup scope before any mutation",
+    "Original restoration and credential/code cleanup incomplete; latest UI not deployed; production blocked"
+  ],
+  "commit_policy": {
+    "hook_bypass": "git -c core.hooksPath=/dev/null commit (command-local only)",
+    "reason": "Avoid disturbing known hk pending-stash1e89555d; no stash or hook config mutation",
+    "no_merge_rebase_push": true
+  },
+  "result0026_finalized": false
+}

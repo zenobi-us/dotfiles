@@ -1,0 +1,57 @@
+BASELINE-PATH DIAGNOSTIC — SEPARATE PROSPECTIVE APPROVAL ONLY
+Ticket: tracker/tickets/pi-ink-bridge-01-pen-prototype.md
+Active child: w6N:p5 / session01a19fe2-4d68-770a-a05b-0a20eca7c412
+Source remains bb5df500f4a06c61ebde6073470ef5ed51f4b006 / tree9a9acbfbc65d17f87eb44f2e0a7898000b1d735b.
+
+Problem: the exact restore returned exit1 after the payload owner hash. The next
+statement is assert_hash for /etc/systemd/system/xochitl.service.d/00-xovi.conf.
+That helper tests regular-file status and rejects a symlink before printing any
+SHA result. Missing/inaccessible, symlink and nonregular path are hypotheses,
+not observed facts. Initial prepare failure location is still unknown. Prior
+recorded hashes and systemd DropInPaths do not prove current lstat metadata.
+No retry, new restore, restart or guard amendment is included in this request.
+
+EXACT FROZEN FILES
+50d6f6b806fe0333eda3f206d139ba9cb2400293f3c9e5ee51fb4b94f9d5b0e7  diagnose.sh
+326a0364f3b2dd14908292e7383d3b9906cca88315db51ace2666392909bf60e  host.sh
+Directory: /tmp/pi-ink-baseline-diagnostic-0026
+Durable identical copies: BASE/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/baseline-diagnostic-proposal
+Changed bytes require new exact approval.
+
+ONLY AFTER OWNER APPROVES THIS EXACT READ-ONLY SCOPE, RUN ONCE:
+PI_INK_DIAGNOSTIC_APPROVED=baseline-path-0026 sh /tmp/pi-ink-baseline-diagnostic-0026/host.sh
+Retain timestamp, argv, environment, exit code, stdout and stderr. No retry.
+
+READ BOUNDARY
+Read lstat-style stat metadata only for these fixed parent paths, in order:
+/ ; /etc ; /etc/systemd ; /etc/systemd/system ; /etc/systemd/system/xochitl.service.d
+Stop at a parent symlink, absent/inaccessible path or non-directory. Do not
+follow an unknown parent link. Do not list any directory or print link targets.
+Then inspect only /etc/systemd/system/xochitl.service.d/00-xovi.conf.
+Emit its type, mode, numeric uid/gid, size and mtime. If it is a symlink, emit
+its metadata without dereferencing or hashing it. If absent/inaccessible, emit
+that bounded status. If regular, non-symlink and no larger than65536bytes,
+compute SHA256; emit the digest, not configuration contents. Other file types
+are never opened. No other baseline file, private data or config contents.
+
+TRANSPORT
+Only direct USB10.11.99.1/source10.11.99.10/interfaceenp2s0f0u4c2, no gateway.
+Physical syspath /sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0.
+Reject wireless/phy80211. Bind SSH to exact interface/address. Strict existing
+host keys, BatchMode, no connection sharing, proxy, jump or fallback. Host SSH
+deadline45seconds, connection timeout8seconds. No target timeout assumption.
+No host network changes. No SCP or file installation on the tablet.
+
+NO MUTATION
+No writes, deletion, mkdir, move, repair, unit change, restart, process signal,
+settings/cache/boot/account/cloud change, package, pairing, import/export,
+document or notebook traversal, general logs, screenshot or UI action.
+No operation-lock/history read or write is included. The failed restore may
+have changed operation-lock/history metadata; preserve that uncertainty.
+This diagnostic will not establish restoration, cleanup or UI acceptance.
+Production stays blocked. Any recovery needs a new exact approval.
+
+OFFLINE CHECKS
+Both scripts pass sh -n. Actual host wrapper without the approval variable
+exits1 with the explicit approval-required message before any route or SSH.
+No target diagnostic has run. No result0026 receipt has been finalized.
