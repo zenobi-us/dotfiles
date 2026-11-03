@@ -113,7 +113,6 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     const status = text(fields.status, "receipt status");
     const phase = receiptPhase({ phase: text(fields.phase, "receipt phase") });
     const lifecycleEvent = receiptEvent({ phase: String(fields.phase), fields });
-    const lifecycle = lifecycleEvent === "phase-start" || lifecycleEvent === "phase-complete";
     const started = lifecycleEvent === "phase-start" && status === "started";
     const finishing = phase === "finish" && status === "FINISHING";
     if (!started && !finishing && !["completed", "failed", "blocked", "FINISHED", "FINISH_FAILED"].includes(status)) throw new Error("Receipt status is not a supported phase result or lifecycle state.");
@@ -121,10 +120,10 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     if (!Number.isInteger(fields.attempt) || Number(fields.attempt) < 1) throw new Error("Receipt attempt must be a positive integer.");
     text(fields.muxer, "receipt muxer");
     text(fields.agent, "receipt agent");
-    // Finish runs in the parent session, including retries before the ticket is closed.
-    if (!(phase === "finish" && fields.pane_id === null) && typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string") throw new Error("Receipt pane_id is required.");
-    // Older lifecycle envelopes did not have event or evidence fields. Preserve their original data.
-    if ((!lifecycle && !(archive && lifecycleEvent == null)) || fields.evidence != null) {
+    // Finish runs in the parent session, including retries before the ticket is closed. A phase-start is written before its pane opens.
+    if (!((phase === "finish" || lifecycleEvent === "phase-start") && fields.pane_id === null) && typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string") throw new Error("Receipt pane_id is required.");
+    // A phase with no evidence run records none; inventing one would be worse than its absence.
+    if (fields.evidence != null) {
      const evidence = object(fields.evidence, "receipt evidence");
      text(evidence.store, "receipt evidence store");
      text(evidence.ref, "receipt evidence ref");

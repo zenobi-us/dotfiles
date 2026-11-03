@@ -192,6 +192,35 @@ test("submission verification requires the exact PR head, base and non-closed pu
   expect((await inspectWorkflow(context, ticket, workflow, observed)).submission?.verified).toBe(true);
 });
 
+test("a start written before its pane opens and a result with no evidence run stay valid history", async () => {
+  const { context, ticket } = await fixture();
+  const root = context.repositoryRoot;
+  await put(join(root, ".git/info/exclude"), "/workflows/\n");
+  const commit = await run("git", ["-C", root, "rev-parse", "HEAD"]);
+  const tree = await run("git", ["-C", root, "rev-parse", "HEAD^{tree}"]);
+  const workflowRoot = "workflows/T-1";
+  const common = {
+    schema: "worktree-receipt/v1", workflow_id: ticket.id, attempt: 1, repository: root, worktree: root, workspace_path: root,
+    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "hrdx", agent: "pi", session_id: null,
+    ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
+    workflow: { root, store: "repository", ref: workflowRoot }, inputs: [], outputs: [],
+  };
+  const start = { ...common, receipt_id: "start-1", parent_receipt: null, phase: "start", event: "phase-start", status: "started", pane_id: null, created_at: "2026-10-01T00:00:00Z" };
+  const result = { ...common, receipt_id: "implementation-2", parent_receipt: "start-1", phase: "implementation", event: "phase-result", status: "completed", pane_id: "1", created_at: "2026-10-02T00:00:00Z" };
+  await put(join(root, workflowRoot, "events/start-1.json"), JSON.stringify(start));
+  await put(join(root, workflowRoot, "events/implementation-2.json"), JSON.stringify(result));
+  const readOnly: Exec = async (command, args, cwd) => command === "wt" ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "main", worktree: { path: root } }] }) } : exec(command, args, cwd);
+  let workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(workflow.error).toBeUndefined();
+  expect(workflow.inspection?.historyValid).toBe(true);
+  await put(join(root, workflowRoot, "events/implementation-2.json"), JSON.stringify({ ...result, pane_id: null }));
+  workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(workflow.error).toContain("Receipt pane_id is required.");
+  await put(join(root, workflowRoot, "events/implementation-2.json"), JSON.stringify({ ...result, evidence: { store: "repository" } }));
+  workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(workflow.error).toContain("receipt evidence ref");
+});
+
 test("checksum-bound history supplements repair envelopes without rewriting receipts or losing parents", async () => {
   const { context, ticket } = await fixture();
   const root = context.repositoryRoot;

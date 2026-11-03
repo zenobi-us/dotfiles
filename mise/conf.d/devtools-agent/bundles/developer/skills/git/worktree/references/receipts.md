@@ -94,7 +94,7 @@ fields returned by `"$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts" r
 `workflow.root` is the store root. It is not the returned `path`, which includes
 `workflows/<ticket-id>`. Never substitute the workflow directory for the store root.
 
-Finish runs in the parent session and MAY record `pane_id: null` before or after ticket completion. This does not waive session identity, receipt provenance, or finish recovery evidence. Implementation, review, and fix still require their child pane identity.
+Finish runs in the parent session and MAY record `pane_id: null` before or after ticket completion. A phase-start receipt MAY record `pane_id: null`, because the parent writes it before the pane opens. This does not waive session identity, receipt provenance, or finish recovery evidence. Implementation, review, and fix results still require their child pane identity.
 
 Every ticket-phase receipt MUST include:
 
@@ -171,7 +171,8 @@ Set `event: phase-start` and `status: started` before launching an agent. Set
 `event: phase-result` on its result and `event: phase-complete` on the parent
 completion. Phase-start and phase-complete receipts use the envelope above, but
 MAY omit `evidence` when they produce no evidence run. Preserve their durable
-input and output references. Phase-result receipts MUST include `evidence`.
+input and output references. Phase-result receipts MUST include `evidence` when
+an evidence run exists. When none exists, omit `evidence` or set it to `null`.
 Do not invent an evidence run to satisfy the envelope.
 
 1. Resolve the workflow root before selecting a receipt ID.
