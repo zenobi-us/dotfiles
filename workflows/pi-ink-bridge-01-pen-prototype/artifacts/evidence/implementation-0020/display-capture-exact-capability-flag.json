@@ -1,0 +1,10 @@
+{
+  "observedAt": "2026-11-03T03:32:20.341595+00:00",
+  "authority": "Owner exact read-only Screenshot/screenshotEnabled flag and known capture-directory/filename metadata request; no other config output, writes or new capture attempt",
+  "targetScript": "set -eu\n# Return ONLY the exact stock capture capability key; no other settings or values.\nflag_found=0\nif test -f /home/root/.config/remarkable/xochitl.conf && test ! -L /home/root/.config/remarkable/xochitl.conf; then\n while IFS= read -r line || test -n \"$line\"; do\n  case \"$line\" in\n   Screenshot=*|screenshotEnabled=*)\n    key=${line%%=*};value=${line#*=};flag_found=1\n    case \"$value\" in true|false|1|0) printf 'CAPTURE_CAPABILITY %s=%s\\n' \"$key\" \"$value\" ;; *) printf 'CAPTURE_CAPABILITY %s=NONBOOLEAN_PRESENT\\n' \"$key\" ;; esac\n    ;;\n  esac\n done < /home/root/.config/remarkable/xochitl.conf\n if test \"$flag_found\" = 0; then printf '%s\\n' 'CAPTURE_CAPABILITY Exact Screenshot/screenshotEnabled keys ABSENT'; fi\nelse printf '%s\\n' 'CAPTURE_CAPABILITY stock settings file absent or symlink; no fallback'; fi\nfor directory in /home/root/screenshots /home/root/Screenshots /tmp/screenshots; do\n if test -d \"$directory\" && test ! -L \"$directory\"; then stat -c 'KNOWN_CAPTURE_DIRECTORY %n %F %a %u %g %Y' \"$directory\"; else printf 'KNOWN_CAPTURE_DIRECTORY_ABSENT %s\\n' \"$directory\"; fi\ndone\nfor image in /home/root/screenshot.png /home/root/Screenshot.png /home/root/screenshots/screenshot.png /home/root/Screenshots/screenshot.png; do\n if test -f \"$image\" && test ! -L \"$image\"; then stat -c 'EXPECTED_CAPTURE_FILE %n %Y %s' \"$image\"; fi\ndone\n",
+  "returncode": 0,
+  "stdout": "CAPTURE_CAPABILITY Exact Screenshot/screenshotEnabled keys ABSENT\nKNOWN_CAPTURE_DIRECTORY_ABSENT /home/root/screenshots\nKNOWN_CAPTURE_DIRECTORY_ABSENT /home/root/Screenshots\nKNOWN_CAPTURE_DIRECTORY_ABSENT /tmp/screenshots\n",
+  "stderr": "",
+  "UIUnchanged": true,
+  "newSIGUSR2Attempts": 0
+}

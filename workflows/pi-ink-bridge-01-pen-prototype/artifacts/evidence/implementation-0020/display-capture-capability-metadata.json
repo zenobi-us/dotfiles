@@ -1,0 +1,10 @@
+{
+  "observedAt": "2026-11-03T03:24:03.776004+00:00",
+  "authority": "Explicit owner screenshot-first request permits read-only installed capability discovery and visible-display capture/transfer; no new payload, UI action or broad process-memory dump",
+  "targetScript": "set -eu\nfor utility in screenshot fbgrab fb2png rmfb2png remarkable-screenshot remarkable-capture grim dbus-send qdbus qdbus6 gdb fbset busybox; do\n  location=$(command -v \"$utility\" || true)\n  if test -n \"$location\"; then printf 'UTILITY %s %s\\n' \"$utility\" \"$location\"; fi\ndone\nfor node in /dev/fb0 /dev/fb1 /dev/dri/card0 /dev/dri/card1 /sys/class/graphics/fb0/name /sys/class/graphics/fb0/virtual_size /sys/class/graphics/fb0/bits_per_pixel; do\n  if test -e \"$node\"; then stat -c 'CAPABILITY_NODE %n %F %a %u %g' \"$node\"; fi\ndone\n",
+  "returncode": 0,
+  "stdout": "UTILITY screenshot /usr/bin/screenshot\nUTILITY dbus-send /usr/bin/dbus-send\nUTILITY fbset /usr/sbin/fbset\nUTILITY busybox /usr/bin/busybox\nCAPABILITY_NODE /dev/dri/card0 character special file 660 0 44\n",
+  "stderr": "",
+  "UIUnchangedByCommands": true,
+  "restartCommandsExecutedTotal": 3
+}

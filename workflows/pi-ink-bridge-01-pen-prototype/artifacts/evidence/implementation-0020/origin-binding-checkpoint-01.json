@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-11-02T22:45:47.859905+00:00",
+  "source": "Authenticated desktop origin GET only; no tablet command/manual transfer",
+  "observations": [
+    {
+      "serverId": "485bf81fd7f7853c4efedc0492b9d8fd",
+      "job": {
+        "jobId": "6d318d779e4c12fce1395b499bcaec5b",
+        "requestId": "6d318d779e4c12fce1395b499bcaec5b",
+        "sourceDigest": "5f816344bcd9aeeae4ff7cf1c497404b922b54d6362a859ed60e93d18f83cdef",
+        "state": "pending",
+        "submissionEpoch": 0
+      }
+    },
+    {
+      "serverId": "e29308fadaaa0c7a10479ba117b82bee",
+      "job": {
+        "jobId": "b3a4bf9567d3bc0ec8e6f5b671085f7b",
+        "requestId": "b3a4bf9567d3bc0ec8e6f5b671085f7b",
+        "sourceDigest": "5f816344bcd9aeeae4ff7cf1c497404b922b54d6362a859ed60e93d18f83cdef",
+        "state": "pending",
+        "submissionEpoch": 0
+      }
+    }
+  ]
+}

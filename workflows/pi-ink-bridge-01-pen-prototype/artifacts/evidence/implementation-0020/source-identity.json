@@ -1,0 +1,19 @@
+{
+  "source_commit": "14680ba9fc11f3de2ac65db472ecf6ba922ba617",
+  "source_tree": "a09afa75eed4bc4b1971c200dfb89a7a4b093298",
+  "source_parent": "ff9ec2a2f5aedbf804ad8cce7c8843ec95f25456",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "title": "feat(omp): add tablet Send for pi-ink-bridge-01-pen-prototype",
+  "session_id": "01a19e3a-d649-7473-8e40-e4371bceb4ea",
+  "parent_session_id": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+  "pane_id": "w6J:p5",
+  "implementation_depth": 1,
+  "fresh_self_checks": [
+    {"axis": "standards", "run_id": "ebecfd28-bfe3-4fd3-9549-96a6176bc17f", "pane": "w6J:p8", "depth": 2, "closed": true},
+    {"axis": "spec", "run_id": "9081bb4d-8559-4fed-a94a-9f916e55fcf3", "pane": "w6J:p9", "depth": 2, "closed": true}
+  ],
+  "formal_review_verdict": null,
+  "scope": "Actual tablet client/current-document panel/HTTPS-WebSocket origin gate source committed; hardware acceptance and owner observations remain separate",
+  "unrelated_base_change": "BASE mise.toml not staged, modified or restored",
+  "pending_stash": "Existing unrelated hk pending-stash warning/history not repaired, applied or dropped"
+}

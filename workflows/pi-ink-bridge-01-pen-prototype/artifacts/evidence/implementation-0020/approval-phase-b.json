@@ -1,0 +1,14 @@
+{
+  "schema": "pi-ink-device-approval/v1",
+  "phase": "B",
+  "owner_selection": "Approve; restore original proxy",
+  "authority": "Fresh owner approval relayed by parent w64:pY to implementation session01a19e3a-d649-7473-8e40-e4371bceb4ea",
+  "plan": "device-approval-phase-b.txt",
+  "payload_manifest": "payload-hashes-phase-b.json",
+  "saved_closed_before_load": "Owner confirms ALL documents saved and closed NOW; USB connected",
+  "scope": ["exact guarded proxy quarantine", "pinned8 payloads only", "adapter/QMD/transient client installation", "one LOAD Xochitl restart", "two allowlisted synthetic imports", "known UUID fc2a3c9b-feea-40d1-9ac1-a8327f10edba only as unassociated switching control", "owner normal stock drawing", "cable-free association/Send/cancel/clipping tests", "rollback branch A RESTORE ORIGINAL"],
+  "restore_choice": "A RESTORE ORIGINAL; owner explicitly accepts restoration of prior possible wildcard HTTP behavior",
+  "renewal_required": "Ask parent for renewed ALL-documents-saved/closed confirmation BEFORE rollback or any additional restart",
+  "excluded": ["payload substitution", "settings/account/cloud/auto-sleep/boot changes", "private notebook access", "client export/modification of prior control UUID", "runtime SSH after disconnect until authenticated results arrive"],
+  "execution_gate": "Proceed only if fresh baseline and collision/hash guards pass"
+}

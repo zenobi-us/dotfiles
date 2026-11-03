@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-11-02T21:55:54.086860+00:00",
+  "command": [
+    "timeout",
+    "45",
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "root@10.11.99.1",
+    "set -eu\ncat /etc/os-release\nfor x in sha256sum systemctl systemd-run find ls cat sh sleep cp mv rm rmdir chmod mkdir readlink stat; do command -v \"$x\"; done\nsha256sum /usr/bin/xochitl /home/root/xovi/xovi.so /home/root/xovi/start /home/root/xovi/stock\nprintf '%s  %s\\n' b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021 /usr/bin/xochitl d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446 /home/root/xovi/xovi.so 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f /home/root/xovi/extensions.d/webserver-remote.so | sha256sum -c -\nfind /home/root/xovi/extensions.d -maxdepth 1 -type f -exec sha256sum {} \\;\nls -l /home/root/xovi/extensions.d\nstat -c '%a %u %g %s %Y %n' /home/root/xovi/extensions.d/webserver-remote.so\nreadlink -f /home/root/xovi/extensions.d /home/root/xovi/exthome\nsystemctl cat xochitl\nsystemctl show xochitl -p FragmentPath -p DropInPaths -p Environment\nsystemctl is-active xochitl\ncat /proc/net/tcp /proc/net/tcp6\nfor p in /sys/class/udc/*/state; do printf '%s ' \"$p\"; cat \"$p\"; done\nfind /home/root/xovi/exthome -maxdepth 3 -type f -name '*.qmd' -print\nls -l /home/root/xovi/exthome/qt-resource-rebuilder\nsha256sum /home/root/xovi/exthome/qt-resource-rebuilder/hashtab\n"
+  ],
+  "exit_code": 1,
+  "stdout": "ID=codex\nNAME=\"Codex Linux\"\nVERSION=\"5.8.203 (scarthgap)\"\nVERSION_ID=5.8.203\nVERSION_CODENAME=\"scarthgap\"\nPRETTY_NAME=\"Codex Linux 5.8.203 (scarthgap)\"\nCPE_NAME=\"cpe:/o:openembedded:codex:5.8.203\"\nBUILD_MODE_RM=\"public\"\nIMG_VERSION=\"3.28.0.172\"\n/usr/bin/sha256sum\n/usr/bin/systemctl\n/usr/bin/systemd-run\n/usr/bin/find\n/usr/bin/ls\n/usr/bin/cat\n/usr/bin/sh\n/usr/bin/sleep\n/usr/bin/cp\n/usr/bin/mv\n/usr/bin/rm\n/usr/bin/rmdir\n/usr/bin/chmod\n/usr/bin/mkdir\n/usr/bin/readlink\n/usr/bin/stat\nb1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021  /usr/bin/xochitl\nd4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446  /home/root/xovi/xovi.so\nbf15dfd641deea3e4487b9182957938a3dc824c340383c9243b7f118bfe829dc  /home/root/xovi/start\ne29494c9fff5ede390b06f1f5e27ca59e4f7bc81d25889822a123ccad1fd686d  /home/root/xovi/stock\n/usr/bin/xochitl: OK\n/home/root/xovi/xovi.so: OK\n/home/root/xovi/extensions.d/webserver-remote.so: OK\n5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad  /home/root/xovi/extensions.d/appload.so\n24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f  /home/root/xovi/extensions.d/webserver-remote.so\n6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f  /home/root/xovi/extensions.d/qt-resource-rebuilder.so\n2f19585c63979182ccd19a2953cd4aa6a6f3824ea36a76eb46c803e02e79db6e  /home/root/xovi/extensions.d/qt-command-executor.so\n48d62c2beb0d285943e5c8d3f08ed980c6045b27f13644079d15a3dbaf2b7609  /home/root/xovi/extensions.d/literm.so\n61c0c7b0d4e2c7623147a87c63d6a4aaec868019e67fb0e1bdb1fcb215f6e155  /home/root/xovi/extensions.d/xovi-message-broker.so\n-rw-r--r--    1 root     root       4342120 Sep 19 23:44 appload.so\n-rw-r--r--    1 root     root       3408280 Sep 20 13:34 literm.so\n-rw-r--r--    1 root     root        682776 Sep  3 21:27 qt-command-executor.so\n-rw-r--r--    1 root     root       9496456 Oct 26 21:16 qt-resource-rebuilder.so\n-rw-r--r--    1 root     root       8453696 Oct 26 21:16 webserver-remote.so\n-rw-r--r--    1 root     root        588184 Oct 26 21:16 xovi-message-broker.so\n644 0 0 8453696 1793049401 /home/root/xovi/extensions.d/webserver-remote.so\n",
+  "stderr": "BusyBox v1.36.1 () multi-call binary.\n\nUsage: readlink [-fnv] FILE\n"
+}

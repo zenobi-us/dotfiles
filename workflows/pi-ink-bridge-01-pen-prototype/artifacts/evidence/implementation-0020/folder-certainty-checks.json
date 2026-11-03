@@ -1,0 +1,44 @@
+[
+  {
+    "command": [
+      "gofmt",
+      "-w",
+      "operations.go",
+      "stock.go",
+      "client_test.go"
+    ],
+    "environment": {},
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "go",
+      "test",
+      "-race",
+      "./..."
+    ],
+    "environment": {},
+    "exit_code": 0,
+    "stdout": "ok  \timage-annotator-tablet\t1.044s\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "go",
+      "build",
+      "-o",
+      "/tmp/pi-ink-0020-offline/pi-ink-tablet-folder-safe",
+      "."
+    ],
+    "environment": {
+      "CGO_ENABLED": "0",
+      "GOOS": "linux",
+      "GOARCH": "arm64"
+    },
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

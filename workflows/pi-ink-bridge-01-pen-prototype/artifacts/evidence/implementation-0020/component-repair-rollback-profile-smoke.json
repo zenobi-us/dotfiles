@@ -1,0 +1,54 @@
+{
+  "source": "exact prospective rollback-v5 hash helper, real retained old/reviewed/repaired bytes; no hardware/systemd mocks",
+  "partialComponentManifestCombinations": [
+    {
+      "componentProfile": 0,
+      "manifestProfile": 0,
+      "accepted": true
+    },
+    {
+      "componentProfile": 0,
+      "manifestProfile": 1,
+      "accepted": true
+    },
+    {
+      "componentProfile": 0,
+      "manifestProfile": 2,
+      "accepted": true
+    },
+    {
+      "componentProfile": 1,
+      "manifestProfile": 0,
+      "accepted": true
+    },
+    {
+      "componentProfile": 1,
+      "manifestProfile": 1,
+      "accepted": true
+    },
+    {
+      "componentProfile": 1,
+      "manifestProfile": 2,
+      "accepted": true
+    },
+    {
+      "componentProfile": 2,
+      "manifestProfile": 0,
+      "accepted": true
+    },
+    {
+      "componentProfile": 2,
+      "manifestProfile": 1,
+      "accepted": true
+    },
+    {
+      "componentProfile": 2,
+      "manifestProfile": 2,
+      "accepted": true
+    }
+  ],
+  "unknownBytesRejected": true,
+  "symlinkRejected": true,
+  "rollbackSHA256": "8aab43afd6a0c556b5151e439b43b976036193a3d53f8f8e8d37a02f573457b4",
+  "deviceExecuted": false
+}

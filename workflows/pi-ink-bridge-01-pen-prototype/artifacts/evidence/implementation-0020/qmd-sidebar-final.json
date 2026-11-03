@@ -1,0 +1,27 @@
+{
+  "runs": [
+    {
+      "command": [
+        "/tmp/pi-ink-0020-qmd-sidebar-smoke",
+        "/tmp/pi-ink-0020-qmd-baseline-stage",
+        "12",
+        "baseline-only"
+      ],
+      "exit_code": 0,
+      "stdout": "[qmldiff]: Hashtab loaded! Cached 20357 entries\nLOADED 12\nPATCHED /qml/device/view/documentview/DocumentView.qml bytes=233426\nPATCHED /qml/device/view/main/MainView.qml bytes=33157\nPATCHED /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml bytes=31424\nPATCHED /qml/device/view/navigator/Navigator.qml bytes=37520\nPATCHED /qml/device/view/navigator/Sidebar.qml bytes=16793\n",
+      "stderr": "[qmldiff]: Set system version to 3.28.0.172\n[qmldiff]: Iterating over directory /tmp/pi-ink-0020-qmd-baseline-stage\n[qmldiff]: Loading file betterToc.qmd\n[qmldiff]: Loading file betterTocCollapse.qmd\n[qmldiff]: Loading file bluetoothSettings.qmd\n[qmldiff]: Loading file computed-widgets-01-live-document-probe.qmd\n[qmldiff]: Loading file dockButtons.qmd\n[qmldiff]: Loading file floating.qmd\n[qmldiff]: Loading file link-touch-targets.qmd\n[qmldiff]: Loading file linkFromSelection.qmd\n[qmldiff]: Loading file quickSettingsBluetooth.qmd\n[qmldiff]: Loading file randomSleepScreen.qmd\n[qmldiff]: Loading file retaskableJump.qmd\n[qmldiff]: Loading file retaskableSend.qmd\n[qmldiff]: Was asked to process the first slot. Sealing slots, entering postinit...\n[qmldiff]: Processing file /qml/device/view/documentview/DocumentView.qml...\n[qmldiff]: Processing file /qml/device/view/main/MainView.qml...\n[qmldiff]: Processing file /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml...\n[qmldiff]: Processing file /qml/device/view/navigator/Navigator.qml...\n[qmldiff]: Processing file /qml/device/view/navigator/Sidebar.qml...\n"
+    },
+    {
+      "command": [
+        "/tmp/pi-ink-0020-qmd-sidebar-smoke",
+        "/tmp/pi-ink-0020-qmd-sidebar-stage",
+        "13",
+        "sidebar-final"
+      ],
+      "exit_code": 0,
+      "stdout": "[qmldiff]: Hashtab loaded! Cached 20357 entries\nLOADED 13\nPATCHED /qml/device/view/documentview/DocumentView.qml bytes=233900\nPATCHED /qml/device/view/main/MainView.qml bytes=35794\nPATCHED /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml bytes=32206\nPATCHED /qml/device/view/navigator/Navigator.qml bytes=37608\nPATCHED /qml/device/view/navigator/Sidebar.qml bytes=16820\n",
+      "stderr": "[qmldiff]: Set system version to 3.28.0.172\n[qmldiff]: Iterating over directory /tmp/pi-ink-0020-qmd-sidebar-stage\n[qmldiff]: Loading file betterToc.qmd\n[qmldiff]: Loading file betterTocCollapse.qmd\n[qmldiff]: Loading file bluetoothSettings.qmd\n[qmldiff]: Loading file computed-widgets-01-live-document-probe.qmd\n[qmldiff]: Loading file dockButtons.qmd\n[qmldiff]: Loading file floating.qmd\n[qmldiff]: Loading file link-touch-targets.qmd\n[qmldiff]: Loading file linkFromSelection.qmd\n[qmldiff]: Loading file pi-ink-bridge-0020.qmd\n[qmldiff]: Loading file quickSettingsBluetooth.qmd\n[qmldiff]: Loading file randomSleepScreen.qmd\n[qmldiff]: Loading file retaskableJump.qmd\n[qmldiff]: Loading file retaskableSend.qmd\n[qmldiff]: Was asked to process the first slot. Sealing slots, entering postinit...\n[qmldiff]: Processing file /qml/device/view/documentview/DocumentView.qml...\n[qmldiff]: Processing file /qml/device/view/main/MainView.qml...\n[qmldiff]: Processing file /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml...\n[qmldiff]: Processing file /qml/device/view/navigator/Navigator.qml...\n[qmldiff]: Processing file /qml/device/view/navigator/Sidebar.qml...\n"
+    }
+  ],
+  "scope": "Only five modified exact native targets processed; preserved12 baseline QMDs loaded separately and together with revision. No target execution."
+}

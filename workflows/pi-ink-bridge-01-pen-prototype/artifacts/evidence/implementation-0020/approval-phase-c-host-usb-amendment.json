@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-11-03T01:21:55.719785+00:00",
+  "source": "Fresh parent-relayed owner response",
+  "selection": "Approve; documents remain closed",
+  "amendmentPlanSha256": "c482425bb50ddca202f90e9410cfc8226f925b31a56884fb2a4db7adce02c4af",
+  "wrapper": "/tmp/pi-ink-0020-phase-c-host-setup-usb10.sh",
+  "wrapperSha256": "f7f2b462c5641bbe292f8a8ee5f6f9155bdb21d6f1a77cb2e538e0375b91d139",
+  "exactInterface": "enp2s0f0u4c2",
+  "exactHostUSBSourceIPv4": "10.11.99.10",
+  "usbConnectedOwnerConfirmed": true,
+  "allDocumentsRemainSavedClosedOwnerConfirmed": true,
+  "targetPayloadScriptsRequestsUnchanged": true,
+  "restoreOriginalAUnchanged": true,
+  "maximumTotalRestartCommands": 3,
+  "noRouteInterfaceFallback": true,
+  "ownerPanelNavigationBeforeDisconnectImport": true
+}

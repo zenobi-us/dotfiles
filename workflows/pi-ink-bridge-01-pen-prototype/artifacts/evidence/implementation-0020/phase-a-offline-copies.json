@@ -1,0 +1,271 @@
+{
+  "created_at": "2026-11-02T21:56:15.693474+00:00",
+  "copies": [
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1:/usr/bin/xochitl",
+        "/tmp/pi-ink-0020-offline/xochitl"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/hashtab",
+        "/tmp/pi-ink-0020-offline/hashtab"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd",
+        "/tmp/pi-ink-0020-offline/randomSleepScreen.qmd"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd",
+        "/tmp/pi-ink-0020-offline/betterToc.qmd"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd",
+        "/tmp/pi-ink-0020-offline/retaskableSend.qmd"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd",
+        "/tmp/pi-ink-0020-offline/link-touch-targets.qmd"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd",
+        "/tmp/pi-ink-0020-offline/linkFromSelection.qmd"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd",
+        "/tmp/pi-ink-0020-offline/quickSettingsBluetooth.qmd"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd",
+        "/tmp/pi-ink-0020-offline/bluetoothSettings.qmd"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/dockButtons.qmd",
+        "/tmp/pi-ink-0020-offline/dockButtons.qmd"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd",
+        "/tmp/pi-ink-0020-offline/retaskableJump.qmd"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd",
+        "/tmp/pi-ink-0020-offline/floating.qmd"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd",
+        "/tmp/pi-ink-0020-offline/computed-widgets-01-live-document-probe.qmd"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1:/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd",
+        "/tmp/pi-ink-0020-offline/betterTocCollapse.qmd"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

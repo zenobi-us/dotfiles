@@ -1,0 +1,385 @@
+EXACT TRANSIENT VISIBLE-FRAME CAPTURE PROPOSAL — NOT APPROVED / NOT INSTALLED
+
+PURPOSE / CURRENT OWNER STATE
+Capture FIRST the current owner-left Pi Ink/general pairing-manager screen WITHOUT UI actions/reload. Existing stock /usr/bin/screenshot script ignores --help and sent native SIGUSR2 once; its message proves only signal delivery, NOT file save. No actual PNG was located. Exact Screenshot/screenshotEnabled keys absent; known stock output directories/expected files absent. No settings toggle/new SIGUSR2 retry authorized or performed. Repaired sidebar entry and full Back dismissal are OWNER-observed; manager sidebar gap/idempotent-navigation remain FAILED. Style unassessed. Do not redesign until BOTH actual references.
+This proposal requires FRESH explicit approval for ONE NEW TRANSIENT EXECUTABLE installation/activation and at most TWO requested visible-display captures. This is NOT covered by earlier read-only capability inspection. No settings enable, app restart, new QMD/plugin/service, or process-memory/document access.
+
+SOURCE / PINNED PAYLOAD / DEPENDENCIES
+Host source /tmp/pi-ink-0020-read-visible-frame.c SHA256 232a7bb03f6d820a1fd2976717b38aba700d9d286c99debbbd5cb920c187aef4; full source appended.
+Host ARM64 executable /tmp/pi-ink-0020-visible-capture-build/read-visible-frame SHA256 7d523924818a0dcee9d48a4425f55ef35ae6539798c5d3726bd0c092740cd9aa,67552bytes; ELF64 little-endian AArch64. ONLY dynamic dependency libc.so.6, GLIBC2.17/2.34; no libdrm/Qt/Python needed on device. SDK image sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58; exact offline build command stored in evidence. -std=c11 -Os -Wall -Wextra -Werror/RELRO/BIND_NOW; build passed.
+Same-source native host binary actually run inside bwrap with an isolated minimal /dev and NO display device: exits1/open_readonly_card0 errno2, ZERO pixel output. Negative fail-closed smoke ONLY, no hardware capture success claimed. ARM64 helper has NOT been installed/executed on tablet. No mocks/guessed image permitted.
+Exclusive NEW device directory /home/root/pi-ink-visible-capture-0020,0700 root/root; owner marker exact SHAa9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d. Collision abort, never overwrite unrelated path. ONE helper /home/root/pi-ink-visible-capture-0020/read-visible-frame,0700 root/root, exact binary hash above; initial bounded SCP to same directory/read-visible-frame.payload, verified before chmod/mv. No notebook/library path involved. Source implementation/baseline profile unchanged.
+
+EXACT ACCESS / EVERY IOCTL AND SIDE EFFECT
+Open ONLY /dev/dri/card0 with O_RDONLY|O_CLOEXEC. No /proc memory, /dev/mem, notebook/document files, framebuffer search/dump, arbitrary process data or network access. stdout carries ONLY selected visible pixels over existing encrypted cable SSH; stderr ONLY fixed technical errors/dimensions/FourCC and hash guards. Target creates NO image file.
+1. DRM_IOCTL_SET_CLIENT_CAP UNIVERSAL_PLANES=1 then ATOMIC=1: modifies ONLY this newly opened file descriptor's query/property visibility. No DRM master acquisition/drop, modeset, atomic commit, plane/property write or system setting. Descriptor close resets these private capabilities. If unsupported, abort; do not reopen writable or change driver state.
+2. DRM_IOCTL_MODE_GETRESOURCES: read CRTC identifier metadata, fixed capacity16; excess abort. No buffer allocation/creation or display change.
+3. DRM_IOCTL_MODE_GETCRTC: read each CRTC mode/current attached framebuffer. Require EXACTLY ONE active valid mode with nonzero framebuffer, no CRTC x/y crop. Another active/missing/ambiguous framebuffer aborts. Re-query selected CRTC after pixel stream; changed framebuffer rejects the entire output.
+4. DRM_IOCTL_MODE_GETPLANERESOURCES/GETPLANE: read plane metadata, fixed capacity64; excess abort. Require EXACTLY ONE currently visible plane on the active CRTC, using that SAME framebuffer. Do not capture/composite multiple planes or select an offscreen fallback.
+5. DRM_IOCTL_MODE_OBJ_GETPROPERTIES/GETPROPERTY: read ONLY metadata to verify selected visible plane is PRIMARY (type1), full size, source crop0/0, destination0/0, SRC_W/H equal mode dimensions in16.16, CRTC_W/H same, no rotation other than ROTATE_0, full alpha if property exists. Unsupported scaling/crop/composition/missing required properties abort. No property writes.
+6. DRM_IOCTL_MODE_GETFB2: read ONLY the selected currently attached framebuffer's dimensions/format/stride/modifier and access handle. Kernel may allocate a NEW PROCESS-PRIVATE GEM HANDLE/REFERENCE TO THIS ALREADY EXISTING SCANOUT BUFFER. This does NOT create a framebuffer/pixel buffer or import other process memory. Require single-plane handle, zero offset, linear modifier, dimensions equal mode, supported RGB format, bounded image<=10000each/map<=128MiB. Unsupported/tiled/compressed/modifier/multiplane layouts abort, no guessing.
+7. DRM_IOCTL_MODE_MAP_DUMB: obtain mmap cookie for ONLY that existing visible handle. Driver may establish mapping-offset metadata/reference; NO dumb buffer creation. If mapping unsupported, abort; no alternate buffer/physical/process-memory read. mmap uses PROT_READ|MAP_SHARED on readonly DRM fd; copy ONLY visible RGB pixels, not row padding/other buffers. RGB565 expands standard channels; XRGB/XBGR/RGB/BGR formats explicit. ARGB/ABGR accepted ONLY if EVERY pixel alpha255; nonopaque pixels reject output.
+8. DRM_IOCTL_GEM_CLOSE: drop ONLY the helper-private handle/reference created by GETFB2 after successful capture. All exit paths close the process fd on termination, releasing private references/caps/maps. Never DRM_IOCTL_MODE_RMFB. No framebuffer deletion.
+NO fences imported/exported/signalled/waited; no PRIME dma-buf export; no buffer creation/ADDFB/CREATE_DUMB; no SET_MASTER/DROP_MASTER/MODESET/PAGE_FLIP/MODE_ATOMIC commits; no writes to scanout memory. The helper disables ONLY its own core dump (RLIMIT_CORE=0), arms ONLY its own12-second alarm, allocates one RGB row for conversion and exits. No background process/boot activation. Metadata/mmap ioctls may fail on this firmware; fail closed, not fake success. Current KMS attachment is selected and rechecked, not guessed from framebuffer ID lists. Physical e-paper ghosting/panel quality is NOT inferred from framebuffer bytes.
+
+HOST USB / DEADLINES / GUARDS
+Direct target10.11.99.1, source10.11.99.10, interface enp2s0f0u4c2, exact physical USB syspath /sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0. No gateway/wireless/proxy/connection reuse/fallback. Strict existing host key. EACH SSH/SCP host timeout30sec/connect8; helper own12sec alarm; host consumer outer40sec. A host timeout is NOT proof the remote actor ended: stop, no retry/second capture/cleanup assumption without owned completion evidence.
+Before setup/activation/capture: guard current xochitl PID111850, stock hashb1816408..., installed corrected component hash8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9, character device card0. No UI actions or process-memory introspection. Root directory owner/mode/marker and exact executable hash/mode/size guarded before each use. Unknown paths/bytes/collisions abort. No repair/restart. Needed existing target sh/systemctl/sha256sum/stat/mkdir/chmod/mv/rm/rmdir; runtime libc/DRM only. Host ssh/scp/ip/jq/readlink/sha256sum/timeout and Python/Pillow already available. Install nothing else.
+
+EXACT ORDER / TWO SEPARATE OWNER REFERENCES
+1. Parent records fresh exact helper approval while CURRENT owner-left UI is preserved and USB connected. Run wrapper prepare, stage, activate. These write ONLY exclusive helper directory/owner marker/pinned binary; no app/setting/cache/service/display change. No automatic UI interaction, document open/import/draw/Send/export/disconnect or reload.
+2. FIRST capture: host private consumer manager -> wrapper capture1 -> exact helper once. CURRENT framebuffer only. Raw first stream /tmp/pi-ink-0020-private-captures/manager-current-001.ppm, PNG manager-current-001.png, both0600 in owned0700 directory. No target image files. Validate remote rc0, P6 header, exact byte count/dimensions and full Pillow decode BEFORE PNG/capture claim; reject partial/error output. Private image must be inspected/redacted OFFLINE for unrelated library titles/credentials before durable evidence/share; preserve actual panel/file-browser gap geometry. Do not log private titles or display unredacted raw in chat. Send actual private path/byte hash/dimensions/mechanism and safe redacted path to parent, THEN PAUSE.
+3. Parent asks OWNER to open the DOCUMENT bottom-left TOC reference. No automated document/UI action. ONLY after parent relays owner's TOC-ready confirmation, record owner-document-toc-ready.json with ownerConfirmedTOCReady=true. Host consumer toc requires both first validated metadata and this explicit receipt. SECOND capture only then, same exact helper/hash/read-only access. Private document-toc-002.ppm/.png0600; redact unrelated private content/titles/credentials before durable evidence/share, preserve actual widget geometry. These are visible-screen references, NOT PDF export or originating annotation-tool PNG acceptance.
+4. Only after BOTH actual reference captures may offline UI redesign proceed: library Pi Ink is GENERAL PAIRING MANAGER with idempotent navigation; document request refers to bottom-left native TOC widget. No design substitution/reinterpretation before references.
+5. Remove helper without restart after second capture, or after observed completed failed attempt if capture unsupported. Cleanup verifies only owned directory/marker/executable/payload at known hashes, rejects symlinks/unknown entries, removes ONLY exact owned files and rmdir. No recursive/private deletion. Preserve source/hash/build audit and private/redacted reference evidence. New prototype UI payloads require separate future exact approval; existing THREE restarts used/only RESTORE ORIGINAL#4 remains after renewed saved/closed confirmation. This helper adds ZERO restarts. General prototype credential/code cleanup remains separate post-restoration gate, not fulfilled by removing this helper.
+
+PRIVACY / FAILURE / NO CLAIMS
+Raw display may contain private library/document titles or credentials; keep private0600, no cloud/OCR upload, no raw screenshot committed. Offline local inspection/redaction only; public/durable artifact contains only redacted actual pixels plus noncontent capture metadata. No browser mock, reconstructed UI, invented screenshot or clipboard access. Unsupported DRM/no active primary/composition/map/alpha/changed frame/timeout => NO capture claim, no unapproved fallback/retry/settings toggle/restart. Preserve unchanged owner-left screen and report exact blocker. Stock --help behavior remains recorded as signal-only, not file save.
+
+PINNED SCRIPTS / EXACT SOURCE APPENDED
+Host wrapper /tmp/pi-ink-0020-visible-capture-host.sh SHA256 1e6a90bf3d5f6c74860b779edf5f79c8ecfedf4e166f53a9e7fee50e07971a17
+Host private consumer /tmp/pi-ink-0020-save-visible-capture.py SHA256 5a4cce2b566aff46e59212ba295b532dbd25e8562b6a3e8d0921fba3ac75be61
+/tmp/pi-ink-0020-visible-capture-prepare.sh SHA256 a96982136132556d8dbbc7e93dd8a942407e9d3d392e6fb14b2dac6619f19415
+/tmp/pi-ink-0020-visible-capture-activate.sh SHA256 f80b597da1821829cae87e9e7e1081a6c97146bb83d8439c0d0f147de0a15880
+/tmp/pi-ink-0020-visible-capture-capture.sh SHA256 47634abacc1d6158f7c8ec3cf0d3f122ecc52df077e71ee36afe8850d2018021
+/tmp/pi-ink-0020-visible-capture-cleanup.sh SHA256 fa9fb7648069e24476f2c5145a61f8134d15fea7a23d6d435dd112f1468b3dcc
+
+EXACT FILE /tmp/pi-ink-0020-read-visible-frame.c
+#define _GNU_SOURCE
+#include <errno.h>
+#include <fcntl.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/ioctl.h>
+#include <sys/mman.h>
+#include <sys/resource.h>
+#include <unistd.h>
+#include <drm.h>
+#include <drm_mode.h>
+#include <drm_fourcc.h>
+
+/* One visible primary framebuffer only. Never modeset, flip, write pixels,
+ * read process memory, open notebooks, or guess an offscreen framebuffer. */
+static int fail(const char *reason) {
+    fprintf(stderr, "CAPTURE_ABORT %s errno=%d\n", reason, errno);
+    return 1;
+}
+static int output(const void *data, size_t length) {
+    const unsigned char *p = data;
+    while (length) {
+        ssize_t n = write(STDOUT_FILENO, p, length);
+        if (n < 0 && errno == EINTR) continue;
+        if (n <= 0) return -1;
+        p += n;
+        length -= (size_t)n;
+    }
+    return 0;
+}
+static int plane_geometry(int fd, uint32_t id, uint32_t w, uint32_t h) {
+    uint32_t ids[64];
+    uint64_t values[64];
+    struct drm_mode_obj_get_properties props = {0};
+    props.props_ptr = (uintptr_t)ids;
+    props.prop_values_ptr = (uintptr_t)values;
+    props.count_props = 64;
+    props.obj_id = id;
+    props.obj_type = DRM_MODE_OBJECT_PLANE;
+    if (ioctl(fd, DRM_IOCTL_MODE_OBJ_GETPROPERTIES, &props) || props.count_props > 64) return -1;
+    const char *names[] = {"SRC_X", "SRC_Y", "SRC_W", "SRC_H", "CRTC_X", "CRTC_Y", "CRTC_W", "CRTC_H", "type"};
+    uint64_t expected[] = {0, 0, (uint64_t)w << 16, (uint64_t)h << 16, 0, 0, w, h, 1};
+    unsigned seen = 0;
+    for (uint32_t i = 0; i < props.count_props; ++i) {
+        struct drm_mode_get_property prop = {0};
+        prop.prop_id = ids[i];
+        if (ioctl(fd, DRM_IOCTL_MODE_GETPROPERTY, &prop)) return -1;
+        prop.name[sizeof(prop.name) - 1] = 0;
+        for (unsigned j = 0; j < 9; ++j) {
+            if (!strcmp(prop.name, names[j])) {
+                if (values[i] != expected[j]) return -1;
+                seen |= 1u << j;
+            }
+        }
+        if (!strcmp(prop.name, "rotation") && values[i] != DRM_MODE_ROTATE_0) return -1;
+        if (!strcmp(prop.name, "alpha") && values[i] != 65535) return -1;
+    }
+    return seen == 511 ? 0 : -1;
+}
+int main(void) {
+    struct rlimit no_core = {0, 0};
+    if (setrlimit(RLIMIT_CORE, &no_core)) return fail("disable_own_core_dump");
+    alarm(12);
+    int fd = open("/dev/dri/card0", O_RDONLY | O_CLOEXEC);
+    if (fd < 0) return fail("open_readonly_card0");
+    /* These two capabilities affect only this file descriptor's query API. */
+    struct drm_set_client_cap cap = {.capability = DRM_CLIENT_CAP_UNIVERSAL_PLANES, .value = 1};
+    if (ioctl(fd, DRM_IOCTL_SET_CLIENT_CAP, &cap)) return fail("universal_query_capability");
+    cap.capability = DRM_CLIENT_CAP_ATOMIC;
+    if (ioctl(fd, DRM_IOCTL_SET_CLIENT_CAP, &cap)) return fail("atomic_query_capability");
+    uint32_t crtcs[16];
+    struct drm_mode_card_res res = {0};
+    res.crtc_id_ptr = (uintptr_t)crtcs;
+    res.count_crtcs = 16;
+    if (ioctl(fd, DRM_IOCTL_MODE_GETRESOURCES, &res) || res.count_crtcs > 16) return fail("crtc_metadata");
+    struct drm_mode_crtc active = {0};
+    unsigned active_count = 0;
+    for (uint32_t i = 0; i < res.count_crtcs; ++i) {
+        struct drm_mode_crtc c = {.crtc_id = crtcs[i]};
+        if (ioctl(fd, DRM_IOCTL_MODE_GETCRTC, &c)) return fail("get_crtc");
+        if (c.mode_valid) {
+            if (!c.fb_id) return fail("active_crtc_without_visible_fb");
+            active = c;
+            ++active_count;
+        }
+    }
+    if (active_count != 1 || active.x || active.y) return fail("not_one_uncropped_active_crtc");
+    uint32_t plane_ids[64];
+    struct drm_mode_get_plane_res planes = {.plane_id_ptr = (uintptr_t)plane_ids, .count_planes = 64};
+    if (ioctl(fd, DRM_IOCTL_MODE_GETPLANERESOURCES, &planes) || planes.count_planes > 64) return fail("plane_metadata");
+    unsigned visible_count = 0;
+    for (uint32_t i = 0; i < planes.count_planes; ++i) {
+        struct drm_mode_get_plane plane = {.plane_id = plane_ids[i]};
+        if (ioctl(fd, DRM_IOCTL_MODE_GETPLANE, &plane)) return fail("get_plane");
+        if (plane.crtc_id == active.crtc_id && plane.fb_id) {
+            if (plane.fb_id != active.fb_id || plane_geometry(fd, plane.plane_id, active.mode.hdisplay, active.mode.vdisplay)) return fail("unsupported_visible_composition");
+            ++visible_count;
+        }
+    }
+    if (visible_count != 1) return fail("not_one_visible_primary_plane");
+    struct drm_mode_fb_cmd2 fb = {.fb_id = active.fb_id};
+    if (ioctl(fd, DRM_IOCTL_MODE_GETFB2, &fb)) return fail("visible_fb_metadata");
+    if (!fb.handles[0] || fb.handles[1] || fb.handles[2] || fb.handles[3] || fb.offsets[0] || fb.modifier[0] != DRM_FORMAT_MOD_LINEAR || fb.width != active.mode.hdisplay || fb.height != active.mode.vdisplay || !fb.width || !fb.height || fb.width > 10000 || fb.height > 10000) return fail("unsupported_visible_layout");
+    unsigned bpp = 0, red = 0, blue = 0, alpha = 0;
+    switch (fb.pixel_format) {
+        case DRM_FORMAT_XRGB8888: bpp = 4; red = 2; break;
+        case DRM_FORMAT_ARGB8888: bpp = 4; red = 2; alpha = 1; break;
+        case DRM_FORMAT_XBGR8888: bpp = 4; blue = 2; break;
+        case DRM_FORMAT_ABGR8888: bpp = 4; blue = 2; alpha = 1; break;
+        case DRM_FORMAT_RGB888: bpp = 3; red = 2; break;
+        case DRM_FORMAT_BGR888: bpp = 3; blue = 2; break;
+        case DRM_FORMAT_RGB565: bpp = 2; break;
+        default: return fail("unsupported_pixel_format");
+    }
+    uint64_t end = (uint64_t)fb.offsets[0] + (uint64_t)fb.pitches[0] * fb.height;
+    if ((uint64_t)fb.width * bpp > fb.pitches[0] || end > 128u * 1024u * 1024u) return fail("visible_bounds");
+    struct drm_mode_map_dumb map = {.handle = fb.handles[0]};
+    if (ioctl(fd, DRM_IOCTL_MODE_MAP_DUMB, &map)) return fail("readonly_map_visible_handle");
+    const unsigned char *pixels = mmap(NULL, (size_t)end, PROT_READ, MAP_SHARED, fd, (off_t)map.offset);
+    if (pixels == MAP_FAILED) return fail("readonly_mmap_visible_handle");
+    unsigned char *row = malloc((size_t)fb.width * 3);
+    if (!row) return fail("row_allocation");
+    char header[80];
+    int header_size = snprintf(header, sizeof(header), "P6\n%u %u\n255\n", fb.width, fb.height);
+    if (header_size < 0 || (size_t)header_size >= sizeof(header) || output(header, (size_t)header_size)) return fail("output_header");
+    for (uint32_t y = 0; y < fb.height; ++y) {
+        const unsigned char *source = pixels + fb.offsets[0] + (size_t)y * fb.pitches[0];
+        for (uint32_t x = 0; x < fb.width; ++x) {
+            const unsigned char *p = source + (size_t)x * bpp;
+            if (bpp == 2) {
+                uint16_t value = (uint16_t)p[0] | (uint16_t)p[1] << 8;
+                row[3*x] = (unsigned char)((value >> 11) * 255 / 31);
+                row[3*x+1] = (unsigned char)(((value >> 5) & 63) * 255 / 63);
+                row[3*x+2] = (unsigned char)((value & 31) * 255 / 31);
+            } else {
+                if (alpha && p[3] != 255) return fail("nonopaque_primary_pixel");
+                row[3*x] = p[red]; row[3*x+1] = p[1]; row[3*x+2] = p[blue];
+            }
+        }
+        if (output(row, (size_t)fb.width * 3)) return fail("output_visible_row");
+    }
+    struct drm_mode_crtc after = {.crtc_id = active.crtc_id};
+    if (ioctl(fd, DRM_IOCTL_MODE_GETCRTC, &after) || after.fb_id != active.fb_id) return fail("visible_frame_changed_reject_output");
+    fprintf(stderr, "VISIBLE_PRIMARY_CAPTURE width=%u height=%u fourcc=%08x\n", fb.width, fb.height, fb.pixel_format);
+    free(row);
+    munmap((void *)pixels, (size_t)end);
+    struct drm_gem_close release = {.handle = fb.handles[0]};
+    (void)ioctl(fd, DRM_IOCTL_GEM_CLOSE, &release);
+    close(fd);
+    return 0;
+}
+
+EXACT FILE /tmp/pi-ink-0020-visible-capture-host.sh
+set -eu
+# PROSPECTIVE: install/execution requires exact separate owner approval.
+# capture1 FIRST; capture2 ONLY after parent confirms owner TOC ready.
+assert_hash() { test -f "$2"; test ! -L "$2"; printf '%s  %s\n' "$1" "$2" | sha256sum -c - >&2; }
+guard_usb() {
+ route=$(ip -j route get 10.11.99.1)
+ usb_interface=$(printf '%s' "$route" | jq -er 'if length == 1 and .[0].gateway == null then .[0].dev else error("not direct USB route") end')
+ usb_address=$(printf '%s' "$route" | jq -er '.[0].prefsrc')
+ test "$usb_interface" = enp2s0f0u4c2
+ test "$usb_address" = 10.11.99.10
+ test ! -e "/sys/class/net/$usb_interface/wireless"
+ test ! -e "/sys/class/net/$usb_interface/phy80211"
+ test "$(readlink -f "/sys/class/net/$usb_interface/device")" = /sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0
+}
+run_target() {
+ guard_usb
+ timeout 30 ssh -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes -o ControlMaster=no -o ControlPath=none -o ProxyCommand=none -o ProxyJump=none -o "BindInterface=$usb_interface" -o "BindAddress=$usb_address" root@10.11.99.1 sh -s < "$1"
+}
+assert_hash a96982136132556d8dbbc7e93dd8a942407e9d3d392e6fb14b2dac6619f19415 /tmp/pi-ink-0020-visible-capture-prepare.sh
+assert_hash f80b597da1821829cae87e9e7e1081a6c97146bb83d8439c0d0f147de0a15880 /tmp/pi-ink-0020-visible-capture-activate.sh
+assert_hash 47634abacc1d6158f7c8ec3cf0d3f122ecc52df077e71ee36afe8850d2018021 /tmp/pi-ink-0020-visible-capture-capture.sh
+assert_hash fa9fb7648069e24476f2c5145a61f8134d15fea7a23d6d435dd112f1468b3dcc /tmp/pi-ink-0020-visible-capture-cleanup.sh
+assert_hash 232a7bb03f6d820a1fd2976717b38aba700d9d286c99debbbd5cb920c187aef4 /tmp/pi-ink-0020-read-visible-frame.c
+assert_hash 7d523924818a0dcee9d48a4425f55ef35ae6539798c5d3726bd0c092740cd9aa /tmp/pi-ink-0020-visible-capture-build/read-visible-frame
+case "${1-}" in
+ prepare) run_target /tmp/pi-ink-0020-visible-capture-prepare.sh ;;
+ stage)
+  guard_usb
+  timeout 30 scp -O -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes -o ControlMaster=no -o ControlPath=none -o ProxyCommand=none -o ProxyJump=none -o "BindInterface=$usb_interface" -o "BindAddress=$usb_address" /tmp/pi-ink-0020-visible-capture-build/read-visible-frame root@10.11.99.1:/home/root/pi-ink-visible-capture-0020/read-visible-frame.payload
+  ;;
+ activate) run_target /tmp/pi-ink-0020-visible-capture-activate.sh ;;
+ capture1|capture2) run_target /tmp/pi-ink-0020-visible-capture-capture.sh ;;
+ cleanup) run_target /tmp/pi-ink-0020-visible-capture-cleanup.sh ;;
+ *) printf '%s\n' 'Choose prepare/stage/activate/capture1, PAUSE, capture2 only after owner TOC ready, cleanup'; exit 2 ;;
+esac
+
+EXACT FILE /tmp/pi-ink-0020-save-visible-capture.py
+import hashlib
+import json
+import os
+from pathlib import Path
+import stat
+import subprocess
+import sys
+from PIL import Image
+
+ROOT = Path('/tmp/pi-ink-0020-private-captures')
+OWNER = b'pi-ink-bridge-01-pen-prototype implementation-0020 01a19e3a-d649-7473-8e40-e4371bceb4ea\n'
+WRAPPER = Path('/tmp/pi-ink-0020-visible-capture-host.sh')
+WRAPPER_HASH = '1e6a90bf3d5f6c74860b779edf5f79c8ecfedf4e166f53a9e7fee50e07971a17'
+READY = Path('/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/owner-document-toc-ready.json')
+
+def private_file(path):
+    handle = path.open('xb')
+    os.fchmod(handle.fileno(), 0o600)
+    return handle
+
+if len(sys.argv) != 2 or sys.argv[1] not in ('manager', 'toc'):
+    raise SystemExit('Expected manager FIRST, or toc only after owner ready confirmation')
+which = sys.argv[1]
+if hashlib.sha256(WRAPPER.read_bytes()).hexdigest() != WRAPPER_HASH or WRAPPER.is_symlink():
+    raise SystemExit('Capture wrapper hash/ownership mismatch')
+if not ROOT.exists():
+    ROOT.mkdir(mode=0o700)
+    with private_file(ROOT / 'owner.txt') as f:
+        f.write(OWNER)
+else:
+    info = ROOT.lstat()
+    if not stat.S_ISDIR(info.st_mode) or stat.S_IMODE(info.st_mode) != 0o700 or info.st_uid != os.getuid() or (ROOT / 'owner.txt').is_symlink() or (ROOT / 'owner.txt').read_bytes() != OWNER:
+        raise SystemExit('Private capture directory collision')
+if which == 'toc':
+    if not (ROOT / 'manager-current-001-metadata.json').is_file():
+        raise SystemExit('First validated manager capture required before TOC')
+    if not READY.is_file() or READY.is_symlink() or json.loads(READY.read_text()).get('ownerConfirmedTOCReady') is not True:
+        raise SystemExit('Parent/owner TOC-ready receipt required; no UI action performed')
+name = 'manager-current-001' if which == 'manager' else 'document-toc-002'
+raw = ROOT / (name + '.ppm')
+png = ROOT / (name + '.png')
+meta = ROOT / (name + '-metadata.json')
+if any(p.exists() or p.is_symlink() for p in (raw, png, meta)):
+    raise SystemExit('Capture output collision; no retry or overwrite')
+with private_file(raw) as f:
+    result = subprocess.run(['sh', str(WRAPPER), 'capture1' if which == 'manager' else 'capture2'], stdout=f, stderr=subprocess.PIPE, timeout=40)
+if result.returncode:
+    print(json.dumps({'captureValidated': False, 'returncode': result.returncode, 'privatePartialPath': str(raw), 'stderr': result.stderr.decode('utf8', errors='replace'), 'noRetry': True}))
+    raise SystemExit(1)
+size = raw.stat().st_size
+if size > 192 * 1024 * 1024 + 80:
+    raise SystemExit('Visible capture exceeds bounded framebuffer output')
+with raw.open('rb') as f:
+    if f.readline() != b'P6\n':
+        raise SystemExit('Invalid native pixel stream signature')
+    width, height = (int(v) for v in f.readline().split())
+    if not (0 < width <= 10000 and 0 < height <= 10000) or f.readline() != b'255\n':
+        raise SystemExit('Invalid native pixel stream dimensions/encoding')
+    if size - f.tell() != width * height * 3:
+        raise SystemExit('Incomplete or extra native pixel stream bytes')
+Image.MAX_IMAGE_PIXELS = 70_000_000
+with Image.open(raw) as image:
+    image.load()
+    if image.mode != 'RGB' or image.size != (width, height):
+        raise SystemExit('Decoded capture disagrees with native pixel metadata')
+    with private_file(png) as f:
+        image.save(f, format='PNG')
+record = {'captureValidated': True, 'kind': which, 'mechanism': 'Single actual visible primary DRM framebuffer; read-only map, no process/notebook memory, no UI action/restart', 'rawPrivatePath': str(raw), 'pngPrivatePath': str(png), 'width': width, 'height': height, 'rawSHA256': hashlib.sha256(raw.read_bytes()).hexdigest(), 'pngSHA256': hashlib.sha256(png.read_bytes()).hexdigest(), 'rawMode': oct(stat.S_IMODE(raw.stat().st_mode)), 'pngMode': oct(stat.S_IMODE(png.stat().st_mode)), 'stderrMetadata': result.stderr.decode('utf8', errors='replace'), 'notRedactedDoNotShare': True, 'notAnnotationToolPNG': True}
+with private_file(meta) as f:
+    f.write((json.dumps(record, indent=2) + '\n').encode())
+print(json.dumps(record))
+
+EXACT FILE /tmp/pi-ink-0020-visible-capture-prepare.sh
+set -eu
+umask 077
+assert_hash() { test -f "$2"; test ! -L "$2"; printf '%s  %s\n' "$1" "$2" | sha256sum -c - >&2; }
+test "$(systemctl show xochitl.service -p MainPID --value)" = 111850
+assert_hash b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021 /usr/bin/xochitl
+assert_hash 8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9 /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml
+test -c /dev/dri/card0
+command -v rm >/dev/null
+command -v rmdir >/dev/null
+test ! -e /home/root/pi-ink-visible-capture-0020
+test ! -L /home/root/pi-ink-visible-capture-0020
+mkdir /home/root/pi-ink-visible-capture-0020
+printf '%s\n' 'pi-ink-bridge-01-pen-prototype implementation-0020 01a19e3a-d649-7473-8e40-e4371bceb4ea' > /home/root/pi-ink-visible-capture-0020/owner.txt
+assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /home/root/pi-ink-visible-capture-0020/owner.txt
+
+EXACT FILE /tmp/pi-ink-0020-visible-capture-activate.sh
+set -eu
+umask 077
+assert_hash() { test -f "$2"; test ! -L "$2"; printf '%s  %s\n' "$1" "$2" | sha256sum -c - >&2; }
+test "$(systemctl show xochitl.service -p MainPID --value)" = 111850
+assert_hash b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021 /usr/bin/xochitl
+assert_hash 8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9 /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml
+test -c /dev/dri/card0
+test -d /home/root/pi-ink-visible-capture-0020
+test ! -L /home/root/pi-ink-visible-capture-0020
+test "$(stat -c '%u %g %a' /home/root/pi-ink-visible-capture-0020)" = '0 0 700'
+assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /home/root/pi-ink-visible-capture-0020/owner.txt
+test ! -e /home/root/pi-ink-visible-capture-0020/read-visible-frame
+test ! -L /home/root/pi-ink-visible-capture-0020/read-visible-frame
+assert_hash 7d523924818a0dcee9d48a4425f55ef35ae6539798c5d3726bd0c092740cd9aa /home/root/pi-ink-visible-capture-0020/read-visible-frame.payload
+test "$(stat -c '%u %g %s' /home/root/pi-ink-visible-capture-0020/read-visible-frame.payload)" = '0 0 67552'
+chmod 700 /home/root/pi-ink-visible-capture-0020/read-visible-frame.payload
+mv /home/root/pi-ink-visible-capture-0020/read-visible-frame.payload /home/root/pi-ink-visible-capture-0020/read-visible-frame
+assert_hash 7d523924818a0dcee9d48a4425f55ef35ae6539798c5d3726bd0c092740cd9aa /home/root/pi-ink-visible-capture-0020/read-visible-frame
+
+EXACT FILE /tmp/pi-ink-0020-visible-capture-capture.sh
+set -eu
+umask 077
+assert_hash() { test -f "$2"; test ! -L "$2"; printf '%s  %s\n' "$1" "$2" | sha256sum -c - >&2; }
+test "$(systemctl show xochitl.service -p MainPID --value)" = 111850
+assert_hash b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021 /usr/bin/xochitl
+assert_hash 8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9 /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml
+test -c /dev/dri/card0
+test -d /home/root/pi-ink-visible-capture-0020
+test ! -L /home/root/pi-ink-visible-capture-0020
+test "$(stat -c '%u %g %a' /home/root/pi-ink-visible-capture-0020)" = '0 0 700'
+assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /home/root/pi-ink-visible-capture-0020/owner.txt
+assert_hash 7d523924818a0dcee9d48a4425f55ef35ae6539798c5d3726bd0c092740cd9aa /home/root/pi-ink-visible-capture-0020/read-visible-frame
+test "$(stat -c '%u %g %a %s' /home/root/pi-ink-visible-capture-0020/read-visible-frame)" = '0 0 700 67552'
+exec /home/root/pi-ink-visible-capture-0020/read-visible-frame
+
+EXACT FILE /tmp/pi-ink-0020-visible-capture-cleanup.sh
+set -eu
+assert_hash() { test -f "$2"; test ! -L "$2"; printf '%s  %s\n' "$1" "$2" | sha256sum -c -; }
+test -d /home/root/pi-ink-visible-capture-0020
+test ! -L /home/root/pi-ink-visible-capture-0020
+test "$(stat -c '%u %g %a' /home/root/pi-ink-visible-capture-0020)" = '0 0 700'
+assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /home/root/pi-ink-visible-capture-0020/owner.txt
+for entry in /home/root/pi-ink-visible-capture-0020/* /home/root/pi-ink-visible-capture-0020/.[!.]* /home/root/pi-ink-visible-capture-0020/..?*; do
+ if test -e "$entry" || test -L "$entry"; then
+  case "$entry" in
+   /home/root/pi-ink-visible-capture-0020/owner.txt) assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d "$entry" ;;
+   /home/root/pi-ink-visible-capture-0020/read-visible-frame|/home/root/pi-ink-visible-capture-0020/read-visible-frame.payload) assert_hash 7d523924818a0dcee9d48a4425f55ef35ae6539798c5d3726bd0c092740cd9aa "$entry" ;;
+   *) printf '%s\n' 'ABORT: unknown capture directory entry'; exit 1 ;;
+  esac
+ fi
+done
+for owned in /home/root/pi-ink-visible-capture-0020/read-visible-frame /home/root/pi-ink-visible-capture-0020/read-visible-frame.payload; do
+ if test -e "$owned"; then rm "$owned"; fi
+done
+rm /home/root/pi-ink-visible-capture-0020/owner.txt
+rmdir /home/root/pi-ink-visible-capture-0020
+printf '%s\n' 'OWNED_CAPTURE_HELPER_REMOVED_NO_RESTART'

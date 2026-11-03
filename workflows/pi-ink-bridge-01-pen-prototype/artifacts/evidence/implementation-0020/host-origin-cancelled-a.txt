@@ -1,0 +1,44 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=21:2 screen=primary title="π ⠏ prototype-pi-ink-bridge-01-pen-prototype"
+
+=== TEXT ===
+[001] 
+[002]                         ████████████
+[003]                            ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]                            ██  ██       ▀▄▄▀ █ █ █ █▄▄▀
+[005]                            ▒▒  ██                  █
+[006]                                ██       v18.10.3
+[007] 
+[008]     Tip: Bulk data to classify or triage? Say `jevify` in your message — the
+[009]      eval kernel's `judge()` processes the batch and you read only what it
+[010]                        flags — watch it glow as you type
+[011] 
+[012] 
+[013] 
+[014]  Call image_editor exactly once with action annotate and path
+[015]  /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridg
+[016]  e-01-pen-prototype/artifacts/evidence/stock-editor-round-trip-001/source.png .
+[017]  report only actual completed image dimensions or cancellation. Do not use any
+[018]  other tool, do not write files, and do not spawn agents.
+[019] 
+[020] 
+[021] ────────────────────────────────────────────────────────────────────────────────
+[022]  Update Available
+[023]  New version 18.16.0 is available. Run: omp update
+[024] ────────────────────────────────────────────────────────────────────────────────
+[025] 
+[026] 
+[027]  ⣾ Image editor
+[028]   └─ action="annotate", path="/run/media/zenobius/Store/Projects/Mine/Github…"
+[029]  Opening the image editor. Waiting for the user to finish or cancel.
+[030]  ⟦Ctrl+O: Expand⟧
+[031] 
+[032] 
+[033]  2026-11-03 08:39:48  ⤵ 3K  ⤴ 74  ⏱ 1.8s  ⚡ 29.3/s
+[034] 
+[035]   ⎋ Annotating tablet acceptance image
+[036] 
+[037] ────────────────────────────────────────────── 🪙 3.1K · S0.01 · ◫ 0.6%/500K ⟲ ─
+[038] ❯
+[039] ────────────────────────────────────────────────────────────────────────────────
+[040]  ⦸ GPT-6.1-Sol · 📁 …rototype-pi-ink-bridge-01-pen-prototype

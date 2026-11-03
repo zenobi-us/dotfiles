@@ -1,0 +1,29 @@
+{
+  "recordedAt": "2026-11-03T03:31:53.217902+00:00",
+  "sourceCommit": "4614293693e7973722a6a470a761e563221a7c28",
+  "installedComponentSHA256": "8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9",
+  "ownerObservedPasses": [
+    "Repaired library Pi Ink entry opens",
+    "Back fully closes the panel"
+  ],
+  "ownerObservedFailures": [
+    "Manager reserves sidebar width after sidebar auto-closes, exposing visible file-browser gap",
+    "Reopening sidebar then pressing Pi Ink toggles the manager closed; manager navigation must be idempotent"
+  ],
+  "designClarification": {
+    "libraryPiInk": "GENERAL PAIRING MANAGER",
+    "documentReference": "Bottom-left native document TOC widget, not library manager overlay"
+  },
+  "styleVerdict": "UNASSESSED until requested actual reference screenshots",
+  "ownerLeftUIUnchangedRequired": true,
+  "sequence": [
+    "Capture current manager FIRST without UI actions/restart",
+    "Send first actual path/evidence then PAUSE",
+    "Only after owner confirms document TOC open capture SECOND",
+    "Only after both references continue offline redesign"
+  ],
+  "captureStatus": "Existing stock screenshot SIGUSR2 request issued once by utility ignoring --help; no actual PNG located yet, signal-success text is not capture proof",
+  "restartCommandsExecutedTotal": 3,
+  "remainingApprovedRestart": "RESTORE ORIGINAL #4 after renewed saved/closed",
+  "noImportsDrawSendExportDisconnect": true
+}

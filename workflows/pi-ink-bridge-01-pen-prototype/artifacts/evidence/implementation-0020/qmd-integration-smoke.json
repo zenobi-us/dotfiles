@@ -1,0 +1,28 @@
+{
+  "scope": "Loads all12 unchanged baseline patches plus bridge and processes exactly modified2 stock QML resources; no device Qt executed",
+  "checks": [
+    {
+      "command": [
+        "cc",
+        "/tmp/pi-ink-0020-qmd-smoke.c",
+        "/tmp/pi-ink-0020-qmldiff/target/release/libqmldiff.a",
+        "-lpthread",
+        "-ldl",
+        "-lm",
+        "-o",
+        "/tmp/pi-ink-0020-qmd-smoke"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/tmp/pi-ink-0020-qmd-smoke"
+      ],
+      "exit_code": 0,
+      "stdout": "[qmldiff]: Hashtab loaded! Cached 20357 entries\nLOADED 13\nPATCHED /qml/device/view/documentview/DocumentView.qml bytes=233528\nPATCHED /qml/device/view/main/MainView.qml bytes=33921\n",
+      "stderr": "[qmldiff]: Set system version to 3.28.0.172\n[qmldiff]: Iterating over directory /tmp/pi-ink-0020-qmd-stage\n[qmldiff]: Loading file betterToc.qmd\n[qmldiff]: Loading file betterTocCollapse.qmd\n[qmldiff]: Loading file bluetoothSettings.qmd\n[qmldiff]: Loading file computed-widgets-01-live-document-probe.qmd\n[qmldiff]: Loading file dockButtons.qmd\n[qmldiff]: Loading file floating.qmd\n[qmldiff]: Loading file link-touch-targets.qmd\n[qmldiff]: Loading file linkFromSelection.qmd\n[qmldiff]: Loading file pi-ink-bridge.qmd\n[qmldiff]: Loading file quickSettingsBluetooth.qmd\n[qmldiff]: Loading file randomSleepScreen.qmd\n[qmldiff]: Loading file retaskableJump.qmd\n[qmldiff]: Loading file retaskableSend.qmd\n[qmldiff]: Was asked to process the first slot. Sealing slots, entering postinit...\n[qmldiff]: Processing file /qml/device/view/documentview/DocumentView.qml...\n[qmldiff]: Processing file /qml/device/view/main/MainView.qml...\n"
+    }
+  ]
+}

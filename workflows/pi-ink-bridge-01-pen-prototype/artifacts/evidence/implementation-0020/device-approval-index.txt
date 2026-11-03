@@ -1,0 +1,38 @@
+IMPLEMENTATION-0020 DEVICE APPROVAL — NOT AUTHORIZED
+
+Phase A only: request fresh cable-connected read-only preflight. No install, activation, import/export, QML writes, settings changes, extension quarantine or restart is approved by this request. Phase B will require a separate exact source/hash/path/command plan after offline implementation.
+
+Why: current-document QML excerpts identify root.document.id but do not name the current resource path or installed resource-rebuilder search configuration. A toolbar patch must target verified current firmware resources. Prior device observations are not fresh approval.
+
+Host command envelope for EVERY target operation: timeout 45 ssh -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1 <quoted-shell>. No target timeout dependency. Cable only. No Wi-Fi SSH.
+
+Read-only shell scope:
+set -eu
+cat /etc/os-release
+for x in sha256sum systemctl systemd-run find ls cat sh sleep cp mv rm rmdir chmod mkdir readlink stat; do command -v "$x"; done
+sha256sum /usr/bin/xochitl /home/root/xovi/xovi.so /home/root/xovi/start /home/root/xovi/stock
+find /home/root/xovi/extensions.d -maxdepth 1 -type f -exec sha256sum {} \;
+ls -l /home/root/xovi/extensions.d
+stat -c '%a %u %g %s %Y %n' /home/root/xovi/extensions.d/webserver-remote.so
+readlink -f /home/root/xovi/extensions.d /home/root/xovi/exthome
+systemctl cat xochitl
+systemctl show xochitl -p FragmentPath -p DropInPaths -p Environment
+systemctl is-active xochitl
+cat /proc/net/tcp /proc/net/tcp6
+for p in /sys/class/udc/*/state; do printf '%s ' "$p"; cat "$p"; done
+find /home/root/xovi/exthome -maxdepth 3 -type f -name '*.qmd' -print
+ls -l /home/root/xovi/exthome/qt-resource-rebuilder
+sha256sum /home/root/xovi/exthome/qt-resource-rebuilder/hashtab
+
+Additionally permit USB SCP, host-bounded 45 seconds per transfer, of ONLY /usr/bin/xochitl, /home/root/xovi/exthome/qt-resource-rebuilder/hashtab, and resource-rebuilder configuration/source QMDs listed by the above command into a new host-only /tmp/pi-ink-0020-offline directory. Read QMD bytes only, not notebook storage. Do not execute copied code. Inspect active Xochitl /proc PID maps and fd socket symlinks only to attribute port80/81 and XOVI/resource-rebuilder activation. No document-store listings, private titles/content, account settings dump or unrestricted journal.
+
+Expected interruption: NONE in Phase A. Restart count: ZERO. Required utilities listed above are checked, not installed. Abort if firmware/hash differs from 3.28.0.172 / b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021 or original extension differs from 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f. XOVI expected d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446. No repair on mismatch.
+
+Phase B intended boundary, NOT an approval request yet: source-built loopback adapter; real current-document toolbar; local-only tablet client; authenticated certificate-verified HTTPS/WebSocket into actual image_editor. Two planned Xochitl restarts (load, rollback). Ask owner to save/close ALL documents immediately before EACH restart. Existing webserver-remote conflicts. Fresh explicit quarantine permission and final restore choice are required: A restore original exact bytes/metadata (including prior wildcard HTTP behavior), or B keep quarantined (persistent activation change; not presumed approved). No other extension/service/cloud/account changes. Exact payload/QMD destinations, collision/hash guards, activation and rollback commands will follow before any mutation. Process-wide usb0/usb1->lo, loopback-isGlobal and port80->IPv4 localhost81 Qt overrides can affect non-stock callers; other listen ports pass through. No proxy/IP approval/settings bypass or boot activation.
+
+Future synthetic allowlist: two newly imported known source jobs plus one owner-approved unassociated synthetic document; prior fc2a3c9b-feea-40d1-9ac1-a8327f10edba only if separately approved. Bind only returned stock UUIDs; never filenames or active conversation. Normal editor/explicit toolbar Send, switch isolation, cancellation terminal, clipping consent, full-PDF/editable retention and actual originating PNG require owner observations. No synthetic operation in Phase A. After USB disconnect until authenticated results arrive, no SSH/SCP/manual transfer. Client reports UDC detach/noUSBIPv4/listeners itself. Untested sleep/reboot/update remain unpassed.
+
+Parent w64:pY: obtain Phase A scope approval only and return exact approval. Keep this implementation session alive. No device commands have run.
+
+PHASE B REQUEST ADDED AFTER OFFLINE IMPLEMENTATION
+Phase A owner approval and read-only outcomes are recorded under BASE evidence implementation-0020. Phase B remains unapproved. Exact payload hashes, real originating tool identities, commands, privacy boundary, synthetic allowlist, restart count, collision guards and restore choices are in /tmp/pi-ink-start-0019-device-approval-phase-b.txt. Read that entire file before approving or executing Phase B. No Phase B action is authorized by the earlier Phase A approval.

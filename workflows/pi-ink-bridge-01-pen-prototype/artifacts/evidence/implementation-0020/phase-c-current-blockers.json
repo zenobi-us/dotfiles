@@ -1,0 +1,16 @@
+{
+  "status": "awaiting-fresh-owner-approval-and-physical-actions",
+  "plan": "/tmp/pi-ink-start-0019-device-approval-phase-c-native-sidebar.txt",
+  "planSha256": "7a8465c07e666b81d0104e813128c046d51ebc84baf0a35c8ac58e3ba77c51d6",
+  "ownerRecovery": "Closed; back in normal library after one native top-edge swipe",
+  "ownerRecoveryIsSavedClosedConfirmation": false,
+  "deviceRuntimeSshForbidden": true,
+  "revisedPayloadInstalled": false,
+  "revisedRestartPerformed": false,
+  "newImportsDrawOrSendAuthorized": false,
+  "actualBoundTabletAssociationProven": false,
+  "actualBoundOwnerCancellationProven": false,
+  "actualOriginatingToolPNGDelivered": false,
+  "next": "Parent obtains exact C1/C2 decision, explicit USB reconnect and fresh ALL-documents-saved/closed before any permitted restart. Keep implementation session active.",
+  "productionTicketsRemainBlocked": true
+}

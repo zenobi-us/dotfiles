@@ -1,0 +1,28 @@
+{
+  "command": [
+    "podman",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "-v",
+    "/tmp/pi-ink-0020-read-visible-frame.c:/capture/read-visible-frame.c:ro,Z",
+    "-v",
+    "/tmp/pi-ink-0020-visible-capture-build:/out:Z",
+    "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+    "bash",
+    "-c",
+    "source /opt/codex/*/*/environment-setup-* && $CC $CFLAGS -std=c11 -Os -Wall -Wextra -Werror -Wl,-z,relro,-z,now -I\"$SDKTARGETSYSROOT/usr/include/libdrm\" /capture/read-visible-frame.c -o /out/read-visible-frame && $STRIP /out/read-visible-frame"
+  ],
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "",
+  "sourceSHA256": "232a7bb03f6d820a1fd2976717b38aba700d9d286c99debbbd5cb920c187aef4",
+  "binarySHA256": "7d523924818a0dcee9d48a4425f55ef35ae6539798c5d3726bd0c092740cd9aa",
+  "dependencies": [
+    "libc.so.6 GLIBC_2.17/GLIBC_2.34"
+  ],
+  "architecture": "ELF64 little-endian AArch64",
+  "newPayloadNotApprovedOrDeployed": true,
+  "hostConsumerBadOperationRejected": true
+}

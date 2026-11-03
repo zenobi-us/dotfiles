@@ -1,0 +1,13 @@
+{
+  "schema": "pi-ink-device-approval/v1",
+  "phase": "A",
+  "owner_selection": "Approve read-only preflight",
+  "authority": "Owner approval relayed by parent w64:pY in this fresh session",
+  "plan": "/tmp/pi-ink-start-0019-device-approval.txt",
+  "scope": "Exact Phase A cable-connected host-bounded read-only firmware/extension/service/listener/resource metadata and named stock binary/hashtab/QMD code/config copies for offline analysis",
+  "excluded": ["installation", "quarantine", "activation", "settings change", "synthetic operation", "restart", "private notebook files/titles/listings", "unrestricted journal"],
+  "mismatch_policy": "Abort on baseline mismatch; no repair",
+  "phase_b": "Requires new exact plan, owner approval, restore policy choice and saved/closed confirmation before each restart",
+  "session_id": "01a19e3a-d649-7473-8e40-e4371bceb4ea",
+  "pane_id": "w6J:p5"
+}

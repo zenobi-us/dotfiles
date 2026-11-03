@@ -1,0 +1,56 @@
+{
+  "deviceRoot": "/home/root/pi-ink-bridge-0020",
+  "payloads": [
+    {
+      "relativePath": "pi-ink-tablet",
+      "sourcePath": "/tmp/pi-ink-0020-offline/pi-ink-tablet",
+      "sha256": "f601436dd591ae782f15c0714bcfd4412fb3facebeadeb7d31914a5dc69ecada",
+      "bytes": 9323806
+    },
+    {
+      "relativePath": "config.json",
+      "sourcePath": "/tmp/pi-ink-0020-trust/tablet.json",
+      "sha256": "1c4bf78285b08464e38e7af16f0096fda55c4dcd86a5d86ac5c1399b1becf9a6",
+      "bytes": 851
+    },
+    {
+      "relativePath": "trust/server-a.pem",
+      "sourcePath": "/tmp/pi-ink-0020-trust/server-a.pem",
+      "sha256": "9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba",
+      "bytes": 1184
+    },
+    {
+      "relativePath": "trust/server-b.pem",
+      "sourcePath": "/tmp/pi-ink-0020-trust/server-b.pem",
+      "sha256": "9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55",
+      "bytes": 1184
+    },
+    {
+      "relativePath": "tablet-qml/PiInkToolbar.qml",
+      "sourcePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml",
+      "sha256": "57416f0b80a3a100c6dc7ee2162647b2c866588a85cf46ef09106bbf1354595f",
+      "bytes": 15661
+    },
+    {
+      "relativePath": "adapter.so",
+      "sourcePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/pi-ink-loopback.so",
+      "sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+      "bytes": 504280
+    },
+    {
+      "relativePath": "pi-ink-bridge.qmd",
+      "sourcePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd",
+      "sha256": "c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8",
+      "bytes": 1878
+    },
+    {
+      "relativePath": "owner.txt",
+      "sourcePath": "/tmp/pi-ink-0020-trust/owner.txt",
+      "sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "bytes": 88
+    }
+  ],
+  "manifestSha256": "27645009e37fec8270d7d2e7541d4b1ae2a4da4378736d0b6a0277c39a354278",
+  "containsSecrets": false,
+  "note": "Hashes only; credentials remain outside repository in mode0600 files"
+}

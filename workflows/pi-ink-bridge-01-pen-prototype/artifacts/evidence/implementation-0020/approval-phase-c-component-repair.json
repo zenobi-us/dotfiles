@@ -1,0 +1,35 @@
+{
+  "recordedAt": "2026-11-03T03:13:02.505885+00:00",
+  "ownerSelection": "Test repair; allow four total restarts",
+  "usbConnected": true,
+  "allDocumentsSavedClosedNow": true,
+  "planSHA256": "6ea3db0063307826f507b9b8d26ba0f902945d66b61429199dee65e354904002",
+  "sourceCommit": "4614293693e7973722a6a470a761e563221a7c28",
+  "componentSHA256": "8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9",
+  "manifestSHA256": "261f3409cc7315a86710b72308de30396eee651870d0c145dd800c786c1d8a72",
+  "scripts": [
+    {
+      "path": "/tmp/pi-ink-0020-phase-c-component-repair-prepare.sh",
+      "sha256": "4bf1010e49a9f167babc8752eb3acf4be1dc13c05298b08984cf9e60e1965c88",
+      "bytes": 13386
+    },
+    {
+      "path": "/tmp/pi-ink-0020-phase-c-component-repair-load.sh",
+      "sha256": "5fc392302d8e65bd52616bbf5bb6ef705be6f0aeb8fc45717cc2e91fcaf0b8ff",
+      "bytes": 19617
+    },
+    {
+      "path": "/tmp/pi-ink-0020-phase-c-component-repair-rollback-v5.sh",
+      "sha256": "8aab43afd6a0c556b5151e439b43b976036193a3d53f8f8e8d37a02f573457b4",
+      "bytes": 18859
+    },
+    {
+      "path": "/tmp/pi-ink-0020-phase-c-component-repair-host.sh",
+      "sha256": "437b42f57cbac73ab62972abc8db29205628decc104432b6337aa33bee892031",
+      "bytes": 5099
+    }
+  ],
+  "scope": "ONLY component+manifest/guard backup; Go/config/CAs/QMD/adapter unchanged, no Go restart; ONE repair reload#3 then RESTORE ORIGINAL A#4 after separately renewed saved/closed. Pinned fresh actual A/B required. Bounded owned startup filter before owner UI observation. No import/Send/disconnect until repaired UI gate passes. No cleanup-complete claim while retained files remain.",
+  "restartCap": 4,
+  "restartCommandsExecutedBefore": 2
+}

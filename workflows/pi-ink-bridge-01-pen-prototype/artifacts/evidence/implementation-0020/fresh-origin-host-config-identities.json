@@ -1,0 +1,29 @@
+{
+  "authority": "Host-only fresh real tool calls required to pin revised approval; no tablet import/draw/Send or device command.",
+  "retiredJobs": [
+    "6d318d779e4c12fce1395b499bcaec5b",
+    "b3a4bf9567d3bc0ec8e6f5b671085f7b"
+  ],
+  "retiredOutcome": "Observer host cancellation only; NOT bound-tablet owner terminal cancellation acceptance.",
+  "configs": [
+    {
+      "label": "a",
+      "path": "/tmp/pi-ink-0020-trust/desktop-sidebar-a.json",
+      "sha256": "fe556fd030b47b189cc433d3968f48be52e2f1e0111fda8b9f2e3e5a3c965d18",
+      "serverId": "485bf81fd7f7853c4efedc0492b9d8fd",
+      "port": 9443,
+      "certificateSha256": "9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba",
+      "deviceId": "pi-ink-prototype-tablet-0020"
+    },
+    {
+      "label": "b",
+      "path": "/tmp/pi-ink-0020-trust/desktop-sidebar-b.json",
+      "sha256": "23f4b8c51d02c3a26e04e88779421c7bf141dea92a9227be81258b2a3cfa74f0",
+      "serverId": "e29308fadaaa0c7a10479ba117b82bee",
+      "port": 9444,
+      "certificateSha256": "9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55",
+      "deviceId": "pi-ink-prototype-tablet-0020"
+    }
+  ],
+  "devicePairingConfigChanged": false
+}

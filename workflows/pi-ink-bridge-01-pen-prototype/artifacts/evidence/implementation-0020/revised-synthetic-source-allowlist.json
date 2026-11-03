@@ -1,0 +1,18 @@
+{
+  "freshSourcePdfSha256": "bcc546d005d4bc5f5fc2ab7d217484e311c21f84e994459ed44913587f26f666",
+  "freshActualJobs": [
+    "a011855184f195ac2961ab0e9c934926",
+    "0f7526d7272a99da68121893ee20afb4"
+  ],
+  "priorAllowlistPreserved": [
+    "67583c8d5b1f8acd303c8f14dc4094bb6562ddef22c610fea7988b7d20a886ab"
+  ],
+  "revisedAllowlist": [
+    "67583c8d5b1f8acd303c8f14dc4094bb6562ddef22c610fea7988b7d20a886ab",
+    "bcc546d005d4bc5f5fc2ab7d217484e311c21f84e994459ed44913587f26f666"
+  ],
+  "reason": "Actual fresh source PDF bytes differ from retired calls; pin the actual byte digest rather than assuming it follows the unchanged PNG digest. Owner approval of this revised config is required before installation.",
+  "configSha256": "a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca",
+  "credentialCAEndpointAndStatePathChanges": false,
+  "deviceConfigurationModified": false
+}

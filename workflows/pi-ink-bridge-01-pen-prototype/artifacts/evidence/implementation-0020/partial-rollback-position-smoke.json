@@ -1,0 +1,26 @@
+{
+  "cases": [
+    {
+      "state": "active-only",
+      "exit_code": 0,
+      "selected": "/tmp/pi-ink-0020-partial-profile-smoke/active-position"
+    },
+    {
+      "state": "retained-only",
+      "exit_code": 0,
+      "selected": "/tmp/pi-ink-0020-partial-profile-smoke/retained-position"
+    },
+    {
+      "state": "both",
+      "exit_code": 1,
+      "selected": ""
+    },
+    {
+      "state": "neither",
+      "exit_code": 1,
+      "selected": ""
+    }
+  ],
+  "scope": "Actual POSIX known-position helper against owned host directories only; no target paths, systemd, device, hardware mock, import or Send.",
+  "deviceRestoreProven": false
+}

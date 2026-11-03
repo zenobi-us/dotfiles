@@ -1,0 +1,30 @@
+{
+  "parser": {
+    "exit_code": 0,
+    "stdout": "[qmldiff]: Hashtab loaded! Cached 20357 entries\nLOADED 13\nPATCHED /qml/device/view/documentview/DocumentView.qml bytes=233880\nPATCHED /qml/device/view/main/MainView.qml bytes=35800\nPATCHED /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml bytes=32360\nPATCHED /qml/device/view/navigator/Navigator.qml bytes=37608\nPATCHED /qml/device/view/navigator/Sidebar.qml bytes=16820\n",
+    "stderr": "[qmldiff]: Set system version to 3.28.0.172\n[qmldiff]: Iterating over directory /tmp/pi-ink-0020-qmd-sidebar-reviewed-stage\n[qmldiff]: Loading file betterToc.qmd\n[qmldiff]: Loading file betterTocCollapse.qmd\n[qmldiff]: Loading file bluetoothSettings.qmd\n[qmldiff]: Loading file computed-widgets-01-live-document-probe.qmd\n[qmldiff]: Loading file dockButtons.qmd\n[qmldiff]: Loading file floating.qmd\n[qmldiff]: Loading file link-touch-targets.qmd\n[qmldiff]: Loading file linkFromSelection.qmd\n[qmldiff]: Loading file pi-ink-bridge-0020.qmd\n[qmldiff]: Loading file quickSettingsBluetooth.qmd\n[qmldiff]: Loading file randomSleepScreen.qmd\n[qmldiff]: Loading file retaskableJump.qmd\n[qmldiff]: Loading file retaskableSend.qmd\n[qmldiff]: Was asked to process the first slot. Sealing slots, entering postinit...\n[qmldiff]: Processing file /qml/device/view/documentview/DocumentView.qml...\n[qmldiff]: Processing file /qml/device/view/main/MainView.qml...\n[qmldiff]: Processing file /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml...\n[qmldiff]: Processing file /qml/device/view/navigator/Navigator.qml...\n[qmldiff]: Processing file /qml/device/view/navigator/Sidebar.qml...\n"
+  },
+  "qtAst": {
+    "command": [
+      "podman",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "-v",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml:/qml:Z",
+      "-v",
+      "/tmp/pi-ink-0020-qt-sidebar-reviewed-parse:/parse:Z",
+      "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+      "bash",
+      "-c",
+      "source /opt/codex/*/*/environment-setup-* && qmlformat --inplace /qml/PiInkToolbar.qml && for file in /parse/*.qml; do qmlformat --inplace \"$file\" || exit; done"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nDetected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nDetected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nDetected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nDetected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nDetected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\n"
+  },
+  "sourceDecision": "One native UUID boundary canonicalizes case and one optional matched outer brace pair; strict stale-document equality and pressed identities retained. Invalid nonempty parent is rejected rather than guessed root.",
+  "hardware": false,
+  "fullSdkTypeCheckPassed": false
+}

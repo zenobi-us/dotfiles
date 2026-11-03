@@ -1,0 +1,25 @@
+{
+  "scope": "Actual Go executable on host, actual source extension image_editor sessions, no hardware operation or stock mock",
+  "state": {
+    "canConfirm": false,
+    "canSend": false,
+    "connection": "offline",
+    "documentUUID": "",
+    "folders": [],
+    "imports": [],
+    "message": "",
+    "servers": [
+      {
+        "connection": "offline",
+        "name": "Pi Ink Prototype A",
+        "serverId": "485bf81fd7f7853c4efedc0492b9d8fd"
+      },
+      {
+        "connection": "offline",
+        "name": "Pi Ink Prototype B",
+        "serverId": "e29308fadaaa0c7a10479ba117b82bee"
+      }
+    ],
+    "status": "unassociated"
+  }
+}

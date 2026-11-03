@@ -1,0 +1,8 @@
+{
+  "finding": "[INFERENCE: source inspection] Safe HTTP UUID without a timely native receipt could bind folderUUID empty and display an unobserved destination as Stock root",
+  "sourceFix": "Require controlled native document/parent receipt even when HTTP provides a UUID; if both UUIDs exist they must agree",
+  "devicePayloadUnchanged": true,
+  "deployedClientSha256": "f601436dd591ae782f15c0714bcfd4412fb3facebeadeb7d31914a5dc69ecada",
+  "scope": "Offline source correction only. The approved frozen device binary is not replaced. Any replacement requires fresh approval, cable repair boundary and new manifest.",
+  "regression": "TestImportNeverGuessesAParentFromHTTPIdentity"
+}

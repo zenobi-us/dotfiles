@@ -1,0 +1,91 @@
+{
+  "parser": {
+    "exit_code": 0,
+    "stdout": "[qmldiff]: Hashtab loaded! Cached 20357 entries\nLOADED 13\nPATCHED /qml/device/view/documentview/DocumentView.qml bytes=233880\nPATCHED /qml/device/view/main/MainView.qml bytes=35794\nPATCHED /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml bytes=32360\nPATCHED /qml/device/view/navigator/Navigator.qml bytes=37608\nPATCHED /qml/device/view/navigator/Sidebar.qml bytes=16820\n",
+    "stderr": "[qmldiff]: Set system version to 3.28.0.172\n[qmldiff]: Iterating over directory /tmp/pi-ink-0020-qmd-sidebar-stage\n[qmldiff]: Loading file betterToc.qmd\n[qmldiff]: Loading file betterTocCollapse.qmd\n[qmldiff]: Loading file bluetoothSettings.qmd\n[qmldiff]: Loading file computed-widgets-01-live-document-probe.qmd\n[qmldiff]: Loading file dockButtons.qmd\n[qmldiff]: Loading file floating.qmd\n[qmldiff]: Loading file link-touch-targets.qmd\n[qmldiff]: Loading file linkFromSelection.qmd\n[qmldiff]: Loading file pi-ink-bridge-0020.qmd\n[qmldiff]: Loading file quickSettingsBluetooth.qmd\n[qmldiff]: Loading file randomSleepScreen.qmd\n[qmldiff]: Loading file retaskableJump.qmd\n[qmldiff]: Loading file retaskableSend.qmd\n[qmldiff]: Was asked to process the first slot. Sealing slots, entering postinit...\n[qmldiff]: Processing file /qml/device/view/documentview/DocumentView.qml...\n[qmldiff]: Processing file /qml/device/view/main/MainView.qml...\n[qmldiff]: Processing file /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml...\n[qmldiff]: Processing file /qml/device/view/navigator/Navigator.qml...\n[qmldiff]: Processing file /qml/device/view/navigator/Sidebar.qml...\n"
+  },
+  "qtAstParser": {
+    "command": [
+      "podman",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "-v",
+      "/tmp/pi-ink-0020-qt-sidebar-parse:/parse:Z",
+      "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+      "bash",
+      "-c",
+      "source /opt/codex/*/*/environment-setup-* && for file in /parse/*.qml; do qmlformat --inplace \"$file\" || exit; done"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nDetected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nDetected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nDetected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nDetected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nDetected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\n"
+  },
+  "sdkTypeCheck": "Not passed: SDK lacks private stock types; duplicate toolLoader diagnostic also occurs in preserved baseline-only Toolbar. No preserved QMD changed to silence it.",
+  "goRace": "go test -race ./... passed (image-annotator-tablet 1.050s)",
+  "arm64ClientSha256": "272630c5ee94b7b0d7739322930ddd08797d5d1fc5d24639339abf395c1cf05d",
+  "preservedQMDs": [
+    {
+      "name": "randomSleepScreen.qmd",
+      "sha256": "36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158",
+      "matchesApprovedBaseline": true
+    },
+    {
+      "name": "betterToc.qmd",
+      "sha256": "beb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d",
+      "matchesApprovedBaseline": true
+    },
+    {
+      "name": "retaskableSend.qmd",
+      "sha256": "767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e",
+      "matchesApprovedBaseline": true
+    },
+    {
+      "name": "link-touch-targets.qmd",
+      "sha256": "3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471",
+      "matchesApprovedBaseline": true
+    },
+    {
+      "name": "linkFromSelection.qmd",
+      "sha256": "28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43",
+      "matchesApprovedBaseline": true
+    },
+    {
+      "name": "quickSettingsBluetooth.qmd",
+      "sha256": "2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982",
+      "matchesApprovedBaseline": true
+    },
+    {
+      "name": "bluetoothSettings.qmd",
+      "sha256": "dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595",
+      "matchesApprovedBaseline": true
+    },
+    {
+      "name": "dockButtons.qmd",
+      "sha256": "0d0d130ba63cfa65093475f9cec2f6694f2e37aab0a346fc5f2921e061303e50",
+      "matchesApprovedBaseline": true
+    },
+    {
+      "name": "retaskableJump.qmd",
+      "sha256": "4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe",
+      "matchesApprovedBaseline": true
+    },
+    {
+      "name": "floating.qmd",
+      "sha256": "ebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023",
+      "matchesApprovedBaseline": true
+    },
+    {
+      "name": "computed-widgets-01-live-document-probe.qmd",
+      "sha256": "f8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43",
+      "matchesApprovedBaseline": true
+    },
+    {
+      "name": "betterTocCollapse.qmd",
+      "sha256": "5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2",
+      "matchesApprovedBaseline": true
+    }
+  ],
+  "physicalLayout": "Unverified. Requires revised explicit owner approval and actual synthetic-document open/closed navigation checks."
+}

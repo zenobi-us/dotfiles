@@ -1,0 +1,47 @@
+{
+  "recordedAt": "2026-11-03T02:31:27.773948+00:00",
+  "ownerClarification": "Native sidebar opens; Pi Ink entry absent. No repeat requested.",
+  "runtimeVerdict": "FAILED",
+  "stockBinarySHA256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+  "installedComponentSHA256": "e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf",
+  "sourceUnmodified": true,
+  "deviceCommandsExecutedInInvestigation": false,
+  "offlineNativeModuleExports": [
+    {
+      "module": "device.ui.controls",
+      "frame": "0xdaf1da",
+      "recoveredFile": "/tmp/pi-ink-0020-offline/native-module-daf1da.txt",
+      "SHA256": "ac572fcb7624f9adb044d793a2ae8be62738d17de2e095f6c984c1309540cf04"
+    },
+    {
+      "module": "common",
+      "frame": "0xde8816",
+      "recoveredFile": "/tmp/pi-ink-0020-offline/native-module-de8816.txt",
+      "SHA256": "8d3666251e22951bd47dd1fc2fbb627330424b2b0d0103bb4c6d6ba9207276d5"
+    }
+  ],
+  "unqualifiedInstantiations": {
+    "Button": "COLLISION: QtQuick.Controls and later device.ui.controls both export Button",
+    "Background": "common only among explicit imported modules",
+    "ScrollContainer": "device.ui.controls only among explicit imported modules",
+    "Item, Connections, Timer, Flickable, Column, Text, Repeater": "QtQuick/core; no duplicate matching names in recovered common/device.ui.controls export lists"
+  },
+  "nativeButtonCandidate": {
+    "frame": "0xdb0031",
+    "file": "/tmp/pi-ink-0020-offline/native-button-candidate-db0031.qml",
+    "root": "Item",
+    "pressed": "readonly bool property at line19, not signal pressed",
+    "signals": [
+      "clicked"
+    ],
+    "resourcePathMapping": "Candidate recovered frame, not yet independently mapped to Button.qml; do not assert exact runtime type from this frame alone."
+  },
+  "failureChain": "If component creation fails, MainView Loader.item remains null. Binding propagates null into navigator and Sidebar; SidebarItem.visible=!!root.piInkController hides the entry. Exact runtime loader error still required.",
+  "eventualFixConstraints": [
+    "Explicit aliases for native modules; eliminate Button ambiguity, do not rely on import order",
+    "Native press-property notification must capture only actual pressed=true transition if using native Button; keep UUID/confirmationId immutable at press and strict stale equality",
+    "Retain native Background/NavigationBar/Back/ScrollContainer style and edge reservations",
+    "No installed change or restart authorized by this audit; diagnostic request pending"
+  ],
+  "remainingRestartBudget": "Only planned restoration#3 after separately renewed saved/closed confirmation"
+}

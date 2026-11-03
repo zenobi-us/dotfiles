@@ -1,0 +1,9 @@
+{
+  "source": "Owner physical observation relayed by parent",
+  "reported": "Accidentally opened wrong document; panel obscures stock close. Exact Close panel control was tried and did not restore access.",
+  "classification": "Real UI defect and quality-gate failure; not operator error",
+  "stop": "No further import/Send/export, no private titles/content/clipboard, no device commands or payload substitution/restart",
+  "currentRecovery": "Native3.28 close-gesture handler recovered offline; parent sent one conditional uncovered-top-edge navigation recovery option. Not a repeated Close panel test. No saved/closed state assumed.",
+  "redesign": "Explicit owner request: sidebar toggle and native table-of-contents panel anchoring/style/margins/stacking/dismissal, keeping stock close/navigation accessible open and closed",
+  "mutationApproval": "Offline source authorized only. Additional payload/restart/rollback approval needed; initial LOAD1 executed of2 originally planned."
+}

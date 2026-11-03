@@ -1,0 +1,132 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0021",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 7,
+  "parent_receipt": "start-0019",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "4614293693e7973722a6a470a761e563221a7c28",
+  "source_tree": "514e1d89888ce9c9e88f9aeb80d2e04492958003",
+  "created_at": "2026-11-03T04:25:09.689568+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6J:p5",
+  "agent": "omp",
+  "session_id": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+  "parent_session_id": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0018.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0017.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0014.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/summary.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/restoration-comparison.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/native-interfaces.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/geometry-001/policy-decision.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0019.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/interrupted-evidence-index.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/owner-latest-ui-direction-no-screenshots.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0021.yaml"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "reconcile",
+    "prior_attempt": "start-0016",
+    "reason": "Missing child result after verified normal session disposal; preserve actual source and hardware evidence without inventing implementation-0020 result.",
+    "approval": "Same conversation repository takeover retained. After parent named stable stock-document/server/job association and tablet Send as next step, user said do it. This authorizes repository work and preparing a fresh hardware approval request, not device commands or mutation.",
+    "ownership": "Retained by parent session01a19dd8-e4d3-7162-913a-50d94f31d1c7; no ownership transfer from another session. Claimed state retained idempotently.",
+    "liveness": "herdr agent target w6J:p5 absent; no source workspace open/no source agent in agent list. Recorded child session ends with user interruption and normal session_exit reason dispose at2026-11-03T04:07:10.218Z. No earlier session resumed/terminated.",
+    "reservations": "No matching ticket in workflows/goal-*/events/*.yaml.",
+    "source_preserved": "Inspector historyValid=true; source unique clean at ff9ec2a2/tree93faf247. BASE unrelated mise.toml modification preserved. No history repair/reset/old session reuse.",
+    "outcome": "Source committed and retained. Native sidebar/Back owner pass but manager layout failed; new explicit button placement/document-popover requirements recorded. No bound association/Send acceptance and no restoration completion claimed."
+  },
+  "scope": "Implement prototype stable stock-document/server/job associations and actual tablet Send using authenticated HTTPS/WebSocket into existing clipping gate. Prepare exact fresh owner-approved device experiment before ANY tablet command. No runtime SSH, private notebook-file access, renderer replacement or unsupported boot activation.",
+  "validation": [
+    {
+      "command": "inspect.ts canonical ticket --json",
+      "result": "historyValid=true; start/takeover from start-0019; unique clean source46142936/tree514e1d89"
+    },
+    {
+      "command": "herdr agent list and child session ending",
+      "result": "No source agent/workspace; normal dispose session_exit. No duplicate launched."
+    },
+    {
+      "command": "Read preserved device and owner feedback records",
+      "result": "3 restarts recorded; final repaired entry/Back pass, layout fail. Native screenshot script requested SIGUSR2 earlier, no capture file confirmed; helper work unapproved and now withdrawn."
+    },
+    {
+      "command": "Preserve interrupted evidence with per-file SHA256",
+      "result": {
+        "files": 118,
+        "sensitive_field_findings": []
+      }
+    }
+  ],
+  "child_session_id": "01a19e3a-d649-7473-8e40-e4371bceb4ea",
+  "result_missing": true,
+  "pane_closed": true,
+  "worktree_preserved": true,
+  "failure_reason": "Child session ended before writing phase-result. User changed UI requirements and withdrew screenshots. Device last observed with experiment active; original proxy restoration and final cleanup remain pending. New source-only recovery needed before further exact hardware approval.",
+  "device_state": {
+    "last_observed": "Experiment component/adapter/client installed; original webserver-remote.so quarantined",
+    "restart_commands_last_recorded": 3,
+    "remaining_previously_approved": "Original-proxy restoration#4 only after renewed saved/closed confirmation",
+    "restored": false,
+    "cleanup_complete": false,
+    "new_device_operations_authorized": false
+  }
+}

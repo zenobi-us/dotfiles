@@ -1,0 +1,32 @@
+{
+  "formalReviewVerdict": null,
+  "standards": [
+    {
+      "finding": "P2 confirmation bypasses hardware gate",
+      "resolution": "Recheck actual hardware immediately before confirm; retain identical pending consent on unsafe hardware",
+      "verification": "Go race suite passed; physical safety transition not yet exercised"
+    },
+    {
+      "finding": "P2 failed Library receipt acknowledgement suppresses binding",
+      "resolution": "Cache only controlled receipt payload, retry while import is active; Go accepts exact idempotent receipt and rejects changed UUID/parent",
+      "verification": "Go receipt regression passed; native QML failure/retry requires hardware"
+    },
+    {
+      "finding": "P2 terminal PDF/source retention with sibling requests",
+      "resolution": "Keep lightweight terminal job identity; release Job.pdf on terminal transition",
+      "verification": "TypeScript and real TLS/PDF boundary regressions passed; no heap stress measurement"
+    }
+  ],
+  "spec": [
+    {
+      "finding": "P1 QML Loader/content height binding cycle",
+      "resolution": "Required availableHeight binds to independent stock root height; panel no longer reads its own Loader height",
+      "verification": "Qt6.10.3 syntax check and combined QMD processing passed; actual layout awaits owner"
+    },
+    {
+      "finding": "P1 late upload can arrive after switch invalidation",
+      "resolution": "Server-issued submissionEpoch advances on invalidate; preflight pins epoch; upload with older epoch rejects before PDF gate",
+      "verification": "Real HTTPS late upload after invalidate regression returns409 and produces no tool result"
+    }
+  ]
+}

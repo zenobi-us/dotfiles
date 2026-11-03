@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-11-03T02:20:04.111629+00:00",
+  "sourceCommit": "441dbe0c90e73697775ee05a19eb51ddb677e3c7",
+  "ownerObservation": {
+    "native_toggle": "Button missing or panel fails",
+    "native_layout": "Cannot assess yet"
+  },
+  "verdict": "FAILED actual native UI acceptance",
+  "notProven": [
+    "whether entry is absent versus visible/nonopening",
+    "runtime component-instantiation cause",
+    "native geometry/hit-testing"
+  ],
+  "boundaries": {
+    "noDocumentOpened": true,
+    "noImportDrawSendDisconnect": true,
+    "noReloadOrInstalledBytesChanges": true,
+    "restartCommandsExecutedTotal": 2,
+    "remainingApprovedRestart": "RESTORE ORIGINAL #3 after renewed saved/closed confirmation"
+  },
+  "offlineExpectedPath": "MainView zero-size Loader -> PiInkToolbar item -> Binding navigator.piInkController -> Sidebar._sidebar.piInkController -> visible SidebarItem; SidebarItem hides native sidebar then toggles full native-host Background. Null Loader.item hides sidebar item.",
+  "causeStatus": "No exact runtime cause established. Static QMD application/AST parsing and running Go client are not QML instantiation proof."
+}

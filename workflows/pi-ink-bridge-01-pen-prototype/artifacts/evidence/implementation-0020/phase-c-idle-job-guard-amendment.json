@@ -1,0 +1,34 @@
+{
+  "observed": "Approved target preflight emitted empty Job value; v3 literal0 check would reject it.",
+  "sourceEvidence": "phase-c-amended-preflight.json",
+  "newRollbackPath": "/tmp/pi-ink-0020-phase-c-rollback-v4.sh",
+  "newRollbackSha256": "e2442e7cb4aef4484bbbb271be45691a2fe10c3173c70843c31113dcc06c0064",
+  "newHostWrapperPath": "/tmp/pi-ink-0020-phase-c-host-setup-usb10-job.sh",
+  "newHostWrapperSha256": "2d99dd80329cf60c0e08239ff62099ac3e6e2787aa9a3b18f9226e15ecdc2a63",
+  "amendmentPath": "/tmp/pi-ink-start-0019-device-approval-phase-c-job-amendment.txt",
+  "amendmentSha256": "fc94ed2fea1e50972090ef1ec75aa84f41971ee7fbeb119e9b6bc16f9ad1e387",
+  "jobGuardHostCases": [
+    {
+      "value": "",
+      "exit_code": 0
+    },
+    {
+      "value": "0",
+      "exit_code": 0
+    },
+    {
+      "value": "123",
+      "exit_code": 1
+    },
+    {
+      "value": "unexpected",
+      "exit_code": 1
+    }
+  ],
+  "approved": false,
+  "newRollbackExecuted": false,
+  "activeDevicePayloadsChanged": false,
+  "payloadsStaged": true,
+  "restart2Executed": false,
+  "preservedOtherTargetScriptHashes": true
+}

@@ -1,0 +1,44 @@
+{
+  "planPath": "/tmp/pi-ink-start-0019-device-approval-visible-capture.txt",
+  "planSHA256": "095f76b7c8ee243591a1bc749cb292abb76f0abf1194f04db6c89b2f99cb9a31",
+  "sourcePath": "/tmp/pi-ink-0020-read-visible-frame.c",
+  "sourceSHA256": "232a7bb03f6d820a1fd2976717b38aba700d9d286c99debbbd5cb920c187aef4",
+  "binaryPath": "/tmp/pi-ink-0020-visible-capture-build/read-visible-frame",
+  "binarySHA256": "7d523924818a0dcee9d48a4425f55ef35ae6539798c5d3726bd0c092740cd9aa",
+  "binaryBytes": 67552,
+  "targetDirectory": "/home/root/pi-ink-visible-capture-0020",
+  "targetExecutable": "/home/root/pi-ink-visible-capture-0020/read-visible-frame",
+  "hostWrapperPath": "/tmp/pi-ink-0020-visible-capture-host.sh",
+  "hostWrapperSHA256": "1e6a90bf3d5f6c74860b779edf5f79c8ecfedf4e166f53a9e7fee50e07971a17",
+  "privateConsumerPath": "/tmp/pi-ink-0020-save-visible-capture.py",
+  "privateConsumerSHA256": "5a4cce2b566aff46e59212ba295b532dbd25e8562b6a3e8d0921fba3ac75be61",
+  "scripts": [
+    {
+      "operation": "prepare",
+      "path": "/tmp/pi-ink-0020-visible-capture-prepare.sh",
+      "sha256": "a96982136132556d8dbbc7e93dd8a942407e9d3d392e6fb14b2dac6619f19415"
+    },
+    {
+      "operation": "activate",
+      "path": "/tmp/pi-ink-0020-visible-capture-activate.sh",
+      "sha256": "f80b597da1821829cae87e9e7e1081a6c97146bb83d8439c0d0f147de0a15880"
+    },
+    {
+      "operation": "capture",
+      "path": "/tmp/pi-ink-0020-visible-capture-capture.sh",
+      "sha256": "47634abacc1d6158f7c8ec3cf0d3f122ecc52df077e71ee36afe8850d2018021"
+    },
+    {
+      "operation": "cleanup",
+      "path": "/tmp/pi-ink-0020-visible-capture-cleanup.sh",
+      "sha256": "fa9fb7648069e24476f2c5145a61f8134d15fea7a23d6d435dd112f1468b3dcc"
+    }
+  ],
+  "deviceInstalledExecuted": false,
+  "capturesValidated": 0,
+  "restartCommandsUsed": 3,
+  "restartCapUnchanged": 4,
+  "sourceImplementationCommitUnchanged": "4614293693e7973722a6a470a761e563221a7c28",
+  "negativeSmoke": "visible-frame-helper-negative-smoke.json",
+  "newApprovalRequired": true
+}

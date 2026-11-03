@@ -1,0 +1,137 @@
+{
+  "commit": "441dbe0c90e73697775ee05a19eb51ddb677e3c7",
+  "tree": "94eec3c4e1e8fb6eee53db403889c042bd765a41",
+  "baseCommit": "ff9ec2a2f5aedbf804ad8cce7c8843ec95f25456",
+  "baseTree": "93faf247089822a60c8cb534416997690fb989de",
+  "branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "ownedCommits": [
+    "14680ba9fc11f3de2ac65db472ecf6ba922ba617",
+    "0045495cb33fd7fb5c1c68df1a048e738f9f90ff",
+    "90afd74d77f19bd4837606c04e6149dabc7f8e92",
+    "954b6ac7d9a277ed51473e866c5c38e120bbcf9f",
+    "441dbe0c90e73697775ee05a19eb51ddb677e3c7"
+  ],
+  "sourceFiles": [
+    {
+      "path": "README.md",
+      "sha256": "e8b3d3dfc2deec158305d2bcfe618f9b643099887cf443b20518254a10e67a0e",
+      "bytes": 13559
+    },
+    {
+      "path": "bun.lock",
+      "sha256": "c8f279460beaa8ecc2a59233a24ce0d1ca8445cbfbb1bf50dcce7ed1bae8f50d",
+      "bytes": 127689
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/index.ts",
+      "sha256": "043e4105f1cb5a52a930797b3a2250af81a75243c2d82a6f971f4c6e6bbfaed2",
+      "bytes": 19027
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/package.json",
+      "sha256": "ff05786fd0a58269212f8dd099d8eed074dfe8f2362673ca0831864daa72a51c",
+      "bytes": 622
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-session.ts",
+      "sha256": "ee535d933da1447c3697af0edecc375008e33412d5e098804eb1de569cb57bb8",
+      "bytes": 7843
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/.gitignore",
+      "sha256": "9be167283adf65c6cbba17ab56a09e96a757773cfeaec6e00589e4771509680e",
+      "bytes": 25
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/Makefile",
+      "sha256": "9fb6b79858e7bb8db51dcf1e08172dc8300b1fd674dd61cc01599185af2a9400",
+      "bytes": 455
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/main.cpp",
+      "sha256": "20bac3bcf71ec11c0816edde1e2fafc77967e857e9a4d112cd8e6268ab7a5806",
+      "bytes": 1655
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/pi-ink-loopback.xovi",
+      "sha256": "00f39581d1d41589fecd4ab651ea0c12ec7b02f957151d945218408f60018ba6",
+      "bytes": 423
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-gateway.ts",
+      "sha256": "9d4ae21f2e9d50e9e1ed626591bc857e4a3267d9cd8ed6a138c068fe57c01b6c",
+      "bytes": 11086
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml",
+      "sha256": "e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf",
+      "bytes": 19697
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json",
+      "sha256": "87a7a7a216f8b6ecc1fa0a89b3f0cf4e0ae0601d53753fecdc5d1d4a3e215f63",
+      "bytes": 9925
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd",
+      "sha256": "09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9",
+      "bytes": 7321
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/client_test.go",
+      "sha256": "4373bcd376021a7d9b52b20b7c5531bba30995510150895328ecfc74037b3374",
+      "bytes": 9424
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/go.mod",
+      "sha256": "a62188066b2d5aadf5604b71517d88ecb11a16d9fb68fed0b4e1fc4699a6a26c",
+      "bytes": 84
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/go.sum",
+      "sha256": "1737d5523b7264df09b253e86e29f96af295a7bd18e0aaa4373c6099317e065f",
+      "bytes": 175
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/main.go",
+      "sha256": "adeccbdaa002f1027a0fb956e79520cb04d845e928a631574025146dc3363ed6",
+      "bytes": 6211
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/operations.go",
+      "sha256": "415ac9268114b1da56e5a8874a091e5e678b728dd6dd554c1154efafeea812ec",
+      "bytes": 11013
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/state.go",
+      "sha256": "2eb659e5e138e4696acdfe10ebb195f3dc3ba6b53c3efdcea2a7a4b996f50f94",
+      "bytes": 5862
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/stock.go",
+      "sha256": "09c702353a582a316f3ee39380aa33f61fb518becd53410bd05fde85d7a7b856",
+      "bytes": 6202
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/switch_test.go",
+      "sha256": "ed72559ca732ea184e3ad0b294ec4fbd14ecc6ac49977e6a590789a6b87f5868",
+      "bytes": 1669
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/transport.go",
+      "sha256": "11dbce9f9faff5a8f0cde938d236c8efff6f4fb6b303b2907f9f920fe823c882",
+      "bytes": 7659
+    },
+    {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-gateway.test.ts",
+      "sha256": "ff772a8b10883b90ce5e1fb226cfb62b9a1b501b9471d7fc44c960a87f644f24",
+      "bytes": 7681
+    }
+  ],
+  "workflowRoot": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype",
+  "evidenceRoot": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020",
+  "sourceEditsOnly": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "baseUserMiseTomlUntouched": true,
+  "mergeRebasePushPerformed": false,
+  "implementationSession": "01a19e3a-d649-7473-8e40-e4371bceb4ea"
+}

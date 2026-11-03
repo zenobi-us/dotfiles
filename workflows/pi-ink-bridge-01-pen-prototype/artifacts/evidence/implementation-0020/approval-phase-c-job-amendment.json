@@ -1,0 +1,18 @@
+{
+  "recordedAt": "2026-11-03T02:00:57.485712+00:00",
+  "ownerApproval": "Approve; documents still closed",
+  "documentsSavedAndClosed": true,
+  "usbConnected": true,
+  "scope": "C1-B only idle Job empty-or0 guard and rollback path; LOAD#2 permitted with unchanged C1/C1-A guards and reviewed8. No import/Send/disconnect until owner revised sidebar/navigation verification. Restore original A; renewed saved/closed confirmation before restart#3; total cap3.",
+  "hashes": {
+    "/tmp/pi-ink-start-0019-device-approval-phase-c-job-amendment.txt": "fc94ed2fea1e50972090ef1ec75aa84f41971ee7fbeb119e9b6bc16f9ad1e387",
+    "/tmp/pi-ink-0020-phase-c-rollback-v4.sh": "e2442e7cb4aef4484bbbb271be45691a2fe10c3173c70843c31113dcc06c0064",
+    "/tmp/pi-ink-0020-phase-c-host-setup-usb10-job.sh": "2d99dd80329cf60c0e08239ff62099ac3e6e2787aa9a3b18f9226e15ecdc2a63"
+  },
+  "sourceCommit": "441dbe0c90e73697775ee05a19eb51ddb677e3c7",
+  "originRequestIds": [
+    "a011855184f195ac2961ab0e9c934926",
+    "0f7526d7272a99da68121893ee20afb4"
+  ],
+  "session": "01a19e3a-d649-7473-8e40-e4371bceb4ea"
+}

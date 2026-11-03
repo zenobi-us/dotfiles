@@ -1,0 +1,195 @@
+{
+  "created_at": "2026-11-02T22:30:48.982137+00:00",
+  "operations": [
+    {
+      "command": [
+        "timeout",
+        "45",
+        "ssh",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "root@10.11.99.1",
+        "set -eu; umask 077\npayload=/home/root/pi-ink-bridge-0020\nbackup=/home/root/pi-ink-webserver-remote-backup-0020\nadapter=/home/root/xovi/extensions.d/pi-ink-loopback-0020.so\npatch=/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd\nfor p in \"$payload\" \"$backup\" \"$adapter\" \"$patch\"; do test ! -e \"$p\"; test ! -L \"$p\"; done\nmkdir \"$payload\" \"$backup\"\nmkdir \"$payload/trust\" \"$payload/tablet-qml\"\nprintf '%s\\n' 'pi-ink-bridge-01-pen-prototype implementation-0020 01a19e3a-d649-7473-8e40-e4371bceb4ea' > \"$backup/owner.txt\"\n"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "/tmp/pi-ink-0020-offline/pi-ink-tablet",
+        "root@10.11.99.1:/home/root/pi-ink-bridge-0020/pi-ink-tablet"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "/tmp/pi-ink-0020-trust/tablet.json",
+        "root@10.11.99.1:/home/root/pi-ink-bridge-0020/config.json"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "/tmp/pi-ink-0020-trust/server-a.pem",
+        "root@10.11.99.1:/home/root/pi-ink-bridge-0020/trust/server-a.pem"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "/tmp/pi-ink-0020-trust/server-b.pem",
+        "root@10.11.99.1:/home/root/pi-ink-bridge-0020/trust/server-b.pem"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml",
+        "root@10.11.99.1:/home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/pi-ink-loopback.so",
+        "root@10.11.99.1:/home/root/pi-ink-bridge-0020/adapter.so"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd",
+        "root@10.11.99.1:/home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "/tmp/pi-ink-0020-trust/owner.txt",
+        "root@10.11.99.1:/home/root/pi-ink-bridge-0020/owner.txt"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45",
+        "scp",
+        "-O",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "/tmp/pi-ink-0020-trust/payload-sha256.txt",
+        "root@10.11.99.1:/home/root/pi-ink-bridge-0020/payload-sha256.txt"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "scope": "Only owned exclusive paths; original extension remains active until approved combined load"
+}

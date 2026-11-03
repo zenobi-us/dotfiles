@@ -1,0 +1,19 @@
+{
+  "command": [
+    "bwrap",
+    "--ro-bind",
+    "/",
+    "/",
+    "--dev",
+    "/dev",
+    "--proc",
+    "/proc",
+    "--unshare-all",
+    "--die-with-parent",
+    "/tmp/pi-ink-0020-visible-capture-build/read-visible-frame-host"
+  ],
+  "returncode": 1,
+  "stdoutBytes": 0,
+  "stderr": "CAPTURE_ABORT open_readonly_card0 errno=2\n",
+  "scope": "Actual same-source host build inside device-isolated namespace. Only negative missing-DRM fail-closed path; no hardware pixels or mocked display. ARM binary target execution NOT authorized yet."
+}

@@ -1,0 +1,21 @@
+{
+  "command": [
+    "podman",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "-v",
+    "/tmp/pi-ink-0020-native-press-smoke:/smoke:Z",
+    "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+    "bash",
+    "-c",
+    "source /opt/codex/*/*/environment-setup-* && qml -apptype core /smoke/press-core.qml"
+  ],
+  "returncode": 2,
+  "stdout": "qml: Did not load any objects, exiting.\n",
+  "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nQQmlApplicationEngine failed to load component\nfile:///smoke/press-core.qml:1:1: module \"QtQml\" is not installed\n",
+  "componentASTParsePassed": true,
+  "sourceComponentSHA256": "8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9",
+  "scope": "Qt core/QObject pressed-property notification executing actual corrected source handler bodies; no native UI/private type/stock/hardware pass. Earlier GUI runner failed because SDK lacks offscreen platform plugin; no device operation."
+}

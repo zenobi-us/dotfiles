@@ -1,0 +1,28 @@
+{
+  "schema": "pi-ink-owner-observation/v1",
+  "phase": "implementation-0020",
+  "source": "Fresh parent-relayed owner observation in this implementation session",
+  "ownerSelection": "Closed",
+  "observed": "Owner returned to the normal stock library after ONE source-supported top-edge downward swipe. Normal library navigation is available.",
+  "establishedDefect": "The previously attempted Close panel control did not restore stock close access. The persistent header obstruction is a real defect; successful stock gesture recovery does not resolve it.",
+  "recoveryEvidence": {
+    "stockSceneViewGesturesFrame": "0xdcd6c9",
+    "decodedSha256": "ab11773343d512d7f1e4259411c91ed2aff5c222c787cccd2e8d076b4e33563f",
+    "handler": "close-scene-view downward swipe in top-edge strip excluding far-right Quick Settings; DeviceSceneView.closeGesture -> DocumentView.root.close -> sceneView.close and document=null"
+  },
+  "authority": {
+    "offlineNativeSidebarRedesign": true,
+    "newImportDrawSend": false,
+    "newSSHOrDeviceMutation": false,
+    "newRestart": false,
+    "freshAllDocumentsSavedClosedRequiredBeforeRestart": true
+  },
+  "restartAccounting": {
+    "alreadyExecuted": 1,
+    "originalApprovedTotal": 2,
+    "additionalRevisedLoadWouldRequireNewApproval": true,
+    "rollbackOriginalProxyRemainsOwnerSelected": true
+  },
+  "retention": "Preserve original proxy quarantine, all baseline extensions/QMDs, synthetic documents, client association state, source/evidence/history. No private document inspection.",
+  "hardwareAcceptance": "Normal-navigation recovery only; no new import, association, Send, clipping or originating PNG pass."
+}

@@ -1,0 +1,11 @@
+{
+  "sourceCommit": "4614293693e7973722a6a470a761e563221a7c28",
+  "sourceTree": "514e1d89888ce9c9e88f9aeb80d2e04492958003",
+  "componentSHA256": "8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9",
+  "manifestSHA256": "261f3409cc7315a86710b72308de30396eee651870d0c145dd800c786c1d8a72",
+  "activeChanges": [
+    "tablet-qml/PiInkToolbar.qml",
+    "payload-sha256.txt"
+  ],
+  "notDeployed": true
+}

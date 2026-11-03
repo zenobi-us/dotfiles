@@ -1,0 +1,59 @@
+[
+  {
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bunx",
+      "tsc",
+      "--noEmit"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+  },
+  {
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "test"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+    "exit_code": 0,
+    "stdout": "bun test v1.4.3 (c6da4a4d3)\n",
+    "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n\ntest/editing-session.test.ts:\n(pass) editing remains available after a day until done [12.79ms]\n(pass) editing remains available after a day until cancel [2.01ms]\n(pass) editing remains available after a day until abort [1.43ms]\n(pass) editing remains available after a day until session-switch [1.45ms]\n\ntest/annotator-server.test.ts:\n(pass) annotation server protects source data and returns exported PNG bytes [1.94ms]\n(pass) cancel ends the session without returning an image [1.23ms]\n(pass) a new drawing has no source image and returns its exported PNG [1.56ms]\n(pass) annotation server serves the built Excalidraw app and bundle [2.43ms]\n\ntest/pdf-submission.test.ts:\n(pass) all outer ink colors and subpixel alpha require explicit result consent [1715.55ms]\n(pass) expanded whitespace sends without clipping consent and preserves source mapping [439.50ms]\n(pass) wrong source position fails closed instead of stretching or guessing [329.51ms]\n(pass) replacement, altered digest, and another request cannot reuse consent [519.68ms]\n(pass) cancel and terminal close reject stale and late submissions [338.92ms]\n\ntest/tablet-gateway.test.ts:\n(pass) TLS trust, credential and immutable UUID binding protect a real request [189.37ms]\n(pass) switch invalidation, foreign request and cancellation cannot consume clipping consent [547.95ms]\n\n 15 pass\n 0 fail\n 123 expect() calls\nRan 15 tests across 4 files. [4.37s]\n"
+  },
+  {
+    "command": [
+      "gofmt",
+      "-w",
+      "main.go",
+      "operations.go",
+      "state.go",
+      "stock.go",
+      "transport.go",
+      "client_test.go",
+      "switch_test.go"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "go",
+      "test",
+      "-race",
+      "./..."
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet",
+    "exit_code": 0,
+    "stdout": "ok  \timage-annotator-tablet\t1.045s\n",
+    "stderr": ""
+  }
+]

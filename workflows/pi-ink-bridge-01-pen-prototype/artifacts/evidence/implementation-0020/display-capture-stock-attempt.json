@@ -1,0 +1,18 @@
+{
+  "recordedAt": "2026-11-03T03:31:53.218152+00:00",
+  "existingUtility": "/usr/bin/screenshot",
+  "utilitySHA256": "0df64fae1c03699565ccedb38d51374fa840358c1eeac7733568f3b37b98a3b5",
+  "utilitySource": "#!/bin/sh\n# Take a screenshot of the current screen and save it as a .png,\n# using the xofm/modules/usersignaltrigger\n\npid=$(pgrep xochitl)\nif [ -z \"$pid\" ]; then\n    echo \"Error: xochitl process not running\"\n    exit 1\nfi\n\nif kill -USR2 \"$pid\"; then\n    echo \"Screenshot taken, stored as a .png at /home/root\"\nelse\n    echo \"Error: Failed to send signal to xochitl\"\n    exit 1\nfi\n\n",
+  "invocation": "screenshot --help (stock script ignores arguments, invokes native SIGUSR2 once)",
+  "signalRequestReturncode": 0,
+  "captureFileConfirmed": false,
+  "rawCapturePath": null,
+  "newPNGRootMetadata": "",
+  "knownNameCaptureMetadata": "",
+  "existingOtherCaptureTools": "",
+  "displayDeviceMetadata": "UTILITY screenshot /usr/bin/screenshot\nUTILITY dbus-send /usr/bin/dbus-send\nUTILITY fbset /usr/sbin/fbset\nUTILITY busybox /usr/bin/busybox\nCAPABILITY_NODE /dev/dri/card0 character special file 660 0 44\n",
+  "dbusCaptureServiceMetadata": "      string \"no.remarkable.marker\"\n      string \"no.remarkable.sync\"\n      string \"com.remarkable.devicepolicy\"\n",
+  "noPayloadInstallSettingsRestartOrUIAction": true,
+  "noProcessMemoryOrNotebookReads": true,
+  "note": "No screenshot claimed. Target only recent top-level PNG metadata and installed-capability/service metadata; no old image content read or returned."
+}

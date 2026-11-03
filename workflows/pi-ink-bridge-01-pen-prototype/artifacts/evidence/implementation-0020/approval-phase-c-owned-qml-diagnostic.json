@@ -1,0 +1,11 @@
+{
+  "recordedAt": "2026-11-03T02:45:37.847476+00:00",
+  "ownerSelection": "Approve owned-loader diagnostic",
+  "scope": "ONE exact USB-bound read-only30s diagnostic; currentPID106606/LOAD#2 startup window/owned path capped marker errors only. No writes, substitutions, cache action, broader logs, document access or restart. Empty result inconclusive.",
+  "approvedHashes": {
+    "/tmp/pi-ink-start-0019-device-approval-phase-c-owned-qml-diagnostic.txt": "3015451ec4e7bffecd49b2da02ad2fbacd8ab5a4677e581da4522d9e06d75cab",
+    "/tmp/pi-ink-0020-phase-c-owned-qml-diagnostic.sh": "0a6a5ba8751a697135e5e4e8e98108ffdfd99347c539d5e5c23375bed7192f37",
+    "/tmp/pi-ink-0020-phase-c-owned-qml-diagnostic-host.sh": "d2e903127869101cae8c0df8309d71397d6cec37c374aa92bc3761804955385d"
+  },
+  "restartCommandsExecuted": 2
+}

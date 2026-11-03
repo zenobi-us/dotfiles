@@ -1,0 +1,42 @@
+{
+  "scope": "Actual Go executable on host;2 actual OMP image_editor calls; no hardware operation or mock",
+  "state": {
+    "canConfirm": false,
+    "canSend": false,
+    "connection": "offline",
+    "documentUUID": "",
+    "folders": [],
+    "imports": [
+      {
+        "importName": "",
+        "jobId": "6d318d779e4c12fce1395b499bcaec5b",
+        "requestId": "6d318d779e4c12fce1395b499bcaec5b",
+        "serverId": "485bf81fd7f7853c4efedc0492b9d8fd",
+        "sourceDigest": "5f816344bcd9aeeae4ff7cf1c497404b922b54d6362a859ed60e93d18f83cdef",
+        "status": "pending"
+      },
+      {
+        "importName": "",
+        "jobId": "b3a4bf9567d3bc0ec8e6f5b671085f7b",
+        "requestId": "b3a4bf9567d3bc0ec8e6f5b671085f7b",
+        "serverId": "e29308fadaaa0c7a10479ba117b82bee",
+        "sourceDigest": "5f816344bcd9aeeae4ff7cf1c497404b922b54d6362a859ed60e93d18f83cdef",
+        "status": "pending"
+      }
+    ],
+    "message": "",
+    "servers": [
+      {
+        "connection": "online",
+        "name": "Pi Ink Prototype A",
+        "serverId": "485bf81fd7f7853c4efedc0492b9d8fd"
+      },
+      {
+        "connection": "online",
+        "name": "Pi Ink Prototype B",
+        "serverId": "e29308fadaaa0c7a10479ba117b82bee"
+      }
+    ],
+    "status": "unassociated"
+  }
+}

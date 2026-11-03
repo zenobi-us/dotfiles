@@ -1,0 +1,19 @@
+{
+  "command": [
+    "timeout",
+    "45",
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "root@10.11.99.1",
+    "set -eu\npid=$(systemctl show xochitl -p MainPID --value)\nprintf 'PID %s\\n' \"$pid\"\nprintf 'ADAPTER_MAP\\n'\ncat \"/proc/$pid/maps\" | grep 'pi-ink-loopback-0020.so'\nif grep -q '/home/root/xovi/extensions.d/webserver-remote.so' \"/proc/$pid/maps\"; then echo 'CONFLICTING_ORIGINAL_STILL_MAPPED'; exit 2; fi\nfor p in /proc/$pid/fd/*; do target=$(readlink \"$p\" || true); case \"$target\" in socket:*) printf '%s %s\\n' \"$p\" \"$target\";; esac; done\nprintf 'FIXED_MARKER_LOG_ONLY\\n'\njournalctl -u xochitl --since '3 minutes ago' --grep='PI_INK_LOOPBACK_0020|PiInkToolbar|pi-ink-bridge-0020' --no-pager\n"
+  ],
+  "exit_code": 1,
+  "stdout": "PID 97354\nADAPTER_MAP\nffff79d80000-ffff79d82000 r-xp 00000000 fe:02 1665                       /home/root/xovi/extensions.d/pi-ink-loopback-0020.so\nffff79d82000-ffff79d9f000 ---p 00002000 fe:02 1665                       /home/root/xovi/extensions.d/pi-ink-loopback-0020.so\nffff79d9f000-ffff79da0000 r--p 0000f000 fe:02 1665                       /home/root/xovi/extensions.d/pi-ink-loopback-0020.so\nffff79da0000-ffff79da1000 rw-p 00010000 fe:02 1665                       /home/root/xovi/extensions.d/pi-ink-loopback-0020.so\n/proc/97354/fd/1 socket:[302546]\n/proc/97354/fd/12 socket:[302552]\n/proc/97354/fd/17 socket:[305300]\n/proc/97354/fd/18 socket:[305301]\n/proc/97354/fd/2 socket:[302546]\n/proc/97354/fd/3 socket:[305298]\n/proc/97354/fd/30 socket:[299581]\n/proc/97354/fd/32 socket:[299582]\n/proc/97354/fd/40 socket:[304712]\n/proc/97354/fd/41 socket:[302563]\n/proc/97354/fd/44 socket:[302564]\n/proc/97354/fd/48 socket:[304713]\n/proc/97354/fd/63 socket:[305330]\n/proc/97354/fd/69 socket:[305353]\n/proc/97354/fd/80 socket:[304757]\n/proc/97354/fd/85 socket:[304790]\n/proc/97354/fd/9 socket:[302548]\nFIXED_MARKER_LOG_ONLY\n",
+  "stderr": "PCRE2 support is not compiled in.\n",
+  "scope": "Exact adapter maps, socket attribution and fixed-marker-only logs"
+}

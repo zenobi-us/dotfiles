@@ -1,0 +1,127 @@
+{
+  "sourceCommit": "441dbe0c90e73697775ee05a19eb51ddb677e3c7",
+  "sourceTree": "94eec3c4e1e8fb6eee53db403889c042bd765a41",
+  "payloads": [
+    {
+      "relativePath": "pi-ink-tablet",
+      "sourcePath": "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-tablet",
+      "sha256": "0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd",
+      "bytes": 9324489,
+      "changedFromPhaseB": true
+    },
+    {
+      "relativePath": "config.json",
+      "sourcePath": "/tmp/pi-ink-0020-sidebar-reviewed-payload/config.json",
+      "sha256": "a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca",
+      "bytes": 924,
+      "changedFromPhaseB": true
+    },
+    {
+      "relativePath": "trust/server-a.pem",
+      "sourcePath": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-a.pem",
+      "sha256": "9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba",
+      "bytes": 1184,
+      "changedFromPhaseB": false
+    },
+    {
+      "relativePath": "trust/server-b.pem",
+      "sourcePath": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-b.pem",
+      "sha256": "9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55",
+      "bytes": 1184,
+      "changedFromPhaseB": false
+    },
+    {
+      "relativePath": "tablet-qml/PiInkToolbar.qml",
+      "sourcePath": "/tmp/pi-ink-0020-sidebar-reviewed-payload/tablet-qml/PiInkToolbar.qml",
+      "sha256": "e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf",
+      "bytes": 19697,
+      "changedFromPhaseB": true
+    },
+    {
+      "relativePath": "adapter.so",
+      "sourcePath": "/tmp/pi-ink-0020-sidebar-reviewed-payload/adapter.so",
+      "sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+      "bytes": 504280,
+      "changedFromPhaseB": false
+    },
+    {
+      "relativePath": "pi-ink-bridge.qmd",
+      "sourcePath": "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-bridge.qmd",
+      "sha256": "09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9",
+      "bytes": 7321,
+      "changedFromPhaseB": true
+    },
+    {
+      "relativePath": "owner.txt",
+      "sourcePath": "/tmp/pi-ink-0020-sidebar-reviewed-payload/owner.txt",
+      "sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "bytes": 88,
+      "changedFromPhaseB": false
+    }
+  ],
+  "manifestSha256": "d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa",
+  "supersedesUnapprovedCandidateManifest": "bf1502fde05c33de4a171cb02256f5d7909c9b8a0c0bc10c5ba36574bbc3ca34",
+  "hostConfigurations": [
+    {
+      "label": "a",
+      "path": "/tmp/pi-ink-0020-trust/desktop-sidebar-a.json",
+      "sha256": "fe556fd030b47b189cc433d3968f48be52e2f1e0111fda8b9f2e3e5a3c965d18",
+      "serverId": "485bf81fd7f7853c4efedc0492b9d8fd",
+      "port": 9443,
+      "certificateSha256": "9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba",
+      "deviceId": "pi-ink-prototype-tablet-0020"
+    },
+    {
+      "label": "b",
+      "path": "/tmp/pi-ink-0020-trust/desktop-sidebar-b.json",
+      "sha256": "23f4b8c51d02c3a26e04e88779421c7bf141dea92a9227be81258b2a3cfa74f0",
+      "serverId": "e29308fadaaa0c7a10479ba117b82bee",
+      "port": 9444,
+      "certificateSha256": "9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55",
+      "deviceId": "pi-ink-prototype-tablet-0020"
+    }
+  ],
+  "freshActualJobs": [
+    {
+      "serverId": "485bf81fd7f7853c4efedc0492b9d8fd",
+      "origin": "https://192.168.86.35:9443",
+      "jobId": "a011855184f195ac2961ab0e9c934926",
+      "requestId": "a011855184f195ac2961ab0e9c934926",
+      "sourceDigest": "5f816344bcd9aeeae4ff7cf1c497404b922b54d6362a859ed60e93d18f83cdef",
+      "state": "pending",
+      "submissionEpoch": 0,
+      "pdfSha256": "bcc546d005d4bc5f5fc2ab7d217484e311c21f84e994459ed44913587f26f666",
+      "pdfBytes": 2403511,
+      "retiredJobId": "6d318d779e4c12fce1395b499bcaec5b",
+      "retiredGetStatus": 404,
+      "verifiedHttps": true,
+      "verifiedWss": true,
+      "source": "Actual originating image_editor tool; authenticated host observer only, no tablet import, binding, Send or export"
+    },
+    {
+      "serverId": "e29308fadaaa0c7a10479ba117b82bee",
+      "origin": "https://192.168.86.35:9444",
+      "jobId": "0f7526d7272a99da68121893ee20afb4",
+      "requestId": "0f7526d7272a99da68121893ee20afb4",
+      "sourceDigest": "5f816344bcd9aeeae4ff7cf1c497404b922b54d6362a859ed60e93d18f83cdef",
+      "state": "pending",
+      "submissionEpoch": 0,
+      "pdfSha256": "bcc546d005d4bc5f5fc2ab7d217484e311c21f84e994459ed44913587f26f666",
+      "pdfBytes": 2403511,
+      "retiredJobId": "b3a4bf9567d3bc0ec8e6f5b671085f7b",
+      "retiredGetStatus": 404,
+      "verifiedHttps": true,
+      "verifiedWss": true,
+      "source": "Actual originating image_editor tool; authenticated host observer only, no tablet import, binding, Send or export"
+    }
+  ],
+  "deviceConfigOnlyChangedField": "syntheticAllowlist",
+  "preservedStatePath": "/home/root/pi-ink-bridge-0020/state.json",
+  "approved": false,
+  "deviceMutationPerformed": false,
+  "verification": {
+    "goRace": "go test -race ./... passed 1.044s",
+    "arm64BuildExit": 0,
+    "qtAst": "Passed for component and five native integration outputs; no full SDK/private-type or hardware pass"
+  }
+}

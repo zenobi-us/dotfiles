@@ -1,0 +1,18 @@
+{
+  "planPath": "/tmp/pi-ink-start-0019-device-approval-phase-c-native-sidebar.txt",
+  "planSha256": "7a8465c07e666b81d0104e813128c046d51ebc84baf0a35c8ac58e3ba77c51d6",
+  "hostWrapperPath": "/tmp/pi-ink-0020-phase-c-host-setup.sh",
+  "hostWrapperSha256": "b3ee0aa32d68ba7cfd82048d514df8795d8be8ca1c8c2c3d3e6d0a9431bfa85f",
+  "sourceCommit": "441dbe0c90e73697775ee05a19eb51ddb677e3c7",
+  "sourceTree": "94eec3c4e1e8fb6eee53db403889c042bd765a41",
+  "payloadManifestSha256": "d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa",
+  "approved": false,
+  "deviceCommandsRun": false,
+  "plannedRestartCommands": {
+    "alreadyExecuted": 1,
+    "C1Additional": 2,
+    "C1Total": 3,
+    "C2Additional": 1,
+    "C2Total": 2
+  }
+}

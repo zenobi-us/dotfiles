@@ -1,0 +1,13 @@
+{
+  "recordedAt": "2026-11-03T02:52:41.859867+00:00",
+  "returncode": 0,
+  "stdout": "{\"passed\":true,\"checks\":[\"Send captures UUID at true press\",\"Confirm captures UUID and confirmationId at true press\",\"Release after document/result switch preserves original captures\",\"Next press captures next UUID/result\"],\"limit\":\"Executes actual handler JavaScript bodies; does not prove Qt native module instantiation, property event delivery, physical UI or hardware.\"}\n",
+  "stderr": "",
+  "sourceComponentSHA256": "8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9",
+  "completeComponentQtAST": "passed before GUI platform failure in native-button-source-fix-smoke.json",
+  "QtRuntimeLimits": [
+    "SDK offscreen platform plugin unavailable",
+    "SDK QtQml runtime module unavailable"
+  ],
+  "installedRuntimeVerdict": "FAILED: onPressed loader error; fixed component not deployed"
+}

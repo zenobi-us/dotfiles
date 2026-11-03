@@ -1,0 +1,160 @@
+{
+  "executed": "Only the actual prospective POSIX file-hash/position helper declarations against owned host temporary files containing actual old/reviewed artifact bytes; NO hardware, systemd, stock service, receiver or network mock.",
+  "profileStates": [
+    {
+      "newVersionBits": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "exit_code": 0
+    },
+    {
+      "newVersionBits": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "exit_code": 0
+    }
+  ],
+  "rejected": [
+    {
+      "case": "unknown-active-bytes",
+      "exit_code": 1
+    },
+    {
+      "case": "unexpected-symlink",
+      "exit_code": 1
+    }
+  ],
+  "limit": "Does not prove target unit lifecycle, restart, listener readiness or original proxy restoration. Those remain approved hardware gates."
+}

@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-11-02T22:35:55.762238+00:00",
+  "event": "Parent asked owner to disconnect USB; implementation now forbids SSH/SCP/manual transfer",
+  "start": "Before physical disconnect to avoid race",
+  "permittedObservation": "Authenticated tablet WSS kernel-network reports and actual originating OMP tool state only",
+  "release": "After authenticated results arrive, owner reconnects cable and renewed saved/closed confirmation authorizes rollback",
+  "sourceCommit": "14680ba9fc11f3de2ac65db472ecf6ba922ba617"
+}

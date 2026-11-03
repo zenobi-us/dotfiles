@@ -1,0 +1,19 @@
+{
+  "command": [
+    "timeout",
+    "45",
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "root@10.11.99.1",
+    "set -eu\nsystemd-run --unit=pi-ink-bridge-0020 --collect --property=Restart=no /home/root/pi-ink-bridge-0020/pi-ink-tablet -config /home/root/pi-ink-bridge-0020/config.json\nsleep 1\nsystemctl is-active pi-ink-bridge-0020.service\nsystemctl show pi-ink-bridge-0020.service -p MainPID -p ExecMainStatus -p ActiveState -p SubState\ncat /proc/net/tcp /proc/net/tcp6\n"
+  ],
+  "exit_code": 0,
+  "stdout": "active\nMainPID=97779\nExecMainStatus=0\nActiveState=active\nSubState=running\n  sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode                                                     \n   0: 3600007F:0035 00000000:0000 0A 00000000:00000000 00:00000000 00000000   996        0 3494 1 00000000eab32248 100 0 0 10 5                      \n   1: 0100007F:0051 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 305353 1 0000000035f652a1 100 0 0 10 0                    \n   2: 0100007F:2253 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 1901 1 00000000f073c3e3 100 0 0 10 0                      \n   3: 0100007F:265D 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 305629 1 00000000a94b5028 100 0 0 10 0                    \n   4: 3500007F:0035 00000000:0000 0A 00000000:00000000 00:00000000 00000000   996        0 3492 1 000000008182060a 100 0 0 10 5                      \n   5: 8056A8C0:B65A 2356A8C0:24E4 01 00000000:00000000 02:00000573 00000000     0        0 299716 2 00000000398eb090 21 4 29 10 -1                   \n   6: 0100007F:265D 0100007F:BC6A 01 00000000:00000000 02:000005BC 00000000     0        0 302851 2 00000000be56b89e 20 4 31 10 -1                   \n   7: 8056A8C0:B0AE 2356A8C0:24E3 01 00000000:00000000 02:00000573 00000000     0        0 302846 2 0000000026a04aa1 21 4 29 10 -1                   \n   8: 0100007F:BC6A 0100007F:265D 01 00000000:00000000 02:000AFC60 00000000     0        0 304885 2 0000000040aad792 20 4 30 10 -1                   \n  sl  local_address                         remote_address                        st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode\n   0: 00000000000000000000000000000000:0016 00000000000000000000000000000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 2427 1 00000000716b2770 100 0 0 10 0\n   1: 00000000000000000000000000000000:0016 00000000000000000000000000000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 2426 1 00000000d2ff51b7 100 0 0 10 0\n   2: 0000000000000000FFFF000001630B0A:0016 0000000000000000FFFF00000A630B0A:D1A0 01 00000000:00000000 00:00000000 00000000     0        0 247560 1 0000000084457b21 21 4 18 10 -1\n   3: 0000000000000000FFFF000001630B0A:0016 0000000000000000FFFF00000A630B0A:916E 01 00000000:00000000 00:00000000 00000000     0        0 305588 2 00000000a32c7ad5 20 4 13 10 -1\n",
+  "stderr": "Running as unit: pi-ink-bridge-0020.service; invocation ID: c53edc9924e244448991623531d39db5\n",
+  "runtimeSSHDisconnected": false
+}

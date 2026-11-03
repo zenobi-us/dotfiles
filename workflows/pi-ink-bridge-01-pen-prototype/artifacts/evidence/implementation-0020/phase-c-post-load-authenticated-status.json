@@ -1,0 +1,42 @@
+{
+  "recordedAt": "2026-11-03T02:02:26.694887+00:00",
+  "loadEvidence": "phase-c-approved-load.json",
+  "restartCommandsExecutedTotal": 2,
+  "ownerNavigationObservationPending": true,
+  "importsSendDisconnectHeld": true,
+  "authenticatedStatus": {
+    "a": {
+      "time": "2026-11-03T02:02:22.462Z",
+      "serverId": "485bf81fd7f7853c4efedc0492b9d8fd",
+      "deviceId": "pi-ink-prototype-tablet-0020",
+      "udc": {
+        "ci_hdrc.0": "configured",
+        "ci_hdrc.1": "not attached"
+      },
+      "usbIPv4": [
+        "usb1:10.11.99.1"
+      ],
+      "listeners": [
+        "tcp:0100007F:0051"
+      ],
+      "safe": false
+    },
+    "b": {
+      "time": "2026-11-03T02:02:24.424Z",
+      "serverId": "e29308fadaaa0c7a10479ba117b82bee",
+      "deviceId": "pi-ink-prototype-tablet-0020",
+      "udc": {
+        "ci_hdrc.0": "configured",
+        "ci_hdrc.1": "not attached"
+      },
+      "usbIPv4": [
+        "usb1:10.11.99.1"
+      ],
+      "listeners": [
+        "tcp:0100007F:0051"
+      ],
+      "safe": false
+    }
+  },
+  "hardwareDetachedPass": false
+}

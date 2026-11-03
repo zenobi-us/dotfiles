@@ -1,0 +1,808 @@
+IMPLEMENTATION-0020 PHASE C — NATIVE SIDEBAR REVISION — NOT AUTHORIZED
+
+Fresh owner decision required. Earlier Phase B approved DIFFERENT bytes and two total Xochitl restart commands. One LOAD restart already ran. The recovered library observation grants NO SSH, mutation, restart, import, drawing or Send authority and is NOT renewed ALL-documents-saved/closed confirmation.
+
+CHOICES
+C1: Approve exact reviewed8 payloads, setup scripts and controlled readiness/test sequence below; retain original-proxy quarantine through tests; revised LOAD is restart#2 and RESTORE ORIGINAL branch A is restart#3. TWO additional restart commands, THREE total. Ask owner to save and close ALL documents immediately before EACH restart. Preserve client/synthetic state. No additional restart or payload substitution.
+C2: Do not install the revision. Approve ONLY the same guarded rollback script against the old profile, RESTORE ORIGINAL branch A, with renewed ALL-documents-saved/closed and cable-connected confirmation. One additional restart, TWO total. No new import/draw/Send. Hardware prototype remains blocked.
+In either branch, original webserver-remote.so restoration may restore the warned wildcard HTTP behavior. Owner previously chose original restoration; this revised scope must explicitly retain that choice. No keep-quarantined alternative is presumed.
+
+CURRENT OBSERVATIONS / SOURCE
+Owner recovered from the established persistent-header obstruction to the normal library after ONE source-supported top-edge downward stock swipe. Do NOT repeat Close panel, request reproduction, or blame operator. Current old overlay remains defective. No revised code is deployed.
+Source commit 441dbe0c90e73697775ee05a19eb51ddb677e3c7; tree 94eec3c4e1e8fb6eee53db403889c042bd765a41. Owned source only; no merge/rebase/push. The native sidebar revision uses an editor ToolbarTool and labelled library Ark SidebarItem, a zero-size noninteractive persistent client, TOC Background/secondary NavigationBar/fixed Back/ScrollContainer margins, and actual native close/tool dimensions to exclude edge navigation regions. Back hides the COMPLETE panel. No floating top-level header.
+Go race suite passed. Pinned QMLDiff processed all five modified stock resources alongside all12 preserved QMDs, unchanged original hashes. Matching Qt6.10.3 AST parsing passed. Full SDK type checking did NOT pass: private stock imports unavailable and duplicate toolLoader diagnostic exists in baseline-only and revised Toolbar. Physical instantiation, hit-testing, modal stacking, orientation, pen/palm quality, source import signals and actual Send remain hardware gates.
+Native current/receipt UUID spellings are canonicalized once before publication/display/press capture; strict stale equality remains. Invalid explicit HTTP UUIDs and conflicting fields cannot become absent identity. Native receipt is mandatory for actual document and parent; invalid nonempty parent never becomes guessed Stock root.
+
+REAL ORIGINS — PINNED, FRESH, NOT A FAKE RECEIVER
+server=485bf81fd7f7853c4efedc0492b9d8fd origin=https://192.168.86.35:9443 jobId=requestId=a011855184f195ac2961ab0e9c934926 state=pending/unbound submissionEpoch=0; sourcePNG SHA256=5f816344bcd9aeeae4ff7cf1c497404b922b54d6362a859ed60e93d18f83cdef; actual source.pdf SHA256=bcc546d005d4bc5f5fc2ab7d217484e311c21f84e994459ed44913587f26f666 bytes=2403511
+server=e29308fadaaa0c7a10479ba117b82bee origin=https://192.168.86.35:9444 jobId=requestId=0f7526d7272a99da68121893ee20afb4 state=pending/unbound submissionEpoch=0; sourcePNG SHA256=5f816344bcd9aeeae4ff7cf1c497404b922b54d6362a859ed60e93d18f83cdef; actual source.pdf SHA256=bcc546d005d4bc5f5fc2ab7d217484e311c21f84e994459ed44913587f26f666 bytes=2403511
+Actual originating interactive OMP image_editor calls loaded this source extension. Verified authenticated certificate/hostname-checked HTTPS and WSS. Request source.pdf is generated once per PdfSession and cached; do not infer its bytes from a filename or PNG digest.
+RETIRED old jobs:6d318d779e4c12fce1395b499bcaec5b andb3a4bf9567d3bc0ec8e6f5b671085f7b. Both were unbound and cancelled HOST-side by the observer; actual originating TUIs showed Image editing was cancelled. GET old IDs on fresh origins returns404. This is NOT bound-tablet owner terminal-cancellation proof. Never send to, reopen, rebind or retry these retired jobs. Old import occurrence is not inferred from absent binding; preserve any synthetic stock document and client state.
+
+CHANGED CONFIG / PAIRING
+DeviceId pi-ink-prototype-tablet-0020. Device config only changes syntheticAllowlist: retain67583c8d5b1f8acd303c8f14dc4094bb6562ddef22c610fea7988b7d20a886ab and add exact fresh PDFbcc546d005d4bc5f5fc2ab7d217484e311c21f84e994459ed44913587f26f666. Tokens, CA paths, server identities, endpoints and statePath remain unchanged; never print credential contents.
+Existing client statePath /home/root/pi-ink-bridge-0020/state.json is NOT read, reset, copied over or deleted. Normal protocol may persist legitimate synthetic transitions; no filename inference or reassignment of old bindings to new jobs.
+Host paired config /tmp/pi-ink-0020-trust/desktop-sidebar-a.json SHA256=fe556fd030b47b189cc433d3968f48be52e2f1e0111fda8b9f2e3e5a3c965d18; only host statusPath changed for separate evidence. Certificate PEM SHA256=9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba; credentials/CA/serverId/endpoints unchanged.
+Host paired config /tmp/pi-ink-0020-trust/desktop-sidebar-b.json SHA256=23f4b8c51d02c3a26e04e88779421c7bf141dea92a9227be81258b2a3cfa74f0; only host statusPath changed for separate evidence. Certificate PEM SHA256=9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55; credentials/CA/serverId/endpoints unchanged.
+
+EXACT EIGHT REVIEWED PAYLOADS; frozen host root /tmp/pi-ink-0020-sidebar-reviewed-payload
+0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd  pi-ink-tablet  bytes=9324489 CHANGED
+a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca  config.json  bytes=924 CHANGED
+9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba  trust/server-a.pem  bytes=1184 unchanged
+9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55  trust/server-b.pem  bytes=1184 unchanged
+e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf  tablet-qml/PiInkToolbar.qml  bytes=19697 CHANGED
+aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f  adapter.so  bytes=504280 unchanged
+09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9  pi-ink-bridge.qmd  bytes=7321 CHANGED
+a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d  owner.txt  bytes=88 unchanged
+Manifest SHA256=d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa
+Only client, config, component and QMD change. Unchanged adapter, CA files and owner marker are included in staging verification but NOT reinstalled. All older unapproved candidate manifests/scripts remain historical and are superseded; no substitutions.
+
+DEVICE PATHS / RETENTION
+Active root /home/root/pi-ink-bridge-0020; component /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml; active QMD /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd; active minimal adapter /home/root/xovi/extensions.d/pi-ink-loopback-0020.so remains same approved bytes.
+Original proxy remains /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so until selected rollback. Original SHA25624bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f; exact mode644 uid0 gid0 bytes8453696 mtime1793049401. Do not invoke xovi/start or xovi/stock.
+New exclusive stage /home/root/pi-ink-sidebar-stage-0020; pre-revision owned-payload backup /home/root/pi-ink-sidebar-backup-0020; rollback retained payload root /home/root/pi-ink-bridge-retained-0020; owned rollback-code retention /home/root/pi-ink-rollback-owned-0020; exclusive operation metadata /home/root/pi-ink-operation-0020 and dead-operation history /home/root/pi-ink-operation-history-0020. These paths must satisfy the exact collision/owner guards. None is notebook storage.
+Rollback independently accepts each active file only at its approved old OR reviewed hash, allowing all16 partial combinations. Unknown active bytes, symlinks and collisions abort. Both named transient client units are command/ownership checked; absent units are valid, not a reason to abort restoration. Interrupted regular live .0020-next is moved into owned retention only with the known LOAD backup claim; it is never executed. Payload-root temporary files move with retained root. Original and synthetic work remain intact.
+Rollback moves guarded owned adapter/QMD into retention and moves payload root intact; it never inspects notebook files or runtime state. It restores exact original proxy bytes/metadata. Known interrupted rollback positions are handled; unknown positions abort. No automatic retry. All28 original baseline fingerprints, all12 QMDs, stock binary, XOVI, hashtab and service files remain guarded.
+
+EXPECTED INTERRUPTION / SIDE EFFECTS
+One revised Xochitl reload and later one restoration reload, plus only owned transient client stop/start. Native UI briefly unavailable. Save/close ALL docs immediately before each restart; library recovery is not that confirmation. No other restart, reboot, firmware update, boot activation, settings/account/cloud/auto-sleep change, unrelated extension or QMD modification.
+Existing process-wide adapter hooks affect every Qt USB interface lookup usb0/usb1->lo, loopback isGlobal classification, and every port80 QTcpServer listen (forced IPv4 localhost81 with bool ABI). These may affect other Xochitl network behavior or collide with another port81 service. No Rust/LAN proxy, IP approval shim or QML settings bypass. Original proxy conflict remains quarantined during the experiment. Exact adapters/firmware/Qt boundary only; no lifecycle guarantee.
+Preserved computed-widgets-01-live-document-probe.qmd already writes UUID/page identity every1500ms to /home/root/computed-widgets-01-identity.json and has a separate editor action. This baseline is NOT our bridge, is NOT altered/disabled, and must not be triggered/read/copied. Only approved synthetic documents may be opened. No private titles, clipboard, notebook paths/listings, content, unrestricted journal or account data.
+
+UTILITIES / HOST-ONLY DEADLINES
+Host: sh, timeout, ip, jq, readlink, stat, sha256sum, ssh, scp; existing Go/Qt tools already used offline. Target: sh builtins including kill -0, sha256sum, systemctl, systemd-run, cat, sleep, cp, mv, chmod, mkdir, readlink, stat. Check only; install nothing. No target timeout dependency.
+Every target SSH/scp operation is bounded45 seconds HOST-side, BatchMode, ConnectTimeout8, StrictHostKeyCheckingyes, and bound to a freshly validated direct non-Wi-Fi physical USB interface and USB IPv4. No Wi-Fi SSH fallback. Host timeout does NOT prove remote operation stopped: the exclusive actor record blocks rollback while its PID is live; pending xochitl jobs also block rollback. Do not retry or repair after an error without reconciling known state and obtaining any renewed owner scope.
+LOAD queues exactly one nonblocking restart. At most20 one-second changed-PID/adapter/private-stock-listener probes; missing startup resources wait, unsafe listeners/maps abort. Then at most5 seconds to verify exact running client bytes and its PID-owned127.0.0.1:9821 socket. No second restart, no hidden repair, no readiness inference from systemctl active alone.
+
+EXACT COMMAND ENTRYPOINTS — RUN ONLY AFTER APPROVAL + CABLE CONFIRMATION
+Host setup wrapper /tmp/pi-ink-0020-phase-c-host-setup.sh SHA256=b3ee0aa32d68ba7cfd82048d514df8795d8be8ca1c8c2c3d3e6d0a9431bfa85f. No target command has run from this wrapper.
+sh /tmp/pi-ink-0020-phase-c-host-setup.sh preflight
+sh /tmp/pi-ink-0020-phase-c-host-setup.sh prepare
+sh /tmp/pi-ink-0020-phase-c-host-setup.sh stage
+RENEW ALL-documents-saved/closed immediately before: sh /tmp/pi-ink-0020-phase-c-host-setup.sh load
+After results, reconnect USB explicitly; RENEW ALL-documents-saved/closed immediately before: sh /tmp/pi-ink-0020-phase-c-host-setup.sh rollback
+C2 uses only preflight and rollback, not prepare/stage/load. Preflight rejects unknown baseline and never repairs it. If partial LOAD changes profile, unified rollback uses guarded known old/reviewed positions, never an old-profile repair script.
+preflight-v3 /tmp/pi-ink-0020-phase-c-preflight-v3.sh SHA256=acd01b75cce6fa09e103a62482c968a1b62e5d9b1e3c07ea6c3aabccad28bfe8
+prepare-v3 /tmp/pi-ink-0020-phase-c-prepare-v3.sh SHA256=e6a93262fbf0086a62573ef5e3039c5728127feb5b5c48517e829b97a5d4c944
+load-v3 /tmp/pi-ink-0020-phase-c-load-v3.sh SHA256=0370c5ae2a94c41f4904f6c5cef1eae1e2a0a7870aaf2fefe0169bf877b262ba
+rollback-v3 /tmp/pi-ink-0020-phase-c-rollback-v3.sh SHA256=85d5146cfebc0caa8d9a97720ab839f92cc6af120d5178937d49632188cf5641
+
+OWNER READINESS / ALLOWLIST — NO IMPORT BEFORE THIS SEQUENCE
+1. Parent records exact C1/C2 approval and restore-original A choice. Owner explicitly reconnects USB and freshly confirms ALL documents saved/closed. Run only approved cable setup; abort mismatch. No imports/Send during setup.
+2. For C1, verify actual new owned client/unit/listener and paired LAN connection. Owner checks normal LIBRARY sidebar Pi Ink entry, opens panel, fixed Back fully removes panel/header, normal library navigation remains usable. Do not repeat failed old Close panel.
+3. Owner may open ONLY known synthetic control UUIDfc2a3c9b-feea-40d1-9ac1-a8327f10edba using normal library UI, with no drawing/client export/modification. Check native editor sidebar toggle, Back, stock close/navigation reachable both panel open and closed, toolbar positions/orientation as normal controls allow. Unassociated must be explicit and Send disabled. If wrong/private document opens, no title/content/UUID collection; use already-proved normal stock close route once if needed, stop on obstruction.
+4. Parent requests USB disconnect only when ready. Owner confirms disconnected. From that moment until results arrive, NO SSH/scp/manual transfer/Wi-Fi SSH. Actual revised tablet client must report BOTHci_hdrc.0 andci_hdrc.1 not attached, usbIPv4[], ONLYIPv4localhost stock81, Safe=true on authenticated LAN at a time after disconnect. Stale old-client samples do not qualify. Fresh actual A/B requests must still be pending/unbound with pinned IDs.
+5. Only after fresh authenticated readiness, parent asks owner to import A and B from the panel, one at a time. ONLY these two actual known synthetic PDF jobs/digest are allowlisted. No arbitrary library browsing/export by client. /state must cache pi-ink-<32lowerhex> before /import-ready and stock upload. Require exact controlled Library receipt and HTTP agreement. Observe normal library visibility, actual UUID and actual stock parent; never guess Stock root. Missing/contradictory receipt remains unassociated; do not create extra imports without new owner instructions.
+6. Owner opens controlled A/B through normal library, checks current UUID/server/job isolation, associated folder display and connection/submission state, switches to the approved unassociated control without exporting it. Optional explicitly approved normal rename of A to pi-ink-0020-synthetic-A-renamed proves association independent of display name; never record unrelated titles.
+7. Owner draws known distinct marks on A/B using ONLY stock editor, records pen latency/palm/interference verdict. On A include in-source and outer-source ink for clipping test. Save/close alone must leave originating requests pending. Do not count launch/transport as input-quality pass.
+8. Explicit tablet Send on bound A must export ONLY local /download/{A_UUID}/pdf and produce per-result clipping consent, no image yet. Switch away while pending/confirming; actual /invalidate must clear old remote consent and advance submission epoch. Stale pressed/confirmed identities must fail. Return to A and explicitly Send again to obtain a fresh immutable result/confirmationId; only owner consent may complete.
+9. While B is ACTUALLY bound, owner must explicitly direct or perform cancellation in the ACTUAL originating B terminal; record whether Esc was physical or owner-directed harness input. Observe real tool terminal cancellation, then B Send/confirm cannot deliver to B or fall back to A. Observer cleanup cancellation of unbound calls is NOT this test. If owner terminal action is unavailable, record untested, not passed.
+10. Owner explicitly confirms clipping only for current bound A result while actual hardware gate remains safe. Actual original A image_editor must receive PNG with actual inside marks, exact800x1000 dimensions/source edges/orientation; compare marked pixels. Retain full annotated PDF and clipped.png/analysis in existing durable gate output, prove editable stock work remains. Distinguish local save, authenticated server acceptance and actual tool delivery. No manual browser substitute, fake receiver or mocked hardware pass.
+11. No new imports or sends after the approved tests. Parent collects ONLY known synthetic tool/server evidence. Before rollback request USB reconnect and NEW ALL-documents-saved/closed confirmation. Restore original branch A with the one approved rollback restart; owner verifies normal library/editor navigation and absence of Pi Ink active controls. Preserve originals, state, synthetic documents and all source/evidence/history.
+12. Sleep/wake, reboot, firmware update, unsupported boot activation and any further restart are NOT newly authorized here. Record these lifecycle gates as untested unless a later exact owner-approved scope exercises them. Production remains blocked; no ticket completion or WORKTREE_IMPLEMENTATION_DONE from code/transport/UI launch alone.
+
+FULL HOST WRAPPER (PINNED ABOVE)
+set -eu
+# Run only after parent records exact Phase C approval, cable connection and
+# the required fresh saved/closed confirmation. This is setup, never runtime SSH.
+umask 077
+assert_hash() { test -f "$2"; test ! -L "$2"; printf '%s  %s\n' "$1" "$2" | sha256sum -c -; }
+assert_hash 0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd /tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-tablet
+assert_hash a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca /tmp/pi-ink-0020-sidebar-reviewed-payload/config.json
+assert_hash 9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba /tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-a.pem
+assert_hash 9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55 /tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-b.pem
+assert_hash e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf /tmp/pi-ink-0020-sidebar-reviewed-payload/tablet-qml/PiInkToolbar.qml
+assert_hash aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f /tmp/pi-ink-0020-sidebar-reviewed-payload/adapter.so
+assert_hash 09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9 /tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-bridge.qmd
+assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /tmp/pi-ink-0020-sidebar-reviewed-payload/owner.txt
+assert_hash d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa /tmp/pi-ink-0020-sidebar-reviewed-payload/payload-sha256.txt
+assert_hash acd01b75cce6fa09e103a62482c968a1b62e5d9b1e3c07ea6c3aabccad28bfe8 /tmp/pi-ink-0020-phase-c-preflight-v3.sh
+assert_hash e6a93262fbf0086a62573ef5e3039c5728127feb5b5c48517e829b97a5d4c944 /tmp/pi-ink-0020-phase-c-prepare-v3.sh
+assert_hash 0370c5ae2a94c41f4904f6c5cef1eae1e2a0a7870aaf2fefe0169bf877b262ba /tmp/pi-ink-0020-phase-c-load-v3.sh
+assert_hash 85d5146cfebc0caa8d9a97720ab839f92cc6af120d5178937d49632188cf5641 /tmp/pi-ink-0020-phase-c-rollback-v3.sh
+guard_usb() {
+  route=$(ip -j route get 10.11.99.1)
+  usb_interface=$(printf '%s' "$route" | jq -er 'if length == 1 and .[0].gateway == null then .[0].dev else error("not direct USB route") end')
+  usb_address=$(printf '%s' "$route" | jq -er '.[0].prefsrc')
+  case "$usb_interface" in ''|*[!A-Za-z0-9_.:-]*) exit 1 ;; esac
+  case "$usb_address" in 10.11.99.[23456]) ;; *) printf '%s\n' 'ABORT: no approved USB IPv4 source'; exit 1 ;; esac
+  test ! -e "/sys/class/net/$usb_interface/wireless"
+  test ! -e "/sys/class/net/$usb_interface/phy80211"
+  usb_device=$(readlink -f "/sys/class/net/$usb_interface/device")
+  case "$usb_device" in */usb[0-9]*/*) ;; *) printf '%s\n' 'ABORT: route is not a physical USB network device'; exit 1 ;; esac
+}
+run_target() {
+  guard_usb
+  timeout 45 ssh -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes -o "BindInterface=$usb_interface" -o "BindAddress=$usb_address" root@10.11.99.1 sh -s < "$1"
+}
+stage_file() {
+  guard_usb
+  timeout 45 scp -O -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes -o "BindInterface=$usb_interface" -o "BindAddress=$usb_address" "$1" "root@10.11.99.1:$2"
+}
+case "${1-}" in
+  preflight) run_target /tmp/pi-ink-0020-phase-c-preflight-v3.sh ;;
+  prepare) run_target /tmp/pi-ink-0020-phase-c-prepare-v3.sh ;;
+  load) run_target /tmp/pi-ink-0020-phase-c-load-v3.sh ;;
+  rollback) run_target /tmp/pi-ink-0020-phase-c-rollback-v3.sh ;;
+  stage)
+    stage_file /tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-tablet /home/root/pi-ink-sidebar-stage-0020/pi-ink-tablet
+    stage_file /tmp/pi-ink-0020-sidebar-reviewed-payload/config.json /home/root/pi-ink-sidebar-stage-0020/config.json
+    stage_file /tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-a.pem /home/root/pi-ink-sidebar-stage-0020/trust/server-a.pem
+    stage_file /tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-b.pem /home/root/pi-ink-sidebar-stage-0020/trust/server-b.pem
+    stage_file /tmp/pi-ink-0020-sidebar-reviewed-payload/tablet-qml/PiInkToolbar.qml /home/root/pi-ink-sidebar-stage-0020/tablet-qml/PiInkToolbar.qml
+    stage_file /tmp/pi-ink-0020-sidebar-reviewed-payload/adapter.so /home/root/pi-ink-sidebar-stage-0020/adapter.so
+    stage_file /tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-bridge.qmd /home/root/pi-ink-sidebar-stage-0020/pi-ink-bridge.qmd
+    stage_file /tmp/pi-ink-0020-sidebar-reviewed-payload/owner.txt /home/root/pi-ink-sidebar-stage-0020/owner.txt
+    stage_file /tmp/pi-ink-0020-sidebar-reviewed-payload/payload-sha256.txt /home/root/pi-ink-sidebar-stage-0020/payload-sha256.txt
+    ;;
+  *) printf '%s\n' 'Choose preflight, prepare, stage, load or rollback' >&2; exit 2 ;;
+esac
+
+
+FULL TARGET SCRIPT preflight-v3 (PINNED ABOVE)
+set -eu
+umask 077
+assert_hash() { test -f "$2"; test ! -L "$2"; printf '%s  %s\n' "$1" "$2" | sha256sum -c -; }
+unit_state() {
+  unit_status=0
+  unit_load=$(systemctl show "$1" -p LoadState --value) || unit_status=$?
+  case "$unit_load" in
+    loaded) test "$unit_status" -eq 0 || return 1 ;;
+    not-found) if test "$unit_status" -ne 0 && test "$unit_status" -ne 4; then return 1; fi ;;
+    *) printf '%s\n' 'ABORT: unexpected owned-unit load state'; return 1 ;;
+  esac
+}
+check_owned_unit() {
+  unit_state "$1" || return 1
+  test "$unit_load" = loaded || return 0
+  test "$(systemctl show "$1" -p Transient --value)" = yes || return 1
+  unit_exec=$(systemctl show "$1" -p ExecStart --value) || return 1
+  case "$unit_exec" in
+    *'path=/home/root/pi-ink-bridge-0020/pi-ink-tablet ;'*'argv[]=/home/root/pi-ink-bridge-0020/pi-ink-tablet -config /home/root/pi-ink-bridge-0020/config.json ;'*) return 0 ;;
+    *) printf '%s\n' 'ABORT: owned unit command does not match this experiment'; return 1 ;;
+  esac
+}
+stop_owned_unit() {
+  check_owned_unit "$1" || return 1
+  test "$unit_load" = loaded || return 0
+  systemctl stop "$1"
+}
+test -d /home/root/pi-ink-bridge-0020
+test ! -L /home/root/pi-ink-bridge-0020
+test "$(stat -c '%u %g %a' /home/root/pi-ink-bridge-0020)" = '0 0 700'
+test -d /home/root/pi-ink-bridge-0020/trust
+test ! -L /home/root/pi-ink-bridge-0020/trust
+test "$(stat -c '%u %g %a' /home/root/pi-ink-bridge-0020/trust)" = '0 0 700'
+test -d /home/root/pi-ink-bridge-0020/tablet-qml
+test ! -L /home/root/pi-ink-bridge-0020/tablet-qml
+test "$(stat -c '%u %g %a' /home/root/pi-ink-bridge-0020/tablet-qml)" = '0 0 700'
+test -d /home/root/pi-ink-webserver-remote-backup-0020
+test ! -L /home/root/pi-ink-webserver-remote-backup-0020
+test "$(stat -c '%u %g %a' /home/root/pi-ink-webserver-remote-backup-0020)" = '0 0 700'
+assert_hash 709b65cd44766e98763e00577bfbe7d8f36f55c0f34894bfdbf0663d56b12a7a /etc/systemd/system/xochitl.service.d/00-xovi.conf
+assert_hash 84a2d95c2284a2f2fdb5ae70b4f25eb4a5ef2fbf6f94391fc03e4c54643314ef /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf
+assert_hash 6036f7776f8775529f94056fafe066ff373f5aa6bca39633bfd4dabfc1552ffd /etc/systemd/system/xochitl.service.d/qt-resource-rebuilder.conf
+assert_hash 5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad /home/root/xovi/extensions.d/appload.so
+assert_hash 48d62c2beb0d285943e5c8d3f08ed980c6045b27f13644079d15a3dbaf2b7609 /home/root/xovi/extensions.d/literm.so
+assert_hash 2f19585c63979182ccd19a2953cd4aa6a6f3824ea36a76eb46c803e02e79db6e /home/root/xovi/extensions.d/qt-command-executor.so
+assert_hash 6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f /home/root/xovi/extensions.d/qt-resource-rebuilder.so
+assert_hash 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so
+assert_hash 61c0c7b0d4e2c7623147a87c63d6a4aaec868019e67fb0e1bdb1fcb215f6e155 /home/root/xovi/extensions.d/xovi-message-broker.so
+assert_hash beb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d /home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd
+assert_hash 5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2 /home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd
+assert_hash dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595 /home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd
+assert_hash f8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43 /home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd
+assert_hash 0d0d130ba63cfa65093475f9cec2f6694f2e37aab0a346fc5f2921e061303e50 /home/root/xovi/exthome/qt-resource-rebuilder/dockButtons.qmd
+assert_hash ebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023 /home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd
+assert_hash 9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615 /home/root/xovi/exthome/qt-resource-rebuilder/hashtab
+assert_hash 3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471 /home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd
+assert_hash 28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43 /home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd
+assert_hash 2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982 /home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd
+assert_hash 36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158 /home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd
+assert_hash 4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe /home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd
+assert_hash 767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e /home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd
+assert_hash bf15dfd641deea3e4487b9182957938a3dc824c340383c9243b7f118bfe829dc /home/root/xovi/start
+assert_hash e29494c9fff5ede390b06f1f5e27ca59e4f7bc81d25889822a123ccad1fd686d /home/root/xovi/stock
+assert_hash d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446 /home/root/xovi/xovi.so
+assert_hash b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021 /usr/bin/xochitl
+assert_hash 23f537cf59d527bfbf4823f372385d613e1ade0961c98831c935a372018f9566 /usr/lib/systemd/system/xochitl.service
+assert_hash a9432caffacb29d6fcb35136dcc3cb43d8737eb6c2efcb35ea335725f42082d1 /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf
+assert_hash 9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615 /home/root/xovi/exthome/qt-resource-rebuilder/hashtab
+test "$(stat -c '%a %u %g %s %Y' /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so)" = '644 0 0 8453696 1793049401'
+test ! -e /home/root/xovi/extensions.d/webserver-remote.so
+test ! -L /home/root/xovi/extensions.d/webserver-remote.so
+assert_hash aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f /home/root/xovi/extensions.d/pi-ink-loopback-0020.so
+assert_hash f601436dd591ae782f15c0714bcfd4412fb3facebeadeb7d31914a5dc69ecada /home/root/pi-ink-bridge-0020/pi-ink-tablet
+assert_hash 1c4bf78285b08464e38e7af16f0096fda55c4dcd86a5d86ac5c1399b1becf9a6 /home/root/pi-ink-bridge-0020/config.json
+assert_hash 9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba /home/root/pi-ink-bridge-0020/trust/server-a.pem
+assert_hash 9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55 /home/root/pi-ink-bridge-0020/trust/server-b.pem
+assert_hash 57416f0b80a3a100c6dc7ee2162647b2c866588a85cf46ef09106bbf1354595f /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml
+assert_hash aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f /home/root/pi-ink-bridge-0020/adapter.so
+assert_hash c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8 /home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd
+assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /home/root/pi-ink-bridge-0020/owner.txt
+assert_hash c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8 /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd
+assert_hash 27645009e37fec8270d7d2e7541d4b1ae2a4da4378736d0b6a0277c39a354278 /home/root/pi-ink-bridge-0020/payload-sha256.txt
+listener_ready() {
+  stock_count=0
+  for net in /proc/net/tcp /proc/net/tcp6; do
+    while read -r sl local remote state rest; do
+      test "$state" = 0A || continue
+      case "$local" in
+        *:0050) printf '%s\n' 'ABORT: forbidden port80 listener'; return 1 ;;
+        *:0051) if test "$net" != /proc/net/tcp || test "$local" != 0100007F:0051; then printf '%s\n' 'ABORT: unsafe stock listener'; return 1; fi; stock_count=$((stock_count + 1)) ;;
+        *:265D) if test "$net" != /proc/net/tcp || test "$local" != 0100007F:265D; then printf '%s\n' 'ABORT: unsafe local client listener'; return 1; fi ;;
+      esac
+    done < "$net"
+  done
+  test "$stock_count" -eq 1 || return 2
+}
+adapter_ready() {
+  test -r "/proc/$1/maps" || return 2
+  adapter_mapped=0
+  while IFS= read -r line; do
+    case "$line" in
+      */home/root/xovi/extensions.d/webserver-remote.so*) printf '%s\n' 'ABORT: original proxy unexpectedly mapped'; return 1 ;;
+      */home/root/xovi/extensions.d/pi-ink-loopback-0020.so*) adapter_mapped=1 ;;
+    esac
+  done < "/proc/$1/maps"
+  test "$adapter_mapped" -eq 1 || return 2
+}
+check_owned_unit pi-ink-bridge-0020.service
+systemctl is-active pi-ink-bridge-0020.service
+unit_state pi-ink-bridge-sidebar-0020.service
+test "$unit_load" = not-found
+systemctl is-active xochitl
+pid=$(systemctl show xochitl -p MainPID --value)
+test "$pid" -gt 1
+listener_ready
+adapter_ready "$pid"
+test ! -e /home/root/pi-ink-sidebar-stage-0020
+test ! -L /home/root/pi-ink-sidebar-stage-0020
+test ! -e /home/root/pi-ink-sidebar-backup-0020
+test ! -L /home/root/pi-ink-sidebar-backup-0020
+test ! -e /home/root/pi-ink-bridge-retained-0020
+test ! -L /home/root/pi-ink-bridge-retained-0020
+test ! -e /home/root/pi-ink-rollback-owned-0020
+test ! -L /home/root/pi-ink-rollback-owned-0020
+for utility in sha256sum systemctl systemd-run cat sh sleep cp mv chmod mkdir readlink stat; do command -v "$utility"; done
+cat /etc/os-release
+for path in /sys/class/udc/ci_hdrc.0/state /sys/class/udc/ci_hdrc.1/state; do printf '%s ' "$path"; cat "$path"; done
+printf '%s\n' 'CABLE PREFLIGHT ONLY: no detached acceptance'
+test ! -e /home/root/pi-ink-operation-0020
+test ! -L /home/root/pi-ink-operation-0020
+test ! -e /home/root/pi-ink-operation-history-0020
+test ! -L /home/root/pi-ink-operation-history-0020
+command -v kill
+systemctl show xochitl -p Job --value
+
+
+FULL TARGET SCRIPT prepare-v3 (PINNED ABOVE)
+set -eu
+umask 077
+assert_hash() { test -f "$2"; test ! -L "$2"; printf '%s  %s\n' "$1" "$2" | sha256sum -c -; }
+test -d /home/root/pi-ink-bridge-0020
+test ! -L /home/root/pi-ink-bridge-0020
+test "$(stat -c '%u %g %a' /home/root/pi-ink-bridge-0020)" = '0 0 700'
+test -d /home/root/pi-ink-bridge-0020/trust
+test ! -L /home/root/pi-ink-bridge-0020/trust
+test "$(stat -c '%u %g %a' /home/root/pi-ink-bridge-0020/trust)" = '0 0 700'
+test -d /home/root/pi-ink-bridge-0020/tablet-qml
+test ! -L /home/root/pi-ink-bridge-0020/tablet-qml
+test "$(stat -c '%u %g %a' /home/root/pi-ink-bridge-0020/tablet-qml)" = '0 0 700'
+test -d /home/root/pi-ink-webserver-remote-backup-0020
+test ! -L /home/root/pi-ink-webserver-remote-backup-0020
+test "$(stat -c '%u %g %a' /home/root/pi-ink-webserver-remote-backup-0020)" = '0 0 700'
+assert_hash 709b65cd44766e98763e00577bfbe7d8f36f55c0f34894bfdbf0663d56b12a7a /etc/systemd/system/xochitl.service.d/00-xovi.conf
+assert_hash 84a2d95c2284a2f2fdb5ae70b4f25eb4a5ef2fbf6f94391fc03e4c54643314ef /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf
+assert_hash 6036f7776f8775529f94056fafe066ff373f5aa6bca39633bfd4dabfc1552ffd /etc/systemd/system/xochitl.service.d/qt-resource-rebuilder.conf
+assert_hash 5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad /home/root/xovi/extensions.d/appload.so
+assert_hash 48d62c2beb0d285943e5c8d3f08ed980c6045b27f13644079d15a3dbaf2b7609 /home/root/xovi/extensions.d/literm.so
+assert_hash 2f19585c63979182ccd19a2953cd4aa6a6f3824ea36a76eb46c803e02e79db6e /home/root/xovi/extensions.d/qt-command-executor.so
+assert_hash 6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f /home/root/xovi/extensions.d/qt-resource-rebuilder.so
+assert_hash 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so
+assert_hash 61c0c7b0d4e2c7623147a87c63d6a4aaec868019e67fb0e1bdb1fcb215f6e155 /home/root/xovi/extensions.d/xovi-message-broker.so
+assert_hash beb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d /home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd
+assert_hash 5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2 /home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd
+assert_hash dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595 /home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd
+assert_hash f8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43 /home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd
+assert_hash 0d0d130ba63cfa65093475f9cec2f6694f2e37aab0a346fc5f2921e061303e50 /home/root/xovi/exthome/qt-resource-rebuilder/dockButtons.qmd
+assert_hash ebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023 /home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd
+assert_hash 9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615 /home/root/xovi/exthome/qt-resource-rebuilder/hashtab
+assert_hash 3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471 /home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd
+assert_hash 28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43 /home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd
+assert_hash 2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982 /home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd
+assert_hash 36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158 /home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd
+assert_hash 4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe /home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd
+assert_hash 767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e /home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd
+assert_hash bf15dfd641deea3e4487b9182957938a3dc824c340383c9243b7f118bfe829dc /home/root/xovi/start
+assert_hash e29494c9fff5ede390b06f1f5e27ca59e4f7bc81d25889822a123ccad1fd686d /home/root/xovi/stock
+assert_hash d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446 /home/root/xovi/xovi.so
+assert_hash b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021 /usr/bin/xochitl
+assert_hash 23f537cf59d527bfbf4823f372385d613e1ade0961c98831c935a372018f9566 /usr/lib/systemd/system/xochitl.service
+assert_hash a9432caffacb29d6fcb35136dcc3cb43d8737eb6c2efcb35ea335725f42082d1 /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf
+assert_hash 9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615 /home/root/xovi/exthome/qt-resource-rebuilder/hashtab
+test "$(stat -c '%a %u %g %s %Y' /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so)" = '644 0 0 8453696 1793049401'
+test ! -e /home/root/xovi/extensions.d/webserver-remote.so
+test ! -L /home/root/xovi/extensions.d/webserver-remote.so
+assert_hash aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f /home/root/xovi/extensions.d/pi-ink-loopback-0020.so
+assert_hash f601436dd591ae782f15c0714bcfd4412fb3facebeadeb7d31914a5dc69ecada /home/root/pi-ink-bridge-0020/pi-ink-tablet
+assert_hash 1c4bf78285b08464e38e7af16f0096fda55c4dcd86a5d86ac5c1399b1becf9a6 /home/root/pi-ink-bridge-0020/config.json
+assert_hash 9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba /home/root/pi-ink-bridge-0020/trust/server-a.pem
+assert_hash 9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55 /home/root/pi-ink-bridge-0020/trust/server-b.pem
+assert_hash 57416f0b80a3a100c6dc7ee2162647b2c866588a85cf46ef09106bbf1354595f /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml
+assert_hash aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f /home/root/pi-ink-bridge-0020/adapter.so
+assert_hash c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8 /home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd
+assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /home/root/pi-ink-bridge-0020/owner.txt
+assert_hash c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8 /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd
+assert_hash 27645009e37fec8270d7d2e7541d4b1ae2a4da4378736d0b6a0277c39a354278 /home/root/pi-ink-bridge-0020/payload-sha256.txt
+test ! -e /home/root/pi-ink-sidebar-stage-0020
+test ! -L /home/root/pi-ink-sidebar-stage-0020
+mkdir /home/root/pi-ink-sidebar-stage-0020
+mkdir /home/root/pi-ink-sidebar-stage-0020/trust /home/root/pi-ink-sidebar-stage-0020/tablet-qml
+
+
+FULL TARGET SCRIPT load-v3 (PINNED ABOVE)
+set -eu
+umask 077
+assert_hash() { test -f "$2"; test ! -L "$2"; printf '%s  %s\n' "$1" "$2" | sha256sum -c -; }
+acquire_operation() {
+  if test -e /home/root/pi-ink-operation-0020 || test -L /home/root/pi-ink-operation-0020; then
+    test -d /home/root/pi-ink-operation-0020 || return 1
+    test ! -L /home/root/pi-ink-operation-0020 || return 1
+    test "$(stat -c '%u %g %a' /home/root/pi-ink-operation-0020)" = '0 0 700' || return 1
+    test -f /home/root/pi-ink-operation-0020/actor.txt || return 1
+    test ! -L /home/root/pi-ink-operation-0020/actor.txt || return 1
+    test "$(stat -c '%u %g %a' /home/root/pi-ink-operation-0020/actor.txt)" = '0 0 600' || return 1
+    read -r prior_phase prior_manifest prior_pid extra < /home/root/pi-ink-operation-0020/actor.txt || return 1
+    case "$prior_phase" in load|rollback) ;; *) return 1 ;; esac
+    test "$prior_manifest" = d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa || return 1
+    test -z "$extra" || return 1
+    case "$prior_pid" in ''|*[!0-9]*) return 1 ;; esac
+    test "$prior_pid" -gt 1 || return 1
+    if kill -0 "$prior_pid" 2>/dev/null; then printf '%s\n' 'ABORT: another approved operation is still running; host timeout is not completion'; return 1; fi
+    test "$1" = rollback || return 1
+    if test -e /home/root/pi-ink-operation-history-0020 || test -L /home/root/pi-ink-operation-history-0020; then
+      test -d /home/root/pi-ink-operation-history-0020 || return 1
+      test ! -L /home/root/pi-ink-operation-history-0020 || return 1
+      test "$(stat -c '%u %g %a' /home/root/pi-ink-operation-history-0020)" = '0 0 700' || return 1
+      assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /home/root/pi-ink-operation-history-0020/owner.txt || return 1
+    else
+      mkdir /home/root/pi-ink-operation-history-0020 || return 1
+      printf '%s\n' 'pi-ink-bridge-01-pen-prototype implementation-0020 01a19e3a-d649-7473-8e40-e4371bceb4ea' > /home/root/pi-ink-operation-history-0020/owner.txt || return 1
+    fi
+    test ! -e /home/root/pi-ink-operation-history-0020/"$prior_pid" || return 1
+    test ! -L /home/root/pi-ink-operation-history-0020/"$prior_pid" || return 1
+    mv /home/root/pi-ink-operation-0020 /home/root/pi-ink-operation-history-0020/"$prior_pid" || return 1
+  fi
+  mkdir /home/root/pi-ink-operation-0020 || return 1
+  printf '%s %s %s\n' "$1" d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa "$$" > /home/root/pi-ink-operation-0020/actor.txt || return 1
+}
+unit_state() {
+  unit_status=0
+  unit_load=$(systemctl show "$1" -p LoadState --value) || unit_status=$?
+  case "$unit_load" in
+    loaded) test "$unit_status" -eq 0 || return 1 ;;
+    not-found) if test "$unit_status" -ne 0 && test "$unit_status" -ne 4; then return 1; fi ;;
+    *) printf '%s\n' 'ABORT: unexpected owned-unit load state'; return 1 ;;
+  esac
+}
+check_owned_unit() {
+  unit_state "$1" || return 1
+  test "$unit_load" = loaded || return 0
+  test "$(systemctl show "$1" -p Transient --value)" = yes || return 1
+  unit_exec=$(systemctl show "$1" -p ExecStart --value) || return 1
+  case "$unit_exec" in
+    *'path=/home/root/pi-ink-bridge-0020/pi-ink-tablet ;'*'argv[]=/home/root/pi-ink-bridge-0020/pi-ink-tablet -config /home/root/pi-ink-bridge-0020/config.json ;'*) return 0 ;;
+    *) printf '%s\n' 'ABORT: owned unit command does not match this experiment'; return 1 ;;
+  esac
+}
+stop_owned_unit() {
+  check_owned_unit "$1" || return 1
+  test "$unit_load" = loaded || return 0
+  systemctl stop "$1"
+}
+listener_ready() {
+  stock_count=0
+  for net in /proc/net/tcp /proc/net/tcp6; do
+    while read -r sl local remote state rest; do
+      test "$state" = 0A || continue
+      case "$local" in
+        *:0050) printf '%s\n' 'ABORT: forbidden port80 listener'; return 1 ;;
+        *:0051) if test "$net" != /proc/net/tcp || test "$local" != 0100007F:0051; then printf '%s\n' 'ABORT: unsafe stock listener'; return 1; fi; stock_count=$((stock_count + 1)) ;;
+        *:265D) if test "$net" != /proc/net/tcp || test "$local" != 0100007F:265D; then printf '%s\n' 'ABORT: unsafe local client listener'; return 1; fi ;;
+      esac
+    done < "$net"
+  done
+  test "$stock_count" -eq 1 || return 2
+}
+adapter_ready() {
+  test -r "/proc/$1/maps" || return 2
+  adapter_mapped=0
+  while IFS= read -r line; do
+    case "$line" in
+      */home/root/xovi/extensions.d/webserver-remote.so*) printf '%s\n' 'ABORT: original proxy unexpectedly mapped'; return 1 ;;
+      */home/root/xovi/extensions.d/pi-ink-loopback-0020.so*) adapter_mapped=1 ;;
+    esac
+  done < "/proc/$1/maps"
+  test "$adapter_mapped" -eq 1 || return 2
+}
+acquire_operation load
+test -d /home/root/pi-ink-bridge-0020
+test ! -L /home/root/pi-ink-bridge-0020
+test "$(stat -c '%u %g %a' /home/root/pi-ink-bridge-0020)" = '0 0 700'
+test -d /home/root/pi-ink-bridge-0020/trust
+test ! -L /home/root/pi-ink-bridge-0020/trust
+test "$(stat -c '%u %g %a' /home/root/pi-ink-bridge-0020/trust)" = '0 0 700'
+test -d /home/root/pi-ink-bridge-0020/tablet-qml
+test ! -L /home/root/pi-ink-bridge-0020/tablet-qml
+test "$(stat -c '%u %g %a' /home/root/pi-ink-bridge-0020/tablet-qml)" = '0 0 700'
+test -d /home/root/pi-ink-webserver-remote-backup-0020
+test ! -L /home/root/pi-ink-webserver-remote-backup-0020
+test "$(stat -c '%u %g %a' /home/root/pi-ink-webserver-remote-backup-0020)" = '0 0 700'
+assert_hash 709b65cd44766e98763e00577bfbe7d8f36f55c0f34894bfdbf0663d56b12a7a /etc/systemd/system/xochitl.service.d/00-xovi.conf
+assert_hash 84a2d95c2284a2f2fdb5ae70b4f25eb4a5ef2fbf6f94391fc03e4c54643314ef /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf
+assert_hash 6036f7776f8775529f94056fafe066ff373f5aa6bca39633bfd4dabfc1552ffd /etc/systemd/system/xochitl.service.d/qt-resource-rebuilder.conf
+assert_hash 5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad /home/root/xovi/extensions.d/appload.so
+assert_hash 48d62c2beb0d285943e5c8d3f08ed980c6045b27f13644079d15a3dbaf2b7609 /home/root/xovi/extensions.d/literm.so
+assert_hash 2f19585c63979182ccd19a2953cd4aa6a6f3824ea36a76eb46c803e02e79db6e /home/root/xovi/extensions.d/qt-command-executor.so
+assert_hash 6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f /home/root/xovi/extensions.d/qt-resource-rebuilder.so
+assert_hash 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so
+assert_hash 61c0c7b0d4e2c7623147a87c63d6a4aaec868019e67fb0e1bdb1fcb215f6e155 /home/root/xovi/extensions.d/xovi-message-broker.so
+assert_hash beb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d /home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd
+assert_hash 5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2 /home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd
+assert_hash dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595 /home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd
+assert_hash f8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43 /home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd
+assert_hash 0d0d130ba63cfa65093475f9cec2f6694f2e37aab0a346fc5f2921e061303e50 /home/root/xovi/exthome/qt-resource-rebuilder/dockButtons.qmd
+assert_hash ebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023 /home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd
+assert_hash 9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615 /home/root/xovi/exthome/qt-resource-rebuilder/hashtab
+assert_hash 3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471 /home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd
+assert_hash 28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43 /home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd
+assert_hash 2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982 /home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd
+assert_hash 36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158 /home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd
+assert_hash 4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe /home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd
+assert_hash 767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e /home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd
+assert_hash bf15dfd641deea3e4487b9182957938a3dc824c340383c9243b7f118bfe829dc /home/root/xovi/start
+assert_hash e29494c9fff5ede390b06f1f5e27ca59e4f7bc81d25889822a123ccad1fd686d /home/root/xovi/stock
+assert_hash d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446 /home/root/xovi/xovi.so
+assert_hash b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021 /usr/bin/xochitl
+assert_hash 23f537cf59d527bfbf4823f372385d613e1ade0961c98831c935a372018f9566 /usr/lib/systemd/system/xochitl.service
+assert_hash a9432caffacb29d6fcb35136dcc3cb43d8737eb6c2efcb35ea335725f42082d1 /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf
+assert_hash 9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615 /home/root/xovi/exthome/qt-resource-rebuilder/hashtab
+test "$(stat -c '%a %u %g %s %Y' /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so)" = '644 0 0 8453696 1793049401'
+test ! -e /home/root/xovi/extensions.d/webserver-remote.so
+test ! -L /home/root/xovi/extensions.d/webserver-remote.so
+assert_hash aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f /home/root/xovi/extensions.d/pi-ink-loopback-0020.so
+assert_hash f601436dd591ae782f15c0714bcfd4412fb3facebeadeb7d31914a5dc69ecada /home/root/pi-ink-bridge-0020/pi-ink-tablet
+assert_hash 1c4bf78285b08464e38e7af16f0096fda55c4dcd86a5d86ac5c1399b1becf9a6 /home/root/pi-ink-bridge-0020/config.json
+assert_hash 9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba /home/root/pi-ink-bridge-0020/trust/server-a.pem
+assert_hash 9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55 /home/root/pi-ink-bridge-0020/trust/server-b.pem
+assert_hash 57416f0b80a3a100c6dc7ee2162647b2c866588a85cf46ef09106bbf1354595f /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml
+assert_hash aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f /home/root/pi-ink-bridge-0020/adapter.so
+assert_hash c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8 /home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd
+assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /home/root/pi-ink-bridge-0020/owner.txt
+assert_hash c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8 /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd
+assert_hash 27645009e37fec8270d7d2e7541d4b1ae2a4da4378736d0b6a0277c39a354278 /home/root/pi-ink-bridge-0020/payload-sha256.txt
+check_owned_unit pi-ink-bridge-0020.service
+systemctl is-active pi-ink-bridge-0020.service
+unit_state pi-ink-bridge-sidebar-0020.service
+test "$unit_load" = not-found
+assert_hash d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa /home/root/pi-ink-sidebar-stage-0020/payload-sha256.txt
+assert_hash 0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd /home/root/pi-ink-sidebar-stage-0020/pi-ink-tablet
+assert_hash a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca /home/root/pi-ink-sidebar-stage-0020/config.json
+assert_hash 9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba /home/root/pi-ink-sidebar-stage-0020/trust/server-a.pem
+assert_hash 9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55 /home/root/pi-ink-sidebar-stage-0020/trust/server-b.pem
+assert_hash e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf /home/root/pi-ink-sidebar-stage-0020/tablet-qml/PiInkToolbar.qml
+assert_hash aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f /home/root/pi-ink-sidebar-stage-0020/adapter.so
+assert_hash 09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9 /home/root/pi-ink-sidebar-stage-0020/pi-ink-bridge.qmd
+assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /home/root/pi-ink-sidebar-stage-0020/owner.txt
+test ! -e /home/root/pi-ink-sidebar-backup-0020
+test ! -L /home/root/pi-ink-sidebar-backup-0020
+test ! -e /home/root/pi-ink-bridge-retained-0020
+test ! -L /home/root/pi-ink-bridge-retained-0020
+test ! -e /home/root/pi-ink-rollback-owned-0020
+test ! -L /home/root/pi-ink-rollback-owned-0020
+test ! -e /home/root/pi-ink-bridge-0020/pi-ink-tablet.0020-next
+test ! -L /home/root/pi-ink-bridge-0020/pi-ink-tablet.0020-next
+test ! -e /home/root/pi-ink-bridge-0020/config.json.0020-next
+test ! -L /home/root/pi-ink-bridge-0020/config.json.0020-next
+test ! -e /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml.0020-next
+test ! -L /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml.0020-next
+test ! -e /home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd.0020-next
+test ! -L /home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd.0020-next
+test ! -e /home/root/pi-ink-bridge-0020/payload-sha256.txt.0020-next
+test ! -L /home/root/pi-ink-bridge-0020/payload-sha256.txt.0020-next
+test ! -e /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0020-next
+test ! -L /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0020-next
+listener_ready
+mkdir /home/root/pi-ink-sidebar-backup-0020
+mkdir /home/root/pi-ink-sidebar-backup-0020/tablet-qml
+cp -p /home/root/pi-ink-bridge-0020/owner.txt /home/root/pi-ink-sidebar-backup-0020/owner.txt
+cp -p /home/root/pi-ink-bridge-0020/pi-ink-tablet /home/root/pi-ink-sidebar-backup-0020/pi-ink-tablet
+cp -p /home/root/pi-ink-bridge-0020/config.json /home/root/pi-ink-sidebar-backup-0020/config.json
+cp -p /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml /home/root/pi-ink-sidebar-backup-0020/tablet-qml/PiInkToolbar.qml
+cp -p /home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd /home/root/pi-ink-sidebar-backup-0020/pi-ink-bridge.qmd
+cp -p /home/root/pi-ink-bridge-0020/payload-sha256.txt /home/root/pi-ink-sidebar-backup-0020/payload-sha256.txt
+cp -p /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd /home/root/pi-ink-sidebar-backup-0020/live-pi-ink-bridge.qmd
+stop_owned_unit pi-ink-bridge-0020.service
+cp /home/root/pi-ink-sidebar-stage-0020/pi-ink-tablet /home/root/pi-ink-bridge-0020/pi-ink-tablet.0020-next
+chmod 755 /home/root/pi-ink-bridge-0020/pi-ink-tablet.0020-next
+mv /home/root/pi-ink-bridge-0020/pi-ink-tablet.0020-next /home/root/pi-ink-bridge-0020/pi-ink-tablet
+cp /home/root/pi-ink-sidebar-stage-0020/config.json /home/root/pi-ink-bridge-0020/config.json.0020-next
+chmod 600 /home/root/pi-ink-bridge-0020/config.json.0020-next
+mv /home/root/pi-ink-bridge-0020/config.json.0020-next /home/root/pi-ink-bridge-0020/config.json
+cp /home/root/pi-ink-sidebar-stage-0020/tablet-qml/PiInkToolbar.qml /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml.0020-next
+chmod 644 /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml.0020-next
+mv /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml.0020-next /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml
+cp /home/root/pi-ink-sidebar-stage-0020/pi-ink-bridge.qmd /home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd.0020-next
+chmod 644 /home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd.0020-next
+mv /home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd.0020-next /home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd
+cp /home/root/pi-ink-sidebar-stage-0020/payload-sha256.txt /home/root/pi-ink-bridge-0020/payload-sha256.txt.0020-next
+chmod 600 /home/root/pi-ink-bridge-0020/payload-sha256.txt.0020-next
+mv /home/root/pi-ink-bridge-0020/payload-sha256.txt.0020-next /home/root/pi-ink-bridge-0020/payload-sha256.txt
+cp /home/root/pi-ink-sidebar-stage-0020/pi-ink-bridge.qmd /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0020-next
+chmod 644 /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0020-next
+mv /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0020-next /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd
+assert_hash 0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd /home/root/pi-ink-bridge-0020/pi-ink-tablet
+assert_hash a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca /home/root/pi-ink-bridge-0020/config.json
+assert_hash 9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba /home/root/pi-ink-bridge-0020/trust/server-a.pem
+assert_hash 9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55 /home/root/pi-ink-bridge-0020/trust/server-b.pem
+assert_hash e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml
+assert_hash aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f /home/root/pi-ink-bridge-0020/adapter.so
+assert_hash 09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9 /home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd
+assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /home/root/pi-ink-bridge-0020/owner.txt
+assert_hash 09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9 /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd
+before_pid=$(systemctl show xochitl -p MainPID --value)
+test "$before_pid" -gt 1
+# Fresh ALL-documents-saved/closed confirmation is required before this one request.
+systemctl --no-block restart xochitl
+printf '%s\n' 'X0CHITL_RESTART_REQUESTED_NATIVE_SIDEBAR'
+application_ready=0
+for attempt in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20; do
+  active=$(systemctl show xochitl -p ActiveState --value)
+  test "$active" != failed || exit 1
+  pid=$(systemctl show xochitl -p MainPID --value)
+  case "$pid" in ''|*[!0-9]*) pid=0 ;; esac
+  if test "$active" = active && test "$pid" -gt 1 && test "$pid" != "$before_pid"; then
+    listener_status=0; listener_ready || listener_status=$?
+    map_status=0; adapter_ready "$pid" || map_status=$?
+    test "$listener_status" -ne 1 || exit 1
+    test "$map_status" -ne 1 || exit 1
+    if test "$listener_status" -eq 0 && test "$map_status" -eq 0; then application_ready=1; break; fi
+  fi
+  sleep 1
+done
+test "$application_ready" -eq 1
+printf 'NATIVE_STOCK_KERNEL_READY PID=%s\n' "$pid"
+systemd-run --unit=pi-ink-bridge-sidebar-0020 --collect --property=Restart=no /home/root/pi-ink-bridge-0020/pi-ink-tablet -config /home/root/pi-ink-bridge-0020/config.json
+client_ready=0
+for attempt in 1 2 3 4 5; do
+  client_active=$(systemctl show pi-ink-bridge-sidebar-0020.service -p ActiveState --value)
+  test "$client_active" != failed || exit 1
+  client_pid=$(systemctl show pi-ink-bridge-sidebar-0020.service -p MainPID --value)
+  case "$client_pid" in ''|*[!0-9]*) client_pid=0 ;; esac
+  if test "$client_active" = active && test "$client_pid" -gt 1 && test "$(readlink "/proc/$client_pid/exe")" = /home/root/pi-ink-bridge-0020/pi-ink-tablet; then
+    running_sum=$(sha256sum "/proc/$client_pid/exe"); running_sum=${running_sum%% *}
+    test "$running_sum" = 0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd || exit 1
+    ui_inode=''
+    while read -r sl local remote state queues timer retransmit uid timeout inode rest; do
+      if test "$state" = 0A && test "$local" = 0100007F:265D; then test -z "$ui_inode" || exit 1; ui_inode=$inode; fi
+    done < /proc/net/tcp
+    if test -n "$ui_inode"; then
+      for fd in /proc/$client_pid/fd/*; do
+        socket=$(readlink "$fd" || true)
+        if test "$socket" = "socket:[$ui_inode]"; then client_ready=1; break; fi
+      done
+    fi
+    test "$client_ready" -eq 0 || break
+  fi
+  sleep 1
+done
+test "$client_ready" -eq 1
+listener_ready
+printf 'OWNED_CLIENT_READY PID=%s UI=127.0.0.1:9821\n' "$client_pid"
+
+
+FULL TARGET SCRIPT rollback-v3 (PINNED ABOVE)
+set -eu
+umask 077
+assert_hash() { test -f "$2"; test ! -L "$2"; printf '%s  %s\n' "$1" "$2" | sha256sum -c -; }
+acquire_operation() {
+  if test -e /home/root/pi-ink-operation-0020 || test -L /home/root/pi-ink-operation-0020; then
+    test -d /home/root/pi-ink-operation-0020 || return 1
+    test ! -L /home/root/pi-ink-operation-0020 || return 1
+    test "$(stat -c '%u %g %a' /home/root/pi-ink-operation-0020)" = '0 0 700' || return 1
+    test -f /home/root/pi-ink-operation-0020/actor.txt || return 1
+    test ! -L /home/root/pi-ink-operation-0020/actor.txt || return 1
+    test "$(stat -c '%u %g %a' /home/root/pi-ink-operation-0020/actor.txt)" = '0 0 600' || return 1
+    read -r prior_phase prior_manifest prior_pid extra < /home/root/pi-ink-operation-0020/actor.txt || return 1
+    case "$prior_phase" in load|rollback) ;; *) return 1 ;; esac
+    test "$prior_manifest" = d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa || return 1
+    test -z "$extra" || return 1
+    case "$prior_pid" in ''|*[!0-9]*) return 1 ;; esac
+    test "$prior_pid" -gt 1 || return 1
+    if kill -0 "$prior_pid" 2>/dev/null; then printf '%s\n' 'ABORT: another approved operation is still running; host timeout is not completion'; return 1; fi
+    test "$1" = rollback || return 1
+    if test -e /home/root/pi-ink-operation-history-0020 || test -L /home/root/pi-ink-operation-history-0020; then
+      test -d /home/root/pi-ink-operation-history-0020 || return 1
+      test ! -L /home/root/pi-ink-operation-history-0020 || return 1
+      test "$(stat -c '%u %g %a' /home/root/pi-ink-operation-history-0020)" = '0 0 700' || return 1
+      assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /home/root/pi-ink-operation-history-0020/owner.txt || return 1
+    else
+      mkdir /home/root/pi-ink-operation-history-0020 || return 1
+      printf '%s\n' 'pi-ink-bridge-01-pen-prototype implementation-0020 01a19e3a-d649-7473-8e40-e4371bceb4ea' > /home/root/pi-ink-operation-history-0020/owner.txt || return 1
+    fi
+    test ! -e /home/root/pi-ink-operation-history-0020/"$prior_pid" || return 1
+    test ! -L /home/root/pi-ink-operation-history-0020/"$prior_pid" || return 1
+    mv /home/root/pi-ink-operation-0020 /home/root/pi-ink-operation-history-0020/"$prior_pid" || return 1
+  fi
+  mkdir /home/root/pi-ink-operation-0020 || return 1
+  printf '%s %s %s\n' "$1" d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa "$$" > /home/root/pi-ink-operation-0020/actor.txt || return 1
+}
+unit_state() {
+  unit_status=0
+  unit_load=$(systemctl show "$1" -p LoadState --value) || unit_status=$?
+  case "$unit_load" in
+    loaded) test "$unit_status" -eq 0 || return 1 ;;
+    not-found) if test "$unit_status" -ne 0 && test "$unit_status" -ne 4; then return 1; fi ;;
+    *) printf '%s\n' 'ABORT: unexpected owned-unit load state'; return 1 ;;
+  esac
+}
+check_owned_unit() {
+  unit_state "$1" || return 1
+  test "$unit_load" = loaded || return 0
+  test "$(systemctl show "$1" -p Transient --value)" = yes || return 1
+  unit_exec=$(systemctl show "$1" -p ExecStart --value) || return 1
+  case "$unit_exec" in
+    *'path=/home/root/pi-ink-bridge-0020/pi-ink-tablet ;'*'argv[]=/home/root/pi-ink-bridge-0020/pi-ink-tablet -config /home/root/pi-ink-bridge-0020/config.json ;'*) return 0 ;;
+    *) printf '%s\n' 'ABORT: owned unit command does not match this experiment'; return 1 ;;
+  esac
+}
+stop_owned_unit() {
+  check_owned_unit "$1" || return 1
+  test "$unit_load" = loaded || return 0
+  systemctl stop "$1"
+}
+assert_approved_hash() {
+  test -f "$3" || return 1
+  test ! -L "$3" || return 1
+  actual_sum=$(sha256sum "$3") || return 1
+  actual_sum=${actual_sum%% *}
+  if test "$actual_sum" != "$1" && test "$actual_sum" != "$2"; then printf '%s\n' 'ABORT: unknown active experiment bytes'; return 1; fi
+}
+choose_position() {
+  test ! -L "$1" || return 1
+  test ! -L "$2" || return 1
+  if test -e "$1"; then test ! -e "$2" || return 1; printf '%s' "$1";
+  else test -e "$2" || return 1; printf '%s' "$2"; fi
+}
+acquire_operation rollback
+payload_position=$(choose_position /home/root/pi-ink-bridge-0020 /home/root/pi-ink-bridge-retained-0020)
+proxy_position=$(choose_position /home/root/xovi/extensions.d/webserver-remote.so /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so)
+adapter_position=$(choose_position /home/root/xovi/extensions.d/pi-ink-loopback-0020.so /home/root/pi-ink-rollback-owned-0020/adapter.so)
+patch_position=$(choose_position /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd /home/root/pi-ink-rollback-owned-0020/pi-ink-bridge.qmd)
+test -d "$payload_position"
+test "$(stat -c '%u %g %a' "$payload_position")" = '0 0 700'
+assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d "$payload_position/owner.txt"
+assert_hash 709b65cd44766e98763e00577bfbe7d8f36f55c0f34894bfdbf0663d56b12a7a /etc/systemd/system/xochitl.service.d/00-xovi.conf
+assert_hash 84a2d95c2284a2f2fdb5ae70b4f25eb4a5ef2fbf6f94391fc03e4c54643314ef /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf
+assert_hash 6036f7776f8775529f94056fafe066ff373f5aa6bca39633bfd4dabfc1552ffd /etc/systemd/system/xochitl.service.d/qt-resource-rebuilder.conf
+assert_hash 5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad /home/root/xovi/extensions.d/appload.so
+assert_hash 48d62c2beb0d285943e5c8d3f08ed980c6045b27f13644079d15a3dbaf2b7609 /home/root/xovi/extensions.d/literm.so
+assert_hash 2f19585c63979182ccd19a2953cd4aa6a6f3824ea36a76eb46c803e02e79db6e /home/root/xovi/extensions.d/qt-command-executor.so
+assert_hash 6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f /home/root/xovi/extensions.d/qt-resource-rebuilder.so
+assert_hash 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f "$proxy_position"
+assert_hash 61c0c7b0d4e2c7623147a87c63d6a4aaec868019e67fb0e1bdb1fcb215f6e155 /home/root/xovi/extensions.d/xovi-message-broker.so
+assert_hash beb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d /home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd
+assert_hash 5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2 /home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd
+assert_hash dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595 /home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd
+assert_hash f8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43 /home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd
+assert_hash 0d0d130ba63cfa65093475f9cec2f6694f2e37aab0a346fc5f2921e061303e50 /home/root/xovi/exthome/qt-resource-rebuilder/dockButtons.qmd
+assert_hash ebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023 /home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd
+assert_hash 9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615 /home/root/xovi/exthome/qt-resource-rebuilder/hashtab
+assert_hash 3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471 /home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd
+assert_hash 28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43 /home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd
+assert_hash 2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982 /home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd
+assert_hash 36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158 /home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd
+assert_hash 4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe /home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd
+assert_hash 767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e /home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd
+assert_hash bf15dfd641deea3e4487b9182957938a3dc824c340383c9243b7f118bfe829dc /home/root/xovi/start
+assert_hash e29494c9fff5ede390b06f1f5e27ca59e4f7bc81d25889822a123ccad1fd686d /home/root/xovi/stock
+assert_hash d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446 /home/root/xovi/xovi.so
+assert_hash b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021 /usr/bin/xochitl
+assert_hash 23f537cf59d527bfbf4823f372385d613e1ade0961c98831c935a372018f9566 /usr/lib/systemd/system/xochitl.service
+assert_hash a9432caffacb29d6fcb35136dcc3cb43d8737eb6c2efcb35ea335725f42082d1 /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf
+test "$(stat -c '%a %u %g %s %Y' "$proxy_position")" = '644 0 0 8453696 1793049401'
+assert_hash aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f "$adapter_position"
+assert_approved_hash c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8 09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9 "$patch_position"
+assert_approved_hash f601436dd591ae782f15c0714bcfd4412fb3facebeadeb7d31914a5dc69ecada 0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd "$payload_position/pi-ink-tablet"
+assert_approved_hash 1c4bf78285b08464e38e7af16f0096fda55c4dcd86a5d86ac5c1399b1becf9a6 a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca "$payload_position/config.json"
+assert_approved_hash 9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba 9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba "$payload_position/trust/server-a.pem"
+assert_approved_hash 9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55 9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55 "$payload_position/trust/server-b.pem"
+assert_approved_hash 57416f0b80a3a100c6dc7ee2162647b2c866588a85cf46ef09106bbf1354595f e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf "$payload_position/tablet-qml/PiInkToolbar.qml"
+assert_approved_hash aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f "$payload_position/adapter.so"
+assert_approved_hash c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8 09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9 "$payload_position/pi-ink-bridge.qmd"
+assert_approved_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d "$payload_position/owner.txt"
+assert_approved_hash 27645009e37fec8270d7d2e7541d4b1ae2a4da4378736d0b6a0277c39a354278 d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa "$payload_position/payload-sha256.txt"
+check_owned_unit pi-ink-bridge-0020.service
+check_owned_unit pi-ink-bridge-sidebar-0020.service
+if test -e /home/root/pi-ink-rollback-owned-0020; then
+  test -d /home/root/pi-ink-rollback-owned-0020; test ! -L /home/root/pi-ink-rollback-owned-0020
+  test "$(stat -c '%u %g %a' /home/root/pi-ink-rollback-owned-0020)" = '0 0 700'
+  assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /home/root/pi-ink-rollback-owned-0020/owner.txt
+else
+  test "$proxy_position" = /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so
+  test "$payload_position" = /home/root/pi-ink-bridge-0020
+  test "$adapter_position" = /home/root/xovi/extensions.d/pi-ink-loopback-0020.so
+  test "$patch_position" = /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd
+fi
+if test -e /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0020-next || test -L /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0020-next; then
+  test -f /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0020-next; test ! -L /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0020-next
+  assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /home/root/pi-ink-sidebar-backup-0020/owner.txt
+  test ! -e /home/root/pi-ink-rollback-owned-0020/interrupted-patch.0020-next
+fi
+test "$(systemctl show xochitl -p Job --value)" = 0
+stop_owned_unit pi-ink-bridge-0020.service
+stop_owned_unit pi-ink-bridge-sidebar-0020.service
+if test ! -e /home/root/pi-ink-rollback-owned-0020; then mkdir /home/root/pi-ink-rollback-owned-0020; cp -p "$payload_position/owner.txt" /home/root/pi-ink-rollback-owned-0020/owner.txt; fi
+if test -e /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0020-next; then mv /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0020-next /home/root/pi-ink-rollback-owned-0020/interrupted-patch.0020-next; fi
+if test "$adapter_position" = /home/root/xovi/extensions.d/pi-ink-loopback-0020.so; then mv /home/root/xovi/extensions.d/pi-ink-loopback-0020.so /home/root/pi-ink-rollback-owned-0020/adapter.so; fi
+if test "$patch_position" = /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd; then mv /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd /home/root/pi-ink-rollback-owned-0020/pi-ink-bridge.qmd; fi
+if test "$payload_position" = /home/root/pi-ink-bridge-0020; then mv /home/root/pi-ink-bridge-0020 /home/root/pi-ink-bridge-retained-0020; fi
+if test "$proxy_position" = /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so; then mv /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so /home/root/xovi/extensions.d/webserver-remote.so; fi
+assert_hash 709b65cd44766e98763e00577bfbe7d8f36f55c0f34894bfdbf0663d56b12a7a /etc/systemd/system/xochitl.service.d/00-xovi.conf
+assert_hash 84a2d95c2284a2f2fdb5ae70b4f25eb4a5ef2fbf6f94391fc03e4c54643314ef /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf
+assert_hash 6036f7776f8775529f94056fafe066ff373f5aa6bca39633bfd4dabfc1552ffd /etc/systemd/system/xochitl.service.d/qt-resource-rebuilder.conf
+assert_hash 5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad /home/root/xovi/extensions.d/appload.so
+assert_hash 48d62c2beb0d285943e5c8d3f08ed980c6045b27f13644079d15a3dbaf2b7609 /home/root/xovi/extensions.d/literm.so
+assert_hash 2f19585c63979182ccd19a2953cd4aa6a6f3824ea36a76eb46c803e02e79db6e /home/root/xovi/extensions.d/qt-command-executor.so
+assert_hash 6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f /home/root/xovi/extensions.d/qt-resource-rebuilder.so
+assert_hash 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f /home/root/xovi/extensions.d/webserver-remote.so
+assert_hash 61c0c7b0d4e2c7623147a87c63d6a4aaec868019e67fb0e1bdb1fcb215f6e155 /home/root/xovi/extensions.d/xovi-message-broker.so
+assert_hash beb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d /home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd
+assert_hash 5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2 /home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd
+assert_hash dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595 /home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd
+assert_hash f8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43 /home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd
+assert_hash 0d0d130ba63cfa65093475f9cec2f6694f2e37aab0a346fc5f2921e061303e50 /home/root/xovi/exthome/qt-resource-rebuilder/dockButtons.qmd
+assert_hash ebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023 /home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd
+assert_hash 9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615 /home/root/xovi/exthome/qt-resource-rebuilder/hashtab
+assert_hash 3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471 /home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd
+assert_hash 28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43 /home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd
+assert_hash 2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982 /home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd
+assert_hash 36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158 /home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd
+assert_hash 4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe /home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd
+assert_hash 767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e /home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd
+assert_hash bf15dfd641deea3e4487b9182957938a3dc824c340383c9243b7f118bfe829dc /home/root/xovi/start
+assert_hash e29494c9fff5ede390b06f1f5e27ca59e4f7bc81d25889822a123ccad1fd686d /home/root/xovi/stock
+assert_hash d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446 /home/root/xovi/xovi.so
+assert_hash b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021 /usr/bin/xochitl
+assert_hash 23f537cf59d527bfbf4823f372385d613e1ade0961c98831c935a372018f9566 /usr/lib/systemd/system/xochitl.service
+assert_hash a9432caffacb29d6fcb35136dcc3cb43d8737eb6c2efcb35ea335725f42082d1 /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf
+test "$(stat -c '%a %u %g %s %Y' /home/root/xovi/extensions.d/webserver-remote.so)" = '644 0 0 8453696 1793049401'
+test ! -e /home/root/xovi/extensions.d/pi-ink-loopback-0020.so
+test ! -e /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd
+test -d /home/root/pi-ink-bridge-retained-0020
+before_pid=$(systemctl show xochitl -p MainPID --value)
+# Renewed ALL-documents-saved/closed confirmation is required before this one request.
+systemctl --no-block restart xochitl
+printf '%s\n' 'X0CHITL_RESTART_REQUESTED_RESTORE_ORIGINAL'
+restored_ready=0
+for attempt in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20; do
+  active=$(systemctl show xochitl -p ActiveState --value)
+  test "$active" != failed || exit 1
+  pid=$(systemctl show xochitl -p MainPID --value)
+  case "$pid" in ''|*[!0-9]*) pid=0 ;; esac
+  if test "$active" = active && test "$pid" -gt 1 && test "$pid" != "$before_pid" && test -r "/proc/$pid/maps"; then
+    original_mapped=0
+    while IFS= read -r line; do
+      case "$line" in
+        */home/root/xovi/extensions.d/pi-ink-loopback-0020.so*) printf '%s\n' 'ABORT: owned adapter still mapped after restoration'; exit 1 ;;
+        */home/root/xovi/extensions.d/webserver-remote.so*) original_mapped=1 ;;
+      esac
+    done < "/proc/$pid/maps"
+    if test "$original_mapped" -eq 1; then restored_ready=1; break; fi
+  fi
+  sleep 1
+done
+test "$restored_ready" -eq 1
+printf 'ORIGINAL_PROXY_RESTORED PID=%s; wildcard HTTP behavior was explicitly accepted; experiment/client state retained\n' "$pid"
+

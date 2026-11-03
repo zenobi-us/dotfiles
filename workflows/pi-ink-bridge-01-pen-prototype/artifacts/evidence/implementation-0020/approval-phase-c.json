@@ -1,0 +1,59 @@
+{
+  "recorded_at": "2026-11-03T00:52:50.360741+00:00",
+  "source": "Fresh parent-relayed owner approval in this implementation session",
+  "selection": "Install revision; restore afterward",
+  "choice": "C1",
+  "planSha256": "7a8465c07e666b81d0104e813128c046d51ebc84baf0a35c8ac58e3ba77c51d6",
+  "reviewed8ManifestSha256": "d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa",
+  "wrapperSha256": "b3ee0aa32d68ba7cfd82048d514df8795d8be8ca1c8c2c3d3e6d0a9431bfa85f",
+  "scripts": [
+    {
+      "label": "preflight-v3",
+      "path": "/tmp/pi-ink-0020-phase-c-preflight-v3.sh",
+      "sha256": "acd01b75cce6fa09e103a62482c968a1b62e5d9b1e3c07ea6c3aabccad28bfe8",
+      "syntaxExit": 0
+    },
+    {
+      "label": "prepare-v3",
+      "path": "/tmp/pi-ink-0020-phase-c-prepare-v3.sh",
+      "sha256": "e6a93262fbf0086a62573ef5e3039c5728127feb5b5c48517e829b97a5d4c944",
+      "syntaxExit": 0
+    },
+    {
+      "label": "load-v3",
+      "path": "/tmp/pi-ink-0020-phase-c-load-v3.sh",
+      "sha256": "0370c5ae2a94c41f4904f6c5cef1eae1e2a0a7870aaf2fefe0169bf877b262ba",
+      "syntaxExit": 0
+    },
+    {
+      "label": "rollback-v3",
+      "path": "/tmp/pi-ink-0020-phase-c-rollback-v3.sh",
+      "sha256": "85d5146cfebc0caa8d9a97720ab839f92cc6af120d5178937d49632188cf5641",
+      "syntaxExit": 0
+    }
+  ],
+  "usbReconnectedOwnerConfirmed": true,
+  "allDocumentsSavedClosedOwnerConfirmedNow": true,
+  "authorizedRestarts": {
+    "load": 2,
+    "restoreOriginal": 3,
+    "additional": 2,
+    "total": 3,
+    "renewedSavedClosedRequiredBeforeRollback": true
+  },
+  "freshRequests": [
+    "a011855184f195ac2961ab0e9c934926",
+    "0f7526d7272a99da68121893ee20afb4"
+  ],
+  "retiredRequestsRemainRetired": true,
+  "requireOwnerPanelNavigationBeforeDisconnectImport": true,
+  "forbidden": [
+    "payload substitution",
+    "extra restart",
+    "settings/account/cloud/auto-sleep change",
+    "private notebook files/titles/content",
+    "unlisted deletion",
+    "credential removal before separate cleanup approval"
+  ],
+  "retention": "Current approval permits retained-path behavior; after restoration prepare exact removal/credential-cleanup scope, preserve association evidence and synthetic documents. Do not claim cleanup complete while retained files remain."
+}

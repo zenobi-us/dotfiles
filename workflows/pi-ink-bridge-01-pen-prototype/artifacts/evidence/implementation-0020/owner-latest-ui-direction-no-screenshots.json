@@ -1,0 +1,22 @@
+{
+  "schema": "pi-ink-owner-ui-direction/v1",
+  "recorded_at": "2026-11-03T04:25:09.684021+00:00",
+  "source_baseline": "4614293693e7973722a6a470a761e563221a7c28",
+  "user_requirements": [
+    "Pi Ink global sidebar entry last in the top section.",
+    "Pi Ink document sidebar entry directly above the TOC widget button.",
+    "Document popover styled like the linked Better TOC reference image.",
+    "Fix global manager width gap after sidebar closes; repeated global Pi Ink selection must not toggle manager closed."
+  ],
+  "reference": "https://github.com/rmitchellscott/xovi-bettertoc/blob/main/assets/betterToc-pro.png",
+  "screenshots": "User explicitly withdrew screenshot request. Do not capture screen, install helpers, ask to open TOC for screenshots, or continue previous capture workflow.",
+  "observed_pass": [
+    "Repaired native entry opens",
+    "Back fully closes"
+  ],
+  "observed_failure": [
+    "Global manager keeps sidebar inset after sidebar closes",
+    "Repeated Pi Ink selection toggles manager closed"
+  ],
+  "device_boundary": "No new payload substitution, restart or device operation authorized by this UI request. Last observed restart count3; planned original-proxy restoration#4 still requires renewed saved/closed confirmation. Full restoration/cleanup pending."
+}

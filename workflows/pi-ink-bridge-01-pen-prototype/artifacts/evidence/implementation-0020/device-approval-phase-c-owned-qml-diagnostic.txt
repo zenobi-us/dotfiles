@@ -1,0 +1,64 @@
+EXACT READ-ONLY CABLE DIAGNOSTIC REQUEST — NOT YET APPROVED
+
+Reason: owner reports native sidebar opens but Pi Ink entry is ABSENT after LOAD#2. Actual UI acceptance FAILED; layout not assessed. No repeat UI attempt. Running client PID/socket and static QMD checks do not prove QML instantiation. No exact runtime cause is established yet. Offline native Button/type collision is a candidate, not a deployment authorization.
+
+Request: ONE cable-connected SSH execution of the exact wrapper and in-memory target script below. Device writes ZERO; installs ZERO; restart commands ZERO. No document operations/import/draw/Send/export/disconnect. Current source441dbe0c and installed8 remain untouched. Three-total restart cap unchanged: two used; only planned restoration#3 remains, after separately renewed ALL-docs-saved/closed confirmation. No source candidate activation authorized.
+
+Host route must remain direct target10.11.99.1 via enp2s0f0u4c2, source10.11.99.10 and exact approved physical USB syspath. No wireless, gateway, proxy, connection reuse or fallback. SSH uses strict existing host key and host-side30-second deadline, connect8. No target timeout utility needed.
+
+Read scope: exact current xochitl MainPID106606; hash only known stock binary, our owner marker, current component and active owned QMD; only transient/ExecStart metadata for our named revised unit. No secret config/state reads. Then journal query restricted simultaneously to xochitl.service, PID106606 and LOAD#2 startup interval 2026-11-03 02:01:20..02:03:00 UTC, at most3000 source records. Raw records stay in target memory and are never returned, saved or copied. Target filter returns ONLY exact owned PiInkToolbar file-path errors and owned QMD path/qmldiff filename markers, at most80 lines of at most2048 characters; oversized lines replaced by fixed marker. No surrounding/unmatched lines. No unrestricted journal, private titles/files/notebook listings, baseline probe file, screenshots or private content. Query failure aborts; empty marker result is INCONCLUSIVE, including any clock/window mismatch, not QML success.
+
+Needed existing utilities only: host sh, ip, jq, readlink, sha256sum, timeout, ssh; target sh, test, printf, sha256sum, systemctl, journalctl. No files created on target, settings/account/cloud/cache/service configuration changed, cache deletion, kill/signals, install/repair/restart. On any hash/owner/PID/interface/query mismatch abort without retry or repair. This does not authorize broader logs or changing installed bytes. Approval can be declined in favor of planned restoration#3 with renewed saved/closed confirmation.
+
+Target script: /tmp/pi-ink-0020-phase-c-owned-qml-diagnostic.sh
+SHA256 0a6a5ba8751a697135e5e4e8e98108ffdfd99347c539d5e5c23375bed7192f37
+Host wrapper: /tmp/pi-ink-0020-phase-c-owned-qml-diagnostic-host.sh
+SHA256 d2e903127869101cae8c0df8309d71397d6cec37c374aa92bc3761804955385d
+
+EXACT TARGET SCRIPT
+set -eu
+# PROSPECTIVE READ-ONLY: requires separate exact owner approval.
+# No device files are created, changed, listed or copied.
+assert_hash() { test -f "$2"; test ! -L "$2"; printf '%s  %s\n' "$1" "$2" | sha256sum -c -; }
+test "$(systemctl show xochitl.service -p MainPID --value)" = 106606
+assert_hash b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021 /usr/bin/xochitl
+assert_hash a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d /home/root/pi-ink-bridge-0020/owner.txt
+assert_hash e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf /home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml
+assert_hash 09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9 /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd
+test "$(systemctl show pi-ink-bridge-sidebar-0020.service -p Transient --value)" = yes
+owned_exec=$(systemctl show pi-ink-bridge-sidebar-0020.service -p ExecStart --value)
+case "$owned_exec" in *'path=/home/root/pi-ink-bridge-0020/pi-ink-tablet ;'*'argv[]=/home/root/pi-ink-bridge-0020/pi-ink-tablet -config /home/root/pi-ink-bridge-0020/config.json ;'*) ;; *) printf '%s\n' 'ABORT: owned client command mismatch'; exit 1 ;; esac
+# Bounded LOAD#2 startup interval, current exact xochitl PID/unit only.
+# Raw records stay on target in memory; ONLY exact owned path markers return.
+if ! owned_journal=$(journalctl --no-pager --output=cat --lines=3000 --since='2026-11-03 02:01:20 UTC' --until='2026-11-03 02:03:00 UTC' _SYSTEMD_UNIT=xochitl.service _PID=106606 2>/dev/null); then
+    printf '%s\n' 'ABORT: bounded journal query unavailable'; exit 1
+fi
+printf '%s\n' 'OWNED_QML_MARKERS_BEGIN interval=2026-11-03T02:01:20Z..02:03:00Z pid=106606 max_source_records=3000'
+emitted=0
+printf '%s\n' "$owned_journal" | while IFS= read -r line; do
+    case "$line" in
+        *'/home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml:'*|*'/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd'*|*'[qmldiff]'*'pi-ink-bridge-0020.qmd'*)
+            if test "$emitted" -ge 80; then printf '%s\n' 'OWNED_MARKER_LIMIT_REACHED'; break; fi
+            emitted=$((emitted + 1))
+            # Emit no oversized or multiline/context payloads.
+            if test "${#line}" -le 2048; then printf '%s\n' "$line"; else printf '%s\n' 'OWNED_MARKER_OVERSIZE_REDACTED'; fi
+            ;;
+    esac
+done
+printf '%s\n' 'OWNED_QML_MARKERS_END no_matching_lines_is_not_a_runtime_pass'
+
+EXACT HOST WRAPPER
+set -eu
+# PROSPECTIVE: execute only after exact separate owner approval.
+test -f /tmp/pi-ink-0020-phase-c-owned-qml-diagnostic.sh
+test ! -L /tmp/pi-ink-0020-phase-c-owned-qml-diagnostic.sh
+printf '%s  %s\n' 0a6a5ba8751a697135e5e4e8e98108ffdfd99347c539d5e5c23375bed7192f37 /tmp/pi-ink-0020-phase-c-owned-qml-diagnostic.sh | sha256sum -c -
+route=$(ip -j route get 10.11.99.1)
+usb_interface=$(printf '%s' "$route" | jq -er 'if length == 1 and .[0].gateway == null then .[0].dev else error("not direct USB route") end')
+usb_address=$(printf '%s' "$route" | jq -er '.[0].prefsrc')
+test "$usb_interface" = enp2s0f0u4c2
+test "$usb_address" = 10.11.99.10
+test ! -e "/sys/class/net/$usb_interface/wireless"
+test ! -e "/sys/class/net/$usb_interface/phy80211"
+test "$(readlink -f "/sys/class/net/$usb_interface/device")" = /sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0
+timeout 30 ssh -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes -o ControlMaster=no -o ControlPath=none -o ProxyCommand=none -o ProxyJump=none -o "BindInterface=$usb_interface" -o "BindAddress=$usb_address" root@10.11.99.1 sh -s < /tmp/pi-ink-0020-phase-c-owned-qml-diagnostic.sh

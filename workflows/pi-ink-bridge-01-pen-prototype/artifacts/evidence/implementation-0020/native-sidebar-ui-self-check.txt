@@ -1,0 +1,74 @@
+Native-sidebar independent source self-check — implementation-0020
+Date: 2026-11-03
+Reader: integration owner in w6J:p5.
+Purpose: check the native sidebar revision against recovered stock source without hardware access or source changes.
+
+VERDICT
+No source-proven actionable defect found in this review. This is not a hardware pass, full SDK type-check pass, or activation approval.
+
+Scope identity supplied by parent:
+Commit: 90afd74d77f19bd4837606c04e6149dabc7f8e92
+Tree: 9c0e7b6b21faa58544e5993b809487fdb4ff00ee
+The review inspected current source directly. It did not independently establish the Git tree identity.
+
+Observed SHA256 values:
+PiInkToolbar.qml: c301944154498f7d0e29c605a667b54cf0ad6f2b097489e8088e19f957708deb
+pi-ink-bridge.qmd: b4eaa94504b974b949c09ff74dd902883ea69d7990712d97cb73cc78507192e1
+activation-proposal.json: 8bdb89f899b5b234eafeffcebe009fbbfad017469a7976e5fac793f5dd9e6ba5
+Target directory: mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/.
+Recovered sources and integration outputs: /tmp/pi-ink-0020-offline/.
+
+NATIVE UI SOURCE CHECK
+1. Native controls reach the same controller.
+pi-ink-bridge.qmd:33-43 binds the single Loader item into Navigator and the stock DocumentView instance. Lines 125-166 pass that controller into the native library Sidebar and add an ArkControls.SidebarItem labelled Pi Ink. Its handler hides the stock sidebar, then toggles the controller. The native hide() implementation at sidebar-owned-final-Sidebar.qml:53-57 changes the Sidebar's focus and visibility, not Navigator visibility. That action therefore does not itself invalidate the library panelEnabled condition.
+
+2. There is no persistent top-level visual header in this source.
+pi-ink-bridge.qmd:44-78 creates a zero-size Loader. PiInkToolbar.qml:38-39 also gives its client zero size. The visual Background at PiInkToolbar.qml:272-281 has an explicit native content parent, native bounds, and one visibility condition for the complete surface. Back at lines 292-295 sets expanded=false. NavigationBar and ScrollContainer are both inside that surface. The old hidden-body-only failure is not repeated in this source structure. Back remains outside the Flickable at lines 302-315. This matches the shell arrangement in native-panel-dc0fce.qml:54-95.
+
+3. Native editor dimensions drive the exclusion zone.
+pi-ink-bridge.qmd:89-92 calculates the inset from actual native tool-cell and close-button dimensions plus gestureMargin. Lines 64-75 apply that inset on all four editor edges. Stock toolbar states place the tool strip against the selected edge; see sidebar-owned-final-Toolbar.qml:949-1010. The stock close button sits at the top edge and changes side for the right toolbar; see lines 880-923. The inset has no source dependency on the Pi Ink surface dimensions, so this path introduces no evident binding cycle. Library margins use Navigator's exported actionHeader alias and stock layout values. The alias exists at sidebar-owned-final-Navigator.qml:69.
+
+4. Toolbar integration preserves the existing capacity handler.
+The baseline-only/revised Toolbar comparison changes showableToolsCount, shownToolsCount, adds the native ToolbarTool, and adds the controller/inset properties. The existing extension-count handler remains at sidebar-owned-final-Toolbar.qml:239-246. The new tool reserves one capacity slot. Its type, toolbar, iconSource and implicitlySelected properties exist in native-tool-125e332.qml. That native component forwards clicked at lines 108-111. The new handler closes a foldout before toggling Pi Ink. The source does not replace stock drawing with a new drawing surface.
+
+5. Ownership and state transitions have no demonstrated failure in the inspected paths.
+The controller stays in MainView while its visual surface follows the active native host. The document host is the persistent stock DocumentView UI container; the stock Loader is not replaced by this revision. See sidebar-owned-final-MainView.qml:457-505 and pi-ink-bridge.qmd:48-62. Panel disable and document UUID change both collapse expanded; see PiInkToolbar.qml:44-50,93-99. Toolbar visibility already excludes stock format settings, search and adjust-view states; see sidebar-owned-final-DocumentView.qml:2950. I found no direct use of a missing native ID or an evident parenting/size cycle in these bindings.
+
+PROTOCOL INVARIANT CHECK
+1. One current-document publisher remains.
+PiInkToolbar.qml:93-122 serializes ordinary POST /current requests with currentBusy and generation. A changed UUID clears prior state and schedules the latest publication after an older publication completes. refreshState at lines 124-159 rejects stale-generation replies and republishes a mismatched current UUID. The destruction-only empty publication at lines 51-56 remains separate; this review did not prove arbitrary concurrent MainView replacement safe.
+
+2. Import readiness follows controlled-name caching.
+PiInkToolbar.qml:145-157 accepts only exact pi-ink-<32 lowercase hex> names from /state, assigns importNames, then sends readiness only for importing entries. No library enumeration or private notebook title access appears in this path.
+
+3. Receipt retries retain the original identity.
+PiInkToolbar.qml:214-250 guards the controlled name before reading parentIdForId. The first report captures documentUUID and folderUUID. Duplicate signals reuse that report. inFlight prevents concurrent receipt requests, acknowledged suppresses accepted repeats, and failed requests remain eligible for the polling retry at lines 153-157.
+
+4. Send and confirmation retain pressed identities.
+PiInkToolbar.qml:319-326 captures the UUID on Send press. Lines 358-369 capture UUID and confirmationId on confirmation press. submit at lines 173-195 checks the pressed UUID against the current UUID and posts the captured confirmationId. It does not replace that confirmationId with the latest polled result. Server-side stale-result rejection is outside the three-file review. The save/close paths shown here do not call /send or /confirm.
+
+VERIFICATION LIMITS AND ACTIVATION BOUNDARY
+No builds, tests, lint, formatters, parser runs, device commands, SSH/scp, browser sessions, imports, drawing, Send actions, or hardware operations were performed. No repository source or preserved baseline QMD was changed. Only this requested report was written.
+
+The supplied five-resource parser and matching Qt6.10.3 abstract syntax tree parsing successes were not rerun. They remain parent-provided evidence. Full SDK type checking did not pass. The duplicate toolLoader diagnostic occurs in baseline-only and revised Toolbar; this review does not label it a new defect.
+
+Actual private-type instantiation, touch/pen arbitration, visual-parent lifetime during host teardown, modal stacking, and physical geometry in all toolbar positions/orientations remain unverified. In particular, the source inset leaves edge space, but does not prove stock gesture recognition. The recovered stock close gesture is the downward top-edge filter at recovery-dcd6c9.qml:475-480. The owner's successful stock recovery is accepted as ground truth. The failed old overlay Close panel action must not be requested again.
+
+After separate exact-hash approval, hardware acceptance must establish native toggle, complete Back dismissal, and stock close/navigation reachability both open and closed. This report grants no mutation, restart, import, drawing, Send, or renewed all-documents-saved/closed approval.
+
+The old OMP jobs were observer-host-cancelled while unbound. That is not bound-tablet cancellation acceptance. Fresh originating jobs A a011855184f195ac2961ab0e9c934926 and B 0f7526d7272a99da68121893ee20afb4 remain pending and unbound per the supplied context. Baseline original proxy quarantine and client/synthetic state were not accessed or changed.
+
+UUID NORMALIZATION FOLLOW-UP — 2026-11-03
+Finding: the native UUID seam has no explicit canonical string contract. Activation should not rely on an unproven serialization shape.
+
+pi-ink-bridge.qmd:10-11 exports root.document.id.toString() unchanged. PiInkToolbar.qml:34 compares state.documentUUID to that string with strict equality. Lines 138-142 treat any spelling difference as a current-document mismatch and republish. The display at line 377 uses the unchanged native string.
+
+Recovered DocumentView.qml:277-284 also calls openDocument.id.toString() when passing ignoreIds to the native document drawer. Lines 2640-2642 compare document.id.toString() to retailSettings.defaultDocumentId. Neither call proves lowercase, absence of braces, or whether Document.id is QString versus QUuid. A native consumer can accept the same native spelling, and the retail settings value's serialization contract is not defined here. The inspected recovered QML contains no Document.id type declaration, UUID format flag, or explicit brace/case normalization. No recovered .qmltypes or header file was found in the supplied offline directory.
+
+Conditional failure scenario: if native toString() produces a braced or uppercase UUID, and the service returns a lowercase brace-free UUID, publication can succeed while every GET /state fails the comparison at lines 138-142. QML clears state, republishes, and remains in Updating current document. Send/Confirm stay disabled because currentMatches never becomes true. This is a source-proven consequence of divergent spellings, not proof that the actual tablet currently emits either spelling.
+
+Go-source qualification: the checked-out tablet/operations.go:15-18 validates uuidPattern and lines 20-32 retain the supplied string unchanged. tablet/state.go:19 accepts mixed case but no braces. tablet/main.go:174 returns c.current as documentUUID. A repository-wide Go-source search found no safeUUID helper. Thus the reported safeUUID canonicalization may belong to the pending revised source rather than this inspected checkout. Under this checkout, a braced UUID instead fails POST /current; case alone is retained, but could still differ from association keys. The parent-provided safeUUID behavior remains the premise for the divergent-spelling scenario above.
+
+Recommendation: normalize the current-document string once at the native QMD seam, before publication, display and press capture. For already valid native UUIDs, lowercase plus removal of one matched outer brace pair preserves identity. Keep the no-document value as "". Do not remove arbitrary punctuation, change confirmationId, or replace immutable press captures with later state. Keep backend validation authoritative. A single seam conversion avoids masking an actual stale-document mismatch by weakening currentMatches.
+
+The native serialization shape remains unproven. This follow-up qualifies the earlier no-actionable-defect verdict: the UUID seam requires an explicit canonicalization decision before activation. No source edits or runtime checks were made. Source-script guards, revised hashes and separate owner approval remain pending. No hardware pass is claimed.

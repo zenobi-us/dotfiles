@@ -1,0 +1,46 @@
+{
+  "observedAt": "2026-11-03T03:14:43.371222+00:00",
+  "repairLoadEvidence": "phase-c-component-repair-load.json",
+  "restartCommandsExecutedTotal": 3,
+  "approvedCap": 4,
+  "remainingRestart": "RESTORE ORIGINAL #4 only after renewed ALL-documents-saved/closed confirmation",
+  "ownedGoPIDUnchanged": 106748,
+  "xochitlPID": 111850,
+  "ownedMarkers": "Only QMD loading marker; no component error in bounded startup interval. Not a UI/instantiation pass.",
+  "ownerRepairedLibraryUIObservationPending": true,
+  "noImportSendDisconnect": true,
+  "authenticatedStatus": {
+    "a": {
+      "time": "2026-11-03T03:14:41.027Z",
+      "serverId": "485bf81fd7f7853c4efedc0492b9d8fd",
+      "deviceId": "pi-ink-prototype-tablet-0020",
+      "udc": {
+        "ci_hdrc.0": "configured",
+        "ci_hdrc.1": "not attached"
+      },
+      "usbIPv4": [
+        "usb1:10.11.99.1"
+      ],
+      "listeners": [
+        "tcp:0100007F:0051"
+      ],
+      "safe": false
+    },
+    "b": {
+      "time": "2026-11-03T03:14:39.441Z",
+      "serverId": "e29308fadaaa0c7a10479ba117b82bee",
+      "deviceId": "pi-ink-prototype-tablet-0020",
+      "udc": {
+        "ci_hdrc.0": "configured",
+        "ci_hdrc.1": "not attached"
+      },
+      "usbIPv4": [
+        "usb1:10.11.99.1"
+      ],
+      "listeners": [
+        "tcp:0100007F:0051"
+      ],
+      "safe": false
+    }
+  }
+}

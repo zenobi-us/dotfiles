@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-11-02T22:31:31.193323+00:00",
+  "approval": "approval-phase-b.json; fresh all-documents-saved/closed before LOAD",
+  "planned_restart_number": 1,
+  "command": [
+    "timeout",
+    "45",
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "root@10.11.99.1",
+    "set -eu\npayload=/home/root/pi-ink-bridge-0020\nbackup=/home/root/pi-ink-webserver-remote-backup-0020\noriginal=/home/root/xovi/extensions.d/webserver-remote.so\nadapter=/home/root/xovi/extensions.d/pi-ink-loopback-0020.so\npatch=/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd\n(cd \"$payload\" && sha256sum -c payload-sha256.txt)\nchmod 700 \"$payload/pi-ink-tablet\"\nchmod 600 \"$payload/config.json\" \"$payload/trust/server-a.pem\" \"$payload/trust/server-b.pem\"\ntest -f \"$original\"; test ! -L \"$original\"\nprintf '%s  %s\\n' 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f \"$original\" | sha256sum -c -\ntest \"$(stat -c '%a %u %g %s %Y' \"$original\")\" = '644 0 0 8453696 1793049401'\nstat -c '%a %u %g %s %Y %n' \"$original\"\ntest ! -e \"$backup/webserver-remote.so\"; test ! -L \"$backup/webserver-remote.so\"\ntest ! -e \"$adapter\"; test ! -L \"$adapter\"; test ! -e \"$patch\"; test ! -L \"$patch\"\nmv \"$original\" \"$backup/webserver-remote.so\"\n(set -C; cat \"$payload/adapter.so\" > \"$adapter\")\n(set -C; cat \"$payload/pi-ink-bridge.qmd\" > \"$patch\")\nchmod 644 \"$adapter\" \"$patch\"\nsystemctl restart xochitl\nsleep 8\nsystemctl is-active xochitl\nprintf 'OWNED_HASHES\\n'\nsha256sum \"$adapter\" \"$patch\" \"$backup/webserver-remote.so\"\nstat -c '%a %u %g %s %Y %n' \"$backup/webserver-remote.so\"\nprintf 'LISTENERS\\n'\ncat /proc/net/tcp /proc/net/tcp6\n"
+  ],
+  "exit_code": 0,
+  "stdout": "pi-ink-tablet: OK\nconfig.json: OK\ntrust/server-a.pem: OK\ntrust/server-b.pem: OK\ntablet-qml/PiInkToolbar.qml: OK\nadapter.so: OK\npi-ink-bridge.qmd: OK\nowner.txt: OK\n/home/root/xovi/extensions.d/webserver-remote.so: OK\n644 0 0 8453696 1793049401 /home/root/xovi/extensions.d/webserver-remote.so\nactive\nOWNED_HASHES\naeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f  /home/root/xovi/extensions.d/pi-ink-loopback-0020.so\nc631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8  /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd\n24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f  /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so\n644 0 0 8453696 1793049401 /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so\nLISTENERS\n  sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode                                                     \n   0: 3600007F:0035 00000000:0000 0A 00000000:00000000 00:00000000 00000000   996        0 3494 1 00000000eab32248 100 0 0 10 5                      \n   1: 0100007F:0051 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 305353 1 0000000035f652a1 100 0 0 10 0                    \n   2: 0100007F:2253 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 1901 1 00000000f073c3e3 100 0 0 10 0                      \n   3: 3500007F:0035 00000000:0000 0A 00000000:00000000 00:00000000 00000000   996        0 3492 1 000000008182060a 100 0 0 10 5                      \n  sl  local_address                         remote_address                        st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode\n   0: 00000000000000000000000000000000:0016 00000000000000000000000000000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 2427 1 00000000716b2770 100 0 0 10 0\n   1: 00000000000000000000000000000000:0016 00000000000000000000000000000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 2426 1 00000000d2ff51b7 100 0 0 10 0\n   2: 0000000000000000FFFF000001630B0A:0016 0000000000000000FFFF00000A630B0A:D1A0 01 00000000:00000000 00:00000000 00000000     0        0 247560 1 0000000084457b21 21 4 18 10 -1\n   3: 0000000000000000FFFF000001630B0A:0016 0000000000000000FFFF00000A630B0A:ED74 01 00000314:00000000 01:00000014 00000000     0        0 304645 3 00000000a32c7ad5 20 4 13 10 -1\n",
+  "stderr": ""
+}

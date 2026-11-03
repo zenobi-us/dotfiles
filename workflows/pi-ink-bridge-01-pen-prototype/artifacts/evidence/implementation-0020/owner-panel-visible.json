@@ -1,0 +1,8 @@
+{
+  "source": "Owner physical tablet observation relayed by parent w64:pY",
+  "observation": "Visible and opens. New Pi Ink control appears in normal UI and panel opens.",
+  "usb": "Still connected; no import or disconnect requested at observation time",
+  "proved": "Actual runtime QML control visibility and panel opening in normal stock UI",
+  "not_proved": ["library import", "current-document association switching", "drawing quality", "cable-free transport", "Send", "clipping confirmation", "cancellation", "restoration", "lifecycle"],
+  "inference_limit": "No full acceptance pass inferred from panel launch"
+}

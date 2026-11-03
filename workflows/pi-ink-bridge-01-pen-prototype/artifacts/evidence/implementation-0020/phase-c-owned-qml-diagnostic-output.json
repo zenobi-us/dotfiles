@@ -1,0 +1,10 @@
+{
+  "startedAt": "2026-11-03T02:45:37.855288+00:00",
+  "finishedAt": "2026-11-03T02:45:38.820214+00:00",
+  "returncode": 0,
+  "stdout": "/tmp/pi-ink-0020-phase-c-owned-qml-diagnostic.sh: OK\n/usr/bin/xochitl: OK\n/home/root/pi-ink-bridge-0020/owner.txt: OK\n/home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml: OK\n/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd: OK\nOWNED_QML_MARKERS_BEGIN interval=2026-11-03T02:01:20Z..02:03:00Z pid=106606 max_source_records=3000\n[qmldiff]: Loading file pi-ink-bridge-0020.qmd\n02:01:39.463 \u001b[01;33mdefault                  file:///home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml:339:25: Cannot assign to non-existent property \"onPressed\"\u001b[0;37m (file:///home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml:339)\u001b[0m\nOWNED_QML_MARKERS_END no_matching_lines_is_not_a_runtime_pass\n",
+  "stderr": "",
+  "approval": "approval-phase-c-owned-qml-diagnostic.json",
+  "executions": 1,
+  "noRetry": true
+}

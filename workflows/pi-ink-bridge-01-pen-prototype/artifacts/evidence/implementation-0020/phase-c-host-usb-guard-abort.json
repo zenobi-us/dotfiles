@@ -1,0 +1,24 @@
+{
+  "approvedWrapperGuardExit": 1,
+  "tabletCommandsExecuted": false,
+  "deviceBaselineNotYetInspected": true,
+  "actualHostRoute": {
+    "destination": "10.11.99.1",
+    "interface": "enp2s0f0u4c2",
+    "sourceIPv4": "10.11.99.10",
+    "prefixlen": 27,
+    "gateway": null,
+    "sysfsDevice": "/sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0"
+  },
+  "proposedWrapper": "/tmp/pi-ink-0020-phase-c-host-setup-usb10.sh",
+  "proposedWrapperSha256": "f7f2b462c5641bbe292f8a8ee5f6f9155bdb21d6f1a77cb2e538e0375b91d139",
+  "amendmentPlan": "/tmp/pi-ink-start-0019-device-approval-phase-c-host-usb-amendment.txt",
+  "amendmentPlanSha256": "c482425bb50ddca202f90e9410cfc8226f925b31a56884fb2a4db7adce02c4af",
+  "hostOnlyGuardCheck": {
+    "exit_code": 0,
+    "stdout": "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-tablet: OK\n/tmp/pi-ink-0020-sidebar-reviewed-payload/config.json: OK\n/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-a.pem: OK\n/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-b.pem: OK\n/tmp/pi-ink-0020-sidebar-reviewed-payload/tablet-qml/PiInkToolbar.qml: OK\n/tmp/pi-ink-0020-sidebar-reviewed-payload/adapter.so: OK\n/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-bridge.qmd: OK\n/tmp/pi-ink-0020-sidebar-reviewed-payload/owner.txt: OK\n/tmp/pi-ink-0020-sidebar-reviewed-payload/payload-sha256.txt: OK\n/tmp/pi-ink-0020-phase-c-preflight-v3.sh: OK\n/tmp/pi-ink-0020-phase-c-prepare-v3.sh: OK\n/tmp/pi-ink-0020-phase-c-load-v3.sh: OK\n/tmp/pi-ink-0020-phase-c-rollback-v3.sh: OK\nHOST_USB_ROUTE_VALIDATED interface=enp2s0f0u4c2 address=10.11.99.10 device=/sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0\n",
+    "stderr": ""
+  },
+  "amendmentApproved": false,
+  "targetPayloadsAndScriptsUnchanged": true
+}

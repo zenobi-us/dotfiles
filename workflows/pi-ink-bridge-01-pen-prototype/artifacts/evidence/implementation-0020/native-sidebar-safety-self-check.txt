@@ -1,0 +1,116 @@
+implementation-0020 native-sidebar: independent safety and concurrency review
+Date: 2026-11-03
+Reader: parent implementation agent, w6J:p5.
+Purpose: check native import identity and the exact prospective target scripts without device access.
+
+OVERVIEW
+
+Verdict: hold the prospective revised LOAD. The frozen scripts do not provide their promised rollback for partial LOAD failures. A second source finding concerns conflicting explicit HTTP identity fields. No device operation is authorized by this report.
+
+Reviewed source reference supplied by parent: 90afd74d77f19bd4837606c04e6149dabc7f8e92, tree 9c0e7b6b21faa58544e5993b809487fdb4ff00ee. I read the current named source files. I did not independently resolve Git references.
+
+This was a fresh read-only session. I started no children. I made no source or evidence edits. This requested report is the only file I wrote. I ran no builds, tests, lint, formatters, prospective scripts, device commands, SSH, scp, or hardware actions. I read no private notebook files or titles.
+
+FINDING 1 — P1: rollback excludes partial LOAD states
+
+Evidence:
+- /tmp/pi-ink-0020-phase-c-load.sh:94-120 stops the old service, creates a backup, and replaces the binary, config, component, payload QMD, manifest, and active QMD in separate steps.
+- /tmp/pi-ink-0020-phase-c-rollback-original-overlay.sh:37-45 requires the complete old profile before any rollback action.
+- /tmp/pi-ink-0020-phase-c-rollback-native-sidebar.sh:37-45 requires the complete revised profile before any rollback action.
+- Both rollback scripts stop their selected client unit at line 48 under set -e.
+- LOAD creates the revised transient unit only at line 156, after restart and immediate listener/process checks.
+
+Failure path:
+1. LOAD replaces the binary at line 105.
+2. A later copy or filesystem operation fails before it replaces all four changed payloads.
+3. The old-profile rollback rejects the revised binary. The revised-profile rollback rejects the remaining old payloads. Both abort before restoring the original proxy.
+
+A second reachable boundary has the same recovery defect. LOAD can install every revised payload, then fail before creating the revised transient unit. The revised-profile rollback reaches line 48, but systemctl stop on a nonexistent unit can fail and abort before restoration. This condition also follows a failed systemd-run operation. There is no conditional missing-unit handling.
+
+The backup preserves useful bytes, but neither approved-form rollback uses it to handle these intermediate states. The original proxy remains quarantined. The client can remain stopped. A fresh repair command would fall outside the exact proposed command set.
+
+Decision needed before approval: define reviewed rollback behavior for the reachable partial LOAD states. Preserve abort-on-unknown-hash behavior. Do not grant general repair authority or weaken guards to arbitrary files.
+
+FINDING 2 — P2: immediate post-restart checks can turn normal startup into a failed LOAD
+
+Evidence:
+- /tmp/pi-ink-0020-phase-c-load.sh:131-155 restarts xochitl, checks is-active, and immediately requires the stock listener and mapped adapter.
+- There is no readiness wait between restart and those checks. The only sleep is after client launch at line 157.
+- The revised client starts only at line 156.
+
+systemctl restart completion and active state do not themselves establish that application listeners and dynamically loaded extensions are ready. If xochitl is active before either observation appears, LOAD aborts before client launch. This is a startup-order risk, not a measured tablet failure. It also exposes the missing-unit rollback boundary in Finding 1.
+
+Decision needed before approval: distinguish bounded application readiness from a guard mismatch. Do not restart again or repair a mismatch automatically. The exact target unit readiness semantics were not verified on hardware in this session.
+
+FINDING 3 — P2: conflicting HTTP identity fields become an absent identity
+
+Evidence:
+- mise/conf.d/devtools-omp/extensions/image-annotator/tablet/stock.go:187-207 returns an empty string for both absent identity and conflicting/invalid explicit fields.
+- stock.go:167-171 passes that result to beginImport without a parse error.
+- stock.go:174-180 compares HTTP and native UUIDs only when the returned string is nonempty.
+- operations.go:266-280 uses that result to resolve and construct the binding.
+- client_test.go:227-235 explicitly expects contradictory id/uuid fields to yield an empty string.
+
+Concrete path: an HTTP body with id=A and uuid=B becomes an empty returnedDocument. A controlled native receipt for A or B then passes resolveImportIdentity. At least one supplied explicit HTTP UUID disagrees, but the disagreement is not rejected.
+
+This is narrower than a demonstrated wrong-document association: the native receipt remains the binding authority. It is a fail-closed contract gap in HTTP/native comparison. Keep the distinction between no usable HTTP identity and an explicit contradictory identity. The existing test checks the parser result, not the combined acceptance path. I added or ran no tests.
+
+NATIVE IDENTITY AND CONCURRENCY CHECKS THAT HOLD IN THE READ SOURCE
+
+- operations.go:201-233 serializes imports with c.importing under c.mu. Cleanup clears only the same flight.
+- operations.go:224 gives each flight a fresh controlled name and a buffered receipt channel.
+- operations.go:251-258 waits for UI acknowledgement before enabling receipt acceptance.
+- operations.go:266-275 always calls resolveImportIdentity after successful stock upload, including when HTTP returns a safe UUID. There is no longer a bare-HTTP association path.
+- stock.go:174-183 waits for the native receipt and rejects a nonempty, different HTTP UUID. Missing receipts cause an error when the import context ends.
+- operations.go:308-339 validates document and parent UUID syntax, matches the controlled import name, rejects conflicting repeated receipts, and accepts identical retries.
+- An early native receipt can remain buffered while the stock HTTP request finishes. Receipt acceptance does not depend on a simultaneous receiver.
+- operations.go:281-299 rechecks job identity and terminal state, rejects a reused document UUID, and persists the immutable binding before remote acknowledgement.
+- transport.go:231-244 retries acknowledgement for persisted pending bindings after reconnection. A lost bind response does not require another UUID import.
+- main.go:115-120 forwards the controlled receipt fields directly to imported.
+- /tmp/pi-ink-0020-sidebar-payload/tablet-qml/PiInkToolbar.qml:145-170 establishes the controlled names before acknowledging readiness. Lines 214-250 retain one UUID/parent payload and retry it after an unsuccessful receipt acknowledgement. Lines 253-257 connect Library.entryImported.
+- operations.go:234 and state.go:69-75 give import its own 90-second context, not c.cancel. Remote terminal snapshots do not immediately cancel this import context. The final terminal/identity checks still prevent binding to a terminal job once that snapshot is known. A stock synthetic import can remain unbound after failure; this is not evidence of unsafe export.
+- operations.go:15-65,95-199 and transport.go:204-228 use the mutex, generation changes, cancellation, and terminal state for current-document Send and consent handling. This review found no additional proven cross-document export path in these inspected sections.
+
+These are source observations, not a hardware pass. A Go race-suite pass was reported by the parent. I did not rerun it.
+
+EXACT SCRIPT AND PAYLOAD CHECKS
+
+I computed SHA256 hashes on the host. All five local scripts match their entries in phase-c-prospective-command-scripts.json. I also compared each full script byte string with the corresponding embedded commands value; all five match exactly.
+
+- preflight: 0bf2b8484b1b7fba8c353e16f05453281b0161cf9408f000c06ed001d2f4b2ff
+- prepare: 45595ad457f4f6c0be4cae0b789094d21221e56eb0d9c5523146d9095075d734
+- load: be85db75d981da1f2bd79bda2af4b21c8e292ed24e1c7868872580709f36f6a2
+- rollback-original-overlay: f00a029c72f7cc86ac43383587fc7a746bc0423ede1730ef46ffd08b20df3d38
+- rollback-native-sidebar: 5deea18c9a5620bdfa79e7614c3a7631e633fcd3ac391bbd415c35c79c11eecd
+
+The frozen payload manifest hash is bf1502fde05c33de4a171cb02256f5d7909c9b8a0c0bc10c5ba36574bbc3ca34. Host sha256sum -c payload-sha256.txt succeeded for all eight entries. These checks executed no payload.
+
+The revised LOAD and revised rollback use the same four changed payload hashes as payload-hashes-native-sidebar.json: client, config, component, and QMD. Trust certificates, adapter, and owner marker hashes remain the old values. Preflight, prepare, and original-overlay rollback select the old profile. No mistaken old-versus-revised hash was found in those profile checks.
+
+The scripts guard the named baseline bytes, the quarantined original proxy bytes, and proxy mode/owner/size/mtime. They reject the active original proxy path, including a dangling symlink. Their payload assert_hash checks reject a symlink at each named leaf. They guard owned active adapter and QMD bytes before removal. Collision checks cover stage creation, backup creation, retained rollback destination, and temporary replacement leaf names. Parent-directory ownership and symlink identity are not independently established by these leaf checks; I found no evidence of an actual parent-directory collision in this host-only review.
+
+The listener checks reject any port 80 listener, require exactly one IPv4 127.0.0.1:81 listener, and reject non-loopback port 9821 listeners. They do not require that port 9821 exists or map its socket to the selected client PID. The client source binds tcp4 loopback and fails startup on bind error. I did not claim the shell listener checks alone prove client identity.
+
+The process checks require the adapter path in xochitl maps and reject the original proxy path. They do not establish application readiness, as described in Finding 2.
+
+On its full expected profile, each rollback removes only the guarded active adapter and owned active QMD, moves the payload root to the guarded retained destination, then moves the original proxy back. It verifies proxy hash and exact metadata before restart. It does not inspect runtime state or notebook storage. The script does consume the quarantined proxy file through that restoring move; it retains the quarantine directory.
+
+No script changes boot, account, cloud, auto-sleep, unrelated QMDs, or settings. All twelve named pre-existing QMDs have hash guards. The script body does not prove absence of concurrent external changes; this report grants no authority to repair a mismatch.
+
+AUTHORITY, RESTART, AND EVIDENCE LIMITS
+
+The command manifest marks approval and device execution false. This report does not change either field.
+
+The exact script bodies contain one revised LOAD restart and one selected rollback restart. With the already executed restart #1, revised LOAD plus original-proxy rollback needs two new restarts and three total. Original-overlay rollback alone needs one new restart and two total; it performs no revised install.
+
+Fresh owner approval must identify the revised manifest, exact commands, and restore-original branch A. Each restart needs a renewed ALL-documents-saved/closed confirmation. The single native close swipe proves recovery to the library only. It does not supply that confirmation.
+
+The prompt states host per-command timeout 45, SSH BatchMode, ConnectTimeout 8, and StrictHostKeyChecking yes. These settings are not encoded in the target script bodies. I did not execute or independently validate a host transport wrapper. There is no target timeout or partial-failure recovery trap in the scripts. A host timeout is not proof that a target command stopped.
+
+After future disconnect, no SSH, scp, or manual transfer is authorized until the required result review. Detached acceptance must come from the actual authenticated LAN client, with both UDC observations, no USB IPv4, and listener Safe. Preflight merely prints UDC state and explicitly denies detached acceptance.
+
+The manifest records fresh actual requests A a011855184f195ac2961ab0e9c934926 and B 0f7526d7272a99da68121893ee20afb4. It records PDF SHA256 bcc546d005d4bc5f5fc2ab7d217484e311c21f84e994459ed44913587f26f666. I did not contact those origins.
+
+The retired requests 6d318d779e4c12fce1395b499bcaec5b and b3a4bf9567d3bc0ec8e6f5b671085f7b are observer-host-cancelled/unbound records. Their recorded fresh-origin GET 404 results do not prove bound-tablet owner cancellation.
+
+No import, draw, Send, export, device restart, or original-proxy restoration was performed in this session. Hardware success remains unproven. The next parent action is to address the script recovery gaps before requesting exact owner approval. This report authorizes no speculative repair.

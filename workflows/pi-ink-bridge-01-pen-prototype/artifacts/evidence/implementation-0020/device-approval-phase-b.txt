@@ -1,0 +1,102 @@
+PHASE B DEVICE APPROVAL REQUEST — NOT AUTHORIZED YET
+Ticket pi-ink-bridge-01-pen-prototype; implementation-0020; fresh owner session01a19e3a-d649-7473-8e40-e4371bceb4ea, pane w6J:p5. Phase A approval did NOT authorize these actions.
+
+REQUESTED OWNER DECISIONS
+1. Approve this exact temporary install/quarantine/activation, synthetic-only tablet experiment, cable reconnect, and rollback scope.
+2. Explicit final restore choice A RESTORE ORIGINAL or B KEEP ORIGINAL QUARANTINED. A restores exact pre-existing webserver-remote.so and its prior behavior, including observed wildcard HTTP :80. B is a persistent activation change: retain original bytes/metadata in the named backup directory; no claim of exact baseline restoration. No default choice is made.
+3. Confirm ALL documents saved and closed immediately before LOAD restart. Renew this confirmation immediately before ROLLBACK restart. Prior confirmations are not reused.
+4. Approve normal owner UI access to the two new controlled synthetic imports and known synthetic UUID fc2a3c9b-feea-40d1-9ac1-a8327f10edba ONLY as the unassociated switching control. No export or modification of that prior UUID by the client. No private notebooks.
+
+INTERRUPTION AND LIMITS
+Exactly2 planned Xochitl restarts: one combined quarantine+adapter+QMD load, one removal+selected restoration. The stock UI disappears at each restart; no duration guarantee. Zero tablet reboot, rm-sync restart, xovi/start or stock script, boot activation, firmware replacement, service/drop-in/account/cloud/auto-sleep setting changes. Sleep/reboot/update/reactivation remain untested. Any third restart, source payload substitution, or additional device scope needs fresh approval. A failed first load uses the planned rollback restart only after renewed saved/closed confirmation. Imported known synthetic content may sync through the owner's existing cloud configuration; this experiment does not change it.
+
+FRESH VERIFIED BASELINE
+Paper Pro firmware3.28.0.172. Stock SHA256 b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021. XOVI0.3.3 runtime SHA256 d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446; Qt6.10.3 SDK/runtime boundary. Original /home/root/xovi/extensions.d/webserver-remote.so hash24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f; stat644 0 0 8453696 1793049401. Xochitl PID88464 mapped it during Phase A and owned wildcard:80 inode271141 plus127.0.0.1:81 inode271980. Fresh hashtab SHA2569ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615. All6 existing extensions, all12 QMDs, service/drop-in hashes and listener metadata are in BASE evidence implementation-0020/{preflight-phase-a,preflight-phase-a-resource,phase-a-attribution}.json. Recheck before mutation and abort on mismatch; do not repair or normalize.
+
+PROCESS-WIDE SIDE EFFECTS AND PRESERVED BASELINE CODE
+Minimal adapter redirects EVERY Xochitl Qt usb0/usb1 interface lookup to lo, makes loopback isGlobal true for every caller, and forces EVERY intercepted Qt port80 listen to IPv4 127.0.0.1:81 with bool ABI. Other Qt listen ports pass through. These are process-wide hooks, not stock-callsite-only hooks; unrelated Qt callers can observe changed interface/global-address semantics or port81 collisions. No Rust LAN proxy, IP approval popup, settings bypass, arbitrary stock-library LAN proxy, or new inbound tablet LAN port. Local UI API binds only127.0.0.1:9821.
+Preserve all12 existing QMDs, including computed-widgets-01-live-document-probe.qmd. That pre-existing code already records current UUID/page in /home/root/computed-widgets-01-identity.json and has a separate editor action. Do NOT read/modify that file or trigger that action. The owner uses only new Pi Ink panel/Send and controlled synthetic documents. No claim that the pre-existing probe provides private-document privacy. New code does not log private titles/content and ignores unrelated Library signals before reading their parent identity.
+
+EXACT OWNED TARGET PATHS
+payload=/home/root/pi-ink-bridge-0020
+backup=/home/root/pi-ink-webserver-remote-backup-0020
+adapter=/home/root/xovi/extensions.d/pi-ink-loopback-0020.so
+patch=/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd
+Transient unit pi-ink-bridge-0020. No persistent unit file.
+Payload files: pi-ink-tablet, config.json, trust/server-a.pem, trust/server-b.pem, tablet-qml/PiInkToolbar.qml, adapter.so, pi-ink-bridge.qmd, owner.txt, payload-sha256.txt. Runtime creates ONLY state.json and short-lived .tablet-state-* atomic-write files inside that new exclusive payload root. Preserve state.json as synthetic-association evidence after stop; do not remove stock documents or editable ink.
+
+PINNED PAYLOAD HASHES (SHA256)
+f601436dd591ae782f15c0714bcfd4412fb3facebeadeb7d31914a5dc69ecada  pi-ink-tablet
+1c4bf78285b08464e38e7af16f0096fda55c4dcd86a5d86ac5c1399b1becf9a6  config.json
+9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba  trust/server-a.pem
+9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55  trust/server-b.pem
+57416f0b80a3a100c6dc7ee2162647b2c866588a85cf46ef09106bbf1354595f  tablet-qml/PiInkToolbar.qml
+aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f  adapter.so
+c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8  pi-ink-bridge.qmd
+a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d  owner.txt
+Manifest hash and byte counts: BASE/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/payload-hashes-phase-b.json. Secret configuration/credentials stay outside the repository at host /tmp/pi-ink-0020-trust in mode0600; logs contain hashes/public identities only. Adapter built with pinned SDK image sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58 and XOVI generator2b99649f5e4fd6288be7792a8570bd16418adb70. All12 original QMDs plus new patch loaded in matching QMLDiffa38cccc4...; both changed resources processed offline. Qt6.10.3 syntax check exit0; private stock imports are not available to host static analysis. No tablet runtime pass yet.
+
+REAL ORIGINS AND SYNTHETIC ALLOWLIST
+Paired desktop A ID485bf81fd7f7853c4efedc0492b9d8fd at certificate-verified https://192.168.86.35:9443; job/request6d318d779e4c12fce1395b499bcaec5b.
+Paired desktop B IDe29308fadaaa0c7a10479ba117b82bee at certificate-verified https://192.168.86.35:9444; job/requestb3a4bf9567d3bc0ec8e6f5b671085f7b.
+These are TWO actual fresh OMP TUI image_editor calls using final SOURCE extension, not standalone receivers. Both currently pending. Public identities and job/source evidence are stored in pairing-public-identities.json and actual-origin-jobs.json. TLS trust uses exact provisioned CA certificates plus hostname/IP verification, separate Bearer credentials per server, authenticated WSS notifications/status and HTTPS bytes. No certificate verification bypass or redirects. Host Go executable already received both isolated actual job snapshots and rejected Send for an unassociated UUID.
+Both sources are the known800x1000 synthetic alignment PNG SHA2565f816344bcd9aeeae4ff7cf1c497404b922b54d6362a859ed60e93d18f83cdef. Actual source.pdf bytes SHA25667583c8d5b1f8acd303c8f14dc4094bb6562ddef22c610fea7988b7d20a886ab,2403511 bytes. That exact PDF digest is the only config syntheticAllowlist entry. Two imports receive fresh controlled names pi-ink-<32 lowercase hex> and actual returned stock UUIDs, never guessed from names. The name correlates only the serialized native Library import event; the stored association uses actual UUID/server/job/request/source identity and actual native parent UUID when supplied. Normal owner-created synthetic folders are OPTIONAL; no unverified native folder creation/move or stock-service destination manipulation. Record actual destinations and isolation, not assumed filesystem folders.
+
+HOST DEADLINES AND UTILITIES
+EVERY cable command uses host timeout45, ssh/scp -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes root@10.11.99.1. scp uses -O. No target timeout assumed. Each transfer/command has its own45s deadline. Utilities checked in Phase A: sha256sum,systemctl,systemd-run,find,ls,cat,sh,sleep,cp,mv,rm,rmdir,chmod,mkdir,readlink,stat. Phase B may additionally check command -v journalctl for fixed-marker-only diagnostics. No utility installation. BusyBox readlink takes ONE path per call.
+
+PREINSTALL GUARDS AND STAGING (cable only, after this approval)
+Re-run the approved Phase A baseline/hash/service/listener/QMD metadata commands and compare with stored fingerprints. Inspect only Xochitl maps/fd socket symlinks for attribution; no unrestricted journal. Require original extension regular/non-symlink with exact hash/stat, matching stock/XOVI/hashtab/all unrelated extension/QMD/service fingerprints. Require all four owned paths above absent, including dangling symlinks; transient unit must not exist. Abort without mutation on collision, changed fingerprint, other conflicting hook, unavailable utility, or unrecorded listener ownership. Do NOT accept port80/81 belonging to another process as this known conflict.
+Exact staging shell:
+set -eu; umask 077
+payload=/home/root/pi-ink-bridge-0020
+backup=/home/root/pi-ink-webserver-remote-backup-0020
+adapter=/home/root/xovi/extensions.d/pi-ink-loopback-0020.so
+patch=/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd
+for p in "$payload" "$backup" "$adapter" "$patch"; do test ! -e "$p"; test ! -L "$p"; done
+mkdir "$payload" "$backup"
+mkdir "$payload/trust" "$payload/tablet-qml"
+printf '%s\n' 'pi-ink-bridge-01-pen-prototype implementation-0020 01a19e3a-d649-7473-8e40-e4371bceb4ea' > "$backup/owner.txt"
+Then SCP ONLY the named payload files plus manifest to those exact destinations. Host source mapping and all hashes are pinned in payload-hashes-phase-b.json. No token contents printed. Before activation: (cd "$payload" && sha256sum -c payload-sha256.txt); chmod 700 "$payload/pi-ink-tablet"; chmod 600 "$payload/config.json" "$payload/trust/server-a.pem" "$payload/trust/server-b.pem". Partial transfer is not activation; stop and report any transfer/hash failure. No substitutions or overwrite of unrelated paths.
+
+ACTIVATION — REQUIRES FRESH ALL-DOCUMENTS-SAVED/CLOSED CONFIRMATION
+set -eu
+payload=/home/root/pi-ink-bridge-0020
+backup=/home/root/pi-ink-webserver-remote-backup-0020
+original=/home/root/xovi/extensions.d/webserver-remote.so
+adapter=/home/root/xovi/extensions.d/pi-ink-loopback-0020.so
+patch=/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd
+(cd "$payload" && sha256sum -c payload-sha256.txt)
+test -f "$original"; test ! -L "$original"
+printf '%s  %s\n' 24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f "$original" | sha256sum -c -
+stat -c '%a %u %g %s %Y %n' "$original"
+test ! -e "$backup/webserver-remote.so"; test ! -L "$backup/webserver-remote.so"
+test ! -e "$adapter"; test ! -L "$adapter"; test ! -e "$patch"; test ! -L "$patch"
+mv "$original" "$backup/webserver-remote.so"
+(set -C; cat "$payload/adapter.so" > "$adapter")
+(set -C; cat "$payload/pi-ink-bridge.qmd" > "$patch")
+chmod 644 "$adapter" "$patch"
+systemctl restart xochitl
+sleep 8
+systemctl is-active xochitl
+cat /proc/net/tcp /proc/net/tcp6
+Require exact adapter mapping/marker PI_INK_LOOPBACK_0020, exact QMD hash, original extension absent from active mappings, stock:81 exclusively127.0.0.1, no stock/proxy wildcard/Wi-Fi/USB :80/:81, and local UI later only127.0.0.1:9821. Attribute sockets to Xochitl, do not infer from file moves. Filtered journal, if needed, ONLY messages matching PI_INK_LOOPBACK_0020, PiInkToolbar, or pi-ink-bridge-0020 from this activation window. Never unrestricted logs.
+If service/listener/patch verification fails, perform no document import/export and do not disconnect USB. Ask for renewed saved/closed confirmation, then use the planned rollback restart. No extra restart or settings change.
+After safe activation, start ONLY transient client:
+systemd-run --unit=pi-ink-bridge-0020 --collect --property=Restart=no /home/root/pi-ink-bridge-0020/pi-ink-tablet -config /home/root/pi-ink-bridge-0020/config.json
+Check unit active plus real authenticated WSS status. Attached USB means Safe=false and is expected until disconnect. This is not a lifecycle pass.
+
+OWNER CABLE-FREE EXPERIMENT
+Parent requests USB disconnect. From disconnect until authenticated results arrive: NO SSH, SCP, Wi-Fi SSH, manual transfer, or remote synthetic API commands. The actual tablet client reports both UDC states not attached, zero USB IPv4 and localhost-only stock listeners over authenticated WSS; Safe=true must be observed before any import/export. Status log distinguishes earlier HOST smoke samples (no UDC, Safe=false) from actual tablet reports.
+Owner opens new Pi Ink panel from normal library/editor. Compare paired server IDs A/B with this plan. Import each pending source with the tablet panel, not browser import. Confirm library visibility, unique actual document UUIDs, actual parent/destination identities and source dimensions. Owner locates/opens documents normally; no automatic opening. Record destination isolation honestly. Owner draws/saves with normal editor; observe pen latency/palm handling/eraser/undo/zoom and toolbar interference. Do not use the preserved baseline probe's editor action.
+Switch A/B/known unassociated synthetic control/library-empty state. Verify displayed current UUID/bound server/status follows actual document; unassociated has no Send. Save/close alone must leave both actual tool requests pending. Send A with known outside-source ink: actual local GET ONLY /download/{boundUUID}/pdf, actual authenticated upload into A's existing gate, no completion until per-result clipping consent. Switch away before consent; old result/confirmation must invalidate with server-issued submission epoch. Return and explicitly Send again to obtain new consent; never reuse old consent.
+Cancel B through its actual originating OMP tool/caller. Wait for authenticated cancelled state; B Send/late result cannot complete or affect A. This does not approve any tablet SSH operation. A remains separate. Owner explicitly confirms clipping for current A result. Require actual originating OMP image_editor PNG800x1000, visible planned marks, full annotated PDF retained durably, and editable stock work still available. No browser/manual import substitute. If B cancellation cannot be observed, do not claim terminal cancellation. Do not fabricate quality/lifecycle passes.
+
+ROLLBACK — CABLE RECONNECT AFTER RESULTS, RENEWED ALL-DOCS-SAVED/CLOSED
+Stop only transient pi-ink-bridge-0020 with systemctl stop. Read/copy ONLY its owned state.json and hashes as synthetic-association evidence. Verify static payload manifest and exact installed adapter/QMD hashes; verify backup original exact hash/stat and owner record. List only owned payload directory for unexpected files; do not read private library. If any unexpected file/hash/symlink or unrestored baseline change appears, stop and ask rather than broad deletion/repair. A .tablet-state-* leftover requires exact-name review, not wildcard deletion.
+Remove ONLY installed owned adapter/QMD, the explicitly named payload files and approved archived state.json. Use individual rm paths and rmdir for payload/tablet-qml, payload/trust, payload; never rm -rf. Preserve synthetic library documents/editable ink and durable desktop PDFs/PNGs.
+Choice A: original destination must remain absent/non-symlink. mv /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so /home/root/xovi/extensions.d/webserver-remote.so; verify original hash/stat; remove only backup/owner.txt then rmdir backup after successful restoration verification.
+Choice B: verify original destination absent and backup original hash/stat unchanged; retain backup original and owner.txt permanently with rollback path documented.
+Then execute ONLY second planned `systemctl restart xochitl; sleep 8; systemctl is-active xochitl`. Re-capture same baseline fingerprints, maps and listeners. A requires exact stock/XOVI/scripts/unrelated extensions/QMDs/hashtab/service fingerprints and original extension metadata/listeners; prior wildcard proxy is restored owner state, not our security recommendation. B records approved activation difference and observed listeners, not full restoration. No generated-cache/settings repair or additional restart on mismatch without fresh approval. Preserve complete source/evidence/history.
+
+Parent w64:pY: send exact scope approval, explicit A/B restore selection, approved synthetic allowlist/control, and fresh saved/closed confirmation before activation. Keep this implementation session alive while obtaining owner actions. No Phase B device command has run.
