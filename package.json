@@ -12,5 +12,8 @@
   "dependencies": {
     "@types/nconf": "^0.10.7",
     "nconf": "^0.13.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }
