@@ -1,0 +1,55 @@
+{
+  "schema": "pi-ink-bootstrap-evidence/v1",
+  "created_at": "2026-11-04T23:11:53.519Z",
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "source": {
+    "branch": "master",
+    "commit": "ea313cdc54cd0679e1d3709fd87a6f1edb49ed45",
+    "tree": "d5f5297e5f910c896403cb9bb170bcbba55e4d51"
+  },
+  "previous_evidence": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/minimal-bootstrap-0041/verification.json",
+  "previous_review": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/reviews/review-minimal-bootstrap-0041.md",
+  "status": "passed-local-verification",
+  "correction": "Coordinator startup is module-level and uses state owned by each extension instance. Shared promise caching and failure reset remain intact.",
+  "checks": [
+    {
+      "args": [
+        "bun",
+        "run",
+        "typecheck"
+      ],
+      "code": 0,
+      "stdout": "",
+      "stderr": "$ tsc --noEmit\n"
+    },
+    {
+      "args": [
+        "bun",
+        "test",
+        "test"
+      ],
+      "code": 0,
+      "stdout": "bun test v1.4.3 (c6da4a4d3)\n",
+      "stderr": "\ntest/editing-session.test.ts:\n(pass) editing remains available after a day until done [11.73ms]\n(pass) editing remains available after a day until cancel [2.28ms]\n(pass) editing remains available after a day until abort [1.44ms]\n\ntest/annotator-server.test.ts:\n(pass) annotation server protects source data and returns exported PNG bytes [1.69ms]\n(pass) cancel ends the session without returning an image [1.13ms]\n(pass) a new drawing has no source image and returns its exported PNG [1.53ms]\n(pass) annotation server serves the built Excalidraw app and bundle [2.84ms]\n\ntest/tablet-install.test.ts:\n(pass) installs a usable coordinator URL and rejects an incompatible URL before creating its prefix [28.25ms]\n\n 8 pass\n 0 fail\n 44 expect() calls\nRan 8 tests across 3 files. [382.00ms]\n"
+    },
+    {
+      "args": [
+        "bun",
+        "/var/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-04T09-21-37-438Z_01a1a5dd-2a9e-72c4-8797-c9988749391e/local/minimal-bootstrap-smoke.ts"
+      ],
+      "code": 0,
+      "stdout": "{\n  \"status\": \"passed\",\n  \"checks\": [\n    \"Real coordinator: health, read-only methods, fixed public routes, and bundle HEAD passed.\",\n    \"Production archive contains a static Linux ARM64 executable.\",\n    \"Native client: real coordinator status, streamed bundle download, and existing-output refusal passed.\",\n    \"Native client: checksum mismatch removed its own partial output.\",\n    \"Installer: private new prefix, stored-URL client status, and non-overwriting repeat-install refusal passed.\",\n    \"Provision dry run fetched and checked the real archive without invoking SSH.\",\n    \"Provision transport boundary: captured the validated ARM64 archive, then ran the remote command with a host-native fixture in a temp prefix. Client validation and shell quoting preserved the literal URL. No real SSH ran.\",\n    \"Extension lifecycle driver: session start exposed HTTP, /image coordinator reused it, and session shutdown closed it. This did not restart the live harness.\"\n  ]\n}\n",
+      "stderr": ""
+    }
+  ],
+  "deployment": {
+    "command": "readlink -f /home/zenobius/.omp/agent/extensions/image-annotator",
+    "result": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-omp/extensions/image-annotator",
+    "harness_restarted": false
+  },
+  "limits": [
+    "Only extension lifecycle source changed after verification 0041. Tablet source and shell scripts are unchanged; the earlier build and shell checks still apply.",
+    "All HTTP/client/installer checks used the desktop and native fixtures. No real SSH, tablet contact, process scan, cleanup, or live OMP restart ran.",
+    "This evidence run does not establish prototype workflow phase progress or full ticket acceptance."
+  ]
+}

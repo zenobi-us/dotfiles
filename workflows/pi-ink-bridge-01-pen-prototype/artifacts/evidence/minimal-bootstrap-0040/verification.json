@@ -1,0 +1,54 @@
+{
+  "schema": "pi-ink-bootstrap-evidence/v1",
+  "created_at": "2026-11-04T22:46:40.040Z",
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "source": {
+    "branch": "master",
+    "commit": "3bfd53b444b45b8ed63982bc7c8cba2ca5b53759",
+    "tree": "6f57775dc787ed48d6ccafd47d0d54a0902bac2b",
+    "baseline": "029e232162273d8822fb2b151e98504c23bc152a"
+  },
+  "scope": [
+    "Extension-owned HTTP coordinator",
+    "Downloadable Linux ARM64 client bundle",
+    "Extension-owned initial SSH installer"
+  ],
+  "status": "passed-local-verification",
+  "checks": [
+    {
+      "command": "bun run build && bun run typecheck && bun test test",
+      "result": "Passed. Seven tests, zero failures, 39 expect calls. Vite reported dependency use-client and large-chunk warnings."
+    },
+    {
+      "command": "bun run build:tablet && sh -n tablet-client/build.sh tablet-client/install.sh scripts/provision-tablet.sh",
+      "result": "Passed after the client error messages were updated to retain HTTP error causes."
+    },
+    {
+      "command": "bun <isolated temporary bootstrap smoke driver>",
+      "result": "Passed all eight scenario groups."
+    }
+  ],
+  "smoke": [
+    "Actual HTTP server returned the expected health protocol, rejected POST with 405, rejected private/editor and traversal paths with 404, and served bundle HEAD.",
+    "The built production archive contained a statically linked ARM aarch64 executable.",
+    "A native build of the same Go source checked the actual server, downloaded its archive, verified SHA-256, and refused an existing output.",
+    "An actual server with a stale checksum caused client failure and removal of the client-created partial output.",
+    "The bundled installer created a private host temporary prefix; its native client read the installed coordinator URL and checked the actual server. Repeat installation refused the existing prefix and preserved its configuration.",
+    "The provisioning dry run downloaded and checked the production archive without invoking the SSH boundary.",
+    "A local SSH boundary recorder captured the real remote command and archive. A local shell executed that command with only the install prefix redirected to a host temporary directory. It installed the ARM64 bundle and preserved a quoted URL literally. No real SSH or tablet connection ran.",
+    "An extension event driver started the actual coordinator, reused it through /image coordinator, and closed it on session_shutdown."
+  ],
+  "limits": [
+    "HTTP checks used loopback ephemeral ports, not the live OMP harness.",
+    "The tablet was not contacted. The ARM64 binary was not run on hardware.",
+    "No pen input, annotation transport, production authentication, or full-ticket acceptance was tested.",
+    "The temporary smoke driver and fixture directories are not permanent tests."
+  ],
+  "preserved": {
+    "prototype_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+    "prototype_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+    "cleanup": "Paused. No cleanup retry, process scan, device action, or takeover occurred.",
+    "workflow_phase": "Unchanged. This evidence run does not establish workflow phase progress.",
+    "user_changes": "The staged mise.toml and old untracked workflow evidence were excluded from these commits."
+  }
+}

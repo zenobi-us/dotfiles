@@ -1,0 +1,89 @@
+{
+  "schema": "pi-ink-bootstrap-evidence/v1",
+  "created_at": "2026-11-04T23:02:47.546Z",
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "source": {
+    "branch": "master",
+    "commit": "b6819cea343179875db1ba256e7cc7fe27ef8989",
+    "tree": "b06bed881cff8805cd066ad174d96161c2831ce4",
+    "baseline": "029e232162273d8822fb2b151e98504c23bc152a"
+  },
+  "previous_evidence": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/minimal-bootstrap-0040/verification.json",
+  "previous_review": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/reviews/review-minimal-bootstrap-0040.md",
+  "status": "passed-local-verification",
+  "corrections": [
+    "The bundled client validates the coordinator URL before installer prefix creation.",
+    "The HTTP handler is at module scope."
+  ],
+  "regression": {
+    "command": "bun test test/tablet-install.test.ts",
+    "before": {
+      "exit_code": 1,
+      "result": "The installer incorrectly returned zero for a coordinator URL with a query."
+    },
+    "after": {
+      "exit_code": 0,
+      "result": "One integration test passed. The valid installed client reached the actual coordinator. The incompatible URL was rejected before prefix creation."
+    }
+  },
+  "checks": [
+    {
+      "args": [
+        "bun",
+        "run",
+        "build:tablet"
+      ],
+      "code": 0,
+      "stdout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/dist/bundle.tar.gz\n/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/dist/bundle.sha256\n",
+      "stderr": "$ sh tablet-client/build.sh\n"
+    },
+    {
+      "args": [
+        "bun",
+        "run",
+        "typecheck"
+      ],
+      "code": 0,
+      "stdout": "",
+      "stderr": "$ tsc --noEmit\n"
+    },
+    {
+      "args": [
+        "bun",
+        "test",
+        "test"
+      ],
+      "code": 0,
+      "stdout": "bun test v1.4.3 (c6da4a4d3)\n",
+      "stderr": "\ntest/editing-session.test.ts:\n(pass) editing remains available after a day until done [11.42ms]\n(pass) editing remains available after a day until cancel [1.83ms]\n(pass) editing remains available after a day until abort [1.36ms]\n\ntest/annotator-server.test.ts:\n(pass) annotation server protects source data and returns exported PNG bytes [1.66ms]\n(pass) cancel ends the session without returning an image [1.02ms]\n(pass) a new drawing has no source image and returns its exported PNG [1.52ms]\n(pass) annotation server serves the built Excalidraw app and bundle [2.29ms]\n\ntest/tablet-install.test.ts:\n(pass) installs a usable coordinator URL and rejects an incompatible URL before creating its prefix [27.58ms]\n\n 8 pass\n 0 fail\n 44 expect() calls\nRan 8 tests across 3 files. [339.00ms]\n"
+    },
+    {
+      "args": [
+        "sh",
+        "-n",
+        "tablet-client/build.sh",
+        "tablet-client/install.sh",
+        "scripts/provision-tablet.sh"
+      ],
+      "code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "bun",
+        "/var/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-04T09-21-37-438Z_01a1a5dd-2a9e-72c4-8797-c9988749391e/local/minimal-bootstrap-smoke.ts"
+      ],
+      "code": 0,
+      "stdout": "{\n  \"status\": \"passed\",\n  \"checks\": [\n    \"Real coordinator: health, read-only methods, fixed public routes, and bundle HEAD passed.\",\n    \"Production archive contains a static Linux ARM64 executable.\",\n    \"Native client: real coordinator status, streamed bundle download, and existing-output refusal passed.\",\n    \"Native client: checksum mismatch removed its own partial output.\",\n    \"Installer: private new prefix, stored-URL client status, and non-overwriting repeat-install refusal passed.\",\n    \"Provision dry run fetched and checked the real archive without invoking SSH.\",\n    \"Provision transport boundary: captured the validated ARM64 archive, then ran the remote command with a host-native fixture in a temp prefix. Client validation and shell quoting preserved the literal URL. No real SSH ran.\",\n    \"Extension lifecycle driver: session start exposed HTTP, /image coordinator reused it, and session shutdown closed it. This did not restart the live harness.\"\n  ]\n}\n",
+      "stderr": ""
+    }
+  ],
+  "limits": [
+    "The production ARM64 archive was built and inspected, but not executed on hardware.",
+    "Native fixtures ran the same Go source and installer on the desktop. The remote command used a host-native fixture and a temporary install prefix.",
+    "No real SSH, tablet connection, process scan, cleanup, daemon, or live harness restart ran.",
+    "The preserved prototype workflow remains unchanged and blocked. This evidence run does not establish workflow phase progress."
+  ],
+  "temporary_driver": "The smoke driver and its fixtures were temporary. Its observed stdout is retained in checks."
+}
