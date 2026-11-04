@@ -1,0 +1,40 @@
+{
+  "schema": "pi-ink-cleanup-design-confirmation/v1",
+  "date": "2026-11-04",
+  "status": "DESIGN_CONFIRMED_NOT_EXECUTION_AUTHORITY",
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "adr_ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md",
+  "confirmation_sequence": [
+    {"question": "Trusted exclusive-operation model or resistance to a hostile root process changing files concurrently?", "owner_answer": "yes", "interpretation": "Assistant explicitly interpreted this as the trusted exclusive-operation model in the next question."},
+    {"question": "Stop after obtaining the two config hashes and removing only the temporary helper?", "owner_answer": "yes"},
+    {"question": "Confirm the complete design: stage pinned helper, read identities once, remove only helper after termination/identity verification, stop on failure; design only, no execution permission?", "owner_answer": "yes"}
+  ],
+  "trust_model": "Protect against mistakes, unexpected files, symlinks and stale identities. Assume exclusive owner-controlled operation, with no privileged process deliberately replacing files concurrently.",
+  "operation": [
+    "Use cable-connected SSH. Create a new root-only helper directory; refuse an occupied path. Transfer the pinned ARM64 reader and verify its hash. Do not overwrite existing files or repair their permissions.",
+    "Invoke the reader once. Obtain only the two config hashes and approved metadata. Keep existing no-symlink, ownership, bounded-read and identity checks. Never print or copy config values.",
+    "After process termination is established, verify helper identity and remove only the new helper and proven-empty directory. If process state or identity is uncertain, preserve them.",
+    "On failure, stop without retry, widened investigation or service restart. Older experiment cleanup needs a separate fixed manifest and approval."
+  ],
+  "target_configs": ["/home/root/pi-ink-sidebar-stage-0020/config.json", "/home/root/pi-ink-sidebar-backup-0020/config.json"],
+  "existing_reader": {
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/reader-linux-arm64",
+    "sha256": "03016b9c35aeecd82362fe34e4187037a7ee5ebf76014fd7df2f6264aca228d6",
+    "source_or_binary_changed": false,
+    "hardware_compatibility": "Not established by offline validation."
+  },
+  "policy_supersession": {
+    "historical_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/device-proposal.json",
+    "replaced_requirement": "Separate descriptor-safe staging/removal executor and descriptor-preserving deployment execution prerequisite.",
+    "retained": "Reader safeguards, fixed targets and helper paths, actual binary pin, bounded cable transport, single invocation, failure stop, and separate execution/deletion permission boundaries.",
+    "historical_files_overwritten": false
+  },
+  "next_prerequisite": "Prepare and review a concrete deployment script under this trust model. Obtain exact owner execution approval before any tablet connection. Do not create another general capability-discovery task.",
+  "execution_approved": false,
+  "device_actions": false,
+  "reader_modified": false,
+  "ticket_phase_started": false,
+  "full_ticket_status": "BLOCKED",
+  "work_status": "claimed",
+  "publication": "Repository-local design records. No phase receipt, implementation claim, commit, push or device execution implied."
+}
