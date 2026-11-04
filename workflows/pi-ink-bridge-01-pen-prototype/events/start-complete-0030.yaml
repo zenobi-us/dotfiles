@@ -1,0 +1,231 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0030",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 10,
+  "parent_receipt": "implementation-0029",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+  "created_at": "2026-11-04T10:17:37.856Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w64:pY",
+  "agent": "omp",
+  "session_id": "01a1a5dd-2a9e-72c4-8797-c9988749391e",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0025.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0024.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0023.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0017.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0014.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0011.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0008.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0005.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-decision-20261104/proposal.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-decision-20261104/approval.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/two-config-digests-v2-outcome.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/final-cleanup-reachable-facts-v1.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0029.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/main_linux.go"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/reader_linux.go"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/host_fixture_linux.go"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/main_linux_test.go"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/verify.py"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/validation.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/reader-linux-amd64"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/reader-linux-arm64"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/host-fixture-linux-amd64"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/device-proposal.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/scope-observations.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/sha256-index.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0029.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0029.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-decision-20261104/parent-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-decision-20261104/launch-observation.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0030.yaml"
+    }
+  ],
+  "status": "blocked",
+  "scope": "OFFLINE ONLY: bounded reader source, synthetic host smoke, Linux ARM64 build, frozen install/run/removal proposal. No device access/commands, staging, config reads, restart, deletion or product source changes.",
+  "recovery": {
+    "mode": "reconcile",
+    "prior_attempt": "start-0025",
+    "reason": "Validated real offline-only result0029, all18outputs,11artifact pins, independent host tests/synthetic executable smoke/production argument refusal, exact unchanged clean source. No child work repeated.",
+    "approval": "artifacts/evidence/cleanup-decision-20261104/approval.json",
+    "ownership": "Claim retained idempotently, scoped transfer authorized. Parent historical tail interrupted and herdr wait agent_not_running for old child; fresh roster lacks old parent/child. No active goal reservation matches ticket.",
+    "preserve": "Clean exact sourcebb5df500/tree9a9acbfb. Preserve staged BASE mise.toml, earlier untracked evidence, system-relationships report, all partial files and old sessions.",
+    "outcome": "Approved offline reader slice complete. Full ticket remains blocked. No tablet action taken; partial0026 remains open."
+  },
+  "production_blocked": true,
+  "ticket_state": "claimed",
+  "child_session_id": "01a1a5fd-64e0-74a9-b55c-7fe7e47c9150",
+  "slice_status": "completed",
+  "device_execution": false,
+  "worktree_preserved": true,
+  "pane_closed": true,
+  "result_missing": false,
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029"
+  },
+  "implementation_summary": "Bounded descriptor-relative fixed-path Linux reader prepared and host-smoked. Static ARM64 build retained. Frozen device proposal explicitly records missing safe staging/execution prerequisite; not a runnable approved device plan.",
+  "validation": [
+    {
+      "command": "Independent pinned-file verification",
+      "result": "11 files match SHA256 index;18 result outputs exist"
+    },
+    {
+      "command": "GO111MODULE=off GOENV=off GOTOOLCHAIN=local GOPROXY=off GOSUMDB=off CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go test -count=1 -timeout=45s -v .",
+      "result": "exit0; boundary/refusal/identity-change tests pass"
+    },
+    {
+      "command": "./host-fixture-linux-amd64",
+      "result": "exit0; synthetic config hashes and complete token; NOT device evidence"
+    },
+    {
+      "command": "./reader-linux-amd64 --fixture=/unapproved",
+      "result": "exit1; REFUSAL ARGUMENTS; no stderr"
+    },
+    {
+      "command": "herdr agent read w6R:p2",
+      "result": "Actual final output and immutable result present; user reports child done. Muxer did not yield done within10s; no claim of a successful muxer done signal."
+    },
+    {
+      "command": "herdr pane close w6R:p2",
+      "result": "ok; only completed child pane closed; source workspace retained"
+    },
+    {
+      "command": "inspect.ts before parent completion",
+      "result": "historyValid=true; start/reconcile; clean sourcebb5df500/tree9a9acbfb"
+    }
+  ],
+  "failure_reason": "Two actual device config hashes absent. Device staging/execution mechanism unproved. No device operation approved. Native end-to-end acceptance and final cleanup remain blocked."
+}

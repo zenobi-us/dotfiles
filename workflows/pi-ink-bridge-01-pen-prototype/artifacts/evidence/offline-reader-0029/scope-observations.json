@@ -1,0 +1,71 @@
+{
+  "schema": "pi-ink-offline-scope-observations/v1",
+  "created_at": "2026-11-04T10:08:23.745Z",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "source_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+  "source_identity_command": "go version && id && git rev-parse HEAD HEAD^{tree}",
+  "source_writes": [],
+  "session_id": "01a1a5fd-64e0-74a9-b55c-7fe7e47c9150",
+  "parent_session_id": "01a1a5dd-2a9e-72c4-8797-c9988749391e",
+  "session_identity_source": "herdr agent list: pane w6R:p2 current new OMP session path 2026-11-04T09-56-49-504Z_01a1a5fd-64e0-74a9-b55c-7fe7e47c9150.jsonl",
+  "muxer": "herdr",
+  "pane": "w6R:p2",
+  "inspector": {
+    "command": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/inspect.ts tracker/tickets/pi-ink-bridge-01-pen-prototype.md --json",
+    "decision": {
+      "action": "start",
+      "mode": "takeover",
+      "parentReceipt": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0028.yaml",
+      "requiredApproval": true
+    },
+    "note": "Current independently launched child consumes reserved0029; not authority to relaunch another child. Parent recorded prior owner/reservation checks in0028. No agents launched/resumed/reused here."
+  },
+  "shared_context": {
+    "workflow": {
+      "store": "repository",
+      "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+    },
+    "evidence": {
+      "store": "repository",
+      "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029"
+    },
+    "ticket": {
+      "backend": "local-markdown",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    }
+  },
+  "observed_go": "go1.25.0 linux/amd64",
+  "fixture_owner": "UID1000/GID1000. Host fixtures use required-policy mismatch to exercise actual fstat ownership refusal without privileged chown. Production main fixes UID0/GID0.",
+  "tests_limits": [
+    "Identity mutations are deterministic changes after descriptor/metadata capture; no exhaustive adversarial race claim.",
+    "No observed target kernel/tool/executable-filesystem compatibility; no device action.",
+    "Host root is a synthetic descriptor/anchor. Production entry hardcodes /, marker digest and root ownership; no flags/paths/env override."
+  ],
+  "actions": {
+    "ssh": false,
+    "network_probe": false,
+    "device_command": false,
+    "private_config_read": false,
+    "device_staging": false,
+    "restart": false,
+    "permission_repair": false,
+    "product_source_edit": false,
+    "commit": false,
+    "merge": false,
+    "push": false,
+    "ticket_mutation": false,
+    "final_cleanup_program": false
+  },
+  "earlier_work_preserved": [
+    "BASE staged mise.toml",
+    "implementation0026 and system-relationships evidence",
+    "all historical receipts, marker/state/documents/source"
+  ],
+  "full_ticket_status": "BLOCKED",
+  "work_status": "claimed",
+  "slice_status": "completed"
+}

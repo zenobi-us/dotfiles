@@ -1,0 +1,14 @@
+{
+  "schema": "pi-ink-child-launch-observation/v1",
+  "date": "2026-11-04",
+  "parent_start_receipt": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0028.yaml",
+  "muxer": "herdr",
+  "workspace": "w6R",
+  "pane": "w6R:p2",
+  "agent": "omp",
+  "child_session": "01a1a5fd-64e0-74a9-b55c-7fe7e47c9150",
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "launch_command_outcome": "CLI acknowledgment timed out after30seconds. A subsequent roster showed a new working OMP session with launch_pending=true in the exact pane and cwd. Launch not repeated.",
+  "wait_transport": "Named agent wait returned agent_not_found. Wait switched to verified pane w6R:p2 under the muxer contract. No session resumed or duplicated.",
+  "scope": "Offline reader preparation and synthetic host validation only; no tablet access or operations authorized."
+}

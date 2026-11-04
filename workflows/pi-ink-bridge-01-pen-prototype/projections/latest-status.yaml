@@ -2,17 +2,41 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "pi-ink-bridge-01-pen-prototype",
   "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
-  "state": "IMPLEMENTED",
-  "latest_receipt": "implementation-0023",
+  "state": "BLOCKED",
+  "full_ticket_status": "BLOCKED",
+  "work_status": "claimed",
+  "latest_receipt": "start-complete-0030",
   "latest_source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
   "latest_source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
   "latest_review_verdict": null,
   "open_findings": [
-    "Private stock QML types cannot be instantiated with available SDK. Owner must verify native geometry, warning text, input, close and orientations under fresh exact device approval.",
-    "Hardware association/Send acceptance remains blocked.",
-    "Original proxy remains quarantined at last observation; original restoration#4 needs renewed saved/closed and USB confirmation. Credentials/experiment cleanup not complete."
+    "Production/native UI and association/Send acceptance remain blocked; this offline slice does not repeat or verify product implementation.",
+    "Two actual device config hashes remain absent.",
+    "NEW exact owner approval required before any device staging/invocation/helper removal.",
+    "Safe descriptor-relative staging/removal and identity-preserving execution mechanism not yet proved; reserved helper path vacancy and hardware compatibility unobserved.",
+    "Final irreversible cleanup manifest/program not created; partial0026 remains open."
   ],
   "hardware_acceptance": "BLOCKED",
-  "restored": false,
-  "cleanup_complete": false
+  "slice_status": "completed",
+  "device_execution": false,
+  "cleanup_complete": false,
+  "previous_projection": {
+    "schema": "worktree-latest-status/v1",
+    "workflow_id": "pi-ink-bridge-01-pen-prototype",
+    "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+    "state": "IMPLEMENTED",
+    "latest_receipt": "implementation-0023",
+    "latest_source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+    "latest_source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+    "latest_review_verdict": null,
+    "open_findings": [
+      "Private stock QML types cannot be instantiated with available SDK. Owner must verify native geometry, warning text, input, close and orientations under fresh exact device approval.",
+      "Hardware association/Send acceptance remains blocked.",
+      "Original proxy remains quarantined at last observation; original restoration#4 needs renewed saved/closed and USB confirmation. Credentials/experiment cleanup not complete."
+    ],
+    "hardware_acceptance": "BLOCKED",
+    "restored": false,
+    "cleanup_complete": false
+  },
+  "history_note": "Prior projection retained as historical text, not current device/restoration fact."
 }

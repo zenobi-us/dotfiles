@@ -1,0 +1,489 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0029",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-result",
+  "attempt": 10,
+  "parent_receipt": "start-0028",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+  "created_at": "2026-11-04T10:10:31.326Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6R:p2",
+  "agent": "omp",
+  "session_id": "01a1a5fd-64e0-74a9-b55c-7fe7e47c9150",
+  "parent_session_id": "01a1a5dd-2a9e-72c4-8797-c9988749391e",
+  "session_identity_evidence": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/scope-observations.json",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "record",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "record",
+      "ref": "docs/adr/index.md"
+    },
+    {
+      "kind": "record",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0028.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-decision-20261104/approval.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-decision-20261104/proposal.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/two-config-digests-proposal-v2/digest.sh"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/two-config-digests-proposal-v2/host.sh"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/two-config-digests-v1-interpretation-correction.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/two-config-digests-v2-outcome.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/final-cleanup-reachable-facts-v1.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/main_linux.go"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/reader_linux.go"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/host_fixture_linux.go"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/main_linux_test.go"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/verify.py"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/validation.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/reader-linux-amd64"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/reader-linux-arm64"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/host-fixture-linux-amd64"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/device-proposal.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/scope-observations.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/sha256-index.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0029.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0029.yaml"
+    }
+  ],
+  "status": "blocked",
+  "slice_status": "completed",
+  "full_ticket_status": "BLOCKED",
+  "work_status": "claimed",
+  "production_blocked": true,
+  "device_execution": false,
+  "scope": "OFFLINE ONLY: real bounded Linux Go stdlib fixed-path reader, synthetic host refusal/boundary tests, static host/ARM64 builds and frozen exact future staging/invocation/helper-removal proposal. Not full-ticket implementation or device authority.",
+  "implementation_summary": "Offline scope passed. Both markers gate all config access; descriptor-relative NOFOLLOW/NONBLOCK opens, pinned descriptor/path/metadata snapshots and capped extra-byte reads refuse unsafe objects/observed changes. Digests are in-process only; both result rows wait for final guards. Production entry rejects all arguments; separate host-only harness supplies synthetic fixtures.",
+  "changed_files": [
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/main_linux.go",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/reader_linux.go",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/host_fixture_linux.go",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/main_linux_test.go",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/verify.py",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/validation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/reader-linux-amd64",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/reader-linux-arm64",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/host-fixture-linux-amd64",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/device-proposal.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/scope-observations.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/sha256-index.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0029.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0029.yaml"
+  ],
+  "source_changed_files": [],
+  "source_identity_note": "Initial local git rev-parse observed exact source commit/tree; every authored path is under resolved BASE workflow, not SOURCE. No source edit, commit, branch mutation or product implementation repeated.",
+  "validation": [
+    {
+      "name": "format-final",
+      "command": [
+        "gofmt",
+        "-w",
+        "main_linux.go",
+        "reader_linux.go",
+        "host_fixture_linux.go",
+        "main_linux_test.go"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029",
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 0,
+      "passed": true,
+      "output_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/validation.json"
+    },
+    {
+      "name": "host-tests",
+      "command": [
+        "go",
+        "test",
+        "-count=1",
+        "-timeout=45s",
+        "-v",
+        "."
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029",
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 0,
+      "passed": true,
+      "output_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/validation.json"
+    },
+    {
+      "name": "host-static-build",
+      "command": [
+        "go",
+        "build",
+        "-trimpath",
+        "-buildvcs=false",
+        "-ldflags=-buildid=",
+        "-o",
+        "reader-linux-amd64",
+        "."
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029",
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 0,
+      "passed": true,
+      "output_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/validation.json"
+    },
+    {
+      "name": "arm64-static-build",
+      "command": [
+        "go",
+        "build",
+        "-trimpath",
+        "-buildvcs=false",
+        "-ldflags=-buildid=",
+        "-o",
+        "reader-linux-arm64",
+        "."
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029",
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "arm64"
+      },
+      "exit_code": 0,
+      "passed": true,
+      "output_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/validation.json"
+    },
+    {
+      "name": "host-fixture-build",
+      "command": [
+        "go",
+        "build",
+        "-tags=hostfixture",
+        "-trimpath",
+        "-buildvcs=false",
+        "-ldflags=-buildid=",
+        "-o",
+        "host-fixture-linux-amd64",
+        "."
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029",
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 0,
+      "passed": true,
+      "output_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/validation.json"
+    },
+    {
+      "name": "synthetic-host-smoke",
+      "command": [
+        "./host-fixture-linux-amd64"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029",
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 0,
+      "passed": true,
+      "output_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/validation.json"
+    },
+    {
+      "name": "production-rejects-fixture-override",
+      "command": [
+        "./reader-linux-amd64",
+        "--fixture=/unapproved"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029",
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 1,
+      "passed": true,
+      "output_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/validation.json"
+    },
+    {
+      "name": "artifact-elf-identity",
+      "command": [
+        "file",
+        "reader-linux-amd64",
+        "reader-linux-arm64",
+        "host-fixture-linux-amd64"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029",
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 0,
+      "passed": true,
+      "output_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/validation.json"
+    },
+    {
+      "name": "arm64-program-headers",
+      "command": [
+        "readelf",
+        "-l",
+        "reader-linux-arm64"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029",
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 0,
+      "passed": true,
+      "output_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/validation.json"
+    }
+  ],
+  "validation_summary": "python3 verify.py completed its one final format/test/build/smoke pass with OFFLINE_TEST_BUILD_SMOKE_PASS_NO_DEVICE_EXECUTION. Tests and builds exit0; fixture-override refusal expected exit1 and exact fixed stdout/empty stderr. Static AArch64 and absent PT_INTERP observed via file/readelf. No runtime installation or network/device action.",
+  "binary": {
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/reader-linux-arm64",
+    "sha256": "03016b9c35aeecd82362fe34e4187037a7ee5ebf76014fd7df2f6264aca228d6",
+    "bytes": 2489186
+  },
+  "device_proposal": {
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/device-proposal.json",
+    "sha256": "b1931bfa7da32e77eede2c226226ff6ce0209c5055d82402e692067756261966",
+    "status": "NOT_AUTHORIZED",
+    "reserved_directory": "/home/root/pi-ink-offline-reader-0029",
+    "path_vacancy": "REQUIRED_NOT_OBSERVED",
+    "invocations_allowed_now": 0,
+    "future_maximum_invocations": 1
+  },
+  "limits": [
+    "Synthetic host success is not real-hardware compatibility or UID0 execution proof.",
+    "Ownership refusal uses actual host fstat against a mismatched policy, not privileged chown.",
+    "Deterministic identity mutations cover observed changes after snapshot; no atomic snapshot or exhaustive race claim.",
+    "Reads may update atime; no permissions/config/service changes are made.",
+    "Both real device config hashes remain absent; no final irreversible cleanup program exists.",
+    "Device staging, guarded single invocation and helper-only removal require NEW exact owner approval.",
+    "A reviewed/proven descriptor-safe staging/removal executor and identity-preserving execution handoff remain unproved; the proposal names them as prerequisites, not invented tool capability."
+  ],
+  "open_questions": [
+    "Owner-approved safe device staging/execution mechanism, target vacancy and runtime compatibility remain unresolved.",
+    "Full native UI/association/Send acceptance and final cleanup remain outside this slice and blocked."
+  ],
+  "recovery": {
+    "mode": "takeover",
+    "prior_attempt": "start-0025",
+    "approval": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-decision-20261104/approval.json",
+    "parent_start": "start-0028",
+    "fresh_child_session": "01a1a5fd-64e0-74a9-b55c-7fe7e47c9150",
+    "earlier_work": "implementation0023 already reconciled by0024, not repeated. Partial implementation0026 preserved/open and not finalized. Parent owns reserved start-complete-0030, independent verification, integration and all commits."
+  },
+  "preserved": [
+    "All historical receipts/artifacts and earlier/user changes including BASE staged mise.toml and untracked0026/system-relationships evidence.",
+    "Source, opaque state, interrupted state temps, ownership markers, unknown/unowned objects and all documents."
+  ],
+  "actions": {
+    "source_edits": false,
+    "ssh": false,
+    "tablet_commands": false,
+    "network_probes": false,
+    "device_staging": false,
+    "real_config_reads": false,
+    "restart": false,
+    "device_chmod_or_delete": false,
+    "subagents": false,
+    "commit": false,
+    "merge": false,
+    "push": false,
+    "ticket_completion": false
+  },
+  "review_note": "No formal review conducted and no SUCCESS verdict issued.",
+  "next": "Parent independently smokes and validates result; integration/commits and start-complete-0030 remain parent-owned. No device action until exact new approval and prerequisite resolution."
+}

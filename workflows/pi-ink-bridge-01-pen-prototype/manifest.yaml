@@ -6,11 +6,35 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "implementation-0023",
-  "state": "IMPLEMENTED",
+  "latest_receipt": "start-complete-0030",
+  "state": "BLOCKED",
   "hardware_acceptance": "BLOCKED",
   "interrupted_attempts_preserved": [
     "start-0019",
     "start-complete-0021"
-  ]
+  ],
+  "full_ticket_status": "BLOCKED",
+  "work_status": "claimed",
+  "slice_status": "completed",
+  "slice_scope": "offline cleanup reader only",
+  "device_execution": false,
+  "source_implementation_receipt": "implementation-0023",
+  "source_reconciled_by": "start-complete-0024",
+  "partial_attempt_preserved": "start-0025; implementation0026 open, not finalized",
+  "previous_projection": {
+    "schema": "worktree-workflow/v2",
+    "workflow_id": "pi-ink-bridge-01-pen-prototype",
+    "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+    "initiative": "pi-ink-bridge",
+    "event_root": "events",
+    "artifact_root": "artifacts",
+    "projection_root": "projections",
+    "latest_receipt": "implementation-0023",
+    "state": "IMPLEMENTED",
+    "hardware_acceptance": "BLOCKED",
+    "interrupted_attempts_preserved": [
+      "start-0019",
+      "start-complete-0021"
+    ]
+  }
 }

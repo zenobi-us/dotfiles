@@ -1,0 +1,41 @@
+{
+  "schema": "pi-ink-parent-offline-validation/v1",
+  "created_at": "2026-11-04T10:16:33.536Z",
+  "frozen_files_verified": 11,
+  "checks": [
+    {
+      "label": "host-tests",
+      "args": [
+        "go",
+        "test",
+        "-count=1",
+        "-timeout=45s",
+        "-v",
+        "."
+      ],
+      "exit": 0,
+      "stdout": "=== RUN   TestSuccessAndExactBounds\n=== RUN   TestSuccessAndExactBounds/0\n=== RUN   TestSuccessAndExactBounds/1\n=== RUN   TestSuccessAndExactBounds/4096\n=== RUN   TestSuccessAndExactBounds/65536\n--- PASS: TestSuccessAndExactBounds (0.00s)\n    --- PASS: TestSuccessAndExactBounds/0 (0.00s)\n    --- PASS: TestSuccessAndExactBounds/1 (0.00s)\n    --- PASS: TestSuccessAndExactBounds/4096 (0.00s)\n    --- PASS: TestSuccessAndExactBounds/65536 (0.00s)\n=== RUN   TestRefusalBoundaries\n=== RUN   TestRefusalBoundaries/home-symlink\n=== RUN   TestRefusalBoundaries/root-home-symlink\n=== RUN   TestRefusalBoundaries/stage-symlink\n=== RUN   TestRefusalBoundaries/backup-symlink\n=== RUN   TestRefusalBoundaries/wrong-owner\n=== RUN   TestRefusalBoundaries/wrong-group\n=== RUN   TestRefusalBoundaries/directory-mode\n=== RUN   TestRefusalBoundaries/stage-owner.txt-symlink\n=== RUN   TestRefusalBoundaries/stage-owner.txt-mode\n=== RUN   TestRefusalBoundaries/stage-owner.txt-oversize\n=== RUN   TestRefusalBoundaries/stage-owner.txt-fifo\n=== RUN   TestRefusalBoundaries/stage-owner.txt-directory\n=== RUN   TestRefusalBoundaries/stage-owner.txt-socket\n=== RUN   TestRefusalBoundaries/stage-owner.txt-missing\n=== RUN   TestRefusalBoundaries/backup-owner.txt-symlink\n=== RUN   TestRefusalBoundaries/backup-owner.txt-mode\n=== RUN   TestRefusalBoundaries/backup-owner.txt-oversize\n=== RUN   TestRefusalBoundaries/backup-owner.txt-fifo\n=== RUN   TestRefusalBoundaries/backup-owner.txt-directory\n=== RUN   TestRefusalBoundaries/backup-owner.txt-socket\n=== RUN   TestRefusalBoundaries/backup-owner.txt-missing\n=== RUN   TestRefusalBoundaries/stage-config.json-symlink\n=== RUN   TestRefusalBoundaries/stage-config.json-mode\n=== RUN   TestRefusalBoundaries/stage-config.json-oversize\n=== RUN   TestRefusalBoundaries/stage-config.json-fifo\n=== RUN   TestRefusalBoundaries/stage-config.json-directory\n=== RUN   TestRefusalBoundaries/stage-config.json-socket\n=== RUN   TestRefusalBoundaries/stage-config.json-missing\n=== RUN   TestRefusalBoundaries/backup-config.json-symlink\n=== RUN   TestRefusalBoundaries/backup-config.json-mode\n=== RUN   TestRefusalBoundaries/backup-config.json-oversize\n=== RUN   TestRefusalBoundaries/backup-config.json-fifo\n=== RUN   TestRefusalBoundaries/backup-config.json-directory\n=== RUN   TestRefusalBoundaries/backup-config.json-socket\n=== RUN   TestRefusalBoundaries/backup-config.json-missing\n--- PASS: TestRefusalBoundaries (0.02s)\n    --- PASS: TestRefusalBoundaries/home-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/root-home-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/wrong-owner (0.00s)\n    --- PASS: TestRefusalBoundaries/wrong-group (0.00s)\n    --- PASS: TestRefusalBoundaries/directory-mode (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-owner.txt-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-owner.txt-mode (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-owner.txt-oversize (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-owner.txt-fifo (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-owner.txt-directory (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-owner.txt-socket (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-owner.txt-missing (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-owner.txt-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-owner.txt-mode (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-owner.txt-oversize (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-owner.txt-fifo (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-owner.txt-directory (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-owner.txt-socket (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-owner.txt-missing (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-config.json-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-config.json-mode (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-config.json-oversize (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-config.json-fifo (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-config.json-directory (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-config.json-socket (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-config.json-missing (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-config.json-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-config.json-mode (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-config.json-oversize (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-config.json-fifo (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-config.json-directory (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-config.json-socket (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-config.json-missing (0.00s)\n=== RUN   TestBothMarkersBeforeConfigs\n=== RUN   TestBothMarkersBeforeConfigs/stage\n=== RUN   TestBothMarkersBeforeConfigs/backup\n--- PASS: TestBothMarkersBeforeConfigs (0.00s)\n    --- PASS: TestBothMarkersBeforeConfigs/stage (0.00s)\n    --- PASS: TestBothMarkersBeforeConfigs/backup (0.00s)\n=== RUN   TestObservedIdentityChanges\n=== RUN   TestObservedIdentityChanges/replacement\n=== RUN   TestObservedIdentityChanges/symlink\n=== RUN   TestObservedIdentityChanges/size\n=== RUN   TestObservedIdentityChanges/mode\n=== RUN   TestObservedIdentityChanges/directory-replacement\n=== RUN   TestObservedIdentityChanges/marker-after-verification\n--- PASS: TestObservedIdentityChanges (0.00s)\n    --- PASS: TestObservedIdentityChanges/replacement (0.00s)\n    --- PASS: TestObservedIdentityChanges/symlink (0.00s)\n    --- PASS: TestObservedIdentityChanges/size (0.00s)\n    --- PASS: TestObservedIdentityChanges/mode (0.00s)\n    --- PASS: TestObservedIdentityChanges/directory-replacement (0.00s)\n    --- PASS: TestObservedIdentityChanges/marker-after-verification (0.00s)\n=== RUN   TestLeafOwnership\n=== RUN   TestLeafOwnership/owner.txt-group-false\n=== RUN   TestLeafOwnership/owner.txt-group-true\n=== RUN   TestLeafOwnership/config.json-group-false\n=== RUN   TestLeafOwnership/config.json-group-true\n--- PASS: TestLeafOwnership (0.00s)\n    --- PASS: TestLeafOwnership/owner.txt-group-false (0.00s)\n    --- PASS: TestLeafOwnership/owner.txt-group-true (0.00s)\n    --- PASS: TestLeafOwnership/config.json-group-false (0.00s)\n    --- PASS: TestLeafOwnership/config.json-group-true (0.00s)\n=== RUN   TestMarkerAtCap\n--- PASS: TestMarkerAtCap (0.00s)\nPASS\nok  \t_/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029\t0.027s\n",
+      "stderr": ""
+    },
+    {
+      "label": "synthetic-smoke",
+      "args": [
+        "./host-fixture-linux-amd64"
+      ],
+      "exit": 0,
+      "stdout": "FIXED_LEAF_PROGRESS ROLE=public-stage-marker\nFIXED_LEAF_PROGRESS ROLE=public-backup-marker\nFIXED_LEAF_PROGRESS ROLE=private-stage-config\nFIXED_LEAF_PROGRESS ROLE=private-backup-config\nCONFIG_METADATA ROLE=private-stage-config MODE=600 UID=1000 GID=1000 SIZE=33 DEV=55 INODE=50522 MTIME=1793787393.532882018 CTIME=1793787393.532882018\nCONFIG_SHA256 ROLE=private-stage-config SHA256=f4f3f54cbf7d3e6427c4a48f2d4b1efb0064819021973789c5f7cbb56b9dad5c\nCONFIG_METADATA ROLE=private-backup-config MODE=600 UID=1000 GID=1000 SIZE=33 DEV=55 INODE=50524 MTIME=1793787393.532882018 CTIME=1793787393.532882018\nCONFIG_SHA256 ROLE=private-backup-config SHA256=f4f3f54cbf7d3e6427c4a48f2d4b1efb0064819021973789c5f7cbb56b9dad5c\nTWO_FIXED_CONFIG_DIGESTS_COMPLETE_NO_DELETION_AUTHORITY\nHOST_SYNTHETIC_SMOKE_PASS_NOT_DEVICE_EVIDENCE\n",
+      "stderr": ""
+    },
+    {
+      "label": "production-argument-refusal",
+      "args": [
+        "./reader-linux-amd64",
+        "--fixture=/unapproved"
+      ],
+      "exit": 1,
+      "stdout": "REFUSAL ARGUMENTS\n",
+      "stderr": ""
+    }
+  ],
+  "device_execution": false
+}

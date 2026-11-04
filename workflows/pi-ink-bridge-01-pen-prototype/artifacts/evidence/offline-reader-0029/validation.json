@@ -1,0 +1,214 @@
+{
+  "schema": "pi-ink-offline-validation/v1",
+  "records": [
+    {
+      "name": "format-final",
+      "command": [
+        "gofmt",
+        "-w",
+        "main_linux.go",
+        "reader_linux.go",
+        "host_fixture_linux.go",
+        "main_linux_test.go"
+      ],
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "host-tests",
+      "command": [
+        "go",
+        "test",
+        "-count=1",
+        "-timeout=45s",
+        "-v",
+        "."
+      ],
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 0,
+      "stdout": "=== RUN   TestSuccessAndExactBounds\n=== RUN   TestSuccessAndExactBounds/0\n=== RUN   TestSuccessAndExactBounds/1\n=== RUN   TestSuccessAndExactBounds/4096\n=== RUN   TestSuccessAndExactBounds/65536\n--- PASS: TestSuccessAndExactBounds (0.00s)\n    --- PASS: TestSuccessAndExactBounds/0 (0.00s)\n    --- PASS: TestSuccessAndExactBounds/1 (0.00s)\n    --- PASS: TestSuccessAndExactBounds/4096 (0.00s)\n    --- PASS: TestSuccessAndExactBounds/65536 (0.00s)\n=== RUN   TestRefusalBoundaries\n=== RUN   TestRefusalBoundaries/home-symlink\n=== RUN   TestRefusalBoundaries/root-home-symlink\n=== RUN   TestRefusalBoundaries/stage-symlink\n=== RUN   TestRefusalBoundaries/backup-symlink\n=== RUN   TestRefusalBoundaries/wrong-owner\n=== RUN   TestRefusalBoundaries/wrong-group\n=== RUN   TestRefusalBoundaries/directory-mode\n=== RUN   TestRefusalBoundaries/stage-owner.txt-symlink\n=== RUN   TestRefusalBoundaries/stage-owner.txt-mode\n=== RUN   TestRefusalBoundaries/stage-owner.txt-oversize\n=== RUN   TestRefusalBoundaries/stage-owner.txt-fifo\n=== RUN   TestRefusalBoundaries/stage-owner.txt-directory\n=== RUN   TestRefusalBoundaries/stage-owner.txt-socket\n=== RUN   TestRefusalBoundaries/stage-owner.txt-missing\n=== RUN   TestRefusalBoundaries/backup-owner.txt-symlink\n=== RUN   TestRefusalBoundaries/backup-owner.txt-mode\n=== RUN   TestRefusalBoundaries/backup-owner.txt-oversize\n=== RUN   TestRefusalBoundaries/backup-owner.txt-fifo\n=== RUN   TestRefusalBoundaries/backup-owner.txt-directory\n=== RUN   TestRefusalBoundaries/backup-owner.txt-socket\n=== RUN   TestRefusalBoundaries/backup-owner.txt-missing\n=== RUN   TestRefusalBoundaries/stage-config.json-symlink\n=== RUN   TestRefusalBoundaries/stage-config.json-mode\n=== RUN   TestRefusalBoundaries/stage-config.json-oversize\n=== RUN   TestRefusalBoundaries/stage-config.json-fifo\n=== RUN   TestRefusalBoundaries/stage-config.json-directory\n=== RUN   TestRefusalBoundaries/stage-config.json-socket\n=== RUN   TestRefusalBoundaries/stage-config.json-missing\n=== RUN   TestRefusalBoundaries/backup-config.json-symlink\n=== RUN   TestRefusalBoundaries/backup-config.json-mode\n=== RUN   TestRefusalBoundaries/backup-config.json-oversize\n=== RUN   TestRefusalBoundaries/backup-config.json-fifo\n=== RUN   TestRefusalBoundaries/backup-config.json-directory\n=== RUN   TestRefusalBoundaries/backup-config.json-socket\n=== RUN   TestRefusalBoundaries/backup-config.json-missing\n--- PASS: TestRefusalBoundaries (0.02s)\n    --- PASS: TestRefusalBoundaries/home-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/root-home-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/wrong-owner (0.00s)\n    --- PASS: TestRefusalBoundaries/wrong-group (0.00s)\n    --- PASS: TestRefusalBoundaries/directory-mode (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-owner.txt-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-owner.txt-mode (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-owner.txt-oversize (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-owner.txt-fifo (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-owner.txt-directory (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-owner.txt-socket (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-owner.txt-missing (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-owner.txt-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-owner.txt-mode (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-owner.txt-oversize (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-owner.txt-fifo (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-owner.txt-directory (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-owner.txt-socket (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-owner.txt-missing (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-config.json-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-config.json-mode (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-config.json-oversize (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-config.json-fifo (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-config.json-directory (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-config.json-socket (0.00s)\n    --- PASS: TestRefusalBoundaries/stage-config.json-missing (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-config.json-symlink (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-config.json-mode (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-config.json-oversize (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-config.json-fifo (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-config.json-directory (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-config.json-socket (0.00s)\n    --- PASS: TestRefusalBoundaries/backup-config.json-missing (0.00s)\n=== RUN   TestBothMarkersBeforeConfigs\n=== RUN   TestBothMarkersBeforeConfigs/stage\n=== RUN   TestBothMarkersBeforeConfigs/backup\n--- PASS: TestBothMarkersBeforeConfigs (0.00s)\n    --- PASS: TestBothMarkersBeforeConfigs/stage (0.00s)\n    --- PASS: TestBothMarkersBeforeConfigs/backup (0.00s)\n=== RUN   TestObservedIdentityChanges\n=== RUN   TestObservedIdentityChanges/replacement\n=== RUN   TestObservedIdentityChanges/symlink\n=== RUN   TestObservedIdentityChanges/size\n=== RUN   TestObservedIdentityChanges/mode\n=== RUN   TestObservedIdentityChanges/directory-replacement\n=== RUN   TestObservedIdentityChanges/marker-after-verification\n--- PASS: TestObservedIdentityChanges (0.00s)\n    --- PASS: TestObservedIdentityChanges/replacement (0.00s)\n    --- PASS: TestObservedIdentityChanges/symlink (0.00s)\n    --- PASS: TestObservedIdentityChanges/size (0.00s)\n    --- PASS: TestObservedIdentityChanges/mode (0.00s)\n    --- PASS: TestObservedIdentityChanges/directory-replacement (0.00s)\n    --- PASS: TestObservedIdentityChanges/marker-after-verification (0.00s)\n=== RUN   TestLeafOwnership\n=== RUN   TestLeafOwnership/owner.txt-group-false\n=== RUN   TestLeafOwnership/owner.txt-group-true\n=== RUN   TestLeafOwnership/config.json-group-false\n=== RUN   TestLeafOwnership/config.json-group-true\n--- PASS: TestLeafOwnership (0.00s)\n    --- PASS: TestLeafOwnership/owner.txt-group-false (0.00s)\n    --- PASS: TestLeafOwnership/owner.txt-group-true (0.00s)\n    --- PASS: TestLeafOwnership/config.json-group-false (0.00s)\n    --- PASS: TestLeafOwnership/config.json-group-true (0.00s)\n=== RUN   TestMarkerAtCap\n--- PASS: TestMarkerAtCap (0.00s)\nPASS\nok  \t_/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029\t0.026s\n",
+      "stderr": ""
+    },
+    {
+      "name": "host-static-build",
+      "command": [
+        "go",
+        "build",
+        "-trimpath",
+        "-buildvcs=false",
+        "-ldflags=-buildid=",
+        "-o",
+        "reader-linux-amd64",
+        "."
+      ],
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "arm64-static-build",
+      "command": [
+        "go",
+        "build",
+        "-trimpath",
+        "-buildvcs=false",
+        "-ldflags=-buildid=",
+        "-o",
+        "reader-linux-arm64",
+        "."
+      ],
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "arm64"
+      },
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "host-fixture-build",
+      "command": [
+        "go",
+        "build",
+        "-tags=hostfixture",
+        "-trimpath",
+        "-buildvcs=false",
+        "-ldflags=-buildid=",
+        "-o",
+        "host-fixture-linux-amd64",
+        "."
+      ],
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "synthetic-host-smoke",
+      "command": [
+        "./host-fixture-linux-amd64"
+      ],
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 0,
+      "stdout": "FIXED_LEAF_PROGRESS ROLE=public-stage-marker\nFIXED_LEAF_PROGRESS ROLE=public-backup-marker\nFIXED_LEAF_PROGRESS ROLE=private-stage-config\nFIXED_LEAF_PROGRESS ROLE=private-backup-config\nCONFIG_METADATA ROLE=private-stage-config MODE=600 UID=1000 GID=1000 SIZE=33 DEV=55 INODE=49862 MTIME=1793786654.040915846 CTIME=1793786654.040915846\nCONFIG_SHA256 ROLE=private-stage-config SHA256=f4f3f54cbf7d3e6427c4a48f2d4b1efb0064819021973789c5f7cbb56b9dad5c\nCONFIG_METADATA ROLE=private-backup-config MODE=600 UID=1000 GID=1000 SIZE=33 DEV=55 INODE=49864 MTIME=1793786654.040915846 CTIME=1793786654.040915846\nCONFIG_SHA256 ROLE=private-backup-config SHA256=f4f3f54cbf7d3e6427c4a48f2d4b1efb0064819021973789c5f7cbb56b9dad5c\nTWO_FIXED_CONFIG_DIGESTS_COMPLETE_NO_DELETION_AUTHORITY\nHOST_SYNTHETIC_SMOKE_PASS_NOT_DEVICE_EVIDENCE\n",
+      "stderr": ""
+    },
+    {
+      "name": "production-rejects-fixture-override",
+      "command": [
+        "./reader-linux-amd64",
+        "--fixture=/unapproved"
+      ],
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 1,
+      "stdout": "REFUSAL ARGUMENTS\n",
+      "stderr": ""
+    },
+    {
+      "name": "artifact-elf-identity",
+      "command": [
+        "file",
+        "reader-linux-amd64",
+        "reader-linux-arm64",
+        "host-fixture-linux-amd64"
+      ],
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 0,
+      "stdout": "reader-linux-amd64:       ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, with debug_info, not stripped\nreader-linux-arm64:       ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, with debug_info, not stripped\nhost-fixture-linux-amd64: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, with debug_info, not stripped\n",
+      "stderr": ""
+    },
+    {
+      "name": "arm64-program-headers",
+      "command": [
+        "readelf",
+        "-l",
+        "reader-linux-arm64"
+      ],
+      "environment": {
+        "GO111MODULE": "off",
+        "GOENV": "off",
+        "GOTOOLCHAIN": "local",
+        "GOPROXY": "off",
+        "GOSUMDB": "off",
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "amd64"
+      },
+      "exit_code": 0,
+      "stdout": "\nElf file type is EXEC (Executable file)\nEntry point 0x83f40\nThere are 5 program headers, starting at offset 64\n\nProgram Headers:\n  Type           Offset             VirtAddr           PhysAddr\n                 FileSiz            MemSiz              Flags  Align\n  PHDR           0x0000000000000040 0x0000000000010040 0x0000000000010040\n                 0x0000000000000118 0x0000000000000118  R      0x10000\n  LOAD           0x0000000000000000 0x0000000000010000 0x0000000000010000\n                 0x00000000000a3904 0x00000000000a3904  R E    0x10000\n  LOAD           0x00000000000b0000 0x00000000000c0000 0x00000000000c0000\n                 0x00000000000d42c8 0x00000000000d42c8  R      0x10000\n  LOAD           0x0000000000190000 0x00000000001a0000 0x00000000001a0000\n                 0x000000000000ce60 0x0000000000048aa0  RW     0x10000\n  GNU_STACK      0x0000000000000000 0x0000000000000000 0x0000000000000000\n                 0x0000000000000000 0x0000000000000000  RW     0x8\n\n Section to Segment mapping:\n  Segment Sections...\n   00     \n   01     .text \n   02     .rodata .typelink .itablink .gosymtab .gopclntab \n   03     .go.buildinfo .go.fipsinfo .noptrdata .data .bss .noptrbss \n   04     \n",
+      "stderr": ""
+    }
+  ]
+}

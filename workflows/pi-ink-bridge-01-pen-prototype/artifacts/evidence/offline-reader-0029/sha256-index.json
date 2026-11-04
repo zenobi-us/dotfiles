@@ -1,0 +1,46 @@
+{
+  "main_linux.go": {
+    "sha256": "6ea8050cba8699870ffcfdd1d24e7c4fa22c39129fea558769ef6c2f1aa228af",
+    "bytes": 479
+  },
+  "reader_linux.go": {
+    "sha256": "c0f0067f6c4c640bb1fc52186df14e58528232b35d2fe5e401d6227011372cf2",
+    "bytes": 6193
+  },
+  "host_fixture_linux.go": {
+    "sha256": "339acd8fce134ec29af94f697145142627146875b5c894b0d6015cd7b28e0e99",
+    "bytes": 1651
+  },
+  "main_linux_test.go": {
+    "sha256": "f56282601391cb33cf98a9e4e0bec5bf5771a8e646b3c374fbc83e92a15183f1",
+    "bytes": 8640
+  },
+  "verify.py": {
+    "sha256": "a1317e5d865a7fdb1a7be6ef2193f256e2eb825e08936ee8edb6f60a966211c5",
+    "bytes": 2706
+  },
+  "validation.json": {
+    "sha256": "68e5c5b08f5908ef53fe2d331e65a4530b6cab7b381a2f5ac52403ad66f9cd4c",
+    "bytes": 13752
+  },
+  "reader-linux-amd64": {
+    "sha256": "bb4bb72ceae76979be14c5141e7a57298fb231b96d7355f548a15139d5b3c009",
+    "bytes": 2508464
+  },
+  "reader-linux-arm64": {
+    "sha256": "03016b9c35aeecd82362fe34e4187037a7ee5ebf76014fd7df2f6264aca228d6",
+    "bytes": 2489186
+  },
+  "host-fixture-linux-amd64": {
+    "sha256": "3b5172fe2a71a73d00f22d7b483f05c321ab65d28fa10862170e1eec34aab0e1",
+    "bytes": 2714077
+  },
+  "device-proposal.json": {
+    "sha256": "b1931bfa7da32e77eede2c226226ff6ce0209c5055d82402e692067756261966",
+    "bytes": 10634
+  },
+  "scope-observations.json": {
+    "sha256": "598eb08d0cfd0a3fbd5f8886851fe829ed34ac1ad0d95b19996fffc4bc6bf772",
+    "bytes": 3256
+  }
+}

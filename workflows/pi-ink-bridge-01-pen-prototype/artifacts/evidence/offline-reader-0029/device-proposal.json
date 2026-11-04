@@ -1,0 +1,86 @@
+{
+  "schema": "pi-ink-offline-reader-device-proposal/v1",
+  "status": "FROZEN_PROPOSAL_NOT_DEVICE_AUTHORITY",
+  "scope": "Stage one pinned reader, invoke once to obtain two config digests, then remove only the newly staged helper and its proven-empty directory. Every device step needs NEW exact owner approval. No final cleanup program exists.",
+  "device_execution": false,
+  "device_compatibility": "UNPROVED. Static Linux ARM64 cross-build is not hardware execution evidence. Go 1.25 runtime/kernel/syscall compatibility, executable filesystem policy, and resource availability are not established.",
+  "artifact": {
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/reader-linux-arm64",
+    "sha256": "03016b9c35aeecd82362fe34e4187037a7ee5ebf76014fd7df2f6264aca228d6",
+    "bytes": 2489186,
+    "format": "Linux ELF64 AArch64 EXEC, statically linked, no PT_INTERP observed",
+    "forbidden_artifacts": ["host-fixture-linux-amd64", "reader-linux-amd64"]
+  },
+  "reserved_device_directory": "/home/root/pi-ink-offline-reader-0029",
+  "reserved_device_executable": "/home/root/pi-ink-offline-reader-0029/reader",
+  "vacancy": "REQUIRED_NOT_OBSERVED. No tablet access was authorized. This is a new reserved name, not a claim that it currently does not exist. The staging transaction MUST atomically refuse EEXIST, including dangling links. Never reuse or empty an occupied path. An occupied name requires a newly frozen proposal, not a fallback path.",
+  "reader_contract": {
+    "arguments": [],
+    "environment_overrides": false,
+    "root": "/",
+    "directories": ["/home/root/pi-ink-sidebar-stage-0020", "/home/root/pi-ink-sidebar-backup-0020"],
+    "directory_uid": 0,
+    "directory_gid": 0,
+    "directory_mode": "0700",
+    "ancestors": "Each component of /home/root opens descriptor-relative with O_DIRECTORY|O_NOFOLLOW|O_NONBLOCK. All ancestors must be UID0/GID0. Ancestor modes are not invented; exact0700 applies to the two known target roots.",
+    "markers": [
+      {"path": "/home/root/pi-ink-sidebar-stage-0020/owner.txt", "mode": "0644"},
+      {"path": "/home/root/pi-ink-sidebar-backup-0020/owner.txt", "mode": "0600"}
+    ],
+    "marker_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+    "marker_cap_bytes": 4096,
+    "config_paths": ["/home/root/pi-ink-sidebar-stage-0020/config.json", "/home/root/pi-ink-sidebar-backup-0020/config.json"],
+    "config_uid": 0,
+    "config_gid": 0,
+    "config_mode": "0600",
+    "config_cap_bytes": 65536,
+    "ordering": "Both marker hashes must match before either config open/read. Keep all descriptors until the final stability guard. Buffer result metadata/digests until final validation; no partial config digest rows on refusal.",
+    "identity_fields": ["device", "inode", "mode including type and special bits", "link count", "UID", "GID", "rdev", "size", "mtime nanoseconds", "ctime nanoseconds"],
+    "atime": "Excluded because the reader itself may update atime. This is read-only content access, not a promise of zero filesystem metadata effects.",
+    "race_limit": "Reject observed changes before/after reads and across the complete operation. This is not an atomic snapshot or a defense against a privileged attacker controlling kernel/filesystem behavior. Exclusive operator handoff and a quiescent namespace remain prerequisites.",
+    "output": "Only fixed roles/progress, approved numeric config metadata, SHA256, fixed refusal codes and completion token. No arbitrary native errors, input values, parsing, persistent copies, or private config bytes. Hash buffers exist transiently in process memory."
+  },
+  "future_authorization_required": [
+    "Fresh ownership/liveness/reservation inspection and exclusive operator handoff, without reusing old agents.",
+    "Owner approval naming this proposal hash and pinned binary; authority for the exact new staging directory/file, one reader invocation and guarded removal of that helper only. Offline takeover approval is insufficient.",
+    "Fresh explicit USB connected/direct-route and readiness confirmation. No network or tablet capability probe is authorized by this proposal alone.",
+    "A reviewed, proven descriptor-safe staging/removal executor and safe execution handoff. No such target executor capability has been established. This is a missing prerequisite, not permission to use shell redirection, scp overwrite, dd, chmod, pathname-only guards or an assumed utility.",
+    "An execution mechanism that retains verified helper identity through exec (for example a proven descriptor-based executor). No such target capability is assumed. Exact approval must include the concrete mechanism before any device command."
+  ],
+  "staging_transaction_specification": [
+    "Pin /, then home and root with descriptor-relative O_DIRECTORY|O_NOFOLLOW|O_NONBLOCK opens. fstat UID0/GID0, record descriptor/path identities and revalidate them before/after each mutation. No permission repair.",
+    "Relative to the pinned /home/root descriptor, mkdirat only pi-ink-offline-reader-0029 with mode0700; fail if any object already occupies the name. Open it O_DIRECTORY|O_NOFOLLOW|O_NONBLOCK and require exact UID0/GID0/mode0700 and matching descriptor/path identity. No recursive discovery.",
+    "Within that pinned directory open only reader using O_WRONLY|O_CREAT|O_EXCL|O_NOFOLLOW|O_NONBLOCK|O_CLOEXEC with mode0500. Require regular file, UID0/GID0, nlink1 and exact mode0500. Transfer exactly2489186 binary bytes; detect any extra byte. Hash in process and require the frozen SHA256. Close the write descriptor before execution; reopen read-only with NOFOLLOW/NONBLOCK, verify size/hash/metadata and path/directory identity. Never chmod an existing object.",
+    "Record newly created helper and directory device/inode/metadata and hash as disposition pins. A staging failure does not authorize reuse, retry, overwrite or blanket removal. Preserve partial objects and report exact bounded failure for a new disposition decision.",
+    "A proven safe executor must verify those pins immediately before the single execution and retain helper descriptor identity through execution. A naked pathname invocation is not an adequate substitute for this missing executor prerequisite."
+  ],
+  "existing_host_transport_guards": {
+    "contract_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/two-config-digests-proposal-v2/host.sh",
+    "reuse": "Reuse the direct USB route/physical-device and strict SSH host-key guards, NOT the expired action/approval flag, old script/hash or old invocation allowance.",
+    "destination": "root@10.11.99.1",
+    "interface": "enp2s0f0u4c2",
+    "source_address": "10.11.99.10",
+    "physical_device": "/sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0",
+    "route": "Exactly one route, no gateway, expected interface/source, neither wireless nor phy80211, exact resolved physical device. Perform only after NEW approval; no probes in this offline slice.",
+    "timeouts": "Each separately authorized host SSH transaction: timeout --signal=TERM --kill-after=5s 45s; SSH ConnectTimeout=8. Hard host upper bound50s. A host timeout does not prove a remote process stopped; report unknown, never retry.",
+    "options": ["-T", "-o", "BatchMode=yes", "-o", "ConnectTimeout=8", "-o", "StrictHostKeyChecking=yes", "-o", "ControlMaster=no", "-o", "ControlPath=none", "-o", "ProxyCommand=none", "-o", "ProxyJump=none", "-o", "BindInterface=enp2s0f0u4c2", "-o", "BindAddress=10.11.99.10"]
+  },
+  "exact_reader_invocation": {
+    "executable": "/home/root/pi-ink-offline-reader-0029/reader",
+    "argv": ["/home/root/pi-ink-offline-reader-0029/reader"],
+    "stdin": "Closed; no config input, flags, environment overrides or arbitrary paths.",
+    "maximum_invocations": 1,
+    "remote_exec_request_after_guarded_handoff": "exec /home/root/pi-ink-offline-reader-0029/reader",
+    "host_command_shape": "timeout --signal=TERM --kill-after=5s 45s ssh -T -n -o BatchMode=yes -o ConnectTimeout=8 -o StrictHostKeyChecking=yes -o ControlMaster=no -o ControlPath=none -o ProxyCommand=none -o ProxyJump=none -o BindInterface=enp2s0f0u4c2 -o BindAddress=10.11.99.10 root@10.11.99.1 'exec /home/root/pi-ink-offline-reader-0029/reader'",
+    "execution_gate": "The command fixes argv/transport only. Do not run this naked command: safe pinned execution/staging executor remains unproved and must be concretely reviewed and separately approved. No substitution, fallback, capability search, second invocation or restart on failure.",
+    "success": "Exit0 plus both fixed config metadata/SHA256 roles and TWO_FIXED_CONFIG_DIGESTS_COMPLETE_NO_DELETION_AUTHORITY. Capture stdout under new approved evidence. A digest identifies bytes; it does not prove secret removal.",
+    "failure": "Any refusal, nonzero exit, missing rows, transport failure or timeout blocks digest acceptance. Preserve opaque state, ownership markers and all history. No retry or widened inventory."
+  },
+  "helper_removal_transaction_specification": [
+    "Only after reader process termination is established, use the separately approved safe executor. Reopen /home/root and the exact new helper directory descriptor-relative NOFOLLOW/NONBLOCK with pinned identities, UID0/GID0 and exact0700. Refuse unknown/changed objects.",
+    "Open only reader NOFOLLOW/NONBLOCK; require regular file, UID0/GID0/mode0500/nlink1, exact2489186bytes, frozen SHA256 and the staged device/inode/metadata pins. Revalidate descriptor/path/directory identity before unlinkat of exactly reader.",
+    "Use unlinkat with AT_REMOVEDIR on exactly pi-ink-offline-reader-0029 through the pinned /home/root descriptor only after identity revalidation. Kernel rmdir emptiness is the guard; never enumerate or recursively remove contents. If nonempty, changed or uncertain, preserve and report. This proposal does not authorize any other deletion."
+  ],
+  "forbidden": ["SSH or any tablet command before NEW approval", "general inventory", "private config value retrieval/copy", "runtime installs", "permission repair", "service/configuration changes", "restart", "retry/fallback", "product UI work", "final cleanup program or deletion", "merge/push", "ticket completion"],
+  "remaining": "Both actual device config hashes are still absent. Preserve state.json, interrupted .tablet-state-* records, ownership markers, unknown/unowned paths, source, private/synthetic documents and every historical artifact. implementation0026 remains open, not finalized. Full ticket/production remains BLOCKED; work_status stays claimed."
+}
