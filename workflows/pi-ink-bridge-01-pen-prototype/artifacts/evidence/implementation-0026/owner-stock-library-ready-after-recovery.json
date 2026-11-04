@@ -1,0 +1,9 @@
+{
+  "recorded_at": "2026-11-04T08:22:22.056500+00:00",
+  "question": "Does the stock library appear and respond, with normal sidebar navigation opening and dismissing without obstruction?",
+  "owner_answer_verbatim": "Yes, library and sidebar are normal",
+  "classification": "Actual owner-reported generic stock-library surface observation after approved current-config recovery; not agent-observed screenshot or private-document test.",
+  "new_pi_ink_ui_acceptance": false,
+  "documents_opened_for_check": "Not requested; no documents or screenshots required.",
+  "no_new_restart_authorized": true
+}

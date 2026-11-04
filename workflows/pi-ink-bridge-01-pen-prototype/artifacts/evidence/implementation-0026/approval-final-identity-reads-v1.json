@@ -1,0 +1,44 @@
+{
+  "schema": "pi-ink-readonly-evidence-approval/v1",
+  "recorded_at": "2026-11-04T08:22:22.067261+00:00",
+  "owner_answer_verbatim": "Both host and tablet checks",
+  "stock_library_condition": "Satisfied by separately recorded owner answer Yes, library and sidebar are normal",
+  "observation_ref": "owner-stock-library-ready-after-recovery.json",
+  "actions": [
+    {
+      "action": "inventory-public-payload",
+      "root": "/tmp/pi-ink-public-payload-inventory-0026-v1",
+      "scope_sha256": "8e07a26e84f3493cb2ed8ea8b05a9443391cc630ae967ac67d20396540f04be3",
+      "wrapper_sha256": "60530df3a85417829168194ecc619cf4ca0e245dfe1f3d49ee0dbb3bd4134ac2",
+      "target": "inventory.py",
+      "target_sha256": "e7e6f0ceaa706397da54bfcec67626978011ff9e608726e72028a0217c685e01",
+      "environment": {
+        "PI_INK_PUBLIC_PAYLOAD_INVENTORY_APPROVED": "public-payload-0026-v1"
+      }
+    },
+    {
+      "action": "two-config-digests",
+      "root": "/tmp/pi-ink-two-config-digests-0026-v1",
+      "scope_sha256": "2166076ac860a3b6505c25b127940a060a23ca5a79126c1495b06318d9554831",
+      "wrapper_sha256": "176406c84ff17dc08f187ab1c98083dee0d1d1d062d4cdf79c7fee048ca52710",
+      "target": "digest.sh",
+      "target_sha256": "5fe65f87690f2c918b346ef792a7b7cdbe9e52a090de842592edd43be8d77c4c",
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+        "PI_INK_CONFIG_DIGEST_APPROVED": "two-configs-0026-v1"
+      }
+    }
+  ],
+  "allowed_runs_per_action": 1,
+  "actions_independent": true,
+  "host_deadline_seconds_per_action": 45,
+  "output_boundary": "Fixed-path metadata and actual hashes only; no file contents or secret values. Public unknown host children remain redacted/preserved/unopened.",
+  "device_capability_risk": "Pipefail/dd bounded no-follow capability is unproved; unsupported/read/hash failure aborts that scope with no digest claim, fallback, installation, repair or retry.",
+  "permission_changes": false,
+  "deletion_authorized": false,
+  "process_actions_authorized": false,
+  "restart_allowance_remaining": 0,
+  "historical_restart_total": "UNKNOWN",
+  "active_child": "w6N:p5/session01a19fe2-4d68-770a-a05b-0a20eca7c412",
+  "handoff": "Existing explicit exclusive owner-as-operator handoff remains in force; no intervening work reported."
+}
