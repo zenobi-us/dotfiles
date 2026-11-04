@@ -22,7 +22,7 @@ main() {
             *) fail 'Unknown option; use --help.' ;;
         esac
     done
-    validate_url "$coordinator_url"
+    [ -n "$coordinator_url" ] || fail 'Provide --coordinator-url with a tablet-reachable HTTP/HTTPS URL.'
     case "$prefix" in
         /*) ;;
         *) fail 'Install prefix must be an absolute path.' ;;
@@ -33,6 +33,9 @@ main() {
     for name in pi-ink-client VERSION; do
         [ -f "$source_dir/$name" ] && [ ! -L "$source_dir/$name" ] || fail "Bundle requires a regular file: $name"
     done
+    # The client owns the URL rules; reject incompatible configuration before creating any install path.
+    "$source_dir/pi-ink-client" validate-url --coordinator-url "$coordinator_url" >/dev/null \
+        || fail 'The client rejected the coordinator URL; no install directory was created.'
     umask 077
     mkdir -m 700 -- "$prefix" || fail 'Cannot create install prefix; no existing path will be replaced.'
     cp -- "$source_dir/pi-ink-client" "$prefix/pi-ink-client"
@@ -48,13 +51,6 @@ fail() {
     exit 1
 }
 
-validate_url() {
-    case "$1" in
-        *[![:print:]]*|*[[:space:]]*) fail 'Coordinator URL must be a single HTTP/HTTPS URL without whitespace.' ;;
-        http://?*|https://?*) ;;
-        *) fail 'Provide --coordinator-url with a tablet-reachable HTTP/HTTPS URL.' ;;
-    esac
-}
 
 LC_ALL=C
 export LC_ALL

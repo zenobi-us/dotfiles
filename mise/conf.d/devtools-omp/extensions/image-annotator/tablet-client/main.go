@@ -29,7 +29,7 @@ func main() {
 
 func run(args []string) error {
 	if len(args) == 0 {
-		return errors.New("usage: pi-ink-client status|download-bundle|version")
+		return errors.New("usage: pi-ink-client status|download-bundle|validate-url|version")
 	}
 	command := args[0]
 	if command == "version" {
@@ -39,8 +39,8 @@ func run(args []string) error {
 		fmt.Println(version)
 		return nil
 	}
-	if command != "status" && command != "download-bundle" {
-		return errors.New("unknown command: use status, download-bundle, or version")
+	if command != "status" && command != "download-bundle" && command != "validate-url" {
+		return errors.New("unknown command: use status, download-bundle, validate-url, or version")
 	}
 	flags := flag.NewFlagSet(command, flag.ContinueOnError)
 	coordinator := flags.String("coordinator-url", "", "HTTP or HTTPS coordinator base URL")
@@ -62,6 +62,10 @@ func run(args []string) error {
 	}
 	base, err := coordinatorURL(*coordinator)
 	if err != nil {
+		return err
+	}
+	if command == "validate-url" {
+		_, err := fmt.Fprintln(os.Stdout, base)
 		return err
 	}
 	client := &http.Client{Timeout: 2 * time.Minute}

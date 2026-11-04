@@ -235,8 +235,9 @@ bun run build
 ```
 
 The bundle build needs Go, `tar`, and `sha256sum`. Provisioning also needs
-`curl` and SSH. The client has three one-shot commands: `version`, `status`,
-and `download-bundle`. It has no background service or process detector.
+`curl` and SSH. Use `version`, `status`, or `download-bundle` for routine checks. The installer
+uses `validate-url` to check the coordinator URL. The client has no background
+service or process detector.
 
 For tablet access, set `OMP_IMAGE_ANNOTATOR_HOST` to the desktop USB address
 before starting OMP. Set `OMP_IMAGE_ANNOTATOR_PORT` to change the port. The
@@ -259,8 +260,9 @@ sh scripts/provision-tablet.sh \
 Remove `--dry-run` to copy and install the bundle over SSH. The default SSH
 target is `root@10.11.99.1`; use `--ssh-target` to change it. SSH host-key
 verification stays enabled. The installer creates `/home/root/pi-ink-client`
-and refuses an existing path. It does not start the client or change Xochitl,
-XOVI, notebooks, firmware, or old experiments. A failed install can leave a
+and refuses an existing path. It runs the bundled client
+with `validate-url` before it creates the install directory. It does not start a
+background service or change Xochitl, XOVI, notebooks, firmware, or old experiments. A failed install can leave a
 partial directory; the installer does not delete it or retry.
 
 After installation, run `/home/root/pi-ink-client/pi-ink-client status` on the
@@ -268,4 +270,5 @@ tablet to check HTTP access. The client reads the installed `coordinator-url`
 file. Use `download-bundle --output /new/bundle.tar.gz` to download and check
 the public bundle. SHA-256 detects a changed download; it does not authenticate
 the HTTP server. Pen input and annotation transfer are not part of this path.
+
 

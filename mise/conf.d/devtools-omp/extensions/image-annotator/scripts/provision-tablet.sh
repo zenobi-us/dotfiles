@@ -65,6 +65,7 @@ fail() {
 }
 
 validate_url() {
+    # Check transfer argument shape here. The bundled client owns the full coordinator URL rules.
     case "$1" in
         *[![:print:]]*|*[[:space:]]*) fail "$2 must be a single HTTP/HTTPS URL without whitespace." ;;
         http://?*|https://?*) ;;
