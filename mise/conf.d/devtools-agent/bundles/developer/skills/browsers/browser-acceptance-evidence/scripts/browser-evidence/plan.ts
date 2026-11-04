@@ -96,6 +96,14 @@ export type Step =
    */
   | { do: "scroll"; says?: Says; locator: string; shot?: Slug }
   /**
+   * Press a key on whatever has focus, such as Enter on a focused grid cell.
+   * A click focuses some controls without opening them; an AG Grid cell editor
+   * opens only from the keyboard. Both drivers accept a single key name such
+   * as `Enter`, `Escape`, `Tab` or `ArrowDown`; they spell combinations
+   * differently (surf `ctrl+a`, playwright `Control+a`).
+   */
+  | { do: "press"; says: Says; key: string; shot?: Slug }
+  /**
    * Something only a human can finish — a popup the driver suppresses, a
    * payment, a second factor. The run records PARTIAL and `needs` says what
    * is still owed. It never fails the run. `needs` is already written for a
@@ -213,6 +221,8 @@ export function driverStep(step: Step, base: string): string {
         : `Wait for \`${step.locator}\` to render.`;
     case "scroll":
       return `Scroll \`${step.locator}\` into view.`;
+    case "press":
+      return `Press \`${step.key}\`.`;
     case "human":
       return `By hand: ${step.needs}`;
   }

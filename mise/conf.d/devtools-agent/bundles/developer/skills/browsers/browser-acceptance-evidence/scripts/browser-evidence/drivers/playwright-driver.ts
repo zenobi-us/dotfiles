@@ -127,6 +127,12 @@ function playwrightStep(t: Test, s: Step, i: number, plan: Plan): string[] {
       out.push(`  ${push("scroll", s.locator, "R", q("Scrolled into view.")).trim()} }`);
       break;
     }
+    case "press": {
+      out.push(`  await page.keyboard.press(${q(s.key)});`);
+      if (snap) out.push(snap);
+      out.push(push("press", s.key, q(""), q(`Pressed ${s.key}.`)));
+      break;
+    }
     case "human": {
       if (snap) out.push(snap);
       out.push(push("assert", "human step", q(""), q("Driver cannot complete this step."), "PARTIAL", s.needs));

@@ -181,6 +181,11 @@ export function compileSurf(plan: Plan, t: Test, shotsDir: string): { workflow: 
         });
         snap();
         break;
+      case "press":
+        entry.target = s.key;
+        steps.push({ tool: "key", args: { key: s.key } });
+        snap();
+        break;
       case "human":
         entry.target = "human step";
         entry.needs = s.needs;
@@ -290,6 +295,8 @@ export function recordsFromSurfRun(
           ? EXPECT_OBSERVED[entry.check ?? "present"](resolved)
           : entry.kind === "capture"
             ? `Read: ${resolved}`
+            : entry.kind === "press"
+              ? `Pressed ${entry.target}.`
             : entry.kind === "wait" && resolved === "gone"
               ? "Gone."
               : entry.kind === "human"
