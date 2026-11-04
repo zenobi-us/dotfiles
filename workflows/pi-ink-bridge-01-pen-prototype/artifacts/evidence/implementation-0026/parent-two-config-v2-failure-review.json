@@ -1,0 +1,25 @@
+{
+  "kind": "parent-bounded-result-review",
+  "recorded_at": "2026-11-04T09:11:50.143689+00:00",
+  "raw_result": "two-config-digests-v2.json",
+  "raw_result_sha256": "a6ff84c6ff176eaf1a9c60118530158ca462a31e16a372fc1ded4d308a121797",
+  "observed_exit_code": 1,
+  "observed_native_diagnostic": "dd: invalid argument 'nofollow' to 'iflag'",
+  "observed_role": "public-stage-marker",
+  "observed_public_marker_metadata": {
+    "mode": "0644",
+    "uid": 0,
+    "gid": 0,
+    "size": 88,
+    "device": 65026,
+    "inode": 1690
+  },
+  "observed_config_digest_output": false,
+  "boundary": "Frozen script and role-labelled output locate abort in the first public marker hash pipeline, before later marker/config calls. Do not generalize this flag refusal to other tools or flags.",
+  "private_config_digests": "unknown",
+  "further_device_authority": false,
+  "restart_allowance": 0,
+  "deletion_authority": false,
+  "next_action": "Offline review of a separately approved direct-syscall reader proposal, preserving no-follow and actual-read bounds. No deployment approval inferred.",
+  "parent_authored": true
+}

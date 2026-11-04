@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-11-04T08:39:36.280949+00:00",
+  "raw_ref": "two-config-digests-v1.json",
+  "raw_sha256": "1324af9f68eeba3d3b3f94cd68bd3e592a32029bc2afae4631446071404d8c46",
+  "observed": {
+    "exit_code": 1,
+    "host_timeout": false,
+    "stderr_empty": true,
+    "usb_guard_passed": true,
+    "refusal_literal": "ABORT_FIXED_LEAF_OWNER_OR_MODE_REFUSED",
+    "config_metadata_or_digest_output": false
+  },
+  "correction": "Earlier first-marker/pre-DD/private-read phrasing was too strong. The shared guard is used by markers and configs; captured output does not uniquely identify the refused leaf or current UID/GID/mode. Do not infer zero public-marker DD/SHA reads or prove DD capability success/failure.",
+  "offline_fact": "Successful StageC retained metadata records stage public owner.txt0644 and backup owner.txt0600. v1 required0600 for both, a real prospective policy discrepancy but not proved current abort location.",
+  "safe_next_action": "Prepare new immutable v2 role-specific marker policy and fixed progress diagnostics. No chmod, original-script retry, fallback or private hash inference. New exact owner approval required before any target read.",
+  "host_public_boundary": "Actual approved host inventory yielded4of4known public pins,0unknown/refused; examined but retained, no cleanup complete claim.",
+  "restart_allowance_remaining": 0,
+  "deletion_authorized": false
+}

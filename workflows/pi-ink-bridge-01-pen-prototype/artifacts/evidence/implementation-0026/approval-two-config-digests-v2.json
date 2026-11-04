@@ -1,0 +1,29 @@
+{
+  "kind": "parent-owner-approval",
+  "approved_at": "2026-11-04T08:56:33.217056+00:00",
+  "owner_selection": "Approve v2 once",
+  "exclusive_operator_handoff": "Owner reaffirmed through the approval question",
+  "scope_path": "/tmp/pi-ink-two-config-digests-0026-v2/approval-scope.txt",
+  "scope_sha256": "c94fbd788c53b7009891449744f07e837532aefaceeef1b35e5a6075dfc9c559",
+  "target_sha256": "287ad1c97012ba9ee695d32b47d498e3e288df2f18852c9a19f67f96cc54abbc",
+  "wrapper_sha256": "6b7f33ee93ff79872a8fce2d6c4b6be9803a30e0b2fe96ba063cd0675a2c02f3",
+  "approved_command": "PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_CONFIG_DIGEST_APPROVED=two-configs-0026-v2 sh /tmp/pi-ink-two-config-digests-0026-v2/host.sh two-config-digests",
+  "maximum_invocations": 1,
+  "host_deadline_seconds": 45,
+  "output_boundary": "Fixed-path metadata, digests and native dd/sha diagnostics; inspect both streams for boundary and secrets before repository storage. No config values.",
+  "excluded": [
+    "retry",
+    "fallback",
+    "amendment",
+    "additional device command",
+    "write",
+    "chmod/chown",
+    "restart",
+    "deletion",
+    "document access"
+  ],
+  "failure_policy": "Preserve observed result and uncertainty; no further command authority.",
+  "remaining_restart_allowance": 0,
+  "remaining_deletion_authority": false,
+  "parent_authored": true
+}
