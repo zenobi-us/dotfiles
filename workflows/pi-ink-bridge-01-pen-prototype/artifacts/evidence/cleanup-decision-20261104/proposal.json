@@ -1,0 +1,68 @@
+{
+  "schema": "pi-ink-cleanup-decision/v1",
+  "date": "2026-11-04",
+  "status": "PROPOSAL_NOT_DEVICE_AUTHORITY",
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow_ref": "workflows/pi-ink-bridge-01-pen-prototype",
+  "evidence_store": "repository",
+  "evidence_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-decision-20261104",
+  "recovery": {
+    "inspector_action": "start",
+    "inspector_mode": "takeover",
+    "required_approval": true,
+    "prior_attempt": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0025.yaml",
+    "history_valid": true,
+    "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+    "source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+    "source_dirty": false,
+    "source_candidates": 1,
+    "ownership": "unknown; explicit scoped approval required before transfer",
+    "roster": "Only the current w64:pY session is listed for Dotfiles. No recorded w6N:p5 child or old parent appears.",
+    "retained_parent_session": "01a19dd8-e4d3-7162-913a-50d94f31d1c7",
+    "parent_tail": "Session line2168 contains recovered herdr wait failure agent_not_running for w6N:p5. Line2169 records Interrupted by user. These are historical observations, not permission to resume or reuse the old session.",
+    "coordinator_reservations": "No matching ticket reference in workflows/goal-*/events/*.yaml",
+    "implementation0023": "Already reconciled by0024; do not repeat.",
+    "implementation0026": "No final result receipt; do not claim success or fabricate reconciliation.",
+    "replacement_reader": "Old parent waited for a direct-reader installation proposal. No saved reader-named artifact found in this workflow or the surviving image-annotator source subtree. No implementation claimed or discarded."
+  },
+  "exact_missing_hashes": [
+    "/home/root/pi-ink-sidebar-stage-0020/config.json",
+    "/home/root/pi-ink-sidebar-backup-0020/config.json"
+  ],
+  "known_reader_failure": "dd rejected iflag=nofollow. This does not establish support for other flags or the existence of another safe reader.",
+  "decision": "Do not rerun the failed shell pipeline, probe additional target utilities, weaken link guards, or perform partial deletion. If cleanup is authorized, prepare a small host-built Linux ARM64 bounded reader offline, then request separate approval for its exact device staging and one invocation.",
+  "proposed_next_authorization": {
+    "scope": "Cleanup-only ownership takeover of interrupted start0025; fresh independent agent in the existing source worktree; offline preparation and host smoke verification of the bounded reader and exact device proposal only.",
+    "allowed": ["Preserve existing source and evidence", "Append new worktree phase provenance through the worktree playbook", "Prepare and smoke-test the reader against synthetic host fixtures", "Cross-build Linux ARM64 artifact and freeze its hash plus exact install/run/removal proposal"],
+    "excluded": ["Any SSH or tablet command", "Device helper installation or execution", "Private config reads or copies", "Restarts or service/configuration changes", "Deletion or chmod", "Repeating product implementation or UI validation", "Resuming or reusing an earlier agent session", "Merge, push, or ticket completion"]
+  },
+  "reader_acceptance_contract": [
+    "Open fixed parent directories and leaves through directory file descriptors with O_NOFOLLOW; reject symlinked path components. Do not replace this with pathname tests around a following open.",
+    "Use exact allowlisted paths only. Require root ownership and known directory/file modes. Stage owner marker0644, backup marker0600, both private configs0600. Do not repair permissions.",
+    "Verify both owner marker hashes before either config read. Expected marker digest a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d.",
+    "Bound marker reads to4096bytes and config reads to65536bytes; detect oversized or changed files. Reject nonregular leaves before reading; avoid blocking special-file opens.",
+    "Compare descriptor and path identity plus metadata before/after reads. Keep directory/marker identities stable for the operation. Fail closed on observed changes.",
+    "Emit only fixed-role progress, allowlisted metadata, digest or refusal. Never parse, print, upload or copy config values. A digest is identity evidence, not proof of secret removal.",
+    "Host fixtures must cover success, each symlink component, wrong owner/mode, oversized/nonregular leaves, marker mismatch, and observed identity changes. No device tests until separately approved.",
+    "Freeze the actual reader source, artifact digest, paths, transport bounds and exact invocation before requesting device permission. Do not invent an executable pin in this proposal."
+  ],
+  "later_gates": [
+    "Fresh ownership/liveness/reservation inspection before any phase mutation; no duplicate active or unknown agent.",
+    "Separate exact owner approval for helper staging, single bounded read invocation and helper disposition. Zero restart authority.",
+    "Only after two actual hashes exist: freeze the full per-file cleanup manifest against retained reachable facts; obtain separate irreversible deletion approval.",
+    "Fresh identity/hash/no-link guards before approved unlinks; rmdir only for proven empty approved directories. No recursive deletion.",
+    "Preserve opaque state, interrupted state temps, ownership markers supporting retained state, unknown/unowned files, documents, source and all historical evidence."
+  ],
+  "inputs": [
+    "workflows/pi-ink-bridge-01-pen-prototype/events/start-0025.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0024.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/two-config-digests-proposal-v2/digest.sh",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/two-config-digests-v1-interpretation-correction.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/two-config-digests-v2-outcome.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/final-cleanup-prerequisites-after-v3.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/final-cleanup-reachable-facts-v1.json"
+  ],
+  "outputs": ["workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-decision-20261104/proposal.json"],
+  "actions_this_step": {"device_access": false, "agent_launch": false, "claim_transfer": false, "source_changes": false, "deletion": false, "worktree_phase_receipt": false},
+  "publication": "Repository-local append-only evidence proposal. Not committed or pushed. No workflow event or earlier evidence overwritten."
+}

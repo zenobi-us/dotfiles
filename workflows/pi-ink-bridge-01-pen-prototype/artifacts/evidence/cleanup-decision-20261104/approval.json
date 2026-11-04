@@ -1,0 +1,12 @@
+{
+  "schema": "pi-ink-scoped-approval/v1",
+  "date": "2026-11-04",
+  "question": "Approve cleanup-only takeover of interrupted start-0025 to prepare and smoke-test the bounded reader offline in a fresh agent session? This does not authorize tablet access, installation, config reads, restarts, or deletion.",
+  "owner_selection": "Approve offline cleanup takeover",
+  "scope": "Preserve current source and evidence. Prepare the reader and an exact device proposal. Ask separately before any tablet action.",
+  "prior_attempt": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0025.yaml",
+  "takeover_approved": true,
+  "device_operations_approved": false,
+  "implementation_scope": "Offline cleanup reader preparation and host synthetic-fixture smoke only. Full ticket remains blocked.",
+  "preserve_existing_changes": "BASE mise.toml staged user change; pre-existing untracked implementation0026 evidence and system-relationships-20261104 artifacts are preserved, not staged, reset, stashed, or adopted. Only current-session authored report/proposal/approval may be committed."
+}
