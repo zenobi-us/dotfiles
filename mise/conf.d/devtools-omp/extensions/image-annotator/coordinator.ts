@@ -19,7 +19,7 @@ export async function createCoordinatorServer(options: {
   port?: number;
 }): Promise<CoordinatorServer> {
   const httpServer = createServer((request, response) => {
-    void handleRequest(request, response).catch((error: unknown) => {
+    void handleRequest(request, response, options.bundleDirectory).catch((error: unknown) => {
       if (response.destroyed) return;
       console.error("[image-annotator] Coordinator request failed:", error);
       if (response.headersSent) response.destroy();
@@ -48,46 +48,46 @@ export async function createCoordinatorServer(options: {
       httpServer.closeAllConnections();
     }),
   };
+}
 
-  async function handleRequest(request: IncomingMessage, response: ServerResponse): Promise<void> {
-    response.setHeader("cache-control", "no-store");
-    response.setHeader("x-content-type-options", "nosniff");
-    if (request.method !== "GET" && request.method !== "HEAD") {
-      response.writeHead(405, { allow: "GET, HEAD" }).end();
-      return;
-    }
-    const pathname = new URL(request.url ?? "/", "http://localhost").pathname;
-    if (pathname === "/health") {
-      response.writeHead(200, { "content-type": "application/json" });
-      response.end(request.method === "HEAD" ? undefined : JSON.stringify({
-        service: "image-annotator", status: "ok", protocol: 1,
-      }));
-      return;
-    }
-    const asset = pathname === "/tablet/bundle.tar.gz"
-      ? { name: "bundle.tar.gz", contentType: "application/gzip" }
-      : pathname === "/tablet/bundle.sha256"
-        ? { name: "bundle.sha256", contentType: "text/plain; charset=utf-8" }
-        : undefined;
-    if (!asset) {
-      response.writeHead(404).end();
-      return;
-    }
-    const file = await open(resolve(options.bundleDirectory, asset.name), "r").catch((error: NodeJS.ErrnoException) => {
-      if (error.code !== "ENOENT" && error.code !== "ENOTDIR") throw error;
-      return undefined;
-    });
-    if (!file) {
-      response.writeHead(503).end("Tablet bundle is not built. Run bun run build:tablet in image-annotator.");
-      return;
-    }
-    try {
-      const info = await file.stat();
-      response.writeHead(200, { "content-type": asset.contentType, "content-length": info.size });
-      if (request.method === "HEAD") response.end();
-      else await pipeline(file.createReadStream({ autoClose: false }), response);
-    } finally {
-      await file.close();
-    }
+async function handleRequest(request: IncomingMessage, response: ServerResponse, bundleDirectory: string): Promise<void> {
+  response.setHeader("cache-control", "no-store");
+  response.setHeader("x-content-type-options", "nosniff");
+  if (request.method !== "GET" && request.method !== "HEAD") {
+    response.writeHead(405, { allow: "GET, HEAD" }).end();
+    return;
+  }
+  const pathname = new URL(request.url ?? "/", "http://localhost").pathname;
+  if (pathname === "/health") {
+    response.writeHead(200, { "content-type": "application/json" });
+    response.end(request.method === "HEAD" ? undefined : JSON.stringify({
+      service: "image-annotator", status: "ok", protocol: 1,
+    }));
+    return;
+  }
+  const asset = pathname === "/tablet/bundle.tar.gz"
+    ? { name: "bundle.tar.gz", contentType: "application/gzip" }
+    : pathname === "/tablet/bundle.sha256"
+      ? { name: "bundle.sha256", contentType: "text/plain; charset=utf-8" }
+      : undefined;
+  if (!asset) {
+    response.writeHead(404).end();
+    return;
+  }
+  const file = await open(resolve(bundleDirectory, asset.name), "r").catch((error: NodeJS.ErrnoException) => {
+    if (error.code !== "ENOENT" && error.code !== "ENOTDIR") throw error;
+    return undefined;
+  });
+  if (!file) {
+    response.writeHead(503).end("Tablet bundle is not built. Run bun run build:tablet in image-annotator.");
+    return;
+  }
+  try {
+    const info = await file.stat();
+    response.writeHead(200, { "content-type": asset.contentType, "content-length": info.size });
+    if (request.method === "HEAD") response.end();
+    else await pipeline(file.createReadStream({ autoClose: false }), response);
+  } finally {
+    await file.close();
   }
 }
