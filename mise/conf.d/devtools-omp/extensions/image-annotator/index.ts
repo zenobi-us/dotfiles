@@ -100,34 +100,39 @@ export interface AnnotatorResult {
   name: string;
 }
 
+interface CoordinatorState {
+  serverPromise?: Promise<CoordinatorServer>;
+}
+
+function startCoordinator(state: CoordinatorState): Promise<CoordinatorServer> {
+  if (!state.serverPromise) {
+    state.serverPromise = createCoordinatorServer({
+      bundleDirectory: resolve(EXTENSION_DIR, "tablet-client", "dist"),
+      hostname: process.env.OMP_IMAGE_ANNOTATOR_HOST ?? "127.0.0.1",
+      port: Number(process.env.OMP_IMAGE_ANNOTATOR_PORT ?? COORDINATOR_PORT),
+    }).catch((error: unknown) => {
+      state.serverPromise = undefined;
+      throw error;
+    });
+  }
+  return state.serverPromise;
+}
+
 export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
   let latestImage: ImageContent | undefined;
-  let coordinator: Promise<CoordinatorServer> | undefined;
-  const startCoordinator = () => {
-    if (!coordinator) {
-      coordinator = createCoordinatorServer({
-        bundleDirectory: resolve(EXTENSION_DIR, "tablet-client", "dist"),
-        hostname: process.env.OMP_IMAGE_ANNOTATOR_HOST ?? "127.0.0.1",
-        port: Number(process.env.OMP_IMAGE_ANNOTATOR_PORT ?? COORDINATOR_PORT),
-      }).catch((error: unknown) => {
-        coordinator = undefined;
-        throw error;
-      });
-    }
-    return coordinator;
-  };
+  const coordinatorState: CoordinatorState = {};
 
   pi.on("session_start", async (_event, ctx) => {
     if ((!ctx.hasUI && ctx.mode !== "tui") || Number(process.env.MUXER_SUBAGENT_DEPTH ?? 0) !== 0) return;
     try {
-      const server = await startCoordinator();
+      const server = await startCoordinator(coordinatorState);
       ctx.ui.notify(`Image coordinator: ${server.url}/health`, "info");
     } catch (error) {
       ctx.ui.notify(`Image coordinator failed: ${errorMessage(error)}`, "error");
     }
   });
   pi.on("session_shutdown", async () => {
-    if (coordinator) await (await coordinator).close();
+    if (coordinatorState.serverPromise) await (await coordinatorState.serverPromise).close();
   });
 
   for (const event of ["session_start", "session_switch", "session_branch", "session_tree"] as const) {
@@ -178,7 +183,7 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
     handler: async (args, ctx) => {
       try {
         if (args.trim() === "coordinator") {
-          const server = await startCoordinator();
+          const server = await startCoordinator(coordinatorState);
           ctx.ui.notify(`Image coordinator: ${server.url}/health`, "info");
           return;
         }
