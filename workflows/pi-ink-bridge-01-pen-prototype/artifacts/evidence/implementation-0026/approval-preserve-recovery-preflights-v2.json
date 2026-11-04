@@ -1,0 +1,34 @@
+{
+  "schema": "pi-ink-device-host-approval/v1",
+  "recorded_at": "2026-11-04T05:04:27.845721+00:00",
+  "owner_answer_verbatim": "Both tablet and desktop",
+  "question": "Which exact Stage A read-only preflights do you approve, once each, under the existing exclusive handoff?",
+  "scope_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preserve-recovery-proposal-v2/approval-scope.txt",
+  "scope_sha256": "1f5b54225bd79b9145904d399b8eab065939519c0673bc7bd3eb52acde152e47",
+  "handoff_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/approval-current-inventory-with-handoff.json",
+  "handoff": "Existing explicit owner-as-operator exclusive handoff retained and reaffirmed by this question/answer.",
+  "authorized_actions": [
+    {
+      "action": "preflight-device",
+      "runs": 1,
+      "host_deadline_seconds": 45
+    },
+    {
+      "action": "preflight-host",
+      "runs": 1,
+      "host_deadline_seconds": 45
+    }
+  ],
+  "environment": {
+    "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+    "PI_INK_RECOVERY_PREFLIGHT_APPROVED": "preserve-recovery-0026-v2"
+  },
+  "wrapper": "/tmp/pi-ink-preserve-recovery-0026-v2/host.sh",
+  "read_permissions": "Exact bounded device public-binary/entry checks and host digest-only config/token/key identity plus bounded internal log token/private-key-presence checks and gateway ownership metadata. No raw contents/secret values.",
+  "allowed_mutation": false,
+  "allowed_restart": false,
+  "allowed_retry": false,
+  "proxy_disposition": "Not selected or authorized by this approval",
+  "later_recovery_cleanup": "Not authorized; needs validated preflight and separate exact approvals",
+  "active_child": "w6N:p5/session01a19fe2-4d68-770a-a05b-0a20eca7c412"
+}

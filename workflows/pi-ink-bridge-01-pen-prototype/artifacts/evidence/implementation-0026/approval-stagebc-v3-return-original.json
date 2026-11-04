@@ -1,0 +1,50 @@
+{
+  "schema": "pi-ink-device-approval/v1",
+  "recorded_at": "2026-11-04T07:31:08.039049+00:00",
+  "owner_answers_verbatim": {
+    "stagebc_proxy_choice": "Return original proxy file",
+    "stagebc_approval_readiness": "Approve; saved/closed; USB ready"
+  },
+  "scope_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/stagebc-proposal-v3/approval-scope.txt",
+  "scope_sha256": "defc80796473c31a159c9e47b01a83f85300833c392641b8c28e45bbaa2a1b6a",
+  "selected_branch": "return-original",
+  "authorized_actions": [
+    {
+      "action": "recover-return-original",
+      "allowed_runs": 1,
+      "new_restart_command_allowance": 1
+    },
+    {
+      "action": "verify-return-original",
+      "allowed_runs": 1,
+      "requires": "Observed successful same-branch recovery exit0 and required postproof"
+    },
+    {
+      "action": "postinventory-return-original",
+      "allowed_runs": 1,
+      "requires": "Observed successful same-branch verify exit0"
+    }
+  ],
+  "frozen_files": {
+    "approval-scope.txt": "defc80796473c31a159c9e47b01a83f85300833c392641b8c28e45bbaa2a1b6a",
+    "host.sh": "ce82b2b19871f96d69111b8ec4fade3874dc978abdb3ee836efae14dd6669005",
+    "recover-return-original.sh": "d2a223e80b8ec6fa94439616fb49ceb0bce45b2f96474513b126216f35b0dfbc",
+    "verify-return-original.sh": "f5909cf1128295b9e55229226ef4bb937614b08d08404db0480fb6f650a76ee9",
+    "postinventory-return-original.sh": "a14afee9524893a97ced369acce945baa328ccb613c37bafafe96850fe193dee"
+  },
+  "all_documents_saved_closed": "NEW owner confirmation in explicit readiness answer",
+  "usb_connected": "NEW owner confirmation in explicit readiness answer; exact host guard still required",
+  "exclusive_handoff": "Owner-as-intervening-operator exclusive handoff remains in force, expressly included in approval answer",
+  "current_configuration": "Preserve current service files/settings; no unavailable drop-in recreation or old activation. Original extension files retained; current-config restart may change which original modules load.",
+  "original_proxy_risk": "Owner selected exact file return with explicit warning that wildcard HTTP80 may return if XOVI loads; not paired Pi authentication.",
+  "protected_host_boundary": "Preserve entire unexamined0755 /tmp/pi-ink-ui-validation-0023/payload unchanged; no child read/hash/chmod/deletion, full final cleanup remains blocked there.",
+  "deletion_authorized": false,
+  "retry_authorized": false,
+  "other_branch_authorized": false,
+  "historical_restart_total": "UNKNOWN; this grants at mostONE NEW command, not reuse of stale allowance.",
+  "failure_boundary": "Any failed guard/postcondition, nonzero exit, timeout or unknown/live actor stops all later target commands. No inferred target shutdown or duplicate operation.",
+  "parent_validation_ref": "parent-stage-a-v2-validation.json",
+  "parent_validation_sha256": "7ddfb74f64815660fef0c35042cf101fa4b5c0d9762f2178fdc2cfda5f9d0993",
+  "active_child": "w6N:p5/session01a19fe2-4d68-770a-a05b-0a20eca7c412",
+  "parent_current_inspection": "historyValid=true; unique clean bb5df500/tree9a9acbfb; active start0025 retained, not a new session takeover."
+}

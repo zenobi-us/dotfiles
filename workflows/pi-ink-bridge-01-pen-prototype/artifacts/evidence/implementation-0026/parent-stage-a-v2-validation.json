@@ -1,0 +1,47 @@
+{
+  "recorded_at": "2026-11-04T05:16:05.763820+00:00",
+  "scope": "Parent validation of actual approved v2 Stage A results; not mutation approval",
+  "device_result": {
+    "ref": "preflight-device-v2.json",
+    "sha256": "a8b57ad0797b1ffdf56035c7eda612131761bc887664b7c8fb01128fdf6c6e4a",
+    "exit_code": 0,
+    "entry_allowlist_failures": 0,
+    "entry_rows": 39,
+    "active_and_stage_go_sha256": "0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd",
+    "backup_go_sha256": "f601436dd591ae782f15c0714bcfd4412fb3facebeadeb7d31914a5dc69ecada",
+    "running_binary_and_config": "exact known identities matched",
+    "current_service_configuration": "Three known hashes, two known drop-ins, absent old activation drop-ins and exact vendor-only Environment established by unchanged strict preflight",
+    "xochitl_pid": 112810,
+    "owned_client_pid": 106748,
+    "runtime": "XOVI/adapter/rebuilder/AppLoad mapped; proxy not mapped; known81/9821loopback listeners; no80observed within complete scans"
+  },
+  "host_result": {
+    "ref": "preflight-host-v2.json",
+    "sha256": "1f9629dc824c6a557f9da43fe0995ac807704444562d94bee92d50df03c2a5f9",
+    "exit_code": 0,
+    "entry_rows": 49,
+    "hashed_bytes": 29074356,
+    "checked_logs": 8,
+    "known_token_or_private_key_marker_hits": 0,
+    "observed_listener_ports_absent": [
+      9443,
+      9444
+    ],
+    "protected_roots": 1,
+    "exhaustive_erasure_or_process_death_proved": false
+  },
+  "protected_boundary_policy": {
+    "path": "/tmp/pi-ink-ui-validation-0023/payload",
+    "reported_uid": 1000,
+    "reported_gid": 1000,
+    "reported_mode": "0755",
+    "raw_label": "UNOWNED_ROOT_PRESERVE_NO_CHILD_READ",
+    "interpretation": "Mode0700 precondition failed; this is not proof of wrong-user ownership. Children were not inspected.",
+    "policy": "Preserve the entire unexamined directory unchanged. No chmod, child reads, hashing or deletion under next device-recovery scope. Full final cleanup remains separately gated.",
+    "device_recovery_relation": "This protected host directory is outside device mutation scope. A new explicit recovery scope must name its preservation, not treat the host exit0 as universal readiness or bypass any device guard."
+  },
+  "next_scope_required": "Exact selected proxy branch; NEWat-most-one-restart allowance and NEWALL-documents-saved/closed+cable confirmation; matching explicit read-only verify/postinventory approval; deletion separate.",
+  "mutation_authorized": false,
+  "restart_total": "UNKNOWN",
+  "historical_receipts_unchanged": true
+}

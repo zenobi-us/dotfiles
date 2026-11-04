@@ -1,0 +1,40 @@
+{
+  "recorded_at": "2026-11-04T07:43:08.979621+00:00",
+  "scope": "Parent verification of approved return-original triplet evidence; not final cleanup or UI acceptance",
+  "operations_checked": [
+    {
+      "ref": "recover-return-original-v3.json",
+      "sha256": "5214545f190da5d35b78ab37ae17d04abb42b507074d30d0169d02a67f262010",
+      "exit_code": 0
+    },
+    {
+      "ref": "verify-return-original-v3.json",
+      "sha256": "f8af0cf1025b88ce213b75523389f1a59c39e4670beabd8fe463c899e936b788",
+      "exit_code": 0
+    },
+    {
+      "ref": "postinventory-return-original-v3.json",
+      "sha256": "b9926313fafee66706c9b4a69fcf74ea5fa48a6356f6c7b422c90ff17ce56084",
+      "exit_code": 0
+    }
+  ],
+  "target_controller_pid": 230692,
+  "observed_new_restart_commands": 1,
+  "new_restart_allowance_remaining": 0,
+  "historical_restart_total": "UNKNOWN",
+  "known_maps_after": {
+    "xovi": false,
+    "owned_adapter": false,
+    "original_proxy": false,
+    "rebuilder": false,
+    "appload": false,
+    "complete": true
+  },
+  "original_proxy": "Exact original file hash/stat restored; not mapped in completed known-module scan. No old service activation restored.",
+  "current_configuration": "Required current service fingerprints/activation guards passed before and after; original non-owned extension files not modified.",
+  "listener_boundary": "Relevant TCP80 present with BINDING=other_REDACTED; ownership initially NOT_FOUND_WITHIN_BOUND during recover, then matched xochitl230912 within fd0..511 in verify/postinventory. This is NOT a claim of actual wildcard binding or Pi paired authentication. Relevant81/9821 absent within complete bounded scans; owned9821 absence explicitly proved.",
+  "owner_stock_library_observation": "Pending. Do not infer surface readiness from systemd/maps/listeners.",
+  "final_cleanup": "Not authorized or complete. Protected0755 host payload remains unexamined/preserved; opaque state/history/durable outputs/notebooks protected.",
+  "latest_ui_deployed": false,
+  "production_blocked": true
+}
