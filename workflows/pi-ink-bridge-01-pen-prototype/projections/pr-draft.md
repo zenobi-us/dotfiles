@@ -156,3 +156,29 @@ Hardware UI acceptance, association/Send proof and original-proxy restoration re
 - [stock-editor-attempt-002 evidence](../artifacts/evidence/stock-editor-attempt-002/).
 - [stock-editor-cable-free-001 evidence](../artifacts/evidence/stock-editor-cable-free-001/).
 - [stock-editor-round-trip-001 evidence](../artifacts/evidence/stock-editor-round-trip-001/).
+
+
+# Approved device transaction — implementation-0033
+
+## Ticket and outcome
+[Prove Paper Pro pen input](../../../tracker/tickets/pi-ink-bridge-01-pen-prototype.md) remains **BLOCKED**, with work_status claimed. The approved one-run device slice completed. No source changes, tests, rebuilds, restart, older cleanup, commit or integration occurred. Partial0026 remains open.
+
+## Implementation and validation
+The frozen launcher ran exactly once from BASE with a 120-second host tool timeout. It returned exit0 and DEPLOYMENT_COMPLETE. Its local result records both fixed config hash roles, transaction exit0, READER_EXIT_ZERO and HELPER_REMOVED_AND_DIRECTORY_EMPTY_REMOVED. Reader termination and removal of only the new helper and empty directory are proven by this transaction. No private config values were returned. No further device command ran.
+
+## Changed artifacts and supporting evidence
+- [Owner approval](../artifacts/evidence/device-digests-0033/approval.json)
+- [Frozen plan](../artifacts/evidence/offline-deployment-0031/plan.json)
+- [Actual outcome and exact command](../artifacts/evidence/device-digests-0033/execution-outcome.json)
+- [Raw launcher stdout](../artifacts/evidence/device-digests-0033/launcher-stdout.txt) and [stderr](../artifacts/evidence/device-digests-0033/launcher-stderr.txt)
+- [Raw transaction stdout](../artifacts/evidence/device-digests-0033/transaction-stdout.txt) and [stderr](../artifacts/evidence/device-digests-0033/transaction-stderr.txt)
+- [Consumed attempt](../artifacts/evidence/offline-deployment-0031/execution-0031/attempt.json) and [actual result](../artifacts/evidence/offline-deployment-0031/execution-0031/result.json)
+- [Parent start-0032](../events/start-0032.yaml) and [child result implementation-0033](../events/implementation-0033.yaml)
+- [Confirmed trust boundary ADR0001](../../../docs/adr/0001-pi-ink-cleanup-trust-boundary.md)
+
+## Review, findings and remaining boundary
+Latest formal reviewer verdict: none. No review findings resolved by this device slice. ADR0001 supersedes the historical separate descriptor-safe deployment executor prerequisite, not the reader safeguards. Both actual hashes are now available; earlier text asserting absence is historical. Full native UI, associations, Send and cable-free quality-gate acceptance remain unproved. Older experiment cleanup is neither performed nor approved by this run. No retry or extra SSH is authorized. Parent owns result reconciliation and integration; no full-ticket completion or merge is claimed.
+
+Source remains prototype/pi-ink-bridge-01-pen-prototype at bb5df500f4a06c61ebde6073470ef5ed51f4b006, tree 9a9acbfbc65d17f87eb44f2e0a7898000b1d735b. Fresh child session 01a1a634-48a1-7750-a713-cbe6fdf4b659, pane w6S:p2.
+
+

@@ -1,0 +1,7 @@
+{
+  "schema": "pi-ink-deployment-execution/v1",
+  "attempt_consumed": true,
+  "plan_sha256": "40b938f7aa4d4dd4b704f81450ea15bdf2fb2ad5a40cf5d5bbe64da30ddac4cd",
+  "remote_state": "UNKNOWN_UNTIL_RESULT",
+  "retry_authorized": false
+}

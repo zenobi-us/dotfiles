@@ -1,0 +1,14 @@
+{
+  "schema": "pi-ink-device-session-launch/v1",
+  "date": "2026-11-04",
+  "start_receipt": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0032.yaml",
+  "muxer": "herdr",
+  "workspace": "w6S",
+  "pane": "w6S:p2",
+  "agent": "omp",
+  "child_session": "01a1a634-48a1-7750-a713-cbe6fdf4b659",
+  "source_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "observation": "New working child identity verified in the exact pane and source cwd; launch_pending=true. Previous child session was not resumed or reused. Launch dispatched once; no duplicate.",
+  "wait": "herdr agent wait w6S:p2 --until done --until blocked --timeout14400000",
+  "authority": "Exact frozen plan40b938f7aa4d4dd4b704f81450ea15bdf2fb2ad5a40cf5d5bbe64da30ddac4cd, one launcher invocation, no retry, no extra SSH. No parent device command."
+}

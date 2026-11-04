@@ -1,0 +1,215 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "attempt": 11,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6S:p2",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/device-digests-0033"
+  },
+  "receipt_id": "implementation-0033",
+  "event": "phase-result",
+  "parent_receipt": "start-0032",
+  "created_at": "2026-11-04T10:59:01.211128+00:00",
+  "session_id": "01a1a634-48a1-7750-a713-cbe6fdf4b659",
+  "status": "blocked",
+  "slice_status": "completed",
+  "full_ticket_status": "BLOCKED",
+  "production_blocked": true,
+  "work_status": "claimed",
+  "device_execution": true,
+  "source_changes": false,
+  "command": "PI_INK_DEPLOYMENT_APPROVED=offline-deployment-0031 PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_USB_READY=connected-and-confirmed PI_INK_APPROVED_PLAN_SHA256=40b938f7aa4d4dd4b704f81450ea15bdf2fb2ad5a40cf5d5bbe64da30ddac4cd python3 /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/deploy.py deploy-once",
+  "exit_code": 0,
+  "implementation_summary": "One pinned approved device transaction succeeded. Both fixed config hashes obtained; foreground reader exit0 and helper plus empty directory removal proven. No older cleanup or product implementation repeated.",
+  "validation": [
+    {
+      "command": "PI_INK_DEPLOYMENT_APPROVED=offline-deployment-0031 PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_USB_READY=connected-and-confirmed PI_INK_APPROVED_PLAN_SHA256=40b938f7aa4d4dd4b704f81450ea15bdf2fb2ad5a40cf5d5bbe64da30ddac4cd python3 /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/deploy.py deploy-once",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "stdout": "DEPLOYMENT_COMPLETE\n",
+      "stderr": "",
+      "result_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/execution-0031/result.json",
+      "boundary": "Pinned launcher exit0 plus local result success, both fixed hash roles, READER_EXIT_ZERO, and HELPER_REMOVED_AND_DIRECTORY_EMPTY_REMOVED. No extra remote inspection."
+    }
+  ],
+  "open_questions": [
+    "Older experiment state and cleanup remain unverified and outside this run.",
+    "Full native UI, associations, Send and cable-free acceptance remain unproved.",
+    "Partial implementation0026 remains open; parent completion0034 and independent local verification are parent-owned."
+  ],
+  "remaining_boundary": "No retry, extra SSH, cleanup continuation, source changes or full-ticket completion. New device work requires separate scope approval. Partial0026 remains open.",
+  "retry_authorized": false,
+  "changed_files": [
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/device-digests-0033/execution-outcome.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/device-digests-0033/launcher-stdout.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/device-digests-0033/launcher-stderr.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/device-digests-0033/transaction-stdout.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/device-digests-0033/transaction-stderr.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/execution-0031/attempt.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/execution-0031/result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0033.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0033.yaml"
+  ],
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "record",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "record",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "record",
+      "ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md"
+    },
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0032.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/device-digests-0033/approval.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-design-confirmed-20261104/confirmation.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/plan.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/approval-scope.txt"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/deploy.py"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/execution-0031/attempt.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/execution-0031/result.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/remote.sh"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/reader-linux-arm64"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/device-digests-0033/execution-outcome.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/device-digests-0033/launcher-stdout.txt"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/device-digests-0033/launcher-stderr.txt"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/device-digests-0033/transaction-stdout.txt"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/device-digests-0033/transaction-stderr.txt"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/execution-0031/attempt.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/execution-0031/result.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0033.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0033.yaml"
+    }
+  ],
+  "consumed_runtime_artifacts": [
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/remote.sh",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/reader-linux-arm64"
+  ]
+}
