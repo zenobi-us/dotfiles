@@ -1,0 +1,21 @@
+{
+  "schema": "pi-ink-irreversible-cleanup-approval/v1",
+  "question": "Do you approve this irreversible plan, including host and tablet deletions and temporary executor staging/removal, with USB connected and exclusive access?",
+  "owner_answer": "approve",
+  "plan_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/plan.json",
+  "plan_sha256": "3a0bc0837c76496b2c7c1e0bcdcd7e98947f944eda232b9e8b4ba1484c4e0d8d",
+  "manifest_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-manifest-0035/manifest.json",
+  "manifest_sha256": "58e922578c95faf911f6e8740d85e31748011be44566304e9166c00dc447ebfc",
+  "scope_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/approval-scope.txt",
+  "scope": "One frozen cleanup launcher attempt: host full preflight, one pinned device staging/apply/helper-removal transaction, then host full revalidation/apply only after device success. Maximum tablet28regular files,6conditional markers,11conditional directories; host34regular files,4conditional markers,8conditional directories.",
+  "irreversible_consequence_disclosed": "Unlinks have no rollback. Retained hashes/evidence are not backups of private config/key contents. Partial removal can occur before a later failure.",
+  "usb_kept_connected_confirmed": true,
+  "exclusive_operator_handoff_confirmed": true,
+  "cleanup_only_continuation_approved": true,
+  "maximum_launcher_attempts": 1,
+  "failure_policy": "Stop on any failed guard, mutation, transport failure or timeout. No retry, repair, extra probe, process/service action, further SSH or rollback. Preserve unknown/remaining state and report actual partial outcomes.",
+  "preserve": ["Opaque state and interrupted state records", "Logs and source PDFs", "Markers supporting retained content", "Unknown/unlisted files", "Original extensions and current service/boot/account/cloud settings", "Repository source, receipts, approvals, artifacts, execution evidence and durable outputs"],
+  "excluded": ["Recursive deletion", "Unlisted paths", "Restarts or original process stop/kill", "Document/library/UI/screenshot access", "Source edit", "Merge/push", "Ticket completion"],
+  "ownership_observation": "Fresh source is clean atbb5df500/tree9a9acbfb. Only current parent w64:pY listed for Dotfiles; no old child active and no matching goal coordinator reservation. Existing claim retained idempotently.",
+  "preserve_unrelated_changes": "Staged mise.toml and pre-existing untracked implementation0026/system-relationships evidence remain untouched. No staging or adoption of that earlier work."
+}

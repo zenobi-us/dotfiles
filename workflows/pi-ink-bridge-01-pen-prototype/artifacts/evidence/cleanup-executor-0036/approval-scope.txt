@@ -1,0 +1,58 @@
+Pi Ink fixed-manifest irreversible cleanup
+
+Status: prepared and tested offline. NOT approved for execution.
+
+Frozen executor plan SHA256:
+3a0bc0837c76496b2c7c1e0bcdcd7e98947f944eda232b9e8b4ba1484c4e0d8d
+
+Fixed manifest SHA256:
+58e922578c95faf911f6e8740d85e31748011be44566304e9166c00dc447ebfc
+
+Maximum planned removals:
+Tablet:28regular files,6conditional ownership markers,11conditional empty directories.
+Host:34regular files,4conditional ownership markers,8conditional empty directories.
+Each exact path and hash appears in cleanup-manifest-0035/manifest.json. No new path, wildcard or recursive deletion is permitted.
+
+Consequence:
+This operation unlinks experiment code/config/key/CA copies. It does not provide a rollback. Retained hashes and evidence are NOT backups of config or private-key contents. Do not assume that deleted credentials can be recovered from them.
+
+Order:
+1. Reserve a new local execution-0036 attempt. Validate all host targets and owned-actor inactivity without deletion.
+2. Check the exact direct physical USB route. Perform one SSH transaction to stage the pinned ARM64 executor in a NEW /home/root/pi-ink-cleanup-executor-0036 directory. Refuse an occupied path. Require exact transferred bytes and SHA256; set mode0500only on the new verified executable.
+3. The tablet executor checks the recovered runtime/service fingerprints, Xochitl PID230912 and binary hash, owned client inactivity, unmapped known modules, absent UI9821 listener, and unchanged terminal actor/PID absence. It then validates ALL fixed tablet file and directory guards before the first unlink. It unlinks only exact named files and processes markers/directories conditionally last. After a successful executor exit, the wrapper verifies and removes only its new helper and empty helper directory.
+4. Only after device success, revalidate all host runtime/path guards and apply the fixed host targets. Record actual removed and retained paths.
+
+Runtime reads:
+Only fixed manifest files, ancestor metadata, named owned-directory entries, and the explicit runtime guard inputs are permitted. Config/private-key contents are hashed through bounded no-follow descriptors, never printed, parsed or copied. Host inactivity checks use a bounded /proc process list (4096entries), only same-UID1000process command lines (64KiB cap), cwd and executable links, and exact legacy-root matching. Raw process values remain in memory and are not emitted or stored. There is no general filesystem/library/document inventory.
+
+Preserved:
+Opaque state.json, interrupted .tablet-state-* records, logs, source PDFs, unknown/unlisted files, ownership markers supporting retained content, original extensions, current service/boot/account/cloud configuration, repository source, workflow receipts, approvals, evidence, execution records and durable image-annotator output. Empty-directory removal remains conditional. No universal credential-erasure claim is permitted.
+
+Trust model:
+ADR0001: trusted exclusive operation. Protect against mistakes, symlinks, unexpected files and observed identity changes. Do not add another descriptor-safe deployment executor prerequisite or claim resistance to a hostile concurrent root actor.
+
+Required owner confirmation before execution:
+- Approve the exact irreversible plan and manifest hashes above, including both tablet and host scope.
+- Keep USB connected throughout the operation.
+- Provide exclusive operator access. Do not change the target files during the operation.
+- Permit a fresh cleanup-only workflow session after current owner/agent/coordinator inspection. No active/unknown earlier agent may be duplicated.
+
+Stop policy:
+If any preflight target is missing, linked, changed, inaccessible, unowned or hash-mismatched, stop before that side's first unlink. If a mutation or later guard fails, stop without automatic retry, repair, process action, further discovery or rollback. A failure after device deletion can leave only the device side cleaned. A timeout can leave remote process state unknown; do not assume it stopped or reconnect for cleanup. Preserve the helper if termination or identity is uncertain. Record partial outcomes honestly.
+
+Excluded:
+No restart, original process stop/kill, service/extension/boot/account/cloud change, document/library/UI/screenshot access, source edit, history/evidence deletion, unlisted or recursive deletion, retry, fallback, merge, push or ticket completion.
+
+Exact launcher, ONLY AFTER new owner execution approval and fresh workflow inspection:
+
+PI_INK_CLEANUP_APPROVED=cleanup-executor-0036 \
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent \
+PI_INK_USB_READY=connected-and-confirmed \
+PI_INK_APPROVED_PLAN_SHA256=3a0bc0837c76496b2c7c1e0bcdcd7e98947f944eda232b9e8b4ba1484c4e0d8d \
+timeout --signal=TERM --kill-after=5s 240s \
+python3 workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/cleanup.py cleanup-once
+
+Run as the recorded host user UID1000/GID1000, not sudo. The flags prevent accidental use; they are not consent. The local execution directory is exclusively reserved and cannot be reused. Host preflight/apply each have45second capture limits. SSH has a90second TERM/95second KILL limit and100second outer capture limit. The overall launcher has a240second TERM/245second KILL limit. Any timeout consumes the attempt and requires outcome reconciliation, not repetition.
+
+Current preparation evidence:
+Go guard/refusal/deletion tests, real standalone synthetic apply, eight Bats process-boundary checks and ShellCheck passed. Both production executables were built statically with Go1.25.0; ARM64 was cross-built. The ARM64 cleanup program has not run on the tablet. No production cleanup target or tablet was accessed while preparing this executor. Runtime guard values are retained expectations, not current device observations.

@@ -1,0 +1,160 @@
+{
+  "schema": "pi-ink-cleanup-executor-validation/v1",
+  "created_at": "2026-11-04T21:21:58.126Z",
+  "manifest_sha256": "58e922578c95faf911f6e8740d85e31748011be44566304e9166c00dc447ebfc",
+  "plan_sha256": "3a0bc0837c76496b2c7c1e0bcdcd7e98947f944eda232b9e8b4ba1484c4e0d8d",
+  "checks": [
+    {
+      "label": "format-root-permission-guards",
+      "args": [
+        "gofmt",
+        "-w",
+        "engine_linux.go",
+        "root_linux_test.go"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "guard-tests",
+      "args": [
+        "go",
+        "test",
+        "-count=1",
+        "-timeout=45s",
+        "-v",
+        "."
+      ],
+      "exit": 0,
+      "stdout": "=== RUN   TestRealApplyRemovesFilesThenMarkersAndDirectories\n--- PASS: TestRealApplyRemovesFilesThenMarkersAndDirectories (0.00s)\n=== RUN   TestCheckDoesNotUnlink\n--- PASS: TestCheckDoesNotUnlink (0.00s)\n=== RUN   TestEntirePreflightPrecedesFirstUnlink\n--- PASS: TestEntirePreflightPrecedesFirstUnlink (0.00s)\n=== RUN   TestBoundaryRefusalsPreserveEveryFile\n=== RUN   TestBoundaryRefusalsPreserveEveryFile/leaf-symlink\n=== RUN   TestBoundaryRefusalsPreserveEveryFile/parent-symlink\n=== RUN   TestBoundaryRefusalsPreserveEveryFile/wrong-mode\n=== RUN   TestBoundaryRefusalsPreserveEveryFile/wrong-owner\n=== RUN   TestBoundaryRefusalsPreserveEveryFile/wrong-group\n=== RUN   TestBoundaryRefusalsPreserveEveryFile/fifo\n=== RUN   TestBoundaryRefusalsPreserveEveryFile/missing\n=== RUN   TestBoundaryRefusalsPreserveEveryFile/size\n=== RUN   TestBoundaryRefusalsPreserveEveryFile/hash-cap\n--- PASS: TestBoundaryRefusalsPreserveEveryFile (0.00s)\n    --- PASS: TestBoundaryRefusalsPreserveEveryFile/leaf-symlink (0.00s)\n    --- PASS: TestBoundaryRefusalsPreserveEveryFile/parent-symlink (0.00s)\n    --- PASS: TestBoundaryRefusalsPreserveEveryFile/wrong-mode (0.00s)\n    --- PASS: TestBoundaryRefusalsPreserveEveryFile/wrong-owner (0.00s)\n    --- PASS: TestBoundaryRefusalsPreserveEveryFile/wrong-group (0.00s)\n    --- PASS: TestBoundaryRefusalsPreserveEveryFile/fifo (0.00s)\n    --- PASS: TestBoundaryRefusalsPreserveEveryFile/missing (0.00s)\n    --- PASS: TestBoundaryRefusalsPreserveEveryFile/size (0.00s)\n    --- PASS: TestBoundaryRefusalsPreserveEveryFile/hash-cap (0.00s)\n=== RUN   TestUnknownAndOpaqueContentKeepsMarkerAndRoot\n--- PASS: TestUnknownAndOpaqueContentKeepsMarkerAndRoot (0.00s)\n=== RUN   TestExplicitPreserveDoesNotReadOpaqueFIFO\n--- PASS: TestExplicitPreserveDoesNotReadOpaqueFIFO (0.00s)\n=== RUN   TestActiveActorPreventsMutation\n--- PASS: TestActiveActorPreventsMutation (0.00s)\n=== RUN   TestActorBecomingActiveAfterPreflightPreventsMutation\n--- PASS: TestActorBecomingActiveAfterPreflightPreventsMutation (0.00s)\n=== RUN   TestIdentityReplacementStopsWithoutDeletingReplacement\n--- PASS: TestIdentityReplacementStopsWithoutDeletingReplacement (0.00s)\n=== RUN   TestPartialFailureReportsActualRemovalWithoutRollback\n--- PASS: TestPartialFailureReportsActualRemovalWithoutRollback (0.00s)\n=== RUN   TestLateDirectoryEntryRefusesRmdirAndPreservesEntry\n--- PASS: TestLateDirectoryEntryRefusesRmdirAndPreservesEntry (0.00s)\n=== RUN   TestWritableAnchorIsRefusedBeforeCleanup\n--- PASS: TestWritableAnchorIsRefusedBeforeCleanup (0.00s)\n=== RUN   TestWritableTemporaryParentRequiresStickyBit\n--- PASS: TestWritableTemporaryParentRequiresStickyBit (0.00s)\nPASS\nok  \t_/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036\t0.009s\n",
+      "stderr": ""
+    },
+    {
+      "label": "host-static",
+      "args": [
+        "go",
+        "build",
+        "-trimpath",
+        "-buildvcs=false",
+        "-ldflags=-s -w -buildid=",
+        "-o",
+        "cleanup-linux-amd64",
+        "."
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "device-static",
+      "args": [
+        "go",
+        "build",
+        "-trimpath",
+        "-buildvcs=false",
+        "-ldflags=-s -w -buildid=",
+        "-o",
+        "cleanup-linux-arm64",
+        "."
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "fixture-static",
+      "args": [
+        "go",
+        "build",
+        "-tags=hostfixture",
+        "-trimpath",
+        "-buildvcs=false",
+        "-ldflags=-s -w -buildid=",
+        "-o",
+        "fixture-linux-amd64",
+        "."
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "synthetic-apply",
+      "args": [
+        "./fixture-linux-amd64"
+      ],
+      "exit": 0,
+      "stdout": "ALL_TARGETS_PREFLIGHT_PASSED\nREMOVED_FILE /tmp/owned/key.pem\nRETAINED_MARKER /tmp/owned/owner.txt\nRETAINED_DIRECTORY /tmp/owned\nFIXED_MANIFEST_SIDE_COMPLETE\nHOST_SYNTHETIC_APPLY_PASS_NO_REAL_TARGET_ACCESS\n",
+      "stderr": ""
+    },
+    {
+      "label": "shellcheck",
+      "args": [
+        "shellcheck",
+        "remote.sh"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "shell-boundary-tests",
+      "args": [
+        "bats",
+        "cleanup.bats"
+      ],
+      "exit": 0,
+      "stdout": "1..8\nok 1 launcher refuses missing irreversible approval before file or route access\nok 2 production executor refuses apply without exact manifest approval\nok 3 production executor has no alternate root or target argument\nok 4 remote helper stages, applies only synthetic state, and removes itself\nok 5 occupied remote staging path is preserved\nok 6 bad remote transfer is preserved and never executed\nok 7 partial cleanup failure leaves helper and never rolls back or retries\nok 8 completion refuses missing, duplicate or unapproved removal records\n",
+      "stderr": ""
+    },
+    {
+      "label": "executable-formats",
+      "args": [
+        "file",
+        "cleanup-linux-amd64",
+        "cleanup-linux-arm64",
+        "fixture-linux-amd64"
+      ],
+      "exit": 0,
+      "stdout": "cleanup-linux-amd64: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped\ncleanup-linux-arm64: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, stripped\nfixture-linux-amd64: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped\n",
+      "stderr": ""
+    }
+  ],
+  "toolchain": "go version go1.25.0 linux/amd64",
+  "operational_mapping": {
+    "source_manifest_exact": true,
+    "integer_precision_preserved": true,
+    "host_targets": 48,
+    "device_targets": 48
+  },
+  "frozen_execution_artifact_pins_verified": 5,
+  "wrong_plan_gate": {
+    "exit": 1,
+    "stdout": "",
+    "stderr": "CLEANUP_REFUSAL APPROVED_PLAN_HASH_REQUIRED\n"
+  },
+  "real_attempt_reservation_created": false,
+  "production_cleanup_target_access": false,
+  "device_access": false,
+  "deletion_executed": false,
+  "fixture_limit": "Actual apply and shell transactions used only isolated synthetic roots/payloads. Fixture binary is excluded from production deployment. Current device/runtime/actor state was not probed.",
+  "runtime_guard_limits": "Real systemctl, module-map, socket and owned-process visibility guards are retained expectations and checked only after separate exact execution approval. No hardware cleanup success claimed.",
+  "source_changes": false,
+  "worktree_phase_started": false,
+  "inspection": {
+    "historyValid": true,
+    "action": "start",
+    "mode": "takeover",
+    "parentReceipt": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0034.yaml"
+  },
+  "inputs": [
+    "docs/adr/0001-pi-ink-cleanup-trust-boundary.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-manifest-0035/manifest.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-manifest-0035/validation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/stagebc-proposal-v3/postinventory-return-original.sh",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/remote.sh",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0034.yaml"
+  ]
+}

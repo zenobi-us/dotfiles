@@ -1,0 +1,139 @@
+{
+  "schema": "pi-ink-fixed-cleanup-plan/v1",
+  "id": "cleanup-executor-0036",
+  "created_at": "2026-11-04T21:18:48.499Z",
+  "status": "FROZEN_OFFLINE_NOT_IRREVERSIBLE_EXECUTION_APPROVAL",
+  "manifest_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-manifest-0035/manifest.json",
+  "manifest_sha256": "58e922578c95faf911f6e8740d85e31748011be44566304e9166c00dc447ebfc",
+  "manifest_bytes": 91198,
+  "launcher": {
+    "ref": "cleanup.py",
+    "sha256": "9671b0c0a57fa216e12ba04fad1aee1f98d88c188a7c38069ac9408253412626",
+    "bytes": 8752
+  },
+  "host_binary": {
+    "ref": "cleanup-linux-amd64",
+    "sha256": "d5c7ede534b735ba3b38088db7d817d6afcd57ffdb726239bfeb7271bf9a4fa2",
+    "bytes": 2244756
+  },
+  "device_binary": {
+    "ref": "cleanup-linux-arm64",
+    "sha256": "cb322624254f5873c878489b86d029397117e574acdcea729129bff1a101d263",
+    "bytes": 2424980
+  },
+  "remote": {
+    "ref": "remote.sh",
+    "sha256": "67431247a7585d5f51af6582c6e84b074b2a73c4fd69622360443c66d67936b6",
+    "bytes": 3527
+  },
+  "operational_targets": {
+    "ref": "targets.json",
+    "sha256": "e9118e9686473c50658740301a7b7e26e0c29ad7cc6f6b4425a1cadac72b336f",
+    "bytes": 24606
+  },
+  "forbidden_deployment_artifacts": [
+    "fixture-linux-amd64"
+  ],
+  "phases": [
+    {
+      "name": "host-check",
+      "mutation": false,
+      "deadline_seconds": 45,
+      "action": "Validate all fixed host paths/hashes and scoped owned-actor inactivity before the SSH transaction."
+    },
+    {
+      "name": "device-apply",
+      "mutation": true,
+      "ssh_transactions": 1,
+      "ssh_deadline_seconds": 90,
+      "kill_after_seconds": 5,
+      "outer_capture_seconds": 100,
+      "action": "New pinned helper staging; device runtime and full target preflight; exact manifest mutations; helper removal only after success."
+    },
+    {
+      "name": "host-apply",
+      "mutation": true,
+      "deadline_seconds": 45,
+      "action": "Revalidate host guards and full target preflight, then apply only fixed host targets after device success."
+    }
+  ],
+  "overall_command_deadline": "timeout --signal=TERM --kill-after=5s 240s",
+  "device_transport": {
+    "destination": "root@10.11.99.1",
+    "interface": "enp2s0f0u4c2",
+    "source": "10.11.99.10",
+    "physical_device": "/sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0",
+    "staging_directory": "/home/root/pi-ink-cleanup-executor-0036",
+    "staging_file": "/home/root/pi-ink-cleanup-executor-0036/executor",
+    "directory_mode": "0700",
+    "file_mode_after_verification": "0500",
+    "occupied_path_policy": "Refuse; no reuse, emptying, alternate path or retry."
+  },
+  "runtime_guards": {
+    "device_xochitl_pid": 230912,
+    "device_stock_sha256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+    "original_proxy_preserved_sha256": "24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f",
+    "service_guard_source_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/stagebc-proposal-v3/postinventory-return-original.sh",
+    "checks": [
+      "Exact recovered service fingerprints, drop-ins, environment, command, idle job and Xochitl identity",
+      "Owned tablet clients inactive/not-found, known XOVI/adapter/proxy/rebuilder/AppLoad modules unmapped, UI9821 listener absent",
+      "Pinned terminal actor record unchanged and prior actor PID125204 absent",
+      "Host executing UID/GID1000; bounded same-UID process argv/cwd/executable matching against exact legacy roots; unknown visibility or matching active actor refuses cleanup"
+    ],
+    "host_process_bound": 4096,
+    "host_cmdline_cap_bytes": 65536,
+    "unknown_process_values": "Never print or store; ephemeral matching only. No process stop/kill action."
+  },
+  "deletion_rules": {
+    "counts": {
+      "device_file_unlinks": 28,
+      "device_conditional_marker_unlinks": 6,
+      "device_conditional_directory_removals": 11,
+      "host_file_unlinks": 34,
+      "host_conditional_marker_unlinks": 4,
+      "host_conditional_directory_removals": 8,
+      "device_ca_expected_source_pins": 4,
+      "actual_config_hash_gaps": 0
+    },
+    "full_side_preflight_before_first_unlink": true,
+    "descriptor_relative_no_symlink": true,
+    "content_hash_and_metadata_pins": true,
+    "identity_rechecked_before_each_unlink": true,
+    "private_contents_never_printed_or_copied": true,
+    "markers_last": true,
+    "unknown_or_retained_children": "Preserve supporting marker/root; never enumerate recursively or remove unknown entries.",
+    "directory_removal": "Exact planned rmdir only. A late nonempty-directory error stops remaining work.",
+    "partial_outcome": "Report actual removed and retained paths. No automatic retry, rollback, fresh discovery or claim of atomic cleanup."
+  },
+  "preserved": [
+    "Returned original proxy/hash/stat/current service configuration/other original extensions.",
+    "SOURCE/evidence/history/parent approvals/durable outputs/private and synthetic documents.",
+    "Opaque state.json and actual .tablet-state-* interrupted temp records, without reading/resetting them.",
+    "Unknown/unowned/unsafe/missing paths and all files not explicitly listed in a later approved manifest.",
+    "Every opaque state.json and interrupted .tablet-state-* file, without reading or hashing.",
+    "Ownership markers and roots supporting any preserved state, logs, PDFs or unknown entries.",
+    "Original /home/root/xovi/extensions.d/webserver-remote.so and all original extensions/service/boot/cloud/account settings.",
+    "All repository source, workflow receipts, approvals, artifacts, local execution records and durable image-annotator outputs.",
+    "Already removed helper /home/root/pi-ink-offline-reader-0029: no new operation on that path."
+  ],
+  "local_attempt": "execution-0036/attempt.json reserved exclusively before host-check. Existing execution directory blocks reuse. Each captured phase and result remain local evidence, not phase receipts.",
+  "authority": {
+    "current_execution_approved": false,
+    "required": "Separate exact irreversible approval for this frozen plan and manifest, USB remains connected, and exclusive operator handoff. Fresh worktree ownership/liveness/reservation inspection and independent phase session before actual execution.",
+    "excluded": [
+      "Service/extension/boot/account/cloud modifications",
+      "Process stop/restart/kill actions other than timeout control of this executor transaction",
+      "Document/library/UI/screenshot access",
+      "Recursive or unlisted deletion",
+      "Retry or fallback",
+      "Source changes, merge, push or ticket completion"
+    ]
+  },
+  "proof_limits": [
+    "No production host targets or tablet were accessed during preparation.",
+    "Current runtime actor/service/path identities are not established by synthetic tests; guards will refuse changed or missing paths.",
+    "Only the named manifest scope can finish. Retained state/logs/PDFs and unknown entries remain; no universal credential-erasure claim.",
+    "ARM64 format and build verified offline, not a hardware cleanup run."
+  ],
+  "full_ticket_status": "BLOCKED"
+}
