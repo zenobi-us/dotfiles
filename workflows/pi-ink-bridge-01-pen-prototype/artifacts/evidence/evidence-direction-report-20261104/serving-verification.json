@@ -1,0 +1,25 @@
+{
+  "schema": "pi-ink-report-verification/v1",
+  "date": "2026-11-04",
+  "url": "http://127.0.0.1:47861/",
+  "service": "pi-ink-evidence-report-20261104",
+  "bind": "127.0.0.1",
+  "report_title": "Pi Ink — Evidence and direction",
+  "browser": {
+    "desktop_viewport": [1100, 900],
+    "mobile_viewport": [375, 812],
+    "mobile_document_scroll_width": 375,
+    "navigation_missing_anchors": 0,
+    "evidence_navigation_clicked": true,
+    "desktop_and_mobile_screenshots_observed": true,
+    "mobile_table_screenshot_observed": true,
+    "page_errors": [],
+    "managed_tab_closed": true
+  },
+  "http_checks": {"unique_source_links": 11, "all_source_statuses": 200, "unlisted_config_path_status": 404},
+  "owner_browser": {"command": "xdg-open http://127.0.0.1:47861/", "exit_code": 0},
+  "serving_boundary": "Exact allowlisted report and source files only. No directory listing, general filesystem route, config or credential access.",
+  "device_actions": false,
+  "historical_tests_rerun": false,
+  "ticket_or_worktree_phase_mutation": false
+}
