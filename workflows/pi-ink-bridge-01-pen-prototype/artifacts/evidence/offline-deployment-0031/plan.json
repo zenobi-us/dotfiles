@@ -1,0 +1,49 @@
+{
+  "schema": "pi-ink-cable-deployment-plan/v1",
+  "id": "offline-deployment-0031",
+  "created_at": "2026-11-04T10:50:46.590Z",
+  "status": "FROZEN_OFFLINE_NOT_EXECUTION_AUTHORITY",
+  "decision_ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md",
+  "confirmation_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-design-confirmed-20261104/confirmation.json",
+  "host": {
+    "ref": "deploy.py",
+    "sha256": "b3ec641c9e761c79a0865c90d56b024b3e57e3540c3cfe6f5fcbf03c04e449d2",
+    "bytes": 5940
+  },
+  "remote": {
+    "ref": "remote.sh",
+    "sha256": "75fbf308fc4ac02477491df6d9d98db00a3c45241987a0aadb239a6e3eb622e3",
+    "bytes": 3356
+  },
+  "reader": {
+    "ref": "../offline-reader-0029/reader-linux-arm64",
+    "sha256": "03016b9c35aeecd82362fe34e4187037a7ee5ebf76014fd7df2f6264aca228d6",
+    "bytes": 2489186
+  },
+  "device": {
+    "ssh": "root@10.11.99.1",
+    "interface": "enp2s0f0u4c2",
+    "source": "10.11.99.10",
+    "physical_device": "/sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0",
+    "staging_directory": "/home/root/pi-ink-offline-reader-0029",
+    "helper": "/home/root/pi-ink-offline-reader-0029/reader",
+    "config_targets": [
+      "/home/root/pi-ink-sidebar-stage-0020/config.json",
+      "/home/root/pi-ink-sidebar-backup-0020/config.json"
+    ],
+    "maximum_reader_invocations": 1,
+    "timeout": "Host timeout TERM45s/KILL50s; outer Python55s safety bound. Timeout/transport uncertainty never proves remote shutdown.",
+    "staging": "New0700directory only; refuse occupied or linked paths. Exclusive create600helper; fixed2489186byte transfer and SHA256 check; chmod500only this newly created verified file.",
+    "removal": "Only after foreground reader exit0 and verified helper identity/hash: unlink exactly helper; rmdir exactly staging directory, refusing unknown contents.",
+    "failure": "Stop; preserve partial/uncertain files; no retry, fallback, widened investigation or restart.",
+    "execution_approved": false
+  },
+  "trust_model": "Trusted exclusive operation, not hostile concurrent root resistance. Existing reader NOFOLLOW/ownership/size/identity safeguards retained.",
+  "local_attempt_record": "execution-0031/attempt.json reserved exclusively before SSH. Existing run directory blocks reuse. No attempt directory created during offline preparation.",
+  "remaining": [
+    "Owner must grant exact execution scope and confirm USB connected plus exclusive operator handoff before use.",
+    "Reinspect workflow/liveness/reservations and use a fresh phase session before an authorized device run.",
+    "Hardware/runtime compatibility and remote path vacancy remain unobserved.",
+    "No final older-experiment cleanup or production acceptance is granted."
+  ]
+}

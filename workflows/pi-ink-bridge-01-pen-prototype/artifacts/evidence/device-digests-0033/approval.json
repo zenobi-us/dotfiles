@@ -1,0 +1,17 @@
+{
+  "schema": "pi-ink-scoped-device-approval/v1",
+  "date": "2026-11-04",
+  "question": "Do you approve one device run of this frozen plan, with USB kept connected and exclusive access for the operation? This includes staging the helper, reading the two config hashes, and guarded helper removal. It excludes older experiment cleanup.",
+  "owner_answer": "yes",
+  "plan_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/plan.json",
+  "plan_sha256": "40b938f7aa4d4dd4b704f81450ea15bdf2fb2ad5a40cf5d5bbe64da30ddac4cd",
+  "approval_scope_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/approval-scope.txt",
+  "scope": "One frozen cable-SSH transaction in a fresh cleanup-only phase session. Fixed new helper directory/file, pinned binary transfer, single bounded reader invocation, and identity-guarded removal of only the helper and empty new directory after success.",
+  "usb_connected_and_remains_connected": true,
+  "exclusive_operator_handoff_confirmed": true,
+  "cleanup_only_continuation_approved": true,
+  "failure_policy": "Stop on failure/refusal/timeout. No retries, fallback, widened investigation, second SSH cleanup command or restart. Preserve partial or uncertain state.",
+  "excluded": ["Older experiment cleanup", "Private config value printing or copying", "Document or library access", "UI or screenshot actions", "Service or process actions beyond the named helper", "Restarts", "Source changes", "Merge or push", "Ticket completion"],
+  "ownership_observation": "Fresh muxer roster lists only current parent w64:pY for Dotfiles. No prior source child listed. No matching goal coordinator reservation found. Existing claim retained; no ticket frontmatter change.",
+  "preserve_unrelated": "Existing staged mise.toml and earlier untracked implementation0026/system-relationships artifacts are not adopted, staged, reset or deleted."
+}

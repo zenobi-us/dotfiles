@@ -1,0 +1,54 @@
+{
+  "schema": "pi-ink-offline-deployment-validation/v1",
+  "created_at": "2026-11-04T10:51:40.326Z",
+  "commands": [
+    {
+      "command": "shellcheck remote.sh",
+      "exit_code": 0
+    },
+    {
+      "command": "bats deployment.bats",
+      "exit_code": 0,
+      "passed": 12,
+      "failed": 0
+    }
+  ],
+  "coverage": [
+    "success runs once and removes only helper/new directory",
+    "occupied directory preservation",
+    "dangling staging link refusal",
+    "symlinked ancestor refusal",
+    "wrong hash prevents execution",
+    "oversized payload prevents execution",
+    "reader failure preserves helper without retry",
+    "changed helper prevents deletion",
+    "unknown contents preserved by rmdir refusal",
+    "execution approval gate before route/SSH",
+    "direct USB route validation",
+    "both hash roles, termination and removal completion requirements"
+  ],
+  "frozen_plan_artifacts_verified": 3,
+  "wrong_approved_plan_hash_check": {
+    "exit": 1,
+    "stdout": "",
+    "stderr": "DEPLOYMENT_REFUSAL APPROVED_PLAN_HASH_REQUIRED\n"
+  },
+  "synthetic_limit": "Remote sh checks use throwaway synthetic paths, caller UID/GID and fixture helper. They do not execute ARM64 or read tablet configs. Separate offline-reader0029 evidence covers actual Go reader behavior.",
+  "device_access": false,
+  "source_changed": false,
+  "execution_approved": false,
+  "worktree_phase_started": false,
+  "inspection": {
+    "historyValid": true,
+    "action": "start",
+    "mode": "takeover",
+    "parentReceipt": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0030.yaml"
+  },
+  "inputs": [
+    "docs/adr/0001-pi-ink-cleanup-trust-boundary.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-design-confirmed-20261104/confirmation.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0030.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-reader-0029/device-proposal.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/two-config-digests-proposal-v2/host.sh"
+  ]
+}

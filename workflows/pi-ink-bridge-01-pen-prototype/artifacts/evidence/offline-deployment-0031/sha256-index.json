@@ -1,0 +1,30 @@
+{
+  "deploy.py": {
+    "sha256": "b3ec641c9e761c79a0865c90d56b024b3e57e3540c3cfe6f5fcbf03c04e449d2",
+    "bytes": 5940
+  },
+  "remote.sh": {
+    "sha256": "75fbf308fc4ac02477491df6d9d98db00a3c45241987a0aadb239a6e3eb622e3",
+    "bytes": 3356
+  },
+  "smoke.py": {
+    "sha256": "50f3fd25e4356a80d2a9989ee4dbde7b04bb1b8e9fca29c8d849058f7195e075",
+    "bytes": 5975
+  },
+  "deployment.bats": {
+    "sha256": "5789fd780f40021df87107f28ab6a2911ae5b37f043bcd7868b9ac3f9fcbf139",
+    "bytes": 1279
+  },
+  "plan.json": {
+    "sha256": "40b938f7aa4d4dd4b704f81450ea15bdf2fb2ad5a40cf5d5bbe64da30ddac4cd",
+    "bytes": 2761
+  },
+  "approval-scope.txt": {
+    "sha256": "246b16b729bf289112908d1a18040c875a0c5ccde396bc703ea43b479469833e",
+    "bytes": 3559
+  },
+  "validation.json": {
+    "sha256": "96ee5155cb14c6ecc4300fb5cb7c40b797f8fca4307e844d49e4dc440748d853",
+    "bytes": 2108
+  }
+}

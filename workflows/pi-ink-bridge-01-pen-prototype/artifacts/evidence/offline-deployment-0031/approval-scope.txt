@@ -1,0 +1,44 @@
+Pi Ink: one bounded cable-SSH helper operation
+
+Status: prepared offline. NOT approved for device execution.
+
+Frozen plan SHA256:
+40b938f7aa4d4dd4b704f81450ea15bdf2fb2ad5a40cf5d5bbe64da30ddac4cd
+
+Trust boundary: ADR0001. The owner provides an exclusive operation. No hostile privileged process may replace files concurrently. Keep all existing reader guards. Do not require another descriptor-safe deployment executor.
+
+Permission to request:
+- Continue the cleanup-only workflow in a fresh agent session after fresh ownership/liveness/reservation inspection.
+- Use one cable-connected SSH transaction to root@10.11.99.1, bound to the fixed direct USB interface, source address and physical-device route in plan.json.
+- Create only /home/root/pi-ink-offline-reader-0029 with mode0700. If any object occupies that name, stop. Never reuse or empty it.
+- Create only its reader file, transfer exactly2489186bytes, and require SHA25603016b9c35aeecd82362fe34e4187037a7ee5ebf76014fd7df2f6264aca228d6. Set mode0500 only on this newly created verified file.
+- Invoke that reader once. It reads only the two fixed owner markers and config files. Return only approved metadata and the two config hashes; never print or copy config values.
+- After successful foreground termination, recheck helper identity/hash. Remove only the new helper and its empty staging directory. rmdir must refuse unknown contents.
+
+Conditions for owner confirmation:
+- USB is connected and will remain connected.
+- The owner provides exclusive access for this operation and will not change the target files.
+- No other agent or coordinator owns an active device operation for this ticket.
+
+Stop rules:
+On any failure, refusal, timeout or uncertain identity/process state, stop without retry or fallback. Preserve partial/uncertain objects. A host timeout does not prove the remote reader stopped. Do not reconnect for cleanup or issue a second command without new scope approval.
+
+Excluded:
+No Xochitl restart, other service/process action, extension activation, document access, UI action, screenshot, library listing, general inventory, network capability search, config value retrieval, permission repair, older experiment deletion, source change, merge, push or ticket completion.
+
+Remote prerequisites still unobserved:
+The fixed staging path must be vacant. Static ARM64 cross-build does not prove tablet runtime compatibility. The transaction checks required ordinary utilities in place and stops if unavailable; it does not search for alternatives.
+
+Exact launcher, ONLY AFTER owner approval and fresh workflow inspection:
+
+PI_INK_DEPLOYMENT_APPROVED=offline-deployment-0031 \
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent \
+PI_INK_USB_READY=connected-and-confirmed \
+PI_INK_APPROVED_PLAN_SHA256=40b938f7aa4d4dd4b704f81450ea15bdf2fb2ad5a40cf5d5bbe64da30ddac4cd \
+python3 workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/deploy.py deploy-once
+
+The flags prevent accidental use. They are not owner consent. Do not run this command from a design confirmation or an offline-preparation request.
+
+The launcher reserves execution-0031 locally before SSH. An existing reservation forbids reuse. It retains result.json when a transport result is available. Preserve attempt.json if the launcher is interrupted. These files are execution evidence, not worktree phase receipts.
+
+Older experiment cleanup remains a separate operation with a fixed manifest and separate approval. Neither this script nor its success clears the full ticket or production blockers.
