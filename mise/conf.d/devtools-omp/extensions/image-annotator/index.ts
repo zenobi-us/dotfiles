@@ -104,20 +104,6 @@ interface CoordinatorState {
   serverPromise?: Promise<CoordinatorServer>;
 }
 
-function startCoordinator(state: CoordinatorState): Promise<CoordinatorServer> {
-  if (!state.serverPromise) {
-    state.serverPromise = createCoordinatorServer({
-      bundleDirectory: resolve(EXTENSION_DIR, "tablet-client", "dist"),
-      hostname: process.env.OMP_IMAGE_ANNOTATOR_HOST ?? "127.0.0.1",
-      port: Number(process.env.OMP_IMAGE_ANNOTATOR_PORT ?? COORDINATOR_PORT),
-    }).catch((error: unknown) => {
-      state.serverPromise = undefined;
-      throw error;
-    });
-  }
-  return state.serverPromise;
-}
-
 export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
   let latestImage: ImageContent | undefined;
   const coordinatorState: CoordinatorState = {};
@@ -222,6 +208,20 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
     }
     return { action: "handled" };
   });
+}
+
+function startCoordinator(state: CoordinatorState): Promise<CoordinatorServer> {
+  if (!state.serverPromise) {
+    state.serverPromise = createCoordinatorServer({
+      bundleDirectory: resolve(EXTENSION_DIR, "tablet-client", "dist"),
+      hostname: process.env.OMP_IMAGE_ANNOTATOR_HOST ?? "127.0.0.1",
+      port: Number(process.env.OMP_IMAGE_ANNOTATOR_PORT ?? COORDINATOR_PORT),
+    }).catch((error: unknown) => {
+      state.serverPromise = undefined;
+      throw error;
+    });
+  }
+  return state.serverPromise;
 }
 
 function parseArguments(args: string): { path?: string; prompt?: string } {

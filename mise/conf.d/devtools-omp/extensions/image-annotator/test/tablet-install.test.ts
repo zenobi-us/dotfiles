@@ -10,14 +10,6 @@ let sandbox = "";
 let bundleDirectory = "";
 let coordinator: CoordinatorServer | undefined;
 
-async function runCommand(args: string[]) {
-  const child = Bun.spawn(args, { cwd: tabletDirectory, stdout: "pipe", stderr: "pipe", timeout: 120_000 });
-  const [code, stdout, stderr] = await Promise.all([
-    child.exited, new Response(child.stdout).text(), new Response(child.stderr).text(),
-  ]);
-  return { code, stdout, stderr };
-}
-
 beforeAll(async () => {
   sandbox = await mkdtemp(join(tmpdir(), "pi-ink-install-test-"));
   bundleDirectory = join(sandbox, "bundle");
@@ -54,3 +46,11 @@ test("installs a usable coordinator URL and rejects an incompatible URL before c
   expect(incompatible.code).not.toBe(0);
   await expect(lstat(rejectedPrefix)).rejects.toMatchObject({ code: "ENOENT" });
 }, 30_000);
+
+async function runCommand(args: string[]) {
+  const child = Bun.spawn(args, { cwd: tabletDirectory, stdout: "pipe", stderr: "pipe", timeout: 120_000 });
+  const [code, stdout, stderr] = await Promise.all([
+    child.exited, new Response(child.stdout).text(), new Response(child.stderr).text(),
+  ]);
+  return { code, stdout, stderr };
+}
