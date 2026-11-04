@@ -1,0 +1,25 @@
+{
+  "schema": "pi-ink-device-approval/v1",
+  "recorded_at": "2026-11-04T04:08:23.997129+00:00",
+  "source": "Owner answers to paired handoff and exact-scope questionnaire",
+  "owner_answers_verbatim": {
+    "exclusive_tablet_handoff": "Yes; I was the other operator",
+    "current_inventory_approval": "Approve one read-only run"
+  },
+  "operator_identity": "The owner identifies themselves as the intervening operator.",
+  "handoff": "Owner confirms all other tablet work stopped and hands control back to this parent and its existing validator.",
+  "policy": "Preserve CURRENT service configuration; no unavailable drop-in recreation or old XOVI activation.",
+  "scope_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/current-inventory-proposal/approval-scope.txt",
+  "scope_sha256": "9ddf0b78ccbd47df627b2c9fc8a70f4f5e2018a88934beaad3d9364a9fd6a36f",
+  "authorized_command": "PI_INK_CURRENT_INVENTORY_APPROVED=preserve-current-0026 PI_INK_OPERATOR_HANDOFF=confirmed-to-parent sh /tmp/pi-ink-current-inventory-0026/host.sh",
+  "allowed_runs": 1,
+  "allowed_mutations": false,
+  "allowed_restart": false,
+  "allowed_retry": false,
+  "host_deadline_seconds": 45,
+  "active_child": "w6N:p5/session01a19fe2-4d68-770a-a05b-0a20eca7c412",
+  "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+  "historical_restart_total": "UNKNOWN; owner handoff does not supply intervening commands, timing or counts.",
+  "monitor_timeout": "bg44 status wait timed out after14400.07s; not proof of validator completion or shutdown. Do not duplicate or terminate."
+}
