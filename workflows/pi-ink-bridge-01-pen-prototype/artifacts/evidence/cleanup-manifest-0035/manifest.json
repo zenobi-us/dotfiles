@@ -1,0 +1,2148 @@
+{
+  "schema": "pi-ink-exact-cleanup-manifest/v1",
+  "id": "cleanup-manifest-0035",
+  "created_at": "2026-11-04T11:17:46.149882+00:00",
+  "status": "OFFLINE_MANIFEST_NOT_DELETION_AUTHORITY",
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "trust_model_ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md",
+  "inputs": [
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/final-cleanup-reachable-facts-v1.json",
+      "sha256": "fa0a1906829fce3cd245a1648f0d844bbae82870ec881499cbcf09aa3d20bfc3"
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/final-cleanup-prerequisites-after-v3.json",
+      "sha256": "f2e013c26e4ca3d56161145f807badeb25cf745a5010a1f0dca097e78eded02f"
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "sha256": "b9926313fafee66706c9b4a69fcf74ea5fa48a6356f6c7b422c90ff17ce56084"
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "sha256": "1f9629dc824c6a557f9da43fe0995ac807704444562d94bee92d50df03c2a5f9"
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/public-payload-inventory-v1.json",
+      "sha256": "f776bf6afe5756098e475646b59b6bbd14a49a51c5702d9240d396eb830fec86"
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/execution-0031/result.json",
+      "sha256": "4fba086db00a483ba687a46a3933f7712438de1136f033d927c5322b18b5e77d"
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0034.yaml",
+      "sha256": "11c5347c96d8c55da3592e1a89d0b8d721d1371703a4995e580fdd56d392105e"
+    },
+    {
+      "ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md",
+      "sha256": "13e150e7e51fea91c36fa6ee01b830c43d1421f5bfcb8f62cc569b4132f9842d"
+    }
+  ],
+  "device_entries": [
+    {
+      "path": "/home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o644",
+        "uid": 0,
+        "gid": 0,
+        "size": 7321,
+        "mtime_seconds": 1793671283
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/payload-sha256.txt",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 659,
+        "mtime_seconds": 1793675614
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "261f3409cc7315a86710b72308de30396eee651870d0c145dd800c786c1d8a72",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/tablet-qml",
+      "category": "DIRECTORY_NONRECURSIVE_PROOF_ONLY",
+      "expected_metadata": {
+        "type": "directory",
+        "mode": "0o700",
+        "uid": 0,
+        "gid": 0,
+        "size": 4096,
+        "mtime_seconds": 1793675614
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "rmdir_if_empty",
+      "condition": "Only after approved children are removed and runtime directory identity remains stable; never recurse or remove an unknown entry."
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/pi-ink-tablet",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o755",
+        "uid": 0,
+        "gid": 0,
+        "size": 9324489,
+        "mtime_seconds": 1793671283
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 10485760,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/trust",
+      "category": "DIRECTORY_NONRECURSIVE_PROOF_ONLY",
+      "expected_metadata": {
+        "type": "directory",
+        "mode": "0o700",
+        "uid": 0,
+        "gid": 0,
+        "size": 4096,
+        "mtime_seconds": 1793658647
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "rmdir_if_empty",
+      "condition": "Only after approved children are removed and runtime directory identity remains stable; never recurse or remove an unknown entry."
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/adapter.so",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o755",
+        "uid": 0,
+        "gid": 0,
+        "size": 504280,
+        "mtime_seconds": 1793658648
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 10485760,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 88,
+        "mtime_seconds": 1793658648
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "preserve",
+      "required_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_basis": "Actual prior device marker hash",
+      "hash_cap_bytes": 4096,
+      "reason": "Retain with state.json and its root."
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/state.json",
+      "category": "PRESERVE_OPAQUE_STATE_NO_CONTENT_READ",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 212,
+        "mtime_seconds": 1793676327
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "preserve",
+      "content_read_authorized": false,
+      "reason": "Opaque editable/request state; do not hash, reset, or unlink."
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/config.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 924,
+        "mtime_seconds": 1793671283
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/recover-return-original-v3.json exact known config identity guard before client stop",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o644",
+        "uid": 0,
+        "gid": 0,
+        "size": 20154,
+        "mtime_seconds": 1793675614
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/trust/server-a.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 1184,
+        "mtime_seconds": 1793658647
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "expected_payload_source_paths": [
+        "/tmp/pi-ink-0020-trust/server-a.pem",
+        "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-a.pem",
+        "/tmp/pi-ink-0020-sidebar-payload/trust/server-a.pem"
+      ],
+      "action": "unlink_regular_file",
+      "required_sha256": "9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba",
+      "pin_basis": "Expected public CA bytes pinned from retained host payload; NOT a prior measured device digest. Current device content must match before any unlink.",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/trust/server-b.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 1184,
+        "mtime_seconds": 1793658647
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "expected_payload_source_paths": [
+        "/tmp/pi-ink-0020-trust/server-b.pem",
+        "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-b.pem",
+        "/tmp/pi-ink-0020-sidebar-payload/trust/server-b.pem"
+      ],
+      "action": "unlink_regular_file",
+      "required_sha256": "9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55",
+      "pin_basis": "Expected public CA bytes pinned from retained host payload; NOT a prior measured device digest. Current device content must match before any unlink.",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-webserver-remote-backup-0020/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 88,
+        "mtime_seconds": 1793658645
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_marker_last_if_no_retained_children",
+      "required_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_basis": "Actual prior device marker hash",
+      "hash_cap_bytes": 4096,
+      "reason": "Keep until every approved child disposition succeeds. If retained/unknown content remains, preserve this marker and its root."
+    },
+    {
+      "path": "/home/root/pi-ink-rollback-owned-0020/pi-ink-bridge.qmd",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o644",
+        "uid": 0,
+        "gid": 0,
+        "size": 7321,
+        "mtime_seconds": 1793671283
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-rollback-owned-0020/adapter.so",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o644",
+        "uid": 0,
+        "gid": 0,
+        "size": 504280,
+        "mtime_seconds": 1793658681
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 10485760,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-rollback-owned-0020/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 88,
+        "mtime_seconds": 1793658648
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_marker_last_if_no_retained_children",
+      "required_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_basis": "Actual prior device marker hash",
+      "hash_cap_bytes": 4096,
+      "reason": "Keep until every approved child disposition succeeds. If retained/unknown content remains, preserve this marker and its root."
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/pi-ink-bridge.qmd",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o644",
+        "uid": 0,
+        "gid": 0,
+        "size": 7321,
+        "mtime_seconds": 1793669021
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/payload-sha256.txt",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 659,
+        "mtime_seconds": 1793669022
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/tablet-qml",
+      "category": "DIRECTORY_NONRECURSIVE_PROOF_ONLY",
+      "expected_metadata": {
+        "type": "directory",
+        "mode": "0o700",
+        "uid": 0,
+        "gid": 0,
+        "size": 4096,
+        "mtime_seconds": 1793669021
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "rmdir_if_empty",
+      "condition": "Only after approved children are removed and runtime directory identity remains stable; never recurse or remove an unknown entry."
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/pi-ink-tablet",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o755",
+        "uid": 0,
+        "gid": 0,
+        "size": 9324489,
+        "mtime_seconds": 1793669019
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 10485760,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/trust",
+      "category": "DIRECTORY_NONRECURSIVE_PROOF_ONLY",
+      "expected_metadata": {
+        "type": "directory",
+        "mode": "0o700",
+        "uid": 0,
+        "gid": 0,
+        "size": 4096,
+        "mtime_seconds": 1793669020
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "rmdir_if_empty",
+      "condition": "Only after approved children are removed and runtime directory identity remains stable; never recurse or remove an unknown entry."
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/adapter.so",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o644",
+        "uid": 0,
+        "gid": 0,
+        "size": 504280,
+        "mtime_seconds": 1793669021
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 10485760,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o644",
+        "uid": 0,
+        "gid": 0,
+        "size": 88,
+        "mtime_seconds": 1793669022
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_marker_last_if_no_retained_children",
+      "required_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_basis": "Actual prior device marker hash",
+      "hash_cap_bytes": 4096,
+      "reason": "Keep until every approved child disposition succeeds. If retained/unknown content remains, preserve this marker and its root."
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/config.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 924,
+        "mtime_seconds": 1793669020
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "current_identity_observed_in_0033": {
+        "MODE": "600",
+        "UID": "0",
+        "GID": "0",
+        "SIZE": "924",
+        "DEV": "65026",
+        "INODE": "1684",
+        "MTIME": "1793669020.265050201",
+        "CTIME": "1793669020.265050201"
+      },
+      "action": "unlink_regular_file",
+      "required_sha256": "a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca",
+      "pin_basis": "Actual device digest from approved transaction0033",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/execution-0031/result.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/tablet-qml/PiInkToolbar.qml",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o644",
+        "uid": 0,
+        "gid": 0,
+        "size": 19697,
+        "mtime_seconds": 1793669021
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/trust/server-a.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o644",
+        "uid": 0,
+        "gid": 0,
+        "size": 1184,
+        "mtime_seconds": 1793669020
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "expected_payload_source_paths": [
+        "/tmp/pi-ink-0020-trust/server-a.pem",
+        "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-a.pem",
+        "/tmp/pi-ink-0020-sidebar-payload/trust/server-a.pem"
+      ],
+      "action": "unlink_regular_file",
+      "required_sha256": "9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba",
+      "pin_basis": "Expected public CA bytes pinned from retained host payload; NOT a prior measured device digest. Current device content must match before any unlink.",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/trust/server-b.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o644",
+        "uid": 0,
+        "gid": 0,
+        "size": 1184,
+        "mtime_seconds": 1793669020
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "expected_payload_source_paths": [
+        "/tmp/pi-ink-0020-trust/server-b.pem",
+        "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-b.pem",
+        "/tmp/pi-ink-0020-sidebar-payload/trust/server-b.pem"
+      ],
+      "action": "unlink_regular_file",
+      "required_sha256": "9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55",
+      "pin_basis": "Expected public CA bytes pinned from retained host payload; NOT a prior measured device digest. Current device content must match before any unlink.",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/pi-ink-bridge.qmd",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o644",
+        "uid": 0,
+        "gid": 0,
+        "size": 1878,
+        "mtime_seconds": 1793658648
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/payload-sha256.txt",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 659,
+        "mtime_seconds": 1793658648
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "27645009e37fec8270d7d2e7541d4b1ae2a4da4378736d0b6a0277c39a354278",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/tablet-qml",
+      "category": "DIRECTORY_NONRECURSIVE_PROOF_ONLY",
+      "expected_metadata": {
+        "type": "directory",
+        "mode": "0o700",
+        "uid": 0,
+        "gid": 0,
+        "size": 4096,
+        "mtime_seconds": 1793671283
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "rmdir_if_empty",
+      "condition": "Only after approved children are removed and runtime directory identity remains stable; never recurse or remove an unknown entry."
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/pi-ink-tablet",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o700",
+        "uid": 0,
+        "gid": 0,
+        "size": 9323806,
+        "mtime_seconds": 1793658646
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "f601436dd591ae782f15c0714bcfd4412fb3facebeadeb7d31914a5dc69ecada",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 10485760,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/live-pi-ink-bridge.qmd",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o644",
+        "uid": 0,
+        "gid": 0,
+        "size": 1878,
+        "mtime_seconds": 1793658681
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 88,
+        "mtime_seconds": 1793658648
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_marker_last_if_no_retained_children",
+      "required_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_basis": "Actual prior device marker hash",
+      "hash_cap_bytes": 4096,
+      "reason": "Keep until every approved child disposition succeeds. If retained/unknown content remains, preserve this marker and its root."
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/config.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 851,
+        "mtime_seconds": 1793658646
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "current_identity_observed_in_0033": {
+        "MODE": "600",
+        "UID": "0",
+        "GID": "0",
+        "SIZE": "851",
+        "DEV": "65026",
+        "INODE": "1702",
+        "MTIME": "1793658646.000000000",
+        "CTIME": "1793671283.067423055"
+      },
+      "action": "unlink_regular_file",
+      "required_sha256": "1c4bf78285b08464e38e7af16f0096fda55c4dcd86a5d86ac5c1399b1becf9a6",
+      "pin_basis": "Actual device digest from approved transaction0033",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/offline-deployment-0031/execution-0031/result.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/tablet-qml/PiInkToolbar.qml",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o644",
+        "uid": 0,
+        "gid": 0,
+        "size": 15661,
+        "mtime_seconds": 1793658647
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "57416f0b80a3a100c6dc7ee2162647b2c866588a85cf46ef09106bbf1354595f",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-stage-0020/payload-sha256.txt",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 659,
+        "mtime_seconds": 1793675603
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "261f3409cc7315a86710b72308de30396eee651870d0c145dd800c786c1d8a72",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-stage-0020/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 88,
+        "mtime_seconds": 1793675604
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_marker_last_if_no_retained_children",
+      "required_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_basis": "Actual prior device marker hash",
+      "hash_cap_bytes": 4096,
+      "reason": "Keep until every approved child disposition succeeds. If retained/unknown content remains, preserve this marker and its root."
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-stage-0020/PiInkToolbar.qml",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 20154,
+        "mtime_seconds": 1793675603
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-backup-0020/payload-sha256.txt",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 659,
+        "mtime_seconds": 1793671283
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-backup-0020/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0,
+        "size": 88,
+        "mtime_seconds": 1793658648
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_marker_last_if_no_retained_children",
+      "required_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_basis": "Actual prior device marker hash",
+      "hash_cap_bytes": 4096,
+      "reason": "Keep until every approved child disposition succeeds. If retained/unknown content remains, preserve this marker and its root."
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-backup-0020/PiInkToolbar.qml",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "type": "regular file",
+        "mode": "0o644",
+        "uid": 0,
+        "gid": 0,
+        "size": 19697,
+        "mtime_seconds": 1793671283
+      },
+      "historical_inventory_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "required_sha256": "e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf",
+      "pin_basis": "Actual prior device content digest in retained inventory",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/postinventory-return-original-v3.json",
+      "hash_cap_bytes": 65536,
+      "requires_fresh_runtime_identity": true
+    }
+  ],
+  "device_root_directories": [
+    {
+      "path": "/home/root/pi-ink-bridge-0020",
+      "expected_metadata": {
+        "type": "directory",
+        "mode": "0o700",
+        "uid": 0,
+        "gid": 0,
+        "size": 4096,
+        "mtime_seconds": 1793676327
+      },
+      "action": "preserve",
+      "reason": "Retained opaque state and marker.",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-backup-0020",
+      "expected_metadata": {
+        "type": "directory",
+        "mode": "0o700",
+        "uid": 0,
+        "gid": 0,
+        "size": 4096,
+        "mtime_seconds": 1793675614
+      },
+      "action": "rmdir_if_empty_after_marker_disposition",
+      "reason": "Preserve if any retained/unknown content remains. No recursive removal.",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-stage-0020",
+      "expected_metadata": {
+        "type": "directory",
+        "mode": "0o700",
+        "uid": 0,
+        "gid": 0,
+        "size": 4096,
+        "mtime_seconds": 1793675604
+      },
+      "action": "rmdir_if_empty_after_marker_disposition",
+      "reason": "Preserve if any retained/unknown content remains. No recursive removal.",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-rollback-owned-0020",
+      "expected_metadata": {
+        "type": "directory",
+        "mode": "0o700",
+        "uid": 0,
+        "gid": 0,
+        "size": 4096,
+        "mtime_seconds": 1793777580
+      },
+      "action": "rmdir_if_empty_after_marker_disposition",
+      "reason": "Preserve if any retained/unknown content remains. No recursive removal.",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020",
+      "expected_metadata": {
+        "type": "directory",
+        "mode": "0o700",
+        "uid": 0,
+        "gid": 0,
+        "size": 4096,
+        "mtime_seconds": 1793671283
+      },
+      "action": "rmdir_if_empty_after_marker_disposition",
+      "reason": "Preserve if any retained/unknown content remains. No recursive removal.",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020",
+      "expected_metadata": {
+        "type": "directory",
+        "mode": "0o700",
+        "uid": 0,
+        "gid": 0,
+        "size": 4096,
+        "mtime_seconds": 1793669022
+      },
+      "action": "rmdir_if_empty_after_marker_disposition",
+      "reason": "Preserve if any retained/unknown content remains. No recursive removal.",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-webserver-remote-backup-0020",
+      "expected_metadata": {
+        "type": "directory",
+        "mode": "0o700",
+        "uid": 0,
+        "gid": 0,
+        "size": 4096,
+        "mtime_seconds": 1793777580
+      },
+      "action": "rmdir_if_empty_after_marker_disposition",
+      "reason": "Preserve if any retained/unknown content remains. No recursive removal.",
+      "deletion_authorized": false
+    }
+  ],
+  "host_entries": [
+    {
+      "path": "/tmp/pi-ink-0020-trust/tablet-sidebar.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22546,
+        "mode": "0o600",
+        "mtime_ns": 1793661827749869219,
+        "path": "/tmp/pi-ink-0020-trust/tablet-sidebar.json",
+        "regular": true,
+        "size": 924,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/desktop-sidebar-b.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21973,
+        "mode": "0o600",
+        "mtime_ns": 1793661564127979686,
+        "path": "/tmp/pi-ink-0020-trust/desktop-sidebar-b.json",
+        "regular": true,
+        "size": 549,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "23f4b8c51d02c3a26e04e88779421c7bf141dea92a9227be81258b2a3cfa74f0",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/desktop-sidebar-a.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21971,
+        "mode": "0o600",
+        "mtime_ns": 1793661564126919040,
+        "path": "/tmp/pi-ink-0020-trust/desktop-sidebar-a.json",
+        "regular": true,
+        "size": 549,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "fe556fd030b47b189cc433d3968f48be52e2f1e0111fda8b9f2e3e5a3c965d18",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/payload-sha256.txt",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21005,
+        "mode": "0o600",
+        "mtime_ns": 1793658044360498022,
+        "path": "/tmp/pi-ink-0020-trust/payload-sha256.txt",
+        "regular": true,
+        "size": 659,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "27645009e37fec8270d7d2e7541d4b1ae2a4da4378736d0b6a0277c39a354278",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21004,
+        "mode": "0o600",
+        "mtime_ns": 1793658044342405677,
+        "path": "/tmp/pi-ink-0020-trust/owner.txt",
+        "regular": true,
+        "size": 88,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "preserve",
+      "reason": "Retain ownership with preserved state, logs and source PDFs.",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/tablet.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21003,
+        "mode": "0o600",
+        "mtime_ns": 1793658044342340064,
+        "path": "/tmp/pi-ink-0020-trust/tablet.json",
+        "regular": true,
+        "size": 851,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "1c4bf78285b08464e38e7af16f0096fda55c4dcd86a5d86ac5c1399b1becf9a6",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/host-tablet.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20980,
+        "mode": "0o600",
+        "mtime_ns": 1793657753850905709,
+        "path": "/tmp/pi-ink-0020-trust/host-tablet.json",
+        "regular": true,
+        "size": 756,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "aabd21c21039b30cc8a3022cda6203bd50de04cf33030b4ea46d61f72fba41f8",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/desktop-b.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20652,
+        "mode": "0o600",
+        "mtime_ns": 1793657356522662418,
+        "path": "/tmp/pi-ink-0020-trust/desktop-b.json",
+        "regular": true,
+        "size": 540,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "a170239ade0fa731eda1e09224575691a4c5b56802ec93812dcde9ba66bf6ed3",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/server-b.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20651,
+        "mode": "0o644",
+        "mtime_ns": 1793657356522210822,
+        "path": "/tmp/pi-ink-0020-trust/server-b.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/server-b-key.pem",
+      "category": "OWNED_EXPERIMENT_PRIVATE_KEY_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20650,
+        "mode": "0o600",
+        "mtime_ns": 1793657356520457262,
+        "path": "/tmp/pi-ink-0020-trust/server-b-key.pem",
+        "regular": true,
+        "size": 1704,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "32db8f1e57d86315eb9801b0210bc72692cf32928b74158c8b02ba242e34236d",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/desktop-a.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20649,
+        "mode": "0o600",
+        "mtime_ns": 1793657356469719643,
+        "path": "/tmp/pi-ink-0020-trust/desktop-a.json",
+        "regular": true,
+        "size": 540,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "9465e80a3ddbaf01be7673656e8df37193310347e917a235454d094a81c90aec",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/server-a.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20648,
+        "mode": "0o644",
+        "mtime_ns": 1793657356469303063,
+        "path": "/tmp/pi-ink-0020-trust/server-a.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/server-a-key.pem",
+      "category": "OWNED_EXPERIMENT_PRIVATE_KEY_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20647,
+        "mode": "0o600",
+        "mtime_ns": 1793657356467457546,
+        "path": "/tmp/pi-ink-0020-trust/server-a-key.pem",
+        "regular": true,
+        "size": 1708,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "d0a6f9d49907926d2eb5952d3dc22951c6e943672d822da8ff343a6545301108",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/payload-sha256.txt",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23147,
+        "mode": "0o600",
+        "mtime_ns": 1793664156829327292,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/payload-sha256.txt",
+        "regular": true,
+        "size": 659,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23146,
+        "mode": "0o644",
+        "mtime_ns": 1793658044342405677,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/owner.txt",
+        "regular": true,
+        "size": 88,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_marker_last_if_no_retained_children",
+      "condition": "Only when all approved children are disposed and no retained/unknown child remains; otherwise preserve marker/root.",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-bridge.qmd",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23145,
+        "mode": "0o644",
+        "mtime_ns": 1793664103715726862,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-bridge.qmd",
+        "regular": true,
+        "size": 7321,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/adapter.so",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23144,
+        "mode": "0o644",
+        "mtime_ns": 1793657056555908645,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/adapter.so",
+        "regular": true,
+        "size": 504280,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 10485760
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/config.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23138,
+        "mode": "0o600",
+        "mtime_ns": 1793661827749869219,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/config.json",
+        "regular": true,
+        "size": 924,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-tablet",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23136,
+        "mode": "0o755",
+        "mtime_ns": 1793664156818445957,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-tablet",
+        "regular": true,
+        "size": 9324489,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 10485760
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/tablet-qml/PiInkToolbar.qml",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23143,
+        "mode": "0o644",
+        "mtime_ns": 1793664103711726883,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/tablet-qml/PiInkToolbar.qml",
+        "regular": true,
+        "size": 19697,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-b.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23141,
+        "mode": "0o644",
+        "mtime_ns": 1793657356522210822,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-b.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-a.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23140,
+        "mode": "0o644",
+        "mtime_ns": 1793657356469303063,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-a.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/payload-sha256.txt",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22809,
+        "mode": "0o600",
+        "mtime_ns": 1793662188153058223,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/payload-sha256.txt",
+        "regular": true,
+        "size": 659,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "bf1502fde05c33de4a171cb02256f5d7909c9b8a0c0bc10c5ba36574bbc3ca34",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22808,
+        "mode": "0o644",
+        "mtime_ns": 1793658044342405677,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/owner.txt",
+        "regular": true,
+        "size": 88,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_marker_last_if_no_retained_children",
+      "condition": "Only when all approved children are disposed and no retained/unknown child remains; otherwise preserve marker/root.",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/pi-ink-bridge.qmd",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22807,
+        "mode": "0o644",
+        "mtime_ns": 1793661978556968125,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/pi-ink-bridge.qmd",
+        "regular": true,
+        "size": 7315,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "b4eaa94504b974b949c09ff74dd902883ea69d7990712d97cb73cc78507192e1",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/adapter.so",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22806,
+        "mode": "0o644",
+        "mtime_ns": 1793657056555908645,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/adapter.so",
+        "regular": true,
+        "size": 504280,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 10485760
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/config.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22800,
+        "mode": "0o600",
+        "mtime_ns": 1793661827749869219,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/config.json",
+        "regular": true,
+        "size": 924,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/pi-ink-tablet",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21966,
+        "mode": "0o755",
+        "mtime_ns": 1793662146719879398,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/pi-ink-tablet",
+        "regular": true,
+        "size": 9323977,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "272630c5ee94b7b0d7739322930ddd08797d5d1fc5d24639339abf395c1cf05d",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 10485760
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/tablet-qml/PiInkToolbar.qml",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22805,
+        "mode": "0o644",
+        "mtime_ns": 1793661978551968151,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/tablet-qml/PiInkToolbar.qml",
+        "regular": true,
+        "size": 18976,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "c301944154498f7d0e29c605a667b54cf0ad6f2b097489e8088e19f957708deb",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/trust/server-b.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22803,
+        "mode": "0o644",
+        "mtime_ns": 1793657356522210822,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/trust/server-b.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/trust/server-a.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22802,
+        "mode": "0o644",
+        "mtime_ns": 1793657356469303063,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/trust/server-a.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-native-button-repair-payload/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23929,
+        "mode": "0o600",
+        "mtime_ns": 1793674770996734323,
+        "path": "/tmp/pi-ink-0020-native-button-repair-payload/owner.txt",
+        "regular": true,
+        "size": 88,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_marker_last_if_no_retained_children",
+      "condition": "Only when all approved children are disposed and no retained/unknown child remains; otherwise preserve marker/root.",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-native-button-repair-payload/payload-sha256.txt",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23928,
+        "mode": "0o600",
+        "mtime_ns": 1793674770996701251,
+        "path": "/tmp/pi-ink-0020-native-button-repair-payload/payload-sha256.txt",
+        "regular": true,
+        "size": 659,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "261f3409cc7315a86710b72308de30396eee651870d0c145dd800c786c1d8a72",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-native-button-repair-payload/PiInkToolbar.qml",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23927,
+        "mode": "0o600",
+        "mtime_ns": 1793674770996650526,
+        "path": "/tmp/pi-ink-0020-native-button-repair-payload/PiInkToolbar.qml",
+        "regular": true,
+        "size": 20154,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-0020-offline/pi-ink-tablet",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20939,
+        "mode": "0o755",
+        "mtime_ns": 1793657670135776272,
+        "path": "/tmp/pi-ink-0020-offline/pi-ink-tablet",
+        "regular": true,
+        "size": 9323806,
+        "symlink": false,
+        "uid": 1000
+      },
+      "required_sha256": "f601436dd591ae782f15c0714bcfd4412fb3facebeadeb7d31914a5dc69ecada",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preflight-host-v2.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 10485760
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/payload/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "expected_metadata": {
+        "ctime_ns": 1793681398634259480,
+        "device": 55,
+        "gid": 1000,
+        "inode": 24904,
+        "mode": "0o644",
+        "mtime_ns": 1793681398634259480,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload/owner.txt",
+        "size": 88,
+        "uid": 1000
+      },
+      "required_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/public-payload-inventory-v1.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_marker_last_if_no_retained_children",
+      "condition": "Only when all approved children are disposed and no retained/unknown child remains; otherwise preserve marker/root.",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/payload/PiInkToolbar.qml",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "ctime_ns": 1793681398629259507,
+        "device": 55,
+        "gid": 1000,
+        "inode": 24901,
+        "mode": "0o644",
+        "mtime_ns": 1793681398629259507,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload/PiInkToolbar.qml",
+        "size": 20150,
+        "uid": 1000
+      },
+      "required_sha256": "c09f7f617760b4dc839787d228a2ab2bf12ba26f1f52a6ec910124072b8db869",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/public-payload-inventory-v1.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/payload/pi-ink-bridge.qmd",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "ctime_ns": 1793681398631259496,
+        "device": 55,
+        "gid": 1000,
+        "inode": 24902,
+        "mode": "0o644",
+        "mtime_ns": 1793681398631259496,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload/pi-ink-bridge.qmd",
+        "size": 8298,
+        "uid": 1000
+      },
+      "required_sha256": "0dc1dad15002559d943f63fb73298aca68c570a9f46cefe38bb42c5798e8edc0",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/public-payload-inventory-v1.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/payload/payload-sha256.txt",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "expected_metadata": {
+        "ctime_ns": 1793681398632259491,
+        "device": 55,
+        "gid": 1000,
+        "inode": 24903,
+        "mode": "0o644",
+        "mtime_ns": 1793681398632259491,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload/payload-sha256.txt",
+        "size": 659,
+        "uid": 1000
+      },
+      "required_sha256": "9ce7ecaa8bd9607e938ea75ea7cae957728e6592a7d2bdb4b329f06e0939a57c",
+      "pin_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/public-payload-inventory-v1.json",
+      "pin_basis": "Actual prior host no-follow bounded digest",
+      "deletion_authorized": false,
+      "action": "unlink_regular_file",
+      "hash_cap_bytes": 65536
+    }
+  ],
+  "host_directories": [
+    {
+      "path": "/tmp/pi-ink-0020-trust",
+      "expected_metadata": {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 20646,
+        "mode": "0o700",
+        "mtime_ns": 1793661827748764777,
+        "path": "/tmp/pi-ink-0020-trust",
+        "regular": false,
+        "size": 520,
+        "symlink": false,
+        "uid": 1000
+      },
+      "action": "preserve",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload",
+      "expected_metadata": {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 23129,
+        "mode": "0o700",
+        "mtime_ns": 1793664156829193752,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload",
+        "regular": false,
+        "size": 200,
+        "symlink": false,
+        "uid": 1000
+      },
+      "action": "rmdir_if_empty_after_child_disposition",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/tablet-qml",
+      "expected_metadata": {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 23142,
+        "mode": "0o755",
+        "mtime_ns": 1793664156827969009,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/tablet-qml",
+        "regular": false,
+        "size": 60,
+        "symlink": false,
+        "uid": 1000
+      },
+      "action": "rmdir_if_empty_after_child_disposition",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust",
+      "expected_metadata": {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 23139,
+        "mode": "0o755",
+        "mtime_ns": 1793664156827830549,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust",
+        "regular": false,
+        "size": 80,
+        "symlink": false,
+        "uid": 1000
+      },
+      "action": "rmdir_if_empty_after_child_disposition",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload",
+      "expected_metadata": {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 21712,
+        "mode": "0o700",
+        "mtime_ns": 1793662188152930113,
+        "path": "/tmp/pi-ink-0020-sidebar-payload",
+        "regular": false,
+        "size": 200,
+        "symlink": false,
+        "uid": 1000
+      },
+      "action": "rmdir_if_empty_after_child_disposition",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/tablet-qml",
+      "expected_metadata": {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 22804,
+        "mode": "0o755",
+        "mtime_ns": 1793662188143608509,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/tablet-qml",
+        "regular": false,
+        "size": 60,
+        "symlink": false,
+        "uid": 1000
+      },
+      "action": "rmdir_if_empty_after_child_disposition",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/trust",
+      "expected_metadata": {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 22801,
+        "mode": "0o755",
+        "mtime_ns": 1793662188143462696,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/trust",
+        "regular": false,
+        "size": 80,
+        "symlink": false,
+        "uid": 1000
+      },
+      "action": "rmdir_if_empty_after_child_disposition",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-native-button-repair-payload",
+      "expected_metadata": {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 23926,
+        "mode": "0o700",
+        "mtime_ns": 1793674770996701251,
+        "path": "/tmp/pi-ink-0020-native-button-repair-payload",
+        "regular": false,
+        "size": 100,
+        "symlink": false,
+        "uid": 1000
+      },
+      "action": "rmdir_if_empty_after_child_disposition",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/payload",
+      "expected_metadata": {
+        "ctime_ns": 1793681398634259480,
+        "device": 55,
+        "gid": 1000,
+        "inode": 24900,
+        "mode": "0o755",
+        "mtime_ns": 1793681398634259480,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload",
+        "size": 120,
+        "uid": 1000
+      },
+      "action": "rmdir_if_empty_after_marker_disposition",
+      "deletion_authorized": false
+    }
+  ],
+  "host_preserved": [
+    {
+      "path": "/tmp/pi-ink-0020-trust/sidebar-origin-b-stderr.log",
+      "reason": "Retained log, source PDF or opaque state; no read/hash/reset/unlink authorization."
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/sidebar-origin-a-stderr.log",
+      "reason": "Retained log, source PDF or opaque state; no read/hash/reset/unlink authorization."
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/b-source.pdf",
+      "reason": "Retained log, source PDF or opaque state; no read/hash/reset/unlink authorization."
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/a-source.pdf",
+      "reason": "Retained log, source PDF or opaque state; no read/hash/reset/unlink authorization."
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/host-client-state.json",
+      "reason": "Retained log, source PDF or opaque state; no read/hash/reset/unlink authorization."
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/env-fixed-origin-b-stderr.log",
+      "reason": "Retained log, source PDF or opaque state; no read/hash/reset/unlink authorization."
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/env-fixed-origin-a-stderr.log",
+      "reason": "Retained log, source PDF or opaque state; no read/hash/reset/unlink authorization."
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/final-origin-b-stderr.log",
+      "reason": "Retained log, source PDF or opaque state; no read/hash/reset/unlink authorization."
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/final-origin-a-stderr.log",
+      "reason": "Retained log, source PDF or opaque state; no read/hash/reset/unlink authorization."
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/origin-b-stderr.log",
+      "reason": "Retained log, source PDF or opaque state; no read/hash/reset/unlink authorization."
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/origin-a-stderr.log",
+      "reason": "Retained log, source PDF or opaque state; no read/hash/reset/unlink authorization."
+    },
+    {
+      "path": "/tmp/pi-ink-0020-offline",
+      "reason": "Only its exact known binary file is listed for unlink. Parent-directory metadata was not established; do not remove the directory."
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023",
+      "reason": "Only the four known public payload children and proven payload directory are in scope. Preserve all other contents and the outer root."
+    }
+  ],
+  "global_preserve": [
+    "Returned original proxy/hash/stat/current service configuration/other original extensions.",
+    "SOURCE/evidence/history/parent approvals/durable outputs/private and synthetic documents.",
+    "Opaque state.json and actual .tablet-state-* interrupted temp records, without reading/resetting them.",
+    "Unknown/unowned/unsafe/missing paths and all files not explicitly listed in a later approved manifest."
+  ],
+  "additional_preservation": [
+    "Every opaque state.json and interrupted .tablet-state-* file, without reading or hashing.",
+    "Ownership markers and roots supporting any preserved state, logs, PDFs or unknown entries.",
+    "Original /home/root/xovi/extensions.d/webserver-remote.so and all original extensions/service/boot/cloud/account settings.",
+    "All repository source, workflow receipts, approvals, artifacts, local execution records and durable image-annotator outputs.",
+    "Already removed helper /home/root/pi-ink-offline-reader-0029: no new operation on that path."
+  ],
+  "execution_guards": [
+    "Obtain separate exact irreversible approval for the frozen manifest and concrete executor; this manifest is not an executable program or permission.",
+    "Before any mutation, inspect workflow ownership, active agents and coordinator reservations; obtain an exclusive operator handoff. Use approved cable-only transport for device operations.",
+    "Check current exact Xochitl identity and service fingerprints against the retained postinventory/recovery records. Require owned clients inactive, owned adapter unmapped, and owned UI9821 listener absent. Any mismatch/unknown active actor aborts; no process stop or restart is authorized.",
+    "On the host, establish inactivity of the exact owned origin/client actors before deleting key/config/code copies. Absent listeners alone do not prove shutdown. Preserve logs and actor evidence.",
+    "Validate every planned file, directory, safe parent chain, marker, expected owner/group/mode/size and content hash before the first unlink. No broad filesystem scan or unknown-name output. Missing, linked, changed, inaccessible or unowned entries stop the operation without repair or widening.",
+    "Use bounded no-follow regular-file reads. Capture descriptor/path identity and revalidate it immediately before unlink. Never print, parse, copy or persist config/key contents.",
+    "Process exact regular files individually. Process markers last, only after child dispositions. If a planned retained/unknown child remains, retain its marker and root; do not force removal.",
+    "Attempt only explicitly listed rmdir operations, deepest-first, after verified child disposition. rmdir must refuse a nonempty directory. No rm-r, glob, recursive traversal or unknown-file deletion.",
+    "On any runtime failure or identity change, stop without automatic retry or rollback. Record already removed versus retained paths. Never claim atomic cleanup or universal secret removal."
+  ],
+  "credential_coverage": {
+    "device_config_paths": [
+      "/home/root/pi-ink-bridge-0020/config.json",
+      "/home/root/pi-ink-sidebar-stage-0020/config.json",
+      "/home/root/pi-ink-sidebar-backup-0020/config.json"
+    ],
+    "host_config_or_private_key_paths": [
+      "/tmp/pi-ink-0020-trust/tablet-sidebar.json",
+      "/tmp/pi-ink-0020-trust/desktop-sidebar-b.json",
+      "/tmp/pi-ink-0020-trust/desktop-sidebar-a.json",
+      "/tmp/pi-ink-0020-trust/tablet.json",
+      "/tmp/pi-ink-0020-trust/host-tablet.json",
+      "/tmp/pi-ink-0020-trust/desktop-b.json",
+      "/tmp/pi-ink-0020-trust/server-b-key.pem",
+      "/tmp/pi-ink-0020-trust/desktop-a.json",
+      "/tmp/pi-ink-0020-trust/server-a-key.pem",
+      "/tmp/pi-ink-0020-sidebar-reviewed-payload/config.json",
+      "/tmp/pi-ink-0020-sidebar-payload/config.json"
+    ]
+  },
+  "ca_pin_note": "Four device CA leaves have expected-byte pins from retained host payload. They were not newly measured on the tablet. A future approved cleanup must hash them and refuse a mismatch before unlink; no new discovery probe is requested.",
+  "deletion_authorized": false,
+  "device_access_this_step": false,
+  "host_temp_content_access_this_step": false,
+  "cleanup_complete": false,
+  "result0026": "OPEN_NOT_FINALIZED",
+  "full_ticket_status": "BLOCKED",
+  "counts": {
+    "device_file_unlinks": 28,
+    "device_conditional_marker_unlinks": 6,
+    "device_conditional_directory_removals": 11,
+    "host_file_unlinks": 34,
+    "host_conditional_marker_unlinks": 4,
+    "host_conditional_directory_removals": 8,
+    "device_ca_expected_source_pins": 4,
+    "actual_config_hash_gaps": 0
+  }
+}

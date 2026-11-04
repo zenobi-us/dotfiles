@@ -1,0 +1,38 @@
+Pi Ink older-experiment cleanup manifest0035
+
+Status: prepared and validated offline. No deletion performed or authorized by this record.
+
+Manifest SHA256:
+58e922578c95faf911f6e8740d85e31748011be44566304e9166c00dc447ebfc
+
+Exact paths, content pins, metadata and provenance are in manifest.json.
+
+Proposed maximum scope:
+Tablet:28regular-file unlinks,6conditional marker unlinks,11conditional empty-directory removals.
+Host:34regular-file unlinks,4conditional marker unlinks,8conditional empty-directory removals.
+All removals are conditional on exact runtime guards. These counts are maximum planned actions, not evidence that anything has been deleted.
+
+The manifest classifies every retained candidate:41tablet entry rows and39host file rows. Both formerly missing private config hashes come from approved transaction0033. Four tablet CA entries use explicit expected-byte hashes from retained host public payloads; their current device contents are NOT claimed measured. A future cleanup must hash each and refuse a mismatch before unlink. No new general discovery probe is requested.
+
+Mandatory preservation:
+- Tablet opaque state.json and any interrupted .tablet-state-* records. Do not read, hash, reset or delete them.
+- Ownership markers and roots supporting retained state, logs, PDFs or unknown entries.
+- Host logs, source PDFs and host-client-state.json.
+- Original webserver-remote.so, all other original extensions, and current service/boot/account/cloud settings.
+- Repository source, workflow receipts, evidence, approvals, execution records and durable image-annotator output.
+- Every unknown, unowned, unsafe or unlisted file. Do not widen the manifest.
+
+Markers are processed last. If retained or unknown content remains, preserve the marker and its root. rmdir applies only to named verified-empty directories. No recursive deletion, wildcard expansion or traversal is allowed. The known offline binary's parent directory and the outer UI-validation directory remain preserved because no directory-removal authority is proposed for them.
+
+Before a future approved deletion:
+1. Reinspect workflow ownership, agents and coordinator reservations. Obtain exclusive handoff under ADR0001.
+2. Establish the exact owned clients/origins inactive and owned tablet adapter unmapped/UI9821 absent. Absent listeners alone do not prove all actors stopped. Preserve current service/activation fingerprints. Do not restart or stop processes as a workaround.
+3. Verify all proposed paths, safe parents, markers, owners, groups, modes, sizes and hashes before the first unlink. Capture stable identity, and recheck immediately before each mutation. Private config/key bytes must not appear in output.
+4. Unlink only exact named files. Remove markers only after successful child disposition and no retained/unknown children. Use rmdir only for the named empty directories.
+5. If a guard fails or a mutation fails, stop without automatic retry, repair, extra inventory or rollback. Record actual removed and retained paths. Partial cleanup must not be presented as atomic or complete.
+
+Next reachable work:
+Prepare and test the concrete fixed-manifest executor offline. Then freeze its code and command with this manifest hash, and obtain separate exact irreversible execution approval. This manifest is not an executable deletion program. No host-temp file access or tablet connection occurred while preparing it.
+
+Boundary:
+Removal of the listed owned code/config/key/CA copies is not universal credential-erasure proof. Logs and opaque state intentionally remain. Full native pairing/association/Send acceptance and production blockers do not change. Partial0026 stays preserved and open.

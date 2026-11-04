@@ -1,0 +1,30 @@
+{
+  "schema": "pi-ink-cleanup-manifest-validation/v1",
+  "created_at": "2026-11-04T11:18:47.710673+00:00",
+  "manifest_sha256": "58e922578c95faf911f6e8740d85e31748011be44566304e9166c00dc447ebfc",
+  "candidate_coverage": {
+    "device_rows": 41,
+    "host_rows": 39,
+    "all_retained_candidates_classified": true
+  },
+  "unique_operation_paths": 96,
+  "input_record_hashes_verified": 8,
+  "unlink_candidates_have_exact_hash_and_size_cap": true,
+  "preserved_state_marker_log_pdf_paths_excluded_from_unlink": true,
+  "device_ca_pin_boundary": "Expected retained public payload bytes; no new device hash measurement asserted.",
+  "counts": {
+    "device_file_unlinks": 28,
+    "device_conditional_marker_unlinks": 6,
+    "device_conditional_directory_removals": 11,
+    "host_file_unlinks": 34,
+    "host_conditional_marker_unlinks": 4,
+    "host_conditional_directory_removals": 8,
+    "device_ca_expected_source_pins": 4,
+    "actual_config_hash_gaps": 0
+  },
+  "device_access": false,
+  "host_temp_content_read_or_deletion": false,
+  "deletion_executed": false,
+  "executor_created": false,
+  "execution_authority": false
+}
