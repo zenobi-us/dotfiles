@@ -107,8 +107,11 @@ export type Precondition = {
   id: string;
   /** Stated as a fact to be checked, not assumed. */
   desc: string;
-  /** Checked before any test that lists this id in `requires`. */
-  check: { goto?: string; locator?: string; text?: string };
+  /**
+   * Checked before any test that lists this id in `requires`. `timeoutMs` is
+   * how long the locator may take to appear after `goto`; default 5000.
+   */
+  check: { goto?: string; locator?: string; text?: string; timeoutMs?: number };
 };
 
 export type Test = {

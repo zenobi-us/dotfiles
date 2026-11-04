@@ -346,7 +346,7 @@ export const surfDriver: Driver = {
       `var t=e.innerText.trim();` +
       (p.check.text ? `if(t.indexOf(${q(p.check.text)})<0)throw new Error('text missing');` : "") +
       `return JSON.stringify({ok:true,got:t.slice(0,200)});`;
-    const r = await sh(["surf", "js", poll(body, DEFAULT_EXPECT_MS)], surfEnv(session));
+    const r = await sh(["surf", "js", poll(body, p.check.timeoutMs ?? DEFAULT_EXPECT_MS)], surfEnv(session));
     const line = (r.out.trim().split("\n").pop() ?? "").trim();
     try {
       let v: unknown = JSON.parse(line);

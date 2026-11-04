@@ -206,6 +206,7 @@ export const playwrightDriver: Driver = {
       await sh(["playwright-cli", "goto", p.check.goto.startsWith("http") ? p.check.goto : plan.base + p.check.goto], env(session));
     }
     const code = `async page => { const L = page.locator(${q(p.check.locator)}); ` +
+      `try { await L.first().waitFor({ state: 'attached', timeout: ${p.check.timeoutMs ?? DEFAULT_EXPECT_MS} }); } catch {} ` +
       `if (await L.count() === 0) return { ok: false, got: 'absent' }; ` +
       `const t = (await L.first().textContent() || '').trim(); ` +
       `return { ok: ${p.check.text ? `t.includes(${q(p.check.text)})` : "true"}, got: t }; }`;
