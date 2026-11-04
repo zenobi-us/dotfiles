@@ -5,6 +5,7 @@ import { extname, isAbsolute, relative, resolve, sep } from "node:path";
 import { spawn } from "node:child_process";
 import type { AddressInfo } from "node:net";
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from "node:http";
+import { COORDINATOR_PORT, createCoordinatorServer, type CoordinatorServer } from "./coordinator";
 
 declare const __dirname: string | undefined;
 const EXTENSION_DIR = typeof __dirname === "string"
@@ -44,6 +45,7 @@ interface ImageToolResult {
 
 interface ExtensionContext {
   mode: "tui" | "rpc" | "json" | "print";
+  hasUI?: boolean;
   cwd: string;
   signal?: AbortSignal;
   ui: { notify(message: string, type?: "info" | "warning" | "error"): void };
@@ -72,7 +74,10 @@ interface ExtensionAPI {
     event: "input",
     handler: (event: { source: string; text: string; images?: ImageContent[] }, ctx: ExtensionContext) => Promise<{ action: "continue" | "handled" }>,
   ): void;
-  on(event: "session_start" | "session_switch" | "session_branch" | "session_tree", handler: () => void): void;
+  on(
+    event: "session_start" | "session_switch" | "session_branch" | "session_tree" | "session_shutdown",
+    handler: (event: unknown, ctx: ExtensionContext) => void | Promise<void>,
+  ): void;
   sendUserMessage(content: ({ type: "text"; text: string } | ImageContent)[]): Promise<void> | void;
 }
 
@@ -97,6 +102,33 @@ export interface AnnotatorResult {
 
 export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
   let latestImage: ImageContent | undefined;
+  let coordinator: Promise<CoordinatorServer> | undefined;
+  const startCoordinator = () => {
+    if (!coordinator) {
+      coordinator = createCoordinatorServer({
+        bundleDirectory: resolve(EXTENSION_DIR, "tablet-client", "dist"),
+        hostname: process.env.OMP_IMAGE_ANNOTATOR_HOST ?? "127.0.0.1",
+        port: Number(process.env.OMP_IMAGE_ANNOTATOR_PORT ?? COORDINATOR_PORT),
+      }).catch((error: unknown) => {
+        coordinator = undefined;
+        throw error;
+      });
+    }
+    return coordinator;
+  };
+
+  pi.on("session_start", async (_event, ctx) => {
+    if ((!ctx.hasUI && ctx.mode !== "tui") || Number(process.env.MUXER_SUBAGENT_DEPTH ?? 0) !== 0) return;
+    try {
+      const server = await startCoordinator();
+      ctx.ui.notify(`Image coordinator: ${server.url}/health`, "info");
+    } catch (error) {
+      ctx.ui.notify(`Image coordinator failed: ${errorMessage(error)}`, "error");
+    }
+  });
+  pi.on("session_shutdown", async () => {
+    if (coordinator) await (await coordinator).close();
+  });
 
   for (const event of ["session_start", "session_switch", "session_branch", "session_tree"] as const) {
     pi.on(event, () => { latestImage = undefined; });
@@ -142,12 +174,17 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
   });
 
   pi.registerCommand("image", {
-    description: "Create a drawing with /image new [prompt], or annotate with /image annotate [imagepath] [prompt]. Waits without a time limit until you finish or cancel.",
+    description: "Use /image coordinator to show the HTTP endpoint. Use /image new [prompt] or /image annotate [imagepath] [prompt] to edit an image.",
     handler: async (args, ctx) => {
       try {
+        if (args.trim() === "coordinator") {
+          const server = await startCoordinator();
+          ctx.ui.notify(`Image coordinator: ${server.url}/health`, "info");
+          return;
+        }
         const match = /^(new|annotate)(?:\s+([\s\S]*))?$/.exec(args.trim());
         if (!match) {
-          ctx.ui.notify("Usage: /image new [prompt] or /image annotate [imagepath] [prompt]. Omit imagepath to use the latest attached image.", "warning");
+          ctx.ui.notify("Usage: /image coordinator, /image new [prompt], or /image annotate [imagepath] [prompt]. Omit imagepath to use the latest attached image.", "warning");
           return;
         }
         const action = match[1] as ImageToolParameters["action"];
@@ -246,8 +283,8 @@ async function openAnnotator(source: SourceImage | undefined, ctx: ExtensionCont
   if (ctx.mode !== "tui") throw new Error("Image editing needs OMP's interactive terminal mode.");
   if (signal?.aborted) throw new Error("Image editing was cancelled.");
   const token = randomBytes(32).toString("hex");
-  let complete: (result: AnnotatorResult | undefined) => void = () => {};
-  let reject: (error: Error) => void = () => {};
+  let complete: (result: AnnotatorResult | undefined) => void = () => { };
+  let reject: (error: Error) => void = () => { };
   const result = new Promise<AnnotatorResult | undefined>((resolveResult, rejectResult) => {
     complete = resolveResult;
     reject = rejectResult;

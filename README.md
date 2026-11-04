@@ -212,3 +212,60 @@ manual drawing; it does not generate images from prompts.
 
 The `annotate:` prefix still opens an attached image directly without an agent
 turn. The old annotation slash command has been replaced by `/image`.
+
+### Tablet bootstrap
+
+The `image-annotator` extension starts a public HTTP coordinator in interactive
+root OMP sessions. Restart OMP after this update. Use `/image coordinator` to
+show the endpoint. The default address is `http://127.0.0.1:47840`.
+
+- `GET /health` reports the coordinator service and protocol.
+- `GET /tablet/bundle.tar.gz` downloads the Linux ARM64 client bundle.
+- `GET /tablet/bundle.sha256` downloads its SHA-256 checksum.
+
+This server exposes public bootstrap files only. It does not accept images,
+notebook data, credentials, or annotation jobs. The existing browser editor
+keeps its separate token-protected server. Subagents do not start the coordinator.
+
+Build the bundle and browser editor from the extension directory:
+
+```sh
+cd mise/conf.d/devtools-omp/extensions/image-annotator
+bun run build
+```
+
+The bundle build needs Go, `tar`, and `sha256sum`. Provisioning also needs
+`curl` and SSH. The client has three one-shot commands: `version`, `status`,
+and `download-bundle`. It has no background service or process detector.
+
+For tablet access, set `OMP_IMAGE_ANNOTATOR_HOST` to the desktop USB address
+before starting OMP. Set `OMP_IMAGE_ANNOTATOR_PORT` to change the port. The
+loopback default is not reachable from the tablet. For example, if the desktop
+USB address is `10.11.99.10`, start OMP with:
+
+```sh
+OMP_IMAGE_ANNOTATOR_HOST=10.11.99.10 omp
+```
+
+From the extension directory, check the bundle without contacting the tablet:
+
+```sh
+sh scripts/provision-tablet.sh \
+  --server-url http://10.11.99.10:47840 \
+  --coordinator-url http://10.11.99.10:47840 \
+  --dry-run
+```
+
+Remove `--dry-run` to copy and install the bundle over SSH. The default SSH
+target is `root@10.11.99.1`; use `--ssh-target` to change it. SSH host-key
+verification stays enabled. The installer creates `/home/root/pi-ink-client`
+and refuses an existing path. It does not start the client or change Xochitl,
+XOVI, notebooks, firmware, or old experiments. A failed install can leave a
+partial directory; the installer does not delete it or retry.
+
+After installation, run `/home/root/pi-ink-client/pi-ink-client status` on the
+tablet to check HTTP access. The client reads the installed `coordinator-url`
+file. Use `download-bundle --output /new/bundle.tar.gz` to download and check
+the public bundle. SHA-256 detects a changed download; it does not authenticate
+the HTTP server. Pen input and annotation transfer are not part of this path.
+

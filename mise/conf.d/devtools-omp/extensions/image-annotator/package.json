@@ -5,7 +5,10 @@
   "description": "Annotate pasted or file-based images with Excalidraw",
   "type": "module",
   "scripts": {
-    "build": "vite build"
+    "build": "bun run build:tablet && vite build",
+    "build:tablet": "sh tablet-client/build.sh",
+    "provision:tablet": "sh scripts/provision-tablet.sh",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@excalidraw/excalidraw": "^0.18.0",
