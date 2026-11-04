@@ -1,0 +1,13 @@
+{
+  "schema": "pi-ink-cleanup-session-launch/v1",
+  "start_receipt": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0037.yaml",
+  "muxer": "herdr",
+  "workspace": "w6T",
+  "pane": "w6T:p2",
+  "agent": "omp",
+  "child_session": "01a1a889-1424-7667-94ba-33922456f21a",
+  "source_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "observation": "New working child identity verified in the exact source pane/cwd, launch_pending=true. Launch dispatched once; no earlier session resumed or reused.",
+  "wait": "herdr agent wait w6T:p2 --until done --until blocked --timeout14400000",
+  "authority": "Exact plan3a0bc0837c76496b2c7c1e0bcdcd7e98947f944eda232b9e8b4ba1484c4e0d8d, manifest58e922578c95faf911f6e8740d85e31748011be44566304e9166c00dc447ebfc. One frozen launcher attempt. No retry, extra SSH, probe, service/process action or widened deletion. Parent issued no target command."
+}

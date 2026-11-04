@@ -1,0 +1,110 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0037",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 12,
+  "parent_receipt": "start-complete-0034",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+  "created_at": "2026-11-04T21:46:41.132Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6T:p2",
+  "agent": "omp",
+  "session_id": "01a1a5dd-2a9e-72c4-8797-c9988749391e",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0034.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0033.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0029.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0023.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0025.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/approval.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/plan.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/approval-scope.txt"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/sha256-index.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-manifest-0035/manifest.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-manifest-0035/validation.json"
+    },
+    {
+      "kind": "decision",
+      "ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0037.yaml"
+    }
+  ],
+  "status": "started",
+  "scope": "ONE irreversible frozen cleanup attempt only. Host full check; one approved device transaction; host revalidation/apply after device success. Exact manifest58e92257 and plan3a0bc083 only. Stop on guard/mutation/transport/timeout failure; no retries/repair/probes/process/service actions.",
+  "reserved_result": "implementation-0038",
+  "reserved_parent_completion": "start-complete-0039",
+  "recovery": {
+    "mode": "takeover",
+    "prior_attempt": "start-complete-0034",
+    "reason": "Successful hash transaction0033 already reconciled0034; do not repeat. Owner now approves exact fixed-manifest irreversible cleanup plan following offline executor verification. Preserve partial0026/history and product source.",
+    "approval": "artifacts/evidence/cleanup-run-0038/approval.json; owner approve to exact plan3a0bc0837c76496b2c7c1e0bcdcd7e98947f944eda232b9e8b4ba1484c4e0d8d with USB connected/exclusive access and disclosed irreversible/partial outcomes.",
+    "ownership": "Retained claim idempotently; fresh roster only current parent for Dotfiles; previous children closed; no matching coordinator reservation. New independent pane w6T:p2; no session reuse.",
+    "preserve": "Exact clean sourcebb5df500/tree9a9acbfb. Preserve opaque state/logs/PDFs/original extensions/settings and all source/evidence/history. BASE staged mise.toml and pre-existing untracked0026/system-relationships evidence untouched."
+  },
+  "production_blocked": true,
+  "ticket_state": "claimed",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038"
+  }
+}

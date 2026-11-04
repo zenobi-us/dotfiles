@@ -1,0 +1,223 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0039",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 12,
+  "parent_receipt": "implementation-0038",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+  "created_at": "2026-11-04T21:53:35.022Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w64:pY",
+  "agent": "omp",
+  "session_id": "01a1a5dd-2a9e-72c4-8797-c9988749391e",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0034.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0033.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0029.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0023.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0025.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/approval.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/plan.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/approval-scope.txt"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/sha256-index.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-manifest-0035/manifest.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-manifest-0035/validation.json"
+    },
+    {
+      "kind": "decision",
+      "ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0038.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/launcher-stdout.txt"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/launcher-stderr.txt"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/launcher-exit.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/execution-outcome.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/execution-0036/attempt.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/execution-0036/result.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0038.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0038.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/parent-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/parent-launch.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0039.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/parent-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/parent-launch.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    }
+  ],
+  "status": "failed",
+  "scope": "ONE irreversible frozen cleanup attempt only. Host full check; one approved device transaction; host revalidation/apply after device success. Exact manifest58e92257 and plan3a0bc083 only. Stop on guard/mutation/transport/timeout failure; no retries/repair/probes/process/service actions.",
+  "recovery": {
+    "mode": "reconcile",
+    "prior_attempt": "start-0037",
+    "reason": "Actual fixed launcher attempt stopped at readonly host-check with OWNED_PROCESS_VISIBILITY. Validate failed result and consumed allowance without retry or diagnosis. Child done428 and pane closed.",
+    "approval": "artifacts/evidence/cleanup-run-0038/approval.json; owner approve to exact plan3a0bc0837c76496b2c7c1e0bcdcd7e98947f944eda232b9e8b4ba1484c4e0d8d with USB connected/exclusive access and disclosed irreversible/partial outcomes.",
+    "ownership": "Retained claim idempotently; fresh roster only current parent for Dotfiles; previous children closed; no matching coordinator reservation. New independent pane w6T:p2; no session reuse.",
+    "preserve": "Exact clean sourcebb5df500/tree9a9acbfb. Preserve opaque state/logs/PDFs/original extensions/settings and all source/evidence/history. BASE staged mise.toml and pre-existing untracked0026/system-relationships evidence untouched.",
+    "outcome": "Failure recorded accurately. No deletion or device transaction by this attempt. All target state outside those observations remains unverified; preserve history/source and partial0026. Current execution approval consumed."
+  },
+  "production_blocked": true,
+  "ticket_state": "claimed",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038"
+  },
+  "child_session_id": "01a1a889-1424-7667-94ba-33922456f21a",
+  "slice_status": "failed",
+  "full_ticket_status": "BLOCKED",
+  "source_changes": false,
+  "device_execution": false,
+  "mutating_phase_started": false,
+  "manifest_scope_completed": false,
+  "removed_paths_reported": [],
+  "cleanup_complete": false,
+  "attempt_consumed": true,
+  "retry_authorized": false,
+  "worktree_preserved": true,
+  "pane_closed": true,
+  "result_missing": false,
+  "implementation_summary": "Exactly one approved launcher invocation exited1 after only host-check. Its readonly runtime visibility guard refused before any target mutation, USB/device phase or host-apply. No follow-up target command, probe, bypass, repair or source edit.",
+  "validation": [
+    {
+      "command": "Read actual local attempt/result and child outcome records",
+      "result": "Plan/manifest hashes match approval; only host-check exit1 with CLEANUP_REFUSAL OWNED_PROCESS_VISIBILITY; no REMOVED records; no mutating phase"
+    },
+    {
+      "command": "Check durable child output references",
+      "result": "All12outputs exist; child result status blocked; slice failed"
+    },
+    {
+      "command": "herdr agent wait w6T:p2 --until done --until blocked --timeout14400000",
+      "result": "done; completion_seq428; session01a1a889-1424-7667-94ba-33922456f21a"
+    },
+    {
+      "command": "herdr pane close w6T:p2",
+      "result": "ok; source worktree retained"
+    },
+    {
+      "command": "inspect.ts before parent reconciliation",
+      "result": "historyValid=true; exact clean sourcebb5df500/tree9a9acbfb; reconcile failed result0038"
+    }
+  ],
+  "failure_reason": "Host runtime guard returned OWNED_PROCESS_VISIBILITY. The fixed output does not identify which same-UID process or metadata leaf was inaccessible, and does not prove an active Pi Ink actor. No diagnosis or follow-up probe was authorized/performed. A separate scope decision is required before any new attempt."
+}

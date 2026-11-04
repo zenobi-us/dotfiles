@@ -1,0 +1,19 @@
+{
+  "schema": "pi-ink-fixed-cleanup-execution/v1",
+  "started_at": "2026-11-04T21:49:47.792285+00:00",
+  "attempt_consumed": true,
+  "retry_authorized": false,
+  "manifest_sha256": "58e922578c95faf911f6e8740d85e31748011be44566304e9166c00dc447ebfc",
+  "plan_sha256": "3a0bc0837c76496b2c7c1e0bcdcd7e98947f944eda232b9e8b4ba1484c4e0d8d",
+  "phases": [
+    {
+      "name": "host-check",
+      "exit_code": 1,
+      "stdout": "CLEANUP_REFUSAL OWNED_PROCESS_VISIBILITY\n",
+      "stderr": ""
+    }
+  ],
+  "success": false,
+  "state": "STOPPED_POSSIBLE_PARTIAL_REMOVAL_PRESERVE_NO_RETRY",
+  "finished_at": "2026-11-04T21:49:47.798020+00:00"
+}

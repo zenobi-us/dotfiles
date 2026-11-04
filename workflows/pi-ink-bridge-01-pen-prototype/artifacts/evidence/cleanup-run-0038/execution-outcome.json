@@ -1,0 +1,51 @@
+{
+  "schema": "pi-ink-cleanup-outcome/v1",
+  "created_at": "2026-11-04T21:50:16.444308+00:00",
+  "launcher": {
+    "command": "PI_INK_CLEANUP_APPROVED=cleanup-executor-0036 PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_USB_READY=connected-and-confirmed PI_INK_APPROVED_PLAN_SHA256=3a0bc0837c76496b2c7c1e0bcdcd7e98947f944eda232b9e8b4ba1484c4e0d8d timeout --signal=TERM --kill-after=5s 240s python3 /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/cleanup.py cleanup-once",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "exit_code": 1,
+    "started_at": "2026-11-04T21:49:47.760162+00:00",
+    "ended_at": "2026-11-04T21:49:47.803468+00:00",
+    "stdout_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/launcher-stdout.txt",
+    "stderr_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/launcher-stderr.txt"
+  },
+  "attempt_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/execution-0036/attempt.json",
+  "result_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/execution-0036/result.json",
+  "attempt_consumed": true,
+  "retry_authorized": false,
+  "success": false,
+  "slice_status": "failed",
+  "full_ticket_status": "BLOCKED",
+  "work_status": "claimed",
+  "state": "STOPPED_POSSIBLE_PARTIAL_REMOVAL_PRESERVE_NO_RETRY",
+  "phases": [
+    {
+      "name": "host-check",
+      "exit_code": 1,
+      "stdout": "CLEANUP_REFUSAL OWNED_PROCESS_VISIBILITY\n",
+      "stderr": ""
+    }
+  ],
+  "refusal": "CLEANUP_REFUSAL OWNED_PROCESS_VISIBILITY",
+  "removed_paths": [],
+  "removed_count": 0,
+  "retained_paths_reported": [],
+  "retained_count_reported": 0,
+  "counts_basis": "No removed or retained path rows were emitted. Zero is the count reported by this attempt, not a target inventory.",
+  "partial_scope": "Only host-check recorded, exit1. No USB, device staging/apply/helper-removal or host-apply phase recorded.",
+  "device_execution": false,
+  "cleanup_complete": false,
+  "process_state": {
+    "launcher": "exited1",
+    "host_check": "exited1",
+    "owned_processes": "visibility guard refused; no diagnosis or process action",
+    "remote": "not invoked by recorded phase sequence; no fresh observation"
+  },
+  "helper_state": "No helper staging/removal phase recorded; existing remote helper state not observed.",
+  "remaining_boundary": "All manifest-scope removal remains unproven and blocked. No recorded deletion in this attempt. Preserve unknown/remaining state and partial0026; do not retry or infer global retention/erasure.",
+  "source_changes": false,
+  "plan_sha256": "3a0bc0837c76496b2c7c1e0bcdcd7e98947f944eda232b9e8b4ba1484c4e0d8d",
+  "manifest_sha256": "58e922578c95faf911f6e8740d85e31748011be44566304e9166c00dc447ebfc",
+  "prohibited_followup_performed": false
+}

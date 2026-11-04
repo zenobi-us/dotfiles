@@ -1,0 +1,25 @@
+{
+  "schema": "pi-ink-parent-cleanup-outcome-validation/v1",
+  "created_at": "2026-11-04T21:52:49.602Z",
+  "plan_sha256": "3a0bc0837c76496b2c7c1e0bcdcd7e98947f944eda232b9e8b4ba1484c4e0d8d",
+  "manifest_sha256": "58e922578c95faf911f6e8740d85e31748011be44566304e9166c00dc447ebfc",
+  "attempt_consumed": true,
+  "launcher_exit": 1,
+  "phases": [
+    {
+      "name": "host-check",
+      "exit_code": 1,
+      "refusal": "OWNED_PROCESS_VISIBILITY"
+    }
+  ],
+  "removed_paths_reported": [],
+  "mutating_phase_started": false,
+  "device_transaction_started": false,
+  "proof_boundary": "Actual result contains only host-check failure. Pinned controller returns immediately after that failure, before verify_usb/device-apply/host-apply. No deletion by this attempt; no global target retention/inventory claim.",
+  "result_outputs_present": 12,
+  "child_completion": "herdr done;completion_seq428;session01a1a889-1424-7667-94ba-33922456f21a",
+  "parent_target_commands": 0,
+  "retry_performed": false,
+  "followup_probe_performed": false,
+  "source_changes": false
+}

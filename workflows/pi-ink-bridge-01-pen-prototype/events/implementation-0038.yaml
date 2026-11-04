@@ -1,0 +1,218 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "attempt": 12,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6T:p2",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038"
+  },
+  "receipt_id": "implementation-0038",
+  "event": "phase-result",
+  "parent_receipt": "start-0037",
+  "created_at": "2026-11-04T21:51:09.160372+00:00",
+  "session_id": "01a1a889-1424-7667-94ba-33922456f21a",
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "record",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "record",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "record",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "record",
+      "ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0037.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/approval.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/approval-scope.txt"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/execution-0036/attempt.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/execution-0036/result.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/launcher-stdout.txt"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/launcher-stderr.txt"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/launcher-exit.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/execution-outcome.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/execution-0036/attempt.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/execution-0036/result.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0038.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0038.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    }
+  ],
+  "status": "blocked",
+  "slice_status": "failed",
+  "production_blocked": true,
+  "work_status": "claimed",
+  "full_ticket_status": "BLOCKED",
+  "changed_files": [
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/launcher-stdout.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/launcher-stderr.txt",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/launcher-exit.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/execution-outcome.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/execution-0036/attempt.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/execution-0036/result.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0038.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0038.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+  ],
+  "source_changes": false,
+  "device_execution": false,
+  "cleanup_complete": false,
+  "retry_authorized": false,
+  "attempt_consumed": true,
+  "implementation_summary": "Exactly one approved launcher invocation stopped at host-check with CLEANUP_REFUSAL OWNED_PROCESS_VISIBILITY. No device/apply or helper phase recorded. No deletion paths reported. Stopped without retry, repair, diagnosis, further probe, process action or source changes.",
+  "validation": [
+    {
+      "command": "PI_INK_CLEANUP_APPROVED=cleanup-executor-0036 PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_USB_READY=connected-and-confirmed PI_INK_APPROVED_PLAN_SHA256=3a0bc0837c76496b2c7c1e0bcdcd7e98947f944eda232b9e8b4ba1484c4e0d8d timeout --signal=TERM --kill-after=5s 240s python3 /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-executor-0036/cleanup.py cleanup-once",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 1,
+      "stdout": "STOPPED_POSSIBLE_PARTIAL_REMOVAL_PRESERVE_NO_RETRY\n",
+      "stderr": ""
+    },
+    {
+      "command": "Read only local execution-0036/attempt.json and result.json",
+      "result": "attempt consumed; only host-check exit1; CLEANUP_REFUSAL OWNED_PROCESS_VISIBILITY; success=false"
+    }
+  ],
+  "execution_phases": [
+    {
+      "name": "host-check",
+      "exit_code": 1,
+      "stdout": "CLEANUP_REFUSAL OWNED_PROCESS_VISIBILITY\n",
+      "stderr": ""
+    }
+  ],
+  "removed_count_reported": 0,
+  "removed_paths": [],
+  "retained_count_reported": 0,
+  "retained_paths_reported": [],
+  "counts_basis": "No removed or retained path rows were emitted. Zero is the count reported by this attempt, not a target inventory.",
+  "process_state": {
+    "launcher": "exited1",
+    "host_check": "exited1",
+    "owned_processes": "visibility guard refused; no diagnosis or process action",
+    "remote": "not invoked by recorded phase sequence; no fresh observation"
+  },
+  "helper_state": "No helper staging/removal phase recorded; existing remote helper state not observed.",
+  "partial_scope": "Only host-check recorded, exit1. No USB, device staging/apply/helper-removal or host-apply phase recorded.",
+  "remaining_boundary": "All manifest-scope removal remains unproven and blocked. No recorded deletion in this attempt. Preserve unknown/remaining state and partial0026; do not retry or infer global retention/erasure.",
+  "open_questions": [
+    "Host process-visibility guard refusal unresolved; no investigation or retry authorized.",
+    "Manifest cleanup unproven; partial0026 retained/open.",
+    "Native pairing/association/Send acceptance remains blocked and outside this attempt."
+  ],
+  "failure_reason": "host-check refused CLEANUP_REFUSAL OWNED_PROCESS_VISIBILITY; full ticket blocked",
+  "scope": "ONE irreversible frozen cleanup attempt only. Host full check; one approved device transaction; host revalidation/apply after device success. Exact manifest58e92257 and plan3a0bc083 only. Stop on guard/mutation/transport/timeout failure; no retries/repair/probes/process/service actions.",
+  "source_identity_basis": "Parent exact clean source and fresh pre-execution inspect.ts; no source mutation performed.",
+  "recovery": {
+    "mode": "takeover",
+    "approval_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/cleanup-run-0038/approval.json",
+    "parent_receipt": "start-0037",
+    "ownership": "Fresh independent child w6T:p2, explicit parent handoff; no earlier child reused; no subagents launched."
+  }
+}
