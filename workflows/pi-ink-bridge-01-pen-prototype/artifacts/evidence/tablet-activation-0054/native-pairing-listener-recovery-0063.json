@@ -1,0 +1,39 @@
+{
+  "schema": "pi-ink-desktop-listener-recovery/v1",
+  "created_at": "2026-11-05T23:08:41.417Z",
+  "ownerReport": "pairing rejected: check setup trust and desktop approval",
+  "before": {
+    "desktopManagementEndpoint": "https://127.0.0.1:47842/tablet/v1/management/pair",
+    "result": "ECONNREFUSED",
+    "oldPane": "w64:p2J",
+    "paneRead": "pane_not_found",
+    "registry": "No ink-native-origin-0055 tab found; target workspace contained only parent tab.",
+    "oldRequests": "No live originating callback established. Preserve old source/evidence; do not claim returned results."
+  },
+  "action": {
+    "freshActualOMP": true,
+    "tab": "ink-native-origin-0063",
+    "pane": "w64:p2K",
+    "tabId": "w64:t1P",
+    "sessionId": "01a1adf2-a7d5-75c3-8930-812b14cdc1e7",
+    "sessionFile": "/tmp/pi-ink-native-0063-J9i9ig/sessions/2026-11-05T23-02-03-477Z_01a1adf2-a7d5-75c3-8930-812b14cdc1e7.jsonl",
+    "privateRoot": "/tmp/pi-ink-native-0063-J9i9ig",
+    "actualImageEditorCallsWaiting": 2,
+    "sourceImage": "implementation-0017/source.png",
+    "sameTrustedDesktopConfig": "/tmp/pi-ink-native-0055-3WKQid/desktop-pairing.json",
+    "sameServerId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "sameCertificateAndKey": true,
+    "browserLaunch": "Suppressed at process-launch seam only; no result manufactured",
+    "noDeviceChange": true
+  },
+  "after": {
+    "certificateVerifiedManagementGET": 200,
+    "pendingPair": null,
+    "configuredIPv4StillAssigned": "192.168.86.35 on enp7s0"
+  },
+  "limit": "Unavailable old desktop endpoint explains a possible cause, not a captured tablet TLS error. Native pairing still requires a new owner action and exact approval-ID comparison.",
+  "newSourcePDFs": "Use actual authenticated job metadata after pairing; no new PDF digest assumed or automatically allowlisted.",
+  "documents": false,
+  "additionalSSH": false,
+  "fullTicketComplete": false
+}

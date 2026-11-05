@@ -1,0 +1,47 @@
+{
+  "schema": "pi-ink-exact-pdf-allowlist-proposal/v1",
+  "status": "PROPOSED_HOST_VERIFIED_NOT_AUTHORIZED_NOT_EXECUTED",
+  "oldConfigSHA256": "03f71e38b7e3a27dd0bef16299ea258d2aa44b3103a798f3d1e488ba72d0af5b",
+  "newConfigSHA256": "4dfb2c84fcf737cd1e47bc91553701d8800e8f1f68e8c49e8ce5ff5d305bf0a5",
+  "onlyConfigFieldChanged": "syntheticAllowlist",
+  "approvedPDFSHA256": "ae3437fbb593c32d65a109a873176d6c6a0bcd592039529d3510f7c7f61c9e80",
+  "updateScriptSHA256": "585eeddff51089aba5737de59bec26f9fc9a94795d56737e79e1ddccf8f43fb4",
+  "restoreScript": "/tmp/pi-ink-runtime-media-0061-XKm5MS/device-restore-after-media-fix-0061.sh",
+  "restoreScriptSHA256": "3353742cd424f6fc425e9d9675868f2f92c53f5b9538cf0a44d64bb3d3cf6d98",
+  "restoreUnchanged": true,
+  "ownedBridgeRestarts": 1,
+  "xochitlRestarts": 0,
+  "pairingStateChecksumMustRemainUnchanged": true,
+  "deviceExecuted": false,
+  "privateDirectory": "/tmp/pi-ink-runtime-allowlist-0066-jUTZjy",
+  "sourceProof": "native-pairing-success-0065.json",
+  "reason": "Fresh real OMP requests use the same approved grid image but newly generated PDF bytes. The old expired-context PDF digest is not the current digest; Go correctly refuses unapproved bytes.",
+  "requestIds": [
+    "a5870505364fbbea6a60d4c684c6b33e",
+    "607c89e18eb1e81b7f165baba1d9d030"
+  ],
+  "writes": [
+    "New owned runtime-allowlist-0066 directory containing old config backup, new config and operation markers.",
+    "Atomic replacement of /home/root/pi-ink-bridge-0049/runtime.json; only syntheticAllowlist changes to the one exact new PDF hash.",
+    "One restart of only the existing owned transient bridge service; verify and record its new InvocationID."
+  ],
+  "guards": [
+    "Same installed a875... bridge binary; exact old03f... config; expected activated capsule.",
+    "Owned transient unit/Description/InvocationID, active state and Restart=no.",
+    "Unused new directory and temporary files; fail before replacing unknown state.",
+    "Pairing/association-state checksum must remain unchanged across restart; no secret contents printed.",
+    "New config hash/mode/owner/size and private UI9821 listener checked afterward."
+  ],
+  "unchanged": [
+    "Xochitl, QMD/QML, loopback adapter, trust/server identity and installed VERSION.",
+    "Pairing credentials and association state.",
+    "All notebook/library contents; no import, drawing, Send or deletion."
+  ],
+  "restore": "Existing post-media-fix335374... restorer remains valid unchanged. It guards active binary/QMD/adapter/original backups, not retained runtime config. An attempted unnecessary config-guard derivation stopped on the host; no device action occurred.",
+  "syntax": "sh -n passed the generated update script",
+  "next": "After separately approved setup refresh, disconnect USB and prove kernel transport state before native stock-folder/import tests.",
+  "automaticRetry": false,
+  "automaticRollback": false,
+  "cleanup0038": false,
+  "productionBlocked": true
+}

@@ -1,0 +1,67 @@
+{
+  "schema": "pi-ink-native-pairing-proof/v1",
+  "approvalRef": "native-pairing-approval-0065.json",
+  "ownerConfirmedCode": "EF6-A2B",
+  "nativeAuthenticatedStatus": {
+    "time": "2026-11-05T23:22:13.627Z",
+    "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "deviceId": "paper-pro-ink-0054",
+    "safe": false,
+    "usbIPv4": [
+      "usb1:10.11.99.1"
+    ],
+    "udc": {
+      "ci_hdrc.0": "configured",
+      "ci_hdrc.1": "not attached"
+    },
+    "listeners": [
+      "tcp:0100007F:0051"
+    ]
+  },
+  "nativePairingProved": true,
+  "cableFreeProved": false,
+  "snapshot": {
+    "type": "jobs",
+    "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "jobs": [
+      {
+        "jobId": "a5870505364fbbea6a60d4c684c6b33e",
+        "requestId": "a5870505364fbbea6a60d4c684c6b33e",
+        "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+        "state": "pending",
+        "submissionEpoch": 0
+      },
+      {
+        "jobId": "607c89e18eb1e81b7f165baba1d9d030",
+        "requestId": "607c89e18eb1e81b7f165baba1d9d030",
+        "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+        "state": "pending",
+        "submissionEpoch": 0
+      }
+    ]
+  },
+  "sourcePDFs": [
+    {
+      "jobId": "a5870505364fbbea6a60d4c684c6b33e",
+      "requestId": "a5870505364fbbea6a60d4c684c6b33e",
+      "sourceImageDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "pdfSHA256": "ae3437fbb593c32d65a109a873176d6c6a0bcd592039529d3510f7c7f61c9e80",
+      "pdfBytes": 2403511,
+      "matchesCurrentPDFAllowlist": false
+    },
+    {
+      "jobId": "607c89e18eb1e81b7f165baba1d9d030",
+      "requestId": "607c89e18eb1e81b7f165baba1d9d030",
+      "sourceImageDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "pdfSHA256": "ae3437fbb593c32d65a109a873176d6c6a0bcd592039529d3510f7c7f61c9e80",
+      "pdfBytes": 2403511,
+      "matchesCurrentPDFAllowlist": false
+    }
+  ],
+  "snapshotReader": "Separate authenticated read-only desktop WebSocket; sent no status and closed only its own connection.",
+  "sourceVerification": "Both actual PDFs fetched through certificate-verified authenticated HTTPS and hashed; no device import.",
+  "nextSetupChange": "Replace expired-context exact PDF allowlist with the new exact digest before importing. No wildcard or image-digest substitution.",
+  "documents": false,
+  "additionalSSH": false,
+  "fullTicketComplete": false
+}
