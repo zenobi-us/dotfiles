@@ -220,7 +220,7 @@
   "version_policy": "Record VERSION bytes and metadata at stage; never replace VERSION. Restore requires it unchanged.",
   "approvals": {
     "stage": [
-      "APPROVE_STAGE_0054"
+      "APPROVE_PRESERVE_PARTIAL_0058_AND_STAGE_0059"
     ],
     "activate": [
       "APPROVE_ACTIVATE_0054",
@@ -245,6 +245,15 @@
     "automatic_rollback": false,
     "automatic_retry": false,
     "device_execution_now": false
+  },
+  "stage_recovery": {
+    "requires_new_exact_approval": true,
+    "partial_source": "/home/root/pi-ink-bridge-0049",
+    "preserved_destination": "/home/root/pi-ink-bridge-0049.partial-stage0058",
+    "preconditions": "Exact owned marker, expected entries only, empty partial client, pinned original backups, matching VERSION metadata and Xochitl snapshot; preservation destination unused; required commands available before writes.",
+    "transfer": "Chunked POSIX printf with no-clobber creation and exact resulting SHA256 checks; no base64 dependency.",
+    "deletion": false,
+    "active_changes": false
   },
   "prerequisites": [
     "Parent must validate all 11 retained QMDs with the exact new QMD against copied native resources: DocumentView, MainView, Toolbar, Navigator, Sidebar and the native navigation shell from source activation-proposal.json. Approved metadata0057 establishes dockButtons.qmd absent; preserve that absence and refuse if it reappears.",

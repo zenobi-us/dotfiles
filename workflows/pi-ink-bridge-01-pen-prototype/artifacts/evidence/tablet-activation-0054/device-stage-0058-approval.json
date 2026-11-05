@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-11-05T21:19:23.616Z",
+  "user_response": "Approve corrected stage only",
+  "script_sha256": "1d6a1a03074a407a7aaafadb678633cafa0cee8e8310929db1c5a93ee3dd5352",
+  "source_commit": "472ca79b",
+  "activation": false,
+  "restart": false,
+  "automatic_retry": false
+}

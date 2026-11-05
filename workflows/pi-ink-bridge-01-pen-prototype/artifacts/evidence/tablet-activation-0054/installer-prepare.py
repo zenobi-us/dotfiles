@@ -5,7 +5,6 @@ Generated stage script embeds private config. Keep its output directory outside 
 No candidate executable or install.sh is ever executed.
 """
 import argparse
-import base64
 import hashlib
 import io
 import json
@@ -169,6 +168,9 @@ qmd=/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd
 adapter=/home/root/xovi/extensions.d/pi-ink-loopback.so
 unit=pi-ink-0054.service
 test "$(id -u)" = 0 || fail 'Root required'
+for executable in cat chmod cmp cp id mkdir mv rm sha256sum sleep stat systemctl systemd-run; do
+    command -v "$executable" >/dev/null || fail "Required command unavailable: $executable"
+done
 for directory in /home/root /home/root/pi-ink-client /home/root/xovi/extensions.d /home/root/xovi/exthome/qt-resource-rebuilder; do parents "$directory"; done
 baseline() {
     test "$(. /etc/os-release; printf '%s' "$IMG_VERSION")" = 3.28.0.172
@@ -258,10 +260,58 @@ cmp "$root/current-service.txt" "$root/backups/xochitl.service.txt"
 '''
 
 
+def transfer_bytes(path, data):
+    # POSIX printf avoids optional firmware decoders and external argv size limits.
+    lines = [f'absent "{path}"\nset -C\nexec 3> "{path}"\nset +C\n']
+    for offset in range(0, len(data), 1024):
+        octets = ''.join(f'\\0{byte:03o}' for byte in data[offset:offset + 1024])
+        lines.append(f"printf '%b' '{octets}' >&3\n")
+    lines.append('exec 3>&-\n')
+    return ''.join(lines)
+
+
 def stage_script(manifest, common, files):
-    text = common + gates(manifest, 'stage') + 'baseline inactive\nunit_absent\nui_port_free\nabsent "$root"\nabsent "$qmd"\nabsent "$adapter"\nabsent "$client_install"\nabsent "$client_restore"\n'
+    text = common + gates(manifest, 'stage') + 'baseline inactive\nunit_absent\nui_port_free\nabsent "$qmd"\nabsent "$adapter"\nabsent "$client_install"\nabsent "$client_restore"\n'
     for path, spec in manifest['originals'].items():
         text += check(path, spec['sha256'], spec['metadata'])
+    text += '''partial=/home/root/pi-ink-bridge-0049.partial-stage0058
+absent "$partial"
+for directory in "$root" "$root/payload" "$root/tablet-qml" "$root/backups"; do
+    parents "$directory"
+    test "$(stat -c '%a %u %g' "$directory")" = '700 0 0'
+done
+for entry in "$root"/* "$root"/.[!.]* "$root"/..?*; do
+    test -e "$entry" || test -L "$entry" || continue
+    case "${entry##*/}" in owner|payload|tablet-qml|backups) ;; *) fail 'Unexpected partial stage entry; preserve state' ;; esac
+done
+for entry in "$root/payload"/* "$root/payload"/.[!.]* "$root/payload"/..?*; do
+    test -e "$entry" || test -L "$entry" || continue
+    case "${entry##*/}" in pi-ink-client) ;; *) fail 'Unexpected partial payload; preserve state' ;; esac
+done
+for entry in "$root/tablet-qml"/* "$root/tablet-qml"/.[!.]* "$root/tablet-qml"/..?*; do
+    test -e "$entry" || test -L "$entry" || continue
+    fail 'Unexpected partial QML; preserve state'
+done
+for entry in "$root/backups"/* "$root/backups"/.[!.]* "$root/backups"/..?*; do
+    test -e "$entry" || test -L "$entry" || continue
+    case "${entry##*/}" in pi-ink-client|webserver-remote.so|VERSION|VERSION.metadata|xochitl.service.txt) ;; *) fail 'Unexpected partial backup; preserve state' ;; esac
+done
+'''
+    text += check('/home/root/pi-ink-bridge-0049/owner', sha(b'tablet-activation-0054\n'), '600 0 0 23')
+    text += check('/home/root/pi-ink-bridge-0049/payload/pi-ink-client', sha(b''), '600 0 0 0')
+    for original, backup in [('/home/root/pi-ink-client/pi-ink-client', 'pi-ink-client'), ('/home/root/xovi/extensions.d/webserver-remote.so', 'webserver-remote.so')]:
+        spec = manifest['originals'][original]
+        text += check('/home/root/pi-ink-bridge-0049/backups/' + backup, spec['sha256'], spec['metadata'])
+    text += '''regular "$root/backups/VERSION"
+regular "$root/backups/VERSION.metadata"
+regular "$root/backups/xochitl.service.txt"
+cmp "$version" "$root/backups/VERSION"
+test "$(stat -c '%a %u %g %s %Y' "$version")" = "$(cat "$root/backups/VERSION.metadata")"
+test -s "$root/backups/xochitl.service.txt"
+test "$(systemctl cat xochitl | sha256sum)" = "$(sha256sum < "$root/backups/xochitl.service.txt")"
+mv "$root" "$partial"
+printf '%s\n' PARTIAL_STAGE0058_PRESERVED
+'''
     text += '''regular "$version"
 mkdir -m 700 "$root"
 printf '%s\n' 'tablet-activation-0054' > "$root/owner"
@@ -271,7 +321,7 @@ cp -p "$extension" "$root/backups/webserver-remote.so"
 '''
     text += preserved_stage()
     for relative, data in files.items():
-        text += f'absent "$root/{relative}"\nbase64 -d > "$root/{relative}" <<\'PAYLOAD_0054\'\n' + base64.b64encode(data).decode() + '\nPAYLOAD_0054\n'
+        text += transfer_bytes('$root/' + relative, data)
         text += check('/home/root/pi-ink-bridge-0049/' + relative, sha(data))
     text += 'printf "%s\\n" staged > "$root/staged"\nprintf "%s\\n" STAGED_ACTIVE_PATHS_UNCHANGED\n'
     return text

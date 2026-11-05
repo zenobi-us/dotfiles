@@ -58,17 +58,19 @@ They can be supplied as standard input to a fixed sh invocation after approval.
 There is no generic command-forwarding interface in the host program.
 
 Stage boundary
-Fresh stage approval covers creation of /home/root/pi-ink-bridge-0049 only,
-including its payload, tablet-qml, backups, config, CA, service snapshot and
-stage marker. The entire root must be unused. New active QMD/adapter paths
-and pi-ink-0054.service must also be unused. Existing client and original
-extension hashes and root ownership/modes/sizes must match the manifest.
-Stage copies their bytes and metadata. It preserves installed VERSION bytes
-and records its metadata. It records Xochitl service configuration.
+Recovery-stage approval must explicitly permit preserving the partial0058
+directory as /home/root/pi-ink-bridge-0049.partial-stage0058 and creating a
+fresh /home/root/pi-ink-bridge-0049. Before moving anything, require the exact
+owned marker, empty partial client, expected directory entries, pinned original
+backups, unchanged VERSION/service snapshot and an unused preservation target.
+Check required commands before any writes. Reject unexpected state; do not
+delete, overwrite or silently resume it. Transfer binary bytes using chunked
+POSIX printf, not an optional base64 command. Verify every resulting SHA256.
+New active QMD/adapter paths and pi-ink-0054.service must remain unused.
 All active code, services, settings and qmlcache remain unchanged.
 Future device-side invocation:
 
-sh -s -- APPROVE_STAGE_0054 < device-stage.sh
+sh -s -- APPROVE_PRESERVE_PARTIAL_0058_AND_STAGE_0059 < device-stage.sh
 
 Activation prerequisites
 Parent must verify the exact candidate patch with all 11 retained QMDs against

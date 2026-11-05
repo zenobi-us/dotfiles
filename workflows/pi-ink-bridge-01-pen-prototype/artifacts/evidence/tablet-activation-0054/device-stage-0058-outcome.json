@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-11-05T21:19:44.888Z",
+  "exit_code": 127,
+  "stdout": "",
+  "stderr": "sh: line 151: base64: command not found\n",
+  "stage_complete": false,
+  "activation": false,
+  "restarts": 0,
+  "document_operations": false,
+  "cleanup": false,
+  "automatic_retry": false
+}
