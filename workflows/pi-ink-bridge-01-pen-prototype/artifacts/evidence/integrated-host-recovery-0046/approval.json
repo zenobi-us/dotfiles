@@ -1,0 +1,24 @@
+{
+  "schema": "pi-ink-host-recovery-approval/v1",
+  "created_at": "2026-11-05T09:18:01.247Z",
+  "selection": "Approve host-side recovery",
+  "quote": "Approve host-side recovery of the retained ticket-01 worktree in a fresh implementation session",
+  "scope": [
+    "source integration in retained worktree",
+    "isolated host smoke runs"
+  ],
+  "excluded": [
+    "tablet access",
+    "installation",
+    "restarts",
+    "document operations",
+    "cleanup",
+    "earlier agent session reuse"
+  ],
+  "preserve": [
+    "existing source and evidence",
+    "unknown process/file state",
+    "staged mise.toml",
+    "failed cleanup state"
+  ]
+}

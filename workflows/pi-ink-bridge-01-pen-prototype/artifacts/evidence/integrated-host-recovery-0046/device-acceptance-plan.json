@@ -1,0 +1,80 @@
+{
+  "schema": "pi-ink-acceptance-plan/v1",
+  "created_at": "2026-11-05T09:24:03.600Z",
+  "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "status": "planned-not-executed",
+  "host_approval_ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/approval.json",
+  "device_execution_authorized": false,
+  "scope": "Bounded real-device prototype acceptance; no production scope substitution.",
+  "prior_proof": [
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/findings.json",
+      "reused": "Cable-free loopback import/export and that experiment restoration, not UI pairing/current document/origin delivery."
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/final-smoke/output-verification.json",
+      "reused": "Retained-PDF source-sized conversion and full PDF retention, not live tablet integration."
+    }
+  ],
+  "cases": [
+    {
+      "criterion": 1,
+      "action": "Open native global Pi Ink entry, perform explicit pairing to a trusted setup-provisioned server, and inspect associated synthetic folder identities.",
+      "required_observation": "Owner sees intended server identity and real stock folder association; versions/hashes recorded. Repeated entry selection stays open, sidebar closure updates width, Back closes fully."
+    },
+    {
+      "criterion": 2,
+      "action": "Dispatch an approved synthetic source over authenticated LAN after USB disconnect, import it, and locate/open it through the stock library.",
+      "required_observation": "Actual stock documentUUID and folderUUID recorded with server/job/request/source identity and source dimensions. Do not infer imported UUID from the older fixed synthetic UUID."
+    },
+    {
+      "criterion": 3,
+      "action": "Draw, erase, undo, zoom and save using only the stock editor while the native Pi Ink foldout integration is present.",
+      "required_observation": "Owner reports pen latency, palm handling and toolbar interference; no assumed quality pass."
+    },
+    {
+      "criterion": 4,
+      "action": "Open Pi Ink native foldout above TOC, switch between two approved bound synthetic documents, then a designated unassociated synthetic document.",
+      "required_observation": "Server/connection/submission status follow current document; unassociated state never chooses a default unrelated job. Compact native layout works in tested orientations."
+    },
+    {
+      "criterion": 5,
+      "action": "Save/close without Send; reopen and explicitly Send; when out-of-source marks exist, exercise explicit clipping consent.",
+      "required_observation": "Pending originating request remains pending after Save/Close; actual exported pen marks produce a source-sized PNG only for that request; distinguish local save/server acceptance/agent delivery. Retain full PDF and editable stock work."
+    },
+    {
+      "criterion": 6,
+      "action": "Inspect four source edges, normal display scaling/zoom, and supported orientation changes, then compare returned PNG dimensions and marked pixel regions.",
+      "required_observation": "No stretching, viewport substitution or silent clipping; visible marks survive source-window conversion and owner can edit original stock annotations."
+    },
+    {
+      "criterion": 7,
+      "action": "Attempt stale/current-document mismatches and wrong-server/request submissions. Cancel a separate job and send its late result.",
+      "required_observation": "No result crosses document/server/request identities; cancellation remains terminal. Alternate-server Send omitted unless separately chosen."
+    },
+    {
+      "criterion": 8,
+      "action": "Record exact tested boundary, owner observations, unresolved limits and approved restoration/removal outcomes.",
+      "required_observation": "Historical evidence and unknown old state preserved; production remains blocked until all current acceptance gates and review pass. Cleanup0038 is not retried."
+    },
+    {
+      "criterion": 9,
+      "action": "During approved activation and integrated use, verify loopback-only stock HTTP binding and certificate-verified authenticated client transport.",
+      "required_observation": "No stock Wi-Fi/wildcard listener or generic LAN forwarding endpoint. Reuse0014 feasibility; this checks final deployed configuration safety."
+    },
+    {
+      "criterion": 10,
+      "action": "Complete the cable-free originating-request round trip and record actual supported activation/restoration behavior.",
+      "required_observation": "Only approved restart/lifecycle operations run. Untested sleep/reboot/firmware-update/reactivation cases stay explicitly unverified; no firmware upgrade to manufacture evidence."
+    }
+  ],
+  "safety": {
+    "no_screenshots": true,
+    "no_private_notebook_mutation": true,
+    "no_runtime_ssh_or_usb": true,
+    "no_process_scanners": true,
+    "no_cleanup_retry": true,
+    "unknown_state": "Preserve partial0026 and all unproven process/file state.",
+    "tablet_boundary": "Separate exact approval must name installation/repair preflight, payload hashes, owned paths, restart count, synthetic documents and restoration before any tablet connection or operation."
+  }
+}
