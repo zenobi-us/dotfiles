@@ -4,25 +4,20 @@ set -eu
 
 main() {
     prefix=/home/root/pi-ink-client
-    coordinator_url=
     while [ "$#" -gt 0 ]; do
         case "$1" in
-            --prefix|--coordinator-url)
+            --prefix)
                 [ "$#" -ge 2 ] || fail "Option requires a value: $1"
-                case "$1" in
-                    --prefix) prefix=$2 ;;
-                    --coordinator-url) coordinator_url=$2 ;;
-                esac
+                prefix=$2
                 shift 2
                 ;;
             --help)
-                printf '%s\n' 'Usage: install.sh --coordinator-url URL [--prefix /new/destination]'
+                printf '%s\n' 'Usage: install.sh [--prefix /new/destination]'
                 return
                 ;;
             *) fail 'Unknown option; use --help.' ;;
         esac
     done
-    [ -n "$coordinator_url" ] || fail 'Provide --coordinator-url with a tablet-reachable HTTP/HTTPS URL.'
     case "$prefix" in
         /*) ;;
         *) fail 'Install prefix must be an absolute path.' ;;
@@ -33,16 +28,12 @@ main() {
     for name in pi-ink-client VERSION; do
         [ -f "$source_dir/$name" ] && [ ! -L "$source_dir/$name" ] || fail "Bundle requires a regular file: $name"
     done
-    # The client owns the URL rules; reject incompatible configuration before creating any install path.
-    "$source_dir/pi-ink-client" validate-url --coordinator-url "$coordinator_url" >/dev/null \
-        || fail 'The client rejected the coordinator URL; no install directory was created.'
     umask 077
     mkdir -m 700 -- "$prefix" || fail 'Cannot create install prefix; no existing path will be replaced.'
     cp -- "$source_dir/pi-ink-client" "$prefix/pi-ink-client"
     cp -- "$source_dir/VERSION" "$prefix/VERSION"
-    printf '%s\n' "$coordinator_url" > "$prefix/coordinator-url"
     chmod 700 "$prefix/pi-ink-client"
-    chmod 600 "$prefix/VERSION" "$prefix/coordinator-url"
+    chmod 600 "$prefix/VERSION"
     printf 'Installed client in %s; no service was started.\n' "$prefix"
 }
 

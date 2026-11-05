@@ -6,6 +6,7 @@ import { spawn } from "node:child_process";
 import type { AddressInfo } from "node:net";
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from "node:http";
 import { COORDINATOR_PORT, createCoordinatorServer, type CoordinatorServer } from "./coordinator";
+import { advertiseCoordinator, loadCoordinatorIdentity, type CoordinatorAdvertisement } from "./coordinator-discovery";
 
 declare const __dirname: string | undefined;
 const EXTENSION_DIR = typeof __dirname === "string"
@@ -101,7 +102,12 @@ export interface AnnotatorResult {
 }
 
 interface CoordinatorState {
-  serverPromise?: Promise<CoordinatorServer>;
+  runtimePromise?: Promise<CoordinatorRuntime>;
+}
+
+interface CoordinatorRuntime {
+  server: CoordinatorServer;
+  advertisement: CoordinatorAdvertisement;
 }
 
 export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
@@ -111,14 +117,20 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
   pi.on("session_start", async (_event, ctx) => {
     if ((!ctx.hasUI && ctx.mode !== "tui") || Number(process.env.MUXER_SUBAGENT_DEPTH ?? 0) !== 0) return;
     try {
-      const server = await startCoordinator(coordinatorState);
-      ctx.ui.notify(`Image coordinator: ${server.url}/health`, "info");
+      const runtime = await startCoordinator(coordinatorState, (error) => ctx.ui.notify(`Image discovery failed: ${error.message}`, "error"));
+      ctx.ui.notify(`Image coordinator: ${runtime.server.url}/health\nDNS-SD: ${runtime.advertisement.name}\nCoordinator ID: ${runtime.server.id}`, "info");
     } catch (error) {
       ctx.ui.notify(`Image coordinator failed: ${errorMessage(error)}`, "error");
     }
   });
   pi.on("session_shutdown", async () => {
-    if (coordinatorState.serverPromise) await (await coordinatorState.serverPromise).close();
+    if (!coordinatorState.runtimePromise) return;
+    const runtime = await coordinatorState.runtimePromise;
+    try {
+      await runtime.advertisement.close();
+    } finally {
+      await runtime.server.close();
+    }
   });
 
   for (const event of ["session_start", "session_switch", "session_branch", "session_tree"] as const) {
@@ -169,8 +181,8 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
     handler: async (args, ctx) => {
       try {
         if (args.trim() === "coordinator") {
-          const server = await startCoordinator(coordinatorState);
-          ctx.ui.notify(`Image coordinator: ${server.url}/health`, "info");
+          const runtime = await startCoordinator(coordinatorState, (error) => ctx.ui.notify(`Image discovery failed: ${error.message}`, "error"));
+          ctx.ui.notify(`Image coordinator: ${runtime.server.url}/health\nDNS-SD: ${runtime.advertisement.name}\nCoordinator ID: ${runtime.server.id}`, "info");
           return;
         }
         const match = /^(new|annotate)(?:\s+([\s\S]*))?$/.exec(args.trim());
@@ -210,18 +222,30 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
   });
 }
 
-function startCoordinator(state: CoordinatorState): Promise<CoordinatorServer> {
-  if (!state.serverPromise) {
-    state.serverPromise = createCoordinatorServer({
-      bundleDirectory: resolve(EXTENSION_DIR, "tablet-client", "dist"),
-      hostname: process.env.OMP_IMAGE_ANNOTATOR_HOST ?? "127.0.0.1",
-      port: Number(process.env.OMP_IMAGE_ANNOTATOR_PORT ?? COORDINATOR_PORT),
-    }).catch((error: unknown) => {
-      state.serverPromise = undefined;
+function startCoordinator(state: CoordinatorState, onFailure: (error: Error) => void): Promise<CoordinatorRuntime> {
+  if (!state.runtimePromise) {
+    state.runtimePromise = createCoordinatorRuntime(onFailure).catch((error: unknown) => {
+      state.runtimePromise = undefined;
       throw error;
     });
   }
-  return state.serverPromise;
+  return state.runtimePromise;
+}
+
+async function createCoordinatorRuntime(onFailure: (error: Error) => void): Promise<CoordinatorRuntime> {
+  const id = await loadCoordinatorIdentity(resolve(homedir(), ".omp", "agent", "image-annotator"));
+  const server = await createCoordinatorServer({
+    bundleDirectory: resolve(EXTENSION_DIR, "tablet-client", "dist"),
+    id,
+    port: Number(process.env.OMP_IMAGE_ANNOTATOR_PORT ?? COORDINATOR_PORT),
+  });
+  try {
+    const advertisement = await advertiseCoordinator({ id, port: server.port, onFailure });
+    return { server, advertisement };
+  } catch (error) {
+    await server.close();
+    throw error;
+  }
 }
 
 function parseArguments(args: string): { path?: string; prompt?: string } {

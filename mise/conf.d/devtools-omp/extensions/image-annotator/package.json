@@ -23,5 +23,8 @@
     "extensions": [
       "./index.ts"
     ]
+  },
+  "dependencies": {
+    "dbus-next": "^0.10.2"
   }
 }

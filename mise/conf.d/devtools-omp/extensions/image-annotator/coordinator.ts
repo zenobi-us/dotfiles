@@ -9,17 +9,24 @@ export const COORDINATOR_PORT = 47840;
 export interface CoordinatorServer {
   httpServer: Server;
   url: string;
+  id: string;
+  port: number;
   close(): Promise<void>;
 }
 
-// This server exposes public bootstrap files only. Image requests stay on the token-protected editor server.
-export async function createCoordinatorServer(options: {
+export interface CoordinatorOptions {
   bundleDirectory: string;
-  hostname?: string;
+  id: string;
   port?: number;
-}): Promise<CoordinatorServer> {
+}
+
+// This server exposes public bootstrap files only. Image requests stay on the token-protected editor server.
+export async function createCoordinatorServer(options: CoordinatorOptions): Promise<CoordinatorServer> {
+  if (!/^[a-f0-9]{32}$/.test(options.id)) {
+    throw new Error("Coordinator ID must contain 32 lowercase hexadecimal characters.");
+  }
   const httpServer = createServer((request, response) => {
-    void handleRequest(request, response, options.bundleDirectory).catch((error: unknown) => {
+    void handleRequest(request, response, options).catch((error: unknown) => {
       if (response.destroyed) return;
       console.error("[image-annotator] Coordinator request failed:", error);
       if (response.headersSent) response.destroy();
@@ -31,18 +38,19 @@ export async function createCoordinatorServer(options: {
   await new Promise<void>((resolveListen, rejectListen) => {
     const onError = (error: Error) => rejectListen(error);
     httpServer.once("error", onError);
-    httpServer.listen(options.port ?? COORDINATOR_PORT, options.hostname ?? "127.0.0.1", () => {
+    httpServer.listen({ port: options.port ?? COORDINATOR_PORT, host: "::", ipv6Only: false }, () => {
       httpServer.off("error", onError);
       resolveListen();
     });
   });
   httpServer.unref();
   const address = httpServer.address() as AddressInfo;
-  const hostname = address.address.includes(":") ? `[${address.address}]` : address.address;
   let closing: Promise<void> | undefined;
   return {
     httpServer,
-    url: `http://${hostname}:${address.port}`,
+    url: `http://127.0.0.1:${address.port}`,
+    id: options.id,
+    port: address.port,
     close: () => closing ??= new Promise<void>((resolveClose, rejectClose) => {
       httpServer.close((error) => error ? rejectClose(error) : resolveClose());
       httpServer.closeAllConnections();
@@ -50,7 +58,7 @@ export async function createCoordinatorServer(options: {
   };
 }
 
-async function handleRequest(request: IncomingMessage, response: ServerResponse, bundleDirectory: string): Promise<void> {
+async function handleRequest(request: IncomingMessage, response: ServerResponse, options: CoordinatorOptions): Promise<void> {
   response.setHeader("cache-control", "no-store");
   response.setHeader("x-content-type-options", "nosniff");
   if (request.method !== "GET" && request.method !== "HEAD") {
@@ -61,7 +69,7 @@ async function handleRequest(request: IncomingMessage, response: ServerResponse,
   if (pathname === "/health") {
     response.writeHead(200, { "content-type": "application/json" });
     response.end(request.method === "HEAD" ? undefined : JSON.stringify({
-      service: "image-annotator", status: "ok", protocol: 1,
+      service: "image-annotator", status: "ok", protocol: 1, id: options.id,
     }));
     return;
   }
@@ -74,7 +82,7 @@ async function handleRequest(request: IncomingMessage, response: ServerResponse,
     response.writeHead(404).end();
     return;
   }
-  const file = await open(resolve(bundleDirectory, asset.name), "r").catch((error: NodeJS.ErrnoException) => {
+  const file = await open(resolve(options.bundleDirectory, asset.name), "r").catch((error: NodeJS.ErrnoException) => {
     if (error.code !== "ENOENT" && error.code !== "ENOTDIR") throw error;
     return undefined;
   });

@@ -217,58 +217,100 @@ turn. The old annotation slash command has been replaced by `/image`.
 
 The `image-annotator` extension starts a public HTTP coordinator in interactive
 root OMP sessions. Restart OMP after this update. Use `/image coordinator` to
-show the endpoint. The default address is `http://127.0.0.1:47840`.
+show its local health URL, DNS-SD name, and coordinator ID. Subagents do not
+start a coordinator.
 
-- `GET /health` reports the coordinator service and protocol.
+The coordinator listens on all IPv4 and IPv6 interfaces at port `47840`. No
+USB address or host environment variable is required. Set
+`OMP_IMAGE_ANNOTATOR_PORT` only if you need a different port. Each tablet can
+use the same coordinator.
+
+- `GET /health` reports the service, protocol, and coordinator ID.
 - `GET /tablet/bundle.tar.gz` downloads the Linux ARM64 client bundle.
 - `GET /tablet/bundle.sha256` downloads its SHA-256 checksum.
 
-This server exposes public bootstrap files only. It does not accept images,
+These endpoints expose public bootstrap files only. They do not accept images,
 notebook data, credentials, or annotation jobs. The existing browser editor
-keeps its separate token-protected server. Subagents do not start the coordinator.
+keeps its separate token-protected server.
 
-Build the bundle and browser editor from the extension directory:
+#### Desktop discovery service
+
+The desktop needs a running `avahi-daemon` and access to the system D-Bus.
+The extension registers `_omp-ink._tcp.local.` through Avahi. Its SRV record
+gives the host and HTTP port. Its TXT records contain `proto=1`, `path=/`, and
+`id=<coordinator-id>`. Avahi publishes the host addresses. It removes the
+registration when the extension closes its D-Bus connection or exits.
+
+The desktop stores its public, stable ID in
+`~/.omp/agent/image-annotator/coordinator-id`. The tablet discovers addresses
+for each command. It does not store a coordinator URL.
+
+DNS-SD uses local multicast. It normally does not cross subnets or VLANs.
+The network must permit mDNS traffic on UDP port `5353`, replies to the
+client’s unicast query socket, and HTTP access to the coordinator port.
+Discovery and coordinator IDs do not authenticate a desktop. Do not put
+private data on these public endpoints.
+
+#### Build and provision
+
+Build the browser editor and tablet bundle from the extension directory.
+The bundle build needs Go 1.25 or later, `tar`, and `sha256sum`.
 
 ```sh
 cd mise/conf.d/devtools-omp/extensions/image-annotator
 bun run build
 ```
 
-The bundle build needs Go, `tar`, and `sha256sum`. Provisioning also needs
-`curl` and SSH. Use `version`, `status`, or `download-bundle` for routine checks. The installer
-uses `validate-url` to check the coordinator URL. The client has no background
-service or process detector.
-
-For tablet access, set `OMP_IMAGE_ANNOTATOR_HOST` to the desktop USB address
-before starting OMP. Set `OMP_IMAGE_ANNOTATOR_PORT` to change the port. The
-loopback default is not reachable from the tablet. For example, if the desktop
-USB address is `10.11.99.10`, start OMP with:
+The provisioning script reads `tablet-client/dist` from its own location.
+It does not fetch the bundle through HTTP. It can run from any directory,
+and the coordinator does not need to be running. Check the local bundle
+without contacting the tablet:
 
 ```sh
-OMP_IMAGE_ANNOTATOR_HOST=10.11.99.10 omp
+sh mise/conf.d/devtools-omp/extensions/image-annotator/scripts/provision-tablet.sh --dry-run
 ```
 
-From the extension directory, check the bundle without contacting the tablet:
+Run that command from the repository root. From another directory, use an
+absolute path to the same script. Remove `--dry-run` to copy the bundle over
+SSH and install it. The default SSH target is `root@10.11.99.1`. Use
+`--ssh-target` to change it. SSH host-key verification stays enabled. No
+server URL or coordinator URL argument is required.
+
+The installer creates `/home/root/pi-ink-client` and refuses an existing
+path. It copies the client and `VERSION` only. It does not run the ARM64
+client, discover a desktop, or create a coordinator configuration file. It
+does not start a background service or change Xochitl, XOVI, notebooks,
+firmware, or old experiments. A failed install can leave a partial directory.
+The installer does not delete that directory or retry.
+
+#### Select and check a coordinator
+
+After installation, run these commands on the tablet:
 
 ```sh
-sh scripts/provision-tablet.sh \
-  --server-url http://10.11.99.10:47840 \
-  --coordinator-url http://10.11.99.10:47840 \
-  --dry-run
+cd /home/root/pi-ink-client
+./pi-ink-client discover
+./pi-ink-client status
 ```
 
-Remove `--dry-run` to copy and install the bundle over SSH. The default SSH
-target is `root@10.11.99.1`; use `--ssh-target` to change it. SSH host-key
-verification stays enabled. The installer creates `/home/root/pi-ink-client`
-and refuses an existing path. It runs the bundled client
-with `validate-url` before it creates the install directory. It does not start a
-background service or change Xochitl, XOVI, notebooks, firmware, or old experiments. A failed install can leave a
-partial directory; the installer does not delete it or retry.
+If discovery finds one compatible coordinator, `status` uses it without
+configuration. If it finds several, choose an ID from `discover`:
 
-After installation, run `/home/root/pi-ink-client/pi-ink-client status` on the
-tablet to check HTTP access. The client reads the installed `coordinator-url`
-file. Use `download-bundle --output /new/bundle.tar.gz` to download and check
-the public bundle. SHA-256 detects a changed download; it does not authenticate
-the HTTP server. Pen input and annotation transfer are not part of this path.
+```sh
+./pi-ink-client select --coordinator-id <id-from-discover>
+./pi-ink-client status
+./pi-ink-client download-bundle --output /new/bundle.tar.gz
+```
 
+`select` checks HTTP health before it saves `coordinator-id` beside the
+client. Each tablet keeps its own selection. If that coordinator disappears,
+the client fails instead of switching to another desktop. Use `select` again
+to change it. Use `--coordinator-id` with `status` or `download-bundle` for a
+one-command choice without changing the saved ID.
+
+The client checks the discovered ID and protocol against HTTP health. It
+checks downloaded bundle bytes against SHA-256. These checks do not
+authenticate the HTTP server. Pen input and annotation transfer are not part
+of this path. Desktop discovery and offline installation have been checked.
+Tablet network discovery and ARM64 execution still need a device check.
 

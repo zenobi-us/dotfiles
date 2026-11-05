@@ -3,6 +3,7 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
@@ -11,9 +12,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"net/url"
 	"os"
-	"path/filepath"
 	"strings"
 	"time"
 )
@@ -29,7 +28,7 @@ func main() {
 
 func run(args []string) error {
 	if len(args) == 0 {
-		return errors.New("usage: pi-ink-client status|download-bundle|validate-url|version")
+		return errors.New("usage: pi-ink-client discover|select|status|download-bundle|version")
 	}
 	command := args[0]
 	if command == "version" {
@@ -39,11 +38,14 @@ func run(args []string) error {
 		fmt.Println(version)
 		return nil
 	}
-	if command != "status" && command != "download-bundle" && command != "validate-url" {
-		return errors.New("unknown command: use status, download-bundle, validate-url, or version")
+	if command != "status" && command != "download-bundle" && command != "discover" && command != "select" {
+		return errors.New("unknown command: use discover, select, status, download-bundle, or version")
 	}
 	flags := flag.NewFlagSet(command, flag.ContinueOnError)
-	coordinator := flags.String("coordinator-url", "", "HTTP or HTTPS coordinator base URL")
+	var coordinatorID string
+	if command != "discover" {
+		flags.StringVar(&coordinatorID, "coordinator-id", "", "32 lowercase hexadecimal coordinator ID")
+	}
 	var output string
 	if command == "download-bundle" {
 		flags.StringVar(&output, "output", "", "new file for the verified bundle")
@@ -60,39 +62,65 @@ func run(args []string) error {
 	if command == "download-bundle" && output == "" {
 		return errors.New("download-bundle requires --output with a new file path")
 	}
-	base, err := coordinatorURL(*coordinator)
+	if command == "select" && coordinatorID == "" {
+		return errors.New("select requires --coordinator-id from discover")
+	}
+	if coordinatorID != "" && !validCoordinatorID(coordinatorID) {
+		return errors.New("coordinator ID must contain 32 lowercase hexadecimal characters")
+	}
+	var preferencePath string
+	if command != "discover" {
+		var err error
+		preferencePath, err = coordinatorIDPath()
+		if err != nil {
+			return err
+		}
+		if coordinatorID == "" {
+			coordinatorID, err = readCoordinatorID(preferencePath)
+			if err != nil {
+				return err
+			}
+		}
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	coordinators, err := discoverCoordinators(ctx)
 	if err != nil {
 		return err
 	}
-	if command == "validate-url" {
-		_, err := fmt.Fprintln(os.Stdout, base)
+	if command == "discover" {
+		return json.NewEncoder(os.Stdout).Encode(coordinators)
+	}
+	coordinator, err := chooseCoordinator(coordinators, coordinatorID)
+	if err != nil {
 		return err
 	}
-	client := &http.Client{Timeout: 2 * time.Minute}
+	// Bootstrap traffic goes straight to mDNS addresses, never through a proxy
+	// or redirect that could move the request away from the selected coordinator.
+	client := &http.Client{
+		Timeout:       2 * time.Minute,
+		Transport:     &http.Transport{},
+		CheckRedirect: refuseRedirect,
+	}
+	defer client.CloseIdleConnections()
+	healthContext, healthCancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer healthCancel()
+	base, health, err := reachableCoordinator(healthContext, client, coordinator)
+	if err != nil {
+		return err
+	}
+	if command == "select" {
+		return saveCoordinatorID(preferencePath, coordinator.ID)
+	}
 	if command == "status" {
-		return status(client, base)
+		_, err = fmt.Fprintln(os.Stdout, strings.TrimSpace(string(health)))
+		return err
 	}
 	return downloadBundle(client, base, output)
 }
 
-func status(client *http.Client, base string) error {
-	body, err := fetchSmall(client, base+"/health", 64*1024)
-	if err != nil {
-		return fmt.Errorf("read coordinator health: %w", err)
-	}
-	var health struct {
-		Service  string `json:"service"`
-		Status   string `json:"status"`
-		Protocol int    `json:"protocol"`
-	}
-	if err := json.Unmarshal(body, &health); err != nil {
-		return errors.New("coordinator health must be valid JSON")
-	}
-	if health.Service != "image-annotator" || health.Status != "ok" || health.Protocol != 1 {
-		return errors.New("coordinator health must report service image-annotator, status ok, and protocol 1")
-	}
-	_, err = fmt.Fprintln(os.Stdout, strings.TrimSpace(string(body)))
-	return err
+func refuseRedirect(_ *http.Request, _ []*http.Request) error {
+	return errors.New("coordinator redirects are not allowed")
 }
 
 func downloadBundle(client *http.Client, base, output string) error {
@@ -133,32 +161,6 @@ func downloadBundle(client *http.Client, base, output string) error {
 	}
 	complete = true
 	return nil
-}
-
-func coordinatorURL(value string) (string, error) {
-	if value == "" {
-		executable, err := os.Executable()
-		if err != nil {
-			return "", errors.New("cannot locate executable; provide --coordinator-url")
-		}
-		executable, err = filepath.EvalSymlinks(executable)
-		if err != nil {
-			return "", errors.New("cannot resolve executable; provide --coordinator-url")
-		}
-		data, err := os.ReadFile(filepath.Join(filepath.Dir(executable), "coordinator-url"))
-		if err != nil {
-			return "", errors.New("cannot read coordinator-url next to executable; provide --coordinator-url")
-		}
-		value = strings.TrimSuffix(strings.TrimSuffix(string(data), "\n"), "\r")
-		if strings.ContainsAny(value, "\r\n") {
-			return "", errors.New("coordinator-url must contain one URL on a single line")
-		}
-	}
-	base, err := url.Parse(value)
-	if err != nil || (base.Scheme != "http" && base.Scheme != "https") || base.Hostname() == "" || base.User != nil || base.RawQuery != "" || base.ForceQuery || base.Fragment != "" || base.Opaque != "" {
-		return "", errors.New("coordinator URL must be an http:// or https:// base URL without credentials, query, or fragment")
-	}
-	return strings.TrimRight(base.String(), "/"), nil
 }
 
 func parseChecksum(body []byte) ([]byte, error) {
