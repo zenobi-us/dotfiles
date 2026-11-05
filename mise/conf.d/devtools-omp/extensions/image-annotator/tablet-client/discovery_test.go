@@ -15,15 +15,21 @@ import (
 	"time"
 )
 
+type selectionCase struct {
+	name      string
+	choices   []coordinator
+	preferred string
+	want      string
+}
+
+type advertisementTextCase struct {
+	key, value string
+}
+
 func TestSelectionRequiresAnUnambiguousOrExplicitID(t *testing.T) {
 	first := coordinator{ID: "0123456789abcdef0123456789abcdef"}
 	second := coordinator{ID: "abcdef0123456789abcdef0123456789"}
-	cases := []struct {
-		name      string
-		choices   []coordinator
-		preferred string
-		want      string
-	}{
+	cases := []selectionCase{
 		{"none", nil, "", ""},
 		{"single", []coordinator{first}, "", first.ID},
 		{"ambiguous", []coordinator{first, second}, "", ""},
@@ -62,7 +68,7 @@ func TestDiscoveryMergesDuplicateIDsAndKeepsInterfaceZones(t *testing.T) {
 }
 
 func TestIncompatibleAdvertisementsAreNotChoices(t *testing.T) {
-	cases := []struct{ key, value string }{
+	cases := []advertisementTextCase{
 		{"proto", "2"}, {"proto", ""}, {"path", "/other"}, {"id", "0123456789ABCDEF0123456789ABCDEF"}, {"id", "short"},
 	}
 	for _, test := range cases {

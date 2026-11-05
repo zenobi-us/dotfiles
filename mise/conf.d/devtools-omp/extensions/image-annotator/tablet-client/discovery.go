@@ -92,6 +92,13 @@ type coordinator struct {
 	Addresses []string `json:"addresses"`
 }
 
+type coordinatorHealthResponse struct {
+	Service  string `json:"service"`
+	Status   string `json:"status"`
+	Protocol int    `json:"protocol"`
+	ID       string `json:"id"`
+}
+
 type healthResult struct {
 	address string
 	body    []byte
@@ -177,12 +184,7 @@ func coordinatorHealth(ctx context.Context, client *http.Client, address, id str
 }
 
 func validateHealth(body []byte, id string) error {
-	var health struct {
-		Service  string `json:"service"`
-		Status   string `json:"status"`
-		Protocol int    `json:"protocol"`
-		ID       string `json:"id"`
-	}
+	var health coordinatorHealthResponse
 	if json.Unmarshal(body, &health) != nil || health.Service != "image-annotator" || health.Status != "ok" || health.Protocol != 1 || !validCoordinatorID(health.ID) || health.ID != id {
 		return errors.New("coordinator health must report image-annotator, status ok, protocol 1, and the discovered coordinator ID")
 	}

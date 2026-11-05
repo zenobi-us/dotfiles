@@ -1,3 +1,4 @@
+// These tests protect DNS-SD choices when packets split or services share a host.
 package main
 
 import (
