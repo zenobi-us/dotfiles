@@ -1,0 +1,56 @@
+{
+  "schema": "pi-ink-qt-json-transport-proof/v1",
+  "status": "HOST_FIXED_DEVICE_UPDATE_PENDING",
+  "ownerObservationRef": "bridge-offline-diagnostic-0060.json",
+  "sourceCommit": "5d833e7d5cafc637c5ca172f7348bf296b7cfb24",
+  "sourceTree": "39d010a0a14dfcf00ddb465af84a396106d62da9",
+  "sourceChanges": [
+    "tablet-client/runtime.go: parse Content-Type with mime.ParseMediaType; accept application/json with valid parameters.",
+    "tablet-client/client_test.go: TestLocalUIAcceptsQtJSONCharset verifies parameterized POST clears current document through HTTP.",
+    "README.md: explain Qt charset and Library handshake."
+  ],
+  "preservedGuards": [
+    "IPv4 loopback peer",
+    "exact loopback Host",
+    "no browser Origin",
+    "strict JSON fields and single value",
+    "existing request identity and Send controls"
+  ],
+  "qt": {
+    "sdkImage": "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+    "requestFunctionSourceSha256": "06dc20ba82486d35184977ee58a9a335909bfca0877a49970753a000365db900",
+    "boundary": "Unchanged actual request function executed by QQmlEngine/QCoreApplication with real XMLHttpRequest against unchanged/fixed real Go handler. Core-only runner registers QObject because native SDK lacks installed QtQml module and GUI platform plugin.",
+    "before": {
+      "contentType": "application/json;charset=UTF-8",
+      "origin": "",
+      "postCurrent": 415,
+      "qtHomeCurrentOK": false,
+      "testFailed": true
+    },
+    "after": {
+      "contentType": "application/json;charset=UTF-8",
+      "origin": "",
+      "postCurrent": 200,
+      "getState": 200,
+      "qtHomeCurrentOK": true,
+      "qtSetupServerVisible": true,
+      "testPassed": true
+    },
+    "limit": "Network/callback path only. No native stock modules, tablet rendering or device HTTP trace captured."
+  },
+  "regression": {
+    "before": "go test -run ^TestLocalUIAcceptsQtJSONCharset$ -count=1 . failed with415",
+    "after": "gofmt runtime.go/client_test.go; go test ./... -count=1 passed"
+  },
+  "binary": {
+    "sha256": "a8757d1a2bfee0a8786630f2ccebd1f95d410c4354645537b10e0cefd0291b8d",
+    "bytes": 7405752,
+    "architecture": "linux/arm64, GOARM64=v8.0, CGO_ENABLED=0, go1.25.0",
+    "version": "0.3.0",
+    "builtAfterSourceCommit": true,
+    "buildVCSMetadata": "Not embedded by this build; source identity recorded separately"
+  },
+  "deviceUpdated": false,
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}

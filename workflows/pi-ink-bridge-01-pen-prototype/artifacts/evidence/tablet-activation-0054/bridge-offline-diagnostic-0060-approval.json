@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-11-05T22:20:20.937Z",
+  "response": "Approve read-only diagnostic",
+  "script_sha256": "6bb6fc9b797d7da5988a1d45d5dd5078d256420dbe277cc555c9f6a2427276d6",
+  "one_shot": true,
+  "writes": false,
+  "restarts": 0,
+  "documents": false
+}

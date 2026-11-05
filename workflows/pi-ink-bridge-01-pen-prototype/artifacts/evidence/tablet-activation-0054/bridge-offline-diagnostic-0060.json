@@ -1,0 +1,39 @@
+{
+  "schema": "pi-ink-bridge-offline-proposal/v1",
+  "status": "PROPOSED_NOT_AUTHORIZED_NOT_EXECUTED",
+  "ownerObservation": {
+    "managerOpens": true,
+    "onlyButton": "send",
+    "status": "bridge offline",
+    "currentDocumentUUID": "blank",
+    "headings": "multiple headings without items",
+    "source": "Direct owner report; no repeat UI check requested"
+  },
+  "script": "bridge-offline-diagnostic-0060.sh",
+  "script_sha256": "6bb6fc9b797d7da5988a1d45d5dd5078d256420dbe277cc555c9f6a2427276d6",
+  "scope": {
+    "unit": "pi-ink-0054.service",
+    "unitFields": [
+      "LoadState",
+      "ActiveState",
+      "SubState",
+      "Result",
+      "ExecMainCode",
+      "ExecMainStatus",
+      "InvocationID"
+    ],
+    "journalInvocation": "343b3895861e4d138740268b7c193a60",
+    "maxJournalLines": 30,
+    "listenerMetadata": "Port9821 only, no owners/PIDs",
+    "http": "One GET http://127.0.0.1:9821/state; discard body; retain HTTP status only",
+    "writes": false,
+    "documents": false,
+    "screenshots": false,
+    "restarts": false,
+    "processScanners": false,
+    "cleanup": false
+  },
+  "capture": "Raw result stays in private0700 host namespace with0600 file. Inspect and redact before storing public diagnosis.",
+  "feedbackLoop": "Exit12 if owned backend/state endpoint is unhealthy; otherwise explicitly distinguish a healthy backend from the observed UI failure. No cause inferred until evidence.",
+  "syntax": "sh -n passed; diagnostic not executed"
+}

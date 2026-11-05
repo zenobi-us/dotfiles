@@ -1,0 +1,58 @@
+{
+  "schema": "pi-ink-owned-bridge-media-fix-proposal/v1",
+  "status": "HOST_VERIFIED_DEVICE_UPDATE_NOT_AUTHORIZED_NOT_EXECUTED",
+  "sourceCommit": "5d833e7d5cafc637c5ca172f7348bf296b7cfb24",
+  "sourceTree": "39d010a0a14dfcf00ddb465af84a396106d62da9",
+  "previousInstalledSHA256": "713ea330666e51fd09c4bb30010277646932c1552cdb42ce63c143dac5292087",
+  "newInstalledSHA256": "a8757d1a2bfee0a8786630f2ccebd1f95d410c4354645537b10e0cefd0291b8d",
+  "newBinaryBytes": 7405752,
+  "repairScriptSHA256": "b1896c02bc138cfed4d2eaee610c56834c8c6dc9ad45153012c854e83a5a0457",
+  "restoreScriptSHA256": "3353742cd424f6fc425e9d9675868f2f92c53f5b9538cf0a44d64bb3d3cf6d98",
+  "editorRestarts": 0,
+  "ownedBridgeRestarts": 1,
+  "deviceExecuted": false,
+  "privateDirectory": "/tmp/pi-ink-runtime-media-0061-XKm5MS",
+  "proofRef": "qt-json-transport-proof-0061.json",
+  "diagnosticRef": "bridge-offline-diagnostic-0060-outcome.json",
+  "preconditions": [
+    "Same activated capsule, exact old713ea... installed binary and pinned config/CA/QMD/adapter.",
+    "Exact transient service Description and recorded InvocationID343b3895861e4d138740268b7c193a60; active/running, Restart=no.",
+    "Repair directory and both adjacent temporary files unused.",
+    "Required commands available before writes; preserve unexpected state."
+  ],
+  "writes": [
+    "New /home/root/pi-ink-bridge-0049/runtime-media-fix-0061 with old binary backup, exact corrected binary and operation markers.",
+    "Atomic replacement at the one existing /home/root/pi-ink-client/pi-ink-client path.",
+    "ONE restart of only pi-ink-0054.service.",
+    "Record its new verified InvocationID atomically in the existing ownership marker for later owned-only restoration."
+  ],
+  "unchanged": [
+    "Xochitl: no restart.",
+    "QMD, QML component, loopback adapter, firmware, service startup configuration and installed VERSION.",
+    "Notebook files, stock library, pairing/association state format, desktop jobs and OMP requests.",
+    "Partial-stage0058 preservation and original0.2 runtime/module backups."
+  ],
+  "postconditions": [
+    "Installed client hash equals a8757d1a2bfee0a8786630f2ccebd1f95d410c4354645537b10e0cefd0291b8d.",
+    "Same named transient runtime active with new verified InvocationID and Restart=no.",
+    "UI9821 listener is IPv4 loopback only.",
+    "Owner still must confirm manager setup-server row and Pair button appear."
+  ],
+  "restoreAfterUpdate": {
+    "script": "device-restore-after-media-fix-0061.sh",
+    "sha256": "3353742cd424f6fc425e9d9675868f2f92c53f5b9538cf0a44d64bb3d3cf6d98",
+    "change": "Only the exact installed-runtime checksum guard changes; original staged files and original0.2 backup guards stay intact.",
+    "supersedesAfterSuccessfulUpdate": "phase-scripts-0059/device-restore.sh",
+    "requiresSeparateSavedClosedApproval": true,
+    "requiresSeparateOneXochitlRestoreRestartApproval": true,
+    "authorizedNow": false
+  },
+  "syntax": "sh -n passed repair and updated restoration scripts",
+  "cleanup": "Only newly created completed Qt smoke scaffold removed; no old source/worktree/device/evidence cleanup.",
+  "screenshots": false,
+  "documents": false,
+  "deletionOnDevice": false,
+  "automaticRetry": false,
+  "automaticRollback": false,
+  "productionBlocked": true
+}

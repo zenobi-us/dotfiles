@@ -1,0 +1,10 @@
+{
+  "schema": "pi-ink-bridge-diagnostic-outcome/v1",
+  "exit_code": 12,
+  "stdout_redacted": "OWNED_UNIT_STATE\nResult=success\nExecMainCode=0\nExecMainStatus=0\nLoadState=loaded\nActiveState=active\nSubState=running\nInvocationID=343b3895861e4d138740268b7c193a60\nOWNED_INVOCATION_LOGS_MAX30\nPi Ink UI ready at 127.0.0.1:9821\nUI_PORT9821_LISTENER_ONLY\nLISTEN 0100007F:265D\nUI_LISTENER_FOUND 1\nLOOPBACK_STATE_HTTP_CODE_NO_BODY\nHTTP_CODE UNAVAILABLE\nBACKEND_BOUNDARY_UNHEALTHY\n",
+  "stderr_redacted": "",
+  "interpretation": "Unit active/running with recorded InvocationID and private9821 listener. The GET probe was UNAVAILABLE because curl was absent. Exit12/BACKEND_BOUNDARY_UNHEALTHY is inconclusive, not evidence of a failed backend.",
+  "raw_retained_privately": true,
+  "device_writes": false,
+  "restarts": 0
+}
