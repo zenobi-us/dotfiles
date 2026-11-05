@@ -187,10 +187,6 @@
       "sha256": "dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595"
     },
     {
-      "name": "dockButtons.qmd",
-      "sha256": "0d0d130ba63cfa65093475f9cec2f6694f2e37aab0a346fc5f2921e061303e50"
-    },
-    {
       "name": "retaskableJump.qmd",
       "sha256": "4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe"
     },
@@ -207,6 +203,7 @@
       "sha256": "5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2"
     }
   ],
+  "absent_qmds": ["dockButtons.qmd"],
   "originals": {
     "/home/root/pi-ink-client/pi-ink-client": {
       "sha256": "5dcde59a057207951ed0ac0532c78d3bf0ef03a379b41ed50329d08c9b3e565f",
@@ -229,7 +226,7 @@
       "APPROVE_ACTIVATE_0054",
       "APPROVE_ONE_ACTIVATION_RESTART_0054",
       "DOCUMENTS_SAVED_CLOSED",
-      "OFFLINE_ALL_12_QMDS_AND_NATIVE_RESOURCES_VERIFIED",
+      "OFFLINE_ALL_11_QMDS_AND_NATIVE_RESOURCES_VERIFIED",
       "OWNER_USB_WEB_INTERFACE_ENABLED"
     ],
     "restore": [
@@ -250,7 +247,7 @@
     "device_execution_now": false
   },
   "prerequisites": [
-    "Parent must validate all 12 retained QMDs with the exact new QMD against copied native resources: DocumentView, MainView, Toolbar, Navigator, Sidebar and the native navigation shell from source activation-proposal.json.",
+    "Parent must validate all 11 retained QMDs with the exact new QMD against copied native resources: DocumentView, MainView, Toolbar, Navigator, Sidebar and the native navigation shell from source activation-proposal.json. Approved metadata0057 establishes dockButtons.qmd absent; preserve that absence and refuse if it reappears.",
     "Owner must enable USB web interface through normal settings before activation. No private setting read/write is implemented.",
     "Existing Xochitl service must retain the XOVI preload and root observed in implementation0014. Unexpected extension/QMD layout refuses activation.",
     "Private runtime config and public CA paths and SHA256 values must come from host-inputs-0055.json. Supply each actual pending synthetic PDF SHA256 with a repeated --pdf-sha256 argument.",

@@ -1,0 +1,54 @@
+{
+  "schema": "pi-ink-stage-baseline-correction/v1",
+  "status": "HOST_VERIFIED_NEW_STAGE_NOT_AUTHORIZED",
+  "historicalProposalCommit": "7c124c69",
+  "diagnostic": "device-guard-diagnostic-0057-outcome.json",
+  "cause": "dockButtons.qmd absent; old manifest required it. All other fixed baseline paths reported regular. Staging root and markers absent.",
+  "change": "Require dockButtons.qmd absence; validate existing11 QMDs without reinstalling unrelated files. Include fixed path in future regular-file errors.",
+  "bindings": {
+    "candidate_sha256": "f3a7d6f0c54aa9f27fe46817d482d195e060d6e0c07cb15bf3c8eda0d66c760e",
+    "runtime_sha256": "03f71e38b7e3a27dd0bef16299ea258d2aa44b3103a798f3d1e488ba72d0af5b",
+    "public_ca_sha256": "7f74137f61f12bc03ed272365e5949857af98efb4a647a0b9318f7e388bef25c",
+    "synthetic_pdf_sha256s": [
+      "c7448d20fbffd0fb20474b953df540493478250c77e94ba42783297be523db90"
+    ],
+    "scripts": {
+      "device-stage.sh": "1d6a1a03074a407a7aaafadb678633cafa0cee8e8310929db1c5a93ee3dd5352",
+      "device-activate.sh": "98c9006593f94cb6475f7c1aa953e0a86630b4977de5a21489d7289f15050a05",
+      "device-restore.sh": "8f98b623e511a1d00ac0b9356b970a9ab0944316c946b4b3aa6107768ab47fe6"
+    },
+    "device_execution": false
+  },
+  "syntax": "sh -n passed all3 newly generated scripts",
+  "offlinePatch": {
+    "retained": 11,
+    "candidate": 1,
+    "exit_code": 0,
+    "stdout": "[qmldiff]: Hashtab loaded! Cached 20357 entries\nLOADED 12\nPATCHED /qml/device/view/documentview/DocumentView.qml bytes=233620\nPATCHED /qml/device/view/main/MainView.qml bytes=35171\nPATCHED /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml bytes=34149\nPATCHED /qml/device/view/navigator/Navigator.qml bytes=37390\nPATCHED /qml/device/view/navigator/Sidebar.qml bytes=16820\n",
+    "stderr": "[qmldiff]: Set system version to 3.28.0.172\n[qmldiff]: Iterating over directory /tmp/pi-ink-qmd-0058-JshFD2/stage\n[qmldiff]: Loading file betterToc.qmd\n[qmldiff]: Loading file betterTocCollapse.qmd\n[qmldiff]: Loading file bluetoothSettings.qmd\n[qmldiff]: Loading file computed-widgets-01-live-document-probe.qmd\n[qmldiff]: Loading file floating.qmd\n[qmldiff]: Loading file link-touch-targets.qmd\n[qmldiff]: Loading file linkFromSelection.qmd\n[qmldiff]: Loading file pi-ink-bridge-0049.qmd\n[qmldiff]: Loading file quickSettingsBluetooth.qmd\n[qmldiff]: Loading file randomSleepScreen.qmd\n[qmldiff]: Loading file retaskableJump.qmd\n[qmldiff]: Loading file retaskableSend.qmd\n[qmldiff]: Was asked to process the first slot. Sealing slots, entering postinit...\n[qmldiff]: Processing file /qml/device/view/documentview/DocumentView.qml...\n[qmldiff]: Processing file /qml/device/view/main/MainView.qml...\n[qmldiff]: Processing file /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml...\n[qmldiff]: Processing file /qml/device/view/navigator/Navigator.qml...\n[qmldiff]: Processing file /qml/device/view/navigator/Sidebar.qml...\n",
+    "priorHarnessFailure": "Original harness expected13, reported LOADED12 and stopped before patch outputs; updated expected count to12."
+  },
+  "qt": {
+    "command": [
+      "podman",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "-v",
+      "/tmp/pi-ink-qmd-0058-JshFD2/qt-parse:/parse:Z",
+      "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+      "bash",
+      "-c",
+      "source /opt/codex/*/*/environment-setup-* && qmlformat --inplace /parse/*.qml"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\n",
+    "limit": "All5 patched copied resources and exact candidate component parsed. No native private types or UI/hardware behavior exercised."
+  },
+  "hostInputLimits": "The same2 actual OMP requests remain intended consumers; no new device content or document operation.",
+  "deviceWritesThisCorrection": false,
+  "stageRetryAuthorized": false,
+  "productionBlocked": true
+}

@@ -71,8 +71,10 @@ Future device-side invocation:
 sh -s -- APPROVE_STAGE_0054 < device-stage.sh
 
 Activation prerequisites
-Parent must verify the exact candidate patch with all 12 retained QMDs against
+Parent must verify the exact candidate patch with all 11 retained QMDs against
 the copied native resources before granting the offline-integration gate.
+Approved metadata0057 establishes dockButtons.qmd absent. Preserve that
+absence; do not reinstall it. The new guard refuses if it reappears.
 The retained record is implementation-0023/offline-inputs.json. The current
 source tablet-qml/activation-proposal.json defines resource selectors and
 preservation rules. Copied resources include DocumentView, MainView, Toolbar,
@@ -97,7 +99,7 @@ Owner must save and close all documents. Obtain a separate approval for exactly
 ONE activation Xochitl restart, in addition to approval of code activation.
 Future device-side invocation:
 
-sh -s -- APPROVE_ACTIVATE_0054 APPROVE_ONE_ACTIVATION_RESTART_0054 DOCUMENTS_SAVED_CLOSED OFFLINE_ALL_12_QMDS_AND_NATIVE_RESOURCES_VERIFIED OWNER_USB_WEB_INTERFACE_ENABLED < device-activate.sh
+sh -s -- APPROVE_ACTIVATE_0054 APPROVE_ONE_ACTIVATION_RESTART_0054 DOCUMENTS_SAVED_CLOSED OFFLINE_ALL_11_QMDS_AND_NATIVE_RESOURCES_VERIFIED OWNER_USB_WEB_INTERFACE_ENABLED < device-activate.sh
 
 Activation rechecks all staged hashes, pinned backups, originals, VERSION,
 service configuration, firmware and retained QMD/extension layout. It checks

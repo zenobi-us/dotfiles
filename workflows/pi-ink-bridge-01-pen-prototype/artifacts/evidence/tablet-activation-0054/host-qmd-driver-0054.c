@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
     qmldiff_set_version("3.28.0.172");
     int count = qmldiff_build_change_files(argv[2]);
     printf("LOADED %d\n", count);
-    if (count != 13) return 2;
+    if (count != 12) return 2;
     const char *names[] = {"DocumentView.qml", "MainView.qml", "Toolbar.qml", "Navigator.qml", "Sidebar.qml"};
     const char *resources[] = {
         "/qml/device/view/documentview/DocumentView.qml",

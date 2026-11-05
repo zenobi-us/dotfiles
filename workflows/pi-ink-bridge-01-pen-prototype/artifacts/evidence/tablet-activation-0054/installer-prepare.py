@@ -157,7 +157,7 @@ parents() {
         p=${p%/*}; test -n "$p" || p=/
     done
 }
-regular() { test -f "$1" && test ! -L "$1" || fail 'Expected regular file'; parents "${1%/*}"; }
+regular() { test -f "$1" && test ! -L "$1" || fail "Expected regular file: $1"; parents "${1%/*}"; }
 copy_new() { absent "$2"; (set -C; cat "$1" > "$2"); chmod "$3" "$2"; }
 root=/home/root/pi-ink-bridge-0049
 client=/home/root/pi-ink-client/pi-ink-client
@@ -176,6 +176,8 @@ baseline() {
     text += check('/usr/bin/xochitl', manifest['candidate']['stockBinarySHA256'])
     text += check('/home/root/xovi/exthome/qt-resource-rebuilder/hashtab', manifest['candidate']['hashtabSHA256'])
     text += check('/home/root/xovi/xovi.so', 'd4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446')
+    for name in manifest['absent_qmds']:
+        text += f'absent /home/root/xovi/exthome/qt-resource-rebuilder/{name}\n'
     for item in manifest['retained_qmds']:
         text += check('/home/root/xovi/exthome/qt-resource-rebuilder/' + item['name'], item['sha256'])
     for name, value in manifest['retained_extensions'].items():
