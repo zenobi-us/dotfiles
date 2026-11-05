@@ -30,6 +30,13 @@ type rejectedUpdateCase struct {
 	badChecksum bool
 }
 
+type updateHTTPFixture struct {
+	bundle   string
+	checksum string
+	entered  chan<- struct{}
+	release  <-chan struct{}
+}
+
 func TestUpdateReplacesTheInodeAndPreservesCoordinatorPreference(t *testing.T) {
 	executable := updateTestInstallation(t)
 	old, err := os.Open(executable)
@@ -67,17 +74,7 @@ func TestRejectedUpdatePreservesTheInstalledClient(t *testing.T) {
 	}
 	for _, test := range cases {
 		t.Run(test.name, func(t *testing.T) {
-			executable := updateTestInstallation(t)
-			bundle := updateTestBundle(t, test.members)
-			server := updateTestServer(t, bundle, test.badChecksum, nil, nil)
-			if _, err := updateClient(server.Client(), server.URL, executable); err == nil {
-				t.Fatal("accepted an invalid update")
-			}
-			body, err := os.ReadFile(executable)
-			if err != nil || string(body) != "old executable" {
-				t.Fatal("failed preparation replaced the working client")
-			}
-			assertCoordinatorPreference(t, executable)
+			assertRejectedUpdate(t, test)
 		})
 	}
 }
@@ -89,7 +86,7 @@ func TestConcurrentUpdateRefusesASecondReplacement(t *testing.T) {
 	bundle := updateTestBundle(t, standardUpdateMembers(t))
 	server := updateTestServer(t, bundle, false, entered, release)
 	finished := make(chan error, 1)
-	go func() { _, err := updateClient(server.Client(), server.URL, executable); finished <- err }()
+	go finishTestUpdate(server.Client(), server.URL, executable, finished)
 	select {
 	case <-entered:
 	case <-time.After(5 * time.Second):
@@ -104,6 +101,44 @@ func TestConcurrentUpdateRefusesASecondReplacement(t *testing.T) {
 	if err := <-finished; err != nil {
 		t.Fatal(err)
 	}
+}
+
+func (fixture *updateHTTPFixture) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	switch r.URL.Path {
+	case "/tablet/bundle.sha256":
+		io.WriteString(w, fixture.checksum)
+	case "/tablet/bundle.tar.gz":
+		if fixture.entered != nil {
+			select {
+			case fixture.entered <- struct{}{}:
+			default:
+			}
+			<-fixture.release
+		}
+		http.ServeFile(w, r, fixture.bundle)
+	default:
+		http.NotFound(w, r)
+	}
+}
+
+func assertRejectedUpdate(t *testing.T, test rejectedUpdateCase) {
+	t.Helper()
+	executable := updateTestInstallation(t)
+	bundle := updateTestBundle(t, test.members)
+	server := updateTestServer(t, bundle, test.badChecksum, nil, nil)
+	if _, err := updateClient(server.Client(), server.URL, executable); err == nil {
+		t.Fatal("accepted an invalid update")
+	}
+	body, err := os.ReadFile(executable)
+	if err != nil || string(body) != "old executable" {
+		t.Fatal("failed preparation replaced the working client")
+	}
+	assertCoordinatorPreference(t, executable)
+}
+
+func finishTestUpdate(client *http.Client, base, executable string, finished chan<- error) {
+	_, err := updateClient(client, base, executable)
+	finished <- err
 }
 
 func updateTestInstallation(t *testing.T) string {
@@ -195,23 +230,8 @@ func updateTestServer(t *testing.T, bundle string, badChecksum bool, entered cha
 	if badChecksum {
 		checksum = strings.Repeat("0", 64) + "  bundle.tar.gz\n"
 	}
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		switch r.URL.Path {
-		case "/tablet/bundle.sha256":
-			io.WriteString(w, checksum)
-		case "/tablet/bundle.tar.gz":
-			if entered != nil {
-				select {
-				case entered <- struct{}{}:
-				default:
-				}
-				<-release
-			}
-			http.ServeFile(w, r, bundle)
-		default:
-			http.NotFound(w, r)
-		}
-	}))
+	fixture := &updateHTTPFixture{bundle: bundle, checksum: checksum, entered: entered, release: release}
+	server := httptest.NewServer(fixture)
 	t.Cleanup(server.Close)
 	server.Client().Timeout = 5 * time.Second
 	return server
