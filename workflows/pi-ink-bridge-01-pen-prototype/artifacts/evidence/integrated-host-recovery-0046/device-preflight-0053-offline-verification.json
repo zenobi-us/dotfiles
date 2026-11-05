@@ -1,0 +1,41 @@
+{
+  "schema": "pi-ink-offline-version-guard-verification/v1",
+  "scope": "HOST ONLY; execute the actual script prefix through its firmware guard against isolated os-release fixtures. Remaining file/path checks and SSH were not executed.",
+  "baseline_ref": "../implementation-0014/baseline.json",
+  "source_script": "device-preflight-0053.sh",
+  "script_sha256": "c7a89fea04d54d3d01acf9a531bc45e5325385a4ef5817ee30e7506db9c07e93",
+  "cases": [
+    {
+      "name": "historical guard rejects supported product metadata",
+      "exit_code": 20,
+      "expected_exit_code": 20,
+      "stdout": "PREFLIGHT_BEGIN\t0052\nFIRMWARE\t5.8.203\n",
+      "stderr": "PREFLIGHT_STOP\tunsupported firmware; no further checks\n"
+    },
+    {
+      "name": "corrected guard accepts supported product metadata",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "stdout": "PREFLIGHT_BEGIN\t0053\nOS_VERSION_ID\t5.8.203\nPRODUCT_IMG_VERSION\t3.28.0.172\nOFFLINE_GUARD_ACCEPTED\n",
+      "stderr": ""
+    },
+    {
+      "name": "corrected guard rejects unsupported product",
+      "exit_code": 20,
+      "expected_exit_code": 20,
+      "stdout": "PREFLIGHT_BEGIN\t0053\nOS_VERSION_ID\t5.8.203\nPRODUCT_IMG_VERSION\t3.29.0.1\n",
+      "stderr": "PREFLIGHT_STOP\tunsupported or missing product IMG_VERSION; no further checks\n"
+    },
+    {
+      "name": "corrected guard rejects missing product field",
+      "exit_code": 20,
+      "expected_exit_code": 20,
+      "stdout": "PREFLIGHT_BEGIN\t0053\nOS_VERSION_ID\t5.8.203\n",
+      "stderr": "PREFLIGHT_STOP\tunsupported or missing product IMG_VERSION; no further checks\n"
+    }
+  ],
+  "passed": true,
+  "device_access": false,
+  "retry_authorized": false,
+  "fixture_cleanup": "Only the newly created host fixture directory removed after the shell subprocesses exited."
+}

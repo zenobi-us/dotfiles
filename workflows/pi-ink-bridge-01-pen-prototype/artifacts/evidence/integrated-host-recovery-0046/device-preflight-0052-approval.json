@@ -1,0 +1,21 @@
+{
+  "schema": "pi-ink-device-preflight-approval/v1",
+  "proposal": "device-preflight-0052.json",
+  "selection": "Approve read-only preflight",
+  "approval_source": "Explicit user selection through the Tablet access questionnaire",
+  "target": "root@10.11.99.1",
+  "scope": "One cable-connected SSH compatibility/path-occupancy preflight. Read only platform metadata, the four listed file hashes after regular-file/symlink checks, and metadata for the eight listed target paths. Stop on mismatches, occupied proposed-owned paths, unexpected symlinks/types or failure. Record absent files without creating them.",
+  "excluded": [
+    "Uploads, installation, configuration contents or writes, permissions changes and client replacement",
+    "Document/library access or operations",
+    "Activation, Xochitl/service restart, reboot, firmware update or screenshots",
+    "Process scanning, process termination, removal, old helper execution or cleanup retry"
+  ],
+  "installation_authorized": false,
+  "activation_authorized": false,
+  "restart_authorized": false,
+  "document_operations_authorized": false,
+  "cleanup_authorized": false,
+  "normal_use_ssh_authorized": false,
+  "candidate_sha256": "f3a7d6f0c54aa9f27fe46817d482d195e060d6e0c07cb15bf3c8eda0d66c760e"
+}

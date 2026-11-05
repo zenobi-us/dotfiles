@@ -1,0 +1,31 @@
+{
+  "schema": "pi-ink-read-only-preflight-attempt/v1",
+  "created_at": "2026-11-05T12:02:54.034Z",
+  "approval_ref": "device-preflight-0052-approval.json",
+  "proposal_ref": "device-preflight-0052.json",
+  "script_ref": "device-preflight-0052.sh",
+  "script_sha256": "0f4faa0ba22f1ed6e91bf1f9832627368d0c6e487280bfdad99caa107c0928da",
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s"
+  ],
+  "deadline_ms": 25000,
+  "one_shot": true,
+  "retry_authorized": false,
+  "installation_authorized": false,
+  "document_operations_authorized": false,
+  "restarts_authorized": false,
+  "cleanup_authorized": false
+}

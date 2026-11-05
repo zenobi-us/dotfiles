@@ -388,3 +388,12 @@ Source `19730eb0700cf48ea8f54e5d4b0e189d3c8349db` then added authenticated deskt
 - **Next boundary:** [Read-only device preflight proposal](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/device-preflight-0052.json). It requires separate approval and does not authorize installation, restarts, document operations or cleanup.
 
 The ticket remains claimed. Hardware acceptance and final authorized cleanup remain open. Production stays blocked. No device access, screenshots, process scanning or cleanup retry ran. All earlier evidence and partial0026 remain preserved. No acceptance criterion or dependency changed.
+
+
+### Read-only preflight stopped — no hardware gate passed
+
+The owner approved one read-only preflight0052. It read OS VERSION_ID=5.8.203 and stopped before every hash/path check. The guard was incorrect: retained baseline metadata records OS VERSION_ID=5.8.203 and product IMG_VERSION=3.28.0.172. This is not evidence of a firmware upgrade. Current product firmware and path occupancy remain unverified.
+
+[Original outcome](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/device-preflight-0052-outcome.json) and [diagnosis](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/device-preflight-0052-diagnosis.json) remain immutable. The corrected IMG_VERSION guard passes supported, unsupported and missing-field cases [offline](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/device-preflight-0053-offline-verification.json). Its [new exact-script proposal](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/device-preflight-0053.json) requires separate one-shot approval.
+
+No device writes, uploads, document operations, restarts, screenshots, process scans or cleanup ran. The previous approval is consumed; no reconnect or automatic retry is authorized. Ticket claimed; hardware acceptance and production remain blocked.

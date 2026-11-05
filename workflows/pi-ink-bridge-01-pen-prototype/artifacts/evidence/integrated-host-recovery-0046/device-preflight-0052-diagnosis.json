@@ -1,0 +1,21 @@
+{
+  "schema": "pi-ink-preflight-diagnosis/v1",
+  "outcome_ref": "device-preflight-0052-outcome.json",
+  "diagnosis": "The preflight script compared OS VERSION_ID with the product firmware version. That guard was incorrect.",
+  "retained_baseline_ref": "../implementation-0014/baseline.json",
+  "retained_os_metadata": {
+    "VERSION": "5.8.203 (scarthgap)",
+    "VERSION_ID": "5.8.203",
+    "IMG_VERSION": "3.28.0.172"
+  },
+  "fresh_observation": "The approved command reported VERSION_ID=5.8.203 and exited20. It did not report the current IMG_VERSION.",
+  "conclusion": "The observed VERSION_ID matches the retained OS baseline. It does not prove a tablet firmware upgrade or an unsupported product firmware. Current product firmware, all four file hashes and all eight target-path checks remain unverified.",
+  "approval_consumed": true,
+  "retry_authorized": false,
+  "device_writes": false,
+  "document_access": false,
+  "installation": false,
+  "restarts": false,
+  "cleanup_retry": false,
+  "next_step": "Create and validate a new IMG_VERSION-based preflight offline. Obtain separate one-shot approval before any further connection. Preserve the original script, attempt and outcome without rewriting them."
+}

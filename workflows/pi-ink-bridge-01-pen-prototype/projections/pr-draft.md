@@ -319,3 +319,12 @@ Parent reconciliation: [start-complete-0050](../events/start-complete-0050.yaml)
 - **Device gate:** [Read-only preflight proposal](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0052.json) is not authorized or executed. Actual tablet pairing, native folder/current-document behavior, cable-free integrated Send, owner pen/geometry/lifecycle acceptance and final approved restoration/cleanup remain open.
 
 The tablet payload remains unchanged at SHA-256 `f3a7d6f0c54aa9f27fe46817d482d195e060d6e0c07cb15bf3c8eda0d66c760e`. Source remains in the retained worktree, not merged or pushed. Ticket claimed; production blocked. No tablet access, screenshots, process scanner, old-session reuse or cleanup0038 retry.
+
+
+### Read-only preflight stopped — no hardware gate passed
+
+The owner approved one read-only preflight0052. It read OS VERSION_ID=5.8.203 and stopped before every hash/path check. The guard was incorrect: retained baseline metadata records OS VERSION_ID=5.8.203 and product IMG_VERSION=3.28.0.172. This is not evidence of a firmware upgrade. Current product firmware and path occupancy remain unverified.
+
+[Original outcome](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0052-outcome.json) and [diagnosis](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0052-diagnosis.json) remain immutable. The corrected IMG_VERSION guard passes supported, unsupported and missing-field cases [offline](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0053-offline-verification.json). Its [new exact-script proposal](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0053.json) requires separate one-shot approval.
+
+No device writes, uploads, document operations, restarts, screenshots, process scans or cleanup ran. The previous approval is consumed; no reconnect or automatic retry is authorized. Ticket claimed; hardware acceptance and production remain blocked.
