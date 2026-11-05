@@ -1,0 +1,50 @@
+{
+  "sourceCommit": "63ccece760fb03bc20d58f66e51c32f56ea25384",
+  "sourceTree": "8380d6d442fbf9e23f75164d9a9699fe7b1bc479",
+  "baseline": "c2bede58b786d822e3e2e643d8852cb4b2ae56b4",
+  "recordedAt": "2026-11-05T03:27:19.914Z",
+  "scope": "Approved DNS-SD bootstrap slice only. This is not a workflow phase or physical pen acceptance.",
+  "result": {
+    "status": "passed",
+    "checks": [
+      "Local provisioning dry-run succeeded from a different cwd before test coordinators started; neither HTTP fetch nor SSH ran.",
+      "Production ARM64 bundle installed offline into a new private prefix with no coordinator file or binary execution; repeat installation refused.",
+      "The same real coordinator accepted IPv4 loopback, IPv6 loopback, and a configured non-loopback desktop address.",
+      "Real multicast DNS-SD discovery resolved Avahi SRV/TXT/address data and the native client checked matching HTTP health without a URL.",
+      "Two simultaneous clients remembered different coordinator IDs; an unselected client refused multiple candidates rather than choosing the first.",
+      "The selected client downloaded and verified the actual production bundle through the discovered endpoint.",
+      "Closing the owned D-Bus registration withdrew discovery; a remembered missing coordinator did not switch to the remaining one."
+    ],
+    "coordinators": [
+      "a18126d57cb362f4e284e600ebbb21e9",
+      "73d0bb32f2dd44dda4e32b22b5763f04"
+    ],
+    "initialCandidates": 0,
+    "deviceContact": false
+  },
+  "validation": {
+    "goTests": "passed after the Go-only review corrections",
+    "arm64Build": "passed after the Go-only review corrections",
+    "typecheck": "passed before the Go-only review corrections; TypeScript source is unchanged",
+    "bunTests": "10 passed, 46 expect calls before the Go-only review corrections; Bun sources are unchanged",
+    "browserBuild": "passed before the Go-only review corrections; browser source is unchanged",
+    "shellSyntax": "passed; shell sources are unchanged",
+    "buildWarnings": [
+      "Vite ignored use client directives in dependencies.",
+      "Vite reported chunks larger than 500 kB."
+    ]
+  },
+  "reviewCorrections": {
+    "commit": "63ccece760fb03bc20d58f66e51c32f56ea25384",
+    "changes": [
+      "Name the coordinator health response and test-case shapes.",
+      "Add the DNS record regression file-purpose header."
+    ],
+    "behaviorChange": false
+  },
+  "limits": [
+    "No tablet contact, provisioning, or ARM64 execution.",
+    "No live harness restart.",
+    "No old prototype takeover, cleanup, event, or projection changes."
+  ]
+}

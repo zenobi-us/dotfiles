@@ -1,0 +1,44 @@
+{
+  "sourceCommit": "e824899d67521b512ead20ddfdae917d5a18fbab",
+  "sourceTree": "6ddb6f59bdf9736bdc5c7d3b20ffa91a15a11d76",
+  "recordedAt": "2026-11-05T03:22:24.886Z",
+  "scope": "Approved DNS-SD bootstrap slice only. This is not a workflow phase or physical pen acceptance.",
+  "result": {
+    "status": "passed",
+    "checks": [
+      "Local provisioning dry-run succeeded from a different cwd before test coordinators started; neither HTTP fetch nor SSH ran.",
+      "Production ARM64 bundle installed offline into a new private prefix with no coordinator file or binary execution; repeat installation refused.",
+      "The same real coordinator accepted IPv4 loopback, IPv6 loopback, and a configured non-loopback desktop address.",
+      "Real multicast DNS-SD discovery resolved Avahi SRV/TXT/address data and the native client checked matching HTTP health without a URL.",
+      "Two simultaneous clients remembered different coordinator IDs; an unselected client refused multiple candidates rather than choosing the first.",
+      "The selected client downloaded and verified the actual production bundle through the discovered endpoint.",
+      "Closing the owned D-Bus registration withdrew discovery; a remembered missing coordinator did not switch to the remaining one."
+    ],
+    "coordinators": [
+      "0ba396032aa2a58de21d5587d07619a1",
+      "4a926b4772215e80f8834ba85ad61315"
+    ],
+    "initialCandidates": 0,
+    "deviceContact": false
+  },
+  "checks": {
+    "typecheck": "passed",
+    "bunTests": {
+      "passed": 10,
+      "failed": 0,
+      "expectCalls": 46
+    },
+    "goTests": "passed",
+    "shellSyntax": "passed",
+    "browserAndArm64Build": "passed",
+    "buildWarnings": [
+      "Vite ignored use client directives in dependencies.",
+      "Vite reported chunks larger than 500 kB."
+    ]
+  },
+  "limits": [
+    "No tablet contact or provisioning.",
+    "No live harness restart.",
+    "No old prototype takeover, cleanup, event, or projection changes."
+  ]
+}

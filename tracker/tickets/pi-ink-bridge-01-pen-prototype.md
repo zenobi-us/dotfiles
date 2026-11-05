@@ -358,3 +358,11 @@ See [implementation-0023 result](../../workflows/pi-ink-bridge-01-pen-prototype/
 - Timestamp: `2026-11-04T23:23:47.556Z`.
 - Report: [independent review 0043](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/reviews/review-minimal-bootstrap-0043.md).
 
+
+### DNS-SD source review 0044
+
+- Verdict: PASS for the approved DNS-SD bootstrap source slice only. Full physical pen acceptance remains open.
+- Reviewed commit: `63ccece760fb03bc20d58f66e51c32f56ea25384`.
+- Timestamp: `2026-11-05T03:34:20.330Z`.
+- Artifact: [DNS-SD bootstrap review 0044](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/reviews/review-dns-sd-0044.md).
+
