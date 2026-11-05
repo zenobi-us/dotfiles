@@ -305,12 +305,54 @@ configuration. If it finds several, choose an ID from `discover`:
 `select` checks HTTP health before it saves `coordinator-id` beside the
 client. Each tablet keeps its own selection. If that coordinator disappears,
 the client fails instead of switching to another desktop. Use `select` again
-to change it. Use `--coordinator-id` with `status` or `download-bundle` for a
+to change it. Use `--coordinator-id` with `status`, `download-bundle`, or `update` for a
 one-command choice without changing the saved ID.
 
 The client checks the discovered ID and protocol against HTTP health. It
 checks downloaded bundle bytes against SHA-256. These checks do not
 authenticate the HTTP server. Pen input and annotation transfer are not part
 of this path. Desktop discovery and offline installation have been checked.
-Tablet network discovery and ARM64 execution still need a device check.
+The owner confirmed tablet discovery and status. Self-update has desktop proof only; the tablet update still needs a device check.
+
+
+#### Update from the tablet UI
+
+A tablet UI can run this one-shot command as a child process:
+
+```sh
+/home/root/pi-ink-client/pi-ink-client update
+```
+
+The command discovers the coordinator and checks its health. It downloads the
+bundle, checks SHA-256, and stages the replacement beside the installed client.
+It accepts only the expected three regular archive files and a matching ELF
+architecture. It does not execute the bundled installer. A same-filesystem
+rename replaces the executable only after preparation succeeds. The saved
+`coordinator-id` and other installed files stay in place.
+
+On success, stdout contains one JSON object and the process exits with code 0:
+
+```json
+{"status":"updated","version":"0.2.0"}
+```
+
+On failure, the process exits with a nonzero code and writes the error to
+stderr. Preparation failures leave the working executable unchanged. A second
+concurrent update fails instead of competing for replacement. The caller can
+run the next client command after success. No service or Xochitl restart is
+part of this operation. Use `--coordinator-id` for a one-command destination
+choice, as with `status`.
+
+Read the current executable version with `pi-ink-client version`. The installed
+`VERSION` file remains a record of the initial installation. Downloads have a
+64 MiB limit.
+
+The `update` command starts with client version `0.2.0`. An installed `0.1.0`
+client needs one setup-time deployment of the new executable before the UI
+can call this command. The initial installer still refuses an occupied prefix.
+It is not an upgrade command.
+
+Updates install code from an unsigned HTTP bundle. Use only a coordinator and
+network you trust. SHA-256 does not authenticate the publisher. This development
+path is not a secure production updater.
 

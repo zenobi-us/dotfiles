@@ -19,6 +19,8 @@ import (
 
 var version = "development"
 
+const maximumBundleSize int64 = 64 << 20
+
 func main() {
 	if err := run(os.Args[1:]); err != nil {
 		fmt.Fprintln(os.Stderr, err)
@@ -28,7 +30,7 @@ func main() {
 
 func run(args []string) error {
 	if len(args) == 0 {
-		return errors.New("usage: pi-ink-client discover|select|status|download-bundle|version")
+		return errors.New("usage: pi-ink-client discover|select|status|download-bundle|update|version")
 	}
 	command := args[0]
 	if command == "version" {
@@ -38,8 +40,8 @@ func run(args []string) error {
 		fmt.Println(version)
 		return nil
 	}
-	if command != "status" && command != "download-bundle" && command != "discover" && command != "select" {
-		return errors.New("unknown command: use discover, select, status, download-bundle, or version")
+	if command != "status" && command != "download-bundle" && command != "discover" && command != "select" && command != "update" {
+		return errors.New("unknown command: use discover, select, status, download-bundle, update, or version")
 	}
 	flags := flag.NewFlagSet(command, flag.ContinueOnError)
 	var coordinatorID string
@@ -116,6 +118,17 @@ func run(args []string) error {
 		_, err = fmt.Fprintln(os.Stdout, strings.TrimSpace(string(health)))
 		return err
 	}
+	if command == "update" {
+		executable, err := os.Executable()
+		if err != nil {
+			return errors.New("cannot locate installed client for update")
+		}
+		result, err := updateClient(client, base, executable)
+		if err != nil {
+			return err
+		}
+		return json.NewEncoder(os.Stdout).Encode(result)
+	}
 	return downloadBundle(client, base, output)
 }
 
@@ -150,8 +163,12 @@ func downloadBundle(client *http.Client, base, output string) error {
 	}
 	defer response.Body.Close()
 	digest := sha256.New()
-	if _, err := io.Copy(io.MultiWriter(file, digest), response.Body); err != nil {
+	size, err := io.Copy(io.MultiWriter(file, digest), io.LimitReader(response.Body, maximumBundleSize+1))
+	if err != nil {
 		return fmt.Errorf("write bundle output: %w", err)
+	}
+	if size > maximumBundleSize {
+		return errors.New("bundle exceeds the 64 MiB download limit")
 	}
 	if !bytes.Equal(digest.Sum(nil), expected) {
 		return errors.New("bundle SHA-256 mismatch; partial output removed")
