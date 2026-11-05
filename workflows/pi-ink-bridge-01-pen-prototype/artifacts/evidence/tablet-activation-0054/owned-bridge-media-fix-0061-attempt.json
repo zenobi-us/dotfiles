@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-11-05T22:49:29.340Z",
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s -- APPROVE_OWNED_BRIDGE_MEDIA_FIX_0061_AND_ONE_BRIDGE_RESTART"
+  ],
+  "script_sha256": "b1896c02bc138cfed4d2eaee610c56834c8c6dc9ad45153012c854e83a5a0457",
+  "one_shot": true,
+  "deadline_ms": 90000
+}

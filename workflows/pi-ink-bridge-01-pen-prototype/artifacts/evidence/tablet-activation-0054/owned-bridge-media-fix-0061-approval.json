@@ -1,0 +1,11 @@
+{
+  "created_at": "2026-11-05T22:49:29.340Z",
+  "response": "Approve bridge repair once",
+  "script_sha256": "b1896c02bc138cfed4d2eaee610c56834c8c6dc9ad45153012c854e83a5a0457",
+  "new_binary_sha256": "a8757d1a2bfee0a8786630f2ccebd1f95d410c4354645537b10e0cefd0291b8d",
+  "owned_bridge_restarts_authorized": 1,
+  "xochitl_restarts_authorized": 0,
+  "documents": false,
+  "automatic_retry": false,
+  "cleanup": false
+}
