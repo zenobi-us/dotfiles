@@ -1,0 +1,13 @@
+{
+  "sourceCommit": "116dda7a9423e42987618966252afe563e71f8c2",
+  "sourceTree": "6527b37d0916c425ad34dceaf44d57e893239b71",
+  "recordedAt": "2026-11-05T05:08:35.570Z",
+  "runtimeEvidence": "verification.json",
+  "runtimeProofCommit": "3dd09561613f6afa4f064002cf88c6a3e4b96665",
+  "productionSourceUnchanged": true,
+  "correction": "Move rejected-update assertions, the asynchronous test operation, and the HTTP fixture dispatch into module-level helpers or a fixture method.",
+  "validation": "Go tests with race checking passed again after the test-only correction.",
+  "arm64BundleSha256": "8d38231e443974a358dbf48407cf7d46edcc0cdb48a7d36af77321e1fbf121d8",
+  "deviceOperation": false,
+  "scope": "Standalone UI-callable update slice; no workflow phase transition or full hardware acceptance."
+}

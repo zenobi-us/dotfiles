@@ -1,0 +1,40 @@
+{
+  "sourceCommit": "3dd09561613f6afa4f064002cf88c6a3e4b96665",
+  "sourceTree": "79d9f5c98729ed943e544dc4d4ad10363975d6e7",
+  "baseline": "3e202d7ad552a25b3ae8e547e2bc3e59f7a47f1a",
+  "recordedAt": "2026-11-05T04:58:37.849Z",
+  "scope": "UI-callable development update command only; not a workflow phase or full tablet acceptance.",
+  "smoke": {
+    "status": "passed",
+    "before": "before-update",
+    "after": "0.2.0",
+    "checks": [
+      "real CLI discovered the owned Avahi service and replaced its own executable",
+      "subsequent execution reported the new embedded version and matched the served binary bytes",
+      "checksum failure preserved the working executable",
+      "actual ARM64 bundle was refused by the AMD64 fixture without replacement",
+      "saved coordinator ID survived success and both failures",
+      "owned update stages were removed"
+    ],
+    "deviceOperation": false
+  },
+  "checks": {
+    "goTestsWithRace": "passed",
+    "bunTests": {
+      "passed": 10,
+      "failed": 0,
+      "expectCalls": 46
+    },
+    "arm64BundleBuild": "passed; version 0.2.0",
+    "shellSyntax": "passed",
+    "liveCoordinatorBundleChecksum": "8d38231e443974a358dbf48407cf7d46edcc0cdb48a7d36af77321e1fbf121d8"
+  },
+  "limits": [
+    "The native before-update fixture uses current source with an older embedded version, not the deployed 0.1.0 client.",
+    "No tablet update, SSH, or device execution occurred.",
+    "The installed 0.1.0 tablet binary still needs one setup-time deployment of 0.2.0.",
+    "HTTP and SHA-256 do not authenticate update code. This path requires a trusted development network and coordinator.",
+    "Installed VERSION remains the original installation manifest; current version comes from the executable.",
+    "No old prototype takeover, workflow event, phase projection, or hardware-acceptance change."
+  ]
+}
