@@ -1,0 +1,23 @@
+{
+  "schema": "pi-ink-proposed-phase-bindings/v1",
+  "status": "PROPOSED_NOT_AUTHORIZED_NOT_EXECUTED",
+  "privateDirectory": "/tmp/pi-ink-native-0055-3WKQid/phase-scripts-0056",
+  "hostProgramSha256": "61be76acc19bde9629cb3d3264d8cdcb2f57c2ac436bc8cbac89ca8e4c22b4e3",
+  "manifestSha256": "d43594da26568a8d9ad56d16874df9439fffa607150f18a08435ac36af8167f3",
+  "candidate_sha256": "f3a7d6f0c54aa9f27fe46817d482d195e060d6e0c07cb15bf3c8eda0d66c760e",
+  "runtime_sha256": "03f71e38b7e3a27dd0bef16299ea258d2aa44b3103a798f3d1e488ba72d0af5b",
+  "public_ca_sha256": "7f74137f61f12bc03ed272365e5949857af98efb4a647a0b9318f7e388bef25c",
+  "synthetic_pdf_sha256s": [
+    "c7448d20fbffd0fb20474b953df540493478250c77e94ba42783297be523db90"
+  ],
+  "scripts": {
+    "device-stage.sh": "a106840a2270daf196ba12be070c49c3a956252c3cb58a1b03899b2503fbc4d2",
+    "device-activate.sh": "8da9a6092777da302bdfe0ce3617285f99382dcd436c5ccae65a904a7c02c76b",
+    "device-restore.sh": "89e348a3ff86326030a6ac9bd10324c3e2f85c77a980a16c28ddeb535063f7b9"
+  },
+  "device_execution": false,
+  "syntaxChecks": "sh -n passed for all3 generated scripts; scripts were not executed",
+  "permissions": "Directory0700 and files0600; metadata checked on initial generation, same generator/private creation modes retained",
+  "sourceInputs": "host-inputs-0055.json",
+  "deviceExecution": false
+}

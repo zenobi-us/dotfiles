@@ -1,0 +1,15 @@
+{
+  "schema": "pi-ink-stage-outcome/v1",
+  "created_at": "2026-11-05T20:40:48.092Z",
+  "elapsed_ms": 954,
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "Expected regular file\n",
+  "stage_complete": false,
+  "activation": false,
+  "restarts": 0,
+  "document_operations": false,
+  "retries": 0,
+  "cleanup": false,
+  "limit": "Script guards and writes only. No additional device queries were run; retain partial state if nonzero."
+}

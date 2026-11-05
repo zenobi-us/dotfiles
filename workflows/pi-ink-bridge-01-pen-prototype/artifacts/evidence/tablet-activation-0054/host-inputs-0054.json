@@ -1,0 +1,183 @@
+{
+  "schema": "pi-ink-desktop-host-inputs/v1",
+  "status": "HOST_TRUST_READY_PENDING_REQUEST_PREREQUISITE_UNMET",
+  "privateDirectory": "/tmp/pi-ink-host-0054-em9c3csu",
+  "identity": {
+    "serverId": "desktop_ink_0054_b3206c7966ff3b2165aea588",
+    "deviceId": "paper-pro-ink-0054",
+    "name": "Pi Ink Desktop 0054",
+    "origin": "https://192.168.86.35:47841",
+    "listen": "0.0.0.0:47841",
+    "initialContentToken": false,
+    "independentManagementCredentialGenerated": true
+  },
+  "publicTrust": {
+    "certificate": {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/desktop-ca-0054.pem",
+      "sha256": "7f74137f61f12bc03ed272365e5949857af98efb4a647a0b9318f7e388bef25c",
+      "bytes": 652,
+      "mode": "0644"
+    },
+    "sha256Fingerprint": "D0:0A:D5:E4:A4:5E:99:D5:2F:D1:89:72:6B:F1:5E:85:CC:22:6B:C9:AC:1C:FA:73:4B:99:4B:56:3D:E2:65:AF",
+    "subjectAlternativeNames": [
+      "192.168.86.35",
+      "127.0.0.1",
+      "localhost"
+    ],
+    "notBefore": "2026-11-05T19:35:42Z",
+    "notAfter": "2026-12-05T19:35:42Z"
+  },
+  "privateConfiguration": {
+    "desktopPairing": {
+      "path": "/tmp/pi-ink-host-0054-em9c3csu/desktop-pairing.json",
+      "sha256": "de212c8853d9cf16c859a787b4a1ae7b9fc2b4534234ed7b17827c99525a5ff7",
+      "bytes": 456,
+      "mode": "0600"
+    },
+    "runtime": {
+      "path": "/tmp/pi-ink-host-0054-em9c3csu/runtime.json",
+      "sha256": "79ad87a52e2a6efeaa5d18ffad4503a79b66884e3ed5eb4981b0e516f6943c08",
+      "bytes": 471,
+      "mode": "0600"
+    },
+    "tlsKeyPath": "/tmp/pi-ink-host-0054-em9c3csu/desktop-key.pem",
+    "tlsCertificatePath": "/tmp/pi-ink-host-0054-em9c3csu/desktop-ca.pem",
+    "privateHome": "/tmp/pi-ink-host-0054-em9c3csu/home",
+    "sessionDirectory": "/tmp/pi-ink-host-0054-em9c3csu/sessions",
+    "deviceStatusPath": "/tmp/pi-ink-host-0054-em9c3csu/device-status.jsonl"
+  },
+  "deviceRuntime": {
+    "targetPath": "/home/root/pi-ink-bridge-0049/runtime.json",
+    "caTargetPath": "/home/root/pi-ink-bridge-0049/desktop-ca.pem",
+    "stateTargetPath": "/home/root/pi-ink-bridge-0049/state.json",
+    "uiAddress": "127.0.0.1:9821",
+    "syntheticAllowlist": [
+      "e08e0544c3a0078325a22e2ecd20787e00ca4c9f9aeec101fef26c5c86d024f0"
+    ],
+    "contentTokenPresent": false,
+    "managementCredentialPresent": false,
+    "installed": false
+  },
+  "candidate": {
+    "commit": "19730eb0700cf48ea8f54e5d4b0e189d3c8349db",
+    "tree": "a5ce7c9bb7a7367dccfd0cf30a37013db73f5d07",
+    "extension": {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/index.ts",
+      "sha256": "a088fc2c650211933e4d449b4098bc7088f7a5b18e5d2a9620b4c7f06999d6cd",
+      "bytes": 21716,
+      "mode": "0644"
+    },
+    "onlyExplicitExtension": true
+  },
+  "consumer": {
+    "pane": "w64:p2H",
+    "tab": "w64:t1M",
+    "workspace": "w64",
+    "sessionId": "01a1ad36-523b-703e-9963-faa280aa46ba",
+    "sessionPath": "/tmp/pi-ink-host-0054-em9c3csu/sessions/2026-11-05T19-36-20-795Z_01a1ad36-523b-703e-9963-faa280aa46ba.jsonl",
+    "interactive": true,
+    "depth": 2,
+    "state": "NO_LIVE_REQUEST_SECOND_REAL_REQUEST_COMPLETED_BY_BROWSER",
+    "request": {
+      "requestId": "6cd9b6366b90476c4ea61319a6a71a71",
+      "sourcePdfSha256": "e08e0544c3a0078325a22e2ecd20787e00ca4c9f9aeec101fef26c5c86d024f0",
+      "sourcePdfPath": "/tmp/pi-ink-host-0054-em9c3csu/home/.local/share/omp/image-annotator/6cd9b6366b90476c4ea61319a6a71a71/source.pdf",
+      "state": "completed"
+    },
+    "sourceImage": {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source.png",
+      "sha256": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "bytes": 17562,
+      "mode": "0644"
+    },
+    "priorRequest": {
+      "requestId": "5cbeab527b3d66ef920223f7180536f8",
+      "sourcePdfSha256": "98aaf822106f78b5ae8271c8fcc82cf1bbb41dee336ea9396053adf2b6b80014",
+      "state": "COMPLETED_BY_BROWSER_NO_HARDWARE_PROOF",
+      "completionActor": "not established"
+    },
+    "simultaneousBindings": {
+      "exercised": false,
+      "inspection": "Extension shares one gateway per config path and tracks independent request IDs with reference counts. This acceptance consumer invoked one image_editor call at a time; simultaneous tool dispatch was not proved. No second OMP process was started."
+    }
+  },
+  "commandMetadata": {
+    "executable": "/home/zenobius/.local/share/mise/installs/github-can1357-oh-my-pi/latest/omp",
+    "version": "18.10.3",
+    "launchScript": {
+      "path": "/tmp/pi-ink-host-0054-em9c3csu/launch.sh",
+      "sha256": "12e7f42058c008be2406b805d42c36801ce2c9b487c8627afa41e09e8ffb7b15",
+      "bytes": 1720,
+      "mode": "0700"
+    },
+    "arguments": [
+      "--no-extensions",
+      "-e",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/index.ts",
+      "--session-dir",
+      "/tmp/pi-ink-host-0054-em9c3csu/sessions",
+      "--no-title",
+      "--no-lsp",
+      "--no-skills",
+      "--no-rules",
+      "--no-tools",
+      "--model",
+      "openai-codex/gpt-6.1-sol"
+    ],
+    "environment": {
+      "HOME": "/tmp/pi-ink-host-0054-em9c3csu/home",
+      "PI_CODING_AGENT_DIR": "/home/zenobius/.omp/agent",
+      "UV_CACHE_DIR": "/home/zenobius/.cache/uv",
+      "MUXER_SUBAGENT_DEPTH": "2",
+      "OMP_IMAGE_ANNOTATOR_TABLET_CONFIG": "/tmp/pi-ink-host-0054-em9c3csu/desktop-pairing.json"
+    },
+    "providerSecretsReadOrCopied": false,
+    "resumeOrContinue": false
+  },
+  "observations": {
+    "port47841InitiallyFree": true,
+    "lanAddressObserved": "192.168.86.35/24 enp7s0",
+    "loopbackManagement": {
+      "status": 200,
+      "body": {
+        "pending": null
+      },
+      "tls_hostname_verified": true
+    },
+    "lanManagement": {
+      "tls_hostname_verified": true,
+      "status": 401,
+      "management_refused": true
+    },
+    "sourcePdfFetchedThroughActualAuthorizedLoopbackRequest": true,
+    "sourceEndpoint": "/api/pdf-source",
+    "sourcePdf": {
+      "path": "/tmp/pi-ink-host-0054-em9c3csu/source-e08e0544c3a0078325a22e2ecd20787e00ca4c9f9aeec101fef26c5c86d024f0.pdf",
+      "sha256": "e08e0544c3a0078325a22e2ecd20787e00ca4c9f9aeec101fef26c5c86d024f0",
+      "bytes": 2403511,
+      "mode": "0600"
+    },
+    "browserForwardExitCode": 0,
+    "browserLaunchWrapper": {
+      "path": "/tmp/pi-ink-host-0054-em9c3csu/bin/xdg-open",
+      "sha256": "d1ad3700d443ebbeecdbb70d3e7e738ef7e24615097752c3e485a84a59782d3a",
+      "bytes": 1736,
+      "mode": "0700"
+    },
+    "tokenizedUrlPersisted": false,
+    "tokenizedUrlOutput": false,
+    "pdfHashMatchesActualRequestStorage": true,
+    "finalConsumerObservation": "Two real image_editor calls returned annotated PNGs. The consumer remained in its original interactive session. No completion actor or hardware proof is established."
+  },
+  "remainingPrerequisites": [
+    "A live originating request is unavailable: both real requests completed through the browser. The owner is interacting with the consumer pane. Coordinate the next same-session image_editor invocation; leave its browser open without Done or Cancel, fetch its actual PDF at the approved launch seam, and refresh runtime.json with that new exact hash before device staging. Do not start another process on 47841.",
+    "Keep the actual consumer request pending; if the browser completes or cancels it, the owner must obtain a new actual request and replace its exact PDF allowlist before staging.",
+    "Parent must approve exact synthetic source PDF digest and separately authorize device staging, activation, pairing and each restart.",
+    "No native pairing or content credential exists. Native UI must initiate pairing, followed by explicit loopback desktop management approval of the exact pairingId.",
+    "Actual tablet reachability, native import/Send/document binding, pen quality, cable-free routing, lifecycle and restoration remain unproved."
+  ],
+  "executedDeviceOperations": [],
+  "buildLintTestsFormattersRun": false,
+  "formalWorkflowVerdict": null,
+  "ticketComplete": false
+}

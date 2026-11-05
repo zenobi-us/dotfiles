@@ -1,0 +1,69 @@
+{
+  "schema": "pi-ink-native-host-inputs/v1",
+  "status": "TWO_REAL_OMP_IMAGE_EDITOR_CALLS_PENDING",
+  "privateDirectory": "/tmp/pi-ink-native-0055-3WKQid",
+  "source_commit": "19730eb0700cf48ea8f54e5d4b0e189d3c8349db",
+  "identity": {
+    "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "deviceId": "paper-pro-ink-0054",
+    "origin": "https://192.168.86.35:47842",
+    "listen": "0.0.0.0:47842",
+    "initialContentToken": false
+  },
+  "publicTrust": {
+    "certificate": "desktop-ca-0054.pem",
+    "pemSha256": "7f74137f61f12bc03ed272365e5949857af98efb4a647a0b9318f7e388bef25c",
+    "fingerprint": "D0:0A:D5:E4:A4:5E:99:D5:2F:D1:89:72:6B:F1:5E:85:CC:22:6B:C9:AC:1C:FA:73:4B:99:4B:56:3D:E2:65:AF"
+  },
+  "privateConfiguration": {
+    "desktopPairing": {
+      "path": "/tmp/pi-ink-native-0055-3WKQid/desktop-pairing.json",
+      "sha256": "f353161349cf671a6845e7e7994f0334f1fe03126c97cde78b2694c492f5d194"
+    },
+    "runtime": {
+      "path": "/tmp/pi-ink-native-0055-3WKQid/runtime.json",
+      "sha256": "03f71e38b7e3a27dd0bef16299ea258d2aa44b3103a798f3d1e488ba72d0af5b",
+      "mode": "0600"
+    },
+    "home": "/tmp/pi-ink-native-0055-3WKQid/home",
+    "sessions": "/tmp/pi-ink-native-0055-3WKQid/sessions",
+    "statusPath": "/tmp/pi-ink-native-0055-3WKQid/device-status.jsonl"
+  },
+  "consumer": {
+    "pane": "w64:p2J",
+    "sessionId": "01a1ad51-2012-717a-aaba-5edf92583f61",
+    "sessionPath": "/tmp/pi-ink-native-0055-3WKQid/sessions/2026-11-05T20-05-37-426Z_01a1ad51-2012-717a-aaba-5edf92583f61.jsonl",
+    "interactive": true,
+    "realAgentHost": true,
+    "simulatedAgentApi": false,
+    "toolCalls": 2,
+    "state": "Both image_editor calls visibly waiting; no result or cancellation supplied",
+    "editingDeadline": null
+  },
+  "requests": [
+    {
+      "requestId": "026d30599842836286574547191593dd",
+      "sourcePdfSha256": "c7448d20fbffd0fb20474b953df540493478250c77e94ba42783297be523db90",
+      "sourcePdfPath": "/tmp/pi-ink-native-0055-3WKQid/home/.local/share/omp/image-annotator/026d30599842836286574547191593dd/source.pdf",
+      "sourceImageSha256": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a"
+    },
+    {
+      "requestId": "e9b8b114e90fbc79f3f2611b7b0702d3",
+      "sourcePdfSha256": "c7448d20fbffd0fb20474b953df540493478250c77e94ba42783297be523db90",
+      "sourcePdfPath": "/tmp/pi-ink-native-0055-3WKQid/home/.local/share/omp/image-annotator/e9b8b114e90fbc79f3f2611b7b0702d3/source.pdf",
+      "sourceImageSha256": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a"
+    }
+  ],
+  "capture": {
+    "boundary": "Desktop browser launch only is suppressed. No image, export, completion or cancellation is simulated.",
+    "observation": "Both real requests produced identical PDF bytes but distinct request directories/IDs. The first exclusive capture-file write collided and no ready metadata was published. Recovered exact source identities from only this new private conversation storage; both PNG/PDF hashes were checked with sha256sum. No source policy or application code was changed.",
+    "tokenizedUrlPersisted": false,
+    "tokenizedUrlOutput": false,
+    "processScanner": false
+  },
+  "actualBrowserRegression": "Earlier two real0054 requests completed through the browser; retained separately in host-inputs-0054.json",
+  "executedDeviceOperations": [],
+  "deviceConfigInstalled": false,
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}

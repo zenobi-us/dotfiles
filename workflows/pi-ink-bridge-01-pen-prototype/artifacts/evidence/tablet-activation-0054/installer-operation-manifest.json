@@ -1,0 +1,269 @@
+{
+  "status": "PROPOSED_NOT_AUTHORIZED_NOT_EXECUTED",
+  "loader": {
+    "path": "/home/root/xovi/xovi.so",
+    "sha256": "d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446"
+  },
+  "copied_native_resource_requirements": {
+    "/qml/device/view/documentview/DocumentView.qml": "867b30a725a4ae97e3459f07a60cd72bcafb21db9a0b374f02d75c5cd8d83269",
+    "/qml/device/view/main/MainView.qml": "2bc2866c59245e74af769e277e3aae801ad76bc7f816f24ccf1fc7ac4f5e3cfc",
+    "/qt/qml/xofm/libs/toolbar/qml/Toolbar.qml": "f0f552fa18a27733b59fafddc1a1cd10e35328136eb56cbb695c8799e91483f6",
+    "/qml/device/view/navigator/Navigator.qml": "28c1f04f5c70bdd864019950367d08191d3e7eb8cd536e3b9e8a58e7bc9da164",
+    "/qml/device/view/navigator/Sidebar.qml": "5cfd661e6c68c343513d9ca034042ee3f5cdc3ab0df77ea0396838c77135adc0",
+    "native_navigation_shell_frame_0xdc0fce": "6bcffbb0fd2b5028687e2b8c3d096c78f48a86ecfefedfedb6af32d6ce354a32"
+  },
+  "preparation_observations": {
+    "host_command_exercised": "python3 installer-prepare.py --help",
+    "host_command_exit": 0,
+    "device_phases_executed": [],
+    "final_scoped_validation_owner": "parent",
+    "private_scripts_generated_now": false
+  },
+  "retained_extensions": {
+    "appload.so": "5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad",
+    "qt-resource-rebuilder.so": "6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f",
+    "qt-command-executor.so": "2f19585c63979182ccd19a2953cd4aa6a6f3824ea36a76eb46c803e02e79db6e",
+    "literm.so": "48d62c2beb0d285943e5c8d3f08ed980c6045b27f13644079d15a3dbaf2b7609",
+    "xovi-message-broker.so": "61c0c7b0d4e2c7623147a87c63d6a4aaec868019e67fb0e1bdb1fcb215f6e155"
+  },
+  "paths": {
+    "staged_client": "/home/root/pi-ink-bridge-0049/payload/pi-ink-client",
+    "staged_qmd": "/home/root/pi-ink-bridge-0049/payload/pi-ink-bridge.qmd",
+    "staged_adapter": "/home/root/pi-ink-bridge-0049/payload/pi-ink-loopback.so",
+    "active_client": "/home/root/pi-ink-client/pi-ink-client",
+    "active_qmd": "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd",
+    "client_install_temporary": "/home/root/pi-ink-client/.pi-ink-client-0054-install",
+    "client_restore_temporary": "/home/root/pi-ink-client/.pi-ink-client-0054-restore",
+    "active_adapter": "/home/root/xovi/extensions.d/pi-ink-loopback.so",
+    "component": "/home/root/pi-ink-bridge-0049/tablet-qml/PiInkToolbar.qml",
+    "client_backup": "/home/root/pi-ink-bridge-0049/backups/pi-ink-client",
+    "extension_backup": "/home/root/pi-ink-bridge-0049/backups/webserver-remote.so",
+    "version_backup": "/home/root/pi-ink-bridge-0049/backups/VERSION",
+    "version_metadata": "/home/root/pi-ink-bridge-0049/backups/VERSION.metadata",
+    "service_snapshot": "/home/root/pi-ink-bridge-0049/backups/xochitl.service.txt",
+    "quarantine": "/home/root/pi-ink-bridge-0049/quarantine-webserver-remote.so",
+    "runtime_config": "/home/root/pi-ink-bridge-0049/runtime.json",
+    "public_ca": "/home/root/pi-ink-bridge-0049/desktop-ca.pem",
+    "association_state": "/home/root/pi-ink-bridge-0049/state.json",
+    "unit_invocation_id": "/home/root/pi-ink-bridge-0049/unit.invocation"
+  },
+  "operation_order": {
+    "stage": ["Reject used root, active new paths, unit identity, UI port9821, firmware/hash/layout mismatches", "Create private root/payload/tablet-qml/backups", "Copy pinned originals and unchanged VERSION with metadata; snapshot Xochitl unit", "Write and verify embedded payload/config/CA", "Mark staged; no active path changes"],
+    "activate": ["Require exact approvals and offline/native-resource attestation", "Recheck stage hashes, pinned originals, unchanged VERSION/service and layout", "Refuse occupied UI port9821 without identifying its owner; retained baseline stock81/proxy80 are allowed until restart", "Mark attempt; prepare adjacent client file; quarantine only pinned webserver-remote.so", "Atomically rename candidate over existing client; create exact QMD and adapter", "Restart Xochitl exactly once; wait the retained8-second startup interval", "Require no port80 listener and only IPv4-loopback port81 before runtime startup", "Create one transient Restart=no unit with ordinary journal diagnostics; retain its InvocationID", "Mark activation; no hardware success claim"],
+    "restore": ["Require separate restore and saved/closed restart approvals", "Require full activated marker, exact new active hashes, unchanged VERSION/service, pinned backups and matching transient InvocationID", "Mark attempt; stop only the owned transient unit", "Restore old client and original extension; remove only exact hash-matching active new QMD/adapter", "Restart Xochitl exactly once", "Verify original hashes and retained layout; retain every private experiment file and backup"]
+  },
+  "conservative_listener_prerequisite": "UI port9821 must be unused before stage and activation. Retained implementation0014 preinstall baseline already had stock127.0.0.1:81 plus original wildcard proxy80; neither is incorrectly required absent before the approved replacement restart. Never identify or kill socket owners. After that one Xochitl restart, require port80 absent and port81 present only on127.0.0.1. Refuse otherwise and preserve partial state; no extra restart or retry.",
+  "unit_identity_rules": ["Unit must be not-found and fixed persistent/transient paths unused before stage/activation", "Only systemd-run creates pi-ink-0054.service; Restart=no, no enable, no unit files", "Restore requires Transient=yes, exact Description and same nonempty InvocationID recorded after creation", "An exited/collected/mismatched unit or incomplete activation is an explicit manual-review blocker; no legacy detection or retry"],
+  "desktop_origin": "https://192.168.86.35:47842",
+  "host_inputs": "host-inputs-0055.json",
+  "pdf_policy": "Repeat --pdf-sha256 for each actual pending synthetic PDF. Runtime allowlist must match exactly, in order; no precomputed or completed-request digest.",
+  "candidate": {
+    "schema": "pi-ink-candidate-activation/v1",
+    "status": "PROPOSED_NOT_AUTHORIZED_NOT_EXECUTED",
+    "ticket": "pi-ink-bridge-01-pen-prototype",
+    "parent_receipt": "start-0048",
+    "version": "0.3.0",
+    "payload": {
+      "path": "candidate-payload-0049-r3.tar.gz",
+      "sha256": "f3a7d6f0c54aa9f27fe46817d482d195e060d6e0c07cb15bf3c8eda0d66c760e",
+      "bytes": 3093511
+    },
+    "files": {
+      "bundle.tar.gz": {
+        "sha256": "c07bf86223c8ec1603c7836c1c337fb0196ed7bc4bd0170f1a519662e2339417",
+        "bytes": 2952940
+      },
+      "tablet-qml/PiInkToolbar.qml": {
+        "sha256": "06dc20ba82486d35184977ee58a9a335909bfca0877a49970753a000365db900",
+        "bytes": 22764
+      },
+      "tablet-qml/pi-ink-bridge.qmd": {
+        "sha256": "c88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe",
+        "bytes": 8298
+      },
+      "tablet-adapter/pi-ink-loopback.so": {
+        "sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+        "bytes": 504280
+      }
+    },
+    "installedClient": {
+      "path": "/home/root/pi-ink-client/pi-ink-client",
+      "sha256": "713ea330666e51fd09c4bb30010277646932c1552cdb42ce63c143dac5292087",
+      "bytes": 7405752,
+      "entry": "serve --config /home/root/pi-ink-bridge-0049/runtime.json",
+      "singleExecutable": true,
+      "bootstrapCommands": [
+        "discover",
+        "select",
+        "status",
+        "download-bundle",
+        "update",
+        "version"
+      ]
+    },
+    "firmware": "3.28.0.172",
+    "stockBinarySHA256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+    "hashtabSHA256": "9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615",
+    "proposedPaths": {
+      "component": "/home/root/pi-ink-bridge-0049/tablet-qml/PiInkToolbar.qml",
+      "qmlPatch": "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd"
+    },
+    "setupInputsRequired": [
+      "New private desktop TLS certificate/key, stable content server ID, verified HTTPS origin and explicitly selected synthetic device ID. These are not bootstrap discovery IDs.",
+      "Provision that certificate/CA identity, HTTPS origin, server ID and device ID to mode-0600 runtime config; no initial content token.",
+      "Generate independent desktop-only managementToken; never copy it into tablet configuration or public bootstrap assets.",
+      "Approve exact synthetic source PDF SHA256 allowlist and new private absolute association-state path. No old credential/config reading is authorized."
+    ],
+    "approvalBoundary": [
+      "This payload does not authorize any device connection or mutation. Parent must obtain separate scope for cable-connected installation/repair, synthetic document operations, stock/XOVI activation, each saved/closed Xochitl restart, listener checks and rollback.",
+      "Resolve unknown state and the conflicting webserver-remote extension through a new operator-approved procedure. Do not diagnose or retry cleanup0038. Stop on occupied/colliding paths, mismatched hashes or unsupported firmware.",
+      "Preserve existing binary/version as rollback inputs before a separately approved update of the one existing pi-ink-client installation. Do not install a second runtime binary or shim.",
+      "Provision trust through trusted setup, then pair from the native manager and explicitly approve the matching device/approval ID on loopback desktop management HTTPS.",
+      "After USB disconnection, use only pinned HTTPS/WSS for source, status and results. No runtime SSH/USB or public job API.",
+      "Owner must verify root folder creation/visibility, import destination, native current-document/foldout behavior, explicit Send/clipping confirmation/PNG, Save/Close and wrong-document/server/request isolation, pen/palm/undo/erase/zoom/orientation quality, retained editable work and lifecycle limits.",
+      "Rollback must restore only exact recorded owned paths/configurations under explicit scope. No generic cleanup, no blind helper execution, no inferred restoration success."
+    ],
+    "executedDeviceOperations": [],
+    "cleanupState": "STOPPED_POSSIBLE_PARTIAL_REMOVAL_PRESERVE_NO_RETRY",
+    "preserve": [
+      "unknown device state",
+      "partial0026",
+      "all earlier evidence",
+      "existing extensions/QMDs/service/account/cloud/private notebooks"
+    ],
+    "limitations": [
+      "Host smoke uses simulated stock HTTP/native events/browser launch/test-process exit. No tablet app pairing, library visibility, pen quality or cable-free integrated Send is claimed.",
+      "Native createCollection empty root-parent argument still requires device validation. Imports remain at their observed stock destination, not automatically in the created associated folder.",
+      "Self-update remains unsigned-development behavior; adjacent HTTP checksum is not publisher trust. The owner must approve this out-of-band exact payload hash."
+    ],
+    "productionBlocked": true,
+    "supersedes": "candidate-activation-0049.json",
+    "sourceIdentityRef": "source-identity-0049.json",
+    "runtimeEvidence": "host-smoke-0049-r3.json",
+    "checks": "checks-0049-r2.json",
+    "reviewCorrection": "Only explicitly associated folders appear as associated. A document parent is labelled as provenance observed at import."
+  },
+  "nested_files": {
+    "pi-ink-client": {
+      "sha256": "713ea330666e51fd09c4bb30010277646932c1552cdb42ce63c143dac5292087",
+      "bytes": 7405752
+    },
+    "install.sh": {
+      "sha256": "2fa25f274a908d6b47c87681a544f5e1a6dae0b3fa9bdc8c4c35d49fd179a907",
+      "bytes": 1491
+    },
+    "VERSION": {
+      "sha256": "d915cc95d6ca8f47ae297713ed46d4e5c5d99ddd29fc3c61e263bdf305f2b5b0",
+      "bytes": 6
+    }
+  },
+  "retained_qmds": [
+    {
+      "name": "randomSleepScreen.qmd",
+      "sha256": "36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158"
+    },
+    {
+      "name": "betterToc.qmd",
+      "sha256": "beb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d"
+    },
+    {
+      "name": "retaskableSend.qmd",
+      "sha256": "767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e"
+    },
+    {
+      "name": "link-touch-targets.qmd",
+      "sha256": "3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471"
+    },
+    {
+      "name": "linkFromSelection.qmd",
+      "sha256": "28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43"
+    },
+    {
+      "name": "quickSettingsBluetooth.qmd",
+      "sha256": "2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982"
+    },
+    {
+      "name": "bluetoothSettings.qmd",
+      "sha256": "dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595"
+    },
+    {
+      "name": "dockButtons.qmd",
+      "sha256": "0d0d130ba63cfa65093475f9cec2f6694f2e37aab0a346fc5f2921e061303e50"
+    },
+    {
+      "name": "retaskableJump.qmd",
+      "sha256": "4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe"
+    },
+    {
+      "name": "floating.qmd",
+      "sha256": "ebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023"
+    },
+    {
+      "name": "computed-widgets-01-live-document-probe.qmd",
+      "sha256": "f8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43"
+    },
+    {
+      "name": "betterTocCollapse.qmd",
+      "sha256": "5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2"
+    }
+  ],
+  "originals": {
+    "/home/root/pi-ink-client/pi-ink-client": {
+      "sha256": "5dcde59a057207951ed0ac0532c78d3bf0ef03a379b41ed50329d08c9b3e565f",
+      "metadata": "700 0 0 6488248"
+    },
+    "/home/root/xovi/extensions.d/webserver-remote.so": {
+      "sha256": "24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f",
+      "metadata": "644 0 0 8453696"
+    }
+  },
+  "root": "/home/root/pi-ink-bridge-0049",
+  "unit": "pi-ink-0054.service",
+  "unit_description": "Pi Ink tablet activation 0054 owned transient runtime",
+  "version_policy": "Record VERSION bytes and metadata at stage; never replace VERSION. Restore requires it unchanged.",
+  "approvals": {
+    "stage": [
+      "APPROVE_STAGE_0054"
+    ],
+    "activate": [
+      "APPROVE_ACTIVATE_0054",
+      "APPROVE_ONE_ACTIVATION_RESTART_0054",
+      "DOCUMENTS_SAVED_CLOSED",
+      "OFFLINE_ALL_12_QMDS_AND_NATIVE_RESOURCES_VERIFIED",
+      "OWNER_USB_WEB_INTERFACE_ENABLED"
+    ],
+    "restore": [
+      "APPROVE_RESTORE_0054",
+      "APPROVE_ONE_RESTORATION_RESTART_0054",
+      "DOCUMENTS_SAVED_CLOSED"
+    ]
+  },
+  "boundaries": {
+    "restarts": {
+      "activation": 1,
+      "restore": 1
+    },
+    "document_operations": false,
+    "cleanup": false,
+    "automatic_rollback": false,
+    "automatic_retry": false,
+    "device_execution_now": false
+  },
+  "prerequisites": [
+    "Parent must validate all 12 retained QMDs with the exact new QMD against copied native resources: DocumentView, MainView, Toolbar, Navigator, Sidebar and the native navigation shell from source activation-proposal.json.",
+    "Owner must enable USB web interface through normal settings before activation. No private setting read/write is implemented.",
+    "Existing Xochitl service must retain the XOVI preload and root observed in implementation0014. Unexpected extension/QMD layout refuses activation.",
+    "Private runtime config and public CA paths and SHA256 values must come from host-inputs-0055.json. Supply each actual pending synthetic PDF SHA256 with a repeated --pdf-sha256 argument.",
+    "Only generated phase scripts may be submitted after separate exact approvals. No phase is run by this host program."
+  ],
+  "preserve": [
+    "all 12 baseline QMDs",
+    "settings",
+    "qmlcache",
+    "existing services",
+    "stock binary",
+    "partial0026",
+    "unknown processes",
+    "all experiment state and backups after restore"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "schema": "pi-ink-stage-approval/v1",
+  "created_at": "2026-11-05T20:40:47.138Z",
+  "user_response": "Approve stage only",
+  "script_sha256": "a106840a2270daf196ba12be070c49c3a956252c3cb58a1b03899b2503fbc4d2",
+  "scope": "Create isolated stage root/backups/config/publicCA/payload only after read-only guards; no active path changes, service start, restart, document access or cleanup.",
+  "activation_authorized": false,
+  "retry_authorized": false
+}

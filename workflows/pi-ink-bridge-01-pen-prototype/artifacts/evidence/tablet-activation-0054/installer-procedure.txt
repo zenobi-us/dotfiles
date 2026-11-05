@@ -1,0 +1,170 @@
+ACTIVATION PREPARATION 0054 — PROPOSED ONLY
+
+Scope
+This preparation creates host artifacts only. No device phase has run.
+The host program never starts SSH, SCP, a candidate executable, install.sh,
+or a device command. The generated scripts contain fixed device paths.
+The parent must review and validate the host program before use.
+No build, lint, test, formatter or device validation ran in this preparation.
+
+Inputs and host command
+Use the private runtime-config and public-CA paths and hashes from the
+parent's host-inputs-0055.json. Use SHA256 values of the ACTUAL pending synthetic
+PDF bytes. Repeat --pdf-sha256 for each approved pending source. Do not use
+hashes from earlier or completed requests. The native run uses port47842.
+Set these shell variables to those exact values:
+RUNTIME_CONFIG, RUNTIME_SHA256, PUBLIC_CA, CA_SHA256, PDF_SHA256.
+No secret content belongs in these variables or the command line.
+PRIVATE_PHASE_DIR must be a new, unused absolute directory outside Git.
+Its parent must already exist with no symlink ancestors. The program creates
+PRIVATE_PHASE_DIR as mode 0700. Every output file has mode 0600.
+
+Run this host-only command from the BASE repository:
+
+python3 workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/installer-prepare.py \
+  --candidate workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/candidate-payload-0049-r3.tar.gz \
+  --runtime-config "$RUNTIME_CONFIG" --runtime-sha256 "$RUNTIME_SHA256" \
+  --public-ca "$PUBLIC_CA" --ca-sha256 "$CA_SHA256" \
+  --pdf-sha256 "$PDF_SHA256" --output "$PRIVATE_PHASE_DIR"
+
+Expected host outputs
+- device-stage.sh: private. Embeds the runtime config, public CA and payload.
+- device-activate.sh: private. Installs active code and starts one transient unit.
+- device-restore.sh: private. Restores only the pinned original active code.
+- installer-input-bindings.json: records exact input and generated script hashes.
+Do not publish the generated stage script or print its contents. Keep every
+output private. Retain failed preparation output. Use a new directory only
+after explicit review; the program does not overwrite or clean output.
+
+Archive verification
+The outer SHA256 must be:
+f3a7d6f0c54aa9f27fe46817d482d195e060d6e0c07cb15bf3c8eda0d66c760e
+The exact four outer files and three nested files must match the manifest.
+The host reads both archives without filesystem extraction. It rejects extra,
+missing, duplicate, directory, symlink, hardlink, device, absolute and traversal
+members. It checks every member's size and SHA256. It verifies install.sh as
+bytes but never executes or stages it. It verifies candidate VERSION as bytes
+but never replaces the existing installed VERSION metadata.
+
+Review before ANY device connection
+Read installer-operation-manifest.json and the generated script hashes.
+Obtain a fresh approval for the exact generated script and input hashes.
+Prior approvals0052/0053 cannot authorize any connection or operation here.
+The following commands describe future approved device-side execution only.
+They are NOT permission to connect, transfer or execute now.
+The parent must supply a separately approved, bounded cable-connected transport.
+Do not install generated scripts on the device outside the experiment root.
+They can be supplied as standard input to a fixed sh invocation after approval.
+There is no generic command-forwarding interface in the host program.
+
+Stage boundary
+Fresh stage approval covers creation of /home/root/pi-ink-bridge-0049 only,
+including its payload, tablet-qml, backups, config, CA, service snapshot and
+stage marker. The entire root must be unused. New active QMD/adapter paths
+and pi-ink-0054.service must also be unused. Existing client and original
+extension hashes and root ownership/modes/sizes must match the manifest.
+Stage copies their bytes and metadata. It preserves installed VERSION bytes
+and records its metadata. It records Xochitl service configuration.
+All active code, services, settings and qmlcache remain unchanged.
+Future device-side invocation:
+
+sh -s -- APPROVE_STAGE_0054 < device-stage.sh
+
+Activation prerequisites
+Parent must verify the exact candidate patch with all 12 retained QMDs against
+the copied native resources before granting the offline-integration gate.
+The retained record is implementation-0023/offline-inputs.json. The current
+source tablet-qml/activation-proposal.json defines resource selectors and
+preservation rules. Copied resources include DocumentView, MainView, Toolbar,
+Navigator and Sidebar; preserve the native navigation-shell conventions.
+Do not infer physical layout or input success from offline integration.
+The computed-widgets-01-live-document-probe.qmd timer and toolbar action remain
+baseline behavior. They can expose document identity independently. Parent
+must account for that fact before approving any document operation.
+Owner must enable USB web interface through ordinary owner settings.
+No private setting mutation or API probe is implemented.
+Xochitl must retain the observed XOVI preload and service root.
+Unexpected QMD or extension layout causes refusal, not removal of extensions.
+Before stage and activation, UI port9821 must have no listening socket.
+Retained implementation0014 preinstall evidence already shows stock loopback81
+and the original wildcard proxy80. Those baseline listeners are allowed until
+the single approved restart after quarantine. Never inspect or kill owners.
+After the retained8-second startup interval, require port80 absent and port81
+present only on127.0.0.1. Otherwise stop and preserve state. No retry occurs.
+
+Activation boundary
+Owner must save and close all documents. Obtain a separate approval for exactly
+ONE activation Xochitl restart, in addition to approval of code activation.
+Future device-side invocation:
+
+sh -s -- APPROVE_ACTIVATE_0054 APPROVE_ONE_ACTIVATION_RESTART_0054 DOCUMENTS_SAVED_CLOSED OFFLINE_ALL_12_QMDS_AND_NATIVE_RESOURCES_VERIFIED OWNER_USB_WEB_INTERFACE_ENABLED < device-activate.sh
+
+Activation rechecks all staged hashes, pinned backups, originals, VERSION,
+service configuration, firmware and retained QMD/extension layout. It checks
+fixed socket metadata only. No process ownership investigation occurs.
+After the attempt marker, it moves ONLY the pinned original webserver-remote.so
+into the private root. It copies the candidate into a new adjacent0700 file,
+then atomically renames that file over the ONE existing client path. The old
+running inode remains intact. The exact new QMD and adapter are created.
+Existing VERSION remains unchanged and is not the current-binary authority.
+It performs the one approved restart and verifies private stock listeners.
+It creates pi-ink-0054.service with systemd-run, Restart=no and UMask=0077.
+Ordinary unit journal diagnostics remain available; errors are not suppressed.
+No persistent service, boot enablement, restart policy or legacy process action
+occurs.
+The unit runs only:
+/home/root/pi-ink-client/pi-ink-client serve --config /home/root/pi-ink-bridge-0049/runtime.json
+The script records the unit's InvocationID and checks its transient identity.
+A successful activation marker is not proof of pairing, native folder visibility,
+Send, editable ink quality, document isolation or cable-free behavior.
+
+Document boundary
+No script opens a document, reads a private library, takes a screenshot or
+changes cloud/account data. Pair through native UI only after activation and
+new approval for the synthetic experiment. Approve the exact pending pairing
+ID on desktop management HTTPS. Never transfer a management credential to the
+tablet. The runtime config has no initial content token and allows only the
+actual pending synthetic PDF hashes. Subsequent pairing/state writes are runtime
+side effects within the new experiment, not stage actions.
+
+Restoration boundary
+Save and close all documents again. Obtain separate restoration approval and
+approval for exactly ONE restoration Xochitl restart.
+Future device-side invocation:
+
+sh -s -- APPROVE_RESTORE_0054 APPROVE_ONE_RESTORATION_RESTART_0054 DOCUMENTS_SAVED_CLOSED < device-restore.sh
+
+Restore requires the successful activation marker. It verifies the new active
+client/QMD/adapter, original backups and quarantined module hashes. It verifies
+unchanged VERSION, service configuration and retained QMD/extension layout.
+It stops only the new unit after Transient=yes, Description and the recorded
+nonempty InvocationID all match. It never searches for old processes.
+It atomically restores the original client through an unused adjacent file.
+The exact original webserver-remote.so is restored from its pinned backup.
+It removes only the hash-matching new active QMD and adapter. It performs the
+one approved restoration restart and verifies original hashes and layout.
+It retains private config, CA, association state, staged payload, ownership and
+phase markers, backups, quarantine copy and unit identity record. A transient
+systemd unit can disappear naturally when stopped; no legacy unit cleanup or
+persistent unit edit occurs. Restore does not claim runtime listener attribution
+or full hardware restoration proof.
+
+Failure and cleanup boundary
+Every command failure, mismatch or collision stops the phase immediately.
+No phase automatically retries, rolls back, removes partial state or performs
+another restart. A runtime start failure or collected/mismatched unit can leave
+partial activation. Restore refuses incomplete activation or unknown unit
+identity; a new bounded recovery proposal is required. Do not run restore with
+forged markers or modify ownership records to make it pass.
+No script invokes xovi/start, xovi/stock, deletes qmlcache, removes existing
+QMDs, kills a process, modifies a persistent service or retries cleanup0038.
+A later exact cleanup approval must address retained private state separately.
+
+Remaining prerequisites
+- Parent's actual pending PDF, private config/CA paths and matching hashes.
+- Parent's scoped host validation and exact offline native-resource integration.
+- Fresh exact stage, activate, restart and restore approvals, issued separately.
+- Owner's ordinary USB web-interface setting and saved/closed confirmations.
+- Free UI port9821; after the approved restart, no80 and only loopback81.
+- Actual tablet pairing, folders, Send, pen quality, cable-free routing and
+  lifecycle/restoration proof remain unproved. No ticket completion is claimed.

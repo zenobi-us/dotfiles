@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-11-05T20:44:32.555Z",
+  "script_sha256": "b914d0f4de226461bf1ed3f38a0d7da5e73fd901d010e303eaa118454b84387b",
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s"
+  ],
+  "one_shot": true,
+  "retry_authorized": false,
+  "deadline_ms": 25000
+}

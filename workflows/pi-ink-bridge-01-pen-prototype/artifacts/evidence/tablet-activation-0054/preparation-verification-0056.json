@@ -1,0 +1,89 @@
+{
+  "schema": "pi-ink-activation-preparation-verification/v1",
+  "status": "HOST_PREPARATION_COMPLETE_DEVICE_PHASES_NOT_AUTHORIZED",
+  "bindings": "phase-bindings-0056.json",
+  "hostInputs": "host-inputs-0055.json",
+  "manualSafetyReview": {
+    "complete": true,
+    "scope": "Reviewed the host generator, exact stage/activate/restore templates, manifest and procedure. This is not an independent formal whole-ticket review.",
+    "corrections": [
+      "Use adjacent files and atomic rename for installed-client replacement/restoration.",
+      "Allow retained stock loopback81/original proxy80 before the one approved restart; require private81 and no80 afterward.",
+      "Refuse occupied UI9821 before any staging writes, without resolving owners.",
+      "Keep ordinary owned-unit journal diagnostics; do not suppress startup errors."
+    ]
+  },
+  "hostPreparation": {
+    "command": "installer-prepare.py with actual pending source/config/CA hashes",
+    "exit_code": 0,
+    "generatedScripts": "All3 sh -n checks passed; no script executed"
+  },
+  "nativeIntegration": {
+    "driver": "host-qmd-driver-0054.c",
+    "compiler": "gcc linked retained host-only libqmldiff.a",
+    "loadedQMDs": 13,
+    "preservedQMDs": 12,
+    "patchedResources": [
+      "DocumentView.qml",
+      "MainView.qml",
+      "Toolbar.qml",
+      "Navigator.qml",
+      "Sidebar.qml"
+    ],
+    "inputResourceHashes": [
+      {
+        "name": "DocumentView.qml",
+        "sha256": "867b30a725a4ae97e3459f07a60cd72bcafb21db9a0b374f02d75c5cd8d83269"
+      },
+      {
+        "name": "MainView.qml",
+        "sha256": "2bc2866c59245e74af769e277e3aae801ad76bc7f816f24ccf1fc7ac4f5e3cfc"
+      },
+      {
+        "name": "Toolbar.qml",
+        "sha256": "f0f552fa18a27733b59fafddc1a1cd10e35328136eb56cbb695c8799e91483f6"
+      },
+      {
+        "name": "Navigator.qml",
+        "sha256": "28c1f04f5c70bdd864019950367d08191d3e7eb8cd536e3b9e8a58e7bc9da164"
+      },
+      {
+        "name": "Sidebar.qml",
+        "sha256": "5cfd661e6c68c343513d9ca034042ee3f5cdc3ab0df77ea0396838c77135adc0"
+      }
+    ],
+    "inputChecks": "Candidate component/QMD, all12 retained QMDs and hashtab matched recorded hashes before copying.",
+    "qtCommand": [
+      "podman",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "-v",
+      "/tmp/pi-ink-qmd-0054-5O2aZY/qt-parse:/parse:Z",
+      "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+      "bash",
+      "-c",
+      "source /opt/codex/*/*/environment-setup-* && qmlformat --inplace /parse/*.qml"
+    ],
+    "qtExitCode": 0,
+    "qtStderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\n",
+    "limit": "Syntax/patch integration only. Private native types, geometry, input and hardware behavior were not instantiated."
+  },
+  "device": {
+    "lastOperation": "Separately approved read-only preflight0053 passed",
+    "stage": false,
+    "activation": false,
+    "restarts": 0,
+    "documentOperations": false,
+    "cleanupRetry": false
+  },
+  "nextApproval": {
+    "phase": "stage only",
+    "scriptSha256": "a106840a2270daf196ba12be070c49c3a956252c3cb58a1b03899b2503fbc4d2",
+    "writes": "New /home/root/pi-ink-bridge-0049 directory only: payload, publicCA, runtime config, pinned backups, VERSION metadata and private Xochitl service snapshot. No active paths/services/settings changed.",
+    "activationAuthorized": false
+  },
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}
