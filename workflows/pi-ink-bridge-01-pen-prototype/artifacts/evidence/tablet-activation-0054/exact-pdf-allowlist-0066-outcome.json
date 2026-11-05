@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-11-05T23:37:42.942Z",
+  "exit_code": 0,
+  "stdout": "EXACT_PDF_ALLOWLIST_UPDATED_PAIRING_STATE_UNCHANGED\n",
+  "stderr": "",
+  "update_complete": true,
+  "new_config_sha256": "4dfb2c84fcf737cd1e47bc91553701d8800e8f1f68e8c49e8ce5ff5d305bf0a5",
+  "paired_state_preserved_by_checksum": true,
+  "owned_bridge_restart_commands": 1,
+  "xochitl_restart_commands": 0,
+  "documents": false,
+  "trust_change": false,
+  "automatic_retry": false,
+  "cleanup": false
+}

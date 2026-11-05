@@ -1,0 +1,11 @@
+{
+  "created_at": "2026-11-05T23:37:39.615Z",
+  "response": "Approve exact-source refresh",
+  "script_sha256": "585eeddff51089aba5737de59bec26f9fc9a94795d56737e79e1ddccf8f43fb4",
+  "pdf_sha256": "ae3437fbb593c32d65a109a873176d6c6a0bcd592039529d3510f7c7f61c9e80",
+  "owned_bridge_restarts": 1,
+  "xochitl_restarts": 0,
+  "documents": false,
+  "trust_change": false,
+  "automatic_retry": false
+}
