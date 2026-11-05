@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-11-05T21:35:52.757Z",
+  "exit_code": 0,
+  "stdout": "PARTIAL_STAGE0058_PRESERVED\nSTAGED_ACTIVE_PATHS_UNCHANGED\n",
+  "stderr": "",
+  "partial0058_preserved": true,
+  "stage_complete": true,
+  "active_replacement": false,
+  "service_start": false,
+  "restarts": 0,
+  "document_operations": false,
+  "deletion": false,
+  "cleanup0038": false,
+  "automatic_retry": false
+}

@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-11-05T21:41:02.841Z",
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s -- APPROVE_ACTIVATE_0054 APPROVE_ONE_ACTIVATION_RESTART_0054 DOCUMENTS_SAVED_CLOSED OFFLINE_ALL_11_QMDS_AND_NATIVE_RESOURCES_VERIFIED OWNER_USB_WEB_INTERFACE_ENABLED"
+  ],
+  "script_sha256": "285ca1252978b7a3fdb5c9c65145d03e784ccc09b818fb774c7c76b1bdc2328f",
+  "one_shot": true,
+  "deadline_ms": 120000
+}

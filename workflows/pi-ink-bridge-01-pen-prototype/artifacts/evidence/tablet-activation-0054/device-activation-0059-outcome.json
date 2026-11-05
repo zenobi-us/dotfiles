@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-11-05T21:41:16.048Z",
+  "exit_code": 0,
+  "stdout": "ACTIVATED_HARDWARE_ACCEPTANCE_UNPROVED\n",
+  "stderr": "Running as unit: pi-ink-0054.service; invocation ID: 343b3895861e4d138740268b7c193a60\n",
+  "activation_complete": true,
+  "requested_xochitl_restart_commands": 1,
+  "native_ui_observed": false,
+  "hardware_acceptance": false,
+  "document_operations": false,
+  "automatic_retry": false,
+  "automatic_rollback": false,
+  "cleanup": false,
+  "limit": "One script execution only. Restart command count is from the script; existing service automatic behavior and live UI are not inferred from it."
+}

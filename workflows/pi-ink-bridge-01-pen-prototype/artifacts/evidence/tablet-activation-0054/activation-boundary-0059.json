@@ -1,0 +1,44 @@
+{
+  "schema": "pi-ink-activation-boundary/v1",
+  "status": "ACTIVATED_NATIVE_UI_AND_HARDWARE_ACCEPTANCE_PENDING",
+  "stageOutcome": "device-stage-0059-outcome.json",
+  "activationOutcome": "device-activation-0059-outcome.json",
+  "proved": [
+    "Partial0058 preserved at explicit approved destination.",
+    "New staged files verified by SHA256.",
+    "Original active client replaced atomically with exact candidate; pinned module quarantined and exact QMD/adapter installed.",
+    "One requested Xochitl restart completed with is-active success.",
+    "Activation guards required port80 absent and port81 only IPv4 loopback.",
+    "Owned transient pi-ink-0054.service started, InvocationID recorded and active state checked."
+  ],
+  "hostFirewall": {
+    "observedActiveZone": "FedoraWorkstation",
+    "observedInterfaces": [
+      "enp7s0",
+      "enp2s0f0u4c2"
+    ],
+    "observedPorts": "1025-65535/tcp 1025-65535/udp",
+    "desktopPort47842WithinConfiguredTCPRange": true,
+    "firewallChanges": false,
+    "limit": "Read-only configured policy; not proof of tablet LAN connectivity."
+  },
+  "remaining": [
+    "Owner observes native Library sidebar Pi Ink entry and manager opening.",
+    "Native pairing with exact desktop approval ID.",
+    "Stock folder creation/association and actual import UUID provenance.",
+    "Cable-free stock editing and exact-request Send delivery.",
+    "Owner pen/palm/erase/undo/zoom/latency/orientation/edge observations.",
+    "Cancellation/isolation/clipping and retained editable-document observations.",
+    "Separately approved saved-and-closed restoration."
+  ],
+  "ownerNextStep": {
+    "action": "Open tablet Library sidebar and tap Pi Ink; report whether manager opens and its status/error. Do not Pair/Create/Import yet.",
+    "source": "Pinned pi-ink-bridge.qmd Sidebar insertion; actual native surface not observed."
+  },
+  "documentsAuthorized": false,
+  "furtherDeviceConnectionsAuthorized": false,
+  "extraRestartsAuthorized": false,
+  "cleanup0038Authorized": false,
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}

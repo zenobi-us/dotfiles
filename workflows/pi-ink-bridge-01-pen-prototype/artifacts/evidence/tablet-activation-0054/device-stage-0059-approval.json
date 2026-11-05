@@ -1,0 +1,11 @@
+{
+  "created_at": "2026-11-05T21:34:27.660Z",
+  "user_response": "Approve preservation and staging",
+  "script_sha256": "96130101ecd6f980c481796e86827b35c0d74c2b10c21f38134436c4ce8e30ed",
+  "source_commit": "ab21fd52",
+  "preservePartial0058": true,
+  "deletion": false,
+  "activation": false,
+  "restarts": 0,
+  "automatic_retry": false
+}

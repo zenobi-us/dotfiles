@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-11-05T21:41:02.841Z",
+  "user_response": "Confirm conditions; activate once",
+  "documents_saved_closed_now": true,
+  "ordinary_usb_web_interface_enabled": true,
+  "script_sha256": "285ca1252978b7a3fdb5c9c65145d03e784ccc09b818fb774c7c76b1bdc2328f",
+  "requested_xochitl_restarts_authorized": 1,
+  "document_operations_authorized": false,
+  "automatic_retry": false,
+  "automatic_rollback": false,
+  "cleanup": false
+}
