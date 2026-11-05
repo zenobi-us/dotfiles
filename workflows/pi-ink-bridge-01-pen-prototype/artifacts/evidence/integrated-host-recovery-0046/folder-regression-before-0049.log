@@ -1,0 +1,5 @@
+--- FAIL: TestObservedParentDoesNotAssignFolderOwnership (0.00s)
+    folders_test.go:18: observed document parent or stock root became folder ownership
+FAIL
+FAIL	image-annotator-tablet	0.004s
+FAIL

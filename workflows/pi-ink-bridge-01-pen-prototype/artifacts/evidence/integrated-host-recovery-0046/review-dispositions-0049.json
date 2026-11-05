@@ -1,0 +1,30 @@
+{
+  "standards": {
+    "finding": "Unsigned HTTP self-update permits unauthenticated executable replacement.",
+    "disposition": "Known development-only trust limitation deliberately retained under the explicit instruction to reuse current bootstrap/updater contract and retain unsigned-development warnings. No publisher-trust claim is made.",
+    "change": "Added explicit runtime stderr warning to the update command. Documentation and activation proposal require out-of-band payload approval.",
+    "unresolvedProductionRisk": true
+  },
+  "spec": {
+    "finding": "Observed parent UUIDs were shown as folder associations.",
+    "disposition": "Corrected. view() now lists only explicit disk.Folders entries. The UI labels document parent as Parent observed at import.",
+    "regression": "folders_test.go fails against preserved pre-fix source and passes in final Go race suite."
+  },
+  "verificationIncidents": [
+    {
+      "ref": "pixel-verification-0049.log",
+      "cause": "Initial checker used outer page corners rather than the retained experiment marker regions. Outer-corner assertion failed; not hidden.",
+      "resolution": "Correct marker regions (40..80,720..760 by 40..80,920..960) pass exactly; final pixel-verification-0049-r3.json."
+    },
+    {
+      "ref": "host-smoke-process-0049-r2.log",
+      "cause": "Driver invoked importSource before the preceding QML folder callback released actionBusy. No import binding was created.",
+      "resolution": "Final r3 driver waits for actual QML action completion before the next UI action. It passes against the same final source."
+    }
+  ],
+  "reviewStatus": "Internal independent WIP reviews only. No formal workflow SUCCESS or hardware acceptance.",
+  "panesClosed": [
+    "w6W:p3",
+    "w6W:p2"
+  ]
+}

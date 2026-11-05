@@ -1,0 +1,19 @@
+{
+  "command": [
+    "podman",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "-v",
+    "/tmp/pi-ink-0049-qml-final-yp0p15or:/parse:Z",
+    "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+    "bash",
+    "-c",
+    "source /opt/codex/*/*/environment-setup-* && qmlformat --inplace /parse/PiInkToolbar.qml"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\n",
+  "limit": "Qt AST only; no private native types or physical geometry."
+}

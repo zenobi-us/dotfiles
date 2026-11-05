@@ -1,0 +1,11 @@
+30 | extension({ zod: { object() { }, enum() { }, string: () => ({ optional() { } }) }, registerTool(value) { tool = value; }, registerCommand() { }, on() { }, sendUserMessage() { } });
+31 | const check = (condition: unknown, message: string) => { if (!condition) throw new Error(message); };
+32 | async function waitFor<T>(read: () => Promise<T>, matches: (value: T) => boolean, message: string): Promise<T> {
+33 |  const until = Date.now() + 25_000;
+34 |  while (Date.now() < until) { const value = await read(); if (matches(value)) return value; await Bun.sleep(100); }
+35 |  throw new Error(message);
+                ^
+error: Controlled import and UUID binding failed
+      at waitFor (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-smoke-0049-r2.ts:35:12)
+
+Bun v1.4.3 (Linux x64)

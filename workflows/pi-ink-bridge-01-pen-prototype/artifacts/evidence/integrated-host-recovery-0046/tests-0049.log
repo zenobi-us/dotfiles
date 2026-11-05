@@ -1,0 +1,39 @@
+bun test v1.4.3 (c6da4a4d3)
+
+test/editing-session.test.ts:
+(pass) editing remains available after a day until done [11.20ms]
+(pass) editing remains available after a day until cancel [2.17ms]
+(pass) editing remains available after a day until abort [1.60ms]
+(pass) editing remains available after a day until session-switch [1.61ms]
+
+test/annotator-server.test.ts:
+(pass) annotation server protects source data and returns exported PNG bytes [2.41ms]
+(pass) cancel ends the session without returning an image [1.58ms]
+(pass) a new drawing has no source image and returns its exported PNG [1.73ms]
+(pass) annotation server serves the built Excalidraw app and bundle [2.59ms]
+
+test/tablet-pairing.test.ts:
+(pass) setup trust requires matching local approval before credentials authorize jobs [47.19ms]
+
+test/pdf-submission.test.ts:
+(pass) all outer ink colors and subpixel alpha require explicit result consent [1770.91ms]
+(pass) expanded whitespace sends without clipping consent and preserves source mapping [450.20ms]
+(pass) wrong source position fails closed instead of stretching or guessing [312.03ms]
+(pass) replacement, altered digest, and another request cannot reuse consent [493.89ms]
+(pass) cancel and terminal close reject stale and late submissions [329.91ms]
+
+test/tablet-gateway.test.ts:
+(pass) TLS trust, credential and immutable UUID binding protect a real request [182.32ms]
+(pass) switch invalidation, foreign request and cancellation cannot consume clipping consent [525.44ms]
+
+test/tablet-install.test.ts:
+(pass) refuses an occupied installation without changing its existing data [3.26ms]
+
+test/coordinator-identity.test.ts:
+(pass) retains the coordinator identity across subsequent starts [0.49ms]
+(pass) refuses damaged identity state without replacing it [0.26ms]
+
+ 19 pass
+ 0 fail
+ 142 expect() calls
+Ran 19 tests across 7 files. [4.54s]

@@ -1,0 +1,19 @@
+{
+  "axis": "standards",
+  "findings": [
+    {
+      "severity": "high",
+      "file": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update.go",
+      "lines": "55-68",
+      "title": "Authenticate update bytes before replacing the trusted executable",
+      "evidence": "main.go:113-129 passes the HTTP discovery endpoint to updateClient. discovery.go:139-151 constructs HTTP URLs from untrusted DNS-SD addresses; coordinator IDs are public preferences, not authentication keys (coordinator-discovery.ts:69). main.go:155-177 downloads both the archive and its checksum from that same unauthenticated endpoint. update.go:147-170 checks only ELF structure and architecture before replacement. A LAN attacker can impersonate the selected public coordinator ID or alter HTTP responses and supply a matching checksum plus an attacker-controlled ARM64 ELF. The next client launch executes those bytes with the installed client's privileges. HTTPS/WSS pairing does not protect this separate update path.",
+      "required_fix": "Require authenticated update provenance before replacement. Reuse setup-provisioned TLS trust for update delivery, or verify a bundle signature against a key provisioned through trusted setup. Keep DNS-SD as address discovery only. Refuse update when no trusted identity is configured; a checksum fetched alongside the archive is insufficient. Add rejection coverage for a forged coordinator serving an otherwise valid executable and matching checksum."
+    }
+  ],
+  "limits": [
+    "Read-only source review against bb5df500f4a06c61ebde6073470ef5ed51f4b006, including untracked unified tablet-client sources. No source edits, builds, lint, tests, formatters, tablet access, SSH, credentials, process operations, or helper execution.",
+    "Inspected provided host-smoke-0049.json as prior evidence, not independent execution. Hardware acceptance remains pending and is not a host-code finding.",
+    "Canonical domain guidance and ticket were read with mq. Worktree domain files were absent. Parent owns concurrent README and activation-proposal updates; those documents were not assessed for completeness.",
+    "No formal workflow verdict or state change. No additional evidence-backed findings on pairing persistence, request isolation, or the single-executable cutover."
+  ]
+}

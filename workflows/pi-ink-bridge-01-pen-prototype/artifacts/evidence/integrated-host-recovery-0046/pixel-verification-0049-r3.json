@@ -1,0 +1,10 @@
+{
+  "dimensions": [
+    800,
+    1000
+  ],
+  "changedPixels": 35923,
+  "changedRedDominantPixels": 28240,
+  "four40x40CornerMarkerRegionsExact": true,
+  "limit": "Retained marked PDF replay on host. No new tablet marks or orientation/latency proof. Outer page corners are not the marker regions."
+}

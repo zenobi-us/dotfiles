@@ -1,0 +1,10 @@
+Installed 1 package in 16ms
+/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/verify-pixels-0049.py:13: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  changed = sum(a != b for a, b in zip(source.getdata(), result.getdata()))
+/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/verify-pixels-0049.py:14: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  red_marks = sum(a != b and b[0] > 120 and b[0] > b[1] + 50 and b[0] > b[2] + 50 for a, b in zip(source.getdata(), result.getdata()))
+Traceback (most recent call last):
+  File "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/verify-pixels-0049.py", line 17, in <module>
+    assert all(ImageChops.difference(source.crop(box), result.crop(box)).getbbox() is None for box in corners)
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

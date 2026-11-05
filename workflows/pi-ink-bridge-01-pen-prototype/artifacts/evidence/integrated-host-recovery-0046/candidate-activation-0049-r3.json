@@ -1,0 +1,86 @@
+{
+  "schema": "pi-ink-candidate-activation/v1",
+  "status": "PROPOSED_NOT_AUTHORIZED_NOT_EXECUTED",
+  "ticket": "pi-ink-bridge-01-pen-prototype",
+  "parent_receipt": "start-0048",
+  "version": "0.3.0",
+  "payload": {
+    "path": "candidate-payload-0049-r3.tar.gz",
+    "sha256": "f3a7d6f0c54aa9f27fe46817d482d195e060d6e0c07cb15bf3c8eda0d66c760e",
+    "bytes": 3093511
+  },
+  "files": {
+    "bundle.tar.gz": {
+      "sha256": "c07bf86223c8ec1603c7836c1c337fb0196ed7bc4bd0170f1a519662e2339417",
+      "bytes": 2952940
+    },
+    "tablet-qml/PiInkToolbar.qml": {
+      "sha256": "06dc20ba82486d35184977ee58a9a335909bfca0877a49970753a000365db900",
+      "bytes": 22764
+    },
+    "tablet-qml/pi-ink-bridge.qmd": {
+      "sha256": "c88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe",
+      "bytes": 8298
+    },
+    "tablet-adapter/pi-ink-loopback.so": {
+      "sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+      "bytes": 504280
+    }
+  },
+  "installedClient": {
+    "path": "/home/root/pi-ink-client/pi-ink-client",
+    "sha256": "713ea330666e51fd09c4bb30010277646932c1552cdb42ce63c143dac5292087",
+    "bytes": 7405752,
+    "entry": "serve --config /home/root/pi-ink-bridge-0049/runtime.json",
+    "singleExecutable": true,
+    "bootstrapCommands": [
+      "discover",
+      "select",
+      "status",
+      "download-bundle",
+      "update",
+      "version"
+    ]
+  },
+  "firmware": "3.28.0.172",
+  "stockBinarySHA256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+  "hashtabSHA256": "9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615",
+  "proposedPaths": {
+    "component": "/home/root/pi-ink-bridge-0049/tablet-qml/PiInkToolbar.qml",
+    "qmlPatch": "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd"
+  },
+  "setupInputsRequired": [
+    "New private desktop TLS certificate/key, stable content server ID, verified HTTPS origin and explicitly selected synthetic device ID. These are not bootstrap discovery IDs.",
+    "Provision that certificate/CA identity, HTTPS origin, server ID and device ID to mode-0600 runtime config; no initial content token.",
+    "Generate independent desktop-only managementToken; never copy it into tablet configuration or public bootstrap assets.",
+    "Approve exact synthetic source PDF SHA256 allowlist and new private absolute association-state path. No old credential/config reading is authorized."
+  ],
+  "approvalBoundary": [
+    "This payload does not authorize any device connection or mutation. Parent must obtain separate scope for cable-connected installation/repair, synthetic document operations, stock/XOVI activation, each saved/closed Xochitl restart, listener checks and rollback.",
+    "Resolve unknown state and the conflicting webserver-remote extension through a new operator-approved procedure. Do not diagnose or retry cleanup0038. Stop on occupied/colliding paths, mismatched hashes or unsupported firmware.",
+    "Preserve existing binary/version as rollback inputs before a separately approved update of the one existing pi-ink-client installation. Do not install a second runtime binary or shim.",
+    "Provision trust through trusted setup, then pair from the native manager and explicitly approve the matching device/approval ID on loopback desktop management HTTPS.",
+    "After USB disconnection, use only pinned HTTPS/WSS for source, status and results. No runtime SSH/USB or public job API.",
+    "Owner must verify root folder creation/visibility, import destination, native current-document/foldout behavior, explicit Send/clipping confirmation/PNG, Save/Close and wrong-document/server/request isolation, pen/palm/undo/erase/zoom/orientation quality, retained editable work and lifecycle limits.",
+    "Rollback must restore only exact recorded owned paths/configurations under explicit scope. No generic cleanup, no blind helper execution, no inferred restoration success."
+  ],
+  "executedDeviceOperations": [],
+  "cleanupState": "STOPPED_POSSIBLE_PARTIAL_REMOVAL_PRESERVE_NO_RETRY",
+  "preserve": [
+    "unknown device state",
+    "partial0026",
+    "all earlier evidence",
+    "existing extensions/QMDs/service/account/cloud/private notebooks"
+  ],
+  "limitations": [
+    "Host smoke uses simulated stock HTTP/native events/browser launch/test-process exit. No tablet app pairing, library visibility, pen quality or cable-free integrated Send is claimed.",
+    "Native createCollection empty root-parent argument still requires device validation. Imports remain at their observed stock destination, not automatically in the created associated folder.",
+    "Self-update remains unsigned-development behavior; adjacent HTTP checksum is not publisher trust. The owner must approve this out-of-band exact payload hash."
+  ],
+  "productionBlocked": true,
+  "supersedes": "candidate-activation-0049.json",
+  "sourceIdentityRef": "source-identity-0049.json",
+  "runtimeEvidence": "host-smoke-0049-r3.json",
+  "checks": "checks-0049-r2.json",
+  "reviewCorrection": "Only explicitly associated folders appear as associated. A document parent is labelled as provenance observed at import."
+}

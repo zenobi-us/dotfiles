@@ -1,0 +1,593 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0049",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-result",
+  "attempt": 14,
+  "parent_receipt": "start-0048",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "ff7cb07414b2c907a1aeec24c1f14888cf1a959a",
+  "source_tree": "d0c1e3fddeef5295a869b9acd64601de78a470d6",
+  "created_at": "2026-11-05T10:00:21.560118+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w64:p2A",
+  "agent": "omp",
+  "session_id": null,
+  "session_identity_note": "Fresh implementation pane w64:p2A comes from the start-0048 dispatch. Current session UUID is not exposed in tool context or session environment; no process scanning or old-session lookup was used to invent one. Parent can retain its independent launch identity in a new reconciliation receipt.",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046"
+  },
+  "status": "completed",
+  "host_implementation_complete": true,
+  "full_ticket_complete": false,
+  "hardware_acceptance": "pending",
+  "production_blocked": true,
+  "integration_complete": false,
+  "implementation_summary": "Host-only integrated prototype completed and committed. Existing bootstrap/discovery/updater and stock-editor runtime now share one pi-ink-client executable with explicit serve. Added native-manager pairing through setup-provisioned TLS trust and local desktop approval; explicit folder ownership; retained native UUID/job binding, current status, Send/clipping/cancellation and originating image_editor PNG delivery. Full tablet acceptance is not claimed.",
+  "changed_files": [
+    "README.md",
+    "bun.lock",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/.gitignore",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/coordinator-discovery.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/coordinator.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/index.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/package.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/scripts/provision-tablet.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/build.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/client_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/discovery.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/discovery_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/folders_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.mod",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.sum",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/install.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/main.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns_records.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns_records_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/operations.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/pairing.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/runtime.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/state.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/switch_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/transport.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-gateway.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/go.mod",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/go.sum",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/coordinator-identity.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-install.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-pairing.test.ts"
+  ],
+  "source_changes": [
+    {
+      "status": "M",
+      "paths": [
+        "README.md"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "bun.lock"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/.gitignore"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/coordinator-discovery.ts"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/coordinator.ts"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/index.ts"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/package.json"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/scripts/provision-tablet.sh"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/build.sh"
+      ]
+    },
+    {
+      "status": "R100",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/client_test.go",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/client_test.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/discovery.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/discovery_test.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/folders_test.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.mod"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.sum"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/install.sh"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/main.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns_records.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns_records_test.go"
+      ]
+    },
+    {
+      "status": "R098",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/operations.go",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/operations.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/pairing.go"
+      ]
+    },
+    {
+      "status": "R076",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/main.go",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/runtime.go"
+      ]
+    },
+    {
+      "status": "R090",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/state.go",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/state.go"
+      ]
+    },
+    {
+      "status": "R098",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/stock.go",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock.go"
+      ]
+    },
+    {
+      "status": "R100",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/switch_test.go",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/switch_test.go"
+      ]
+    },
+    {
+      "status": "R089",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/transport.go",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/transport.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update_test.go"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-gateway.ts"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd"
+      ]
+    },
+    {
+      "status": "D",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/go.mod"
+      ]
+    },
+    {
+      "status": "D",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/go.sum"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/test/coordinator-identity.test.ts"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-install.test.ts"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-pairing.test.ts"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "name": "build",
+      "command": [
+        "bun",
+        "run",
+        "build"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "log": "build-0049-r2.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "bunx",
+        "tsc",
+        "--noEmit"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "log": "typecheck-0049-r2.log"
+    },
+    {
+      "name": "tests",
+      "command": [
+        "bun",
+        "test",
+        "test"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "log": "tests-0049-r2.log"
+    },
+    {
+      "name": "go-race",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "./..."
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client",
+      "exit_code": 0,
+      "log": "go-race-0049-r2.log"
+    },
+    {
+      "name": "go-vet",
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client",
+      "exit_code": 0,
+      "log": "go-vet-0049-r2.log"
+    },
+    {
+      "name": "real integrated runtime",
+      "command": [
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-smoke-0049-r3.ts"
+      ],
+      "exit_code": 0,
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-smoke-0049-r3.json",
+      "result": "Actual registered image_editor, compiled Go client, certificate-verified HTTPS/WSS and PDF worker passed; 800x1000 marked PNG plus full PDF. Save/Close, document switches, wrong-server/request refusal, clipping consent and terminal cancellation passed. Stock HTTP, native Library events, browser launch and process exit were simulated."
+    },
+    {
+      "name": "marked pixels and retained corners",
+      "command": [
+        "uv",
+        "run",
+        "--offline",
+        "--no-project",
+        "--script",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/verify-pixels-0049.py",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source.png",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-delivered-0049-r3.png"
+      ],
+      "exit_code": 0,
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/pixel-verification-0049-r3.json",
+      "result": "35923 changed pixels; 28240 changed red-dominant pixels; exact four 40x40 marker regions."
+    },
+    {
+      "name": "native QML syntax",
+      "exit_code": 0,
+      "output": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/qml-parse-0049-r3.json",
+      "result": "Qt AST passes; private native types, actual geometry and input not instantiated."
+    },
+    {
+      "name": "folder ownership regression",
+      "before": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/folder-regression-before-0049.log",
+      "after": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/go-race-0049-r2.log",
+      "result": "Fails against preserved pre-fix source; passes in final Go race suite."
+    }
+  ],
+  "review": {
+    "formal_verdict": null,
+    "internal_axes": {
+      "standards": "One known unauthenticated development-update risk retained under the explicit bootstrap/updater contract. Runtime warning, documentation and out-of-band activation hash make the limit explicit. This is not authenticated publisher provenance.",
+      "spec": "One inferred-folder-ownership defect corrected and covered by failing-before/passing-after regression."
+    },
+    "reports": [
+      "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/standards-review-0049.json",
+      "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/spec-review-0049.json",
+      "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/review-dispositions-0049.json"
+    ],
+    "review_panes_closed": [
+      "w6W:p3",
+      "w6W:p2"
+    ]
+  },
+  "open_questions": [
+    "Real Paper Pro app pairing, native createCollection root-parent semantics and folder/document visibility need separate device acceptance.",
+    "Owner must verify current-document switching/foldout, USB-disconnected integrated Send and wrong-document/server/request/cancellation behavior on firmware 3.28.0.172.",
+    "Owner pen latency, palm, erasing, undo, zoom, orientation, editable storage and lifecycle verdict remain pending.",
+    "Imports stay at their observed stock destination; explicit created folder ownership does not imply automatic relocation. Parent UUID is labelled as observed at import.",
+    "HTTP development updater remains unauthenticated. A matching adjacent SHA256 file is not publisher trust.",
+    "Cleanup0038 remains STOPPED_POSSIBLE_PARTIAL_REMOVAL_PRESERVE_NO_RETRY; unknown device state and partial0026 remain preserved."
+  ],
+  "recovery": {
+    "mode": "takeover",
+    "approval": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/approval.json",
+    "consumed_parent": "start-0048",
+    "reason": "Fresh authorized host-only source integration; prior failed launch is not implementation success. All earlier source/evidence/receipts preserved."
+  },
+  "candidate": {
+    "activation": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/candidate-activation-0049-r3.json",
+    "payload": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/candidate-payload-0049-r3.tar.gz",
+    "sha256": "f3a7d6f0c54aa9f27fe46817d482d195e060d6e0c07cb15bf3c8eda0d66c760e",
+    "installed_client_sha256": "713ea330666e51fd09c4bb30010277646932c1552cdb42ce63c143dac5292087",
+    "status": "PROPOSED_NOT_AUTHORIZED_NOT_EXECUTED"
+  },
+  "device_commands_run": false,
+  "device_access": false,
+  "old_helpers_run": false,
+  "process_scanners_run": false,
+  "process_kills_run": false,
+  "device_cleanup_retried": false,
+  "cleanup_state": "STOPPED_POSSIBLE_PARTIAL_REMOVAL_PRESERVE_NO_RETRY",
+  "merged": false,
+  "pushed": false,
+  "ticket_completed": false,
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0048.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0023.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0017.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/approval.json"
+    },
+    {
+      "kind": "source",
+      "ref": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json",
+      "source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006"
+    },
+    {
+      "kind": "source-provenance",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/source-identity-0049.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0049.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0049.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/source-identity-0049.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/validation-commands-0049.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/checks-0049-r2.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-smoke-0049-r3.ts"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-smoke-0049-r3.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-smoke-process-0049-r3.log"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-boundary-0049.go"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-client-build-0049-r2.log"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-delivered-0049-r3.png"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-retained-0049-r3.pdf"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/pixel-verification-0049-r3.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/qml-parse-0049-r3.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/candidate-activation-0049-r3.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/candidate-payload-0049-r3.tar.gz"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/standards-review-0049.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/spec-review-0049.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/review-dispositions-0049.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/folder-regression-before-0049.log"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/projections/latest-status.yaml"
+    }
+  ]
+}

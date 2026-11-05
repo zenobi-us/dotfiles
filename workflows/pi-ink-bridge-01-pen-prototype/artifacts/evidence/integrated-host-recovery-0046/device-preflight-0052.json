@@ -1,0 +1,57 @@
+{
+  "schema": "pi-ink-device-preflight-proposal/v1",
+  "status": "PROPOSED_NOT_AUTHORIZED_NOT_EXECUTED",
+  "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "source_commit": "19730eb0700cf48ea8f54e5d4b0e189d3c8349db",
+  "candidate_ref": "candidate-activation-0049-r3.json",
+  "candidate_sha256": "f3a7d6f0c54aa9f27fe46817d482d195e060d6e0c07cb15bf3c8eda0d66c760e",
+  "target": "root@10.11.99.1",
+  "transport": "Cable-connected SSH for installation/repair preflight only. No normal-use transport over SSH.",
+  "reason": "The host-only integration passed. Unknown device state and an existing webserver-remote extension prevent a safe unconditional installation approval. First establish only the bounded compatibility and target-occupancy facts needed for a separate installation/activation/rollback proposal.",
+  "allowed_reads": {
+    "platform": [
+      "Device model and firmware release metadata only",
+      "Existing SSH host-key verification; never accept a changed host key automatically"
+    ],
+    "sha256_files": [
+      "/usr/bin/xochitl",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/hashtab",
+      "/home/root/pi-ink-client/pi-ink-client",
+      "/home/root/xovi/extensions.d/webserver-remote.so"
+    ],
+    "metadata_only_paths": [
+      "/home/root/pi-ink-client",
+      "/home/root/pi-ink-client/pi-ink-client",
+      "/home/root/pi-ink-bridge-0049",
+      "/home/root/pi-ink-bridge-0049/runtime.json",
+      "/home/root/pi-ink-bridge-0049/tablet-qml/PiInkToolbar.qml",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd",
+      "/home/root/xovi/extensions.d/pi-ink-loopback.so",
+      "/home/root/xovi/extensions.d/webserver-remote.so"
+    ],
+    "metadata_definition": "Report existence, symlink status, file type, mode, numeric owner/group and byte size only. Do not follow symlinks or read runtime/configuration contents. Hash only an explicitly listed regular, non-symlink binary/hashtab file after metadata checks. If a file is absent, record absence; do not create it."
+  },
+  "stop_conditions": [
+    "SSH host-key mismatch or unverified host identity",
+    "Unexpected firmware, stock binary hash, hashtab hash, symlink or file type",
+    "Occupied proposed-owned path; record collision and stop rather than repair",
+    "Any failure or need for broader investigation; preserve state and report without retry"
+  ],
+  "excluded": [
+    "Installation, uploads, helpers, remote temporary files, configuration writes, permission changes or client replacement",
+    "Xochitl/service restarts, reboots, activation changes, qmlcache changes or firmware updates",
+    "Document/library listing, opening, importing, exporting, moving, deletion or private notebook access",
+    "Credential/config contents, account/cloud settings, screenshots or capture helpers",
+    "Process scanners, process detection, process termination or cleanup0038 retries",
+    "Removal, renaming, disabling or alteration of existing webserver-remote or any other extension"
+  ],
+  "separate_next_approval": "After successful read-only preflight and source audit, propose exact owned paths, payload and setup trust identities, synthetic document scope, activation changes, saved/closed restart count and reversible restoration. This preflight approval does not authorize that next step.",
+  "device_execution": false,
+  "cleanup_state": "STOPPED_POSSIBLE_PARTIAL_REMOVAL_PRESERVE_NO_RETRY",
+  "full_ticket_complete": false,
+  "production_blocked": true,
+  "source_tree": "a5ce7c9bb7a7367dccfd0cf30a37013db73f5d07",
+  "supersedes": "device-preflight-0051.json",
+  "host_correction_ref": "pairing-recovery-0052.json",
+  "candidate_payload_unchanged": true
+}

@@ -375,3 +375,16 @@ See [implementation-0023 result](../../workflows/pi-ink-bridge-01-pen-prototype/
 - Timestamp: `2026-11-05T05:12:34.491Z`.
 - Artifact: [Tablet client update review 0045](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/reviews/review-tablet-update-0045.md).
 
+
+
+### Host integration proof — 2026-11-05
+
+Source `ff7cb07414b2c907a1aeec24c1f14888cf1a959a` completed the real extension/compiled-Go/certificate-verified HTTPS-WSS/PDF-worker host round trip. It returned a marked 800 × 1000 PNG to the originating `image_editor` call. Stock HTTP, native Library events and browser launch were simulated. This is not tablet acceptance.
+
+Source `19730eb0700cf48ea8f54e5d4b0e189d3c8349db` then added authenticated desktop rejection of an unwanted pending pairing request. The regression failed before the change and passed afterward. Typecheck, 19 Bun tests with 151 assertions, and a standalone real-HTTPS recovery smoke passed. The original annotation stayed pending and the rejected credential never gained job access.
+
+- **Runtime evidence:** [Integrated host proof](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-smoke-0049-r3.json) and [pairing recovery](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/pairing-recovery-0052.json).
+- **Source audit:** [Fresh Standards and Spec advisory audits](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/pre-deployment-audit-0052.json). No new source blocker identified. The inherited unsigned HTTP updater remains a development limitation. No formal whole-ticket verdict is recorded.
+- **Next boundary:** [Read-only device preflight proposal](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/device-preflight-0052.json). It requires separate approval and does not authorize installation, restarts, document operations or cleanup.
+
+The ticket remains claimed. Hardware acceptance and final authorized cleanup remain open. Production stays blocked. No device access, screenshots, process scanning or cleanup retry ran. All earlier evidence and partial0026 remain preserved. No acceptance criterion or dependency changed.

@@ -1,0 +1,20 @@
+{
+  "axis": "spec",
+  "findings": [
+    {
+      "severity": "P2",
+      "file": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/runtime.go",
+      "lines": "153-159",
+      "title": "Do not infer folder associations from imported document parents",
+      "evidence": "view() first lists explicitly associated disk.Folders, then adds every Binding.FolderUUID as another associated folder. beginImport() records the observed stock destination, including an empty root parent, without requiring an explicit folder association (operations.go:276-296). PiInkToolbar.qml:451-466 renders both kinds under 'Associated stock folders'. Therefore importing a document into an unassociated destination silently presents that destination as associated with its server. Imports from two servers into the stock root produce two apparent root-folder associations. Moving a document with normal stock controls also leaves this inferred folder entry unchanged. The recorded host smoke simulates the imported parent as the already-created associated folder (host-smoke-0049.ts:117-118), so it does not exercise this distinction.",
+      "requirement": "The ticket requires the tablet app to visually associate local folders with paired servers. It also says: 'Do not assume its destination selection is isolated between jobs'. An observed document parent does not establish a folder-to-server association.",
+      "requiredFix": "Populate the associated-folder list only from explicit disk.Folders entries. Keep observed import-parent provenance separate from folder ownership. If the UI displays a current parent, refresh it through the approved native Library seam for controlled document UUIDs; otherwise label it as the parent observed at import. Preserve immutable document/server/job bindings."
+    }
+  ],
+  "limits": [
+    "Read-only source review against bb5df500f4a06c61ebde6073470ef5ed51f4b006, including untracked extension sources. No source edits, builds, lint, tests, formatters, device access, SSH, process inspection, or workflow-state changes.",
+    "Reviewed the supplied host-smoke evidence. Its compiled Go client, TLS/WSS transport, image_editor result, and PDF worker ran in the parent smoke. Stock HTTP, native Library, and browser launcher were simulated; this review did not execute them.",
+    "Hardware acceptance remains pending. Native runtime behavior, actual folder creation, pen input, loopback activation, and lifecycle checks are not established by this review. No missing-hardware-acceptance finding is recorded.",
+    "README and activation-proposal edits belong to the parent. No separate documentation finding or formal workflow verdict is recorded."
+  ]
+}

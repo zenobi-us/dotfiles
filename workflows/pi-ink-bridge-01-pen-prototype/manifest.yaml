@@ -6,20 +6,28 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "start-complete-0039",
-  "state": "BLOCKED",
-  "hardware_acceptance": "BLOCKED",
-  "interrupted_attempts_preserved": [
-    "start-0019",
-    "start-complete-0021"
-  ],
+  "latest_receipt": "start-complete-0050",
+  "state": "IMPLEMENTED",
+  "scope": "Host integrated prototype implemented and validated; full hardware ticket not complete.",
+  "host_implementation_complete": true,
+  "source_implementation_receipt": "implementation-0049",
+  "source_reconciled_by": "start-complete-0050",
+  "source_commit": "ff7cb07414b2c907a1aeec24c1f14888cf1a959a",
+  "source_tree": "d0c1e3fddeef5295a869b9acd64601de78a470d6",
+  "current_source_commit": "19730eb0700cf48ea8f54e5d4b0e189d3c8349db",
+  "current_source_tree": "a5ce7c9bb7a7367dccfd0cf30a37013db73f5d07",
+  "source_followup_evidence": "artifacts/evidence/integrated-host-recovery-0046/pairing-recovery-0052.json",
+  "advisory_audit": "artifacts/evidence/integrated-host-recovery-0046/pre-deployment-audit-0052.json",
+  "next_approval": "artifacts/evidence/integrated-host-recovery-0046/device-preflight-0052.json",
   "full_ticket_status": "BLOCKED",
   "work_status": "claimed",
-  "slice_status": "failed",
-  "slice_scope": "one approved frozen cleanup attempt; host-check refused OWNED_PROCESS_VISIBILITY; no deletion or device phase recorded",
+  "hardware_acceptance": "BLOCKED",
+  "production_blocked": true,
   "device_execution": false,
-  "source_implementation_receipt": "implementation-0023",
-  "source_reconciled_by": "start-complete-0024",
+  "cleanup_complete": false,
+  "cleanup_state": "STOPPED_POSSIBLE_PARTIAL_REMOVAL_PRESERVE_NO_RETRY",
+  "retry_authorized": false,
+  "device_mutations_authorized": false,
   "partial_attempt_preserved": "start-0025; implementation0026 open, not finalized",
   "previous_projection": {
     "schema": "worktree-workflow/v2",
@@ -29,7 +37,7 @@
     "event_root": "events",
     "artifact_root": "artifacts",
     "projection_root": "projections",
-    "latest_receipt": "start-complete-0034",
+    "latest_receipt": "start-complete-0039",
     "state": "BLOCKED",
     "hardware_acceptance": "BLOCKED",
     "interrupted_attempts_preserved": [
@@ -38,9 +46,9 @@
     ],
     "full_ticket_status": "BLOCKED",
     "work_status": "claimed",
-    "slice_status": "completed",
-    "slice_scope": "one approved frozen-plan device transaction; both config hashes, reader exit0 and helper-only removal proven",
-    "device_execution": true,
+    "slice_status": "failed",
+    "slice_scope": "one approved frozen cleanup attempt; host-check refused OWNED_PROCESS_VISIBILITY; no deletion or device phase recorded",
+    "device_execution": false,
     "source_implementation_receipt": "implementation-0023",
     "source_reconciled_by": "start-complete-0024",
     "partial_attempt_preserved": "start-0025; implementation0026 open, not finalized",
@@ -52,15 +60,40 @@
       "event_root": "events",
       "artifact_root": "artifacts",
       "projection_root": "projections",
-      "latest_receipt": "implementation-0023",
-      "state": "IMPLEMENTED",
+      "latest_receipt": "start-complete-0034",
+      "state": "BLOCKED",
       "hardware_acceptance": "BLOCKED",
       "interrupted_attempts_preserved": [
         "start-0019",
         "start-complete-0021"
-      ]
-    }
+      ],
+      "full_ticket_status": "BLOCKED",
+      "work_status": "claimed",
+      "slice_status": "completed",
+      "slice_scope": "one approved frozen-plan device transaction; both config hashes, reader exit0 and helper-only removal proven",
+      "device_execution": true,
+      "source_implementation_receipt": "implementation-0023",
+      "source_reconciled_by": "start-complete-0024",
+      "partial_attempt_preserved": "start-0025; implementation0026 open, not finalized",
+      "previous_projection": {
+        "schema": "worktree-workflow/v2",
+        "workflow_id": "pi-ink-bridge-01-pen-prototype",
+        "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+        "initiative": "pi-ink-bridge",
+        "event_root": "events",
+        "artifact_root": "artifacts",
+        "projection_root": "projections",
+        "latest_receipt": "implementation-0023",
+        "state": "IMPLEMENTED",
+        "hardware_acceptance": "BLOCKED",
+        "interrupted_attempts_preserved": [
+          "start-0019",
+          "start-complete-0021"
+        ]
+      }
+    },
+    "cleanup_complete": false,
+    "retry_authorized": false
   },
-  "cleanup_complete": false,
-  "retry_authorized": false
+  "history_note": "Previous projections are historical observations only. New host result grants no device authority."
 }

@@ -1,0 +1,14 @@
+{
+  "go version": {
+    "exit_code": 0,
+    "output": "go version go1.25.0 linux/amd64"
+  },
+  "bun --version": {
+    "exit_code": 0,
+    "output": "1.4.3"
+  },
+  "uv --version": {
+    "exit_code": 0,
+    "output": "uv 0.12.17 (x86_64-unknown-linux-gnu)"
+  }
+}

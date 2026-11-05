@@ -1,0 +1,61 @@
+{
+  "schema": "pi-ink-host-pairing-recovery/v1",
+  "scope": "HOST ONLY; actual certificate-verified HTTPS gateway. No tablet access.",
+  "source_commit": "19730eb0700cf48ea8f54e5d4b0e189d3c8349db",
+  "source_tree": "a5ce7c9bb7a7367dccfd0cf30a37013db73f5d07",
+  "base_commit": "ff7cb07414b2c907a1aeec24c1f14888cf1a959a",
+  "finding_ref": "pre-deployment-audit-0051.json",
+  "change": "Add POST /tablet/v1/management/pair/reject. Require the existing loopback management credential, no browser Origin, and the exact pending pairing ID. Serialize rejection against an in-progress credential approval. Rejection clears only the pending slot and grants no content access.",
+  "regression_before": {
+    "command": "bun test test/tablet-pairing.test.ts",
+    "exit_code": 1,
+    "observation": "An unwanted request obtained HTTP202 and blocked the intended request with HTTP409. The new management rejection case failed because the endpoint did not exist: expected409 for stale ID, received401."
+  },
+  "verification_after": [
+    {
+      "command": "bun test test/tablet-pairing.test.ts",
+      "exit_code": 0,
+      "pass": 1,
+      "fail": 0,
+      "assertions": 21
+    },
+    {
+      "command": "bunx tsc --noEmit",
+      "exit_code": 0
+    },
+    {
+      "command": "bun test test",
+      "exit_code": 0,
+      "pass": 19,
+      "fail": 0,
+      "assertions": 151
+    },
+    {
+      "command": "Standalone Bun runtime exercising the actual HTTPS gateway, not the test runner",
+      "exit_code": 0,
+      "tls": "Temporary local certificate explicitly verified by HTTPS client; no disabled verification",
+      "observed": {
+        "firstPending": 202,
+        "blockedBeforeReject": 409,
+        "desktopReject": 200,
+        "freshPending": 202,
+        "staleApproval": 409,
+        "intendedApproval": 200,
+        "originalJob": 200,
+        "originalRequestStillPending": true,
+        "rejectedCredential": 401
+      },
+      "cleanup": "Gateway closed and only that smoke's newly created temporary fixture directory removed. No prior state, process, helper or device operation."
+    }
+  ],
+  "original_integrated_runtime_ref": "host-smoke-0049-r3.json",
+  "original_integrated_runtime_limit": "The full extension/compiled-Go/PDF runtime proof is for the base commit. The follow-up change touches desktop pairing management, regression coverage and README only. No claim that the complete integrated smoke was repeated on the new commit.",
+  "tablet_payload_changed": false,
+  "tablet_payload_sha256": "f3a7d6f0c54aa9f27fe46817d482d195e060d6e0c07cb15bf3c8eda0d66c760e",
+  "formal_review_verdict": null,
+  "full_ticket_complete": false,
+  "production_blocked": true,
+  "device_access": false,
+  "cleanup_retry": false,
+  "unsigned_update_limit": "Known development-only HTTP update path remains. It does not authenticate the publisher."
+}

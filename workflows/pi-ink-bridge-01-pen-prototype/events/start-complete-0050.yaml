@@ -1,0 +1,101 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0050",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 14,
+  "parent_receipt": "implementation-0049",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "ff7cb07414b2c907a1aeec24c1f14888cf1a959a",
+  "source_tree": "d0c1e3fddeef5295a869b9acd64601de78a470d6",
+  "created_at": "2026-11-05T10:08:27.373Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w64:pY",
+  "agent": "omp",
+  "session_id": "01a1a5dd-2a9e-72c4-8797-c9988749391e",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046"
+  },
+  "status": "completed",
+  "result_receipt": "implementation-0049",
+  "recovery": {
+    "mode": "reconcile",
+    "approval": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/approval.json",
+    "reason": "Existing authorized host-only attempt completed. Validate and reconcile without repeating child work.",
+    "child_session": "01a1ab03-f0d7-7709-9d3d-a793b47513cd",
+    "child_pane": "w64:p2A",
+    "child_shutdown": "Herdr agent wait reported done; owned pane then closed successfully."
+  },
+  "validation": [
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}; git status --porcelain -- mise/conf.d/devtools-omp/extensions/image-annotator README.md bun.lock",
+      "result": "Frozen commit and tree match. Scoped source is clean."
+    },
+    {
+      "command": "sha256sum candidate-payload-0049-r3.tar.gz host-delivered-0049-r3.png",
+      "result": "Both match recorded candidate/result hashes."
+    },
+    {
+      "command": "read host-delivered-0049-r3.png",
+      "result": "Observed source grid/corner markers and actual red pen annotations."
+    }
+  ],
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0048.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0049.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/approval.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-smoke-0049-r3.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/candidate-activation-0049-r3.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0050.yaml"
+    }
+  ],
+  "host_implementation_complete": true,
+  "full_ticket_complete": false,
+  "hardware_acceptance": "pending separate exact approval",
+  "production_blocked": true,
+  "device_access": false,
+  "cleanup_retry": false,
+  "merged": false,
+  "pushed": false,
+  "ticket_completed": false
+}

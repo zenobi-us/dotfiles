@@ -1,0 +1,310 @@
+{
+  "source_commit": "ff7cb07414b2c907a1aeec24c1f14888cf1a959a",
+  "source_tree": "d0c1e3fddeef5295a869b9acd64601de78a470d6",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "original_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "original_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+  "changed_files": [
+    "README.md",
+    "bun.lock",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/.gitignore",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/coordinator-discovery.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/coordinator.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/index.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/package.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/scripts/provision-tablet.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/build.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/client_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/discovery.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/discovery_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/folders_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.mod",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.sum",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/install.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/main.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns_records.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns_records_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/operations.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/pairing.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/runtime.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/state.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/switch_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/transport.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-gateway.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/go.mod",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/go.sum",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/coordinator-identity.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-install.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-pairing.test.ts"
+  ],
+  "changes": [
+    {
+      "status": "M",
+      "paths": [
+        "README.md"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "bun.lock"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/.gitignore"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/coordinator-discovery.ts"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/coordinator.ts"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/index.ts"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/package.json"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/scripts/provision-tablet.sh"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/build.sh"
+      ]
+    },
+    {
+      "status": "R100",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/client_test.go",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/client_test.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/discovery.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/discovery_test.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/folders_test.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.mod"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.sum"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/install.sh"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/main.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns_records.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns_records_test.go"
+      ]
+    },
+    {
+      "status": "R098",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/operations.go",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/operations.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/pairing.go"
+      ]
+    },
+    {
+      "status": "R076",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/main.go",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/runtime.go"
+      ]
+    },
+    {
+      "status": "R090",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/state.go",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/state.go"
+      ]
+    },
+    {
+      "status": "R098",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/stock.go",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock.go"
+      ]
+    },
+    {
+      "status": "R100",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/switch_test.go",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/switch_test.go"
+      ]
+    },
+    {
+      "status": "R089",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/transport.go",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/transport.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update.go"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update_test.go"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-gateway.ts"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json"
+      ]
+    },
+    {
+      "status": "M",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd"
+      ]
+    },
+    {
+      "status": "D",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/go.mod"
+      ]
+    },
+    {
+      "status": "D",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/go.sum"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/test/coordinator-identity.test.ts"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-install.test.ts"
+      ]
+    },
+    {
+      "status": "A",
+      "paths": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-pairing.test.ts"
+      ]
+    }
+  ],
+  "candidate": {
+    "path": "candidate-payload-0049-r3.tar.gz",
+    "sha256": "f3a7d6f0c54aa9f27fe46817d482d195e060d6e0c07cb15bf3c8eda0d66c760e",
+    "bytes": 3093511
+  },
+  "candidateClientSHA256": "713ea330666e51fd09c4bb30010277646932c1552cdb42ce63c143dac5292087",
+  "consumedBaseSource": {
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-omp/extensions/image-annotator",
+    "files": {
+      "coordinator.ts": "e38f04d9c6b65d89afc3fbe6f395b17b10a4c0f61e7b9b8c1d562b4959567517",
+      "coordinator-discovery.ts": "1468a3afa26b95cb44b09a14dafcc4469e48d0b34d0580b7830d5a881545f037",
+      "tablet-client/main.go": "849c109285141cd27bdb8275db642e43968c65d5d1fa37bb9b0ce1d770927f06",
+      "tablet-client/go.mod": "7a50e2374d1bab56be74561d5b6d929e7aee7913899e5e34823380ddc552b0c7",
+      "tablet-client/go.sum": "88880094b334cdb20239dd7c5466c14c6ece8a11197b981b42fb295b6cc9c91d",
+      "tablet-client/build.sh": "d2c8f5f344878a240bcb2f69f7887c5d023eee0dcedf3fd6fba20e1895973000",
+      "tablet-client/install.sh": "2fa25f274a908d6b47c87681a544f5e1a6dae0b3fa9bdc8c4c35d49fd179a907",
+      "tablet-client/discovery.go": "781847ef3b309627f4b920da88c97dc512a9448a8e9d9e13ba8489b66a54acff",
+      "tablet-client/discovery_test.go": "dbe3a9bbbafe2026d69687344edb6689ca0d09ad3721d3138a137721ef310219",
+      "tablet-client/mdns.go": "79846a4b87d57839b38ade680d87eefb1cc6b898573b5378c15d2b34abade5dc",
+      "tablet-client/mdns_records.go": "8c78909e6dbb66ba8ac6768648fef67e24652ba665ffd5e3667a550032bfeabc",
+      "tablet-client/mdns_records_test.go": "33004f353b0f1186b1e6a0042d0efbc7083b816d2ca14145b549323d9913382d",
+      "tablet-client/update.go": "4076cbd38c394fabc5fda2657b95237d2dd208448a813774025153f763c96bc4",
+      "tablet-client/update_test.go": "db95ea2a7c7185cdb6a02051a130c2d64020cc26074efce7fc5dd72eee3701b0"
+    },
+    "observation": "Imported existing base coordinator/discovery/updater modules. Final client main/build/module differ only for the unified runtime, dependency, version and warning changes recorded in source."
+  }
+}

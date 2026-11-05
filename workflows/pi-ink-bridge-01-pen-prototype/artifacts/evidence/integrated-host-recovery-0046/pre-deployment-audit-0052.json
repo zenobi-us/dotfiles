@@ -1,0 +1,58 @@
+{
+  "schema": "pi-ink-advisory-source-audit/v1",
+  "scope": "Independent read-only pre-deployment source audits. Not a formal workflow review or whole-ticket acceptance verdict.",
+  "source_commit": "19730eb0700cf48ea8f54e5d4b0e189d3c8349db",
+  "source_tree": "a5ce7c9bb7a7367dccfd0cf30a37013db73f5d07",
+  "comparison_base": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+  "standards": {
+    "pane": "w64:p2E",
+    "session_id": "01a1ab40-7423-7309-871d-0fd422325f54",
+    "completion": "Herdr reported done; parent read the final result",
+    "findings": [
+      {
+        "severity": "high; inherited disclosed development limitation",
+        "file": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/main.go",
+        "line": 156,
+        "title": "Unsigned HTTP update cannot authenticate executable provenance",
+        "evidence": "Checksum and archive come from the same HTTP endpoint; architecture-compatible attacker bytes can replace the executable. Runtime warning and review-dispositions-0049.json explicitly disclose this inherited boundary.",
+        "disposition": "No scope expansion in this development audit. Production needs independent authenticated update authorization. Development activation still requires out-of-band approval of the exact payload hash."
+      }
+    ],
+    "pairing_finding": "Resolved. Exact pending ID and loopback management authorization protect rejection. The approving guard is set before filesystem awaits. Rejection changes no content credential, stale IDs cannot affect replacement requests, and browser origins are refused.",
+    "result": "No new source-level blocker or actionable heuristic smell identified. Production and full acceptance remain blocked."
+  },
+  "spec": {
+    "pane": "w64:p2D",
+    "session_id": "01a1ab40-7421-73fc-a2bb-2e72ac58def6",
+    "completion": "Herdr reported done; parent read the final result",
+    "findings": [],
+    "result": "No actionable missing prototype code, scope creep or requirement contradiction identified in the inspected paths. Explicit folder ownership remains separate from import-parent provenance. Native UUID receipts, bound export, clipping consent, source-sized conversion, Save/Close separation, cancellation and originating request completion were traced.",
+    "code_references": [
+      "tablet-qml/PiInkToolbar.qml:56-62,233-295",
+      "tablet-client/operations.go:67-199,270-303",
+      "tablet-gateway.ts:199,214-247,263-293",
+      "pdf-session.ts:90-147",
+      "index.ts:154-166,328-366"
+    ],
+    "reference_base": "mise/conf.d/devtools-omp/extensions/image-annotator/"
+  },
+  "hardware_blockers": [
+    "Actual native folder creation, Library visibility, import-parent identity and visual folder/server associations",
+    "Actual tablet pairing, document switching and native toolbar behavior",
+    "Cable-free integrated import/Send/clipping/annotated PNG delivery to the originating request",
+    "Physical Save/Close separation, cancellation and wrong-document/server/request isolation",
+    "Owner pen/palm/erase/undo/zoom/edge/scaling/orientation/editable-work verdict",
+    "Supported activation/listener/lifecycle boundaries and final authorized restoration/cleanup"
+  ],
+  "limits": [
+    "Both fresh sessions verified frozen HEAD/tree and clean scoped source, inspected the baseline diff and current canonical BASE ticket.",
+    "Neither audit ran builds, tests, runtime commands, device commands, edits or cleanup.",
+    "The original integrated runtime proof uses simulated stock HTTP/native Library and is for ff7cb074. Pairing-recovery-0052.json records the later fix and actual HTTPS runtime verification.",
+    "Formal workflow review is not available while required hardware acceptance remains missing. No prior verdict is reused for this source."
+  ],
+  "formal_review_verdict": null,
+  "full_ticket_complete": false,
+  "production_blocked": true,
+  "device_access": false,
+  "cleanup_retry": false
+}

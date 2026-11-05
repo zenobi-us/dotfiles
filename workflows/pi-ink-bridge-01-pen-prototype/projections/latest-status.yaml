@@ -2,22 +2,29 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "pi-ink-bridge-01-pen-prototype",
   "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
-  "state": "BLOCKED",
+  "state": "IMPLEMENTED",
+  "host_implementation_complete": true,
   "full_ticket_status": "BLOCKED",
   "work_status": "claimed",
-  "latest_receipt": "start-complete-0039",
-  "latest_source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
-  "latest_source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+  "latest_receipt": "start-complete-0050",
+  "latest_source_commit": "19730eb0700cf48ea8f54e5d4b0e189d3c8349db",
+  "latest_source_tree": "a5ce7c9bb7a7367dccfd0cf30a37013db73f5d07",
+  "source_followup_evidence": "artifacts/evidence/integrated-host-recovery-0046/pairing-recovery-0052.json",
+  "advisory_audit": "artifacts/evidence/integrated-host-recovery-0046/pre-deployment-audit-0052.json",
+  "next_approval": "artifacts/evidence/integrated-host-recovery-0046/device-preflight-0052.json",
   "latest_review_verdict": null,
   "open_findings": [
-    "Cleanup host-check refused CLEANUP_REFUSAL OWNED_PROCESS_VISIBILITY; attempt consumed; no retry or diagnosis authorized.",
-    "Attempt stopped in read-only host-check before deletion, USB verification or device execution. Current target contents were not re-inventoried.",
-    "Production/native pairing, folder associations and Send acceptance remain blocked; partial0026 remains retained/open."
+    "Hardware acceptance remains pending; no physical native app/folder/current-document/Send/input/lifecycle proof in this host session.",
+    "Unsigned HTTP development self-update is an explicit retained trust limitation. No authenticated publisher-provenance claim.",
+    "Cleanup0038 remains STOPPED_POSSIBLE_PARTIAL_REMOVAL_PRESERVE_NO_RETRY. Unknown device state and partial0026 stay preserved."
   ],
+  "internal_review": "Fresh Standards and Spec audits identify no new source blocker after pairing recovery. The inherited unsigned-update limit remains. These are advisory source audits, not a formal whole-ticket verdict.",
   "hardware_acceptance": "BLOCKED",
-  "slice_status": "failed",
+  "production_blocked": true,
   "device_execution": false,
   "cleanup_complete": false,
+  "cleanup_state": "STOPPED_POSSIBLE_PARTIAL_REMOVAL_PRESERVE_NO_RETRY",
+  "retry_authorized": false,
   "previous_projection": {
     "schema": "worktree-latest-status/v1",
     "workflow_id": "pi-ink-bridge-01-pen-prototype",
@@ -25,41 +32,63 @@
     "state": "BLOCKED",
     "full_ticket_status": "BLOCKED",
     "work_status": "claimed",
-    "latest_receipt": "start-complete-0034",
+    "latest_receipt": "start-complete-0039",
     "latest_source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
     "latest_source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
     "latest_review_verdict": null,
     "open_findings": [
-      "Production/native UI and association/Send acceptance remain blocked; transaction0033 verified config identities only.",
-      "Both actual device config hashes obtained in approved transaction0033; temporary helper and empty directory removed. This does not authorize older experiment cleanup.",
-      "Approval for this one transaction is consumed; no retry or further device commands authorized.",
-      "ADR0001 trusted exclusive-operation model confirmed; separate descriptor-safe deployment executor prerequisite superseded. Reader safeguards retained.",
-      "Final irreversible cleanup manifest/program not created; partial0026 remains open."
+      "Cleanup host-check refused CLEANUP_REFUSAL OWNED_PROCESS_VISIBILITY; attempt consumed; no retry or diagnosis authorized.",
+      "Attempt stopped in read-only host-check before deletion, USB verification or device execution. Current target contents were not re-inventoried.",
+      "Production/native pairing, folder associations and Send acceptance remain blocked; partial0026 remains retained/open."
     ],
     "hardware_acceptance": "BLOCKED",
-    "slice_status": "completed",
-    "device_execution": true,
+    "slice_status": "failed",
+    "device_execution": false,
     "cleanup_complete": false,
     "previous_projection": {
       "schema": "worktree-latest-status/v1",
       "workflow_id": "pi-ink-bridge-01-pen-prototype",
       "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
-      "state": "IMPLEMENTED",
-      "latest_receipt": "implementation-0023",
+      "state": "BLOCKED",
+      "full_ticket_status": "BLOCKED",
+      "work_status": "claimed",
+      "latest_receipt": "start-complete-0034",
       "latest_source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
       "latest_source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
       "latest_review_verdict": null,
       "open_findings": [
-        "Private stock QML types cannot be instantiated with available SDK. Owner must verify native geometry, warning text, input, close and orientations under fresh exact device approval.",
-        "Hardware association/Send acceptance remains blocked.",
-        "Original proxy remains quarantined at last observation; original restoration#4 needs renewed saved/closed and USB confirmation. Credentials/experiment cleanup not complete."
+        "Production/native UI and association/Send acceptance remain blocked; transaction0033 verified config identities only.",
+        "Both actual device config hashes obtained in approved transaction0033; temporary helper and empty directory removed. This does not authorize older experiment cleanup.",
+        "Approval for this one transaction is consumed; no retry or further device commands authorized.",
+        "ADR0001 trusted exclusive-operation model confirmed; separate descriptor-safe deployment executor prerequisite superseded. Reader safeguards retained.",
+        "Final irreversible cleanup manifest/program not created; partial0026 remains open."
       ],
       "hardware_acceptance": "BLOCKED",
-      "restored": false,
-      "cleanup_complete": false
+      "slice_status": "completed",
+      "device_execution": true,
+      "cleanup_complete": false,
+      "previous_projection": {
+        "schema": "worktree-latest-status/v1",
+        "workflow_id": "pi-ink-bridge-01-pen-prototype",
+        "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+        "state": "IMPLEMENTED",
+        "latest_receipt": "implementation-0023",
+        "latest_source_commit": "bb5df500f4a06c61ebde6073470ef5ed51f4b006",
+        "latest_source_tree": "9a9acbfbc65d17f87eb44f2e0a7898000b1d735b",
+        "latest_review_verdict": null,
+        "open_findings": [
+          "Private stock QML types cannot be instantiated with available SDK. Owner must verify native geometry, warning text, input, close and orientations under fresh exact device approval.",
+          "Hardware association/Send acceptance remains blocked.",
+          "Original proxy remains quarantined at last observation; original restoration#4 needs renewed saved/closed and USB confirmation. Credentials/experiment cleanup not complete."
+        ],
+        "hardware_acceptance": "BLOCKED",
+        "restored": false,
+        "cleanup_complete": false
+      },
+      "history_note": "Prior projection retained as historical text, not current device/restoration fact."
     },
-    "history_note": "Prior projection retained as historical text, not current device/restoration fact."
+    "history_note": "Previous projection retained as historical content, not current target observations.",
+    "retry_authorized": false
   },
-  "history_note": "Previous projection retained as historical content, not current target observations.",
-  "retry_authorized": false
+  "history_note": "Previous projections preserved as historical records, not current device authority."
 }

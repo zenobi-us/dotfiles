@@ -1,0 +1,132 @@
+{
+  "finalChecks": [
+    {
+      "name": "build",
+      "command": [
+        "bun",
+        "run",
+        "build"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "log": "build-0049-r2.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "bunx",
+        "tsc",
+        "--noEmit"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "log": "typecheck-0049-r2.log"
+    },
+    {
+      "name": "tests",
+      "command": [
+        "bun",
+        "test",
+        "test"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "log": "tests-0049-r2.log"
+    },
+    {
+      "name": "go-race",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "./..."
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client",
+      "exit_code": 0,
+      "log": "go-race-0049-r2.log"
+    },
+    {
+      "name": "go-vet",
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client",
+      "exit_code": 0,
+      "log": "go-vet-0049-r2.log"
+    }
+  ],
+  "hostClientBuild": {
+    "command": [
+      "go",
+      "build",
+      "-tags",
+      "hostsmoke",
+      "-o",
+      "/tmp/pi-ink-host-0049-r2-l0pkgddb/pi-ink-client",
+      "."
+    ],
+    "cwd": "/tmp/pi-ink-host-0049-r2-l0pkgddb/client",
+    "exit_code": 0,
+    "boundarySource": "host-boundary-0049.go",
+    "note": "Temporary source copy of final tablet-client plus simulated stock/observation/stdio-exit init. No candidate includes this build tag file."
+  },
+  "hostRuntime": {
+    "command": [
+      "bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-smoke-0049-r3.ts"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+    "environment": {
+      "INK_SMOKE_TEMP": "/tmp/pi-ink-host-0049-r2-l0pkgddb",
+      "INK_SOURCE_ROOT": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "INK_RETAINED_ROOT": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017",
+      "UV_CACHE_DIR": "/home/zenobius/.cache/uv"
+    },
+    "exit_code": 0,
+    "log": "host-smoke-process-0049-r3.log"
+  },
+  "pixels": {
+    "command": [
+      "uv",
+      "run",
+      "--offline",
+      "--no-project",
+      "--script",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/verify-pixels-0049.py",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0017/source.png",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-delivered-0049-r3.png"
+    ],
+    "exit_code": 0,
+    "result": "pixel-verification-0049-r3.json"
+  },
+  "qml": {
+    "command": [
+      "podman",
+      "run",
+      "--rm",
+      "--network",
+      "none",
+      "-v",
+      "/tmp/pi-ink-0049-qml-final-yp0p15or:/parse:Z",
+      "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+      "bash",
+      "-c",
+      "source /opt/codex/*/*/environment-setup-* && qmlformat --inplace /parse/PiInkToolbar.qml"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\n",
+    "limit": "Qt AST only; no private native types or physical geometry."
+  },
+  "earlierAttemptsRetained": [
+    "checks-0049.json",
+    "host-smoke-0049.json",
+    "host-smoke-process-0049-r2.log",
+    "pixel-verification-0049.log",
+    "review-dispositions-0049.json"
+  ],
+  "sourceCommit": "ff7cb07414b2c907a1aeec24c1f14888cf1a959a",
+  "sourceTree": "d0c1e3fddeef5295a869b9acd64601de78a470d6"
+}

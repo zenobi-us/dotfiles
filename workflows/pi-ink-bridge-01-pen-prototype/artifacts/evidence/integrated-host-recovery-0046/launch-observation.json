@@ -1,0 +1,21 @@
+{
+  "schema": "pi-ink-host-launch-observation/v1",
+  "created_at": "2026-11-05T09:30:04.416Z",
+  "start_receipt": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0048.yaml",
+  "pane": "w64:p2A",
+  "launch_name": "ink-recovery-0048",
+  "launcher_outcome": "timed out waiting for agent startup",
+  "observed_process": {
+    "pid": 2927401,
+    "argv": [
+      "omp",
+      "@/var/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github/Dotfiles--/2026-11-04T09-21-37-438Z_01a1a5dd-2a9e-72c4-8797-c9988749391e/local/ink-recovery-0046.txt"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype"
+  },
+  "terminal_observation": "Fresh process is actively integrating tablet-client runtime/state/pairing in retained worktree. This is liveness evidence only, not validation or completion.",
+  "duplicate_launched": false,
+  "completion_wait": "herdr agent wait w64:p2A --until done --until blocked --timeout 14400000",
+  "device_execution": false,
+  "cleanup_retry": false
+}

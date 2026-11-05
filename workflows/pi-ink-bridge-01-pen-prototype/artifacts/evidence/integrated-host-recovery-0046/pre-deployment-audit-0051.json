@@ -1,0 +1,46 @@
+{
+  "schema": "pi-ink-advisory-source-audit/v1",
+  "scope": "Pre-deployment source audit only; not a formal workflow review or whole-ticket acceptance verdict",
+  "source_commit": "ff7cb07414b2c907a1aeec24c1f14888cf1a959a",
+  "source_tree": "d0c1e3fddeef5295a869b9acd64601de78a470d6",
+  "standards": {
+    "pane": "w64:p2B",
+    "completion": "Herdr reported done; parent read output and closed this owned pane",
+    "findings": [
+      {
+        "severity": "high",
+        "file": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update.go",
+        "line": 68,
+        "title": "Known development limitation: unsigned HTTP update replaces executable",
+        "disposition": "Previously disclosed development boundary, not a new vulnerability. Preserve warning and independent exact-payload approval. No production authentication claim."
+      },
+      {
+        "severity": "medium",
+        "file": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-gateway.ts",
+        "line": 208,
+        "title": "Unauthenticated pairing request can occupy approval slot indefinitely",
+        "evidence": "A pending request with one token blocks another token with HTTP409. There was no expiry or authenticated rejection to clear the slot without ending the gateway.",
+        "required_change": "Provide bounded expiry or local desktop-authenticated rejection without ending the annotation request."
+      }
+    ]
+  },
+  "spec": {
+    "pane": "w64:p2C",
+    "completion": "Herdr reported done; parent read output and closed this owned pane",
+    "findings": [],
+    "limits": "Traced current document, explicit folder ownership, controlled native import identity, pairing, authenticated transport, Send, clipping, cancellation and request-bound PNG completion. No source-spec blocker substantiated. Real tablet acceptance is still missing."
+  },
+  "hardware_blockers": [
+    "Actual tablet pairing and native folder/document visibility",
+    "Current-document toolbar and physical Save/Close/Send/isolation acceptance",
+    "Integrated cable-free marked PNG to originating request",
+    "Owner pen/palm/erase/undo/zoom/edges/orientation verdict",
+    "Supported lifecycle and final authorized restoration/cleanup"
+  ],
+  "formal_review_verdict": null,
+  "full_ticket_complete": false,
+  "production_blocked": true,
+  "device_access": false,
+  "cleanup_retry": false,
+  "source_changed_after_audit": "Pairing recovery correction recorded separately; this audit is valid only for the frozen pre-fix source."
+}
