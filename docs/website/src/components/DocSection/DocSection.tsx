@@ -20,7 +20,8 @@ function Root(props: { id: string; children: ReactNode }) {
 function Heading(props: { number: string; eyebrow: string; title: string; summary: string }) {
   const section = useDocSection();
   return (
-    <div className="flex items-start gap-4 border-r border-border p-6 narrow:border-r-0 narrow:border-b narrow:p-5">
+    // Sticks below the site header while its section scrolls past. Static on narrow screens, where it stacks above the content.
+    <div className="sticky top-(--header-height) flex items-start gap-4 self-start p-6 narrow:static narrow:border-b narrow:border-border narrow:p-5">
       <span className="text-[11px] text-primary">{props.number}</span>
       <div>
         <p className="text-[10px] tracking-[.1em] text-muted uppercase">{props.eyebrow}</p>
@@ -34,7 +35,12 @@ function Heading(props: { number: string; eyebrow: string; title: string; summar
 }
 
 function Content(props: { className?: string; children: ReactNode }) {
-  return <div className={cx("min-w-0 p-6 narrow:p-5 tiny:p-4", props.className)}>{props.children}</div>;
+  // The content carries the column divider, so a sticky heading does not cut it short.
+  return (
+    <div className={cx("min-w-0 border-l border-border p-6 narrow:border-l-0 narrow:p-5 tiny:p-4", props.className)}>
+      {props.children}
+    </div>
+  );
 }
 
 function Article(props: { id?: string; title: string; children: ReactNode }) {
