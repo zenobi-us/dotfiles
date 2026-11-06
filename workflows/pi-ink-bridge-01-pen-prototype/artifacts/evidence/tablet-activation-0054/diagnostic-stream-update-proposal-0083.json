@@ -1,0 +1,66 @@
+{
+  "created_at": "2026-11-06T06:26:07.878Z",
+  "status": "Prepared; no device execution authorized yet",
+  "sourceCommit": "8b529cea78fbbad0ee26af4eb5b170cb2d9f8c3e",
+  "sourceTree": "e4a006aaccf2156e3ee03d1dddc89375c9c02906",
+  "scriptSHA256": "c7f8cc98ebe4a62e1218119b07548937abd18bb3716eabe09fa2fec7b06d4f28",
+  "restoreScriptSHA256": "0225d72365ce20102474b03ac1e87b5d4d9137fdc431b75f96533d6cd1a9803f",
+  "clientSHA256": "e8f7229377dac89d7a980c9b9f0cbec67dbf3defec39e1704c4eab09be5b4eca",
+  "clientBytes": 7405752,
+  "componentSHA256": "80e2eaa6048a8092b5097e554975ed2f3ab43ca599e482845248cf82fdf997a4",
+  "componentBytes": 25981,
+  "runtimeSHA256": "caa1ccce598016fea6ec2f2183f7999bbd94782cc41580a9c614412ed286fba6",
+  "runtimeBytes": 476,
+  "bridgeRestartCommands": 1,
+  "xochitlRestartCommands": 1,
+  "version": "0.3.1",
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s -- APPROVE_DIAGNOSTIC_STREAM_UPDATE_0083 APPROVE_ONE_OWNED_BRIDGE_RESTART_0083 APPROVE_ONE_XOCHITL_RESTART_0083 DOCUMENTS_SAVED_CLOSED"
+  ],
+  "privateRoot": "/tmp/pi-ink-stream-update-0083-szJbQz",
+  "scope": [
+    "Verify current owned capsule, recorded active transient unit and exact old binary/QML/config hashes",
+    "Back up only the three replaced owned files in runtime-diagnostics-0083",
+    "Install the bridge0.3.1, exact filename-matching QML, and config changing only trusted port and synthetic allowlist",
+    "One owned Go bridge restart; atomically update recorded InvocationID",
+    "One saved-and-closed Xochitl restart",
+    "Require unchanged full pairing/association checksum and private stock listener"
+  ],
+  "unchanged": [
+    "Server/device identity, CA and credentials",
+    "Associated stock folder and private state",
+    "QMD, adapter, other extensions, boot/service settings, account and cloud settings",
+    "Existing root PDFs and old real originating requests"
+  ],
+  "notAuthorized": [
+    "Import, Send, document access/move/delete",
+    "Automatic retry, rollback or cleanup"
+  ],
+  "gates": {
+    "updateShellSyntax": "passed",
+    "restoreShellSyntax": "passed",
+    "USBRoute": "Must verify direct10.11.99.1 USB route before connection"
+  },
+  "matchingFullRestore": {
+    "path": "/tmp/pi-ink-stream-update-0083-szJbQz/device-restore-after-stream-update-0083.sh",
+    "sha256": "0225d72365ce20102474b03ac1e87b5d4d9137fdc431b75f96533d6cd1a9803f",
+    "requiresFreshSeparateApproval": true,
+    "keepsOwnedCapsuleAndNewBackups": true
+  },
+  "afterSuccess": "ReturnPCUSBtocharger; read fresh native status and coordinator diagnostic JSONL before continuing owner-controlled import.",
+  "ticketComplete": false,
+  "productionBlocked": true
+}

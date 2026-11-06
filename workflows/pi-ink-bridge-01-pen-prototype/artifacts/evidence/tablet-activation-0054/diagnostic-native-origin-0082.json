@@ -1,0 +1,48 @@
+{
+  "created_at": "2026-11-06T06:26:07.876Z",
+  "tab": "ink-native-origin-0082",
+  "pane": "w64:p2Q",
+  "tabId": "w64:t1T",
+  "sessionId": "01a1af7d-385a-7209-804d-5c170fe9ce40",
+  "sessionFile": "/tmp/pi-ink-native-0082-TauwWN/sessions/2026-11-06T06-13-01-658Z_01a1af7d-385a-7209-804d-5c170fe9ce40.jsonl",
+  "privateRoot": "/tmp/pi-ink-native-0082-TauwWN",
+  "desktopConfig": "/tmp/pi-ink-native-0082-TauwWN/desktop-pairing.json",
+  "diagnosticLog": "/tmp/pi-ink-native-0082-TauwWN/client-diagnostics.jsonl",
+  "deviceStatusLog": "/tmp/pi-ink-native-0082-TauwWN/device-status.jsonl",
+  "HTTPSOrigin": "https://192.168.86.35:47843",
+  "sameServerId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+  "sameDeviceId": "paper-pro-ink-0054",
+  "sameCertificateAndKey": true,
+  "sameContentCredential": true,
+  "receiverSourceCommit": "8b529cea78fbbad0ee26af4eb5b170cb2d9f8c3e",
+  "verifiedManagementHTTP": 200,
+  "actualPendingImageEditorCalls": 2,
+  "editingDeadline": false,
+  "oldOrigin0063Unmodified": true,
+  "oldRequestsNotCancelled": true,
+  "browserLaunch": "Only the existing xdg-open process-launch seam suppressed; no fake result or API",
+  "jobs": [
+    {
+      "jobId": "c0d3db19bfd8915f036916cdad4dabd1",
+      "requestId": "c0d3db19bfd8915f036916cdad4dabd1",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "pdfSHA256": "06552dbc0cbae019b4631dc4d3d93898f445a4bc6edaf01fd29474b98bf577c9",
+      "pdfBytes": 2403511
+    },
+    {
+      "jobId": "4be03c9e22af2514390fcf5721f3b009",
+      "requestId": "4be03c9e22af2514390fcf5721f3b009",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "pdfSHA256": "06552dbc0cbae019b4631dc4d3d93898f445a4bc6edaf01fd29474b98bf577c9",
+      "pdfBytes": 2403511
+    }
+  ],
+  "preparedRuntimeSHA256": "caa1ccce598016fea6ec2f2183f7999bbd94782cc41580a9c614412ed286fba6",
+  "preparedRuntimeBytes": 476,
+  "configChanges": [
+    "HTTPS origin port47842→47843",
+    "Exact freshly fetched synthetic source PDF allowlist"
+  ],
+  "deviceChanged": false,
+  "callbackDeliveryProved": false
+}

@@ -1,0 +1,125 @@
+{
+  "created_at": "2026-11-06T06:26:07.874Z",
+  "sourceCommit": "8b529cea78fbbad0ee26af4eb5b170cb2d9f8c3e",
+  "sourceTree": "e4a006aaccf2156e3ee03d1dddc89375c9c02906",
+  "verification": {
+    "goSuite": "go test ./... -count=1 passed",
+    "goRace": "go test -race ./... -count=1 passed",
+    "gatewayAndRelatedTests": "20 pass,0 fail across5 files",
+    "tabletInstallTests": "1 pass,0 fail",
+    "typecheck": "tsc --noEmit passed",
+    "completeQML": "Matching SDK qmlformat passed on copy",
+    "package": "Actual build.sh produced inspected ARM64 static ELF, release VERSION0.3.1; no existing dist overwritten"
+  },
+  "actualSmoke": {
+    "client": "Real Go serve, version0.3.1",
+    "coordinator": "Real createAnnotationServer HTTPS/WSS gateway, isolated trust and request",
+    "request": {
+      "serverId": "isolated_stream_coordinator_0081",
+      "jobId": "a0d65a8d1110ae8b8685ed5e9c697ad4",
+      "requestId": "a0d65a8d1110ae8b8685ed5e9c697ad4",
+      "sourceSHA256": "8ece9765985df4722987f72b0ba36528a75a2b8cf8b74e168278025b7c3871b7"
+    },
+    "importHTTP": 409,
+    "error": "Paper Pro requires observations from both UDC controllers",
+    "records": [
+      {
+        "type": "diagnostic",
+        "schemaVersion": 1,
+        "deviceId": "isolated-stream-tablet-0081",
+        "serverId": "isolated_stream_coordinator_0081",
+        "jobId": "a0d65a8d1110ae8b8685ed5e9c697ad4",
+        "requestId": "a0d65a8d1110ae8b8685ed5e9c697ad4",
+        "importName": "pi-ink-4b11b7d7223ffae8cb9fc27662bcbce5",
+        "timestamp": "2026-11-06T05:59:08.033390334Z",
+        "clientVersion": "0.3.1",
+        "code": "import.started",
+        "level": "info",
+        "message": "Controlled import started",
+        "droppedBefore": 0,
+        "receivedAt": "2026-11-06T05:59:08.034Z"
+      },
+      {
+        "type": "diagnostic",
+        "schemaVersion": 1,
+        "deviceId": "isolated-stream-tablet-0081",
+        "serverId": "isolated_stream_coordinator_0081",
+        "jobId": "a0d65a8d1110ae8b8685ed5e9c697ad4",
+        "requestId": "a0d65a8d1110ae8b8685ed5e9c697ad4",
+        "importName": "pi-ink-4b11b7d7223ffae8cb9fc27662bcbce5",
+        "timestamp": "2026-11-06T05:59:08.033981421Z",
+        "clientVersion": "0.3.1",
+        "code": "import.receipt_filename_mismatch",
+        "level": "warn",
+        "message": "Native receipt filename does not match the controlled upload filename",
+        "droppedBefore": 0,
+        "receivedAt": "2026-11-06T05:59:08.034Z"
+      },
+      {
+        "type": "diagnostic",
+        "schemaVersion": 1,
+        "deviceId": "isolated-stream-tablet-0081",
+        "serverId": "isolated_stream_coordinator_0081",
+        "jobId": "a0d65a8d1110ae8b8685ed5e9c697ad4",
+        "requestId": "a0d65a8d1110ae8b8685ed5e9c697ad4",
+        "importName": "pi-ink-4b11b7d7223ffae8cb9fc27662bcbce5",
+        "timestamp": "2026-11-06T05:59:08.046413026Z",
+        "clientVersion": "0.3.1",
+        "code": "import.source_verified",
+        "level": "info",
+        "message": "Source PDF verified against the approved synthetic allowlist",
+        "droppedBefore": 0,
+        "receivedAt": "2026-11-06T05:59:08.046Z"
+      },
+      {
+        "type": "diagnostic",
+        "schemaVersion": 1,
+        "deviceId": "isolated-stream-tablet-0081",
+        "serverId": "isolated_stream_coordinator_0081",
+        "jobId": "a0d65a8d1110ae8b8685ed5e9c697ad4",
+        "requestId": "a0d65a8d1110ae8b8685ed5e9c697ad4",
+        "importName": "pi-ink-4b11b7d7223ffae8cb9fc27662bcbce5",
+        "timestamp": "2026-11-06T05:59:08.04642046Z",
+        "clientVersion": "0.3.1",
+        "code": "import.upload_started",
+        "level": "info",
+        "message": "Controlled stock upload started",
+        "droppedBefore": 0,
+        "receivedAt": "2026-11-06T05:59:08.046Z"
+      },
+      {
+        "type": "diagnostic",
+        "schemaVersion": 1,
+        "deviceId": "isolated-stream-tablet-0081",
+        "serverId": "isolated_stream_coordinator_0081",
+        "jobId": "a0d65a8d1110ae8b8685ed5e9c697ad4",
+        "requestId": "a0d65a8d1110ae8b8685ed5e9c697ad4",
+        "importName": "pi-ink-4b11b7d7223ffae8cb9fc27662bcbce5",
+        "timestamp": "2026-11-06T05:59:08.052303204Z",
+        "clientVersion": "0.3.1",
+        "code": "import.failed",
+        "level": "error",
+        "message": "Paper Pro requires observations from both UDC controllers",
+        "droppedBefore": 0,
+        "receivedAt": "2026-11-06T05:59:08.052Z"
+      }
+    ],
+    "hardwareStatusSameConnection": true,
+    "logMode": "600",
+    "nativeMismatch": "Explicit active-token local diagnostic injection, not a physical tablet signal",
+    "negativeResponses": {
+      "suffixedToken": 409,
+      "callerMessage": 400
+    },
+    "callbackCount": "Duplicate native code emitted once"
+  },
+  "retention": "Best effort, bounded64 client events/server and64 coordinator pending appends; no durable ACK/replay",
+  "privacy": "Only allowlisted fields/messages. Unknown caller text rejected before enqueue. No credentials, arbitrary filenames/content or raw response bodies.",
+  "smokeCaveat": "First harness asserted an incidental timing order between injected native code and source verification. Observed native injection arrived first; corrected harness validates event set, immutable identity and required causal phase order without repeating the import.",
+  "servicesStopped": [
+    "pi-ink-diagnostic-client-0081",
+    "pi-ink-diagnostic-coordinator-0081"
+  ],
+  "nativeDeliveryProved": false,
+  "fullTicketComplete": false
+}

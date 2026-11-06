@@ -1,0 +1,60 @@
+{
+  "created_at": "2026-11-06T06:26:07.867Z",
+  "ownerReports": [
+    "native recipt name has an extra pdf suffix, recipt not accepted",
+    "import status: importing"
+  ],
+  "cause": "Stock uploader sends controlled token plus .pdf; prior native handler keyed its receipt map by the token alone.",
+  "decision": "Map only exact uploaded filenames to controlled protocol tokens. Ready/receipt routes still use the original token. No arbitrary extension stripping or compatibility alias.",
+  "sourceCommit": "8b529cea78fbbad0ee26af4eb5b170cb2d9f8c3e",
+  "sourceTree": "e4a006aaccf2156e3ee03d1dddc89375c9c02906",
+  "before": {
+    "command": [
+      "podman",
+      "run",
+      "--rm",
+      "--network",
+      "host",
+      "-v",
+      "/tmp/pi-ink-receipt-fix-0080-eWSOpY/smoke:/probe:Z",
+      "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+      "bash",
+      "-lc",
+      "source /opt/codex/*/*/environment-setup-* && n=\"$OECORE_NATIVE_SYSROOT\" && \"$n/lib/ld-linux-x86-64.so.2\" --library-path \"$n/usr/lib:$n/lib\" /probe/runner /probe/Before.qml"
+    ],
+    "exitCode": 1,
+    "stdout": "NATIVE_FILENAME_RECEIPT_FAIL\n",
+    "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nqml: NATIVE_FILENAME_REJECTED Native receipt name has an extra .pdf suffix; receipt not accepted.\n"
+  },
+  "after": {
+    "command": [
+      "podman",
+      "run",
+      "--rm",
+      "--network",
+      "host",
+      "-v",
+      "/tmp/pi-ink-receipt-fix-0080-eWSOpY/smoke:/probe:Z",
+      "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+      "bash",
+      "-lc",
+      "source /opt/codex/*/*/environment-setup-* && n=\"$OECORE_NATIVE_SYSROOT\" && \"$n/lib/ld-linux-x86-64.so.2\" --library-path \"$n/usr/lib:$n/lib\" /probe/runner /probe/After.qml"
+    ],
+    "exitCode": 0,
+    "stdout": "NATIVE_FILENAME_RECEIPT_PASS\n",
+    "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nqml: EXACT_TOKEN_AND_UUID_ACKNOWLEDGED true\n"
+  },
+  "httpFixtureObserved": {
+    "ready": 3,
+    "accepted": 1,
+    "rejected": 0
+  },
+  "limits": [
+    "Actual QQmlEngine methods and actual HTTP request/callback flow with an isolated validating server fixture",
+    "Native Library signal arguments replayed from the observed filename boundary; no physical stock module rendered",
+    "No real-tablet successful document binding claimed"
+  ],
+  "permanentQtRegressionGap": "Repository has no portable native-QML test runtime; matching SDK replay used as a throwaway smoke. Go and TLS gateway behavior have permanent tests.",
+  "deviceFixDeployed": false,
+  "automaticImports": false
+}

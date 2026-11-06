@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-11-06T06:28:36.148Z",
+  "receiver": "https://127.0.0.1:47843",
+  "sourceCommit": "8b529cea78fbbad0ee26af4eb5b170cb2d9f8c3e",
+  "probe": "Authenticated WSS malformed diagnostic packet with no device/job/request identity",
+  "observed": {
+    "code": 1008,
+    "reason": "Invalid diagnostic"
+  },
+  "expectedUpdatedBranch": "Invalid diagnostic",
+  "nativeDeviceEventFabricated": false,
+  "diagnosticLogCreated": false,
+  "requestMutation": false,
+  "deviceChange": false,
+  "limit": "Confirms receiver code and rejection path, not physical native event delivery"
+}

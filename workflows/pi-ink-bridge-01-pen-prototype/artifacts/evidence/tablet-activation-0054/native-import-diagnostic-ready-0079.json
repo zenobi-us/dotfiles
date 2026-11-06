@@ -1,0 +1,43 @@
+{
+  "created_at": "2026-11-06T04:09:34.583Z",
+  "ownerReport": "ready",
+  "hardwareFrame": {
+    "time": "2026-11-06T04:09:20.676Z",
+    "deviceId": "paper-pro-ink-0054",
+    "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "udc": {
+      "ci_hdrc.0": "powered",
+      "ci_hdrc.1": "not attached"
+    },
+    "usbIPv4": [],
+    "listeners": [
+      "tcp:0100007F:0051"
+    ],
+    "safe": true
+  },
+  "authenticatedRequestMetadata": [
+    {
+      "jobId": "a5870505364fbbea6a60d4c684c6b33e",
+      "requestId": "a5870505364fbbea6a60d4c684c6b33e",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "state": "pending",
+      "submissionEpoch": 0
+    },
+    {
+      "jobId": "607c89e18eb1e81b7f165baba1d9d030",
+      "requestId": "607c89e18eb1e81b7f165baba1d9d030",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "state": "pending",
+      "submissionEpoch": 0
+    }
+  ],
+  "selectedDiagnosticJobId": "a5870505364fbbea6a60d4c684c6b33e",
+  "selectedHumanPrefix": "a58705",
+  "nextOwnerAction": "Tap Import synthetic source once on the selected row; report persistent diagnostic below Bridge version after completion, allowing90seconds.",
+  "importExecutedByAssistant": false,
+  "existingRootPDFUnchanged": true,
+  "SSH": false,
+  "restarts": 0,
+  "send": false,
+  "fullTicketComplete": false
+}
