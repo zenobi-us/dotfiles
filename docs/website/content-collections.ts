@@ -165,7 +165,6 @@ const bundleDocs = defineCollection({
   schema: z.object({
     kind: z.enum(["tutorial", "how-to", "explanation"]),
     title: z.string(),
-    diagrams: z.literal("worktree-workflow").optional(),
     content: z.string(),
   }),
   transform: async (document, context) => ({
@@ -247,20 +246,49 @@ const bundleHooks = defineCollection({
   }),
 });
 
-const workflowSourceNote = defineSingleton({
-  name: "workflowSourceNote",
-  filePath: "content/bundles/developer/worktree-workflow/source-note.md",
-  schema: z.object({ label: z.string(), content: z.string() }),
+/** `<bundle>/skills/<skill>/...` gives the bundle and skill that a skill page file belongs to. */
+function skillOf(directory: string) {
+  const parts = directory.split("/");
+  return { bundle: parts[0] ?? "", skill: parts[2] ?? "" };
+}
+
+/** A dedicated page for one skill: `content/bundles/<bundle>/skills/<skill>/page.md`, served at `/bundles/<bundle>/skill/<skill>`. */
+const skillPages = defineCollection({
+  name: "skillPages",
+  directory: "content/bundles",
+  include: "*/skills/*/page.md",
+  schema: z.object({
+    meta: pageMeta,
+    skipLabel: z.string(),
+    eyebrow: z.string(),
+    title: z.string(),
+    details: z.array(z.string()),
+    sectionLinksLabel: z.string(),
+    content: z.string(),
+  }),
   transform: async (document, context) => ({
     ...document,
+    ...skillOf(document._meta.directory),
     html: await compileMarkdown(context, document),
   }),
 });
 
-const diagrams = defineCollection({
-  name: "diagrams",
-  directory: "content/bundles/developer/worktree-workflow/diagrams",
-  include: "*.md",
+const skillSourceNotes = defineCollection({
+  name: "skillSourceNotes",
+  directory: "content/bundles",
+  include: "*/skills/*/source-note.md",
+  schema: z.object({ label: z.string(), content: z.string() }),
+  transform: async (document, context) => ({
+    ...document,
+    ...skillOf(document._meta.directory),
+    html: await compileMarkdown(context, document),
+  }),
+});
+
+const skillDiagrams = defineCollection({
+  name: "skillDiagrams",
+  directory: "content/bundles",
+  include: "*/skills/*/diagrams/*.md",
   schema: z.object({
     id: z.string(),
     number: z.string(),
@@ -273,6 +301,7 @@ const diagrams = defineCollection({
   }),
   transform: async (document, context) => ({
     ...document,
+    ...skillOf(document._meta.directory),
     html: await compileMarkdown(context, document),
   }),
 });
@@ -291,7 +320,8 @@ export default defineConfig({
     bundleSkills,
     bundleAgents,
     bundleHooks,
-    workflowSourceNote,
-    diagrams,
+    skillPages,
+    skillSourceNotes,
+    skillDiagrams,
   ],
 });

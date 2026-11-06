@@ -27,7 +27,12 @@ function BundlesPage() {
         <SiteHeader.Brand href={siteHref("/")} {...navigation.brand} />
         <SiteHeader.Nav label={nav.label}>
           {nav.links.map((link) => (
-            <SiteHeader.NavLink key={link.href} {...link} href={siteHref(link.href)} current={link.href === "/bundles"}>
+            <SiteHeader.NavLink
+              key={link.href}
+              {...link}
+              href={siteHref(link.href)}
+              current={link.href === "/bundles/"}
+            >
               {link.label}
             </SiteHeader.NavLink>
           ))}
@@ -55,7 +60,7 @@ function BundlesPage() {
                 return (
                   <ReferenceList.Item
                     key={manifest.name}
-                    href={siteHref(`/bundles/${manifest.name}`)}
+                    href={siteHref(`/bundles/${manifest.name}/`)}
                     title={manifest.name}
                     description={`${manifest.description}. ${bundle?.skills.length ?? 0} skills · ${bundle?.agents.length ?? 0} agents · ${bundle?.hooks.length ?? 0} hooks.`}
                   />

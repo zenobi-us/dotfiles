@@ -12,7 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as R404RouteImport } from './routes/404'
 import { Route as BundlesIndexRouteImport } from './routes/bundles/index'
-import { Route as BundlesBundleRouteImport } from './routes/bundles/$bundle'
+import { Route as BundlesBundleIndexRouteImport } from './routes/bundles/$bundle/index'
+import { Route as BundlesBundleSkillSkillRouteImport } from './routes/bundles/$bundle/skill/$skill'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -29,44 +30,69 @@ const BundlesIndexRoute = BundlesIndexRouteImport.update({
   path: '/bundles/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BundlesBundleRoute = BundlesBundleRouteImport.update({
-  id: '/bundles/$bundle',
-  path: '/bundles/$bundle',
+const BundlesBundleIndexRoute = BundlesBundleIndexRouteImport.update({
+  id: '/bundles/$bundle/',
+  path: '/bundles/$bundle/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BundlesBundleSkillSkillRoute = BundlesBundleSkillSkillRouteImport.update({
+  id: '/bundles/$bundle/skill/$skill',
+  path: '/bundles/$bundle/skill/$skill',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/bundles/$bundle': typeof BundlesBundleRoute
   '/bundles/': typeof BundlesIndexRoute
+  '/bundles/$bundle/': typeof BundlesBundleIndexRoute
+  '/bundles/$bundle/skill/$skill': typeof BundlesBundleSkillSkillRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/bundles/$bundle': typeof BundlesBundleRoute
   '/bundles': typeof BundlesIndexRoute
+  '/bundles/$bundle': typeof BundlesBundleIndexRoute
+  '/bundles/$bundle/skill/$skill': typeof BundlesBundleSkillSkillRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/bundles/$bundle': typeof BundlesBundleRoute
   '/bundles/': typeof BundlesIndexRoute
+  '/bundles/$bundle/': typeof BundlesBundleIndexRoute
+  '/bundles/$bundle/skill/$skill': typeof BundlesBundleSkillSkillRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/404' | '/bundles/$bundle' | '/bundles/'
+  fullPaths:
+    | '/'
+    | '/404'
+    | '/bundles/'
+    | '/bundles/$bundle/'
+    | '/bundles/$bundle/skill/$skill'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/404' | '/bundles/$bundle' | '/bundles'
-  id: '__root__' | '/' | '/404' | '/bundles/$bundle' | '/bundles/'
+  to:
+    | '/'
+    | '/404'
+    | '/bundles'
+    | '/bundles/$bundle'
+    | '/bundles/$bundle/skill/$skill'
+  id:
+    | '__root__'
+    | '/'
+    | '/404'
+    | '/bundles/'
+    | '/bundles/$bundle/'
+    | '/bundles/$bundle/skill/$skill'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
-  BundlesBundleRoute: typeof BundlesBundleRoute
   BundlesIndexRoute: typeof BundlesIndexRoute
+  BundlesBundleIndexRoute: typeof BundlesBundleIndexRoute
+  BundlesBundleSkillSkillRoute: typeof BundlesBundleSkillSkillRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -92,11 +118,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BundlesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/bundles/$bundle': {
-      id: '/bundles/$bundle'
+    '/bundles/$bundle/': {
+      id: '/bundles/$bundle/'
       path: '/bundles/$bundle'
-      fullPath: '/bundles/$bundle'
-      preLoaderRoute: typeof BundlesBundleRouteImport
+      fullPath: '/bundles/$bundle/'
+      preLoaderRoute: typeof BundlesBundleIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bundles/$bundle/skill/$skill': {
+      id: '/bundles/$bundle/skill/$skill'
+      path: '/bundles/$bundle/skill/$skill'
+      fullPath: '/bundles/$bundle/skill/$skill'
+      preLoaderRoute: typeof BundlesBundleSkillSkillRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -105,8 +138,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
-  BundlesBundleRoute: BundlesBundleRoute,
   BundlesIndexRoute: BundlesIndexRoute,
+  BundlesBundleIndexRoute: BundlesBundleIndexRoute,
+  BundlesBundleSkillSkillRoute: BundlesBundleSkillSkillRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

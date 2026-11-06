@@ -10,7 +10,7 @@ home:
     - { label: Get started, href: "#start" }
     - { label: Guides, href: "#guides" }
     - { label: Reference, href: "#reference" }
-    - { label: Agent bundles, href: /bundles }
+    - { label: Agent bundles, href: /bundles/ }
   footer:
     label: zenobi-us / dotfiles
     links:
@@ -20,7 +20,7 @@ bundles:
   label: Agent bundle navigation
   links:
     - { label: Workstation guide, href: /, iconBefore: "←" }
-    - { label: Agent bundles, href: /bundles }
+    - { label: Agent bundles, href: /bundles/ }
   footer:
     label: zenobi-us / dotfiles
     links:

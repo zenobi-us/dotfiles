@@ -10,7 +10,7 @@ title: dotfiles
 lead: One checkout. Shells, tools, and agent workflows.
 actions:
   - { label: Start the setup, href: "#start", icon: "↓", variant: primary }
-  - { label: Browse agent bundles, href: /bundles }
+  - { label: Browse agent bundles, href: /bundles/ }
 note: Personal configuration, not a separate distribution. Review the bootstrap plan before applying changes to your machine.
 indexLabel: Choose your documentation path
 indexEyebrow: Find your next step

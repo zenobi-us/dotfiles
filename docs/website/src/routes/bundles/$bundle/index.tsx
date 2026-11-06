@@ -1,32 +1,28 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { DataTable } from "../../components/DataTable";
-import { DiagramBlock } from "../../components/DiagramBlock";
-import { Disclosure } from "../../components/Disclosure";
-import { DocSection } from "../../components/DocSection";
-import { Page } from "../../components/Page";
-import { Prose } from "../../components/Prose";
-import { SectionLinks } from "../../components/SectionLinks";
-import { SiteFooter } from "../../components/SiteFooter";
-import { SiteHeader } from "../../components/SiteHeader";
-import { SkipLink } from "../../components/SkipLink";
-import { SourceNote } from "../../components/SourceNote";
-import { SupportMatrix } from "../../components/SupportMatrix";
+import { DataTable } from "../../../components/DataTable";
+import { Disclosure } from "../../../components/Disclosure";
+import { DocSection } from "../../../components/DocSection";
+import { Page } from "../../../components/Page";
+import { Prose } from "../../../components/Prose";
+import { SectionLinks } from "../../../components/SectionLinks";
+import { SiteFooter } from "../../../components/SiteFooter";
+import { SiteHeader } from "../../../components/SiteHeader";
+import { SkipLink } from "../../../components/SkipLink";
+import { SupportMatrix } from "../../../components/SupportMatrix";
 import {
   type Bundle,
   bundleOf,
   type BundleDoc,
-  diagrams,
   docsOfKind,
   harnessSupport,
   invocationOf,
   navigation,
   partsOf,
-  workflowSourceNote,
-} from "../../content";
-import { diagramComponents } from "../../diagrams";
-import { siteHref } from "../../lib/siteHref";
+  skillsWithPages,
+} from "../../../content";
+import { siteHref } from "../../../lib/siteHref";
 
-export const Route = createFileRoute("/bundles/$bundle")({
+export const Route = createFileRoute("/bundles/$bundle/")({
   loader: (context) => {
     const bundle = bundleOf(context.params.bundle);
     if (!bundle) throw notFound();
@@ -151,8 +147,6 @@ function BundlePage() {
           </DocSection.Content>
         </DocSection>
 
-        {docsOfKind(bundle, "explanation").some((doc) => doc.diagrams === "worktree-workflow") && <WorktreeDiagrams />}
-
         <SiteFooter>
           <SiteFooter.Label>{nav.footer.label}</SiteFooter.Label>
           {nav.footer.links.map((link) => (
@@ -166,10 +160,10 @@ function BundlePage() {
   );
 }
 
-/** Hand-written docs of one kind. An entry with diagrams gets its title as an anchor, such as `#worktree-workflow`. */
+/** Hand-written docs of one kind, in file-name order. */
 function Articles(props: { docs: BundleDoc[] }) {
   return props.docs.map((doc) => (
-    <DocSection.Article key={doc._meta.path} id={doc.diagrams} title={doc.title}>
+    <DocSection.Article key={doc._meta.path} title={doc.title}>
       <Prose
         html={doc.html}
         className="[&_li+li]:mt-1 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:max-w-[90ch] [&_p+p]:mt-3"
@@ -213,7 +207,13 @@ function Reference(props: { bundle: Bundle }) {
                   <DataTable.Body>
                     {skills.map((skill) => (
                       <DataTable.Row key={skill.path}>
-                        <DataTable.Cell code>{skill.name}</DataTable.Cell>
+                        <DataTable.Cell code>
+                          {skillsWithPages.has(`${name}/${skill.name}`) ? (
+                            <a href={siteHref(`/bundles/${name}/skill/${skill.name}/`)}>{skill.name} ↗</a>
+                          ) : (
+                            skill.name
+                          )}
+                        </DataTable.Cell>
                         <DataTable.Cell muted>{invocationOf(skill)}</DataTable.Cell>
                         <DataTable.Cell muted>{skill.hasScripts ? "yes" : "—"}</DataTable.Cell>
                         <DataTable.Cell muted>{skill.description}</DataTable.Cell>
@@ -268,32 +268,4 @@ function Reference(props: { bundle: Bundle }) {
 /** Agent descriptions can hold long example blocks. The table shows only the first paragraph. */
 function firstParagraph(text: string) {
   return text.split(/\n\s*\n/)[0]?.trim() ?? "";
-}
-
-/** The four worktree workflow maps, full width below the explanation section. */
-function WorktreeDiagrams() {
-  return (
-    <>
-      {diagrams.map((diagram) => {
-        const Drawing = diagramComponents[diagram.diagram];
-        return (
-          <DiagramBlock key={diagram.id} id={diagram.id}>
-            <DiagramBlock.Head>
-              <DiagramBlock.Title id={diagram.id} number={diagram.number}>
-                {diagram.title}
-              </DiagramBlock.Title>
-              <DiagramBlock.Kind>{diagram.kind}</DiagramBlock.Kind>
-            </DiagramBlock.Head>
-            <DiagramBlock.Figure>
-              <DiagramBlock.Viewport label={diagram.title}>
-                <Drawing title={diagram.title} description={diagram.description} />
-              </DiagramBlock.Viewport>
-              <DiagramBlock.Caption html={diagram.html} />
-            </DiagramBlock.Figure>
-          </DiagramBlock>
-        );
-      })}
-      <SourceNote label={workflowSourceNote.label} html={workflowSourceNote.html} />
-    </>
-  );
 }

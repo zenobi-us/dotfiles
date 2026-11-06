@@ -6,7 +6,9 @@ import {
   allBundleHooks,
   allBundleManifests,
   allBundleSkills,
-  allDiagrams,
+  allSkillDiagrams,
+  allSkillPages,
+  allSkillSourceNotes,
   allEntries,
   allSections,
   bundlesHub,
@@ -14,14 +16,20 @@ import {
   landing,
   navigation,
   redirectConfig,
-  workflowSourceNote,
   type BundleDoc,
   type BundleSkill,
   type Section,
 } from "../.content-collections/generated";
 
-export type { BundleDoc, BundleSkill, Diagram, Entry, Section } from "../.content-collections/generated";
-export { bundlesHub, harnessSupport, landing, navigation, redirectConfig, workflowSourceNote };
+export type {
+  BundleDoc,
+  BundleSkill,
+  Entry,
+  Section,
+  SkillDiagram,
+  SkillPage,
+} from "../.content-collections/generated";
+export { bundlesHub, harnessSupport, landing, navigation, redirectConfig };
 
 const byFilePath = (a: { _meta: { filePath: string } }, b: { _meta: { filePath: string } }) =>
   a._meta.filePath.localeCompare(b._meta.filePath);
@@ -35,8 +43,6 @@ export const sections = allSections.toSorted(byFilePath);
 export function entriesOf(section: Section) {
   return allEntries.filter((entry) => entry._meta.directory === section._meta.directory).toSorted(byFilePath);
 }
-
-export const diagrams = allDiagrams.toSorted(byFilePath);
 
 /** Agent bundles, one for each `.claude-plugin/plugin.json`, by name. */
 export const bundles = allBundleManifests.toSorted(byName);
@@ -83,4 +89,20 @@ export function invocationOf(skill: BundleSkill) {
   if (skill.userInvocable && skill.modelInvocable) return "user and agent";
   if (skill.userInvocable) return "user only";
   return "agent only";
+}
+
+/** Skills that have a dedicated page, as `<bundle>/<skill>`, for links from the bundle reference. */
+export const skillsWithPages = new Set(allSkillPages.map((page) => `${page.bundle}/${page.skill}`));
+
+/** The page, diagrams and source note of one skill. Returns undefined when the skill has no page. */
+export function skillPageOf(bundle: string, skill: string) {
+  const page = allSkillPages.find((candidate) => candidate.bundle === bundle && candidate.skill === skill);
+  if (!page) return undefined;
+  return {
+    page,
+    diagrams: allSkillDiagrams
+      .filter((diagram) => diagram.bundle === bundle && diagram.skill === skill)
+      .toSorted(byFilePath),
+    sourceNote: allSkillSourceNotes.find((note) => note.bundle === bundle && note.skill === skill),
+  };
 }

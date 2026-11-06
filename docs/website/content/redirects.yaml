@@ -4,8 +4,8 @@
 # for capture groups. Keep a rule for every published URL that moves.
 rules:
   - pattern: "^/worktree-workflow(\\.html)?/?$"
-    to: "/bundles/developer#worktree-workflow"
-    reason: The worktree workflow moved into the developer bundle page.
+    to: "/bundles/developer/skill/worktree/"
+    reason: The worktree workflow moved to the worktree skill page.
   - pattern: "^/artifacts(/.*)?$"
-    to: "/bundles/developer#worktree-workflow"
-    reason: The Worktree Flow Atlas design study was removed.
+    to: "/bundles/developer/skill/worktree/"
+    reason: The Worktree Flow Atlas design study was removed. Its diagrams live on the worktree skill page.

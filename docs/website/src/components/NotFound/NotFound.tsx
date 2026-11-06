@@ -17,7 +17,7 @@ export function NotFound() {
           <Button href={siteHref("/")} variant="primary">
             Workstation guide
           </Button>
-          <Button href={siteHref("/bundles")}>Agent bundles</Button>
+          <Button href={siteHref("/bundles/")}>Agent bundles</Button>
         </div>
       </Page.Header>
     </Page.Main>

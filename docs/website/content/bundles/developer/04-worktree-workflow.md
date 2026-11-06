@@ -1,7 +1,6 @@
 ---
 kind: explanation
 title: Worktree workflow
-diagrams: worktree-workflow
 ---
 
-Who coordinates the work, how sessions hand off, when a review is valid, and which records prove completion. Four maps follow: ownership, handoffs, review gates and records. On narrow screens, each map scrolls on its own.
+The `worktree` skill coordinates ticket work across Worktrunk worktrees, fresh agent sessions, review gates and durable records. Read [how the worktree workflow works](/bundles/developer/skill/worktree/) for its four diagrams.
