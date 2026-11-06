@@ -1,0 +1,45 @@
+{
+  "created_at": "2026-11-06T06:40:58.733Z",
+  "ownerReport": "ready",
+  "version": "0.3.1",
+  "observedNativeStatus": {
+    "time": "2026-11-06T06:40:18.606Z",
+    "deviceId": "paper-pro-ink-0054",
+    "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "udc": {
+      "ci_hdrc.0": "powered",
+      "ci_hdrc.1": "not attached"
+    },
+    "usbIPv4": [],
+    "listeners": [
+      "tcp:0100007F:0051"
+    ],
+    "safe": true
+  },
+  "requests": [
+    {
+      "jobId": "c0d3db19bfd8915f036916cdad4dabd1",
+      "requestId": "c0d3db19bfd8915f036916cdad4dabd1",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "state": "pending",
+      "submissionEpoch": 0
+    },
+    {
+      "jobId": "4be03c9e22af2514390fcf5721f3b009",
+      "requestId": "4be03c9e22af2514390fcf5721f3b009",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "state": "pending",
+      "submissionEpoch": 0
+    }
+  ],
+  "selectedJobId": "c0d3db19bfd8915f036916cdad4dabd1",
+  "humanPrefix": "c0d3db",
+  "nextAction": "Owner taps Import synthetic source once and reports tapped. Read actual coordinator JSONL and binding; no error transcription.",
+  "diagnosticLog": "/tmp/pi-ink-native-0082-TauwWN/client-diagnostics.jsonl",
+  "assistantExecutedImport": false,
+  "SSH": false,
+  "restarts": 0,
+  "send": false,
+  "oldPDFsUnchanged": true,
+  "fullTicketComplete": false
+}
