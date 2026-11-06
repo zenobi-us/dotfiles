@@ -1,0 +1,43 @@
+{
+  "created_at": "2026-11-06T22:54:19.897Z",
+  "operation": "physical-document-B-identity-0099",
+  "ownerResponse": "confirmed",
+  "ownerConfirmedInstruction": {
+    "openedStockPDF": "pi-ink-d7b4f33c…",
+    "drewCentre": "B",
+    "openedPiInkFrom": "drawing toolbar",
+    "currentDocumentUUIDPrefix": "ac79fff8",
+    "currentDocumentUUIDSuffix": "d7fe50",
+    "status": "online · pending",
+    "sendEnabled": true,
+    "sendNotTapped": true
+  },
+  "observationType": "Owner report, not screenshot or automatic current-UUID telemetry",
+  "authenticatedJobMetadata": [
+    {
+      "jobId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+      "requestId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+      "state": "pending",
+      "submissionEpoch": 0,
+      "documentUUID": "60d040a0-b4f4-425a-8b35-4cba310b84e9",
+      "folderUUID": ""
+    },
+    {
+      "jobId": "50bdfd2c593cfc98692883dc226f7209",
+      "requestId": "50bdfd2c593cfc98692883dc226f7209",
+      "state": "pending",
+      "submissionEpoch": 0,
+      "documentUUID": "ac79fff8-bb09-4bbd-a769-063ab2d7fe50",
+      "folderUUID": ""
+    }
+  ],
+  "actualOriginToolCallIDs": [
+    "call_cfc581734ba44945ac287c6580941b50|fc_0aace8a3885f0757016aee4a8c381887d0a8088a46e064f59e",
+    "call_089023c1359e475c8d169222a980758d|fc_0aace8a3885f0757016aee4a8effe887d0b399aadec4b8896e"
+  ],
+  "toolCallToRequestMapping": "Not assumed from concurrent start order; await actual returned result metadata",
+  "nextBoundary": "Normal save/close B, reopen A, verify retained A and four edge marks plus current UUID60d040a0…0b84e9 and online/pending/Send enabled. Only if all match, owner may tap Send once for A. Stop at any clipping warning without confirming.",
+  "runtimeSSH": false,
+  "sendAttemptedByDesktop": false,
+  "actualPNGOrCallbackObserved": false
+}
