@@ -1,0 +1,27 @@
+{
+  "schema": "pi-ink-native-cable-free-transport/v1",
+  "ownerReport": "unplugged",
+  "ownerReportRecordedAt": "2026-11-05T23:54:29.086Z",
+  "authenticatedPostReportFrame": {
+    "time": "2026-11-05T23:54:31.532Z",
+    "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "deviceId": "paper-pro-ink-0054",
+    "udc": {
+      "ci_hdrc.0": "not attached",
+      "ci_hdrc.1": "not attached"
+    },
+    "usbIPv4": [],
+    "listeners": [
+      "tcp:0100007F:0051"
+    ],
+    "safe": true
+  },
+  "transportProof": "Authenticated WSS status continues after owner cable removal, with both UDC controllers detached, no USB IPv4 and stockHTTP only IPv4loopback81.",
+  "sshSinceOwnerUnplug": false,
+  "screenshots": false,
+  "documentOperations": false,
+  "roundTripProved": false,
+  "nextOwnerOperation": "Create one new associated stock folder with the native manager; confirm association row and normal stock-library visibility. No import/Send yet.",
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}

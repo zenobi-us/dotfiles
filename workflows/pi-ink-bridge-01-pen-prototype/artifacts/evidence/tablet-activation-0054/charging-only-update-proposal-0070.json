@@ -1,0 +1,82 @@
+{
+  "schema": "pi-ink-charging-only-update/v1",
+  "status": "HOST_VERIFIED_DEVICE_NOT_AUTHORIZED_NOT_EXECUTED",
+  "ownerRequest": "it needs power, can we push an update that allows pwoered?",
+  "sourceCommit": "c7c58384585b32f5e3462d11094d6cf9a00ca69f",
+  "sourceTree": "b5285c9741ce295085ef5f60b18868406324b613",
+  "previousInstalledSHA256": "a8757d1a2bfee0a8786630f2ccebd1f95d410c4354645537b10e0cefd0291b8d",
+  "newInstalledSHA256": "d5e750544e7201f86167567e1fe951351f17b8185720efe2087b5defdddc50f6",
+  "newBinaryBytes": 7405752,
+  "repairScriptSHA256": "6e1c4627eaa68364eeff665696df64746e9e1ee441e4f68007d6bd0138c3b395",
+  "restoreScriptSHA256": "0337ca979e5b151db4d1c27d5a86ffac55fd5d0e4180ecd573ecbd8040c49286",
+  "editorRestarts": 0,
+  "ownedBridgeRestarts": 1,
+  "deviceExecuted": false,
+  "privateDirectory": "/tmp/pi-ink-runtime-charging-0070-S1sPVA",
+  "policy": {
+    "allowedUDCStates": [
+      "not attached",
+      "powered"
+    ],
+    "requiredControllerCount": 2,
+    "otherUDCStates": "Reject, including configured/addressed/default/suspended/attached/unknown/empty or read failures.",
+    "usbIPv4Guard": "Unchanged: any USB IPv4 rejects stock import/export.",
+    "stockListenerGuards": "Unchanged: require IPv4loopback81; reject nonloopback81 and exposed80.",
+    "classification": "Charging-only, not proof of fully unplugged operation."
+  },
+  "verification": {
+    "before": "go test -run ^TestUDCChargingOnlySafety$ -count=1 . failed for powered+detached and bothpowered.",
+    "after": "gofmt stock.go stock_test.go; go test ./... -count=1 passed.",
+    "cases": 13,
+    "seam": "Real controller-state file reads in isolated temp directories; no global observer mock.",
+    "build": "Established CGO_ENABLED=0 GOOS=linux GOARCH=arm64 trimpath stripped0.3.0 build from committed source.",
+    "scriptSyntax": "sh -n passed update and matched full-restoration scripts.",
+    "limit": "New policy not yet observed on the tablet."
+  },
+  "transport": {
+    "command": [
+      "ssh",
+      "-T",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ConnectTimeout=8",
+      "-o",
+      "StrictHostKeyChecking=yes",
+      "-o",
+      "HostKeyAlias=10.11.99.1",
+      "-o",
+      "ControlMaster=no",
+      "-o",
+      "ControlPath=none",
+      "root@192.168.86.128",
+      "sh -s -- APPROVE_CHARGING_ONLY_UPDATE_0070_AND_ONE_OWNED_BRIDGE_RESTART"
+    ],
+    "peerEvidence": "Only LAN peer of owned desktop TCP47842 was192.168.86.128.",
+    "hostIdentity": "Existing known SSH host key for10.11.99.1 reused through HostKeyAlias; strict validation remains enabled.",
+    "acceptanceTestPausedForRepair": true,
+    "noNotebookTransfer": true
+  },
+  "writes": [
+    "New owned runtime-charging-0070 directory with previous binary, new exact binary and markers.",
+    "Atomic replacement of the one installed bridge binary.",
+    "ONE restart of only the owned transient bridge service.",
+    "Verify/record new service identity; pairing/association-state checksum must remain unchanged."
+  ],
+  "unchanged": [
+    "Xochitl, QML/QMD, loopback adapter, current4df... source config, trust, installed VERSION.",
+    "All notebooks and stock folders; no Import/Send retry or deletion.",
+    "Original0.2 backups, partial0058 and unknown legacy state."
+  ],
+  "restoreAfterSuccessfulUpdate": {
+    "path": "/tmp/pi-ink-runtime-charging-0070-S1sPVA/device-restore-after-charging-0070.sh",
+    "sha256": "0337ca979e5b151db4d1c27d5a86ffac55fd5d0e4180ecd573ecbd8040c49286",
+    "change": "Only installed-client checksum guard changed to the new charging binary; all original-state safeguards retained.",
+    "requiresSeparateSavedClosedAndXochitlRestartApproval": true
+  },
+  "automaticRetry": false,
+  "automaticRollback": false,
+  "cleanup0038": false,
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}

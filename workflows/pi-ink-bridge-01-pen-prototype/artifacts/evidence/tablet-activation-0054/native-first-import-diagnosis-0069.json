@@ -1,0 +1,67 @@
+{
+  "schema": "pi-ink-first-native-import-diagnosis/v1",
+  "ownerReports": [
+    "step 2: tapped. result: pending?",
+    "There's two, but these are older files i think.",
+    "pi ink stock editor alignment 2026-11-02.pdf",
+    "pi ink loopback 0014 synthetic.pdf"
+  ],
+  "desktopSnapshot": [
+    {
+      "jobId": "a5870505364fbbea6a60d4c684c6b33e",
+      "requestId": "a5870505364fbbea6a60d4c684c6b33e",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "state": "pending",
+      "submissionEpoch": 0
+    },
+    {
+      "jobId": "607c89e18eb1e81b7f165baba1d9d030",
+      "requestId": "607c89e18eb1e81b7f165baba1d9d030",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "state": "pending",
+      "submissionEpoch": 0
+    }
+  ],
+  "documentBindingObserved": false,
+  "newPDFObserved": false,
+  "knownCurrentBlocker": {
+    "firstPoweredFrame": {
+      "time": "2026-11-05T23:54:46.532Z",
+      "udc": {
+        "ci_hdrc.0": "powered",
+        "ci_hdrc.1": "not attached"
+      },
+      "usbIPv4": [],
+      "safe": false
+    },
+    "latestReadFrame": {
+      "time": "2026-11-06T00:28:11.536Z",
+      "udc": {
+        "ci_hdrc.0": "powered",
+        "ci_hdrc.1": "not attached"
+      },
+      "usbIPv4": [],
+      "listeners": [
+        "tcp:0100007F:0051"
+      ],
+      "safe": false
+    },
+    "code": "stock.go readHardware requires every UDC state to be not attached; importStock rejects !Safe before POST/upload.",
+    "limit": "This establishes a current upload blocker, not a captured cause of the first attempt. No application error body or import-ready trace was captured."
+  },
+  "earlierProofLimit": "0067 captured genuine detached/safe=true frames, but that was not sustained: controller0 changed to powered15seconds later. No completed cable-free import or roundtrip is claimed.",
+  "doNot": [
+    "Repeat Import",
+    "Open/edit/delete the older fixtures as part of this test",
+    "Relax the safety guard without diagnosis",
+    "Use runtime SSH"
+  ],
+  "nextOwnerFacts": [
+    "Is tablet USB-C port completely empty, including charging cables/hubs?",
+    "What error does PiInk manager show, and is Import currently enabled or disabled?"
+  ],
+  "sshSinceUnplug": false,
+  "additionalDeviceWrites": false,
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}

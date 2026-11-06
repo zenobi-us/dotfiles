@@ -1,0 +1,18 @@
+{
+  "schema": "pi-ink-native-stock-folder-owner-proof/v1",
+  "created_at": "2026-11-06T00:05:48.232Z",
+  "ownerReport": "all pass. button works, folder is present",
+  "observed": {
+    "nativeCreateButtonWorks": true,
+    "associatedStockFolderRowAppears": true,
+    "normalStockLibraryFolderVisible": true
+  },
+  "scope": "Owner clicked native Create associated stock folder once and checked the native association row and normal Library, with USB unplugged.",
+  "codeBoundary": "Library.uniqueVisibleName and Library.createCollection, then loopback POST/folder with canonical native UUID; actual UUID not transcribed or guessed.",
+  "sshSinceUnplug": false,
+  "importObserved": false,
+  "sendObserved": false,
+  "next": "Import one of the two actual pending synthetic PDF sources, observe native Library/editor and actual binding.",
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}
