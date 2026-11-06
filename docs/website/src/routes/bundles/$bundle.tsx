@@ -42,10 +42,10 @@ export const Route = createFileRoute("/bundles/$bundle")({
 });
 
 const parts = [
-  { id: "tutorial", number: "01", title: "Tutorial" },
-  { id: "how-to", number: "02", title: "How-to guides" },
-  { id: "reference", number: "03", title: "Reference" },
-  { id: "explanation", number: "04", title: "Explanation" },
+  { id: "explanation", number: "01", title: "Explanation" },
+  { id: "tutorial", number: "02", title: "Tutorial" },
+  { id: "how-to", number: "03", title: "How-to guides" },
+  { id: "reference", number: "04", title: "Reference" },
 ];
 
 function BundlePage() {
@@ -90,9 +90,21 @@ function BundlePage() {
           ))}
         </SectionLinks>
 
-        <DocSection id="tutorial">
+        <DocSection id="explanation">
           <DocSection.Heading
             number="01"
+            eyebrow="Understanding-oriented"
+            title="Explanation"
+            summary="Why the bundle is built this way."
+          />
+          <DocSection.Content>
+            <Articles docs={docsOfKind(bundle, "explanation")} />
+          </DocSection.Content>
+        </DocSection>
+
+        <DocSection id="tutorial">
+          <DocSection.Heading
+            number="02"
             eyebrow="Learning-oriented"
             title="Tutorial"
             summary={`Use the ${name} bundle for the first time.`}
@@ -104,7 +116,7 @@ function BundlePage() {
 
         <DocSection id="how-to">
           <DocSection.Heading
-            number="02"
+            number="03"
             eyebrow="Task-oriented"
             title="How-to guides"
             summary="Steps for one task each."
@@ -129,25 +141,13 @@ function BundlePage() {
 
         <DocSection id="reference">
           <DocSection.Heading
-            number="03"
+            number="04"
             eyebrow="Information-oriented"
             title="Reference"
             summary="Read from the bundle files at build time."
           />
           <DocSection.Content>
             <Reference bundle={bundle} />
-          </DocSection.Content>
-        </DocSection>
-
-        <DocSection id="explanation">
-          <DocSection.Heading
-            number="04"
-            eyebrow="Understanding-oriented"
-            title="Explanation"
-            summary="Why the bundle is built this way."
-          />
-          <DocSection.Content>
-            <Articles docs={docsOfKind(bundle, "explanation")} />
           </DocSection.Content>
         </DocSection>
 
