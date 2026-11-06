@@ -1,0 +1,132 @@
+{
+  "created_at": "2026-11-06T23:03:00.702Z",
+  "operation": "native-explicit-send-0101",
+  "ownerReport": "Tapped after instruction to reopen A and verify retained centre/edge marks; do not confirm clipping warning",
+  "authenticatedPostSendStates": [
+    {
+      "jobId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+      "requestId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+      "state": "completed",
+      "submissionEpoch": 0,
+      "documentUUID": "60d040a0-b4f4-425a-8b35-4cba310b84e9",
+      "folderUUID": ""
+    },
+    {
+      "jobId": "50bdfd2c593cfc98692883dc226f7209",
+      "requestId": "50bdfd2c593cfc98692883dc226f7209",
+      "state": "pending",
+      "submissionEpoch": 0,
+      "documentUUID": "ac79fff8-bb09-4bbd-a769-063ab2d7fe50",
+      "folderUUID": ""
+    }
+  ],
+  "otherRequestRecheckedAfterArtifactInspection": {
+    "jobId": "50bdfd2c593cfc98692883dc226f7209",
+    "state": "pending",
+    "documentUUID": "ac79fff8-bb09-4bbd-a769-063ab2d7fe50"
+  },
+  "actualOriginatingToolResult": {
+    "toolCallId": "call_cfc581734ba44945ac287c6580941b50|fc_0aace8a3885f0757016aee4a8c381887d0a8088a46e064f59e",
+    "toolName": "image_editor",
+    "isError": false,
+    "details": {
+      "action": "annotate",
+      "status": "completed"
+    },
+    "imageMimeType": "image/png",
+    "sessionImageRepresentation": "blob:sha256 reference; not inline base64",
+    "imageBlobSHA256": "4d9e07c2ab14d19b1bc37851956ebfc8e27a522d10b38bbbb4f8d371eafe9806",
+    "matchesFlattenedPNG_SHA256": true,
+    "actualToolResultCount": 1,
+    "otherToolResultPresent": false
+  },
+  "actualArtifact": {
+    "file": "native-send-0101-returned.png",
+    "bytes": 30300,
+    "sha256": "4d9e07c2ab14d19b1bc37851956ebfc8e27a522d10b38bbbb4f8d371eafe9806",
+    "width": 800,
+    "height": 1000,
+    "visualInspection": "Large centre A, marks near top/bottom/left/right, grid and four corner markers visible in portrait orientation; not B",
+    "sourceSHA256": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+    "pixelComparison": {
+      "method": "Compare RGB pixels against exact source; changed=max channel absolute delta>=32, darker=sum(sourceRGB)-sum(returnedRGB)>=192",
+      "regions": {
+        "centre": {
+          "bounds": [
+            200,
+            250,
+            600,
+            750
+          ],
+          "changed": 1748,
+          "darker": 1600
+        },
+        "top": {
+          "bounds": [
+            200,
+            5,
+            600,
+            100
+          ],
+          "changed": 263,
+          "darker": 229
+        },
+        "bottom": {
+          "bounds": [
+            200,
+            900,
+            600,
+            995
+          ],
+          "changed": 224,
+          "darker": 193
+        },
+        "left": {
+          "bounds": [
+            5,
+            200,
+            100,
+            800
+          ],
+          "changed": 150,
+          "darker": 122
+        },
+        "right": {
+          "bounds": [
+            700,
+            200,
+            795,
+            800
+          ],
+          "changed": 235,
+          "darker": 188
+        }
+      }
+    }
+  },
+  "flatteningAnalysis": {
+    "requestId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+    "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+    "width": 800,
+    "height": 1000,
+    "outsidePixels": 0,
+    "requiresConfirmation": false,
+    "uncertainPaintBounds": false,
+    "exportDigest": "2e63d57c8347a706837dc990484b4f2612bd5689d8a789c96cf6387e58462923"
+  },
+  "retainedPrivateFullPDF": {
+    "path": "/home/zenobius/.local/state/pi-ink-recovery-0091-lTFG6Q/home/.local/share/omp/image-annotator/27b6a63d193b2fbcdf2bf49eeffd4243/1-2e63d57c8347a706837dc990484b4f2612bd5689d8a789c96cf6387e58462923/annotated.pdf",
+    "bytes": 32884,
+    "sha256": "2e63d57c8347a706837dc990484b4f2612bd5689d8a789c96cf6387e58462923",
+    "matchesExportDigest": true
+  },
+  "established": "Actual stock-editor A export completed only its bound real request; exact flattened A image digest reached originating tool callback while distinct B request stayed pending. This is end-to-end routing/content evidence, not physical UUID-display evidence.",
+  "noClippingNormalPath": true,
+  "positiveClippingConfirmationPath": "not proved",
+  "postSendStockEditability": "not yet owner-confirmed",
+  "runtimeSSH": false,
+  "captureHelperOrDeviceScreenshot": false,
+  "desktopSend": false,
+  "automaticRetry": false,
+  "wholeTicketComplete": false
+}
