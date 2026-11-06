@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-11-06T22:00:31.277Z",
+  "operation": "coordinator-trust-recovery-0092",
+  "scriptSHA256": "01763197de1e8e123b6fe2d45d80eace522b6f237928d77cb94f54713dba66e6",
+  "exitCode": 0,
+  "deadlineHit": false,
+  "stdout": "COORDINATOR_TRUST_RECOVERED_APP_PAIRING_UNPROVED\n",
+  "stderr": "",
+  "success": true,
+  "automaticRetry": false,
+  "ownedGoRestarts": 1,
+  "xochitlRestarts": 0,
+  "pairingAndAssociationChecksumUnchanged": "verified by script",
+  "originalCAUnchanged": "verified by script",
+  "newCASHA256": "7c24eaa5470226ff1d00c02443c1c0f083d69981b7cf0944a711a51db5739f1e",
+  "runtimeSHA256": "846e3f67eaca50828cef1cd480a1d9dd0258ede38c59c3c057a41f4ec031cb60",
+  "clientAndQMLUnchanged": "verified by script",
+  "normalPairingOrImportOrSendAttempted": false,
+  "remaining": "App pairing and fresh normal LAN status/import/Send/originating-tool callback remain unproved. Original marked PDF was not accessed or modified by this operation."
+}

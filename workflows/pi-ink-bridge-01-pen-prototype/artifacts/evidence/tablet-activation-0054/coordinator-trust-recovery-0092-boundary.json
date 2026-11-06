@@ -1,0 +1,38 @@
+{
+  "operation": "coordinator-trust-recovery-0092",
+  "status": "approved_one_shot_repair_succeeded_awaiting_normal_app_pairing",
+  "observed_result": {
+    "exit_code": 0,
+    "success_marker": "COORDINATOR_TRUST_RECOVERED_APP_PAIRING_UNPROVED",
+    "owned_go_restarts": 1,
+    "xochitl_restarts": 0,
+    "pairing_and_association_state_checksum": "unchanged, verified by the executed script",
+    "old_ca_binary_and_qml": "unchanged, verified by the executed script",
+    "new_ca_and_runtime": "exact approved SHA-256 and metadata verified by the executed script",
+    "private_stock_listener_and_compatibility_baseline": "passed",
+    "ca_verified_local_https_management_status_after_repair": 200,
+    "pending_app_pair_request_after_repair": false,
+    "desktop_pair_approval_submitted": false
+  },
+  "next_owner_action": "Open the Pi Ink manager and tap Pair for the existing setup-trusted desktop. Do not Import or Send yet.",
+  "next_desktop_boundary": "Read only the exact current pending device ID and pairing ID through the local authenticated management API. Compare the short human code with the owner before approving the full opaque ID. Do not extract or replace the tablet credential.",
+  "next_native_proof": "After normal pairing, move from PC USB to a wall charger. Observe fresh native powered/no-USB-IPv4/private-stock-listener/safe=true status over authenticated LAN. Only then request one owner-controlled fresh import, with no automatic retry.",
+  "preserved": [
+    "Original marked stock PDF and all other notebooks",
+    "Existing device credential and document/folder associations",
+    "Original public CA and exact runtime backup",
+    "All protected prior evidence and partial stages",
+    "Unrelated staged mise.toml"
+  ],
+  "still_unproved": [
+    "Physical import click after the0090 polling repair",
+    "Fresh two-document current-UUID/request isolation",
+    "Actual Send and flattened changed-pixel PNG returned to the exact originating real tool request",
+    "Clipping, invalidation and cancellation terminal behavior on hardware",
+    "Retained editable work after Send",
+    "Sleep, editor restart, reboot, firmware/XOVI lifecycle boundaries and separately approved restoration"
+  ],
+  "no_automatic_retry_rollback_cleanup_import_or_send": true,
+  "old_callback_recovery_claimed": false,
+  "whole_ticket_success_or_production_readiness_claimed": false
+}

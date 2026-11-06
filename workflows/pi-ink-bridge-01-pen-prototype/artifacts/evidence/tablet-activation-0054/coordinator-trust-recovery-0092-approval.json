@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-11-06T22:00:17.042Z",
+  "operation": "coordinator-trust-recovery-0092",
+  "owner_selection": "USB connected; approve recovery0092",
+  "authority": "Fresh explicit answer to the exact0092 approval question",
+  "scriptSHA256": "01763197de1e8e123b6fe2d45d80eace522b6f237928d77cb94f54713dba66e6",
+  "scope": "Install only new public CA and backed-up exact runtime CA-path/source-allowlist update; restart only pi-ink-0054.service once; record new owned InvocationID. No Xochitl restart, credential changes, document operations, import, Send, cleanup or retry.",
+  "usb_route": {
+    "destination": "10.11.99.1",
+    "device": "enp2s0f0u4c2",
+    "source": "10.11.99.10",
+    "gateway": null
+  },
+  "oneShot": true
+}

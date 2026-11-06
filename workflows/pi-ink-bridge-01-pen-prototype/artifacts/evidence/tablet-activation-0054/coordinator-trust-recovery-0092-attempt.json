@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-11-06T22:00:17.042Z",
+  "operation": "coordinator-trust-recovery-0092",
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s -- APPROVE_COORDINATOR_TRUST_RECOVERY_0092 APPROVE_ONE_OWNED_BRIDGE_RESTART_0092"
+  ],
+  "scriptSHA256": "01763197de1e8e123b6fe2d45d80eace522b6f237928d77cb94f54713dba66e6",
+  "deadlineMS": 90000,
+  "automaticRetry": false
+}
