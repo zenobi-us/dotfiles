@@ -1,0 +1,42 @@
+{
+  "created_at": "2026-11-06T22:45:14.275Z",
+  "operation": "first-fresh-document-marks-0097",
+  "ownerReported": "Done after instruction to open pi-ink-573ee78a… through normal Library and draw centre A plus a mark near each of four edges in stock editor without Send",
+  "observationType": "Owner report; no screenshot or content capture",
+  "authenticatedJobMetadata": [
+    {
+      "jobId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+      "requestId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+      "state": "pending",
+      "submissionEpoch": 0,
+      "documentUUID": "60d040a0-b4f4-425a-8b35-4cba310b84e9",
+      "folderUUID": ""
+    },
+    {
+      "jobId": "50bdfd2c593cfc98692883dc226f7209",
+      "requestId": "50bdfd2c593cfc98692883dc226f7209",
+      "state": "pending",
+      "submissionEpoch": 0,
+      "documentUUID": null,
+      "folderUUID": null
+    }
+  ],
+  "freshAuthenticatedNativeStatus": {
+    "time": "2026-11-06T22:45:11.226Z",
+    "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "deviceId": "paper-pro-ink-0054",
+    "udc": {
+      "ci_hdrc.0": "powered",
+      "ci_hdrc.1": "not attached"
+    },
+    "usbIPv4": [],
+    "listeners": [
+      "tcp:0100007F:0051"
+    ],
+    "safe": true
+  },
+  "statusAgeMSAtObservation": 3046,
+  "pngOrToolCallbackObserved": false,
+  "nextOwnerAction": "Save/close A with normal stock controls; import only job50bdfd2c593cfc98692883dc226f7209 once for two-document isolation; no Send or retries",
+  "runtimeSSH": false
+}
