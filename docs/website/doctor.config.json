@@ -1,0 +1,11 @@
+{
+  "ignore": {
+    "files": ["lint/fixtures/**"],
+    "overrides": [
+      {
+        "files": ["src/components/Prose/Prose.tsx"],
+        "rules": ["react-doctor/dangerous-html-sink"]
+      }
+    ]
+  }
+}

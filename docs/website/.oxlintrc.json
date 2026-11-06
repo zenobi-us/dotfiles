@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "react", "jsx-a11y", "unicorn", "oxc", "import"],
+  "jsPlugins": ["./lint/no-props-destructuring.ts"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "perf": "warn"
+  },
+  "rules": {
+    "local/no-props-destructuring": "error",
+    "react/react-in-jsx-scope": "off",
+    "jsx-a11y/prefer-tag-over-role": "off",
+    "jsx-a11y/no-noninteractive-tabindex": ["error", { "roles": ["region"] }],
+    "no-underscore-dangle": ["warn", { "allow": ["_meta"] }]
+  },
+  "ignorePatterns": ["dist", ".content-collections", "src/routeTree.gen.ts", "lint/fixtures"]
+}

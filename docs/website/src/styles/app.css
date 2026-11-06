@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* Desktop-first breakpoints, matching the original styles.css. */
+@custom-variant narrow (@media (max-width: 760px));
+@custom-variant tiny (@media (max-width: 380px));
+@custom-variant wide (@media (min-width: 1600px));
+
+@theme {
+  --color-background: #191521;
+  --color-card: #241d33;
+  --color-foreground: #e6e1f2;
+  --color-primary: #c9a6ff;
+  --color-muted: color-mix(in srgb, var(--color-foreground) 70%, var(--color-background));
+  --color-border: color-mix(in srgb, var(--color-foreground) 22%, var(--color-background));
+  --color-success: #9ccfd8;
+  --color-error: #f58b92;
+  --font-sans: "JetBrains Mono", monospace;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+
+/* Element rules from the original styles.css. Class rules live in the components. */
+@layer base {
+  :root {
+    color-scheme: dark;
+    --header-height: 49px;
+    font-family: var(--font-sans);
+    font-size: 16px;
+  }
+  @media (max-width: 760px) {
+    :root {
+      --header-height: 98px;
+    }
+  }
+  html {
+    scroll-padding-top: calc(var(--header-height) + 16px);
+  }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  a {
+    color: var(--color-primary);
+    text-decoration-line: underline;
+    text-underline-offset: 4px;
+  }
+  a:hover {
+    text-decoration-thickness: 2px;
+  }
+  a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+  h1,
+  h2,
+  h3,
+  strong {
+    font-weight: 500;
+  }
+  p + p {
+    margin-top: 12px;
+  }
+  p {
+    max-width: 72ch;
+  }
+  code {
+    font-family: inherit;
+    font-size: inherit;
+    overflow-wrap: anywhere;
+  }
+  /* The original relied on the browser default `monospace` for code blocks; Tailwind preflight replaces it. */
+  pre {
+    font-family: monospace;
+    margin: 16px 0;
+    padding: 16px;
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    line-height: 1.8;
+  }
+}
