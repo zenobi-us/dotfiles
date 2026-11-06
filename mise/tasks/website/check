@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Typecheck, lint, format check, rule tests and react-doctor for the website"
+#MISE dir="{{config_root}}/docs/website"
+#MISE depends=["website:install"]
+bun run check

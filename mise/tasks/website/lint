@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Lint the website with oxlint, including the no-props-destructuring rule"
+#MISE dir="{{config_root}}/docs/website"
+#MISE depends=["website:install"]
+bun run lint

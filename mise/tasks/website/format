@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Format the website with oxfmt"
+#MISE dir="{{config_root}}/docs/website"
+#MISE depends=["website:install"]
+bun run format

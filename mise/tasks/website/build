@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Typecheck and build the static website into docs/website/dist/client"
+#MISE dir="{{config_root}}/docs/website"
+#MISE depends=["website:install"]
+bun run typecheck && bun run build
