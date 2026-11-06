@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-11-06T22:20:00.774Z",
+  "operation": "normal-app-pairing-0094",
+  "authenticatedNativeStatusReceived": true,
+  "status": {
+    "time": "2026-11-06T22:19:56.232Z",
+    "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "deviceId": "paper-pro-ink-0054",
+    "udc": {
+      "ci_hdrc.0": "configured",
+      "ci_hdrc.1": "not attached"
+    },
+    "usbIPv4": [
+      "usb1:10.11.99.1"
+    ],
+    "listeners": [
+      "tcp:0100007F:0051"
+    ],
+    "safe": false
+  },
+  "privateLogMode": "600",
+  "meaning": "Authenticated native coordinator channel is live. PC USB is configured with USB IPv4; safe=false is expected. Native imports must wait for fresh charging-only safe=true status.",
+  "deviceSSH": false,
+  "importOrSendAttempted": false
+}
