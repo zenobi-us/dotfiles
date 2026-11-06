@@ -48,6 +48,56 @@ async function fixture() {
   return { root, context, ticket };
 }
 
+test("active receipts retain their base-checkout identity when inspected from a linked checkout", async () => {
+  const { context, ticket, root } = await fixture();
+  const base = context.repositoryRoot;
+  const source = join(root, "source");
+  await run("git", ["-C", base, "worktree", "add", "-b", "feature/T-1", source]);
+  const linked = { ...context, repositoryRoot: source, root: source, sharedRoot: source, alignmentRoot: source };
+  const commit = await run("git", ["-C", source, "rev-parse", "HEAD"]);
+  const tree = await run("git", ["-C", source, "rev-parse", "HEAD^{tree}"]);
+  const event = {
+    schema: "worktree-receipt/v1", workflow_id: ticket.id, receipt_id: "start-1",
+    phase: "start", event: "phase-start", status: "started", attempt: 1, parent_receipt: null,
+    repository: base, worktree: source, workspace_path: source, source_branch: "feature/T-1", base_branch: "main",
+    source_commit: commit, source_tree: tree, muxer: "herdr", pane_id: "1", agent: "omp", session_id: "parent",
+    created_at: "2026-10-01T00:00:00Z", ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend },
+    ticket_ref: ticket.ref, workflow: { root: source, store: "repository", ref: "workflows/T-1" }, inputs: [], outputs: [],
+  };
+  const path = join(source, "workflows/T-1/events/start.json");
+  const original = JSON.stringify(event);
+  await put(path, original);
+  const inventory: Exec = async (command, args, cwd) => command === "wt"
+    ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "feature/T-1", worktree: { path: source } }] }) }
+    : exec(command, args, cwd);
+  let workflow = await loadTicketWorkflow(linked, ticket, inventory);
+  expect(workflow.events?.find(item => item.ref.endsWith("/start.json"))?.error).toBeUndefined();
+  expect(workflow.receipts.map(item => item.id)).toContain("start-1");
+  expect(await readFile(path, "utf8")).toBe(original);
+
+  const completionPath = join(source, "workflows/T-1/events/complete.json");
+  const completion = { ...event, receipt_id: "complete-2", parent_receipt: "start-1", event: "phase-complete",
+    status: "blocked", pane_id: null, created_at: "2026-10-02T00:00:00Z" };
+  await put(completionPath, JSON.stringify(completion));
+  workflow = await loadTicketWorkflow(linked, ticket, inventory);
+  expect(workflow.receipts.map(item => item.id)).toContain("complete-2");
+  await put(completionPath, JSON.stringify({ ...completion, session_id: null }));
+  workflow = await loadTicketWorkflow(linked, ticket, inventory);
+  expect(workflow.events?.find(item => item.ref.endsWith("/complete.json"))?.error).toContain("pane_id");
+  await put(completionPath, JSON.stringify({ ...completion, phase: "implementation", event: "phase-result",
+    evidence: { store: "repository", ref: "workflows/T-1/artifacts/evidence/run" } }));
+  workflow = await loadTicketWorkflow(linked, ticket, inventory);
+  expect(workflow.events?.find(item => item.ref.endsWith("/complete.json"))?.error).toContain("pane_id");
+  await rm(completionPath);
+
+  const other = join(root, "unrelated");
+  await run("git", ["init", "--quiet", other]);
+  await put(path, JSON.stringify({ ...event, repository: other }));
+  workflow = await loadTicketWorkflow(linked, ticket, inventory);
+  expect(workflow.events?.find(item => item.ref.endsWith("/start.json"))?.error).toContain("Receipt repository does not match");
+  expect(workflow.inspection?.historyValid).toBe(false);
+});
+
 test("canonical CLI inspection resolves the current adapter and prints real JSON without editing tracked state", async () => {
   const { context, root, ticket } = await fixture();
   await run("git", ["-C", context.repositoryRoot, "remote", "add", "origin", `https://github.com/example/${root.split("/").at(-1)}.git`]);

@@ -74,6 +74,20 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
   const events = join(record.path, "events");
   if (!await exists(events)) { result.inspection!.historyValid = true; return result; }
   const documents = new Map<string, Document>();
+  const repositoryIdentities = new Map<string, Promise<string | undefined>>();
+  const repositoryIdentity = (path: string): Promise<string | undefined> => {
+   const key = resolve(path);
+   let identity = repositoryIdentities.get(key);
+   if (!identity) {
+    identity = (async () => {
+     const git = await exec("git", ["-C", key, "rev-parse", "--path-format=absolute", "--git-common-dir"]);
+     if (git.code !== 0 || !git.stdout.trim()) return undefined;
+     return realpath(git.stdout.trim());
+    })();
+    repositoryIdentities.set(key, identity);
+   }
+   return identity;
+  };
   const readErrors = new Map<string, unknown>();
   const eventFiles = await files(events, /\.(md|yaml|yml|json)$/);
   for (const file of eventFiles) {
@@ -106,7 +120,11 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     for (const field of ["ref", "store", "root"] as const) {
      if (workflow[field] !== record[field] && !(field === "root" && historicalWorktree && workflow.root === workspacePath)) throw new Error(`Receipt workflow.${field} does not match the resolved workflow${field === "root" ? " store root (not the workflow directory)" : ""}.`);
     }
-    if (!isAbsolute(repository) || (resolve(repository) !== resolve(context.repositoryRoot) && !historicalWorktree)) throw new Error("Receipt repository does not match the current repository.");
+    if (!isAbsolute(repository)) throw new Error("Receipt repository does not match the current repository.");
+    if (resolve(repository) !== resolve(context.repositoryRoot) && !historicalWorktree) {
+     const [recordedIdentity, currentIdentity] = await Promise.all([repositoryIdentity(repository), repositoryIdentity(context.repositoryRoot)]);
+     if (!recordedIdentity || recordedIdentity !== currentIdentity) throw new Error("Receipt repository does not match the current repository.");
+    }
     const status = text(fields.status, "receipt status");
     const phase = receiptPhase({ phase: text(fields.phase, "receipt phase") });
     const lifecycleEvent = receiptEvent({ phase: String(fields.phase), fields });
@@ -118,8 +136,9 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     if (!Number.isInteger(fields.attempt) || Number(fields.attempt) < 1) throw new Error("Receipt attempt must be a positive integer.");
     text(fields.muxer, "receipt muxer");
     text(fields.agent, "receipt agent");
-    // Finish runs in the parent session, including retries before the ticket is closed.
-    if (!(phase === "finish" && fields.pane_id === null) && typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string") throw new Error("Receipt pane_id is required.");
+    // Parent completions can outlive the child pane; child results still require it.
+    const parentCompletion = lifecycleEvent === "phase-complete" && typeof fields.session_id === "string" && fields.session_id.trim() !== "";
+    if (!((phase === "finish" || parentCompletion) && fields.pane_id === null) && typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string") throw new Error("Receipt pane_id is required.");
     // Older lifecycle envelopes did not have event or evidence fields. Preserve their original data.
     if ((!lifecycle && !(archive && lifecycleEvent == null)) || fields.evidence != null) {
      const evidence = object(fields.evidence, "receipt evidence");
