@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-11-06T01:47:11.578Z",
+  "exitCode": 0,
+  "stdout": "MANAGER_VERSION_UPDATED_NATIVE_DISPLAY_UNPROVED\n",
+  "stderr": "",
+  "updateComplete": true,
+  "pairingAssociationChecksumPreserved": true,
+  "installedBinarySHA256": "130f65428659a1d8ab921dcf654c72f89506158a63eede9adea62f3cef20f197",
+  "installedComponentSHA256": "498969d2d5446ab1c62ce35ab497abbaaa1f2442fcba49b7d6b38bf6253e2c0a",
+  "ownedBridgeRestartCommands": 1,
+  "xochitlRestartCommands": 1,
+  "importRetry": false,
+  "notebookOperations": false,
+  "cleanup": false,
+  "automaticRetry": false,
+  "nativeVersionDisplayObserved": false,
+  "restoreAfterSuccess": "/tmp/pi-ink-manager-version-0072-E5LRVe/device-restore-after-manager-version-0072.sh",
+  "restoreSHA256": "a658425f908c7c828e0a0db3005921274331e4bb488a06f549303ff31fce7537"
+}
