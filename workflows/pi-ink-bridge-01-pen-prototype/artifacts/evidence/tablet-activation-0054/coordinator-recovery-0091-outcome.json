@@ -1,0 +1,69 @@
+{
+  "operation": "coordinator-recovery-0091",
+  "status": "host_ready_tablet_trust_and_fresh_callbacks_unproved",
+  "owner_authority": "Owner selected Rebuild coordinator after the old coordinator became unavailable. Tablet trust changes require separate approval.",
+  "previous_coordinator": {
+    "port": 47843,
+    "observed_tcp_listener": false,
+    "known_private_directories_missing": [
+      "/tmp/pi-ink-native-0082-TauwWN",
+      "/tmp/pi-ink-native-0055-3WKQid",
+      "/tmp/pi-ink-host-0054-em9c3csu"
+    ],
+    "cause_of_missing_temporary_state": "not established",
+    "original_callbacks_recovered": false,
+    "original_callbacks_success_or_cancellation_claimed": false
+  },
+  "fresh_coordinator": {
+    "tab": "ink-native-origin-0091",
+    "pane": "w64:p2S",
+    "tab_id": "w64:t1V",
+    "durable_private_root": "/home/zenobius/.local/state/pi-ink-recovery-0091-lTFG6Q",
+    "origin": "https://192.168.86.35:47843",
+    "server_id": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "device_id": "paper-pro-ink-0054",
+    "new_public_ca_pem_sha256": "7c24eaa5470226ff1d00c02443c1c0f083d69981b7cf0944a711a51db5739f1e",
+    "ca_verified_local_https_management_status": 200,
+    "content_credential_preseeded": false,
+    "requires_live_omp_session": true,
+    "boot_service_or_automatic_restart_installed": false,
+    "private_permissions_verified": {
+      "root": "700, current user, not a symlink",
+      "certificate_private_key_config_and_browser_registry": "600, current user, not symlinks"
+    },
+    "native_status_log": "device-status.jsonl under durable private root; fresh native data not yet proved",
+    "native_diagnostic_log": "client-diagnostics.jsonl under durable private root; fresh native data not yet proved"
+  },
+  "real_originating_requests": {
+    "request_count": 2,
+    "tool": "image_editor(action=annotate)",
+    "source_image_sha256": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+    "request_ids": [
+      "50bdfd2c593cfc98692883dc226f7209",
+      "27b6a63d193b2fbcdf2bf49eeffd4243"
+    ],
+    "authenticated_local_source_pdf_statuses": [200, 200],
+    "each_source_pdf_bytes": 2403511,
+    "each_source_pdf_sha256": "8797937c3e99a7cc8f6f68f7f4a39aa07357d8c5c346b5ae8f1a01587384886f",
+    "pdf_headers_and_owned_cached_files_verified": true,
+    "device_received_or_imported_sources": false,
+    "real_tools_await_send_or_cancel": true,
+    "result_or_cancellation_fabricated": false,
+    "browser_launch_suppression": "xdg-open records the actual private per-request URLs without launching browsers; no API or result is simulated",
+    "private_browser_tokens_logged_in_evidence": false
+  },
+  "missing_full_restorer": {
+    "reconstructed_from_retained_installer_and_hash_verified_payloads": true,
+    "durable_private_path": "/home/zenobius/.local/state/pi-ink-recovery-0091-lTFG6Q/prepared/device-full-restore-0091.sh",
+    "bytes": 12347,
+    "sha256": "0225d72365ce20102474b03ac1e87b5d4d9137fdc431b75f96533d6cd1a9803f",
+    "byte_identical_to_previous_matched_full_restorer": true,
+    "host_shell_syntax": "passed",
+    "device_execution_authorized_or_attempted": false
+  },
+  "tablet_connections_for_this_recovery": 0,
+  "tablet_writes_for_this_recovery": 0,
+  "existing_marked_pdf_modified_or_deleted": false,
+  "old_document_rebound_to_new_request": false,
+  "remaining_boundary": "Exact fresh approval for public-CA/runtime recovery0092 and one owned Go restart, then normal app pairing approval and charging-only native acceptance. No automatic import, Send, rollback, cleanup or Xochitl restart. Ticket01 remains incomplete."
+}

@@ -1,0 +1,66 @@
+{
+  "operation": "coordinator-trust-recovery-0092",
+  "status": "proposed_only_not_approved_or_executed",
+  "script": {
+    "private_path": "/home/zenobius/.local/state/pi-ink-recovery-0091-lTFG6Q/prepared/device-coordinator-trust-recovery-0092.sh",
+    "bytes": 23526,
+    "sha256": "01763197de1e8e123b6fe2d45d80eace522b6f237928d77cb94f54713dba66e6",
+    "required_arguments": ["APPROVE_COORDINATOR_TRUST_RECOVERY_0092", "APPROVE_ONE_OWNED_BRIDGE_RESTART_0092"],
+    "host_shell_syntax": "passed"
+  },
+  "allowed_changes_after_new_explicit_approval": {
+    "owned_repair_directory": "/home/root/pi-ink-bridge-0049/runtime-trust-recovery-0092",
+    "backup": "Exact current runtime.json copied to the new owned repair directory before cutover",
+    "new_public_ca_path": "/home/root/pi-ink-bridge-0049/desktop-ca-recovery-0092.pem",
+    "new_public_ca_bytes": 1188,
+    "new_public_ca_pem_sha256": "7c24eaa5470226ff1d00c02443c1c0f083d69981b7cf0944a711a51db5739f1e",
+    "runtime_path": "/home/root/pi-ink-bridge-0049/runtime.json",
+    "runtime_before_bytes": 476,
+    "runtime_before_sha256": "caa1ccce598016fea6ec2f2183f7999bbd94782cc41580a9c614412ed286fba6",
+    "runtime_after_bytes": 490,
+    "runtime_after_sha256": "846e3f67eaca50828cef1cd480a1d9dd0258ede38c59c3c057a41f4ec031cb60",
+    "runtime_changes_only": [
+      "Select new public CA path; keep original CA file intact",
+      "Allowlist exact PDF bytes of the two fresh real requests: 8797937c3e99a7cc8f6f68f7f4a39aa07357d8c5c346b5ae8f1a01587384886f"
+    ],
+    "same_origin_server_id_name_device_id_state_path_and_ui_address": true,
+    "owned_go_unit": "pi-ink-0054.service",
+    "owned_go_restart_count": 1,
+    "xochitl_restart_count": 0,
+    "invocation_record": "Replace only the owned unit.invocation with the verified new InvocationID"
+  },
+  "guards": {
+    "firmware_IMG_VERSION": "3.28.0.172",
+    "stock_xochitl_sha256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+    "client_sha256": "e8f7229377dac89d7a980c9b9f0cbec67dbf3defec39e1704c4eab09be5b4eca",
+    "client_metadata": "700 0 0 7405752",
+    "qml_sha256": "35dd84aab86e7982a679e6a29dabcb374016bb43729c567897e0740893354b07",
+    "qml_metadata": "600 0 0 26500",
+    "old_ca_sha256": "7f74137f61f12bc03ed272365e5949857af98efb4a647a0b9318f7e388bef25c",
+    "qmd_sha256": "c88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe",
+    "adapter_sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+    "exact_owned_transient_description_and_current_invocation": true,
+    "unit_active_and_Restart_no": true,
+    "existing_pairing_association_state": "Hash before/after only; unchanged required; never dump credentials or state contents",
+    "new_owned_paths_absent_and_existing_paths_regular_without_symlink_ancestors": true,
+    "original_ca_file_unchanged": true,
+    "private_stock_listener_baseline_checked": true
+  },
+  "host_smoke": {
+    "exact_public_ca_and_runtime_bytes_transferred_by_real_host_shell": true,
+    "roundtrip_sha256s_match_proposal": true,
+    "only_owned_host_smoke_files_removed_after_success": true,
+    "tablet_connections_or_operations": false
+  },
+  "excluded": [
+    "Any Xochitl restart",
+    "Client binary, QML, QMD or adapter replacement",
+    "Credential extraction, replacement, clearing or display",
+    "Document access, import, upload, Send, move, deletion or rebinding",
+    "Old tool callback recovery or fabricated success/cancellation",
+    "Automatic rollback, cleanup, retries or process scans"
+  ],
+  "execution_boundary": "One fresh owner-approved SSH setup/repair attempt over USB only; no retries. Failures retain partial state. Normal operation uses authenticated LAN/loopback, not SSH.",
+  "normal_pairing_afterward": "Owner taps Pair in the app. Compare the short human code; approve only the exact current full opaque pairing ID and expected device on the local management channel. Existing tablet credential can be reused without extracting it. Fresh native status/import/Send and callback proof remain separate.",
+  "restoration_boundary": "Durable byte-identical full restorer0225d72365ce20102474b03ac1e87b5d4d9137fdc431b75f96533d6cd1a9803f is prepared, not authorized. Restoration requires its own exact fresh approval."
+}
