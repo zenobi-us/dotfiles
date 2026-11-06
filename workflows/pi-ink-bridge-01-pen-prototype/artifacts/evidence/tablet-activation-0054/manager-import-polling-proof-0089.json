@@ -1,0 +1,102 @@
+{
+  "created_at": "2026-11-06T21:10:47.037Z",
+  "ownerReports": [
+    "tapped",
+    "pending",
+    "yes still enabled"
+  ],
+  "observedNativeBoundary": "Second request4be03c remainsunbound withno coordinatorimportevent; firstmarkedrequestunchanged; ownerreportsbuttonenabled.",
+  "sourceCommit": "8cc3cb89c7aa50ea0862a83763edc0a339d69eb9",
+  "sourceTree": "25872168b7dff239a95e876827916b77c3b41001",
+  "hypotheses": [
+    {
+      "cause": "Any unchanged state poll replaces a held button",
+      "result": "Not reproduced; unchanged-data control preserved the pressed delegate and delivered the import"
+    },
+    {
+      "cause": "Map-order variation changes row order during a press",
+      "result": "Reproduced deterministically with actual QQuickRepeater and deployed refresh/import functions: pressed delegate replaced, zero import requests"
+    },
+    {
+      "cause": "Tap targets an already-bound pending row and is rejected before creating an import attempt",
+      "result": "Not established on tablet; source exposed Import on bound pending rows. New visibility and handler guard reject bound rows without a request."
+    }
+  ],
+  "unchangedControl": {
+    "command": [
+      "podman",
+      "run",
+      "--rm",
+      "--network",
+      "host",
+      "-v",
+      "/tmp/pi-ink-manager-click-0089-Y39fUU:/probe:Z",
+      "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+      "bash",
+      "-lc",
+      "source /opt/codex/*/*/environment-setup-* && n=\"$OECORE_NATIVE_SYSROOT\" && \"$n/lib/ld-linux-x86-64.so.2\" --library-path \"$n/usr/lib:$n/lib\" /probe/runner /probe/Before.qml"
+    ],
+    "exitCode": 0,
+    "stdout": "PRESS_PENDING_SECOND_IMPORT\nPASS_PRESS_SURVIVED_POLL_AND_IMPORT_ACKNOWLEDGED\n",
+    "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\n"
+  },
+  "reorderedBefore": {
+    "command": [
+      "podman",
+      "run",
+      "--rm",
+      "--network",
+      "host",
+      "-v",
+      "/tmp/pi-ink-manager-click-0089-Y39fUU:/probe:Z",
+      "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+      "bash",
+      "-lc",
+      "source /opt/codex/*/*/environment-setup-* && n=\"$OECORE_NATIVE_SYSROOT\" && \"$n/lib/ld-linux-x86-64.so.2\" --library-path \"$n/usr/lib:$n/lib\" /probe/runner /probe/Before.qml"
+    ],
+    "exitCode": 1,
+    "stdout": "PRESS_PENDING_SECOND_IMPORT\nFAIL_POLL_REPLACED_PRESSED_DELEGATE_NO_CLICK\n",
+    "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\n"
+  },
+  "reorderedBeforeHTTP": {
+    "imports": [],
+    "polls": 2
+  },
+  "reorderedAfter": {
+    "command": [
+      "podman",
+      "run",
+      "--rm",
+      "--network",
+      "host",
+      "-v",
+      "/tmp/pi-ink-manager-click-0089-Y39fUU:/probe:Z",
+      "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+      "bash",
+      "-lc",
+      "source /opt/codex/*/*/environment-setup-* && n=\"$OECORE_NATIVE_SYSROOT\" && \"$n/lib/ld-linux-x86-64.so.2\" --library-path \"$n/usr/lib:$n/lib\" /probe/runner /probe/After.qml"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS_BOUND_REQUEST_REIMPORT_GUARD\nPRESS_PENDING_SECOND_IMPORT\nPASS_PRESS_SURVIVED_POLL_AND_IMPORT_ACKNOWLEDGED\n",
+    "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, but has failed to switch to one.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\n"
+  },
+  "reorderedAfterHTTP": {
+    "imports": [
+      "fixture-b"
+    ],
+    "polls": 5
+  },
+  "fix": "Sort incoming imports by stable serverId/jobId before assigning QML state; do not offer or accept Import for a nonempty controlled token.",
+  "fullQMLParse": "Matching SDK qmlformat passed on copy",
+  "hostFixtureStopped": true,
+  "limits": [
+    "Real matching SDK QtQuick Item/Repeater lifecycle and HTTP callbacks; native private Button visuals and physical touch not instantiated",
+    "A QQuickItem pressed flag and clicked signal model the hold/release boundary; this proves delegate loss but not the exact historical hardware tap cause",
+    "Real native post-update acceptance still required"
+  ],
+  "permanentRegressionGap": "Default repository runtime has no matching QtQuick SDK; deterministic throwaway real-Qt lifecycle smoke retained as evidence, not a mock-only permanent test.",
+  "nativeLastTapCauseUniquelyProved": false,
+  "deviceUpdated": false,
+  "automaticImports": false,
+  "fullTicketComplete": false
+}

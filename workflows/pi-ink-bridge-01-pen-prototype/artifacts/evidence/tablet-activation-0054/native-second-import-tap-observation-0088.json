@@ -1,0 +1,46 @@
+{
+  "created_at": "2026-11-06T10:00:04.347Z",
+  "ownerReport": "tapped",
+  "selectedJobId": "4be03c9e22af2514390fcf5721f3b009",
+  "requestMetadata": [
+    {
+      "jobId": "c0d3db19bfd8915f036916cdad4dabd1",
+      "requestId": "c0d3db19bfd8915f036916cdad4dabd1",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "state": "pending",
+      "submissionEpoch": 0,
+      "documentUUID": "eea1ad6d-9088-4d23-b830-1547d8f6dba1",
+      "folderUUID": ""
+    },
+    {
+      "jobId": "4be03c9e22af2514390fcf5721f3b009",
+      "requestId": "4be03c9e22af2514390fcf5721f3b009",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "state": "pending",
+      "submissionEpoch": 0
+    }
+  ],
+  "selectedJobDiagnosticEventsObserved": 0,
+  "diagnosticQuery": "Filtered current coordinator JSONL by exact second job ID; no matches",
+  "firstRequestBindingUnchanged": true,
+  "latestNativeStatus": {
+    "time": "2026-11-06T09:55:43.614Z",
+    "udc": {
+      "ci_hdrc.0": "powered",
+      "ci_hdrc.1": "not attached"
+    },
+    "usbIPv4": [],
+    "listeners": [
+      "tcp:0100007F:0051"
+    ],
+    "safe": true
+  },
+  "interpretation": "Tablet transport is live and safe; no second-request start or binding is observed. This does not establish a cause or authorize another tap.",
+  "nextRequired": "Owner reports current manager row state and whether an error or disabled Import button is visible. Do not tap again.",
+  "automaticRetry": false,
+  "SSH": false,
+  "restarts": 0,
+  "send": false,
+  "firstMarkedPDFUnchanged": true,
+  "fullTicketComplete": false
+}

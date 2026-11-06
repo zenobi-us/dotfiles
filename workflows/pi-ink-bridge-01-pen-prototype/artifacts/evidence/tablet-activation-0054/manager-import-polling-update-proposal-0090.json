@@ -1,0 +1,54 @@
+{
+  "created_at": "2026-11-06T21:10:47.047Z",
+  "status": "Prepared; awaiting fresh saved-and-closed approval",
+  "sourceCommit": "8cc3cb89c7aa50ea0862a83763edc0a339d69eb9",
+  "sourceTree": "25872168b7dff239a95e876827916b77c3b41001",
+  "privateRoot": "/tmp/pi-ink-manager-rows-0090-ZMKAKU",
+  "scriptSHA256": "02475eae492d326415ce340d8bccbdf5b5fa443867b368d18677838b7456960d",
+  "componentSHA256": "35dd84aab86e7982a679e6a29dabcb374016bb43729c567897e0740893354b07",
+  "componentBytes": 26500,
+  "bridgeRestartCommands": 0,
+  "xochitlRestartCommands": 1,
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s -- APPROVE_MANAGER_ROWS_UPDATE_0090 APPROVE_ONE_XOCHITL_RESTART_0090 DOCUMENTS_SAVED_CLOSED"
+  ],
+  "scope": [
+    "Back up only existing QML80e2... in owned runtime-manager-rows-0090",
+    "Atomically install the stable-row and bound-import-guard component",
+    "ONE saved-and-closed Xochitl restart; ZERO bridge restarts",
+    "Require unchanged same active owned Go InvocationID, pairing/association checksum, binarye8f7..., runtimecaa1..., QMD and private stock listener"
+  ],
+  "notAuthorized": [
+    "Import, Send, moves/deletion, direct notebook access",
+    "Trust/config/binary/service-setting updates",
+    "Automatic retry/rollback/cleanup"
+  ],
+  "smoke": {
+    "shellSyntax": "passed",
+    "realQtReorderedPress": "failedbefore/passedafter",
+    "exactUnboundImportCount": 1,
+    "boundImportGuard": "passed",
+    "completeQMLParse": "passed"
+  },
+  "matchedFullRestoreUnchanged": {
+    "path": "/tmp/pi-ink-stream-update-0083-szJbQz/device-restore-after-stream-update-0083.sh",
+    "sha256": "0225d72365ce20102474b03ac1e87b5d4d9137fdc431b75f96533d6cd1a9803f",
+    "requiresFreshSeparateApproval": true
+  },
+  "afterSuccess": "ReturnPCUSBtocharger, verifyfreshauthenticatedsafe-mode status, thenapproveONEnewownertapforstillunboundB. ExistingmarkedA retained.",
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}
