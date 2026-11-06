@@ -1,0 +1,48 @@
+{
+  "created_at": "2026-11-06T03:55:21.346Z",
+  "status": "Prepared; awaiting fresh saved-and-closed approval",
+  "sourceCommit": "cd1f01b4f4040bc339384eaec3b51e560e0c43d8",
+  "sourceTree": "5e918185d0914ce8aa95938088e1e80004d1cdcf",
+  "scriptSHA256": "fd39ff7c3369fb33c226547542fcb20a14c17bcd961c8f0359634bd10f1d2fe0",
+  "componentSHA256": "195d41115a03aa3b90d1ead87341f179a3f5d6b5c18f7d17dfba2563bf0085a2",
+  "componentBytes": 25309,
+  "bridgeRestartCommands": 0,
+  "xochitlRestartCommands": 1,
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s -- APPROVE_IMPORT_DIAGNOSTIC_UPDATE_0077 APPROVE_ONE_XOCHITL_RESTART_0077 DOCUMENTS_SAVED_CLOSED"
+  ],
+  "scope": [
+    "Back up the exact current QML component in owned runtime-import-probe-0077",
+    "Atomically replace only PiInkToolbar.qml",
+    "One saved-and-closed Xochitl restart; zero bridge restarts",
+    "Require same owned Go invocation, unchanged full pairing/association checksum, unchanged client/config/QMD, and private stock listener"
+  ],
+  "excluded": [
+    "No import, Send, notebook-file access, document move, cleanup or automatic retry",
+    "No binary, trust, config, QMD or adapter update"
+  ],
+  "smoke": {
+    "shellSyntax": "passed",
+    "hostNonRootExecution": "Rejected with Root required before device effects",
+    "exactArgumentGuard": "Not executed past root guard on host"
+  },
+  "fullRestoreUnchanged": {
+    "script": "/tmp/pi-ink-manager-version-0072-E5LRVe/device-restore-after-manager-version-0072.sh",
+    "sha256": "a658425f908c7c828e0a0db3005921274331e4bb488a06f549303ff31fce7537",
+    "note": "Bridge binary and installed QMD/adapter remain unchanged; current full restorer does not guard retained capsule QML. Restoration remains separately approved."
+  },
+  "afterUpdate": "Read native diagnostic on a separately approved single import after returning to charger and rechecking safe mode. Keep the existing unbound PDF unchanged."
+}

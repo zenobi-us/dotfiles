@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-11-06T04:08:03.882Z",
+  "sourceCommit": "cd1f01b4f4040bc339384eaec3b51e560e0c43d8",
+  "sourceTree": "5e918185d0914ce8aa95938088e1e80004d1cdcf",
+  "installedDiagnosticSHA256": "195d41115a03aa3b90d1ead87341f179a3f5d6b5c18f7d17dfba2563bf0085a2",
+  "installationRef": "native-import-diagnostic-update-0078-outcome.json",
+  "installed": true,
+  "ownedBridgeRestartCommands": 0,
+  "xochitlRestartCommands": 1,
+  "pairingAssociationChecksumPreserved": true,
+  "ownedBridgeInvocationUnchanged": true,
+  "existingUnboundPDF": "Keep unchanged at Stock Library root; no move or deletion authorized",
+  "nativeCauseProved": false,
+  "nextRequired": [
+    "Owner moves USB fromPC to wallcharger",
+    "Verify fresh authenticated WSS powered/noUSBIPv4/private81/safe=true",
+    "Owner explicitly performs ONE controlled diagnostic import for a selected request and reports the new on-screen trace"
+  ],
+  "notAuthorized": [
+    "Another SSH connection or restart",
+    "Automatic import or duplicate retry",
+    "Drawing, Send, private notebook access or cleanup"
+  ],
+  "ticketComplete": false,
+  "productionBlocked": true
+}

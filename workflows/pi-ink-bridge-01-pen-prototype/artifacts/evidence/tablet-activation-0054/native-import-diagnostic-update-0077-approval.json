@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-11-06T03:59:14.746Z",
+  "response": "Saved and closed; approve diagnostic",
+  "documentsSavedClosedNow": true,
+  "USBConnectedToPC": true,
+  "scriptSHA256": "fd39ff7c3369fb33c226547542fcb20a14c17bcd961c8f0359634bd10f1d2fe0",
+  "componentSHA256": "195d41115a03aa3b90d1ead87341f179a3f5d6b5c18f7d17dfba2563bf0085a2",
+  "ownedBridgeRestartsAuthorized": 0,
+  "xochitlRestartsAuthorized": 1,
+  "documentOperationsAuthorized": false,
+  "importRetry": false
+}

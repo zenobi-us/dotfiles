@@ -1,0 +1,31 @@
+{
+  "created_at": "2026-11-06T02:47:05.330Z",
+  "ownerReport": "new pdf appears at root dir outside the created dir from previous steps",
+  "ownerObservedNewPDF": true,
+  "ownerObservedPlacement": "Stock Library root, outside the associated folder",
+  "desktopRequestsAfterOwnerReport": [
+    {
+      "jobId": "a5870505364fbbea6a60d4c684c6b33e",
+      "requestId": "a5870505364fbbea6a60d4c684c6b33e",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "state": "pending",
+      "submissionEpoch": 0
+    },
+    {
+      "jobId": "607c89e18eb1e81b7f165baba1d9d030",
+      "requestId": "607c89e18eb1e81b7f165baba1d9d030",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "state": "pending",
+      "submissionEpoch": 0
+    }
+  ],
+  "desktopDocumentBindingProved": false,
+  "associatedFolderPlacementProved": false,
+  "stockUploaderDestinationParameterPresent": false,
+  "sourceEvidence": "tablet-client/stock.go importStock creates multipart file and POSTs /upload without a destination folder parameter.",
+  "fullImportAcceptancePassed": false,
+  "automaticImportRetry": false,
+  "deviceSSH": false,
+  "documentMoved": false,
+  "nextObservationRequired": "Read the Pi Ink manager error before opening or moving the new PDF; current-document changes can clear errorText."
+}

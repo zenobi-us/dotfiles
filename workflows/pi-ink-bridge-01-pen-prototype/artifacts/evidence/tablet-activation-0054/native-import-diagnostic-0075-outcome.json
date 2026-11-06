@@ -1,0 +1,56 @@
+{
+  "created_at": "2026-11-06T03:09:08.515Z",
+  "exitCode": 1,
+  "stateReadSucceeded": true,
+  "state": {
+    "canConfirm": false,
+    "canSend": false,
+    "connection": "offline",
+    "documentUUID": "",
+    "folders": [
+      {
+        "folderUUID": "f90ad1e4-e035-432b-b123-10b18e82470e",
+        "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+        "serverName": "Pi Ink tablet proof 0055"
+      }
+    ],
+    "imports": [
+      {
+        "importName": "",
+        "jobId": "a5870505364fbbea6a60d4c684c6b33e",
+        "requestId": "a5870505364fbbea6a60d4c684c6b33e",
+        "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+        "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+        "status": "pending"
+      },
+      {
+        "importName": "",
+        "jobId": "607c89e18eb1e81b7f165baba1d9d030",
+        "requestId": "607c89e18eb1e81b7f165baba1d9d030",
+        "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+        "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+        "status": "pending"
+      }
+    ],
+    "message": "",
+    "servers": [
+      {
+        "connection": "online",
+        "name": "Pi Ink tablet proof 0055",
+        "pairingId": "",
+        "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee"
+      }
+    ],
+    "status": "unassociated",
+    "version": "0.3.0"
+  },
+  "ownComponentWarningsRead": false,
+  "warningsFailure": "PCRE2 support is not compiled in.",
+  "deviceWritesRequested": false,
+  "restartsRequested": 0,
+  "documentOperations": false,
+  "automaticRetry": false,
+  "observedBinding": false,
+  "observedActiveImport": false,
+  "diagnosticComplete": false
+}

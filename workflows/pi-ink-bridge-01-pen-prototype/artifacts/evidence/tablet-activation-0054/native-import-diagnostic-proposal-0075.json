@@ -1,0 +1,41 @@
+{
+  "created_at": "2026-11-06T03:08:08.949Z",
+  "ownerReport": "no errors",
+  "observation": "Owner sees a new PDF at Stock Library root but no manager error; last authenticated desktop metadata contains no document binding.",
+  "status": "Prepared only; not authorized or executed",
+  "scriptSHA256": "23e9412cabac70d7fa84ef769e3ba9967c968b66e67f1004af0d4ebf3eb4c91a",
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s -- APPROVE_READ_ONLY_IMPORT_DIAGNOSTIC_0075"
+  ],
+  "scope": [
+    "One USB setup/repair SSH connection, maximum60seconds",
+    "Verify exact owned unit, current InvocationID, installed bridge and QML hashes",
+    "One read-only GET http://127.0.0.1:9821/state using an existing curl or wget",
+    "Read at most40 journal records from xochitl matching only PiInkToolbar.qml"
+  ],
+  "excluded": [
+    "No file installation or requested device writes",
+    "No service or Xochitl restart",
+    "No import retry, Send or document opening/moving/deletion",
+    "No state.json or runtime.json contents, keys, tokens or notebook files",
+    "No process scanning, cleanup or automatic retry"
+  ],
+  "smoke": {
+    "shellSyntax": "passed",
+    "missingApprovalRejectedBeforeDeviceCommands": true
+  },
+  "expectedInterpretation": "Use active import state and own-component warnings to distinguish a missing/rejected native receipt from an acknowledgement failure; do not infer successful binding from PDF creation or an empty error label."
+}

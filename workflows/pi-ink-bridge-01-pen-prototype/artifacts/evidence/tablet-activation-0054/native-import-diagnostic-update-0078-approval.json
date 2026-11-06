@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-11-06T04:06:41.353Z",
+  "response": "Data cable connected; approve one attempt",
+  "documentsSavedClosedNow": true,
+  "scriptSHA256": "fd39ff7c3369fb33c226547542fcb20a14c17bcd961c8f0359634bd10f1d2fe0",
+  "hostUSBRoute": {
+    "dst": "10.11.99.1",
+    "dev": "enp2s0f0u4c2",
+    "prefsrc": "10.11.99.10",
+    "gateway": null
+  },
+  "deviceConnectionsAuthorized": 1,
+  "ownedBridgeRestartsAuthorized": 0,
+  "xochitlRestartsAuthorized": 1,
+  "documentOperationsAuthorized": false,
+  "previousAttempt": "0077 SSH No route to host; no script executed and no device changes"
+}

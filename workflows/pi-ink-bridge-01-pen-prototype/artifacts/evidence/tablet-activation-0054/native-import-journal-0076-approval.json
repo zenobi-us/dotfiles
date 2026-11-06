@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-11-06T03:40:08.623Z",
+  "response": "Approve journal-only capture",
+  "scriptSHA256": "f8cc619f6335a34116eb999637fe87807f2f14f4bd88263c896f20a110f6ae66",
+  "USBConnectedToPC": true,
+  "deviceConnectionsAuthorized": 1,
+  "deviceWritesAuthorized": false,
+  "restartsAuthorized": 0,
+  "documentOperationsAuthorized": false
+}

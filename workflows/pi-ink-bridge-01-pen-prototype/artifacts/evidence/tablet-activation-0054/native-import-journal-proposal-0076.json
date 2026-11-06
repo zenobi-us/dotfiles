@@ -1,0 +1,53 @@
+{
+  "created_at": "2026-11-06T03:10:58.786Z",
+  "status": "Prepared; not authorized or executed",
+  "previousAttempt": "0075 read state successfully; journal rejected --grep because PCRE2 is not compiled in. No automatic retry.",
+  "scriptSHA256": "f8cc619f6335a34116eb999637fe87807f2f14f4bd88263c896f20a110f6ae66",
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s -- APPROVE_READ_ONLY_COMPONENT_JOURNAL_0076"
+  ],
+  "scope": [
+    "One USB SSH setup diagnostic, maximum60seconds",
+    "Verify exact owned transient unit and current QML hash",
+    "Read the last1000 Xochitl journal records in device memory; return only at most40 records containing PiInkToolbar.qml; no PCRE2"
+  ],
+  "excluded": [
+    "No file writes or installation",
+    "No restart",
+    "No import, Send, opening, moving or deleting documents",
+    "No notebook files, credentials or process scanning",
+    "No automatic retry"
+  ],
+  "smoke": {
+    "syntax": "passed",
+    "missingApprovalRejected": true
+  },
+  "diagnosisCandidates": [
+    {
+      "cause": "Native receipt callback throws before acknowledgement",
+      "prediction": "The retained own-component journal contains an exception from reportImport or argument conversion."
+    },
+    {
+      "cause": "Native signal has a visible name outside the controlled import map, or does not reach this handler",
+      "prediction": "The import can create a PDF without a receipt callback exception or an accepted binding; live signal values will require a later separately approved probe if logs are empty."
+    },
+    {
+      "cause": "Stock response or binding acknowledgement fails after upload",
+      "prediction": "No active flight and no native callback exception; the exact failed HTTP response was not retained by the current UI and would require a separately approved targeted probe."
+    }
+  ],
+  "fullImportProved": false
+}

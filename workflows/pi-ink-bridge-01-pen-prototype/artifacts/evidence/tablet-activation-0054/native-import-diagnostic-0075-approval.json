@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-11-06T03:08:53.968Z",
+  "response": "USB connected; approve read-only check",
+  "scriptSHA256": "23e9412cabac70d7fa84ef769e3ba9967c968b66e67f1004af0d4ebf3eb4c91a",
+  "deviceConnectionsAuthorized": 1,
+  "setupTestPaused": true,
+  "deviceWritesAuthorized": false,
+  "restartsAuthorized": 0,
+  "documentOperationsAuthorized": false
+}
