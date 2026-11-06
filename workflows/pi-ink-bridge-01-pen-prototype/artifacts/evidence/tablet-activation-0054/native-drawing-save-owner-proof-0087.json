@@ -1,0 +1,53 @@
+{
+  "created_at": "2026-11-06T07:48:01.153Z",
+  "ownerReport": "all pass",
+  "controlledPDF": "pi-ink-b62cb6a8cfbe01e5f6d9f5907e4b1f22.pdf",
+  "documentUUID": "eea1ad6d-9088-4d23-b830-1547d8f6dba1",
+  "ownerConfirmed": [
+    "Closed Pi Ink foldout; stock toolbar button remains present",
+    "Drew centre and image-edge marks with normal palm contact",
+    "Erased part of a mark and restored it with stock Undo",
+    "Used stock zoom and orientation controls; returned to starting view",
+    "Returned to Library to save/close; reopened the same PDF and retained marks"
+  ],
+  "penPalmAndToolbarVerdict": "Owner reports all pass; no lag,palm problem or toolbar interference reported. No quantitative latency measured.",
+  "normalEditableWorkRetainedOwnerConfirmed": true,
+  "saveCloseDidNotCompleteRequest": true,
+  "requestMetadata": [
+    {
+      "jobId": "c0d3db19bfd8915f036916cdad4dabd1",
+      "requestId": "c0d3db19bfd8915f036916cdad4dabd1",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "state": "pending",
+      "submissionEpoch": 0,
+      "documentUUID": "eea1ad6d-9088-4d23-b830-1547d8f6dba1",
+      "folderUUID": ""
+    },
+    {
+      "jobId": "4be03c9e22af2514390fcf5721f3b009",
+      "requestId": "4be03c9e22af2514390fcf5721f3b009",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "state": "pending",
+      "submissionEpoch": 0
+    }
+  ],
+  "currentHardware": {
+    "time": "2026-11-06T07:47:38.607Z",
+    "udc": {
+      "ci_hdrc.0": "powered",
+      "ci_hdrc.1": "not attached"
+    },
+    "usbIPv4": [],
+    "listeners": [
+      "tcp:0100007F:0051"
+    ],
+    "safe": true
+  },
+  "sendPerformed": false,
+  "annotatedPDFOrPNGNotYetExported": true,
+  "secondJobReadyForOneOwnerImport": true,
+  "SSH": false,
+  "restarts": 0,
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}

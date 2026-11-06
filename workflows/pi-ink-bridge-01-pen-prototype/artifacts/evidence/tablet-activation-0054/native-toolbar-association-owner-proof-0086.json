@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-11-06T07:27:07.742Z",
+  "ownerReport": "confirmed",
+  "ownerConfirmedSteps": [
+    "Opened the specific pi-ink-b62cb6 PDF from normal Library root",
+    "Opened Pi Ink from the drawing toolbar, not Library manager",
+    "Foldout shows paired server,online,pending and enabled Send"
+  ],
+  "requestMetadata": {
+    "jobId": "c0d3db19bfd8915f036916cdad4dabd1",
+    "requestId": "c0d3db19bfd8915f036916cdad4dabd1",
+    "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+    "state": "pending",
+    "submissionEpoch": 0,
+    "documentUUID": "eea1ad6d-9088-4d23-b830-1547d8f6dba1",
+    "folderUUID": ""
+  },
+  "normalLibraryVisibilityAndOpenProved": true,
+  "currentDocumentToolbarAssociationOwnerConfirmed": true,
+  "sendNotPerformed": true,
+  "penQualityAndEditableRetentionNotYetTested": true,
+  "nextOwnerScope": "Only this bound synthetic PDF: stock pen/palm, eraser/undo, zoom/orientation, save/close/reopen. Do not Send, import another document, move/delete files or use SSH.",
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}
