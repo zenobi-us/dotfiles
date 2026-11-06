@@ -1,0 +1,53 @@
+# React Doctor scans docs/website for security, performance, correctness,
+# accessibility and architecture issues.
+#
+# Docs: https://www.react.doctor/ci
+# Source: https://github.com/millionco/react-doctor
+
+name: React Doctor
+
+on:
+  # Posts a sticky summary comment that lists only the issues the pull request introduced.
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - docs/website/**
+      - .github/workflows/react-doctor.yml
+  # Scans master after each push to track the health score.
+  push:
+    branches: [master]
+    paths:
+      - docs/website/**
+      - .github/workflows/react-doctor.yml
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  statuses: write
+
+concurrency:
+  group: react-doctor-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  react-doctor:
+    runs-on: ubuntu-latest
+    steps:
+      # Full history lets React Doctor find the merge base, so a pull request
+      # reports only the issues it introduced.
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      # Install project dependencies so the action runs the pinned react-doctor
+      # and oxlint, which load lint/no-props-destructuring.ts.
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+        working-directory: docs/website
+
+      # Advisory: reports findings but never fails the check.
+      # Set `blocking: error` or `blocking: warning` to gate merges.
+      - uses: millionco/react-doctor@695e46eee203a5d1855020191aa7e9c010a1250e # v2
+        with:
+          directory: docs/website
