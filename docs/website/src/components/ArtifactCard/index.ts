@@ -1,1 +1,0 @@
-export { ArtifactCard } from "./ArtifactCard";
