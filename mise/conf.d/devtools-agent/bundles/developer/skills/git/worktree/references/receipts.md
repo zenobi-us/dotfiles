@@ -96,7 +96,7 @@ fields returned by `"$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts" r
 
 Finish runs in the parent session and MAY record `pane_id: null` before or after ticket completion. A parent `phase-complete` receipt MAY also record `pane_id: null` after the child pane closes, but MUST name a non-empty parent session ID. This does not waive receipt provenance or recovery evidence. Child implementation, review, and fix results still require their child pane identity.
 
-For active workflows, `repository` MAY name another existing checkout of the same Git repository. The inspector MUST verify that both checkouts resolve to the same real Git common directory. A matching origin or source commit alone is insufficient. Workflow store roots still follow the independently resolved store; this check does not normalize or rewrite receipt fields.
+For active workflows, `repository` MAY name another existing checkout of the same Git repository. The inspector MUST verify that both checkouts resolve to the same real Git common directory. A matching origin or source commit alone is insufficient. Workflow store roots still follow the independently resolved store. A retained repository-store root MAY name its recorded source worktree when the inspector proves that it shares the current store’s Git common directory. Store and workflow references MUST still match. This permits byte-identical receipt copies in the base checkout while a review target remains frozen. These checks do not normalize or rewrite receipt fields.
 
 Every ticket-phase receipt MUST include:
 

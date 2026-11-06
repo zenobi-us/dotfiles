@@ -117,8 +117,13 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     const workspacePath = text(fields.worktree, "receipt worktree");
     if (!isAbsolute(workspacePath) || fields.workspace_path !== workspacePath) throw new Error("Receipt worktree and workspace_path must name the same absolute worktree.");
     const historicalWorktree = archive && workflow.store === "repository" && repository === workspacePath;
+    let linkedWorkflowRoot = false;
+    if (workflow.store === "repository" && record.store === "repository" && workflow.root === workspacePath && workflow.root !== record.root) {
+     const [recordedRoot, currentRoot] = await Promise.all([repositoryIdentity(workspacePath), repositoryIdentity(record.root)]);
+     linkedWorkflowRoot = Boolean(recordedRoot && recordedRoot === currentRoot);
+    }
     for (const field of ["ref", "store", "root"] as const) {
-     if (workflow[field] !== record[field] && !(field === "root" && historicalWorktree && workflow.root === workspacePath)) throw new Error(`Receipt workflow.${field} does not match the resolved workflow${field === "root" ? " store root (not the workflow directory)" : ""}.`);
+     if (workflow[field] !== record[field] && !(field === "root" && ((historicalWorktree && workflow.root === workspacePath) || linkedWorkflowRoot))) throw new Error(`Receipt workflow.${field} does not match the resolved workflow${field === "root" ? " store root (not the workflow directory)" : ""}.`);
     }
     if (!isAbsolute(repository)) throw new Error("Receipt repository does not match the current repository.");
     if (resolve(repository) !== resolve(context.repositoryRoot) && !historicalWorktree) {

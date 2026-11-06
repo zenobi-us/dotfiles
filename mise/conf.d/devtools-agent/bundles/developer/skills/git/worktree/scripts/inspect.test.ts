@@ -90,12 +90,21 @@ test("active receipts retain their base-checkout identity when inspected from a 
   expect(workflow.events?.find(item => item.ref.endsWith("/complete.json"))?.error).toContain("pane_id");
   await rm(completionPath);
 
+  const baseRecord = join(base, "workflows/T-1/events/start.json");
+  await put(baseRecord, original);
+  workflow = await loadTicketWorkflow(context, ticket, inventory);
+  expect(workflow.receipts.map(item => item.id)).toContain("start-1");
+  expect(await readFile(baseRecord, "utf8")).toBe(original);
+
   const other = join(root, "unrelated");
   await run("git", ["init", "--quiet", other]);
   await put(path, JSON.stringify({ ...event, repository: other }));
   workflow = await loadTicketWorkflow(linked, ticket, inventory);
   expect(workflow.events?.find(item => item.ref.endsWith("/start.json"))?.error).toContain("Receipt repository does not match");
   expect(workflow.inspection?.historyValid).toBe(false);
+  await put(baseRecord, JSON.stringify({ ...event, worktree: other, workspace_path: other, workflow: { ...event.workflow, root: other } }));
+  workflow = await loadTicketWorkflow(context, ticket, inventory);
+  expect(workflow.events?.find(item => item.ref.endsWith("/start.json"))?.error).toContain("workflow.root");
 });
 
 test("canonical CLI inspection resolves the current adapter and prints real JSON without editing tracked state", async () => {
