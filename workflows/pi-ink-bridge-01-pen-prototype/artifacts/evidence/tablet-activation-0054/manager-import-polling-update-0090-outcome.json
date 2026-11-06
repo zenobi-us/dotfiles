@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-11-06T21:29:24.647Z",
+  "exitCode": 0,
+  "stdout": "MANAGER_IMPORT_ROWS_UPDATED_NATIVE_CLICK_UNPROVED\n",
+  "stderr": "",
+  "updateComplete": true,
+  "installedComponentSHA256": "35dd84aab86e7982a679e6a29dabcb374016bb43729c567897e0740893354b07",
+  "pairingAssociationChecksumPreserved": true,
+  "ownedBridgeInvocationUnchanged": true,
+  "bridgeRestartCommands": 0,
+  "xochitlRestartCommands": 1,
+  "scriptExecuted": true,
+  "import": false,
+  "send": false,
+  "automaticRetry": false,
+  "nativePostUpdateClickProved": false
+}

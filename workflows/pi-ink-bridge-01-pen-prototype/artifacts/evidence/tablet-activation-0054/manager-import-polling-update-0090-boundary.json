@@ -1,0 +1,35 @@
+{
+  "created_at": "2026-11-06T21:34:09.918Z",
+  "managerRepairInstalled": true,
+  "componentSHA256": "35dd84aab86e7982a679e6a29dabcb374016bb43729c567897e0740893354b07",
+  "bridgeRestartCommands": 0,
+  "xochitlRestartCommands": 1,
+  "pairingAssociationChecksumPreserved": true,
+  "ownedBridgeInvocationUnchanged": true,
+  "markedPDFNotAccessedByRepair": true,
+  "nativePostUpdateClickProved": false,
+  "coordinatorBlocker": {
+    "knownTCPPort": 47843,
+    "TCPListenerObserved": false,
+    "missingKnownDirectories": [
+      "/tmp/pi-ink-native-0082-TauwWN",
+      "/tmp/pi-ink-native-0055-3WKQid",
+      "/tmp/pi-ink-host-0054-em9c3csu"
+    ],
+    "currentNativeStatusUnavailable": true,
+    "originalTemporaryScriptMissing": true,
+    "approvedScriptRecoveredByteIdentically": true,
+    "reasonForTemporaryStateLoss": "Not established",
+    "oldOriginatingCallbacks": "Unavailable; no successful callback or PNG delivery claimed"
+  },
+  "noAutomaticImportOrRetry": true,
+  "noTrustChange": true,
+  "nextRequired": "Owner chooses whether to rebuild coordinator with durable private state, fresh actual requests and a separate hash-pinned tablet trust-update approval. Do not ask for an import while the old coordinator is absent.",
+  "matchedFullRestore": {
+    "previousPreparedPath": "/tmp/pi-ink-stream-update-0083-szJbQz/device-restore-after-stream-update-0083.sh",
+    "previousSHA256": "0225d72365ce20102474b03ac1e87b5d4d9137fdc431b75f96533d6cd1a9803f",
+    "status": "Temporary prepared file must be located or reconstructed and hash-verified before any future separately approved restoration; not executed."
+  },
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}

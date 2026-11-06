@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-11-06T21:29:11.835Z",
+  "response": "Saved and closed; approve manager repair",
+  "documentsSavedClosedNow": true,
+  "USBConnectedToPC": true,
+  "verifiedUSBRoute": {
+    "dst": "10.11.99.1",
+    "dev": "enp2s0f0u4c2",
+    "prefsrc": "10.11.99.10",
+    "gateway": null
+  },
+  "scriptSHA256": "02475eae492d326415ce340d8bccbdf5b5fa443867b368d18677838b7456960d",
+  "recoveredExactApprovedScript": true,
+  "recoveredScriptPath": "/tmp/pi-ink-manager-rows-0090-recovered-bUytiu/device-manager-rows-update-0090.sh",
+  "originalTemporaryFileMissing": true,
+  "bridgeRestartsAuthorized": 0,
+  "xochitlRestartsAuthorized": 1,
+  "import": false,
+  "send": false,
+  "cleanup": false
+}

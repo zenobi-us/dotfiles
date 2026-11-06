@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-11-06T21:29:11.835Z",
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s -- APPROVE_MANAGER_ROWS_UPDATE_0090 APPROVE_ONE_XOCHITL_RESTART_0090 DOCUMENTS_SAVED_CLOSED"
+  ],
+  "scriptSHA256": "02475eae492d326415ce340d8bccbdf5b5fa443867b368d18677838b7456960d",
+  "deadlineMS": 90000,
+  "automaticRetry": false
+}
