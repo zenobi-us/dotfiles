@@ -1,0 +1,25 @@
+{
+  "schema": "pi-ink-charging-update-boundary/v1",
+  "outcome": "charging-only-usb-repair-0071-outcome.json",
+  "installed": true,
+  "binarySHA256": "d5e750544e7201f86167567e1fe951351f17b8185720efe2087b5defdddc50f6",
+  "pairingAssociationChecksumPreserved": true,
+  "negativeLiveCase": {
+    "time": "2026-11-06T01:24:58.335Z",
+    "udc": {
+      "ci_hdrc.0": "configured",
+      "ci_hdrc.1": "not attached"
+    },
+    "usbIPv4": [
+      "usb1:10.11.99.1"
+    ],
+    "listeners": [
+      "tcp:0100007F:0051"
+    ],
+    "safe": false
+  },
+  "interpretation": "New runtime still rejects PC USB data configuration. Live powered/noUSBIPv4 safe=true proof waits until owner returns to charger after requested dashboard update.",
+  "xochitlRestartForChargingUpdate": false,
+  "importRetried": false,
+  "normalRuntimeResumed": false
+}

@@ -1,0 +1,13 @@
+{
+  "created_at": "2026-11-06T01:11:59.985Z",
+  "response": "Approve charging-only update",
+  "script_sha256": "6e1c4627eaa68364eeff665696df64746e9e1ee441e4f68007d6bd0138c3b395",
+  "binary_sha256": "d5e750544e7201f86167567e1fe951351f17b8185720efe2087b5defdddc50f6",
+  "transport": "Wi-Fi SSH with existing trusted host key alias; acceptance test paused for repair",
+  "owned_bridge_restarts": 1,
+  "xochitl_restarts": 0,
+  "import_retry": false,
+  "notebooks": false,
+  "cleanup": false,
+  "automatic_retry": false
+}

@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-11-06T01:12:01.155Z",
+  "exit_code": 255,
+  "stdout": "",
+  "stderr": "ssh: connect to host 192.168.86.128 port 22: Connection refused\r\n",
+  "update_complete": false,
+  "state_checksum_preserved": null,
+  "binary_sha256": "d5e750544e7201f86167567e1fe951351f17b8185720efe2087b5defdddc50f6",
+  "owned_bridge_restart_commands": 0,
+  "xochitl_restart_commands": 0,
+  "import_retry": false,
+  "notebooks": false,
+  "cleanup": false,
+  "automatic_retry": false,
+  "fully_unplugged_proof": false,
+  "restoreAfterUpdateSHA256": "0337ca979e5b151db4d1c27d5a86ffac55fd5d0e4180ecd573ecbd8040c49286",
+  "remote_script_started": false,
+  "planned_owned_bridge_restarts": 1,
+  "device_changed_by_attempt": false,
+  "previouslyVerifiedInstalledSHA256": "a8757d1a2bfee0a8786630f2ccebd1f95d410c4354645537b10e0cefd0291b8d",
+  "currentRestorerUnchanged": "/tmp/pi-ink-runtime-media-0061-XKm5MS/device-restore-after-media-fix-0061.sh",
+  "proposedRestorerOnlyAfterSuccessfulUpdate": "/tmp/pi-ink-runtime-charging-0070-S1sPVA/device-restore-after-charging-0070.sh"
+}

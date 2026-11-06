@@ -1,0 +1,26 @@
+{
+  "schema": "pi-ink-manager-version-host-proof/v1",
+  "status": "HOST_VERIFIED_NATIVE_DEPLOYMENT_PENDING",
+  "change": "GET/state exposes actual main.version; native dashboard adds one plain-text Bridge version row using that field. Offline/missing value shows unavailable.",
+  "actualProgramSmoke": {
+    "program": "Compiled real pi-ink-client serve with main.version=0.3.0+dashboard-smoke",
+    "cliVersion": "0.3.0+dashboard-smoke",
+    "httpStatus": 200,
+    "localStateVersion": "0.3.0+dashboard-smoke",
+    "matched": true,
+    "noDesktopOrDevicePairingPerformed": true
+  },
+  "nativeQML": {
+    "sdkImage": "sha256:cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+    "command": "qmlformat --inplace copied PiInkToolbar.qml",
+    "exitCode": 0,
+    "warning": "Retained SDK C/non-UTF8 locale warning; not suppressed.",
+    "limit": "Syntax only, not instantiated native modules or visual proof."
+  },
+  "regressions": "gofmt runtime.go; go test ./... -count=1 passed",
+  "permanentWiringTestAdded": false,
+  "cleanup": "Stopped only named owned version smoke service; probe files are temporary.",
+  "deviceChangedForVersionFeature": false,
+  "requiresFreshSavedClosedXochitlRestartApproval": true,
+  "fullTicketComplete": false
+}

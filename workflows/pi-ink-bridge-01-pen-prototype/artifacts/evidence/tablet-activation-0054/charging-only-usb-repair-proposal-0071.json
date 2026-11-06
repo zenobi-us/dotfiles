@@ -1,0 +1,30 @@
+{
+  "schema": "pi-ink-charging-usb-repair-proposal/v1",
+  "status": "PROPOSED_NOT_AUTHORIZED_NOT_EXECUTED",
+  "wifiAttempt": "charging-only-update-0070-outcome.json",
+  "reason": "Wi-Fi SSH22 refused before connection; no script/device effect. Do not retry Wi-Fi or enable another service.",
+  "scriptUnchanged": true,
+  "scriptSHA256": "6e1c4627eaa68364eeff665696df64746e9e1ee441e4f68007d6bd0138c3b395",
+  "binarySHA256": "d5e750544e7201f86167567e1fe951351f17b8185720efe2087b5defdddc50f6",
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s -- APPROVE_CHARGING_ONLY_UPDATE_0070_AND_ONE_OWNED_BRIDGE_RESTART"
+  ],
+  "requiresOwnerUSBConnectionAndNewApproval": true,
+  "scope": "Pause acceptance for setup repair; transfer only executable bytes into owned capsule, preserve old binary, atomic installed-client replacement, one owned bridge restart and pairing/association checksum verification. No notebook/sourcePDF transfer, Import/Send, Xochitl restart, config/trust change or cleanup.",
+  "after": "Owner returns from PC USB to charger; normal authenticated telemetry must show powered/noUSBIPv4/private81/safe=true before a new import attempt.",
+  "restorerAfterSuccessSHA256": "0337ca979e5b151db4d1c27d5a86ffac55fd5d0e4180ecd573ecbd8040c49286",
+  "automaticRetry": false
+}

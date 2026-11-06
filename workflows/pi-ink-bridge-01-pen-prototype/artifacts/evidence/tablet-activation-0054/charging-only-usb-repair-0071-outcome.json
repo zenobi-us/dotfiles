@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-11-06T01:21:44.741Z",
+  "exit_code": 0,
+  "stdout": "CHARGING_ONLY_BRIDGE_UPDATED_STATE_UNCHANGED\n",
+  "stderr": "",
+  "update_complete": true,
+  "state_checksum_preserved": true,
+  "installed_binary_sha256": "d5e750544e7201f86167567e1fe951351f17b8185720efe2087b5defdddc50f6",
+  "owned_bridge_restart_commands": 1,
+  "xochitl_restart_commands": 0,
+  "sourcePDFNotebookTransfer": false,
+  "importRetry": false,
+  "cleanup": false,
+  "automaticRetry": false,
+  "acceptancePausedDuringRepair": true,
+  "normalChargingModeStillNeedsObservation": true,
+  "restoreAfterSuccess": "/tmp/pi-ink-runtime-charging-0070-S1sPVA/device-restore-after-charging-0070.sh",
+  "restoreSHA256": "0337ca979e5b151db4d1c27d5a86ffac55fd5d0e4180ecd573ecbd8040c49286"
+}

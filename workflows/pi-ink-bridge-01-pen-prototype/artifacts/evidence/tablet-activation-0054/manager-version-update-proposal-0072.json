@@ -1,0 +1,74 @@
+{
+  "schema": "pi-ink-manager-version-update/v1",
+  "status": "HOST_VERIFIED_NATIVE_UPDATE_NOT_AUTHORIZED_NOT_EXECUTED",
+  "sourceCommit": "7f79afee223ddd4c8e3c4a5156c7c4e62a00edd4",
+  "sourceTree": "8726b5f3967164982105dde93d47a2340ea05904",
+  "oldBinarySHA256": "d5e750544e7201f86167567e1fe951351f17b8185720efe2087b5defdddc50f6",
+  "newBinarySHA256": "130f65428659a1d8ab921dcf654c72f89506158a63eede9adea62f3cef20f197",
+  "oldQMLSHA256": "06dc20ba82486d35184977ee58a9a335909bfca0877a49970753a000365db900",
+  "newQMLSHA256": "498969d2d5446ab1c62ce35ab497abbaaa1f2442fcba49b7d6b38bf6253e2c0a",
+  "releaseVersion": "0.3.0",
+  "updateScriptSHA256": "2ce829c1e5e248226d96753cad3a08f1adab44af16c2884d6b9c0f040eb4b8b1",
+  "restoreScriptSHA256": "a658425f908c7c828e0a0db3005921274331e4bb488a06f549303ff31fce7537",
+  "ownedBridgeRestarts": 1,
+  "xochitlRestarts": 1,
+  "pairingAssociationChecksumPreservedRequired": true,
+  "deviceExecuted": false,
+  "privateDirectory": "/tmp/pi-ink-manager-version-0072-E5LRVe",
+  "hostProof": "manager-version-host-proof-0072.json",
+  "transport": {
+    "command": [
+      "ssh",
+      "-T",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ConnectTimeout=8",
+      "-o",
+      "StrictHostKeyChecking=yes",
+      "-o",
+      "ControlMaster=no",
+      "-o",
+      "ControlPath=none",
+      "root@10.11.99.1",
+      "sh -s -- APPROVE_MANAGER_VERSION_UPDATE_0072 APPROVE_ONE_OWNED_BRIDGE_RESTART_0072 APPROVE_ONE_XOCHITL_RESTART_0072 DOCUMENTS_SAVED_CLOSED"
+    ],
+    "requiresOwnerUSBConnection": true,
+    "acceptancePausedForSetupRepair": true
+  },
+  "preconditions": [
+    "Fresh explicit confirmation that all documents are saved and closed now.",
+    "Exact current d5e... binary, old06dc... component, current4df... config and pinned active QMD/adapter.",
+    "Owned transient bridge active with matching recorded identity and Restart=no; unused operation/temporary paths."
+  ],
+  "writes": [
+    "Back up current bridge executable and current dashboard component in a new owned runtime-manager-version-0072 directory.",
+    "Atomically replace only the existing bridge executable and PiInkToolbar.qml component.",
+    "Restart only the owned bridge once and verify/record its new identity.",
+    "Request exactly ONE saved-and-closed Xochitl restart to load the new persistent component."
+  ],
+  "postconditions": [
+    "Bridge and Xochitl active; stock listener81 IPv4loopback only, no80 listener.",
+    "Exact new binary and component hashes/modes checked; current source config unchanged.",
+    "Pairing and association-state checksum must remain unchanged."
+  ],
+  "unchanged": [
+    "No QMD, adapter, trust, source allowlist or installed VERSION changes.",
+    "No stock-folder/notebook modification, import retry, drawing, Send or cleanup."
+  ],
+  "nativeExpectedDisplay": "Bridge version: 0.3.0",
+  "offlineDisplay": "Bridge version: unavailable",
+  "permanentWiringTestAdded": false,
+  "syntax": "sh -n passed both new operation and matched restoration scripts.",
+  "restoreAfterSuccess": {
+    "path": "/tmp/pi-ink-manager-version-0072-E5LRVe/device-restore-after-manager-version-0072.sh",
+    "sha256": "a658425f908c7c828e0a0db3005921274331e4bb488a06f549303ff31fce7537",
+    "requiresSeparateSavedClosedAndOneXochitlRestoreRestartApproval": true
+  },
+  "automaticRetry": false,
+  "automaticRollback": false,
+  "cleanup0038": false,
+  "nativeDisplayProved": false,
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}
