@@ -2,3 +2,18 @@
 "~/.config/herdr/config.toml" = { source = "./config.toml", mode = "symlink" }
 "~/.config/herdr/plugins" = { source = "./plugins", mode = "symlink" }
 
+[tasks."herdr.bootstrap"]
+description = "Register local Herdr plugins from ~/.config/herdr/plugins/local"
+run = """
+registry="$HOME/.config/herdr/plugins.json"
+# Herdr writes this registry itself. Remove a dangling symlink so it can.
+if [ -L "$registry" ] && [ ! -e "$registry" ]; then rm "$registry"; fi
+
+for plugin in "$HOME"/.config/herdr/plugins/local/*/; do
+  # herdr plugin link does not run the manifest [[build]] step.
+  if [ -f "$plugin/package.json" ]; then (cd "$plugin" && bun install); fi
+  herdr plugin unlink "$(basename "$plugin")" >/dev/null 2>&1 || true
+  herdr plugin link "$plugin"
+done
+"""
+
