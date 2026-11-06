@@ -6,7 +6,8 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit",
+    "content": "content-collections build",
+    "typecheck": "bun run content && tsc --noEmit",
     "lint": "oxlint --deny-warnings",
     "lint:fix": "oxlint --fix",
     "format": "oxfmt",
@@ -22,6 +23,7 @@
     "react-dom": "19.3.1"
   },
   "devDependencies": {
+    "@content-collections/cli": "0.1.9",
     "@content-collections/core": "0.15.3",
     "@content-collections/markdown": "0.1.4",
     "@content-collections/vite": "0.3.1",
