@@ -1,0 +1,48 @@
+{
+  "schema": "pi-ink-native-version-charging-proof/v1",
+  "created_at": "2026-11-06T02:05:31.045Z",
+  "ownerReport": "1. done; 2. confirmed; 3. done",
+  "ownerStepsConfirmed": [
+    "Opened Library→PiInk",
+    "Dashboard displays Bridge version:0.3.0",
+    "Moved USB fromPC to charger"
+  ],
+  "nativeVersionDisplayProved": true,
+  "chargingOnlyFrame": {
+    "time": "2026-11-06T02:04:45.680Z",
+    "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "deviceId": "paper-pro-ink-0054",
+    "udc": {
+      "ci_hdrc.0": "powered",
+      "ci_hdrc.1": "not attached"
+    },
+    "usbIPv4": [],
+    "listeners": [
+      "tcp:0100007F:0051"
+    ],
+    "safe": true
+  },
+  "chargingPolicyProved": true,
+  "fullyUnpluggedOperationClaimed": false,
+  "postSetupRuntimeMode": "Normal authenticated HTTPS/WSS; no further SSH authorized.",
+  "requestsBeforeControlledRetry": [
+    {
+      "jobId": "a5870505364fbbea6a60d4c684c6b33e",
+      "requestId": "a5870505364fbbea6a60d4c684c6b33e",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "state": "pending",
+      "submissionEpoch": 0
+    },
+    {
+      "jobId": "607c89e18eb1e81b7f165baba1d9d030",
+      "requestId": "607c89e18eb1e81b7f165baba1d9d030",
+      "sourceDigest": "3d2caef3c5ccfa9c5450dc6976a9beebbc786d3db09df13a5e19ec1f44f8e02a",
+      "state": "pending",
+      "submissionEpoch": 0
+    }
+  ],
+  "newImportSuccessProved": false,
+  "sendProved": false,
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}
