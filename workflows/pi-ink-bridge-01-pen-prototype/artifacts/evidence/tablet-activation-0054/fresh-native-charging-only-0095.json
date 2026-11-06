@@ -1,0 +1,32 @@
+{
+  "created_at": "2026-11-06T22:21:16.382Z",
+  "operation": "fresh-native-charging-only-0095",
+  "ownerReport": "Disconnected PC USB and connected wall charger",
+  "authenticatedNativeStatus": {
+    "time": "2026-11-06T22:20:41.230Z",
+    "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "deviceId": "paper-pro-ink-0054",
+    "udc": {
+      "ci_hdrc.0": "powered",
+      "ci_hdrc.1": "not attached"
+    },
+    "usbIPv4": [],
+    "listeners": [
+      "tcp:0100007F:0051"
+    ],
+    "safe": true
+  },
+  "statusAgeMSAtObservation": 3389,
+  "safetyCriteriaPassed": true,
+  "nextOwnerControlledImport": {
+    "jobId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+    "requestId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+    "uiLabel": "Import synthetic source",
+    "attemptLimit": 1,
+    "automaticRetry": false
+  },
+  "otherFreshJob": "50bdfd2c593cfc98692883dc226f7209",
+  "oldMarkedDocumentUntouched": true,
+  "deviceSSH": false,
+  "importOrSendAttempted": false
+}
