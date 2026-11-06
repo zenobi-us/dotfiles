@@ -9,21 +9,20 @@ home:
   links:
     - { label: Get started, href: "#start" }
     - { label: Guides, href: "#guides" }
-    - { label: Workflow, href: worktree-workflow }
     - { label: Reference, href: "#reference" }
-    - { label: Artifacts, href: "#artifacts" }
+    - { label: Agent bundles, href: /bundles }
   footer:
     label: zenobi-us / dotfiles
     links:
       - { label: Back to top, href: "#top", icon: "↑" }
       - { label: Browse the source, href: "https://github.com/zenobi-us/dotfiles", icon: "↗" }
-workflow:
-  label: Workflow navigation
+bundles:
+  label: Agent bundle navigation
   links:
-    - { label: Worktree workflow, href: "#workflow", current: true }
-    - { label: Design atlas, href: artifacts/worktree-flow-gallery.html, icon: "↗" }
+    - { label: Workstation guide, href: /, iconBefore: "←" }
+    - { label: Agent bundles, href: /bundles }
   footer:
     label: zenobi-us / dotfiles
     links:
-      - { label: Workstation guide, href: "./", iconBefore: "←" }
-      - { label: Back to top, href: "#workflow", icon: "↑" }
+      - { label: Workstation guide, href: /, iconBefore: "←" }
+      - { label: Back to top, href: "#top", icon: "↑" }

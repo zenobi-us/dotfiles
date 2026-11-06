@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArtifactCard } from "../components/ArtifactCard";
 import { Button } from "../components/Button";
 import { DocSection } from "../components/DocSection";
 import { Glyph } from "../components/Glyph";
@@ -11,6 +10,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { SkipLink } from "../components/SkipLink";
 import { entriesOf, landing, navigation, sections, type Section } from "../content";
+import { siteHref } from "../lib/siteHref";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,7 +28,7 @@ function HomePage() {
         <SiteHeader.Brand href="#top" {...navigation.brand} />
         <SiteHeader.Nav label={nav.label}>
           {nav.links.map((link) => (
-            <SiteHeader.NavLink key={link.href} {...link}>
+            <SiteHeader.NavLink key={link.href} {...link} href={siteHref(link.href)}>
               {link.label}
             </SiteHeader.NavLink>
           ))}
@@ -49,7 +49,7 @@ function HomePage() {
               <Prose html={landing.html} />
               <Landing.Actions>
                 {landing.actions.map((action) => (
-                  <Button key={action.href} href={action.href} variant={action.variant}>
+                  <Button key={action.href} href={siteHref(action.href)} variant={action.variant}>
                     {action.label} <Glyph>{action.icon}</Glyph>
                   </Button>
                 ))}
@@ -122,25 +122,12 @@ function SectionContent(props: { section: Section }) {
             {entries.map((entry) => (
               <ReferenceList.Item
                 key={entry._meta.path}
-                href={entry.href ?? "#"}
+                href={siteHref(entry.href ?? "#")}
                 title={entry.title}
                 description={entry.description}
               />
             ))}
           </ReferenceList>
-        </DocSection.Content>
-      );
-    case "cards":
-      return (
-        <DocSection.Content>
-          {entries.map((entry) => (
-            <ArtifactCard key={entry._meta.path} href={entry.href ?? "#"}>
-              <ArtifactCard.Eyebrow>{entry.eyebrow}</ArtifactCard.Eyebrow>
-              <ArtifactCard.Title>{entry.title}</ArtifactCard.Title>
-              <ArtifactCard.Body html={entry.html} />
-              <ArtifactCard.Footer>{entry.footer}</ArtifactCard.Footer>
-            </ArtifactCard>
-          ))}
         </DocSection.Content>
       );
   }

@@ -10,43 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as WorktreeWorkflowRouteImport } from './routes/worktree-workflow'
+import { Route as R404RouteImport } from './routes/404'
+import { Route as BundlesIndexRouteImport } from './routes/bundles/index'
+import { Route as BundlesBundleRouteImport } from './routes/bundles/$bundle'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WorktreeWorkflowRoute = WorktreeWorkflowRouteImport.update({
-  id: '/worktree-workflow',
-  path: '/worktree-workflow',
+const R404Route = R404RouteImport.update({
+  id: '/404',
+  path: '/404',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BundlesIndexRoute = BundlesIndexRouteImport.update({
+  id: '/bundles/',
+  path: '/bundles/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BundlesBundleRoute = BundlesBundleRouteImport.update({
+  id: '/bundles/$bundle',
+  path: '/bundles/$bundle',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/worktree-workflow': typeof WorktreeWorkflowRoute
+  '/404': typeof R404Route
+  '/bundles/$bundle': typeof BundlesBundleRoute
+  '/bundles/': typeof BundlesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/worktree-workflow': typeof WorktreeWorkflowRoute
+  '/404': typeof R404Route
+  '/bundles/$bundle': typeof BundlesBundleRoute
+  '/bundles': typeof BundlesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/worktree-workflow': typeof WorktreeWorkflowRoute
+  '/404': typeof R404Route
+  '/bundles/$bundle': typeof BundlesBundleRoute
+  '/bundles/': typeof BundlesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/worktree-workflow'
+  fullPaths: '/' | '/404' | '/bundles/$bundle' | '/bundles/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/worktree-workflow'
-  id: '__root__' | '/' | '/worktree-workflow'
+  to: '/' | '/404' | '/bundles/$bundle' | '/bundles'
+  id: '__root__' | '/' | '/404' | '/bundles/$bundle' | '/bundles/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  WorktreeWorkflowRoute: typeof WorktreeWorkflowRoute
+  R404Route: typeof R404Route
+  BundlesBundleRoute: typeof BundlesBundleRoute
+  BundlesIndexRoute: typeof BundlesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,11 +78,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/worktree-workflow': {
-      id: '/worktree-workflow'
-      path: '/worktree-workflow'
-      fullPath: '/worktree-workflow'
-      preLoaderRoute: typeof WorktreeWorkflowRouteImport
+    '/404': {
+      id: '/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof R404RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bundles/': {
+      id: '/bundles/'
+      path: '/bundles'
+      fullPath: '/bundles/'
+      preLoaderRoute: typeof BundlesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bundles/$bundle': {
+      id: '/bundles/$bundle'
+      path: '/bundles/$bundle'
+      fullPath: '/bundles/$bundle'
+      preLoaderRoute: typeof BundlesBundleRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -70,7 +104,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  WorktreeWorkflowRoute: WorktreeWorkflowRoute,
+  R404Route: R404Route,
+  BundlesBundleRoute: BundlesBundleRoute,
+  BundlesIndexRoute: BundlesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

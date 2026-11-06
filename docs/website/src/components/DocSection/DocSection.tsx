@@ -37,9 +37,12 @@ function Content(props: { className?: string; children: ReactNode }) {
   return <div className={cx("min-w-0 p-6 narrow:p-5 tiny:p-4", props.className)}>{props.children}</div>;
 }
 
-function Article(props: { title: string; children: ReactNode }) {
+function Article(props: { id?: string; title: string; children: ReactNode }) {
   return (
-    <article className="[article+&]:mt-6 [article+&]:border-t [article+&]:border-border [article+&]:pt-6">
+    <article
+      id={props.id}
+      className="scroll-mt-16 [article+&]:mt-6 [article+&]:border-t [article+&]:border-border [article+&]:pt-6"
+    >
       <h3 className="mb-3 text-[14px]">{props.title}</h3>
       {props.children}
     </article>

@@ -8,6 +8,17 @@ A static TanStack Start site, published to GitHub Pages. Content lives in `conte
 - Build related UI parts as compound components, such as `DocSection.Root`, `DocSection.Heading` and `DocSection.Content`. Export the root with its parts: `Object.assign(Root, { Root, ... })`.
 - Give each component its own folder under `src/components/`. Keep its hooks in that folder, named after the component, such as `useDocSection`.
 
+## Agent bundle pages
+
+- `/bundles` and `/bundles/<bundle>` read skills, agents, hooks and manifests from `mise/conf.d/devtools-agent/bundles/` at build time. Do not copy that data into `content/`.
+- Hand-written bundle text lives in `content/bundles/<bundle>/NN-*.md`, with `kind: tutorial`, `how-to` or `explanation`.
+- Harness facts that no bundle file holds live in `content/bundles/harnesses.yaml`.
+
+## Redirects
+
+- `404.html` runs the rules in `content/redirects.yaml` before React starts. Each `pattern` is a regular expression tested against the path without the `/dotfiles/` base. The first match wins.
+- When you move or remove a published page, add a rule. One rule can cover a whole subtree, such as `^/artifacts(/.*)?$`.
+
 ## Commands
 
 Run these from the repository root:
