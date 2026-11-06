@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-11-06T06:32:20.783Z",
+  "response": "Saved and closed; approve 0.3.1 update",
+  "documentsSavedClosedNow": true,
+  "USBConnectedToPC": true,
+  "verifiedUSBRoute": {
+    "dst": "10.11.99.1",
+    "dev": "enp2s0f0u4c2",
+    "prefsrc": "10.11.99.10",
+    "gateway": null
+  },
+  "scriptSHA256": "c7f8cc98ebe4a62e1218119b07548937abd18bb3716eabe09fa2fec7b06d4f28",
+  "ownedBridgeRestartsAuthorized": 1,
+  "xochitlRestartsAuthorized": 1,
+  "configChanges": [
+    "Trusted HTTPS port47842→47843",
+    "Exact source PDF allowlist06552dbc0cbae019b4631dc4d3d93898f445a4bc6edaf01fd29474b98bf577c9"
+  ],
+  "documentOperationsAuthorized": false,
+  "import": false,
+  "send": false,
+  "cleanup": false
+}

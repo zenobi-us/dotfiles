@@ -1,0 +1,48 @@
+{
+  "created_at": "2026-11-06T06:35:38.163Z",
+  "installedVersion": "0.3.1",
+  "sourceCommit": "8b529cea78fbbad0ee26af4eb5b170cb2d9f8c3e",
+  "tabletConnectedToUpdatedReceiver": true,
+  "coordinatorOrigin": "https://192.168.86.35:47843",
+  "deviceStatusLog": "/tmp/pi-ink-native-0082-TauwWN/device-status.jsonl",
+  "diagnosticLog": "/tmp/pi-ink-native-0082-TauwWN/client-diagnostics.jsonl",
+  "observedNativeStatus": {
+    "time": "2026-11-06T06:34:03.605Z",
+    "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "deviceId": "paper-pro-ink-0054",
+    "udc": {
+      "ci_hdrc.0": "configured",
+      "ci_hdrc.1": "not attached"
+    },
+    "usbIPv4": [
+      "usb1:10.11.99.1"
+    ],
+    "listeners": [
+      "tcp:0100007F:0051"
+    ],
+    "safe": false
+  },
+  "interpretation": "Expected setup-mode rejection while USB data is connected. No import or Send was performed.",
+  "newRealJobs": [
+    {
+      "jobId": "c0d3db19bfd8915f036916cdad4dabd1",
+      "requestId": "c0d3db19bfd8915f036916cdad4dabd1"
+    },
+    {
+      "jobId": "4be03c9e22af2514390fcf5721f3b009",
+      "requestId": "4be03c9e22af2514390fcf5721f3b009"
+    }
+  ],
+  "nextRequired": [
+    "Owner returns USB fromPC to wallcharger",
+    "Verify fresh powered/noUSBIPv4/private81/safe=true at the updated receiver",
+    "Owner taps ONE selected synthetic import once",
+    "Inspect actual native diagnostic JSONL and desktop document binding; no error transcription required"
+  ],
+  "newNativeDiagnosticEventObserved": false,
+  "nativeImportAcceptancePassed": false,
+  "oldRequestsAndPDFsUnchanged": true,
+  "additionalSSHOrRestartsAuthorized": false,
+  "fullTicketComplete": false,
+  "productionBlocked": true
+}

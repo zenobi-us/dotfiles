@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-11-06T06:33:53.249Z",
+  "exitCode": 0,
+  "stdout": "DIAGNOSTIC_STREAM_UPDATE_INSTALLED_NATIVE_IMPORT_UNPROVED\n",
+  "stderr": "",
+  "updateComplete": true,
+  "installedClientSHA256": "e8f7229377dac89d7a980c9b9f0cbec67dbf3defec39e1704c4eab09be5b4eca",
+  "installedComponentSHA256": "80e2eaa6048a8092b5097e554975ed2f3ab43ca599e482845248cf82fdf997a4",
+  "installedRuntimeSHA256": "caa1ccce598016fea6ec2f2183f7999bbd94782cc41580a9c614412ed286fba6",
+  "actualCLIversionVerified": "0.3.1",
+  "pairingAssociationChecksumPreserved": true,
+  "ownedBridgeRestartCommands": 1,
+  "xochitlRestartCommands": 1,
+  "ownedInvocationRecorded": true,
+  "privateStockListenerVerified": true,
+  "documentOperations": false,
+  "import": false,
+  "send": false,
+  "automaticRetry": false,
+  "nativeImportSuccessProved": false,
+  "nativeDiagnosticDeliveryProved": false,
+  "currentMatchedFullRestore": {
+    "path": "/tmp/pi-ink-stream-update-0083-szJbQz/device-restore-after-stream-update-0083.sh",
+    "sha256": "0225d72365ce20102474b03ac1e87b5d4d9137fdc431b75f96533d6cd1a9803f"
+  }
+}
