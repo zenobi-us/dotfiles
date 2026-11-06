@@ -1,0 +1,11 @@
+# The 404 page tests each rule in order against the requested path, with the
+# site base removed (`/dotfiles/worktree-workflow.html` is tested as
+# `/worktree-workflow.html`). The first match wins. `to` may use `$1`, `$2`, ...
+# for capture groups. Keep a rule for every published URL that moves.
+rules:
+  - pattern: "^/worktree-workflow(\\.html)?/?$"
+    to: "/bundles/developer#worktree-workflow"
+    reason: The worktree workflow moved into the developer bundle page.
+  - pattern: "^/artifacts(/.*)?$"
+    to: "/bundles/developer#worktree-workflow"
+    reason: The Worktree Flow Atlas design study was removed.

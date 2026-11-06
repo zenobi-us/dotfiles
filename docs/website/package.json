@@ -13,7 +13,7 @@
     "format": "oxfmt",
     "format:check": "oxfmt --check",
     "doctor": "react-doctor . --no-telemetry --yes",
-    "test": "bun test lint",
+    "test": "bun test lint src",
     "check": "bun run typecheck && bun run lint && bun run format:check && bun run test && bun run doctor"
   },
   "dependencies": {
