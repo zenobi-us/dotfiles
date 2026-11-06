@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-11-06T22:59:12.857Z",
+  "operation": "drawing-foldout-proof-correction-0100",
+  "ownerObservation": "Drawing toolbar panel shows only Pi Ink tablet proof0055 · online · pending and Send; no document ID",
+  "sourceEvidence": "pi-ink-bridge.qmd foldoutContent has status and Send only; documentUUID is captured internally on press, not displayed. PiInkToolbar.qml manager panel has the visible Current document UUID label.",
+  "assistantError": "Conflated Library manager display with drawing-toolbar foldout; asked for a UUID that drawing foldout does not show",
+  "correctionToPriorEvidence": "physical-document-B-identity-0099.json must not be treated as proof that owner physically observed B UUID. Owner-confirmed stock B work/status/Send state and authenticated distinct server bindings remain separate evidence.",
+  "physicalCurrentUUIDDisplayVerification": "not proved; not available in drawing foldout",
+  "currentServerBindings": [
+    {
+      "jobId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+      "documentUUID": "60d040a0-b4f4-425a-8b35-4cba310b84e9",
+      "state": "pending"
+    },
+    {
+      "jobId": "50bdfd2c593cfc98692883dc226f7209",
+      "documentUUID": "ac79fff8-bb09-4bbd-a769-063ab2d7fe50",
+      "state": "pending"
+    }
+  ],
+  "nextProof": "Owner verifies reopened A and four edge marks by visible stock content, then taps Send once. Observe actual A result content, binding and precise originating callback while B remains pending; do not substitute a physical UUID-display claim.",
+  "clippingBoundary": "Stop at warning without confirmation",
+  "codeOrDeviceChanges": false,
+  "runtimeSSH": false,
+  "desktopSend": false
+}
