@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-11-07T03:56:46.899Z",
+  "operation": "tripletap-owner-activation-0109",
+  "ownerSelection": "Saved/closed; triple-pressed; mods returned",
+  "ownerConfirmed": "All tablet work saved/closed before one rapid three-press sequence; AppLoad or Pi Ink Library entry returned after waiting for Library",
+  "physicalActivationVerdict": "passed",
+  "installedState": "Existing pinned-upstream-matching starter was already active and enabled; no reinstallation required",
+  "configuration": "Preserved: start mode,3 presses,2-second threshold, version switching disabled, empty pre/post hooks",
+  "agentInstallationWrites": 0,
+  "agentServiceStartsOrRestarts": 0,
+  "ownerControlledAction": "Existing starter invoked the existing XOVI startup path; runtime mod reactivation is expected and is not a new boot-autostart policy",
+  "modsAutomaticAtOSBoot": false,
+  "piInkBridgeStartup": "Not configured by this task; post-start hook remains empty, current transient bridge unit had been absent after full boot",
+  "scope": "Triple-tap starter only; no Pi Ink hook, firmware update, arbitrary cleanup or private notebook access",
+  "result": "Requested starter is present, enabled, matches pinned upstream and physically works after a stock boot",
+  "wholeTicketComplete": false
+}
