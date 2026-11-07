@@ -1,0 +1,36 @@
+{
+  "operation": "restoration-security-boundary-0113",
+  "status": "owner_plan_choice_required_no_device_changes",
+  "native_terminal_cancellation": "Owner confirmed pass in native-terminal-cancellation-0112.json; both actual originating tool results are terminal.",
+  "retained_full_restorer": {
+    "sha256": "0225d72365ce20102474b03ac1e87b5d4d9137fdc431b75f96533d6cd1a9803f",
+    "reviewed_source": "installer-prepare.py restore_script lines378-413 and common_script lines142-238",
+    "known_actions": "Stop only owned Go unit, restore original client binary, restore original webserver-remote.so from backup, remove owned QMD/adapter, restart Xochitl once, check original baseline",
+    "not_authorized_now": true,
+    "old_baseline_caution": "The original common baseline enumerates a fixed extension/QMD inventory and original XOVI/hashtab hashes. User-installed tripletap must be preserved; do not assume a pre-tripletap inventory is current or remove new files."
+  },
+  "evidence": [
+    {
+      "source": "installer-prepare.py lines351-352",
+      "fact": "Retained pre-activation baseline records stock loopback81 and an original proxy on80."
+    },
+    {
+      "source": "https://raw.githubusercontent.com/asivery/rm-xovi-extensions/6c709dd8416ddf89034831073d76fb4ee3372905/webserver-remote/main.cpp",
+      "fact": "Upstream _xovi_construct calls start_proxy_server and registers its notification QMD."
+    },
+    {
+      "source": "https://raw.githubusercontent.com/asivery/rm-xovi-extensions/6c709dd8416ddf89034831073d76fb4ee3372905/webserver-remote/rust-proxy/src/proxy.rs",
+      "fact": "Upstream LISTEN_IFACE is0.0.0.0:80; target is127.0.0.1:81; access uses peer-IP allow/block entries and HTTP forwarding, not the prototype paired HTTPS/WebSocket credential."
+    }
+  ],
+  "risk": "Re-enabling the quarantined original module may recreate LAN-facing HTTP access. Exact original binary source/version identity and post-restoration runtime behavior have not been independently re-established. Do not claim certain exposure before a measured restore, but do not conceal this risk.",
+  "recommended_plan": "Remove only our owned temporary active integration and restore the prior client binary, while retaining the original webserver module in its existing quarantine. Preserve tripletap, all notebooks and state/evidence. Explicitly record that this is a safe inactive state, not the exact pre-experiment module baseline.",
+  "alternatives": [
+    "Exact original-module restoration with explicit owner acknowledgement of possible LAN HTTP proxy reactivation, then measured listener results",
+    "Leave the prototype installed; cleanup/restoration criteria remain open"
+  ],
+  "approval_boundary": "This is a plan choice only. Prepare the exact selected program and obtain separate fresh hash-pinned execution approval, including saved/closed work and one Xochitl restart if needed. No existing approval is reused.",
+  "no_automatic_cleanup_or_restore": true,
+  "strict_original_restoration_criterion_not_silently_reduced": true,
+  "whole_ticket_complete": false
+}
