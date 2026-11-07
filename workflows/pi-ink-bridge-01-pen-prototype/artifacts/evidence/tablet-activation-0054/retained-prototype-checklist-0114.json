@@ -1,0 +1,140 @@
+{
+  "created_at": "2026-11-07T05:07:23.932Z",
+  "operation": "retained-prototype-checkpoint-0114",
+  "ownerSelection": "Keep the prototype installed",
+  "authority": "Plan choice only; explicitly no removal or restoration",
+  "ticket": {
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+    "work_status": "claimed",
+    "strictlyComplete": false,
+    "formalWholeTicketReviewSuccess": false
+  },
+  "decision": {
+    "removeOrRestore": false,
+    "tripletapChanges": false,
+    "notebookChanges": false,
+    "noFurtherDeviceOperationAuthorized": true
+  },
+  "acceptance": [
+    {
+      "criterion": 1,
+      "status": "partial",
+      "satisfied": "Real Paper Pro native pairing, explicit desktop approval and visible folder-to-server association; firmware3.28.0.172, installed artifact hashes and desktop dependencies recorded in retained evidence",
+      "remaining": "Post-tripletap current XOVI/AppLoad version/build inventory was not independently refreshed; do not assume old global mod inventory is current",
+      "evidence": [
+        "normal-app-pairing-0094-outcome.json",
+        "read-only-mod-boot-probe-0108-boundary.json"
+      ]
+    },
+    {
+      "criterion": 2,
+      "status": "passed_tested_scope",
+      "satisfied": "Authenticated LAN receive/import with charging-only USB and no USB networking/runtime SSH; normal Library open; stable source/server/job/document metadata",
+      "evidence": [
+        "fresh-native-charging-only-0095.json",
+        "fresh-native-import-0096-outcome.json",
+        "second-fresh-native-import-0098-outcome.json"
+      ]
+    },
+    {
+      "criterion": 3,
+      "status": "passed_owner_observation",
+      "satisfied": "Stock pen/palm/erase/Undo/zoom/orientation and retained editable drawing with toolbar present; owner all-pass recorded before0091 and later real stock marks delivered",
+      "limit": "Qualitative owner verdict, not quantitative latency measurement",
+      "evidence": [
+        "native-send-0101-outcome.json",
+        "post-send-stock-editability-0102.json"
+      ]
+    },
+    {
+      "criterion": 4,
+      "status": "passed_tested_scope",
+      "satisfied": "Drawing toolbar bound-server/online/pending/completed/cancelled states and Send availability follow current document; unassociated stock notebook displays Unassociated document with Send disabled",
+      "limit": "Drawing foldout does not display UUID; prior physical UUID-display claim was explicitly corrected, not reused",
+      "evidence": [
+        "drawing-foldout-proof-correction-0100.json",
+        "owner-visible-sleep-wake-0104.json",
+        "unassociated-stock-notebook-0105.json",
+        "native-terminal-cancellation-0112.json"
+      ]
+    },
+    {
+      "criterion": 5,
+      "status": "passed",
+      "satisfied": "Save/Close left request pending; one explicit native Send completed A, exported actual annotated PDF and delivered actual800x1000 image to originating image_editor callback; B remained pending",
+      "evidence": [
+        "native-send-0101-outcome.json",
+        "native-send-0101-returned.png"
+      ]
+    },
+    {
+      "criterion": 6,
+      "status": "passed_tested_scope",
+      "satisfied": "Returned image contains centre A and all four edge marks; measured changed/darker pixels against exact source; source dimensions and portrait orientation preserved; editable work survives Send",
+      "evidence": [
+        "native-send-0101-outcome.json",
+        "post-send-stock-editability-0102.json"
+      ]
+    },
+    {
+      "criterion": 7,
+      "status": "passed_tested_scope",
+      "satisfied": "Distinct A/B UUIDs, A content returned only to originating A tool while B stayed pending; actual B cancellation returned no image, remained cancelled/Send-disabled after normal reopen, with editable marks retained",
+      "limit": "One paired server tested; no alternate-server Send feature prototyped",
+      "evidence": [
+        "second-fresh-native-import-0098-outcome.json",
+        "native-send-0101-outcome.json",
+        "originating-request-cancellation-0111-outcome.json",
+        "native-terminal-cancellation-0112.json"
+      ]
+    },
+    {
+      "criterion": 8,
+      "status": "open_owner_deferred",
+      "satisfied": "Tested firmware boundary, prior failures/evidence and current limits retained; production not declared ready",
+      "remaining": "Owner chose to keep active temporary prototype installed; no removal/restoration performed. Formal whole-ticket review/closure remains outstanding",
+      "evidence": [
+        "restoration-security-boundary-0113.json"
+      ]
+    },
+    {
+      "criterion": 9,
+      "status": "passed_tested_scope",
+      "satisfied": "Approved setup/activation on3.28.0.172; stock listener only127.0.0.1:81, no stock80/wildcard listener during normal proof; authenticated scoped transport, not a generic LAN stock-library proxy",
+      "evidence": [
+        "fresh-native-charging-only-0095.json",
+        "read-only-mod-boot-probe-0108-outcome.json",
+        "owned-post-boot-bridge-start-0109-outcome.json"
+      ]
+    },
+    {
+      "criterion": 10,
+      "status": "partial",
+      "satisfied": "Actual cable-free annotated export/import and originating callback; owner-visible sleep/wake; full OS boot proved by changed boot ID; exact pairing/association bytes persisted; mods-enabled stock activation and one manual Go bridge start/reconnect documented",
+      "remaining": "Temporary code and baseline restoration not performed per owner; firmware-update activation untested; automatic Go bridge startup not implemented or claimed",
+      "evidence": [
+        "owner-visible-sleep-wake-0104.json",
+        "read-only-full-boot-probe-0107-boundary.json",
+        "tripletap-lifecycle-clarification-0108.json",
+        "read-only-mod-boot-probe-0108-boundary.json",
+        "owned-post-boot-bridge-start-0109-native-status.json",
+        "post-boot-owner-recovery-0110.json"
+      ]
+    }
+  ],
+  "additionalOpenChecks": [
+    "Native positive outside-source clipping warning/confirmation/invalidation was not exercised; actual native A export had outsidePixels0 and required no confirmation. Prior host tests do not become hardware proof.",
+    "Manager currently displays full Approval ID; the successful human comparison used its suffix, not a compact-code-only native display."
+  ],
+  "retainedState": {
+    "tablet": "Pi Ink0.3.1 client, current QML/QMD and loopback adapter retained; no stop/removal performed after owner keep choice",
+    "ownedUnit": "Last observed active after approved109, InvocationIDb74f3ec5db1341f6a2412c44226c35cc; no subsequent assistant stop",
+    "desktop": "Both real tool calls terminal: Acompleted with image, Bcancelled without image; coordinator47843 closed normally after last reference",
+    "expectedUI": "Offline is expected until a new real originating request starts a coordinator; this is not a claimed restored live session",
+    "stockWork": "A, B and test notebook retained and editable by owner confirmation",
+    "privateDesktopState": "Durable private root/home/zenobius/.local/state/pi-ink-recovery-0091-lTFG6Q retained; no credentials printed",
+    "tripletap": "User-installed and preserved; normal/mods-enabled boot modes distinguished"
+  },
+  "nextBoundary": "No automatic cleanup. Any further metadata inspection, clipping proof, deployment, service operation or restoration requires its applicable fresh scope/approval. Keep ticket claimed and do not claim strict completion."
+}
