@@ -1,0 +1,45 @@
+{
+  "created_at": "2026-11-07T03:38:14.193Z",
+  "operation": "mod-enabled-reboot-findings-0108",
+  "userObservation": "A reboot booted without mods; asks how Settings Restart can preserve activation",
+  "conclusion": "Upstream XOVI intentionally returns to stock after an OS reboot. Retained files do not preserve running LD_PRELOAD activation. Automatic mod activation is a separate boot policy, not a Settings checkbox.",
+  "observedDeviceEvidence": "Full-boot probe107: changed kernel boot ID,54.61s uptime, installed files and complete private-state SHA unchanged, transient Pi Ink unit absent, stock/bridge listeners absent; owner confirms boot without mods.",
+  "primarySources": [
+    {
+      "url": "https://github.com/asivery/rm-xovi-extensions",
+      "finding": "README says reboot returns to stock by design; recommends a separate starter such as xovi-tripletap; explicitly warns against forcing XOVI into encrypted-tablet boot via root-partition xochitl systemd edits because of bootloops."
+    },
+    {
+      "url": "https://github.com/rmitchellscott/xovi-tripletap",
+      "finding": "Power-button starter supports TRIGGER_ACTION=start or toggle; start is default. POST_START_COMMANDS can run commands after XOVI starts. This is manual reactivation, not automatic mod preservation across OS reboot."
+    },
+    {
+      "url": "https://github.com/MaximeRivest/remagic/blob/main/scripts/99-advanced-autostart.sh",
+      "finding": "Third-party unattended boot autostart is explicitly advanced/experimental and opt-in; claims of crash-loop protection were not verified on this tablet. Do not treat it as an upstream-safe default."
+    }
+  ],
+  "retainedInstallationEvidence": {
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/baseline-fingerprints.json",
+    "finding": "Earlier mod-enabled Xochitl service had LD_PRELOAD=/home/root/xovi/xovi.so and XOVI_ROOT=/home/root/xovi/services/xochitl.service/ in00-xovi.conf. This historical record does not establish the current post-boot service configuration or a currently installed tripletap service."
+  },
+  "recommendedConfigurationPlan": [
+    "Preserve stock OS boot as the recovery path; use supported xovi-tripletap to reactivate mods after reboot without a PC",
+    "Verify/install the actual starter before prescribing device-specific configuration; TRIGGER_ACTION=start avoids inadvertently toggling an already modded session off",
+    "Use a post-XOVI-start hook for an owned Pi Ink startup wrapper; the current transient unit must be recreated after full boot, not merely started by name as if persistent",
+    "Keep firmware and private-stock-listener checks before enabling document operations; retain paired authentication and all existing document/job associations",
+    "Do not silently replace full OS reboot with systemctl restart xochitl; that is an application restart, not OS reboot"
+  ],
+  "ifAutomaticActivationIsRequired": "A separately approved experimental boot-autostart design would be necessary. Upstream warns against it; never promise safety or firmware-update compatibility. Do not install naive permanent LD_PRELOAD boot drop-ins.",
+  "verificationNeeded": [
+    "Actual full OS boot with changed boot ID",
+    "Stock boot remains usable with mods disabled",
+    "Supported manual mod-start action restores manager/toolbar without USB",
+    "Owned Pi Ink startup recreates only its expected unit and resumes the same paired channel",
+    "Private stock listener remains loopback-only, and pending/terminal document states are retained"
+  ],
+  "installedTripletapConfiguration": "not inspected by existing approved probes; no claim that it is installed or configured",
+  "deviceConnectionsForThisResearch": 0,
+  "deviceChanges": false,
+  "bootPolicyChanged": false,
+  "wholeTicketComplete": false
+}
