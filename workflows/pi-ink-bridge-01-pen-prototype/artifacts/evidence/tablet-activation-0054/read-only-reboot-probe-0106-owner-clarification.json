@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-11-07T03:06:26.303Z",
+  "operation": "read-only-reboot-probe-0106-owner-clarification",
+  "ownerSelection": "Restart in tablet Settings",
+  "ownerReportAccepted": true,
+  "causeOfLongKernelUptime": "not established",
+  "osBootProof": "still unestablished by106; no automatic repeat performed",
+  "nextDecision": "Prepare a fresh separately approved read-only full-power-cycle probe using the now-known boot ID as a before/after comparison"
+}

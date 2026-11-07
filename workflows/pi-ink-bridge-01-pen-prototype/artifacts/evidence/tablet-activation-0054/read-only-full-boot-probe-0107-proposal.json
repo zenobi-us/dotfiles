@@ -1,0 +1,58 @@
+{
+  "created_at": "2026-11-07T03:06:26.303Z",
+  "operation": "read-only-full-boot-probe-0107",
+  "status": "proposed_only_not_approved_or_executed",
+  "ownerSteps": [
+    "Save and close all tablet work normally",
+    "Disconnect PC USB",
+    "Use normal Power off, not Restart, Sleep, firmware update or forced reset; wait for the powered-off screen",
+    "Power on normally, wait for Library, then connect PC USB",
+    "Only then approve this exact one-shot read-only probe"
+  ],
+  "script": {
+    "privatePath": "/home/zenobius/.local/state/pi-ink-recovery-0091-lTFG6Q/prepared/device-read-only-full-boot-probe-0107.sh",
+    "bytes": 4894,
+    "sha256": "5dd012aad18121d822c0b635f0c90fe019f2023c4f9e2e2a5c89d586612c7443",
+    "arguments": [
+      "APPROVE_READ_ONLY_FULL_BOOT_PROBE_0107",
+      "POWERED_OFF_AND_ON_DOCUMENTS_SAVED_CLOSED"
+    ],
+    "derivedFrom": "Immutable read-only probe106 SHA7ecc4bee6e482e0ad55a74513fd3b5ca8ac1a7847e81049bb4ac12b0a7aff26c",
+    "changesOnly": [
+      "Fresh exact approval token and owner full-power-cycle assertion",
+      "Require observed kernel boot ID to differ from known106 boot ID",
+      "Distinct completion marker"
+    ],
+    "hostChecks": [
+      {
+        "check": "syntax",
+        "exitCode": 0,
+        "stderr": ""
+      },
+      {
+        "check": "missing approval rejected",
+        "exitCode": 1,
+        "stderr": "Exact read-only reboot-probe approvals required"
+      },
+      {
+        "check": "wrong approval rejected",
+        "exitCode": 1,
+        "stderr": "Exact read-only reboot-probe approvals required"
+      }
+    ]
+  },
+  "knownPreviousBootId": "bd9b0e8a-606c-49d3-8df2-e2b50d0f094c",
+  "successRequiresDifferentBootId": true,
+  "readOnlyScope": "Same exact firmware/installed-file/backup/CA hashes, private state SHA only, named service metadata, boot ID/uptime, known UDC states and listeners80/81/9821 as106; no process/PID scans or notebook contents",
+  "deviceWrites": 0,
+  "serviceStartsOrRestarts": 0,
+  "documentImportExportSendMoveDelete": false,
+  "credentialExtractionOrChanges": false,
+  "firmwareOrXOVIUpdateOrAutostartChanges": false,
+  "attemptLimit": 1,
+  "automaticRetry": false,
+  "deadlineMS": 90000,
+  "expectedNotClaimed": "Bridge may be offline because its current unit is transient, not boot-enabled. File persistence is not activation. No restart or recovery is authorized; inspect actual results before any fresh repair proposal.",
+  "preserve": "Keep originating coordinator0091 and pending B alive; preserve A/B/test notebooks, all editable work, credentials, associations, prior evidence and unrelated staged mise.toml",
+  "remaining": "Terminal cancellation, actual boot activation boundary and separately approved restoration; firmware update is untested; whole ticket not complete"
+}
