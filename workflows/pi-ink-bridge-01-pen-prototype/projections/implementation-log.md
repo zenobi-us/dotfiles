@@ -1,3 +1,26 @@
+# Ticket 01 completed and published
+
+- Canonical ticket: **completed**, published at `11b08f949123176234aa91d7b992d17117342487`; [completion result](../artifacts/evidence/ticket-01-closeout-0115/ticket-completion-result.json).
+- Build/version record and explicit retention amendment are complete. Tested firmware `3.28.0.172`, client `0.3.1`, and exact framework/native fingerprints are recorded in the [build ledger](../artifacts/evidence/ticket-01-closeout-0115/build-version-reconciliation.json).
+- Independent review: **SUCCESS**, Standards 0 findings, Spec 0 findings. [Immutable review](../artifacts/reviews/review-review-0060.md); [review acceptance](../events/review-complete-0061.yaml).
+- Reviewed source `e8ab1391eaab3481131f3c3dfa934b7d523c38db`; single-parent integration `493db79b27dc2cc08295752a510a6e4ed6b7952b`; exact code tree `83cce09d711a12b72607aa735296c04eebe96dbc`. The owner-approved same-tree repair is recorded in [finish-0064](../events/finish-0064.yaml).
+- [Integrated checks](../artifacts/evidence/ticket-01-closeout-0115/integrated-validation.json) passed: build, TypeScript, 23 Bun tests and Go race. Actual repaired-commit local HTTP/PDF/PNG completion and independent cancellation passed. Native hardware/tool callback proof remains separate.
+- [Publication](../events/finish-0066.yaml) and [published ticket completion](../events/finish-0067.yaml) verified. No remaining ticket01 acceptance items. Production tickets 02–10 remain outside this qualification.
+
+## Resource retention and terminal receipt
+
+The installed prototype/tripletap, private work/credentials, protected original source and all prior evidence remain retained. This is **not baseline restoration**.
+
+The temporary source workspace `w6M` is closed. The named temporary checkout `closeout/pi-ink-bridge-01` is clean and kept: the cleanup helper refused removal even though Worktrunk reports `integrated / merge_adds_nothing`. No force or retry bypassed the guard. [Cleanup outcome](../artifacts/evidence/ticket-01-closeout-0115/source-cleanup-outcome.json).
+
+[finish-0068](../events/finish-0068.yaml) is `FINISH_FAILED` **only for that administrative source-cleanup refusal**. It records `ticket_completed: true`, `pushed: true`, `workspace_closed: true`, and `worktree_removed: false`; it does not reopen the completed ticket or claim full workflow cleanup.
+
+[Repository notices](../artifacts/evidence/ticket-01-closeout-0115/publication-notices.json): GitHub reports 3 dependency alerts (1 high, 2 moderate). The pre-existing hk pending-stash journal remains untouched. Neither was remediated by this prototype closeout.
+
+Previous generated views follow. They are historical, not current status.
+
+---
+
 # Ticket 01 integration verified — publication pending
 
 - Independent acceptance: **SUCCESS**, Standards 0 findings, Spec 0 findings. [Review](../artifacts/reviews/review-review-0060.md); [parent acceptance](../events/review-complete-0061.yaml).

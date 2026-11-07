@@ -1,0 +1,31 @@
+{
+  "created_at": "2026-11-07T12:13:12.912Z",
+  "command": "cleanup-merged.ts remove closeout/pi-ink-bridge-01 --min-age=0s",
+  "exit_code": 1,
+  "removed": [],
+  "refused": [
+    {
+      "branch": "closeout/pi-ink-bridge-01",
+      "path": null,
+      "reason": "not integrated into the default branch, or younger than the age guard"
+    }
+  ],
+  "permitted_worktrunk_readback": {
+    "branch": "closeout/pi-ink-bridge-01",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+    "clean": true,
+    "state": "integrated",
+    "integration": {
+      "reason": "merge_adds_nothing"
+    }
+  },
+  "action": "Preserved named worktree/branch after refusal, as the finish playbook requires. No force, retry, custom integration check or unrelated cleanup.",
+  "source_workspace": {
+    "id": "w6M",
+    "closed": true,
+    "result": "Herdr workspace close returned ok"
+  },
+  "ticket_completed_and_published": true,
+  "device_changes": [],
+  "protected_original_source": "prototype/pi-ink-bridge-01-pen-prototype remains protected"
+}

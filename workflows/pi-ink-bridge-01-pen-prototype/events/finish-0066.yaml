@@ -1,0 +1,124 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "finish-0066",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "finish",
+  "event": "checkpoint",
+  "attempt": 19,
+  "parent_receipt": "finish-0065",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "source_branch": "closeout/pi-ink-bridge-01",
+  "base_branch": "master",
+  "source_commit": "e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+  "source_tree": "83cce09d711a12b72607aa735296c04eebe96dbc",
+  "created_at": "2026-11-07T12:00:15.097Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "01a1a5dd-2a9e-72c4-8797-c9988749391e",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115"
+  },
+  "status": "FINISHING",
+  "recovery": {
+    "mode": "reconcile",
+    "authority": "artifacts/evidence/ticket-01-closeout-0115/integration-shape-repair-approval.json",
+    "superseded_unpublished_tip": "e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+    "reason": "Owner approved same-tree correction of Worktrunk non-squashed fast-forward. Constructed exact planned squash commit and CAS-moved only unpublished master. No second code merge, file/index change, reset, stash or force-push. Reviewed source remains unchanged in its branch and backup ref."
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/finish-0065.yaml"
+    },
+    {
+      "kind": "git-commit",
+      "ref": "62d6797b09c0bcae89a41f3f8acba247169ec9c0"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/finish-0066.yaml"
+    }
+  ],
+  "fixed_point": "7228b781af08fdddb2868abcd20e2704aec7c7e9",
+  "review_artifact": "artifacts/reviews/review-review-0060.md",
+  "checkpoint": "pushed",
+  "next_step": "ticket_completion",
+  "review_receipt": "review-0060",
+  "reviewed_source_commit": "e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+  "reviewed_source_tree": "83cce09d711a12b72607aa735296c04eebe96dbc",
+  "reviewed_source_preserved_ref": "refs/wt-backup/closeout/pi-ink-bridge-01-review-0060",
+  "base_before": "7228b781af08fdddb2868abcd20e2704aec7c7e9",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "83cce09d711a12b72607aa735296c04eebe96dbc",
+  "proposed_merge_message": "feat: complete tracker/tickets/pi-ink-bridge-01-pen-prototype.md\n\nIntegrate the source approved by independent review-0060.\nReviewed source: e8ab1391eaab3481131f3c3dfa934b7d523c38db\nReviewed tree: 83cce09d711a12b72607aa735296c04eebe96dbc\nReview: workflows/pi-ink-bridge-01-pen-prototype/artifacts/reviews/review-review-0060.md\nADR: docs/adr/0001-pi-ink-cleanup-trust-boundary.md\n\nPreserve the installed prototype, tripletap, private state and protected\noriginal source. Retention is owner-approved, not baseline restoration.\nProduction tickets 02–10 remain outside this prototype gate.\n",
+  "merged_commit": "493db79b27dc2cc08295752a510a6e4ed6b7952b",
+  "pushed": true,
+  "ticket_completed": false,
+  "worktree_removed": false,
+  "workspace_closed": false,
+  "merged_tree": "83cce09d711a12b72607aa735296c04eebe96dbc",
+  "merged_parents": [
+    "7228b781af08fdddb2868abcd20e2704aec7c7e9"
+  ],
+  "integrated_validation": [
+    {
+      "command": "mise exec -- bun install --frozen-lockfile --ignore-scripts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0
+    },
+    {
+      "command": "mise exec -- bun run --cwd mise/conf.d/devtools-omp/extensions/image-annotator build",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "result": "ARM64 tablet bundle and Vite production app built; known third-party directives/chunk warnings retained"
+    },
+    {
+      "command": "mise exec -- bun run --cwd mise/conf.d/devtools-omp/extensions/image-annotator typecheck",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-omp/extensions/image-annotator/test",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "result": "23 pass,0 fail,187 expectations across7 files"
+    },
+    {
+      "command": "mise exec -- go test -race ./...",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client",
+      "exit_code": 0,
+      "result": "ok image-annotator-tablet23.316s"
+    },
+    {
+      "command": "mise exec -- bun <owned integrated runtime smoke>",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "result": "Actual repaired493db79b local HTTP/Python PNG A80x100, full PDF retained byte-equal, B pending then cancellation without image or mutation to A; both servers closed",
+      "ref": "integrated-host-runtime-smoke.json"
+    }
+  ],
+  "integrated_validation_passed": true,
+  "remote_observed_commit": "62d6797b09c0bcae89a41f3f8acba247169ec9c0",
+  "remote_reachability": {
+    "command": "git merge-base --is-ancestor 493db79b27dc2cc08295752a510a6e4ed6b7952b 62d6797b09c0bcae89a41f3f8acba247169ec9c0",
+    "exit_code": 0
+  }
+}

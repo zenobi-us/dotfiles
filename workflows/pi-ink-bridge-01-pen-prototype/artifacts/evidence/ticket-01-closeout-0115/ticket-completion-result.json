@@ -1,0 +1,32 @@
+{
+  "schema": "tracker-result/v1",
+  "operation": "complete",
+  "kind": "ticket",
+  "id": "pi-ink-bridge-01-pen-prototype",
+  "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "observed_status": "completed",
+  "changed_fields": [
+    "work_status"
+  ],
+  "validation": {
+    "schema": "tracker-ticket/v1",
+    "valid": true,
+    "review": "SUCCESS review-0060",
+    "integrated_validation": "passed integrated-validation.json",
+    "merge_commit": "493db79b27dc2cc08295752a510a6e4ed6b7952b"
+  },
+  "publication": {
+    "store": "repository",
+    "remote": "origin",
+    "remote_ref": "refs/heads/master",
+    "observed_commit": "11b08f949123176234aa91d7b992d17117342487",
+    "ticket_blob": "1d3e329ab11b2949448f93c81289e5364da92980",
+    "verified": true
+  },
+  "retention": {
+    "device": "Owner-approved retained prototype; not restored",
+    "temporary_source_worktree": "Kept after cleanup guard refusal; workspace closed",
+    "protected_original_source": "Preserved"
+  },
+  "remaining_ticket01_acceptance_items": []
+}

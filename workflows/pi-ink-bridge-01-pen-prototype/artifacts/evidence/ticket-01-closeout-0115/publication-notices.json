@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-11-07T12:04:14.153Z",
+  "notices": [
+    {
+      "source": "GitHub push response",
+      "message": "GitHub reports3 default-branch dependency vulnerabilities:1 high,2 moderate",
+      "url": "https://github.com/zenobi-us/dotfiles/security/dependabot",
+      "assessment": "Not investigated or changed by this prototype closeout; no production-security qualification is claimed"
+    },
+    {
+      "source": "Repository pre-commit hk hook",
+      "message": "Pre-existing pending-stash journal reports a stopped2026-10-29 hook; this run reported restoring its own unstaged changes",
+      "action": "Old journal/stash not applied, dropped or cleared; unrelated owner work not edited"
+    }
+  ]
+}
