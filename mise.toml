@@ -124,6 +124,7 @@ fnox = { version = "1.44.0", workflow = "release.yml" }
 "npm:@termdraw/app" = "latest"
 "github:da-luce/astroterm" = "latest"
 "github:sigoden/dufs" = "latest"
+"github:asciimoo/hister" = "latest"
 
 [tool_alias]
 pi = "github:earendil-works/pi"
