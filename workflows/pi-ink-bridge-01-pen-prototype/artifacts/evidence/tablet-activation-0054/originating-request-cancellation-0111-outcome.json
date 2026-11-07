@@ -1,0 +1,45 @@
+{
+  "created_at": "2026-11-07T04:54:02.176Z",
+  "operation": "originating-request-cancellation-0111",
+  "authority": "Fresh owner selection Cancel B; keep its notebook",
+  "actor": "Assistant submitted the real request-local cancellation under owner authority; no claim of physical tablet Cancel button press",
+  "target": {
+    "jobId": "50bdfd2c593cfc98692883dc226f7209",
+    "requestId": "50bdfd2c593cfc98692883dc226f7209",
+    "documentUUID": "ac79fff8-bb09-4bbd-a769-063ab2d7fe50"
+  },
+  "actualHTTP": {
+    "status": 200,
+    "response": "Cancelled"
+  },
+  "actualCancelledToolResult": {
+    "toolCallId": "call_089023c1359e475c8d169222a980758d|fc_0aace8a3885f0757016aee4a8effe887d0b399aadec4b8896e",
+    "toolName": "image_editor",
+    "isError": false,
+    "details": {
+      "action": "annotate",
+      "status": "cancelled"
+    },
+    "contentTypes": [
+      "text"
+    ],
+    "imageReturned": false
+  },
+  "otherActualResult": {
+    "toolCallId": "call_cfc581734ba44945ac287c6580941b50|fc_0aace8a3885f0757016aee4a8c381887d0a8088a46e064f59e",
+    "status": "completed",
+    "imageBlobSHA256": "4d9e07c2ab14d19b1bc37851956ebfc8e27a522d10b38bbbb4f8d371eafe9806",
+    "unchanged": true
+  },
+  "actualToolResultCount": 2,
+  "coordinatorTCP47843AfterCancellation": "No listener observed with ss -Hlnt; expected normal release after last live request",
+  "serverTerminalPublication": "Existing finish/end contract publishes cancellation before resolving the real callback; native terminal observation still required",
+  "nativeCancelledDisplayAndSendDisable": "not yet owner-confirmed",
+  "stockNotebookPreservation": "No notebook access or deletion by cancellation; owner reopen/editability observation still required",
+  "deviceSSH": false,
+  "notebookOperations": false,
+  "sendAttempted": false,
+  "automaticRetry": false,
+  "nextOwnerAction": "Close/reopen B normally, verify B mark retained, Pi Ink status cancelled (offline is expected after coordinator release), Send disabled; add small stock pen dot without Send",
+  "wholeTicketComplete": false
+}

@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-11-07T04:52:17.436Z",
+  "operation": "originating-request-cancellation-0111",
+  "http": {
+    "status": 200,
+    "response": "Cancelled"
+  },
+  "automaticRetry": false,
+  "deviceSSH": false,
+  "notebookOperations": false,
+  "consumerCallback": "inspect actual originating session next"
+}
