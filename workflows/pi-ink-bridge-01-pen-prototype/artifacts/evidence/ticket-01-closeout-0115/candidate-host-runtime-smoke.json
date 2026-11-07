@@ -1,0 +1,13 @@
+{
+  "created_at": "2026-11-07T09:08:45.121Z",
+  "source_commit": "e3ba4ade34f5550cde9690dd332199aaf9ca13d1",
+  "source_tree": "de2b745e75739119365a283c7cd79bbc2863099f",
+  "mode": "actual local HTTP/Python/PNG callbacks; no tablet, TLS gateway or native image_editor tool callback",
+  "checks": [
+    {
+      "name": "built browser app served",
+      "status": 200
+    }
+  ],
+  "serversClosed": true
+}

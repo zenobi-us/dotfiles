@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-11-07T10:02:36.761Z",
+  "authority": "User selected Commit Hister separately in publication gate questionnaire",
+  "scope": "Commit only the already-staged github:asciimoo/hister latest tool entry in mise.toml; no other user changes",
+  "observed_before_blob": "9c24b3f7",
+  "observed_staged_blob": "34d694fe",
+  "unstaged_mise_diff_empty": true,
+  "upstream_overlap": "Worktrunk pin0.52.0 ->0.80.0 in same file; different hunk",
+  "forbidden": [
+    "stash",
+    "reset",
+    "unstage",
+    "commit unrelated unstaged files"
+  ]
+}

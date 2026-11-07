@@ -1,0 +1,104 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0058",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 17,
+  "parent_receipt": "implementation-0057",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "source_branch": "closeout/pi-ink-bridge-01",
+  "base_branch": "master",
+  "source_commit": "e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+  "source_tree": "83cce09d711a12b72607aa735296c04eebe96dbc",
+  "created_at": "2026-11-07T10:18:36.158Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "01a1a5dd-2a9e-72c4-8797-c9988749391e",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115"
+  },
+  "status": "completed",
+  "recovery": {
+    "mode": "takeover",
+    "authority": "closure-authorization.json",
+    "reason": "Recover the current parent-owned implementation receipt after observed old-session completion and missing muxer identity. Final code is clean and complete; fresh session reconciles exact source, byte-identical deployed modules, parent-observed checks and actual final-source host runtime only. No source/device changes or repeated implementation."
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0057.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/final-source-mapping.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/native-integration.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/host-integration.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/candidate-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/final-host-runtime-smoke.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/build-version-reconciliation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/retained-maintenance-removal-plan.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/acceptance-matrix.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/closure-authorization.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0058.yaml"
+    }
+  ],
+  "validation": {
+    "child_result_read": true,
+    "child_completion_seq": 149,
+    "child_pane_closed": true,
+    "exact_source_verified": true,
+    "prototype_bytes_equal_to_parent_validated_candidate": true,
+    "native_files_equal_to_deployed_source": 31,
+    "final_source_runtime": "final-host-runtime-smoke.json passed; actual local HTTP/PythonPNG completion and independent cancellation, not native hardware",
+    "hardware": "Separate actual native/owner proof consumed via acceptance-matrix.json",
+    "review_verdict": null,
+    "merged": false,
+    "pushed": false,
+    "ticket_completed": false
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "created_at": "2026-11-07T10:03:33.880Z",
+  "authorized_hister_commit": "65f848ed88830ad2edf5717dccc93509f72a75ec",
+  "upstream_sync_parent": "5f4f6baab355ad739935b53db02e6e4c1a3a9ef4",
+  "commit": "7228b781af08fdddb2868abcd20e2704aec7c7e9",
+  "tree": "0f1b08b9e6443bcf6792db253323660942df331f",
+  "merge_clean": true,
+  "base_before": "65f848ed88830ad2edf5717dccc93509f72a75ec",
+  "base_unchanged": true,
+  "user_work_preserved": true
+}

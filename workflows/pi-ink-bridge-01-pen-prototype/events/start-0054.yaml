@@ -1,0 +1,58 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0054",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 16,
+  "parent_receipt": "start-complete-0053",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "source_branch": "closeout/pi-ink-bridge-01",
+  "base_branch": "master",
+  "source_commit": "1d85d055ef6d5d0abd679d82cdcde7b6e3716dda",
+  "source_tree": "064f5a20f2027ccd9b30911a1a7e7f5a0752bd0e",
+  "created_at": "2026-11-07T08:53:27.462Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "01a1a5dd-2a9e-72c4-8797-c9988749391e",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115"
+  },
+  "status": "started",
+  "recovery": {
+    "mode": "reconcile",
+    "authority": "closure-authorization.json",
+    "reason": "Read-only merge-tree found13 conflicts, including meaningful newer master code and stale source workflow copies. Prepare an isolated clean integration candidate from current master without rewriting protected8cc source or touching base user changes. Fresh independent native and host sessions own disjoint slices. No review or merge has begun."
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0053.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/review-preflight.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0054.yaml"
+    }
+  ]
+}

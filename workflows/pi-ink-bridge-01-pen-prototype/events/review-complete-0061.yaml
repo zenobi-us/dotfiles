@@ -1,0 +1,84 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-complete-0061",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 18,
+  "parent_receipt": "review-0060",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "source_branch": "closeout/pi-ink-bridge-01",
+  "base_branch": "master",
+  "source_commit": "e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+  "source_tree": "83cce09d711a12b72607aa735296c04eebe96dbc",
+  "created_at": "2026-11-07T10:32:07.153Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "01a1a5dd-2a9e-72c4-8797-c9988749391e",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115"
+  },
+  "status": "completed",
+  "recovery": {
+    "mode": "reconcile",
+    "authority": "closure-authorization.json",
+    "reason": "Read immutable review, verified exact clean source, confirmed reviewer done158 and axis done156/157 with owned panes closed; no source changes."
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/review-0060.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/reviews/review-review-0060.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/review-complete-0061.yaml"
+    }
+  ],
+  "validation": {
+    "source_exact_and_clean": true,
+    "reviewer_completion_seq": 158,
+    "reviewer_pane_closed": true,
+    "axis_completions": [
+      {
+        "pane": "w6M:p5",
+        "completion_seq": 156,
+        "closed": true
+      },
+      {
+        "pane": "w6M:p6",
+        "completion_seq": 157,
+        "closed": true
+      }
+    ],
+    "standards_findings": 0,
+    "spec_findings": 0,
+    "prototype_merged": false,
+    "pushed": false,
+    "ticket_completed": false
+  },
+  "fixed_point": "7228b781af08fdddb2868abcd20e2704aec7c7e9",
+  "verdict": "SUCCESS",
+  "findings": [],
+  "review_artifact": "artifacts/reviews/review-review-0060.md"
+}

@@ -1,0 +1,130 @@
+{
+  "slice": "native",
+  "status": "integrated-awaiting-parent-final-validation",
+  "candidate_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "source_commit": "8cc3cb89c7aa50ea0862a83763edc0a339d69eb9",
+  "base_commit": "1d85d055",
+  "added_files": [
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/.gitignore",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/Makefile",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/main.cpp",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/pi-ink-loopback.xovi",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/client_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/diagnostics.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/diagnostics_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/folders_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/operations.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/pairing.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/runtime.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/state.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/switch_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/transport.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd"
+  ],
+  "modified_files": [
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/build.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.mod",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.sum",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/main.go"
+  ],
+  "unchanged_master_files": [
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/discovery.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/discovery_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/install.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns_records.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns_records_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update_test.go"
+  ],
+  "conflict_decisions": [
+    {
+      "file": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/main.go",
+      "decision": "Apply only the serve usage/dispatch addition and the existing unsigned-development-update warning from 8cc. Preserve all other master entrypoint logic."
+    },
+    {
+      "file": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/build.sh",
+      "decision": "Update only the packaged version from 0.2.0 to the deployed source version 0.3.1."
+    },
+    {
+      "files": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.mod",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.sum"
+      ],
+      "decision": "Add only the existing gorilla/websocket v1.5.3 requirement and its two checksums."
+    },
+    {
+      "decision": "Add only files tracked in 8cc. Do not copy generated adapter xovi.cpp/xovi.h/object/shared-library files, client dist, node_modules, or other untracked artifacts."
+    },
+    {
+      "decision": "Keep activation-proposal.json unchanged as a historical source artifact. Its old status and evidence references are not a new acceptance verdict or device authorization."
+    }
+  ],
+  "semantic_differences_from_deployed_source": [],
+  "exact_source_parity": {
+    "comparison": "Compare candidate file bytes with git show 8cc3cb89:<path> for every tracked file in the three owned directories.",
+    "tracked_files_compared": 31,
+    "differing_files": [],
+    "sha256_by_file": {
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/.gitignore": "9be167283adf65c6cbba17ab56a09e96a757773cfeaec6e00589e4771509680e",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/Makefile": "9fb6b79858e7bb8db51dcf1e08172dc8300b1fd674dd61cc01599185af2a9400",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/main.cpp": "20bac3bcf71ec11c0816edde1e2fafc77967e857e9a4d112cd8e6268ab7a5806",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/pi-ink-loopback.xovi": "00f39581d1d41589fecd4ab651ea0c12ec7b02f957151d945218408f60018ba6",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/build.sh": "5868ba99121adfb1b2d214e7283d22d5ff166df3ce6ce667165f52e976dd7203",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/client_test.go": "455120fde813f4fcd790294ef3a28cef478b8bb5e351d628e1bd9f9f60e07930",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/diagnostics.go": "f9689b85efb2ad6663abee22c24bb778927d4758a8f889900e78a8cada8a7d06",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/diagnostics_test.go": "28c9206dcbb963b1ac25630da8210d2c2c1ffcbed8d36ae9464fbcb2d3361a3b",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/discovery.go": "781847ef3b309627f4b920da88c97dc512a9448a8e9d9e13ba8489b66a54acff",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/discovery_test.go": "dbe3a9bbbafe2026d69687344edb6689ca0d09ad3721d3138a137721ef310219",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/folders_test.go": "a6e15ea47b1199b1c6f4feb7acd5ca1b5bccd136001df5d1dadac75d6a3aeb2a",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.mod": "30483f9cc2af1d36fd4e1905edd4cf274011c03cf088ce79f0feef79fd269336",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.sum": "dbab7c6979b2ba5204552f5702281a728b760cd6599a33b1c724f4d0e97b40d4",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/install.sh": "2fa25f274a908d6b47c87681a544f5e1a6dae0b3fa9bdc8c4c35d49fd179a907",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/main.go": "7950dd0afc03d8de6097b755a43a87d6278d5dff757b10475818bf509462d2dc",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns.go": "79846a4b87d57839b38ade680d87eefb1cc6b898573b5378c15d2b34abade5dc",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns_records.go": "8c78909e6dbb66ba8ac6768648fef67e24652ba665ffd5e3667a550032bfeabc",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns_records_test.go": "33004f353b0f1186b1e6a0042d0efbc7083b816d2ca14145b549323d9913382d",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/operations.go": "48391a73ba4db5e4f9eed3b6bcfc33350d4c9882330f2875e23d8953efa4ef80",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/pairing.go": "cd02f833019e5784798aa0c227020d2628a51553e1d4cc809a6160659cac14bb",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/runtime.go": "72dd2c28471a55fdcdd5839b32ede310d2470987576419f088ddbe7a32914e4b",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/state.go": "1765bf44414b5ca2f48b618e2de3b76dd46ba5f706287b0f74f5fc3a20155c7a",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock.go": "2a86baaf581f18bda71302f57f5b2969a650c777135232d36d26465d5497b762",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock_test.go": "619de3809ae2534804dbebe7e0ec9597e9479d7fe4266af89616c9eddafa0617",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/switch_test.go": "ed72559ca732ea184e3ad0b294ec4fbd14ecc6ac49977e6a590789a6b87f5868",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/transport.go": "d10db162d6b3b4545c629bb7d1e72c9df1f8dfea872219a4c52ba475e7850e6f",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update.go": "4076cbd38c394fabc5fda2657b95237d2dd208448a813774025153f763c96bc4",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update_test.go": "db95ea2a7c7185cdb6a02051a130c2d64020cc26074efce7fc5dd72eee3701b0",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml": "35dd84aab86e7982a679e6a29dabcb374016bb43729c567897e0740893354b07",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json": "de44aae5409fb39dc52aee6e3fec972d26c4bf4d2c8a0d283b2ddee126fa14ea",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd": "c88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe"
+    }
+  },
+  "validation": [
+    {
+      "command": "mise exec -- go run . serve --help",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client",
+      "exit_code": 0,
+      "observed_output": "Usage of serve:\n  -config string\n    \tpath to setup-provisioned JSON configuration",
+      "coverage": "Compiled and exercised the integrated serve command dispatch and help handling. Exited before config access, listener creation, or remote activity."
+    }
+  ],
+  "validation_limits": [
+    "No test suite, formatter, linter, packaging build, or device operation ran. Parent owns final validation.",
+    "No QML runtime, firmware integration, visual layout, or C++ target build was exercised.",
+    "Adapter target build retains the original prerequisites: Paper Pro SDK, Qt6Core/Qt6Network, and XOVI_REPO with generator commit 2b99649f5e4fd6288be7792a8570bd16418adb70. Generated xovi.cpp/xovi.h remain build outputs."
+  ],
+  "scope_guards": {
+    "protected_source_worktree_modified": false,
+    "commits_created": false,
+    "services_started": false,
+    "device_access": false,
+    "removals": [],
+    "other_repository_files_modified_by_this_slice": [],
+    "docs_and_tracker": "Intentionally unchanged under the slice contract. Parent owns ticket closeout and documentation."
+  },
+  "blockers": []
+}

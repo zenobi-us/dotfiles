@@ -1,0 +1,75 @@
+{
+  "slice": "host",
+  "status": "integrated_pending_parent_validation",
+  "sourceCommit": "8cc3cb89c7aa50ea0862a83763edc0a339d69eb9",
+  "candidateBase": "1d85d055",
+  "canonicalAcceptance": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "acceptanceReadWith": "mise exec -- mq --allow-http-import -I raw -F json 'import \"github.com/harehare/okf.mq\" | okf::okf_parse(.)'",
+  "fileRoot": "mise/conf.d/devtools-omp/extensions/image-annotator",
+  "modifiedFiles": [
+    ".gitignore",
+    "index.ts",
+    "package.json",
+    "src/main.tsx",
+    "src/style.css",
+    "test/editing-session.test.ts"
+  ],
+  "addedFiles": [
+    "pdf-session.ts",
+    "pdf-worker.py",
+    "src/PdfImport.tsx",
+    "tablet-gateway.ts",
+    "test/pdf-fixtures.py",
+    "test/pdf-samples.py",
+    "test/pdf-submission.test.ts",
+    "test/tablet-gateway.test.ts",
+    "test/tablet-pairing.test.ts"
+  ],
+  "conflictDecisions": [
+    "Kept master coordinator runtime helpers in their existing location. The original source has equivalent helpers at the file end. There is one runtime promise and one coordinator owner.",
+    "Kept master /image coordinator command description and usage text.",
+    "Added the existing native PDF session, TLS/WebSocket gateway, PNG return, retained PDF path, request terminal guard, stale revision guard, and session cancellation binding from the original source.",
+    "Kept browser annotation and blank canvas paths. Added the original manual stock PDF import surface and styles.",
+    "Kept dbus-next and master package layout. Added original pinned ws 8.18.3, @types/ws 8.18.1, and typescript 5.9.3. Parent owns bun.lock.",
+    "Kept master tablet-client/dist ignore rule and restored original mq.lock ignore rule.",
+    "Restored the original session-switch lifecycle case without rewriting tests. Kept the master post-completion error assertion and included session-switch in its abort expectation. No tests were deleted."
+  ],
+  "semanticDifferencesFromSource": [
+    "Runtime: no intended native request, gateway, PDF worker, browser import, or cancellation behavior differences.",
+    "Command help retains master's explicit coordinator description and usage option.",
+    "Ignore rules retain master's tablet bundle output exclusion in addition to source exclusions.",
+    "Editing lifecycle test retains master's additional error assertion, extended to the restored session-switch case."
+  ],
+  "unchangedOwnedFiles": ["coordinator.ts", "coordinator-discovery.ts", "scripts/provision-tablet.sh"],
+  "protectedScope": {
+    "originalWorktreeWritten": false,
+    "tabletAccess": false,
+    "tabletFilesModified": false,
+    "readmeModified": false,
+    "lockfileModified": false,
+    "workflowOrTrackerModified": false,
+    "miseTomlModified": false,
+    "commitsCreated": false,
+    "servicesStarted": false
+  },
+  "verification": {
+    "buildsTestsLintFormattersRun": false,
+    "runtimeSmokeRun": false,
+    "reason": "Slice contract reserves final validation for the parent and prohibits tests/builds during this slice.",
+    "staticObservations": [
+      "Compared scoped source differences against 8cc3cb89 before editing.",
+      "Checked raw-read transfer sizes. Restored the gateway tail after detecting read pagination. Final gateway edit returned the original source snapshot tag 77C3.",
+      "Read canonical owner-amended retention acceptance with mq. No restoration or positive clipping acceptance gate was added."
+    ],
+    "lspReferences": "Attempted createAnnotationServer references before changing its exported optional argument. LSP initialization failed: Could not find a valid TypeScript installation. No references were returned."
+  },
+  "blockers": [
+    "Parent must install/update dependencies and bun.lock, then run final validation. LSP could not initialize before the dependency install."
+  ],
+  "parentValidationTargets": [
+    "Existing host tests plus restored PDF submission, tablet gateway, pairing, and session-switch cases.",
+    "Browser annotation, blank canvas, and manual stock PDF import surface.",
+    "Coordinator discovery, bootstrap bundle serving, and update compatibility with the separately integrated tablet slice.",
+    "Host-only originating request completion and cancellation. Do not access or change the tablet."
+  ]
+}

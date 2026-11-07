@@ -1,0 +1,27 @@
+{
+  "created_at": "2026-11-07T10:05:21.631Z",
+  "source": {
+    "branch": "closeout/pi-ink-bridge-01",
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+    "commit": "e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+    "tree": "83cce09d711a12b72607aa735296c04eebe96dbc"
+  },
+  "review_fixed_point": "7228b781af08fdddb2868abcd20e2704aec7c7e9",
+  "parents": [
+    "e3ba4ade34f5550cde9690dd332199aaf9ca13d1",
+    "7228b781af08fdddb2868abcd20e2704aec7c7e9"
+  ],
+  "prototype_source_equal_to_validated_candidate": true,
+  "compared_paths": [
+    "README.md",
+    "bun.lock",
+    "mise/conf.d/devtools-omp/extensions/image-annotator"
+  ],
+  "prior_validation_ref": "candidate-validation.json",
+  "prior_host_runtime_ref": "candidate-host-runtime-smoke-2.json",
+  "original_deployed_source": "8cc3cb89c7aa50ea0862a83763edc0a339d69eb9",
+  "native_payload_byte_equal_files": 31,
+  "upstream_merge_base": "7228b781af08fdddb2868abcd20e2704aec7c7e9",
+  "device_operations": [],
+  "status": "AWAITING_FRESH_REVIEW"
+}

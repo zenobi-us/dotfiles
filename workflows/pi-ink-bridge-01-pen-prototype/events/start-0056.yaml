@@ -1,0 +1,62 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0056",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 17,
+  "parent_receipt": "start-complete-0055",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "source_branch": "closeout/pi-ink-bridge-01",
+  "base_branch": "master",
+  "source_commit": "e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+  "source_tree": "83cce09d711a12b72607aa735296c04eebe96dbc",
+  "created_at": "2026-11-07T10:11:35.556Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "pane_id": "w6M:p2",
+  "agent": "omp",
+  "session_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115"
+  },
+  "status": "started",
+  "recovery": {
+    "mode": "takeover",
+    "authority": "closure-authorization.json",
+    "reason": "Recover the current parent-owned implementation receipt after observed old-session completion and missing muxer identity. Final code is clean and complete; fresh session reconciles exact source, byte-identical deployed modules, parent-observed checks and actual final-source host runtime only. No source/device changes or repeated implementation."
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0055.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/final-source-mapping.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/final-host-runtime-smoke.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0056.yaml"
+    }
+  ]
+}

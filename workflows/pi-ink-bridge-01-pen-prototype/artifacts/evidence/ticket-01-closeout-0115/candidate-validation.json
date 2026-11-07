@@ -1,0 +1,59 @@
+{
+  "created_at": "2026-11-07T09:06:14.398Z",
+  "source_branch": "closeout/pi-ink-bridge-01",
+  "source_commit": "e3ba4ade34f5550cde9690dd332199aaf9ca13d1",
+  "source_tree": "de2b745e75739119365a283c7cd79bbc2863099f",
+  "stage": "pre-review-candidate",
+  "commands": [
+    {
+      "command": "mise exec -- go test -race ./...",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client",
+      "exit_code": 0,
+      "observed": "ok image-annotator-tablet 22.613s"
+    },
+    {
+      "command": "mise exec -- bun run typecheck",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0
+    },
+    {
+      "command": "mise exec -- bun test test (before required build)",
+      "exit_code": 1,
+      "observed": "22 pass,1 fail: built app endpoint returned404; missing dist prerequisite, not a confirmed code regression"
+    },
+    {
+      "command": "mise exec -- bun run build",
+      "exit_code": 0,
+      "observed": "ARM64 bundle and Vite production app built; third-party use-client/chunk-size warnings retained"
+    },
+    {
+      "command": "mise exec -- bun test test (after required build)",
+      "exit_code": 0,
+      "observed": "23 pass,0 fail,187 expectations across7 files"
+    }
+  ],
+  "runtime_smoke": [
+    {
+      "command": "mise exec -- go run . serve --help",
+      "source": "native slice reported/parent read report",
+      "exit_code": 0,
+      "limit": "No config, listeners, device, or target firmware exercised"
+    },
+    {
+      "command": "mise exec -- go run . version",
+      "exit_code": 0,
+      "observed": "development",
+      "limit": "go run has no packaged ldflags; installed0.3.1 verified separately"
+    }
+  ],
+  "lsp": {
+    "export": "createAnnotationServer",
+    "references": 2,
+    "source": "LSP references after dependency installation",
+    "limit": "References output omits test caller imports; permanent runtime suite exercised them"
+  },
+  "deployed_source": "8cc3cb89c7aa50ea0862a83763edc0a339d69eb9",
+  "native_files_byte_equal_to_deployed_source": 31,
+  "review_verdict": null,
+  "device_operations": []
+}

@@ -1,3 +1,27 @@
+# Ticket 01 integration verified — publication pending
+
+- Independent acceptance: **SUCCESS**, Standards 0 findings, Spec 0 findings. [Review](../artifacts/reviews/review-review-0060.md); [parent acceptance](../events/review-complete-0061.yaml).
+- Reviewed source `e8ab1391eaab3481131f3c3dfa934b7d523c38db`; integrated commit `493db79b27dc2cc08295752a510a6e4ed6b7952b`; both use tree `83cce09d711a12b72607aa735296c04eebe96dbc`. Integration has sole parent `7228b781af08fdddb2868abcd20e2704aec7c7e9`.
+- Worktrunk first fast-forwarded without squashing. [finish-0063](../events/finish-0063.yaml) records that mismatch. The owner approved same-tree unpublished-tip repair; [finish-0064](../events/finish-0064.yaml) records the corrected integration without any file/index change, second code merge, reset, stash or force-push. Reviewed source remains protected in its branch and scoped backup ref.
+- [Integrated checks](../artifacts/evidence/ticket-01-closeout-0115/integrated-validation.json): build, TypeScript, 23 Bun tests and Go race passed. Actual repaired-commit HTTP/Python PNG completion and independent cancellation passed. [Runtime](../artifacts/evidence/ticket-01-closeout-0115/integrated-host-runtime-smoke.json). Hardware proof remains separate.
+- Latest checkpoint: [finish-0065](../events/finish-0065.yaml). No push or ticket completion yet. Ticket remains claimed.
+- Installed prototype/tripletap and all protected source, notebooks, credentials and evidence remain retained. This is not baseline restoration.
+
+Previous generated views follow. They are history, not current status.
+
+---
+
+# Final source implementation and review — 2026-11-07
+
+- [start-0054](../events/start-0054.yaml): isolated native and host integration, preserving newer master behavior.
+- [start-complete-0055](../events/start-complete-0055.yaml): no child result after the former validator rejected a pane-less start; old session completion and subsequent missing pane recorded. No source discarded.
+- [start-0056](../events/start-0056.yaml), [implementation-0057](../events/implementation-0057.yaml), [start-complete-0058](../events/start-complete-0058.yaml): fresh exact-source reconciliation, no repeated implementation or device access.
+- Current source `e8ab1391eaab3481131f3c3dfa934b7d523c38db`, tree `83cce09d711a12b72607aa735296c04eebe96dbc`. All 31 native files match deployed `8cc3cb89`; prototype bytes equal parent-validated `e3ba4ade`.
+- Go race/typecheck/build and 23 Bun tests passed on the byte-identical candidate. Final-source local HTTP/PDF/PNG and independent cancellation passed. Actual native callback/owner proof remains separate and retained.
+- [review-0059](../events/review-0059.yaml): independent Standards and Spec review in progress. No verdict, prototype merge, push or ticket completion yet.
+
+---
+
 # Current implementation reconciliation — 0052/0053
 
 Exact source: `8cc3cb89c7aa50ea0862a83763edc0a339d69eb9`, tree `25872168b7dff239a95e876827916b77c3b41001`. [Implementation result](../events/implementation-0052.yaml) and [parent reconciliation](../events/start-complete-0053.yaml) supersede the historical current-state claims below. No earlier receipts or failed experiments were rewritten.

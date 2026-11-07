@@ -1,0 +1,46 @@
+{
+  "status": "resolved",
+  "automatic_merge_tree": "a6ed4037d2b16957501842ea86f5584f2829072a",
+  "parents": ["1d85d055ef6d5d0abd679d82cdcde7b6e3716dda", "258852fa76c49005a18d02965663d4a4f4fb9af5"],
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/receipts.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/workflow.ts"
+  ],
+  "decisions": [
+    "Allow pane_id null for finish and phase-start. Also retain the local phase-complete exception, which requires a non-empty parent session ID. Child implementation, review, and fix results still require pane identity.",
+    "Retain incoming optional evidence envelopes. Validate store and ref when evidence is present. Remove the obsolete local lifecycle-dependent evidence condition; its lifecycle variable was already removed by the incoming change.",
+    "Combine receipt documentation for pane-less starts and parent completions. Preserve linked-checkout provenance and real Git common-directory validation without rewriting historical receipts.",
+    "Leave automatically merged exact review-to-integration mapping, parent validation, workflow-relative review artifacts, result-based verdict lookup, and finish cleanup behavior unchanged. No new policy or feature was added."
+  ],
+  "history_inspected": ["b450d2b5290691e04fd891f1cfe3a59d9870efbd", "e780abbed6ea528d021edb1bf48405bed02ed3c9", "458adcaa447f664aebc4aece8758dfba022eafb2", "8d9649a5f77dc8379e8df0f80c607c2a913097e2"],
+  "checks_performed": {
+    "materialized_tree": "Enumerated all 9069 entries with git ls-tree -r -z. Compared regular-file blob hashes with git hash-object --stdin-paths, symlink blob hashes, and executable modes. No entries were missing. Only the two allowed files differed.",
+    "receipt_markers": "mise exec -- mq with the required okf import, --frozen, -I raw, and -F json found no opening, separator, or closing conflict marker tokens. It confirmed the combined start/completion rules, linked-checkout guard, and result-verdict documentation.",
+    "workflow_markers": "Targeted marker search found no conflict markers in workflow.ts.",
+    "lsp": "Initialization failed because no valid TypeScript installation was available. No exported API or caller was changed.",
+    "runtime": "Not run. Build, lint, tests, and formatters remain deferred to the parent's final scoped validation, as requested."
+  },
+  "exact_checks_needed": [
+    {
+      "command": "mise exec -- bun test ./mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.test.ts ./mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.test.ts",
+      "coverage": "Run once after parent integration. Existing cases cover pane-less starts, evidence-less results, malformed present evidence, linked repository/store identity, pane-less parent completions with and without session identity, child-pane requirements, workflow-relative review artifacts, result-based verdicts, and removed-source exact squash mapping."
+    },
+    {
+      "scenario": "In an isolated fixture, run the canonical inspector against an active receipt chain and a FINISHED chain with the source removed. Keep external command observations local or fixture-controlled.",
+      "assertions": "Active history must retain source and parent gates. Completed history must require exact reviewed source/integration mapping, remote publication, tracker completion, and cleanup evidence. A missing review artifact or inconsistent merge mapping must not authorize finish success."
+    },
+    {
+      "scenario": "Before publication, compare the final candidate tree with the automatic merge tree and confirm only the two allowed resolution paths differ. Use actual materialized file hashes if the index still reflects the local base.",
+      "note": "git diff against the automatic tree alone reports 140 apparent deletions for incoming files absent from the local-base index. Those files exist and match automatic-tree blobs. The full 9069-entry filesystem hash comparison passed."
+    }
+  ],
+  "boundaries": {
+    "committed": false,
+    "staged": false,
+    "git_refs_changed": false,
+    "tests_deleted_or_changed": false,
+    "other_repository_files_edited": false,
+    "tablet_or_network_services_accessed": false,
+    "screenshots_or_protected_state_accessed": false
+  }
+}

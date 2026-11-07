@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-11-07T10:18:38.080Z",
+  "decision": {
+    "action": "review",
+    "mode": "begin",
+    "parentReceipt": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0058.yaml",
+    "authority": "closure-authorization.json"
+  },
+  "source_commit": "e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+  "source_tree": "83cce09d711a12b72607aa735296c04eebe96dbc",
+  "fixed_point": "7228b781af08fdddb2868abcd20e2704aec7c7e9",
+  "diff_command": "git diff 7228b781af08fdddb2868abcd20e2704aec7c7e9...e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+  "diff_sha256": "46d9b6fdf4ea6121f6f53ac61e22d8aab1768bb840dee51726468746dec41f1a",
+  "diff_nonempty": true,
+  "commit_list": "e8ab1391 chore: align tracker/tickets/pi-ink-bridge-01-pen-prototype.md for review\ne3ba4ade feat: integrate tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "ticket_sha256": "544db8f9bb8d322c6f0b0e1a0fcd2aa3c2d1ab46df8143eb0eee2dfca89315c1"
+}

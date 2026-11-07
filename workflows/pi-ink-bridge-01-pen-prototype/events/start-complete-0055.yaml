@@ -1,0 +1,74 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0055",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 16,
+  "parent_receipt": "start-0054",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "source_branch": "closeout/pi-ink-bridge-01",
+  "base_branch": "master",
+  "source_commit": "e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+  "source_tree": "83cce09d711a12b72607aa735296c04eebe96dbc",
+  "created_at": "2026-11-07T10:11:35.556Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "01a1a5dd-2a9e-72c4-8797-c9988749391e",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115"
+  },
+  "status": "blocked",
+  "recovery": {
+    "mode": "takeover",
+    "authority": "closure-authorization.json plus staged-mise-authorization.json; current parent-owned start recovery",
+    "old_agent": "ink-native-integrate-0115",
+    "old_pane": "w6J:p3",
+    "old_session": "01a1b536-ac9a-7341-87e6-5e8fb6a325c0",
+    "last_observed_completion_seq": 140,
+    "actual_lookup": "herdr agent get returned agent_not_found; herdr worktree list had no open source workspace",
+    "cause_of_disappearance": "unknown",
+    "source_preserved": true
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0054.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/final-source-mapping.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/native-integration.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/host-integration.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0055.yaml"
+    }
+  ],
+  "result_missing": true,
+  "failure_reason": "The completed native implementation session did not write a phase-result because the former installed inspector rejected its pane-less parent start. The incoming published validator now accepts that start. The old pane and agent are no longer registered and its source workspace is absent. Preserve all existing source and reconcile the final committed candidate in a fresh session; do not repeat code/device work."
+}

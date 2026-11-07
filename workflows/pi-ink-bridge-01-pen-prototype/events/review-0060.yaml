@@ -1,0 +1,201 @@
+schema: worktree-receipt/v1
+receipt_id: review-0060
+workflow_id: pi-ink-bridge-01-pen-prototype
+phase: review
+event: phase-result
+attempt: 18
+parent_receipt: review-0059
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01
+source_branch: closeout/pi-ink-bridge-01
+base_branch: master
+source_commit: e8ab1391eaab3481131f3c3dfa934b7d523c38db
+source_tree: 83cce09d711a12b72607aa735296c04eebe96dbc
+fixed_point: 7228b781af08fdddb2868abcd20e2704aec7c7e9
+created_at: "2026-11-07T10:27:26.577707Z"
+muxer: herdr
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01
+pane_id: "w6M:p3"
+agent: omp
+session_id: 01a1b586-bd4b-77d2-9736-da737f09e358
+ticket:
+  backend: local-markdown
+  id: pi-ink-bridge-01-pen-prototype
+  ref: tracker/tickets/pi-ink-bridge-01-pen-prototype.md
+ticket_ref: tracker/tickets/pi-ink-bridge-01-pen-prototype.md
+workflow:
+  store: repository
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  ref: workflows/pi-ink-bridge-01-pen-prototype
+evidence:
+  store: repository
+  ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115
+status: completed
+verdict: SUCCESS
+findings: []
+inputs:
+  - kind: ticket
+    ref: tracker/tickets/pi-ink-bridge-01-pen-prototype.md
+    sha256: 544db8f9bb8d322c6f0b0e1a0fcd2aa3c2d1ab46df8143eb0eee2dfca89315c1
+  - kind: receipt
+    ref: workflows/pi-ink-bridge-01-pen-prototype/events/review-0059.yaml
+  - kind: receipt
+    ref: workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0057.yaml
+  - kind: receipt
+    ref: workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0058.yaml
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/final-review-preflight.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/final-source-mapping.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/native-integration.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/host-integration.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/candidate-validation.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/final-host-runtime-smoke.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/build-version-reconciliation.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/retained-maintenance-removal-plan.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/acceptance-matrix.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/closure-authorization.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/desktop-version-record.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/review0060-standards-brief.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/review0060-spec-brief.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/normal-app-pairing-0094-outcome.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-stock-folder-owner-proof-0068.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/fresh-native-charging-only-0095.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/fresh-native-import-0096-outcome.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/second-fresh-native-import-0098-outcome.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-drawing-save-owner-proof-0087.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/drawing-foldout-proof-correction-0100.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-send-0101-outcome.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-send-0101-returned.png
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/originating-request-cancellation-0111-outcome.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-terminal-cancellation-0112.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/post-send-stock-editability-0102.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/owner-visible-sleep-wake-0104.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/unassociated-stock-notebook-0105.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/read-only-full-boot-probe-0107-boundary.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/tripletap-owner-activation-0109.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/owned-post-boot-bridge-start-0109-native-status.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/post-boot-owner-recovery-0110.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/restoration-security-boundary-0113.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/read-only-mod-boot-probe-0108-outcome.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/owned-post-boot-bridge-start-0109-outcome.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/first-fresh-document-marks-0097.json
+  - kind: evidence
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/manager-import-polling-update-0090-outcome.json
+  - kind: context
+    ref: CONTEXT-MAP.md
+  - kind: context
+    ref: docs/agents/issue-tracker.md
+  - kind: context
+    ref: docs/agents/domain.md
+  - kind: context
+    ref: docs/adr/index.md
+  - kind: context
+    ref: docs/adr/0001-pi-ink-cleanup-trust-boundary.md
+outputs:
+  - kind: receipt
+    ref: workflows/pi-ink-bridge-01-pen-prototype/events/review-0060.yaml
+  - kind: review
+    ref: workflows/pi-ink-bridge-01-pen-prototype/artifacts/reviews/review-review-0060.md
+frozen_patch:
+  path: /home/zenobius/.local/state/pi-ink-recovery-0091-lTFG6Q/prepared/final-review-0115.patch
+  sha256: 46d9b6fdf4ea6121f6f53ac61e22d8aab1768bb840dee51726468746dec41f1a
+  nonempty: true
+axes:
+  - axis: Standards
+    name: inkstandards0060
+    pane_id: "w6M:p5"
+    session_id: 01a1b588-43e5-7235-a842-dda09fceee28
+    verdict: SUCCESS
+    finding_count: 0
+    blocking_count: 0
+    nonblocking_heuristic_count: 0
+    worst_severity: ~
+    completion_status: done
+    completion_seq: 156
+    closed: true
+  - axis: Spec
+    name: inkspec0060
+    pane_id: "w6M:p6"
+    session_id: 01a1b588-43e6-77b7-acb0-460b168fff46
+    verdict: SUCCESS
+    finding_count: 0
+    blocking_count: 0
+    nonblocking_heuristic_count: 0
+    worst_severity: ~
+    completion_status: done
+    completion_seq: 157
+    closed: true
+validation:
+  reviewer_checks:
+    - command: "git rev-parse HEAD HEAD^{tree}; git status --porcelain=v1"
+      result: Exact frozen commit/tree; empty status before result persistence
+    - command: sha256sum frozen patch and canonical ticket
+      result: Both match final-review-preflight.json
+    - command: file and sha256sum native-send-0101-returned.png
+      result: 800x1000 RGB PNG; SHA256 4d9e07c2ab14d19b1bc37851956ebfc8e27a522d10b38bbbb4f8d371eafe9806; visual A and four edge marks
+  parent_checks_consumed:
+    source: e3ba4ade34f5550cde9690dd332199aaf9ca13d1
+    commands:
+      - mise exec -- go test -race ./...
+      - mise exec -- bun run typecheck
+      - mise exec -- bun run build
+      - mise exec -- bun test test (after build)
+    result: "Passed; 23 Bun tests,187 expectations. Initial pre-build test failure retained, not rerun by reviewer."
+  source_mapping: Final e8ab prototype paths equal validated e3ba;31 native tracked files equal deployed8cc per retained mapping records
+  final_source_runtime: Parent-recorded final local HTTP/Python/PNG completion and independent cancellation passed; not native callback or TLS/device proof
+  hardware: Retained primary native/owner records independently assessed; real image_editor A image digest and B cancellation; no new device operations
+  limits:
+    - Firmware3.28.0.172/client0.3.1 only
+    - "Qualitative owner drawing verdict, not measured latency"
+    - Drawing foldout has no UUID display
+    - "Powered charging-only UDC, no USB networking, not proof port physically empty"
+    - "Tripletap starts existing mods after stock boot, not Go or automatic OS-boot activation"
+    - Separate manual Go recovery required
+    - Native positive clipping unproved; not added ticket01 gate
+    - "Owner-approved retention, not restoration; old LAN proxy remains quarantined"
+    - No build/test/lint/formatter rerun during independent review; parent owns integrated checks afterward
+  no_source_changes: true
+  no_device_operations: true
+  axes_completed_and_closed: true
+  merged: false
+  pushed: false
+  ticket_completed: false
+recovery:
+  mode: begin
+  authority: workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/closure-authorization.json; explicit independent-review-0115 handoff
+  reason: "Completes the already dispatched review-0059 phase in fresh reviewer pane w6M:p3. Inspector sees active review phase as retry; this session is its authorized owner, not a duplicate takeover."
+  preserved_prior_records: true

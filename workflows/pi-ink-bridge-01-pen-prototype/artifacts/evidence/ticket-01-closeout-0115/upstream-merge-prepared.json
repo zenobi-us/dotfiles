@@ -1,0 +1,28 @@
+{
+  "created_at": "2026-11-07T09:13:23.778Z",
+  "branch": "reconcile/origin-master-ticket-01",
+  "commit": "5f4f6baab355ad739935b53db02e6e4c1a3a9ef4",
+  "tree": "a9d4a54d4413a8fe50d28eb833a5d227471b4f24",
+  "parents": [
+    "1d85d055ef6d5d0abd679d82cdcde7b6e3716dda",
+    "258852fa76c49005a18d02965663d4a4f4fb9af5"
+  ],
+  "automatic_tree": "a6ed4037d2b16957501842ea86f5584f2829072a",
+  "only_resolution_paths": [
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/receipts.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/workflow.ts"
+  ],
+  "validation": [
+    {
+      "command": "mise exec -- bun test .../inspect.test.ts",
+      "result": "9 pass,0 fail,68 expectations"
+    },
+    {
+      "command": "mise exec -- bun test .../recovery.test.ts",
+      "result": "25 pass,0 fail,73 expectations"
+    }
+  ],
+  "commit_method": "git commit-tree plus compare-and-swap fast-forward of the new owned synchronization branch; preserves both parents without rebasing or changing master",
+  "base_changed": false,
+  "user_index_changed": false
+}

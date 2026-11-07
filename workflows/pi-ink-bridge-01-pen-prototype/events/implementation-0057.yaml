@@ -1,0 +1,679 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "attempt": 17,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "source_branch": "closeout/pi-ink-bridge-01",
+  "base_branch": "master",
+  "source_commit": "e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+  "source_tree": "83cce09d711a12b72607aa735296c04eebe96dbc",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115"
+  },
+  "receipt_id": "implementation-0057",
+  "phase": "implementation",
+  "event": "phase-result",
+  "parent_receipt": "start-0056",
+  "created_at": "2026-11-07T10:14:53.696891Z",
+  "pane_id": "w6M:p2",
+  "session_id": "01a1b57e-1372-7799-b2f7-98f6d5e80d64",
+  "status": "completed",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0056.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0055.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/final-source-mapping.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/native-integration.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/host-integration.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/candidate-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/final-host-runtime-smoke.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/build-version-reconciliation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/retained-maintenance-removal-plan.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/acceptance-matrix.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/closure-authorization.json"
+    },
+    {
+      "kind": "context",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/adr/index.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0057.yaml"
+    },
+    {
+      "kind": "source-commit",
+      "ref": "e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+      "tree": "83cce09d711a12b72607aa735296c04eebe96dbc",
+      "created_by_this_session": false
+    }
+  ],
+  "recovery": {
+    "mode": "takeover",
+    "reason": "Recover the current parent-owned implementation receipt after observed old-session completion and missing muxer identity. Final code is clean and complete; fresh session reconciles exact source, byte-identical deployed modules, parent-observed checks and actual final-source host runtime only. No source/device changes or repeated implementation.",
+    "authority": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/closure-authorization.json; explicit parent handoff for start-0056 authorizes this fresh receipt-only reconciliation",
+    "prior_attempt": "start-complete-0055",
+    "ownership": "Current parent retains authorized ownership. Inspector reports ownership unknown and requiredApproval=true; explicit scoped parent handoff supplies approval. No claim transfer or ticket mutation performed.",
+    "liveness": "Fresh herdr agent get w6M:p2 identifies this working session; roster confirms parent session01a1a5dd-2a9e-72c4-8797-c9988749391e and this child. Old native session01a1b536-ac9a-7341-87e6-5e8fb6a325c0 absent from roster. Prior completion and disappearance recorded in start-complete-0055; cause remains unknown.",
+    "session_record": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-closeout-pi-ink-bridge-01--/2026-11-07T10-11-41-042Z_01a1b57e-1372-7799-b2f7-98f6d5e80d64.jsonl",
+    "source_preserved": true,
+    "old_records_preserved": true,
+    "no_old_session_reuse": true,
+    "coordinator_scope": "Standalone parent-dispatched recovery; start-0056 has no goal_run_id or goal_dispatch_ref. No coordinator dispatch created."
+  },
+  "diff_base_commit": "7228b781af08fdddb2868abcd20e2704aec7c7e9",
+  "changed_files": [
+    "README.md",
+    "bun.lock",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/.gitignore",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/index.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/package.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-session.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-worker.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/PdfImport.tsx",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/main.tsx",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/src/style.css",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/.gitignore",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/Makefile",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/main.cpp",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/pi-ink-loopback.xovi",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/build.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/client_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/diagnostics.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/diagnostics_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/folders_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.mod",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.sum",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/main.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/operations.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/pairing.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/runtime.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/state.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/switch_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/transport.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-gateway.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/editing-session.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-fixtures.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-samples.py",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-submission.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-gateway.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-pairing.test.ts"
+  ],
+  "changed_file_statuses": [
+    {
+      "status": "M",
+      "path": "README.md"
+    },
+    {
+      "status": "M",
+      "path": "bun.lock"
+    },
+    {
+      "status": "M",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/.gitignore"
+    },
+    {
+      "status": "M",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/index.ts"
+    },
+    {
+      "status": "M",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/package.json"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-session.ts"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-worker.py"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/src/PdfImport.tsx"
+    },
+    {
+      "status": "M",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/src/main.tsx"
+    },
+    {
+      "status": "M",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/src/style.css"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/.gitignore"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/Makefile"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/main.cpp"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/pi-ink-loopback.xovi"
+    },
+    {
+      "status": "M",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/build.sh"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/client_test.go"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/diagnostics.go"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/diagnostics_test.go"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/folders_test.go"
+    },
+    {
+      "status": "M",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.mod"
+    },
+    {
+      "status": "M",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.sum"
+    },
+    {
+      "status": "M",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/main.go"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/operations.go"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/pairing.go"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/runtime.go"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/state.go"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock.go"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock_test.go"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/switch_test.go"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/transport.go"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-gateway.ts"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd"
+    },
+    {
+      "status": "M",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/test/editing-session.test.ts"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-fixtures.py"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-samples.py"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/test/pdf-submission.test.ts"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-gateway.test.ts"
+    },
+    {
+      "status": "A",
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-pairing.test.ts"
+    }
+  ],
+  "changed_files_this_reconciliation": [],
+  "validation_results": [
+    {
+      "check": "Exact frozen source and cleanliness",
+      "observer": "this session",
+      "command": "git rev-parse HEAD HEAD^{tree}; git branch --show-current; git status --porcelain=v1",
+      "result": "Exact e8ab1391eaab3481131f3c3dfa934b7d523c38db/tree83cce09d711a12b72607aa735296c04eebe96dbc, branch closeout/pi-ink-bridge-01; status emitted no changes."
+    },
+    {
+      "check": "Task diff against fixed current-master base",
+      "observer": "this session",
+      "command": "git diff --name-status 7228b781af08fdddb2868abcd20e2704aec7c7e9 e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+      "result": "40 files recorded in changed_files. No upstream website/helper paths included."
+    },
+    {
+      "check": "Prototype equality to parent-validated candidate",
+      "observer": "this session",
+      "command": "git diff --exit-code e3ba4ade34f5550cde9690dd332199aaf9ca13d1 e8ab1391eaab3481131f3c3dfa934b7d523c38db -- README.md bun.lock mise/conf.d/devtools-omp/extensions/image-annotator",
+      "exit_code": 0,
+      "result": "No diff; all compared prototype paths unchanged."
+    },
+    {
+      "check": "Native31 source hashes",
+      "observer": "this session",
+      "method": "SHA-256 of each current file against native-integration.json; byte comparison against final e8ab and deployed8cc Git blobs, without opening protected source worktree.",
+      "result": "31/31 match manifest, final commit and deployed-source Git blobs; no mismatches.",
+      "files": [
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/.gitignore",
+          "sha256": "9be167283adf65c6cbba17ab56a09e96a757773cfeaec6e00589e4771509680e",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/Makefile",
+          "sha256": "9fb6b79858e7bb8db51dcf1e08172dc8300b1fd674dd61cc01599185af2a9400",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/main.cpp",
+          "sha256": "20bac3bcf71ec11c0816edde1e2fafc77967e857e9a4d112cd8e6268ab7a5806",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-adapter/pi-ink-loopback.xovi",
+          "sha256": "00f39581d1d41589fecd4ab651ea0c12ec7b02f957151d945218408f60018ba6",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/build.sh",
+          "sha256": "5868ba99121adfb1b2d214e7283d22d5ff166df3ce6ce667165f52e976dd7203",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/client_test.go",
+          "sha256": "455120fde813f4fcd790294ef3a28cef478b8bb5e351d628e1bd9f9f60e07930",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/diagnostics.go",
+          "sha256": "f9689b85efb2ad6663abee22c24bb778927d4758a8f889900e78a8cada8a7d06",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/diagnostics_test.go",
+          "sha256": "28c9206dcbb963b1ac25630da8210d2c2c1ffcbed8d36ae9464fbcb2d3361a3b",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/discovery.go",
+          "sha256": "781847ef3b309627f4b920da88c97dc512a9448a8e9d9e13ba8489b66a54acff",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/discovery_test.go",
+          "sha256": "dbe3a9bbbafe2026d69687344edb6689ca0d09ad3721d3138a137721ef310219",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/folders_test.go",
+          "sha256": "a6e15ea47b1199b1c6f4feb7acd5ca1b5bccd136001df5d1dadac75d6a3aeb2a",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.mod",
+          "sha256": "30483f9cc2af1d36fd4e1905edd4cf274011c03cf088ce79f0feef79fd269336",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/go.sum",
+          "sha256": "dbab7c6979b2ba5204552f5702281a728b760cd6599a33b1c724f4d0e97b40d4",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/install.sh",
+          "sha256": "2fa25f274a908d6b47c87681a544f5e1a6dae0b3fa9bdc8c4c35d49fd179a907",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/main.go",
+          "sha256": "7950dd0afc03d8de6097b755a43a87d6278d5dff757b10475818bf509462d2dc",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns.go",
+          "sha256": "79846a4b87d57839b38ade680d87eefb1cc6b898573b5378c15d2b34abade5dc",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns_records.go",
+          "sha256": "8c78909e6dbb66ba8ac6768648fef67e24652ba665ffd5e3667a550032bfeabc",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/mdns_records_test.go",
+          "sha256": "33004f353b0f1186b1e6a0042d0efbc7083b816d2ca14145b549323d9913382d",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/operations.go",
+          "sha256": "48391a73ba4db5e4f9eed3b6bcfc33350d4c9882330f2875e23d8953efa4ef80",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/pairing.go",
+          "sha256": "cd02f833019e5784798aa0c227020d2628a51553e1d4cc809a6160659cac14bb",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/runtime.go",
+          "sha256": "72dd2c28471a55fdcdd5839b32ede310d2470987576419f088ddbe7a32914e4b",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/state.go",
+          "sha256": "1765bf44414b5ca2f48b618e2de3b76dd46ba5f706287b0f74f5fc3a20155c7a",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock.go",
+          "sha256": "2a86baaf581f18bda71302f57f5b2969a650c777135232d36d26465d5497b762",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock_test.go",
+          "sha256": "619de3809ae2534804dbebe7e0ec9597e9479d7fe4266af89616c9eddafa0617",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/switch_test.go",
+          "sha256": "ed72559ca732ea184e3ad0b294ec4fbd14ecc6ac49977e6a590789a6b87f5868",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/transport.go",
+          "sha256": "d10db162d6b3b4545c629bb7d1e72c9df1f8dfea872219a4c52ba475e7850e6f",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update.go",
+          "sha256": "4076cbd38c394fabc5fda2657b95237d2dd208448a813774025153f763c96bc4",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/update_test.go",
+          "sha256": "db95ea2a7c7185cdb6a02051a130c2d64020cc26074efce7fc5dd72eee3701b0",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml",
+          "sha256": "35dd84aab86e7982a679e6a29dabcb374016bb43729c567897e0740893354b07",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json",
+          "sha256": "de44aae5409fb39dc52aee6e3fec972d26c4bf4d2c8a0d283b2ddee126fa14ea",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        },
+        {
+          "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/pi-ink-bridge.qmd",
+          "sha256": "c88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe",
+          "matches_manifest": true,
+          "matches_final_commit": true,
+          "matches_deployed_git_blob": true
+        }
+      ]
+    },
+    {
+      "check": "Installed inspector accepts current canonical receipt chain",
+      "observer": "this session",
+      "command": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/inspect.ts tracker/tickets/pi-ink-bridge-01-pen-prototype.md --json",
+      "exit_code": 0,
+      "history_valid": true,
+      "source": {
+        "state": "available",
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+        "branch": "closeout/pi-ink-bridge-01",
+        "commit": "e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+        "tree": "83cce09d711a12b72607aa735296c04eebe96dbc",
+        "dirty": false,
+        "candidates": 1
+      },
+      "decision": {
+        "action": "start",
+        "mode": "takeover",
+        "label": "Recover implementation",
+        "reason": "Preserve existing work and inspect the interrupted start before a scoped takeover. Resolve liveness, reservations, and ownership first.",
+        "requiredApproval": true,
+        "parentReceipt": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0056.yaml"
+      },
+      "result": "Valid history; unique clean exact source. Start/takeover from start-0056; no malformed-envelope block."
+    },
+    {
+      "check": "Parent-observed candidate validation",
+      "observer": "parent evidence only; not rerun by this session",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/candidate-validation.json",
+      "source_commit": "e3ba4ade34f5550cde9690dd332199aaf9ca13d1",
+      "result": "Go race, typecheck and build exit0. Initial pre-build Bun run:22 pass/1 fail due missing built app404. After build:23 pass/0 fail/187 expectations across7 files. Third-party build warnings retained. Native serve help/runtime and development go-run version remain limited host observations."
+    },
+    {
+      "check": "Final-source host runtime",
+      "observer": "parent evidence only; not rerun by this session",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/final-host-runtime-smoke.json",
+      "source_commit": "e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+      "source_tree": "83cce09d711a12b72607aa735296c04eebe96dbc",
+      "result": "Passed actual local HTTP/Python/PNG completion A at80x100, B pending, then independent B cancellation without image or change to A. Browser app200; wrong-token404. Servers closed.",
+      "limit": "Not a native tablet, TLS gateway, or image_editor tool callback."
+    },
+    {
+      "check": "Native hardware and installed-build provenance",
+      "observer": "parent/owner evidence map only; no device operation or acceptance rerun by this session",
+      "refs": [
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/acceptance-matrix.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/build-version-reconciliation.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/retained-maintenance-removal-plan.json"
+      ],
+      "result": "Matrix links separate actual native Send/originating callback, marked800x1000 PNG, terminal cancellation and owner drawing evidence at deployed8cc. Native31 parity carries source provenance to e8ab; final host smoke is not substituted for those hardware observations. Tested firmware only3.28.0.172; client0.3.1; installed XOVI/AppLoad/native module fingerprints recorded, not invented release tags. Retained prototype is not restored."
+    }
+  ],
+  "implementation_summary": "Reconciled the already completed ticket01 prototype at exact clean e8ab/tree83cc; no implementation repeated. Recorded the40-file task diff against7228b781, excluding upstream website/helper changes. Verified prototype equality to parent-validated e3ba and all31 native source hashes against deployed8cc. Preserved host gateway/PDF/browser integration and existing master coordinator/update/discovery conventions as documented by integration inputs. Attributed parent-observed validation and final-source host runtime separately from this session's read-only source/hash/inspector checks. Owner-approved prototype retention, quarantined old LAN proxy, tripletap and editable work remain preserved. No formal review verdict, integration, publication or ticket completion claim.",
+  "open_questions": [
+    "Fresh independent source-bound review and parent integration remain outside this receipt; this is implementation reconciliation, not a review verdict or ticket completion.",
+    "Lifecycle limits remain recorded: stock boot can leave mods inactive; owner triple-press XOVI activation and separate manual Go bridge recovery are required. Firmware-update compatibility is untested. No unsupported automatic activation is claimed.",
+    "Production02\u201310 remain outside scope. Positive outside-source clipping is not added as a standalone ticket01 acceptance gate."
+  ],
+  "scope_guards": {
+    "source_edits": false,
+    "tests_build_lint_formatters_run": false,
+    "commits_created": false,
+    "device_access": false,
+    "screenshots": false,
+    "services_started": false,
+    "cleanup_performed": false,
+    "ticket_edits": false,
+    "projection_edits": false,
+    "protected_worktree_access": false,
+    "retained_prototype": true,
+    "restoration_claimed": false
+  },
+  "ticket_read_result": {
+    "schema": "tracker-result/v1",
+    "operation": "read",
+    "backend": "local-markdown",
+    "initiatives": [],
+    "tickets": [
+      {
+        "id": "pi-ink-bridge-01-pen-prototype",
+        "title": "Prove Paper Pro pen input",
+        "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+        "state": "claimed",
+        "blocked_by": []
+      }
+    ],
+    "changes": null,
+    "validation": {
+      "status": "passed",
+      "details": [
+        "Read canonical ticket through mise mq with okf import; explicit owner retention alternative present."
+      ]
+    },
+    "publication": null,
+    "rendered": null
+  }
+}

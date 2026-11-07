@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-11-07T10:07:11.489Z",
+  "source_commit": "e8ab1391eaab3481131f3c3dfa934b7d523c38db",
+  "source_tree": "83cce09d711a12b72607aa735296c04eebe96dbc",
+  "mode": "actual local HTTP/Python/PNG callbacks; no tablet, TLS gateway or native image_editor tool callback",
+  "checks": [
+    {
+      "name": "built browser app served",
+      "status": 200
+    },
+    {
+      "name": "wrong-token API rejected without source data",
+      "status": 404
+    },
+    {
+      "name": "actual PDF-to-PNG completion for A; B pending",
+      "status": 200,
+      "width": 80,
+      "height": 100,
+      "pngSHA256": "da2538f03849a4ed3f8765d1e105a99f3f01545ac370c79a47343f4a317577de",
+      "retainedPDFSHA256": "baf04220a2241b304cdb2932a595c2e397479b6bdc432d4280c369fc8917cc18"
+    },
+    {
+      "name": "B cancellation has no image and leaves A unchanged",
+      "status": 200
+    }
+  ],
+  "result": "passed",
+  "serversClosed": true
+}
