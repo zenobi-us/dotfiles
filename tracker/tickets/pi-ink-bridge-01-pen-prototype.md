@@ -6,7 +6,7 @@ parent: pi-ink-bridge
 sequence: 1
 type: task
 triage: ready-for-agent
-work_status: claimed
+work_status: completed
 blocked_by: []
 ---
 
@@ -419,3 +419,14 @@ The retained evidence records [native Send and originating-request routing](../.
 ### Independent acceptance review — 2026-11-07T10:27:26.577707Z
 
 Verdict: **SUCCESS**. Reviewed commit: `e8ab1391eaab3481131f3c3dfa934b7d523c38db`. Timestamp: `2026-11-07T10:27:26.577707Z`. [Immutable review](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/reviews/review-review-0060.md).
+
+
+### Ticket 01 completion — 2026-11-07T12:01:47.043Z
+
+The remaining closeout tasks are complete: tested build/version reconciliation, explicit owner-approved retention, and independent acceptance review **SUCCESS** with no findings.
+
+Reviewed source: `e8ab1391eaab3481131f3c3dfa934b7d523c38db`. Verified single-parent integration: `493db79b27dc2cc08295752a510a6e4ed6b7952b`, tree `83cce09d711a12b72607aa735296c04eebe96dbc`. Build, TypeScript, 23 Bun tests, Go race checks and actual integrated HTTP/PDF/PNG/cancellation smoke passed. Integration and its review/evidence are reachable from verified `origin/master` at `62d6797b09c0bcae89a41f3f8acba247169ec9c0`.
+
+See the [immutable review](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/reviews/review-review-0060.md), [integrated validation](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/integrated-validation.json), and [publication checkpoint](../../workflows/pi-ink-bridge-01-pen-prototype/events/finish-0066.yaml). The owner authorized the same-tree unpublished-tip repair after Worktrunk skipped squashing; no file/index change, second code merge, reset, stash command or force-push was used for that repair.
+
+The installed prototype and tripletap remain in place. Private state, credentials, notebooks, test PDFs, protected original source/worktrees, the quarantined module and prior evidence remain preserved. This is owner-approved retention, **not baseline restoration**. Only firmware `3.28.0.172` and client `0.3.1` are qualified by this prototype evidence. Production tickets 02–10 and firmware-update or automatic-Go-start qualification are not part of this closure.
