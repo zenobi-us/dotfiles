@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-11-07T03:14:45.609Z",
+  "operation": "read-only-full-boot-probe-0107",
+  "ownerSelection": "Powered off/on; USB connected; approve0107",
+  "ownerConfirmed": "All work saved/closed, PC USB disconnected during normal Power off/on, Library ready, PC USB reconnected",
+  "scriptSHA256": "5dd012aad18121d822c0b635f0c90fe019f2023c4f9e2e2a5c89d586612c7443",
+  "scope": "One exact read-only inspection; require changed boot ID. No file writes, service starts/restarts, notebook contents, import/export/Send, cleanup, repair or retry.",
+  "usbRoute": {
+    "destination": "10.11.99.1",
+    "device": "enp2s0f0u4c2",
+    "source": "10.11.99.10",
+    "gateway": null
+  }
+}

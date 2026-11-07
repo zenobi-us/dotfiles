@@ -1,0 +1,45 @@
+{
+  "created_at": "2026-11-07T03:17:08.522Z",
+  "operation": "read-only-full-boot-probe-0107",
+  "verdict": "Actual OS boot established; installed-file/private-state persistence passed; automatic runtime activation not passed",
+  "ownerReport": "Normal Power off/on completed after all work saved/closed; PC USB reconnected after Library startup",
+  "observed": {
+    "previousBootId": "bd9b0e8a-606c-49d3-8df2-e2b50d0f094c",
+    "currentBootId": "773c36fc-65b9-49ef-9b47-07fc1f9a5796",
+    "bootIdChanged": true,
+    "uptimeSeconds": 54.61,
+    "firmwareIMG_VERSION": "3.28.0.172",
+    "exactInstalledFilesAndBackups": "all checks passed",
+    "privateStateSHA256Before": "7da633552c7f9f7dbab1a816962f6dbb421fab14dcb811be224d931d5710e311",
+    "privateStateSHA256After": "7da633552c7f9f7dbab1a816962f6dbb421fab14dcb811be224d931d5710e311",
+    "privateStateChecksumUnchanged": true,
+    "ownedGoUnit": {
+      "loadState": "not-found",
+      "activeState": "inactive",
+      "subState": "dead",
+      "invocationId": ""
+    },
+    "xochitl": "active/running",
+    "ports80_81_9821": "no listening entries in IPv4 or IPv6 tables",
+    "installedQMDAndAdapterActivation": "not established by file existence alone; UI and stock-service activation need diagnosis"
+  },
+  "actualOriginatingStates": [
+    {
+      "jobId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+      "state": "completed",
+      "documentUUID": "60d040a0-b4f4-425a-8b35-4cba310b84e9"
+    },
+    {
+      "jobId": "50bdfd2c593cfc98692883dc226f7209",
+      "state": "pending",
+      "documentUUID": "ac79fff8-bb09-4bbd-a769-063ab2d7fe50"
+    }
+  ],
+  "deviceWrites": 0,
+  "serviceStartsOrRestarts": 0,
+  "repairAttempted": false,
+  "automaticRetry": false,
+  "conclusion": "The tested full boot preserved the installed assets and exact pairing/association-state bytes, but did not recreate the transient bridge unit or a stock loopback listener. Do not claim installation is persistent runtime activation.",
+  "nextBoundary": "Ask only owner-visible UI facts: Library Pi Ink entry present or absent, and USB web interface setting on or off without toggling. Use those facts before proposing any fresh scoped recovery. Do not assume why the listener is absent.",
+  "remaining": "Terminal cancellation, actual activation requirements/recovery and separately approved restoration. Firmware updates remain untested; no whole-ticket pass."
+}

@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-11-07T03:14:45.610Z",
+  "operation": "read-only-full-boot-probe-0107",
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s -- APPROVE_READ_ONLY_FULL_BOOT_PROBE_0107 POWERED_OFF_AND_ON_DOCUMENTS_SAVED_CLOSED"
+  ],
+  "scriptSHA256": "5dd012aad18121d822c0b635f0c90fe019f2023c4f9e2e2a5c89d586612c7443",
+  "deadlineMS": 90000,
+  "automaticRetry": false
+}
