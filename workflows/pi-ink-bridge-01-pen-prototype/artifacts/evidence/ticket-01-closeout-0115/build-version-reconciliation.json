@@ -1,0 +1,141 @@
+{
+  "created_at": "2026-11-07T08:37:04.470Z",
+  "schema": "pi-ink-tested-build-record/v1",
+  "device": {
+    "model": "reMarkable Paper Pro, owner-confirmed throughout real-device acceptance",
+    "firmware": "3.28.0.172",
+    "osVersionId": "5.8.203",
+    "kernelRelease": "6.12.49+git-imx8mm-ferrari-g2418a6dae57b",
+    "compatibility": "This firmware/build only; no firmware update or wider supported range claimed"
+  },
+  "source": {
+    "branch": "prototype/pi-ink-bridge-01-pen-prototype",
+    "commit": "8cc3cb89c7aa50ea0862a83763edc0a339d69eb9",
+    "tree": "25872168b7dff239a95e876827916b77c3b41001",
+    "goBuildSource": "8b529cea78fbbad0ee26af4eb5b170cb2d9f8c3e; tablet-client source unchanged at8cc",
+    "mappingEvidence": "source-reconciliation.json"
+  },
+  "client": {
+    "semanticVersion": "0.3.1",
+    "commandObserved": "/home/root/pi-ink-client/pi-ink-client version",
+    "sha256": "e8f7229377dac89d7a980c9b9f0cbec67dbf3defec39e1704c4eab09be5b4eca"
+  },
+  "installedBuildFingerprints": {
+    "/usr/bin/xochitl": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+    "/home/root/pi-ink-client/pi-ink-client": "e8f7229377dac89d7a980c9b9f0cbec67dbf3defec39e1704c4eab09be5b4eca",
+    "/home/root/xovi/xovi.so": "d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446",
+    "/home/root/xovi/exthome/qt-resource-rebuilder/hashtab": "9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615",
+    "/home/root/xovi/extensions.d/appload.so": "5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad",
+    "/home/root/xovi/extensions.d/qt-resource-rebuilder.so": "6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f",
+    "/home/root/xovi/extensions.d/qt-command-executor.so": "2f19585c63979182ccd19a2953cd4aa6a6f3824ea36a76eb46c803e02e79db6e",
+    "/home/root/xovi/extensions.d/xovi-message-broker.so": "61c0c7b0d4e2c7623147a87c63d6a4aaec868019e67fb0e1bdb1fcb215f6e155",
+    "/home/root/xovi/extensions.d/pi-ink-loopback.so": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+    "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd": "c88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe",
+    "/home/root/pi-ink-bridge-0049/tablet-qml/PiInkToolbar.qml": "35dd84aab86e7982a679e6a29dabcb374016bb43729c567897e0740893354b07"
+  },
+  "installedMetadata": {
+    "/usr/bin/xochitl": {
+      "mode": "755",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 24705704
+    },
+    "/home/root/pi-ink-client/pi-ink-client": {
+      "mode": "700",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 7405752
+    },
+    "/home/root/xovi/xovi.so": {
+      "mode": "644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 103008
+    },
+    "/home/root/xovi/exthome/qt-resource-rebuilder/hashtab": {
+      "mode": "644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 674428
+    },
+    "/home/root/xovi/extensions.d/appload.so": {
+      "mode": "644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 4342120
+    },
+    "/home/root/xovi/extensions.d/qt-resource-rebuilder.so": {
+      "mode": "644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 9496456
+    },
+    "/home/root/xovi/extensions.d/qt-command-executor.so": {
+      "mode": "644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 682776
+    },
+    "/home/root/xovi/extensions.d/xovi-message-broker.so": {
+      "mode": "644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 588184
+    },
+    "/home/root/xovi/extensions.d/pi-ink-loopback.so": {
+      "mode": "644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 504280
+    },
+    "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd": {
+      "mode": "644",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 8298
+    },
+    "/home/root/pi-ink-bridge-0049/tablet-qml/PiInkToolbar.qml": {
+      "mode": "600",
+      "uid": 0,
+      "gid": 0,
+      "bytes": 26500
+    }
+  },
+  "moduleVersionPolicy": "Exact installed SHA256 fingerprints identify the tested XOVI/AppLoad/native module builds. No unobserved semantic release tag is inferred. AppLoad is installed; current stock-editor toolbar/manager uses the native QMD integration, not a replacement AppLoad drawing canvas.",
+  "xoviCoreMatchesRetainedPreTripletapBuild": true,
+  "reconciledNativeModules": {
+    "appload.so": {
+      "sha256": "5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad",
+      "matchesRetainedPreTripletapBuild": true
+    },
+    "qt-resource-rebuilder.so": {
+      "sha256": "6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f",
+      "matchesRetainedPreTripletapBuild": true
+    },
+    "qt-command-executor.so": {
+      "sha256": "2f19585c63979182ccd19a2953cd4aa6a6f3824ea36a76eb46c803e02e79db6e",
+      "matchesRetainedPreTripletapBuild": true
+    },
+    "xovi-message-broker.so": {
+      "sha256": "61c0c7b0d4e2c7623147a87c63d6a4aaec868019e67fb0e1bdb1fcb215f6e155",
+      "matchesRetainedPreTripletapBuild": true
+    }
+  },
+  "desktopDependenciesRef": "desktop-version-record.json",
+  "tripletap": {
+    "ownership": "User-installed; untouched by this closeout",
+    "observedActivationEvidence": "../tablet-activation-0054/tripletap-owner-activation-0109.json",
+    "activation": "Owner confirmed rapid three-press sequence invoked existing XOVI startup after stock boot. That record states3presses/2second threshold, empty pre/post hooks, version switching disabled; no agent installation writes.",
+    "automaticModsAtOSBoot": "Not claimed; retained owner activation record explicitly says false",
+    "goBridgeStartup": "Separate manual scoped start required after OS boot; not boot-enabled or configured by tripletap task"
+  },
+  "runtimeAtInventory": {
+    "ownedUnit": "pi-ink-0054.service",
+    "state": "active/running/transient",
+    "invocationId": "b74f3ec5db1341f6a2412c44226c35cc",
+    "desktopCoordinator": "Ended normally after two originating results reached terminal states; no current native job service claimed"
+  },
+  "probeEvidence": "build-inventory-outcome.json",
+  "deviceWrites": 0,
+  "tripletapChanges": false
+}

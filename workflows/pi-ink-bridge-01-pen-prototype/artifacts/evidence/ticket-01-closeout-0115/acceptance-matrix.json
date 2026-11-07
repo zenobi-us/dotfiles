@@ -1,0 +1,139 @@
+{
+  "created_at": "2026-11-07T08:43:58.077Z",
+  "schema": "pi-ink-prototype-acceptance/v1",
+  "ticket": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "canonicalScopeCommit": "0c49630d",
+  "sourceCommit": "8cc3cb89c7aa50ea0862a83763edc0a339d69eb9",
+  "sourceTree": "25872168b7dff239a95e876827916b77c3b41001",
+  "rows": [
+    {
+      "criterion": 1,
+      "result": "satisfied",
+      "basis": "Native pairing and visible folder association plus current tested build ledger",
+      "evidence": [
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/normal-app-pairing-0094-outcome.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-stock-folder-owner-proof-0068.json"
+      ],
+      "closeoutEvidence": [
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/build-version-reconciliation.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/desktop-version-record.json"
+      ]
+    },
+    {
+      "criterion": 2,
+      "result": "satisfied",
+      "basis": "Authenticated LAN import with charging-only/no USB networking; normal Library open and stable source/server/job/document binding",
+      "evidence": [
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/fresh-native-charging-only-0095.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/fresh-native-import-0096-outcome.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/second-fresh-native-import-0098-outcome.json"
+      ],
+      "closeoutEvidence": []
+    },
+    {
+      "criterion": 3,
+      "result": "satisfied_owner_observation",
+      "basis": "Owner all-pass for stock centre/edge drawing, palm, erase/Undo, zoom/orientation and save/reopen; qualitative, not measured latency",
+      "evidence": [
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-drawing-save-owner-proof-0087.json"
+      ],
+      "closeoutEvidence": []
+    },
+    {
+      "criterion": 4,
+      "result": "satisfied",
+      "basis": "Drawing-toolbar bound-server/status/Send transitions across A/B and an unassociated notebook; no physical UUID-display claim",
+      "evidence": [
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/drawing-foldout-proof-correction-0100.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/owner-visible-sleep-wake-0104.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/unassociated-stock-notebook-0105.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-terminal-cancellation-0112.json"
+      ],
+      "closeoutEvidence": []
+    },
+    {
+      "criterion": 5,
+      "result": "satisfied",
+      "basis": "Save/Close pending, explicit native Send, actual PDF-to-PNG and originating image_editor callback; B remained pending",
+      "evidence": [
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/first-fresh-document-marks-0097.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-send-0101-outcome.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-send-0101-returned.png"
+      ],
+      "closeoutEvidence": []
+    },
+    {
+      "criterion": 6,
+      "result": "satisfied",
+      "basis": "Actual800x1000 PNG centreA/four edge marks; RGB changes measured against source; portrait/grid/corners observed; editable work after Send",
+      "evidence": [
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-send-0101-outcome.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/post-send-stock-editability-0102.json"
+      ],
+      "closeoutEvidence": []
+    },
+    {
+      "criterion": 7,
+      "result": "satisfied_tested_scope",
+      "basis": "Distinct document/request bindings, A-only completion, actual B cancellation/noimage and native cancelled/Senddisabled retained after normal reopen; one paired server, no alternate-server prototype",
+      "evidence": [
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/second-fresh-native-import-0098-outcome.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/originating-request-cancellation-0111-outcome.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-terminal-cancellation-0112.json"
+      ],
+      "closeoutEvidence": []
+    },
+    {
+      "criterion": 8,
+      "result": "satisfied_owner_authorized_retention",
+      "basis": "Explicit canonical amendment accepts retention; older failures preserved, only tested firmware claimed, current build/security/manual recovery and future owned removal recorded; no restoration claimed",
+      "evidence": [
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/restoration-security-boundary-0113.json"
+      ],
+      "closeoutEvidence": [
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/closure-authorization.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/ticket-amendment-result.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/build-version-reconciliation.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/retained-maintenance-removal-plan.json"
+      ]
+    },
+    {
+      "criterion": 9,
+      "result": "satisfied_tested_firmware",
+      "basis": "Exact approved setup on3.28.0.172, private stock127.0.0.1:81 and authenticated scoped protocol; no generic stock proxy installed",
+      "evidence": [
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/read-only-mod-boot-probe-0108-outcome.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/owned-post-boot-bridge-start-0109-outcome.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/post-boot-owner-recovery-0110.json"
+      ],
+      "closeoutEvidence": []
+    },
+    {
+      "criterion": 10,
+      "result": "satisfied_recorded_limits_and_retention",
+      "basis": "Real cable-free result, sleep/wake, within-mods-session editor restart, changed-kernel full boot and state persistence; stock boot mods-off, owner triple-press XOVI activation and separate manual Go recovery recorded. Firmware update untested. Retention replaces removal under amended criterion.",
+      "evidence": [
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/manager-import-polling-update-0090-outcome.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/owner-visible-sleep-wake-0104.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/read-only-full-boot-probe-0107-boundary.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/tripletap-owner-activation-0109.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/owned-post-boot-bridge-start-0109-native-status.json",
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/post-boot-owner-recovery-0110.json"
+      ],
+      "closeoutEvidence": [
+        "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/retained-maintenance-removal-plan.json"
+      ]
+    }
+  ],
+  "reviewStatus": "Pending independent source-bound review; this is the parent evidence map, not a verdict",
+  "notTicket01Gates": [
+    "Production persistent service/normal startup belongs02",
+    "Production expiry/revocation/version-negotiation belongs03",
+    "Production dispatch/durable acceptance/ordinary-image validation belongs04",
+    "Production inbox/editing/drafts/recovery/discovery belong05–09",
+    "Combined production hardware acceptance belongs10",
+    "Positive outside-source clipping/confirmation/invalidation is not a new standalone01 gate; current native no-clipping path passed, further export/recovery cases belong04/08/10"
+  ],
+  "preservation": "Owner retains installed prototype/tripletap/work; no removal or old proxy reactivation",
+  "completionClaim": false
+}

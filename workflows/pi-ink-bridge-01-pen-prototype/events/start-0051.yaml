@@ -1,0 +1,76 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0051",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 15,
+  "parent_receipt": "start-complete-0050",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "8cc3cb89c7aa50ea0862a83763edc0a339d69eb9",
+  "source_tree": "25872168b7dff239a95e876827916b77c3b41001",
+  "created_at": "2026-11-07T07:46:25.886Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6H:p3",
+  "agent": "omp",
+  "session_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115"
+  },
+  "status": "started",
+  "recovery": {
+    "mode": "reconcile",
+    "authority": "User explicit closeout request recorded in closure-authorization.json",
+    "reason": "Existing source advanced from the old host-only ff7cb074 receipt to actual deployed8cc3cb89. Reconcile current immutable source and retained validation/hardware evidence in a fresh session; do not repeat old implementation or device work.",
+    "fresh_child_name": "InkCloseSource0115",
+    "fresh_child_pane": "w6H:p3"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0050.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0049.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/closure-authorization.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-send-0101-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-terminal-cancellation-0112.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0051.yaml"
+    }
+  ]
+}

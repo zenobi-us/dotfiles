@@ -1,3 +1,16 @@
+# Current implementation reconciliation — 0052/0053
+
+Exact source: `8cc3cb89c7aa50ea0862a83763edc0a339d69eb9`, tree `25872168b7dff239a95e876827916b77c3b41001`. [Implementation result](../events/implementation-0052.yaml) and [parent reconciliation](../events/start-complete-0053.yaml) supersede the historical current-state claims below. No earlier receipts or failed experiments were rewritten.
+
+- [Current source/deployment provenance](../artifacts/evidence/ticket-01-closeout-0115/source-reconciliation.json).
+- [Fresh tested build record](../artifacts/evidence/ticket-01-closeout-0115/build-version-reconciliation.json): client0.3.1; XOVI/AppLoad fingerprints match retained tested builds after tripletap installation.
+- [Actual native result](../artifacts/evidence/tablet-activation-0054/native-send-0101-outcome.json): source-sized marked PNG reached the real originating tool; B stayed pending.
+- [Native cancellation](../artifacts/evidence/tablet-activation-0054/native-terminal-cancellation-0112.json): real cancelled tool, Send disabled after reopen, editable work retained.
+- [Owner-authorized retention](../artifacts/evidence/ticket-01-closeout-0115/ticket-amendment-result.json) and [future owned maintenance/removal](../artifacts/evidence/ticket-01-closeout-0115/retained-maintenance-removal-plan.json). No restoration or device cleanup claimed.
+- [Acceptance matrix](../artifacts/evidence/ticket-01-closeout-0115/acceptance-matrix.json). Formal independent review and merge/publication remain pending. Production belongs to tickets02–10.
+
+## Historical projection retained verbatim
+
 # Offline cleanup reader — implementation-0029
 
 Prepare a bounded identity reader for later owner-approved cleanup evidence.
@@ -1321,3 +1334,12 @@ The owner approved one read-only preflight0052. It read OS VERSION_ID=5.8.203 an
 [Original outcome](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0052-outcome.json) and [diagnosis](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0052-diagnosis.json) remain immutable. The corrected IMG_VERSION guard passes supported, unsupported and missing-field cases [offline](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0053-offline-verification.json). Its [new exact-script proposal](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0053.json) requires separate one-shot approval.
 
 No device writes, uploads, document operations, restarts, screenshots, process scans or cleanup ran. The previous approval is consumed; no reconnect or automatic retry is authorized. Ticket claimed; hardware acceptance and production remain blocked.
+
+
+### Corrected read-only preflight0053 passed
+
+The separately approved one-shot preflight completed with exit0. Product IMG_VERSION is 3.28.0.172. The stock binary and hashtab hashes match the retained baseline. The existing client is a root-owned regular0700 file; its hash is recorded. All proposed new experiment/QMD/loopback paths are absent. The existing original webserver-remote.so file matches its retained hash; loaded state and listener bindings were not inspected.
+
+[Observed outcome](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0053-outcome.json) and [bounded interpretation](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0053-interpretation.json) preserve the exact scope. No files were uploaded or changed, no document operation or restart ran, and cleanup0038 was not retried. This approval is consumed.
+
+The next work is HOST-ONLY preparation of a hash-pinned staging/activation/restoration procedure and an actual originating OMP request with private setup trust. Device installation, saved/closed restarts, synthetic document operations and restoration still need separate exact approval. Native acceptance and production remain blocked.

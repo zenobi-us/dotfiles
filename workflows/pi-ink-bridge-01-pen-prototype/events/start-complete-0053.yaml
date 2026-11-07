@@ -1,0 +1,131 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0053",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 15,
+  "parent_receipt": "implementation-0052",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "8cc3cb89c7aa50ea0862a83763edc0a339d69eb9",
+  "source_tree": "25872168b7dff239a95e876827916b77c3b41001",
+  "created_at": "2026-11-07T08:38:38.306Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "01a1a5dd-2a9e-72c4-8797-c9988749391e",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115"
+  },
+  "status": "completed",
+  "recovery": {
+    "mode": "reconcile",
+    "authority": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/closure-authorization.json",
+    "child_name": "ink-close-source-0115",
+    "child_pane": "w6H:p3",
+    "child_session": "01a1b4fa-e863-7401-a2d0-1aa279ef8a55",
+    "child_result": "implementation-0052",
+    "child_shutdown": "Herdr agent wait returned done/completion_seq128; owned pane closed successfully after result validation.",
+    "reason": "Validated exact current8cc source/tree and actual hardware provenance; preserve old ff7cb receipts unchanged. Fresh current-version inventory and authorized retention amendment resolve the parent-owned closeout metadata gaps."
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0050.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0049.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/closure-authorization.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-send-0101-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-terminal-cancellation-0112.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0052.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/source-reconciliation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/build-version-reconciliation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/retained-maintenance-removal-plan.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0052.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0053.yaml"
+    }
+  ],
+  "result_receipt": "implementation-0052",
+  "implementation_complete": true,
+  "full_ticket_complete": false,
+  "merged": false,
+  "pushed": false,
+  "ticket_completed": false,
+  "validation": [
+    {
+      "check": "Source frozen and clean",
+      "result": "Source status after child completion emitted no changes; child exact source/tree matches8cc/258."
+    },
+    {
+      "check": "All durable input/output references",
+      "result": "Every referenced file exists in canonical base store."
+    },
+    {
+      "check": "Fresh installed artifact fingerprints",
+      "result": "Client,QML,QMD,adapter observed in approved inventory115 match reconciled source/deployment mapping."
+    },
+    {
+      "check": "Actual native runtime proof",
+      "result": "A real originating image callback with actual800x1000 markedPNG; B actual cancelled/noimage plus native cancelled/Senddisabled/editable-work owner proof. Not a protocol simulation."
+    },
+    {
+      "check": "Schema/retention amendment",
+      "result": "Canonical v1 ticket amendment validated before/after, historic comments preserved; committed0c49630d."
+    },
+    {
+      "check": "New build/test suites",
+      "result": "Not repeated by reconciliation children; parent runs one scoped integrated validation after review/merge."
+    }
+  ]
+}

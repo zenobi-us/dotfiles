@@ -1,3 +1,33 @@
+# Current prototype closeout — review pending
+
+## Ticket summary
+
+[Prove Paper Pro pen input](../../../tracker/tickets/pi-ink-bridge-01-pen-prototype.md) is a prototype gate, not production readiness. The canonical owner-approved end state retains the tested integration with protected work and documented recovery/removal.
+
+## Problem and implementation
+
+The normal stock editor now supplies real pen annotation; the native toolbar binds the current document to its trusted server/job and explicit Send returns the annotated source-sized PNG. No replacement drawing app is introduced. Current source is `8cc3cb89c7aa50ea0862a83763edc0a339d69eb9`, tree `25872168b7dff239a95e876827916b77c3b41001`.
+
+## Changed files and validation
+
+[Current implementation snapshot](../artifacts/snapshots/pr-draft-implementation-0052.md), [current source provenance](../artifacts/evidence/ticket-01-closeout-0115/source-reconciliation.json), and [old implementation record](../events/implementation-0049.yaml) enumerate cumulative source changes and retained validation. [Fresh installed build ledger](../artifacts/evidence/ticket-01-closeout-0115/build-version-reconciliation.json) pins client0.3.1, XOVI/AppLoad and exact QML/QMD/adapter identities. [Actual native Send](../artifacts/evidence/tablet-activation-0054/native-send-0101-outcome.json) and [terminal cancellation](../artifacts/evidence/tablet-activation-0054/native-terminal-cancellation-0112.json) are device/consumer proof, not protocol simulation. Parent will run one scoped integrated validation after independent review and merge.
+
+## Review history and remaining work
+
+No current formal verdict yet. Old advisory audits below are historical and do not authorize merge. [Acceptance matrix](../artifacts/evidence/ticket-01-closeout-0115/acceptance-matrix.json) maps all ten criteria to observed proof and approved retention. Production service/startup/pairing hardening/durable recovery/discovery/final acceptance belong to tickets02–10. Known limits include only tested firmware3.28.0.172, qualitative latency, one server, no positive native clipping-confirmation run, and required separate manual Go start after OS boot.
+
+## Merge status
+
+Not merged/pushed/completed by this closeout yet. Source-bound independent review, verified integration/publication and tracker completion are still required. [Owner retention and future removal plan](../artifacts/evidence/ticket-01-closeout-0115/retained-maintenance-removal-plan.json) preserve tripletap, data and the old LAN-proxy quarantine; no uninstall was performed.
+
+## Current receipts
+
+- [start-0051](../events/start-0051.yaml).
+- [implementation-0052](../events/implementation-0052.yaml).
+- [start-complete-0053](../events/start-complete-0053.yaml).
+
+## Historical projection retained verbatim
+
 # Integrated host recovery — implementation-0049
 
 ## Status and ticket
@@ -328,3 +358,12 @@ The owner approved one read-only preflight0052. It read OS VERSION_ID=5.8.203 an
 [Original outcome](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0052-outcome.json) and [diagnosis](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0052-diagnosis.json) remain immutable. The corrected IMG_VERSION guard passes supported, unsupported and missing-field cases [offline](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0053-offline-verification.json). Its [new exact-script proposal](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0053.json) requires separate one-shot approval.
 
 No device writes, uploads, document operations, restarts, screenshots, process scans or cleanup ran. The previous approval is consumed; no reconnect or automatic retry is authorized. Ticket claimed; hardware acceptance and production remain blocked.
+
+
+### Corrected read-only preflight0053 passed
+
+The separately approved one-shot preflight completed with exit0. Product IMG_VERSION is 3.28.0.172. The stock binary and hashtab hashes match the retained baseline. The existing client is a root-owned regular0700 file; its hash is recorded. All proposed new experiment/QMD/loopback paths are absent. The existing original webserver-remote.so file matches its retained hash; loaded state and listener bindings were not inspected.
+
+[Observed outcome](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0053-outcome.json) and [bounded interpretation](../artifacts/evidence/integrated-host-recovery-0046/device-preflight-0053-interpretation.json) preserve the exact scope. No files were uploaded or changed, no document operation or restart ran, and cleanup0038 was not retried. This approval is consumed.
+
+The next work is HOST-ONLY preparation of a hash-pinned staging/activation/restoration procedure and an actual originating OMP request with private setup trust. Device installation, saved/closed restarts, synthetic document operations and restoration still need separate exact approval. Native acceptance and production remain blocked.

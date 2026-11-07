@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-11-07T08:32:30.585Z",
+  "operation": "read-only-build-inventory-0115",
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s -- APPROVE_READ_ONLY_BUILD_INVENTORY_0115"
+  ],
+  "scriptSHA256": "a2f92f0be317cc29ea3fc833ad4b784d31cdaf7e627e727f4df7f6a8f845c11e",
+  "deadlineMS": 90000,
+  "automaticRetry": false
+}

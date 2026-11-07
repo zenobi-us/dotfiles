@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-11-07T07:51:48.897Z",
+  "operation": "read-only-build-inventory-0115",
+  "status": "proposed_only",
+  "script": {
+    "privatePath": "/home/zenobius/.local/state/pi-ink-recovery-0091-lTFG6Q/prepared/device-read-only-build-inventory-0115.sh",
+    "sha256": "a2f92f0be317cc29ea3fc833ad4b784d31cdaf7e627e727f4df7f6a8f845c11e",
+    "bytes": 3028,
+    "argument": "APPROVE_READ_ONLY_BUILD_INVENTORY_0115",
+    "hostChecks": [
+      {
+        "check": "syntax",
+        "exitCode": 0,
+        "stderr": ""
+      },
+      {
+        "check": "missing approval rejected",
+        "exitCode": 1,
+        "stderr": "Exact read-only build-inventory approval required"
+      },
+      {
+        "check": "wrong approval rejected",
+        "exitCode": 1,
+        "stderr": "Exact read-only build-inventory approval required"
+      }
+    ]
+  },
+  "scope": "Read only current firmware/kernel, verified client version, installed XOVI/AppLoad/resource-rebuilder/broker/adapter build fingerprints and file metadata, and named owned service state. No notebook, account/profile/credential contents or arbitrary library access.",
+  "versionPolicy": "Use actual client semantic version and exact SHA256 build identifiers for native modules; do not guess release tags from older inventory.",
+  "deviceWrites": 0,
+  "serviceStartsOrRestarts": 0,
+  "firmwareOrTripletapChanges": false,
+  "notebookAccess": false,
+  "processScans": false,
+  "automaticRetry": false,
+  "attemptLimit": 1,
+  "deadlineMS": 90000
+}

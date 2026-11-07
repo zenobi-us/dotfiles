@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-11-07T07:51:48.897Z",
+  "kind": "Current closeout tooling and source-pinned render dependencies; not a fabricated historical compiler run",
+  "go": "go1.25.0 linux/amd64",
+  "bun": "1.4.3",
+  "uv": "0.12.17 x86_64-unknown-linux-gnu",
+  "pdfWorker": {
+    "requiresPython": ">=3.11",
+    "dependencies": [
+      "pymupdf==1.26.7",
+      "pypdf==6.21.4",
+      "Pillow==13.0.0"
+    ],
+    "source": "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-worker.py at8cc3cb89"
+  },
+  "retainedQtSDK": {
+    "imageSHA256": "cdbff28a4d9a32b748e33bdf3811923a17b2e2ca4710d63e2d29c64f40c2db58",
+    "evidence": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/qml-parse-0049-r3.json",
+    "scope": "Recorded parser build identity; no guessed semantic Qt release"
+  }
+}

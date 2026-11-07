@@ -1,0 +1,64 @@
+{
+  "created_at": "2026-11-07T08:37:04.471Z",
+  "schema": "pi-ink-retained-maintenance/v1",
+  "state": "Retained prototype; this is an owned-only maintenance/removal procedure, not execution approval or a claim of restoration",
+  "scope": "Only capsule/home/root/pi-ink-bridge-0049, exact named owned service, our QMD/adapter and original client backup. Never rerun cleanup0038 or delete protected source/worktrees/partial stages/evidence/notebooks.",
+  "normalOperation": [
+    "Use the owner tripletap/XOVI startup route when stock boot leaves mods inactive; the retained owner record confirms a triple-press start, not automatic Go startup.",
+    "Current Go unit is transient. After an OS boot, collect the exact current read-only state under fresh approval before a guarded one-shot start of pi-ink-0054.service using the installed verified client and runtime.json. Do not blindly rerun109: it pins an earlier boot/invocation/state.",
+    "Use authenticated LAN after returning from PC USB to wall charger; require fresh powered/noUSBIPv4/private81/safe=true before import or Send. No runtime SSH.",
+    "The request-scoped desktop coordinator closes after its last live request. Start a real annotation request to create a new coordinator; do not interpret offline as new pairing or automatically reimport old documents. Existing ended requests remain completed/cancelled."
+  ],
+  "futureSafeRemoval": [
+    {
+      "step": 1,
+      "action": "Obtain a new explicit removal decision and exact hash-pinned execution approval. Require saved/closed stock documents and separately approve exactly one Xochitl restart. No approval is implied by this plan."
+    },
+    {
+      "step": 2,
+      "action": "Read current firmware, ownership marker, actual unit Description/Transient/InvocationID and private listener metadata. Verify stock binaryb1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021 and exact owned files below; preserve any mismatch, occupied path, new user service/configuration or unsupported firmware instead of repairing automatically."
+    },
+    {
+      "step": 3,
+      "action": "Create a new exclusive owned rollback directory. Back up only exact files being replaced/removed with owner/mode/hash metadata. Record private state SHA only before operation; keep root private0700 and config/state0600. Hash current Xochitl definition and retained user modules before and after, without reverting them."
+    },
+    {
+      "step": 4,
+      "action": "Stop only pi-ink-0054.service after its exact current invocation matches the owned unit.invocation and expected description. If it is absent, record that and do not identify/kill replacement processes. No PID scans, system-wide stops or cleanup."
+    },
+    {
+      "step": 5,
+      "action": "If restoring prior client is explicitly selected, verify existing backup/home/root/pi-ink-bridge-0049/backups/pi-ink-client SHA5dcde59a057207951ed0ac0532c78d3bf0ef03a379b41ed50329d08c9b3e565f,mode700/root,size6488248, then atomically replace only/home/root/pi-ink-client/pi-ink-client. Preserve its original VERSION metadata and all other files."
+    },
+    {
+      "step": 6,
+      "action": "Remove only verified owned QMD/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd SHAc88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe and adapter/home/root/xovi/extensions.d/pi-ink-loopback.so SHAaeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f after backing them up. No directory-wide removals or extension/QMD sweeps."
+    },
+    {
+      "step": 7,
+      "action": "Keep original/home/root/pi-ink-bridge-0049/quarantine-webserver-remote.so inactive and preserved. Do not copy it back into extensions.d: upstream constructor starts its LAN HTTP/IP-approval proxy. Do not execute the old full restorer0225d72365ce20102474b03ac1e87b5d4d9137fdc431b75f96533d6cd1a9803f unchanged; it re-enables that module and uses a pre-tripletap inventory."
+    },
+    {
+      "step": 8,
+      "action": "Restart only Xochitl once under the exact saved/closed approval. Record actual resulting state and relevant listeners. No stock HTTP wildcard/Wi-Fi/LAN proxy may be introduced. Any native stock USB-only listener must be identified as USB-only, not authenticated LAN transport; bridge9821 and our private adapter81 should no longer be claimed active."
+    },
+    {
+      "step": 9,
+      "action": "Verify stock binary, owner user-service/configuration hashes, retained native module hashes, private state checksum, account/cloud settings non-interference and preserved files. Have owner verify normal A/B/test notebook access and editability. Record any failure; do not retry, roll back or kill unknown owners without fresh scope."
+    },
+    {
+      "step": 10,
+      "action": "Leave private inactive capsule/config/state/CA/backups, all evidence and user tripletap intact unless a separate data-erasure decision explicitly identifies those paths. Record safe removal as the approved inactive baseline, not exact original-module restoration. Any later decision to re-enable original proxy needs separate explicit risk acknowledgement and measured network exposure."
+    }
+  ],
+  "guardedCurrentOwnedFiles": {
+    "clientSHA256": "e8f7229377dac89d7a980c9b9f0cbec67dbf3defec39e1704c4eab09be5b4eca",
+    "qmlSHA256": "35dd84aab86e7982a679e6a29dabcb374016bb43729c567897e0740893354b07",
+    "qmdSHA256": "c88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe",
+    "adapterSHA256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+    "runtimeSHA256": "846e3f67eaca50828cef1cd480a1d9dd0258ede38c59c3c057a41f4ec031cb60"
+  },
+  "noRemovalPerformed": true,
+  "noExecutableArmedForAutomaticUse": true,
+  "productionWork": "Routine lifecycle/installer/shared persistent service/recovery remain tickets02–10, not an implied prototype feature"
+}

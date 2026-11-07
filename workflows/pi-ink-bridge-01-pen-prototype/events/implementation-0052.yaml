@@ -1,0 +1,264 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0052",
+  "workflow_id": "pi-ink-bridge-01-pen-prototype",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 15,
+  "parent_receipt": "start-0051",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "source_branch": "prototype/pi-ink-bridge-01-pen-prototype",
+  "base_branch": "master",
+  "source_commit": "8cc3cb89c7aa50ea0862a83763edc0a339d69eb9",
+  "source_tree": "25872168b7dff239a95e876827916b77c3b41001",
+  "created_at": "2026-11-07T07:52:15.033227+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+  "pane_id": "w6H:p3",
+  "agent": "omp",
+  "session_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-01-pen-prototype",
+    "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115"
+  },
+  "status": "completed",
+  "recovery": {
+    "mode": "reconcile",
+    "authority": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/closure-authorization.json",
+    "prior_implementation_receipt": "implementation-0049",
+    "reason": "Fresh authorized source reconciliation child of start0051. Inspector now reports start/takeover because this dispatched start has no result yet; this session is that child, not a second takeover. Old0049 phase=start remains untouched; this new completed product result uses phase=implementation.",
+    "registered_child_name": "ink-close-source-0115",
+    "child_pane": "w6H:p3"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-0051.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/start-complete-0050.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0049.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/closure-authorization.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/manager-import-polling-update-proposal-0090.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/manager-import-polling-update-0090-boundary.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/diagnostic-stream-update-proposal-0083.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/structured-diagnostic-host-proof-0081.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-terminal-cancellation-0112.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/drawing-foldout-proof-correction-0100.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-version-and-charging-proof-0073.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/post-send-stock-editability-0102.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/read-only-mod-boot-probe-0108-boundary.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/owned-post-boot-bridge-start-0109-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/installer-operation-manifest.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/host-inputs-0054.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/preparation-verification-0056.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/read-only-full-boot-probe-0107-boundary.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/retained-prototype-checklist-0114.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-send-0101-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-send-0101-returned.png"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-filename-contract-fix-0080.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/manager-import-polling-proof-0089.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/diagnostic-stream-activation-boundary-0083.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/activation-boundary-0059.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/diagnostic-stream-update-0083-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/source-identity-0049.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/candidate-payload-0049-r3.tar.gz"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/originating-request-cancellation-0111-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-drawing-save-owner-proof-0087.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/normal-app-pairing-0094-outcome.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/source-reconciliation.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/snapshots/pr-draft-implementation-0052.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0052.yaml"
+    }
+  ],
+  "agent_name": "ink-close-source-0115",
+  "session_identity_note": "Registered name ink-close-source-0115; pane w6H:p3 from explicit launch handoff. Session UUID unavailable; not inferred from prior sessions.",
+  "implementation_summary": "Reconciled existing exact8cc source with retained Go0.3.1/QML/QMD/adapter deployment provenance and actual native Send/cancellation evidence. No fresh implementation, device execution or whole-ticket review claimed.",
+  "changed_files": [
+    "README.md",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/build.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/client_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/diagnostics.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/diagnostics_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/operations.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/runtime.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/state.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/stock_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/transport.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-gateway.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/PiInkToolbar.qml",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-qml/activation-proposal.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-gateway.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/tablet-pairing.test.ts"
+  ],
+  "changed_files_basis": "Cumulative source delta from prior implementation0049 ff7cb074 to8cc; this reconciliation changes no source.",
+  "changed_files_this_reconciliation": [],
+  "validation": [
+    {
+      "kind": "current-source",
+      "result": "Initial git status --porcelain=v1 emitted no changes; exact HEAD/tree verified; seven descendant commits and16 changed files traced from oldff7cb074."
+    },
+    {
+      "kind": "artifact-identity",
+      "result": "Current QML and QMD SHA256 match retained installed identities. Candidate archive SHA256 and embedded .so SHA256 rechecked without extraction. Adapter source/generator/Makefile unchanged from ff7cb074."
+    },
+    {
+      "kind": "retained-validation",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/events/implementation-0049.yaml",
+      "result": "Old host build/typecheck/Bun tests/Go race/vet and integrated runtime recorded passing onff7cb074 only; native events and stock HTTP were simulated."
+    },
+    {
+      "kind": "retained-validation",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/structured-diagnostic-host-proof-0081.json",
+      "result": "Source8b529 records Go suite/race,20 related gateway tests, install test, typecheck, QML parse and ARM64 build passing; real Go/HTTPS/WSS diagnostic smoke passed at a safe-mode rejection boundary, not native import success."
+    },
+    {
+      "kind": "retained-validation",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/manager-import-polling-proof-0089.json",
+      "result": "Source8cc records real matching Qt lifecycle reorder failure before and success after, exactly one fixture-b import, bound reimport refusal and QML parse. Physical tap cause not uniquely proved."
+    },
+    {
+      "kind": "retained-hardware",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-send-0101-outcome.json",
+      "result": "Actual A originating image_editor returned matching800x1000 PNG SHA2564d9e07c2ab14d19b1bc37851956ebfc8e27a522d10b38bbbb4f8d371eafe9806; B remained pending. Returned image hash rechecked and centreA/four edge marks visually observed now."
+    },
+    {
+      "kind": "retained-hardware",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-terminal-cancellation-0112.json",
+      "result": "B actual cancellation returned no image per0111/0112; owner confirmed cancelled/Send disabled after normal reopen with editable B mark and new dot."
+    }
+  ],
+  "open_questions": [
+    "This is reconciliation of existing implementation and retained observations, not a new device or test execution. No whole-ticket review verdict.",
+    "Canonical ticket still contains removal/restoration acceptance at read time. Parent owns the authorized retained-prototype amendment and exact updated XOVI/AppLoad metadata.",
+    "Native positive outside-source clipping warning/confirmation/invalidation not exercised; old host evidence is not hardware proof.",
+    "Only firmware 3.28.0.172 and one paired server tested; alternate-server Send not prototyped. Pen latency is qualitative owner observation.",
+    "Drawing foldout shows server/status/Send, not UUID; correction0100 supersedes prior physical UUID-display assertion.",
+    "Full OS boot107 preserved assets and private state but did not auto-activate mods or recreate transient Go runtime. Probe108 measured mods-enabled session without a new kernel boot. Approved109 started only owned Go once; no production startup/recovery implemented.",
+    "Firmware update activation untested. Prototype retained by owner choice; no baseline restoration or removal claimed. Original quarantined module has a separate LAN-proxy restoration risk.",
+    "Current QML is source8cc; Go0.3.1 comes from source8b529 unchanged at8cc. The tracked .xovi file is a generator input, not deployed .so; its different digest is expected. Retained payload verifies deployed .so identity without a rebuild.",
+    "No source/tests/config/index/ticket/initiative/projection/old evidence changed; no builds/tests/lint/formatters, device operations, process scans, credentials or commits."
+  ],
+  "implementation_complete": true,
+  "ticket_completed": false,
+  "merged": false,
+  "pushed": false,
+  "production_blocked": true,
+  "formal_verdict": null
+}

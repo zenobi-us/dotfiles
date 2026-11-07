@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-11-07T08:43:58.790Z",
+  "newCurrentReceipt": "start-complete-0053",
+  "markdown": [
+    {
+      "path": "projections/implementation-log.md",
+      "beforeSHA256": "5c1d456194a8d0491460cd8d47dfcad8d35e1abd41b8a854ccedd77cc53d939f",
+      "afterSHA256": "00d50b4d542112b7013ba5db64ae6c639bc35bc7e36a1905ba92cd6430217dbb",
+      "historicalBytesPreserved": true,
+      "mqExit": 0
+    },
+    {
+      "path": "projections/pr-draft.md",
+      "beforeSHA256": "170113263939ed85b707541b3930d3604e2bb5c7fd4c64547757b1364c22569f",
+      "afterSHA256": "4e0272b6e6847f934e558e5c5ec557de15a538246141eef5e1cd44e91c24eeed",
+      "historicalBytesPreserved": true,
+      "mqExit": 0
+    }
+  ],
+  "oldNestedYamlProjectionHistoryPreserved": true
+}

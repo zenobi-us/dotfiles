@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-11-07T08:32:32.716Z",
+  "operation": "read-only-build-inventory-0115",
+  "scriptSHA256": "a2f92f0be317cc29ea3fc833ad4b784d31cdaf7e627e727f4df7f6a8f845c11e",
+  "exitCode": 0,
+  "deadlineHit": false,
+  "stdout": "IMG_VERSION=3.28.0.172\nOS_VERSION_ID=5.8.203\nKERNEL_RELEASE=6.12.49+git-imx8mm-ferrari-g2418a6dae57b\nPI_INK_CLIENT_VERSION=0.3.1\nINSTALLED_BUILD_IDENTITIES_BEGIN\nb1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021  /usr/bin/xochitl\nFILE_METADATA /usr/bin/xochitl 755 0 0 24705704\ne8f7229377dac89d7a980c9b9f0cbec67dbf3defec39e1704c4eab09be5b4eca  /home/root/pi-ink-client/pi-ink-client\nFILE_METADATA /home/root/pi-ink-client/pi-ink-client 700 0 0 7405752\nd4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446  /home/root/xovi/xovi.so\nFILE_METADATA /home/root/xovi/xovi.so 644 0 0 103008\n9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615  /home/root/xovi/exthome/qt-resource-rebuilder/hashtab\nFILE_METADATA /home/root/xovi/exthome/qt-resource-rebuilder/hashtab 644 0 0 674428\n5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad  /home/root/xovi/extensions.d/appload.so\nFILE_METADATA /home/root/xovi/extensions.d/appload.so 644 0 0 4342120\n6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f  /home/root/xovi/extensions.d/qt-resource-rebuilder.so\nFILE_METADATA /home/root/xovi/extensions.d/qt-resource-rebuilder.so 644 0 0 9496456\n2f19585c63979182ccd19a2953cd4aa6a6f3824ea36a76eb46c803e02e79db6e  /home/root/xovi/extensions.d/qt-command-executor.so\nFILE_METADATA /home/root/xovi/extensions.d/qt-command-executor.so 644 0 0 682776\n61c0c7b0d4e2c7623147a87c63d6a4aaec868019e67fb0e1bdb1fcb215f6e155  /home/root/xovi/extensions.d/xovi-message-broker.so\nFILE_METADATA /home/root/xovi/extensions.d/xovi-message-broker.so 644 0 0 588184\naeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f  /home/root/xovi/extensions.d/pi-ink-loopback.so\nFILE_METADATA /home/root/xovi/extensions.d/pi-ink-loopback.so 644 0 0 504280\nc88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe  /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd\nFILE_METADATA /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd 644 0 0 8298\n35dd84aab86e7982a679e6a29dabcb374016bb43729c567897e0740893354b07  /home/root/pi-ink-bridge-0049/tablet-qml/PiInkToolbar.qml\nFILE_METADATA /home/root/pi-ink-bridge-0049/tablet-qml/PiInkToolbar.qml 600 0 0 26500\nINSTALLED_BUILD_IDENTITIES_END\nOWNED_UNIT_METADATA_BEGIN\nDescription=Pi Ink tablet activation 0054 owned transient runtime\nLoadState=loaded\nActiveState=active\nSubState=running\nTransient=yes\nInvocationID=b74f3ec5db1341f6a2412c44226c35cc\nOWNED_UNIT_METADATA_END\nREAD_ONLY_BUILD_INVENTORY_COMPLETE_NO_CHANGES\n",
+  "stderr": "",
+  "success": true,
+  "deviceWrites": 0,
+  "serviceOperations": 0,
+  "notebookOrCredentialAccess": false,
+  "tripletapChanges": false,
+  "automaticRetry": false
+}
