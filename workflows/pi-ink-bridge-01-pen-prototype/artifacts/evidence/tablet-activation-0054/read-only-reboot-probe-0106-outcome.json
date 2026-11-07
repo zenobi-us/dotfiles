@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-11-07T02:54:10.305Z",
+  "operation": "read-only-reboot-probe-0106",
+  "scriptSHA256": "7ecc4bee6e482e0ad55a74513fd3b5ca8ac1a7847e81049bb4ac12b0a7aff26c",
+  "exitCode": 0,
+  "deadlineHit": false,
+  "stdout": "IMG_VERSION=3.28.0.172\nINSTALLED_OWNED_FILES_VERIFIED_NOT_AN_ACTIVATION_CLAIM\nSTATE_SHA256_ONLY=7da633552c7f9f7dbab1a816962f6dbb421fab14dcb811be224d931d5710e311\nRECORDED_OWNED_INVOCATION=3d893ce436f149e8af10ef0dd1a28256\nUPTIME_SECONDS=113064.85\nBOOT_ID=bd9b0e8a-606c-49d3-8df2-e2b50d0f094c\nOWNED_UNIT_METADATA_BEGIN\nRestart=no\nDescription=Pi Ink tablet activation 0054 owned transient runtime\nLoadState=loaded\nActiveState=active\nSubState=running\nTransient=yes\nInvocationID=3d893ce436f149e8af10ef0dd1a28256\nOWNED_UNIT_METADATA_END\nXOCHITL_STATE_BEGIN\nLoadState=loaded\nActiveState=active\nSubState=running\nXOCHITL_STATE_END\nUDC_ci_hdrc.0=configured\nUDC_ci_hdrc.1=not attached\nRELEVANT_LISTENERS_BEGIN\n/proc/net/tcp 0100007F:0051\n/proc/net/tcp 0100007F:265D\nRELEVANT_LISTENERS_END\nREAD_ONLY_REBOOT_PROBE_COMPLETE_NO_REPAIR\n",
+  "stderr": "",
+  "success": true,
+  "deviceWrites": 0,
+  "serviceStartsOrRestarts": 0,
+  "documentAccess": false,
+  "repairAttempted": false,
+  "automaticRetry": false
+}

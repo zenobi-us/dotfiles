@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-11-07T02:54:08.865Z",
+  "operation": "read-only-reboot-probe-0106",
+  "ownerSelection": "Rebooted; USB connected; approve probe0106",
+  "ownerConfirmed": "All work saved/closed, normal reboot completed, Library started, PC USB connected",
+  "scriptSHA256": "7ecc4bee6e482e0ad55a74513fd3b5ca8ac1a7847e81049bb4ac12b0a7aff26c",
+  "scope": "One exact read-only lifecycle/setup SSH probe. No writes, service starts/restarts, notebook contents, import/export/Send, cleanup, repair or retry.",
+  "usbRoute": {
+    "destination": "10.11.99.1",
+    "device": "enp2s0f0u4c2",
+    "source": "10.11.99.10",
+    "gateway": null
+  }
+}
