@@ -1,0 +1,79 @@
+{
+  "created_at": "2026-11-07T04:12:43.134Z",
+  "operation": "owned-post-boot-bridge-start-0109",
+  "status": "proposed_only_not_approved_or_executed",
+  "purpose": "Resume only the existing verified bridge after full OS boot; keep owner mods-enabled session unchanged",
+  "script": {
+    "privatePath": "/home/zenobius/.local/state/pi-ink-recovery-0091-lTFG6Q/prepared/device-owned-post-boot-start-0109.sh",
+    "bytes": 8739,
+    "sha256": "b0382e26de7a97b2c4accab13e88021dc27c82cd7f9ebcaa9280a89e963b7b6b",
+    "arguments": [
+      "APPROVE_OWNED_POST_BOOT_BRIDGE_START_0109",
+      "DOCUMENTS_SAVED_CLOSED"
+    ],
+    "hostChecks": [
+      {
+        "check": "syntax",
+        "exitCode": 0,
+        "stderr": ""
+      },
+      {
+        "check": "missing approval rejected",
+        "exitCode": 1,
+        "stderr": "Exact owned bridge-start approvals required"
+      },
+      {
+        "check": "wrong approval rejected",
+        "exitCode": 1,
+        "stderr": "Exact owned bridge-start approvals required"
+      }
+    ]
+  },
+  "allowedDeviceChanges": [
+    "Create only owned recovery directory/home/root/pi-ink-bridge-0049/runtime-post-boot-start-0109",
+    "Back up the existing owned unit.invocation and write a one-shot start-request marker in that directory",
+    "Create the same named owned transient pi-ink-0054.service once with the previously used exact systemd-run command, Restart=no and UMask0077",
+    "Atomically replace only the owned unit.invocation with the verified fresh InvocationID; retain old record in owned backup"
+  ],
+  "exactStartCommand": [
+    "systemd-run",
+    "--unit=pi-ink-0054.service",
+    "--description=Pi Ink tablet activation 0054 owned transient runtime",
+    "--property=Restart=no",
+    "--property=UMask=0077",
+    "/home/root/pi-ink-client/pi-ink-client",
+    "serve",
+    "--config",
+    "/home/root/pi-ink-bridge-0049/runtime.json"
+  ],
+  "guards": [
+    "All existing108 firmware/stock/owned-file/backup/public-CA checksum guards",
+    "Same observed kernel boot773c36fc-65b9-49ef-9b47-07fc1f9a5796",
+    "Named unit still not-found; refuse to stop, replace or reset any existing unit",
+    "Existing old invocation record still3d893ce436f149e8af10ef0dd1a28256",
+    "Exact private-state SHA7da633552c7f9f7dbab1a816962f6dbb421fab14dcb811be224d931d5710e311 before and after start; never display contents",
+    "Current Xochitl service definition unchanged at SHA6db43eb857717525f576485d4f5fcc1db15119ba1d351194d3344cd9f5d8d98f",
+    "Stock listener only127.0.0.1:81, no port80 listener; bridge UI9821 free before start",
+    "New owned paths absent; current paths regular without unsafe symlink ancestors",
+    "New unit active/transient, exact description/Restart=no and fresh32-hex InvocationID; binary/QML/runtime and service-definition checks retained"
+  ],
+  "limits": {
+    "ownedUnitStarts": 1,
+    "ownedUnitRestarts": 0,
+    "xochitlRestarts": 0,
+    "clientOrQMLOrAdapterReplacement": false,
+    "tripletapBootloaderFirmwareOrAutostartChanges": false,
+    "serviceConfigurationChanges": false,
+    "credentialChangesOrExtraction": false,
+    "documentImportExportSendMoveDelete": false,
+    "processScansOrKills": false,
+    "cleanupOrRollback": false,
+    "automaticRetry": false,
+    "attemptLimit": 1,
+    "deadlineMS": 90000
+  },
+  "failurePolicy": "Retain partial owned state; no automatic retry, repair, stop or rollback",
+  "normalProofAfterward": "Observe fresh authenticated native status on desktop, then owner returns to wall charger and verifies preserved document/server status. Do not use runtime SSH or reimport B. Existing credential should reconnect; do not preseed or extract tablet credentials.",
+  "restoration": "Separate future fresh exact approval only; preserve user-installed tripletap and all existing work. Do not assume old global preservation baseline without guards.",
+  "wholeTicketComplete": false
+}

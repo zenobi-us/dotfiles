@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-11-07T04:12:43.134Z",
+  "operation": "read-only-mod-boot-probe-0108",
+  "ownerReportedMode": "tripletap mods-enabled session",
+  "readOnlyProbe": "passed",
+  "observed": {
+    "firmware": "3.28.0.172",
+    "bootId": "773c36fc-65b9-49ef-9b47-07fc1f9a5796",
+    "kernelBootChangedSince107": false,
+    "uptimeSeconds": 3255.86,
+    "stockListener": "127.0.0.1:81 only",
+    "port80Listener": false,
+    "bridgeUI9821Listener": false,
+    "ownedGoUnit": "not-found/inactive",
+    "xochitl": "active/running",
+    "privatePairingAndAssociationStateSHA256": "7da633552c7f9f7dbab1a816962f6dbb421fab14dcb811be224d931d5710e311",
+    "privateStateUnchangedSince106And107": true,
+    "currentXochitlServiceDefinitionSHA256": "6db43eb857717525f576485d4f5fcc1db15119ba1d351194d3344cd9f5d8d98f",
+    "originalRetainedServiceDefinitionSHA256": "6db43eb857717525f576485d4f5fcc1db15119ba1d351194d3344cd9f5d8d98f",
+    "installedAssetGuards": "all passed"
+  },
+  "conclusion": "Private stock endpoint is active in owner-reported mods-enabled session. Separate transient Go bridge is absent. No editor/mod restart or reinstallation is needed for the proposed owned bridge start.",
+  "notClaimed": "A new kernel boot between107 and108; automatic Go bridge startup; independent validation of tripletap boot itself",
+  "userTripletapInstallation": "preserved; not inspected or modified",
+  "deviceWrites": 0,
+  "serviceStartsOrRestarts": 0,
+  "repairAttempted": false,
+  "automaticRetry": false,
+  "nextBoundary": "Fresh exact one-shot owned Go service start109, without touching Xochitl, tripletap, boot configuration or documents"
+}
