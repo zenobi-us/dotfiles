@@ -1,0 +1,43 @@
+{
+  "created_at": "2026-11-07T01:31:19.719Z",
+  "operation": "native-lifecycle-boundary-0103",
+  "sourceFinding": "tablet-gateway.ts attachTabletRequest.close decrements reference count and closes gateway sockets/server after the last real request releases its reference. B is the only remaining live real tool request.",
+  "decision": "Keep B pending through owner-visible sleep/wake and remaining live-channel checks. Defer the real cancellation test until afterward to avoid ending the coordinator prematurely.",
+  "cancellationSubmitted": false,
+  "cancellationPreparedRoute": "Authenticated request-local POST /api/cancel; private URL omitted; exactly one remaining live request-local browser endpoint was identified read-only",
+  "currentStates": [
+    {
+      "jobId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+      "requestId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+      "state": "completed",
+      "submissionEpoch": 0,
+      "documentUUID": "60d040a0-b4f4-425a-8b35-4cba310b84e9"
+    },
+    {
+      "jobId": "50bdfd2c593cfc98692883dc226f7209",
+      "requestId": "50bdfd2c593cfc98692883dc226f7209",
+      "state": "pending",
+      "submissionEpoch": 0,
+      "documentUUID": "ac79fff8-bb09-4bbd-a769-063ab2d7fe50"
+    }
+  ],
+  "freshNativePreSleepStatus": {
+    "time": "2026-11-07T01:31:16.224Z",
+    "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "deviceId": "paper-pro-ink-0054",
+    "udc": {
+      "ci_hdrc.0": "powered",
+      "ci_hdrc.1": "not attached"
+    },
+    "usbIPv4": [],
+    "listeners": [
+      "tcp:0100007F:0051"
+    ],
+    "safe": true
+  },
+  "preSleepStatusAgeMS": 3494,
+  "proposedOwnerCheck": "Observe A completed/Send disabled, save/close A normally, reopen B and observe B marks plus online/pending/Send enabled; normal power-button sleep10seconds and wake; verify same B work/status afterward without Send",
+  "scope": "Owner-controlled normal stock operations only; no device setup writes, restarts, SSH or capture helpers",
+  "deepSuspendOrRestartClaim": false,
+  "stillOpen": "Terminal cancellation; unassociated-document display; remaining lifecycle boundaries and separately approved restoration; whole ticket not complete"
+}
