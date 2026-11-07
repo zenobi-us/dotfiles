@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Scan the website with react-doctor"
+#MISE dir="{{config_root}}/docs/website"
+#MISE depends=["website:install"]
+bun run doctor

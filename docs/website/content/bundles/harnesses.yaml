@@ -1,0 +1,60 @@
+# Facts about each agent harness that no bundle file holds. The bundle pages
+# read skills, agents, hooks and manifests from the bundles themselves.
+harnesses:
+  - id: claude
+    name: Claude Code
+    status: supported
+    module: devtools-claude
+    install: "mise run claude.bootstrap (runs claude plugin install <bundle>@zenobius-agent-bundles)"
+    reads: [".claude-plugin/plugin.json", "skills/", "agents/*.md", "hooks/hooks.json"]
+    reload: "Raise version in .claude-plugin/plugin.json and in the marketplace.json entry, then run: claude plugin update <bundle>@zenobius-agent-bundles. Start a new session."
+    hooks: "hooks/hooks.json, loaded with the plugin. Claude runs a cached copy, so reinstall the plugin after a change."
+  - id: omp
+    name: OMP
+    status: supported
+    module: devtools-omp
+    install: "mise symlinks ~/.omp/agent/bundles/<bundle> to the bundle"
+    reads: ["package.json (pi key)", "skills/", "agents/*.md", "extensions/"]
+    reload: "Start a new session. The symlink shows the change at once."
+    hooks: "~/.agents/hooks/<name>.json, in the Claude hook format. devtools-agent links each bundle's hooks.json there."
+  - id: pi
+    name: Pi
+    status: supported
+    module: devtools-pi
+    install: "mise symlinks ~/.pi/agent/bundles/<bundle> to the bundle"
+    reads: ["package.json (pi key)", "skills/", "agents/*.md", "extensions/"]
+    reload: "Start a new session. The symlink shows the change at once."
+    hooks: "No hook route is wired."
+  - id: zot
+    name: Zot
+    status: supported
+    module: devtools-agent
+    install: "mise symlinks ~/.local/state/zot/extensions/<bundle> to the bundle"
+    reads: ["extension.json", "skills/"]
+    reload: "Start a new session. The symlink shows the change at once."
+    hooks: "The zot-claude-hooks extension (devtools-zot) runs Claude-format hooks."
+  - id: codex
+    name: Codex
+    status: not-supported
+    module: null
+    install: "Not wired. No mise module installs the bundles for Codex."
+    reads: []
+    reload: "Not supported."
+    hooks: "Not supported."
+parts:
+  - id: skills
+    name: Skills
+    description: "skills/**/SKILL.md. Instructions that the agent or the user invokes."
+    harnesses: [claude, omp, pi, zot]
+  - id: agents
+    name: Agents
+    description: "agents/*.md. Subagent definitions with a role and a tool list."
+    harnesses: [claude, omp, pi]
+  - id: hooks
+    name: Hooks
+    description: "hooks/hooks.json. Commands that run on harness events, such as SessionStart."
+    harnesses: [claude, omp, zot]
+  - id: extensions
+    name: Extensions
+    description: "extensions/. TypeScript modules that add commands and UI to OMP and Pi."
+    harnesses: [omp, pi]

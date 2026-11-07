@@ -22,6 +22,11 @@ describe("compilePlaywright", () => {
     expect(src).toContain(".catch(() => {})");
   });
 
+  it("presses a key on the page keyboard", () => {
+    const src = compilePlaywright({ ...plan, driver: "playwright" }, test, "/shots");
+    expect(src).toContain("await page.keyboard.press(\"Enter\");");
+  });
+
   it("waits for a gone element to detach", () => {
     const src = compilePlaywright({ ...plan, driver: "playwright" }, test, "/shots");
     expect(src).toContain("state: 'detached'");

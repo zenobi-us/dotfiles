@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Run the website dev server at http://localhost:4173/dotfiles/"
+#MISE dir="{{config_root}}/docs/website"
+#MISE depends=["website:install"]
+bun run dev

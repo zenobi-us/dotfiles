@@ -6,7 +6,7 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { inspectTicket } from "./inspect";
-import { loadTicketWorkflow } from "./workflow";
+import { loadExplorerSnapshot, loadTicketWorkflow } from "./workflow";
 import { recoveryDecision } from "./recovery";
 import { inspectWorkflow } from "./inspection";
 import type { Exec, SharedAgentContext } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
@@ -130,6 +130,43 @@ test("canonical CLI inspection resolves the current adapter and prints real JSON
   }
 }, 60_000);
 
+test("jira inspection reads one ticket and its blockers through the configured cli", async () => {
+  const { context } = await fixture();
+  await put(join(context.repositoryRoot, "docs/agents/issue-tracker.md"), "---\nbackend: jira\nsite: https://example.atlassian.net\ncli: jira-fixture --flag\n---\n");
+  const jira = "https://example.atlassian.net/browse/ABC-7";
+  const calls: string[][] = [];
+  const issue = (blockerCategory: string) => JSON.stringify({ key: "ABC-7", fields: {
+    summary: "Fix lodgement", status: { name: "To Do", statusCategory: { key: "new" } }, issuetype: { name: "Dev bug" }, description: "Body",
+    issuelinks: [
+      { type: { inward: "is blocked by" }, inwardIssue: { key: "ABC-3", fields: { status: { name: "Code Review", statusCategory: { key: blockerCategory } } } } },
+      { type: { inward: "is blocked by" }, outwardIssue: { key: "ABC-9", fields: { status: { name: "To Do", statusCategory: { key: "new" } } } } },
+      { type: { inward: "relates to" }, inwardIssue: { key: "ABC-5", fields: { status: { name: "To Do", statusCategory: { key: "new" } } } } },
+    ],
+  } });
+  let blockerCategory = "indeterminate";
+  const execute: Exec = async (command, args, cwd) => {
+    if (command === "jira-fixture") { calls.push([...args, cwd ?? ""]); return { code: 0, stdout: issue(blockerCategory) }; }
+    if (command === "wt") return { code: 0, stdout: JSON.stringify({ schema: 2, items: [] }) };
+    return exec(command, args, cwd);
+  };
+  const jiraContext: SharedAgentContext = { ...context, routes: { ...context.routes, tickets: { adapter: "jira" } } };
+  await expect(loadExplorerSnapshot(jiraContext, execute)).rejects.toThrow("one ticket at a time");
+  await expect(loadExplorerSnapshot(jiraContext, execute, { ref: "https://other.atlassian.net/browse/ABC-7" })).rejects.toThrow("/browse/<KEY>");
+  const decide = async () => {
+    const snapshot = await loadExplorerSnapshot(jiraContext, execute, { ref: jira });
+    const ticket = snapshot.tickets.find(item => item.ref === jira)!;
+    return { ticket, decision: recoveryDecision(ticket, snapshot, await loadTicketWorkflow(jiraContext, ticket, execute)) };
+  };
+  const blocked = await decide();
+  expect(calls[0]).toEqual(["--flag", "get-issue", "ABC-7", "summary,status,issuetype,issuelinks,description", "0", context.repositoryRoot]);
+  expect(blocked.ticket).toMatchObject({ id: "ABC-7", backend: "jira", status: "todo", fields: { issueType: "Dev bug", status: "To Do" }, documentType: "issue", blockedBy: ["ABC-3"], body: "Body" });
+  expect(blocked.decision).toMatchObject({ mode: "blocked", reason: "Unresolved prerequisites: ABC-3." });
+  blockerCategory = "done";
+  expect((await decide()).decision).toMatchObject({ action: "start", mode: "begin" });
+  blockerCategory = "archived";
+  await expect(loadExplorerSnapshot(jiraContext, execute, { ref: jira })).rejects.toThrow("category archived");
+}, 60_000);
+
 test("removed source permits finish recovery only after exact squash mapping and remote reachability", async () => {
   const { context, ticket, root } = await fixture();
   const git = (...args: string[]) => run("git", ["-C", context.repositoryRoot, ...args]);
@@ -212,6 +249,57 @@ test("submission verification requires the exact PR head, base and non-closed pu
   expect((await inspectWorkflow(context, ticket, workflow, observed)).submission?.verified).toBe(false);
   pullRequest = { ...pullRequest, headRefName: "main" };
   expect((await inspectWorkflow(context, ticket, workflow, observed)).submission?.verified).toBe(true);
+});
+
+test("a start written before its pane opens and a result with no evidence run stay valid history", async () => {
+  const { context, ticket } = await fixture();
+  const root = context.repositoryRoot;
+  await put(join(root, ".git/info/exclude"), "/workflows/\n");
+  const commit = await run("git", ["-C", root, "rev-parse", "HEAD"]);
+  const tree = await run("git", ["-C", root, "rev-parse", "HEAD^{tree}"]);
+  const workflowRoot = "workflows/T-1";
+  const common = {
+    schema: "worktree-receipt/v1", workflow_id: ticket.id, attempt: 1, repository: root, worktree: root, workspace_path: root,
+    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "hrdx", agent: "pi", session_id: null,
+    ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
+    workflow: { root, store: "repository", ref: workflowRoot }, inputs: [], outputs: [],
+  };
+  const start = { ...common, receipt_id: "start-1", parent_receipt: null, phase: "start", event: "phase-start", status: "started", pane_id: null, created_at: "2026-10-01T00:00:00Z" };
+  const result = { ...common, receipt_id: "implementation-2", parent_receipt: "start-1", phase: "implementation", event: "phase-result", status: "completed", pane_id: "1", created_at: "2026-10-02T00:00:00Z" };
+  await put(join(root, workflowRoot, "events/start-1.json"), JSON.stringify(start));
+  await put(join(root, workflowRoot, "events/implementation-2.json"), JSON.stringify(result));
+  const readOnly: Exec = async (command, args, cwd) => command === "wt" ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "main", worktree: { path: root } }] }) } : exec(command, args, cwd);
+  let workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(workflow.error).toBeUndefined();
+  expect(workflow.inspection?.historyValid).toBe(true);
+  await put(join(root, workflowRoot, "events/implementation-2.json"), JSON.stringify({ ...result, pane_id: null }));
+  workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(workflow.error).toContain("Receipt pane_id is required.");
+  await put(join(root, workflowRoot, "events/implementation-2.json"), JSON.stringify({ ...result, evidence: { store: "repository" } }));
+  workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(workflow.error).toContain("receipt evidence ref");
+});
+
+test("a review artifact ref relative to the workflow folder resolves inside it", async () => {
+  const { context, ticket } = await fixture();
+  const root = context.repositoryRoot;
+  await put(join(root, ".git/info/exclude"), "/workflows/\n");
+  const commit = await run("git", ["-C", root, "rev-parse", "HEAD"]);
+  const tree = await run("git", ["-C", root, "rev-parse", "HEAD^{tree}"]);
+  const workflowRoot = "workflows/T-1";
+  const common = {
+    schema: "worktree-receipt/v1", workflow_id: ticket.id, attempt: 1, repository: root, worktree: root, workspace_path: root,
+    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "hrdx", agent: "pi", pane_id: "1", session_id: null,
+    ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
+    workflow: { root, store: "repository", ref: workflowRoot }, inputs: [],
+  };
+  const review = { ...common, receipt_id: "review-1", parent_receipt: null, phase: "review", event: "phase-result", status: "completed", verdict: "FAILURE", created_at: "2026-10-01T00:00:00Z", outputs: [{ kind: "review-artifact", ref: "artifacts/reviews/review-review-1.md" }] };
+  await put(join(root, workflowRoot, "events/review-1.json"), JSON.stringify(review));
+  await put(join(root, workflowRoot, "artifacts/reviews/review-review-1.md"), `# Review\n\nReviewed ${commit}. FAILURE.\n`);
+  const readOnly: Exec = async (command, args, cwd) => command === "wt" ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "main", worktree: { path: root } }] }) } : exec(command, args, cwd);
+  const workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(workflow.inspection?.artifacts).toMatchObject([{ receiptId: "review-1", state: "readable", matchesSource: true }]);
+  expect(recoveryDecision(ticket, { tickets: [ticket] }, workflow)).toMatchObject({ action: "review", mode: "reconcile" });
 });
 
 test("checksum-bound history supplements repair envelopes without rewriting receipts or losing parents", async () => {

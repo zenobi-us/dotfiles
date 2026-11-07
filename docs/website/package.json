@@ -1,0 +1,43 @@
+{
+  "name": "dotfiles-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "content": "content-collections build",
+    "typecheck": "bun run content && tsc --noEmit",
+    "lint": "oxlint --deny-warnings",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "doctor": "react-doctor . --no-telemetry --yes",
+    "test": "bun test lint src",
+    "check": "bun run typecheck && bun run lint && bun run format:check && bun run test && bun run doctor"
+  },
+  "dependencies": {
+    "@tanstack/react-router": "1.170.46",
+    "@tanstack/react-start": "1.169.4",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@content-collections/cli": "0.1.9",
+    "@content-collections/core": "0.15.3",
+    "@content-collections/markdown": "0.1.4",
+    "@content-collections/vite": "0.3.1",
+    "@tailwindcss/vite": "4.3.4",
+    "@types/bun": "1.4.4",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "6.2.1",
+    "oxfmt": "0.76.0",
+    "oxlint": "1.91.0",
+    "react-doctor": "0.9.22",
+    "tailwindcss": "4.3.4",
+    "typescript": "^5.9",
+    "vite": "8.3.6",
+    "zod": "4.6.7"
+  }
+}

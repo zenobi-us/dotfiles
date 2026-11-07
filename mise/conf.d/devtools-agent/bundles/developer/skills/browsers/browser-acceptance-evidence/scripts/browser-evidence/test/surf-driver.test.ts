@@ -7,7 +7,7 @@ import { plan, test } from "./fixture.ts";
 
 const compiled = () => {
   const { workflow, map } = compileSurf(plan, test, "/shots");
-  return { steps: JSON.parse(workflow).steps as Array<{ tool: string; args: { code?: string }; as?: string }>, map };
+  return { steps: JSON.parse(workflow).steps as Array<{ tool: string; args: Record<string, unknown> & { code?: string }; as?: string }>, map };
 };
 
 /** A surf --json result where every workflow step ran ok. */
@@ -60,6 +60,16 @@ describe("compileSurf", () => {
     expect(tools).toEqual(["screenshot", "js", "screenshot"]);
   });
 
+  it("compiles a press to a key step, then a screenshot", () => {
+    const { steps, map } = compiled();
+    const press = map.find((e) => e.kind === "press")!;
+    expect(press.target).toBe("Enter");
+    expect(steps.slice(press.from, press.from + press.count)).toEqual([
+      { tool: "key", args: { key: "Enter" } },
+      { tool: "screenshot", args: { output: "%{shots}/111-editor.png" } },
+    ]);
+  });
+
   it("compiles a gone wait to a polling js step, not wait.element", () => {
     const { steps, map } = compiled();
     const gone = map.find((e) => e.target.startsWith("gone "))!;
@@ -88,6 +98,8 @@ describe("recordsFromSurfRun", () => {
     expect(records[7]!.observed).toBe("Read: Things");
     expect(records[9]!.verdict).toBe("PARTIAL");
     expect(records[9]!.note).toBe("Confirm the email arrived.");
+    expect(records[10]!.action).toBe("press");
+    expect(records[10]!.observed).toBe("Pressed Enter.");
   });
 
   it("stops at the failing step and names it", () => {

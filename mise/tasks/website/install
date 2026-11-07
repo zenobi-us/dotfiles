@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#MISE description="Install website dependencies from bun.lock"
+#MISE dir="{{config_root}}/docs/website"
+bun install --frozen-lockfile

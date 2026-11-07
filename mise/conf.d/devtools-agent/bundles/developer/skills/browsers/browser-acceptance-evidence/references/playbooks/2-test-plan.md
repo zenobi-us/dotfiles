@@ -49,10 +49,13 @@ person follows.
    - `{ do: "wait", locator }` after a `navigate`, gated on what you touch next.
    - `{ do: "wait", locator, gone: true }` after a delete or a dismiss.
    - `{ do: "scroll", locator }` before a click on anything below the fold.
-9. Mark a step only a person can finish, such as a popup or a payment, as
+9. Use `{ do: "press", says, key }` when the screen opens only from the
+   keyboard, such as an AG Grid cell editor that opens on Enter. Click the
+   element first to focus it; the key goes to whatever has focus.
+10. Mark a step only a person can finish, such as a popup or a payment, as
    `{ do: "human", needs: "..." }`. It records `PARTIAL` and never fails the run.
-10. Leave `video` out of the plan for now. `3-confirm.md` decides it.
-11. Generate the plan files:
+11. Leave `video` out of the plan for now. `3-confirm.md` decides it.
+12. Generate the plan files:
 
     ```sh
     "$SC" render "$MT"   # writes test-plan.md and plan.json

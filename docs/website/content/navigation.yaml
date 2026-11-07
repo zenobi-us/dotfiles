@@ -1,0 +1,28 @@
+brand:
+  mark: "[ df ]"
+  label: dotfiles
+repository:
+  label: GitHub
+  href: https://github.com/zenobi-us/dotfiles
+home:
+  label: Documentation sections
+  links:
+    - { label: Get started, href: "#start" }
+    - { label: Guides, href: "#guides" }
+    - { label: Reference, href: "#reference" }
+    - { label: Agent bundles, href: /bundles/ }
+  footer:
+    label: zenobi-us / dotfiles
+    links:
+      - { label: Back to top, href: "#top", icon: "↑" }
+      - { label: Browse the source, href: "https://github.com/zenobi-us/dotfiles", icon: "↗" }
+bundles:
+  label: Agent bundle navigation
+  links:
+    - { label: Workstation guide, href: /, iconBefore: "←" }
+    - { label: Agent bundles, href: /bundles/ }
+  footer:
+    label: zenobi-us / dotfiles
+    links:
+      - { label: Workstation guide, href: /, iconBefore: "←" }
+      - { label: Back to top, href: "#top", icon: "↑" }

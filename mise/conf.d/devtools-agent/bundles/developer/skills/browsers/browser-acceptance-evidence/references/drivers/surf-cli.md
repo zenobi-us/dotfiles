@@ -52,6 +52,9 @@ What stays yours:
   synthesized pointer click on a styled checkbox lands on its icon.
 - **Put a `scroll` before a click below the fold.** `click --selector` does not
   scroll, and a click into empty space still reports ok.
+- **Open a keyboard-only control with `press`.** A synthesized click focuses
+  an AG Grid cell but does not open its editor. Follow the click with
+  `{ do: "press", key: "Enter" }`; it compiles to the workflow `key` tool.
 
 ## surf-specific traps
 

@@ -1,0 +1,6 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 120,
+  "sortTailwindcss": { "stylesheet": "./src/styles/app.css", "functions": ["cx"] },
+  "ignorePatterns": ["dist", ".content-collections", "src/routeTree.gen.ts", "public", "bun.lock", "lint/fixtures"]
+}

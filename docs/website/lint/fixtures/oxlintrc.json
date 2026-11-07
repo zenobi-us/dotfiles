@@ -1,0 +1,7 @@
+{
+  "$schema": "../../node_modules/oxlint/configuration_schema.json",
+  "plugins": [],
+  "categories": {},
+  "jsPlugins": ["../no-props-destructuring.ts"],
+  "rules": { "local/no-props-destructuring": "error" }
+}

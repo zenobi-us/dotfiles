@@ -12,22 +12,24 @@ import { chronologicalReceipts, receiptEvent, receiptPhase } from "./recovery";
 type Fields = Record<string, unknown>;
 type Document = { fields: Fields; body: string; links: unknown[] };
 
-export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Exec): Promise<ExplorerSnapshot> {
+export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Exec, scope?: { ref: string }): Promise<ExplorerSnapshot> {
  if (context.error) throw new Error(context.error);
  let backend = context.routes.tickets.adapter;
+ let config: Fields = {};
  if (context.checkoutAvailable !== false || context.routes.alignment.store === "shared") {
   const alignment = await resolveContextRecord(context, { kind: "alignment" });
   if (!alignment.path) throw new Error("Alignment has no file-backed tracker definition.");
   const definition = join(alignment.path, "docs/agents/issue-tracker.md");
   if (!await exists(definition)) throw new Error(`Missing tracker definition: ${definition}. Configure docs/agents/issue-tracker.md before opening the explorer.`);
   await contained(alignment.path, definition);
-  const config = (await document(definition, alignment.path, exec)).fields;
+  config = (await document(definition, alignment.path, exec)).fields;
   backend = text(config.backend, "tracker backend");
   if (backend !== context.routes.tickets.adapter) throw new Error("Tracker backend disagrees with the resolved tickets route. Update the tracker definition or route configuration.");
  }
  const snapshot = backend === "local-markdown" ? await localSnapshot(context, exec)
   : backend === "github" ? await githubSnapshot(context, exec)
-   : (() => { throw new Error(`Unsupported tracker backend: ${backend}`); })();
+   : backend === "jira" ? await jiraSnapshot(context, exec, config, scope)
+    : (() => { throw new Error(`Unsupported tracker backend: ${backend}`); })();
  validateRelations(snapshot.tickets, "ticket blocker");
  const assigned = new Set(snapshot.initiatives.flatMap(item => item.ticketIds));
  if (snapshot.backend === "github") for (const initiative of snapshot.initiatives) assigned.add(initiative.id);
@@ -36,7 +38,8 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
  while (snapshot.initiatives.some(item => item.id === groupId)) groupId = `_${groupId}`;
  const collectionRef = snapshot.backend === "local-markdown"
   ? (await resolveContextRecord(context, { kind: "tickets" })).ref
-  : `https://${context.canonicalOrigin.replace(/^https?:\/\//, "").replace(/\.git$/, "")}/issues`;
+  : snapshot.backend === "jira" ? `${jiraSite(config)}/issues`
+   : `https://${context.canonicalOrigin.replace(/^https?:\/\//, "").replace(/\.git$/, "")}/issues`;
  snapshot.initiatives.push({ id: groupId, title: "Ungrouped", ref: collectionRef, ticketIds: unassigned, body: "Records without an assigned initiative.", group: true });
  return snapshot;
 }
@@ -133,7 +136,6 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     const status = text(fields.status, "receipt status");
     const phase = receiptPhase({ phase: text(fields.phase, "receipt phase") });
     const lifecycleEvent = receiptEvent({ phase: String(fields.phase), fields });
-    const lifecycle = lifecycleEvent === "phase-start" || lifecycleEvent === "phase-complete";
     const started = lifecycleEvent === "phase-start" && status === "started";
     const finishing = phase === "finish" && status === "FINISHING";
     if (!started && !finishing && !["completed", "failed", "blocked", "FINISHED", "FINISH_FAILED"].includes(status)) throw new Error("Receipt status is not a supported phase result or lifecycle state.");
@@ -141,11 +143,11 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     if (!Number.isInteger(fields.attempt) || Number(fields.attempt) < 1) throw new Error("Receipt attempt must be a positive integer.");
     text(fields.muxer, "receipt muxer");
     text(fields.agent, "receipt agent");
-    // Parent completions can outlive the child pane; child results still require it.
+    // Starts precede pane creation; parent completions can outlive the child pane.
     const parentCompletion = lifecycleEvent === "phase-complete" && typeof fields.session_id === "string" && fields.session_id.trim() !== "";
-    if (!((phase === "finish" || parentCompletion) && fields.pane_id === null) && typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string") throw new Error("Receipt pane_id is required.");
-    // Older lifecycle envelopes did not have event or evidence fields. Preserve their original data.
-    if ((!lifecycle && !(archive && lifecycleEvent == null)) || fields.evidence != null) {
+    if (!((phase === "finish" || lifecycleEvent === "phase-start" || parentCompletion) && fields.pane_id === null) && typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string") throw new Error("Receipt pane_id is required.");
+    // A phase with no evidence run records none; inventing one would be worse than its absence.
+    if (fields.evidence != null) {
      const evidence = object(fields.evidence, "receipt evidence");
      text(evidence.store, "receipt evidence store");
      text(evidence.ref, "receipt evidence ref");
@@ -374,6 +376,52 @@ async function githubSnapshot(context: SharedAgentContext, exec: Exec): Promise<
   }
  }
  return { backend: "github", tickets: [...tickets.values()], initiatives: [...initiatives.values()] };
+}
+
+async function jiraSnapshot(context: SharedAgentContext, exec: Exec, config: Fields, scope?: { ref: string }): Promise<ExplorerSnapshot> {
+ if (!scope) throw new Error("Jira backend loads one ticket at a time. Pass the canonical ticket reference.");
+ const site = jiraSite(config);
+ const cli = text(config.cli, "Jira tracker cli").split(/\s+/);
+ const key = new RegExp(`^${site.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/browse/([A-Z][A-Z0-9_]*-[1-9]\\d*)$`).exec(scope.ref)?.[1];
+ if (!key) throw new Error(`Jira ticket reference must be ${site}/browse/<KEY>.`);
+ const result = await exec(cli[0]!, [...cli.slice(1), "get-issue", key, "summary,status,issuetype,issuelinks,description", "0"], context.repositoryRoot);
+ if (result.code !== 0) throw new Error(`Jira cli failed (exit ${result.code}): ${result.stdout}`);
+ const issue = object(JSON.parse(result.stdout), "Jira issue");
+ if (issue.key !== key) throw new Error("Jira returned a different issue identity.");
+ const fields = object(issue.fields, "Jira issue fields");
+ const tickets: ExplorerTicket[] = [];
+ const blockedBy: string[] = [];
+ for (const value of list(fields.issuelinks ?? [], "Jira issue links")) {
+  const link = object(value, "Jira issue link");
+  if (object(link.type, "Jira link type").inward !== "is blocked by" || link.inwardIssue == null) continue;
+  const blocker = object(link.inwardIssue, "Jira blocking issue");
+  const id = text(blocker.key, "Jira blocking issue key");
+  const status = jiraStatus(object(blocker.fields, "Jira blocking issue fields").status, "Jira blocking issue status");
+  blockedBy.push(id);
+  tickets.push({ id, title: id, ref: `${site}/browse/${id}`, backend: "jira", status: status.state, fields: { status: status.name }, blockedBy: [], body: "" });
+ }
+ const issueType = text(object(fields.issuetype, "Jira issue type").name, "Jira issue type name");
+ const status = jiraStatus(fields.status, "Jira status");
+ tickets.push({
+  id: key, title: text(fields.summary, "Jira summary"), documentType: issueType.toLowerCase() === "epic" ? "epic" : "issue", fields: { issueType, status: status.name },
+  ref: `${site}/browse/${key}`, backend: "jira", status: status.state, blockedBy, body: fields.description == null ? "" : string(fields.description, "Jira description"),
+ });
+ return { backend: "jira", tickets, initiatives: [] };
+}
+
+function jiraStatus(value: unknown, label: string): { name: string; state: string } {
+ const status = object(value, label);
+ const name = text(status.name, `${label} name`);
+ const category = text(object(status.statusCategory, `${label} category`).key, `${label} category key`);
+ const state = { new: "todo", indeterminate: "in_progress", done: "done" }[category];
+ if (!state) throw new Error(`${label} category ${category} is not new, indeterminate or done.`);
+ return { name, state };
+}
+
+function jiraSite(config: Fields): string {
+ const site = text(config.site, "Jira tracker site").replace(/\/+$/, "");
+ if (!/^https:\/\/[^/\s]+$/.test(site)) throw new Error("Jira tracker site must be an https origin such as https://example.atlassian.net.");
+ return site;
 }
 
 async function pages(exec: Exec, endpoint: string): Promise<unknown[]> {

@@ -48,7 +48,8 @@ write workflow state to `.scratch/`, `<ticket>/local/`, the ticket collection, o
 - Link each receipt to its parent receipt.
 - Treat chat, pane output, and `/tmp` handoffs as transport only. They are not workflow state.
 - Treat `manifest.yaml` and `projections/` as generated views.
-- Name each review artifact `artifacts/reviews/review-<receipt-id>.md`.
+- Name each review artifact `artifacts/reviews/review-<receipt-id>.md`. A relative artifact `ref` that is not found from the repository root resolves inside the receipt's `workflow.ref` folder.
+- Put `verdict` only on the review phase-result receipt. The inspector reads the verdict and artifact from the result that a review phase-complete receipt names as its parent.
 
 ## Shared recovery decision
 
@@ -94,7 +95,7 @@ fields returned by `"$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts" r
 `workflow.root` is the store root. It is not the returned `path`, which includes
 `workflows/<ticket-id>`. Never substitute the workflow directory for the store root.
 
-Finish runs in the parent session and MAY record `pane_id: null` before or after ticket completion. A parent `phase-complete` receipt MAY also record `pane_id: null` after the child pane closes, but MUST name a non-empty parent session ID. This does not waive receipt provenance or recovery evidence. Child implementation, review, and fix results still require their child pane identity.
+Finish runs in the parent session and MAY record `pane_id: null` before or after ticket completion. A phase-start receipt MAY record `pane_id: null`, because the parent writes it before the pane opens. A parent `phase-complete` receipt MAY also record `pane_id: null` after the child pane closes, but MUST name a non-empty parent session ID. This does not waive session identity, receipt provenance, or recovery evidence. Child implementation, review, and fix results still require their child pane identity.
 
 For active workflows, `repository` MAY name another existing checkout of the same Git repository. The inspector MUST verify that both checkouts resolve to the same real Git common directory. A matching origin or source commit alone is insufficient. Workflow store roots still follow the independently resolved store. A retained repository-store root MAY name its recorded source worktree when the inspector proves that it shares the current store’s Git common directory. Store and workflow references MUST still match. This permits byte-identical receipt copies in the base checkout while a review target remains frozen. These checks do not normalize or rewrite receipt fields.
 
@@ -173,7 +174,8 @@ Set `event: phase-start` and `status: started` before launching an agent. Set
 `event: phase-result` on its result and `event: phase-complete` on the parent
 completion. Phase-start and phase-complete receipts use the envelope above, but
 MAY omit `evidence` when they produce no evidence run. Preserve their durable
-input and output references. Phase-result receipts MUST include `evidence`.
+input and output references. Phase-result receipts MUST include `evidence` when
+an evidence run exists. When none exists, omit `evidence` or set it to `null`.
 Do not invent an evidence run to satisfy the envelope.
 
 1. Resolve the workflow root before selecting a receipt ID.

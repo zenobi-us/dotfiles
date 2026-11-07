@@ -127,6 +127,12 @@ function playwrightStep(t: Test, s: Step, i: number, plan: Plan): string[] {
       out.push(`  ${push("scroll", s.locator, "R", q("Scrolled into view.")).trim()} }`);
       break;
     }
+    case "press": {
+      out.push(`  await page.keyboard.press(${q(s.key)});`);
+      if (snap) out.push(snap);
+      out.push(push("press", s.key, q(""), q(`Pressed ${s.key}.`)));
+      break;
+    }
     case "human": {
       if (snap) out.push(snap);
       out.push(push("assert", "human step", q(""), q("Driver cannot complete this step."), "PARTIAL", s.needs));
@@ -206,6 +212,7 @@ export const playwrightDriver: Driver = {
       await sh(["playwright-cli", "goto", p.check.goto.startsWith("http") ? p.check.goto : plan.base + p.check.goto], env(session));
     }
     const code = `async page => { const L = page.locator(${q(p.check.locator)}); ` +
+      `try { await L.first().waitFor({ state: 'attached', timeout: ${p.check.timeoutMs ?? DEFAULT_EXPECT_MS} }); } catch {} ` +
       `if (await L.count() === 0) return { ok: false, got: 'absent' }; ` +
       `const t = (await L.first().textContent() || '').trim(); ` +
       `return { ok: ${p.check.text ? `t.includes(${q(p.check.text)})` : "true"}, got: t }; }`;

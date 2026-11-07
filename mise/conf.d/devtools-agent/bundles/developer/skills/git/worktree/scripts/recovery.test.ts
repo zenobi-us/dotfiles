@@ -211,3 +211,10 @@ test("failed or missing-result review cannot become a successful next phase from
     expect(recoveryDecision(ticket, snapshot, state)).toMatchObject({ action: "review", mode: "retry" });
   }
 });
+
+test("a review completion that repeats the verdict still uses the result receipt's artifact", () => {
+  const state = reviewed("FAILURE");
+  state.receipts[0]!.fields = { event: "phase-result" };
+  state.receipts.push(receipt("review", { id: "review-complete-2", verdict: "FAILURE", parentReceipt: "review-1", createdAt: "2026-10-02T00:00:00Z" }));
+  expect(recoveryDecision(ticket, snapshot, state)).toMatchObject({ action: "fix", mode: "begin" });
+});

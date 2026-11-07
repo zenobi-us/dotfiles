@@ -66,7 +66,7 @@ export async function inspectWorkflow(context: SharedAgentContext, ticket: Explo
         const artifact: WorkflowInspection["artifacts"][number] = { receiptId: receipt.id, ref, state: "unknown" };
         inspection.artifacts.push(artifact);
         try {
-          const target = await artifactPath(context, ref);
+          const target = await receiptArtifactPath(context, receipt.fields, ref);
           const info = await stat(target.path);
           if (!info.isFile() || info.size === 0) { artifact.state = "unusable"; continue; }
           // Read Markdown through mq and the same OKF module as the workflow reader.
@@ -110,10 +110,10 @@ async function inspectCommits(context: SharedAgentContext, ticket: ExplorerTicke
     const paths = await run(exec, "git", ["-C", context.repositoryRoot, "log", "--all", "--format=%H", "--", ticket.ref]);
     for (const commit of paths.trim().split("\n").filter(Boolean)) candidates.add(commit);
   }
-  const tracker = await resolveContextRecord(context, { kind: "tickets" });
+  const tracker = context.routes.tickets.adapter === "local-markdown" ? [await resolveContextRecord(context, { kind: "tickets" })] : [];
   const initiatives = await resolveContextRecord(context, { kind: "initiatives" });
   const workflows = await resolveContextRecord(context, { kind: "workflow", id: ticket.backend === "github" ? `GH-${ticket.id}` : ticket.id });
-  const metadataRoots = [tracker, initiatives, workflows].filter(route => route.path && route.store === "repository").map(route => relative(context.repositoryRoot, route.path!).split("\\").join("/"));
+  const metadataRoots = [...tracker, initiatives, workflows].filter(route => route.path && route.store === "repository").map(route => relative(context.repositoryRoot, route.path!).split("\\").join("/"));
   metadataRoots.push(context.layout?.tracker ?? "tracker");
   metadataRoots.push(workflows.store === "repository" && workflows.path ? relative(context.repositoryRoot, resolve(workflows.path, "..")).split("\\").join("/") : "workflows");
   const token = new RegExp(`(?:^|[^A-Za-z0-9])${ticket.id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?:$|[^A-Za-z0-9])`, "i");
@@ -170,6 +170,15 @@ async function inspectFinish(context: SharedAgentContext, ticket: ExplorerTicket
     inspection.finishVerified = finish.status === "FINISHED" && finish.fields.pushed === true && finish.fields.ticket_completed === true && finish.fields.worktree_removed === true && finish.fields.workspace_closed === true && removed && ["completed", "done", "closed", "resolved", "complete"].includes(ticket.status.trim().toLowerCase());
   } catch (error) {
     inspection.finishError = message(error);
+  }
+}
+
+async function receiptArtifactPath(context: SharedAgentContext, fields: Record<string, unknown>, ref: string): Promise<{ path: string; root: string }> {
+  try { return await artifactPath(context, ref); }
+  catch (error) {
+    const workflowRef = record(fields.workflow).ref;
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT" || typeof workflowRef !== "string" || /^[A-Za-z][A-Za-z0-9+.-]*:/.test(ref) || isAbsolute(ref)) throw error;
+    return artifactPath(context, `${workflowRef.replace(/\/+$/, "")}/${ref}`);
   }
 }
 

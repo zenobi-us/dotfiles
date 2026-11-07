@@ -94,7 +94,8 @@ export function recoveryDecision(ticket: Ticket, snapshot: { tickets: Ticket[] }
   if (source?.dirty && latest) return decision("start", "takeover", "Preserve uncommitted source", "The source is dirty. Preserve and identify its changes through a scoped takeover; review and finish require a clean frozen source.", true);
   if (review && !sameSource(review)) return decision("review", "retry", "Review changed source", "The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing.", unknownOwner);
   if (latest?.phase === "review") {
-    const result = latest.verdict ? latest : receipts.find(receipt => receipt.id === latest.parentReceipt && receipt.phase === "review");
+    const parentResult = receipts.find(receipt => receipt.id === latest.parentReceipt && receipt.phase === "review");
+    const result = latest.event === "phase-complete" && parentResult ? parentResult : latest.verdict ? latest : parentResult;
     if (!result || !usableReview(result, workflow)) return decision("review", "retry", "Recover review evidence", "The review result or source-bound artifact is missing or unusable. Create a fresh review; do not infer a verdict from tracker state.", unknownOwner);
     if (result.verdict === "FAILURE") return decision("fix", "begin", "Fix review findings", "The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs.", unknownOwner);
     if (result.verdict === "SUCCESS") return decision("finish", "begin", "Finish reviewed work", "The successful review matches the current clean source. The finish playbook must still verify its full safety mapping.", unknownOwner, ["submit"]);

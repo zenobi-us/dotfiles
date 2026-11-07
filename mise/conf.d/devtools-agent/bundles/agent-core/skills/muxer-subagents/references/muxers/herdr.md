@@ -9,7 +9,7 @@
 Herdr is worktree-native. Use its own worktree commands. Do not open a plain pane and `cd` by hand.
 
 - Resolve the current worktree: `herdr worktree list --cwd "$PWD" --json`
-- Open a worktree in its own space: `herdr worktree open <worktree-path>`
+- Open a worktree in its own space: `herdr worktree open --path <worktree-path> --cwd <repository-root>`
 
 ## Waiting for completion
 
@@ -35,7 +35,7 @@ Only `done` means completed. On `blocked`, resume the agent and wait again. A ti
 
 ## Opening a pane for an agent
 
-1. If the current Herdr space is not the target worktree space, run `herdr worktree open <worktree-path>`. Start the agent in the returned worktree space and root pane.
+1. If the current Herdr space is not the target worktree space, run `herdr worktree open --path <worktree-path> --cwd <repository-root>`. Start the agent in the returned worktree space and root pane.
 2. If the current Herdr space already is the target worktree space, create a new tab instead: `herdr tab create --workspace "$HERDR_WORKSPACE_ID" --cwd <worktree-path> --no-focus`. Start the agent in the returned tab's root pane.
 3. Start the agent: `herdr agent start <name> --kind <agent-kind> --pane <pane-id> -- @<handoff-file>`.
 4. Wait for completion using the guidance above.

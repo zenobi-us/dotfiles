@@ -181,6 +181,11 @@ export function compileSurf(plan: Plan, t: Test, shotsDir: string): { workflow: 
         });
         snap();
         break;
+      case "press":
+        entry.target = s.key;
+        steps.push({ tool: "key", args: { key: s.key } });
+        snap();
+        break;
       case "human":
         entry.target = "human step";
         entry.needs = s.needs;
@@ -290,6 +295,8 @@ export function recordsFromSurfRun(
           ? EXPECT_OBSERVED[entry.check ?? "present"](resolved)
           : entry.kind === "capture"
             ? `Read: ${resolved}`
+            : entry.kind === "press"
+              ? `Pressed ${entry.target}.`
             : entry.kind === "wait" && resolved === "gone"
               ? "Gone."
               : entry.kind === "human"
@@ -346,7 +353,7 @@ export const surfDriver: Driver = {
       `var t=e.innerText.trim();` +
       (p.check.text ? `if(t.indexOf(${q(p.check.text)})<0)throw new Error('text missing');` : "") +
       `return JSON.stringify({ok:true,got:t.slice(0,200)});`;
-    const r = await sh(["surf", "js", poll(body, DEFAULT_EXPECT_MS)], surfEnv(session));
+    const r = await sh(["surf", "js", poll(body, p.check.timeoutMs ?? DEFAULT_EXPECT_MS)], surfEnv(session));
     const line = (r.out.trim().split("\n").pop() ?? "").trim();
     try {
       let v: unknown = JSON.parse(line);

@@ -21,6 +21,7 @@ export const plan: Plan = {
         { do: "capture", says: "Note the page title.", locator: "h1", as: "title" },
         { do: "scroll", locator: "footer" },
         { do: "human", needs: "Confirm the email arrived." },
+        { do: "press", says: "Press Enter to open the cell editor.", key: "Enter", shot: "editor" },
       ],
     },
   ],

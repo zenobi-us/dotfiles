@@ -24,6 +24,7 @@ describe("planJson", () => {
       "Check the row is gone.",
       "Note the page title.",
       "By hand: Confirm the email arrived.",
+    "Press Enter to open the cell editor.",
     ]);
     expect(JSON.stringify(json)).not.toMatch(LOCATOR_TEXT);
   });
