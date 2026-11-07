@@ -1,0 +1,55 @@
+{
+  "created_at": "2026-11-07T04:06:02.155Z",
+  "operation": "read-only-mod-boot-probe-0108",
+  "status": "proposed_only_not_approved_or_executed",
+  "purpose": "Measure only our owned bridge/stock-loopback integration in the owner-reported tripletap mods-enabled session; accept the owner report that tripletap starts mods",
+  "ownerPrerequisite": "Use the existing tripletap mods-enabled session if already loaded; do not repeat a boot just for this. Otherwise use the owner normal tripletap mods-enabled boot. Save/close work and connect PC USB before approving.",
+  "script": {
+    "privatePath": "/home/zenobius/.local/state/pi-ink-recovery-0091-lTFG6Q/prepared/device-read-only-mod-boot-probe-0108.sh",
+    "bytes": 5334,
+    "sha256": "9cf5c16ecd8caaf67e8610c651f202a9bab10c5f82148dc617ca848269080793",
+    "arguments": [
+      "APPROVE_READ_ONLY_MOD_BOOT_PROBE_0108",
+      "TRIPLETAP_MODS_LOADED_DOCUMENTS_SAVED_CLOSED"
+    ],
+    "hostChecks": [
+      {
+        "check": "syntax",
+        "exitCode": 0,
+        "stderr": ""
+      },
+      {
+        "check": "missing approval rejected",
+        "exitCode": 1,
+        "stderr": "Exact read-only reboot-probe approvals required"
+      },
+      {
+        "check": "wrong approval rejected",
+        "exitCode": 1,
+        "stderr": "Exact read-only reboot-probe approvals required"
+      }
+    ]
+  },
+  "readOnlyScope": [
+    "Same exact current firmware/stock/client/QML/runtime/public-CA/QMD/adapter/backup guards as107",
+    "Private pairing/association state SHA only; no credential or notebook contents",
+    "Named bridge and Xochitl service metadata; known UDC states and listening addresses for80/81/9821 only",
+    "Record current boot ID and uptime; compare with107 for context, not to require an unnecessary repeated boot",
+    "Hash only current Xochitl service definition and original retained service backup; compare without printing service contents or assuming old configuration must be restored"
+  ],
+  "protectionForUserChanges": "Preserve tripletap and any user-added boot/service configuration. Do not reinstall, remove, revert or overwrite it. The original pre-tripletap preservation baseline must not be assumed current.",
+  "limits": {
+    "deviceWrites": 0,
+    "serviceStartsOrRestarts": 0,
+    "documentAccessImportExportSendMoveDelete": false,
+    "credentialExtractionOrChanges": false,
+    "bootloaderFirmwareXOVIOrAutostartChanges": false,
+    "cleanup": false,
+    "automaticRetry": false,
+    "attemptLimit": 1,
+    "deadlineMS": 90000
+  },
+  "expectedNotClaimed": "Mod startup and owned Go bridge startup are separate. Probe actual unit/listener state before proposing any fresh scoped start or repair. Installed files alone are not runtime proof.",
+  "preserved": "Existing completed A, pending B, all stock editable work, private credentials/associations, all evidence and user tripletap installation",
+  "newDeviceApprovalRequired": true
+}

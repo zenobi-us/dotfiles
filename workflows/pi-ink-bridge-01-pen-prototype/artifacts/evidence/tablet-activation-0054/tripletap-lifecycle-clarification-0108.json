@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-11-07T04:05:27.614Z",
+  "operation": "tripletap-lifecycle-clarification-0108",
+  "ownerStatement": "normal reboots dont start with mods which is why. we have just installed tripletap, so now when rebooting with tripletap, mods start on boot.",
+  "acceptedLifecycleModes": {
+    "normalBoot": "mods not started",
+    "tripletapBoot": "mods started, per owner"
+  },
+  "newInstallationOwnership": "User-installed tripletap and any changed boot/service configuration must be preserved; no rollback to pre-tripletap assumptions",
+  "prior107Interpretation": "Confirmed ordinary full OS boot with persisted owned files/state, no owned Go unit and no stock loopback listener; not a tripletap failure or a test of tripletap mode",
+  "separateRemainingQuestion": "Actual owned Go bridge and stock loopback activation in current mods-enabled session",
+  "tripletapReinstalledOrModifiedByAssistant": false,
+  "deviceConnectionOrChangeAfterClarification": false
+}
