@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-11-07T04:31:41.315Z",
+  "operation": "owned-post-boot-bridge-start-0109",
+  "ownerSelection": "Saved/closed; approve bridge start0109",
+  "ownerConfirmed": "Documents saved/closed and PC USB connected",
+  "scriptSHA256": "b0382e26de7a97b2c4accab13e88021dc27c82cd7f9ebcaa9280a89e963b7b6b",
+  "scope": "One exact owned transient bridge start with backed-up atomic invocation-record update. No editor restart, tripletap/boot/autostart changes, document operations, Send, cleanup or retry.",
+  "usbRoute": {
+    "destination": "10.11.99.1",
+    "device": "enp2s0f0u4c2",
+    "source": "10.11.99.10",
+    "gateway": null
+  }
+}
