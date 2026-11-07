@@ -6,7 +6,7 @@ parent: pi-ink-bridge
 sequence: 2
 type: task
 triage: ready-for-agent
-work_status: unclaimed
+work_status: claimed
 blocked_by: ["pi-ink-bridge-01-pen-prototype"]
 ---
 
