@@ -1,0 +1,54 @@
+{
+  "created_at": "2026-11-07T01:40:47.146Z",
+  "operation": "owner-visible-sleep-wake-0104",
+  "ownerResponse": {
+    "check1": "confirmed",
+    "check2": "confirmed",
+    "check3": "confirmed"
+  },
+  "ownerConfirmed": {
+    "A": "Completed status and Send disabled",
+    "B": "Normal reopen retained B mark, online/pending status and Send enabled",
+    "sleepWake": "Power-button sleep, wait10seconds, wake; B marks and same Pi Ink status retained; no Send"
+  },
+  "observationType": "Owner-visible normal stock operations plus fresh authenticated coordinator status; not a deep-suspend measurement",
+  "authenticatedPostWakeNativeStatus": {
+    "time": "2026-11-07T01:40:46.221Z",
+    "serverId": "desktop_ink_0055_1dda8d47fc8e9b90853e03ee",
+    "deviceId": "paper-pro-ink-0054",
+    "udc": {
+      "ci_hdrc.0": "powered",
+      "ci_hdrc.1": "not attached"
+    },
+    "usbIPv4": [],
+    "listeners": [
+      "tcp:0100007F:0051"
+    ],
+    "safe": true
+  },
+  "statusAgeMSAtObservation": 920,
+  "authenticatedPostWakeJobMetadata": [
+    {
+      "jobId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+      "requestId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+      "state": "completed",
+      "submissionEpoch": 0,
+      "documentUUID": "60d040a0-b4f4-425a-8b35-4cba310b84e9"
+    },
+    {
+      "jobId": "50bdfd2c593cfc98692883dc226f7209",
+      "requestId": "50bdfd2c593cfc98692883dc226f7209",
+      "state": "pending",
+      "submissionEpoch": 0,
+      "documentUUID": "ac79fff8-bb09-4bbd-a769-063ab2d7fe50"
+    }
+  ],
+  "associationStatusFollowsDocument": true,
+  "completedAndPendingSendAvailability": "owner-confirmed",
+  "ownerVisibleSleepWakePassed": true,
+  "deepSuspendFirmwareUpdateEditorRestartOrRebootProved": false,
+  "runtimeSSH": false,
+  "deviceSetupChanges": false,
+  "cancellationSubmitted": false,
+  "wholeTicketComplete": false
+}
