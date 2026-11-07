@@ -13,10 +13,12 @@
   "devDependencies": {
     "@excalidraw/excalidraw": "^0.18.0",
     "@types/node": "25.6.0",
+    "@types/ws": "8.18.1",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
+    "typescript": "5.9.3",
     "vite": "^7.3.0"
   },
   "omp": {
@@ -25,6 +27,7 @@
     ]
   },
   "dependencies": {
-    "dbus-next": "^0.10.2"
+    "dbus-next": "^0.10.2",
+    "ws": "8.18.3"
   }
 }

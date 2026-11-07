@@ -30,9 +30,12 @@ func main() {
 
 func run(args []string) error {
 	if len(args) == 0 {
-		return errors.New("usage: pi-ink-client discover|select|status|download-bundle|update|version")
+		return errors.New("usage: pi-ink-client discover|select|status|download-bundle|update|version|serve")
 	}
 	command := args[0]
+	if command == "serve" {
+		return serve(args[1:])
+	}
 	if command == "version" {
 		if len(args) != 1 {
 			return errors.New("usage: pi-ink-client version")
@@ -119,6 +122,7 @@ func run(args []string) error {
 		return err
 	}
 	if command == "update" {
+		fmt.Fprintln(os.Stderr, "WARNING: unsigned development update over HTTP. Discovery and the adjacent SHA256 checksum do not authenticate the publisher. Use only an explicitly trusted development network and approved payload.")
 		executable, err := os.Executable()
 		if err != nil {
 			return errors.New("cannot locate installed client for update")

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "@excalidraw/excalidraw/index.css";
 import "./style.css";
+import { PdfImport } from "./PdfImport";
 
 type SupportedImageMimeType = "image/png" | "image/jpeg" | "image/webp" | "image/gif";
 type ExcalidrawFileData = NonNullable<ExcalidrawInitialDataState["files"]>[string];
@@ -25,6 +26,7 @@ function App() {
   const [api, setApi] = useState<ExcalidrawImperativeAPI | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [pdfMode, setPdfMode] = useState(false);
 
   useEffect(() => {
     if (!token) {
@@ -95,10 +97,13 @@ function App() {
   if (source === undefined || !scene) return <main className="notice">{error ?? "Loading image editor…"}</main>;
 
   return (
-    <main className="app">
+    <>
+    {pdfMode && token && <PdfImport token={token} onBack={() => setPdfMode(false)} onCancel={() => void cancel()} />}
+    <main className="app" style={{ display: pdfMode ? "none" : undefined }}>
       <header className="toolbar">
         <strong>{source ? "Annotate image" : "New image"}</strong>
         <span>{source ? "Draw on the image, then send the result to OMP." : "Draw an image, then send the result to OMP."}</span>
+        {source && <button type="button" disabled={saving} onClick={() => setPdfMode(true)}>Import stock PDF</button>}
         <button className="cancel" type="button" onClick={() => void cancel()} disabled={saving}>
           Cancel
         </button>
@@ -112,6 +117,7 @@ function App() {
         initialData={scene}
       />
     </main>
+    </>
   );
 }
 

@@ -1,0 +1,129 @@
+{
+  "status": "integrated-host-0049-passed-device-activation-requires-separate-hash-pinned-owner-approval",
+  "firmware": "3.28.0.172",
+  "stockBinary": {
+    "path": "/usr/bin/xochitl",
+    "sha256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021"
+  },
+  "hashtab": {
+    "path": "/home/root/xovi/exthome/qt-resource-rebuilder/hashtab",
+    "sha256": "9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615"
+  },
+  "recoveredDocumentView": {
+    "resourcePath": "/qml/device/view/documentview/DocumentView.qml",
+    "hashtabKey": "1224665461898798997",
+    "compressedFrameFileOffset": "0xdd10cd",
+    "decodedPayloadSha256": "867b30a725a4ae97e3459f07a60cd72bcafb21db9a0b374f02d75c5cd8d83269",
+    "rootSelector": "FocusScope#root",
+    "currentDocumentExpression": "root.document ? root.document.id.toString() : \"\"",
+    "nativeUUIDBoundary": "MainView supplies nativeDocumentUUID. The single client canonicalizes a valid UUID to lowercase and removes at most one matched outer brace pair before current publication, display and immutable press capture. Controlled native document/parent receipts use the same conversion; a nonempty invalid parent is rejected, never displayed as Stock root. Actual native string spelling is not yet observed.",
+    "evidence": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/native-interfaces.json#/qml_excerpts/0"
+  },
+  "recoveredMainView": {
+    "resourcePath": "/qml/device/view/main/MainView.qml",
+    "hashtabKey": "2328484894988065446",
+    "compressedFrameFileOffset": "0xdb21f5",
+    "decodedPayloadSha256": "2bc2866c59245e74af769e277e3aae801ad76bc7f816f24ccf1fc7ac4f5e3cfc",
+    "decodedPayloadBytes": 23823,
+    "rootSelector": "Background#root",
+    "stockDocumentViewLoader": "documentView",
+    "reason": "One zero-size, noninteractive MainView client owns current-document serialization. The global pairing manager belongs to navigator; a separate native document foldout uses the same client. No persistent top-right bar remains."
+  },
+  "recoveredNativeShells": [
+    {
+      "resourcePath": "/qt/qml/xofm/libs/toolbar/qml/Toolbar.qml",
+      "compressedFrameFileOffset": "0x1261803",
+      "decodedPayloadSha256": "f0f552fa18a27733b59fafddc1a1cd10e35328136eb56cbb695c8799e91483f6",
+      "convention": "Insert ToolbarTool immediately before the preserved BetterTOC ToolbarTool#tocButton, after the flexible spacer. Use native foldoutContent, ColumnLayout spacing 0 and ArkControls.FoldoutItem rows. Native selection, position, stacking and dismissal remain authoritative; no document navigation bar or full-page document panel."
+    },
+    {
+      "resourcePath": "/qml/device/view/navigator/Navigator.qml",
+      "compressedFrameFileOffset": "0xddf2e4",
+      "decodedPayloadSha256": "28c1f04f5c70bdd864019950367d08191d3e7eb8cd536e3b9e8a58e7bc9da164",
+      "convention": "Global manager starts below the actual contentHeader.height and above the native status bar. Left margin is sidebar.width only while sidebar.visible; otherwise zero. Right margin is zero."
+    },
+    {
+      "resourcePath": "/qml/device/view/navigator/Sidebar.qml",
+      "compressedFrameFileOffset": "0xdd9cf7",
+      "decodedPayloadSha256": "5cfd661e6c68c343513d9ca034042ee3f5cdc3ab0df77ea0396838c77135adc0",
+      "convention": "Insert ArkControls.SidebarItem immediately before Common.Background#spacer, last in the top section. Hide the sidebar, then call idempotent showManager, never toggle."
+    },
+    {
+      "compressedFrameFileOffset": "0xdc0fce",
+      "decodedPayloadSha256": "6bcffbb0fd2b5028687e2b8c3d096c78f48a86ecfefedfedb6af32d6ce354a32",
+      "convention": "Secondary Ark NavigationBar with fixed Back button, bottom border, ScrollContainer and native design-grid margins apply only to the GLOBAL pairing manager. DOCUMENT uses the native toolbar foldout instead."
+    }
+  ],
+  "offlineRecovery": {
+    "hostCopies": "/tmp/pi-ink-0020-offline",
+    "stockHashVerified": true,
+    "freshHashtabHashVerified": true,
+    "decodedPayloadHashVerified": true,
+    "decodedPayloadBytes": 110865,
+    "method": "Decode copied >QI hashtab records and stock zstd frame with host libzstd; no firmware code execution."
+  },
+  "existingPatchCollisions": {
+    "computed-widgets-01-live-document-probe.qmd": "Shares MainView resource, but no added IDs or handler names. Also patches DeviceSceneView, Toolbar and SceneSelectionHandler. Its existing 1500ms timer writes current document/page identity to /home/root/computed-widgets-01-identity.json, and its toolbar action launches a separate editor. These are independent baseline behaviors, not this bridge. Parent must account for them in Phase B privacy/acceptance; this slice does not alter or disable them.",
+    "sameDocumentViewResource": ["betterTocCollapse.qmd", "floating.qmd", "retaskableSend.qmd", "betterToc.qmd"],
+    "integrationRequirement": "Apply the new patch alongside all 12 copied existing QMDs offline before approved activation; runtime layout/input interactions remain unproven."
+  },
+  "proposedOwnedPaths": {
+    "component": "/home/root/pi-ink-bridge-0049/tablet-qml/PiInkToolbar.qml",
+    "patch": "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd",
+    "client": "/home/root/pi-ink-client/pi-ink-client",
+    "runtime": "/home/root/pi-ink-client/pi-ink-client serve --config /home/root/pi-ink-bridge-0049/runtime.json"
+  },
+  "activationPreconditions": [
+    "Verify the copied stock binary and hashtab against the recorded hashes. Stop on mismatch.",
+    "The exact resource path and decoded payload are recovered. Use the supplied pi-ink-bridge.qmd; do not retarget a similarly named DeviceSceneView component.",
+    "Fresh owner approval is mandatory: the previous Phase B approved different hashes. No revised payload, additional restart, or recovery mutation is authorized by this source proposal.",
+    "DocumentView exposes actual UUID. MainView owns one zero-size noninteractive client and passes the controller into native editor and library sidebar instances.",
+    "The native drawing toolbar receives one ToolbarTool immediately before tocButton; its capacity reserves one slot while preserved extensions keep their existing count handler. The library sidebar receives one labelled ArkControls.SidebarItem immediately before spacer.",
+    "Global manager selection is idempotent. Its Back remains outside scrolling content and hides the entire manager. The manager is unavailable during editing or lock. Document selection toggles a separate native foldout through root._select; stock close and toolbar orientation remain native.",
+    "Global bounds follow actual native content-header height, current sidebar visibility/width and status-bar height. Document foldout uses stock TOC geometry rather than fixed insets. Owner must verify physical layout and input under new exact approval. No screenshots or capture helpers are requested or authorized.",
+    "Apply all 12 preserved QMDs plus the revision offline to all five affected native resources; inspect each result and syntax-check the component. Do not infer hardware hit-testing or layout success from parser or syntax checks.",
+    "Use the integration owner's separately approved activation and rollback procedure. Refuse collisions at both proposed owned paths. Preserve all pre-existing extensions, resources, service settings and qmlcache. Do not invoke xovi/start or xovi/stock."
+  ],
+  "upstreamFormatEvidence": [
+    "https://github.com/asivery/rm-xovi-extensions/blob/master/qt-resource-rebuilder/README.MD",
+    "https://github.com/asivery/qmldiff/blob/a38cccc4e0de99c0fc7f8cb8bf963a1c234267b1/README.MD"
+  ],
+  "localApi": {
+    "origin": "http://127.0.0.1:9821",
+    "pair": "POST /pair {serverId}; setup-trusted TLS identity, then explicit loopback desktop management approval",
+    "folder": "POST /folder {serverId,folderUUID}; native createCollection result, immutable cross-server ownership",
+    "current": "POST /current {documentUUID}; canonical native UUID; serial current updates; empty string on close",
+    "state": "GET /state independently of pending action HTTP requests; version reports the running bridge build, matching pi-ink-client version",
+    "send": "POST /send {documentUUID}; UUID captured on button press",
+    "confirm": "POST /confirm {documentUUID,confirmationId}; both values captured on button press",
+    "import": "POST /import {serverId,jobId}",
+    "importReady": "POST /import-ready {importName}; only after caching exact pi-ink-<32 lowercase hex> from /state with status importing",
+    "imported": "POST /imported {importName,documentUUID,folderUUID}; only controlled cached names; Library.parentIdForId(id) is called only after that guard"
+  },
+  "verification": {
+    "buildsTestsFormatLintRun": true,
+    "deviceCommandsRun": "Historical evidence records three Xochitl restarts. Owner confirmed repaired Pi Ink entry opens and Back fully closes, but reported fixed sidebar inset and repeated-selection closure defects. This UI revision runs no tablet commands, screenshots, installation, restart or restoration. Association/Send proof and original-proxy restoration remain blocked.",
+    "stockResourcePatchApplied": "Pinned QMLDiff processed all five modified stock resources with all12 preserved QMDs; their original hashes remain unchanged. Matching Qt6.10.3 AST parsing passed for the component and five generated resources.",
+    "sdkTypeCheck": "Not passed: private stock imports are unavailable. Both baseline-only and revised Toolbar produce the same duplicate toolLoader diagnostic; no preserved QMD was modified to silence it.",
+    "nativeButtonSourceFix": "Native modules are explicitly aliased. NativeControls.Button uses onPressedChanged guarded by pressed=true for immutable UUID/confirmationId capture. Complete component Qt6.10.3 AST parsing and actual handler JavaScript smoke passed. SDK GUI/core runtime smoke could not load the missing offscreen platform plugin/QtQml module; native private-type instantiation and physical input remain unproven. Any component repair/reload needs a fresh exact manifest and owner approval; no cache deletion.",
+    "tabletRuntimeProven": false,
+    "integrationOwnerChecks": [
+      "Validate component and QMD syntax with matching Qt/QMLDiff tools after copied stock resource recovery.",
+      "After new exact payload/restart/rollback approval, owner verifies global last-top-section entry, dynamic width with sidebar open/closed, repeated-selection persistence, complete Back closure, document entry immediately above TOC, compact foldout, normal close/navigation and toolbar orientations. Do not capture tablet screenshots.",
+      "Start pending unbound import without a nonce; verify /state then exposes the importing nonce, QML caches it before /import-ready, and stock entryImported reports actual UUID/parent without private listing. Verify current folderUUID and folders show only synthetic bindings, labeling empty parent Stock root.",
+      "Exercise explicit Send with USB disconnected; confirm no save/close submission.",
+      "Exercise stale confirmationId rejection after immutable result replacement and document switch during a pressed button.",
+      "Confirm per-result clipping warning, retained full PDF, normal editable stock document and originating desktop tool PNG."
+    ]
+  }
+  ,"integratedHostRecovery0049": {
+    "deviceAccess": false,
+    "scope": "HOST ONLY. Stock HTTP, native Library, browser launcher and test-process exit are simulated boundaries. HTTPS/WSS, compiled client, image_editor and PDF processing are real.",
+    "evidence": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/host-smoke-0049-r3.json",
+    "candidate": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/integrated-host-recovery-0046/candidate-activation-0049-r3.json",
+    "checks": "19 Bun tests, Go race tests, Go vet, typecheck, browser/ARM64 build, Qt AST, integrated runtime and marked-pixel checks passed.",
+    "nativeFolderLimit": "createCollection empty root-parent argument is inferred from recovered API and remains unproven on hardware. Imports use the actual stock-service destination, not the newly created associated folder. No automatic relocation or opening.",
+    "safety": "No tablet connection, installation, restart, screenshot, process scanner, process kill, old helper execution or cleanup retry. Cleanup0038 remains STOPPED_POSSIBLE_PARTIAL_REMOVAL_PRESERVE_NO_RETRY. Preserve unknown state and partial0026.",
+    "acceptance": "Real app pairing, native folder visibility and parent semantics, current-document/Send, toolbar input quality, orientation, lifecycle and restoration remain pending. Full ticket stays claimed; production stays blocked."
+  }
+}

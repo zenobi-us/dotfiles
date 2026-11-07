@@ -6,12 +6,13 @@ import imageAnnotatorExtension from "../index";
 type API = Parameters<typeof imageAnnotatorExtension>[0];
 type Command = Parameters<API["registerCommand"]>[1];
 
-for (const outcome of ["done", "cancel", "abort"] as const) {
+for (const outcome of ["done", "cancel", "abort", "session-switch"] as const) {
   test(`editing remains available after a day until ${outcome}`, async () => {
     let command: Command | undefined;
     const messages: unknown[] = [];
     const errors: string[] = [];
     let browserOpened!: (url: string) => void;
+    const lifecycle = new Map<string, () => void>();
     const opened = new Promise<string>(resolve => { browserOpened = resolve; });
     const spawn = spyOn(childProcess, "spawn").mockImplementation((_command, args) => {
       const child = Object.assign(new EventEmitter(), { unref() {} });
@@ -26,7 +27,7 @@ for (const outcome of ["done", "cancel", "abort"] as const) {
       zod: { object() {}, enum() {}, string: () => ({ optional() {} }) },
       registerTool() {},
       registerCommand(_name: string, value: Command) { command = value; },
-      on() {},
+      on(name: string, handler: () => void) { lifecycle.set(name, handler); },
       sendUserMessage(content: unknown) { messages.push(content); },
     } as unknown as API;
     let settled = false;
@@ -49,6 +50,8 @@ for (const outcome of ["done", "cancel", "abort"] as const) {
       expect(await source.json()).toBeNull();
       if (outcome === "abort") {
         controller.abort();
+      } else if (outcome === "session-switch") {
+        lifecycle.get("session_switch")!();
       } else {
         const png = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/F0sAAAAASUVORK5CYII=", "base64");
         const response = await fetch(new URL(`/api/${outcome}${url.search}`, url), {
@@ -59,7 +62,7 @@ for (const outcome of ["done", "cancel", "abort"] as const) {
         await response.text();
       }
       await editing;
-      expect(errors).toEqual(outcome === "abort" ? ["Image editing was cancelled."] : []);
+      expect(errors).toEqual(outcome === "abort" || outcome === "session-switch" ? ["Image editing was cancelled."] : []);
       expect(messages).toEqual(outcome === "done" ? [[
         { type: "text", text: "Image: drawing.png" },
         { type: "image", data: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+/F0sAAAAASUVORK5CYII=", mimeType: "image/png" },

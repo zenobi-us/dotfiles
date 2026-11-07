@@ -1,0 +1,4 @@
+*.o
+*.so
+xovi.cpp
+xovi.h

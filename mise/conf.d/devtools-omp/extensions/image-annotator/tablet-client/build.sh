@@ -2,7 +2,7 @@
 # Package the standalone tablet client and extension-owned installer, without deploying them.
 set -eu
 
-version=0.2.0
+version=0.3.1
 source_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 stage=$(mktemp -d "${TMPDIR:-/tmp}/pi-ink-client.XXXXXX")
 trap 'rm -rf -- "$stage"' 0

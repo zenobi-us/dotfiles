@@ -3,6 +3,7 @@ module image-annotator-tablet
 go 1.25
 
 require (
+	github.com/gorilla/websocket v1.5.3
 	github.com/miekg/dns v1.1.72
 	golang.org/x/net v0.48.0
 	golang.org/x/sys v0.39.0

@@ -72,3 +72,34 @@ body {
   color: #9b1c1c;
   padding: 0.5rem 1rem;
 }
+
+.pdf-import,
+.notice:has(h1) {
+  display: block;
+  box-sizing: border-box;
+  height: auto;
+  max-width: 64rem;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.pdf-import code,
+.notice code {
+  overflow-wrap: anywhere;
+}
+
+.pdf-import section {
+  border: 2px solid #8b5b00;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.pdf-import button {
+  font: inherit;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+}
+
+.toolbar {
+  flex-wrap: wrap;
+}

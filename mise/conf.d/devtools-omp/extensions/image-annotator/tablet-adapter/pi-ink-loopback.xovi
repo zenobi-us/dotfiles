@@ -1,0 +1,9 @@
+version 0.1.0
+
+import? _ZN17QNetworkInterface17interfaceFromNameERK7QString:QStringConstPtr>QNetworkInterface
+import? _ZN10QTcpServer6listenERK12QHostAddresst:QTcpServerPtr:QHostAddressConstPtr:quint16>bool
+import? _ZNK12QHostAddress8isGlobalEv:QHostAddressConstPtr>bool
+
+override _ZN17QNetworkInterface17interfaceFromNameERK7QString
+override _ZNK12QHostAddress8isGlobalEv
+override _ZN10QTcpServer6listenERK12QHostAddresst

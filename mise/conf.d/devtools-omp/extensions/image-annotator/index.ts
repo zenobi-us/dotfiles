@@ -5,6 +5,8 @@ import { extname, isAbsolute, relative, resolve, sep } from "node:path";
 import { spawn } from "node:child_process";
 import type { AddressInfo } from "node:net";
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from "node:http";
+import { createPdfSession } from "./pdf-session";
+import { attachTabletRequest } from "./tablet-gateway";
 import { COORDINATOR_PORT, createCoordinatorServer, type CoordinatorServer } from "./coordinator";
 import { advertiseCoordinator, loadCoordinatorIdentity, type CoordinatorAdvertisement } from "./coordinator-discovery";
 
@@ -99,6 +101,7 @@ export interface SourceImage extends ImageContent {
 export interface AnnotatorResult {
   data: Buffer;
   name: string;
+  originalPdfPath?: string;
 }
 
 interface CoordinatorState {
@@ -112,6 +115,7 @@ interface CoordinatorRuntime {
 
 export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
   let latestImage: ImageContent | undefined;
+  let sessionController = new AbortController();
   const coordinatorState: CoordinatorState = {};
 
   pi.on("session_start", async (_event, ctx) => {
@@ -132,9 +136,15 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
       await runtime.server.close();
     }
   });
+  const requestSignal = (ctx: ExtensionContext, signal?: AbortSignal) =>
+    AbortSignal.any([sessionController.signal, ...[signal, ctx.signal].filter((value): value is AbortSignal => !!value)]);
 
   for (const event of ["session_start", "session_switch", "session_branch", "session_tree"] as const) {
-    pi.on(event, () => { latestImage = undefined; });
+    pi.on(event, () => {
+      latestImage = undefined;
+      sessionController.abort();
+      sessionController = new AbortController();
+    });
   }
 
   const sourceFor = async (action: ImageToolParameters["action"], path: string | undefined, cwd: string) => {
@@ -159,13 +169,14 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
     deferrable: false,
     execute: async (_id, params, signal, onUpdate, ctx) => {
       try {
+        const boundSignal = requestSignal(ctx, signal);
         const source = await sourceFor(params.action, params.path, ctx.cwd);
         onUpdate?.({ content: [{ type: "text", text: "Opening the image editor. Waiting for the user to finish or cancel." }] });
-        const result = await openAnnotator(source, ctx, signal ?? ctx.signal);
+        const result = await openAnnotator(source, ctx, boundSignal);
         if (!result) return { content: [{ type: "text", text: "Image editing cancelled; no image was produced." }], details: { action: params.action, status: "cancelled" } };
         return {
           content: [
-            { type: "text", text: params.action === "new" ? "The user created this image." : "The user annotated this image." },
+            { type: "text", text: `${params.action === "new" ? "The user created this image." : "The user annotated this image."}${result.originalPdfPath ? ` Full annotated PDF retained at: ${result.originalPdfPath}` : ""}` },
             { type: "image", data: result.data.toString("base64"), mimeType: "image/png" },
           ],
           details: { action: params.action, status: "completed" },
@@ -185,6 +196,7 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
           ctx.ui.notify(`Image coordinator: ${runtime.server.url}/health\nDNS-SD: ${runtime.advertisement.name}\nCoordinator ID: ${runtime.server.id}`, "info");
           return;
         }
+        const boundSignal = requestSignal(ctx);
         const match = /^(new|annotate)(?:\s+([\s\S]*))?$/.exec(args.trim());
         if (!match) {
           ctx.ui.notify("Usage: /image coordinator, /image new [prompt], or /image annotate [imagepath] [prompt]. Omit imagepath to use the latest attached image.", "warning");
@@ -193,7 +205,7 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
         const action = match[1] as ImageToolParameters["action"];
         const parsed = action === "annotate" ? parseArguments(match[2] ?? "") : { prompt: match[2]?.trim() || undefined, path: undefined };
         const source = await sourceFor(action, parsed.path, ctx.cwd);
-        const result = await openAnnotator(source, ctx);
+        const result = await openAnnotator(source, ctx, boundSignal);
         if (result) await sendImage(pi, result, parsed.prompt);
       } catch (error) {
         ctx.ui.notify(errorMessage(error), "error");
@@ -207,13 +219,14 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
     const match = /^\s*annotate:\s*([\s\S]*)$/i.exec(event.text);
     if (!match) return { action: "continue" };
     try {
+      const boundSignal = requestSignal(ctx);
       const pastedImage = event.images?.[0];
       if (!pastedImage) {
         ctx.ui.notify("Attach an image and start the message with `annotate:`.", "warning");
         return { action: "handled" };
       }
       const source = imageContent(pastedImage, "pasted-image");
-      const result = await openAnnotator(source, ctx);
+      const result = await openAnnotator(source, ctx, boundSignal);
       if (result) await sendImage(pi, result, match[1]?.trim() || undefined, event.images?.slice(1));
     } catch (error) {
       ctx.ui.notify(errorMessage(error), "error");
@@ -333,6 +346,7 @@ async function openAnnotator(source: SourceImage | undefined, ctx: ExtensionCont
     try {
       if (signal?.aborted) return await result;
       const [, image] = await Promise.all([openBrowser(url), result]);
+      if (signal?.aborted) throw new Error("Image editing was cancelled.");
       return image;
     } finally {
       signal?.removeEventListener("abort", abort);
@@ -351,7 +365,18 @@ export async function createAnnotationServer(
   source: SourceImage | undefined,
   token: string,
   complete: (result: AnnotatorResult | undefined) => void,
+  tabletConfig = process.env.OMP_IMAGE_ANNOTATOR_TABLET_CONFIG,
 ): Promise<AnnotationServer> {
+  let finished = false;
+  const finish = (result: AnnotatorResult | undefined) => {
+    if (finished) return;
+    finished = true;
+    pdf.close();
+    tablet?.end(result ? "completed" : "cancelled");
+    complete(result);
+  };
+  const pdf = createPdfSession(source, finish);
+  const tablet = source && tabletConfig ? await attachTabletRequest(pdf, tabletConfig) : undefined;
   const httpServer = createServer((request, response) => {
     void handleRequest(request, response).catch((error: unknown) => {
       if (response.headersSent) response.destroy();
@@ -369,13 +394,19 @@ export async function createAnnotationServer(
 
   return {
     httpServer,
-    close: () => new Promise<void>((resolveClose, rejectClose) => {
-      if (!httpServer.listening) {
-        resolveClose();
-        return;
-      }
-      httpServer.close((error) => error ? rejectClose(error) : resolveClose());
-    }),
+    close: async () => {
+      finished = true;
+      pdf.close();
+      tablet?.end("cancelled");
+      await Promise.all([
+        tablet?.close(),
+        new Promise<void>((resolveClose, rejectClose) => {
+          httpServer.closeAllConnections();
+          if (!httpServer.listening) { resolveClose(); return; }
+          httpServer.close((error) => error ? rejectClose(error) : resolveClose());
+        }),
+      ]);
+    },
   };
 
   async function handleRequest(request: IncomingMessage, response: ServerResponse): Promise<void> {
@@ -386,6 +417,11 @@ export async function createAnnotationServer(
         return;
       }
 
+      if (finished) {
+        response.writeHead(409).end("This annotation request has ended.");
+        return;
+      }
+      if (await pdf.handle(request, response, requestUrl.pathname, readRequest)) return;
       if (request.method === "GET" && requestUrl.pathname === "/api/source") {
         response.writeHead(200, { "content-type": "application/json", "cache-control": "no-store" });
         response.end(JSON.stringify(source ? { data: source.data, mimeType: source.mimeType } : null));
@@ -393,10 +429,11 @@ export async function createAnnotationServer(
       }
       if (request.method === "POST" && requestUrl.pathname === "/api/cancel") {
         response.writeHead(200, { "cache-control": "no-store" }).end("Cancelled");
-        complete(undefined);
+        finish(undefined);
         return;
       }
       if (request.method === "POST" && requestUrl.pathname === "/api/done") {
+        const revision = pdf.invalidate();
         if (request.headers["content-type"] !== "image/png") {
           response.writeHead(415).end("Expected a PNG export.");
           return;
@@ -404,8 +441,12 @@ export async function createAnnotationServer(
         try {
           const data = await readRequest(request, MAX_EXPORT_BYTES);
           if (data.length === 0) throw new Error("The PNG export is empty.");
+          if (finished || !pdf.isCurrent(revision)) {
+            response.writeHead(409).end("This export is stale or cancelled.");
+            return;
+          }
           response.writeHead(200, { "cache-control": "no-store" }).end("Done");
-          complete({ data, name: source?.name ?? "drawing.png" });
+          finish({ data, name: source?.name ?? "drawing.png" });
         } catch (error) {
           response.writeHead(413).end(errorMessage(error));
         }
@@ -456,7 +497,7 @@ async function readRequest(request: IncomingMessage, maxBytes: number): Promise<
   for await (const chunk of request) {
     const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
     size += buffer.length;
-    if (size > maxBytes) throw new Error("The PNG export exceeds 50 MiB.");
+    if (size > maxBytes) throw new Error(`The request exceeds ${maxBytes} bytes.`);
     chunks.push(buffer);
   }
   return Buffer.concat(chunks, size);
@@ -487,7 +528,7 @@ async function sendImage(
   otherImages: ImageContent[] = [],
 ): Promise<void> {
   const name = result.name.split(/[\\/]/).at(-1) ?? "image";
-  const text = prompt ? `${prompt}\n\nImage: ${name}` : `Image: ${name}`;
+  const text = `${prompt ? `${prompt}\n\nImage: ${name}` : `Image: ${name}`}${result.originalPdfPath ? `\nFull annotated PDF retained at: ${result.originalPdfPath}` : ""}`;
   await pi.sendUserMessage([
     { type: "text", text },
     { type: "image", data: result.data.toString("base64"), mimeType: "image/png" },
