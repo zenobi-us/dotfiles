@@ -1,0 +1,82 @@
+{
+  "schema": "tracker-result/v1",
+  "operation": "update",
+  "backend": "local-markdown",
+  "initiatives": [],
+  "tickets": [
+    {
+      "id": "pi-ink-bridge-01-pen-prototype",
+      "title": "Prove Paper Pro pen input",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+      "state": "claimed",
+      "blocked_by": []
+    }
+  ],
+  "changes": {
+    "fields": {
+      "experiment_step6": "Owner-approved retention alternative with installed-build, protected-state, loopback-only, manual-recovery and fresh-approval owned-removal requirements",
+      "acceptance_criteria8": "Tested firmware and owner-approved retention; production scoped to tickets02–10",
+      "acceptance_criteria10": "Retention is not restoration; preserve tripletap and editable work; no firmware-upgrade gate",
+      "comments": "One appended owner-retention approval and evidence-scope entry"
+    },
+    "dependency_edges_added": [],
+    "dependency_edges_removed": [],
+    "exact_changed_sections": [
+      {
+        "section": "First cable-free adapter experiment, step 6",
+        "before": "6. Remove temporary experiment code and verify restoration of listener bindings, service state, stock binary, existing extensions, and configuration. Record sleep, Xochitl-restart, tablet-reboot, firmware-update, and XOVI-reactivation limits separately; do not add unsupported automatic boot activation.",
+        "after": "6. Remove temporary experiment code and verify restoration of listener bindings, service state, stock binary, existing extensions, and configuration, or retain the tested prototype with explicit owner approval. Retention requires a recorded installed build state, protected credentials and editable data, a verified loopback-only stock-service boundary with the old LAN proxy quarantined, and observed manual recovery and activation requirements. Record an owned-only future removal/rollback procedure that preserves tripletap and all editable work and requires fresh exact execution approval. Retention is not restoration. Record sleep, Xochitl-restart, tablet-reboot and XOVI-reactivation limits separately; firmware-update compatibility remains untested. Do not add unsupported automatic boot activation."
+      },
+      {
+        "section": "Acceptance criteria, criterion 8",
+        "before": "8. Record only the tested firmware boundary. Preserve the earlier failed experiments and all evidence. Record unresolved document-visibility, toolbar-context, annotated-output, and lifecycle questions. Remove temporary code after the experiment. Keep dependent production work blocked until the revised quality gate passes.",
+        "after": "8. Record only tested firmware `3.28.0.172`; firmware-update compatibility remains untested. Preserve the earlier failed experiments and all evidence. Record unresolved document-visibility, toolbar-context, annotated-output, and lifecycle questions. Remove temporary code after the experiment, or retain the tested prototype under the explicit owner-approved retention requirements in experiment step 6. Keep dependent production work blocked until the revised quality gate passes; production work remains scoped to tickets 02–10."
+      },
+      {
+        "section": "Acceptance criteria, criterion 10",
+        "before": "10. Complete the first cable-free adapter experiment above and preserve its evidence. Verify restoration after removing temporary code. Record actual activation requirements across sleep, Xochitl restart, tablet reboot, and firmware update; do not imply that installation guarantees persistent XOVI activation.",
+        "after": "10. Complete the first cable-free adapter experiment above and preserve its evidence. Verify restoration after removing temporary code, or document explicit owner-approved retention with the installed build state, protected credentials/data, loopback-only security boundary, observed manual recovery/activation requirements, and an owned-only future removal/rollback procedure requiring fresh exact execution approval. Do not claim restoration when retaining the prototype or restore the quarantined old LAN proxy. Preserve tripletap and editable work. Record observed sleep, Xochitl-restart and tablet-reboot activation requirements; firmware-update compatibility is untested, not an upgrade gate. Do not imply that installation guarantees persistent XOVI or Go bridge activation."
+      }
+    ],
+    "appended_comment": "\n### Owner-approved retained-prototype end state — 2026-11-07\n\nThe owner chose “Keep the prototype installed” and explicitly requested completion of the remaining three closeout tasks; [closeout authorization](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/closure-authorization.json) authorizes this acceptance amendment. Retention replaces mandatory uninstall/restoration only under experiment step 6 and criteria 8/10. No restoration was performed; preserve tripletap, credentials, editable notebooks and prior evidence, keep the old LAN proxy quarantined, and require fresh exact approval for owned-only future removal/rollback.\n\nThe retained evidence records [native Send and originating-request routing](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-send-0101-outcome.json) and its [returned annotated PNG](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-send-0101-returned.png), [owner-visible sleep/wake](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/owner-visible-sleep-wake-0104.json), [unassociated-document protection](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/unassociated-stock-notebook-0105.json), [ordinary full-boot limits](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/read-only-full-boot-probe-0107-boundary.json), [owner-installed tripletap boundary](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/tripletap-lifecycle-clarification-0108.json), [approved manual bridge start](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/owned-post-boot-bridge-start-0109-native-status.json), [post-boot editable-work recovery](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/post-boot-owner-recovery-0110.json), [real originating cancellation](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/originating-request-cancellation-0111-outcome.json), [native terminal status and continued editability](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/native-terminal-cancellation-0112.json), and the [restoration/security boundary](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/tablet-activation-0054/restoration-security-boundary-0113.json). Ordinary boot did not activate mods or the transient bridge; tripletap mods activation is owner-reported, and the owned Go bridge required a separately approved manual start. Only firmware `3.28.0.172` was tested; firmware updates and automatic bridge startup are unproved.\n\n[Closeout run 0115](../../workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/) holds authorization and the build/version reconciliation still being collected; this amendment does not claim reconciliation, independent acceptance review, integration or publication has passed. Positive clipping/confirmation/invalidation is not an additional standalone ticket-01 gate. Production work remains scoped to tickets 02–10; no custom drawing surface or production startup/delivery hardening is added. Keep `work_status: claimed` until the parent completes independent review and integration/publication.\n"
+  },
+  "validation": {
+    "status": "passed",
+    "details": [
+      "Complete ticket read and transformation performed through mise mq with required okf.mq import, explicit raw input and JSON/text output.",
+      "Before and after metadata validated using installed reading-and-writing-tickets/scripts/record-schema.ts validateRecord.",
+      "Reversing only three exact requirement replacements and appended comment reproduces the original ticket byte-for-byte."
+    ],
+    "before_errors": [],
+    "after_errors": [],
+    "preserved_history_checks": {
+      "exactMqTransformationReadback": true,
+      "reverseOnlyAuthorizedChangesMatchesOriginal": true,
+      "allFrontmatterUnchanged": true,
+      "existingCommentsByteForByte": true,
+      "correctedPreflight0053AdditionByteForByte": true,
+      "claimedStatusUnchanged": true,
+      "allCitedEvidenceExists": true
+    },
+    "validator": "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/record-schema.ts"
+  },
+  "canonical_ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+  "before_sha256": "994cb930e25bfa87169209fa93b81672d0e6478ea60b19497f67da6b1a1b70a8",
+  "after_sha256": "544db8f9bb8d322c6f0b0e1a0fcd2aa3c2d1ab46df8143eb0eee2dfca89315c1",
+  "work_status": {
+    "before": "claimed",
+    "after": "claimed",
+    "unchanged": true
+  },
+  "publication": {
+    "status": "required",
+    "owner": "Parent handles review, commit, merge and publication; no staging/commit performed by this slice."
+  },
+  "rendered": null,
+  "limits": [
+    "No device access or source changes.",
+    "No restoration performed or claimed.",
+    "Build/version reconciliation, independent acceptance review and integration/publication are parent-owned and not claimed passed.",
+    "Only the canonical ticket and this result JSON mutated by this slice."
+  ]
+}
