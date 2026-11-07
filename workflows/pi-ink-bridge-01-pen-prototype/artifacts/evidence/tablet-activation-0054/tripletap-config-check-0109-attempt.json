@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-11-07T03:49:36.919Z",
+  "authority": "User request install triple tap; read-only existing-configuration validation, not a retry of inspection",
+  "scriptSHA256": "40c583aaab6ab1881d5ce7408ff5c26743c55a8dd7ccc75cab93b0da56adf8c1",
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s -- CHECK_EXISTING_TRIPLETAP_CONFIG_0109"
+  ],
+  "automaticRetry": false,
+  "deviceWrites": 0,
+  "serviceChanges": 0,
+  "sourceConfigExecuted": false,
+  "hookCommandsDisclosed": false
+}

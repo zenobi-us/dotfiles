@@ -1,0 +1,68 @@
+{
+  "created_at": "2026-11-07T03:50:19.948Z",
+  "operation": "ensure-xovi-tripletap-installed-0109",
+  "userRequest": "install triple tap",
+  "disposition": "Already installed, active and enabled; no reinstall or configuration changes necessary",
+  "pinnedUpstreamCommit": "46c6a959a6761bbda7410c905640a0ff48c2d9d9",
+  "upstream": "https://github.com/rmitchellscott/xovi-tripletap/tree/46c6a959a6761bbda7410c905640a0ff48c2d9d9",
+  "exactInstalledRuntimeMatchesPinnedUpstream": [
+    {
+      "name": "main.sh",
+      "bytes": 7118,
+      "sha256": "7d48bef7eaa29c47fdd2052b5c8feb6512b967d7026b532e0d2a111fc7331d0a"
+    },
+    {
+      "name": "config.default",
+      "bytes": 1440,
+      "sha256": "82a3e184943d73b210d1b5cb8cb95a3c7049ec0bb4db4e6394f77cedde292cc5"
+    },
+    {
+      "name": "evtest.arm64",
+      "bytes": 54224,
+      "sha256": "bb2d491c93e3c7069f546c4f4545cee2beb87b85ef8b7883670716846c59591a"
+    },
+    {
+      "name": "xovi-tripletap.service",
+      "bytes": 203,
+      "sha256": "a2f8350dc66ec0b72d16ea3546dea4a2e9e7b0c86c25f5abc2d66e10f8e5260c"
+    }
+  ],
+  "service": {
+    "name": "xovi-tripletap.service",
+    "loadState": "loaded",
+    "activeState": "active",
+    "subState": "running",
+    "unitFileState": "enabled",
+    "fragment": "/etc/systemd/system/xovi-tripletap.service",
+    "dropIns": [],
+    "enabledLink": "/etc/systemd/system/multi-user.target.wants/xovi-tripletap.service -> /etc/systemd/system/xovi-tripletap.service"
+  },
+  "configuration": {
+    "sha256": "84cf2e14cf350dba790c8785de8dbe618adb61532bbe1696f69bd56bc7c0c913",
+    "enableVersionSwitching": false,
+    "triggerAction": "start",
+    "timeThresholdSeconds": 2,
+    "requiredPresses": 3,
+    "preStartCommands": "empty",
+    "postStartCommands": "empty",
+    "preservedWithoutExecution": true
+  },
+  "device": {
+    "model": "reMarkable Ferrari",
+    "firmware": "3.28.0.172",
+    "architecture": "aarch64",
+    "rootMount": "read-only",
+    "etcOverlay": "mounted; preserved",
+    "dropbearBind": "mounted; preserved",
+    "powerEvent0": "character device present; not captured by our inspection"
+  },
+  "upstreamInstallerNotExecuted": "Its enable.sh unmounts /etc recursively on Paper Pro. Existing exact-match install makes that unnecessary; no rootfs remount, unit rewrite or service restart was performed.",
+  "piInk": "Its transient unit remains absent after full boot. Triple-tap has no post-start hook, so do not claim automatic Pi Ink bridge startup.",
+  "physicalActivationProof": "Pending owner-controlled one triple-press after fresh normal save/close; no automatic activation by this operation",
+  "deviceWrites": 0,
+  "serviceChanges": 0,
+  "modsAutostartAtOSBootInstalled": false,
+  "notebookAccess": false,
+  "oursInputCapture": false,
+  "remaining": "Verify physical triple-press restores XOVI/AppLoad or Pi Ink Library entry. Do not repeat trigger automatically; start mode restarts XOVI even if already active."
+}

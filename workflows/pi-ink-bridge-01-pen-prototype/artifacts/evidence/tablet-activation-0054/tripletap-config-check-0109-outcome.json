@@ -1,0 +1,13 @@
+{
+  "created_at": "2026-11-07T03:49:37.181Z",
+  "scriptSHA256": "40c583aaab6ab1881d5ce7408ff5c26743c55a8dd7ccc75cab93b0da56adf8c1",
+  "exitCode": 0,
+  "deadlineHit": false,
+  "stdout": "ENABLE_VERSION_SWITCHING=false\nTRIGGER_ACTION=start\nTIME_THRESHOLD=2\nREQUIRED_PRESSES=3\nPRE_START_COMMANDS=empty\nPOST_START_COMMANDS=empty\nEXISTING_TRIPLETAP_CONFIG_CHECK_COMPLETE_NO_CHANGES\n",
+  "stderr": "",
+  "success": true,
+  "deviceWrites": 0,
+  "serviceChanges": 0,
+  "configurationSourced": false,
+  "automaticRetry": false
+}

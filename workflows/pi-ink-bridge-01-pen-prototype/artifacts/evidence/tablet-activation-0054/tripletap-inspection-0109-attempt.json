@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-11-07T03:47:54.996Z",
+  "authority": "Fresh user request: install triple tap; installation-prerequisite inspection only, no changes",
+  "scriptSHA256": "a8900700a509a9ee9169044337bb34098b2b6fbe605ee3d63557ad0a1d7c1b0d",
+  "command": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "root@10.11.99.1",
+    "sh -s -- INSPECT_TRIPLETAP_INSTALL_0109"
+  ],
+  "automaticRetry": false,
+  "deviceWrites": 0,
+  "serviceChanges": 0,
+  "inputCapture": false,
+  "deadlineMS": 90000
+}
