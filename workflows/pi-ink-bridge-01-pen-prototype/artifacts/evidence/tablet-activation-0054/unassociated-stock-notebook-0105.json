@@ -1,0 +1,29 @@
+{
+  "created_at": "2026-11-07T02:07:16.740Z",
+  "operation": "unassociated-stock-notebook-0105",
+  "ownerResponse": "confirmed. drawing toolbar popup shows expected in notebook i created",
+  "ownerConfirmedInstruction": {
+    "normalStockNotebook": "Pi Ink unassociated check",
+    "drawingToolbarStatus": "Unassociated document",
+    "send": "disabled",
+    "sendNotSelected": true
+  },
+  "observationType": "Owner report; no notebook contents, title inventory or UUID extracted",
+  "unassociatedDocumentProtectionPassed": true,
+  "authenticatedRequestStates": [
+    {
+      "jobId": "27b6a63d193b2fbcdf2bf49eeffd4243",
+      "state": "completed",
+      "documentUUID": "60d040a0-b4f4-425a-8b35-4cba310b84e9"
+    },
+    {
+      "jobId": "50bdfd2c593cfc98692883dc226f7209",
+      "state": "pending",
+      "documentUUID": "ac79fff8-bb09-4bbd-a769-063ab2d7fe50"
+    }
+  ],
+  "unrelatedNotebookSubmitted": false,
+  "runtimeSSH": false,
+  "deviceSetupChanges": false,
+  "remaining": "Terminal cancellation; reboot/activation boundary and separately approved restoration. Only tested firmware may be claimed."
+}

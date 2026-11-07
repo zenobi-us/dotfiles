@@ -1,0 +1,53 @@
+{
+  "operation": "read-only-reboot-probe-0106",
+  "status": "proposed_only_not_approved_or_executed",
+  "purpose": "Record the real reboot/activation boundary without assuming that installed XOVI files or a transient bridge service imply boot activation.",
+  "owner_steps_before_approval": [
+    "Save and close all tablet work using normal stock controls",
+    "Reboot the tablet using its normal power menu; do not install a firmware update",
+    "Wait for normal Library startup, then connect PC USB",
+    "Explicitly approve only this exact read-only probe after those steps"
+  ],
+  "script": {
+    "durable_private_path": "/home/zenobius/.local/state/pi-ink-recovery-0091-lTFG6Q/prepared/device-read-only-reboot-probe-0106.sh",
+    "bytes": 4757,
+    "sha256": "7ecc4bee6e482e0ad55a74513fd3b5ca8ac1a7847e81049bb4ac12b0a7aff26c",
+    "arguments": ["APPROVE_READ_ONLY_REBOOT_PROBE_0106", "REBOOTED_DOCUMENTS_SAVED_CLOSED"],
+    "host_shell_syntax": "passed",
+    "host_missing_approval_smoke": "exit1 before root/device checks; exact rejection message",
+    "host_wrong_approval_smoke": "exit1 before root/device checks; exact rejection message",
+    "private_host_script_mode": "600"
+  },
+  "read_only_scope": [
+    "Check tested IMG_VERSION3.28.0.172 and original stock Xochitl SHA-256",
+    "Verify exact owned capsule marker and current client/QML/runtime/public-CA/QMD/adapter/backup/quarantined-module checksums; no credential or notebook contents",
+    "Verify the original upstream webserver-remote.so remains absent from extensions.d",
+    "Read only a SHA-256 of private pairing/association state, never its contents",
+    "Read the existing owned unit invocation record, validate it as a32-hex identifier",
+    "Record current boot ID and uptime; no before/after boot-ID comparison is claimed because no pre-reboot boot ID was collected",
+    "Query only the named owned bridge unit and Xochitl service state; no PID/process scans or journal dumps",
+    "Read the two known UDC controller states",
+    "Report only listening addresses for stock ports80/81 and the bridge UI9821 from kernel socket tables"
+  ],
+  "expected_not_claimed": "The bridge service was observed transient and is not boot-enabled. It may be absent/offline after reboot. Installed-file verification alone is not an activation pass. Actual probe results determine any separately proposed repair.",
+  "execution_boundary": {
+    "transport": "Cable-connected SSH setup/lifecycle inspection only",
+    "attempt_limit": 1,
+    "automatic_retry": false,
+    "deadline_ms": 90000,
+    "device_file_writes": 0,
+    "service_starts_or_restarts": 0,
+    "editor_restarts_by_script": 0,
+    "document_access_export_import_send_move_delete": false,
+    "credential_extraction_or_changes": false,
+    "cleanup_or_rollback": false,
+    "firmware_or_XOVI_update_or_autostart_changes": false
+  },
+  "preserved_request_state_before_owner_reboot": {
+    "A": {"job_id":"27b6a63d193b2fbcdf2bf49eeffd4243","state":"completed","document_uuid":"60d040a0-b4f4-425a-8b35-4cba310b84e9"},
+    "B": {"job_id":"50bdfd2c593cfc98692883dc226f7209","state":"pending","document_uuid":"ac79fff8-bb09-4bbd-a769-063ab2d7fe50"},
+    "desktop_coordinator": "Keep ink-native-origin-0091 alive; do not cancel B or close its originating session"
+  },
+  "later_repairs": "Not approved by this proposal. Any service start, XOVI activation, restart or restoration requires its own actual-state-based hash-pinned script and fresh owner approval.",
+  "remaining_acceptance": "Record actual reboot behavior; preserve terminal cancellation; perform separately approved restoration and baseline verification. Firmware updates remain untested, not implied safe. Ticket01 is not complete."
+}
