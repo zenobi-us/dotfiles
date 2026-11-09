@@ -200,3 +200,8 @@ Review attempt 3 checked the full source at `3d1b282520a74db5409457f83ed0f766670
 The fresh suite passed 14 tests and 93 expectations. The focused compile proof accepted a hyphenated case ID and emitted the affected Surf keys. The reported native failure was not rerun. The parent validated the authoritative receipt, immutable artifact, exact clean source, canonical comment and existing sealed Surf run. Reviewer pane `w73:p4` is acknowledged and closed. Workspace `w73` remains open. No source change ran.
 
 Review publication: `3dac61da`. All earlier implementation, review and fix records remain unchanged.
+
+
+## Surf identity fix attempt 2
+
+The user requested a fresh independent fix for SPEC-R3-001. [fix-start-0019](../events/fix-start-0019.yaml) consumes [review-0017](../events/review-0017.yaml) at source `3d1b282520a74db5409457f83ed0f766670b86cb`. Public IDs and their accepted grammar must not change. STD-R3-001 remains advisory and unselected. No new fix result or review verdict exists yet.
