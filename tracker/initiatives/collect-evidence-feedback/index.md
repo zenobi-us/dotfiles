@@ -251,7 +251,16 @@ The delivered skills must state their supported driver capabilities and limits. 
 
 ## Tickets
 
-No child tickets have been created.
+- [Preserve Surf and Playwright in collect-evidence](../../tickets/collect-evidence-feedback-01-web.md)
+- [Collect accurate native TUI evidence](../../tickets/collect-evidence-feedback-02-tui.md)
+- [Collect scoped native GUI evidence](../../tickets/collect-evidence-feedback-03-gui.md)
+- [Browse immutable evidence in a local feedback session](../../tickets/collect-evidence-feedback-04-viewer.md)
+- [Create and save screenshot feedback pins](../../tickets/collect-evidence-feedback-05-pins.md)
+- [Edit and undo feedback without lost changes](../../tickets/collect-evidence-feedback-06-edits.md)
+- [Recover drafts and prevent incomplete feedback exports](../../tickets/collect-evidence-feedback-07-drafts.md)
+- [Record supported video and attach timestamped feedback](../../tickets/collect-evidence-feedback-08-video.md)
+- [Review historical evidence without rewriting it](../../tickets/collect-evidence-feedback-09-history.md)
+- [Collect feedback from one workflow request](../../tickets/collect-evidence-feedback-10-request.md)
 
 ## Comments
 
