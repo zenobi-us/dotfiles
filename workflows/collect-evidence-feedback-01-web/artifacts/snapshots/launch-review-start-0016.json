@@ -1,0 +1,27 @@
+{
+  "runId": "1097d593-4597-47de-8e63-df6b5e8f828d",
+  "target": "w73:p4",
+  "operationId": "collect-evidence-feedback-01-web-review-0017",
+  "contextFile": "/home/zenobius/.local/state/result-delivery/runs/1097d593-4597-47de-8e63-df6b5e8f828d/context.json",
+  "deliveryContext": {
+    "schema": "result-delivery/v1",
+    "kind": "context",
+    "audience": "agent",
+    "mode": "artifact-reference",
+    "runId": "1097d593-4597-47de-8e63-df6b5e8f828d",
+    "operationId": "collect-evidence-feedback-01-web-review-0017",
+    "target": {
+      "path": "/var/home/zenobius/.local/state/result-delivery/runs/web-review-0017-ntpR2G/result.json",
+      "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-review-0017-ntpR2G/result.json",
+      "schema": "worktree-receipt/v1"
+    }
+  },
+  "resultTarget": {
+    "path": "/var/home/zenobius/.local/state/result-delivery/runs/web-review-0017-ntpR2G/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-review-0017-ntpR2G/result.json",
+    "schema": "worktree-receipt/v1"
+  },
+  "muxer": "herdr",
+  "agent": "omp",
+  "depth": 1
+}
