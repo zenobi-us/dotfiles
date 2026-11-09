@@ -1,0 +1,27 @@
+{
+  "runId": "9c5a3b4a-f75d-472f-a21c-96ee01922566",
+  "target": "w73:p3",
+  "operationId": "collect-evidence-feedback-01-web-fix-0014",
+  "contextFile": "/home/zenobius/.local/state/result-delivery/runs/9c5a3b4a-f75d-472f-a21c-96ee01922566/context.json",
+  "deliveryContext": {
+    "schema": "result-delivery/v1",
+    "kind": "context",
+    "audience": "agent",
+    "mode": "artifact-reference",
+    "runId": "9c5a3b4a-f75d-472f-a21c-96ee01922566",
+    "operationId": "collect-evidence-feedback-01-web-fix-0014",
+    "target": {
+      "path": "/var/home/zenobius/.local/state/result-delivery/runs/web-fix-0014-gz0pTP/result.json",
+      "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-fix-0014-gz0pTP/result.json",
+      "schema": "worktree-receipt/v1"
+    }
+  },
+  "resultTarget": {
+    "path": "/var/home/zenobius/.local/state/result-delivery/runs/web-fix-0014-gz0pTP/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-fix-0014-gz0pTP/result.json",
+    "schema": "worktree-receipt/v1"
+  },
+  "muxer": "herdr",
+  "agent": "omp",
+  "depth": 1
+}
