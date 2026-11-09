@@ -35,7 +35,7 @@ None.
 
 ## Remaining findings
 
-Required Surf native-host connection unavailable. Source implementation and acceptance checks remain outstanding. The result writer created the event, then transport failed with ENOTDIR under /proc/self/fd/8/home. The writer was not rerun.
+Required Surf native-host connection unavailable. Source implementation and acceptance checks remain outstanding. The result writer created the event, then transport failed with ENOTDIR under /proc/self/fd/8/home. The writer was not rerun. The parent recovered delivery through the canonical physical path, verified the unchanged result and acknowledged it. Surf remains the implementation blocker.
 
 ## Latest reviewer verdict
 
@@ -55,3 +55,5 @@ Not merged, pushed, submitted, or completed. Ticket remains claimed. Source HEAD
 - **Inspection input:** [Start inspection](../artifacts/snapshots/inspection-start-0001.json).
 - **Launch input:** [Child identity](../artifacts/snapshots/launch-start-0001.json).
 
+
+- **Parent completion:** [start-complete-0003](../events/start-complete-0003.yaml).

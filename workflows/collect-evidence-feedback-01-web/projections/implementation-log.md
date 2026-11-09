@@ -23,5 +23,5 @@ Restore Surf extension/native-host connectivity before the mandatory real workfl
 
 ## Delivery boundary
 
-The authoritative event exists. Its original writer failed transport with ENOTDIR under /proc/self/fd/8/home. Preserve the [recovery payload](../artifacts/snapshots/result-recovery-implementation-0002.json) and original context. Do not repeat the domain mutation. Parent acknowledgement is pending.
+The authoritative event exists. Its original writer failed transport with ENOTDIR under /proc/self/fd/8/home. Preserve the [recovery payload](../artifacts/snapshots/result-recovery-implementation-0002.json) and original context. Do not repeat the domain mutation. The parent recovered delivery through the canonical physical path. The run, operation, reference and payload remain unchanged. The parent verified and acknowledged the blocked result. [start-complete-0003](../events/start-complete-0003.yaml) records the reconciliation. Pane w6Y:p2 is closed. The worktree and workspace remain available. Surf remains the required prerequisite.
 
