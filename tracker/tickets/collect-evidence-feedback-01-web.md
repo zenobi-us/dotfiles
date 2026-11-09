@@ -48,3 +48,12 @@ This slice covers initiative user stories 1, 2, 3, 4, 5, 6, 10, 14, 15, 16, 17, 
 - Reviewed tree: `9480fa07ed2783674efa8f0d3efc6bc7daa81047`.
 - Timestamp: `2026-11-09T07:55:32.505733+00:00`.
 - Artifact: [Immutable review](../../workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0011.md).
+
+
+### Independent review review-0017
+
+- Verdict: FAILURE.
+- Reviewed commit: `3d1b282520a74db5409457f83ed0f766670b86cb`.
+- Reviewed tree: `0c68cbc0d31e344ea2071352e81ca33c13c31b9f`.
+- Timestamp: `2026-11-09T11:08:36.505231+00:00`.
+- Artifact: [Immutable review](../../workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0017.md).
