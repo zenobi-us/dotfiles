@@ -1,0 +1,31 @@
+{
+  "schema": "worktree-launch/v1",
+  "phase_start": "workflows/collect-evidence-feedback-01-web/events/fix-start-0025.yaml",
+  "created_at": "2026-11-09T21:34:32.625Z",
+  "source_commit": "12b6345ac32f4ae30b078e5344fb5bae7a1ee244",
+  "runId": "fa07566c-e3a5-49b2-8607-93f084f4fb71",
+  "target": "w73:p7",
+  "operationId": "collect-evidence-feedback-01-web-fix-0026",
+  "contextFile": "/home/zenobius/.local/state/result-delivery/runs/fa07566c-e3a5-49b2-8607-93f084f4fb71/context.json",
+  "deliveryContext": {
+    "schema": "result-delivery/v1",
+    "kind": "context",
+    "audience": "agent",
+    "mode": "artifact-reference",
+    "runId": "fa07566c-e3a5-49b2-8607-93f084f4fb71",
+    "operationId": "collect-evidence-feedback-01-web-fix-0026",
+    "target": {
+      "path": "/var/home/zenobius/.local/state/result-delivery/runs/web-fix-0026-CND2oM/result.json",
+      "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-fix-0026-CND2oM/result.json",
+      "schema": "worktree-receipt/v1"
+    }
+  },
+  "resultTarget": {
+    "path": "/var/home/zenobius/.local/state/result-delivery/runs/web-fix-0026-CND2oM/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-fix-0026-CND2oM/result.json",
+    "schema": "worktree-receipt/v1"
+  },
+  "muxer": "herdr",
+  "agent": "omp",
+  "depth": 1
+}
