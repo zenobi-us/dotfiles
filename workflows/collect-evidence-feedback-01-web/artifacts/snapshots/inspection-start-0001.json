@@ -1,0 +1,116 @@
+{
+  "ticket": {
+    "id": "collect-evidence-feedback-01-web",
+    "title": "Preserve Surf and Playwright in collect-evidence",
+    "documentType": "enhancement",
+    "fields": {
+      "blocked_by": [],
+      "id": "collect-evidence-feedback-01-web",
+      "parent": "collect-evidence-feedback",
+      "schema": "tracker-ticket/v1",
+      "sequence": 1,
+      "title": "Preserve Surf and Playwright in collect-evidence",
+      "triage": "ready-for-agent",
+      "type": "enhancement",
+      "work_status": "claimed"
+    },
+    "ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+    "backend": "local-markdown",
+    "status": "claimed",
+    "blockedBy": [],
+    "body": "# Preserve Surf and Playwright in collect-evidence\n\n## What to build\n\nCollect, validate and report real web evidence through collect-evidence with both existing web drivers.\n\nImplement this complete slice. Follow the collect-evidence-feedback initiative and its common schema, command, storage, safety and testing rules.\n\n## Acceptance criteria\n\n- **Preserve the existing** Surf and Playwright drivers, typed browser plans, preconditions, attended behaviour and resource cleanup. Keep existing verdict, report and generated-comment capabilities available through the new skill.\n- **Run a real** controlled-page workflow with each driver before removing the old browser-only skill. Check the visible page, actual screenshot, assertion outcome and cleanup. A missing required driver blocks the cutover; it does not count as a pass.\n- **Produce collect-evidence/v1 run,** plan, case, asset, event and error records. Version owned Markdown frontmatter. Use stable IDs, ordered steps, descriptive capture sequences, real capture times, SHA-256 hashes, dimensions and driver provenance.\n- **Keep capture status** separate from assertion results. Keep retries as new captures. Reject invalid records, missing media and unsupported explicit schemas without a valid-looking partial run.\n- **Expose the specified** evidence commands through executable mise Bun CrustJS entrypoints. Check command behaviour from an unrelated directory. Honour common output flags, exit codes and dry-run limits.\n- **Resolve the evidence** store through shared-context. Capture outside the watched source tree and finalize into the selected store. Seal completed media. Preserve third-party outputs and existing historical evidence.\n- **Block unapproved confirmations** and credential prompts. Perform no remote Git operation, commit, push, credential entry or automatic tool installation during capture. Close only owned resources.\n- **Migrate active callers** and skill authoring rules in the same clean cutover. Remove the old active entrypoints and aliases only after both driver workflow checks pass. Update the relevant docs and public workflow checks.\n\n## Verification\n\nUse the public workflow boundary approved in the initiative. Exercise the installed commands and the applicable HTTP, browser or native-driver surface. Use temporary resolved stores. Keep regression checks for consumer-visible failures. Do not prove behaviour from generated source text. Update affected documentation after verification.\n\n## Specification coverage\n\nThis slice covers initiative user stories 1, 2, 3, 4, 5, 6, 10, 14, 15, 16, 17, 18, 19, 20, 21, 22, 49, 50, 51, 53. Keep the initiative as the complete specification.\n\n## Comments\n\nNo discussion has been recorded."
+  },
+  "workflow": {
+    "ticketId": "collect-evidence-feedback-01-web",
+    "receipts": [],
+    "events": [],
+    "inspection": {
+      "historyValid": true,
+      "source": {
+        "state": "available",
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+        "branch": "feature/collect-evidence-feedback-01-web",
+        "commit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+        "tree": "c34aa8898329be9caf9b345685c8cecafaeba57d",
+        "dirty": false,
+        "candidates": 1
+      },
+      "ownership": "unknown",
+      "worktrees": [
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+          "branch": "master"
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+          "branch": "feature/collect-evidence-feedback-01-web"
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+          "branch": "feature/pi-ink-bridge-02-install-client"
+        },
+        {
+          "path": "/home/zenobius/.omp/wt/cleanup-6fe6fe2",
+          "branch": "cleanup"
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+          "branch": "closeout/pi-ink-bridge-01"
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/reconcile-origin-master-ticket-01",
+          "branch": "reconcile/origin-master-ticket-01"
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+          "branch": "prototype/pi-ink-bridge-01-pen-prototype"
+        }
+      ],
+      "commits": [
+        {
+          "commit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+          "paths": [
+            "tracker/tickets/collect-evidence-feedback-01-web.md"
+          ],
+          "kind": "tracker-evidence-only",
+          "relatedBy": "ticket-path"
+        },
+        {
+          "commit": "015eaef30206163cb4f684d16437448cf0144f54",
+          "paths": [
+            "tracker/initiatives/collect-evidence-feedback/index.md",
+            "tracker/tickets/collect-evidence-feedback-01-web.md",
+            "tracker/tickets/collect-evidence-feedback-02-tui.md",
+            "tracker/tickets/collect-evidence-feedback-03-gui.md",
+            "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+            "tracker/tickets/collect-evidence-feedback-05-pins.md",
+            "tracker/tickets/collect-evidence-feedback-06-edits.md",
+            "tracker/tickets/collect-evidence-feedback-07-drafts.md",
+            "tracker/tickets/collect-evidence-feedback-08-video.md",
+            "tracker/tickets/collect-evidence-feedback-09-history.md",
+            "tracker/tickets/collect-evidence-feedback-10-request.md"
+          ],
+          "kind": "tracker-evidence-only",
+          "relatedBy": "ticket-path"
+        }
+      ],
+      "artifacts": []
+    },
+    "recordedAttempts": {
+      "review": 0,
+      "fix": 0
+    },
+    "sourceCommit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+    "sourceTree": "c34aa8898329be9caf9b345685c8cecafaeba57d"
+  },
+  "decision": {
+    "action": "start",
+    "mode": "takeover",
+    "label": "Inspect existing work",
+    "reason": "Existing work or incomplete inspection needs reconciliation. Tracker and evidence-only commits do not prove implementation. Preserve changes and resolve ownership before takeover.",
+    "requiredApproval": true,
+    "inputs": [
+      "tracker/tickets/collect-evidence-feedback-01-web.md"
+    ]
+  }
+}
