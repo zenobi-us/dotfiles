@@ -1,0 +1,50 @@
+{
+  "timestamp": "2026-11-09T05:17:45.949Z",
+  "source_commit": "16d1122ae182d38630af5126dcf00a0aa7e8b626",
+  "source_tree": "149bf25a63f328a6e0df06004d1b397792851ec1",
+  "sole_parent": "7e2faef76a47130e9e5e4c8beab5390d22bed8d4",
+  "approved_base": "818b7a4de13140fae1f5ff3476e5b35c08e86a46",
+  "stable_base": "7e2faef76a47130e9e5e4c8beab5390d22bed8d4",
+  "backup_ref": "refs/worktree-recovery/pi-ink-bridge-02-install-client/review-0069",
+  "prior_reviewed_source": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+  "prior_merge_base": "155e01d9a88d0b2a4bff539d1685f637a4ccc3ad",
+  "product_byte_equivalence": {
+    "exit_code": 0,
+    "scope": "All 26 ticket product paths; identical path set and exact bytes versus prior review. Other control-skill differences are inherited approved base history, not source changes."
+  },
+  "clean_source": true,
+  "metadata_diff_from_base": [],
+  "changed_product_paths": [
+    "README.md",
+    "bun.lock",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/coordinator-discovery.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/index.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/installation-client.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/installation-service.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/mise.toml",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/package.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/scripts/provision-tablet.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/server-identity.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/Connections.qml",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/application.qrc",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/entry",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/manifest.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/sidebar.qmd",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/appload.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/appload_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/build.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/installation.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/installation_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/main.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/coordinator-identity.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/installation-service.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/production-install.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tsconfig.json"
+  ],
+  "worktrunk_commands": [
+    "step squash master --stage none",
+    "step rebase master"
+  ],
+  "new_independent_review_required": true
+}

@@ -1,0 +1,114 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "finish-failed-0080",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "finish",
+  "event": "phase-result",
+  "attempt": 3,
+  "parent_receipt": "finish-merged-0079",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "16d1122ae182d38630af5126dcf00a0aa7e8b626",
+  "source_tree": "149bf25a63f328a6e0df06004d1b397792851ec1",
+  "created_at": "2026-11-09T05:30:02.268Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/finish-0071"
+  },
+  "status": "FINISH_FAILED",
+  "checkpoint": "merged",
+  "next_step": "Inspect scoped dependency state and restore declared dependencies without source changes; revalidate before publication.",
+  "review_receipt": "workflows/pi-ink-bridge-02-install-client/events/review-0076.yaml",
+  "reviewed_source_commit": "16d1122ae182d38630af5126dcf00a0aa7e8b626",
+  "reviewed_source_tree": "149bf25a63f328a6e0df06004d1b397792851ec1",
+  "base_observed": "7e2faef76a47130e9e5e4c8beab5390d22bed8d4",
+  "base_observed_tree": "50460acb98d4900a94899b7bbd845afe3d682c9f",
+  "base_worktree_has_unrelated_edits": true,
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_url": "git@github.com:zenobi-us/dotfiles.git",
+  "expected_merge_tree": "149bf25a63f328a6e0df06004d1b397792851ec1",
+  "worktrunk_effective_merge_config": {
+    "squash": true,
+    "commit": false,
+    "rebase": false
+  },
+  "worktrunk_preflight_merge_conflicts": false,
+  "authorization": "User explicitly requested finish pi-ink-bridge-02-install-client. Only verified integration/publication/completion and scoped cleanup are authorized. Do not discard unrelated edits, rewrite reviewed source, force-push, or run device/service actions.",
+  "recovery": {
+    "mode": "begin",
+    "authorization_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/finish-0071/recovery-approval.json",
+    "reason": "Fresh review0076 SUCCESS exact clean single-commit candidate atop stable base; prior failed attempt never integrated."
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/review-complete-0077.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-review-0077.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/finish-failed-0080.json"
+    }
+  ],
+  "merged_commit": "16d1122ae182d38630af5126dcf00a0aa7e8b626",
+  "pushed": false,
+  "ticket_completed": false,
+  "worktree_removed": false,
+  "workspace_closed": false,
+  "remote_observed": "1b5558e32d1877e8f95999a6eb4b1a83bbdf6987",
+  "proposed_merge_message": "feat(pi-ink): complete pi-ink-bridge-02-install-client\n\nInstall and launch the production tablet annotation client.\nPreserve product content reviewed at b6f4c7af; reconcile canonical ticket and workflow metadata onto the approved base.\n\nTicket: tracker/tickets/pi-ink-bridge-02-install-client.md\nPrior review: workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0069.md\nRequired candidate review: workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0076.md\n\n",
+  "relevant_adrs": [
+    "docs/adr/0001-pi-ink-cleanup-trust-boundary.md"
+  ],
+  "prepared": {
+    "reviewed_source_commit": "16d1122ae182d38630af5126dcf00a0aa7e8b626",
+    "reviewed_source_tree": "149bf25a63f328a6e0df06004d1b397792851ec1",
+    "base_commit": "7e2faef76a47130e9e5e4c8beab5390d22bed8d4",
+    "expected_tree": "149bf25a63f328a6e0df06004d1b397792851ec1",
+    "remote": "origin",
+    "remote_ref": "refs/heads/master",
+    "remote_commit": "1b5558e32d1877e8f95999a6eb4b1a83bbdf6987",
+    "merge_message": "feat(pi-ink): complete pi-ink-bridge-02-install-client\n\nInstall and launch the production tablet annotation client.\nPreserve product content reviewed at b6f4c7af; reconcile canonical ticket and workflow metadata onto the approved base.\n\nTicket: tracker/tickets/pi-ink-bridge-02-install-client.md\nPrior review: workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0069.md\nRequired candidate review: workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0076.md\n\n"
+  },
+  "merged_tree": "149bf25a63f328a6e0df06004d1b397792851ec1",
+  "merged_parent": "7e2faef76a47130e9e5e4c8beab5390d22bed8d4",
+  "integration": {
+    "review_receipt": "workflows/pi-ink-bridge-02-install-client/events/review-0076.yaml",
+    "reviewed_source_commit": "16d1122ae182d38630af5126dcf00a0aa7e8b626",
+    "reviewed_source_tree": "149bf25a63f328a6e0df06004d1b397792851ec1",
+    "base_commit": "7e2faef76a47130e9e5e4c8beab5390d22bed8d4",
+    "expected_tree": "149bf25a63f328a6e0df06004d1b397792851ec1",
+    "merged_commit": "16d1122ae182d38630af5126dcf00a0aa7e8b626",
+    "merged_tree": "149bf25a63f328a6e0df06004d1b397792851ec1",
+    "merged_parent": "7e2faef76a47130e9e5e4c8beab5390d22bed8d4",
+    "remote": "origin",
+    "remote_ref": "refs/heads/master"
+  },
+  "failed_operation": "integrated_validation",
+  "failure": "Base checkout lacks declared bun type definitions; typecheck TS2688. Installer regression, Go race suite, actual CLI version and shell syntax passed. Integration preserved; no push/ticket completion/cleanup.",
+  "integrated_validation": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/finish-0071/integrated-validation.json"
+}

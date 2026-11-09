@@ -1,7 +1,19 @@
 ---
-title: Pi Ink finish blocked0072
+title: Install and launch the tablet client
 type: Report
 ---
+
+## Integrated; publication pending
+
+Review0076 SUCCESS on `16d1122ae182d38630af5126dcf00a0aa7e8b626`; both axes PASS, zero findings. Exact Worktrunk integration has tree `149bf25a63f328a6e0df06004d1b397792851ec1` and sole parent `7e2faef76a47130e9e5e4c8beab5390d22bed8d4`. Installer 8 tests/31 assertions, Go race suite, native host CLI and shell syntax passed. Base dependency repair restored locked Bun types; local typecheck then passed. See events/finish-reconciled-0081.json and artifacts/evidence/finish-0071/{integrated-validation,dependency-recovery}.json. No push, ticket completion or cleanup yet.
+
+<details><summary>Preserved history</summary>
+
+## Review in progress
+
+Candidate `16d1122ae182d38630af5126dcf00a0aa7e8b626`; tree `149bf25a63f328a6e0df06004d1b397792851ec1`. Single parent `7e2faef76a47130e9e5e4c8beab5390d22bed8d4`. All 26 product paths match prior review0069 exactly. Both ticket histories preserved. Review0076 must independently assess this exact target. No integration or publication yet.
+
+<details><summary>Preserved history</summary>
 
 # Finish blocked before merge — attempt0071
 
@@ -598,6 +610,8 @@ The canonical inspector requested product-outcome reconciliation after lifecycle
 The parent verified authoritative fix0066 against the typed result and exact clean source `b6f4c7af4da729d1dfb175855247b74dc3d106d3` / tree `2c63ba1d51dd94de767f0d688719f938a0a97031`. The actual three-file diff, recorded8 passing tests/31assertions, typecheck, shell syntax and five isolated smoke outcomes support STD-001 and SPEC-001 resolution. These checks were not rerun solely to confirm the fixer.
 
 Fixer OMP in w6X:p6 completed at sequence481 and closed with result ok. The workspace and worktree remain available. [Parent completion](../events/fix-complete-0067.json) and [parent validation](../artifacts/evidence/fix-0066/parent-validation.json). Both source commits are recorded in the fix result. Fresh independent review is required; no device, service, deployment, ARM64 rebuild, merge or push occurred.
+</details>
+</details>
 </details>
 </details>
 

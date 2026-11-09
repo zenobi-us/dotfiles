@@ -1,0 +1,202 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-complete-0077",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "review-0076",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "16d1122ae182d38630af5126dcf00a0aa7e8b626",
+  "source_tree": "149bf25a63f328a6e0df06004d1b397792851ec1",
+  "created_at": "2026-11-09T05:27:57.721Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/review-parent-0070"
+  },
+  "status": "completed",
+  "review_receipt": "workflows/pi-ink-bridge-02-install-client/events/review-0076.yaml",
+  "review_artifact": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0076.md",
+  "reviewed_source_commit": "16d1122ae182d38630af5126dcf00a0aa7e8b626",
+  "reviewed_source_tree": "149bf25a63f328a6e0df06004d1b397792851ec1",
+  "reviewed_base_commit": "7e2faef76a47130e9e5e4c8beab5390d22bed8d4",
+  "open_finding_ids": [],
+  "resolved_finding_ids": [
+    "STD-001",
+    "SPEC-001"
+  ],
+  "tracker_review_commit": null,
+  "snapshot": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-review-0077.md",
+  "recovery": {
+    "mode": "retry",
+    "authorization_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/finish-0071/recovery-approval.json",
+    "reason": "Mandatory fresh review after metadata-only approved Worktrunk source preparation; both independent axes passed."
+  },
+  "validation_results": [
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec bun@1.4.3 -- bun test test/production-install.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "status": "passed",
+      "exit_code": 0,
+      "tests_passed": 8,
+      "tests_failed": 0,
+      "assertions": 31
+    },
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec bun@1.4.3 -- bun run typecheck",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "command": "sh -n tablet-client/production-install.sh scripts/provision-tablet.sh tablet-client/build.sh tablet-appload/entry",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "scenario": "Actual installer entry point, no arguments and malformed digests",
+      "status": "passed",
+      "command": "sh tablet-client/production-install.sh; sh tablet-client/production-install.sh bad bad",
+      "observed_exit_codes": [
+        1,
+        1
+      ],
+      "output": [
+        "Pi Annotations: Use the generated trusted desktop command, including its ZIP and server digests.",
+        "Pi Annotations: Invalid expected SHA-256 digest."
+      ],
+      "scope": "Rejected before host/device inspection; no fixture scaffolds."
+    },
+    {
+      "scenario": "Source and master exact identities after analysis",
+      "status": "passed",
+      "source_clean": true,
+      "staged_diff_empty": true,
+      "unstaged_diff_empty": true,
+      "untracked_empty": true
+    },
+    {
+      "scenario": "Immutable standalone Report Markdown schema",
+      "status": "passed",
+      "errors": [],
+      "bundle_validation": "Not applicable; standalone report, not an OKF bundle."
+    }
+  ],
+  "delivery": {
+    "context": "/var/home/zenobius/.local/state/result-delivery/runs/305c0752-5930-4621-8e93-c34da385c002/context.json",
+    "target": "/tmp/pi-ink-review-0075-idafJL/result.json",
+    "sha256": "aaab4a5a5035fc5390b2e9b42d7e8e3fb21afd35842a6e05ecae431a937cf64b",
+    "authoritative_yaml_matches": true,
+    "acknowledged": true
+  },
+  "reviewer": {
+    "agent": "omp",
+    "pane": "w6X:pA",
+    "session": "01a1bebf-4e88-70f5-a026-73a3d227de7e",
+    "completion_seq": 548,
+    "pane_closed": true,
+    "workspace_retained": true
+  },
+  "analysis_sessions": [
+    {
+      "axis": "Standards",
+      "outcome": "PASS",
+      "run_id": "5e4d66c0-f306-40d5-867e-a6194d0c3368",
+      "operation_id": "review0076-standards",
+      "session_id": "01a1bec1-7e67-7098-81fe-61a3d5979817",
+      "pane_id": "w6X:pB",
+      "agent": "omp",
+      "fresh": true,
+      "completion": "done",
+      "pane_closed": true,
+      "transport_verified": true,
+      "acknowledged": true,
+      "result_sha256": "fa26efd242e962c0073925e25b21542092767475adb82d8da842437644bfcf9d",
+      "result_ref": "file:///tmp/review0076-standards-result.json",
+      "delivery_context": "/tmp/review0076-standards-context.json",
+      "reviewed_path_count": 26,
+      "findings": []
+    },
+    {
+      "axis": "Specification",
+      "outcome": "PASS",
+      "run_id": "1106c318-5718-456f-be27-c44ad4593660",
+      "operation_id": "review0076-specification",
+      "session_id": "01a1bec1-7e66-71bd-97ef-547d94192f26",
+      "pane_id": "w6X:pC",
+      "agent": "omp",
+      "fresh": true,
+      "completion": "done",
+      "pane_closed": true,
+      "transport_verified": true,
+      "acknowledged": true,
+      "result_sha256": "ec2eb0c4fc83356b3c50e303cc60fc85db14885e014c566e9321f8b916f7a519",
+      "result_ref": "file:///tmp/review0076-specification-result.json",
+      "delivery_context": "/tmp/review0076-specification-context.json",
+      "reviewed_path_count": 26,
+      "findings": []
+    }
+  ],
+  "handoff": {
+    "path": "/tmp/pi-ink-review-0068-6oQq6c/recovery-handoff.txt",
+    "temporary": true,
+    "authoritative": false,
+    "cleanup": "Remove owned handoffs after publication and acknowledgement."
+  },
+  "coverage_limits": [
+    "No new device, SSH, installation/reinstallation, native launch, restart/reboot, pairing, mod-helper invocation, private-record access, existing service manipulation, or port47840 contact.",
+    "No deployment or ARM64 rebuild. Installed tablet and service retain earlier approved payload; source-only fixes were not deployed.",
+    "Native launch0057 and repeat-install0059 are historical acceptance, not a fresh physical test of changed installer bytes.",
+    "Device state.json was absent before and after repeat installation. Nonempty pairing preservation is host-fixture coverage only.",
+    "Host sentinel proves preflight reachability, not native ARM64 installation.",
+    "Recorded passing/failing checks were not rerun solely to confirm them. No new bounded product check was needed.",
+    "Full meaningful implementation reviewed; historical workflow records used selectively as evidence, not replayed."
+  ],
+  "source_changes": false,
+  "device_actions": 0,
+  "deployment_changes": 0,
+  "reviewed": true,
+  "merged": false,
+  "pushed": false,
+  "publication_requirement": "Defer Git metadata commits until after exact integration; master remains fixed.",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/review-0076.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0076.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/review-complete-0077.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-review-0077.md"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "finish-recovery-0073",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "finish",
+  "event": "phase-start",
+  "attempt": 2,
+  "parent_receipt": "finish-failed-0072",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+  "source_tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+  "created_at": "2026-11-09T05:14:27.879Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/finish-0071"
+  },
+  "status": "FINISHING",
+  "checkpoint": null,
+  "next_step": "Preserve reviewed source; reconcile canonical ticket/history; prepare source candidate using Worktrunk squash/rebase; obtain fresh review before any merge.",
+  "review_receipt": "workflows/pi-ink-bridge-02-install-client/events/review-0069.yaml",
+  "reviewed_source_commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+  "reviewed_source_tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+  "base_observed": "818b7a4de13140fae1f5ff3476e5b35c08e86a46",
+  "base_observed_tree": "8d0dd9e00573fb1d7f8e1861a71bf1fac636061a",
+  "base_worktree_has_unrelated_edits": true,
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_url": "git@github.com:zenobi-us/dotfiles.git",
+  "expected_merge_tree": null,
+  "worktrunk_effective_merge_config": {
+    "squash": true,
+    "commit": false,
+    "rebase": false
+  },
+  "worktrunk_preflight_merge_conflicts": true,
+  "authorization": "User explicitly requested finish pi-ink-bridge-02-install-client. Only verified integration/publication/completion and scoped cleanup are authorized. Do not discard unrelated edits, rewrite reviewed source, force-push, or run device/service actions.",
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Canonical inspector requires human recovery instructions after metadata conflicts. User explicitly approved metadata reconciliation, fresh review and pending base history publication.",
+    "authorization_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/finish-0071/recovery-approval.json",
+    "master_window": "Requested cooperative hold from base owners w64:p2X and w64:p2Y; confirmation pending. Do not advance master during fresh review."
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/finish-failed-0072.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/finish-0071/recovery-approval.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/review-0069.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/fix-0066.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/finish-recovery-0073.json"
+    }
+  ],
+  "merged_commit": null,
+  "pushed": false,
+  "ticket_completed": false,
+  "worktree_removed": false,
+  "workspace_closed": false,
+  "source_reconciliation_authorized": true,
+  "approved_publication_base": "818b7a4de13140fae1f5ff3476e5b35c08e86a46",
+  "defer_new_phase_git_publication_until_after_integration": true
+}

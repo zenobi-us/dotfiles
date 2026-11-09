@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-11-09T05:11:31.421Z",
+  "source": "Explicit user questionnaire answers",
+  "recovery_selection": "Reconcile and re-review",
+  "publication_selection": "Publish approved base history",
+  "approved_base_head": "818b7a4de13140fae1f5ff3476e5b35c08e86a46",
+  "approved_existing_base_commits": 19,
+  "authorized": [
+    "Preserve b6f4c7af as a recovery reference before source metadata/history changes",
+    "Preserve both ticket/history intents and canonical base workflow views",
+    "Use Worktrunk squash/rebase to prepare a new single-commit source candidate without product-code changes",
+    "Obtain a fresh independent review on the exact reconciled candidate",
+    "Coordinate a stable master and defer new review/finish Git metadata publication until after integration",
+    "Resume finish only after all safety gates pass",
+    "Non-force push history through approved base head plus scoped ticket02 integration/tracker/workflow records"
+  ],
+  "excluded": [
+    "Unstaged/untracked unrelated user edits",
+    "Later unrelated commits without new approval",
+    "Device/service/deployment changes",
+    "Force push or rewriting published history"
+  ],
+  "failure_receipt": "workflows/pi-ink-bridge-02-install-client/events/finish-failed-0072.json",
+  "requires_base_identity_recheck": true
+}

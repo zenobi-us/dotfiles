@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-11-09T05:29:37.493Z",
+  "integrated_commit": "16d1122ae182d38630af5126dcf00a0aa7e8b626",
+  "checks": [
+    {
+      "scenario": "installer regression",
+      "exit_code": 0,
+      "stdout": "bun test v1.4.3 (c6da4a4d3)\n",
+      "stderr": "\ntest/production-install.test.ts:\n(pass) installer firmware preflight: captured quoted IMG_VERSION with different VERSION_ID [19.04ms]\n(pass) installer firmware preflight: unsupported IMG_VERSION despite supported-looking VERSION_ID [15.33ms]\n(pass) installer firmware preflight: missing IMG_VERSION [18.02ms]\n(pass) installer native dependency preflight: xovi.so absent [20.74ms]\n(pass) installer native dependency preflight: xovi.so directory [20.63ms]\n(pass) installer native dependency preflight: extensions.d/qt-resource-rebuilder.so absent [24.96ms]\n(pass) installer native dependency preflight: extensions.d/qt-resource-rebuilder.so directory [18.08ms]\n(pass) installer native dependency preflight: none regular [30.40ms]\n\n 8 pass\n 0 fail\n 31 expect() calls\nRan 8 tests across 1 file. [182.00ms]\n"
+    },
+    {
+      "scenario": "local typecheck",
+      "exit_code": 2,
+      "stdout": "error TS2688: Cannot find type definition file for 'bun'.\n  The file is in the program because:\n    Entry point of type library 'bun' specified in compilerOptions\n",
+      "stderr": "$ tsc --noEmit\n"
+    },
+    {
+      "scenario": "Go race suite",
+      "exit_code": 0,
+      "stdout": "ok  \timage-annotator-tablet\t21.097s\n",
+      "stderr": ""
+    },
+    {
+      "scenario": "actual native host CLI version",
+      "exit_code": 0,
+      "stdout": "development\n",
+      "stderr": ""
+    },
+    {
+      "scenario": "shell syntax",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

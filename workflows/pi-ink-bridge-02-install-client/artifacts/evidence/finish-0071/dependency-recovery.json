@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-11-09T05:31:32.433Z",
+  "scope": "Frozen-lockfile filtered workspace dependency reinstall, no lifecycle scripts, no source changes",
+  "install_commands": [
+    "bun install --filter @zenobius/omp-image-annotator --frozen-lockfile --ignore-scripts (no changes)",
+    "bun install --filter @zenobius/omp-image-annotator --frozen-lockfile --ignore-scripts --force (270 packages installed)"
+  ],
+  "typecheck_exit_code": 0,
+  "stdout": "",
+  "stderr": "$ tsc --noEmit\n"
+}

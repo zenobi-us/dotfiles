@@ -1,11 +1,1 @@
-{
-  "schema": "worktree-workflow/v2",
-  "workflow_id": "pi-ink-bridge-02-install-client",
-  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
-  "initiative": "pi-ink-bridge",
-  "event_root": "events",
-  "artifact_root": "artifacts",
-  "projection_root": "projections",
-  "latest_receipt": "finish-failed-0072",
-  "state": "FINISH_FAILED"
-}
+{schema: worktree-workflow/v2,workflow_id: pi-ink-bridge-02-install-client,ticket_ref: tracker/tickets/pi-ink-bridge-02-install-client.md,initiative: pi-ink-bridge,event_root: events,artifact_root: artifacts,projection_root: projections,latest_receipt: finish-reconciled-0081,state: FINISHING}
