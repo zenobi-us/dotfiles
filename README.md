@@ -215,148 +215,117 @@ turn. The old annotation slash command has been replaced by `/image`.
 
 ### Tablet bootstrap
 
-The `image-annotator` extension starts a public HTTP coordinator in interactive
-root OMP sessions. Restart OMP after this update. Use `/image coordinator` to
-show its local health URL, DNS-SD name, and coordinator ID. Subagents do not
-start a coordinator.
+Run `/annotate add-device` to start one persistent service for the desktop user.
+Pitchfork supervises it after OMP exits. Directory changes do not start or stop it.
+Concurrent extension instances share the service. Readiness or identity failures
+produce an error, not successful setup instructions. Browser editing stays unchanged.
 
-The coordinator listens on all IPv4 and IPv6 interfaces at port `47840`. No
-USB address or host environment variable is required. Set
-`OMP_IMAGE_ANNOTATOR_PORT` only if you need a different port. Each tablet can
-use the same coordinator.
+#### Build prerequisites
 
-- `GET /health` reports the service, protocol, and coordinator ID.
-- `GET /tablet/bundle.tar.gz` downloads the Linux ARM64 client bundle.
-- `GET /tablet/bundle.sha256` downloads its SHA-256 checksum.
-
-These endpoints expose public bootstrap files only. They do not accept images,
-notebook data, credentials, or annotation jobs. The existing browser editor
-keeps its separate token-protected server.
-
-#### Desktop discovery service
-
-The desktop needs a running `avahi-daemon` and access to the system D-Bus.
-The extension registers `_omp-ink._tcp.local.` through Avahi. Its SRV record
-gives the host and HTTP port. Its TXT records contain `proto=1`, `path=/`, and
-`id=<coordinator-id>`. Avahi publishes the host addresses. It removes the
-registration when the extension closes its D-Bus connection or exits.
-
-The desktop stores its public, stable ID in
-`~/.omp/agent/image-annotator/coordinator-id`. The tablet discovers addresses
-for each command. It does not store a coordinator URL.
-
-DNS-SD uses local multicast. It normally does not cross subnets or VLANs.
-The network must permit mDNS traffic on UDP port `5353`, replies to the
-client’s unicast query socket, and HTTP access to the coordinator port.
-Discovery and coordinator IDs do not authenticate a desktop. Do not put
-private data on these public endpoints.
-
-#### Build and provision
-
-Build the browser editor and tablet bundle from the extension directory.
-The bundle build needs Go 1.25 or later, `tar`, and `sha256sum`.
+Install only the pinned tools for this extension, then build the package:
 
 ```sh
 cd mise/conf.d/devtools-omp/extensions/image-annotator
-bun run build
+mise install bun@1.4.3 go@1.25.0 pitchfork@2.30.1 pipx:pyside6-essentials@6.8.3
+MISE_AUTO_INSTALL=0 mise exec -- bun install --frozen-lockfile
+MISE_AUTO_INSTALL=0 mise exec -- bun run build
 ```
 
-The provisioning script reads `tablet-client/dist` from its own location.
-It does not fetch the bundle through HTTP. It can run from any directory,
-and the coordinator does not need to be running. Check the local bundle
-without contacting the tablet:
+The build also requires host OpenSSL, Info-ZIP 3.0, `tar`, `touch`, and
+`sha256sum`. Qt 6.8.3 supplies the pinned resource compiler. Setup never
+installs unrelated mise tools. `bun run provision:tablet` prints the same
+trusted command without connecting to a tablet. Its `--dry-run` checks local
+package inputs without starting the service.
 
-```sh
-sh mise/conf.d/devtools-omp/extensions/image-annotator/scripts/provision-tablet.sh --dry-run
-```
+#### Trust and installation
 
-Run that command from the repository root. From another directory, use an
-absolute path to the same script. Remove `--dry-run` to copy the bundle over
-SSH and install it. The default SSH target is `root@10.11.99.1`. Use
-`--ssh-target` to change it. SSH host-key verification stays enabled. No
-server URL or coordinator URL argument is required.
+Paper Pro Developer Mode is required. Enabling it performs a factory reset and
+weakens secure-boot protections. Back up documents first. Neither setup nor the
+installer enables Developer Mode, changes firmware, or opens firewall ports.
+Obtain separate owner approval before a tablet connection or installation.
 
-The installer creates `/home/root/pi-ink-client` and refuses an existing
-path. It copies the client and `VERSION` only. It does not run the ARM64
-client, discover a desktop, or create a coordinator configuration file. It
-does not start a background service or change Xochitl, XOVI, notebooks,
-firmware, or old experiments. A failed install can leave a partial directory.
-The installer does not delete that directory or retry.
+The LAN page at `http://<desktop>:47840/setup` explains prerequisites.
+It is not a trust anchor. Obtain the generated SSH command from trusted
+extension output or `http://127.0.0.1:47840/setup`. Check the tablet SSH host
+key independently. Use cable-connected SSH only for installation and repair.
+The tablet also needs LAN access to the desktop for installation downloads.
 
-#### Select and check a coordinator
+The command checks independently supplied SHA-256 digests for the installer,
+client ZIP, and server trust record before execution or extraction. It provisions
+the stable server ID and certificate fingerprint. Runtime connections verify the
+provisioned CA, hostname, server ID, and protocol. No certificate check is disabled.
+The LAN surface exposes no pairing approval, revocation, or other management writes.
 
-After installation, run these commands on the tablet:
+The installer reads `IMG_VERSION` from `/etc/os-release`, not `VERSION_ID`.
+Missing or unsupported `IMG_VERSION` fails before the stock-binary check or installation changes.
+Only Paper Pro firmware `3.28.0.172` and its recorded Xochitl binary hash pass
+preflight. This firmware has prior prototype evidence; the new AppLoad integration
+still needs hardware acceptance. The installer checks ARM64, model, firmware,
+root permissions, writable home storage, XOVI, AppLoad, and qt-resource-rebuilder before
+changes. The native libraries `xovi/xovi.so`, `xovi/extensions.d/appload.so`, and
+`xovi/extensions.d/qt-resource-rebuilder.so` under `/home/root` must be regular files.
+If one is missing or is not a regular file, repair and verify that dependency
+separately before retrying. Rejection occurs before archive extraction or installation.
+The installer does not install those firmware-sensitive dependencies automatically.
+Their installed versions and compatibility must be recorded during approved preflight.
 
-```sh
-cd /home/root/pi-ink-client
-./pi-ink-client discover
-./pi-ink-client status
-```
+Host preflight regressions: run `bun test test/production-install.test.ts` in the
+image-annotator extension directory. It requires Linux Bubblewrap (`bwrap`) and
+unprivileged user namespaces, plus `zip` and `unzip`. Tests run the real installer
+with temporary metadata, a read-only host filesystem, and no network. Firmware
+cases stop at the stock-binary guard. Native dependency cases use real ZIP and
+trust-record digest checks, reject absent or non-regular libraries before extraction,
+and use a bounded client sentinel to prove continuation when both libraries exist.
+The sentinel does not prove native ARM64 installation.
+After any installer edit, discard old trusted instructions and generate new
+instructions with the current installer SHA-256.
 
-If discovery finds one compatible coordinator, `status` uses it without
-configuration. If it finds several, choose an ID from `discover`:
+Client configuration, pairing records, drafts, and immutable releases use
+`/home/root/.local/share/pi-ink-bridge`. One named AppLoad link and one named
+QMD link install Pi Annotations without duplicating entries. Repeating the same
+verified release preserves existing data. Occupied or changed launcher paths,
+changed server trust, and different release upgrades require explicit repair;
+the installer does not overwrite them. Unrelated extensions and earlier prototype
+installations remain untouched.
 
-```sh
-./pi-ink-client select --coordinator-id <id-from-discover>
-./pi-ink-client status
-./pi-ink-client download-bundle --output /new/bundle.tar.gz
-```
+#### Activation and connection state
 
-`select` checks HTTP health before it saves `coordinator-id` beside the
-client. Each tablet keeps its own selection. If that coordinator disappears,
-the client fails instead of switching to another desktop. Use `select` again
-to change it. Use `--coordinator-id` with `status`, `download-bundle`, or `update` for a
-one-command choice without changing the saved ID.
+Installation never restarts Xochitl or reboots the tablet. Save and close all
+documents. Obtain separate owner approval for one restart. After that restart,
+select **Pi Annotations** in the sidebar. The thin QMD launcher opens the AppLoad
+connection screen. It reports a verified available server separately from pairing.
+It reports offline or identity/protocol errors without claiming readiness.
+The stock editor remains responsible for drawing. Pairing and job actions belong
+to later tickets, not this installation screen.
 
-The client checks the discovered ID and protocol against HTTP health. It
-checks downloaded bundle bytes against SHA-256. These checks do not
-authenticate the HTTP server. Pen input and annotation transfer are not part
-of this path. Desktop discovery and offline installation have been checked.
-The owner confirmed tablet discovery and status. Self-update has desktop proof only; the tablet update still needs a device check.
+The AppLoad backend consumes two SOCK_SEQPACKET records per message: an
+8-byte header and a body record, including an empty body. It rejects truncated
+records and mismatched lengths. Host regressions use real Unix packets; a
+compiled host CLI smoke verifies repeated empty polls against synthetic TLS.
+This host proof does not establish native launch acceptance. Deploying the
+rebuilt payload and repeating native checks require separate owner approval.
 
+Real post-restart launch, dependency compatibility, unsupported-firmware rejection,
+and repeat installation on the tablet remain required device acceptance checks.
+Host protocol checks and the Qt host emulator do not prove device readiness.
 
-#### Update from the tablet UI
+#### Service storage and repair
 
-A tablet UI can run this one-shot command as a child process:
+The service stores identity, TLS files, and content-addressed runtime snapshots in
+`$XDG_DATA_HOME/pi-ink-bridge` (default `~/.local/share/pi-ink-bridge`).
+Use `pitchfork status pi-ink-bridge` and `pitchfork logs pi-ink-bridge` to
+inspect it. Setup never force-restarts an incompatible service or rotates trust.
+The default ports are HTTP `47840` and HTTPS `47841`. If another application
+occupies them, configure distinct `PI_INK_SETUP_PORT` and `PI_INK_TLS_PORT`
+values consistently before starting OMP. An old protocol-1 coordinator requires
+an explicit operator-managed shutdown or different ports; setup leaves it alone.
+Address changes outside the saved certificate SANs fail verification and require
+an explicit certificate repair. Existing credentials and drafts must be preserved.
 
-```sh
-/home/root/pi-ink-client/pi-ink-client update
-```
-
-The command discovers the coordinator and checks its health. It downloads the
-bundle, checks SHA-256, and stages the replacement beside the installed client.
-It accepts only the expected three regular archive files and a matching ELF
-architecture. It does not execute the bundled installer. A same-filesystem
-rename replaces the executable only after preparation succeeds. The saved
-`coordinator-id` and other installed files stay in place.
-
-On success, stdout contains one JSON object and the process exits with code 0:
-
-```json
-{"status":"updated","version":"0.2.0"}
-```
-
-On failure, the process exits with a nonzero code and writes the error to
-stderr. Preparation failures leave the working executable unchanged. A second
-concurrent update fails instead of competing for replacement. The caller can
-run the next client command after success. No service or Xochitl restart is
-part of this operation. Use `--coordinator-id` for a one-command destination
-choice, as with `status`.
-
-Read the current executable version with `pi-ink-client version`. The installed
-`VERSION` file remains a record of the initial installation. Downloads have a
-64 MiB limit.
-
-The `update` command starts with client version `0.2.0`. An installed `0.1.0`
-client needs one setup-time deployment of the new executable before the UI
-can call this command. The initial installer still refuses an occupied prefix.
-It is not an upgrade command.
-
-Updates install code from an unsigned HTTP bundle. Use only a coordinator and
-network you trust. SHA-256 does not authenticate the publisher. This development
-path is not a secure production updater.
-
-
+The earlier tar installer, coordinator protocol, and development update commands
+remain prototype tools. They are not the production installation or trust path.
+Production setup no longer starts the old extension-owned Avahi registration.
+Discovery and pairing are separate tickets.
 
 ### Manual stock-PDF review
 
@@ -619,3 +588,4 @@ proxy. The owned-only future removal and recovery procedure is recorded in
 `workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/ticket-01-closeout-0115/retained-maintenance-removal-plan.json`.
 Any device inspection, change or restart needs fresh, exact owner approval.
 Production work in tickets 02–10 is not part of the ticket 01 prototype gate.
+

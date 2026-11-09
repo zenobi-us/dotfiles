@@ -1,0 +1,5 @@
+[tools]
+bun = "1.4.3"
+go = "1.25.0"
+pitchfork = "2.30.1"
+"pipx:pyside6-essentials" = "6.8.3"

@@ -1,0 +1,24 @@
+VERSION 3.28.0.172
+
+; Only launch AppLoad. Networking and connection display stay in its application.
+; Firmware stock binary SHA256 b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021.
+AFFECT /qml/device/view/navigator/Sidebar.qml
+    IMPORT net.asivery.AppLoad 1.0
+    TRAVERSE FocusScope#root
+        TRAVERSE ColumnLayout#filterColumn
+            LOCATE BEFORE Common.Background#spacer
+            INSERT {
+                ArkControls.SidebarItem {
+                    objectName: "pi-annotations-sidebar"
+                    text: "Pi Annotations"
+                    iconSource: "qrc:/ark/icons/link"
+                    Layout.preferredWidth: parent.width
+                    onClicked: {
+                        root.hide();
+                        AppLoadLauncher.launchApplication("org.pi-ink.annotations", [], {}, false);
+                    }
+                }
+            }
+        END TRAVERSE
+    END TRAVERSE
+END AFFECT

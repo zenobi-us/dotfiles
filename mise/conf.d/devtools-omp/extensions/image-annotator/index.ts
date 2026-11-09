@@ -7,8 +7,7 @@ import type { AddressInfo } from "node:net";
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from "node:http";
 import { createPdfSession } from "./pdf-session";
 import { attachTabletRequest } from "./tablet-gateway";
-import { COORDINATOR_PORT, createCoordinatorServer, type CoordinatorServer } from "./coordinator";
-import { advertiseCoordinator, loadCoordinatorIdentity, type CoordinatorAdvertisement } from "./coordinator-discovery";
+import { addDevice } from "./installation-client";
 
 declare const __dirname: string | undefined;
 const EXTENSION_DIR = typeof __dirname === "string"
@@ -104,38 +103,10 @@ export interface AnnotatorResult {
   originalPdfPath?: string;
 }
 
-interface CoordinatorState {
-  runtimePromise?: Promise<CoordinatorRuntime>;
-}
-
-interface CoordinatorRuntime {
-  server: CoordinatorServer;
-  advertisement: CoordinatorAdvertisement;
-}
 
 export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
   let latestImage: ImageContent | undefined;
   let sessionController = new AbortController();
-  const coordinatorState: CoordinatorState = {};
-
-  pi.on("session_start", async (_event, ctx) => {
-    if ((!ctx.hasUI && ctx.mode !== "tui") || Number(process.env.MUXER_SUBAGENT_DEPTH ?? 0) !== 0) return;
-    try {
-      const runtime = await startCoordinator(coordinatorState, (error) => ctx.ui.notify(`Image discovery failed: ${error.message}`, "error"));
-      ctx.ui.notify(`Image coordinator: ${runtime.server.url}/health\nDNS-SD: ${runtime.advertisement.name}\nCoordinator ID: ${runtime.server.id}`, "info");
-    } catch (error) {
-      ctx.ui.notify(`Image coordinator failed: ${errorMessage(error)}`, "error");
-    }
-  });
-  pi.on("session_shutdown", async () => {
-    if (!coordinatorState.runtimePromise) return;
-    const runtime = await coordinatorState.runtimePromise;
-    try {
-      await runtime.advertisement.close();
-    } finally {
-      await runtime.server.close();
-    }
-  });
   const requestSignal = (ctx: ExtensionContext, signal?: AbortSignal) =>
     AbortSignal.any([sessionController.signal, ...[signal, ctx.signal].filter((value): value is AbortSignal => !!value)]);
 
@@ -187,19 +158,29 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
     },
   });
 
+  pi.registerCommand("annotate", {
+    description: "Use /annotate add-device to obtain trusted tablet installation instructions.",
+    handler: async (args, ctx) => {
+      if (args.trim() !== "add-device") {
+        ctx.ui.notify("Usage: /annotate add-device", "warning");
+        return;
+      }
+      try {
+        ctx.ui.notify(await addDevice(EXTENSION_DIR), "info");
+      } catch (error) {
+        ctx.ui.notify(`Tablet setup failed: ${errorMessage(error)}`, "error");
+      }
+    },
+  });
+
   pi.registerCommand("image", {
-    description: "Use /image coordinator to show the HTTP endpoint. Use /image new [prompt] or /image annotate [imagepath] [prompt] to edit an image.",
+    description: "Use /image new [prompt] or /image annotate [imagepath] [prompt] to edit an image.",
     handler: async (args, ctx) => {
       try {
-        if (args.trim() === "coordinator") {
-          const runtime = await startCoordinator(coordinatorState, (error) => ctx.ui.notify(`Image discovery failed: ${error.message}`, "error"));
-          ctx.ui.notify(`Image coordinator: ${runtime.server.url}/health\nDNS-SD: ${runtime.advertisement.name}\nCoordinator ID: ${runtime.server.id}`, "info");
-          return;
-        }
         const boundSignal = requestSignal(ctx);
         const match = /^(new|annotate)(?:\s+([\s\S]*))?$/.exec(args.trim());
         if (!match) {
-          ctx.ui.notify("Usage: /image coordinator, /image new [prompt], or /image annotate [imagepath] [prompt]. Omit imagepath to use the latest attached image.", "warning");
+          ctx.ui.notify("Usage: /image new [prompt] or /image annotate [imagepath] [prompt]. Omit imagepath to use the latest attached image.", "warning");
           return;
         }
         const action = match[1] as ImageToolParameters["action"];
@@ -235,31 +216,6 @@ export default function imageAnnotatorExtension(pi: ExtensionAPI): void {
   });
 }
 
-function startCoordinator(state: CoordinatorState, onFailure: (error: Error) => void): Promise<CoordinatorRuntime> {
-  if (!state.runtimePromise) {
-    state.runtimePromise = createCoordinatorRuntime(onFailure).catch((error: unknown) => {
-      state.runtimePromise = undefined;
-      throw error;
-    });
-  }
-  return state.runtimePromise;
-}
-
-async function createCoordinatorRuntime(onFailure: (error: Error) => void): Promise<CoordinatorRuntime> {
-  const id = await loadCoordinatorIdentity(resolve(homedir(), ".omp", "agent", "image-annotator"));
-  const server = await createCoordinatorServer({
-    bundleDirectory: resolve(EXTENSION_DIR, "tablet-client", "dist"),
-    id,
-    port: Number(process.env.OMP_IMAGE_ANNOTATOR_PORT ?? COORDINATOR_PORT),
-  });
-  try {
-    const advertisement = await advertiseCoordinator({ id, port: server.port, onFailure });
-    return { server, advertisement };
-  } catch (error) {
-    await server.close();
-    throw error;
-  }
-}
 
 function parseArguments(args: string): { path?: string; prompt?: string } {
   const trimmed = args.trim();

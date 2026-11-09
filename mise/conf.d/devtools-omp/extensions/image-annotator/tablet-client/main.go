@@ -30,9 +30,23 @@ func main() {
 
 func run(args []string) error {
 	if len(args) == 0 {
-		return errors.New("usage: pi-ink-client discover|select|status|download-bundle|update|version|serve")
+		return errors.New("usage: pi-ink-client discover|select|status|download-bundle|update|version|serve|appload|install-client")
 	}
 	command := args[0]
+	if command == "install-client" {
+		return installClient(args[1:])
+	}
+	if command == "appload" {
+		flags := flag.NewFlagSet("appload", flag.ContinueOnError)
+		config := flags.String("config", "/home/root/.local/share/pi-ink-bridge/config.json", "private setup configuration")
+		if err := flags.Parse(args[1:]); err != nil {
+			return err
+		}
+		if flags.NArg() != 1 {
+			return errors.New("appload requires the AppLoad socket path")
+		}
+		return runAppLoad(flags.Arg(0), *config)
+	}
 	if command == "serve" {
 		return serve(args[1:])
 	}

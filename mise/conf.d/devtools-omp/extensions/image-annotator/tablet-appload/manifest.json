@@ -1,0 +1,9 @@
+{
+  "id": "org.pi-ink.annotations",
+  "name": "Pi Annotations",
+  "loadsBackend": true,
+  "entry": "/Connections.qml",
+  "canHaveMultipleFrontends": false,
+  "supportsScaling": true,
+  "aspectRatio": "original"
+}

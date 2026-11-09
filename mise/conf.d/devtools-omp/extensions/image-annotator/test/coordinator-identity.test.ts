@@ -3,7 +3,7 @@ import { afterEach, beforeEach, expect, test } from "bun:test";
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { loadCoordinatorIdentity } from "../coordinator-discovery";
+import { loadCoordinatorIdentity } from "../server-identity";
 
 let directory = "";
 beforeEach(async () => { directory = await mkdtemp(join(tmpdir(), "omp-coordinator-id-")); });

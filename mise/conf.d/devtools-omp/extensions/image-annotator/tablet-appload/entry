@@ -1,0 +1,5 @@
+#!/bin/sh
+# AppLoad supplies its private SOCK_SEQPACKET path as argv[1].
+set -eu
+backend_dir=$(CDPATH= cd -P -- "$(dirname -- "$0")" && pwd)
+exec "$backend_dir/../../pi-ink-client" appload "$1"
