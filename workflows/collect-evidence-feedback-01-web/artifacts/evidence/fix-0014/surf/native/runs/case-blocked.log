@@ -1,0 +1,71 @@
+{
+  "status": "failed",
+  "completedSteps": 7,
+  "totalSteps": 9,
+  "results": [
+    {
+      "step": 1,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 2,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 106
+    },
+    {
+      "step": 3,
+      "cmd": "navigate",
+      "status": "ok",
+      "ms": 646
+    },
+    {
+      "step": 4,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 106
+    },
+    {
+      "step": 5,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 6,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 7,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 8,
+      "cmd": "js",
+      "status": "error",
+      "error": "Error: SAFETY STOP blocked.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6",
+      "ms": 6
+    }
+  ],
+  "error": "Error: SAFETY STOP blocked.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6",
+  "totalMs": 1282,
+  "vars": {
+    "base": "http://127.0.0.1:41593",
+    "shots": "/tmp/ce-fix-0014-smoke-VnuF5C/collect-evidence-17D9zp/report/shots",
+    "dialog_blocked_1": {
+      "id": 2749,
+      "hasDialog": false
+    },
+    "url_blocked_1": "http://127.0.0.1:41593/",
+    "dialog_blocked_2": {
+      "id": 2763,
+      "hasDialog": false
+    }
+  }
+}

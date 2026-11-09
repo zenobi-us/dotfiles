@@ -1,0 +1,102 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "event",
+  "sourceCommit": "3d1b282520a74db5409457f83ed0f766670b86cb",
+  "sourceTree": "0c68cbc0d31e344ea2071352e81ca33c13c31b9f",
+  "validationResults": [
+    {
+      "check": "final scoped public suite",
+      "command": "mise x -- bun test /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test",
+      "cwd": "/tmp",
+      "environment": {
+        "MISE_AUTO_INSTALL": "false",
+        "GIT_TERMINAL_PROMPT": "0",
+        "GIT_ASKPASS": "/bin/false",
+        "SSH_ASKPASS": "/bin/false",
+        "GIT_SSH_COMMAND": "ssh -oBatchMode=yes",
+        "GIT_ALLOW_PROTOCOL": "file",
+        "PLAYWRIGHT_MCP_EXECUTABLE_PATH": "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome",
+        "COLLECT_EVIDENCE_REAL_DRIVERS": "1"
+      },
+      "exit_code": 0,
+      "result": "passed",
+      "tests": 14,
+      "failed": 0,
+      "expectations": 93,
+      "duration_seconds": 49.98
+    },
+    {
+      "check": "scoped TypeScript",
+      "command": "mise x -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc --noEmit -p /tmp/ce-fix-0014-tsconfig.json",
+      "cwd": "/tmp",
+      "environment": {
+        "MISE_AUTO_INSTALL": "false"
+      },
+      "exit_code": 0,
+      "result": "passed",
+      "configuration": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0014/tsconfig.json",
+      "note": "Uses already installed base-checkout compiler, Bun types and Crust declarations. Initial temporary configuration lacked Crust resolution; corrected only the temporary configuration. No dependency installation."
+    },
+    {
+      "check": "standalone real Surf and Playwright smoke",
+      "command": "mise x -- bun /tmp/ce-fix-0014-smoke.ts",
+      "cwd": "/tmp",
+      "environment": {
+        "MISE_AUTO_INSTALL": "false",
+        "GIT_TERMINAL_PROMPT": "0",
+        "GIT_ASKPASS": "/bin/false",
+        "SSH_ASKPASS": "/bin/false",
+        "GIT_SSH_COMMAND": "ssh -oBatchMode=yes",
+        "GIT_ALLOW_PROTOCOL": "file",
+        "PLAYWRIGHT_MCP_EXECUTABLE_PATH": "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+      },
+      "exit_code": 0,
+      "result": "passed",
+      "observations": "Both real drivers: unapproved Space BLOCKED; approved Space PASS; exactly one HTTP submission per driver; preconditions passed; native captures visually inspected. Owned sessions closed by collector.",
+      "log": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0014/smoke-results.json"
+    },
+    {
+      "check": "transferred sealed Surf evidence",
+      "command": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts validate /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0014/surf --json",
+      "cwd": "/tmp",
+      "environment": {
+        "MISE_AUTO_INSTALL": "false"
+      },
+      "exit_code": 0,
+      "result": "passed"
+    },
+    {
+      "check": "transferred sealed Playwright evidence",
+      "command": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts validate /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0014/playwright --json",
+      "cwd": "/tmp",
+      "environment": {
+        "MISE_AUTO_INSTALL": "false"
+      },
+      "exit_code": 0,
+      "result": "passed"
+    },
+    {
+      "check": "test-first regression observations",
+      "result": "passed after fixes",
+      "observations": [
+        "STD-001: both public compile regressions first returned 0; now return 2 before compiled files or browser execution.",
+        "SPEC-001: both real drivers first reported PARTIAL for unapproved Space; now report BLOCKED. Approved Space returns PASS with exactly one HTTP request per driver.",
+        "SPEC-002: public init first accepted a repository ..captures descendant; now returns 2 without creating it.",
+        "SPEC-003: real Surf output with deleted successful screenshots first returned 0; now returns 2 before finalization, retains byte-identical native log, and publishes no sealed run."
+      ]
+    },
+    {
+      "check": "source commit hooks",
+      "result": "passed",
+      "exit_code": 0,
+      "observations": "bundle-versions passed with supplied --stash none override. Lefthook reported no configuration. No stash operation performed."
+    }
+  ],
+  "limits": [
+    "STD-002 remains unresolved and outside the selected fix scope; cleanupRow hooks remain unchanged.",
+    "No new review verdict, remote Git, merge, push, tracker mutation or ticket completion. Parent owns publication and acknowledgement.",
+    "TypeScript LSP initialization failed because the source worktree has no installed TypeScript. References used scoped source search; final compiler check used existing base-checkout dependencies.",
+    "The first smoke script expected exit 1 for a BLOCKED/PASS run; the CLI correctly returned 3. Corrected the throwaway expectation; retained the first log under /tmp/ce-fix-0014-smoke-mZ4FQp.",
+    "A hyphenated test fixture case ID exposed an existing Surf variable substitution error. The fixture now uses an alphanumeric case ID; no unrelated production fix was made."
+  ]
+}

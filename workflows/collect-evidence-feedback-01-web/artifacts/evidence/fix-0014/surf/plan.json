@@ -1,0 +1,81 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "plan",
+  "data": {
+    "schema": "collect-evidence/v1",
+    "kind": "plan",
+    "workId": "fix-smoke",
+    "driver": "surf",
+    "base": "http://127.0.0.1:41593",
+    "approval": {
+      "origins": [
+        "http://127.0.0.1:41593"
+      ],
+      "confirmations": [
+        "approved.2"
+      ]
+    },
+    "preconditions": [
+      {
+        "id": "ready",
+        "desc": "Owned page is available",
+        "check": {
+          "goto": "/",
+          "locator": "h1",
+          "text": "Fix 0014 owned smoke"
+        }
+      }
+    ],
+    "tests": [
+      {
+        "id": "blocked",
+        "requires": [
+          "ready"
+        ],
+        "claim": "Block unapproved Space activation",
+        "pass": "No unapproved submission",
+        "fail": "An unapproved submission occurs",
+        "steps": [
+          {
+            "do": "navigate",
+            "to": "/",
+            "says": "Open the owned confirmation page"
+          },
+          {
+            "do": "press",
+            "key": "Space",
+            "says": "Attempt the unapproved confirmation"
+          }
+        ]
+      },
+      {
+        "id": "approved",
+        "requires": [
+          "ready"
+        ],
+        "claim": "Allow the approved confirmation",
+        "pass": "One submission appears",
+        "fail": "The approved confirmation is blocked",
+        "steps": [
+          {
+            "do": "navigate",
+            "to": "/",
+            "says": "Open the owned page"
+          },
+          {
+            "do": "press",
+            "key": "Space",
+            "says": "Confirm the owned operation"
+          },
+          {
+            "do": "expect",
+            "locator": "p",
+            "text": "Submitted once",
+            "says": "Check the submitted state",
+            "shot": "submitted-state"
+          }
+        ]
+      }
+    ]
+  }
+}

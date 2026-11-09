@@ -1,0 +1,134 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "approved",
+  "runId": "playwright",
+  "order": 2,
+  "purpose": "Allow the approved confirmation",
+  "preconditions": [
+    {
+      "id": "ready",
+      "desc": "Owned page is available",
+      "check": {
+        "goto": "/",
+        "locator": "h1",
+        "text": "Fix 0014 owned smoke"
+      }
+    }
+  ],
+  "expected": {
+    "pass": "One submission appears",
+    "fail": "The approved confirmation is blocked"
+  },
+  "steps": [
+    {
+      "id": "approved.1",
+      "order": 1,
+      "purpose": "Open the owned page",
+      "actions": {
+        "do": "navigate",
+        "to": "/",
+        "says": "Open the owned page"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "approved.2",
+      "order": 2,
+      "purpose": "Confirm the owned operation",
+      "actions": {
+        "do": "press",
+        "key": "Space",
+        "says": "Confirm the owned operation"
+      },
+      "expected": null,
+      "observed": [
+        "Pressed Space."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "approved.3",
+      "order": 3,
+      "purpose": "Check the submitted state",
+      "actions": {
+        "do": "expect",
+        "locator": "p",
+        "text": "Submitted once",
+        "says": "Check the submitted state",
+        "shot": "submitted-state"
+      },
+      "expected": {
+        "text": "Submitted once",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "Found text: Submitted once"
+      ],
+      "assertionResult": "passed"
+    }
+  ],
+  "events": "cases/approved/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "approved.3.capture-001",
+      "caseId": "approved",
+      "stepId": "approved.3",
+      "path": "cases/approved/media/step-003-step-approved-003-submitted-state--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "da9bb64f64eeb338b9d4ffcd4df885f64ea9f66d187ee500c68cea2fd8b81626",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-09T09:04:41.625Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:41593/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "approved.3.capture-002",
+      "caseId": "approved",
+      "stepId": "approved.3",
+      "path": "cases/approved/media/step-003-step-approved-003-submitted-state--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "da9bb64f64eeb338b9d4ffcd4df885f64ea9f66d187ee500c68cea2fd8b81626",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-09T09:04:41.674Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:41593/"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded"
+}

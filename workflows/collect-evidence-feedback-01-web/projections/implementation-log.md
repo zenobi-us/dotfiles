@@ -1,12 +1,12 @@
 ---
 title: Collect-evidence web implementation history
 type: Projection
-latest_receipt: implementation-0005
+latest_receipt: fix-0014
 ---
 
 # Implementation history
 
-Generated from append-only receipts. Earlier blocked evidence remains unchanged. No fix or review phase ran.
+Generated from append-only receipts. Earlier entries preserve their recorded context. Current source is FIXED, awaiting a fresh independent review.
 
 ## implementation-0002 — blocked
 
@@ -152,3 +152,18 @@ The reviewer ran one scoped public suite after both axes returned: 11 passed, 0 
 ## Fix attempt 1
 
 The user requested a fresh independent fixer for STD-001, SPEC-001, SPEC-002, SPEC-003. [fix-start-0013](../events/fix-start-0013.yaml) consumes [review-0011](../events/review-0011.yaml) at source `0acff3b4c45705336028263a0b20d41dbc1aee63`. STD-002 remains advisory and is not selected. No fix result or new review verdict exists yet.
+
+
+## fix-0014 — completed
+
+FIXED, awaiting a fresh independent review. [Authoritative fix result](../events/fix-0014.yaml); parent [fix-start-0013](../events/fix-start-0013.yaml). Source commit 3d1b282520a74db5409457f83ed0f766670b86cb; tree 0c68cbc0d31e344ea2071352e81ca33c13c31b9f.
+
+Selected and resolved: STD-001, SPEC-001, SPEC-002, SPEC-003. STD-002 remains unresolved and outside the fix scope. Its cleanupRow hooks remain unchanged.
+
+Both preserved real drivers blocked unapproved Space and allowed approved Space. Exactly one approved HTTP submission occurred per driver. Native images were inspected. Public regressions rejected invalid plans before browser execution, excluded ..captures descendants, and rejected missing successful Surf media while preserving native logs and publishing no sealed run.
+
+Final public suite: 14 passed, 0 failed, 93 expectations. Scoped TypeScript passed using installed base dependencies. Source hooks passed with the supplied --stash none override. No stash operation was issued.
+
+[Immutable draft](../artifacts/snapshots/pr-draft-fix-0014.md) lists nine changed source/doc paths. [Evidence](../artifacts/evidence/fix-0014/index.md) records exact commands, cwd, environment, results and limits.
+
+The FAILURE in review-0011 applies only to the old source and is historical/stale on this commit. No current SUCCESS or new verdict exists. Parent owns publication, acknowledgement, pane closure and phase completion. The child pane w73:p3 and workspace w73 remain open. No tracker update, remote Git, merge, push or ticket completion occurred.

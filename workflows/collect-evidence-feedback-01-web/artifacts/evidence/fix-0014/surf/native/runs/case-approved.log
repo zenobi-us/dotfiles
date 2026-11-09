@@ -1,0 +1,125 @@
+{
+  "status": "completed",
+  "completedSteps": 16,
+  "totalSteps": 16,
+  "results": [
+    {
+      "step": 1,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 2,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 106
+    },
+    {
+      "step": 3,
+      "cmd": "navigate",
+      "status": "ok",
+      "ms": 637
+    },
+    {
+      "step": 4,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 5,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 6,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 7,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 8,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 9,
+      "cmd": "key",
+      "status": "ok",
+      "ms": 262
+    },
+    {
+      "step": 10,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 11,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 12,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 366
+    },
+    {
+      "step": 13,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 14,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 15,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 374
+    },
+    {
+      "step": 16,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    }
+  ],
+  "failed": 0,
+  "totalMs": 2890,
+  "vars": {
+    "base": "http://127.0.0.1:41593",
+    "shots": "/tmp/ce-fix-0014-smoke-VnuF5C/collect-evidence-17D9zp/report/shots",
+    "dialog_approved_1": {
+      "id": 2775,
+      "hasDialog": false
+    },
+    "url_approved_1": "http://127.0.0.1:41593/",
+    "dialog_approved_2": {
+      "id": 2789,
+      "hasDialog": false
+    },
+    "dialog_approved_3": {
+      "id": 2797,
+      "hasDialog": false
+    },
+    "capture_1_approved_3": "{\"capturedAt\":\"2026-11-09T09:04:32.417Z\",\"url\":\"http://127.0.0.1:41593/\",\"viewport\":{\"width\":1984,\"height\":1068,\"deviceScaleFactor\":1}}",
+    "assert_approved_3": "Submitted once",
+    "capture_2_approved_3": "{\"capturedAt\":\"2026-11-09T09:04:32.999Z\",\"url\":\"http://127.0.0.1:41593/\",\"viewport\":{\"width\":1984,\"height\":1068,\"deviceScaleFactor\":1}}"
+  }
+}

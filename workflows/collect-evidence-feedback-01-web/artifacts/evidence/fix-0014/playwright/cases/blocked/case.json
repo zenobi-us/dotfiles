@@ -1,0 +1,73 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "blocked",
+  "runId": "playwright",
+  "order": 1,
+  "purpose": "Block unapproved Space activation",
+  "preconditions": [
+    {
+      "id": "ready",
+      "desc": "Owned page is available",
+      "check": {
+        "goto": "/",
+        "locator": "h1",
+        "text": "Fix 0014 owned smoke"
+      }
+    }
+  ],
+  "expected": {
+    "pass": "No unapproved submission",
+    "fail": "An unapproved submission occurs"
+  },
+  "steps": [
+    {
+      "id": "blocked.1",
+      "order": 1,
+      "purpose": "Open the owned confirmation page",
+      "actions": {
+        "do": "navigate",
+        "to": "/",
+        "says": "Open the owned confirmation page"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "blocked.2",
+      "order": 2,
+      "purpose": "Attempt the unapproved confirmation",
+      "actions": {
+        "do": "press",
+        "key": "Space",
+        "says": "Attempt the unapproved confirmation"
+      },
+      "expected": null,
+      "observed": [
+        "page.evaluate: Error: SAFETY STOP blocked.2: confirmation step is not explicitly approved\n    at eval (eval at evaluate (:368:30), <anonymous>:17:21)\n    at eval (eval at evaluate (:368:30), <anonymous>:19:5)\n    at UtilityScript.evaluate (<anonymous>:370:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+      ],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/blocked/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "blocked.error-001",
+      "caseId": "blocked",
+      "stepId": "blocked.2",
+      "category": "blocked",
+      "message": "page.evaluate: Error: SAFETY STOP blocked.2: confirmation step is not explicitly approved\n    at eval (eval at evaluate (:368:30), <anonymous>:17:21)\n    at eval (eval at evaluate (:368:30), <anonymous>:19:5)\n    at UtilityScript.evaluate (<anonymous>:370:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    }
+  ],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded"
+}

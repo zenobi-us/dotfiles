@@ -1,0 +1,25 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "driver-map",
+  "entries": [
+    {
+      "step": "blocked.1",
+      "kind": "navigate",
+      "target": "/",
+      "from": 0,
+      "count": 6,
+      "shot": "",
+      "dialog": "dialog_blocked_1",
+      "url": "url_blocked_1"
+    },
+    {
+      "step": "blocked.2",
+      "kind": "press",
+      "target": "Space",
+      "from": 6,
+      "count": 3,
+      "shot": "",
+      "dialog": "dialog_blocked_2"
+    }
+  ]
+}

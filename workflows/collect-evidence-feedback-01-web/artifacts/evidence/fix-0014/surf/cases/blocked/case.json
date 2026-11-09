@@ -1,0 +1,75 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "blocked",
+  "runId": "surf",
+  "order": 1,
+  "purpose": "Block unapproved Space activation",
+  "preconditions": [
+    {
+      "id": "ready",
+      "desc": "Owned page is available",
+      "check": {
+        "goto": "/",
+        "locator": "h1",
+        "text": "Fix 0014 owned smoke"
+      }
+    }
+  ],
+  "expected": {
+    "pass": "No unapproved submission",
+    "fail": "An unapproved submission occurs"
+  },
+  "steps": [
+    {
+      "id": "blocked.1",
+      "order": 1,
+      "purpose": "Open the owned confirmation page",
+      "actions": {
+        "do": "navigate",
+        "to": "/",
+        "says": "Open the owned confirmation page"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "blocked.2",
+      "order": 2,
+      "purpose": "Attempt the unapproved confirmation",
+      "actions": {
+        "do": "press",
+        "key": "Space",
+        "says": "Attempt the unapproved confirmation"
+      },
+      "expected": null,
+      "observed": [
+        "Error: SAFETY STOP blocked.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6",
+        "Error: SAFETY STOP blocked.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6"
+      ],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/blocked/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "blocked.error-001",
+      "caseId": "blocked",
+      "stepId": "blocked.2",
+      "category": "blocked",
+      "message": "Error: SAFETY STOP blocked.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6"
+    }
+  ],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion.",
+    "Video is unavailable with the Surf driver. Image captures remain valid."
+  ],
+  "sideEffects": "not-recorded"
+}

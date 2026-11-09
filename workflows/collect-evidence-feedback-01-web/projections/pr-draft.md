@@ -1,24 +1,27 @@
 ---
 title: Collect-evidence web PR draft
 type: Projection
-latest_receipt: implementation-0005
+latest_receipt: fix-0014
 ---
-
 # Preserve Surf and Playwright in collect-evidence
 
-[Canonical ticket](../../../tracker/tickets/collect-evidence-feedback-01-web.md) · [Initiative](../../../tracker/initiatives/collect-evidence-feedback/index.md)
+FIXED, awaiting a fresh independent review.
+
+Source commit 3d1b282520a74db5409457f83ed0f766670b86cb; tree 0c68cbc0d31e344ea2071352e81ca33c13c31b9f. Branch feature/collect-evidence-feedback-01-web.
+
+[Immutable fix draft](../artifacts/snapshots/pr-draft-fix-0014.md) records the changed files, exact fixes, checks and limits. [Prior implementation draft](../artifacts/snapshots/pr-draft-implementation-0005.md) preserves the original cutover. [New evidence](../artifacts/evidence/fix-0014/index.md) preserves both real drivers.
 
 ## Problem
 
-The browser-only skill needs common versioned evidence records, routed immutable publication and consistent commands without losing either real browser driver or existing verdict and comment capabilities.
+The browser-only collector lacked common versioned evidence records and storage rules. The cutover must preserve both web drivers. Its review found defects in plan validation, confirmation approval, watched-tree exclusion and missing-media handling.
 
 ## Implementation
 
-Create collect-evidence as the canonical skill with pinned CrustJS/mise Bun command contracts, versioned sealed records, actual asset metadata, shared-context routing and immutable publication. Preserve both typed Surf and Playwright drivers, attended stops, preconditions, cleanup, verdicts, read-only reports and generated comments. After both real driver checks passed, migrate active callers and skill-authoring rules and remove obsolete active browser-only entrypoints.
+collect-evidence provides the canonical mise Bun CrustJS commands, typed browser plans, versioned records, routed immutable evidence, verdicts, read-only reports and generated comments. Surf and Playwright remain active. The original cutover and its caller migration are recorded in the immutable implementation draft.
 
-## Changed paths
+## Changed files
 
-Old and new rename paths are listed. Source commit `0acff3b4c45705336028263a0b20d41dbc1aee63`; tree `9480fa07ed2783674efa8f0d3efc6bc7daa81047`.
+This list covers the original cutover and the selected fix. It includes old and new paths where a rename occurred.
 
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/writing-skills/references/skill-anatomy.md`
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/writing-skills/references/skill-checklist.md`
@@ -85,94 +88,73 @@ Old and new rename paths are listed. Source commit `0acff3b4c45705336028263a0b20
 - `mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/SKILL.md`
 - `mise/conf.d/devtools-agent/bundles/developer/types/versioned-imports.d.ts`
 
-## Validation
+## Fixes and validation
 
-- Real Surf and Playwright controlled-page workflows passed; actual screenshots and selected-project state were inspected.
-- Final real-driver suite: 11 passed, 0 failed, 70 expectations. Scoped TypeScript check passed.
-- Real WebM playback completed in the browser report. Four durable sealed runs validated.
-- Assertion failures, partial/no-assertion captures, blocked approvals/credentials, missing assets/versions, dry-run and real-navigation interruption were exercised.
-- Borrowed-resource sentinels survived; the user’s original Chrome tab remained open.
-- Installed CLI commands ran from an unrelated directory with a temporary resolved test store.
+- **STD-001:** loadPlan calls the same checkPlan used by finalization and record reading. Case IDs, precondition IDs and declared references fail before driver execution. Authoring-only TODO and human-step checks remain in the loader.
+- **SPEC-001:** Both drivers guard Enter, Space, Spacebar and literal-space activation before dispatch. The real public workflow checks BLOCKED and zero unapproved HTTP operations while preserving approved Space activation.
+- **SPEC-002:** The watched-tree guard recognizes only exact .. or a parent-directory separator prefix as traversal. A repository descendant named ..captures is rejected.
+- **SPEC-003:** Surf retains expected references for successful screenshot commands. The public collector checks those files after saving native logs and rejects missing media before finalization.
 
-Exact commands, directories, results and media are linked in the evidence index below and recorded in the authoritative implementation result. One stale owned-preview navigation failed before a fresh owned preview succeeded; both attempts remain recorded.
+Final public suite: 14 passed, 0 failed, 93 expectations. Scoped TypeScript passed. Both real drivers blocked unapproved Space and allowed approved Space, with one approved HTTP operation per driver. The native screenshots were inspected. Transferred sealed runs validated.
 
 ## Review history
 
-At implementation completion, no formal review had run. Implementation attempt 1 was blocked by missing Surf connectivity; the restored connection enabled attempt 2. The parent verified and acknowledged implementation-0005. [start-complete-0006](../events/start-complete-0006.yaml) records the completed start phase. The child pane is closed. Independent review was pending at that point.
+Implementation attempt 1 was blocked. Attempt 2 completed at 0acff3b4c45705336028263a0b20d41dbc1aee63. Review attempt 1 failed before launch. Review attempt 2 recorded FAILURE for that old source. The verdict is now historical and stale, not current SUCCESS.
 
-Review attempt 1 failed before a reviewer started; [review-aborted-0009](../events/review-aborted-0009.yaml) records that launch failure. A fresh independent reviewer completed attempt 2 at source `0acff3b4c45705336028263a0b20d41dbc1aee63`. [review-0011](../events/review-0011.yaml) records FAILURE: Standards has one blocking finding and one advisory finding; Spec has three blocking findings. [The immutable review](../artifacts/reviews/review-review-0011.md) holds the complete reports. [review-complete-0012](../events/review-complete-0012.yaml) records parent validation and closure. No finding was fixed.
+- [First review start](../events/review-start-0008.yaml).
+- [Review launch failure](../events/review-aborted-0009.yaml).
+- [Second review start](../events/review-start-0010.yaml).
+- [Review result](../events/review-0011.yaml).
+- [Immutable full review](../artifacts/reviews/review-review-0011.md).
+- [Parent review completion](../events/review-complete-0012.yaml).
+- [Fix authorization](../events/fix-start-0013.yaml).
+- [Fix result](../events/fix-0014.yaml).
 
 ## Resolved findings
 
-None: no review findings exist.
+The fixer reports STD-001, SPEC-001, SPEC-002, SPEC-003 resolved at source `3d1b282520a74db5409457f83ed0f766670b86cb`. Regression and real-driver results support these fixes. A fresh independent review must verify the new source.
 
-## Remaining findings and questions
+## Latest reviewer verdict
 
-Open blocking findings: STD-001, SPEC-001, SPEC-002, SPEC-003. Advisory finding: STD-002. The immutable review holds the details. Integration remains pending.
+No current verdict exists for source `3d1b282520a74db5409457f83ed0f766670b86cb`. The FAILURE in review-0011 belongs only to the old source and remains in the review history.
+
+## Remaining work and ownership
+
+STD-002 remains unresolved, advisory and outside the selected scope. cleanupRow hooks remain unchanged. Parent phase completion and a fresh independent review remain pending. No review verdict, remote Git, merge, push, tracker update or ticket completion was performed. The clean source worktree, workspace w73 and child pane w73:p3 remain open.
 
 - The cause of the initial owned-preview tab invalidation is unknown; fresh owned-preview and borrowed-resource checks passed.
 - The tracker graph labels implemented as COMPLETED despite the canonical implemented state; this out-of-scope presentation mismatch was reported.
 
-## Latest reviewer verdict
-
-FAILURE for source `0acff3b4c45705336028263a0b20d41dbc1aee63`. [review-0011](../events/review-0011.yaml) records the verdict.
 
 ## Merge and publication status
 
-Not merged or pushed. Ticket work_status is implemented, not completed. Source and tracker commits are separate; implementation tracker commit `e089ab179408aef2f9ed335bcc4f128e950db508` and review publication commit `93233151`. This projection and its supporting event are published by their containing scoped workflow commit. The child worktree and workspace remain available.
+The source fix is committed as `3d1b282520a74db5409457f83ed0f766670b86cb`. Base workflow publication and parent completion remain pending. No merge, push, tracker mutation or ticket completion ran.
 
 ## Limits
 
-- Fix, submit, merge, push and ticket completion were not performed. The feature worktree remains available.
-- The default Playwright Chrome path is absent on this host. Real runs used the existing cached Chromium executable through PLAYWRIGHT_MCP_EXECUTABLE_PATH; no browser installation was performed.
-- One owned preview tab was invalidated before its first navigation. A fresh owned preview, real playback and both borrowed-resource sentinel checks succeeded. The invalidation cause is unknown; no collector-caused defect or fix is claimed.
-- The tracker graph displays implemented as COMPLETED, while its canonical work_status remains implemented. This existing tracker presentation mismatch was reported, not changed in this web ticket.
-- The report screenshots have actual PNG dimensions 1984×1068. Native Surf output reported a narrower width. Their exact capture instants were not supplied; command start/end intervals are retained instead of invented timestamps.
-- TUI, GUI and the feedback viewer/UI tickets remain out of scope. The HTML report is read-only.
+- STD-002 remains unresolved and outside the selected fix scope; cleanupRow hooks remain unchanged.
+- No new review verdict, remote Git, merge, push, tracker mutation or ticket completion. Parent owns publication and acknowledgement.
+- TypeScript LSP initialization failed because the source worktree has no installed TypeScript. References used scoped source search; final compiler check used existing base-checkout dependencies.
+- The first smoke script expected exit 1 for a BLOCKED/PASS run; the CLI correctly returned 3. Corrected the throwaway expectation; retained the first log under /tmp/ce-fix-0014-smoke-mZ4FQp.
+- A hyphenated test fixture case ID exposed an existing Surf variable substitution error. The fixture now uses an alphanumeric case ID; no unrelated production fix was made.
 
 ## Supporting records
 
-- [start-0001](../events/start-0001.yaml) — phase-start, start, started.
-- [implementation-0002](../events/implementation-0002.yaml) — phase-result, implementation, blocked.
-- [start-complete-0003](../events/start-complete-0003.yaml) — phase-complete, start, blocked.
-- [start-0004](../events/start-0004.yaml) — phase-start, start, started.
-- [implementation-0005](../events/implementation-0005.yaml) — phase-result, implementation, completed.
-- [Immutable attempt 2 draft](../artifacts/snapshots/pr-draft-implementation-0005.md).
-- [Immutable attempt 1 draft](../artifacts/snapshots/pr-draft-implementation-0002.md).
-- [Attempt 1 Surf diagnostics](../artifacts/snapshots/surf-preflight-implementation-0002.txt).
-- [Attempt 2 start inspection](../artifacts/snapshots/inspection-start-0004.json).
-- [All evidence, commands, native logs and media](../artifacts/evidence/implementation-0005/index.md).
-
-
-- [Review start attempt 1](../events/review-start-0008.yaml).
-- [Failed launch](../events/review-aborted-0009.yaml).
-- [Review start attempt 2](../events/review-start-0010.yaml).
-- [Review result](../events/review-0011.yaml).
-- [Review completion](../events/review-complete-0012.yaml).
-- [Immutable review](../artifacts/reviews/review-review-0011.md).
-- [Frozen review inspection](../artifacts/snapshots/inspection-review-start-0008.json).
-- [Fresh reviewer launch](../artifacts/snapshots/launch-review-start-0010.json).
-
-## Workspace availability
-
-The post-close check found that the source workspace was no longer open. The parent reopened the same worktree as Herdr workspace w71. No source change or new agent launch occurred. [workspace-restored-0007](../events/workspace-restored-0007.yaml) records the restoration. [start-complete-0006](../events/start-complete-0006.yaml) remains unchanged. Independent review is pending.
-
-
-## Independent review attempt 1
-
-The user requested an independent review. [review-start-0008](../events/review-start-0008.yaml) freezes source commit `0acff3b4c45705336028263a0b20d41dbc1aee63` and tree `9480fa07ed2783674efa8f0d3efc6bc7daa81047`. The comparison base is master at `7f981d2f47f24276159bec1719a50667a61494c6`; the merge base is `859341b01ef7be474a3128b7f94772aab731c2f7`. No reviewer verdict is available yet. The source remains unchanged.
-
-
-## Independent review launch recovery
-
-[review-aborted-0009](../events/review-aborted-0009.yaml) records a Herdr worktree lookup failure before a reviewer started. No verdict exists. Source commit `0acff3b4c45705336028263a0b20d41dbc1aee63` and its clean tree are unchanged. [review-start-0010](../events/review-start-0010.yaml) authorizes a fresh launch retry under the same user review request. No source, claim or unrelated service changed.
-
-
-## Review completion
-
-The parent validated the authoritative result and artifact, exact clean source, typed transport and canonical ticket update. The public validator accepted the retained sealed Playwright run. Review records and the verdict comment were committed as `93233151`; no push ran. The acknowledged reviewer pane `w73:p2` is closed. Herdr workspace `w73` and the source worktree remain open. Four findings block completion; one is advisory. No fixes, merge, submit or ticket completion ran.
-
-
-## Fix attempt 1
-
-The user requested a fresh independent fixer for STD-001, SPEC-001, SPEC-002, SPEC-003. [fix-start-0013](../events/fix-start-0013.yaml) consumes [review-0011](../events/review-0011.yaml) at source `0acff3b4c45705336028263a0b20d41dbc1aee63`. STD-002 remains advisory and is not selected. No fix result or new review verdict exists yet.
+- [start-0001](../events/start-0001.yaml).
+- [implementation-0002](../events/implementation-0002.yaml).
+- [start-complete-0003](../events/start-complete-0003.yaml).
+- [start-0004](../events/start-0004.yaml).
+- [implementation-0005](../events/implementation-0005.yaml).
+- [start-complete-0006](../events/start-complete-0006.yaml).
+- [workspace-restored-0007](../events/workspace-restored-0007.yaml).
+- [review-start-0008](../events/review-start-0008.yaml).
+- [review-aborted-0009](../events/review-aborted-0009.yaml).
+- [review-start-0010](../events/review-start-0010.yaml).
+- [review-0011](../events/review-0011.yaml).
+- [review-complete-0012](../events/review-complete-0012.yaml).
+- [fix-start-0013](../events/fix-start-0013.yaml).
+- [fix-0014](../events/fix-0014.yaml).
+- [Original implementation draft](../artifacts/snapshots/pr-draft-implementation-0005.md).
+- [Immutable fix draft](../artifacts/snapshots/pr-draft-fix-0014.md).
+- [Fix evidence](../artifacts/evidence/fix-0014/index.md).
+- [Fixer launch](../artifacts/snapshots/launch-fix-start-0013.json).
