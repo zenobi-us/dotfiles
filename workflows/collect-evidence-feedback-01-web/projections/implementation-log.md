@@ -125,3 +125,8 @@ Start-complete-0003 records the blocked first attempt. Start-0004 authorizes the
 - [Attempt 1 Surf diagnostics](../artifacts/snapshots/surf-preflight-implementation-0002.txt).
 - [Attempt 2 start inspection](../artifacts/snapshots/inspection-start-0004.json).
 - [All evidence, commands, native logs and media](../artifacts/evidence/implementation-0005/index.md).
+
+
+## Workspace availability
+
+The post-close check found that the source workspace was no longer open. The parent reopened the same worktree as Herdr workspace w71. No source change or new agent launch occurred. [workspace-restored-0007](../events/workspace-restored-0007.yaml) records the restoration. [start-complete-0006](../events/start-complete-0006.yaml) remains unchanged. Independent review is pending.
