@@ -25,3 +25,8 @@ Restore Surf extension/native-host connectivity before the mandatory real workfl
 
 The authoritative event exists. Its original writer failed transport with ENOTDIR under /proc/self/fd/8/home. Preserve the [recovery payload](../artifacts/snapshots/result-recovery-implementation-0002.json) and original context. Do not repeat the domain mutation. The parent recovered delivery through the canonical physical path. The run, operation, reference and payload remain unchanged. The parent verified and acknowledged the blocked result. [start-complete-0003](../events/start-complete-0003.yaml) records the reconciliation. Pane w6Y:p2 is closed. The worktree and workspace remain available. Surf remains the required prerequisite.
 
+
+
+## Resumed implementation
+
+The operator opened Chrome. Surf returned a live tab. [start-0004](../events/start-0004.yaml) starts attempt 2 in the same worktree. The prior blocked receipts remain unchanged. A fresh agent will run both real driver workflows before any cutover.

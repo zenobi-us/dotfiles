@@ -1,0 +1,899 @@
+{
+  "ticket": {
+    "id": "collect-evidence-feedback-01-web",
+    "title": "Preserve Surf and Playwright in collect-evidence",
+    "documentType": "enhancement",
+    "fields": {
+      "blocked_by": [],
+      "id": "collect-evidence-feedback-01-web",
+      "parent": "collect-evidence-feedback",
+      "schema": "tracker-ticket/v1",
+      "sequence": 1,
+      "title": "Preserve Surf and Playwright in collect-evidence",
+      "triage": "ready-for-agent",
+      "type": "enhancement",
+      "work_status": "claimed"
+    },
+    "ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+    "backend": "local-markdown",
+    "status": "claimed",
+    "blockedBy": [],
+    "body": "# Preserve Surf and Playwright in collect-evidence\n\n## What to build\n\nCollect, validate and report real web evidence through collect-evidence with both existing web drivers.\n\nImplement this complete slice. Follow the collect-evidence-feedback initiative and its common schema, command, storage, safety and testing rules.\n\n## Acceptance criteria\n\n- **Preserve the existing** Surf and Playwright drivers, typed browser plans, preconditions, attended behaviour and resource cleanup. Keep existing verdict, report and generated-comment capabilities available through the new skill.\n- **Run a real** controlled-page workflow with each driver before removing the old browser-only skill. Check the visible page, actual screenshot, assertion outcome and cleanup. A missing required driver blocks the cutover; it does not count as a pass.\n- **Produce collect-evidence/v1 run,** plan, case, asset, event and error records. Version owned Markdown frontmatter. Use stable IDs, ordered steps, descriptive capture sequences, real capture times, SHA-256 hashes, dimensions and driver provenance.\n- **Keep capture status** separate from assertion results. Keep retries as new captures. Reject invalid records, missing media and unsupported explicit schemas without a valid-looking partial run.\n- **Expose the specified** evidence commands through executable mise Bun CrustJS entrypoints. Check command behaviour from an unrelated directory. Honour common output flags, exit codes and dry-run limits.\n- **Resolve the evidence** store through shared-context. Capture outside the watched source tree and finalize into the selected store. Seal completed media. Preserve third-party outputs and existing historical evidence.\n- **Block unapproved confirmations** and credential prompts. Perform no remote Git operation, commit, push, credential entry or automatic tool installation during capture. Close only owned resources.\n- **Migrate active callers** and skill authoring rules in the same clean cutover. Remove the old active entrypoints and aliases only after both driver workflow checks pass. Update the relevant docs and public workflow checks.\n\n## Verification\n\nUse the public workflow boundary approved in the initiative. Exercise the installed commands and the applicable HTTP, browser or native-driver surface. Use temporary resolved stores. Keep regression checks for consumer-visible failures. Do not prove behaviour from generated source text. Update affected documentation after verification.\n\n## Specification coverage\n\nThis slice covers initiative user stories 1, 2, 3, 4, 5, 6, 10, 14, 15, 16, 17, 18, 19, 20, 21, 22, 49, 50, 51, 53. Keep the initiative as the complete specification.\n\n## Comments\n\nNo discussion has been recorded."
+  },
+  "workflow": {
+    "ticketId": "collect-evidence-feedback-01-web",
+    "receipts": [
+      {
+        "id": "start-complete-0003",
+        "ref": "workflows/collect-evidence-feedback-01-web/events/start-complete-0003.yaml",
+        "workflowId": "collect-evidence-feedback-01-web",
+        "phase": "start",
+        "status": "blocked",
+        "parentReceipt": "implementation-0002",
+        "sourceCommit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+        "sourceTree": "c34aa8898329be9caf9b345685c8cecafaeba57d",
+        "createdAt": "2026-11-09T04:48:45.849Z",
+        "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+        "sourceBranch": "feature/collect-evidence-feedback-01-web",
+        "baseBranch": "master",
+        "sessionId": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T23-01-18-916Z_01a1b83e-b1c4-7674-b3ee-957211cf199d.jsonl",
+        "outputs": [
+          "workflows/collect-evidence-feedback-01-web/events/start-complete-0003.yaml",
+          "workflows/collect-evidence-feedback-01-web/manifest.yaml",
+          "workflows/collect-evidence-feedback-01-web/projections/latest-status.yaml",
+          "workflows/collect-evidence-feedback-01-web/projections/pr-draft.md",
+          "workflows/collect-evidence-feedback-01-web/projections/implementation-log.md"
+        ],
+        "fields": {
+          "schema": "worktree-receipt/v1",
+          "receipt_id": "start-complete-0003",
+          "workflow_id": "collect-evidence-feedback-01-web",
+          "phase": "start",
+          "event": "phase-complete",
+          "attempt": 1,
+          "parent_receipt": "implementation-0002",
+          "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+          "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+          "source_branch": "feature/collect-evidence-feedback-01-web",
+          "base_branch": "master",
+          "source_commit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+          "source_tree": "c34aa8898329be9caf9b345685c8cecafaeba57d",
+          "created_at": "2026-11-09T04:48:45.849Z",
+          "muxer": "herdr",
+          "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+          "pane_id": null,
+          "agent": "omp",
+          "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T23-01-18-916Z_01a1b83e-b1c4-7674-b3ee-957211cf199d.jsonl",
+          "ticket": {
+            "backend": "local-markdown",
+            "id": "collect-evidence-feedback-01-web",
+            "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+          },
+          "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+          "workflow": {
+            "store": "repository",
+            "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+            "ref": "workflows/collect-evidence-feedback-01-web"
+          },
+          "status": "blocked",
+          "failure_reason": "Required Surf native-host connection is unavailable at /tmp/surf.sock. Real workflows for both drivers are required before cutover. No source implementation or migration performed.",
+          "inputs": [
+            {
+              "kind": "ticket",
+              "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+            },
+            {
+              "kind": "receipt",
+              "ref": "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml"
+            },
+            {
+              "kind": "receipt",
+              "ref": "workflows/collect-evidence-feedback-01-web/events/implementation-0002.yaml"
+            },
+            {
+              "kind": "draft",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-implementation-0002.md"
+            },
+            {
+              "kind": "diagnostics",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/surf-preflight-implementation-0002.txt"
+            },
+            {
+              "kind": "launch",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/launch-start-0001.json"
+            },
+            {
+              "kind": "recovery",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/result-recovery-implementation-0002.json"
+            }
+          ],
+          "outputs": [
+            {
+              "kind": "receipt",
+              "ref": "workflows/collect-evidence-feedback-01-web/events/start-complete-0003.yaml"
+            },
+            {
+              "kind": "projection",
+              "ref": "workflows/collect-evidence-feedback-01-web/manifest.yaml"
+            },
+            {
+              "kind": "projection",
+              "ref": "workflows/collect-evidence-feedback-01-web/projections/latest-status.yaml"
+            },
+            {
+              "kind": "projection",
+              "ref": "workflows/collect-evidence-feedback-01-web/projections/pr-draft.md"
+            },
+            {
+              "kind": "projection",
+              "ref": "workflows/collect-evidence-feedback-01-web/projections/implementation-log.md"
+            }
+          ],
+          "recovery_mode": "reconcile",
+          "recovery_reason": "Read the child result and artifacts, verify the frozen source and outcome, then append the parent completion. Do not repeat the child work.",
+          "ownership_approval": {
+            "kind": "operator",
+            "instruction": "Authorize a fresh isolated start",
+            "scope": "The user confirmed that this ticket has no earlier implementation to recover. Create a new branch from master and a fresh agent session. Preserve existing worktrees, unrelated changes and the older hook recovery journal."
+          },
+          "child_run_id": "6c1ecb51-d05b-4e23-ad61-a82ed9d67489",
+          "child_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-collect-evidence-feedback-01-web--/2026-11-09T04-33-45-288Z_01a1be95-6948-750b-ae73-0260df3c8872.jsonl",
+          "child_pane_id": "w6Y:p2",
+          "muxer_completion": {
+            "state": "completed",
+            "sequence": 2,
+            "source": "agent",
+            "timestamp": "2026-11-09T04:39:12.194Z"
+          },
+          "transport": {
+            "ref": "file:///home/zenobius/.local/state/result-delivery/runs/6c1ecb51-d05b-4e23-ad61-a82ed9d67489/result.json",
+            "sha256": "2e96d39445abafce333af446bdf2b2c79aaa198fafe2d9e9bf90c6dc65d0292b",
+            "run_id": "6c1ecb51-d05b-4e23-ad61-a82ed9d67489",
+            "operation_id": "collect-evidence-feedback-01-web-implementation-0002",
+            "context_file": "/var/home/zenobius/.local/state/result-delivery/runs/6c1ecb51-d05b-4e23-ad61-a82ed9d67489/context-canonical.json",
+            "original_context_file": "/home/zenobius/.local/state/result-delivery/runs/6c1ecb51-d05b-4e23-ad61-a82ed9d67489/context.json",
+            "acknowledged": true,
+            "recovery": "Canonicalized the trusted parent directory from /home to /var/home. The original ref, run, operation, schema and payload remain unchanged. No domain mutation was repeated."
+          },
+          "validation_results": [
+            {
+              "check": "authoritative receipt and transport equality",
+              "status": "completed"
+            },
+            {
+              "check": "receipt parent graph and source identity",
+              "status": "completed"
+            },
+            {
+              "check": "source cleanliness and unchanged commit/tree",
+              "status": "completed"
+            },
+            {
+              "check": "workflow artifact publication",
+              "status": "completed",
+              "commit": "bc94185ab2e061b4cd6f49fae4e8b2d4ec21f576"
+            },
+            {
+              "check": "required Surf native-host connection",
+              "status": "blocked",
+              "observed": "The child recorded missing /tmp/surf.sock. No controlled-page workflow or source implementation ran."
+            }
+          ],
+          "pane_close": {
+            "pane_id": "w6Y:p2",
+            "status": "closed"
+          },
+          "worktree_preserved": true,
+          "workspace_preserved": true,
+          "source_changed": false
+        },
+        "body": ""
+      },
+      {
+        "id": "implementation-0002",
+        "ref": "workflows/collect-evidence-feedback-01-web/events/implementation-0002.yaml",
+        "workflowId": "collect-evidence-feedback-01-web",
+        "phase": "implementation",
+        "status": "blocked",
+        "parentReceipt": "start-0001",
+        "sourceCommit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+        "sourceTree": "c34aa8898329be9caf9b345685c8cecafaeba57d",
+        "createdAt": "2026-11-09T04:37:24.710Z",
+        "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+        "sourceBranch": "feature/collect-evidence-feedback-01-web",
+        "baseBranch": "master",
+        "sessionId": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-collect-evidence-feedback-01-web--/2026-11-09T04-33-45-288Z_01a1be95-6948-750b-ae73-0260df3c8872.jsonl",
+        "outputs": [
+          "workflows/collect-evidence-feedback-01-web/events/implementation-0002.yaml",
+          "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-implementation-0002.md",
+          "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/surf-preflight-implementation-0002.txt"
+        ],
+        "fields": {
+          "schema": "worktree-receipt/v1",
+          "receipt_id": "implementation-0002",
+          "event": "phase-result",
+          "phase": "implementation",
+          "attempt": 1,
+          "parent_receipt": "start-0001",
+          "workflow_id": "collect-evidence-feedback-01-web",
+          "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+          "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+          "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+          "source_branch": "feature/collect-evidence-feedback-01-web",
+          "base_branch": "master",
+          "source_commit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+          "source_tree": "c34aa8898329be9caf9b345685c8cecafaeba57d",
+          "created_at": "2026-11-09T04:37:24.710Z",
+          "muxer": "herdr",
+          "pane_id": "w6Y:p2",
+          "agent": "omp",
+          "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-collect-evidence-feedback-01-web--/2026-11-09T04-33-45-288Z_01a1be95-6948-750b-ae73-0260df3c8872.jsonl",
+          "child_run_id": "6c1ecb51-d05b-4e23-ad61-a82ed9d67489",
+          "ticket": {
+            "backend": "local-markdown",
+            "id": "collect-evidence-feedback-01-web",
+            "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+          },
+          "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+          "workflow": {
+            "store": "repository",
+            "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+            "ref": "workflows/collect-evidence-feedback-01-web"
+          },
+          "status": "blocked",
+          "failure_reason": "Required Surf native-host connection is unavailable at /tmp/surf.sock. Real workflows for both drivers are required before cutover. No source implementation or migration performed.",
+          "changed_files": [],
+          "validation_results": [
+            {
+              "command": "mise exec -- bash -c 'command -v surf; command -v playwright-cli; command -v bun; surf doctor'",
+              "cwd": "/tmp",
+              "exit_code": 1,
+              "result": "blocked",
+              "observed": "Surf executable available. Socket path does not exist; connection fails ENOENT. Manifest and executable native-host wrapper checks pass."
+            },
+            {
+              "command": "mise exec -- bash -c 'env -u SURF_SOCKET surf doctor --json; surf extension-path; surf tab.list'",
+              "cwd": "/tmp",
+              "exit_code": 1,
+              "result": "blocked",
+              "observed": "Default socket is also /tmp/surf.sock. Doctor reports 7 pass and 2 fail. tab.list reports Socket not found.",
+              "output_ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/surf-preflight-implementation-0002.txt"
+            },
+            {
+              "command": "playwright-cli --version",
+              "cwd": "/tmp",
+              "exit_code": 0,
+              "result": "completed",
+              "observed": "0.1.22. Browser workflow not exercised."
+            },
+            {
+              "command": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/inspect.ts tracker/tickets/collect-evidence-feedback-01-web.md --json",
+              "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+              "exit_code": 0,
+              "result": "completed",
+              "observed": "Valid start receipt; source branch at initial commit/tree with dirty false."
+            }
+          ],
+          "implementation_summary": "Stopped at required driver preflight. No product source changes, source commits, captures, tool installation, credential entry, remote Git, formal review, submit, or finish. Preserve existing browser skill, both drivers, active callers, ticket claim, historical evidence and hk recovery journal.",
+          "open_questions": [
+            "Operator must restore the Surf browser-extension/native-host connection before the required controlled-page workflow can run.",
+            "Domain/ADR review and all source implementation and acceptance checks remain outstanding. Playwright execution is unverified."
+          ],
+          "inputs": [
+            {
+              "kind": "ticket",
+              "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+            },
+            {
+              "kind": "initiative",
+              "ref": "tracker/initiatives/collect-evidence-feedback/index.md"
+            },
+            {
+              "kind": "receipt",
+              "ref": "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml"
+            },
+            {
+              "kind": "inspection",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/inspection-start-0001.json"
+            },
+            {
+              "kind": "launch",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/launch-start-0001.json"
+            }
+          ],
+          "outputs": [
+            {
+              "kind": "receipt",
+              "ref": "workflows/collect-evidence-feedback-01-web/events/implementation-0002.yaml"
+            },
+            {
+              "kind": "draft",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-implementation-0002.md"
+            },
+            {
+              "kind": "diagnostics",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/surf-preflight-implementation-0002.txt"
+            }
+          ]
+        },
+        "body": ""
+      },
+      {
+        "id": "start-0001",
+        "ref": "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml",
+        "workflowId": "collect-evidence-feedback-01-web",
+        "phase": "start",
+        "status": "started",
+        "sourceCommit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+        "sourceTree": "c34aa8898329be9caf9b345685c8cecafaeba57d",
+        "createdAt": "2026-11-09T04:29:11.660Z",
+        "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+        "sourceBranch": "feature/collect-evidence-feedback-01-web",
+        "baseBranch": "master",
+        "sessionId": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T23-01-18-916Z_01a1b83e-b1c4-7674-b3ee-957211cf199d.jsonl",
+        "outputs": [
+          "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml"
+        ],
+        "fields": {
+          "schema": "worktree-receipt/v1",
+          "receipt_id": "start-0001",
+          "workflow_id": "collect-evidence-feedback-01-web",
+          "phase": "start",
+          "event": "phase-start",
+          "attempt": 1,
+          "parent_receipt": null,
+          "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+          "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+          "source_branch": "feature/collect-evidence-feedback-01-web",
+          "base_branch": "master",
+          "source_commit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+          "source_tree": "c34aa8898329be9caf9b345685c8cecafaeba57d",
+          "created_at": "2026-11-09T04:29:11.660Z",
+          "muxer": "herdr",
+          "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+          "pane_id": null,
+          "agent": "omp",
+          "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T23-01-18-916Z_01a1b83e-b1c4-7674-b3ee-957211cf199d.jsonl",
+          "parent_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T23-01-18-916Z_01a1b83e-b1c4-7674-b3ee-957211cf199d.jsonl",
+          "parent_pane_id": "w64:p2X",
+          "ticket": {
+            "backend": "local-markdown",
+            "id": "collect-evidence-feedback-01-web",
+            "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+          },
+          "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+          "workflow": {
+            "store": "repository",
+            "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+            "ref": "workflows/collect-evidence-feedback-01-web"
+          },
+          "inputs": [
+            {
+              "kind": "ticket",
+              "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+            },
+            {
+              "kind": "initiative",
+              "ref": "tracker/initiatives/collect-evidence-feedback/index.md"
+            },
+            {
+              "kind": "inspection",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/inspection-start-0001.json"
+            }
+          ],
+          "outputs": [
+            {
+              "kind": "receipt",
+              "ref": "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml"
+            }
+          ],
+          "status": "started",
+          "recovery_mode": "takeover",
+          "recovery_reason": "Existing work or incomplete inspection needs reconciliation. Tracker and evidence-only commits do not prove implementation. Preserve changes and resolve ownership before takeover.",
+          "ownership_approval": {
+            "kind": "operator",
+            "instruction": "Authorize a fresh isolated start",
+            "scope": "The user confirmed that this ticket has no earlier implementation to recover. Create a new branch from master and a fresh agent session. Preserve existing worktrees, unrelated changes and the older hook recovery journal."
+          },
+          "source_resolution": {
+            "kind": "new-workflow",
+            "created_by": "Worktrunk",
+            "branch": "feature/collect-evidence-feedback-01-web",
+            "base": "master",
+            "claim_commit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+            "preserved_prior_work": true
+          },
+          "worktree_creation": {
+            "hooks": "skipped",
+            "reason": "Avoid global mise setup; the child performs scoped setup."
+          }
+        },
+        "body": ""
+      }
+    ],
+    "events": [
+      {
+        "id": "workflows/collect-evidence-feedback-01-web/events/start-complete-0003.yaml",
+        "ref": "workflows/collect-evidence-feedback-01-web/events/start-complete-0003.yaml",
+        "fields": {
+          "schema": "worktree-receipt/v1",
+          "receipt_id": "start-complete-0003",
+          "workflow_id": "collect-evidence-feedback-01-web",
+          "phase": "start",
+          "event": "phase-complete",
+          "attempt": 1,
+          "parent_receipt": "implementation-0002",
+          "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+          "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+          "source_branch": "feature/collect-evidence-feedback-01-web",
+          "base_branch": "master",
+          "source_commit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+          "source_tree": "c34aa8898329be9caf9b345685c8cecafaeba57d",
+          "created_at": "2026-11-09T04:48:45.849Z",
+          "muxer": "herdr",
+          "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+          "pane_id": null,
+          "agent": "omp",
+          "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T23-01-18-916Z_01a1b83e-b1c4-7674-b3ee-957211cf199d.jsonl",
+          "ticket": {
+            "backend": "local-markdown",
+            "id": "collect-evidence-feedback-01-web",
+            "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+          },
+          "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+          "workflow": {
+            "store": "repository",
+            "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+            "ref": "workflows/collect-evidence-feedback-01-web"
+          },
+          "status": "blocked",
+          "failure_reason": "Required Surf native-host connection is unavailable at /tmp/surf.sock. Real workflows for both drivers are required before cutover. No source implementation or migration performed.",
+          "inputs": [
+            {
+              "kind": "ticket",
+              "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+            },
+            {
+              "kind": "receipt",
+              "ref": "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml"
+            },
+            {
+              "kind": "receipt",
+              "ref": "workflows/collect-evidence-feedback-01-web/events/implementation-0002.yaml"
+            },
+            {
+              "kind": "draft",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-implementation-0002.md"
+            },
+            {
+              "kind": "diagnostics",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/surf-preflight-implementation-0002.txt"
+            },
+            {
+              "kind": "launch",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/launch-start-0001.json"
+            },
+            {
+              "kind": "recovery",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/result-recovery-implementation-0002.json"
+            }
+          ],
+          "outputs": [
+            {
+              "kind": "receipt",
+              "ref": "workflows/collect-evidence-feedback-01-web/events/start-complete-0003.yaml"
+            },
+            {
+              "kind": "projection",
+              "ref": "workflows/collect-evidence-feedback-01-web/manifest.yaml"
+            },
+            {
+              "kind": "projection",
+              "ref": "workflows/collect-evidence-feedback-01-web/projections/latest-status.yaml"
+            },
+            {
+              "kind": "projection",
+              "ref": "workflows/collect-evidence-feedback-01-web/projections/pr-draft.md"
+            },
+            {
+              "kind": "projection",
+              "ref": "workflows/collect-evidence-feedback-01-web/projections/implementation-log.md"
+            }
+          ],
+          "recovery_mode": "reconcile",
+          "recovery_reason": "Read the child result and artifacts, verify the frozen source and outcome, then append the parent completion. Do not repeat the child work.",
+          "ownership_approval": {
+            "kind": "operator",
+            "instruction": "Authorize a fresh isolated start",
+            "scope": "The user confirmed that this ticket has no earlier implementation to recover. Create a new branch from master and a fresh agent session. Preserve existing worktrees, unrelated changes and the older hook recovery journal."
+          },
+          "child_run_id": "6c1ecb51-d05b-4e23-ad61-a82ed9d67489",
+          "child_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-collect-evidence-feedback-01-web--/2026-11-09T04-33-45-288Z_01a1be95-6948-750b-ae73-0260df3c8872.jsonl",
+          "child_pane_id": "w6Y:p2",
+          "muxer_completion": {
+            "state": "completed",
+            "sequence": 2,
+            "source": "agent",
+            "timestamp": "2026-11-09T04:39:12.194Z"
+          },
+          "transport": {
+            "ref": "file:///home/zenobius/.local/state/result-delivery/runs/6c1ecb51-d05b-4e23-ad61-a82ed9d67489/result.json",
+            "sha256": "2e96d39445abafce333af446bdf2b2c79aaa198fafe2d9e9bf90c6dc65d0292b",
+            "run_id": "6c1ecb51-d05b-4e23-ad61-a82ed9d67489",
+            "operation_id": "collect-evidence-feedback-01-web-implementation-0002",
+            "context_file": "/var/home/zenobius/.local/state/result-delivery/runs/6c1ecb51-d05b-4e23-ad61-a82ed9d67489/context-canonical.json",
+            "original_context_file": "/home/zenobius/.local/state/result-delivery/runs/6c1ecb51-d05b-4e23-ad61-a82ed9d67489/context.json",
+            "acknowledged": true,
+            "recovery": "Canonicalized the trusted parent directory from /home to /var/home. The original ref, run, operation, schema and payload remain unchanged. No domain mutation was repeated."
+          },
+          "validation_results": [
+            {
+              "check": "authoritative receipt and transport equality",
+              "status": "completed"
+            },
+            {
+              "check": "receipt parent graph and source identity",
+              "status": "completed"
+            },
+            {
+              "check": "source cleanliness and unchanged commit/tree",
+              "status": "completed"
+            },
+            {
+              "check": "workflow artifact publication",
+              "status": "completed",
+              "commit": "bc94185ab2e061b4cd6f49fae4e8b2d4ec21f576"
+            },
+            {
+              "check": "required Surf native-host connection",
+              "status": "blocked",
+              "observed": "The child recorded missing /tmp/surf.sock. No controlled-page workflow or source implementation ran."
+            }
+          ],
+          "pane_close": {
+            "pane_id": "w6Y:p2",
+            "status": "closed"
+          },
+          "worktree_preserved": true,
+          "workspace_preserved": true,
+          "source_changed": false
+        },
+        "body": ""
+      },
+      {
+        "id": "workflows/collect-evidence-feedback-01-web/events/implementation-0002.yaml",
+        "ref": "workflows/collect-evidence-feedback-01-web/events/implementation-0002.yaml",
+        "fields": {
+          "schema": "worktree-receipt/v1",
+          "receipt_id": "implementation-0002",
+          "event": "phase-result",
+          "phase": "implementation",
+          "attempt": 1,
+          "parent_receipt": "start-0001",
+          "workflow_id": "collect-evidence-feedback-01-web",
+          "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+          "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+          "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+          "source_branch": "feature/collect-evidence-feedback-01-web",
+          "base_branch": "master",
+          "source_commit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+          "source_tree": "c34aa8898329be9caf9b345685c8cecafaeba57d",
+          "created_at": "2026-11-09T04:37:24.710Z",
+          "muxer": "herdr",
+          "pane_id": "w6Y:p2",
+          "agent": "omp",
+          "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-collect-evidence-feedback-01-web--/2026-11-09T04-33-45-288Z_01a1be95-6948-750b-ae73-0260df3c8872.jsonl",
+          "child_run_id": "6c1ecb51-d05b-4e23-ad61-a82ed9d67489",
+          "ticket": {
+            "backend": "local-markdown",
+            "id": "collect-evidence-feedback-01-web",
+            "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+          },
+          "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+          "workflow": {
+            "store": "repository",
+            "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+            "ref": "workflows/collect-evidence-feedback-01-web"
+          },
+          "status": "blocked",
+          "failure_reason": "Required Surf native-host connection is unavailable at /tmp/surf.sock. Real workflows for both drivers are required before cutover. No source implementation or migration performed.",
+          "changed_files": [],
+          "validation_results": [
+            {
+              "command": "mise exec -- bash -c 'command -v surf; command -v playwright-cli; command -v bun; surf doctor'",
+              "cwd": "/tmp",
+              "exit_code": 1,
+              "result": "blocked",
+              "observed": "Surf executable available. Socket path does not exist; connection fails ENOENT. Manifest and executable native-host wrapper checks pass."
+            },
+            {
+              "command": "mise exec -- bash -c 'env -u SURF_SOCKET surf doctor --json; surf extension-path; surf tab.list'",
+              "cwd": "/tmp",
+              "exit_code": 1,
+              "result": "blocked",
+              "observed": "Default socket is also /tmp/surf.sock. Doctor reports 7 pass and 2 fail. tab.list reports Socket not found.",
+              "output_ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/surf-preflight-implementation-0002.txt"
+            },
+            {
+              "command": "playwright-cli --version",
+              "cwd": "/tmp",
+              "exit_code": 0,
+              "result": "completed",
+              "observed": "0.1.22. Browser workflow not exercised."
+            },
+            {
+              "command": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/inspect.ts tracker/tickets/collect-evidence-feedback-01-web.md --json",
+              "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+              "exit_code": 0,
+              "result": "completed",
+              "observed": "Valid start receipt; source branch at initial commit/tree with dirty false."
+            }
+          ],
+          "implementation_summary": "Stopped at required driver preflight. No product source changes, source commits, captures, tool installation, credential entry, remote Git, formal review, submit, or finish. Preserve existing browser skill, both drivers, active callers, ticket claim, historical evidence and hk recovery journal.",
+          "open_questions": [
+            "Operator must restore the Surf browser-extension/native-host connection before the required controlled-page workflow can run.",
+            "Domain/ADR review and all source implementation and acceptance checks remain outstanding. Playwright execution is unverified."
+          ],
+          "inputs": [
+            {
+              "kind": "ticket",
+              "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+            },
+            {
+              "kind": "initiative",
+              "ref": "tracker/initiatives/collect-evidence-feedback/index.md"
+            },
+            {
+              "kind": "receipt",
+              "ref": "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml"
+            },
+            {
+              "kind": "inspection",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/inspection-start-0001.json"
+            },
+            {
+              "kind": "launch",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/launch-start-0001.json"
+            }
+          ],
+          "outputs": [
+            {
+              "kind": "receipt",
+              "ref": "workflows/collect-evidence-feedback-01-web/events/implementation-0002.yaml"
+            },
+            {
+              "kind": "draft",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-implementation-0002.md"
+            },
+            {
+              "kind": "diagnostics",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/surf-preflight-implementation-0002.txt"
+            }
+          ]
+        },
+        "body": ""
+      },
+      {
+        "id": "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml",
+        "ref": "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml",
+        "fields": {
+          "schema": "worktree-receipt/v1",
+          "receipt_id": "start-0001",
+          "workflow_id": "collect-evidence-feedback-01-web",
+          "phase": "start",
+          "event": "phase-start",
+          "attempt": 1,
+          "parent_receipt": null,
+          "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+          "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+          "source_branch": "feature/collect-evidence-feedback-01-web",
+          "base_branch": "master",
+          "source_commit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+          "source_tree": "c34aa8898329be9caf9b345685c8cecafaeba57d",
+          "created_at": "2026-11-09T04:29:11.660Z",
+          "muxer": "herdr",
+          "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+          "pane_id": null,
+          "agent": "omp",
+          "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T23-01-18-916Z_01a1b83e-b1c4-7674-b3ee-957211cf199d.jsonl",
+          "parent_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T23-01-18-916Z_01a1b83e-b1c4-7674-b3ee-957211cf199d.jsonl",
+          "parent_pane_id": "w64:p2X",
+          "ticket": {
+            "backend": "local-markdown",
+            "id": "collect-evidence-feedback-01-web",
+            "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+          },
+          "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+          "workflow": {
+            "store": "repository",
+            "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+            "ref": "workflows/collect-evidence-feedback-01-web"
+          },
+          "inputs": [
+            {
+              "kind": "ticket",
+              "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+            },
+            {
+              "kind": "initiative",
+              "ref": "tracker/initiatives/collect-evidence-feedback/index.md"
+            },
+            {
+              "kind": "inspection",
+              "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/inspection-start-0001.json"
+            }
+          ],
+          "outputs": [
+            {
+              "kind": "receipt",
+              "ref": "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml"
+            }
+          ],
+          "status": "started",
+          "recovery_mode": "takeover",
+          "recovery_reason": "Existing work or incomplete inspection needs reconciliation. Tracker and evidence-only commits do not prove implementation. Preserve changes and resolve ownership before takeover.",
+          "ownership_approval": {
+            "kind": "operator",
+            "instruction": "Authorize a fresh isolated start",
+            "scope": "The user confirmed that this ticket has no earlier implementation to recover. Create a new branch from master and a fresh agent session. Preserve existing worktrees, unrelated changes and the older hook recovery journal."
+          },
+          "source_resolution": {
+            "kind": "new-workflow",
+            "created_by": "Worktrunk",
+            "branch": "feature/collect-evidence-feedback-01-web",
+            "base": "master",
+            "claim_commit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+            "preserved_prior_work": true
+          },
+          "worktree_creation": {
+            "hooks": "skipped",
+            "reason": "Avoid global mise setup; the child performs scoped setup."
+          }
+        },
+        "body": ""
+      }
+    ],
+    "inspection": {
+      "historyValid": true,
+      "source": {
+        "state": "available",
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+        "branch": "feature/collect-evidence-feedback-01-web",
+        "commit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+        "tree": "c34aa8898329be9caf9b345685c8cecafaeba57d",
+        "dirty": false,
+        "candidates": 1
+      },
+      "ownership": "unknown",
+      "worktrees": [
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+          "branch": "master"
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+          "branch": "feature/collect-evidence-feedback-01-web"
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+          "branch": "feature/pi-ink-bridge-02-install-client"
+        },
+        {
+          "path": "/home/zenobius/.omp/wt/cleanup-6fe6fe2",
+          "branch": "cleanup"
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01",
+          "branch": "closeout/pi-ink-bridge-01"
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/reconcile-origin-master-ticket-01",
+          "branch": "reconcile/origin-master-ticket-01"
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/prototype-pi-ink-bridge-01-pen-prototype",
+          "branch": "prototype/pi-ink-bridge-01-pen-prototype"
+        }
+      ],
+      "commits": [
+        {
+          "commit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+          "paths": [
+            "tracker/tickets/collect-evidence-feedback-01-web.md"
+          ],
+          "kind": "tracker-evidence-only",
+          "relatedBy": "receipt"
+        },
+        {
+          "commit": "dd0ef4db40591a565dae463255fee72651e0aae4",
+          "paths": [
+            "workflows/collect-evidence-feedback-01-web/events/start-complete-0003.yaml",
+            "workflows/collect-evidence-feedback-01-web/manifest.yaml",
+            "workflows/collect-evidence-feedback-01-web/projections/implementation-log.md",
+            "workflows/collect-evidence-feedback-01-web/projections/latest-status.yaml",
+            "workflows/collect-evidence-feedback-01-web/projections/pr-draft.md"
+          ],
+          "kind": "tracker-evidence-only",
+          "relatedBy": "message-and-diff"
+        },
+        {
+          "commit": "d88dfb2f52f67a54e7671e4d4827b4b5ad3cade1",
+          "paths": [
+            "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/launch-start-0001.json"
+          ],
+          "kind": "tracker-evidence-only",
+          "relatedBy": "message-and-diff"
+        },
+        {
+          "commit": "bc94185ab2e061b4cd6f49fae4e8b2d4ec21f576",
+          "paths": [
+            "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-implementation-0002.md",
+            "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/result-recovery-implementation-0002.json",
+            "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/surf-preflight-implementation-0002.txt",
+            "workflows/collect-evidence-feedback-01-web/events/implementation-0002.yaml",
+            "workflows/collect-evidence-feedback-01-web/manifest.yaml",
+            "workflows/collect-evidence-feedback-01-web/projections/implementation-log.md",
+            "workflows/collect-evidence-feedback-01-web/projections/latest-status.yaml",
+            "workflows/collect-evidence-feedback-01-web/projections/pr-draft.md"
+          ],
+          "kind": "tracker-evidence-only",
+          "relatedBy": "message-and-diff"
+        },
+        {
+          "commit": "e4bbb8af685c8bbee02e4d9b561bd70dd6e15b63",
+          "paths": [
+            "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/inspection-start-0001.json",
+            "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml"
+          ],
+          "kind": "tracker-evidence-only",
+          "relatedBy": "message-and-diff"
+        },
+        {
+          "commit": "015eaef30206163cb4f684d16437448cf0144f54",
+          "paths": [
+            "tracker/initiatives/collect-evidence-feedback/index.md",
+            "tracker/tickets/collect-evidence-feedback-01-web.md",
+            "tracker/tickets/collect-evidence-feedback-02-tui.md",
+            "tracker/tickets/collect-evidence-feedback-03-gui.md",
+            "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+            "tracker/tickets/collect-evidence-feedback-05-pins.md",
+            "tracker/tickets/collect-evidence-feedback-06-edits.md",
+            "tracker/tickets/collect-evidence-feedback-07-drafts.md",
+            "tracker/tickets/collect-evidence-feedback-08-video.md",
+            "tracker/tickets/collect-evidence-feedback-09-history.md",
+            "tracker/tickets/collect-evidence-feedback-10-request.md"
+          ],
+          "kind": "tracker-evidence-only",
+          "relatedBy": "ticket-path"
+        }
+      ],
+      "artifacts": []
+    },
+    "recordedAttempts": {
+      "review": 0,
+      "fix": 0
+    },
+    "sourceCommit": "859341b01ef7be474a3128b7f94772aab731c2f7",
+    "sourceTree": "c34aa8898329be9caf9b345685c8cecafaeba57d"
+  },
+  "decision": {
+    "action": "start",
+    "mode": "takeover",
+    "label": "Recover implementation",
+    "reason": "Preserve existing work and inspect the interrupted start before a scoped takeover. Resolve liveness, reservations, and ownership first.",
+    "requiredApproval": true,
+    "parentReceipt": "workflows/collect-evidence-feedback-01-web/events/start-complete-0003.yaml",
+    "inputs": [
+      "tracker/tickets/collect-evidence-feedback-01-web.md",
+      "workflows/collect-evidence-feedback-01-web/events/start-complete-0003.yaml",
+      "workflows/collect-evidence-feedback-01-web/manifest.yaml",
+      "workflows/collect-evidence-feedback-01-web/projections/latest-status.yaml",
+      "workflows/collect-evidence-feedback-01-web/projections/pr-draft.md",
+      "workflows/collect-evidence-feedback-01-web/projections/implementation-log.md",
+      "workflows/collect-evidence-feedback-01-web/events/implementation-0002.yaml",
+      "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-implementation-0002.md",
+      "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/surf-preflight-implementation-0002.txt",
+      "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml"
+    ]
+  }
+}

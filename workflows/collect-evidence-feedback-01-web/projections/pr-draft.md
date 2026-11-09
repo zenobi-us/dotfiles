@@ -57,3 +57,8 @@ Not merged, pushed, submitted, or completed. Ticket remains claimed. Source HEAD
 
 
 - **Parent completion:** [start-complete-0003](../events/start-complete-0003.yaml).
+
+
+## Resumed implementation
+
+The operator opened Chrome. Surf returned a live tab. [start-0004](../events/start-0004.yaml) starts attempt 2 in the same worktree. The prior blocked receipts remain unchanged. A fresh agent will run both real driver workflows before any cutover.
