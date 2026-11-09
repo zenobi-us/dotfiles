@@ -1,0 +1,65 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "space",
+  "runId": "controlled",
+  "order": 4,
+  "purpose": "Stop unapproved keyboard confirmation",
+  "preconditions": [],
+  "expected": {
+    "pass": "No operation is submitted",
+    "fail": "An operation is submitted"
+  },
+  "steps": [
+    {
+      "id": "space.1",
+      "order": 1,
+      "purpose": "Open the confirmation page",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the confirmation page",
+        "to": "/confirmation"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "space.2",
+      "order": 2,
+      "purpose": "Activate the focused confirmation",
+      "actions": {
+        "do": "press",
+        "says": "Activate the focused confirmation",
+        "key": "Space"
+      },
+      "expected": null,
+      "observed": [
+        "Error: SAFETY STOP space.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6",
+        "Error: SAFETY STOP space.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6"
+      ],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/space/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "space.error-001",
+      "caseId": "space",
+      "stepId": "space.2",
+      "category": "blocked",
+      "message": "Error: SAFETY STOP space.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6"
+    }
+  ],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion.",
+    "Video is unavailable with the Surf driver. Image captures remain valid."
+  ],
+  "sideEffects": "not-recorded"
+}

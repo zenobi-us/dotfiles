@@ -1,0 +1,42 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "driver-map",
+  "entries": [
+    {
+      "step": "failure.1",
+      "kind": "navigate",
+      "target": "/",
+      "from": 0,
+      "count": 6,
+      "shot": "",
+      "dialog": "dialog_6661696c7572652e31",
+      "url": "url_6661696c7572652e31"
+    },
+    {
+      "step": "failure.2",
+      "kind": "expect",
+      "target": "#status",
+      "from": 6,
+      "count": 7,
+      "shot": "shots/step-failure-002-unselected-project--capture-002.png",
+      "dialog": "dialog_6661696c7572652e32",
+      "value": "assert_6661696c7572652e32",
+      "check": "text",
+      "captures": [
+        {
+          "shot": "shots/step-failure-002-unselected-project--capture-001.png",
+          "metadata": "capture_1_6661696c7572652e32",
+          "index": 8,
+          "sequence": 1
+        },
+        {
+          "shot": "shots/step-failure-002-unselected-project--capture-002.png",
+          "metadata": "capture_2_6661696c7572652e32",
+          "index": 11,
+          "sequence": 2
+        }
+      ],
+      "assertionIndex": 10
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "driver-map",
+  "entries": [
+    {
+      "step": "a.1",
+      "kind": "navigate",
+      "target": "/?id=a",
+      "from": 0,
+      "count": 6,
+      "shot": "",
+      "dialog": "dialog_612e31",
+      "url": "url_612e31"
+    },
+    {
+      "step": "a.2",
+      "kind": "expect",
+      "target": "h1",
+      "from": 6,
+      "count": 3,
+      "shot": "",
+      "dialog": "dialog_612e32",
+      "value": "assert_612e32",
+      "check": "text",
+      "assertionIndex": 8
+    },
+    {
+      "step": "a.3",
+      "kind": "capture",
+      "target": "h1",
+      "from": 9,
+      "count": 5,
+      "shot": "shots/step-a-003-explicit-identity--capture-001.png",
+      "dialog": "dialog_612e33",
+      "value": "identity",
+      "captures": [
+        {
+          "shot": "shots/step-a-003-explicit-identity--capture-001.png",
+          "metadata": "capture_1_612e33",
+          "index": 12,
+          "sequence": 1
+        }
+      ]
+    }
+  ]
+}

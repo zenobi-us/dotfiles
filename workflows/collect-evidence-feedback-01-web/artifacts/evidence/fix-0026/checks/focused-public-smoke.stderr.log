@@ -1,0 +1,23 @@
+Diagnostics: /tmp/ce-fix-0026-proof-rBogYU
+ 9 |  const p = Bun.spawn(argv, { cwd:'/tmp', env:{...process.env,TMPDIR:root}, stdout:'pipe',stderr:'pipe' });
+10 |  const [out,err] = await Promise.all([new Response(p.stdout).text(),new Response(p.stderr).text()]);
+11 |  const code = await p.exited;
+12 |  commands.push({argv,code,out,err});
+13 |  await writeFile(join(root,'commands.json'),JSON.stringify(commands,null,2));
+14 |  assert.equal(code,0,JSON.stringify({argv,code,out,err})); return out;
+             ^
+AssertionError: {"argv":["/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts","run","/tmp/ce-fix-0026-proof-rBogYU/surf","--json","--no-input","--no-color"],"code":2,"out":"{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":2,\"message\":\"Evidence fields must be strings\"}\n","err":"Incomplete capture retained at /tmp/ce-fix-0026-proof-rBogYU/collect-evidence-n66R5q\nEvidence fields must be strings\n"}
+
+2 !== 0
+
+ generatedMessage: false,
+     actual: 2,
+   expected: 0,
+   operator: "strictEqual",
+       diff: "simple",
+       code: "ERR_ASSERTION"
+
+      at command (/tmp/ce-fix-0026-smoke.ts:14:9)
+      at invoke (/tmp/ce-fix-0026-smoke.ts:26:65)
+
+Bun v1.4.3 (Linux x64)

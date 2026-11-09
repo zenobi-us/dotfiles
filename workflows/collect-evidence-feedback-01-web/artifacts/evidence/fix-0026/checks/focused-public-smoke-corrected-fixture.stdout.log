@@ -1,0 +1,67 @@
+{
+  "root": "/tmp/ce-fix-0026-proof-Tj74We",
+  "results": [
+    {
+      "driver": "surf",
+      "verdicts": [
+        {
+          "caseId": "a",
+          "verdict": "PASS"
+        },
+        {
+          "caseId": "a.map",
+          "verdict": "PASS"
+        }
+      ],
+      "destination": "/tmp/ce-fix-0026-proof-Tj74We/repository/workflows/fix-0026/artifacts/evidence/surf",
+      "images": [
+        {
+          "id": "a",
+          "path": "/tmp/ce-fix-0026-proof-Tj74We/repository/workflows/fix-0026/artifacts/evidence/surf/cases/a/media/step-003-step-a-003-explicit-identity--capture-001--capture-001.png",
+          "sha256": "c47887bad451993bca49083afaf49a5836e9beca446d777e5bcf08493a08118b",
+          "width": 1984,
+          "height": 1068
+        },
+        {
+          "id": "a.map",
+          "path": "/tmp/ce-fix-0026-proof-Tj74We/repository/workflows/fix-0026/artifacts/evidence/surf/cases/a.map/media/step-003-step-a-map-003-explicit-identity--capture-001--capture-001.png",
+          "sha256": "3d3cd1faa6403ac08c07f1fd8c645af520a70d05ca44e933a5f3c5d52f67faac",
+          "width": 1984,
+          "height": 1068
+        }
+      ],
+      "cleanup": "session lists unchanged"
+    },
+    {
+      "driver": "playwright",
+      "verdicts": [
+        {
+          "caseId": "a",
+          "verdict": "PASS"
+        },
+        {
+          "caseId": "a.map",
+          "verdict": "PASS"
+        }
+      ],
+      "destination": "/tmp/ce-fix-0026-proof-Tj74We/repository/workflows/fix-0026/artifacts/evidence/playwright",
+      "images": [
+        {
+          "id": "a",
+          "path": "/tmp/ce-fix-0026-proof-Tj74We/repository/workflows/fix-0026/artifacts/evidence/playwright/cases/a/media/step-003-step-a-003-explicit-identity--capture-001--capture-001.png",
+          "sha256": "c9c9f7bb8bab4e2640c9360fce6764277e8ea7409652172b84d4529b3125691f",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "id": "a.map",
+          "path": "/tmp/ce-fix-0026-proof-Tj74We/repository/workflows/fix-0026/artifacts/evidence/playwright/cases/a.map/media/step-003-step-a-map-003-explicit-identity--capture-001--capture-001.png",
+          "sha256": "ff9fab3958d84e7db1e3c5255bfdc39340b271a13951a4985d40919fc84acc11",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "cleanup": "session lists unchanged"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "blocked",
+  "runId": "controlled",
+  "order": 12,
+  "purpose": "Stop at a credential prompt",
+  "preconditions": [],
+  "expected": {
+    "pass": "No credential is entered",
+    "fail": "The collector types a credential"
+  },
+  "steps": [
+    {
+      "id": "blocked.1",
+      "order": 1,
+      "purpose": "Open the controlled credential page",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the controlled credential page",
+        "to": "/credential"
+      },
+      "expected": null,
+      "observed": [
+        "navigate failed: Error: Request timed out\n"
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "blocked.2",
+      "order": 2,
+      "purpose": "Attempt the prohibited field",
+      "actions": {
+        "do": "fill",
+        "says": "Attempt the prohibited field",
+        "locator": "#secret",
+        "text": "must-not-be-entered"
+      },
+      "expected": null,
+      "observed": [],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/blocked/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "blocked.error-001",
+      "caseId": "blocked",
+      "stepId": "blocked.1",
+      "category": "operation",
+      "message": "navigate failed: Error: Request timed out\n"
+    }
+  ],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion.",
+    "Video is unavailable with the Surf driver. Image captures remain valid."
+  ],
+  "sideEffects": "not-recorded"
+}

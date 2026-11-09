@@ -1,0 +1,102 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "a",
+  "runId": "surf",
+  "order": 1,
+  "purpose": "Observe identity a",
+  "preconditions": [],
+  "expected": {
+    "pass": "The exact identity is visible",
+    "fail": "The identity is wrong"
+  },
+  "steps": [
+    {
+      "id": "a.1",
+      "order": 1,
+      "purpose": "Open the identity page without a screenshot",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the identity page without a screenshot",
+        "to": "/?id=a",
+        "shot": ""
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "a.2",
+      "order": 2,
+      "purpose": "Check the exact identity",
+      "actions": {
+        "do": "expect",
+        "says": "Check the exact identity",
+        "locator": "h1",
+        "text": "Identity a"
+      },
+      "expected": {
+        "text": "Identity a",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Found text: Identity a"
+      ],
+      "assertionResult": "passed"
+    },
+    {
+      "id": "a.3",
+      "order": 3,
+      "purpose": "Capture the visible heading",
+      "actions": {
+        "do": "capture",
+        "says": "Capture the visible heading",
+        "locator": "h1",
+        "as": "identity",
+        "shot": "explicit-identity"
+      },
+      "expected": null,
+      "observed": [
+        "Read: Identity a"
+      ],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/a/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "a.3.capture-001",
+      "caseId": "a",
+      "stepId": "a.3",
+      "path": "cases/a/media/step-003-step-a-003-explicit-identity--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "c47887bad451993bca49083afaf49a5836e9beca446d777e5bcf08493a08118b",
+      "mediaType": "image/png",
+      "width": 1984,
+      "height": 1068,
+      "capturedAt": "2026-11-09T21:38:01.256Z",
+      "viewport": {
+        "width": 1984,
+        "height": 1068,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "surf",
+      "driverVersion": "surf version 2.22.0",
+      "captureMethod": "surf-screenshot",
+      "url": "http://127.0.0.1:40211/?id=a"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion.",
+    "Video is unavailable with the Surf driver. Image captures remain valid."
+  ],
+  "sideEffects": "not-recorded"
+}

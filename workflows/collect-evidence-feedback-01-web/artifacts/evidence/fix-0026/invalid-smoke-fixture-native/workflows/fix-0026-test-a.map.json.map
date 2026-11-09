@@ -1,0 +1,44 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "driver-map",
+  "entries": [
+    {
+      "step": "a.map.1",
+      "kind": "navigate",
+      "target": "/?id=a.map",
+      "from": 0,
+      "count": 6,
+      "shot": "",
+      "dialog": "dialog_612e6d61702e31",
+      "url": "url_612e6d61702e31"
+    },
+    {
+      "step": "a.map.2",
+      "kind": "expect",
+      "target": "h1",
+      "from": 6,
+      "count": 3,
+      "shot": "",
+      "dialog": "dialog_612e6d61702e32",
+      "value": "assert_612e6d61702e32",
+      "check": "text",
+      "assertionIndex": 8
+    },
+    {
+      "step": "a.map.3",
+      "kind": "capture",
+      "from": 9,
+      "count": 5,
+      "shot": "shots/step-a.map-003-explicit-identity--capture-001.png",
+      "dialog": "dialog_612e6d61702e33",
+      "captures": [
+        {
+          "shot": "shots/step-a.map-003-explicit-identity--capture-001.png",
+          "metadata": "capture_1_612e6d61702e33",
+          "index": 12,
+          "sequence": 1
+        }
+      ]
+    }
+  ]
+}

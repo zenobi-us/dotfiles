@@ -1,0 +1,11 @@
+
+../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts:
+(pass) compile preserves empty screenshot slugs and rejects invalid non-empty slugs: "" [458.34ms]
+(pass) compile preserves empty screenshot slugs and rejects invalid non-empty slugs: "../invalid" [297.49ms]
+(pass) compile preserves empty screenshot slugs and rejects invalid non-empty slugs: "bad slug" [290.68ms]
+
+ 3 pass
+ 7 filtered out
+ 0 fail
+ 10 expect() calls
+Ran 3 tests across 1 file. [1059.00ms]

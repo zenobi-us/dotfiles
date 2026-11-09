@@ -1,0 +1,101 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "a.map",
+  "runId": "playwright",
+  "order": 2,
+  "purpose": "Observe identity a.map",
+  "preconditions": [],
+  "expected": {
+    "pass": "The exact identity is visible",
+    "fail": "The identity is wrong"
+  },
+  "steps": [
+    {
+      "id": "a.map.1",
+      "order": 1,
+      "purpose": "Open the identity page without a screenshot",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the identity page without a screenshot",
+        "to": "/?id=a.map",
+        "shot": ""
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "a.map.2",
+      "order": 2,
+      "purpose": "Check the exact identity",
+      "actions": {
+        "do": "expect",
+        "says": "Check the exact identity",
+        "locator": "h1",
+        "text": "Identity a.map"
+      },
+      "expected": {
+        "text": "Identity a.map",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Found text: Identity a.map"
+      ],
+      "assertionResult": "passed"
+    },
+    {
+      "id": "a.map.3",
+      "order": 3,
+      "purpose": "Capture the visible heading",
+      "actions": {
+        "do": "capture",
+        "says": "Capture the visible heading",
+        "locator": "h1",
+        "as": "identity",
+        "shot": "explicit-identity"
+      },
+      "expected": null,
+      "observed": [
+        "Read: Identity a.map"
+      ],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/a.map/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "a.map.3.capture-001",
+      "caseId": "a.map",
+      "stepId": "a.map.3",
+      "path": "cases/a.map/media/step-003-step-a-map-003-explicit-identity--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "ff9fab3958d84e7db1e3c5255bfdc39340b271a13951a4985d40919fc84acc11",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-09T21:38:10.158Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:40211/?id=a.map"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded"
+}

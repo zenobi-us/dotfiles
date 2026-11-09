@@ -1,0 +1,107 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "approved-space",
+  "runId": "playwright",
+  "order": 1,
+  "purpose": "Observe identity approved-space",
+  "preconditions": [],
+  "expected": {
+    "pass": "The exact identity is visible",
+    "fail": "The identity is wrong"
+  },
+  "steps": [
+    {
+      "id": "approved-space.1",
+      "order": 1,
+      "purpose": "navigate",
+      "actions": {
+        "do": "navigate",
+        "to": "/?id=approved-space"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "approved-space.2",
+      "order": 2,
+      "purpose": "press",
+      "actions": {
+        "do": "press",
+        "key": "Space"
+      },
+      "expected": null,
+      "observed": [
+        "Pressed Space."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "approved-space.3",
+      "order": 3,
+      "purpose": "expect",
+      "actions": {
+        "do": "expect",
+        "locator": "p",
+        "text": "Submitted once",
+        "shot": "submitted-once"
+      },
+      "expected": {
+        "text": "Submitted once",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "ASSERT FAIL approved-space.3: expected \"Submitted once\", got \"Ready\""
+      ],
+      "assertionResult": "failed"
+    }
+  ],
+  "events": "cases/approved-space/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "approved-space.3.capture-001",
+      "caseId": "approved-space",
+      "stepId": "approved-space.3",
+      "path": "cases/approved-space/media/step-003-step-approved-space-003-submitted-once--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "713990d8a7be02995eedec692e0bb21437f40bc365d44dcf8d4192ed73a1f1b2",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-09T12:44:03.712Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:38879/?id=approved-space"
+    }
+  ],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "approved-space.error-001",
+      "caseId": "approved-space",
+      "stepId": "approved-space.3",
+      "category": "assertion",
+      "message": "ASSERT FAIL approved-space.3: expected \"Submitted once\", got \"Ready\""
+    }
+  ],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded"
+}

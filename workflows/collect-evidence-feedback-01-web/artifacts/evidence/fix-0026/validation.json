@@ -1,0 +1,203 @@
+[
+  {
+    "check": "test-first-empty-slug",
+    "command": [
+      "mise",
+      "x",
+      "--",
+      "bun",
+      "test",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
+      "--test-name-pattern",
+      "screenshot slugs"
+    ],
+    "cwd": "/tmp",
+    "started_at": "2026-11-09T21:36:19.028208+00:00",
+    "exit_code": 1,
+    "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/test-first-empty-slug.stdout.log",
+    "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/test-first-empty-slug.stderr.log",
+    "result": "failed"
+  },
+  {
+    "check": "focused-public-smoke",
+    "command": [
+      "mise",
+      "x",
+      "--",
+      "bun",
+      "/tmp/ce-fix-0026-smoke.ts",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts"
+    ],
+    "cwd": "/tmp",
+    "started_at": "2026-11-09T21:37:10.563859+00:00",
+    "exit_code": 1,
+    "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/focused-public-smoke.stdout.log",
+    "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/focused-public-smoke.stderr.log",
+    "result": "failed"
+  },
+  {
+    "check": "focused-public-smoke-corrected-fixture",
+    "command": [
+      "mise",
+      "x",
+      "--",
+      "bun",
+      "/tmp/ce-fix-0026-smoke.ts",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts"
+    ],
+    "cwd": "/tmp",
+    "started_at": "2026-11-09T21:37:57.416875+00:00",
+    "exit_code": 0,
+    "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/focused-public-smoke-corrected-fixture.stdout.log",
+    "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/focused-public-smoke-corrected-fixture.stderr.log",
+    "result": "passed"
+  },
+  {
+    "check": "final-scoped-suite",
+    "command": [
+      "mise",
+      "x",
+      "--",
+      "bun",
+      "test",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test"
+    ],
+    "cwd": "/tmp",
+    "started_at": "2026-11-09T21:38:38.515717+00:00",
+    "exit_code": 1,
+    "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/final-scoped-suite.stdout.log",
+    "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/final-scoped-suite.stderr.log",
+    "result": "failed"
+  },
+  {
+    "check": "corrected-public-slug-regression",
+    "command": [
+      "mise",
+      "x",
+      "--",
+      "bun",
+      "test",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
+      "--test-name-pattern",
+      "screenshot slugs"
+    ],
+    "cwd": "/tmp",
+    "started_at": "2026-11-09T21:41:14.464346+00:00",
+    "exit_code": 0,
+    "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/corrected-public-slug-regression.stdout.log",
+    "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/corrected-public-slug-regression.stderr.log",
+    "result": "passed"
+  },
+  {
+    "check": "scoped-typescript",
+    "command": [
+      "mise",
+      "x",
+      "--",
+      "bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc",
+      "--noEmit",
+      "-p",
+      "/tmp/ce-fix-0026-a5i1nb7n/tsconfig.json"
+    ],
+    "cwd": "/tmp",
+    "started_at": "2026-11-09T21:41:15.597785+00:00",
+    "exit_code": 0,
+    "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/scoped-typescript.stdout.log",
+    "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/scoped-typescript.stderr.log",
+    "result": "passed"
+  },
+  {
+    "check": "finalized-surf-validate",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "validate",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/surf",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "started_at": "2026-11-09T21:44:07.138944+00:00",
+    "exit_code": 0,
+    "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/finalized-surf-validate.stdout.log",
+    "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/finalized-surf-validate.stderr.log",
+    "result": "passed"
+  },
+  {
+    "check": "finalized-playwright-validate",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "validate",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/playwright",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "started_at": "2026-11-09T21:44:07.273383+00:00",
+    "exit_code": 0,
+    "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/finalized-playwright-validate.stdout.log",
+    "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/finalized-playwright-validate.stderr.log",
+    "result": "passed"
+  },
+  {
+    "check": "new smoke fixture diagnosis",
+    "result": "corrected-fixture",
+    "description": "Initial throwaway plan omitted required says and capture locator/as. Native Surf log reported ASSERT FAIL a.3: undefined not found; finalization rejected non-string evidence. Corrected only the throwaway fixture; production scope unchanged."
+  },
+  {
+    "check": "scoped suite diagnosis",
+    "result": "failed",
+    "description": "15 passed, 2 failed, 73 expectations. Empty-slug regression fixture lacked required schema/kind and approval metadata; corrected targeted regression passed 3/3. Surf blocked.1 failed during pre-workflow about:blank navigation with Request timed out before credential fill. Underlying timeout cause unknown. No repeat or production expansion."
+  },
+  {
+    "check": "visual inspection",
+    "result": "passed",
+    "description": "All four native PNGs inspected: Identity a and Identity a.map. Surf 1984x1068; Playwright 1280x720. No image generated for empty navigation slug; explicit step 3 produced actual image. Both public IDs and all step IDs unchanged."
+  },
+  {
+    "check": "source commit hooks",
+    "result": "passed",
+    "description": "bundle-versions passed on both b711ef1b and 8c401541 with --stash none. No stash operations, base-store staging, remote Git operations, merge or push."
+  },
+  {
+    "check": "TypeScript LSP",
+    "result": "unavailable",
+    "description": "Configured typescript-language-server failed initialization. Scoped tsc used existing base dependencies; no installation."
+  },
+  {
+    "check": "final-surf-session-observation",
+    "command": [
+      "mise",
+      "x",
+      "--",
+      "surf",
+      "session.list",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "started_at": "2026-11-09T21:48:05.572909+00:00",
+    "exit_code": 0,
+    "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/final-surf-session-observation.stdout.log",
+    "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/final-surf-session-observation.stderr.log",
+    "result": "passed"
+  },
+  {
+    "check": "final-playwright-session-observation",
+    "command": [
+      "mise",
+      "x",
+      "--",
+      "playwright-cli",
+      "list"
+    ],
+    "cwd": "/tmp",
+    "started_at": "2026-11-09T21:48:05.694829+00:00",
+    "exit_code": 0,
+    "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/final-playwright-session-observation.stdout.log",
+    "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/final-playwright-session-observation.stderr.log",
+    "result": "passed"
+  },
+  {
+    "check": "workflow Markdown validation",
+    "result": "passed",
+    "description": "The immutable new draft, evidence index and both regenerated Markdown projections returned [] through okf_parse/okf_validate. These standalone records are not an OKF bundle migration."
+  }
+]

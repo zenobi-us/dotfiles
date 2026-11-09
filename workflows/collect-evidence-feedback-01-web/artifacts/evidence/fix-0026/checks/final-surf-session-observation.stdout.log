@@ -1,0 +1,61 @@
+{
+  "sessions": [
+    {
+      "tabId": 498730545,
+      "windowId": 498730514,
+      "browserEpoch": "0f7e3319-f5c6-4a20-b561-37d27f7825c9",
+      "mode": "window",
+      "ownership": "surf-created",
+      "lastAccessedAt": "2026-11-09T05:16:34.067Z",
+      "lastUrl": "http://127.0.0.1:18765/",
+      "lastTitle": "Evidence controlled page",
+      "groupId": 1687793138,
+      "frameContext": null,
+      "frameContextResetReason": "navigation",
+      "frameContextResetAt": "2026-11-09T05:16:33.512Z",
+      "bindingId": "788c6d40-22ed-48b8-ad95-384754ddc05d",
+      "name": "evidence-web-0005",
+      "browserInstanceId": "d7ab5223-3322-49d4-958a-19c1ac76a30b",
+      "createdAt": "2026-11-09T05:01:47.128Z",
+      "updatedAt": "2026-11-09T05:42:25.031Z",
+      "lastValidatedAt": "2026-11-09T05:16:34.067Z",
+      "invalidReason": "tab_gone",
+      "invalidatedAt": "2026-11-09T05:42:25.031Z",
+      "status": "tab_gone",
+      "queue": {
+        "laneKey": "tab:0f7e3319-f5c6-4a20-b561-37d27f7825c9:498730545",
+        "active": false,
+        "queued": 0,
+        "blockedBy": null,
+        "browserWriter": null,
+        "queuedBrowserWriters": 0,
+        "otherActiveTabLanes": [],
+        "totalQueued": 0
+      }
+    }
+  ],
+  "browser": {
+    "browserInstanceId": "d7ab5223-3322-49d4-958a-19c1ac76a30b",
+    "browserEpoch": "0f7e3319-f5c6-4a20-b561-37d27f7825c9",
+    "extensionVersion": "2.6.0",
+    "protocolVersion": 2,
+    "capabilities": [
+      "browser-sessions",
+      "strict-targets",
+      "keyed-lanes",
+      "video-recording"
+    ]
+  },
+  "scheduler": {
+    "activeTabLanes": [],
+    "activeReaders": 0,
+    "writerActive": false,
+    "writer": null,
+    "activeResources": [],
+    "blockedResourceKeys": [],
+    "queued": 0,
+    "queuedWriters": 0,
+    "queuedWriterSessions": [],
+    "queuedByLane": {}
+  }
+}

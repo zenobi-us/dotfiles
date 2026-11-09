@@ -1,0 +1,73 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "plan",
+  "data": {
+    "schema": "collect-evidence/v1",
+    "kind": "plan",
+    "workId": "fix-0026",
+    "driver": "playwright",
+    "base": "http://127.0.0.1:40211",
+    "approval": {
+      "origins": [
+        "http://127.0.0.1:40211"
+      ],
+      "confirmations": []
+    },
+    "tests": [
+      {
+        "id": "a",
+        "claim": "Observe identity a",
+        "pass": "The exact identity is visible",
+        "fail": "The identity is wrong",
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the identity page without a screenshot",
+            "to": "/?id=a",
+            "shot": ""
+          },
+          {
+            "do": "expect",
+            "says": "Check the exact identity",
+            "locator": "h1",
+            "text": "Identity a"
+          },
+          {
+            "do": "capture",
+            "says": "Capture the visible heading",
+            "locator": "h1",
+            "as": "identity",
+            "shot": "explicit-identity"
+          }
+        ]
+      },
+      {
+        "id": "a.map",
+        "claim": "Observe identity a.map",
+        "pass": "The exact identity is visible",
+        "fail": "The identity is wrong",
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the identity page without a screenshot",
+            "to": "/?id=a.map",
+            "shot": ""
+          },
+          {
+            "do": "expect",
+            "says": "Check the exact identity",
+            "locator": "h1",
+            "text": "Identity a.map"
+          },
+          {
+            "do": "capture",
+            "says": "Capture the visible heading",
+            "locator": "h1",
+            "as": "identity",
+            "shot": "explicit-identity"
+          }
+        ]
+      }
+    ]
+  }
+}

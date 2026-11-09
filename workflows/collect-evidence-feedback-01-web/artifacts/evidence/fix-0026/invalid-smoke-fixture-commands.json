@@ -1,0 +1,97 @@
+[
+  {
+    "argv": [
+      "git",
+      "init",
+      "--quiet",
+      "/tmp/ce-fix-0026-proof-rBogYU/repository"
+    ],
+    "code": 0,
+    "out": "",
+    "err": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/tmp/ce-fix-0026-proof-rBogYU/repository",
+      "remote",
+      "add",
+      "origin",
+      "https://example.invalid/fix/owned.git"
+    ],
+    "code": 0,
+    "out": "",
+    "err": ""
+  },
+  {
+    "argv": [
+      "surf",
+      "session.list",
+      "--json"
+    ],
+    "code": 0,
+    "out": "{\n  \"sessions\": [\n    {\n      \"tabId\": 498730545,\n      \"windowId\": 498730514,\n      \"browserEpoch\": \"0f7e3319-f5c6-4a20-b561-37d27f7825c9\",\n      \"mode\": \"window\",\n      \"ownership\": \"surf-created\",\n      \"lastAccessedAt\": \"2026-11-09T05:16:34.067Z\",\n      \"lastUrl\": \"http://127.0.0.1:18765/\",\n      \"lastTitle\": \"Evidence controlled page\",\n      \"groupId\": 1687793138,\n      \"frameContext\": null,\n      \"frameContextResetReason\": \"navigation\",\n      \"frameContextResetAt\": \"2026-11-09T05:16:33.512Z\",\n      \"bindingId\": \"788c6d40-22ed-48b8-ad95-384754ddc05d\",\n      \"name\": \"evidence-web-0005\",\n      \"browserInstanceId\": \"d7ab5223-3322-49d4-958a-19c1ac76a30b\",\n      \"createdAt\": \"2026-11-09T05:01:47.128Z\",\n      \"updatedAt\": \"2026-11-09T05:42:25.031Z\",\n      \"lastValidatedAt\": \"2026-11-09T05:16:34.067Z\",\n      \"invalidReason\": \"tab_gone\",\n      \"invalidatedAt\": \"2026-11-09T05:42:25.031Z\",\n      \"status\": \"tab_gone\",\n      \"queue\": {\n        \"laneKey\": \"tab:0f7e3319-f5c6-4a20-b561-37d27f7825c9:498730545\",\n        \"active\": false,\n        \"queued\": 0,\n        \"blockedBy\": null,\n        \"browserWriter\": null,\n        \"queuedBrowserWriters\": 0,\n        \"otherActiveTabLanes\": [],\n        \"totalQueued\": 0\n      }\n    }\n  ],\n  \"browser\": {\n    \"browserInstanceId\": \"d7ab5223-3322-49d4-958a-19c1ac76a30b\",\n    \"browserEpoch\": \"0f7e3319-f5c6-4a20-b561-37d27f7825c9\",\n    \"extensionVersion\": \"2.6.0\",\n    \"protocolVersion\": 2,\n    \"capabilities\": [\n      \"browser-sessions\",\n      \"strict-targets\",\n      \"keyed-lanes\",\n      \"video-recording\"\n    ]\n  },\n  \"scheduler\": {\n    \"activeTabLanes\": [],\n    \"activeReaders\": 0,\n    \"writerActive\": false,\n    \"writer\": null,\n    \"activeResources\": [],\n    \"blockedResourceKeys\": [],\n    \"queued\": 0,\n    \"queuedWriters\": 0,\n    \"queuedWriterSessions\": [],\n    \"queuedByLane\": {}\n  }\n}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix-0026-proof-rBogYU/surf",
+      "--repository",
+      "/tmp/ce-fix-0026-proof-rBogYU/repository",
+      "--workflow",
+      "fix-0026",
+      "--run",
+      "surf",
+      "--driver",
+      "surf",
+      "--json",
+      "--no-input",
+      "--no-color"
+    ],
+    "code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix-0026-proof-rBogYU/surf\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/ce-fix-0026-proof-rBogYU/repository\",\"path\":\"/tmp/ce-fix-0026-proof-rBogYU/repository/workflows/fix-0026/artifacts/evidence/surf\",\"ref\":\"workflows/fix-0026/artifacts/evidence/surf\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix-0026-proof-rBogYU/surf",
+      "--json",
+      "--no-input",
+      "--no-color"
+    ],
+    "code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/ce-fix-0026-proof-rBogYU/surf\",\"driver\":\"surf\",\"tests\":2}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix-0026-proof-rBogYU/surf",
+      "--json",
+      "--no-input",
+      "--no-color"
+    ],
+    "code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/ce-fix-0026-proof-rBogYU/surf\",\"tests\":2}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix-0026-proof-rBogYU/surf",
+      "--json",
+      "--no-input",
+      "--no-color"
+    ],
+    "code": 2,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":2,\"message\":\"Evidence fields must be strings\"}\n",
+    "err": "Incomplete capture retained at /tmp/ce-fix-0026-proof-rBogYU/collect-evidence-n66R5q\nEvidence fields must be strings\n"
+  }
+]

@@ -1,0 +1,184 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "run",
+  "id": "playwright",
+  "status": "sealed",
+  "startedAt": "2026-11-09T12:44:02.249Z",
+  "finishedAt": "2026-11-09T12:44:12.244Z",
+  "surface": "web",
+  "driver": "playwright",
+  "driverVersion": "0.1.22",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "approved-space",
+      "path": "cases/approved-space/case.json"
+    },
+    {
+      "id": "a-b",
+      "path": "cases/a-b/case.json"
+    },
+    {
+      "id": "a.b",
+      "path": "cases/a.b/case.json"
+    },
+    {
+      "id": "a_b",
+      "path": "cases/a_b/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/a-b/case.json",
+      "sha256": "c03dd7e916e869a61866d8a34fe829100d3369c830533c8d2835d2278ac3e435"
+    },
+    {
+      "path": "cases/a-b/events.jsonl",
+      "sha256": "0c110032f5d1c21bc3dc419ec37c3f544d6fa71ac02db61d551e7d1dce06e839"
+    },
+    {
+      "path": "cases/a-b/index.md",
+      "sha256": "8a8e0fd0480147d772d6b81b8eb789d9e1aae8205c08bb1ca29fac89455e4947"
+    },
+    {
+      "path": "cases/a-b/media/step-002-step-a-b-002-distinct-identity--capture-001--capture-001.png",
+      "sha256": "e228bbd30580b396609c40299d8e8c5df6cec866b7401e255380fb69881b5e6a"
+    },
+    {
+      "path": "cases/a-b/media/step-002-step-a-b-002-distinct-identity--capture-002--capture-002.png",
+      "sha256": "e228bbd30580b396609c40299d8e8c5df6cec866b7401e255380fb69881b5e6a"
+    },
+    {
+      "path": "cases/a.b/case.json",
+      "sha256": "86f406083d153ac8a129cb3a7d925863fb10b9973c117c0d3cbc082af5a97099"
+    },
+    {
+      "path": "cases/a.b/events.jsonl",
+      "sha256": "57fb7e998582f593ad146df17fd95011f7759f1591cbd7c2ed4cbf38263b0339"
+    },
+    {
+      "path": "cases/a.b/index.md",
+      "sha256": "a492f62b56748ecdc25b757c3d65f6fb6c2a2cb5a3d91a2b0ab9fa8de43e1da1"
+    },
+    {
+      "path": "cases/a.b/media/step-002-step-a-b-002-distinct-identity--capture-001--capture-001.png",
+      "sha256": "4dbac7c9afab2718cdde4331b74445d0c1c40933f9e8e65bf4eca6dde14fd352"
+    },
+    {
+      "path": "cases/a.b/media/step-002-step-a-b-002-distinct-identity--capture-002--capture-002.png",
+      "sha256": "4dbac7c9afab2718cdde4331b74445d0c1c40933f9e8e65bf4eca6dde14fd352"
+    },
+    {
+      "path": "cases/a_b/case.json",
+      "sha256": "6c559efd5e308e0eb5643fd04c761ecff78899ba566be1f9f1244faf8fafa511"
+    },
+    {
+      "path": "cases/a_b/events.jsonl",
+      "sha256": "23714f0d096aa2555da538d25cf211d5d0176ace4d3d8df5ce1c3af21dea0806"
+    },
+    {
+      "path": "cases/a_b/index.md",
+      "sha256": "5569a8a1149dd7c91cd6304e1b2c1b25b48ee23c792d50ebd489bc9ad507023f"
+    },
+    {
+      "path": "cases/a_b/media/step-002-step-a-b-002-distinct-identity--capture-001--capture-001.png",
+      "sha256": "0eb7111745a0ea6fa1c968d27b6ed1764647ee4f187cc1cae98aa43e0cf956ba"
+    },
+    {
+      "path": "cases/a_b/media/step-002-step-a-b-002-distinct-identity--capture-002--capture-002.png",
+      "sha256": "0eb7111745a0ea6fa1c968d27b6ed1764647ee4f187cc1cae98aa43e0cf956ba"
+    },
+    {
+      "path": "cases/approved-space/case.json",
+      "sha256": "2a4d0a043b4ea74262dfba53871d61c3bf75d36b0afbc66ee029bb2e71d7ce18"
+    },
+    {
+      "path": "cases/approved-space/events.jsonl",
+      "sha256": "40fa6b8af703743cdb9aefa5938ad1d86adfc536a70dd704c9a0bacb72436d15"
+    },
+    {
+      "path": "cases/approved-space/index.md",
+      "sha256": "2fdfb0a1459f63e7394a2c4a3efc599a8fc8cd41d5bcfbf0538a8f582bb8d164"
+    },
+    {
+      "path": "cases/approved-space/media/step-003-step-approved-space-003-submitted-once--capture-001--capture-001.png",
+      "sha256": "713990d8a7be02995eedec692e0bb21437f40bc365d44dcf8d4192ed73a1f1b2"
+    },
+    {
+      "path": "index.md",
+      "sha256": "6be08e8d86aa815114058adc2821ff16e60d3170631463d1ab3e6228eb21547b"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "bafc7cebe34f4e30a5e5139118d459a17573d9c94ce27ece82f650f06afe14f9"
+    },
+    {
+      "path": "native/report/shots/step-a-b-002-distinct-identity--capture-001.png",
+      "sha256": "e228bbd30580b396609c40299d8e8c5df6cec866b7401e255380fb69881b5e6a"
+    },
+    {
+      "path": "native/report/shots/step-a-b-002-distinct-identity--capture-002.png",
+      "sha256": "e228bbd30580b396609c40299d8e8c5df6cec866b7401e255380fb69881b5e6a"
+    },
+    {
+      "path": "native/report/shots/step-a.b-002-distinct-identity--capture-001.png",
+      "sha256": "4dbac7c9afab2718cdde4331b74445d0c1c40933f9e8e65bf4eca6dde14fd352"
+    },
+    {
+      "path": "native/report/shots/step-a.b-002-distinct-identity--capture-002.png",
+      "sha256": "4dbac7c9afab2718cdde4331b74445d0c1c40933f9e8e65bf4eca6dde14fd352"
+    },
+    {
+      "path": "native/report/shots/step-a_b-002-distinct-identity--capture-001.png",
+      "sha256": "0eb7111745a0ea6fa1c968d27b6ed1764647ee4f187cc1cae98aa43e0cf956ba"
+    },
+    {
+      "path": "native/report/shots/step-a_b-002-distinct-identity--capture-002.png",
+      "sha256": "0eb7111745a0ea6fa1c968d27b6ed1764647ee4f187cc1cae98aa43e0cf956ba"
+    },
+    {
+      "path": "native/report/shots/step-approved-space-003-submitted-once--capture-001.png",
+      "sha256": "713990d8a7be02995eedec692e0bb21437f40bc365d44dcf8d4192ed73a1f1b2"
+    },
+    {
+      "path": "native/runs/case-a-b.log",
+      "sha256": "65a7d0b124ac6c83fcc59d7bcb41fe7049b1e143d93d9459a19c56e8a83cdea3"
+    },
+    {
+      "path": "native/runs/case-a.b.log",
+      "sha256": "de60d0add8416de814521e91a02fa4a6a497baeef7c717b1083ef2de842f7b00"
+    },
+    {
+      "path": "native/runs/case-a_b.log",
+      "sha256": "fe67ea3745e1d0f230121648ceb5fbd98f3bed178b39aa2d377890504de8c2fe"
+    },
+    {
+      "path": "native/runs/case-approved-space.log",
+      "sha256": "9bf8cdb84f14b5d450be1caa138102b516944b80b32cb2e23c5d654976498bb7"
+    },
+    {
+      "path": "native/workflows/review-0023-test-a-b.js",
+      "sha256": "c87cd710131982d4f9fff5a53ae99e6cdfa60499613283812e31c7400cee2315"
+    },
+    {
+      "path": "native/workflows/review-0023-test-a.b.js",
+      "sha256": "5f5becad66316194977c04bc8c352fae7fc9915fb8ce9b591bc6407c79f75895"
+    },
+    {
+      "path": "native/workflows/review-0023-test-a_b.js",
+      "sha256": "3da80be334dc7779f2bf668229f676e253147d1eea5254c5ee4bad3e5ee07a97"
+    },
+    {
+      "path": "native/workflows/review-0023-test-approved-space.js",
+      "sha256": "c33ca21a6112051781cf34811d5a339396a19635549c05eeea0c2e54707c8f38"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "49473e8bb8a5243eeb245478d7209dd6ae1a9fd963dd2f45217081f0a085a56b"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "bafc7cebe34f4e30a5e5139118d459a17573d9c94ce27ece82f650f06afe14f9"
+    }
+  ]
+}

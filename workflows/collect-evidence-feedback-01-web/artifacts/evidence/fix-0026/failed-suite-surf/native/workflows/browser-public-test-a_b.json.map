@@ -1,0 +1,60 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "driver-map",
+  "entries": [
+    {
+      "step": "a_b.1",
+      "kind": "navigate",
+      "target": "/?case=a_b",
+      "from": 0,
+      "count": 6,
+      "shot": "",
+      "dialog": "dialog_615f622e31",
+      "url": "url_615f622e31"
+    },
+    {
+      "step": "a_b.2",
+      "kind": "expect",
+      "target": "url ~ case=a_b$",
+      "from": 6,
+      "count": 7,
+      "shot": "shots/step-a_b-002-case-identity--capture-002.png",
+      "dialog": "dialog_615f622e32",
+      "value": "assert_615f622e32",
+      "check": "url",
+      "captures": [
+        {
+          "shot": "shots/step-a_b-002-case-identity--capture-001.png",
+          "metadata": "capture_1_615f622e32",
+          "index": 8,
+          "sequence": 1
+        },
+        {
+          "shot": "shots/step-a_b-002-case-identity--capture-002.png",
+          "metadata": "capture_2_615f622e32",
+          "index": 11,
+          "sequence": 2
+        }
+      ],
+      "assertionIndex": 10
+    },
+    {
+      "step": "a_b.3",
+      "kind": "capture",
+      "target": "h1",
+      "from": 13,
+      "count": 5,
+      "shot": "shots/step-a_b-003-identity-capture--capture-001.png",
+      "dialog": "dialog_615f622e33",
+      "value": "identity",
+      "captures": [
+        {
+          "shot": "shots/step-a_b-003-identity-capture--capture-001.png",
+          "metadata": "capture_1_615f622e33",
+          "index": 16,
+          "sequence": 1
+        }
+      ]
+    }
+  ]
+}

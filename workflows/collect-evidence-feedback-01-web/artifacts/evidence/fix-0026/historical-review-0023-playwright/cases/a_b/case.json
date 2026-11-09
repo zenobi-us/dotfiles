@@ -1,0 +1,107 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "a_b",
+  "runId": "playwright",
+  "order": 4,
+  "purpose": "Observe identity a_b",
+  "preconditions": [],
+  "expected": {
+    "pass": "The exact identity is visible",
+    "fail": "The identity is wrong"
+  },
+  "steps": [
+    {
+      "id": "a_b.1",
+      "order": 1,
+      "purpose": "navigate",
+      "actions": {
+        "do": "navigate",
+        "to": "/?id=a_b"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "a_b.2",
+      "order": 2,
+      "purpose": "expect",
+      "actions": {
+        "do": "expect",
+        "locator": "h1",
+        "text": "Identity a_b",
+        "shot": "distinct-identity"
+      },
+      "expected": {
+        "text": "Identity a_b",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "Found text: Identity a_b"
+      ],
+      "assertionResult": "passed"
+    }
+  ],
+  "events": "cases/a_b/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "a_b.2.capture-001",
+      "caseId": "a_b",
+      "stepId": "a_b.2",
+      "path": "cases/a_b/media/step-002-step-a-b-002-distinct-identity--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "0eb7111745a0ea6fa1c968d27b6ed1764647ee4f187cc1cae98aa43e0cf956ba",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-09T12:44:11.363Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:38879/?id=a_b"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "a_b.2.capture-002",
+      "caseId": "a_b",
+      "stepId": "a_b.2",
+      "path": "cases/a_b/media/step-002-step-a-b-002-distinct-identity--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "0eb7111745a0ea6fa1c968d27b6ed1764647ee4f187cc1cae98aa43e0cf956ba",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-09T12:44:11.409Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:38879/?id=a_b"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded"
+}

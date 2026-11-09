@@ -1,0 +1,100 @@
+{
+  "status": "failed",
+  "completedSteps": 11,
+  "totalSteps": 14,
+  "results": [
+    {
+      "step": 1,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 2,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 3,
+      "cmd": "navigate",
+      "status": "ok",
+      "ms": 632
+    },
+    {
+      "step": 4,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 5,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 6,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 7,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 8,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 9,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 10,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 11,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 12,
+      "cmd": "js",
+      "status": "error",
+      "error": "Error: ASSERT FAIL a.map.3: undefined not found\n    at <anonymous>:2:65\n    at <anonymous>:2:147\n    at <anonymous>:3:6",
+      "ms": 4
+    }
+  ],
+  "error": "Error: ASSERT FAIL a.map.3: undefined not found\n    at <anonymous>:2:65\n    at <anonymous>:2:147\n    at <anonymous>:3:6",
+  "totalMs": 1670,
+  "vars": {
+    "base": "http://127.0.0.1:35715",
+    "shots": "/tmp/ce-fix-0026-proof-rBogYU/collect-evidence-n66R5q/report/shots",
+    "dialog_612e6d61702e31": {
+      "id": 6086,
+      "hasDialog": false
+    },
+    "url_612e6d61702e31": "http://127.0.0.1:35715/?id=a.map",
+    "dialog_612e6d61702e32": {
+      "id": 6100,
+      "hasDialog": false
+    },
+    "assert_612e6d61702e32": "Identity a.map",
+    "dialog_612e6d61702e33": {
+      "id": 6106,
+      "hasDialog": false
+    }
+  }
+}

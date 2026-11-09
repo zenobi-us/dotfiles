@@ -1,0 +1,113 @@
+{
+  "status": "completed",
+  "completedSteps": 14,
+  "totalSteps": 14,
+  "results": [
+    {
+      "step": 1,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 2,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 3,
+      "cmd": "navigate",
+      "status": "ok",
+      "ms": 637
+    },
+    {
+      "step": 4,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 5,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 6,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 7,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 8,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 9,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 10,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 11,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 12,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 13,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 244
+    },
+    {
+      "step": 14,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    }
+  ],
+  "failed": 0,
+  "totalMs": 2125,
+  "vars": {
+    "base": "http://127.0.0.1:40211",
+    "shots": "/tmp/ce-fix-0026-proof-Tj74We/collect-evidence-xHIqU0/report/shots",
+    "dialog_612e31": {
+      "id": 6123,
+      "hasDialog": false
+    },
+    "url_612e31": "http://127.0.0.1:40211/?id=a",
+    "dialog_612e32": {
+      "id": 6137,
+      "hasDialog": false
+    },
+    "assert_612e32": "Identity a",
+    "dialog_612e33": {
+      "id": 6143,
+      "hasDialog": false
+    },
+    "identity": "Identity a",
+    "capture_1_612e33": "{\"capturedAt\":\"2026-11-09T21:38:01.256Z\",\"url\":\"http://127.0.0.1:40211/?id=a\",\"viewport\":{\"width\":1984,\"height\":1068,\"deviceScaleFactor\":1}}"
+  }
+}

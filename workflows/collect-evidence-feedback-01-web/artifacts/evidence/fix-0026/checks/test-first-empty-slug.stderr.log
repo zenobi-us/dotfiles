@@ -1,0 +1,24 @@
+
+../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts:
+94 |   await writeFile(join(dir, "plan.ts"), `export const plan = ${JSON.stringify({
+95 |     workId: "slug-plan", driver: "surf", base: "http://127.0.0.1:1",
+96 |     tests: [{ id: "empty", claim: "Preserve screenshot intent", pass: "No implicit capture", fail: "An implicit capture occurs", steps: [{ do: "navigate", to: "/", shot }] }],
+97 |   })};`);
+98 |   const result = await command(["compile", dir, "--json"]);
+99 |   expect(result.code).toBe(shot === "" ? 0 : 2);
+                           ^
+error: expect(received).toBe(expected)
+
+Expected: 0
+Received: 2
+
+      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts:99:23)
+(fail) compile preserves empty screenshot slugs and rejects invalid non-empty slugs: "" [290.01ms]
+(pass) compile preserves empty screenshot slugs and rejects invalid non-empty slugs: "../invalid" [298.23ms]
+(pass) compile preserves empty screenshot slugs and rejects invalid non-empty slugs: "bad slug" [291.67ms]
+
+ 2 pass
+ 7 filtered out
+ 1 fail
+ 8 expect() calls
+Ran 3 tests across 1 file. [893.00ms]
