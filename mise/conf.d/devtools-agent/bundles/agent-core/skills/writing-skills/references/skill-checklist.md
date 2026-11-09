@@ -36,6 +36,7 @@
 - [ ] Common mistakes section
 - [ ] No narrative storytelling
 - [ ] Supporting files use `references/`, `scripts/`, `examples/`, or `assets/` for content that does not belong in `SKILL.md`
+- [ ] A skill that a person starts by hand has a `how-to-*.md` guide next to `SKILL.md` (see `skill-anatomy.md`)
 
 ## Deployment
 

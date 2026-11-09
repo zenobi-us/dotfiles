@@ -47,6 +47,7 @@ Use these directories:
 ```text
 skill-name/
 ├── SKILL.md
+├── how-to-*.md
 ├── references/
 ├── scripts/
 ├── examples/
@@ -60,6 +61,20 @@ Use `scripts/` for executable helpers and validators.
 Use `examples/` for complete example documents that are useful during implementation.
 
 Use `assets/` for diagrams, images, and other static files.
+
+Use `how-to-*.md` for a guide that tells a person, not an agent, how to do one task with the skill. Put it next to `SKILL.md`, not in a subfolder. Give it a `title` in its frontmatter and numbered steps. Agents do not load these files.
+
+The dotfiles website lists each `how-to-*.md` of a skill in the agent bundles under "How-to guides" on the bundle page, and links the guide to the skill in the reference. Write one when a person starts the skill by hand, for example with a slash command, or must make choices while it runs.
+
+```markdown
+---
+title: Groom backlog tickets
+---
+
+1. Type `/developer:backlog-grooming ABC-12 ABC-15` in Claude Code.
+2. Read the summary line for each ticket in the published report.
+3. Select the ticket actions to apply.
+```
 
 ## Sections
 
