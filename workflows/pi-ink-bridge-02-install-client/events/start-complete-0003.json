@@ -1,0 +1,158 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0003",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "implementation-0002",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "6d45cd8c4d63c394a1f0cbacec62a1a67e0d235d",
+  "source_tree": "af615daebe9c5d603e5400098ad20dd83b7e5e67",
+  "created_at": "2026-11-07T22:36:47.839Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0001.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0002.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0002.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-20261108-install-001"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/launch-start-0001.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0003.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Inspector selected start/reconcile with valid blocked child result. Consumed and validated existing result; did not repeat implementation.",
+    "authorization": "User authorized takeover and new-from-master start in this session.",
+    "source_preserved": true,
+    "device_access": false
+  },
+  "validated_result": {
+    "receipt": "implementation-0002",
+    "status": "blocked",
+    "source_commit": "82edbf73a1cc78d61079be62fa97d98eff445ecd",
+    "source_tree": "9824944411da9971edcb5d12a98b24f67064bd67",
+    "exact_tree_verified": true,
+    "subsequent_commit_scope": "Only workflow evidence, result receipt, snapshot and projections; source and tracker unchanged.",
+    "inspector_history_valid": true,
+    "child_completion": "Herdr agent wait reported done, completion_seq 181.",
+    "child_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-07T21-58-09-185Z_01a1b804-de21-730e-8248-df9e8fb28e11.jsonl",
+    "child_pane_id": "w6N:p3",
+    "pane_close_result": "herdr pane close returned type ok; workspace/worktree preserved",
+    "validation": [
+      {
+        "command": "MISE_AUTO_INSTALL=0 mise exec -- bun run typecheck",
+        "result": "passed"
+      },
+      {
+        "command": "MISE_AUTO_INSTALL=0 mise exec -- bun run build",
+        "result": "passed; Vite emitted existing third-party use-client and chunk-size warnings"
+      },
+      {
+        "command": "MISE_AUTO_INSTALL=0 mise exec -- bun test test",
+        "result": "24 passed, 0 failed, 195 assertions"
+      },
+      {
+        "command": "MISE_AUTO_INSTALL=0 mise exec go@1.25.0 -- go test -race ./...",
+        "result": "passed; image-annotator-tablet, 22.430s"
+      },
+      {
+        "command": "sh scripts/provision-tablet.sh --dry-run",
+        "result": "passed; printed local ZIP and installer digests; no service or device connection"
+      },
+      {
+        "command": "sh -n scripts/provision-tablet.sh tablet-client/production-install.sh tablet-client/build.sh tablet-appload/entry",
+        "result": "passed"
+      },
+      {
+        "command": "MISE_AUTO_INSTALL=0 mise exec -- bun run build:tablet",
+        "result": "repeat build passed; identical ZIP SHA-256 03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629"
+      }
+    ],
+    "smoke_results": [
+      "Two independent processes invoked the registered /annotate add-device handler through a controlled agent-host API boundary. Both succeeded with the same server identity and certificate fingerprint.",
+      "The real Pitchfork-managed service remained ready after both extension processes exited. A later start retained the identity and fingerprint.",
+      "The existing unrelated protocol-1 listener caused readiness failure without a success notification. It was not stopped. Isolated ports 58840/58841 proved the successful path.",
+      "Chromium displayed both trusted loopback instructions and a LAN page without trusted digests. Managed browser tabs were closed.",
+      "Altered installer, ZIP, and trust-record responses failed checksum verification before installer execution. The SSH boundary was replaced by a local shell; no device connection occurred.",
+      "Unaltered verified downloads reached the installer, which rejected non-root host permissions before installation.",
+      "The actual Connections.qml rendered under Qt 6.8.3 with the real Go backend over SOCK_SEQPACKET. A host transport emulator replaced only the unavailable native AppLoad module. Verified available and offline states were observed. This is not tablet acceptance.",
+      "The isolated service and supervisor were stopped. Temporary host smoke scripts, configurations, and binaries were removed. No tablet access occurred."
+    ],
+    "validation_basis": "Read child receipt, host verification/cleanup records and immutable draft. No duplicate tests or implementation run."
+  },
+  "failure_reason": "Required native Paper Pro installation and post-restart/repeat-install acceptance lack scoped owner approval; dependency compatibility remains to be established.",
+  "approval_request": {
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-20261108-install-001/device-approval-request.json"
+  }
+}

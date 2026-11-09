@@ -1,0 +1,57 @@
+{
+  "created_at": "2026-11-08T02:41:36.317471+00:00",
+  "pane": "w6R:p7",
+  "current": [
+    {
+      "agent": "omp",
+      "agent_session": {
+        "agent": "omp",
+        "kind": "path",
+        "source": "herdr:omp",
+        "value": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T02-40-25-058Z_01a1b907-49e2-778c-8f91-06f33b149e6c.jsonl"
+      },
+      "agent_status": "working",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+      "focused": false,
+      "foreground_cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+      "pane_id": "w6R:p7",
+      "revision": 881,
+      "screen_detection_skipped": true,
+      "state_change_seq": 263,
+      "tab_id": "w6R:t7",
+      "terminal_id": "term_65fbabdc5dc423e",
+      "terminal_title": "\u03c0 \u280f feature-pi-ink-bridge-02-install-client",
+      "terminal_title_stripped": "\u03c0 \u280f feature-pi-ink-bridge-02-install-client",
+      "workspace_id": "w6R"
+    }
+  ],
+  "same_worktree_agents": [
+    {
+      "agent": "omp",
+      "agent_session": {
+        "agent": "omp",
+        "kind": "path",
+        "source": "herdr:omp",
+        "value": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T02-40-25-058Z_01a1b907-49e2-778c-8f91-06f33b149e6c.jsonl"
+      },
+      "agent_status": "working",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+      "focused": false,
+      "foreground_cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+      "pane_id": "w6R:p7",
+      "revision": 881,
+      "screen_detection_skipped": true,
+      "state_change_seq": 263,
+      "tab_id": "w6R:t7",
+      "terminal_id": "term_65fbabdc5dc423e",
+      "terminal_title": "\u03c0 \u280f feature-pi-ink-bridge-02-install-client",
+      "terminal_title_stripped": "\u03c0 \u280f feature-pi-ink-bridge-02-install-client",
+      "workspace_id": "w6R"
+    }
+  ],
+  "authority": "start-0025",
+  "claim": "Existing claimed ticket retained without tracker write",
+  "source_commit": "d7f4c61eafd5a1898cff3da85801c61a7c96c4fa",
+  "source_tree": "ca4cd0ea9ffd9e2dfcfd89a3fe73b9b055623cb8",
+  "MISE_AUTO_INSTALL": "0"
+}

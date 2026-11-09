@@ -1,0 +1,75 @@
+{
+  "created_at": "2026-11-08T23:27:38.561593+00:00",
+  "health": {
+    "service": "pi-ink-bridge",
+    "protocol": 2,
+    "id": "256377c7f22604161e086b332a63e19b",
+    "fingerprint": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+    "build": "fc66b96a4895ba5253c862d9883ecc392fb7a9ad299d1edf534c94e89873a6f5",
+    "status": "ready"
+  },
+  "trust_sha256": "bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e",
+  "tls_health": {
+    "service": "pi-ink-bridge",
+    "protocol": 2,
+    "id": "256377c7f22604161e086b332a63e19b",
+    "fingerprint": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+    "build": "fc66b96a4895ba5253c862d9883ecc392fb7a9ad299d1edf534c94e89873a6f5",
+    "status": "ready"
+  },
+  "process_command": "/home/zenobius/.local/share/mise/installs/bun/1.4.3/bin/bun /home/zenobius/.local/share/pi-ink-bridge/runtimes/fc66b96a4895ba5253c862d9883ecc392fb7a9ad299d1edf534c94e89873a6f5/service.js /home/zenobius/.local/share/pi-ink-bridge 58840 58841 ",
+  "process_status": {
+    "argv": [
+      "ps",
+      "-o",
+      "pid,ppid,user,args",
+      "-p",
+      "1182586"
+    ],
+    "exit_code": 0,
+    "stdout": "    PID    PPID USER     COMMAND\n1182586 1182041 zenobius /home/zenobius/.local/share/mise/installs/bun/1.4.3/bin/bun /home/zenobius/.local/share/pi-ink-bridge/runtimes/fc66b96a4895ba5253c862d9883ecc392fb7a9ad299d1edf534c94e89873a6f5/service.js /home/zenobius/.local/share/pi-ink-bridge 58840 58841\n",
+    "stderr": ""
+  },
+  "ports": {
+    "argv": [
+      "ss",
+      "-ltnp",
+      "( sport = :58840 or sport = :58841 or sport = :47840 )"
+    ],
+    "exit_code": 0,
+    "stdout": "State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                          \nLISTEN 0      512          0.0.0.0:58841      0.0.0.0:*    users:((\"bun\",pid=1182586,fd=5))\nLISTEN 0      512          0.0.0.0:58840      0.0.0.0:*    users:((\"bun\",pid=1182586,fd=6))\nLISTEN 0      512                *:47840            *:*    users:((\"omp\",pid=20453,fd=41)) \n",
+    "stderr": ""
+  },
+  "certificate": {
+    "argv": [
+      "openssl",
+      "x509",
+      "-in",
+      "/home/zenobius/.local/share/pi-ink-bridge/certificate.pem",
+      "-noout",
+      "-dates",
+      "-ext",
+      "subjectAltName"
+    ],
+    "exit_code": 0,
+    "stdout": "notBefore=Nov  8 01:31:17 2026 GMT\nnotAfter=Nov  5 01:31:17 2036 GMT\nX509v3 Subject Alternative Name: \n    IP Address:127.0.0.1, IP Address:192.168.86.35, IP Address:10.147.17.161, IP Address:10.11.99.10, DNS:brass\n",
+    "stderr": ""
+  },
+  "private_metadata": {
+    "key.pem": {
+      "mode": "0o600",
+      "uid": 1000,
+      "size": 241
+    },
+    "coordinator-id": {
+      "mode": "0o600",
+      "uid": 1000,
+      "size": 33
+    },
+    "certificate.pem": {
+      "mode": "0o600",
+      "uid": 1000,
+      "size": 717
+    }
+  }
+}

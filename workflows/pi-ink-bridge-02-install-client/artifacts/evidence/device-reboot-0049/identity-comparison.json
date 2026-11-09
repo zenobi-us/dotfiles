@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-11-08T21:44:19.990548+00:00",
+  "baseline_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/preflight-result.json",
+  "compared_files": 23,
+  "missing_baseline": [],
+  "mismatches": [],
+  "all_compared_hashes_equal": true,
+  "scope": "Only named public installed/release, retained extension and native dependency file hashes. No private content."
+}

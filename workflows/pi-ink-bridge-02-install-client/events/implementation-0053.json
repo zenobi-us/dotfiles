@@ -1,0 +1,398 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "attempt": 18,
+  "source_commit": "da7277f2a99969fa7970421e97f25a7d96b6a7f3",
+  "source_tree": "417e0ffbf02efeb2060bf6c8e9ec1deb089ab1cc",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052"
+  },
+  "recovery": {
+    "mode": "takeover",
+    "reason": "Owner now confirms physical post-boot tripletap readiness. Prior passed preflight stopped before dispatch; total prior reboot count0. New scoped attempt allows one normal boot followed by owner existing-mod activation.",
+    "authorization": {
+      "created_at": "2026-11-08T22:01:00.072Z",
+      "original_request": "approved, first restart device with mods enabled",
+      "saved_closed_confirmation": "Saved and closed\u2014reboot once",
+      "physical_confirmation": "Ready\u2014reboot, then I\u2019ll triple-press",
+      "presented_scope": "Allow existing owner-triggered XOVI activation, including temporary service overrides and service restart. Verify boot and mod state afterward; no deployment or persistent configuration changes.",
+      "scope": "One fresh read-only cable preflight, at most one normal full-device reboot, owner performs existing tripletap gesture after stock boot; bounded read-only boot/runtime/preservation observations. No automatic invocation of xovi/start. No new payload deployment or Pi Annotations launch during this attempt.",
+      "limits": {
+        "preflights": 1,
+        "reboot_dispatches": 1,
+        "postboot_ssh_observations": 3,
+        "postboot_window_seconds": 120,
+        "automatic_mod_helper_invocations": 0,
+        "extra_xochitl_restart_dispatches": 0,
+        "installs": 0,
+        "deployments": 0,
+        "pairings": 0,
+        "native_launches": 0,
+        "persistent_config_changes": 0,
+        "host_service_changes": 0
+      },
+      "stop_rules": [
+        "Stop on preflight/identity failure without a reboot retry or repair.",
+        "After reboot dispatch, ambiguous SSH teardown does not authorize another reboot.",
+        "Owner may activate only the existing tripletap route. Temporary overrides/service restart inherent to that route are acknowledged; no persistent boot/firmware/Developer Mode changes.",
+        "If owner activation is not observed within bounded return window, report pending/unknown; no auto-helper, second reboot or extra restart."
+      ],
+      "ownership": "Prior child w6T:p8 done completion_seq394 and closed. Fresh target-worktree agent list empty; no matching source/base goal YAML dispatch reservations. Claim retained; direct blocker01 completed.",
+      "inspection": {
+        "historyValid": true,
+        "mode": "takeover",
+        "parentReceipt": "start-complete-0051",
+        "source_commit": "da7277f2a99969fa7970421e97f25a7d96b6a7f3",
+        "source_tree": "417e0ffbf02efeb2060bf6c8e9ec1deb089ab1cc",
+        "dirty": false
+      }
+    },
+    "ownership": "Prior child w6T:p8 done completion_seq394 and closed. Fresh target-worktree agent list empty; no matching source/base goal YAML dispatch reservations. Claim retained; direct blocker01 completed."
+  },
+  "receipt_id": "implementation-0053",
+  "phase": "implementation",
+  "event": "phase-result",
+  "parent_receipt": "start-0052",
+  "created_at": "2026-11-08T22:06:36.382436+00:00",
+  "pane_id": "w6T:p9",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T22-01-21-073Z_01a1bd2e-27b1-77f2-ba7e-b7ed402f66fa.jsonl",
+  "status": "blocked",
+  "implementation_summary": "One normal full-device reboot verified by new boot ID. Three bounded return observations found Xochitl running without named runtime mod mappings; activation pending/unknown. All public identities and private metadata preserved.",
+  "scope_status": "full reboot verified; mods-enabled runtime unverified",
+  "operation_counts": {
+    "read_only_ssh_preflights": 1,
+    "reboot_dispatches": 1,
+    "return_status_checks": 3,
+    "automatic_mod_helper_invocations": 0,
+    "additional_xochitl_restart_dispatches": 0,
+    "installs": 0,
+    "deployments": 0,
+    "native_launches": 0,
+    "pairings": 0,
+    "live_host_service_actions": 0,
+    "persistent_configuration_changes": 0
+  },
+  "actual_outcome": {
+    "created_at": "2026-11-08T22:05:05.127015+00:00",
+    "status": "blocked",
+    "reboot_scope_status": "full reboot verified; mods-enabled runtime unverified",
+    "reboot_scope_success": false,
+    "old_boot_id": "ca7919b4-52c7-424f-ab79-4a8490465f00",
+    "new_boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+    "operation_counts": {
+      "read_only_ssh_preflights": 1,
+      "reboot_dispatches": 1,
+      "return_status_checks": 3,
+      "automatic_mod_helper_invocations": 0,
+      "additional_xochitl_restart_dispatches": 0,
+      "installs": 0,
+      "deployments": 0,
+      "native_launches": 0,
+      "pairings": 0,
+      "live_host_service_actions": 0,
+      "persistent_configuration_changes": 0
+    },
+    "observations": [
+      {
+        "observation": 1,
+        "exit_code": 0,
+        "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+        "public_hashes_compared": 23,
+        "hash_mismatches": [],
+        "links_preserved": true,
+        "private_metadata_preserved": true,
+        "xochitl_pid": "555",
+        "runtime_mod_maps": [],
+        "seconds_after_dispatch": 38.276039550997666
+      },
+      {
+        "observation": 2,
+        "exit_code": 0,
+        "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+        "public_hashes_compared": 23,
+        "hash_mismatches": [],
+        "links_preserved": true,
+        "private_metadata_preserved": true,
+        "xochitl_pid": "555",
+        "runtime_mod_maps": [],
+        "seconds_after_dispatch": 73.20001243399747
+      },
+      {
+        "observation": 3,
+        "exit_code": 0,
+        "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+        "public_hashes_compared": 23,
+        "hash_mismatches": [],
+        "links_preserved": true,
+        "private_metadata_preserved": true,
+        "xochitl_pid": "555",
+        "runtime_mod_maps": [],
+        "seconds_after_dispatch": 103.17084742900624
+      }
+    ],
+    "owner_activation": "pending/unknown: no named runtime mappings observed",
+    "private_contents_read": false,
+    "installed_payload_changed": false,
+    "new_zip_sha256": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+    "unknowns": [
+      "Owner tripletap completion and runtime mod activation were not observed within the bounded return window.",
+      "New payload remains host-only; deployment, native retest and repeat-install acceptance remain pending."
+    ]
+  },
+  "open_questions": [
+    "Owner tripletap completion and runtime mod activation were not observed within the bounded return window.",
+    "New payload remains host-only; deployment, native retest and repeat-install acceptance remain pending."
+  ],
+  "validation": [
+    {
+      "check": "Single read-only cable preflight",
+      "exit_code": 0,
+      "public_hashes_matched": 23,
+      "links_matched": 2,
+      "private_metadata_matched": 2
+    },
+    {
+      "check": "Normal reboot dispatch",
+      "exit_code": 0,
+      "count": 1
+    },
+    {
+      "check": "Bounded return observations",
+      "results": [
+        {
+          "observation": 1,
+          "exit_code": 0,
+          "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+          "public_hashes_compared": 23,
+          "hash_mismatches": [],
+          "links_preserved": true,
+          "private_metadata_preserved": true,
+          "xochitl_pid": "555",
+          "runtime_mod_maps": [],
+          "seconds_after_dispatch": 38.276039550997666
+        },
+        {
+          "observation": 2,
+          "exit_code": 0,
+          "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+          "public_hashes_compared": 23,
+          "hash_mismatches": [],
+          "links_preserved": true,
+          "private_metadata_preserved": true,
+          "xochitl_pid": "555",
+          "runtime_mod_maps": [],
+          "seconds_after_dispatch": 73.20001243399747
+        },
+        {
+          "observation": 3,
+          "exit_code": 0,
+          "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+          "public_hashes_compared": 23,
+          "hash_mismatches": [],
+          "links_preserved": true,
+          "private_metadata_preserved": true,
+          "xochitl_pid": "555",
+          "runtime_mod_maps": [],
+          "seconds_after_dispatch": 103.17084742900624
+        }
+      ]
+    },
+    {
+      "check": "Markdown Report validation",
+      "results": [
+        {
+          "path": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0053.md",
+          "exit_code": 0,
+          "result": []
+        },
+        {
+          "path": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+          "exit_code": 0,
+          "result": []
+        },
+        {
+          "path": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+          "exit_code": 0,
+          "result": []
+        }
+      ]
+    },
+    {
+      "check": "Tests/builds/formatters",
+      "result": "Not run; approved hardware observation only."
+    }
+  ],
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0051.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/preflight-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/authorization.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0052.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/preflight-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/preservation-metadata-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/preflight-intent.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/authorization.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/markdown-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/parent-launch-observation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/preflight-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/preflight-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/preflight-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/public-preflight-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/reboot-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/reboot-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/reboot-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-intent-1.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-intent-2.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-intent-3.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-result-1.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-result-2.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-result-3.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/workflow-inspection.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0053.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0053.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "changed_files": [
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/authorization.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/markdown-validation.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/parent-launch-observation.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/preflight-comparison.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/preflight-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/preflight-result.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/public-preflight-comparison.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/reboot-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/reboot-outcome.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/reboot-result.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-intent-1.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-intent-2.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-intent-3.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-result-1.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-result-2.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-result-3.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/workflow-inspection.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0053.md",
+    "workflows/pi-ink-bridge-02-install-client/events/implementation-0053.json",
+    "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml",
+    "workflows/pi-ink-bridge-02-install-client/events/start-0052.json"
+  ]
+}

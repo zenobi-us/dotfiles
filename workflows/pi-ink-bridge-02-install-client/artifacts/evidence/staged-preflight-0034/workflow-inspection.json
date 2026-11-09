@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-11-08T04:19:10.442449+00:00",
+  "historyValid": true,
+  "source": {
+    "state": "available",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "branch": "feature/pi-ink-bridge-02-install-client",
+    "commit": "c3ff963a80cf0fd488d08a1cc532e37d85250e91",
+    "tree": "8c32b67418cf814c32c0f1ace8c39d3762768e03",
+    "dirty": true,
+    "candidates": 1
+  },
+  "decision": {
+    "action": "start",
+    "mode": "takeover",
+    "label": "Recover implementation",
+    "reason": "Preserve existing work and inspect the interrupted start before a scoped takeover. Resolve liveness, reservations, and ownership first.",
+    "requiredApproval": true,
+    "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-0034.json"
+  },
+  "ownership": "Canonical inspector reports unknown; scoped parent authorization and Herdr self-only worktree agent evidence establish this takeover.",
+  "authorized_dirty_scope": "workflows/pi-ink-bridge-02-install-client"
+}

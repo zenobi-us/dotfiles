@@ -1,0 +1,268 @@
+{
+  "created_at": "2026-11-08T00:06:04.903730+00:00",
+  "scope": "Approved read-only resource capture; no installation or source correction",
+  "endpoint": "root@10.11.99.1",
+  "known_host": {
+    "lookup_exit_code": 0,
+    "strict": true,
+    "key_material_saved": false
+  },
+  "private_retained_directory": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d",
+  "private_directory_mode": "0700",
+  "private_file_mode": "0600",
+  "manifest": [
+    {
+      "kind": "FILE",
+      "path": "/usr/bin/xochitl",
+      "size": 24705704,
+      "mode": "755",
+      "owner": 0,
+      "sha256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+      "host_path": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/xochitl"
+    },
+    {
+      "kind": "FILE",
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/hashtab",
+      "size": 674428,
+      "mode": "644",
+      "owner": 0,
+      "sha256": "9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615",
+      "host_path": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/hashtab"
+    },
+    {
+      "kind": "QMD",
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd",
+      "size": 9249,
+      "mode": "644",
+      "owner": 0,
+      "sha256": "5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2",
+      "host_path": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/betterTocCollapse.qmd"
+    },
+    {
+      "kind": "QMD",
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd",
+      "size": 157221,
+      "mode": "644",
+      "owner": 0,
+      "sha256": "beb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d",
+      "host_path": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/betterToc.qmd"
+    },
+    {
+      "kind": "QMD",
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd",
+      "size": 50534,
+      "mode": "644",
+      "owner": 0,
+      "sha256": "dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595",
+      "host_path": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/bluetoothSettings.qmd"
+    },
+    {
+      "kind": "QMD",
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd",
+      "size": 10239,
+      "mode": "644",
+      "owner": 0,
+      "sha256": "f8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43",
+      "host_path": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/computed-widgets-01-live-document-probe.qmd"
+    },
+    {
+      "kind": "QMD",
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd",
+      "size": 79350,
+      "mode": "644",
+      "owner": 0,
+      "sha256": "ebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023",
+      "host_path": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/floating.qmd"
+    },
+    {
+      "kind": "QMD",
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd",
+      "size": 76274,
+      "mode": "644",
+      "owner": 0,
+      "sha256": "28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43",
+      "host_path": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/linkFromSelection.qmd"
+    },
+    {
+      "kind": "QMD",
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd",
+      "size": 2230,
+      "mode": "644",
+      "owner": 0,
+      "sha256": "3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471",
+      "host_path": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/link-touch-targets.qmd"
+    },
+    {
+      "kind": "QMD",
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd",
+      "size": 8298,
+      "mode": "644",
+      "owner": 0,
+      "sha256": "c88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe",
+      "host_path": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/pi-ink-bridge-0049.qmd"
+    },
+    {
+      "kind": "QMD",
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd",
+      "size": 5853,
+      "mode": "644",
+      "owner": 0,
+      "sha256": "2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982",
+      "host_path": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/quickSettingsBluetooth.qmd"
+    },
+    {
+      "kind": "QMD",
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd",
+      "size": 1077,
+      "mode": "644",
+      "owner": 0,
+      "sha256": "36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158",
+      "host_path": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/randomSleepScreen.qmd"
+    },
+    {
+      "kind": "QMD",
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd",
+      "size": 2751,
+      "mode": "644",
+      "owner": 0,
+      "sha256": "4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe",
+      "host_path": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/retaskableJump.qmd"
+    },
+    {
+      "kind": "QMD",
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd",
+      "size": 11832,
+      "mode": "644",
+      "owner": 0,
+      "sha256": "767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e",
+      "host_path": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/retaskableSend.qmd"
+    }
+  ],
+  "bounds": {
+    "max_qmd_count": 32,
+    "max_qmd_bytes": 262144,
+    "actual_qmd_count": 12,
+    "total_capture_bytes": 25795040
+  },
+  "connections": [
+    {
+      "command": [
+        "ssh",
+        "-T",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ConnectionAttempts=1",
+        "-o",
+        "ConnectTimeout=10",
+        "-o",
+        "ServerAliveInterval=10",
+        "-o",
+        "ServerAliveCountMax=1",
+        "-o",
+        "ForwardAgent=no",
+        "-o",
+        "ForwardX11=no",
+        "-o",
+        "ClearAllForwardings=yes",
+        "-o",
+        "ControlMaster=no",
+        "-o",
+        "ControlPath=none",
+        "-o",
+        "ControlPersist=no",
+        "root@10.11.99.1",
+        "set -eu\nfor d in /usr /usr/bin /home /home/root /home/root/xovi /home/root/xovi/exthome /home/root/xovi/exthome/qt-resource-rebuilder; do\n test ! -L \"$d\" && test -d \"$d\" || exit 31\n stat -c 'DIR|%n|%F|%u|%g|%a' \"$d\"\ndone\nfor f in /usr/bin/xochitl /home/root/xovi/exthome/qt-resource-rebuilder/hashtab; do\n test ! -L \"$f\" && test -f \"$f\" || exit 32\n stat -c 'FILE|%n|%F|%u|%g|%a|%s' \"$f\"\n sha256sum \"$f\"\ndone\nn=0\nfor f in /home/root/xovi/exthome/qt-resource-rebuilder/*.qmd; do\n test -e \"$f\" || continue\n n=$((n+1)); test \"$n\" -le 32 || exit 33\n test ! -L \"$f\" && test -f \"$f\" || exit 34\n stat -c 'QMD|%n|%F|%u|%g|%a|%s' \"$f\"\n sha256sum \"$f\"\ndone\nprintf 'MANIFEST_COMPLETE|%s\\n' \"$n\"\n"
+      ],
+      "exit_code": 0,
+      "stdout": "DIR|/usr|directory|0|0|755\nDIR|/usr/bin|directory|0|0|755\nDIR|/home|directory|0|0|755\nDIR|/home/root|directory|0|0|700\nDIR|/home/root/xovi|directory|0|0|755\nDIR|/home/root/xovi/exthome|directory|0|0|755\nDIR|/home/root/xovi/exthome/qt-resource-rebuilder|directory|0|0|755\nFILE|/usr/bin/xochitl|regular file|0|0|755|24705704\nb1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021  /usr/bin/xochitl\nFILE|/home/root/xovi/exthome/qt-resource-rebuilder/hashtab|regular file|0|0|644|674428\n9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615  /home/root/xovi/exthome/qt-resource-rebuilder/hashtab\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd|regular file|0|0|644|9249\n5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2  /home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd|regular file|0|0|644|157221\nbeb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d  /home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd|regular file|0|0|644|50534\ndc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595  /home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd|regular file|0|0|644|10239\nf8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43  /home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd|regular file|0|0|644|79350\nebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023  /home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd|regular file|0|0|644|76274\n28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43  /home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd|regular file|0|0|644|2230\n3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471  /home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd|regular file|0|0|644|8298\nc88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe  /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd|regular file|0|0|644|5853\n2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982  /home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd|regular file|0|0|644|1077\n36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158  /home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd|regular file|0|0|644|2751\n4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe  /home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd|regular file|0|0|644|11832\n767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e  /home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd\nMANIFEST_COMPLETE|12\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ssh",
+        "-T",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ConnectionAttempts=1",
+        "-o",
+        "ConnectTimeout=10",
+        "-o",
+        "ServerAliveInterval=10",
+        "-o",
+        "ServerAliveCountMax=1",
+        "-o",
+        "ForwardAgent=no",
+        "-o",
+        "ForwardX11=no",
+        "-o",
+        "ClearAllForwardings=yes",
+        "-o",
+        "ControlMaster=no",
+        "-o",
+        "ControlPath=none",
+        "-o",
+        "ControlPersist=no",
+        "root@10.11.99.1",
+        "set -eu\ntest ! -L /usr/bin/xochitl && test -f /usr/bin/xochitl && test \"$(stat -c %u:%a:%s /usr/bin/xochitl)\" = \"0:755:24705704\" || exit 41\ntest \"$(sha256sum /usr/bin/xochitl)\" = \"b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021  /usr/bin/xochitl\" || exit 42\ntest ! -L /home/root/xovi/exthome/qt-resource-rebuilder/hashtab && test -f /home/root/xovi/exthome/qt-resource-rebuilder/hashtab && test \"$(stat -c %u:%a:%s /home/root/xovi/exthome/qt-resource-rebuilder/hashtab)\" = \"0:644:674428\" || exit 41\ntest \"$(sha256sum /home/root/xovi/exthome/qt-resource-rebuilder/hashtab)\" = \"9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615  /home/root/xovi/exthome/qt-resource-rebuilder/hashtab\" || exit 42\ntest ! -L /home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd && test -f /home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd && test \"$(stat -c %u:%a:%s /home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd)\" = \"0:644:9249\" || exit 41\ntest \"$(sha256sum /home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd)\" = \"5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2  /home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd\" || exit 42\ntest ! -L /home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd && test -f /home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd && test \"$(stat -c %u:%a:%s /home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd)\" = \"0:644:157221\" || exit 41\ntest \"$(sha256sum /home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd)\" = \"beb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d  /home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd\" || exit 42\ntest ! -L /home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd && test -f /home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd && test \"$(stat -c %u:%a:%s /home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd)\" = \"0:644:50534\" || exit 41\ntest \"$(sha256sum /home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd)\" = \"dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595  /home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd\" || exit 42\ntest ! -L /home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd && test -f /home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd && test \"$(stat -c %u:%a:%s /home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd)\" = \"0:644:10239\" || exit 41\ntest \"$(sha256sum /home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd)\" = \"f8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43  /home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd\" || exit 42\ntest ! -L /home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd && test -f /home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd && test \"$(stat -c %u:%a:%s /home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd)\" = \"0:644:79350\" || exit 41\ntest \"$(sha256sum /home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd)\" = \"ebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023  /home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd\" || exit 42\ntest ! -L /home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd && test -f /home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd && test \"$(stat -c %u:%a:%s /home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd)\" = \"0:644:76274\" || exit 41\ntest \"$(sha256sum /home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd)\" = \"28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43  /home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd\" || exit 42\ntest ! -L /home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd && test -f /home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd && test \"$(stat -c %u:%a:%s /home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd)\" = \"0:644:2230\" || exit 41\ntest \"$(sha256sum /home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd)\" = \"3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471  /home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd\" || exit 42\ntest ! -L /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd && test -f /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd && test \"$(stat -c %u:%a:%s /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd)\" = \"0:644:8298\" || exit 41\ntest \"$(sha256sum /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd)\" = \"c88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe  /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd\" || exit 42\ntest ! -L /home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd && test -f /home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd && test \"$(stat -c %u:%a:%s /home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd)\" = \"0:644:5853\" || exit 41\ntest \"$(sha256sum /home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd)\" = \"2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982  /home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd\" || exit 42\ntest ! -L /home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd && test -f /home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd && test \"$(stat -c %u:%a:%s /home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd)\" = \"0:644:1077\" || exit 41\ntest \"$(sha256sum /home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd)\" = \"36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158  /home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd\" || exit 42\ntest ! -L /home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd && test -f /home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd && test \"$(stat -c %u:%a:%s /home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd)\" = \"0:644:2751\" || exit 41\ntest \"$(sha256sum /home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd)\" = \"4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe  /home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd\" || exit 42\ntest ! -L /home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd && test -f /home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd && test \"$(stat -c %u:%a:%s /home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd)\" = \"0:644:11832\" || exit 41\ntest \"$(sha256sum /home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd)\" = \"767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e  /home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd\" || exit 42\ncat /usr/bin/xochitl /home/root/xovi/exthome/qt-resource-rebuilder/hashtab /home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd /home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd /home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd /home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd /home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd /home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd /home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd /home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd /home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd /home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd /home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd"
+      ],
+      "exit_code": 0,
+      "stderr": "",
+      "bytes": 25795040
+    },
+    {
+      "command": [
+        "ssh",
+        "-T",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ConnectionAttempts=1",
+        "-o",
+        "ConnectTimeout=10",
+        "-o",
+        "ServerAliveInterval=10",
+        "-o",
+        "ServerAliveCountMax=1",
+        "-o",
+        "ForwardAgent=no",
+        "-o",
+        "ForwardX11=no",
+        "-o",
+        "ClearAllForwardings=yes",
+        "-o",
+        "ControlMaster=no",
+        "-o",
+        "ControlPath=none",
+        "-o",
+        "ControlPersist=no",
+        "root@10.11.99.1",
+        "set -eu\nn=0\nfor f in /home/root/xovi/exthome/qt-resource-rebuilder/*.qmd; do\n if test ! -e \"$f\" && test ! -L \"$f\"; then continue; fi\n test ! -L \"$f\" && test -f \"$f\" || exit 51\n n=$((n+1)); test \"$n\" -le 32 || exit 52\n stat -c 'QMD|%n|%F|%u|%g|%a|%s' \"$f\"\n sha256sum \"$f\"\ndone\nprintf 'FINAL_MANIFEST_COMPLETE|%s\\n' \"$n\"\n"
+      ],
+      "exit_code": 0,
+      "stdout": "QMD|/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd|regular file|0|0|644|9249\n5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2  /home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd|regular file|0|0|644|157221\nbeb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d  /home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd|regular file|0|0|644|50534\ndc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595  /home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd|regular file|0|0|644|10239\nf8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43  /home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd|regular file|0|0|644|79350\nebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023  /home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd|regular file|0|0|644|76274\n28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43  /home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd|regular file|0|0|644|2230\n3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471  /home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd|regular file|0|0|644|8298\nc88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe  /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd|regular file|0|0|644|5853\n2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982  /home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd|regular file|0|0|644|1077\n36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158  /home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd|regular file|0|0|644|2751\n4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe  /home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd\nQMD|/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd|regular file|0|0|644|11832\n767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e  /home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd\nFINAL_MANIFEST_COMPLETE|12\n",
+      "stderr": ""
+    }
+  ],
+  "capture_integrity": "All captured byte lengths and SHA256 hashes match the validated fixed metadata manifest. Final bounded QMD inventory matches exactly; both live and broken symlinks rejected.",
+  "safety": {
+    "device_commands": "test, stat, sha256sum, cat, shell loops/arithmetic/printf only",
+    "device_writes": false,
+    "device_native_or_helper_execution": false,
+    "device_installation": false,
+    "restart": false,
+    "service_or_listener_access": false,
+    "private_record_contents_read": false,
+    "port_47840_access": false,
+    "automatic_retries": 0,
+    "limits": "Command audit proves no intentional filesystem writes or service actions. Does not audit incidental SSH daemon/system logging or concurrent device processes."
+  },
+  "failures": []
+}

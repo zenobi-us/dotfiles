@@ -1,0 +1,292 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058"
+  },
+  "receipt_id": "start-complete-0060",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 20,
+  "parent_receipt": "implementation-0059",
+  "source_commit": "4cc645e758e10ed132304445bacc68df6f918317",
+  "source_tree": "6d47dd9563adb84e42867ffc03877bf16f990021",
+  "created_at": "2026-11-09T00:15:24.685Z",
+  "pane_id": null,
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "status": "completed",
+  "scope_status": "All named installation ticket criteria verified; implemented and ready for fresh independent review.",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0058.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0057.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/acceptance-summary.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/authorization.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/child-pane-identity.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup-execution-start.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup-intent.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup-result.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup.sh"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/markdown-validation.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/operation-counts.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/parent-launch-observation.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck-execution-start.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck-intent.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck-result.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck.sh"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-comparison.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-execution-start.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-intent.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-result.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight.sh"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preservation-verification.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-install-execution-start.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-install-result.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-install.sh"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-intent.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/source-and-tracker-verification.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/tracker-validation-before.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0059.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0059.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0060.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/parent-validation.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    }
+  ],
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Fresh canonical inspector historyValid=true selected start/reconcile implementation-0059. Validated exact tracker/source and workflow commit trees, production-code unchanged scope, raw successful one-installer output, independently matched29 hashes/34inode-mtime-absence rows and stable metadata/links/names, exact executed cleanup script/digest and stage absence, tracker record through normal CLI graph/explorer readers, snapshot, and done/closed child. Prior native proof consumed without another launch or device operation.",
+    "authorization": {
+      "created_at": "2026-11-08T23:58:49.478Z",
+      "user_statement": "Approve once—no restart",
+      "scope": "One identical pinned production installer execution against the already installed fixed release, protected preservation pre/postchecks, and removal only of the verified owned public-download stage after success.",
+      "zip_sha256": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+      "binary_sha256": "433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051",
+      "installer_sha256": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+      "bootstrap_sha256": "bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e",
+      "owned_stage": "/home/root/.local/share/pi-ink-bridge/.upgrade-0055.eQVGWv",
+      "limits": {
+        "installer_executions": 1,
+        "read_only_preflights": 1,
+        "ssh_invocations_max": 4,
+        "owned_stage_cleanups": 1,
+        "reboots": 0,
+        "xochitl_restarts": 0,
+        "native_launches": 0,
+        "pairings": 0,
+        "host_service_mutations": 0,
+        "operation_retries": 0,
+        "automatic_repairs": 0
+      },
+      "preserve": "Both immutable releases, two current production links, protected config/CA/state, existing drafts/pairing, retained QMD names and unrelated mods. No private contents returned; ordinary installer may perform its existing internal config/CA validation.",
+      "ownership": "Previous pA done418 and closed. Fresh target-worktree live agent list empty; no matching goal YAML reservations. Existing claim retained until full validation; direct blocker01 completed.",
+      "inspection": {
+        "historyValid": true,
+        "mode": "takeover",
+        "parentReceipt": "start-complete-0057",
+        "source_commit": "b829e3a0aa1b51b0af18ab8782d2f5fb299c3a61",
+        "source_tree": "d5bd04b3980fc9f3590f79a51d259e1ab167e881",
+        "dirty": false
+      }
+    },
+    "ownership": "Child done426 and closed; root/workspace/worktree retained. Tracker is implemented, not completed."
+  },
+  "validated_result": {
+    "receipt": "implementation-0059",
+    "source_commit": "57491dc0da46ed141e9cb9dbcd6f0c9c02a86744",
+    "source_tree": "520dde688e1157a7cef836f9ec8cceb736bb9ea1",
+    "exact_tree_verified": true,
+    "all_named_ticket_criteria_passed": true,
+    "repeat_installer_executions": 1,
+    "repeat_installer_exit_code": 0,
+    "hashes_preserved": 29,
+    "inode_mtime_absence_rows_preserved": 34,
+    "exact_links_preserved": 2,
+    "retained_qmd_names": 13,
+    "owned_stage_removed": true,
+    "parent_validation": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/parent-validation.json"
+  },
+  "operation_counts": {
+    "created_at": "2026-11-09T00:01:58.141791+00:00",
+    "ssh_invocations": 4,
+    "read_only_preflights": 1,
+    "installer_executions": 1,
+    "postchecks": 1,
+    "owned_stage_cleanups": 1,
+    "public_files_removed": 3,
+    "owned_stage_absent": true,
+    "retries": 0,
+    "repairs": 0,
+    "reboots": 0,
+    "xochitl_restarts": 0,
+    "native_launches": 0,
+    "pairings": 0,
+    "host_service_mutations": 0,
+    "private_contents_exported": 0,
+    "tests_builds_formatters": 0
+  },
+  "tracker_status": "implemented",
+  "source_production_unchanged": true,
+  "new_payload_deployed": true,
+  "native_acceptance": true,
+  "repeat_install_acceptance": true,
+  "all_hardware_acceptance_passed": true,
+  "owned_stage_removed": true,
+  "open_questions": [],
+  "remaining_steps": [
+    "Fresh independent review of the current clean implementation source commit/tree."
+  ],
+  "reviewed": false,
+  "merged": false,
+  "pushed": false
+}

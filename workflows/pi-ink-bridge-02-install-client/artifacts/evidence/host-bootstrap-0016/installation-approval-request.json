@@ -1,0 +1,33 @@
+{
+  "status": "PROPOSAL_ONLY_DEVICE_INSTALL_NOT_AUTHORIZED",
+  "request": "Approve ONE cable installation of the exact hash-pinned production payload and real trusted server record below, after a fresh read-only preflight. No restart or reboot.",
+  "server_id": "256377c7f22604161e086b332a63e19b",
+  "https_origin": "https://192.168.86.35:58841",
+  "setup_url": "http://192.168.86.35:58840/setup",
+  "certificate_sha256": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+  "trust_record_sha256": "bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e",
+  "payload_sha256": {
+    "installer": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+    "zip": "03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+    "sidebar": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be"
+  },
+  "allowed_future_target_set": [
+    "/home/root/.local/share/pi-ink-bridge",
+    "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+    "/home/root/xovi/exthome/appload/pi-annotations",
+    "/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd"
+  ],
+  "future_write_effects": "Verified installer uses its own temporary extraction directory, creates private immutable release files and initial config.json/server-ca.pem in production base, publishes two named symlinks. Removes only its own transient staging. Does not restart. See installation.go and production-install.sh.",
+  "preflight_required": [
+    "Recheck exact stock/native hashes, model/architecture/IMG_VERSION and all approved target types/owners/permissions; abort on drift, unsafe symlinks, occupied targets or changed retained QMD manifest.",
+    "Verify installer and ZIP against listed SHA256 before executing or extracting. Verify packaged sidebar.qmd is the validated production bytes.",
+    "Use only the fixed production target set. Preserve every retained QMD, prototype installation/service and all unrelated data. No automatic repair or retry.",
+    "Fresh strict known-host verification, model Ferrari/aarch64, IMG_VERSION 3.28.0.172 and stock/native hashes; compare exact captured QMD manifest and target absence/ownership/no-symlink boundaries. Abort on drift. Preserve prototype and all unrelated data.",
+    "Confirm generated instructions still contain exactly these payload/trust hashes and endpoint; no automatic retry/repair. Desktop-local TLS does not prove tablet LAN/firewall reachability."
+  ],
+  "activation_gate": "After installation, require separate owner saved/closed confirmation and approval for one Xochitl restart and native launch observation. Repeat-install acceptance needs separate approval.",
+  "forbidden": "No pairing, notebook/draft writes, prototype replacement, firmware, Developer Mode, firewall, cloud or account changes.",
+  "generated_command": "ssh -o StrictHostKeyChecking=yes root@10.11.99.1 'set -eu; umask 077; work=$(mktemp -d /tmp/pi-ink-install.XXXXXX); trap '\\''rm -rf \"$work\"'\\'' EXIT; cd \"$work\"; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/install.sh'\\'' -o install.sh; printf '\\''%s  install.sh\\n'\\'' '\\''765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f'\\'' | sha256sum -c -; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/client.zip'\\'' -o client.zip; printf '\\''%s  client.zip\\n'\\'' '\\''03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\'' | sha256sum -c -; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/server.json'\\'' -o server.json; printf '\\''%s  server.json\\n'\\'' '\\''bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e'\\'' | sha256sum -c -; sh ./install.sh '\\''03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\'' '\\''bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e'\\'''",
+  "command_executed": false,
+  "device_access": false
+}

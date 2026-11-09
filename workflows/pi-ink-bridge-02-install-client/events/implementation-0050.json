@@ -1,0 +1,239 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049"
+  },
+  "receipt_id": "implementation-0050",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 17,
+  "parent_receipt": "start-0049",
+  "source_commit": "8e094dec5035f2d72932b6b5f8a5f8ff220aa476",
+  "source_tree": "211b1339895438b831df426e19c5606049cded91",
+  "created_at": "2026-11-08T21:45:45.320775+00:00",
+  "pane_id": "w6T:p8",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T21-42-07-654Z_01a1bd1c-8e26-7677-8ee6-853f68bcee33.jsonl",
+  "status": "blocked",
+  "implementation_summary": "Single read-only cable preflight passed; eligible mods-enabled full reboot not established. Guarded stop with zero reboot dispatches and zero device mutations.",
+  "changed_files": [
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/preflight-execution-start.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/identity-comparison.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/preflight-result.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/reboot-outcome.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/parent-launch-observation.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/session-scope.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/parent-upgrade-boundary.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/authorization.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/preflight-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/events/implementation-0050.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0050.md",
+    "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml",
+    "workflows/pi-ink-bridge-02-install-client/events/start-0049.json"
+  ],
+  "validation": [
+    {
+      "check": "Bounded cable SSH preflight",
+      "exit_code": 0,
+      "timeout": false,
+      "result": "model and firmware compatible; current boot baseline observed; installed/named public identities read; no runtime mapped named XOVI libraries; no eligible existing automatic mod-enabled boot established"
+    },
+    {
+      "check": "Public file preservation comparison",
+      "result": "23 named public file hashes match native-activation-0040 baseline; no mismatches"
+    },
+    {
+      "check": "Reboot eligibility",
+      "result": "BLOCKED: retained boot procedure needs owner physical triple-press; start helper writes temporary unit overrides and restarts services"
+    },
+    {
+      "check": "Tests/builds/formatters",
+      "result": "Not run: investigation-only authorization"
+    }
+  ],
+  "operation_counts": {
+    "read_only_ssh_preflights": 1,
+    "reboot_dispatches": 0,
+    "return_status_checks": 0,
+    "xochitl_restarts": 0,
+    "installs": 0,
+    "deployments": 0,
+    "native_launches": 0,
+    "pairings": 0,
+    "live_host_service_actions": 0,
+    "persistent_configuration_changes": 0,
+    "device_mutations": 0
+  },
+  "actual_outcome": {
+    "created_at": "2026-11-08T21:44:20.002187+00:00",
+    "status": "blocked",
+    "preflight_exit": 0,
+    "boot_id": "ca7919b4-52c7-424f-ab79-4a8490465f00",
+    "model": "reMarkable Ferrari",
+    "arch": "aarch64",
+    "firmware": "3.28.0.172",
+    "xochitl_pid": 548,
+    "runtime_mod_maps": [],
+    "reboot_guard_passed": false,
+    "reboot_dispatched": false,
+    "reason": "No established automatic mods-enabled full boot. Current Xochitl has no mapped XOVI/appload/qt-resource-rebuilder modules. Known README procedure requires owner triple-press after stock boot. Public xovi/start uses tmpfs service drop-ins, daemon-reload and service restart, so it is outside reboot-only scope.",
+    "prerequisite": "Owner must authorize a revised full-boot procedure that includes the physical post-boot triple-press, or supply a documented existing configuration-free mods-enabled boot command for a fresh bounded inspection. Do not infer that this attempt authorizes either.",
+    "unknowns": [
+      "No new boot_id observed because reboot was not dispatched.",
+      "No exhaustive proof of alternate boot helpers; single preflight found no established eligible mod-enabled reboot procedure.",
+      "New framing-fix payload remains host-only; native retest and repeat-install acceptance remain pending."
+    ],
+    "operation_counts": {
+      "read_only_ssh_preflights": 1,
+      "reboot_dispatches": 0,
+      "return_status_checks": 0,
+      "xochitl_restarts": 0,
+      "installs": 0,
+      "deployments": 0,
+      "native_launches": 0,
+      "pairings": 0,
+      "live_host_service_actions": 0,
+      "persistent_configuration_changes": 0,
+      "device_mutations": 0
+    },
+    "identity_comparison": "identity-comparison.json",
+    "new_zip_sha256": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+    "installed_payload_changed": false
+  },
+  "open_questions": [
+    "No new boot_id observed because reboot was not dispatched.",
+    "No exhaustive proof of alternate boot helpers; single preflight found no established eligible mod-enabled reboot procedure.",
+    "New framing-fix payload remains host-only; native retest and repeat-install acceptance remain pending.",
+    "Owner must authorize a revised full-boot procedure that includes the physical post-boot triple-press, or supply a documented existing configuration-free mods-enabled boot command for a fresh bounded inspection. Do not infer that this attempt authorizes either."
+  ],
+  "recovery": {
+    "mode": "takeover",
+    "reason": "Canonical inspector selects start takeover; new approval requests one full device reboot with existing mods enabled before deployment.",
+    "authorization_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/authorization.json",
+    "ownership": "Fresh scoped takeover approved. Herdr filtered agent list for source worktree empty; source worktree has workspace w6T. No matching pi-ink ticket coordinator reservations found in source/base goal YAML journals. Existing held claim retained; direct blocker ticket is completed.",
+    "actual_child_pane": "w6T:p8",
+    "history_valid_before": true
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0048.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/authorization.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0049.json"
+    },
+    {
+      "kind": "source",
+      "ref": "README.md"
+    },
+    {
+      "kind": "source",
+      "ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/preflight-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/preflight-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/preflight-result.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/preflight-execution-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/identity-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/preflight-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/reboot-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/parent-launch-observation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/session-scope.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/parent-upgrade-boundary.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/preflight-intent.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0050.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0050.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ]
+}

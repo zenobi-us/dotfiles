@@ -1,0 +1,177 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0002",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 1,
+  "parent_receipt": "start-0001",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "82edbf73a1cc78d61079be62fa97d98eff445ecd",
+  "source_tree": "9824944411da9971edcb5d12a98b24f67064bd67",
+  "implementation_source_commit": "063298ca28c8e0c66d74f9bd35122d651df9dd36",
+  "implementation_source_tree": "f5568858104bc950b0b9acc677d40e6d99a7573f",
+  "created_at": "2026-11-07T22:32:10.383Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": "w6N:p3",
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-07T21-58-09-185Z_01a1b804-de21-730e-8248-df9e8fb28e11.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-20261108-install-001"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0001.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-ink-bridge/index.md"
+    },
+    {
+      "kind": "commit",
+      "ref": "063298ca28c8e0c66d74f9bd35122d651df9dd36"
+    },
+    {
+      "kind": "commit",
+      "ref": "82edbf73a1cc78d61079be62fa97d98eff445ecd"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0002.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0002.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-20261108-install-001"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "status": "blocked",
+  "changed_files": [
+    "README.md",
+    "bun.lock",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/coordinator-discovery.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/index.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/installation-client.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/installation-service.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/mise.toml",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/package.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/scripts/provision-tablet.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/server-identity.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/Connections.qml",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/application.qrc",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/entry",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/manifest.json",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/sidebar.qmd",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/appload.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/build.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/installation.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/installation_test.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/main.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/coordinator-identity.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/installation-service.test.ts",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tsconfig.json",
+    "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  ],
+  "validation": [
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec -- bun run typecheck",
+      "result": "passed"
+    },
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec -- bun run build",
+      "result": "passed; Vite emitted existing third-party use-client and chunk-size warnings"
+    },
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec -- bun test test",
+      "result": "24 passed, 0 failed, 195 assertions"
+    },
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec go@1.25.0 -- go test -race ./...",
+      "result": "passed; image-annotator-tablet, 22.430s"
+    },
+    {
+      "command": "sh scripts/provision-tablet.sh --dry-run",
+      "result": "passed; printed local ZIP and installer digests; no service or device connection"
+    },
+    {
+      "command": "sh -n scripts/provision-tablet.sh tablet-client/production-install.sh tablet-client/build.sh tablet-appload/entry",
+      "result": "passed"
+    },
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec -- bun run build:tablet",
+      "result": "repeat build passed; identical ZIP SHA-256 03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629"
+    }
+  ],
+  "smoke_results": [
+    "Two independent processes invoked the registered /annotate add-device handler through a controlled agent-host API boundary. Both succeeded with the same server identity and certificate fingerprint.",
+    "The real Pitchfork-managed service remained ready after both extension processes exited. A later start retained the identity and fingerprint.",
+    "The existing unrelated protocol-1 listener caused readiness failure without a success notification. It was not stopped. Isolated ports 58840/58841 proved the successful path.",
+    "Chromium displayed both trusted loopback instructions and a LAN page without trusted digests. Managed browser tabs were closed.",
+    "Altered installer, ZIP, and trust-record responses failed checksum verification before installer execution. The SSH boundary was replaced by a local shell; no device connection occurred.",
+    "Unaltered verified downloads reached the installer, which rejected non-root host permissions before installation.",
+    "The actual Connections.qml rendered under Qt 6.8.3 with the real Go backend over SOCK_SEQPACKET. A host transport emulator replaced only the unavailable native AppLoad module. Verified available and offline states were observed. This is not tablet acceptance.",
+    "The isolated service and supervisor were stopped. Temporary host smoke scripts, configurations, and binaries were removed. No tablet access occurred."
+  ],
+  "implementation_summary": "Implemented one per-user Pitchfork-managed installation service with pinned mise tools, trusted loopback/extension digests, verified SSH bootstrap, persistent server TLS identity, preflight and data-preserving tablet installation, and a thin sidebar launcher for an AppLoad connection screen. Browser and completed PNG contracts remain unchanged. Required native device acceptance is blocked by missing scoped owner approval.",
+  "open_questions": [
+    "Scoped owner approval is missing for device preflight, exact-payload installation, one application restart, post-restart launch observation, and repeat-install checks.",
+    "Installed XOVI/AppLoad/qt-resource-rebuilder versions and compatibility with retained patches must be established during approved preflight.",
+    "The existing default-port protocol-1 desktop listener needs explicit operator handling or consistently configured distinct ports."
+  ],
+  "approval_request": {
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-20261108-install-001/device-approval-request.json"
+  },
+  "review_status": "not-performed",
+  "merge_status": "not-merged-not-pushed",
+  "ticket_status": "claimed",
+  "recovery": {
+    "mode": "takeover",
+    "consumed_parent": "workflows/pi-ink-bridge-02-install-client/events/start-0001.json",
+    "ownership": "Fresh implementation session launched by recorded parent under explicit takeover and new-from-master authorization; no duplicate implementation agent was launched.",
+    "parent_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+    "device_authorization": "none; all device-only operations were withheld"
+  }
+}

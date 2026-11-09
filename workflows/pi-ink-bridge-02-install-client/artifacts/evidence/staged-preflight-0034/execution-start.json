@@ -1,0 +1,7 @@
+{
+  "created_at": "2026-11-08T04:17:30.636591+00:00",
+  "intent_sha256": "9fa60dcc135a424929fb2ba8e35459f710e911d70824b6224a9495878cbaa65d",
+  "network_ssh_invocations_reserved": 1,
+  "network_ssh_limit": 1,
+  "raw_private_directory": "/tmp/pi-ink-staged-preflight-0034-oyosg1s4"
+}

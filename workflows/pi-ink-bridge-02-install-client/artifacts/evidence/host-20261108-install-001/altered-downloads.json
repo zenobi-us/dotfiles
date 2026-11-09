@@ -1,0 +1,26 @@
+{
+  "boundary": "SSH process is replaced with a local shell; no tablet connection occurs. Downloads use real service bytes with one altered response.",
+  "results": [
+    {
+      "altered": "install.sh",
+      "code": 1,
+      "installerExecuted": false,
+      "output": "install.sh: FAILED\n",
+      "error": "sha256sum: WARNING: 1 computed checksum did NOT match\n"
+    },
+    {
+      "altered": "client.zip",
+      "code": 1,
+      "installerExecuted": false,
+      "output": "install.sh: OK\nclient.zip: FAILED\n",
+      "error": "sha256sum: WARNING: 1 computed checksum did NOT match\n"
+    },
+    {
+      "altered": "server.json",
+      "code": 1,
+      "installerExecuted": false,
+      "output": "install.sh: OK\nclient.zip: OK\nserver.json: FAILED\n",
+      "error": "sha256sum: WARNING: 1 computed checksum did NOT match\n"
+    }
+  ]
+}

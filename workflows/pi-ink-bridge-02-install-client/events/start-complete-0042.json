@@ -1,0 +1,323 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040"
+  },
+  "receipt_id": "start-complete-0042",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 14,
+  "parent_receipt": "implementation-0041",
+  "source_commit": "a04d0b0302c0f65299507d74680c4b0ce6e60677",
+  "source_tree": "75dbf4944d770155c870d1b7287d229ed823f0f8",
+  "created_at": "2026-11-08T07:28:00.009Z",
+  "pane_id": null,
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "status": "blocked",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0040.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0041.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0041.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/activation-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/authorization.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/failure-observation-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/failure-observation-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/host-health-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/host-health-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/owner-observation-0001.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/owner-observation-0002.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/owner-observation-checkpoint.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/post-restart-status-1.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/post-restart-status-2.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/post-restart-status-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/preflight-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/preflight-execution-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/preflight-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/preflight-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/preservation-metadata-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/preservation-observation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/restart-operation-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/restart-operation-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/session-scope.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0041.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0042.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/parent-existing-log-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/parent-existing-log-result.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Canonical inspector selects start/reconcile implementation-0041. Verified source/result trees, workflow-only scope, restart intent/execution/status, owner-reported closure, TLS health and preservation; no launch/restart repeated.",
+    "authorization": {
+      "created_at": "2026-11-08T07:08:12.458Z",
+      "user_text": "econfirm",
+      "in_reply_to": "To activate, confirm: “All documents are saved and closed; approve one Xochitl restart and native observation.” No pairing, reinstall or retry.",
+      "interpretation": "Owner confirms all tablet documents are saved and closed and approves exactly one Xochitl restart plus bounded native observation; parent stated this interpretation before work.",
+      "scope": "Fresh strict read-only installed-identity preflight through proven stdin delivery; exactly one Xochitl restart only after all checks pass; bounded native sidebar/layout/connection observation and necessary read-only status checks. No pairing, reinstall, reboot, repair, second restart or automatic retry.",
+      "ownership": "No live source-worktree agents in Herdr list; retained w6T root shell p1, fresh child p5. Prior p4 done/closed. Claim retained; no competing matching goal dispatch identified.",
+      "inspection": {
+        "historyValid": true,
+        "source_commit": "31b4d14954f309e35410e82b0042bb4313885901",
+        "source_tree": "12d3128312306e23f6d3f9b415c2f741681dfe0c",
+        "dirty": false,
+        "decision": {
+          "action": "start",
+          "mode": "takeover",
+          "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0039.json",
+          "requiredApproval": true
+        }
+      }
+    },
+    "ownership": "Fresh child w6T:p5 done completion_seq352 and closed. Held claim, root shell/workspace/worktree and installed files preserved.",
+    "history_valid": true
+  },
+  "validated_result": {
+    "receipt": "implementation-0041",
+    "source_commit": "31b4d14954f309e35410e82b0042bb4313885901",
+    "source_tree": "12d3128312306e23f6d3f9b415c2f741681dfe0c",
+    "exact_tree_verified": true,
+    "result_scope": "Workflow files only; no source/tracker/global-tool changes.",
+    "actual_outcome": {
+      "created_at": "2026-11-08T07:21:19.455864+00:00",
+      "ticket_status": "BLOCKED",
+      "preflight_status": "passed",
+      "comparisons_passed": 91,
+      "comparisons_total": 91,
+      "host_readiness": "verified certificate-validated /health; expected public identity matched",
+      "restart_status": "one successful requested restart; PID transition observed",
+      "baseline_pid": "7463",
+      "post_pid": "29794",
+      "baseline_NRestarts": 0,
+      "post_NRestarts": 0,
+      "service_active_state": "active",
+      "service_substate": "running",
+      "native_acceptance": false,
+      "native_result": "Owner saw app launch, checking server connection, brief details, then self-close",
+      "root_cause": "unknown; no existing diagnostic evidence establishes technical cause",
+      "owner_observation_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/owner-observation-0002.json",
+      "unobserved": [
+        "Exact connection-screen server identity and state",
+        "Sidebar overlap/truncation/readability acceptance",
+        "Screenshot: production screen not confirmed stable",
+        "Tablet LAN reachability",
+        "Repeat-install preservation acceptance"
+      ],
+      "preservation": "23 existing release/retained/dependency hashes unchanged after native observation; links and metadata observed; no private contents read; owned runtime state absent",
+      "counts": {
+        "preflight_executions": 1,
+        "network_ssh_executions": 5,
+        "retries": 0,
+        "restarts": 1,
+        "installer_executions": 0,
+        "native_launches": 1,
+        "native_launch_evidence": "Owner direct observation; no agent launch",
+        "pairing_actions": 0,
+        "device_staging_files": 0,
+        "source_changes": 0,
+        "tracker_changes": 0,
+        "builds_tests_formatters": 0,
+        "host_health_reads": 1
+      },
+      "additional_launches": 0,
+      "restarts_remaining": 0,
+      "next_action": "Parent reconcile blocked result. Further runtime diagnosis, repair or repeat-install needs new scoped approval. No owner UI action remains requested."
+    },
+    "restart": {
+      "issued_count": 1,
+      "command": "systemctl restart xochitl.service",
+      "exit": 0,
+      "baseline_pid": "7463",
+      "post_pid": "29794",
+      "NRestarts": 0,
+      "ActiveState": "active",
+      "SubState": "running"
+    },
+    "owner_observation": "i see \"PI annotations\" launch, it says \"checking server connection\", some details appear and it closes itself",
+    "native_acceptance": false,
+    "preservation": {
+      "hashes_passed": 23,
+      "hashes_total": 23,
+      "metadata_links_passed": 29,
+      "metadata_links_total": 29,
+      "owned_runtime_state": "absent",
+      "private_contents_read": false
+    },
+    "host_health": "certificate-verified protocol2 expected public server identity ready",
+    "child_completion": "Herdr done completion_seq352",
+    "child_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T07-09-23-334Z_01a1b9fd-8a06-7663-8dcd-9003238f3e40.jsonl",
+    "pane_close": "type ok"
+  },
+  "parent_diagnostic": {
+    "scope": "One read-only app-filtered existing journal query in fixed observed-launch window. No broader fallback or reproduction.",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/parent-existing-log-result.json",
+    "network_ssh_executions": 1,
+    "code": 1,
+    "stdout": "",
+    "error": "PCRE2 support is not compiled in.",
+    "conclusion": "App-specific journal filter unavailable. No exit reason obtained; do not infer absence of errors.",
+    "static_source_read": {
+      "refs": [
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/Connections.qml",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/entry",
+        "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/appload.go"
+      ],
+      "finding": "No intended QML automatic-close action was found; only explicit Close control and unload teardown. Backend has socket/header/body/I/O error and shutdown exit paths, but actual triggering path is unobserved."
+    }
+  },
+  "operation_counts": {
+    "preflight_executions": 1,
+    "network_ssh_executions": 6,
+    "retries": 0,
+    "restarts": 1,
+    "installer_executions": 0,
+    "native_launches": 1,
+    "native_launch_evidence": "Owner direct observation; no agent launch",
+    "pairing_actions": 0,
+    "device_staging_files": 0,
+    "source_changes": 0,
+    "tracker_changes": 0,
+    "builds_tests_formatters": 0,
+    "host_health_reads": 1,
+    "parent_existing_journal_reads": 1,
+    "additional_launches": 0
+  },
+  "blocker": "Owner-observed native app self-close prevents acceptance. Exit reason not captured; server-filtered existing log query unavailable without PCRE2. No further launches/restarts/repair authorized.",
+  "next_approval": "Bounded existing Xochitl/AppLoad launch-log capture with private local retention and redaction of unrelated identifiers; broader log visibility requires explicit approval. No reopening, restart, reinstall, pairing or repair."
+}

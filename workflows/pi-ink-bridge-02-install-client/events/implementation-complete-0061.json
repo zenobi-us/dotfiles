@@ -1,0 +1,163 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058"
+  },
+  "receipt_id": "implementation-complete-0061",
+  "phase": "implementation",
+  "event": "phase-complete",
+  "attempt": 20,
+  "parent_receipt": "start-complete-0060",
+  "source_commit": "4dc988e665d193fc683a2b183f30f0f4a607d09e",
+  "source_tree": "25c44dc499195d698eebeef913513982fdb0fb03",
+  "created_at": "2026-11-09T00:23:59.480Z",
+  "pane_id": null,
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "status": "completed",
+  "scope_status": "Parent-reconciled product outcome for exact current metadata-only source target; actual child implementation and all acceptance already validated.",
+  "implementation_receipt": "workflows/pi-ink-bridge-02-install-client/events/implementation-0059.json",
+  "lifecycle_completion_receipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0060.json",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0060.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0059.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0057.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/parent-validation.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-complete-0061.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/product-completion-validation.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    }
+  ],
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Start lifecycle completion alone does not prove implementation. Inspect the child outcome and actual source before recording a product result.",
+    "authorization": "Existing approved implementation/acceptance and required parent reconciliation; bookkeeping only. No new device/source work or ownership takeover.",
+    "ownership": "No live target-worktree agents, no matching source/base goal reservations; original implementation child done426 and closed. Parent owns metadata reconciliation.",
+    "source_equivalence": {
+      "command": "git diff --name-only 57491dc0da46ed141e9cb9dbcd6f0c9c02a86744 4dc988e665d193fc683a2b183f30f0f4a607d09e",
+      "changed_paths": 10,
+      "outside_workflow": [],
+      "production_code_unchanged": true
+    }
+  },
+  "implementation_summary": "Reconciled the existing completed child product outcome onto exact current source after lifecycle/provenance-only commits. No child work, device action, installer, launch or test was repeated.",
+  "changed_files": [
+    "workflow receipt, product-completion validation and generated views only"
+  ],
+  "validation_results": [
+    {
+      "scenario": "Actual completed child and prior parent validation",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0059.json",
+      "status": "passed"
+    },
+    {
+      "scenario": "Exact current source compared with validated child source",
+      "changed_paths": 10,
+      "outside_workflow": [],
+      "production_source_unchanged": true
+    },
+    {
+      "scenario": "Parent repeat/native/cleanup and tracker validation",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/parent-validation.json",
+      "status": "passed"
+    }
+  ],
+  "validated_result": {
+    "receipt": "implementation-0059",
+    "source_commit": "57491dc0da46ed141e9cb9dbcd6f0c9c02a86744",
+    "source_tree": "520dde688e1157a7cef836f9ec8cceb736bb9ea1",
+    "status": "completed",
+    "all_named_ticket_criteria_passed": true,
+    "parent_completion": "start-complete-0060",
+    "same_production_source": true
+  },
+  "acceptance": {
+    "all_named_ticket_criteria_passed": true,
+    "prior_host_and_native_evidence_retained": true,
+    "native_parent_receipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0057.json",
+    "repeat_installer_exit_code": 0,
+    "repeat_installer_executions": 1,
+    "public_hashes_preserved": 29,
+    "protected_metadata_records_preserved": 42,
+    "per_file_metadata_absence_records_preserved": 34,
+    "retained_qmd_names": 13,
+    "exact_links_preserved": 2,
+    "private_state_absent_before_after": true,
+    "private_contents_exported": 0,
+    "owned_stage_removed": "/home/root/.local/share/pi-ink-bridge/.upgrade-0055.eQVGWv",
+    "public_downloads_removed": 3,
+    "ui_pid": 7146,
+    "ui_state": "active/running",
+    "ui_restarts": 0,
+    "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+    "native_launch_proof": "Prior parent PID8409 fixed binary and owner server-available proof; no new launch or native-state reconfirmation"
+  },
+  "tracker_status": "implemented",
+  "native_acceptance": true,
+  "repeat_install_acceptance": true,
+  "all_hardware_acceptance_passed": true,
+  "owned_stage_removed": true,
+  "additional_device_actions": 0,
+  "additional_tests_builds": 0,
+  "source_production_unchanged": true,
+  "open_questions": [],
+  "remaining_steps": [
+    "Fresh independent review of the exact clean source target."
+  ],
+  "reviewed": false,
+  "merged": false,
+  "pushed": false
+}

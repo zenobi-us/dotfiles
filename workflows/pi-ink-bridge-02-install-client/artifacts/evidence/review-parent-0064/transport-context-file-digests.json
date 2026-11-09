@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-11-09T02:15:57.174Z",
+  "corrects": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/review-parent-0064/transport-context-rebinding.json",
+  "original_context_file": "/home/zenobius/.local/state/result-delivery/runs/a0c46795-3fc9-4a99-9522-6ab626927145/context.json",
+  "original_context_file_sha256": "54b5b79699a83a1297cf25ffb72b9e0ac2c04ec6490b7c5babcd17c20526ff64",
+  "canonical_context_file": "/var/home/zenobius/.local/state/result-delivery/runs/a0c46795-3fc9-4a99-9522-6ab626927145/context-canonical.json",
+  "canonical_context_file_sha256": "9c40a98da5791d98e15339ab6d01a9210a9deba8a06c7374682f64424b9c6975",
+  "verification_command": "sha256sum <original-context> <canonical-context>",
+  "correction": "The original_context_sha256 field in the earlier provenance record hashes normalized JSON serialization (c6a675d0d05c2de91546011edd06b2787b4c8db6921c29f493c27e8665621ad9), not original file bytes. The exact original file hash is recorded here. Canonical-context file hash was already correct. No context, result payload or authoritative event was changed.",
+  "authoritative_transport_sha256": "55de3c492e66f099cd7a6427f811940aefc5a4913776f830543c7954297bd7aa",
+  "authoritative_result_matches_verified_transport": true
+}

@@ -1,0 +1,33 @@
+{
+  "created_at": "2026-11-08T23:58:49.478Z",
+  "user_statement": "Approve once—no restart",
+  "scope": "One identical pinned production installer execution against the already installed fixed release, protected preservation pre/postchecks, and removal only of the verified owned public-download stage after success.",
+  "zip_sha256": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+  "binary_sha256": "433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051",
+  "installer_sha256": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+  "bootstrap_sha256": "bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e",
+  "owned_stage": "/home/root/.local/share/pi-ink-bridge/.upgrade-0055.eQVGWv",
+  "limits": {
+    "installer_executions": 1,
+    "read_only_preflights": 1,
+    "ssh_invocations_max": 4,
+    "owned_stage_cleanups": 1,
+    "reboots": 0,
+    "xochitl_restarts": 0,
+    "native_launches": 0,
+    "pairings": 0,
+    "host_service_mutations": 0,
+    "operation_retries": 0,
+    "automatic_repairs": 0
+  },
+  "preserve": "Both immutable releases, two current production links, protected config/CA/state, existing drafts/pairing, retained QMD names and unrelated mods. No private contents returned; ordinary installer may perform its existing internal config/CA validation.",
+  "ownership": "Previous pA done418 and closed. Fresh target-worktree live agent list empty; no matching goal YAML reservations. Existing claim retained until full validation; direct blocker01 completed.",
+  "inspection": {
+    "historyValid": true,
+    "mode": "takeover",
+    "parentReceipt": "start-complete-0057",
+    "source_commit": "b829e3a0aa1b51b0af18ab8782d2f5fb299c3a61",
+    "source_tree": "d5bd04b3980fc9f3590f79a51d259e1ab167e881",
+    "dirty": false
+  }
+}

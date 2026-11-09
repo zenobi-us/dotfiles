@@ -1,0 +1,58 @@
+{
+  "status": "blocked",
+  "observed": {
+    "model": "reMarkable Ferrari",
+    "architecture": "aarch64",
+    "VERSION_ID": "5.8.203",
+    "IMG_VERSION": "3.28.0.172",
+    "ssh": "Verified existing known host; BatchMode=yes; cable endpoint only"
+  },
+  "compatibility": {
+    "model": "accepted by production-install.sh:17",
+    "architecture": "accepted by production-install.sh:14",
+    "firmware_guard": "production-install.sh:20 requires VERSION_ID=3.28.0.172; observed VERSION_ID=5.8.203 fails it",
+    "interpretation": "IMG_VERSION matches the historical tested firmware label, but does not satisfy the implemented guard. No support inferred.",
+    "source_change": "Not authorized in this read-only continuation; no source edits."
+  },
+  "not_observed": [
+    "Current stock Xochitl SHA-256",
+    "XOVI/AppLoad/qt-resource-rebuilder current versions and binary SHA-256",
+    "Installation target type, ownership, permissions, symlink parents and collisions",
+    "Native AppLoad/QMD compatibility with retained patches"
+  ],
+  "not_observed_reason": "Stopped at firmware guard incompatibility; did not broaden or retry SSH.",
+  "named_binary_scope_for_later_approval": [
+    "/usr/bin/xochitl",
+    "/home/root/xovi/xovi.so",
+    "/home/root/xovi/extensions.d/appload.so",
+    "/home/root/xovi/extensions.d/qt-resource-rebuilder.so"
+  ],
+  "named_installation_paths_not_inspected": [
+    "/home/root/.local/share/pi-ink-bridge",
+    "/home/root/xovi/exthome/appload/pi-annotations",
+    "/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd"
+  ],
+  "offline_path_contract": {
+    "release": "/home/root/.local/share/pi-ink-bridge/releases/<approved-archive-sha256>",
+    "app_link_target": "<release>/app",
+    "qmd_link_target": "<release>/sidebar.qmd",
+    "collision_rule": "installation.go:73-87 requires absent links or exact existing symlinks to the same release; different targets need explicit repair approval.",
+    "privacy": "No private record contents read. Later metadata preflight must not read pairing, drafts, notebooks, or unrelated files."
+  },
+  "historical_evidence": {
+    "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-b-preinstall-guards.json",
+    "scope": "Existing evidence records the same VERSION_ID/IMG_VERSION distinction. Historical hashes do not establish current identity or compatibility."
+  },
+  "next_exact_approval_request": "Authorize a separate host-only correction of the production firmware guard to check the actual Paper Pro firmware field IMG_VERSION, with a focused regression check and new installer digest. No device access, installation, restart, or firmware change is included. After that correction is reviewed, request one renewed cable read-only preflight for stock hash, native dependency versions/hashes and named target metadata. Installation requires a separate final hash-pinned payload approval; activation requires separate saved/closed confirmation and exactly one Xochitl restart approval.",
+  "payload_proposal": "Not ready: final payload manifest withheld because current installer rejects the device metadata and native compatibility/target collisions remain unknown.",
+  "desktop_protocol_1_service": "Not accessed, stopped, or modified; port 47840 ownership issue remains for a later approved installation plan.",
+  "limits": {
+    "installation_executed": false,
+    "helpers_copied_or_run": false,
+    "device_writes": false,
+    "restart": false,
+    "firmware_or_settings_changes": false,
+    "source_changed": false,
+    "tracker_changed": false
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "created_at": "2026-11-07T23:26:09.035Z",
+  "scope": "Parent host-only verification of existing native dependency fingerprints; no device access",
+  "consumed_child": "implementation-0011",
+  "correction_to_child_unknowns": "Publisher build mappings and AppLoad static protocol/launcher contracts are now established. Immutable child result remains unchanged.",
+  "versions": [
+    {
+      "component": "XOVI",
+      "release": "v0.3.3",
+      "source_commit": "0c8d5269b55c851901d4e4a754dc2d7deab40b17",
+      "installed_sha256": "d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446",
+      "method": "Direct match to publisher release API asset digest",
+      "source": "https://api.github.com/repos/asivery/xovi/releases/tags/v0.3.3"
+    },
+    {
+      "component": "AppLoad",
+      "release": "v0.6.0",
+      "source_commit": "7ec0830c97570bf5c607f3f458ea78edfa03e5a3",
+      "archive_url": "https://github.com/asivery/rm-appload/releases/download/v0.6.0/appload-aarch64.tar.gz",
+      "archive_sha256": "2e7912d15df910631dab847ea5d344081ad75c02a46aaac78bdf731accc53a1f",
+      "member": "appload.so",
+      "member_bytes": 4342120,
+      "installed_sha256": "5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad",
+      "method": "Downloaded public archive, verified publisher API archive digest, hashed member bytes without extraction/execution",
+      "note": "Earlier retained ELF version label 0.5.1 is not the matching release artifact: public v0.5.1/.5.2/.5.3 members were checked and do not match."
+    },
+    {
+      "component": "qt-resource-rebuilder",
+      "release": "v19-23052026",
+      "source_commit": "7874154dba6793cc68a15fae0fb9dd272c4ed20a",
+      "extension_version": "0.3.0",
+      "extension_version_source": "https://raw.githubusercontent.com/asivery/rm-xovi-extensions/7874154dba6793cc68a15fae0fb9dd272c4ed20a/qt-resource-rebuilder/qt-resource-rebuilder.xovi",
+      "archive_url": "https://github.com/asivery/rm-xovi-extensions/releases/download/v19-23052026/xovi-aarch64.tar.gz",
+      "archive_sha256": "32d64d1262ddc984e3235c7d0340a398fe6d5b3efa6a979865f5977b32630d27",
+      "member": "xovi/extensions.d/qt-resource-rebuilder.so",
+      "member_bytes": 9496456,
+      "installed_sha256": "6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f",
+      "method": "Publisher digest verified, member SHA-256 exactly matches current preflight"
+    }
+  ],
+  "static_api_checks": [
+    {
+      "contract": "net.asivery.AppLoad 1.0 and AppLoadLauncher singleton",
+      "source": "https://raw.githubusercontent.com/asivery/rm-appload/v0.6.0/xovi/template/src/main.cpp",
+      "result": "Registered exactly as imported by production sidebar.qmd."
+    },
+    {
+      "contract": "launchApplication(QString,QVariantList,QVariantMap,bool)",
+      "source": "https://raw.githubusercontent.com/asivery/rm-appload/v0.6.0/src/Launcher.h",
+      "result": "Matches the four arguments in production sidebar.qmd."
+    },
+    {
+      "contract": "manifest loadsBackend, entry, resources.rcc, backend/entry",
+      "source": "https://raw.githubusercontent.com/asivery/rm-appload/v0.6.0/src/library.cpp",
+      "result": "Build package provides required app/manifest.json, app/resources.rcc and app/backend/entry; AppLoad passes absolute socket path argv[1]."
+    },
+    {
+      "contract": "SOCK_SEQPACKET and two packets: 8-byte int type/length header, then UTF-8 body; terminate -1",
+      "sources": [
+        "https://raw.githubusercontent.com/asivery/rm-appload/v0.6.0/src/management.cpp",
+        "https://raw.githubusercontent.com/asivery/rm-appload/v0.6.0/src/protocol.h"
+      ],
+      "result": "Production Go unixpacket handling and little-endian ARM64 framing agree statically; prior host emulator smoke is retained, not rerun."
+    }
+  ],
+  "checks_executed": [
+    "Verified publisher API asset digests for downloaded archives; hashed native members in memory, no native binary execution.",
+    "Read pinned source contracts and current packaged implementation.",
+    "Looked for retained Sidebar.qml/qmldiff host inputs; /tmp/pi-ink-0020-qmd-sidebar-smoke and /tmp/pi-ink-0023-qmd-stage are absent. No current exact Sidebar.qml resource copy located in repository evidence/source collection."
+  ],
+  "remaining_blocker": "New production sidebar.qmd has not been applied to exact firmware Sidebar.qml and current retained QMD set. Earlier successful native parser evidence used different prototype patches and absent temporary inputs.",
+  "next_read_only_proposal": {
+    "purpose": "Capture only firmware/resource-patch inputs for host-side native QMD validation; no installation or restart.",
+    "endpoint": "Cable root@10.11.99.1 with existing strict verified host key and batch authentication",
+    "requested_files": [
+      "/usr/bin/xochitl",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/hashtab"
+    ],
+    "requested_metadata": "Read-only directory listing, file types and SHA-256 for .qmd files in /home/root/xovi/exthome/qt-resource-rebuilder; read those named patch source files only after validating the bounded manifest.",
+    "privacy": "Store firmware binary and raw resource copies only in private temporary host storage, not Git; no notebook/draft/pairing/credential contents. Review patch text before storing excerpts.",
+    "execution": "No device helper/native binary execution; host-only resource extraction and QMD application. Stop on changed stock hash, unexpected symlinks or unknown patch boundaries.",
+    "authorization": "Not granted by current metadata/hash-only approval."
+  },
+  "limits": {
+    "additional_device_connections": 0,
+    "device_writes": false,
+    "restart": false,
+    "source_changes": false,
+    "native_runtime_compatibility": "not proven",
+    "final_installation_manifest": "withheld"
+  }
+}

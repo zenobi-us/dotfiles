@@ -1,0 +1,203 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "f71077758c721908704cc24b0ded0a84d0932571",
+  "source_tree": "04c5d1a4fe8d195dbb7d927ebe51a3e594351178",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": "w6R:p8",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028"
+  },
+  "receipt_id": "implementation-0029",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 10,
+  "parent_receipt": "start-0028",
+  "created_at": "2026-11-08T03:01:11.024648+00:00",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T02-59-20-904Z_01a1b918-9ec8-76d6-bde0-81acdb9df228.jsonl",
+  "status": "blocked",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0028.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0027.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0026.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/authorization.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/preflight-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/read-only-preflight.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/activation-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/read-only-postcheck.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/preflight-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/capture-manifest.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/authorization.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/preflight-intent.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/read-only-preflight.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/preflight-outcome.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/session-scope.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/workflow-inspection.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/markdown-validation.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0029.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0029.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "changed_files": [
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/authorization.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/preflight-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/read-only-preflight.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/preflight-outcome.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/session-scope.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/workflow-inspection.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/markdown-validation.json",
+    "workflows/pi-ink-bridge-02-install-client/events/start-0028.json",
+    "workflows/pi-ink-bridge-02-install-client/events/implementation-0029.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0029.md",
+    "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+  ],
+  "validation": [
+    {
+      "command": "Canonical worktree inspector before preflight",
+      "result": "exit0; historyValid=true; unique frozen source; dirty paths authorized parent workflow records only"
+    },
+    {
+      "command": "Unchanged strict bounded installed-target SSH argv; preflight-intent.json fsynced before execution",
+      "result": "exit255; empty stdout; connection reset by peer / broken pipe; elapsed 0.1739947900059633 seconds; no retry"
+    },
+    {
+      "command": "Host comparisons against fixed prior installed and retained manifests",
+      "result": "not possible; empty device stdout; identities, hashes, metadata, model/firmware, service and current PID unobserved"
+    }
+  ],
+  "implementation_summary": "Attempt 10 executed exactly one unchanged strict bounded read-only installed-target cable preflight. SSH exited 255 with empty stdout and connection reset/broken pipe. No retry, restart, installation or native observation occurred. Current device identities, retained resources and PID are unobserved; attempt 8 installation remains historical evidence.",
+  "open_questions": [
+    "Cable SSH failed again. No further device access is authorized; parent must resolve a separate scoped next action.",
+    "Native sidebar/layout/connection acceptance and separately unapproved repeat-install preservation remain pending."
+  ],
+  "recovery": {
+    "mode": "takeover",
+    "authorization_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/authorization.json",
+    "prior_attempt": 9,
+    "parent_receipt": "start-0028",
+    "ownership": "fresh child w6R:p8 only; existing claim retained; parent checked no matching goal reservation"
+  },
+  "preflight_executions": 1,
+  "restart_count": 0,
+  "installer_executions": 0,
+  "automatic_retries": 0,
+  "native_observations": {
+    "status": "not attempted",
+    "current_pid": null,
+    "sidebar": null,
+    "layout": null,
+    "connection_state": null
+  },
+  "source_changes": false,
+  "tracker_changes": false,
+  "repeat_install_authorized": false,
+  "restart_authorized": false,
+  "activation_status": "blocked-preflight-transport"
+}

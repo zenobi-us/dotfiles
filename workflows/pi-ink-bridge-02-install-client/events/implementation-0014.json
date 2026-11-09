@@ -1,0 +1,173 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0014",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 5,
+  "parent_receipt": "start-0013",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "bdad43bd891932a86d3ef3e85cd616743147580b",
+  "source_tree": "a0e9d58b6e0c2a1338f2b98a15817bb8d3ca580c",
+  "created_at": "2026-11-08T00:06:04.903730+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": "w6R:p3",
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-07T23-59-40-232Z_01a1b874-1ec8-76f5-b360-7268f2ad323f.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0013.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0012.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/parent-provenance.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/cable-preflight.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-ink-bridge/index.md"
+    },
+    {
+      "kind": "adr",
+      "ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/capture-manifest.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/host-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/installation-proposal.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0014.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0014.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "status": "blocked",
+  "changed_files": [
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/capture-manifest.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/host-validation.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/installation-proposal.json",
+    "workflows/pi-ink-bridge-02-install-client/events/implementation-0014.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0014.md",
+    "workflows/pi-ink-bridge-02-install-client/events/start-0013.json",
+    "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+  ],
+  "validation": [
+    {
+      "command": "ssh-keygen -F 10.11.99.1",
+      "result": "exit 0; existing host key found; key material excluded from evidence"
+    },
+    {
+      "command": "Strict SSH metadata, fixed-manifest capture, final bounded inventory",
+      "result": "3 connections; each exit 0 and empty stderr. Captured 14 files, 25795040 bytes; 12 QMDs. All SHA256 and sizes match; no failed device probes or retries."
+    },
+    {
+      "command": "cargo build --locked --lib --target x86_64-unknown-linux-gnu",
+      "result": "exit 0; exact pinned source and lockfile; 8 upstream deprecation warnings"
+    },
+    {
+      "command": "Native harness baseline",
+      "result": "exit 0; captured hashtab loaded 20357 entries; 12 QMDs loaded; exact Sidebar.qml 16737 -> 16820 bytes"
+    },
+    {
+      "command": "Native harness baseline plus production",
+      "result": "exit 0; 13 QMDs loaded; exact Sidebar.qml 16737 -> 17299 bytes; launcher/import emitted; no native parser/application diagnostics"
+    },
+    {
+      "command": "SHA256 local installer/ZIP; inspect ZIP members",
+      "result": "installer 765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f; ZIP 03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629; packaged sidebar equals validated production source"
+    },
+    {
+      "command": "Private retention and cleanup",
+      "result": "Raw inputs/resources/output QML retained only at /tmp/pi-ink-sidebar-resources-0013-kj8de78d; directories 0700, files 0600. Temporary harness/source/build/stages removed."
+    }
+  ],
+  "implementation_summary": "Read-only bounded cable resource capture passed. Host-only exact pinned qmldiff application passed for current 12 retained patches and for retained patches plus production sidebar.qmd. No source/guard correction is needed. Installation/activation acceptance remains gated.",
+  "open_questions": [
+    "Owner approval for exact-payload installation and trusted bootstrap preparation is missing. Compatible desktop endpoint must leave port 47840 untouched.",
+    "One later Xochitl restart requires separate approval and fresh saved/closed confirmation. Native post-restart launch and physical layout remain untested.",
+    "Repeat-install preservation acceptance remains untested."
+  ],
+  "host_sidebar_result": "passed",
+  "private_retained_inputs": "/tmp/pi-ink-sidebar-resources-0013-kj8de78d",
+  "approval_request": {
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/installation-proposal.json",
+    "text": "Approve only trusted host bootstrap preparation on an explicitly selected compatible endpoint that leaves port 47840 untouched, then a fresh cable preflight and one installation of the pinned installer and ZIP listed here. Do not restart Xochitl, reboot, pair, modify notebooks/drafts, replace prototype files, change firmware/Developer Mode/firewall/cloud/account settings, or remove unrelated files. Obtain separate saved/closed confirmation and activation approval before one later Xochitl restart and native launch observation."
+  },
+  "device_writes": false,
+  "device_native_or_helper_execution": false,
+  "restart": false,
+  "desktop_listener_access": false,
+  "review_status": "not-performed",
+  "merge_status": "not-merged-not-pushed",
+  "recovery": {
+    "mode": "takeover",
+    "authorization": "User approved resource-only reads/transfers to private host storage and host-only validation; no source corrections or installation.",
+    "ownership": "Parent start-0013 names fresh pane w6R:p3; herdr agent list shows only this session in source worktree. Held claim retained; no other child launched.",
+    "history": "Inspector reports valid receipt history and unique source at exact recorded commit/tree; dirty parent start/status records preserved and included.",
+    "reservations": "No separate coordinator dispatch identified by inspector or parent handoff.",
+    "source_identity": "Exact inspected source identity is unchanged. This result commit will contain only workflow records; it cannot self-reference its containing commit."
+  }
+}

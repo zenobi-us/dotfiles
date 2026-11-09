@@ -1,0 +1,116 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "receipt_id": "start-0055",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 19,
+  "parent_receipt": "start-complete-0054",
+  "source_commit": "8350b3b4769407536219c18c69c3cb8f4e627018",
+  "source_tree": "f920f4f13d2c6513084c8c0eb0b7e091ea85f66f",
+  "created_at": "2026-11-08T23:26:17.165Z",
+  "pane_id": null,
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "status": "started",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0054.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/parent-activation-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/bootstrap-verification.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-framing-fix-0046/artifact-hashes.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/authorization.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0055.json"
+    }
+  ],
+  "recovery": {
+    "mode": "takeover",
+    "reason": "Boot and owner mod activation now verified. Owner separately approved pinned host-runtime refresh, controlled old-to-new release/two-owned-link upgrade and exactly one UI restart/native launch; initial installer has a deliberate different-target guard, so this is an explicitly planned upgrade, not a repeated ordinary install.",
+    "authorization": {
+      "created_at": "2026-11-08T23:26:17.165Z",
+      "user_statement": "Approve—documents saved and closed",
+      "approved_plan": {
+        "host": "Refresh only existing companion service on58840/58841, preserving identity/trust and leaving47840 untouched.",
+        "tablet": "Install pinned immutable new home release, switch only two production launcher links, retain old release/private data/unrelated mods.",
+        "activation": "One Xochitl restart after upgrade, then one owner Pi Annotations native launch and bounded verification. No full reboot, pairing or repeat install."
+      },
+      "zip_sha256": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+      "binary_sha256": "433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051",
+      "installer_sha256": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+      "sidebar_sha256": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be",
+      "old_zip_sha256": "03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+      "owned_links": [
+        "/home/root/xovi/exthome/appload/pi-annotations",
+        "/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd"
+      ],
+      "host_identity": {
+        "service": "global/pi-ink-bridge",
+        "directory": "/home/zenobius/.local/share/pi-ink-bridge",
+        "origin": "https://192.168.86.35:58841",
+        "setup": "http://192.168.86.35:58840/setup",
+        "id": "256377c7f22604161e086b332a63e19b",
+        "certificate_der_sha256": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+        "previous_build": "fc66b96a4895ba5253c862d9883ecc392fb7a9ad299d1edf534c94e89873a6f5"
+      },
+      "stop_rules": [
+        "Stop on identity, firmware, dependency, target, occupied-path or preservation mismatch. No guard relaxation, repair, forced stop or operation retry.",
+        "No new trust, firmware, Developer Mode, firewall, cloud/account or unrelated modification.",
+        "No port47840 contact/mutation; no global supervisor stop; only positively identified protocol2 companion stop/start if needed.",
+        "No extra full reboot; no direct XOVI start helper; no pairing or repeat installer run."
+      ],
+      "ownership": "Prior p9 done402 and closed; target-worktree live agent list empty, no matching goal YAML dispatch reservations. Held claim retained; direct blocker01 completed.",
+      "inspection": {
+        "historyValid": true,
+        "mode": "takeover",
+        "parentReceipt": "start-complete-0054",
+        "source_commit": "8350b3b4769407536219c18c69c3cb8f4e627018",
+        "source_tree": "f920f4f13d2c6513084c8c0eb0b7e091ea85f66f",
+        "dirty": false
+      }
+    },
+    "ownership": "Prior p9 done402 and closed; target-worktree live agent list empty, no matching goal YAML dispatch reservations. Held claim retained; direct blocker01 completed."
+  }
+}

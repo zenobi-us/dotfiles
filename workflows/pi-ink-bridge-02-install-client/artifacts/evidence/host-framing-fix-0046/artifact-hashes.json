@@ -1,0 +1,131 @@
+{
+  "created_at": "2026-11-08T08:13:44.787769+00:00",
+  "source_commit": "44069f77de3a8c6b5b35d63b9eb1efba791f97cd",
+  "source_tree": "653406595b0cb1a113fd195e371471defc0ca624",
+  "command": [
+    "MISE_AUTO_INSTALL=0",
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "run",
+    "build:tablet"
+  ],
+  "cwd": "mise/conf.d/devtools-omp/extensions/image-annotator",
+  "exit": 0,
+  "stdout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/dist/bundle.tar.gz\n/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/dist/bundle.sha256\n",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n$ sh tablet-client/build.sh\n",
+  "versions": {
+    "go": {
+      "exit": 0,
+      "output": "go version go1.25.0 linux/amd64\nmise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning."
+    },
+    "bun": {
+      "exit": 0,
+      "output": "1.4.3\nmise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning."
+    },
+    "pyside6-rcc": {
+      "exit": 0,
+      "output": "rcc 6.8.3\nmise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning."
+    },
+    "mise": {
+      "exit": 0,
+      "output": "2026.10.5 linux-x64 (2026-10-08)\nmise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\nmise WARN  mise version 2026.11.3 available\nmise WARN  To update, run mise self-update"
+    },
+    "zip": {
+      "exit": 0,
+      "output": "Copyright (c) 1990-2008 Info-ZIP - Type 'zip \"-L\"' for software license.\nThis is Zip 3.0 (July 5th 2008), by Info-ZIP.\nCurrently maintained by E. Gordon.  Please send bug reports to\nthe authors using the web page at www.info-zip.org; see README for details.\n\nLatest sources and executables are at ftp://ftp.info-zip.org/pub/infozip,\nas of above date; see http://www.info-zip.org/ for other sites.\n\nCompiled with gcc 16.0.1 20260115 (Red Hat 16.0.1-0) for Unix (Linux ELF) on Jan 17 2026.\n\nZip special compilation options:\n\tUSE_EF_UT_TIME       (store Universal Time)\n\tBZIP2_SUPPORT        (bzip2 library version 1.0.8, 13-Jul-2019)\n\t    bzip2 code and library copyright (c) Julian R Seward\n\t    (See the bzip2 license for terms of use)\n\tSYMLINK_SUPPORT      (symbolic links supported)\n\tLARGE_FILE_SUPPORT   (can read and write large files on file system)\n\tZIP64_SUPPORT        (use Zip64 to store large files in archives)\n\tUNICODE_SUPPORT      (store and read UTF-8 Unicode paths)\n\tSTORE_UNIX_UIDs_GIDs (store UID/GID sizes/values using new extra field)\n\tUIDGID_NOT_16BIT     (old Unix 16-bit UID/GID extra field not used)\n\t[encryption, version 2.91 of 05 Jan 2007] (modified for Zip 3)\n\nEncryption notice:\n\tThe encryption code of this program is not copyrighted and is\n\tput in the public domain.  It was originally written in Europe\n\tand, to the best of our knowledge, can be freely distributed\n\tin both source and object forms from any country, including\n\tthe USA under License Exception TSU of the U.S. Export\n\tAdministration Regulations (section 740.13(e)) of 6 June 2002.\n\nZip environment options:\n             ZIP:  [none]\n          ZIPOPT:  [none]\nmise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning."
+    }
+  },
+  "version": "0.4.0",
+  "package": {
+    "sha256": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+    "size": 2971444
+  },
+  "previous_zip_sha256": "03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+  "members": {
+    "pi-ink-client": {
+      "sha256": "433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051",
+      "size": 7405752,
+      "unchanged_from_previous_package": false,
+      "architecture": "ELF64 little-endian Linux AArch64, e_machine183"
+    },
+    "VERSION": {
+      "sha256": "40b8eb4000a913a7791090535f291d3d369874162a89ef3c9e3d4e887a1b9e79",
+      "size": 6,
+      "unchanged_from_previous_package": true
+    },
+    "sidebar.qmd": {
+      "sha256": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be",
+      "size": 949,
+      "unchanged_from_previous_package": true
+    },
+    "app/manifest.json": {
+      "sha256": "265d2ea700c8b20a49d6e9f67489b9431adacbd4f6a588bee23505affe393aad",
+      "size": 213,
+      "unchanged_from_previous_package": true
+    },
+    "app/backend/entry": {
+      "sha256": "0c983d6d4593556720704fdccd2c08733853eb3982cb03359fdeaa68d0dd6efb",
+      "size": 194,
+      "unchanged_from_previous_package": true
+    },
+    "app/resources.rcc": {
+      "sha256": "e2407b9544dbcf351c49ac330721c181fb4a9a86fe24da245ad4189d7a43c8c5",
+      "size": 2796,
+      "unchanged_from_previous_package": false
+    }
+  },
+  "public_files": {
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/dist/client.zip": {
+      "sha256": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+      "size": 2971444
+    },
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/dist/bundle.tar.gz": {
+      "sha256": "94e1a54d03de189530137c60696c9fa1191f3a56597a5a6da8c021cf7e404c54",
+      "size": 2969871
+    },
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/dist/bundle.sha256": {
+      "sha256": "cdb4e12c96c489af175262ba35ea406d69b625758c91e566ff860e31ef29fb68",
+      "size": 80
+    },
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh": {
+      "sha256": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+      "size": 3013
+    },
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/install.sh": {
+      "sha256": "2fa25f274a908d6b47c87681a544f5e1a6dae0b3fa9bdc8c4c35d49fd179a907",
+      "size": 1491
+    },
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/sidebar.qmd": {
+      "sha256": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be",
+      "size": 949
+    }
+  },
+  "byte_identity": {
+    "zip_members_match_source_files": {
+      "sidebar.qmd": true,
+      "app/manifest.json": true,
+      "app/backend/entry": true
+    },
+    "packaged_binary_matches_tar": true,
+    "tar_installer_matches_source": true,
+    "VERSION": "0.4.0\n",
+    "resource_compiler": "pinned Qt6.8.3; generated directly into temporary package stage by build.sh",
+    "resource_content": {
+      "resource": "app/resources.rcc:/Connections.qml",
+      "matches_build_source": true,
+      "sha256": "c3f0470a8c39a59f9842b255137e19e79174ad4598992e157a95fc2f2fc28e14",
+      "size": 2688
+    }
+  },
+  "retained_ignored_artifacts": [
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/dist/client.zip",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/dist/bundle.tar.gz",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/dist/bundle.sha256"
+  ],
+  "installer_sidebar": "Source installer and sidebar unchanged; sidebar ZIP member hash unchanged. No installer/guards/UI/trust changes.",
+  "tablet_actions": 0,
+  "live_service_actions": 0,
+  "resource_change_note": "Compiled RCC bytes differ from previous retained ZIP; decoded Connections.qml bytes match current unchanged build source. No UI source changes. Exact RCC digest recorded; no deterministic rebuild claim."
+}

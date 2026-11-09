@@ -1,0 +1,52 @@
+{
+  "created_at": "2026-11-08T03:01:10.998653+00:00",
+  "session": {
+    "agent": "omp",
+    "agent_session": {
+      "agent": "omp",
+      "kind": "path",
+      "source": "herdr:omp",
+      "value": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T02-59-20-904Z_01a1b918-9ec8-76d6-bde0-81acdb9df228.jsonl"
+    },
+    "agent_status": "working",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "focused": false,
+    "foreground_cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "pane_id": "w6R:p8",
+    "revision": 869,
+    "screen_detection_skipped": true,
+    "state_change_seq": 285,
+    "tab_id": "w6R:t8",
+    "terminal_id": "term_65fbb03969e723f",
+    "terminal_title": "\u03c0 \u2826 feature-pi-ink-bridge-02-install-client",
+    "terminal_title_stripped": "\u03c0 \u2826 feature-pi-ink-bridge-02-install-client",
+    "workspace_id": "w6R"
+  },
+  "authorization_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/authorization.json",
+  "claim": "existing claim retained idempotently",
+  "liveness": "only this child active in source worktree",
+  "reservations": "parent authority reports no matching goal reservation",
+  "inspection": {
+    "historyValid": true,
+    "source": {
+      "state": "available",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+      "branch": "feature/pi-ink-bridge-02-install-client",
+      "commit": "f71077758c721908704cc24b0ded0a84d0932571",
+      "tree": "04c5d1a4fe8d195dbb7d927ebe51a3e594351178",
+      "dirty": true,
+      "candidates": 1
+    },
+    "decision": {
+      "action": "start",
+      "mode": "takeover",
+      "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-0028.json",
+      "requiredApproval": true
+    }
+  },
+  "source_dirty_paths": "authorized parent start, authorization, manifest and status only",
+  "environment": {
+    "MISE_AUTO_INSTALL": "0",
+    "MUXER_SUBAGENT_DEPTH": "1"
+  }
+}

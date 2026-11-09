@@ -1,0 +1,191 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031"
+  },
+  "source_commit": "428e6ad86c6741323dd8cfefb7eeeeca5820a7fb",
+  "source_tree": "cabf5d7ddaf178264a2b09587c7f3a19101f0991",
+  "receipt_id": "implementation-0032",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 11,
+  "parent_receipt": "start-0031",
+  "created_at": "2026-11-08T03:38:31.384709+00:00",
+  "pane_id": "w6T:p2",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T03-35-50-502Z_01a1b93a-07e6-74a7-8130-e135fff03453.jsonl",
+  "status": "blocked",
+  "implementation_summary": "One approved bounded verbose SSH marker diagnostic passed. No preflight, activation or source/tracker change. Earlier reset cause remains unknown; whole-ticket acceptance remains blocked.",
+  "open_questions": [
+    "Earlier preflight reset cause remains unknown. Minimal command success does not prove installed identities, native compatibility, or larger-script success.",
+    "Request approval for one fresh bounded strict read-only installed-target preflight with stage diagnostics and no activation. Do not perform it under this approval.",
+    "Native launch/restart acceptance and repeat-install preservation remain unperformed and unapproved."
+  ],
+  "operation_counts": {
+    "network_ssh_executions": 1,
+    "retries": 0,
+    "preflight_executions": 0,
+    "restart_count": 0,
+    "installer_executions": 0,
+    "native_launches": 0,
+    "device_mutation_commands": 0
+  },
+  "recovery": {
+    "mode": "takeover",
+    "prior_attempt": 10,
+    "authorization_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/authorization.json",
+    "ownership": "Herdr agent list shows only current worktree agent w6T:p2 with matching session. Parent coordinator w64:pY remains active in base checkout. No pane opened or closed. Parent pre-dispatch reservation inspection retained.",
+    "reason": "Parent dispatched fresh session for the separately approved diagnostic only."
+  },
+  "validation": [
+    {
+      "command": "Canonical read-only worktree inspector before phase result",
+      "result": "exit 0; historyValid=true; unique source commit/tree matches start-0031; authorized workflow-only dirty paths"
+    },
+    {
+      "command": [
+        "ssh",
+        "-T",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ConnectionAttempts=1",
+        "-o",
+        "ConnectTimeout=10",
+        "-o",
+        "ServerAliveInterval=10",
+        "-o",
+        "ServerAliveCountMax=1",
+        "-o",
+        "ForwardAgent=no",
+        "-o",
+        "ForwardX11=no",
+        "-o",
+        "ClearAllForwardings=yes",
+        "-o",
+        "ControlMaster=no",
+        "-o",
+        "ControlPath=none",
+        "-o",
+        "ControlPersist=no",
+        "-vvv",
+        "-o",
+        "UpdateHostKeys=no",
+        "root@10.11.99.1",
+        "printf 'PI_INK_SSH_DIAGNOSTIC_OK\\n'"
+      ],
+      "result": {
+        "code": 0,
+        "stdout": "PI_INK_SSH_DIAGNOSTIC_OK\n",
+        "elapsed_seconds": 0.2639880450005876,
+        "timed_out": false,
+        "signal": null
+      }
+    }
+  ],
+  "changed_files": [
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/authorization.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/diagnostic-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/diagnostic-result.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/diagnostic-outcome.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/session-scope.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/workflow-inspection.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/markdown-validation.json",
+    "workflows/pi-ink-bridge-02-install-client/events/start-0031.json",
+    "workflows/pi-ink-bridge-02-install-client/events/implementation-0032.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0032.md",
+    "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+  ],
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0031.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0030.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/read-only-preflight.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/authorization.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/diagnostic-intent.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/diagnostic-result.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/diagnostic-outcome.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/session-scope.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/workflow-inspection.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/ssh-diagnostic-0031/markdown-validation.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0032.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0032.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ]
+}

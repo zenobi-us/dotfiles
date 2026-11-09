@@ -1,0 +1,23 @@
+{
+  "source_commit": "d5b2d0eae445dddc83625cdc4b2cdd941bcddd49",
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "go",
+    "test",
+    "-C",
+    "<temporary-original-source>",
+    "-run",
+    "^TestAppLoadEmptyPolls$",
+    "-count=1",
+    "-v",
+    "."
+  ],
+  "exit": 1,
+  "stdout": "=== RUN   TestAppLoadEmptyPolls\n    appload_test.go:27: broken pipe\n--- FAIL: TestAppLoadEmptyPolls (0.00s)\nFAIL\nFAIL\timage-annotator-tablet\t0.008s\nFAIL\n",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n",
+  "expected_failure": "backend leaves empty body queued, closes before second poll; next coordinator send reports broken pipe",
+  "isolation": "temporary source copy with new regression test; original checkout unchanged",
+  "cleaned": true
+}

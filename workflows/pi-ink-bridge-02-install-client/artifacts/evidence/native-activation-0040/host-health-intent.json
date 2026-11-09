@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-11-08T07:10:55.833537+00:00",
+  "argv": [
+    "curl",
+    "--silent",
+    "--show-error",
+    "--fail",
+    "--noproxy",
+    "*",
+    "--connect-timeout",
+    "10",
+    "--max-time",
+    "15",
+    "--cacert",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/certificate.pem",
+    "https://192.168.86.35:58841/health"
+  ],
+  "read_only": true,
+  "retries": 0
+}

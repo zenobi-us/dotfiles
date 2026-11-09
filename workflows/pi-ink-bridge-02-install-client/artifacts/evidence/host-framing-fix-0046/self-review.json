@@ -1,0 +1,18 @@
+{
+  "scope": "Focused source diff and full new transport regression file against d5b2d0eae445dddc83625cdc4b2cdd941bcddd49; self-review only, not independent worktree review",
+  "standards": {
+    "findings": [],
+    "notes": "Existing fixture reused; private synthetic config; bounded socket deadlines and cleanup; reusable preallocated read buffers; no exported API or caller changes."
+  },
+  "spec": {
+    "findings": [],
+    "notes": "Always consumes separate body, accepts Go EOF only for expected empty record, rejects MSG_TRUNC and length mismatch. Control frames and explicit termination covered. No retries, protocol/UI changes or device actions."
+  },
+  "verification": {
+    "gofmt": "exit 0",
+    "go vet ./...": "exit 0",
+    "go test -race -count=1 -v ./...": "exit 0",
+    "compiled_cli": "four verified polls, explicit terminate exit 0"
+  },
+  "native_limit": "Native failure remains ground truth; deployment/retest and repeat-install acceptance require separate approvals."
+}

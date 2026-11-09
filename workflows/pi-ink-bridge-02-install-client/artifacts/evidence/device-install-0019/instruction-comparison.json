@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-11-08T01:43:18.266567+00:00",
+  "approved_generated_command": "ssh -o StrictHostKeyChecking=yes root@10.11.99.1 'set -eu; umask 077; work=$(mktemp -d /tmp/pi-ink-install.XXXXXX); trap '\\''rm -rf \"$work\"'\\'' EXIT; cd \"$work\"; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/install.sh'\\'' -o install.sh; printf '\\''%s  install.sh\\n'\\'' '\\''765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f'\\'' | sha256sum -c -; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/client.zip'\\'' -o client.zip; printf '\\''%s  client.zip\\n'\\'' '\\''03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\'' | sha256sum -c -; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/server.json'\\'' -o server.json; printf '\\''%s  server.json\\n'\\'' '\\''bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e'\\'' | sha256sum -c -; sh ./install.sh '\\''03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\'' '\\''bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e'\\'''",
+  "live_loopback_command_equal": true,
+  "server_id_equal": true,
+  "live_public_record_exact_bytes_equal": true,
+  "device_execution": false
+}

@@ -1,0 +1,7 @@
+{
+  "created_at": "2026-11-08T23:08:54.464Z",
+  "intent_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/parent-activation-intent.json",
+  "ssh_invocations_started": 1,
+  "reboot_dispatches_started": 0,
+  "helper_invocations_started": 0
+}

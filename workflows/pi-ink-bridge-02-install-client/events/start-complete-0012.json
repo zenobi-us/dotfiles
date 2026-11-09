@@ -1,0 +1,189 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0012",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 4,
+  "parent_receipt": "implementation-0011",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "04170ea49d3af431b9af281189439fb8a50b8764",
+  "source_tree": "49c056c95232d349a9e9cc38a462e22a0deddbf5",
+  "created_at": "2026-11-07T23:27:04.616Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0010.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0011.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0011.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/cable-preflight.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/compatibility-analysis.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/parent-provenance.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0012.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/parent-provenance.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Inspector selected valid blocked preflight result reconciliation. Parent resolved native release and static protocol unknowns from publisher sources without new device actions. Current QMD/retained patch application remains unverified.",
+    "authorization": {
+      "user_text": "approve",
+      "scope": "Renewed read-only cable preflight for current stock hash, native dependencies and named installation paths. No installation or restart."
+    },
+    "ownership": "No current agent in source worktree. Prior host correction child reported done and was closed. Held claim retained.",
+    "reservations": "Inspector reports start/takeover with valid history and unique clean source; no live child or active coordinator dispatch identified.",
+    "workspace_observation": "w6P no longer present; existing source worktree reopened in w6R without source changes.",
+    "device_write_authorization": false,
+    "limits": [
+      "Only verified cable endpoint root@10.11.99.1 with strict existing host key and batch authentication.",
+      "Read metadata/hashes/version identity for approved stock and native dependency binaries and named installation/launcher paths.",
+      "No private pairing, drafts, notebook or credentials contents. No helper upload/execution.",
+      "Stop on unsupported or ambiguous compatibility; preserve evidence. No automatic repair or retry on device failure.",
+      "No install, device writes, restart, firmware/Developer Mode/firewall/cloud/account changes or desktop listener access."
+    ]
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010"
+  },
+  "validated_result": {
+    "receipt": "implementation-0011",
+    "status": "blocked",
+    "source_commit": "35e8dd62b6787101e79732208e933e37d18e204b",
+    "source_tree": "6f0c2fb45e8f2c4736768808de24c2b78ff2ee32",
+    "exact_tree_verified": true,
+    "subsequent_commit_scope": "Only workflow records; no source or tracker changes.",
+    "history_valid": true,
+    "child_completion": "Herdr done completion_seq 221",
+    "child_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-07T23-17-19-765Z_01a1b84d-5b15-73bd-8d22-8b2c45b916fa.jsonl",
+    "child_pane": "w6R:p2",
+    "pane_close": "type ok; root shell pane w6R:p1 retained",
+    "validation": [
+      {
+        "command": "ssh-keygen -F 10.11.99.1",
+        "result": "exit 0; existing known host entry found; key material not retained"
+      },
+      {
+        "command": "Read-only worktree inspector",
+        "result": "history valid; unique existing source at parent commit/tree; dirty records are authorized parent workflow start/status views"
+      },
+      {
+        "command": "MISE_AUTO_INSTALL=0 herdr agent list",
+        "result": "only current source-worktree session at w6R:p2; session identity matches PI_SESSION_FILE; parent coordinator at w64:pY"
+      },
+      {
+        "command": "Retained static provenance inspection",
+        "result": "Known hashes match, but semantic native versions and production AppLoad launcher/backend/QMD compatibility not established. No further device actions."
+      }
+    ],
+    "preflight_command_result": "One strict-key cable connection; exit 0, METADATA_COMPLETE; current model/image match, four binary hashes match retained data; named targets absent; required parents writable.",
+    "parent_verification": "Verified public publisher archive digests/member hashes and pinned AppLoad source contracts. No additional device access.",
+    "resolved_versions": [
+      {
+        "component": "XOVI",
+        "release": "v0.3.3",
+        "sha256": "d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446"
+      },
+      {
+        "component": "AppLoad",
+        "release": "v0.6.0",
+        "sha256": "5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad"
+      },
+      {
+        "component": "qt-resource-rebuilder",
+        "release": "v19-23052026",
+        "sha256": "6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f"
+      }
+    ],
+    "device_writes": false,
+    "restart": false
+  },
+  "failure_reason": "New production sidebar.qmd has not been applied to exact firmware Sidebar.qml and current retained QMD set. Earlier successful native parser evidence used different prototype patches and absent temporary inputs.",
+  "approval_request": {
+    "purpose": "Capture only firmware/resource-patch inputs for host-side native QMD validation; no installation or restart.",
+    "endpoint": "Cable root@10.11.99.1 with existing strict verified host key and batch authentication",
+    "requested_files": [
+      "/usr/bin/xochitl",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/hashtab"
+    ],
+    "requested_metadata": "Read-only directory listing, file types and SHA-256 for .qmd files in /home/root/xovi/exthome/qt-resource-rebuilder; read those named patch source files only after validating the bounded manifest.",
+    "privacy": "Store firmware binary and raw resource copies only in private temporary host storage, not Git; no notebook/draft/pairing/credential contents. Review patch text before storing excerpts.",
+    "execution": "No device helper/native binary execution; host-only resource extraction and QMD application. Stop on changed stock hash, unexpected symlinks or unknown patch boundaries.",
+    "authorization": "Not granted by current metadata/hash-only approval."
+  }
+}

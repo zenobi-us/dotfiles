@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "mise",
+    "exec",
+    "pitchfork@2.30.1",
+    "--",
+    "pitchfork",
+    "stop",
+    "pi-ink-bridge"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "pitchfork Stopped daemon global/pi-ink-bridge\n"
+}

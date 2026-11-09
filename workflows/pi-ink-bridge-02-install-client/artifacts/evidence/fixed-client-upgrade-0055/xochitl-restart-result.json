@@ -1,0 +1,8 @@
+{
+  "started_at": "2026-11-08T23:31:06.905460+00:00",
+  "completed_at": "2026-11-08T23:31:08.543528+00:00",
+  "exit_code": 0,
+  "stdout": "RESTART_BASELINE_PID=3641\nRESTART_ISSUING=1\nRESTART_COMMAND_RETURNED=1\n",
+  "stderr": "",
+  "timed_out": false
+}

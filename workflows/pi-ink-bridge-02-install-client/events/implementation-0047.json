@@ -1,0 +1,202 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-framing-fix-0046"
+  },
+  "receipt_id": "implementation-0047",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 16,
+  "parent_receipt": "start-0046",
+  "source_commit": "44069f77de3a8c6b5b35d63b9eb1efba791f97cd",
+  "source_tree": "653406595b0cb1a113fd195e371471defc0ca624",
+  "created_at": "2026-11-08T08:15:41.336340+00:00",
+  "pane_id": "w6T:p7",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T08-07-12-963Z_01a1ba32-7b43-75ee-b686-a01a8acfa73e.jsonl",
+  "status": "blocked",
+  "scope_status": "host-only framing repair and verification completed",
+  "implementation_summary": "Consume every AppLoad body record, including empty SOCK_SEQPACKET records. Packet-aware reads reject truncated headers/bodies and length mismatches. Reused buffers and existing TLS fixture. Host regressions, race suite, vet, compiled CLI smoke and pinned ARM64 rebuild pass. Native acceptance remains blocked.",
+  "changed_files": [
+    "README.md",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/appload.go",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/appload_test.go"
+  ],
+  "validation": [
+    {
+      "command": "gofmt -w tablet-client/appload.go tablet-client/appload_test.go",
+      "exit": 0
+    },
+    {
+      "command": "go test -run ^TestAppLoadEmptyPolls$ -count=1 -v . (isolated original source + new test)",
+      "exit": 1,
+      "expected": "broken pipe after first empty poll; regression-before.json"
+    },
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec -- go test -race -count=1 -v ./...",
+      "exit": 0
+    },
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec -- go vet ./...",
+      "exit": 0
+    },
+    {
+      "command": "host-native compiled pi-ink-client appload --config <synthetic0600-config> <temp-absolute-socket>",
+      "exit": 0,
+      "observed": "four verified synthetic TLS identity replies; repeated real zero-byte body records; process survives polls; explicit terminate exits within5s"
+    },
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec -- bun run build:tablet",
+      "exit": 0,
+      "observed": "linux/arm64 CGO_ENABLED0 -trimpath, version0.4.0; ZIP members, binary ELF architecture, tar/source byte identity, RCC decoded source identity verified"
+    }
+  ],
+  "open_questions": [
+    "Separate exact approval is required for deploying this newly pinned payload and native launch retest; no deployment/restart/reopen is authorized here.",
+    "Repeat-install preservation acceptance requires its own approval.",
+    "Native self-close relation to this framing mismatch remains likely, not end-to-end verified.",
+    "Ticket direct blocker pi-ink-bridge-01-pen-prototype remains unchanged."
+  ],
+  "native_acceptance": false,
+  "tablet_actions": 0,
+  "live_service_actions": 0,
+  "restarts": 0,
+  "deployments": 0,
+  "tracker_changes": 0,
+  "parent_completion_pending": true,
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0046.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0045.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-framing-fix-0046/authorization.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-logs-0043/parent-framing-analysis.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-logs-0043/diagnosis.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-logs-0043/redacted-excerpt.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "source",
+      "ref": "README.md"
+    },
+    {
+      "kind": "source",
+      "ref": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/appload.go"
+    },
+    {
+      "kind": "source",
+      "ref": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/appload_test.go"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-framing-fix-0046/authorization.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-framing-fix-0046/regression-before.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-framing-fix-0046/go-race-suite.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-framing-fix-0046/compiled-cli-smoke.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-framing-fix-0046/self-review.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-framing-fix-0046/artifact-hashes.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-framing-fix-0046/markdown-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-framing-fix-0046/workflow-inspection.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0047.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0047.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    }
+  ],
+  "recovery": {
+    "mode": "takeover",
+    "prior_attempt": 15,
+    "authorization_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-framing-fix-0046/authorization.json",
+    "consumed_parent": "start-0046",
+    "ownership": "Parent exclusive handoff to fresh w6T:p7; actual Herdr child session resolved; held claim retained idempotently without tracker mutation. Parent verified no competing dispatch.",
+    "reason": "Approved host-only repair after pinned AppLoad empty-body framing analysis. Parent authorized dirty workflow records preserved for workflow-only commit."
+  },
+  "payload": {
+    "manifest": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-framing-fix-0046/artifact-hashes.json",
+    "zip_sha256": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+    "binary_sha256": "433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051",
+    "version": "0.4.0",
+    "local_locator": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/dist/client.zip",
+    "architecture": "linux/arm64"
+  }
+}

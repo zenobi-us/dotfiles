@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-11-08T02:58:37.049Z",
+  "user_text": "confirmed",
+  "in_reply_to": "Reconnect and unlock the tablet, then confirm cable access is restored and approve one fresh read-only preflight. No restart yet.",
+  "scope": "One fresh strict read-only installed-target cable preflight only. Zero restarts, installer executions, native launches, pairing, repair or automatic retries.",
+  "ownership": "No source-worktree agents returned by Herdr agent list. Previous w6R:p7 done/closed. Existing held claim retained; prior unchanged workflow inventory contains no matching pi-ink goal coordinator.",
+  "inspection": {
+    "historyValid": true,
+    "source": {
+      "commit": "f71077758c721908704cc24b0ded0a84d0932571",
+      "tree": "04c5d1a4fe8d195dbb7d927ebe51a3e594351178",
+      "dirty": false,
+      "candidates": 1
+    },
+    "decision": {
+      "action": "start",
+      "mode": "takeover",
+      "requiredApproval": true,
+      "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0027.json"
+    }
+  }
+}

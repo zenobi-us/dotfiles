@@ -1,0 +1,232 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034"
+  },
+  "receipt_id": "start-complete-0036",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 12,
+  "parent_receipt": "implementation-0035",
+  "source_commit": "13f5e8988f703d6602e73daa5b5922e60f2627f0",
+  "source_tree": "0a7ba1c317fee93100fd76714ae6c0121ffc1a5d",
+  "created_at": "2026-11-08T04:25:34.922Z",
+  "pane_id": null,
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "status": "blocked",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0034.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0035.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/authorization.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/preflight-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/execution-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/preflight-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/preflight-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/session-scope.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/workflow-inspection.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/markdown-validation.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0035.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0035.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0036.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/dropbear-upstream-boundary.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Canonical inspector selects start/reconcile implementation-0035. Validated exact source/result trees, workflow-only diff, preserved fatal reset boundary and marker-only baseline equality. No child operation repeated.",
+    "authorization": {
+      "created_at": "2026-11-08T04:13:51.593Z",
+      "user_text": "approved",
+      "in_reply_to": "Next approval: one bounded read-only installed-target preflight with stage diagnostics. No activation.",
+      "scope": "One strict bounded read-only installed-target preflight, with verbose SSH and stage markers only; preserve every existing guard/target/comparison. No retries, restart, installation, pairing, repair, native launch or private-content reads.",
+      "ownership": "No source-worktree agents returned by Herdr list. Existing w6T workspace retained; fresh p3, old child p2 closed, root p1 retained. Claim retained idempotently; no competing matching goal dispatch identified.",
+      "inspection": {
+        "historyValid": true,
+        "source_commit": "c3ff963a80cf0fd488d08a1cc532e37d85250e91",
+        "source_tree": "8c32b67418cf814c32c0f1ace8c39d3762768e03",
+        "dirty": false,
+        "decision": {
+          "action": "start",
+          "mode": "takeover",
+          "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0033.json",
+          "requiredApproval": true
+        }
+      }
+    },
+    "ownership": "Child w6T:p3 done completion_seq316 and closed; root shell/workspace/worktree and held claim retained.",
+    "history_valid": true
+  },
+  "validated_result": {
+    "receipt": "implementation-0035",
+    "source_commit": "c3ff963a80cf0fd488d08a1cc532e37d85250e91",
+    "source_tree": "8c32b67418cf814c32c0f1ace8c39d3762768e03",
+    "exact_tree_verified": true,
+    "result_commit_scope": "Workflow records only; no source/tracker/installed-tool changes.",
+    "outcome": {
+      "created_at": "2026-11-08T04:17:55.969465+00:00",
+      "preflight_status": "failed-before-first-stage",
+      "ticket_status": "BLOCKED",
+      "code": 255,
+      "signal": null,
+      "timed_out": false,
+      "elapsed_seconds": 0.18582888999662828,
+      "last_observed_ssh_stage": "Session channel open confirmed; exec request packet sent with confirmation requested. No exec acceptance observed before fatal reset.",
+      "last_observed_script_stage": null,
+      "stage_begin_observed": false,
+      "script_stage_note": "STAGE strings echoed in local debug Sending command/Started with lines are not remote output. stdout is empty.",
+      "first_fatal_error": "Read from remote host 10.11.99.1: Connection reset by peer",
+      "final_error": "client_loop: send disconnect: Broken pipe",
+      "observed_stages": [
+        "TCP connection established",
+        "Remote banner dropbear_2025.88",
+        "KEX mlkem768x25519-sha256 completed",
+        "Existing ED25519 known-host key matched",
+        "Publickey authentication succeeded",
+        "Session channel open confirmed",
+        "Exec request sent with confirmation requested"
+      ],
+      "unobserved": [
+        "Exec request acceptance",
+        "STAGE=begin or any device script output",
+        "Current model, arch, IMG_VERSION",
+        "Current installed release/link/CA identities",
+        "Current retained resources and QMD inventory",
+        "Current native dependencies, xochitl PID and service state",
+        "Current desktop host service state"
+      ],
+      "debug_local_stdin_note": "channel 0 read failed rfd 4: Broken pipe is local stdin EOF handling. Attempt11 showed the same local debug with marker success and exit0. The fatal connection reset and disconnect Broken pipe are separate later lines.",
+      "contrast": "Attempt11 minimal printf returned its exact marker and exit0 in 0.264s. This full 15490-byte exec argument ended with reset, exit255 and empty stdout in 0.186s. Command-length or server cause is not established.",
+      "counts": {
+        "preflight_executions": 1,
+        "network_ssh_executions": 1,
+        "restart_count": 0,
+        "installer_executions": 0,
+        "retries": 0,
+        "native_launches": 0,
+        "device_mutation_commands": 0
+      },
+      "comparison_status": "not-run: exit255 and no output; no fresh device identity verified beyond SSH known-host trust",
+      "uncertainty": "No server-side cause established; no proof that the remote shell began or any guard executed.",
+      "next_scoped_action_proposed": "Request separate approval for one bounded read-only diagnostic that sends this exact guarded script through SSH stdin to sh -s, with the same strict trust, markers and deadline, to distinguish exec-argument transport from script execution. Do not execute it under this approval.",
+      "native_acceptance": "not performed; requires separate restart/observation approval",
+      "repeat_install": "not performed; requires separate approval",
+      "source_tracker_installed_tool_changes": false
+    },
+    "guard_equality": "Stripping only the11 marker printf statements reproduces the exact prior15028-byte script with SHA256 c7dc74f7bc1899129d4e8a2f3b543c8e7642151f6552cd9554f9b91c22eae9bf.",
+    "child_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T04-14-49-339Z_01a1b95d-b7fb-71be-b042-20aae614e58e.jsonl",
+    "child_completion": "Herdr done completion_seq316",
+    "pane_close": "type ok"
+  },
+  "operation_counts": {
+    "preflight_executions": 1,
+    "network_ssh_executions": 1,
+    "restart_count": 0,
+    "installer_executions": 0,
+    "retries": 0,
+    "native_launches": 0,
+    "device_mutation_commands": 0
+  },
+  "preflight_status": "failed-before-first-stage",
+  "likely_cause": {
+    "classification": "INFERENCE",
+    "summary": "15490-byte exec argument exceeds pinned upstream Dropbear2025.88 default9000-byte command/string limit; parser exits before command acknowledgement. Device build limit not independently verified.",
+    "evidence": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/dropbear-upstream-boundary.json"
+  },
+  "blocker": "Installed-target preflight has not returned output; fresh identities and native acceptance remain unverified. Further tablet access is unapproved.",
+  "next_approval": "One bounded read-only SSH invocation using short sh -s exec and this identical guarded script on stdin, same strict trust/markers/deadline; no retries, restart, installation or activation."
+}

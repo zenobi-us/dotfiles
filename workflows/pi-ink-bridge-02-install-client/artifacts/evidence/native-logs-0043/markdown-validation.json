@@ -1,0 +1,24 @@
+{
+  "created_at": "2026-11-08T07:38:39.670845+00:00",
+  "documents": [
+    {
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0044.md",
+      "errors": [],
+      "relative_links": 52
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+      "errors": [],
+      "relative_links": 52
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+      "errors": [],
+      "relative_links": 52
+    }
+  ],
+  "all_errors": [],
+  "link_targets_planned_or_present": true,
+  "bundle_check": "Not applicable: workflow reports are individual Report documents, not an OKF bundle.",
+  "mq_query_correction": "Initial doc.body selector rejected; corrected to doc[\"body\"]. No content change required."
+}

@@ -1,0 +1,58 @@
+{
+  "created_at": "2026-11-09T00:03:56.792139+00:00",
+  "inspected_source": {
+    "historyValid": true,
+    "mode": "takeover",
+    "parentReceipt": "start-complete-0057",
+    "source_commit": "b829e3a0aa1b51b0af18ab8782d2f5fb299c3a61",
+    "source_tree": "d5bd04b3980fc9f3590f79a51d259e1ab167e881",
+    "dirty": false
+  },
+  "evidence_commit": {
+    "commit": "f1936b8c125dc3c5ae60c4435304f96400acf708",
+    "tree": "28d6dd4e5422fc6fcb27f21d903152e9b7983557"
+  },
+  "result_source": {
+    "commit": "57491dc0da46ed141e9cb9dbcd6f0c9c02a86744",
+    "tree": "520dde688e1157a7cef836f9ec8cceb736bb9ea1"
+  },
+  "production_source_unchanged": true,
+  "changed_committed_files": [
+    "tracker/tickets/pi-ink-bridge-02-install-client.md",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/acceptance-summary.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/authorization.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/child-pane-identity.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup-execution-start.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup-result.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup.sh",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/operation-counts.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/parent-launch-observation.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck-execution-start.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck-result.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck.sh",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-comparison.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-execution-start.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-result.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight.sh",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preservation-verification.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-install-execution-start.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-install-result.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-install.sh",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/tracker-validation-before.json",
+    "workflows/pi-ink-bridge-02-install-client/events/start-0058.json"
+  ],
+  "tracker_validation": {
+    "errors": []
+  },
+  "tracker_changed_fields": [
+    "work_status"
+  ],
+  "tracker_comment_added": 1,
+  "tracker_work_status": "implemented",
+  "triage_blockers_membership_unknown_fields_preserved": true,
+  "review_merge_push": false
+}

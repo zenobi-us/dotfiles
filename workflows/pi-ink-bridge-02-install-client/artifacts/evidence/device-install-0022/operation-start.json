@@ -1,0 +1,40 @@
+{
+  "created_at": "2026-11-08T01:55:46.671Z",
+  "status": "intent-before-mutation",
+  "authorization": {
+    "user_text": "approved",
+    "scope": "One fresh corrected recorded preflight; at most one unchanged pinned installer execution after all required checks pass. No restart, activation, pairing, repeat install or automatic retry."
+  },
+  "parent_receipt": "start-0022",
+  "source_commit": "3f8b679686fb3196fdd39f5b5ed80b7203503fb9",
+  "source_tree": "d4bbee6c9cfe001b83ec05cc6e8356d3ba14fa65",
+  "preflight_result": "cable-preflight.json",
+  "preflight_comparison": "preflight-comparison.json",
+  "trust": "trust-preflight.json",
+  "approved_generated_command": "ssh -o StrictHostKeyChecking=yes root@10.11.99.1 'set -eu; umask 077; work=$(mktemp -d /tmp/pi-ink-install.XXXXXX); trap '\\''rm -rf \"$work\"'\\'' EXIT; cd \"$work\"; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/install.sh'\\'' -o install.sh; printf '\\''%s  install.sh\\n'\\'' '\\''765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f'\\'' | sha256sum -c -; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/client.zip'\\'' -o client.zip; printf '\\''%s  client.zip\\n'\\'' '\\''03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\'' | sha256sum -c -; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/server.json'\\'' -o server.json; printf '\\''%s  server.json\\n'\\'' '\\''bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e'\\'' | sha256sum -c -; sh ./install.sh '\\''03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\'' '\\''bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e'\\'''",
+  "executed_command": "ssh -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=10 -o ConnectionAttempts=1 -o ControlMaster=no -o ControlPath=none -o ForwardAgent=no -o ForwardX11=no -o ClearAllForwardings=yes -o ServerAliveInterval=10 -o ServerAliveCountMax=2 root@10.11.99.1 'set -eu; umask 077; work=$(mktemp -d /tmp/pi-ink-install.XXXXXX); trap '\\''rm -rf \"$work\"'\\'' EXIT; cd \"$work\"; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/install.sh'\\'' -o install.sh; printf '\\''%s  install.sh\\n'\\'' '\\''765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f'\\'' | sha256sum -c -; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/client.zip'\\'' -o client.zip; printf '\\''%s  client.zip\\n'\\'' '\\''03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\'' | sha256sum -c -; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/server.json'\\'' -o server.json; printf '\\''%s  server.json\\n'\\'' '\\''bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e'\\'' | sha256sum -c -; sh ./install.sh '\\''03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\'' '\\''bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e'\\'''",
+  "transport_only_change": true,
+  "maximum_installer_executions": 1,
+  "attempt_number": 1,
+  "allowed_persistent_targets": [
+    "/home/root/.local/share/pi-ink-bridge",
+    "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+    "/home/root/xovi/exthome/appload/pi-annotations",
+    "/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd"
+  ],
+  "release_files": {
+    "pi-ink-client": "c91ad5234805b443d381e123f3c533d23d2c5e9fc817b964e4d405b808232a2d",
+    "VERSION": "40b8eb4000a913a7791090535f291d3d369874162a89ef3c9e3d4e887a1b9e79",
+    "sidebar.qmd": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be",
+    "app/manifest.json": "265d2ea700c8b20a49d6e9f67489b9431adacbd4f6a588bee23505affe393aad",
+    "app/resources.rcc": "3efb98becd4878376d24c62725c34295975e036bd4488454963e52fa7ff49bf2",
+    "app/backend/entry": "0c983d6d4593556720704fdccd2c08733853eb3982cb03359fdeaa68d0dd6efb"
+  },
+  "expected_server_id": "256377c7f22604161e086b332a63e19b",
+  "expected_origin": "https://192.168.86.35:58841",
+  "expected_certificate_der_sha256": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+  "no_restart": true,
+  "no_pairing": true,
+  "no_automatic_retry": true,
+  "outer_deadline_seconds": 480
+}

@@ -1,0 +1,2020 @@
+{
+  "created_at": "2026-11-08T03:02:41.820060+00:00",
+  "status": "passed",
+  "format": "raw input, JSON validation output; Report via okf.mq",
+  "bundle_check": "not applicable; workflow reports are not an OKF index bundle",
+  "documents": [
+    {
+      "path": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0029.md",
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "mq",
+        "--allow-http-import",
+        "--frozen",
+        "-I",
+        "raw",
+        "-F",
+        "json",
+        "import \"github.com/harehare/okf.mq\" | let doc = okf::okf_parse(.) | {errors: okf::okf_validate(doc), links: okf::okf_extract_links(get(doc, \"body\"))}",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0029.md"
+      ],
+      "exit": 0,
+      "result": {
+        "errors": [],
+        "links": [
+          {
+            "text": "start-0001.json",
+            "url": "../../events/start-0001.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0002.json",
+            "url": "../../events/implementation-0002.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0003.json",
+            "url": "../../events/start-complete-0003.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0004.json",
+            "url": "../../events/start-0004.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0005.json",
+            "url": "../../events/implementation-0005.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0006.json",
+            "url": "../../events/start-complete-0006.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0007.json",
+            "url": "../../events/start-0007.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0008.json",
+            "url": "../../events/implementation-0008.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0009.json",
+            "url": "../../events/start-complete-0009.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0010.json",
+            "url": "../../events/start-0010.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0011.json",
+            "url": "../../events/implementation-0011.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0012.json",
+            "url": "../../events/start-complete-0012.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0013.json",
+            "url": "../../events/start-0013.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0014.json",
+            "url": "../../events/implementation-0014.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0015.json",
+            "url": "../../events/start-complete-0015.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0016.json",
+            "url": "../../events/start-0016.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0017.json",
+            "url": "../../events/implementation-0017.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0018.json",
+            "url": "../../events/start-complete-0018.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0019.json",
+            "url": "../../events/start-0019.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0020.json",
+            "url": "../../events/implementation-0020.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0021.json",
+            "url": "../../events/start-complete-0021.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0022.json",
+            "url": "../../events/start-0022.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0023.json",
+            "url": "../../events/implementation-0023.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0024.json",
+            "url": "../../events/start-complete-0024.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0025.json",
+            "url": "../../events/start-0025.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0026.json",
+            "url": "../../events/implementation-0026.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0027.json",
+            "url": "../../events/start-complete-0027.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0028.json",
+            "url": "../../events/start-0028.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0029.json",
+            "url": "../../events/implementation-0029.json",
+            "kind": "relative"
+          },
+          {
+            "text": "CONTEXT-MAP.md",
+            "url": "../../../../CONTEXT-MAP.md",
+            "kind": "relative"
+          },
+          {
+            "text": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md",
+            "url": "../../../../docs/adr/0001-pi-ink-cleanup-trust-boundary.md",
+            "kind": "relative"
+          },
+          {
+            "text": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/installation.go",
+            "url": "../../../../mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/installation.go",
+            "kind": "relative"
+          },
+          {
+            "text": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh",
+            "url": "../../../../mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh",
+            "kind": "relative"
+          },
+          {
+            "text": "tracker/initiatives/pi-ink-bridge/index.md",
+            "url": "../../../../tracker/initiatives/pi-ink-bridge/index.md",
+            "kind": "relative"
+          },
+          {
+            "text": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+            "url": "../../../../tracker/tickets/pi-ink-bridge-02-install-client.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/findings.json",
+            "url": "../../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/findings.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/baseline-fingerprints.json",
+            "url": "../../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/baseline-fingerprints.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/findings.json",
+            "url": "../../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/findings.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-b-preinstall-guards.json",
+            "url": "../../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-b-preinstall-guards.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/offline-inputs.json",
+            "url": "../../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/offline-inputs.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/qmd-native-context-final.json",
+            "url": "../../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/qmd-native-context-final.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/authorization.json",
+            "url": "../evidence/cable-preflight-0028/authorization.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/markdown-validation.json",
+            "url": "../evidence/cable-preflight-0028/markdown-validation.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/preflight-intent.json",
+            "url": "../evidence/cable-preflight-0028/preflight-intent.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/preflight-outcome.json",
+            "url": "../evidence/cable-preflight-0028/preflight-outcome.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/read-only-preflight.json",
+            "url": "../evidence/cable-preflight-0028/read-only-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/session-scope.json",
+            "url": "../evidence/cable-preflight-0028/session-scope.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/workflow-inspection.json",
+            "url": "../evidence/cable-preflight-0028/workflow-inspection.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/activation-outcome.json",
+            "url": "../evidence/device-activation-0025/activation-outcome.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/approval-and-inspection.json",
+            "url": "../evidence/device-activation-0025/approval-and-inspection.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/preflight-intent.json",
+            "url": "../evidence/device-activation-0025/preflight-intent.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/read-only-preflight.json",
+            "url": "../evidence/device-activation-0025/read-only-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/session-scope.json",
+            "url": "../evidence/device-activation-0025/session-scope.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/cable-preflight.json",
+            "url": "../evidence/device-install-0019/cable-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/corrected-preflight-proposal.json",
+            "url": "../evidence/device-install-0019/corrected-preflight-proposal.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/corrected-preflight-proposal.sh",
+            "url": "../evidence/device-install-0019/corrected-preflight-proposal.sh",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/instruction-comparison.json",
+            "url": "../evidence/device-install-0019/instruction-comparison.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/operation-result.json",
+            "url": "../evidence/device-install-0019/operation-result.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/trust-preflight.json",
+            "url": "../evidence/device-install-0019/trust-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/cable-preflight.json",
+            "url": "../evidence/device-install-0022/cable-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/installation-outcome.json",
+            "url": "../evidence/device-install-0022/installation-outcome.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/operation-result.json",
+            "url": "../evidence/device-install-0022/operation-result.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/operation-start.json",
+            "url": "../evidence/device-install-0022/operation-start.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-comparison.json",
+            "url": "../evidence/device-install-0022/postcheck-comparison.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-intent.json",
+            "url": "../evidence/device-install-0022/postcheck-intent.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/preflight-comparison.json",
+            "url": "../evidence/device-install-0022/preflight-comparison.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/preflight-start.json",
+            "url": "../evidence/device-install-0022/preflight-start.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/read-only-postcheck.json",
+            "url": "../evidence/device-install-0022/read-only-postcheck.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/session-scope.json",
+            "url": "../evidence/device-install-0022/session-scope.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/trust-preflight.json",
+            "url": "../evidence/device-install-0022/trust-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004/cable-preflight.json",
+            "url": "../evidence/device-preflight-0004/cable-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004/compatibility-analysis.json",
+            "url": "../evidence/device-preflight-0004/compatibility-analysis.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/cable-preflight.json",
+            "url": "../evidence/device-preflight-0010/cable-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/compatibility-analysis.json",
+            "url": "../evidence/device-preflight-0010/compatibility-analysis.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/parent-provenance.json",
+            "url": "../evidence/device-preflight-0010/parent-provenance.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/firmware-field-0007/verification.json",
+            "url": "../evidence/firmware-field-0007/verification.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-20261108-install-001",
+            "url": "../evidence/host-20261108-install-001",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-20261108-install-001/device-approval-request.json",
+            "url": "../evidence/host-20261108-install-001/device-approval-request.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/bootstrap-verification.json",
+            "url": "../evidence/host-bootstrap-0016/bootstrap-verification.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/certificate.pem",
+            "url": "../evidence/host-bootstrap-0016/certificate.pem",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/installation-approval-request.json",
+            "url": "../evidence/host-bootstrap-0016/installation-approval-request.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/server.json",
+            "url": "../evidence/host-bootstrap-0016/server.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/capture-manifest.json",
+            "url": "../evidence/sidebar-resources-0013/capture-manifest.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/host-validation.json",
+            "url": "../evidence/sidebar-resources-0013/host-validation.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/installation-proposal.json",
+            "url": "../evidence/sidebar-resources-0013/installation-proposal.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/launch-start-0001.json",
+            "url": "launch-start-0001.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0002.md",
+            "url": "pr-draft-implementation-0002.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0005.md",
+            "url": "pr-draft-implementation-0005.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0008.md",
+            "url": "pr-draft-implementation-0008.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0011.md",
+            "url": "pr-draft-implementation-0011.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0014.md",
+            "url": "pr-draft-implementation-0014.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0017.md",
+            "url": "pr-draft-implementation-0017.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0020.md",
+            "url": "pr-draft-implementation-0020.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0023.md",
+            "url": "pr-draft-implementation-0023.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0026.md",
+            "url": "pr-draft-implementation-0026.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0029.md",
+            "url": "pr-draft-implementation-0029.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0002.json",
+            "url": "../../events/implementation-0002.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0005.json",
+            "url": "../../events/implementation-0005.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0008.json",
+            "url": "../../events/implementation-0008.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0011.json",
+            "url": "../../events/implementation-0011.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0014.json",
+            "url": "../../events/implementation-0014.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0017.json",
+            "url": "../../events/implementation-0017.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0020.json",
+            "url": "../../events/implementation-0020.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0023.json",
+            "url": "../../events/implementation-0023.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0026.json",
+            "url": "../../events/implementation-0026.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0029.json",
+            "url": "../../events/implementation-0029.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0001.json",
+            "url": "../../events/start-0001.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0004.json",
+            "url": "../../events/start-0004.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0007.json",
+            "url": "../../events/start-0007.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0010.json",
+            "url": "../../events/start-0010.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0013.json",
+            "url": "../../events/start-0013.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0016.json",
+            "url": "../../events/start-0016.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0019.json",
+            "url": "../../events/start-0019.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0022.json",
+            "url": "../../events/start-0022.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0025.json",
+            "url": "../../events/start-0025.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0028.json",
+            "url": "../../events/start-0028.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0003.json",
+            "url": "../../events/start-complete-0003.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0006.json",
+            "url": "../../events/start-complete-0006.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0009.json",
+            "url": "../../events/start-complete-0009.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0012.json",
+            "url": "../../events/start-complete-0012.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0015.json",
+            "url": "../../events/start-complete-0015.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0018.json",
+            "url": "../../events/start-complete-0018.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0021.json",
+            "url": "../../events/start-complete-0021.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0024.json",
+            "url": "../../events/start-complete-0024.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0027.json",
+            "url": "../../events/start-complete-0027.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+            "url": "../../manifest.yaml",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+            "url": "../../projections/implementation-log.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml",
+            "url": "../../projections/latest-status.yaml",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+            "url": "../../projections/pr-draft.md",
+            "kind": "relative"
+          }
+        ]
+      },
+      "unresolved_links": []
+    },
+    {
+      "path": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "mq",
+        "--allow-http-import",
+        "--frozen",
+        "-I",
+        "raw",
+        "-F",
+        "json",
+        "import \"github.com/harehare/okf.mq\" | let doc = okf::okf_parse(.) | {errors: okf::okf_validate(doc), links: okf::okf_extract_links(get(doc, \"body\"))}",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+      ],
+      "exit": 0,
+      "result": {
+        "errors": [],
+        "links": [
+          {
+            "text": "start-0001.json",
+            "url": "../events/start-0001.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0002.json",
+            "url": "../events/implementation-0002.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0003.json",
+            "url": "../events/start-complete-0003.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0004.json",
+            "url": "../events/start-0004.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0005.json",
+            "url": "../events/implementation-0005.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0006.json",
+            "url": "../events/start-complete-0006.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0007.json",
+            "url": "../events/start-0007.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0008.json",
+            "url": "../events/implementation-0008.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0009.json",
+            "url": "../events/start-complete-0009.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0010.json",
+            "url": "../events/start-0010.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0011.json",
+            "url": "../events/implementation-0011.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0012.json",
+            "url": "../events/start-complete-0012.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0013.json",
+            "url": "../events/start-0013.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0014.json",
+            "url": "../events/implementation-0014.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0015.json",
+            "url": "../events/start-complete-0015.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0016.json",
+            "url": "../events/start-0016.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0017.json",
+            "url": "../events/implementation-0017.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0018.json",
+            "url": "../events/start-complete-0018.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0019.json",
+            "url": "../events/start-0019.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0020.json",
+            "url": "../events/implementation-0020.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0021.json",
+            "url": "../events/start-complete-0021.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0022.json",
+            "url": "../events/start-0022.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0023.json",
+            "url": "../events/implementation-0023.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0024.json",
+            "url": "../events/start-complete-0024.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0025.json",
+            "url": "../events/start-0025.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0026.json",
+            "url": "../events/implementation-0026.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0027.json",
+            "url": "../events/start-complete-0027.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0028.json",
+            "url": "../events/start-0028.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0029.json",
+            "url": "../events/implementation-0029.json",
+            "kind": "relative"
+          },
+          {
+            "text": "CONTEXT-MAP.md",
+            "url": "../../../CONTEXT-MAP.md",
+            "kind": "relative"
+          },
+          {
+            "text": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md",
+            "url": "../../../docs/adr/0001-pi-ink-cleanup-trust-boundary.md",
+            "kind": "relative"
+          },
+          {
+            "text": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/installation.go",
+            "url": "../../../mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/installation.go",
+            "kind": "relative"
+          },
+          {
+            "text": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh",
+            "url": "../../../mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh",
+            "kind": "relative"
+          },
+          {
+            "text": "tracker/initiatives/pi-ink-bridge/index.md",
+            "url": "../../../tracker/initiatives/pi-ink-bridge/index.md",
+            "kind": "relative"
+          },
+          {
+            "text": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+            "url": "../../../tracker/tickets/pi-ink-bridge-02-install-client.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/findings.json",
+            "url": "../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/findings.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/baseline-fingerprints.json",
+            "url": "../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/baseline-fingerprints.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/findings.json",
+            "url": "../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/findings.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-b-preinstall-guards.json",
+            "url": "../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-b-preinstall-guards.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/offline-inputs.json",
+            "url": "../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/offline-inputs.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/qmd-native-context-final.json",
+            "url": "../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/qmd-native-context-final.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/authorization.json",
+            "url": "../artifacts/evidence/cable-preflight-0028/authorization.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/markdown-validation.json",
+            "url": "../artifacts/evidence/cable-preflight-0028/markdown-validation.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/preflight-intent.json",
+            "url": "../artifacts/evidence/cable-preflight-0028/preflight-intent.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/preflight-outcome.json",
+            "url": "../artifacts/evidence/cable-preflight-0028/preflight-outcome.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/read-only-preflight.json",
+            "url": "../artifacts/evidence/cable-preflight-0028/read-only-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/session-scope.json",
+            "url": "../artifacts/evidence/cable-preflight-0028/session-scope.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/workflow-inspection.json",
+            "url": "../artifacts/evidence/cable-preflight-0028/workflow-inspection.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/activation-outcome.json",
+            "url": "../artifacts/evidence/device-activation-0025/activation-outcome.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/approval-and-inspection.json",
+            "url": "../artifacts/evidence/device-activation-0025/approval-and-inspection.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/preflight-intent.json",
+            "url": "../artifacts/evidence/device-activation-0025/preflight-intent.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/read-only-preflight.json",
+            "url": "../artifacts/evidence/device-activation-0025/read-only-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/session-scope.json",
+            "url": "../artifacts/evidence/device-activation-0025/session-scope.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/cable-preflight.json",
+            "url": "../artifacts/evidence/device-install-0019/cable-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/corrected-preflight-proposal.json",
+            "url": "../artifacts/evidence/device-install-0019/corrected-preflight-proposal.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/corrected-preflight-proposal.sh",
+            "url": "../artifacts/evidence/device-install-0019/corrected-preflight-proposal.sh",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/instruction-comparison.json",
+            "url": "../artifacts/evidence/device-install-0019/instruction-comparison.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/operation-result.json",
+            "url": "../artifacts/evidence/device-install-0019/operation-result.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/trust-preflight.json",
+            "url": "../artifacts/evidence/device-install-0019/trust-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/cable-preflight.json",
+            "url": "../artifacts/evidence/device-install-0022/cable-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/installation-outcome.json",
+            "url": "../artifacts/evidence/device-install-0022/installation-outcome.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/operation-result.json",
+            "url": "../artifacts/evidence/device-install-0022/operation-result.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/operation-start.json",
+            "url": "../artifacts/evidence/device-install-0022/operation-start.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-comparison.json",
+            "url": "../artifacts/evidence/device-install-0022/postcheck-comparison.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-intent.json",
+            "url": "../artifacts/evidence/device-install-0022/postcheck-intent.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/preflight-comparison.json",
+            "url": "../artifacts/evidence/device-install-0022/preflight-comparison.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/preflight-start.json",
+            "url": "../artifacts/evidence/device-install-0022/preflight-start.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/read-only-postcheck.json",
+            "url": "../artifacts/evidence/device-install-0022/read-only-postcheck.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/session-scope.json",
+            "url": "../artifacts/evidence/device-install-0022/session-scope.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/trust-preflight.json",
+            "url": "../artifacts/evidence/device-install-0022/trust-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004/cable-preflight.json",
+            "url": "../artifacts/evidence/device-preflight-0004/cable-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004/compatibility-analysis.json",
+            "url": "../artifacts/evidence/device-preflight-0004/compatibility-analysis.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/cable-preflight.json",
+            "url": "../artifacts/evidence/device-preflight-0010/cable-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/compatibility-analysis.json",
+            "url": "../artifacts/evidence/device-preflight-0010/compatibility-analysis.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/parent-provenance.json",
+            "url": "../artifacts/evidence/device-preflight-0010/parent-provenance.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/firmware-field-0007/verification.json",
+            "url": "../artifacts/evidence/firmware-field-0007/verification.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-20261108-install-001",
+            "url": "../artifacts/evidence/host-20261108-install-001",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-20261108-install-001/device-approval-request.json",
+            "url": "../artifacts/evidence/host-20261108-install-001/device-approval-request.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/bootstrap-verification.json",
+            "url": "../artifacts/evidence/host-bootstrap-0016/bootstrap-verification.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/certificate.pem",
+            "url": "../artifacts/evidence/host-bootstrap-0016/certificate.pem",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/installation-approval-request.json",
+            "url": "../artifacts/evidence/host-bootstrap-0016/installation-approval-request.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/server.json",
+            "url": "../artifacts/evidence/host-bootstrap-0016/server.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/capture-manifest.json",
+            "url": "../artifacts/evidence/sidebar-resources-0013/capture-manifest.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/host-validation.json",
+            "url": "../artifacts/evidence/sidebar-resources-0013/host-validation.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/installation-proposal.json",
+            "url": "../artifacts/evidence/sidebar-resources-0013/installation-proposal.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/launch-start-0001.json",
+            "url": "../artifacts/snapshots/launch-start-0001.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0002.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0002.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0005.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0005.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0008.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0008.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0011.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0011.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0014.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0014.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0017.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0017.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0020.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0020.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0023.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0023.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0026.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0026.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0029.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0029.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0002.json",
+            "url": "../events/implementation-0002.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0005.json",
+            "url": "../events/implementation-0005.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0008.json",
+            "url": "../events/implementation-0008.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0011.json",
+            "url": "../events/implementation-0011.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0014.json",
+            "url": "../events/implementation-0014.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0017.json",
+            "url": "../events/implementation-0017.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0020.json",
+            "url": "../events/implementation-0020.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0023.json",
+            "url": "../events/implementation-0023.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0026.json",
+            "url": "../events/implementation-0026.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0029.json",
+            "url": "../events/implementation-0029.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0001.json",
+            "url": "../events/start-0001.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0004.json",
+            "url": "../events/start-0004.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0007.json",
+            "url": "../events/start-0007.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0010.json",
+            "url": "../events/start-0010.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0013.json",
+            "url": "../events/start-0013.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0016.json",
+            "url": "../events/start-0016.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0019.json",
+            "url": "../events/start-0019.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0022.json",
+            "url": "../events/start-0022.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0025.json",
+            "url": "../events/start-0025.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0028.json",
+            "url": "../events/start-0028.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0003.json",
+            "url": "../events/start-complete-0003.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0006.json",
+            "url": "../events/start-complete-0006.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0009.json",
+            "url": "../events/start-complete-0009.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0012.json",
+            "url": "../events/start-complete-0012.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0015.json",
+            "url": "../events/start-complete-0015.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0018.json",
+            "url": "../events/start-complete-0018.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0021.json",
+            "url": "../events/start-complete-0021.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0024.json",
+            "url": "../events/start-complete-0024.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0027.json",
+            "url": "../events/start-complete-0027.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+            "url": "../manifest.yaml",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+            "url": "implementation-log.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml",
+            "url": "latest-status.yaml",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+            "url": "pr-draft.md",
+            "kind": "relative"
+          }
+        ]
+      },
+      "unresolved_links": []
+    },
+    {
+      "path": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "mq",
+        "--allow-http-import",
+        "--frozen",
+        "-I",
+        "raw",
+        "-F",
+        "json",
+        "import \"github.com/harehare/okf.mq\" | let doc = okf::okf_parse(.) | {errors: okf::okf_validate(doc), links: okf::okf_extract_links(get(doc, \"body\"))}",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+      ],
+      "exit": 0,
+      "result": {
+        "errors": [],
+        "links": [
+          {
+            "text": "start-0001.json",
+            "url": "../events/start-0001.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0002.json",
+            "url": "../events/implementation-0002.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0003.json",
+            "url": "../events/start-complete-0003.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0004.json",
+            "url": "../events/start-0004.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0005.json",
+            "url": "../events/implementation-0005.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0006.json",
+            "url": "../events/start-complete-0006.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0007.json",
+            "url": "../events/start-0007.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0008.json",
+            "url": "../events/implementation-0008.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0009.json",
+            "url": "../events/start-complete-0009.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0010.json",
+            "url": "../events/start-0010.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0011.json",
+            "url": "../events/implementation-0011.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0012.json",
+            "url": "../events/start-complete-0012.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0013.json",
+            "url": "../events/start-0013.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0014.json",
+            "url": "../events/implementation-0014.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0015.json",
+            "url": "../events/start-complete-0015.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0016.json",
+            "url": "../events/start-0016.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0017.json",
+            "url": "../events/implementation-0017.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0018.json",
+            "url": "../events/start-complete-0018.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0019.json",
+            "url": "../events/start-0019.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0020.json",
+            "url": "../events/implementation-0020.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0021.json",
+            "url": "../events/start-complete-0021.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0022.json",
+            "url": "../events/start-0022.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0023.json",
+            "url": "../events/implementation-0023.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0024.json",
+            "url": "../events/start-complete-0024.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0025.json",
+            "url": "../events/start-0025.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0026.json",
+            "url": "../events/implementation-0026.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-complete-0027.json",
+            "url": "../events/start-complete-0027.json",
+            "kind": "relative"
+          },
+          {
+            "text": "start-0028.json",
+            "url": "../events/start-0028.json",
+            "kind": "relative"
+          },
+          {
+            "text": "implementation-0029.json",
+            "url": "../events/implementation-0029.json",
+            "kind": "relative"
+          },
+          {
+            "text": "CONTEXT-MAP.md",
+            "url": "../../../CONTEXT-MAP.md",
+            "kind": "relative"
+          },
+          {
+            "text": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md",
+            "url": "../../../docs/adr/0001-pi-ink-cleanup-trust-boundary.md",
+            "kind": "relative"
+          },
+          {
+            "text": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/installation.go",
+            "url": "../../../mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/installation.go",
+            "kind": "relative"
+          },
+          {
+            "text": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh",
+            "url": "../../../mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh",
+            "kind": "relative"
+          },
+          {
+            "text": "tracker/initiatives/pi-ink-bridge/index.md",
+            "url": "../../../tracker/initiatives/pi-ink-bridge/index.md",
+            "kind": "relative"
+          },
+          {
+            "text": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+            "url": "../../../tracker/tickets/pi-ink-bridge-02-install-client.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/findings.json",
+            "url": "../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/findings.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/baseline-fingerprints.json",
+            "url": "../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/baseline-fingerprints.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/findings.json",
+            "url": "../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/findings.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-b-preinstall-guards.json",
+            "url": "../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-b-preinstall-guards.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/offline-inputs.json",
+            "url": "../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/offline-inputs.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/qmd-native-context-final.json",
+            "url": "../../pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/qmd-native-context-final.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/authorization.json",
+            "url": "../artifacts/evidence/cable-preflight-0028/authorization.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/markdown-validation.json",
+            "url": "../artifacts/evidence/cable-preflight-0028/markdown-validation.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/preflight-intent.json",
+            "url": "../artifacts/evidence/cable-preflight-0028/preflight-intent.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/preflight-outcome.json",
+            "url": "../artifacts/evidence/cable-preflight-0028/preflight-outcome.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/read-only-preflight.json",
+            "url": "../artifacts/evidence/cable-preflight-0028/read-only-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/session-scope.json",
+            "url": "../artifacts/evidence/cable-preflight-0028/session-scope.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/workflow-inspection.json",
+            "url": "../artifacts/evidence/cable-preflight-0028/workflow-inspection.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/activation-outcome.json",
+            "url": "../artifacts/evidence/device-activation-0025/activation-outcome.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/approval-and-inspection.json",
+            "url": "../artifacts/evidence/device-activation-0025/approval-and-inspection.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/preflight-intent.json",
+            "url": "../artifacts/evidence/device-activation-0025/preflight-intent.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/read-only-preflight.json",
+            "url": "../artifacts/evidence/device-activation-0025/read-only-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/session-scope.json",
+            "url": "../artifacts/evidence/device-activation-0025/session-scope.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/cable-preflight.json",
+            "url": "../artifacts/evidence/device-install-0019/cable-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/corrected-preflight-proposal.json",
+            "url": "../artifacts/evidence/device-install-0019/corrected-preflight-proposal.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/corrected-preflight-proposal.sh",
+            "url": "../artifacts/evidence/device-install-0019/corrected-preflight-proposal.sh",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/instruction-comparison.json",
+            "url": "../artifacts/evidence/device-install-0019/instruction-comparison.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/operation-result.json",
+            "url": "../artifacts/evidence/device-install-0019/operation-result.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/trust-preflight.json",
+            "url": "../artifacts/evidence/device-install-0019/trust-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/cable-preflight.json",
+            "url": "../artifacts/evidence/device-install-0022/cable-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/installation-outcome.json",
+            "url": "../artifacts/evidence/device-install-0022/installation-outcome.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/operation-result.json",
+            "url": "../artifacts/evidence/device-install-0022/operation-result.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/operation-start.json",
+            "url": "../artifacts/evidence/device-install-0022/operation-start.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-comparison.json",
+            "url": "../artifacts/evidence/device-install-0022/postcheck-comparison.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-intent.json",
+            "url": "../artifacts/evidence/device-install-0022/postcheck-intent.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/preflight-comparison.json",
+            "url": "../artifacts/evidence/device-install-0022/preflight-comparison.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/preflight-start.json",
+            "url": "../artifacts/evidence/device-install-0022/preflight-start.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/read-only-postcheck.json",
+            "url": "../artifacts/evidence/device-install-0022/read-only-postcheck.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/session-scope.json",
+            "url": "../artifacts/evidence/device-install-0022/session-scope.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/trust-preflight.json",
+            "url": "../artifacts/evidence/device-install-0022/trust-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004/cable-preflight.json",
+            "url": "../artifacts/evidence/device-preflight-0004/cable-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004/compatibility-analysis.json",
+            "url": "../artifacts/evidence/device-preflight-0004/compatibility-analysis.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/cable-preflight.json",
+            "url": "../artifacts/evidence/device-preflight-0010/cable-preflight.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/compatibility-analysis.json",
+            "url": "../artifacts/evidence/device-preflight-0010/compatibility-analysis.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/parent-provenance.json",
+            "url": "../artifacts/evidence/device-preflight-0010/parent-provenance.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/firmware-field-0007/verification.json",
+            "url": "../artifacts/evidence/firmware-field-0007/verification.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-20261108-install-001",
+            "url": "../artifacts/evidence/host-20261108-install-001",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-20261108-install-001/device-approval-request.json",
+            "url": "../artifacts/evidence/host-20261108-install-001/device-approval-request.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/bootstrap-verification.json",
+            "url": "../artifacts/evidence/host-bootstrap-0016/bootstrap-verification.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/certificate.pem",
+            "url": "../artifacts/evidence/host-bootstrap-0016/certificate.pem",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/installation-approval-request.json",
+            "url": "../artifacts/evidence/host-bootstrap-0016/installation-approval-request.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/server.json",
+            "url": "../artifacts/evidence/host-bootstrap-0016/server.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/capture-manifest.json",
+            "url": "../artifacts/evidence/sidebar-resources-0013/capture-manifest.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/host-validation.json",
+            "url": "../artifacts/evidence/sidebar-resources-0013/host-validation.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/installation-proposal.json",
+            "url": "../artifacts/evidence/sidebar-resources-0013/installation-proposal.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/launch-start-0001.json",
+            "url": "../artifacts/snapshots/launch-start-0001.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0002.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0002.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0005.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0005.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0008.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0008.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0011.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0011.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0014.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0014.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0017.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0017.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0020.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0020.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0023.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0023.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0026.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0026.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0029.md",
+            "url": "../artifacts/snapshots/pr-draft-implementation-0029.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0002.json",
+            "url": "../events/implementation-0002.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0005.json",
+            "url": "../events/implementation-0005.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0008.json",
+            "url": "../events/implementation-0008.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0011.json",
+            "url": "../events/implementation-0011.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0014.json",
+            "url": "../events/implementation-0014.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0017.json",
+            "url": "../events/implementation-0017.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0020.json",
+            "url": "../events/implementation-0020.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0023.json",
+            "url": "../events/implementation-0023.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0026.json",
+            "url": "../events/implementation-0026.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/implementation-0029.json",
+            "url": "../events/implementation-0029.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0001.json",
+            "url": "../events/start-0001.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0004.json",
+            "url": "../events/start-0004.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0007.json",
+            "url": "../events/start-0007.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0010.json",
+            "url": "../events/start-0010.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0013.json",
+            "url": "../events/start-0013.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0016.json",
+            "url": "../events/start-0016.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0019.json",
+            "url": "../events/start-0019.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0022.json",
+            "url": "../events/start-0022.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0025.json",
+            "url": "../events/start-0025.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-0028.json",
+            "url": "../events/start-0028.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0003.json",
+            "url": "../events/start-complete-0003.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0006.json",
+            "url": "../events/start-complete-0006.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0009.json",
+            "url": "../events/start-complete-0009.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0012.json",
+            "url": "../events/start-complete-0012.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0015.json",
+            "url": "../events/start-complete-0015.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0018.json",
+            "url": "../events/start-complete-0018.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0021.json",
+            "url": "../events/start-complete-0021.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0024.json",
+            "url": "../events/start-complete-0024.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0027.json",
+            "url": "../events/start-complete-0027.json",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+            "url": "../manifest.yaml",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+            "url": "implementation-log.md",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml",
+            "url": "latest-status.yaml",
+            "kind": "relative"
+          },
+          {
+            "text": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+            "url": "pr-draft.md",
+            "kind": "relative"
+          }
+        ]
+      },
+      "unresolved_links": []
+    }
+  ],
+  "planned_self_evidence_links": [
+    "workflow-inspection.json",
+    "markdown-validation.json"
+  ],
+  "link_check": "all relative links resolve, except these two records created as this validation/inspection completes"
+}

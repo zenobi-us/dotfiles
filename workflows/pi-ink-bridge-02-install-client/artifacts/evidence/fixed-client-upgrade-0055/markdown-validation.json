@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-11-08T23:34:03.621845+00:00",
+  "tool": "mise exec -- mq; github.com/harehare/okf.mq; raw input / json output",
+  "documents": [
+    {
+      "path": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0056.md",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "path": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "path": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+      "exit_code": 0,
+      "errors": []
+    }
+  ],
+  "bundle_check": "Not applicable: workflow is a receipt/projection directory, not an OKF bundle."
+}

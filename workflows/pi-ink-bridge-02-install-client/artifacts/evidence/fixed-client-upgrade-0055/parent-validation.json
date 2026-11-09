@@ -1,0 +1,65 @@
+{
+  "created_at": "2026-11-08T23:47:05.550Z",
+  "child_result": "implementation-0056",
+  "child_source": {
+    "commit": "8350b3b4769407536219c18c69c3cb8f4e627018",
+    "tree": "f920f4f13d2c6513084c8c0eb0b7e091ea85f66f"
+  },
+  "child_workflow_commit": "1f7ef1d33bddfd2c336d7857f03abaa500b9e293",
+  "child_workflow_tree": "253ebf07ac9bc444c7d43e3310a5a847290456b0",
+  "workflow_only_diff": {
+    "files": 41,
+    "outside_workflow": []
+  },
+  "host": {
+    "runtime": "c5df23c290a5c31886c86d4e1af9a226e7d147007fd5843972919ecaa6d1e356",
+    "id": "256377c7f22604161e086b332a63e19b",
+    "certificate_der_sha256": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+    "protocol": 2,
+    "bootstrap_sha256": "bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e",
+    "zip_sha256": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+    "installer_sha256": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+    "supervised_pid": 2532009,
+    "ports": [
+      58840,
+      58841
+    ],
+    "old47840_listener_unchanged": true
+  },
+  "deployment": {
+    "old_public_hashes_preserved": 23,
+    "post_restart_public_hashes_verified": 29,
+    "metadata_preserved": 42,
+    "new_files": 6,
+    "production_link_replacements": 2,
+    "old_release_preserved": true,
+    "ui_pid": 7146,
+    "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f"
+  },
+  "native": {
+    "owner_statement": "Stays open—server available",
+    "owner_reported_wait_seconds_minimum": 15,
+    "owner_launches": 1,
+    "agent_launches": 0,
+    "owner_visual_evidence": true,
+    "screenshot": false,
+    "read_only_parent_check": 1,
+    "read_only_exit": 0,
+    "client_pid": "8409",
+    "client_executable": "/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/pi-ink-client",
+    "binary_sha256": "433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051",
+    "ui_pid": 7146,
+    "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+    "server_available": true,
+    "private_metadata_preserved": true,
+    "private_contents_returned": false,
+    "result_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/parent-native-verification-result.json"
+  },
+  "closure": {
+    "pane": "w6T:pA",
+    "done_seq": 418,
+    "close": "type ok"
+  },
+  "remaining": "Repeat-install preservation acceptance remains not performed and separately approval-gated. No review/merge/push.",
+  "retained_public_download_stage": "/home/root/.local/share/pi-ink-bridge/.upgrade-0055.eQVGWv"
+}

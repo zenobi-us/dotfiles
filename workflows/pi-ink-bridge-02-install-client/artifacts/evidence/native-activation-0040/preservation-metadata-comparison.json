@@ -1,0 +1,177 @@
+{
+  "created_at": "2026-11-08T07:21:19.467962+00:00",
+  "checks": [
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/pi-ink-client",
+      "before": "OWNED|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/pi-ink-client|regular file|0|0|700|7405752",
+      "after": "OWNED|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/pi-ink-client|regular file|0|0|700|7405752",
+      "equal": true
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/VERSION",
+      "before": "OWNED|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/VERSION|regular file|0|0|600|6",
+      "after": "OWNED|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/VERSION|regular file|0|0|600|6",
+      "equal": true
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/sidebar.qmd",
+      "before": "OWNED|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/sidebar.qmd|regular file|0|0|600|949",
+      "after": "OWNED|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/sidebar.qmd|regular file|0|0|600|949",
+      "equal": true
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/manifest.json",
+      "before": "OWNED|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/manifest.json|regular file|0|0|600|213",
+      "after": "OWNED|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/manifest.json|regular file|0|0|600|213",
+      "equal": true
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/resources.rcc",
+      "before": "OWNED|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/resources.rcc|regular file|0|0|600|2796",
+      "after": "OWNED|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/resources.rcc|regular file|0|0|600|2796",
+      "equal": true
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend/entry",
+      "before": "OWNED|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend/entry|regular file|0|0|700|194",
+      "after": "OWNED|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend/entry|regular file|0|0|700|194",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/appload/pi-annotations",
+      "before": "LINK_META|/home/root/xovi/exthome/appload/pi-annotations|symbolic link|0|0|777",
+      "after": "LINK_META|/home/root/xovi/exthome/appload/pi-annotations|symbolic link|0|0|777|115",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd",
+      "before": "LINK_META|/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd|symbolic link|0|0|777",
+      "after": "LINK_META|/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd|symbolic link|0|0|777|123",
+      "equal": true
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/config.json",
+      "before": "PRIVATE_META|/home/root/.local/share/pi-ink-bridge/config.json|regular file|0|0|600|350",
+      "after": "PRIVATE_META|/home/root/.local/share/pi-ink-bridge/config.json|regular file|0|0|600|350",
+      "equal": true
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/server-ca.pem",
+      "before": "PRIVATE_META|/home/root/.local/share/pi-ink-bridge/server-ca.pem|regular file|0|0|600|717",
+      "after": "PRIVATE_META|/home/root/.local/share/pi-ink-bridge/server-ca.pem|regular file|0|0|600|717",
+      "equal": true
+    },
+    {
+      "path": "/usr/bin/xochitl",
+      "before": "RETAINED|/usr/bin/xochitl|regular file|0|755|24705704",
+      "after": "RETAINED|/usr/bin/xochitl|regular file|0|0|755|24705704",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/hashtab",
+      "before": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/hashtab|regular file|0|644|674428",
+      "after": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/hashtab|regular file|0|0|644|674428",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd",
+      "before": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd|regular file|0|644|9249",
+      "after": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd|regular file|0|0|644|9249",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd",
+      "before": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd|regular file|0|644|157221",
+      "after": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd|regular file|0|0|644|157221",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd",
+      "before": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd|regular file|0|644|50534",
+      "after": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd|regular file|0|0|644|50534",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd",
+      "before": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd|regular file|0|644|10239",
+      "after": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd|regular file|0|0|644|10239",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd",
+      "before": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd|regular file|0|644|79350",
+      "after": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd|regular file|0|0|644|79350",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd",
+      "before": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd|regular file|0|644|76274",
+      "after": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd|regular file|0|0|644|76274",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd",
+      "before": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd|regular file|0|644|2230",
+      "after": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd|regular file|0|0|644|2230",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd",
+      "before": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd|regular file|0|644|8298",
+      "after": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd|regular file|0|0|644|8298",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd",
+      "before": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd|regular file|0|644|5853",
+      "after": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd|regular file|0|0|644|5853",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd",
+      "before": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd|regular file|0|644|1077",
+      "after": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd|regular file|0|0|644|1077",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd",
+      "before": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd|regular file|0|644|2751",
+      "after": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd|regular file|0|0|644|2751",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd",
+      "before": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd|regular file|0|644|11832",
+      "after": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd|regular file|0|0|644|11832",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/xovi.so",
+      "before": "NATIVE|/home/root/xovi/xovi.so|regular file|0|0|644|103008",
+      "after": "NATIVE|/home/root/xovi/xovi.so|regular file|0|0|644|103008",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/extensions.d/appload.so",
+      "before": "NATIVE|/home/root/xovi/extensions.d/appload.so|regular file|0|0|644|4342120",
+      "after": "NATIVE|/home/root/xovi/extensions.d/appload.so|regular file|0|0|644|4342120",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/extensions.d/qt-resource-rebuilder.so",
+      "before": "NATIVE|/home/root/xovi/extensions.d/qt-resource-rebuilder.so|regular file|0|0|644|9496456",
+      "after": "NATIVE|/home/root/xovi/extensions.d/qt-resource-rebuilder.so|regular file|0|0|644|9496456",
+      "equal": true
+    },
+    {
+      "link_target": "LINK_TARGET|/home/root/xovi/exthome/appload/pi-annotations|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app",
+      "equal": true
+    },
+    {
+      "link_target": "LINK_TARGET|/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/sidebar.qmd",
+      "equal": true
+    }
+  ],
+  "passed": 29,
+  "total": 29
+}

@@ -1,0 +1,60 @@
+{
+  "created_at": "2026-11-08T23:32:57.621457+00:00",
+  "health": {
+    "service": "pi-ink-bridge",
+    "protocol": 2,
+    "id": "256377c7f22604161e086b332a63e19b",
+    "fingerprint": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+    "build": "c5df23c290a5c31886c86d4e1af9a226e7d147007fd5843972919ecaa6d1e356",
+    "status": "ready"
+  },
+  "tls_health": {
+    "service": "pi-ink-bridge",
+    "protocol": 2,
+    "id": "256377c7f22604161e086b332a63e19b",
+    "fingerprint": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+    "build": "c5df23c290a5c31886c86d4e1af9a226e7d147007fd5843972919ecaa6d1e356",
+    "status": "ready"
+  },
+  "process_command": "/home/zenobius/.local/share/mise/installs/bun/1.4.3/bin/bun /home/zenobius/.local/share/pi-ink-bridge/runtimes/c5df23c290a5c31886c86d4e1af9a226e7d147007fd5843972919ecaa6d1e356/service.js /home/zenobius/.local/share/pi-ink-bridge 58840 58841 ",
+  "process": {
+    "argv": [
+      "ps",
+      "-o",
+      "pid,ppid,user,args",
+      "-p",
+      "2532009"
+    ],
+    "exit_code": 0,
+    "stdout": "    PID    PPID USER     COMMAND\n2532009 1182041 zenobius /home/zenobius/.local/share/mise/installs/bun/1.4.3/bin/bun /home/zenobius/.local/share/pi-ink-bridge/runtimes/c5df23c290a5c31886c86d4e1af9a226e7d147007fd5843972919ecaa6d1e356/service.js /home/zenobius/.local/share/pi-ink-bridge 58840 58841\n",
+    "stderr": ""
+  },
+  "private_metadata": {
+    "key.pem": {
+      "mode": "0o600",
+      "uid": 1000,
+      "size": 241
+    },
+    "coordinator-id": {
+      "mode": "0o600",
+      "uid": 1000,
+      "size": 33
+    },
+    "certificate.pem": {
+      "mode": "0o600",
+      "uid": 1000,
+      "size": 717
+    }
+  },
+  "startup_lock_absent": true,
+  "ports": {
+    "argv": [
+      "ss",
+      "-ltnp",
+      "( sport = :58840 or sport = :58841 or sport = :47840 )"
+    ],
+    "exit_code": 0,
+    "stdout": "State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                          \nLISTEN 0      512          0.0.0.0:58841      0.0.0.0:*    users:((\"bun\",pid=2532009,fd=5))\nLISTEN 0      512          0.0.0.0:58840      0.0.0.0:*    users:((\"bun\",pid=2532009,fd=6))\nLISTEN 0      512                *:47840            *:*    users:((\"omp\",pid=20453,fd=41)) \n",
+    "stderr": ""
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-11-08T03:39:24.994683+00:00",
+  "documents": [
+    {
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0032.md",
+      "okf_errors": [],
+      "relative_links": 96,
+      "missing_links": []
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+      "okf_errors": [],
+      "relative_links": 97,
+      "missing_links": []
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+      "okf_errors": [],
+      "relative_links": 108,
+      "missing_links": []
+    }
+  ],
+  "self_reference": "markdown-validation.json excluded from pre-write existence check; created exclusively by this operation",
+  "full_bundle_check": "not applicable; workflow reports are not an OKF bundle",
+  "result": "passed"
+}

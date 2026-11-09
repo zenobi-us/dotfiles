@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "mise",
+    "exec",
+    "bun@1.4.3",
+    "--",
+    "bun",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/prepare-runtime.ts",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"build\":\"c5df23c290a5c31886c86d4e1af9a226e7d147007fd5843972919ecaa6d1e356\",\"runtime\":\"/home/zenobius/.local/share/pi-ink-bridge/runtimes/c5df23c290a5c31886c86d4e1af9a226e7d147007fd5843972919ecaa6d1e356\",\"code_sha256\":\"215341b1d83029d7e00118dc3d615c0704d766f4ca7fc713eab52296627c187f\",\"archive_sha256\":\"ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33\",\"installer_sha256\":\"765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f\"}\n",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+}

@@ -1,0 +1,350 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "receipt_id": "implementation-0059",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 20,
+  "parent_receipt": "start-0058",
+  "source_commit": "57491dc0da46ed141e9cb9dbcd6f0c9c02a86744",
+  "source_tree": "520dde688e1157a7cef836f9ec8cceb736bb9ea1",
+  "created_at": "2026-11-09T00:04:50.917287+00:00",
+  "pane_id": "w6T:pB",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T23-59-32-894Z_01a1bd9a-5e1e-743a-bf85-4b20f9d061e0.jsonl",
+  "status": "completed",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058"
+  },
+  "inspected_source_commit": "b829e3a0aa1b51b0af18ab8782d2f5fb299c3a61",
+  "inspected_source_tree": "d5bd04b3980fc9f3590f79a51d259e1ab167e881",
+  "source_production_unchanged": true,
+  "scope_status": "All ticket acceptance criteria passed; implementation ready for fresh independent review.",
+  "implementation_summary": "Completed the final identical pinned production repeat-install gate once, preserved releases/links/public hashes/private metadata/QMD names/UI/boot, removed only the verified owned public-download stage, and set only the ticket work_status to implemented with one evidence comment.",
+  "open_questions": [],
+  "remaining_steps": [
+    "Parent validates durable records, appends completion60, closes child pane",
+    "Fresh independent review of the exact clean implementation source target; no review, merge or push performed"
+  ],
+  "recovery": {
+    "mode": "takeover",
+    "authorization_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/authorization.json",
+    "consumed_parent": "start-0058",
+    "prior_attempt": "start-complete-0057",
+    "ownership": "Parent-authorized fresh child; prior pA done418 and closed; current target agent is w6T:pB",
+    "preserved_partial_source": true
+  },
+  "commits": {
+    "evidence": {
+      "commit": "f1936b8c125dc3c5ae60c4435304f96400acf708",
+      "tree": "28d6dd4e5422fc6fcb27f21d903152e9b7983557"
+    },
+    "tracker": {
+      "commit": "57491dc0da46ed141e9cb9dbcd6f0c9c02a86744",
+      "tree": "520dde688e1157a7cef836f9ec8cceb736bb9ea1"
+    }
+  },
+  "acceptance": {
+    "all_named_ticket_criteria_passed": true,
+    "prior_host_and_native_evidence_retained": true,
+    "native_parent_receipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0057.json",
+    "repeat_installer_exit_code": 0,
+    "repeat_installer_executions": 1,
+    "public_hashes_preserved": 29,
+    "protected_metadata_records_preserved": 42,
+    "per_file_metadata_absence_records_preserved": 34,
+    "retained_qmd_names": 13,
+    "exact_links_preserved": 2,
+    "private_state_absent_before_after": true,
+    "private_contents_exported": 0,
+    "owned_stage_removed": "/home/root/.local/share/pi-ink-bridge/.upgrade-0055.eQVGWv",
+    "public_downloads_removed": 3,
+    "ui_pid": 7146,
+    "ui_state": "active/running",
+    "ui_restarts": 0,
+    "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+    "native_launch_proof": "Prior parent PID8409 fixed binary and owner server-available proof; no new launch or native-state reconfirmation"
+  },
+  "operation_counts": {
+    "created_at": "2026-11-09T00:01:58.141791+00:00",
+    "ssh_invocations": 4,
+    "read_only_preflights": 1,
+    "installer_executions": 1,
+    "postchecks": 1,
+    "owned_stage_cleanups": 1,
+    "public_files_removed": 3,
+    "owned_stage_absent": true,
+    "retries": 0,
+    "repairs": 0,
+    "reboots": 0,
+    "xochitl_restarts": 0,
+    "native_launches": 0,
+    "pairings": 0,
+    "host_service_mutations": 0,
+    "private_contents_exported": 0,
+    "tests_builds_formatters": 0
+  },
+  "validation_results": [
+    {
+      "scenario": "single read-only cable preflight",
+      "exit_code": 0,
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-result.json"
+    },
+    {
+      "scenario": "unchanged pinned production installer",
+      "exit_code": 0,
+      "executions": 1,
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-install-result.json"
+    },
+    {
+      "scenario": "bounded preservation postcheck",
+      "exit_code": 0,
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preservation-verification.json"
+    },
+    {
+      "scenario": "positive guarded exact three-file stage cleanup",
+      "exit_code": 0,
+      "stage_absent": true,
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup-result.json"
+    },
+    {
+      "scenario": "configured tracker v1 validator and mq Report validation",
+      "passed": true,
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/markdown-validation.json"
+    },
+    {
+      "scenario": "prior host tests/builds/native positive proof",
+      "rerun": false,
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0057.json"
+    }
+  ],
+  "tracker_status": "implemented",
+  "merged": false,
+  "pushed": false,
+  "inputs": [
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0058.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0057.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-upgrade.sh"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-postcheck.sh"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-upgrade-verification.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/parent-validation.json"
+    },
+    {
+      "kind": "record",
+      "ref": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/authorization.json"
+    }
+  ],
+  "changed_files": [
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/acceptance-summary.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/authorization.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/child-pane-identity.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup-execution-start.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup-result.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup.sh",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/markdown-validation.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/operation-counts.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/parent-launch-observation.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck-execution-start.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck-result.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck.sh",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-comparison.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-execution-start.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-result.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight.sh",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preservation-verification.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-install-execution-start.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-install-result.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-install.sh",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/source-and-tracker-verification.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/tracker-validation-before.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0059.md",
+    "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+    "tracker/tickets/pi-ink-bridge-02-install-client.md",
+    "workflows/pi-ink-bridge-02-install-client/events/start-0058.json",
+    "workflows/pi-ink-bridge-02-install-client/events/implementation-0059.json"
+  ],
+  "outputs": [
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/acceptance-summary.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/authorization.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/child-pane-identity.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup-execution-start.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup-intent.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup-result.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/cleanup.sh"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/markdown-validation.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/operation-counts.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/parent-launch-observation.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck-execution-start.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck-intent.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck-result.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/postcheck.sh"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-comparison.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-execution-start.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-intent.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight-result.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preflight.sh"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/preservation-verification.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-install-execution-start.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-install-result.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-install.sh"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/repeat-intent.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/source-and-tracker-verification.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/tracker-validation-before.json"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0059.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "record",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "record",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0059.json"
+    }
+  ]
+}

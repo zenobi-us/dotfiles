@@ -1,0 +1,14 @@
+{
+  "isolatedService": {
+    "code": 0,
+    "stdout": "",
+    "stderr": "pitchfork Stopped daemon global/pi-ink-bridge\n"
+  },
+  "isolatedSupervisor": {
+    "code": 0,
+    "stdout": "",
+    "stderr": "pitchfork Stopped pitchfork daemon with pid 943082\n"
+  },
+  "unrelatedProtocol1Listener": "untouched",
+  "deviceAccess": false
+}

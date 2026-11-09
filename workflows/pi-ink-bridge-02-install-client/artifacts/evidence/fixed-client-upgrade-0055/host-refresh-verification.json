@@ -1,0 +1,62 @@
+{
+  "created_at": "2026-11-08T23:28:32.619000+00:00",
+  "instructions": {
+    "service": "pi-ink-bridge",
+    "protocol": 2,
+    "id": "256377c7f22604161e086b332a63e19b",
+    "fingerprint": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+    "build": "c5df23c290a5c31886c86d4e1af9a226e7d147007fd5843972919ecaa6d1e356",
+    "status": "ready",
+    "setupUrl": "http://192.168.86.35:58840/setup",
+    "command": "ssh -o StrictHostKeyChecking=yes root@10.11.99.1 'set -eu; umask 077; work=$(mktemp -d /tmp/pi-ink-install.XXXXXX); trap '\\''rm -rf \"$work\"'\\'' EXIT; cd \"$work\"; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/install.sh'\\'' -o install.sh; printf '\\''%s  install.sh\\n'\\'' '\\''765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f'\\'' | sha256sum -c -; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/client.zip'\\'' -o client.zip; printf '\\''%s  client.zip\\n'\\'' '\\''ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33'\\'' | sha256sum -c -; curl --fail --silent --show-error --max-time 120 '\\''http://192.168.86.35:58840/tablet/server.json'\\'' -o server.json; printf '\\''%s  server.json\\n'\\'' '\\''bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e'\\'' | sha256sum -c -; sh ./install.sh '\\''ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33'\\'' '\\''bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e'\\'''"
+  },
+  "served": {
+    "server.json": {
+      "sha256": "bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e",
+      "size": 930
+    },
+    "install.sh": {
+      "sha256": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+      "size": 3013
+    },
+    "client.zip": {
+      "sha256": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+      "size": 2971444
+    }
+  },
+  "tls_health": {
+    "service": "pi-ink-bridge",
+    "protocol": 2,
+    "id": "256377c7f22604161e086b332a63e19b",
+    "fingerprint": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+    "build": "c5df23c290a5c31886c86d4e1af9a226e7d147007fd5843972919ecaa6d1e356",
+    "status": "ready"
+  },
+  "status": {
+    "argv": [
+      "mise",
+      "exec",
+      "pitchfork@2.30.1",
+      "--",
+      "pitchfork",
+      "status",
+      "pi-ink-bridge"
+    ],
+    "exit_code": 0,
+    "stdout": "Name: global/pi-ink-bridge\nPID: 2532009\nStatus: running\n",
+    "stderr": ""
+  },
+  "ports": {
+    "argv": [
+      "ss",
+      "-ltnp",
+      "( sport = :58840 or sport = :58841 or sport = :47840 )"
+    ],
+    "exit_code": 0,
+    "stdout": "State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                          \nLISTEN 0      512          0.0.0.0:58841      0.0.0.0:*    users:((\"bun\",pid=2532009,fd=5))\nLISTEN 0      512          0.0.0.0:58840      0.0.0.0:*    users:((\"bun\",pid=2532009,fd=6))\nLISTEN 0      512                *:47840            *:*    users:((\"omp\",pid=20453,fd=41)) \n",
+    "stderr": ""
+  },
+  "persistence": "Checks performed after addDevice caller exited",
+  "stop_count": 1,
+  "start_count": 1
+}

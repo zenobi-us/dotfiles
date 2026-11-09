@@ -1,0 +1,113 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0022",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 8,
+  "parent_receipt": "start-complete-0021",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "3f8b679686fb3196fdd39f5b5ed80b7203503fb9",
+  "source_tree": "d4bbee6c9cfe001b83ec05cc6e8356d3ba14fa65",
+  "created_at": "2026-11-08T01:51:58.606Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0021.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0020.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/corrected-preflight-proposal.sh"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/corrected-preflight-proposal.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/installation-approval-request.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0022.json"
+    }
+  ],
+  "status": "started",
+  "recovery": {
+    "mode": "takeover",
+    "reason": "User approved fresh corrected preflight and one unchanged pinned installation after prior agent-added guard stopped before execution. Previous installer executions zero.",
+    "authorization": {
+      "user_text": "approved",
+      "scope": "One fresh corrected recorded preflight; at most one unchanged pinned installer execution after all required checks pass. No restart, activation, pairing, repeat install or automatic retry."
+    },
+    "ownership": "No current child in source worktree; previous stopped-attempt child done/closed. Claim retained. Fresh pane w6R:p6.",
+    "reservations": "Inspector reports valid history and unique clean source, start/takeover. No active child/coordinator dispatch identified.",
+    "public_trust": {
+      "server_id": "256377c7f22604161e086b332a63e19b",
+      "https_origin": "https://192.168.86.35:58841",
+      "setup_url": "http://192.168.86.35:58840/setup",
+      "certificate_sha256": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+      "trust_record_sha256": "bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e",
+      "payload_sha256": {
+        "installer": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+        "zip": "03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+        "sidebar": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be"
+      }
+    },
+    "allowed_targets": [
+      "/home/root/.local/share/pi-ink-bridge",
+      "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+      "/home/root/xovi/exthome/appload/pi-annotations",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd"
+    ],
+    "required_preflight": [
+      "Recheck exact stock/native hashes, model/architecture/IMG_VERSION and all approved target types/owners/permissions; abort on drift, unsafe symlinks, occupied targets or changed retained QMD manifest.",
+      "Verify installer and ZIP against listed SHA256 before executing or extracting. Verify packaged sidebar.qmd is the validated production bytes.",
+      "Use only the fixed production target set. Preserve every retained QMD, prototype installation/service and all unrelated data. No automatic repair or retry.",
+      "Fresh strict known-host verification, model Ferrari/aarch64, IMG_VERSION 3.28.0.172 and stock/native hashes; compare exact captured QMD manifest and target absence/ownership/no-symlink boundaries. Abort on drift. Preserve prototype and all unrelated data.",
+      "Confirm generated instructions still contain exactly these payload/trust hashes and endpoint; no automatic retry/repair. Desktop-local TLS does not prove tablet LAN/firewall reachability."
+    ],
+    "limits": [
+      "One installer execution; stop on drift, collisions, failure or uncertain operation outcome. No automatic retries, repair, cleanup of unknown partial state or source changes.",
+      "Strict existing SSH host key, batch authentication, cable endpoint only. Verify all three downloads before execution/extraction.",
+      "Do not restart/reboot/pair, touch notebooks/drafts, replace retained QMD/prototype/service files, alter firmware/Developer Mode/firewall/cloud/account or access port47840.",
+      "Record preflight, fixed intended write manifest and operation-start evidence durably before running mutation. Preserve failure/partial source evidence.",
+      "Verify only installed owned byte identities, link targets and metadata/public bootstrap identity afterward. No native UI launch or private record content access."
+    ],
+    "corrected_preflight": {
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/corrected-preflight-proposal.sh",
+      "sha256": "16a4fa0672d18d5f548b94673d7477857e95015f4e93174fd5bfda0f8f4d254e",
+      "instruction": "Use recorded corrected script, do not recreate or add new guards. Root checked directory/type/owner only, never writability."
+    },
+    "prior_installer_executions": 0
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "status": "host-passed-device-blocked",
+  "validation": [
+    {"command": "MISE_AUTO_INSTALL=0 mise exec -- bun run typecheck", "result": "passed"},
+    {"command": "MISE_AUTO_INSTALL=0 mise exec -- bun run build", "result": "passed; Vite emitted existing third-party use-client and chunk-size warnings"},
+    {"command": "MISE_AUTO_INSTALL=0 mise exec -- bun test test", "result": "24 passed, 0 failed, 195 assertions"},
+    {"command": "MISE_AUTO_INSTALL=0 mise exec go@1.25.0 -- go test -race ./...", "result": "passed; image-annotator-tablet, 22.430s"},
+    {"command": "sh scripts/provision-tablet.sh --dry-run", "result": "passed; printed local ZIP and installer digests; no service or device connection"},
+    {"command": "sh -n scripts/provision-tablet.sh tablet-client/production-install.sh tablet-client/build.sh tablet-appload/entry", "result": "passed"},
+    {"command": "MISE_AUTO_INSTALL=0 mise exec -- bun run build:tablet", "result": "repeat build passed; identical ZIP SHA-256 03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629"}
+  ],
+  "smoke": [
+    "Two independent processes invoked the registered /annotate add-device handler through a controlled agent-host API boundary. Both succeeded with the same server identity and certificate fingerprint.",
+    "The real Pitchfork-managed service remained ready after both extension processes exited. A later start retained the identity and fingerprint.",
+    "The existing unrelated protocol-1 listener caused readiness failure without a success notification. It was not stopped. Isolated ports 58840/58841 proved the successful path.",
+    "Chromium displayed both trusted loopback instructions and a LAN page without trusted digests. Managed browser tabs were closed.",
+    "Altered installer, ZIP, and trust-record responses failed checksum verification before installer execution. The SSH boundary was replaced by a local shell; no device connection occurred.",
+    "Unaltered verified downloads reached the installer, which rejected non-root host permissions before installation.",
+    "The actual Connections.qml rendered under Qt 6.8.3 with the real Go backend over SOCK_SEQPACKET. A host transport emulator replaced only the unavailable native AppLoad module. Verified available and offline states were observed. This is not tablet acceptance.",
+    "The isolated service and supervisor were stopped. Temporary host smoke scripts, configurations, and binaries were removed. No tablet access occurred."
+  ],
+  "known_limits": [
+    "No device connection, installation, restart, reboot, Developer Mode action, or firmware action is authorized.",
+    "Real Paper Pro dependency versions, QMD compatibility alongside retained extensions, post-restart sidebar launch, tablet repeat installation, and firmware rejection still require scoped owner approval and device observations.",
+    "Pairing, discovery, and job actions belong to later tickets; this connection screen reports availability separately from pairing.",
+    "No independent review, merge, or push occurred."
+  ],
+  "resolved_diagnostics": [
+    "The first bundled service included an optional dbus-next x11 dependency. Stable identity storage was separated and obsolete extension-lifetime Avahi registration was removed.",
+    "Pitchfork did not inherit updated caller listener settings from an already running supervisor. The supervised command now passes storage and ports explicitly.",
+    "A static test port collided with another listener. Service integration tests now use OS-assigned ports.",
+    "An initial TLS negative test used localhost, which the fixture certificate covers. It now uses an explicit mismatched TLS server name and passes with -race.",
+    "Generic mise exec attempted unrelated tool installation during diagnostics. Those jobs were stopped; runtime setup now disables auto-install and selects pinned tools explicitly."
+  ]
+}

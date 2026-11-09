@@ -1,0 +1,28 @@
+{
+  "created_at": "2026-11-08T23:29:49.588739+00:00",
+  "passed": true,
+  "public_hashes": 23,
+  "exact_metadata_records": 42,
+  "exact_old_link_targets": 2,
+  "named_metadata_and_targets": 44,
+  "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+  "ui_pid": "3641",
+  "new_release_absent": true,
+  "active_client_absent": true,
+  "atomic_rename": "BusyBox mv -T; source and destination stat st_dev match; no cross-device fallback expected",
+  "qmd_names": [
+    "betterTocCollapse.qmd",
+    "betterToc.qmd",
+    "bluetoothSettings.qmd",
+    "computed-widgets-01-live-document-probe.qmd",
+    "floating.qmd",
+    "linkFromSelection.qmd",
+    "link-touch-targets.qmd",
+    "pi-annotations.qmd",
+    "pi-ink-bridge-0049.qmd",
+    "quickSettingsBluetooth.qmd",
+    "randomSleepScreen.qmd",
+    "retaskableJump.qmd",
+    "retaskableSend.qmd"
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-logs-0043"
+  },
+  "receipt_id": "start-complete-0045",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 15,
+  "parent_receipt": "implementation-0044",
+  "source_commit": "a417751a3938946154f0ffd16e31f93d4f698ace",
+  "source_tree": "34eb21163f86e0175f8565002693156da17659a0",
+  "created_at": "2026-11-08T07:44:20.538Z",
+  "pane_id": null,
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "status": "blocked",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0043.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0044.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-logs-0043/authorization.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-logs-0043/capture-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-logs-0043/capture-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-logs-0043/redacted-excerpt.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-logs-0043/diagnosis.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-logs-0043/privacy-report.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-logs-0043/markdown-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-logs-0043/workflow-inspection.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0044.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0044.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/parent-provenance.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0045.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-logs-0043/parent-framing-analysis.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Shared inspector selects start/reconcile implementation-0044. Validated source/result trees, workflow-only scope, bounded capture/privacy, sanitized EOF ordering and source-derived empty-body framing mismatch. No device capture repeated.",
+    "authorization": {
+      "created_at": "2026-11-08T07:33:04.206Z",
+      "user_text": "approve",
+      "in_reply_to": "Next approval: bounded existing Xochitl/AppLoad log capture, retained privately and redacted. It may include unrelated identifiers because server-side filtering is unavailable. No reopen, restart, reinstall or repair.",
+      "scope": "Exactly one bounded read-only existing-journal capture for xochitl.service in the recorded launch window. Private raw local retention, host-only app-specific filtering and redaction, sanitized findings only in Git. No reopening, native launch, restart, reinstall, pairing, repair, source/config change or automatic retry.",
+      "bounds": {
+        "since": "2026-11-08 07:11:23 UTC",
+        "until": "2026-11-08 07:21:20 UTC",
+        "max_entries": 300,
+        "max_raw_output_bytes": 2097152,
+        "timeout_seconds": 45,
+        "network_ssh_limit": 1
+      },
+      "privacy": "Owner explicitly approves broader existing unit-log visibility, which can contain unrelated identifiers. Never publish raw logs or unrelated content; raw directories0700/files0600, sanitize relevant findings locally.",
+      "ownership": "No live source-worktree agents returned by Herdr list; root shell p1/workspace w6T retained; p5 done/closed, new p6 independent. Existing claim retained; no competing matching goal dispatch identified.",
+      "inspection": {
+        "historyValid": true,
+        "source_commit": "4bc79d3c1b28091de8437fe33babaeab24659af4",
+        "source_tree": "397ff45e5d7fa62b1917d744951da604932c254c",
+        "dirty": false,
+        "decision": {
+          "action": "start",
+          "mode": "takeover",
+          "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0042.json",
+          "requiredApproval": true
+        }
+      }
+    },
+    "ownership": "Fresh child w6T:p6 done completion_seq357 and closed. Root shell/workspace/worktree and held claim retained.",
+    "history_valid": true
+  },
+  "validated_result": {
+    "receipt": "implementation-0044",
+    "source_commit": "4bc79d3c1b28091de8437fe33babaeab24659af4",
+    "source_tree": "397ff45e5d7fa62b1917d744951da604932c254c",
+    "exact_tree_verified": true,
+    "result_scope": "Only authorized workflow records changed.",
+    "capture": {
+      "network_ssh_executions": 1,
+      "code": 0,
+      "elapsed_seconds": 0.6395,
+      "raw_combined_bytes": 220085,
+      "entry_count": 300,
+      "selected_redacted_entries": 70,
+      "unrelated_entries_dropped": 230,
+      "entry_cap_reached": true,
+      "byte_truncation": false,
+      "timeout": false
+    },
+    "observed": [
+      "The capture contains four existing AppLoad registration/socket/termination sequences for org.pi-ink.annotations. These are journal sequences, not a verified count of owner actions or launches in this attempt.",
+      "Each sequence contains a plain EOF diagnostic from a different PID before AppLoad reports Failed to send message header, closes the socket, unloads frontends, and reports Application org.pi-ink.annotations terminated.",
+      "EOF records have SYSLOG_IDENTIFIER xochitl and no _EXE field. Backend attribution and precise read call are not established by the retained metadata.",
+      "The final captured entry is 07:18:40.669620 UTC. The 300-entry cap may omit earlier records; no later matching record in this result does not prove no later failure."
+    ],
+    "privacy": {
+      "raw_outside_git": true,
+      "private_directory_mode": "0700",
+      "raw_file_modes": "0600",
+      "child_scan_sensitive_values": 693,
+      "child_scan_result": "All proposed committed content compared against captured sensitive values and dropped unrelated full messages; zero matches. Only sanitized lifecycle and EOF diagnostics retained.",
+      "raw_bodies_read_by_parent": false
+    },
+    "child_completion": "Herdr done completion_seq357",
+    "child_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T07-34-03-067Z_01a1ba14-1e3b-7292-b403-b89279ee63b0.jsonl",
+    "pane_close": "type ok"
+  },
+  "parent_analysis": {
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-logs-0043/parent-framing-analysis.json",
+    "source_protocol_mismatch_established": true,
+    "likely_native_cause": "Empty body record left queued by Go reader causes next header read to fail; consistent with observed EOF and app termination.",
+    "native_causality_verified": false,
+    "host_packet_probe": true,
+    "new_tablet_contacts": 0,
+    "source_changes": 0
+  },
+  "operation_counts": {
+    "network_ssh_executions": 1,
+    "restarts": 0,
+    "native_launches": 0,
+    "installs": 0,
+    "repairs": 0,
+    "retries": 0,
+    "source_changes": 0,
+    "tracker_changes": 0,
+    "builds_tests_formatters": 0,
+    "parent_host_socket_probes": 1,
+    "parent_additional_tablet_contacts": 0
+  },
+  "native_acceptance": false,
+  "blocker": "Concrete AppLoad/Go empty-payload framing mismatch identified; native causal verification and repair not performed. Host repair and rebuilt payload require separate approval before any device change.",
+  "next_approval": "With approval, fix backend frame consumption on the host, add behavior regression coverage for empty records, run host checks and rebuild with new payload hashes. No tablet deployment, restart, reopening or pairing under that approval."
+}

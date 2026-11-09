@@ -1,0 +1,258 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0038",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 13,
+  "parent_receipt": "start-0037",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "a08a6c69d9ef79bf9a8a51e33dbc16f3068588b8",
+  "source_tree": "2ab0c0123cbd782481e0ae671270cc3630e57b5a",
+  "created_at": "2026-11-08T04:59:11.458374+00:00",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": "w6T:p4",
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T04-55-21-504Z_01a1b982-d4a0-75ba-83c6-041d043c078e.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0037.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0036.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/authorization.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/preflight-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/read-only-postcheck.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/preflight-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/capture-manifest.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/preflight-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/preflight-outcome.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/execution-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/preflight-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/preflight-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/preflight-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/preflight-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/session-scope.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/workflow-inspection.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/markdown-validation.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0038.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0038.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    }
+  ],
+  "status": "blocked",
+  "changed_files": [
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/authorization.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/execution-start.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/preflight-comparison.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/preflight-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/preflight-outcome.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/preflight-result.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/session-scope.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/workflow-inspection.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/markdown-validation.json",
+    "workflows/pi-ink-bridge-02-install-client/events/start-0037.json",
+    "workflows/pi-ink-bridge-02-install-client/events/implementation-0038.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0038.md",
+    "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+  ],
+  "validation": [
+    {
+      "name": "exact script and argv equality",
+      "status": "passed",
+      "script_bytes": 15490,
+      "script_sha256": "c700577a24beeeb4ed2cce252ccd8c3ace1f8fb82a1564d64ef0ac033e3528aa"
+    },
+    {
+      "name": "single real read-only SSH stdin preflight",
+      "status": "passed",
+      "code": 0,
+      "elapsed_seconds": 1.6224401270010276,
+      "last_stage": "STAGE=complete"
+    },
+    {
+      "name": "host identity comparisons",
+      "status": "passed",
+      "passed": 91,
+      "total": 91,
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/preflight-comparison.json"
+    },
+    {
+      "name": "Markdown and local links",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/markdown-validation.json",
+      "status": "see durable validation output"
+    }
+  ],
+  "implementation_summary": "Exact guarded stdin preflight passed; all installed, retained, dependency, platform and PID/service identities matched. No source change or activation. Whole ticket remains BLOCKED.",
+  "open_questions": [
+    "Native restart/observation and repeat-install acceptance require separate approval.",
+    "Current desktop host service state unverified.",
+    "Prior Dropbear exact server-build cause unconfirmed."
+  ],
+  "counts": {
+    "preflight_executions": 1,
+    "network_ssh_executions": 1,
+    "retries": 0,
+    "restarts": 0,
+    "installer_executions": 0,
+    "native_launches": 0,
+    "pairing_actions": 0,
+    "device_staging_files": 0,
+    "source_changes": 0,
+    "tracker_changes": 0,
+    "builds_tests_formatters": 0
+  },
+  "outcome": {
+    "created_at": "2026-11-08T04:58:27.099022+00:00",
+    "preflight_status": "passed",
+    "ticket_status": "BLOCKED",
+    "code": 0,
+    "signal": null,
+    "timed_out": false,
+    "elapsed_seconds": 1.6224401270010276,
+    "last_observed_ssh_stage": "exec request accepted; remote exit status 0",
+    "last_observed_script_stage": "STAGE=complete",
+    "observed_stage_count": 11,
+    "comparison_status": "passed",
+    "comparisons_passed": 91,
+    "comparisons_total": 91,
+    "fresh_differences": [],
+    "counts": {
+      "preflight_executions": 1,
+      "network_ssh_executions": 1,
+      "retries": 0,
+      "restarts": 0,
+      "installer_executions": 0,
+      "native_launches": 0,
+      "pairing_actions": 0,
+      "device_staging_files": 0,
+      "source_changes": 0,
+      "tracker_changes": 0,
+      "builds_tests_formatters": 0
+    },
+    "unobserved": [
+      "Current desktop host service state",
+      "Native UI/backend launch acceptance",
+      "Repeat-install acceptance",
+      "Tablet Dropbear compiled command-length limit/server failure logs"
+    ],
+    "uncertainty": "Stdin success supports oversized exec argument as the prior failure cause. Tablet compiled Dropbear limit and server logs were not read; exact server-build cause remains unconfirmed.",
+    "native_acceptance": false,
+    "repeat_install": false,
+    "next_scoped_action_proposed": "Separate owner approval for saved/closed documents, one Xochitl restart and bounded native observation. Repeat-install acceptance needs separate approval. No tablet UI selection requested now.",
+    "scope_result": "No source/tracker/tool changes; no restart/install/native launch; no host-service inspection or prototype contact."
+  },
+  "recovery": {
+    "mode": "takeover",
+    "reason": "Fresh authorized child attempt13 consumes parent start-0037; no duplicate start or network retry.",
+    "authorization_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/authorization.json",
+    "prior_attempt": 12,
+    "ownership_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/session-scope.json",
+    "history_valid": true
+  },
+  "parent_completion_pending": true
+}

@@ -1,0 +1,111 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "receipt_id": "start-0037",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 13,
+  "parent_receipt": "start-complete-0036",
+  "source_commit": "a08a6c69d9ef79bf9a8a51e33dbc16f3068588b8",
+  "source_tree": "2ab0c0123cbd782481e0ae671270cc3630e57b5a",
+  "created_at": "2026-11-08T04:54:26.956Z",
+  "pane_id": "w6T:p4",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037"
+  },
+  "status": "started",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0036.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0035.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/preflight-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/dropbear-upstream-boundary.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0037.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/authorization.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "recovery": {
+    "mode": "takeover",
+    "reason": "Owner approves only changing script delivery from oversized exec argument to stdin for identical guarded read-only preflight; no activation.",
+    "authorization": {
+      "created_at": "2026-11-08T04:54:26.956Z",
+      "user_text": "approved",
+      "in_reply_to": "Next approval: one read-only run of the identical guarded script through stdin to sh -s. No activation or retry.",
+      "scope": "One bounded strict read-only SSH invocation executing sh -s with the exact15490-byte guarded staged-preflight script supplied on stdin. No staging file, guard changes, retry, restart, installation, native launch, repair or pairing.",
+      "script": {
+        "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/preflight-intent.json",
+        "field": "script",
+        "bytes": 15490,
+        "sha256": "c700577a24beeeb4ed2cce252ccd8c3ace1f8fb82a1564d64ef0ac033e3528aa"
+      },
+      "ownership": "No live source-worktree agents returned by Herdr list; w6T retained with root shell p1 and fresh p4. Prior child p3 done/closed. Existing claim retained; no competing matching goal dispatch identified.",
+      "inspection": {
+        "historyValid": true,
+        "source_commit": "a08a6c69d9ef79bf9a8a51e33dbc16f3068588b8",
+        "source_tree": "2ab0c0123cbd782481e0ae671270cc3630e57b5a",
+        "dirty": false,
+        "decision": {
+          "action": "start",
+          "mode": "takeover",
+          "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0036.json",
+          "requiredApproval": true
+        }
+      }
+    },
+    "prior_attempt": 12
+  },
+  "network_ssh_limit": 1,
+  "restarts_authorized": 0,
+  "installer_executions_authorized": 0,
+  "automatic_retries_authorized": 0
+}

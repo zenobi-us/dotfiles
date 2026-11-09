@@ -1,0 +1,7 @@
+{
+  "created_at": "2026-11-08T23:43:19.450Z",
+  "intent_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/parent-native-verification-intent.json",
+  "read_only_ssh_invocations_started": 1,
+  "native_launches_started_by_agent": 0,
+  "restarts_started": 0
+}

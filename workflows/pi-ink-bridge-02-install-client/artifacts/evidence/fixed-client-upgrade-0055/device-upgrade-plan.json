@@ -1,0 +1,113 @@
+{
+  "created_at": "2026-11-08T23:30:29.677883+00:00",
+  "authorization_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/authorization.json",
+  "preflight_result": "device-preflight-result.json",
+  "argv": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ConnectionAttempts=1",
+    "-o",
+    "ConnectTimeout=10",
+    "-o",
+    "ServerAliveInterval=10",
+    "-o",
+    "ServerAliveCountMax=1",
+    "-o",
+    "ForwardAgent=no",
+    "-o",
+    "ForwardX11=no",
+    "-o",
+    "ClearAllForwardings=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "-o",
+    "ControlPersist=no",
+    "-o",
+    "UpdateHostKeys=no",
+    "root@10.11.99.1",
+    "sh -s"
+  ],
+  "script_sha256": "35478137710306d5bbb71148a683bad72e1fa6e9ee6e59fc46aa78d6aaea454a",
+  "postcheck_script_sha256": "bb10f84e2d6fd198b0e0362c9a8cccf137770cb1a21dc62616e5c9058a4a0ff1",
+  "pinned_payloads": {
+    "server.json": {
+      "sha256": "bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e",
+      "size": 930
+    },
+    "install.sh": {
+      "sha256": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+      "size": 3013
+    },
+    "client.zip": {
+      "sha256": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+      "size": 2971444
+    }
+  },
+  "zip_member_safety": {
+    "validated_on_host": true,
+    "exact_members": {
+      "pi-ink-client": {
+        "sha256": "433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051",
+        "size": 7405752,
+        "unchanged_from_previous_package": false,
+        "architecture": "ELF64 little-endian Linux AArch64, e_machine183"
+      },
+      "VERSION": {
+        "sha256": "40b8eb4000a913a7791090535f291d3d369874162a89ef3c9e3d4e887a1b9e79",
+        "size": 6,
+        "unchanged_from_previous_package": true
+      },
+      "sidebar.qmd": {
+        "sha256": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be",
+        "size": 949,
+        "unchanged_from_previous_package": true
+      },
+      "app/manifest.json": {
+        "sha256": "265d2ea700c8b20a49d6e9f67489b9431adacbd4f6a588bee23505affe393aad",
+        "size": 213,
+        "unchanged_from_previous_package": true
+      },
+      "app/backend/entry": {
+        "sha256": "0c983d6d4593556720704fdccd2c08733853eb3982cb03359fdeaa68d0dd6efb",
+        "size": 194,
+        "unchanged_from_previous_package": true
+      },
+      "app/resources.rcc": {
+        "sha256": "e2407b9544dbcf351c49ac330721c181fb4a9a86fe24da245ad4189d7a43c8c5",
+        "size": 2796,
+        "unchanged_from_previous_package": false
+      }
+    },
+    "symlinks": 0,
+    "traversal": 0,
+    "device_extraction": "After independently trusted archive SHA256 verification, unzip -p writes exactly six hardcoded paths in exclusive staging; installer fetched and hashed but not executed"
+  },
+  "release": "/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+  "old_release": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+  "owned_links": {
+    "/home/root/xovi/exthome/appload/pi-annotations": "app",
+    "/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd": "sidebar.qmd"
+  },
+  "write_sequence": [
+    "Exclusive private stage in owned home",
+    "Three pinned downloads, all hashes checked before extraction",
+    "Six explicit payload outputs, pinned metadata and hashes",
+    "mv -T complete payload to absent immutable release",
+    "Stage symlink outside discovery then validate exact old link immediately before each mv -T",
+    "Read-only preservation postcheck, all old23 plus new6 hashes"
+  ],
+  "atomicity": "Each link rename individually atomic on st_dev65026; no pair-atomicity claim",
+  "preserve_stage": "No automatic cleanup or rollback; retain exact stage/download evidence",
+  "retries": 0,
+  "ordinary_installer_executions": 0,
+  "private_content_reads": 0,
+  "native_launches": 0,
+  "timeout_seconds": 420
+}

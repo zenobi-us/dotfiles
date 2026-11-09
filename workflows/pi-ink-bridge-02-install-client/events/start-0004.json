@@ -1,0 +1,80 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0004",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 2,
+  "parent_receipt": "start-complete-0003",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "5a662108044deba17ed09e453be8e2b0e1c98ffb",
+  "source_tree": "34c20c0956c512abdeac946e7e44129f3533fe3d",
+  "created_at": "2026-11-07T22:50:08.581Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0003.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0002.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-20261108-install-001/device-approval-request.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0004.json"
+    }
+  ],
+  "status": "started",
+  "recovery": {
+    "mode": "takeover",
+    "reason": "Continue requested after blocked device acceptance. Preserve host implementation and run only next bounded read-only cable preflight in a fresh session.",
+    "authorization": {
+      "user_text": "continue next",
+      "scope": "Only next previously named step: cable-connected read-only preflight. No installation, device writes, restart, firmware or Developer Mode action.",
+      "prior_approvals": [
+        "Authorize takeover",
+        "Start new from master"
+      ]
+    },
+    "ownership": "Prior child reported done and pane was closed. Current Herdr listing contains no agent in source worktree.",
+    "reservations": "Inspector returned start/takeover and no active owner or goal reservation; existing claim retained.",
+    "workspace_observation": "Prior workspace w6N no longer exists after last pane closure. Existing worktree is unchanged; reopened as w6P.",
+    "source_preserved": true,
+    "device_limits": [
+      "Use verified known SSH host key and cable endpoint only. Never accept-new or bypass host verification.",
+      "Read model, architecture, firmware, stock binary hash, dependency versions and file metadata only.",
+      "Inspect only named installation paths and launcher collisions. Never read credentials, pairing records, drafts or notebook contents.",
+      "Stop on unavailable cable, authentication/host-key failure, unsupported device or ambiguous compatibility.",
+      "No service stops, restarts, installs, deletions, chmod, remounts, firewall or cloud/account changes."
+    ]
+  }
+}

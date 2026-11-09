@@ -1,0 +1,603 @@
+{
+  "coverage": {
+    "requested_bounds": {
+      "since": "2026-11-08 07:11:23 UTC",
+      "until": "2026-11-08 07:21:20 UTC",
+      "max_entries": 300,
+      "max_raw_output_bytes": 2097152,
+      "timeout_seconds": 45,
+      "network_ssh_limit": 1
+    },
+    "parsed_entries": 300,
+    "malformed_lines": 0,
+    "first_entry_timestamp": "1794121884285151",
+    "last_entry_timestamp": "1794122320669620",
+    "first_entry_utc": "2026-11-08T07:11:24.285151+00:00",
+    "last_entry_utc": "2026-11-08T07:18:40.669620+00:00",
+    "entry_cap_reached": true,
+    "earlier_entries_may_be_omitted": true,
+    "byte_or_deadline_truncation": false,
+    "selected_entries": 70,
+    "dropped_entries": 230,
+    "requested_fields": [
+      "MESSAGE",
+      "_PID",
+      "SYSLOG_IDENTIFIER",
+      "_EXE",
+      "__REALTIME_TIMESTAMP"
+    ],
+    "retained_fields": [
+      "MESSAGE",
+      "SYSLOG_IDENTIFIER",
+      "_EXE",
+      "_PID",
+      "__REALTIME_TIMESTAMP"
+    ],
+    "dropped_implicit_fields": [
+      "_BOOT_ID",
+      "__CURSOR",
+      "__MONOTONIC_TIMESTAMP",
+      "__SEQNUM",
+      "__SEQNUM_ID"
+    ],
+    "absence_is_not_proof_of_no_failure": true
+  },
+  "entries": [
+    {
+      "entry_index": 197,
+      "MESSAGE": "[AppLoad]: Waiting for connection on socket [path-97cc9de9b4]",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260272062"
+    },
+    {
+      "entry_index": 198,
+      "MESSAGE": "[AppLoad]: Socket OK. FD is 66",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260292573"
+    },
+    {
+      "entry_index": 199,
+      "MESSAGE": "[AppLoad]: Message sent to ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260294169"
+    },
+    {
+      "entry_index": 200,
+      "MESSAGE": "[AppLoad]: Registered appload endpoint ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260294169"
+    },
+    {
+      "entry_index": 202,
+      "MESSAGE": "[AppLoad]: Message sent to ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260306037"
+    },
+    {
+      "entry_index": 204,
+      "MESSAGE": "EOF",
+      "_PID": "30346",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "__REALTIME_TIMESTAMP": "1794122260654420"
+    },
+    {
+      "entry_index": 205,
+      "MESSAGE": "[AppLoad]: There are 1 controllers",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260655637"
+    },
+    {
+      "entry_index": 207,
+      "MESSAGE": "[AppLoad]: Failed to send message header to ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260655637"
+    },
+    {
+      "entry_index": 208,
+      "MESSAGE": "[AppLoad]: Closed socket for client ID: org.pi-ink.annotations - FD: 66, signaled to thread: 89",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260655637"
+    },
+    {
+      "entry_index": 209,
+      "MESSAGE": "[AppLoad]: Unloading frontends of org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260655637"
+    },
+    {
+      "entry_index": 211,
+      "MESSAGE": "[AppLoad]: Application org.pi-ink.annotations terminated.",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260655637"
+    },
+    {
+      "entry_index": 213,
+      "MESSAGE": "[AppLoad]: Cannot terminate client ID (backend is not running or socket is not associated):org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260670383"
+    },
+    {
+      "entry_index": 214,
+      "MESSAGE": "[AppLoad]: Unloading frontends of org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260670383"
+    },
+    {
+      "entry_index": 215,
+      "MESSAGE": "[AppLoad]: Cannot terminate client ID (backend is not running or socket is not associated):org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260670875"
+    },
+    {
+      "entry_index": 217,
+      "MESSAGE": "[AppLoad]: Unregistered appload endpoint ID: org.pi-ink.annotations at 0xdb17110",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260767068"
+    },
+    {
+      "entry_index": 218,
+      "MESSAGE": "[AppLoad]: No active socket for ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122260767068"
+    },
+    {
+      "entry_index": 222,
+      "MESSAGE": "[AppLoad]: Waiting for connection on socket [path-97cc9de9b4]",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122264482192"
+    },
+    {
+      "entry_index": 223,
+      "MESSAGE": "[AppLoad]: No active socket for ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122264484414"
+    },
+    {
+      "entry_index": 224,
+      "MESSAGE": "[AppLoad]: Registered appload endpoint ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122264484414"
+    },
+    {
+      "entry_index": 226,
+      "MESSAGE": "[AppLoad]: No active socket for ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122264496862"
+    },
+    {
+      "entry_index": 227,
+      "MESSAGE": "[AppLoad]: Socket OK. FD is 67",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122264500609"
+    },
+    {
+      "entry_index": 228,
+      "MESSAGE": "[AppLoad]: Message sent to ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122264500922"
+    },
+    {
+      "entry_index": 229,
+      "MESSAGE": "[AppLoad]: Message sent to ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122269492693"
+    },
+    {
+      "entry_index": 231,
+      "MESSAGE": "[AppLoad]: There are 1 controllers",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122269516852"
+    },
+    {
+      "entry_index": 232,
+      "MESSAGE": "EOF",
+      "_PID": "30362",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "__REALTIME_TIMESTAMP": "1794122269517078"
+    },
+    {
+      "entry_index": 234,
+      "MESSAGE": "[AppLoad]: Failed to send message header to ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122269518226"
+    },
+    {
+      "entry_index": 235,
+      "MESSAGE": "[AppLoad]: Closed socket for client ID: org.pi-ink.annotations - FD: 67, signaled to thread: 92",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122269518226"
+    },
+    {
+      "entry_index": 236,
+      "MESSAGE": "[AppLoad]: Unloading frontends of org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122269518226"
+    },
+    {
+      "entry_index": 238,
+      "MESSAGE": "[AppLoad]: Application org.pi-ink.annotations terminated.",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122269518226"
+    },
+    {
+      "entry_index": 240,
+      "MESSAGE": "[AppLoad]: Cannot terminate client ID (backend is not running or socket is not associated):org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122269525173"
+    },
+    {
+      "entry_index": 241,
+      "MESSAGE": "[AppLoad]: Unloading frontends of org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122269525388"
+    },
+    {
+      "entry_index": 242,
+      "MESSAGE": "[AppLoad]: Cannot terminate client ID (backend is not running or socket is not associated):org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122269525746"
+    },
+    {
+      "entry_index": 244,
+      "MESSAGE": "[AppLoad]: Unregistered appload endpoint ID: org.pi-ink.annotations at 0xdaf6120",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122269629395"
+    },
+    {
+      "entry_index": 245,
+      "MESSAGE": "[AppLoad]: No active socket for ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122269629395"
+    },
+    {
+      "entry_index": 249,
+      "MESSAGE": "Waiting for connection on socket [path-97cc9de9b4]",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122280066075"
+    },
+    {
+      "entry_index": 250,
+      "MESSAGE": "[AppLoad]: No active socket for ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122280068615"
+    },
+    {
+      "entry_index": 251,
+      "MESSAGE": "[AppLoad]: Registered appload endpoint ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122280068615"
+    },
+    {
+      "entry_index": 253,
+      "MESSAGE": "[AppLoad]: No active socket for ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122280079244"
+    },
+    {
+      "entry_index": 254,
+      "MESSAGE": "[AppLoad]: Socket OK. FD is 85",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122280093572"
+    },
+    {
+      "entry_index": 255,
+      "MESSAGE": "[AppLoad]: Message sent to ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122280094294"
+    },
+    {
+      "entry_index": 256,
+      "MESSAGE": "[AppLoad]: Message sent to ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122285456803"
+    },
+    {
+      "entry_index": 258,
+      "MESSAGE": "EOF",
+      "_PID": "30385",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "__REALTIME_TIMESTAMP": "1794122285479575"
+    },
+    {
+      "entry_index": 259,
+      "MESSAGE": "[AppLoad]: There are 1 controllers",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122285480656"
+    },
+    {
+      "entry_index": 261,
+      "MESSAGE": "[AppLoad]: Failed to send message header to ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122285480656"
+    },
+    {
+      "entry_index": 262,
+      "MESSAGE": "[AppLoad]: Closed socket for client ID: org.pi-ink.annotations - FD: 85, signaled to thread: 92",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122285480656"
+    },
+    {
+      "entry_index": 263,
+      "MESSAGE": "[AppLoad]: Unloading frontends of org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122285480656"
+    },
+    {
+      "entry_index": 265,
+      "MESSAGE": "[AppLoad]: Application org.pi-ink.annotations terminated.",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122285480656"
+    },
+    {
+      "entry_index": 267,
+      "MESSAGE": "[AppLoad]: Cannot terminate client ID (backend is not running or socket is not associated):org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122285487726"
+    },
+    {
+      "entry_index": 268,
+      "MESSAGE": "[AppLoad]: Unloading frontends of org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122285487726"
+    },
+    {
+      "entry_index": 269,
+      "MESSAGE": "[AppLoad]: Cannot terminate client ID (backend is not running or socket is not associated):org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122285487726"
+    },
+    {
+      "entry_index": 271,
+      "MESSAGE": "[AppLoad]: Unregistered appload endpoint ID: org.pi-ink.annotations at 0xdafbb30",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122285589281"
+    },
+    {
+      "entry_index": 272,
+      "MESSAGE": "[AppLoad]: No active socket for ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122285589281"
+    },
+    {
+      "entry_index": 276,
+      "MESSAGE": "[AppLoad]: Waiting for connection on socket [path-97cc9de9b4]",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122315494897"
+    },
+    {
+      "entry_index": 277,
+      "MESSAGE": "[AppLoad]: No active socket for ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122315497290"
+    },
+    {
+      "entry_index": 278,
+      "MESSAGE": "[AppLoad]: Registered appload endpoint ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122315497290"
+    },
+    {
+      "entry_index": 280,
+      "MESSAGE": "[AppLoad]: No active socket for ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122315513520"
+    },
+    {
+      "entry_index": 281,
+      "MESSAGE": "[AppLoad]: Socket OK. FD is 89",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122315514716"
+    },
+    {
+      "entry_index": 282,
+      "MESSAGE": "[AppLoad]: Message sent to ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122315515029"
+    },
+    {
+      "entry_index": 283,
+      "MESSAGE": "[AppLoad]: Message sent to ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122320508685"
+    },
+    {
+      "entry_index": 285,
+      "MESSAGE": "EOF",
+      "_PID": "30434",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "__REALTIME_TIMESTAMP": "1794122320532858"
+    },
+    {
+      "entry_index": 286,
+      "MESSAGE": "[AppLoad]: There are 1 controllers",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122320533953"
+    },
+    {
+      "entry_index": 288,
+      "MESSAGE": "[AppLoad]: Failed to send message header to ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122320533953"
+    },
+    {
+      "entry_index": 289,
+      "MESSAGE": "[AppLoad]: Closed socket for client ID: org.pi-ink.annotations - FD: 89, signaled to thread: 94",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122320533953"
+    },
+    {
+      "entry_index": 290,
+      "MESSAGE": "[AppLoad]: Unloading frontends of org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122320533953"
+    },
+    {
+      "entry_index": 292,
+      "MESSAGE": "[AppLoad]: Application org.pi-ink.annotations terminated.",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122320533953"
+    },
+    {
+      "entry_index": 294,
+      "MESSAGE": "[AppLoad]: Cannot terminate client ID (backend is not running or socket is not associated):org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122320578763"
+    },
+    {
+      "entry_index": 295,
+      "MESSAGE": "[AppLoad]: Unloading frontends of org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122320578763"
+    },
+    {
+      "entry_index": 296,
+      "MESSAGE": "[AppLoad]: Cannot terminate client ID (backend is not running or socket is not associated):org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122320578763"
+    },
+    {
+      "entry_index": 298,
+      "MESSAGE": "[AppLoad]: Unregistered appload endpoint ID: org.pi-ink.annotations at 0xe5fc510",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122320669620"
+    },
+    {
+      "entry_index": 299,
+      "MESSAGE": "[AppLoad]: No active socket for ID:org.pi-ink.annotations",
+      "_PID": "29794",
+      "SYSLOG_IDENTIFIER": "xochitl",
+      "_EXE": "[path-c685fd82a8]",
+      "__REALTIME_TIMESTAMP": "1794122320669620"
+    }
+  ]
+}

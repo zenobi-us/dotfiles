@@ -1,0 +1,146 @@
+{
+  "created_at": "2026-11-08T07:20:37.571736+00:00",
+  "hash_comparisons": [
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/pi-ink-client",
+      "expected": "c91ad5234805b443d381e123f3c533d23d2c5e9fc817b964e4d405b808232a2d",
+      "actual": "c91ad5234805b443d381e123f3c533d23d2c5e9fc817b964e4d405b808232a2d",
+      "equal": true
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/VERSION",
+      "expected": "40b8eb4000a913a7791090535f291d3d369874162a89ef3c9e3d4e887a1b9e79",
+      "actual": "40b8eb4000a913a7791090535f291d3d369874162a89ef3c9e3d4e887a1b9e79",
+      "equal": true
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/sidebar.qmd",
+      "expected": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be",
+      "actual": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be",
+      "equal": true
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/manifest.json",
+      "expected": "265d2ea700c8b20a49d6e9f67489b9431adacbd4f6a588bee23505affe393aad",
+      "actual": "265d2ea700c8b20a49d6e9f67489b9431adacbd4f6a588bee23505affe393aad",
+      "equal": true
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/resources.rcc",
+      "expected": "3efb98becd4878376d24c62725c34295975e036bd4488454963e52fa7ff49bf2",
+      "actual": "3efb98becd4878376d24c62725c34295975e036bd4488454963e52fa7ff49bf2",
+      "equal": true
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend/entry",
+      "expected": "0c983d6d4593556720704fdccd2c08733853eb3982cb03359fdeaa68d0dd6efb",
+      "actual": "0c983d6d4593556720704fdccd2c08733853eb3982cb03359fdeaa68d0dd6efb",
+      "equal": true
+    },
+    {
+      "path": "/usr/bin/xochitl",
+      "expected": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+      "actual": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/hashtab",
+      "expected": "9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615",
+      "actual": "9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd",
+      "expected": "5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2",
+      "actual": "5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd",
+      "expected": "beb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d",
+      "actual": "beb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd",
+      "expected": "dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595",
+      "actual": "dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd",
+      "expected": "f8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43",
+      "actual": "f8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd",
+      "expected": "ebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023",
+      "actual": "ebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd",
+      "expected": "28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43",
+      "actual": "28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd",
+      "expected": "3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471",
+      "actual": "3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd",
+      "expected": "c88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe",
+      "actual": "c88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd",
+      "expected": "2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982",
+      "actual": "2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd",
+      "expected": "36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158",
+      "actual": "36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd",
+      "expected": "4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe",
+      "actual": "4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd",
+      "expected": "767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e",
+      "actual": "767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/xovi.so",
+      "expected": "d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446",
+      "actual": "d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/extensions.d/appload.so",
+      "expected": "5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad",
+      "actual": "5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad",
+      "equal": true
+    },
+    {
+      "path": "/home/root/xovi/extensions.d/qt-resource-rebuilder.so",
+      "expected": "6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f",
+      "actual": "6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f",
+      "equal": true
+    }
+  ],
+  "private_contents_read": false,
+  "runtime_state_observation": "OWNED_RUNTIME_STATE_ABSENT",
+  "limits": "No private contents, notebook screens or logs read. Qt rebuild runtime cache changes, if any, are observations, not manual mutation. No repeat-install preservation check."
+}

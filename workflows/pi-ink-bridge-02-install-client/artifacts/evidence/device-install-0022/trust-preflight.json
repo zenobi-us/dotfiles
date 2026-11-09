@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-11-08T01:54:57.760Z",
+  "status": "passed",
+  "live_loopback_command_equal": true,
+  "live_record_bytes_equal": true,
+  "hashes": {
+    "installer": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+    "zip": "03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+    "record": "bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e"
+  },
+  "certificate_der_sha256": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+  "health": {
+    "service": "pi-ink-bridge",
+    "protocol": 2,
+    "id": "256377c7f22604161e086b332a63e19b",
+    "fingerprint": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+    "build": "fc66b96a4895ba5253c862d9883ecc392fb7a9ad299d1edf534c94e89873a6f5",
+    "status": "ready"
+  },
+  "release_files": {
+    "pi-ink-client": "c91ad5234805b443d381e123f3c533d23d2c5e9fc817b964e4d405b808232a2d",
+    "VERSION": "40b8eb4000a913a7791090535f291d3d369874162a89ef3c9e3d4e887a1b9e79",
+    "sidebar.qmd": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be",
+    "app/manifest.json": "265d2ea700c8b20a49d6e9f67489b9431adacbd4f6a588bee23505affe393aad",
+    "app/resources.rcc": "3efb98becd4878376d24c62725c34295975e036bd4488454963e52fa7ff49bf2",
+    "app/backend/entry": "0c983d6d4593556720704fdccd2c08733853eb3982cb03359fdeaa68d0dd6efb"
+  },
+  "installer_source_equal": true,
+  "device_writes": false
+}

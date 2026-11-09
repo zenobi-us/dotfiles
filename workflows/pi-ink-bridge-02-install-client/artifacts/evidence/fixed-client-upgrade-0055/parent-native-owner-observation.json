@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-11-08T23:43:19.450Z",
+  "owner_statement": "Stays open—server available",
+  "instruction": "Opened Pi Annotations once, waited at least15 seconds and left it open. No pairing/reopen requested.",
+  "native_owner_launches": 1,
+  "agent_native_launches": 0,
+  "visual_evidence": "Owner observation, not an agent screenshot.",
+  "source_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/parent-native-launch-intent.json"
+}

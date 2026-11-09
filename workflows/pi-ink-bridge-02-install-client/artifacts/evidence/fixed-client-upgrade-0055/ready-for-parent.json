@@ -1,0 +1,32 @@
+{
+  "created_at": "2026-11-08T23:31:30.106420+00:00",
+  "ready_for_parent_owner_launch": true,
+  "whole_ticket_status": "blocked",
+  "native_launches": 0,
+  "native_status": "pending parent owner launch",
+  "repeat_install_acceptance": "pending; not authorized in this attempt",
+  "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+  "old_ui_pid": 3641,
+  "new_ui_pid": 7146,
+  "runtime_maps_verified": [
+    "xovi.so",
+    "appload.so",
+    "qt-resource-rebuilder.so"
+  ],
+  "public_hashes_verified": 29,
+  "preservation_verified": true,
+  "host_stops": 1,
+  "host_starts": 1,
+  "device_upgrades": 1,
+  "release_publications": 1,
+  "production_link_replacements": 2,
+  "xochitl_restarts": 1,
+  "full_reboots": 0,
+  "post_restart_observations": 1,
+  "extra_mod_activation": 0,
+  "pairings": 0,
+  "installer_executions": 0,
+  "private_contents_returned": false,
+  "source_changes": 0,
+  "limits": "Runtime mappings prove dependencies, not native UI rendering or connection success."
+}

@@ -1,0 +1,50 @@
+{
+  "created_at": "2026-11-08T07:44:20.538Z",
+  "scope": "Parent host-only interpretation of captured existing logs; no additional tablet contact, native reproduction or repair.",
+  "upstream": {
+    "component": "AppLoad",
+    "release": "v0.6.0",
+    "source_commit": "7ec0830c97570bf5c607f3f458ea78edfa03e5a3",
+    "installed_sha256": "5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad",
+    "provenance": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/parent-provenance.json",
+    "source": "https://github.com/asivery/rm-appload/blob/7ec0830c97570bf5c607f3f458ea78edfa03e5a3/src/management.cpp#L37-L50",
+    "facts": [
+      "sendMessageTo sends PacketHeader containing bytes.length().",
+      "After the header send, it unconditionally calls send(sock, bytes.constData(), bytes.length(), 0), including when length is zero."
+    ]
+  },
+  "local_source": {
+    "commit": "4bc79d3c1b28091de8437fe33babaeab24659af4",
+    "tree": "397ff45e5d7fa62b1917d744951da604932c254c",
+    "refs": [
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/appload.go:44-61",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/Connections.qml:27-34"
+    ],
+    "facts": [
+      "QML poll sends type1 with an empty payload.",
+      "Go runAppLoad consumes a body record only when length>0, then reads the next header.",
+      "An empty body record can therefore remain queued for that next header read; the loop returns on read errors or n!=8."
+    ]
+  },
+  "host_probe": {
+    "method": "Python AF_UNIX SOCK_SEQPACKET socketpair; send an 8-byte header, zero-length body record, and another8-byte header; read three records.",
+    "observed_record_lengths": [
+      8,
+      0,
+      8
+    ],
+    "peer_remained_open": true,
+    "all_local_sockets_closed": true,
+    "tablet_contacts": 0,
+    "application_launches": 0,
+    "files_created": 0
+  },
+  "established": "Pinned upstream always sends two records, but local Go reader skips the second when payload length is zero. Host socket semantics preserve the empty record. This is a concrete framing mismatch.",
+  "native_causal_classification": "Likely cause, not end-to-end verified. Captured EOF precedes AppLoad send-header failure and app termination; EOF process attribution/precise read call were not proven by journal metadata.",
+  "limits": [
+    "No tablet build/debugger trace was collected.",
+    "Journal300-entry cap reached; earlier entries may be omitted.",
+    "No production code was changed, repaired, relaunched or retested."
+  ],
+  "proposed_next_action": "With approval, fix backend frame consumption on the host, add behavior regression coverage for empty records, run host checks and rebuild with new payload hashes. No tablet deployment, restart, reopening or pairing under that approval."
+}

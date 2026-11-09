@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-11-08T01:56:33.945Z",
+  "installation": "installed-successfully",
+  "installer_executions": 1,
+  "preflight_executions": 1,
+  "postcheck": "passed",
+  "ticket_acceptance": "blocked",
+  "remaining": [
+    "Owner saved-and-closed confirmation plus separate approval for one Xochitl restart and native sidebar/connection observation",
+    "Separate repeat-install approval and acceptance"
+  ],
+  "preservation": "All 14 retained file identities and 12 prior QMD names unchanged; only authorized production link added. Xochitl PID unchanged. Prototype/private data not read or modified by this session.",
+  "desktop_service": "left running; no stop/reconfigure; port47840 not contacted",
+  "no_restart_requested": true,
+  "no_pairing": true,
+  "no_retry": true
+}

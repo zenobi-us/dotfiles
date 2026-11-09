@@ -1,0 +1,32 @@
+{
+  "created_at": "2026-11-08T07:11:41.825838+00:00",
+  "state": "paused-awaiting-owner-native-observation",
+  "phase_complete": false,
+  "attempt": 14,
+  "parent_receipt": "start-0040",
+  "pane_id": "w6T:p5",
+  "preflight": {
+    "checks_passed": 91,
+    "checks_total": 91,
+    "exact_stdout_equal": true
+  },
+  "host_readiness": "certificate-verified HTTPS health ready, expected public identity matched",
+  "restart": {
+    "issued_count": 1,
+    "code": 0,
+    "timed_out": false,
+    "baseline_pid": "7463",
+    "post_pid": "29794",
+    "baseline_NRestarts": 0,
+    "post_NRestarts": 0,
+    "ActiveState": "active",
+    "SubState": "running",
+    "observations": 2
+  },
+  "next_normal_ui_action": "Owner: inspect the native sidebar, then tap Pi Annotations once. Report whether the item is readable without overlap/truncation and report exact connection-screen text, server identity and connection state. Do not pair or open notebooks. Confirm production connection screen is visible before any screenshot.",
+  "native_acceptance": false,
+  "repeat_install_acceptance": false,
+  "restarts_remaining": 0,
+  "no_additional_start_receipt": true,
+  "resume": "Parent relays owner factual observation to THIS same child/pane; no new start or restart."
+}

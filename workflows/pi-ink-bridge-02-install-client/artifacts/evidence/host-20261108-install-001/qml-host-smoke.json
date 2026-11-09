@@ -1,0 +1,6 @@
+{
+  "boundary": "Real Connections.qml in Qt 6.8.3; real Go backend over SOCK_SEQPACKET; AppLoad module transport is a host emulator, not the native tablet extension. No device acceptance claimed.",
+  "code": 0,
+  "stdout": "[{\"connection\":\"available — not paired\",\"detail\":\"Server identity and TLS verified. Pairing requires explicit desktop approval.\",\"name\":\"Pi Ink desktop\",\"serverId\":\"6e5de1a1a92520df02d1a2ee314a9222\"}]\n",
+  "stderr": ""
+}

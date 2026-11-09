@@ -1,0 +1,33 @@
+{
+  "status": "not-granted",
+  "prerequisites": [
+    "Owner saves and closes documents and confirms backups; Developer Mode must already be enabled. Enabling it is not authorized.",
+    "Owner verifies the cable SSH host key for root@10.11.99.1. No LAN runtime SSH is requested.",
+    "Resolve the existing desktop protocol-1 listener explicitly or use consistently configured distinct ports. Obtain trusted instructions from the real desktop service, not this deleted smoke identity."
+  ],
+  "actions": [
+    {
+      "phase": "read-only-preflight",
+      "request": "Approve one cable-connected SSH preflight to read model, architecture, firmware, recorded Xochitl hash, and XOVI/AppLoad/qt-resource-rebuilder version and file-hash metadata; inspect only named installation paths and launcher collisions. Stop if unsupported or dependency compatibility cannot be established."
+    },
+    {
+      "phase": "installation",
+      "request": "After preflight and a final hash-pinned payload manifest are approved, run the generated installer once. Write only /home/root/.local/share/pi-ink-bridge and the named pi-annotations AppLoad and QMD links. Preserve all drafts, pairing records, unrelated extensions, and retained prototype files."
+    },
+    {
+      "phase": "activation",
+      "request": "After the owner saves and closes documents, approve exactly one Xochitl restart, not an automatic reboot. Observe Pi Annotations sidebar launch and verified/offline connection states. Stop on failure; further restarts require new approval."
+    },
+    {
+      "phase": "repeat-install",
+      "request": "Approve repeating the same verified payload once and checking that launcher identity, pairing records, drafts, and unrelated files remain unchanged. No firmware, Developer Mode, firewall, cloud/account, pairing, or notebook changes are included."
+    }
+  ],
+  "testedPayloads": {
+    "zipSha256": "03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+    "installerSha256": "d135528aa282e95c021c8504e375f8b66a1a0aeab048cab8e2a16b88e6adae74",
+    "firmware": "3.28.0.172",
+    "stockXochitlSha256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021"
+  },
+  "limits": "The tested package is host-built and not device-installed. No native AppLoad/XOVI version compatibility or post-restart launch is claimed."
+}

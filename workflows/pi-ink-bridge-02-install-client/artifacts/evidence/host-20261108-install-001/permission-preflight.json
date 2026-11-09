@@ -1,0 +1,6 @@
+{
+  "code": 1,
+  "stdout": "install.sh: OK\nclient.zip: OK\nserver.json: OK\n",
+  "stderr": "Pi Annotations: Installation requires the owner-approved root SSH account.\n",
+  "boundary": "SSH boundary executes locally on the non-root host; no tablet connection. Unaltered installer must reject insufficient permissions."
+}

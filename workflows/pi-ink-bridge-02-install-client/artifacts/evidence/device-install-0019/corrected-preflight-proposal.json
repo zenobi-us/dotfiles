@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-11-08T01:47:25.381Z",
+  "status": "PROPOSAL_ONLY_NOT_DEVICE_EXECUTED",
+  "source": "cable-preflight.json argv final string",
+  "script": "corrected-preflight-proposal.sh",
+  "corrections": [
+    "Root and ancestor loop checks directory, nonsymlink and root ownership without requiring writability.",
+    "Root mode is not restricted to writable directory modes; production-home ancestor mode checks remain.",
+    "Writability checks only actual home/.local/share and launcher write parents."
+  ],
+  "host_validation": [
+    {
+      "command": "sh -n corrected-preflight-proposal.sh",
+      "result": "(no output, exit code 0)"
+    },
+    {
+      "command": "Execute only corrected / metadata guard locally, no write attempt",
+      "result": "ROOT_METADATA_ONLY_PASS\n"
+    }
+  ],
+  "limits": "No device connection, source/payload change or installer execution. Full retained checks and target metadata still need a newly authorized fresh preflight.",
+  "next_approval": "Approve one fresh corrected preflight and at most one execution of the unchanged pinned installer only after all checks pass. No activation, restart, pairing, repeat install or automatic retry."
+}

@@ -1,0 +1,11 @@
+{
+  "created_at": "2026-11-08T23:27:16.866Z",
+  "pane": "w6T:pA",
+  "requested_name": "pi-ink-fixed-upgrade-0055",
+  "start_exit": 1,
+  "start_error": "timed out waiting for agent startup",
+  "observed_status": "working",
+  "state_change_seq": 417,
+  "session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T23-26-35-467Z_01a1bd7c-31cb-7636-9b6c-044922489d36.jsonl",
+  "decision": "Observe unique live pane, no duplicate launch. Parent reserves owner native launch until durable upgraded UI handoff."
+}

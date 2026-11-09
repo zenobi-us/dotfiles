@@ -1,0 +1,52 @@
+{
+  "created_at": "2026-11-08T04:17:11.308295+00:00",
+  "pane_id": "w6T:p3",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T04-14-49-339Z_01a1b95d-b7fb-71be-b042-20aae614e58e.jsonl",
+  "source_worktree_agents": [
+    {
+      "agent": "omp",
+      "agent_session": {
+        "agent": "omp",
+        "kind": "path",
+        "source": "herdr:omp",
+        "value": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T04-14-49-339Z_01a1b95d-b7fb-71be-b042-20aae614e58e.jsonl"
+      },
+      "agent_status": "working",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+      "focused": false,
+      "foreground_cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+      "pane_id": "w6T:p3",
+      "revision": 918,
+      "screen_detection_skipped": true,
+      "state_change_seq": 315,
+      "tab_id": "w6T:t3",
+      "terminal_id": "term_65fbc114b670542",
+      "terminal_title": "\u03c0 \u2826 feature-pi-ink-bridge-02-install-client",
+      "terminal_title_stripped": "\u03c0 \u2826 feature-pi-ink-bridge-02-install-client",
+      "workspace_id": "w6T"
+    }
+  ],
+  "authorization": {
+    "created_at": "2026-11-08T04:13:51.593Z",
+    "user_text": "approved",
+    "in_reply_to": "Next approval: one bounded read-only installed-target preflight with stage diagnostics. No activation.",
+    "scope": "One strict bounded read-only installed-target preflight, with verbose SSH and stage markers only; preserve every existing guard/target/comparison. No retries, restart, installation, pairing, repair, native launch or private-content reads.",
+    "ownership": "No source-worktree agents returned by Herdr list. Existing w6T workspace retained; fresh p3, old child p2 closed, root p1 retained. Claim retained idempotently; no competing matching goal dispatch identified.",
+    "inspection": {
+      "historyValid": true,
+      "source_commit": "c3ff963a80cf0fd488d08a1cc532e37d85250e91",
+      "source_tree": "8c32b67418cf814c32c0f1ace8c39d3762768e03",
+      "dirty": false,
+      "decision": {
+        "action": "start",
+        "mode": "takeover",
+        "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0033.json",
+        "requiredApproval": true
+      }
+    }
+  },
+  "network_ssh_limit": 1,
+  "source_changes": "none",
+  "claim": "retained idempotently; tracker untouched",
+  "goal_reservation": "Parent found no matching reservation; no new coordinator dispatch created."
+}

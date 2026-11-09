@@ -1,0 +1,38 @@
+{
+  "created_at": "2026-11-08T04:25:34.922Z",
+  "observed_server_banner": "dropbear_2025.88",
+  "observed_remote_exec_argument_bytes": 15490,
+  "upstream_tag": "DROPBEAR_2025.88",
+  "upstream_root_tree": "887241694277b3816da5d174932c10546ea9d2c5",
+  "sources": [
+    {
+      "url": "https://github.com/mkj/dropbear/blob/DROPBEAR_2025.88/src/sysoptions.h#L84",
+      "blob": "2f3e64e4bfed3393f854f0ac077a35c979fcd049",
+      "excerpts": [
+        "#define MAX_CMD_LEN 9000 /* max length of a command */",
+        "#define MAX_STRING_LEN (MAX(MAX_CMD_LEN, 2400))"
+      ]
+    },
+    {
+      "url": "https://github.com/mkj/dropbear/blob/DROPBEAR_2025.88/src/svr-chansession.c#L669-L678",
+      "blob": "2ca6fc14107c44e357b79d5a13bc977195126f32",
+      "excerpts": [
+        "chansess->cmd = buf_getstring(ses.payload, &cmdlen);",
+        "if (cmdlen > MAX_CMD_LEN) { ... return DROPBEAR_FAILURE; }"
+      ]
+    },
+    {
+      "url": "https://github.com/mkj/dropbear/blob/DROPBEAR_2025.88/src/buffer.c#L200-L208",
+      "blob": "0222ffb8487649f815c7f34032bf9bc022352a4f",
+      "excerpts": [
+        "len = buf_getint(buf);",
+        "if (len > MAX_STRING_LEN) { dropbear_exit(\"String too long\"); }"
+      ]
+    }
+  ],
+  "facts": "Pinned upstream source defaults to9000 bytes, checks the exec argument through buf_getstring, and exits before the later command-length failure return when a string exceeds MAX_STRING_LEN. Observed exec argument15490 bytes exceeds that default.",
+  "inference": "Likely cause is our oversized SSH exec argument. This matches small marker success and full argument reset after authentication/channel open without exec acknowledgement or first script output.",
+  "limits": "Tablet binary build options and server-side logs were not inspected. Exact compiled limit/cause remains unverified; no additional device call was made.",
+  "proposed_change": "With separate approval, transmit the identical guarded script through SSH stdin to short exec sh -s. Preserve all guard/identity checks and one-call/no-retry boundary; no staging file or activation.",
+  "scope": "Public-source lookup and local evidence recording only; zero additional tablet contacts."
+}

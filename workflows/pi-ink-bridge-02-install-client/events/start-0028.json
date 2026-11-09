@@ -1,0 +1,107 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0028",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 10,
+  "parent_receipt": "start-complete-0027",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "f71077758c721908704cc24b0ded0a84d0932571",
+  "source_tree": "04c5d1a4fe8d195dbb7d927ebe51a3e594351178",
+  "created_at": "2026-11-08T02:58:37.049Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": "w6R:p8",
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028"
+  },
+  "status": "started",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0027.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0026.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-activation-0025/preflight-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-comparison.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0028.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/authorization.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "recovery": {
+    "mode": "takeover",
+    "reason": "User confirms restored cable access and authorizes one new read-only preflight. Prior attempt transport-failed without device mutation; preserve all evidence. Restart is explicitly not included.",
+    "authorization": {
+      "created_at": "2026-11-08T02:58:37.049Z",
+      "user_text": "confirmed",
+      "in_reply_to": "Reconnect and unlock the tablet, then confirm cable access is restored and approve one fresh read-only preflight. No restart yet.",
+      "scope": "One fresh strict read-only installed-target cable preflight only. Zero restarts, installer executions, native launches, pairing, repair or automatic retries.",
+      "ownership": "No source-worktree agents returned by Herdr agent list. Previous w6R:p7 done/closed. Existing held claim retained; prior unchanged workflow inventory contains no matching pi-ink goal coordinator.",
+      "inspection": {
+        "historyValid": true,
+        "source": {
+          "commit": "f71077758c721908704cc24b0ded0a84d0932571",
+          "tree": "04c5d1a4fe8d195dbb7d927ebe51a3e594351178",
+          "dirty": false,
+          "candidates": 1
+        },
+        "decision": {
+          "action": "start",
+          "mode": "takeover",
+          "requiredApproval": true,
+          "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0027.json"
+        }
+      }
+    },
+    "prior_attempt": 9
+  },
+  "restarts_authorized": 0,
+  "installer_executions_authorized": 0,
+  "automatic_retries_authorized": 0
+}

@@ -1,0 +1,7 @@
+{
+  "command": "MISE_AUTO_INSTALL=0 mise exec -- bun run build:tablet",
+  "code": 0,
+  "zipBefore": "03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+  "zipAfter": "03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+  "reproducible": true
+}

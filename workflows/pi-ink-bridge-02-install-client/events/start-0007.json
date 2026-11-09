@@ -1,0 +1,68 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0007",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 3,
+  "parent_receipt": "start-complete-0006",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "d6e7fb74c5de6f5bc5383b9651b730ab60159952",
+  "source_tree": "0e65b383eeec0a3483a18d6167c965038d0a9ff6",
+  "created_at": "2026-11-07T23:01:17.011Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0006.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0005.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004/compatibility-analysis.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0007.json"
+    }
+  ],
+  "status": "started",
+  "recovery": {
+    "mode": "takeover",
+    "reason": "User approved proposed host-only firmware-field correction and focused regression check. Preserve prior implementation and device evidence.",
+    "authorization": {
+      "user_text": "approved",
+      "scope": "Host-only correction of firmware field and regression check; regenerate installer digest. No device access or installation/restart."
+    },
+    "ownership": "No agent remains in source worktree; previous preflight session was done and closed. Held ticket claim retained.",
+    "reservations": "Read-only inspector selected start/takeover; history valid, source unique and clean. No active child or coordinator dispatch identified.",
+    "device_access": false
+  }
+}

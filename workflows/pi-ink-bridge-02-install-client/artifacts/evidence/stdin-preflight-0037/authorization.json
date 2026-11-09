@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-11-08T04:54:26.956Z",
+  "user_text": "approved",
+  "in_reply_to": "Next approval: one read-only run of the identical guarded script through stdin to sh -s. No activation or retry.",
+  "scope": "One bounded strict read-only SSH invocation executing sh -s with the exact15490-byte guarded staged-preflight script supplied on stdin. No staging file, guard changes, retry, restart, installation, native launch, repair or pairing.",
+  "script": {
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/staged-preflight-0034/preflight-intent.json",
+    "field": "script",
+    "bytes": 15490,
+    "sha256": "c700577a24beeeb4ed2cce252ccd8c3ace1f8fb82a1564d64ef0ac033e3528aa"
+  },
+  "ownership": "No live source-worktree agents returned by Herdr list; w6T retained with root shell p1 and fresh p4. Prior child p3 done/closed. Existing claim retained; no competing matching goal dispatch identified.",
+  "inspection": {
+    "historyValid": true,
+    "source_commit": "a08a6c69d9ef79bf9a8a51e33dbc16f3068588b8",
+    "source_tree": "2ab0c0123cbd782481e0ae671270cc3630e57b5a",
+    "dirty": false,
+    "decision": {
+      "action": "start",
+      "mode": "takeover",
+      "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0036.json",
+      "requiredApproval": true
+    }
+  }
+}

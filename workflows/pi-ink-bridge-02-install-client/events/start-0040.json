@@ -1,0 +1,105 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "receipt_id": "start-0040",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 14,
+  "parent_receipt": "start-complete-0039",
+  "source_commit": "31b4d14954f309e35410e82b0042bb4313885901",
+  "source_tree": "12d3128312306e23f6d3f9b415c2f741681dfe0c",
+  "created_at": "2026-11-08T07:08:12.458Z",
+  "pane_id": "w6T:p5",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040"
+  },
+  "status": "started",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0039.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0038.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/preflight-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/stdin-preflight-0037/preflight-comparison.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0040.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/native-activation-0040/authorization.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "recovery": {
+    "mode": "takeover",
+    "reason": "Fresh saved/closed confirmation and single-restart/native-observation approval after successful exact stdin preflight. No reimplementation or reinstall.",
+    "authorization": {
+      "created_at": "2026-11-08T07:08:12.458Z",
+      "user_text": "econfirm",
+      "in_reply_to": "To activate, confirm: “All documents are saved and closed; approve one Xochitl restart and native observation.” No pairing, reinstall or retry.",
+      "interpretation": "Owner confirms all tablet documents are saved and closed and approves exactly one Xochitl restart plus bounded native observation; parent stated this interpretation before work.",
+      "scope": "Fresh strict read-only installed-identity preflight through proven stdin delivery; exactly one Xochitl restart only after all checks pass; bounded native sidebar/layout/connection observation and necessary read-only status checks. No pairing, reinstall, reboot, repair, second restart or automatic retry.",
+      "ownership": "No live source-worktree agents in Herdr list; retained w6T root shell p1, fresh child p5. Prior p4 done/closed. Claim retained; no competing matching goal dispatch identified.",
+      "inspection": {
+        "historyValid": true,
+        "source_commit": "31b4d14954f309e35410e82b0042bb4313885901",
+        "source_tree": "12d3128312306e23f6d3f9b415c2f741681dfe0c",
+        "dirty": false,
+        "decision": {
+          "action": "start",
+          "mode": "takeover",
+          "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0039.json",
+          "requiredApproval": true
+        }
+      }
+    },
+    "prior_attempt": 13
+  },
+  "restarts_authorized": 1,
+  "installer_executions_authorized": 0,
+  "automatic_retries_authorized": 0
+}

@@ -1,0 +1,61 @@
+{
+  "created_at": "2026-11-08T01:54:30.273Z",
+  "parent": "start-0022",
+  "attempt": 8,
+  "source_commit": "3f8b679686fb3196fdd39f5b5ed80b7203503fb9",
+  "source_tree": "d4bbee6c9cfe001b83ec05cc6e8356d3ba14fa65",
+  "session": {
+    "agent": "omp",
+    "agent_session": {
+      "agent": "omp",
+      "kind": "path",
+      "source": "herdr:omp",
+      "value": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T01-52-46-788Z_01a1b8db-acc4-74c8-bb48-99ec060e698a.jsonl"
+    },
+    "agent_status": "working",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "focused": false,
+    "foreground_cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "pane_id": "w6R:p6",
+    "revision": 1010,
+    "screen_detection_skipped": true,
+    "state_change_seq": 244,
+    "tab_id": "w6R:t6",
+    "terminal_id": "term_65fba162591193a",
+    "terminal_title": "π ⠇ feature-pi-ink-bridge-02-install-client",
+    "terminal_title_stripped": "π ⠇ feature-pi-ink-bridge-02-install-client",
+    "workspace_id": "w6R"
+  },
+  "approval": {
+    "user_text": "approved",
+    "scope": "One fresh corrected recorded preflight; at most one unchanged pinned installer execution after all required checks pass. No restart, activation, pairing, repeat install or automatic retry."
+  },
+  "ownership": "No current child in source worktree; previous stopped-attempt child done/closed. Claim retained. Fresh pane w6R:p6.",
+  "observed_agents": [
+    {
+      "agent": "omp",
+      "agent_session": {
+        "agent": "omp",
+        "kind": "path",
+        "source": "herdr:omp",
+        "value": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T01-52-46-788Z_01a1b8db-acc4-74c8-bb48-99ec060e698a.jsonl"
+      },
+      "agent_status": "working",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+      "focused": false,
+      "foreground_cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+      "pane_id": "w6R:p6",
+      "revision": 1010,
+      "screen_detection_skipped": true,
+      "state_change_seq": 244,
+      "tab_id": "w6R:t6",
+      "terminal_id": "term_65fba162591193a",
+      "terminal_title": "π ⠇ feature-pi-ink-bridge-02-install-client",
+      "terminal_title_stripped": "π ⠇ feature-pi-ink-bridge-02-install-client",
+      "workspace_id": "w6R"
+    }
+  ],
+  "preserved_dirty_paths": " M workflows/pi-ink-bridge-02-install-client/manifest.yaml\n M workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml\n?? workflows/pi-ink-bridge-02-install-client/events/start-0022.json\n",
+  "corrected_preflight_sha256": "16a4fa0672d18d5f548b94673d7477857e95015f4e93174fd5bfda0f8f4d254e",
+  "installer_executions": 0
+}

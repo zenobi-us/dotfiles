@@ -1,0 +1,183 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "attempt": 2,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "5a662108044deba17ed09e453be8e2b0e1c98ffb",
+  "source_tree": "34c20c0956c512abdeac946e7e44129f3533fe3d",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "receipt_id": "implementation-0005",
+  "phase": "implementation",
+  "event": "phase-result",
+  "parent_receipt": "start-0004",
+  "created_at": "2026-11-07T22:54:09.881755+00:00",
+  "pane_id": "w6P:p2",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-07T22-50-54-792Z_01a1b835-2bc8-768c-a460-99d573325fbc.jsonl",
+  "status": "blocked",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0004.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0003.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0002.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-ink-bridge/index.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-20261108-install-001/device-approval-request.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0020/phase-b-preinstall-guards.json"
+    },
+    {
+      "kind": "adr",
+      "ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0005.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0005.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004/cable-preflight.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004/compatibility-analysis.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "changed_files": [
+    "workflows/pi-ink-bridge-02-install-client/events/start-0004.json",
+    "workflows/pi-ink-bridge-02-install-client/events/implementation-0005.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0005.md",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004/cable-preflight.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004/compatibility-analysis.json",
+    "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+  ],
+  "validation": [
+    {
+      "command": [
+        "ssh",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "ConnectionAttempts=1",
+        "-o",
+        "ControlMaster=no",
+        "-o",
+        "ControlPath=none",
+        "-o",
+        "ClearAllForwardings=yes",
+        "root@10.11.99.1",
+        "set -eu\nprintf 'MODEL='\ntr -d '\\000\\n' < /sys/firmware/devicetree/base/model\nprintf '\\nARCH='\nuname -m\nprintf 'FIRMWARE_METADATA\\n'\nwhile IFS= read -r line; do\n case \"$line\" in VERSION_ID=*|IMG_VERSION=*) printf '%s\\n' \"$line\";; esac\ndone < /etc/os-release\n"
+      ],
+      "result": "SSH exit 0; observed Paper Pro aarch64; VERSION_ID=5.8.203, IMG_VERSION=3.28.0.172; stopped before further reads.",
+      "evidence": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004/cable-preflight.json"
+    },
+    {
+      "command": "Offline comparison of production-install.sh:14-21 with cable metadata and prior evidence",
+      "result": "Current installer rejects VERSION_ID. No installer execution; native compatibility and target collisions remain unverified."
+    }
+  ],
+  "implementation_summary": "Read-only cable preflight only. Preserved all existing implementation and history. Verified cable SSH identity and read model, architecture, and firmware metadata once. Stopped on production firmware-guard mismatch. No source or tracker changes. Host tests and builds were not repeated.",
+  "open_questions": [
+    "Current stock Xochitl SHA-256",
+    "XOVI/AppLoad/qt-resource-rebuilder current versions and binary SHA-256",
+    "Installation target type, ownership, permissions, symlink parents and collisions",
+    "Native AppLoad/QMD compatibility with retained patches",
+    "Authorize a separate host-only correction of the production firmware guard to check the actual Paper Pro firmware field IMG_VERSION, with a focused regression check and new installer digest. No device access, installation, restart, or firmware change is included. After that correction is reviewed, request one renewed cable read-only preflight for stock hash, native dependency versions/hashes and named target metadata. Installation requires a separate final hash-pinned payload approval; activation requires separate saved/closed confirmation and exactly one Xochitl restart approval.",
+    "Separate installation authorization, saved/closed activation and one restart authorization, and repeat-install authorization are absent.",
+    "Existing desktop protocol-1 service remains untouched; production service/ports require a separate operator decision."
+  ],
+  "observed_compatibility": {
+    "model": "accepted by production-install.sh:17",
+    "architecture": "accepted by production-install.sh:14",
+    "firmware_guard": "production-install.sh:20 requires VERSION_ID=3.28.0.172; observed VERSION_ID=5.8.203 fails it",
+    "interpretation": "IMG_VERSION matches the historical tested firmware label, but does not satisfy the implemented guard. No support inferred.",
+    "source_change": "Not authorized in this read-only continuation; no source edits."
+  },
+  "approval_request": "Authorize a separate host-only correction of the production firmware guard to check the actual Paper Pro firmware field IMG_VERSION, with a focused regression check and new installer digest. No device access, installation, restart, or firmware change is included. After that correction is reviewed, request one renewed cable read-only preflight for stock hash, native dependency versions/hashes and named target metadata. Installation requires a separate final hash-pinned payload approval; activation requires separate saved/closed confirmation and exactly one Xochitl restart approval.",
+  "failure_reason": "Current installer firmware-field mismatch; stock/dependency/path checks not reached. Installation acceptance still lacks separate owner authorization.",
+  "recovery": {
+    "mode": "takeover",
+    "authorization": {
+      "user_text": "continue next",
+      "scope": "Only next previously named step: cable-connected read-only preflight. No installation, device writes, restart, firmware or Developer Mode action.",
+      "prior_approvals": [
+        "Authorize takeover",
+        "Start new from master"
+      ]
+    },
+    "ownership": "Fresh child session in parent-assigned Herdr workspace w6P pane w6P:p2; held claim retained; prior child was closed per start-0004. No child session reused.",
+    "source_preserved": true,
+    "parent_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl"
+  },
+  "device_writes": false,
+  "restart": false,
+  "review_status": "not-performed",
+  "merge_status": "not-merged-not-pushed",
+  "ticket_status": "claimed"
+}

@@ -1,0 +1,12 @@
+{
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "parent_receipt": "start-0001",
+  "created_at": "2026-11-07T21:58:56.154Z",
+  "agent": "omp",
+  "muxer": "herdr",
+  "pane_id": "w6N:p3",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-07T21-58-09-185Z_01a1b804-de21-730e-8248-df9e8fb28e11.jsonl",
+  "launch_outcome": "Herdr startup wait timed out; agent list independently confirms working OMP process in exact worktree. No duplicate launched.",
+  "handoff": "/tmp/pi-ink-bridge-02-install-client-handoff.txt"
+}

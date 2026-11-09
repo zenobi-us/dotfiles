@@ -1,0 +1,52 @@
+{
+  "created_at": "2026-11-08T23:13:08.498Z",
+  "child_result": "implementation-0053",
+  "child_source": {
+    "commit": "da7277f2a99969fa7970421e97f25a7d96b6a7f3",
+    "tree": "417e0ffbf02efeb2060bf6c8e9ec1deb089ab1cc"
+  },
+  "child_workflow_commit": "ba64e4a519f876512d782285c8718566254e9780",
+  "child_workflow_tree": "53931f343865c1776b76a5036b1f7b0bf7e7e09d",
+  "workflow_only_diff_verified": true,
+  "child_reboot_result": {
+    "exit": 0,
+    "dispatch_count": 1,
+    "old_boot_id": "ca7919b4-52c7-424f-ab79-4a8490465f00",
+    "new_boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f"
+  },
+  "historical_child_result": "Three bounded child observations saw no named mod maps and correctly recorded BLOCKED. That receipt/snapshot remain unchanged.",
+  "owner_new_confirmation": "Step complete—verify once",
+  "parent_followup": {
+    "authorization": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/parent-activation-authorization.json",
+    "intent": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/parent-activation-intent.json",
+    "result": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/parent-activation-result.json",
+    "read_only_ssh_invocations": 1,
+    "exit": 0,
+    "timeout": false,
+    "stderr": "",
+    "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+    "xochitl_pid": "3641",
+    "state": "active/running",
+    "runtime_modules": [
+      "/home/root/xovi/extensions.d/appload.so",
+      "/home/root/xovi/extensions.d/qt-resource-rebuilder.so",
+      "/home/root/xovi/xovi.so"
+    ],
+    "public_hashes_compared": 23,
+    "hash_mismatches": [],
+    "metadata_records_compared": 44,
+    "metadata_unchanged": true,
+    "private_content_read": false,
+    "mutations": 0
+  },
+  "reboot_with_mods_verified": true,
+  "old_payload_still_installed": true,
+  "new_payload_deployed": false,
+  "closure": {
+    "pane": "w6T:p9",
+    "signal": "done",
+    "completion_seq": 402,
+    "close": "type ok"
+  },
+  "remaining": "Existing installer requires explicit old-to-new release upgrade plan for the two named launcher links. New framing-fix payload deployment, native launch acceptance and repeat-install preservation remain pending."
+}

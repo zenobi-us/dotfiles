@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-11-09T00:04:50.557784+00:00",
+  "documents": [
+    {
+      "path": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0059.md",
+      "result": []
+    },
+    {
+      "path": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+      "result": []
+    },
+    {
+      "path": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+      "result": []
+    }
+  ],
+  "bundle_check": "Not applicable: existing workflow is a receipt collection, not an OKF bundle; only new/current Report documents validated",
+  "tracker": {
+    "errors": []
+  }
+}

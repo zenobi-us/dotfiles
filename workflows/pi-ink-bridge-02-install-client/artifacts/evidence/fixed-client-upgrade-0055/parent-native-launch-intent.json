@@ -1,0 +1,28 @@
+{
+  "created_at": "2026-11-08T23:38:39.491Z",
+  "authorization_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/authorization.json",
+  "readiness_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/ready-for-parent.json",
+  "workflow_result": "implementation-0056",
+  "inspected_workflow_commit": "1f7ef1d33bddfd2c336d7857f03abaa500b9e293",
+  "inspected_workflow_tree": "253ebf07ac9bc444c7d43e3310a5a847290456b0",
+  "owner_action": "Open production Pi Annotations once after parent confirms ready; leave screen open for at least15 seconds; do not pair, reopen or retry.",
+  "native_owner_launch_limit": 1,
+  "prior_native_launches": 0,
+  "agent_native_launches": 0,
+  "source": "tablet-appload/manifest.json id org.pi-ink.annotations, name Pi Annotations",
+  "new_release_sha256": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+  "new_binary_sha256": "433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051",
+  "expected_boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+  "post_restart_ui_pid": 7146,
+  "host_build": "c5df23c290a5c31886c86d4e1af9a226e7d147007fd5843972919ecaa6d1e356",
+  "expected_host_identity": {
+    "service": "global/pi-ink-bridge",
+    "directory": "/home/zenobius/.local/share/pi-ink-bridge",
+    "origin": "https://192.168.86.35:58841",
+    "setup": "http://192.168.86.35:58840/setup",
+    "id": "256377c7f22604161e086b332a63e19b",
+    "certificate_der_sha256": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+    "previous_build": "fc66b96a4895ba5253c862d9883ecc392fb7a9ad299d1edf534c94e89873a6f5"
+  },
+  "followup": "If owner reports screen stays open, one bounded read-only cable check may verify exact running new-release binary and preserved runtime. If owner reports self-close/error, treat it as ground truth; no reopening or reproducing the failure. No logs/private content/screenshots or extra restarts authorized."
+}

@@ -1,0 +1,354 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055"
+  },
+  "receipt_id": "start-complete-0057",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 19,
+  "parent_receipt": "implementation-0056",
+  "source_commit": "1f7ef1d33bddfd2c336d7857f03abaa500b9e293",
+  "source_tree": "253ebf07ac9bc444c7d43e3310a5a847290456b0",
+  "created_at": "2026-11-08T23:47:05.550Z",
+  "pane_id": null,
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "status": "blocked",
+  "scope_status": "Pinned host/tablet upgrade, approved UI restart and single native launch/available connection verified. Whole ticket awaits separately approved identical repeat-install preservation.",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0055.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/child-pane-identity.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-postcheck.sh"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-preflight-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-preflight-execution-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-preflight-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-preflight-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-preflight.sh"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-upgrade-execution-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-upgrade-plan.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-upgrade-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-upgrade-verification.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-upgrade.sh"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/host-final-persistence.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/host-preflight.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/host-refresh-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/host-refresh-verification.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/host-start-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/host-stop-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/markdown-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/operation-counts.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/parent-launch-observation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/prepare-runtime.ts"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/ready-for-parent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/runtime-preparation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/upgrade-script-syntax.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/xochitl-observation-1-execution-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/xochitl-observation-1-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/xochitl-observation-intent-1.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/xochitl-observation.sh"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/xochitl-restart-execution-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/xochitl-restart-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/xochitl-restart-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/xochitl-restart.sh"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0056.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0056.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0057.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/parent-native-launch-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/parent-native-owner-observation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/parent-native-verification-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/parent-native-verification-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/parent-native-verification-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/parent-validation.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    }
+  ],
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Fresh inspector historyValid=true selects start/reconcile implementation-0056. Validated exact inspected source/tree and workflow-only commit, trusted host identity/TLS/new bytes, raw post-restart29 hashes, unchanged old23 hashes, new link targets and loaded dependencies. After done/closed child, reserved owner launch occurred once; owner saw stable available screen and one approved read-only check proved exact running new binary.",
+    "authorization": {
+      "created_at": "2026-11-08T23:26:17.165Z",
+      "user_statement": "Approve—documents saved and closed",
+      "approved_plan": {
+        "host": "Refresh only existing companion service on58840/58841, preserving identity/trust and leaving47840 untouched.",
+        "tablet": "Install pinned immutable new home release, switch only two production launcher links, retain old release/private data/unrelated mods.",
+        "activation": "One Xochitl restart after upgrade, then one owner Pi Annotations native launch and bounded verification. No full reboot, pairing or repeat install."
+      },
+      "zip_sha256": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+      "binary_sha256": "433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051",
+      "installer_sha256": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+      "sidebar_sha256": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be",
+      "old_zip_sha256": "03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+      "owned_links": [
+        "/home/root/xovi/exthome/appload/pi-annotations",
+        "/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd"
+      ],
+      "host_identity": {
+        "service": "global/pi-ink-bridge",
+        "directory": "/home/zenobius/.local/share/pi-ink-bridge",
+        "origin": "https://192.168.86.35:58841",
+        "setup": "http://192.168.86.35:58840/setup",
+        "id": "256377c7f22604161e086b332a63e19b",
+        "certificate_der_sha256": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+        "previous_build": "fc66b96a4895ba5253c862d9883ecc392fb7a9ad299d1edf534c94e89873a6f5"
+      },
+      "stop_rules": [
+        "Stop on identity, firmware, dependency, target, occupied-path or preservation mismatch. No guard relaxation, repair, forced stop or operation retry.",
+        "No new trust, firmware, Developer Mode, firewall, cloud/account or unrelated modification.",
+        "No port47840 contact/mutation; no global supervisor stop; only positively identified protocol2 companion stop/start if needed.",
+        "No extra full reboot; no direct XOVI start helper; no pairing or repeat installer run."
+      ],
+      "ownership": "Prior p9 done402 and closed; target-worktree live agent list empty, no matching goal YAML dispatch reservations. Held claim retained; direct blocker01 completed.",
+      "inspection": {
+        "historyValid": true,
+        "mode": "takeover",
+        "parentReceipt": "start-complete-0054",
+        "source_commit": "8350b3b4769407536219c18c69c3cb8f4e627018",
+        "source_tree": "f920f4f13d2c6513084c8c0eb0b7e091ea85f66f",
+        "dirty": false
+      }
+    },
+    "owner_native_observation": {
+      "created_at": "2026-11-08T23:43:19.450Z",
+      "owner_statement": "Stays open—server available",
+      "instruction": "Opened Pi Annotations once, waited at least15 seconds and left it open. No pairing/reopen requested.",
+      "native_owner_launches": 1,
+      "agent_native_launches": 0,
+      "visual_evidence": "Owner observation, not an agent screenshot.",
+      "source_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/parent-native-launch-intent.json"
+    },
+    "ownership": "Child done418/closed; parent owns reconciliation, retains root/workspace/worktree and held claim."
+  },
+  "validated_result": {
+    "receipt": "implementation-0056",
+    "source_commit": "8350b3b4769407536219c18c69c3cb8f4e627018",
+    "source_tree": "f920f4f13d2c6513084c8c0eb0b7e091ea85f66f",
+    "exact_tree_verified": true,
+    "host_and_device_upgrade_passed": true,
+    "ui_restart_dispatches": 1,
+    "native_owner_launches": 1,
+    "native_server_available": true,
+    "running_binary_sha256": "433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051",
+    "parent_validation": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/parent-validation.json"
+  },
+  "operation_counts": {
+    "host_runtime_preparations": 1,
+    "host_service_stops": 1,
+    "host_service_starts": 1,
+    "read_only_ssh_preflights": 1,
+    "upgrade_ssh_dispatches": 1,
+    "private_device_staging_directories": 1,
+    "device_downloads": 3,
+    "release_publications": 1,
+    "new_release_regular_files": 6,
+    "production_link_renames": 2,
+    "xochitl_restart_dispatches": 1,
+    "post_restart_read_only_observations": 1,
+    "total_ssh_invocations": 5,
+    "full_reboots": 0,
+    "native_launches": 1,
+    "ordinary_installer_executions": 0,
+    "repeat_installations": 0,
+    "pairings": 0,
+    "mod_helper_invocations": 0,
+    "production_source_edits": 0,
+    "tracker_edits": 0,
+    "private_contents_returned": 0,
+    "operation_retries": 0,
+    "automatic_rollbacks": 0,
+    "native_owner_launches": 1,
+    "native_agent_launches": 0,
+    "parent_native_read_only_checks": 1
+  },
+  "new_payload_deployed": true,
+  "old_release_preserved": true,
+  "native_acceptance": true,
+  "native_client_pid": "8409",
+  "reboot_scope_success": true,
+  "repeat_install_acceptance": false,
+  "blocker": "Repeat-install preservation acceptance remains not performed and separately approval-gated. No review/merge/push.",
+  "next_action": "Obtain exact approval for one identical verified production installer execution and bounded preservation postcheck; no restart/reboot/pairing/new launch. Existing public download stage is retained; remove only that owned stage after final proof if authorized.",
+  "reviewed": false,
+  "merged": false,
+  "pushed": false
+}

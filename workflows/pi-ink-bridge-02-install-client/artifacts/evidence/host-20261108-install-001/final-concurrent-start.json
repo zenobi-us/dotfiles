@@ -1,0 +1,26 @@
+{
+  "runs": [
+    {
+      "n": 1,
+      "code": 0,
+      "stdout": "{\"message\":\"Pi Annotations setup: http://192.168.86.35:58840/setup\\nTrusted local instructions: http://127.0.0.1:58840/setup\\nServer ID: 6e5de1a1a92520df02d1a2ee314a9222\\nCertificate SHA-256: 25db4f403bbbcbcc657374eef91cf6028fccbac1d099f2d02980577d1a6303a7\\nDeveloper Mode performs a factory reset and weakens secure boot. Back up documents first. Obtain owner approval before device access or restart.\\nRun this one-time SSH command only after approval and SSH host-key verification:\\nssh -o StrictHostKeyChecking=yes root@10.11.99.1 'set -eu; umask 077; work=$(mktemp -d /tmp/pi-ink-install.XXXXXX); trap '\\\\''rm -rf \\\"$work\\\"'\\\\'' EXIT; cd \\\"$work\\\"; curl --fail --silent --show-error --max-time 120 '\\\\''http://192.168.86.35:58840/tablet/install.sh'\\\\'' -o install.sh; printf '\\\\''%s  install.sh\\\\n'\\\\'' '\\\\''d135528aa282e95c021c8504e375f8b66a1a0aeab048cab8e2a16b88e6adae74'\\\\'' | sha256sum -c -; curl --fail --silent --show-error --max-time 120 '\\\\''http://192.168.86.35:58840/tablet/client.zip'\\\\'' -o client.zip; printf '\\\\''%s  client.zip\\\\n'\\\\'' '\\\\''03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\\\'' | sha256sum -c -; curl --fail --silent --show-error --max-time 120 '\\\\''http://192.168.86.35:58840/tablet/server.json'\\\\'' -o server.json; printf '\\\\''%s  server.json\\\\n'\\\\'' '\\\\''692d5060fc7939dad70fc97274ea25ae275acdae363b21a2b23c29ac38629eca'\\\\'' | sha256sum -c -; sh ./install.sh '\\\\''03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\\\'' '\\\\''692d5060fc7939dad70fc97274ea25ae275acdae363b21a2b23c29ac38629eca'\\\\'''\",\"type\":\"info\"}\n",
+      "stderr": ""
+    },
+    {
+      "n": 2,
+      "code": 0,
+      "stdout": "{\"message\":\"Pi Annotations setup: http://192.168.86.35:58840/setup\\nTrusted local instructions: http://127.0.0.1:58840/setup\\nServer ID: 6e5de1a1a92520df02d1a2ee314a9222\\nCertificate SHA-256: 25db4f403bbbcbcc657374eef91cf6028fccbac1d099f2d02980577d1a6303a7\\nDeveloper Mode performs a factory reset and weakens secure boot. Back up documents first. Obtain owner approval before device access or restart.\\nRun this one-time SSH command only after approval and SSH host-key verification:\\nssh -o StrictHostKeyChecking=yes root@10.11.99.1 'set -eu; umask 077; work=$(mktemp -d /tmp/pi-ink-install.XXXXXX); trap '\\\\''rm -rf \\\"$work\\\"'\\\\'' EXIT; cd \\\"$work\\\"; curl --fail --silent --show-error --max-time 120 '\\\\''http://192.168.86.35:58840/tablet/install.sh'\\\\'' -o install.sh; printf '\\\\''%s  install.sh\\\\n'\\\\'' '\\\\''d135528aa282e95c021c8504e375f8b66a1a0aeab048cab8e2a16b88e6adae74'\\\\'' | sha256sum -c -; curl --fail --silent --show-error --max-time 120 '\\\\''http://192.168.86.35:58840/tablet/client.zip'\\\\'' -o client.zip; printf '\\\\''%s  client.zip\\\\n'\\\\'' '\\\\''03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\\\'' | sha256sum -c -; curl --fail --silent --show-error --max-time 120 '\\\\''http://192.168.86.35:58840/tablet/server.json'\\\\'' -o server.json; printf '\\\\''%s  server.json\\\\n'\\\\'' '\\\\''692d5060fc7939dad70fc97274ea25ae275acdae363b21a2b23c29ac38629eca'\\\\'' | sha256sum -c -; sh ./install.sh '\\\\''03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\\\'' '\\\\''692d5060fc7939dad70fc97274ea25ae275acdae363b21a2b23c29ac38629eca'\\\\'''\",\"type\":\"info\"}\n",
+      "stderr": ""
+    }
+  ],
+  "afterBothExtensionsExited": {
+    "service": "pi-ink-bridge",
+    "protocol": 2,
+    "id": "6e5de1a1a92520df02d1a2ee314a9222",
+    "fingerprint": "25db4f403bbbcbcc657374eef91cf6028fccbac1d099f2d02980577d1a6303a7",
+    "build": "47313f7f59306e6c156ac7d62660bdda14a3d36e570d0bcb8ffccd1d762529cc",
+    "status": "ready"
+  },
+  "identityRetained": true,
+  "deviceAccess": false
+}

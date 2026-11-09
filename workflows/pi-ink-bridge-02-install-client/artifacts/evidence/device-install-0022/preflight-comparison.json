@@ -1,0 +1,149 @@
+{
+  "created_at": "2026-11-08T01:55:30.565Z",
+  "status": "passed",
+  "fixed_parent_native_metadata_equal": true,
+  "native_hashes_script_verified": true,
+  "platform": {
+    "model": "reMarkable Ferrari",
+    "arch": "aarch64",
+    "IMG_VERSION": "3.28.0.172"
+  },
+  "retained": [
+    {
+      "path": "/usr/bin/xochitl",
+      "type_owner_mode_size_equal": true,
+      "sha256_equal": true,
+      "actual_metadata": "RETAINED|/usr/bin/xochitl|regular file|0|755|24705704",
+      "actual_sha256": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/hashtab",
+      "type_owner_mode_size_equal": true,
+      "sha256_equal": true,
+      "actual_metadata": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/hashtab|regular file|0|644|674428",
+      "actual_sha256": "9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd",
+      "type_owner_mode_size_equal": true,
+      "sha256_equal": true,
+      "actual_metadata": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd|regular file|0|644|9249",
+      "actual_sha256": "5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd",
+      "type_owner_mode_size_equal": true,
+      "sha256_equal": true,
+      "actual_metadata": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd|regular file|0|644|157221",
+      "actual_sha256": "beb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd",
+      "type_owner_mode_size_equal": true,
+      "sha256_equal": true,
+      "actual_metadata": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd|regular file|0|644|50534",
+      "actual_sha256": "dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd",
+      "type_owner_mode_size_equal": true,
+      "sha256_equal": true,
+      "actual_metadata": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd|regular file|0|644|10239",
+      "actual_sha256": "f8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd",
+      "type_owner_mode_size_equal": true,
+      "sha256_equal": true,
+      "actual_metadata": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd|regular file|0|644|79350",
+      "actual_sha256": "ebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd",
+      "type_owner_mode_size_equal": true,
+      "sha256_equal": true,
+      "actual_metadata": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd|regular file|0|644|76274",
+      "actual_sha256": "28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd",
+      "type_owner_mode_size_equal": true,
+      "sha256_equal": true,
+      "actual_metadata": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd|regular file|0|644|2230",
+      "actual_sha256": "3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd",
+      "type_owner_mode_size_equal": true,
+      "sha256_equal": true,
+      "actual_metadata": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd|regular file|0|644|8298",
+      "actual_sha256": "c88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd",
+      "type_owner_mode_size_equal": true,
+      "sha256_equal": true,
+      "actual_metadata": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd|regular file|0|644|5853",
+      "actual_sha256": "2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd",
+      "type_owner_mode_size_equal": true,
+      "sha256_equal": true,
+      "actual_metadata": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd|regular file|0|644|1077",
+      "actual_sha256": "36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd",
+      "type_owner_mode_size_equal": true,
+      "sha256_equal": true,
+      "actual_metadata": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd|regular file|0|644|2751",
+      "actual_sha256": "4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd",
+      "type_owner_mode_size_equal": true,
+      "sha256_equal": true,
+      "actual_metadata": "RETAINED|/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd|regular file|0|644|11832",
+      "actual_sha256": "767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e"
+    }
+  ],
+  "qmd_inventory": {
+    "expected": [
+      "/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd"
+    ],
+    "actual": [
+      "/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd"
+    ],
+    "equal": true
+  },
+  "absent_targets": [
+    "/home/root/.local/share/pi-ink-bridge",
+    "/home/root/xovi/exthome/appload/pi-annotations",
+    "/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd"
+  ],
+  "root_guard": "directory/nonsymlink/root-owner only; no writable restriction",
+  "installer_executions": 0
+}

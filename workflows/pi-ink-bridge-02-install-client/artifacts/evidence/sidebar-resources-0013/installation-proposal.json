@@ -1,0 +1,115 @@
+{
+  "created_at": "2026-11-08T00:06:04.903730+00:00",
+  "status": "PROPOSAL_ONLY_NOT_AUTHORIZED",
+  "offline_sidebar": "passed",
+  "payloads": {
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/dist/client.zip": {
+      "bytes": 2969919,
+      "sha256": "03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629"
+    },
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh": {
+      "bytes": 3013,
+      "sha256": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f"
+    },
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/sidebar.qmd": {
+      "bytes": 949,
+      "sha256": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be"
+    }
+  },
+  "archive_members": [
+    {
+      "path": "pi-ink-client",
+      "bytes": 7405752,
+      "sha256": "c91ad5234805b443d381e123f3c533d23d2c5e9fc817b964e4d405b808232a2d",
+      "mode": "0o100755"
+    },
+    {
+      "path": "VERSION",
+      "bytes": 6,
+      "sha256": "40b8eb4000a913a7791090535f291d3d369874162a89ef3c9e3d4e887a1b9e79",
+      "mode": "0o100644"
+    },
+    {
+      "path": "sidebar.qmd",
+      "bytes": 949,
+      "sha256": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be",
+      "mode": "0o100644"
+    },
+    {
+      "path": "app/manifest.json",
+      "bytes": 213,
+      "sha256": "265d2ea700c8b20a49d6e9f67489b9431adacbd4f6a588bee23505affe393aad",
+      "mode": "0o100644"
+    },
+    {
+      "path": "app/backend/entry",
+      "bytes": 194,
+      "sha256": "0c983d6d4593556720704fdccd2c08733853eb3982cb03359fdeaa68d0dd6efb",
+      "mode": "0o100755"
+    },
+    {
+      "path": "app/resources.rcc",
+      "bytes": 2796,
+      "sha256": "3efb98becd4878376d24c62725c34295975e036bd4488454963e52fa7ff49bf2",
+      "mode": "0o100644"
+    }
+  ],
+  "requested_approval": "Approve only trusted host bootstrap preparation on an explicitly selected compatible endpoint that leaves port 47840 untouched, then a fresh cable preflight and one installation of the pinned installer and ZIP listed here. Do not restart Xochitl, reboot, pair, modify notebooks/drafts, replace prototype files, change firmware/Developer Mode/firewall/cloud/account settings, or remove unrelated files. Obtain separate saved/closed confirmation and activation approval before one later Xochitl restart and native launch observation.",
+  "connection_policy": [
+    "ssh",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ConnectionAttempts=1",
+    "-o",
+    "ConnectTimeout=10",
+    "-o",
+    "ServerAliveInterval=10",
+    "-o",
+    "ServerAliveCountMax=1",
+    "-o",
+    "ForwardAgent=no",
+    "-o",
+    "ForwardX11=no",
+    "-o",
+    "ClearAllForwardings=yes",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "-o",
+    "ControlPersist=no",
+    "root@10.11.99.1"
+  ],
+  "observed_preconditions": {
+    "current_stock_hash": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+    "current_qmd_manifest": "capture-manifest.json",
+    "firmware_identity": "Prior approved preflight: Ferrari, aarch64, IMG_VERSION 3.28.0.172, VERSION_ID 5.8.203; not reread during resource-only capture.",
+    "native_dependencies": "Prior verified hashes/publisher provenance: XOVI v0.3.3, AppLoad v0.6.0, qt-resource-rebuilder v19-23052026. Pinned qmldiff 25681c3cc7addb93fdbb41ceac1f1bdce8b2625d passed host application.",
+    "prior_targets": "device-preflight-0010: three production targets absent, parent directories root-owned and writable. Must recheck at authorized install."
+  },
+  "required_before_execution": [
+    "Generate the actual intended server trust record only after separately authorized compatible desktop endpoint preparation. Pin its SHA256, server ID, HTTPS origin and certificate fingerprint through trusted extension/loopback output. No server record was obtained or fabricated in this run.",
+    "Recheck exact stock/native hashes, model/architecture/IMG_VERSION and all approved target types/owners/permissions; abort on drift, unsafe symlinks, occupied targets or changed retained QMD manifest.",
+    "Verify installer and ZIP against listed SHA256 before executing or extracting. Verify packaged sidebar.qmd is the validated production bytes.",
+    "Use only the fixed production target set. Preserve every retained QMD, prototype installation/service and all unrelated data. No automatic repair or retry."
+  ],
+  "allowed_future_target_set": [
+    "/home/root/.local/share/pi-ink-bridge",
+    "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+    "/home/root/xovi/exthome/appload/pi-annotations",
+    "/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd"
+  ],
+  "future_write_effects": "Verified installer uses its own temporary extraction directory, creates private immutable release files and initial config.json/server-ca.pem in production base, publishes two named symlinks. Removes only its own transient staging. Does not restart. See installation.go and production-install.sh.",
+  "separate_acceptance": [
+    "After installation, obtain fresh owner saved/closed confirmation and separate approval for one Xochitl restart, not a reboot by default.",
+    "Observe Pi Annotations row and real AppLoad connection screen after that restart. Native post-restart launch remains untested.",
+    "Seek separately scoped repeat-install and data-preservation acceptance; no pairing/draft content access authorized by this investigation."
+  ],
+  "installation_command_executed": false,
+  "server_bootstrap_digest": null,
+  "source_changes_required": false
+}

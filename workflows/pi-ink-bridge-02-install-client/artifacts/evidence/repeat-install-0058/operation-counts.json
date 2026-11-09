@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-11-09T00:01:58.141791+00:00",
+  "ssh_invocations": 4,
+  "read_only_preflights": 1,
+  "installer_executions": 1,
+  "postchecks": 1,
+  "owned_stage_cleanups": 1,
+  "public_files_removed": 3,
+  "owned_stage_absent": true,
+  "retries": 0,
+  "repairs": 0,
+  "reboots": 0,
+  "xochitl_restarts": 0,
+  "native_launches": 0,
+  "pairings": 0,
+  "host_service_mutations": 0,
+  "private_contents_exported": 0,
+  "tests_builds_formatters": 0
+}

@@ -1,0 +1,42 @@
+{
+  "created_at": "2026-11-08T07:36:53.438801+00:00",
+  "status": "BLOCKED",
+  "observed": [
+    "The capture contains four existing AppLoad registration/socket/termination sequences for org.pi-ink.annotations. These are journal sequences, not a verified count of owner actions or launches in this attempt.",
+    "Each sequence contains a plain EOF diagnostic from a different PID before AppLoad reports Failed to send message header, closes the socket, unloads frontends, and reports Application org.pi-ink.annotations terminated.",
+    "EOF records have SYSLOG_IDENTIFIER xochitl and no _EXE field. Backend attribution and precise read call are not established by the retained metadata.",
+    "The final captured entry is 07:18:40.669620 UTC. The 300-entry cap may omit earlier records; no later matching record in this result does not prove no later failure."
+  ],
+  "technical_inference": [
+    "Local main.go:24-28 prints returned errors and exits1. appload.go:45-47 returns header-read errors unchanged, which is consistent with a backend EOF exit but does not prove attribution.",
+    "Connections.qml:27-34 sends an empty type-1 poll initially and every5000ms. appload.go:57-61 reads a payload only when length>0. An empty-payload protocol mismatch is a candidate, not an established cause.",
+    "Three observed registration-to-header-failure intervals are near five seconds; timing alone does not establish poll causality."
+  ],
+  "root_cause_established": false,
+  "missing_evidence": [
+    "Backend-executable attribution and stack/read location for EOF.",
+    "Pinned AppLoad framing behavior for empty payloads and causal ordering of peer closure.",
+    "No exact visible server identity/state/layout acceptance captured."
+  ],
+  "source_commit": "4bc79d3c1b28091de8437fe33babaeab24659af4",
+  "source_tree": "397ff45e5d7fa62b1917d744951da604932c254c",
+  "source_refs": [
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/appload.go:37-81",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/main.go:24-48",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-appload/Connections.qml:13-34"
+  ],
+  "next_proposed_action": "Separately scope a host-only review of the pinned AppLoad primary-source socket protocol against runAppLoad, especially empty type-1 payload framing and shutdown semantics. No device execution, reproduction or repair is proposed in that review.",
+  "next_action_executed": false,
+  "operation_counts": {
+    "network_ssh_executions": 1,
+    "restarts": 0,
+    "native_launches": 0,
+    "installs": 0,
+    "repairs": 0,
+    "retries": 0,
+    "source_changes": 0,
+    "tracker_changes": 0,
+    "builds_tests_formatters": 0
+  },
+  "current_device_state": "Not queried; only existing journal records captured. Native acceptance remains failed; repeat install separately gated."
+}

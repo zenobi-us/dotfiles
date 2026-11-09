@@ -1,0 +1,279 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052"
+  },
+  "receipt_id": "start-complete-0054",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 18,
+  "parent_receipt": "implementation-0053",
+  "source_commit": "ba64e4a519f876512d782285c8718566254e9780",
+  "source_tree": "53931f343865c1776b76a5036b1f7b0bf7e7e09d",
+  "created_at": "2026-11-08T23:13:08.498Z",
+  "pane_id": null,
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "status": "blocked",
+  "scope_status": "Requested single full reboot and owner-triggered mod activation verified. Whole ticket remains blocked on fixed-payload deployment/native acceptance.",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0052.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/authorization.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/markdown-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/parent-launch-observation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/preflight-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/preflight-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/preflight-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/public-preflight-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/reboot-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/reboot-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/reboot-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-intent-1.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-intent-2.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-intent-3.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-result-1.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-result-2.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/return-result-3.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/workflow-inspection.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0053.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0053.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0054.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/parent-activation-authorization.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/parent-activation-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/parent-activation-execution-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/parent-activation-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/parent-validation.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    }
+  ],
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Fresh inspector selected start/reconcile implementation-0053, history valid. Validated frozen child source, workflow-only commit, actual normal reboot and child return evidence. After owner separately reported physical gesture complete, one explicitly approved read-only parent verification established runtime mods. No child mutation or exhausted reboot observation was automatically repeated.",
+    "authorization": {
+      "created_at": "2026-11-08T22:01:00.072Z",
+      "original_request": "approved, first restart device with mods enabled",
+      "saved_closed_confirmation": "Saved and closed—reboot once",
+      "physical_confirmation": "Ready—reboot, then I’ll triple-press",
+      "presented_scope": "Allow existing owner-triggered XOVI activation, including temporary service overrides and service restart. Verify boot and mod state afterward; no deployment or persistent configuration changes.",
+      "scope": "One fresh read-only cable preflight, at most one normal full-device reboot, owner performs existing tripletap gesture after stock boot; bounded read-only boot/runtime/preservation observations. No automatic invocation of xovi/start. No new payload deployment or Pi Annotations launch during this attempt.",
+      "limits": {
+        "preflights": 1,
+        "reboot_dispatches": 1,
+        "postboot_ssh_observations": 3,
+        "postboot_window_seconds": 120,
+        "automatic_mod_helper_invocations": 0,
+        "extra_xochitl_restart_dispatches": 0,
+        "installs": 0,
+        "deployments": 0,
+        "pairings": 0,
+        "native_launches": 0,
+        "persistent_config_changes": 0,
+        "host_service_changes": 0
+      },
+      "stop_rules": [
+        "Stop on preflight/identity failure without a reboot retry or repair.",
+        "After reboot dispatch, ambiguous SSH teardown does not authorize another reboot.",
+        "Owner may activate only the existing tripletap route. Temporary overrides/service restart inherent to that route are acknowledged; no persistent boot/firmware/Developer Mode changes.",
+        "If owner activation is not observed within bounded return window, report pending/unknown; no auto-helper, second reboot or extra restart."
+      ],
+      "ownership": "Prior child w6T:p8 done completion_seq394 and closed. Fresh target-worktree agent list empty; no matching source/base goal YAML dispatch reservations. Claim retained; direct blocker01 completed.",
+      "inspection": {
+        "historyValid": true,
+        "mode": "takeover",
+        "parentReceipt": "start-complete-0051",
+        "source_commit": "da7277f2a99969fa7970421e97f25a7d96b6a7f3",
+        "source_tree": "417e0ffbf02efeb2060bf6c8e9ec1deb089ab1cc",
+        "dirty": false
+      }
+    },
+    "parent_followup_authorization": {
+      "created_at": "2026-11-08T23:08:54.462Z",
+      "owner_statement": "Step complete—verify once",
+      "context": "One full reboot already verified; no named runtime mod maps in the three earlier bounded observations. Owner was told not to repeat the gesture if already performed.",
+      "scope": "One read-only cable SSH verification, allowing up to30 seconds for existing mod startup; no reboot, restart, helper execution, deployment or configuration changes.",
+      "purpose": "Parent reconciliation verification of newly owner-reported physical activation, not a repeated reboot or automatic retry of the earlier unchanged state.",
+      "source_commit": "ba64e4a519f876512d782285c8718566254e9780",
+      "source_tree": "53931f343865c1776b76a5036b1f7b0bf7e7e09d",
+      "parent_result": "implementation-0053"
+    },
+    "ownership": "Child done sequence402 and closed; root shell/workspace/worktree and claim retained."
+  },
+  "validated_result": {
+    "receipt": "implementation-0053",
+    "source_commit": "da7277f2a99969fa7970421e97f25a7d96b6a7f3",
+    "source_tree": "417e0ffbf02efeb2060bf6c8e9ec1deb089ab1cc",
+    "exact_tree_verified": true,
+    "reboot_dispatches": 1,
+    "reboot_proven_by_new_boot_id": true,
+    "child_scope_status": "full reboot verified; mods-enabled runtime unverified",
+    "parent_validation": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/owner-boot-0052/parent-validation.json",
+    "parent_mod_activation_verified": true
+  },
+  "operation_counts": {
+    "read_only_ssh_preflights": 1,
+    "reboot_dispatches": 1,
+    "return_status_checks": 3,
+    "automatic_mod_helper_invocations": 0,
+    "additional_xochitl_restart_dispatches": 0,
+    "installs": 0,
+    "deployments": 0,
+    "native_launches": 0,
+    "pairings": 0,
+    "live_host_service_actions": 0,
+    "persistent_configuration_changes": 0,
+    "parent_owner_activation_checks": 1,
+    "total_read_only_ssh_operations": 5,
+    "total_ssh_invocations": 6
+  },
+  "reboot_scope_success": true,
+  "old_boot_id": "ca7919b4-52c7-424f-ab79-4a8490465f00",
+  "new_boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+  "mod_runtime": {
+    "xochitl_pid": "3641",
+    "state": "active/running",
+    "modules": [
+      "/home/root/xovi/extensions.d/appload.so",
+      "/home/root/xovi/extensions.d/qt-resource-rebuilder.so",
+      "/home/root/xovi/xovi.so"
+    ]
+  },
+  "public_hashes_preserved": 23,
+  "metadata_records_preserved": 44,
+  "installed_payload_changed": false,
+  "new_payload_deployed": false,
+  "native_acceptance": false,
+  "blocker": "Existing installer requires explicit old-to-new release upgrade plan for the two named launcher links. New framing-fix payload deployment, native launch acceptance and repeat-install preservation remain pending.",
+  "next_action": "Requested reboot-with-mods step is complete. Prepare explicit pinned upgrade/cutover and activation plan before fixed-client deployment; no further reboot, helper invocation or native launch authorized by this completed boot-only attempt.",
+  "formal_independent_review": "not performed",
+  "merged": false,
+  "pushed": false
+}

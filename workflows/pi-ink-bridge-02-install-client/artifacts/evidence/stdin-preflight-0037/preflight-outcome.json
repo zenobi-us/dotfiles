@@ -1,0 +1,40 @@
+{
+  "created_at": "2026-11-08T04:58:27.099022+00:00",
+  "preflight_status": "passed",
+  "ticket_status": "BLOCKED",
+  "code": 0,
+  "signal": null,
+  "timed_out": false,
+  "elapsed_seconds": 1.6224401270010276,
+  "last_observed_ssh_stage": "exec request accepted; remote exit status 0",
+  "last_observed_script_stage": "STAGE=complete",
+  "observed_stage_count": 11,
+  "comparison_status": "passed",
+  "comparisons_passed": 91,
+  "comparisons_total": 91,
+  "fresh_differences": [],
+  "counts": {
+    "preflight_executions": 1,
+    "network_ssh_executions": 1,
+    "retries": 0,
+    "restarts": 0,
+    "installer_executions": 0,
+    "native_launches": 0,
+    "pairing_actions": 0,
+    "device_staging_files": 0,
+    "source_changes": 0,
+    "tracker_changes": 0,
+    "builds_tests_formatters": 0
+  },
+  "unobserved": [
+    "Current desktop host service state",
+    "Native UI/backend launch acceptance",
+    "Repeat-install acceptance",
+    "Tablet Dropbear compiled command-length limit/server failure logs"
+  ],
+  "uncertainty": "Stdin success supports oversized exec argument as the prior failure cause. Tablet compiled Dropbear limit and server logs were not read; exact server-build cause remains unconfirmed.",
+  "native_acceptance": false,
+  "repeat_install": false,
+  "next_scoped_action_proposed": "Separate owner approval for saved/closed documents, one Xochitl restart and bounded native observation. Repeat-install acceptance needs separate approval. No tablet UI selection requested now.",
+  "scope_result": "No source/tracker/tool changes; no restart/install/native launch; no host-service inspection or prototype contact."
+}

@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-11-08T02:39:27.014Z",
+  "owner_restart_approval": "approved",
+  "saved_and_closed_confirmation": "Yes, all saved and closed",
+  "shared_inspector_permission": "Fix inspector and continue",
+  "scope": "Exactly one Xochitl restart after strict read-only installed-identity preflight, then native Pi Annotations sidebar/layout/connection observation. No pairing, repeat installation, reboot, repair or automatic retry.",
+  "inspector_recovery": "Concurrent owner changes already added documented do...; grouping. Parent made no shared-tool edit. Actual canonical inspection now passed with historyValid=true.",
+  "inspected_source_commit": "d7f4c61eafd5a1898cff3da85801c61a7c96c4fa",
+  "inspected_source_tree": "ca4cd0ea9ffd9e2dfcfd89a3fe73b9b055623cb8",
+  "decision": {
+    "action": "start",
+    "mode": "takeover",
+    "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0024.json",
+    "requiredApproval": true
+  },
+  "ownership": "No active source-worktree agents in Herdr agent list; prior w6R:p6 done and closed. Existing parent claim retained idempotently. No pi-ink goal coordinator collection or reservation identified; unrelated UX coordinator preserved."
+}

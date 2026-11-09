@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-11-08T02:42:19.170135+00:00",
+  "status": "blocked",
+  "preflight_executions": 1,
+  "preflight_status": "transport-failed",
+  "preflight_exit": 255,
+  "stdout_bytes": 0,
+  "stderr": "Read from remote host 10.11.99.1: Connection reset by peer\nclient_loop: send disconnect: Broken pipe\n",
+  "restarts": 0,
+  "installer_executions": 0,
+  "automatic_retries": 0,
+  "operation_start_written": false,
+  "native_observation": "not attempted: preflight failed",
+  "preservation_postcheck": "not attempted: no activation and no retry authorized",
+  "current_device_identity": "unobserved; prior installation evidence remains historical only",
+  "current_pid": "unobserved",
+  "scope_stop": "Preflight failed; stop without restart",
+  "next_action": "Owner or parent must restore cable SSH access and provide scoped approval for a new preflight. Do not restart or reinstall. Native UI action is not yet applicable.",
+  "desktop_service": "not contacted or stopped",
+  "port47840": "not contacted",
+  "private_content_read": false,
+  "device_mutation_commands": 0
+}

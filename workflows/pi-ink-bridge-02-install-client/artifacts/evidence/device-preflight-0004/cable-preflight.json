@@ -1,0 +1,35 @@
+{
+  "started_at": "2026-11-07T22:52:30.315376+00:00",
+  "argv": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "-o",
+    "ConnectionAttempts=1",
+    "-o",
+    "ControlMaster=no",
+    "-o",
+    "ControlPath=none",
+    "-o",
+    "ClearAllForwardings=yes",
+    "root@10.11.99.1",
+    "set -eu\nprintf 'MODEL='\ntr -d '\\000\\n' < /sys/firmware/devicetree/base/model\nprintf '\\nARCH='\nuname -m\nprintf 'FIRMWARE_METADATA\\n'\nwhile IFS= read -r line; do\n case \"$line\" in VERSION_ID=*|IMG_VERSION=*) printf '%s\\n' \"$line\";; esac\ndone < /etc/os-release\n"
+  ],
+  "host_deadline_seconds": 20,
+  "exit_code": 0,
+  "stdout": "MODEL=reMarkable Ferrari\nARCH=aarch64\nFIRMWARE_METADATA\nVERSION_ID=5.8.203\nIMG_VERSION=\"3.28.0.172\"\n",
+  "stderr": "",
+  "known_host_lookup": {
+    "exit_code": 0,
+    "matching_entries": 1,
+    "key_material_captured": false
+  },
+  "connection_count": 1,
+  "device_writes": false,
+  "restart": false,
+  "stop_reason": "Current VERSION_ID differs from the production installer firmware guard. No further device probes."
+}

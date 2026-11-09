@@ -1,0 +1,76 @@
+{
+  "created_at": "2026-11-09T00:15:24.684Z",
+  "child_result": "implementation-0059",
+  "inspected_source": {
+    "commit": "57491dc0da46ed141e9cb9dbcd6f0c9c02a86744",
+    "tree": "520dde688e1157a7cef836f9ec8cceb736bb9ea1"
+  },
+  "workflow_commit": "4cc645e758e10ed132304445bacc68df6f918317",
+  "workflow_tree": "6d47dd9563adb84e42867ffc03877bf16f990021",
+  "evidence_commit": {
+    "commit": "f1936b8c125dc3c5ae60c4435304f96400acf708",
+    "tree": "28d6dd4e5422fc6fcb27f21d903152e9b7983557"
+  },
+  "tracker_commit": {
+    "commit": "57491dc0da46ed141e9cb9dbcd6f0c9c02a86744",
+    "tree": "520dde688e1157a7cef836f9ec8cceb736bb9ea1"
+  },
+  "change_scope": {
+    "files": 34,
+    "outside_allowed": [],
+    "production_code_unchanged": true
+  },
+  "repeat": {
+    "executions": 1,
+    "exit_code": 0,
+    "script_sha256": "df40a89c027fc7071674003019f316672c0c0e2eaac821c68ca6d70892f55e80",
+    "executed_script_bytes_verified": true,
+    "public_hashes_before_after": 29,
+    "hash_mismatches": [],
+    "preserved_inode_mtime_absence_rows": 34,
+    "matched_core_metadata_log_rows": 44,
+    "preserved_core_metadata": true,
+    "exact_links_preserved": 2,
+    "qmd_names_preserved": 13,
+    "private_contents_returned": false,
+    "private_state": "absent before and after; no private fixtures seeded",
+    "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+    "ui_pid": 7146,
+    "ui_restarts": 0,
+    "reboots": 0,
+    "new_native_launches": 0
+  },
+  "cleanup": {
+    "exit_code": 0,
+    "script_sha256": "a625f1a07eae3773307c3c02b779e1ea1aecd72f59f24c46978073055b1bf676",
+    "executed_script_bytes_verified": true,
+    "scope": "Exact three root-owned nonsymlink pinned public downloads, then empty owned .upgrade-0055.eQVGWv; no recursive or wildcard deletion.",
+    "removed_public_files": 3,
+    "owned_stage_absent": true
+  },
+  "prior_native_acceptance": {
+    "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0057.json",
+    "owner_report": "Stays open—server available",
+    "running_fixed_binary_sha256": "433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051",
+    "pid": 8409,
+    "rerun": false
+  },
+  "parent_tracker_check": {
+    "command": "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.ts check --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client --ticket pi-ink-bridge-02-install-client",
+    "exit_code": 0,
+    "schema": "tracker-result/v1",
+    "operation": "check",
+    "backend": "local-markdown",
+    "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+    "state": "implemented",
+    "validation_status": "passed",
+    "details": "Validated the selected record through the normal graph and tracker explorer readers."
+  },
+  "closure": {
+    "pane": "w6T:pB",
+    "completion_seq": 426,
+    "status": "done",
+    "close": "type ok"
+  },
+  "remaining": "Fresh independent review. No hardware acceptance, cleanup, source fix or tracker publication blocker remains. No review verdict, merge or push performed."
+}

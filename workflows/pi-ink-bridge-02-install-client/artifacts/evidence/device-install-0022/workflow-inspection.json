@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-11-08T01:59:48.993Z",
+  "command": "MISE_AUTO_INSTALL=0 /home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/inspect.ts tracker/tickets/pi-ink-bridge-02-install-client.md --json",
+  "code": 1,
+  "signal": null,
+  "timed_out": false,
+  "stdout": "{\"error\":\"mq failed (exit 1): \\nError: mq::syntax\\n\\n  × Unexpected token `catch`\\n   ╭─[:1:536]\\n 1 │ import \\\"json\\\" | json::json_parse() | import \\\"github.com/harehare/okf.mq\\\" | import \\\"section\\\" | map(fn(item): try: let source = item[\\\"source\\\"] | let doc = okf::okf_parse(source) | { document: { fields: doc[\\\"frontmatter\\\"], body: doc[\\\"body\\\"], links: if (doc[\\\"frontmatter\\\"][\\\"schema\\\"] == \\\"tracker-initiative/v1\\\"): okf::okf_extract_links(to_markdown_string(section::collect(filter(section::sections(to_markdown(doc[\\\"body\\\"]), true), fn(s): section::level(s) == 2 && section::title(s) == \\\"Tickets\\\";)))) else: okf::okf_extract_links(source) } } catch(e): { error: e[\\\"message\\\"] };)\\n   ·                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ──┬──\\n   ·                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ╰── unexpected token\\n   ╰────\\n  help: This token is not valid here. Check for typos, missing operators, or\\n        misplaced punctuation.\\n\\n\"}\n",
+  "stderr": "",
+  "boundary": "Post-result inspector could not parse its generated mq query (Unexpected token catch). Initial pre-operation inspector passed. No device action repeated; no tooling/source correction authorized or attempted.",
+  "markdown_validation": {
+    "code": 0,
+    "signal": null,
+    "timed_out": false,
+    "stdout": "[]\n[]\n[]\n",
+    "stderr": ""
+  }
+}

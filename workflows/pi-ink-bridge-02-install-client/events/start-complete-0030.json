@@ -1,0 +1,198 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028"
+  },
+  "receipt_id": "start-complete-0030",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 10,
+  "parent_receipt": "implementation-0029",
+  "source_commit": "5ba0b5939e8f68f855497d71a31d5afb1776b429",
+  "source_tree": "a5c8a216f559a06b6d5bec0b061258b12b418492",
+  "created_at": "2026-11-08T03:05:44.544Z",
+  "pane_id": null,
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "status": "blocked",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0028.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0029.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/authorization.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/preflight-intent.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/read-only-preflight.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/preflight-outcome.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/session-scope.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/workflow-inspection.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/markdown-validation.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0029.json"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0029.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "artifact",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0030.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/parent-validation.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Canonical inspector selects start/reconcile implementation-0029. Verified exact source/result trees, workflow-only scope, actual preserved exit255 and zero mutation counts. No SSH retry.",
+    "authorization": {
+      "created_at": "2026-11-08T02:58:37.049Z",
+      "user_text": "confirmed",
+      "in_reply_to": "Reconnect and unlock the tablet, then confirm cable access is restored and approve one fresh read-only preflight. No restart yet.",
+      "scope": "One fresh strict read-only installed-target cable preflight only. Zero restarts, installer executions, native launches, pairing, repair or automatic retries.",
+      "ownership": "No source-worktree agents returned by Herdr agent list. Previous w6R:p7 done/closed. Existing held claim retained; prior unchanged workflow inventory contains no matching pi-ink goal coordinator.",
+      "inspection": {
+        "historyValid": true,
+        "source": {
+          "commit": "f71077758c721908704cc24b0ded0a84d0932571",
+          "tree": "04c5d1a4fe8d195dbb7d927ebe51a3e594351178",
+          "dirty": false,
+          "candidates": 1
+        },
+        "decision": {
+          "action": "start",
+          "mode": "takeover",
+          "requiredApproval": true,
+          "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0027.json"
+        }
+      }
+    },
+    "ownership": "Fresh child w6R:p8 done completion_seq288, closed successfully; claim and worktree preserved.",
+    "history_valid": true
+  },
+  "validated_result": {
+    "receipt": "implementation-0029",
+    "source_commit": "f71077758c721908704cc24b0ded0a84d0932571",
+    "source_tree": "04c5d1a4fe8d195dbb7d927ebe51a3e594351178",
+    "exact_tree_verified": true,
+    "evidence": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/cable-preflight-0028/parent-validation.json",
+    "outcome": {
+      "created_at": "2026-11-08T03:01:10.984802+00:00",
+      "status": "blocked",
+      "preflight_status": "transport-failed",
+      "preflight_executions": 1,
+      "preflight_exit": 255,
+      "stdout_bytes": 0,
+      "stderr": "Read from remote host 10.11.99.1: Connection reset by peer\r\nclient_loop: send disconnect: Broken pipe\r\n",
+      "elapsed_seconds": 0.1739947900059633,
+      "restarts": 0,
+      "installer_executions": 0,
+      "retries": 0,
+      "automatic_retries": 0,
+      "native_observation": "not attempted",
+      "current_device_identity": "unobserved; empty stdout",
+      "current_pid": null,
+      "installed_release_comparison": "unobserved",
+      "retained_resource_comparison": "unobserved",
+      "native_dependency_comparison": "unobserved",
+      "service_identity": "unobserved",
+      "postcheck": "not attempted; no second SSH authorized",
+      "source_changes": false,
+      "tracker_changes": false,
+      "private_content_read": false,
+      "repeat_install_authorized": false,
+      "restart_authorized": false,
+      "device_defect_inferred": false,
+      "stop_reason": "One authorized preflight failed; stop without retry, restart, installation or UI action."
+    },
+    "child_commit_hooks": "bypassed by child; recorded in parent validation, not claimed passed"
+  },
+  "preflight_executions": 1,
+  "restart_count": 0,
+  "installer_executions": 0,
+  "automatic_retries": 0,
+  "native_observation": "not attempted",
+  "activation_status": "blocked-preflight-transport",
+  "blocker": "One authorized fresh preflight reset before output despite direct USB-interface route. Current device state unobserved. No further tablet access, restart or reinstall authorized.",
+  "next_approval": "A separately scoped, bounded read-only SSH transport diagnostic is recommended to locate the reset stage; do not repeat full preflight or activate without new approval."
+}

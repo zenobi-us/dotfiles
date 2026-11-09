@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "sh",
+    "-n",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fixed-client-upgrade-0055/device-upgrade.sh"
+  ],
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": ""
+}

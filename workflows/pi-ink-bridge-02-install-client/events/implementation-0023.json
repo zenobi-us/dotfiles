@@ -1,0 +1,223 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0023",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 8,
+  "parent_receipt": "start-0022",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "3f8b679686fb3196fdd39f5b5ed80b7203503fb9",
+  "source_tree": "d4bbee6c9cfe001b83ec05cc6e8356d3ba14fa65",
+  "created_at": "2026-11-08T01:57:21.108Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": "w6R:p6",
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T01-52-46-788Z_01a1b8db-acc4-74c8-bb48-99ec060e698a.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "status": "blocked",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0022.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0021.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/corrected-preflight-proposal.sh"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/corrected-preflight-proposal.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/installation-approval-request.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/capture-manifest.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "source",
+      "ref": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh"
+    },
+    {
+      "kind": "source",
+      "ref": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/installation.go"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0023.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0023.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/cable-preflight.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/installation-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/operation-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/operation-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/preflight-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/preflight-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/read-only-postcheck.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/session-scope.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/trust-preflight.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "changed_files": [
+    "workflows/pi-ink-bridge-02-install-client/events/start-0022.json",
+    "workflows/pi-ink-bridge-02-install-client/events/implementation-0023.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0023.md",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/cable-preflight.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/installation-outcome.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/operation-result.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/operation-start.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-comparison.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-intent.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/preflight-comparison.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/preflight-start.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/read-only-postcheck.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/session-scope.json",
+    "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/trust-preflight.json",
+    "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+  ],
+  "source_changes": false,
+  "tracker_changes": false,
+  "installation_status": "installed-successfully",
+  "installer_executions": 1,
+  "preflight_executions": 1,
+  "preflight_status": "passed",
+  "postcheck_status": "passed",
+  "validation": [
+    {
+      "command": "Fresh loopback /instructions, three pinned payload downloads, certificate-verified HTTPS /health and six ZIP member identities",
+      "result": "passed",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/trust-preflight.json"
+    },
+    {
+      "command": "Exact approved corrected read-only preflight over strict cable SSH; host comparison with fixed capture manifest and recorded parent/native metadata",
+      "result": "exit 0; all exact comparisons passed; no retry",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/preflight-comparison.json"
+    },
+    {
+      "command": "Recorded generated pinned installation command with strict SSH transport options only; operation intent fsynced before mutation",
+      "result": "exit 0; one installer execution; three downloads verified before execution/extraction",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/installation-outcome.json"
+    },
+    {
+      "command": "Strict cable read-only owned-release/link/CA metadata, retained hashes and QMD inventory postcheck",
+      "result": "exit 0; six release identities/metadata, two exact links, pinned CA and all retained identities passed; Xochitl PID 7463 unchanged",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0022/postcheck-comparison.json"
+    }
+  ],
+  "implementation_summary": "One fresh unchanged corrected preflight passed. One pinned production installation succeeded. All authorized read-only postchecks passed. No restart, native launch, pairing, retry, source or tracker change occurred. Whole-ticket acceptance remains blocked.",
+  "open_questions": [
+    "Fresh owner saved-and-closed confirmation and separate approval for exactly one Xochitl restart, then native Pi Annotations sidebar/layout/connection observation. No activation is authorized now.",
+    "Separate repeat-install approval and data-preservation acceptance."
+  ],
+  "blocker": "Native post-restart sidebar/connection observation and repeat-install acceptance remain unperformed and require separate owner approval.",
+  "next_approval": "Fresh owner saved-and-closed confirmation and separate approval for exactly one Xochitl restart, then native Pi Annotations sidebar/layout/connection observation. No activation is authorized now.",
+  "recovery": {
+    "mode": "takeover",
+    "authorization": {
+      "user_text": "approved",
+      "scope": "One fresh corrected recorded preflight; at most one unchanged pinned installer execution after all required checks pass. No restart, activation, pairing, repeat install or automatic retry."
+    },
+    "ownership": "Fresh session w6R:p6 observed as the only agent in workspace w6R; parent recorded prior child closed and claim retained.",
+    "prior_attempt": 7,
+    "consumed_parent": "start-0022",
+    "corrected_preflight_sha256": "16a4fa0672d18d5f548b94673d7477857e95015f4e93174fd5bfda0f8f4d254e",
+    "prior_installer_executions": 0,
+    "previous_failure": "Prior root-writability guard was an overly broad agent guard, not a device or firmware defect."
+  },
+  "device_access": true,
+  "device_writes": true,
+  "installation_command_executed": true,
+  "restart_requested": false,
+  "pairing_requested": false,
+  "native_ui_launched": false,
+  "repeat_install": false,
+  "review_status": "not-performed",
+  "merge_status": "not-merged-not-pushed"
+}

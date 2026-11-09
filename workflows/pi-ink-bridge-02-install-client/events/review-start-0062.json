@@ -1,0 +1,83 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "receipt_id": "review-start-0062",
+  "phase": "review",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": "implementation-complete-0061",
+  "source_commit": "e7f90b0b5b6233c3fb21b33b3924633115d32d6c",
+  "source_tree": "c1526ae02dc828ab1a75ac479e7a4c3b782edc21",
+  "created_at": "2026-11-09T02:00:31.658Z",
+  "pane_id": null,
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "status": "started",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-complete-0061.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0059.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0059.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-ink-bridge/index.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/review-start-0062.json"
+    }
+  ],
+  "recovery": {
+    "mode": "begin",
+    "reason": "Canonical inspector selects review/begin; complete implementation61, source clean at frozen target, no live target agents and no matching goal reservations.",
+    "ownership": "Same parent; all implementation children completed and closed. This is a new independent reviewer.",
+    "history_copy": {
+      "source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/workflows/pi-ink-bridge-02-install-client",
+      "destination": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-02-install-client",
+      "method": "cp -an followed by diff -qr",
+      "byte_identical": true,
+      "reason": "Receipts.md permits byte-identical retained source-worktree records in base checkout. This keeps the exact reviewed commit/tree and source checkout clean."
+    }
+  },
+  "review_target": {
+    "commit": "e7f90b0b5b6233c3fb21b33b3924633115d32d6c",
+    "tree": "c1526ae02dc828ab1a75ac479e7a4c3b782edc21",
+    "base_branch": "master",
+    "base_commit": "997d05ccf6daf98fd9c49b69129636790e808a22",
+    "diff_command": "git diff 997d05ccf6daf98fd9c49b69129636790e808a22...e7f90b0b5b6233c3fb21b33b3924633115d32d6c"
+  },
+  "review_artifact": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0063.md",
+  "expected_result": "workflows/pi-ink-bridge-02-install-client/events/review-0063.yaml",
+  "authorization": "User explicitly requested review pi-ink-bridge-02-install-client. No hardware access or mutation is authorized by this review."
+}

@@ -1,0 +1,90 @@
+{
+  "argv": [
+    "/tmp/appload-smoke-mawfdf8o/pi-ink-client",
+    "appload",
+    "--config",
+    "/tmp/appload-smoke-mawfdf8o/config.json",
+    "/tmp/appload-smoke-mawfdf8o/socket"
+  ],
+  "exit": 0,
+  "stdout": "",
+  "stderr": "",
+  "replies": [
+    [
+      {
+        "connection": "available — not paired",
+        "detail": "Server identity and TLS verified. Pairing requires explicit desktop approval.",
+        "name": "Synthetic TLS fixture",
+        "serverId": "synthetic-server"
+      }
+    ],
+    [
+      {
+        "connection": "available — not paired",
+        "detail": "Server identity and TLS verified. Pairing requires explicit desktop approval.",
+        "name": "Synthetic TLS fixture",
+        "serverId": "synthetic-server"
+      }
+    ],
+    [
+      {
+        "connection": "available — not paired",
+        "detail": "Server identity and TLS verified. Pairing requires explicit desktop approval.",
+        "name": "Synthetic TLS fixture",
+        "serverId": "synthetic-server"
+      }
+    ],
+    [
+      {
+        "connection": "available — not paired",
+        "detail": "Server identity and TLS verified. Pairing requires explicit desktop approval.",
+        "name": "Synthetic TLS fixture",
+        "serverId": "synthetic-server"
+      }
+    ]
+  ],
+  "sent_record_lengths": [
+    8,
+    19,
+    8,
+    0,
+    8,
+    19,
+    8,
+    0,
+    8,
+    19,
+    8,
+    0,
+    8,
+    19,
+    8,
+    0,
+    8,
+    0
+  ],
+  "health_requests": [
+    "/health",
+    "/health",
+    "/health",
+    "/health"
+  ],
+  "host_build_command": [
+    "mise",
+    "exec",
+    "--",
+    "go",
+    "build",
+    "-trimpath",
+    "-o",
+    "<temporary-host-binary>",
+    "."
+  ],
+  "host_binary_sha256": "83092189343ba5e135931431b1c654566fcfc0335c72130b0667f7514bfe50d0",
+  "config_mode": "0600",
+  "survived_repeated_polls": true,
+  "termination": "explicit type 0xffffffff plus empty record; bounded exit0",
+  "tablet_actions": 0,
+  "live_service_actions": 0,
+  "cleanup": "process exited, peer/listener/TLS server closed; all temporary fixtures and host binary removed"
+}

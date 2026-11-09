@@ -1,0 +1,45 @@
+{
+  "created_at": "2026-11-08T01:43:18.241454+00:00",
+  "status": "blocked",
+  "installation_status": "not-started",
+  "installer_executions": 0,
+  "operation_start_recorded": false,
+  "intent_recorded": false,
+  "reason": "Fresh read-only preflight exited 41 at added writable-directory guard for /. This guard was broader than the authorized production-home write boundary. Do not infer a device defect or payload failure. No retry was made.",
+  "device_connections": 1,
+  "device_persistent_writes": [],
+  "device_temporary_writes": [],
+  "allowed_targets_not_exercised": [
+    "/home/root/.local/share/pi-ink-bridge",
+    "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+    "/home/root/xovi/exthome/appload/pi-annotations",
+    "/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd"
+  ],
+  "checks_passed": [
+    "Verified existing SSH host-key lookup and strict batch cable connection",
+    "Ferrari/aarch64, IMG_VERSION 3.28.0.172",
+    "Stock Xochitl, XOVI, AppLoad and qt-resource-rebuilder SHA256 match",
+    "Three production target roots absent, home and launcher parents writable",
+    "Live exact public server record, certificate DER, installer, ZIP and packaged sidebar digests",
+    "Loopback generated command equals approved command",
+    "Certificate-verified HTTPS health reports approved server ready"
+  ],
+  "checks_not_reached": [
+    "Full root-ownership/mode guard loop after /",
+    "Retained direct QMD names/types/sizes/hashes and private retained capture hashes",
+    "Prototype preservation hash comparison",
+    "Tablet-side payload download checks",
+    "Installation and six installed file hashes/metadata/link targets/CA identity",
+    "Native activation and repeat-install acceptance"
+  ],
+  "restart_requested": false,
+  "reboot_requested": false,
+  "pairing_requested": false,
+  "prototype_or_port47840_access": false,
+  "private_config_contents_read": false,
+  "cleanup_performed": false,
+  "service": "Existing desktop service left running; certificate-verified health ready in trust-preflight.json",
+  "preflight_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/cable-preflight.json",
+  "trust_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-install-0019/trust-preflight.json",
+  "next_approval": "Approve a new fresh preflight and at most one execution of the same pinned installer after all checks pass. Correct the proposed preflight so / is checked for directory/type/owner, not writability; require writability only for approved production-home and launcher write parents. No source or pinned payload changes. No restart, activation, pairing, repeat-install or automatic retry."
+}

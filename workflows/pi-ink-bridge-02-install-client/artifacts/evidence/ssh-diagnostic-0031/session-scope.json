@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-11-08T03:38:31.371974+00:00",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T03-35-50-502Z_01a1b93a-07e6-74a7-8130-e135fff03453.jsonl",
+  "pane_id": "w6T:p2",
+  "ownership": "Herdr agent list shows only current worktree agent w6T:p2 with matching session. Parent coordinator w64:pY remains active in base checkout. No pane opened or closed. Parent pre-dispatch reservation inspection retained.",
+  "authorized_parent_dirty_paths": [
+    "manifest.yaml",
+    "projections/latest-status.yaml",
+    "events/start-0031.json",
+    "artifacts/evidence/ssh-diagnostic-0031/authorization.json"
+  ],
+  "source_changes": false,
+  "tracker_changes": false,
+  "builds_tests_formatters_run": false,
+  "host_service_contacted": false,
+  "port47840_contacted": false,
+  "ssh_effective_configuration_inspections": 0,
+  "network_ssh_executions": 1,
+  "private_raw_permissions": "directory 0700; files 0600; outside Git",
+  "known_host_updates_disabled": true
+}

@@ -1,0 +1,193 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049"
+  },
+  "receipt_id": "start-complete-0051",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 17,
+  "parent_receipt": "implementation-0050",
+  "source_commit": "4df74bd8e8f1ec10b6b1996b22b76d55752d9881",
+  "source_tree": "2caec0790b641c516ab53c0c174c6615e9657ccc",
+  "created_at": "2026-11-08T21:51:15.114Z",
+  "pane_id": null,
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "status": "blocked",
+  "scope_status": "Single read-only boot preflight validated; stopped before reboot pending owner physical activation readiness.",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0049.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/preflight-execution-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/identity-comparison.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/preflight-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/reboot-outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/parent-launch-observation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/session-scope.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/parent-upgrade-boundary.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/preflight-intent.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0050.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0050.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0051.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/parent-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/parent-payload-preflight.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    }
+  ],
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Fresh inspector historyValid=true selected start/reconcile implementation-0050. Validated durable blocked result, actual read-only output, 23 public hashes, exact frozen source/tree, workflow-only commit, snapshot and done/closed child. No repetition of child device work.",
+    "ownership": "Fresh child session completed sequence394 and closed; root/workspace/worktree and held claim retained.",
+    "authorization": {
+      "created_at": "2026-11-08T21:41:36.543Z",
+      "user_request": "approved, first restart device with mods enabled",
+      "readiness": "Saved and closed—reboot once",
+      "scope": "Check existing mod-enabled boot setup using bounded cable SSH read-only preflight; execute at most one full tablet reboot only if the existing setup can boot with mods without configuration changes; observe return and mod activation with bounded read-only checks. Reboot before any payload deployment.",
+      "restrictions": [
+        "No deployment, reinstall, pairing or native Pi Annotations launch in this reboot-only attempt.",
+        "No firmware, Developer Mode, bootloader, startup/service/drop-in, firewall, cloud/account, notebook/draft or unrelated file changes.",
+        "No live desktop service changes, port47840 contacts or prototype operations.",
+        "No retry after preflight failure; no second reboot, forced reboot, automatic repair or rollback.",
+        "If existing mod-enabled boot cannot be established or requires a physical owner step/configuration change, stop and report exact prerequisite."
+      ],
+      "ownership": "Fresh scoped takeover approved. Herdr filtered agent list for source worktree empty; source worktree has workspace w6T. No matching pi-ink ticket coordinator reservations found in source/base goal YAML journals. Existing held claim retained; direct blocker ticket is completed.",
+      "inspected_source": {
+        "commit": "8e094dec5035f2d72932b6b5f8a5f8ff220aa476",
+        "tree": "211b1339895438b831df426e19c5606049cded91",
+        "dirty": false
+      },
+      "decision": {
+        "action": "start",
+        "mode": "takeover",
+        "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0048.json",
+        "requiredApproval": true,
+        "historyValid": true
+      }
+    }
+  },
+  "validated_result": {
+    "receipt": "implementation-0050",
+    "source_commit": "8e094dec5035f2d72932b6b5f8a5f8ff220aa476",
+    "source_tree": "211b1339895438b831df426e19c5606049cded91",
+    "exact_tree_verified": true,
+    "preflight_exit": 0,
+    "public_hashes_compared": 23,
+    "public_hash_mismatches": [],
+    "reboot_dispatched": false,
+    "child_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T21-42-07-654Z_01a1bd1c-8e26-7677-8ee6-853f68bcee33.jsonl",
+    "pane_close": "type ok",
+    "parent_validation": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-reboot-0049/parent-validation.json"
+  },
+  "operation_counts": {
+    "read_only_ssh_preflights": 1,
+    "reboot_dispatches": 0,
+    "return_status_checks": 0,
+    "xochitl_restarts": 0,
+    "installs": 0,
+    "deployments": 0,
+    "native_launches": 0,
+    "pairings": 0,
+    "live_host_service_actions": 0,
+    "persistent_configuration_changes": 0,
+    "device_mutations": 0
+  },
+  "blocker": "Confirm owner readiness to perform existing post-boot triple-press during one full reboot. No boot or activation performed. No deployment before this prerequisite is resolved.",
+  "next_approval": "Owner readiness for one full reboot followed by owner-performed existing tripletap mod activation and bounded read-only return/mod verification. Existing activation can create temporary service overrides and restart Xochitl; no persistent startup/firmware/Developer Mode changes or automatic helper execution. New payload deployment and native launch remain separate boundaries.",
+  "new_payload_deployed": false,
+  "installed_payload_changed": false,
+  "native_acceptance": false,
+  "review_merge_push": "none"
+}

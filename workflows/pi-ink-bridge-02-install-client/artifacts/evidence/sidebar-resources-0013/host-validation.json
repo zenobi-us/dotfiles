@@ -1,0 +1,265 @@
+{
+  "created_at": "2026-11-08T00:06:04.903730+00:00",
+  "source_commit": "bdad43bd891932a86d3ef3e85cd616743147580b",
+  "source_tree": "a0e9d58b6e0c2a1338f2b98a15817bb8d3ca580c",
+  "source_provenance": {
+    "rebuilder_commit": "7874154dba6793cc68a15fae0fb9dd272c4ed20a",
+    "qmldiff_commit": "25681c3cc7addb93fdbb41ceac1f1bdce8b2625d",
+    "tree_url": "https://api.github.com/repos/asivery/rm-xovi-extensions/git/trees/7874154dba6793cc68a15fae0fb9dd272c4ed20a?recursive=1",
+    "parser_url": "https://github.com/asivery/qmldiff/tree/25681c3cc7addb93fdbb41ceac1f1bdce8b2625d",
+    "files": [
+      {
+        "path": "Cargo.lock",
+        "git_blob_sha1": "6795a6ca93df81924d1feb555e969afa85e54df2"
+      },
+      {
+        "path": "Cargo.toml",
+        "git_blob_sha1": "2b2f72c0d787b22626dd4524a6c0e316b417c306"
+      },
+      {
+        "path": "src/hash.rs",
+        "git_blob_sha1": "51392bb735289518bef957155760d3eca46198c2"
+      },
+      {
+        "path": "src/hashrules.rs",
+        "git_blob_sha1": "e040be093527124cbc259d1be52cff8150e1c614"
+      },
+      {
+        "path": "src/hashtab.rs",
+        "git_blob_sha1": "0d371039b3db475d0d8fbe053802f60fc591cd5b"
+      },
+      {
+        "path": "src/lib.rs",
+        "git_blob_sha1": "6125390c6202dde4dae5102fb21dd16a3376476b"
+      },
+      {
+        "path": "src/main.rs",
+        "git_blob_sha1": "5034c542eca5294bea951a9cda5273c6b5d7c55c"
+      },
+      {
+        "path": "src/parser/common.rs",
+        "git_blob_sha1": "9c814c33b599ced77bcdfe8c9a50abe0a2af018b"
+      },
+      {
+        "path": "src/parser/diff/emitter.rs",
+        "git_blob_sha1": "e190d84bf96b152530736f582bbc15284a5eea06"
+      },
+      {
+        "path": "src/parser/diff/hash_processor.rs",
+        "git_blob_sha1": "7766d5113dcbb86ec03a1c3baddac71741e7af81"
+      },
+      {
+        "path": "src/parser/diff/lexer.rs",
+        "git_blob_sha1": "059810c456a676568ed82afa744c08811b32c4ec"
+      },
+      {
+        "path": "src/parser/diff/mod.rs",
+        "git_blob_sha1": "9184c86cbf94e4366a9aec4c3658426fbd6e392d"
+      },
+      {
+        "path": "src/parser/diff/parser.rs",
+        "git_blob_sha1": "dc2bccb97de03c145fddc97dc513f8e5109b1ecc"
+      },
+      {
+        "path": "src/parser/mod.rs",
+        "git_blob_sha1": "34aa2c8b2862d2080df8fa8922f6a61f80477a8d"
+      },
+      {
+        "path": "src/parser/qml/emitter.rs",
+        "git_blob_sha1": "e2a6d7b5043891d6eb435cd1c8db3a189680aea0"
+      },
+      {
+        "path": "src/parser/qml/hash_extension.rs",
+        "git_blob_sha1": "2a81dea66c3e491b2d7771e45fb04fb533e720d2"
+      },
+      {
+        "path": "src/parser/qml/lexer.rs",
+        "git_blob_sha1": "06a58f84852dbf044eca84a4567a93ec72ef2855"
+      },
+      {
+        "path": "src/parser/qml/mod.rs",
+        "git_blob_sha1": "ad6d4e30426a06fb7958bce1ac588898b26d0b48"
+      },
+      {
+        "path": "src/parser/qml/parser.rs",
+        "git_blob_sha1": "6f3a5d37851295b0d2c62c0549c9977ed4e14d5b"
+      },
+      {
+        "path": "src/parser/qml/slot_extensions.rs",
+        "git_blob_sha1": "ac78c4eca86ffd33c5c539b893871da54d8962cc"
+      },
+      {
+        "path": "src/parser/qml/test.rs",
+        "git_blob_sha1": "6376f9a60dcad361e95d7984edf1205cbc471b21"
+      },
+      {
+        "path": "src/processor.rs",
+        "git_blob_sha1": "f5c8c3302c46346d47814f8bd6c3ec6a02991138"
+      },
+      {
+        "path": "src/refcell_translation.rs",
+        "git_blob_sha1": "addba7144ff266a7ea37dc84906f570a84b13d7c"
+      },
+      {
+        "path": "src/slots.rs",
+        "git_blob_sha1": "8385f366f57faffc5f1a88ce0d3cd88e80d3f1b2"
+      },
+      {
+        "path": "src/util/cli_util.rs",
+        "git_blob_sha1": "5a9e6143289fdffb8c970be2941e6b9484b002f6"
+      },
+      {
+        "path": "src/util/common_util.rs",
+        "git_blob_sha1": "f648b5a85aa4ce1734930edf08d7bb84313d9d57"
+      },
+      {
+        "path": "src/util/lib_util.rs",
+        "git_blob_sha1": "20397f3e56724611949183975c58b3e8f63fbdb9"
+      },
+      {
+        "path": "src/util/mod.rs",
+        "git_blob_sha1": "e5a31f142764452a6e9ad1f17dde3ab0e34a3583"
+      }
+    ],
+    "harness_sha256": "bdea7f55a8aa53f20fd3eae0093baa904c30a633fe03ede68ccdb72b83fdcc3b",
+    "harness_contract": "Set exact system version; build_change_files using lexically sorted QMDs and captured hashtab; require exact file-load count; require is_modified; call process_file on exact decompressed stock Sidebar.qml; reject NULL; write emitted QML. Fresh process per patch set."
+  },
+  "host_build": {
+    "command": [
+      "cargo",
+      "build",
+      "--locked",
+      "--lib",
+      "--target",
+      "x86_64-unknown-linux-gnu"
+    ],
+    "cwd": "/tmp/pi-ink-qmldiff-host-0013-e6je5ir8",
+    "exit_code": 0,
+    "environment": {
+      "MISE_AUTO_INSTALL": "0"
+    },
+    "warnings": "8 upstream deprecation warnings about std::usize and usize::MAX",
+    "compile": {
+      "command": [
+        "cc",
+        "/tmp/pi-ink-qmldiff-host-0013-e6je5ir8/harness.c",
+        "/tmp/pi-ink-qmldiff-host-0013-e6je5ir8/target/x86_64-unknown-linux-gnu/debug/libqmldiff.a",
+        "-ldl",
+        "-lpthread",
+        "-lm",
+        "-o",
+        "/tmp/pi-ink-qmldiff-host-0013-e6je5ir8/harness"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "resource_extraction": {
+    "method": "Host-only ELF inspection. Resolve qRegisterResourceData PLT slot from dynamic relocations; decode AArch64 ADRP/ADD/SUB argument addresses without execution; traverse Qt version-3 22-byte tree nodes and UTF-16BE names; decompress flag-4 payloads with host libzstd. No firmware binary was executed.",
+    "resource_roots": 100,
+    "indexed_paths": 1349,
+    "resources": [
+      {
+        "path": "/qml/device/view/navigator/Sidebar.qml",
+        "tree": 14566064,
+        "names": 14558736,
+        "data": 14329424,
+        "node": 34,
+        "flags": 4,
+        "offset": 14523639,
+        "size": 3131,
+        "extracted_bytes": 16737,
+        "sha256": "5cfd661e6c68c343513d9ca034042ee3f5cdc3ab0df77ea0396838c77135adc0"
+      },
+      {
+        "path": "/ark-imports/ark/controls/SidebarItem.qml",
+        "tree": 20574992,
+        "names": 20572368,
+        "data": 20576752,
+        "node": 66,
+        "flags": 4,
+        "offset": 20688940,
+        "size": 1252,
+        "extracted_bytes": 4724,
+        "sha256": "3d88f77a5eb73e12d818e09b4459025d5d2cc9771cd62ad6c515b0dddac84aa8"
+      },
+      {
+        "path": "/qml/device/view/settings/SidebarItem.qml",
+        "tree": 14566064,
+        "names": 14558736,
+        "data": 14329424,
+        "node": 61,
+        "flags": 4,
+        "offset": 14417086,
+        "size": 305,
+        "extracted_bytes": 532,
+        "sha256": "d905ad62c497590761c0dd55fba8eb70fdc052da5c934bc89637aec4c777adb2"
+      }
+    ]
+  },
+  "native_runs": [
+    {
+      "command": [
+        "/tmp/pi-ink-qmldiff-host-0013-e6je5ir8/harness",
+        "/tmp/pi-ink-qmldiff-host-0013-e6je5ir8/baseline",
+        "12",
+        "/qml/device/view/navigator/Sidebar.qml",
+        "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/resources/qml/device/view/navigator/Sidebar.qml",
+        "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/baseline-Sidebar.qml"
+      ],
+      "exit_code": 0,
+      "stdout": "[qmldiff]: Hashtab loaded! Cached 20357 entries\nLOADED 12\nAPPLIED /qml/device/view/navigator/Sidebar.qml input=16737 output=16820\n",
+      "stderr": "[qmldiff]: Set system version to 3.28.0.172\n[qmldiff]: Iterating over directory /tmp/pi-ink-qmldiff-host-0013-e6je5ir8/baseline\n[qmldiff]: Loading file betterToc.qmd\n[qmldiff]: Loading file betterTocCollapse.qmd\n[qmldiff]: Loading file bluetoothSettings.qmd\n[qmldiff]: Loading file computed-widgets-01-live-document-probe.qmd\n[qmldiff]: Loading file floating.qmd\n[qmldiff]: Loading file link-touch-targets.qmd\n[qmldiff]: Loading file linkFromSelection.qmd\n[qmldiff]: Loading file pi-ink-bridge-0049.qmd\n[qmldiff]: Loading file quickSettingsBluetooth.qmd\n[qmldiff]: Loading file randomSleepScreen.qmd\n[qmldiff]: Loading file retaskableJump.qmd\n[qmldiff]: Loading file retaskableSend.qmd\n[qmldiff]: Was asked to process the first slot. Sealing slots, entering postinit...\n[qmldiff]: Processing file /qml/device/view/navigator/Sidebar.qml...\n"
+    },
+    {
+      "command": [
+        "/tmp/pi-ink-qmldiff-host-0013-e6je5ir8/harness",
+        "/tmp/pi-ink-qmldiff-host-0013-e6je5ir8/production",
+        "13",
+        "/qml/device/view/navigator/Sidebar.qml",
+        "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/resources/qml/device/view/navigator/Sidebar.qml",
+        "/tmp/pi-ink-sidebar-resources-0013-kj8de78d/production-Sidebar.qml"
+      ],
+      "exit_code": 0,
+      "stdout": "[qmldiff]: Hashtab loaded! Cached 20357 entries\nLOADED 13\nAPPLIED /qml/device/view/navigator/Sidebar.qml input=16737 output=17299\n",
+      "stderr": "[qmldiff]: Set system version to 3.28.0.172\n[qmldiff]: Iterating over directory /tmp/pi-ink-qmldiff-host-0013-e6je5ir8/production\n[qmldiff]: Loading file betterToc.qmd\n[qmldiff]: Loading file betterTocCollapse.qmd\n[qmldiff]: Loading file bluetoothSettings.qmd\n[qmldiff]: Loading file computed-widgets-01-live-document-probe.qmd\n[qmldiff]: Loading file floating.qmd\n[qmldiff]: Loading file link-touch-targets.qmd\n[qmldiff]: Loading file linkFromSelection.qmd\n[qmldiff]: Loading file pi-annotations.qmd\n[qmldiff]: Loading file pi-ink-bridge-0049.qmd\n[qmldiff]: Loading file quickSettingsBluetooth.qmd\n[qmldiff]: Loading file randomSleepScreen.qmd\n[qmldiff]: Loading file retaskableJump.qmd\n[qmldiff]: Loading file retaskableSend.qmd\n[qmldiff]: Was asked to process the first slot. Sealing slots, entering postinit...\n[qmldiff]: Processing file /qml/device/view/navigator/Sidebar.qml...\n"
+    }
+  ],
+  "outputs": {
+    "baseline-Sidebar.qml": "fd12e8a30aeeb26b9f73b6b965277a9401c7c237a679c3c80a4b495fe7b6726e",
+    "production-Sidebar.qml": "8c2dd8ad1c870ff5aa453fa9cb72b7fbd323347019abecee446cc0c00d0897d5"
+  },
+  "findings": {
+    "result": "PASS for offline native QMD parser/application to exact stock Sidebar.qml in both retained and retained-plus-production contexts",
+    "patch_sha256": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be",
+    "baseline": "Current 12 captured QMDs, including pi-ink-bridge-0049.qmd. Not the earlier prototype baseline; no dockButtons.qmd in current inventory.",
+    "selectors": "FocusScope#root > ColumnLayout#filterColumn; Common.Background#spacer resolves. Native emitted output adds AppLoad import and one production launcher row, before retained prototype launcher and spacer. No retained patch was removed.",
+    "type_check": "Static inspection only: exact ark.controls.SidebarItem.qml derives from QtQuick.Controls.MenuItem, provides iconSource, and uses inherited text/clicked. Exact root.hide() exists and link resource path exists. Pinned AppLoad registration/signature evidence remains parent-provenance.json.",
+    "layout_check": "Static inspection only: item uses native SidebarItem implicitHeight and Layout.preferredWidth under ColumnLayout; spacer retains Layout.fillHeight. No tablet pixel fit, focus/navigation, row visibility or runtime QML binding/render validation was performed.",
+    "parser_limits": "Native QMD application is not Qt type compilation, AppLoad loading, visual layout validation or post-restart launch proof. Only Sidebar.qml was passed to process_file; other retained patch target application was not claimed."
+  },
+  "cleanup": {
+    "host_harness_sources_build_and_stages_removed": true,
+    "private_diagnostic_inputs_retained": true,
+    "repository_source_or_guard_changes": false
+  },
+  "host_probe_failures": [
+    {
+      "command": "mq context read including CONTEXT.md",
+      "result": "exit 1, file absent; directory confirms no CONTEXT.md; read remaining known context files"
+    },
+    {
+      "command": "objdump -d captured xochitl",
+      "result": "exit 1: cannot disassemble for architecture UNKNOWN; replaced with host-only instruction decoding"
+    },
+    {
+      "command": "which aarch64-linux-gnu-objdump llvm-objdump rust-objdump",
+      "result": "exit 3; no requested disassembler on PATH"
+    },
+    {
+      "command": "pkg-config --modversion Qt6Core",
+      "result": "exit 1, Qt6Core pkg-config unavailable; no runtime/type compilation claimed"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "created_at": "2026-11-08T04:17:55.969465+00:00",
+  "preflight_status": "failed-before-first-stage",
+  "ticket_status": "BLOCKED",
+  "code": 255,
+  "signal": null,
+  "timed_out": false,
+  "elapsed_seconds": 0.18582888999662828,
+  "last_observed_ssh_stage": "Session channel open confirmed; exec request packet sent with confirmation requested. No exec acceptance observed before fatal reset.",
+  "last_observed_script_stage": null,
+  "stage_begin_observed": false,
+  "script_stage_note": "STAGE strings echoed in local debug Sending command/Started with lines are not remote output. stdout is empty.",
+  "first_fatal_error": "Read from remote host 10.11.99.1: Connection reset by peer",
+  "final_error": "client_loop: send disconnect: Broken pipe",
+  "observed_stages": [
+    "TCP connection established",
+    "Remote banner dropbear_2025.88",
+    "KEX mlkem768x25519-sha256 completed",
+    "Existing ED25519 known-host key matched",
+    "Publickey authentication succeeded",
+    "Session channel open confirmed",
+    "Exec request sent with confirmation requested"
+  ],
+  "unobserved": [
+    "Exec request acceptance",
+    "STAGE=begin or any device script output",
+    "Current model, arch, IMG_VERSION",
+    "Current installed release/link/CA identities",
+    "Current retained resources and QMD inventory",
+    "Current native dependencies, xochitl PID and service state",
+    "Current desktop host service state"
+  ],
+  "debug_local_stdin_note": "channel 0 read failed rfd 4: Broken pipe is local stdin EOF handling. Attempt11 showed the same local debug with marker success and exit0. The fatal connection reset and disconnect Broken pipe are separate later lines.",
+  "contrast": "Attempt11 minimal printf returned its exact marker and exit0 in 0.264s. This full 15490-byte exec argument ended with reset, exit255 and empty stdout in 0.186s. Command-length or server cause is not established.",
+  "counts": {
+    "preflight_executions": 1,
+    "network_ssh_executions": 1,
+    "restart_count": 0,
+    "installer_executions": 0,
+    "retries": 0,
+    "native_launches": 0,
+    "device_mutation_commands": 0
+  },
+  "comparison_status": "not-run: exit255 and no output; no fresh device identity verified beyond SSH known-host trust",
+  "uncertainty": "No server-side cause established; no proof that the remote shell began or any guard executed.",
+  "next_scoped_action_proposed": "Request separate approval for one bounded read-only diagnostic that sends this exact guarded script through SSH stdin to sh -s, with the same strict trust, markers and deadline, to distinguish exec-argument transport from script execution. Do not execute it under this approval.",
+  "native_acceptance": "not performed; requires separate restart/observation approval",
+  "repeat_install": "not performed; requires separate approval",
+  "source_tracker_installed_tool_changes": false
+}

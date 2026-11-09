@@ -1,0 +1,67 @@
+{
+  "created_at": "2026-11-08T22:05:05.127015+00:00",
+  "status": "blocked",
+  "reboot_scope_status": "full reboot verified; mods-enabled runtime unverified",
+  "reboot_scope_success": false,
+  "old_boot_id": "ca7919b4-52c7-424f-ab79-4a8490465f00",
+  "new_boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+  "operation_counts": {
+    "read_only_ssh_preflights": 1,
+    "reboot_dispatches": 1,
+    "return_status_checks": 3,
+    "automatic_mod_helper_invocations": 0,
+    "additional_xochitl_restart_dispatches": 0,
+    "installs": 0,
+    "deployments": 0,
+    "native_launches": 0,
+    "pairings": 0,
+    "live_host_service_actions": 0,
+    "persistent_configuration_changes": 0
+  },
+  "observations": [
+    {
+      "observation": 1,
+      "exit_code": 0,
+      "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+      "public_hashes_compared": 23,
+      "hash_mismatches": [],
+      "links_preserved": true,
+      "private_metadata_preserved": true,
+      "xochitl_pid": "555",
+      "runtime_mod_maps": [],
+      "seconds_after_dispatch": 38.276039550997666
+    },
+    {
+      "observation": 2,
+      "exit_code": 0,
+      "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+      "public_hashes_compared": 23,
+      "hash_mismatches": [],
+      "links_preserved": true,
+      "private_metadata_preserved": true,
+      "xochitl_pid": "555",
+      "runtime_mod_maps": [],
+      "seconds_after_dispatch": 73.20001243399747
+    },
+    {
+      "observation": 3,
+      "exit_code": 0,
+      "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+      "public_hashes_compared": 23,
+      "hash_mismatches": [],
+      "links_preserved": true,
+      "private_metadata_preserved": true,
+      "xochitl_pid": "555",
+      "runtime_mod_maps": [],
+      "seconds_after_dispatch": 103.17084742900624
+    }
+  ],
+  "owner_activation": "pending/unknown: no named runtime mappings observed",
+  "private_contents_read": false,
+  "installed_payload_changed": false,
+  "new_zip_sha256": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+  "unknowns": [
+    "Owner tripletap completion and runtime mod activation were not observed within the bounded return window.",
+    "New payload remains host-only; deployment, native retest and repeat-install acceptance remain pending."
+  ]
+}

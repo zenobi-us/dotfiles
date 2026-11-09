@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-11-08T21:43:21.702Z",
+  "pane": "w6T:p8",
+  "agent_name": "pi-ink-reboot-0049",
+  "start_result": {
+    "exit": 1,
+    "error": "timed out waiting for agent startup"
+  },
+  "observed": {
+    "agent": "omp",
+    "status": "working",
+    "session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T21-42-07-654Z_01a1bd1c-8e26-7677-8ee6-853f68bcee33.jsonl",
+    "state_change_seq": 392
+  },
+  "decision": "Startup timeout is not shutdown. Existing child confirmed working; observe it. No duplicate launch or resume."
+}

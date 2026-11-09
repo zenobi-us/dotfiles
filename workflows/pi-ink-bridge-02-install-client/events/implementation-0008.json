@@ -1,0 +1,148 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-0008",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "implementation",
+  "event": "phase-result",
+  "attempt": 3,
+  "parent_receipt": "start-0007",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "42a23605724aff8da6238f4b28af15780e15527b",
+  "source_tree": "a85126303434b449f2f986d5a2ddf95c5bc357d0",
+  "created_at": "2026-11-07T23:07:17.244Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": "w6P:p3",
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-07T23-01-56-541Z_01a1b83f-44bd-70b3-b729-83a804485dc7.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/firmware-field-0007"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0007.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0006.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0005.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004/cable-preflight.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0004/compatibility-analysis.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-ink-bridge/index.md"
+    },
+    {
+      "kind": "adr",
+      "ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0008.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0008.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/firmware-field-0007/verification.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "status": "blocked",
+  "changed_files": [
+    "README.md",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/production-install.test.ts"
+  ],
+  "validation": [
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec -- bun test test/production-install.test.ts && sh scripts/provision-tablet.sh --dry-run",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "result": "3 pass, 0 fail, 10 expect() calls; 46ms; dry-run printed current installer and unchanged client ZIP digests",
+      "evidence": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/firmware-field-0007/verification.json"
+    }
+  ],
+  "smoke_results": [
+    "Quoted IMG_VERSION=\"3.28.0.172\" and VERSION_ID=5.8.203 reaches the real stock guard, which the fixture deliberately fails.",
+    "IMG_VERSION=\"3.29.0.0\" and VERSION_ID=3.28.0.172 rejects before the stock check.",
+    "Missing IMG_VERSION and VERSION_ID=3.28.0.172 rejects before the stock check."
+  ],
+  "implementation_summary": "Corrected the exact supported firmware comparison to IMG_VERSION=3.28.0.172 with no VERSION_ID fallback. The actual installer entry point passes focused host regression and smoke checks. README explains the field, sandbox test requirements and invalidation of old trusted instructions. Whole-ticket native acceptance remains blocked.",
+  "open_questions": [
+    "Renewed separately approved read-only cable preflight must establish current stock Xochitl hash, native dependency versions/hashes and compatibility, and exact named installation target metadata.",
+    "Installation requires separate final hash-pinned payload approval. Activation, post-restart launch and repeat-install acceptance remain untested and require separate approval.",
+    "The protocol-1 desktop listener on port 47840 remains untouched; any operator decision is separate."
+  ],
+  "installer_sha256": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+  "client_zip_sha256": "03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+  "host_correction": "passed",
+  "device_acceptance": "untested",
+  "review_status": "not-performed",
+  "merge_status": "not-merged-not-pushed",
+  "ticket_status": "claimed",
+  "device_access": false,
+  "device_writes": false,
+  "restart": false,
+  "desktop_listener_access": false,
+  "recovery": {
+    "mode": "takeover",
+    "authorization": {
+      "user_text": "approved",
+      "scope": "Host-only correction of firmware field and regression check; regenerate installer digest. No device access or installation/restart."
+    },
+    "ownership": "Fresh child session in parent-assigned pane w6P:p3. Parent start receipt records prior child shutdown and retained claim. No earlier session reused.",
+    "consumed_parent": "start-0007",
+    "source_before": "d6e7fb74c5de6f5bc5383b9651b730ab60159952",
+    "tree_before": "0e65b383eeec0a3483a18d6167c965038d0a9ff6"
+  },
+  "next_required_step": "Obtain separate approval for renewed read-only cable preflight of current stock hash, native dependencies and exact named installation target metadata. This is not installation approval."
+}

@@ -1,0 +1,13 @@
+{
+  "created_at": "2026-11-08T07:19:30.372Z",
+  "source": "Owner direct message to parent",
+  "verbatim": "i see \"PI annotations\" launch, it says \"checking server connection\", some details appear and it closes itself",
+  "observed": "Native application opens, shows checking server connection and details briefly, then closes itself.",
+  "native_acceptance": false,
+  "failure_classification": "Native launch/runtime failure; exact technical cause unknown",
+  "additional_launch_attempt_authorized": false,
+  "additional_restart_authorized": false,
+  "repair_authorized": false,
+  "pane": "w6T:p5",
+  "phase_complete": false
+}

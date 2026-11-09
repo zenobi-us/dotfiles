@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-11-08T21:41:36.543Z",
+  "user_request": "approved, first restart device with mods enabled",
+  "readiness": "Saved and closed—reboot once",
+  "scope": "Check existing mod-enabled boot setup using bounded cable SSH read-only preflight; execute at most one full tablet reboot only if the existing setup can boot with mods without configuration changes; observe return and mod activation with bounded read-only checks. Reboot before any payload deployment.",
+  "restrictions": [
+    "No deployment, reinstall, pairing or native Pi Annotations launch in this reboot-only attempt.",
+    "No firmware, Developer Mode, bootloader, startup/service/drop-in, firewall, cloud/account, notebook/draft or unrelated file changes.",
+    "No live desktop service changes, port47840 contacts or prototype operations.",
+    "No retry after preflight failure; no second reboot, forced reboot, automatic repair or rollback.",
+    "If existing mod-enabled boot cannot be established or requires a physical owner step/configuration change, stop and report exact prerequisite."
+  ],
+  "ownership": "Fresh scoped takeover approved. Herdr filtered agent list for source worktree empty; source worktree has workspace w6T. No matching pi-ink ticket coordinator reservations found in source/base goal YAML journals. Existing held claim retained; direct blocker ticket is completed.",
+  "inspected_source": {
+    "commit": "8e094dec5035f2d72932b6b5f8a5f8ff220aa476",
+    "tree": "211b1339895438b831df426e19c5606049cded91",
+    "dirty": false
+  },
+  "decision": {
+    "action": "start",
+    "mode": "takeover",
+    "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0048.json",
+    "requiredApproval": true,
+    "historyValid": true
+  }
+}

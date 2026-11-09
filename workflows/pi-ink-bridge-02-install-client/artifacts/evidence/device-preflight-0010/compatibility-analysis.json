@@ -1,0 +1,78 @@
+{
+  "status": "blocked",
+  "preflight_command": "passed",
+  "observed": {
+    "model": "reMarkable Ferrari",
+    "architecture": "aarch64",
+    "IMG_VERSION": "3.28.0.172",
+    "VERSION_ID": "5.8.203"
+  },
+  "firmware_interpretation": "IMG_VERSION matches the corrected exact firmware guard. VERSION_ID is the OS build identity and is not a failure.",
+  "binary_hashes": {
+    "/usr/bin/xochitl": "b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021",
+    "/home/root/xovi/xovi.so": "d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446",
+    "/home/root/xovi/extensions.d/appload.so": "5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad",
+    "/home/root/xovi/extensions.d/qt-resource-rebuilder.so": "6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f"
+  },
+  "parent_metadata": [
+    "PARENT|/home|directory|0|0|755",
+    "PARENT|/home/root|directory|0|0|700",
+    "PARENT|/home/root/.local|directory|0|0|755",
+    "PARENT|/home/root/.local/share|directory|0|0|755",
+    "PARENT|/home/root/xovi|directory|0|0|755",
+    "PARENT|/home/root/xovi/extensions.d|directory|0|0|755",
+    "PARENT|/home/root/xovi/exthome|directory|0|0|755",
+    "PARENT|/home/root/xovi/exthome/appload|directory|0|0|755",
+    "PARENT|/home/root/xovi/exthome/qt-resource-rebuilder|directory|0|0|755"
+  ],
+  "target_metadata": [
+    "ABSENT_TARGET|/home/root/.local/share/pi-ink-bridge",
+    "ABSENT_TARGET|/home/root/xovi/exthome/appload/pi-annotations",
+    "ABSENT_TARGET|/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd"
+  ],
+  "writable_directories": [
+    "/home/root",
+    "/home/root/xovi/exthome/appload",
+    "/home/root/xovi/exthome/qt-resource-rebuilder"
+  ],
+  "native_versions": {
+    "XOVI": "unknown",
+    "AppLoad": "unknown",
+    "qt-resource-rebuilder": "unknown"
+  },
+  "native_compatibility": "unknown; identical historical hashes establish byte identity only, not a tested production AppLoad/QMD contract",
+  "missing_evidence": [
+    "Static publisher/build version or source revision mapping for each current native binary hash.",
+    "Compatibility evidence for net.asivery.AppLoad 1.0, AppLoadLauncher.launchApplication, manifest loadsBackend/entry and backend SOCK_SEQPACKET protocol with these exact binaries.",
+    "Production sidebar.qmd compatibility with current native rebuilder and retained patch context; prior prototype QMD checks cover different patches."
+  ],
+  "historical_refs": [
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/findings.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0014/baseline-fingerprints.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0008/findings.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/offline-inputs.json",
+    "workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0023/qmd-native-context-final.json"
+  ],
+  "collision_interpretation": "All three named installation targets are absent, including dangling symlinks. Necessary home/XOVI parent directories are root-owned regular directories, not symlinks. No repair is needed for observed named targets. No private child records were read.",
+  "payload_proposal": "Withheld: full native compatibility/version preflight has not passed. No final installation command or server bootstrap digest was generated.",
+  "retained_payload_digests": {
+    "installer": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+    "client_zip": "03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+    "authority": "firmware-field-0007/verification.json; no host build or test rerun"
+  },
+  "next_exact_approval_request": "Authorize host-only identification of the three observed native dependency hashes against retained or publisher build provenance, and a compatibility assessment for net.asivery.AppLoad 1.0, AppLoadLauncher.launchApplication, the manifest/backend SOCK_SEQPACKET contract, and sidebar.qmd on IMG_VERSION 3.28.0.172. No tablet access, helper execution, source/guard changes, installation, collision repair, listener access, restart, or reboot. If static evidence is unavailable, return an exact bounded metadata-only proposal naming documented version files for separate approval; do not probe the device.",
+  "limits": {
+    "device_writes": false,
+    "restart": false,
+    "helper_transfer_or_execution": false,
+    "native_binary_execution": false,
+    "private_record_contents_read": false,
+    "desktop_listener_access": false,
+    "source_changed": false,
+    "tracker_changed": false,
+    "installation": false,
+    "device_connections": 1,
+    "device_actions_stopped": true
+  },
+  "historical_interpretation": "implementation-0014/findings.json:13 explicitly records semantic versions not queried and AppLoad UI not used. Baseline fingerprints and implementation-0008 establish only prior byte identities. No documented static device version file was identified; no guessed path or binary execution was used."
+}

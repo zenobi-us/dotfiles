@@ -1,0 +1,25 @@
+{
+  "command": "MISE_AUTO_INSTALL=0 mise exec -- mq --allow-http-import -I raw -F json (okf_validate/okf_parse/okf_extract_links)",
+  "documents": [
+    {
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0047.md",
+      "okf_errors": [],
+      "links_checked": 175,
+      "missing_links": []
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+      "okf_errors": [],
+      "links_checked": 175,
+      "missing_links": []
+    },
+    {
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+      "okf_errors": [],
+      "links_checked": 191,
+      "missing_links": []
+    }
+  ],
+  "self_reference": "This validation report is emitted after checking references; its own path is verified after the write.",
+  "bundle_check": "Not an OKF bundle; worktree workflow. Validated each generated Report and all extracted local links."
+}

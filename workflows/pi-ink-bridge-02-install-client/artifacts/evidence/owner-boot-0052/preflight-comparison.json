@@ -1,0 +1,16 @@
+{
+  "public_hashes_expected": 24,
+  "public_hashes_observed": 23,
+  "hash_mismatches": [
+    "/home/root/.local/share/pi-ink-bridge/server-ca.pem"
+  ],
+  "links": {
+    "LINK_TARGET|/home/root/xovi/exthome/appload/pi-annotations|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app": true,
+    "LINK_TARGET|/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd|/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/sidebar.qmd": true
+  },
+  "private_metadata": {
+    "PRIVATE_META|/home/root/.local/share/pi-ink-bridge/config.json|regular file|0|0|600|350": true,
+    "PRIVATE_META|/home/root/.local/share/pi-ink-bridge/server-ca.pem|regular file|0|0|600|717": true
+  },
+  "tripletap_enabled": true
+}

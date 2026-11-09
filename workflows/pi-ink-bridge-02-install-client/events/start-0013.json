@@ -1,0 +1,74 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0013",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 5,
+  "parent_receipt": "start-complete-0012",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "bdad43bd891932a86d3ef3e85cd616743147580b",
+  "source_tree": "a0e9d58b6e0c2a1338f2b98a15817bb8d3ca580c",
+  "created_at": "2026-11-07T23:58:50.309Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0012.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0011.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/device-preflight-0010/parent-provenance.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0013.json"
+    }
+  ],
+  "status": "started",
+  "recovery": {
+    "mode": "takeover",
+    "reason": "User approved proposed resource-only read capture and host-only sidebar validation.",
+    "authorization": {
+      "user_text": "approved",
+      "scope": "Read-only capture of /usr/bin/xochitl, rebuilder hashtab, bounded QMD inventory/source set for host-only validation. Raw firmware stays outside Git. No installation, device writes or restart."
+    },
+    "ownership": "Herdr has no agent in source worktree. Prior preflight child done/closed; existing claim retained. Fresh pane w6R:p3.",
+    "reservations": "Inspector reports valid history and unique clean source; no active child/coordinator dispatch identified.",
+    "device_limits": [
+      "Use cable root@10.11.99.1 with strict verified existing host key and batch authentication.",
+      "Capture only named firmware/resource files and bounded validated .qmd inventory/source set under rebuilder directory.",
+      "No credentials, pairing, drafts, notebooks or unrelated file reads. No device helper upload/execution.",
+      "Private host temporary storage only for firmware/resource/patch copies; sanitized hashes/findings may be committed.",
+      "Stop on changed stock identity, unexpected symlink or scope mismatch. No installation, source correction, service/listener access or restart."
+    ]
+  }
+}

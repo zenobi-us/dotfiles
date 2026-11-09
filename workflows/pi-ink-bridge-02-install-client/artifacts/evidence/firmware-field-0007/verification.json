@@ -1,0 +1,54 @@
+{
+  "source_commit": "42a23605724aff8da6238f4b28af15780e15527b",
+  "source_tree": "a85126303434b449f2f986d5a2ddf95c5bc357d0",
+  "scope": "host-only firmware-field correction",
+  "command": "MISE_AUTO_INSTALL=0 mise exec -- bun test test/production-install.test.ts && sh scripts/provision-tablet.sh --dry-run",
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator",
+  "before": {
+    "result": "0 pass, 3 fail after sandbox setup was corrected",
+    "symptoms": [
+      "Captured IMG_VERSION was rejected as unsupported firmware.",
+      "Unsupported and missing IMG_VERSION reached the stock check when VERSION_ID looked supported."
+    ]
+  },
+  "after": {
+    "result": "3 pass, 0 fail, 10 expect() calls; 46ms",
+    "cases": [
+      "Quoted IMG_VERSION=\"3.28.0.172\" and VERSION_ID=5.8.203 reaches the real stock guard, which the fixture deliberately fails.",
+      "IMG_VERSION=\"3.29.0.0\" and VERSION_ID=3.28.0.172 rejects before the stock check.",
+      "Missing IMG_VERSION and VERSION_ID=3.28.0.172 rejects before the stock check."
+    ]
+  },
+  "smoke": {
+    "entry_point": "Unmodified installer entry point executed by sh inside Bubblewrap",
+    "isolation": "Read-only host root, isolated network and user namespaces, temporary model/os-release fixtures, private /dev. Stubbed id/uname identify the captured hardware; sha256sum deliberately fails at the next guard. No archive extraction or installation is reached.",
+    "setup_failures": [
+      "Initial fixture could not mount over the host os-release symlink; fixed by mounting a private /etc.",
+      "Initial read-only /dev/null was unwritable; fixed with a private /dev."
+    ],
+    "cleanup": "All temporary fixtures removed by finally blocks. No standalone smoke scaffolds remain."
+  },
+  "digests": {
+    "installer": {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh",
+      "sha256": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f"
+    },
+    "client_zip": {
+      "path": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/dist/client.zip",
+      "sha256": "03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+      "rebuilt": false,
+      "changed": false
+    }
+  },
+  "trusted_instructions": "All previous installer digests/instructions are stale. Regenerate trusted instructions before any separately approved installation. No device command was generated or executed in this phase.",
+  "device_access": false,
+  "device_writes": false,
+  "restart": false,
+  "desktop_listener_access": false,
+  "full_suite_rerun": false,
+  "open_prerequisites": [
+    "Renewed separately approved read-only cable preflight must establish current stock Xochitl hash, native dependency versions/hashes and compatibility, and exact named installation target metadata.",
+    "Installation requires separate final hash-pinned payload approval. Activation, post-restart launch and repeat-install acceptance remain untested and require separate approval.",
+    "The protocol-1 desktop listener on port 47840 remains untouched; any operator decision is separate."
+  ]
+}

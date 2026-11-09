@@ -1,0 +1,74 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0016",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 6,
+  "parent_receipt": "start-complete-0015",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "125a2d8af313f00baa289a5fb10fc34a0df77023",
+  "source_tree": "e7233a633267c8cc386827fde44ae3d8383ba219",
+  "created_at": "2026-11-08T01:28:45.211Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0015.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0014.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/sidebar-resources-0013/installation-proposal.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0016.json"
+    }
+  ],
+  "status": "started",
+  "recovery": {
+    "mode": "takeover",
+    "reason": "User explicitly approved proposed trusted host bootstrap preparation only, to obtain actual server identity/fingerprint/trust-record digest before final device installation approval.",
+    "authorization": {
+      "user_text": "APPROVED",
+      "scope": "Prepare persistent compatible desktop service on an explicitly selected safe endpoint; leave port47840/prototype services untouched. Capture and show real public server trust values. No tablet access, installation or restart."
+    },
+    "ownership": "No current child agent in source worktree; previous resource-validation child done and closed. Existing claim retained. Fresh pane w6R:p4.",
+    "reservations": "Shared inspector: valid history, unique clean source, start/takeover; no active child/coordinator dispatch identified.",
+    "limits": [
+      "Use existing production per-user persistent service and pinned mise/Pitchfork startup path, not a temporary smoke identity.",
+      "Reuse existing compatible service/identity when safely established; otherwise use safe explicitly recorded nonconflicting configured endpoint.",
+      "Do not stop, restart, reconfigure, send traffic to or replace the port47840 listener/prototype service.",
+      "Do not print/store private keys, CSRF/session tokens, pairing credentials, secrets or images in repository/chat. Public trust record/certificate identity and hashes only.",
+      "No device access, installation, firmware/Developer Mode/firewall/cloud/account changes or source corrections. Final device install approval remains separate."
+    ]
+  }
+}

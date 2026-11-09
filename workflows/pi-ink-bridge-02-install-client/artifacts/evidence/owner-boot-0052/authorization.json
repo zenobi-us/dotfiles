@@ -1,0 +1,37 @@
+{
+  "created_at": "2026-11-08T22:01:00.072Z",
+  "original_request": "approved, first restart device with mods enabled",
+  "saved_closed_confirmation": "Saved and closed—reboot once",
+  "physical_confirmation": "Ready—reboot, then I’ll triple-press",
+  "presented_scope": "Allow existing owner-triggered XOVI activation, including temporary service overrides and service restart. Verify boot and mod state afterward; no deployment or persistent configuration changes.",
+  "scope": "One fresh read-only cable preflight, at most one normal full-device reboot, owner performs existing tripletap gesture after stock boot; bounded read-only boot/runtime/preservation observations. No automatic invocation of xovi/start. No new payload deployment or Pi Annotations launch during this attempt.",
+  "limits": {
+    "preflights": 1,
+    "reboot_dispatches": 1,
+    "postboot_ssh_observations": 3,
+    "postboot_window_seconds": 120,
+    "automatic_mod_helper_invocations": 0,
+    "extra_xochitl_restart_dispatches": 0,
+    "installs": 0,
+    "deployments": 0,
+    "pairings": 0,
+    "native_launches": 0,
+    "persistent_config_changes": 0,
+    "host_service_changes": 0
+  },
+  "stop_rules": [
+    "Stop on preflight/identity failure without a reboot retry or repair.",
+    "After reboot dispatch, ambiguous SSH teardown does not authorize another reboot.",
+    "Owner may activate only the existing tripletap route. Temporary overrides/service restart inherent to that route are acknowledged; no persistent boot/firmware/Developer Mode changes.",
+    "If owner activation is not observed within bounded return window, report pending/unknown; no auto-helper, second reboot or extra restart."
+  ],
+  "ownership": "Prior child w6T:p8 done completion_seq394 and closed. Fresh target-worktree agent list empty; no matching source/base goal YAML dispatch reservations. Claim retained; direct blocker01 completed.",
+  "inspection": {
+    "historyValid": true,
+    "mode": "takeover",
+    "parentReceipt": "start-complete-0051",
+    "source_commit": "da7277f2a99969fa7970421e97f25a7d96b6a7f3",
+    "source_tree": "417e0ffbf02efeb2060bf6c8e9ec1deb089ab1cc",
+    "dirty": false
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0018",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 6,
+  "parent_receipt": "implementation-0017",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "2f9dd8ad6d3a67bfc2f060df88782aa7fca0c8b3",
+  "source_tree": "15d1b13869ad39f84748f932ec7ac616bf488db2",
+  "created_at": "2026-11-08T01:36:36.783Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-0016.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/implementation-0017.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-implementation-0017.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/server.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/certificate.pem"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/bootstrap-verification.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/installation-approval-request.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0018.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Shared inspector selected valid blocked bootstrap result reconciliation. Exact target and public trust data validated; persistent service checked after pane closure. No repeated bootstrap or device access.",
+    "authorization": {
+      "user_text": "APPROVED",
+      "scope": "Prepare persistent compatible desktop service on an explicitly selected safe endpoint; leave port47840/prototype services untouched. Capture and show real public server trust values. No tablet access, installation or restart."
+    },
+    "ownership": "No current child agent in source worktree; previous resource-validation child done and closed. Existing claim retained. Fresh pane w6R:p4.",
+    "reservations": "Shared inspector: valid history, unique clean source, start/takeover; no active child/coordinator dispatch identified.",
+    "limits": [
+      "Use existing production per-user persistent service and pinned mise/Pitchfork startup path, not a temporary smoke identity.",
+      "Reuse existing compatible service/identity when safely established; otherwise use safe explicitly recorded nonconflicting configured endpoint.",
+      "Do not stop, restart, reconfigure, send traffic to or replace the port47840 listener/prototype service.",
+      "Do not print/store private keys, CSRF/session tokens, pairing credentials, secrets or images in repository/chat. Public trust record/certificate identity and hashes only.",
+      "No device access, installation, firmware/Developer Mode/firewall/cloud/account changes or source corrections. Final device install approval remains separate."
+    ]
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016"
+  },
+  "validated_result": {
+    "receipt": "implementation-0017",
+    "status": "blocked",
+    "bootstrap_status": "passed",
+    "source_commit": "125a2d8af313f00baa289a5fb10fc34a0df77023",
+    "source_tree": "e7233a633267c8cc386827fde44ae3d8383ba219",
+    "exact_tree_verified": true,
+    "subsequent_commit_scope": "Workflow evidence and generated views only; no source/tracker change.",
+    "history_valid": true,
+    "child_completion": "Herdr done completion_seq 231",
+    "child_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-08T01-29-32-960Z_01a1b8c6-6820-7579-99e6-83f5f83ca8e0.jsonl",
+    "child_pane": "w6R:p4",
+    "pane_close": "herdr pane close returned type ok",
+    "validation": [
+      {
+        "command": "env MISE_AUTO_INSTALL=0 PI_INK_SETUP_PORT=58840 PI_INK_TLS_PORT=58841 sh scripts/provision-tablet.sh",
+        "result": "exit 0; existing production bootstrap created persistent Pitchfork service; caller exited"
+      },
+      {
+        "command": "Registered /annotate add-device handler through real index.ts registration with controlled agent-host API boundary; same environment and pinned mise runtime",
+        "result": "exit 0; info notification; same identity, fingerprint, command and setup URL; caller exited"
+      },
+      {
+        "command": "Python urllib GET loopback /health, /instructions, /tablet/server.json, /tablet/install.sh, /tablet/client.zip; SHA256 and ZIP sidebar check",
+        "result": "passed; protocol 2 ready; all three approved payload hashes match; exact trust record digest occurs in trusted generated command"
+      },
+      {
+        "command": "Python ssl.create_default_context(cadata=loopback-record.certificate); urllib GET actual HTTPS origin /health",
+        "result": "passed; certificate chain and IP/SAN verified without insecure bypass; same health as loopback; repeated after both callers exited"
+      },
+      {
+        "command": "ss -ltnp selected ports; pitchfork status pi-ink-bridge; ps; stat",
+        "result": "58840/58841 owned by bun PID1182586; global/pi-ink-bridge running; parent PID1182041; state 0700 and identity/key/certificate/runtime 0600. Existing 47840 remains omp PID20453 fd41."
+      }
+    ],
+    "parent_checks": [
+      {
+        "command": "sha256sum artifacts/evidence/host-bootstrap-0016/server.json",
+        "result": "Exact public trust-record digest matches bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e"
+      },
+      {
+        "command": "openssl x509 -noout -sha256 -fingerprint using retained public certificate",
+        "result": "DER certificate fingerprint matches 03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1"
+      },
+      {
+        "command": "curl --noproxy * --fail --cacert retained-certificate.pem https://192.168.86.35:58841/health after child pane closure",
+        "result": "Protocol2, expected server ID/fingerprint/build and status ready; normal certificate verification, no insecure bypass."
+      }
+    ],
+    "public_trust": {
+      "server_id": "256377c7f22604161e086b332a63e19b",
+      "https_origin": "https://192.168.86.35:58841",
+      "setup_url": "http://192.168.86.35:58840/setup",
+      "certificate_sha256": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+      "trust_record_sha256": "bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e",
+      "payload_sha256": {
+        "installer": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+        "zip": "03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+        "sidebar": "33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be"
+      }
+    },
+    "service": {
+      "supervisor": "Pitchfork 2.30.1",
+      "name": "global/pi-ink-bridge",
+      "pid": 1182586,
+      "supervisor_pid": 1182041,
+      "bun": "1.4.3",
+      "state_directory": "/home/zenobius/.local/share/pi-ink-bridge",
+      "runtime_build": "fc66b96a4895ba5253c862d9883ecc392fb7a9ad299d1edf534c94e89873a6f5",
+      "ports": {
+        "http": 58840,
+        "https": 58841
+      },
+      "running_after_both_callers_exit": true,
+      "leave_running": true,
+      "future_bootstrap_environment": {
+        "PI_INK_SETUP_PORT": "58840",
+        "PI_INK_TLS_PORT": "58841",
+        "MISE_AUTO_INSTALL": "0"
+      },
+      "no_shell_profile_changes": true
+    },
+    "device_access": false,
+    "port47840": "Child OS metadata confirms same existing PID/fd; no endpoint traffic or mutation.",
+    "runtime_limits": "Desktop-local certificate-verified readiness only; tablet LAN reachability/native launch untested."
+  },
+  "failure_reason": "Host bootstrap passed. Device installation, activation with native post-restart launch, and repeat-install acceptance are not approved or exercised.",
+  "next_approval": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/host-bootstrap-0016/installation-approval-request.json",
+  "approval_request": "Approve ONE cable installation of the exact hash-pinned production payload and real trusted server record below, after a fresh read-only preflight. No restart or reboot.",
+  "approval_limits": {
+    "allowed_future_target_set": [
+      "/home/root/.local/share/pi-ink-bridge",
+      "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629",
+      "/home/root/xovi/exthome/appload/pi-annotations",
+      "/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd"
+    ],
+    "required_preflight": [
+      "Recheck exact stock/native hashes, model/architecture/IMG_VERSION and all approved target types/owners/permissions; abort on drift, unsafe symlinks, occupied targets or changed retained QMD manifest.",
+      "Verify installer and ZIP against listed SHA256 before executing or extracting. Verify packaged sidebar.qmd is the validated production bytes.",
+      "Use only the fixed production target set. Preserve every retained QMD, prototype installation/service and all unrelated data. No automatic repair or retry.",
+      "Fresh strict known-host verification, model Ferrari/aarch64, IMG_VERSION 3.28.0.172 and stock/native hashes; compare exact captured QMD manifest and target absence/ownership/no-symlink boundaries. Abort on drift. Preserve prototype and all unrelated data.",
+      "Confirm generated instructions still contain exactly these payload/trust hashes and endpoint; no automatic retry/repair. Desktop-local TLS does not prove tablet LAN/firewall reachability."
+    ],
+    "no_restart": true,
+    "activation_gate": "After installation, require separate owner saved/closed confirmation and approval for one Xochitl restart and native launch observation. Repeat-install acceptance needs separate approval.",
+    "forbidden": "No pairing, notebook/draft writes, prototype replacement, firmware, Developer Mode, firewall, cloud or account changes."
+  }
+}

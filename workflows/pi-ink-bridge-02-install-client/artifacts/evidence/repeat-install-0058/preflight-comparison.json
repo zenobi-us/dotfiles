@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-11-09T00:01:23.331153+00:00",
+  "passed": true,
+  "public_hashes": 29,
+  "qmd_names": 13,
+  "ui_pid": 7146,
+  "ui_restarts": 0,
+  "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+  "stage_files_verified": {
+    "install.sh": "765593a9a36fdbf097d67bb3a41d613038150268636616447b9244b87c17578f",
+    "client.zip": "ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+    "server.json": "bcd72b4841d47400e61b8fde5116863dac43f8c4e28730155b4f8304c0a8c86e"
+  },
+  "private_state": [
+    "PRESERVE|/home/root/.local/share/pi-ink-bridge/config.json|regular file|0|0|600|350|1154|1794102948",
+    "PRESERVE|/home/root/.local/share/pi-ink-bridge/server-ca.pem|regular file|0|0|600|717|1153|1794102948",
+    "ABSENT|/home/root/.local/share/pi-ink-bridge/state.json"
+  ]
+}

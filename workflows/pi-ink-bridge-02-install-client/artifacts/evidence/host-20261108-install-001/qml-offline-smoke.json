@@ -1,0 +1,6 @@
+{
+  "boundary": "Host AppLoad transport emulator; real QML and Go backend after stopping only the isolated test service.",
+  "code": 0,
+  "stdout": "[{\"connection\":\"offline\",\"detail\":\"Cannot verify the server. Check desktop service, LAN, and certificate address.\",\"name\":\"Pi Ink desktop\",\"serverId\":\"6e5de1a1a92520df02d1a2ee314a9222\"}]\n",
+  "stderr": ""
+}

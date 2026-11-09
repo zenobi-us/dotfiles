@@ -1,0 +1,34 @@
+{
+  "created_at": "2026-11-08T03:37:17.776616+00:00",
+  "diagnostic_status": "marker-passed",
+  "ticket_status": "BLOCKED",
+  "last_observed_stage": "remote exit-status 0 and clean channel close after exact marker output",
+  "first_fatal_error": null,
+  "observed_stages": [
+    "TCP connection established",
+    "SSH banner dropbear_2025.88; banner line unlocked",
+    "KEX mlkem768x25519-sha256 completed",
+    "ED25519 known host matched existing entry",
+    "publickey authentication succeeded",
+    "session channel open confirmed",
+    "exec request accepted",
+    "exact marker received",
+    "remote exit status 0"
+  ],
+  "debug_local_stdin_note": "channel 0 read failed rfd 4: Broken pipe occurred before input EOF; command still accepted, exact marker returned and remote exit status was 0. This is not the prior transport-reset failure.",
+  "uncertainty": "Earlier preflight reset cause remains unknown. Minimal command success does not prove installed identities, native compatibility, or larger-script success.",
+  "current_device_identity": "unobserved beyond SSH host-key verification",
+  "current_host_service_state": "not checked",
+  "counts": {
+    "network_ssh_executions": 1,
+    "retries": 0,
+    "preflight_executions": 0,
+    "restart_count": 0,
+    "installer_executions": 0,
+    "native_launches": 0,
+    "device_mutation_commands": 0
+  },
+  "next_scoped_action_proposed": "Request approval for one fresh bounded strict read-only installed-target preflight with stage diagnostics and no activation. Do not perform it under this approval.",
+  "native_acceptance": "not performed; not authorized",
+  "repeat_install": "not performed; not authorized"
+}

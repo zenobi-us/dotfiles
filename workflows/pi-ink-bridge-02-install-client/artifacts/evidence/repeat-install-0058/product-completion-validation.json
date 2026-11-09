@@ -1,0 +1,35 @@
+{
+  "created_at": "2026-11-09T00:23:59.480Z",
+  "canonical_decision": {
+    "action": "start",
+    "mode": "reconcile",
+    "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/start-complete-0060.json",
+    "reason": "Start lifecycle completion alone does not prove implementation. Inspect the child outcome and actual source before recording a product result."
+  },
+  "recognition_gate": "recovery.ts104-108 requires a source-bound completed product outcome beyond a start lifecycle completion.",
+  "actual_source": {
+    "commit": "4dc988e665d193fc683a2b183f30f0f4a607d09e",
+    "tree": "25c44dc499195d698eebeef913513982fdb0fb03",
+    "branch": "feature/pi-ink-bridge-02-install-client",
+    "dirty": false
+  },
+  "validated_child_source": {
+    "commit": "57491dc0da46ed141e9cb9dbcd6f0c9c02a86744",
+    "tree": "520dde688e1157a7cef836f9ec8cceb736bb9ea1"
+  },
+  "source_equivalence": {
+    "command": "git diff --name-only 57491dc0da46ed141e9cb9dbcd6f0c9c02a86744 4dc988e665d193fc683a2b183f30f0f4a607d09e",
+    "changed_paths": 10,
+    "outside_workflow": [],
+    "production_code_unchanged": true
+  },
+  "consumed_result": "workflows/pi-ink-bridge-02-install-client/events/implementation-0059.json",
+  "consumed_parent_validation": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/repeat-install-0058/parent-validation.json",
+  "all_prior_acceptance_still_valid": true,
+  "ownership": "No live target-worktree agents, no matching source/base goal reservations; original implementation child done426 and closed. Parent owns metadata reconciliation.",
+  "additional_device_actions": 0,
+  "additional_tests_builds": 0,
+  "production_source_changes": 0,
+  "history_overwrites": 0,
+  "reviews_merges_pushes": 0
+}
