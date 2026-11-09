@@ -20,7 +20,7 @@ export interface WorkflowInspection {
   inventoryError?: string;
   commits: { commit: string; paths: string[]; kind: "source" | "tracker-evidence-only"; relatedBy: "receipt" | "ticket-path" | "message-and-diff" }[];
   commitsError?: string;
-  artifacts: { receiptId: string; ref: string; state: "readable" | "missing" | "unusable" | "unknown"; matchesSource?: boolean; error?: string }[];
+  artifacts: { receiptId: string; ref: string; state: "readable" | "missing" | "unusable" | "unknown"; matchesSource?: boolean; contentHash?: string; error?: string }[];
   finishIntegrated?: boolean;
   finishVerified?: boolean;
   finishError?: string;
@@ -73,7 +73,7 @@ export function recoveryDecision(ticket: Ticket, snapshot: { tickets: Ticket[] }
   const review = receipts.find(receipt => receipt.phase === "review" && receipt.verdict && receipt.event !== "phase-start");
   const interrupted = latest && (latest.event === "phase-start" || latest.status === "started" || (["failed", "blocked"].includes(latest.status) && !(latest.phase === "review" && latest.verdict)));
   // A child result must be reconciled by its parent, not rerun or promoted to success.
-  if (latest?.phase === "review" && latest.event === "phase-result" && !usableReview(latest, workflow)) return decision("review", "retry", "Recover review evidence", "The child review has no usable source-bound result artifact. Preserve its history and use a fresh reviewer; do not append a successful parent completion.", true);
+  if (latest?.phase === "review" && latest.event === "phase-result" && latest.status === "completed" && !usableReview(latest, workflow)) return decision("review", "retry", "Recover review evidence", "The child review has no usable source-bound result artifact. Preserve its history and use a fresh reviewer; do not append a successful parent completion.", true);
   if (latest?.event === "phase-result") return decision(actionFor(latest.phase), "reconcile", `Reconcile ${actionFor(latest.phase)}`, "Read the child result and artifacts, verify the frozen source and outcome, then append the parent completion. Do not repeat the child work.", unknownOwner);
   if (interrupted && (latest.phase === "start" || latest.phase === "implementation")) return decision("start", "takeover", "Recover implementation", "Preserve existing work and inspect the interrupted start before a scoped takeover. Resolve liveness, reservations, and ownership first.", unknownOwner);
   if (interrupted && latest.phase === "fix") {

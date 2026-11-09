@@ -95,6 +95,38 @@ test("phase writer publishes authoritative YAML and a verifiable result in one o
   expect(await readFile(event, "utf8")).toBe(source);
 }, 120_000);
 
+test.each(["blocked", "failed"])("phase writer delivers a %s review without inventing a verdict", async (status) => {
+  const f = await fixture();
+  const context = await f.context("worktree-receipt/v1", "review-" + status);
+  const receipt = { ...f.receipt, phase: "review", status, receipt_id: "review-" + status };
+  const input = join(f.directory, "receipt.json");
+  await writeFile(input, JSON.stringify(receipt));
+  const published = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  expect(published.code).toBe(0);
+  const received = await run(delivery, ["read", "--context", context.file]);
+  expect(received.code).toBe(0);
+  const result = JSON.parse(received.stdout);
+  expect(result.status).toBe(status);
+  expect(Object.hasOwn(result, "verdict")).toBe(false);
+  const event = Bun.YAML.parse(await readFile(join(f.workflow.path, "events", receipt.receipt_id + ".yaml"), "utf8"));
+  expect(event).toMatchObject({ status });
+  expect(event).not.toHaveProperty("verdict");
+}, 120_000);
+
+test.each([
+  { name: "completed review without a verdict", status: "completed", verdict: undefined },
+  { name: "blocked review with an invalid verdict", status: "blocked", verdict: "PARTIAL" },
+])("phase writer rejects $name before publication", async ({ status, verdict }) => {
+  const f = await fixture();
+  const context = await f.context("worktree-receipt/v1", "invalid-review");
+  const input = join(f.directory, "receipt.json");
+  await writeFile(input, JSON.stringify({ ...f.receipt, phase: "review", status, verdict, receipt_id: "invalid-review" }));
+  const rejected = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  expect(rejected.code).not.toBe(0);
+  expect(await Bun.file(join(f.workflow.path, "events/invalid-review.yaml")).exists()).toBe(false);
+  expect(await Bun.file(context.target).exists()).toBe(false);
+}, 120_000);
+
 test("phase writer rejects a changed source or target schema before creating an event", async () => {
   const f = await fixture();
   const context = await f.context("tracker-result/v1", "wrong-owner");

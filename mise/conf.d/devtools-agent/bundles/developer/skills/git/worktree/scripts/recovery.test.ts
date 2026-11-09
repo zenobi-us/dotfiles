@@ -64,6 +64,20 @@ test("child results reconcile their phase instead of repeating work or claiming 
   }
 });
 
+test.each(["blocked", "failed"])("a %s review without a verdict reconciles before any retry", (status) => {
+  const child = receipt("review", { status, fields: { event: "phase-result" } });
+  const state = workflow([child]);
+  expect(recoveryDecision(ticket, snapshot, state)).toMatchObject({ action: "review", mode: "reconcile" });
+  state.receipts.unshift(receipt("review", {
+    id: "review-complete",
+    status,
+    parentReceipt: child.id,
+    createdAt: "2026-10-02T00:00:00Z",
+    fields: { event: "phase-complete" },
+  }));
+  expect(recoveryDecision(ticket, snapshot, state)).toMatchObject({ action: "review", mode: "retry" });
+});
+
 test("interrupted review retries in a fresh session", () => {
   expect(recoveryDecision(ticket, snapshot, workflow([receipt("review", { status: "started", fields: { event: "phase-start" } })]))).toMatchObject({ action: "review", mode: "retry" });
 });

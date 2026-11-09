@@ -89,5 +89,5 @@ function validateReceipt(receipt: Record<string, unknown>): void {
       if (typeof reference.kind !== "string" || typeof reference.ref !== "string" || !reference.ref.trim()) throw new Error("Receipt references require kind and ref");
     }
   }
-  if (receipt.phase === "review" && !["SUCCESS", "FAILURE"].includes(String(receipt.verdict))) throw new Error("A review result requires a SUCCESS or FAILURE verdict");
+  if (receipt.phase === "review" && (receipt.status === "completed" || receipt.verdict !== undefined) && !["SUCCESS", "FAILURE"].includes(String(receipt.verdict))) throw new Error("A completed review requires a SUCCESS or FAILURE verdict; an explicit verdict must also be valid");
 }

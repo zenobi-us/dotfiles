@@ -164,7 +164,9 @@ checksum.
 
 Implementation receipts MUST also record changed files, validation results, the implementation summary, and open questions.
 
-Review receipts MUST also record `verdict: SUCCESS|FAILURE` and every finding with an ID, severity, ADR reference, file, line, description, required change, and validation command.
+Completed review receipts MUST record `verdict: SUCCESS|FAILURE` and every finding with an ID, severity, ADR reference, file, line, description, required change, and validation command.
+
+When a blocked or failed review has no usable verdict, omit `verdict`. An explicit verdict MUST be `SUCCESS` or `FAILURE`. A missing verdict does not establish review success.
 
 Fix receipts MUST record the consumed review receipt IDs, resolved finding IDs, unresolved finding IDs, validation results, and the new source commit.
 
