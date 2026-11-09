@@ -1,0 +1,68 @@
+[
+  {
+    "check": "earlier scoped suite attempt (historical failure)",
+    "command": "env MISE_AUTO_INSTALL=false GIT_TERMINAL_PROMPT=0 GIT_ASKPASS=/bin/false SSH_ASKPASS=/bin/false GIT_SSH_COMMAND='ssh -oBatchMode=yes' GIT_ALLOW_PROTOCOL=file COLLECT_EVIDENCE_REAL_DRIVERS=1 PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome mise x -- bun test '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test'",
+    "cwd": "/tmp",
+    "started_at": "2026-11-09T11:36:36.617Z",
+    "finished_at": "2026-11-09T11:37:31.853Z",
+    "result": "failed",
+    "output": "bun test v1.4.3 (c6da4a4d3)\n../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts:\n103 |         const collected = await invoke([\"run\", work]);\n104 |         expect(collected.code).toBe(1);\n105 |         const directory = collected.result.destination.path;\n106 |         const keyboard = JSON.parse(await readFile(join(directory, \"cases/approved-space/case.json\"), \"utf8\"));\n107 |         if (keyboard.errors.length) throw new Error(JSON.stringify(keyboard.errors));\n108 |         expect(collected.result.verdicts).toEqual([{ caseId: \"pass\", verdict: \"PASS\" }, { caseId: \"failure\", verdict: \"FAIL\" }, { caseId: \"unapproved\", verdict: \"BLOCKED\" }, { caseId: \"space\", verdict: \"BLOCKED\" }, { caseId: \"approved-space\", v…[+176]\n                                                ^\nerror: expect(received).toEqual(expected)\n@@ -3,3 +3,3 @@\n      \"caseId\": \"pass\",\n-     \"verdict\": \"PASS\",\n+     \"verdict\": \"FAIL\",\n    },\n- Expected  - 1\n+ Received  + 1\n      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workf…[+19]\n(fail) real public browser workflows > playwright: capture, assertions, safety, sealing and read-only consumers [13992.83ms]\n 13 pass\n 1 fail\n 94 expect() calls\nRan 14 tests across 4 files. [55.15s]\n[raw output: artifact://34]\n\n\nWall time: 55.23 seconds\n\nCommand exited with code 1"
+  },
+  {
+    "check": "scoped TypeScript",
+    "command": "env MISE_AUTO_INSTALL=false mise x -- bun '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc' --noEmit -p '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0020/tsconfig.json'",
+    "cwd": "/tmp",
+    "result": "passed",
+    "output": "(no output, exit code 0)\n\nWall time: 1.04 seconds"
+  },
+  {
+    "check": "final scoped suite after diagnostic pass",
+    "command": "mise x -- bun test /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test",
+    "cwd": "/tmp",
+    "result": "passed",
+    "tests": 14,
+    "failed": 0,
+    "expectations": 116,
+    "duration_seconds": 60.44,
+    "exit_code": 0
+  },
+  {
+    "check": "transferred surf evidence",
+    "command": "env MISE_AUTO_INSTALL=false '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts' validate '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0020/surf' --json",
+    "cwd": "/tmp",
+    "result": "passed",
+    "exit_code": 0
+  },
+  {
+    "check": "transferred playwright evidence",
+    "command": "env MISE_AUTO_INSTALL=false '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts' validate '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0020/playwright' --json",
+    "cwd": "/tmp",
+    "result": "passed",
+    "exit_code": 0
+  },
+  {
+    "check": "test-first real Surf regression",
+    "result": "failed before; passed after",
+    "before": "approved-space.1 SyntaxError: Unexpected token %",
+    "after": "focused real Surf public workflow passed: 57 expectations",
+    "correction": "The first post-fix test used runs/ instead of native/runs/. Corrected only the regression log path."
+  },
+  {
+    "check": "owned smoke, both real drivers",
+    "command": "mise x -- bun /tmp/ce-fix-0020.ts /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0020",
+    "cwd": "/tmp",
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0020/smoke.json",
+    "observations": "Both drivers PASS approved-space, a-b, a.b, a_b. Original public IDs retained. Native PNGs inspected: Case approved-space and Submitted. Session lists match before/after; exactly two HTTP submissions across both drivers."
+  },
+  {
+    "check": "source commit hooks",
+    "result": "passed",
+    "observations": "bundle-versions passed. --stash none override used; no stash operations."
+  },
+  {
+    "check": "generated workflow Markdown",
+    "result": "passed",
+    "observations": "Immutable draft, evidence index and both current Markdown projections each returned [] through okf_validate. Existing Surf driver reference has no type field; preserved its existing schema/kind convention."
+  }
+]

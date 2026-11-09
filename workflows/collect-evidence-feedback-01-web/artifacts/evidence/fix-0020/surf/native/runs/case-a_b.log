@@ -1,0 +1,103 @@
+{
+  "status": "completed",
+  "completedSteps": 13,
+  "totalSteps": 13,
+  "results": [
+    {
+      "step": 1,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 2,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 3,
+      "cmd": "navigate",
+      "status": "ok",
+      "ms": 634
+    },
+    {
+      "step": 4,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 5,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 6,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 7,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 8,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 9,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 375
+    },
+    {
+      "step": 10,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 11,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 12,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 359
+    },
+    {
+      "step": 13,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    }
+  ],
+  "failed": 0,
+  "totalMs": 2405,
+  "vars": {
+    "base": "http://127.0.0.1:39411",
+    "shots": "/tmp/ce-fix-0020-ZAiCZF/collect-evidence-aqO8hl/report/shots",
+    "dialog_615f622e31": {
+      "id": 4592,
+      "hasDialog": false
+    },
+    "url_615f622e31": "http://127.0.0.1:39411/?case=a_b",
+    "dialog_615f622e32": {
+      "id": 4606,
+      "hasDialog": false
+    },
+    "capture_1_615f622e32": "{\"capturedAt\":\"2026-11-09T11:35:34.104Z\",\"url\":\"http://127.0.0.1:39411/?case=a_b\",\"viewport\":{\"width\":1984,\"height\":1068,\"deviceScaleFactor\":1}}",
+    "assert_615f622e32": "Case a_b",
+    "capture_2_615f622e32": "{\"capturedAt\":\"2026-11-09T11:35:34.671Z\",\"url\":\"http://127.0.0.1:39411/?case=a_b\",\"viewport\":{\"width\":1984,\"height\":1068,\"deviceScaleFactor\":1}}"
+  }
+}

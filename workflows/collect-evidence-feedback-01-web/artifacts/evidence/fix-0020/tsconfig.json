@@ -1,0 +1,11 @@
+{
+  "extends": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/tsconfig.base.json",
+  "compilerOptions": {
+    "typeRoots": ["/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/@types"],
+    "paths": {
+      "@crustjs/core": ["/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/@crustjs/core/dist/index.d.ts"],
+      "@crustjs/plugins": ["/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/@crustjs/plugins/dist/index.d.ts"]
+    }
+  },
+  "include": ["/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/**/*.ts", "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/types/**/*.d.ts"]
+}

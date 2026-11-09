@@ -1,8 +1,40 @@
 ---
 title: Collect-evidence web PR draft
 type: Projection
-latest_receipt: fix-0014
+latest_receipt: fix-0020
 ---
+
+# Current fix-0020
+
+FIXED. Waiting for fresh independent review. Parent completion is pending.
+
+Source commit 12b6345ac32f4ae30b078e5344fb5bae7a1ee244; tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. Branch feature/collect-evidence-feedback-01-web.
+
+## Fix
+
+Encoded Surf-internal step identities as UTF-8 hex under the existing fixed prefixes. This makes substitutions safe and keeps a-b, a.b and a_b distinct. Public IDs and accepted grammar are unchanged.
+
+Changed files:
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/drivers/surf-cli.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/surf-driver.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts
+
+## Current validation
+
+Final scoped suite: 14 passed, 0 failed, 116 expectations. Both real drivers ran. Scoped TypeScript passed. Real owned workflows passed approved-space, a-b, a.b and a_b with stable public IDs, native screenshots and matching session lists before/after. Transferred sealed evidence validated. Source commit hooks passed.
+
+An earlier scoped suite attempt had one Playwright failure in the existing pass case. A targeted diagnostic copy then passed without source changes. The final unchanged suite passed 14/14. The original failure cause is unknown; it is not suppressed. The first post-fix regression used the wrong native-log path; corrected runs/ to native/runs/. TypeScript LSP was unavailable; the scoped compiler used existing base-checkout dependencies. No installation, remote Git operation, stash operation, merge, push, formal review or ticket completion occurred. No existing changelog was present, as recorded in the prior draft. STD-R3-001 remains advisory and untouched, including cleanupRow hooks.
+
+## Findings, verdict and merge
+
+Resolved: SPEC-R3-001. Prior resolved: STD-001, SPEC-001, SPEC-002, SPEC-003. Unresolved: STD-R3-001, P3 advisory, unchanged. No reviewer verdict covers the new source. review-0017 FAILURE is historical and applies only to 3d1b282520a74db5409457f83ed0f766670b86cb. No merge or push. No ticket completion.
+
+[Immutable current draft](../artifacts/snapshots/pr-draft-fix-0020.md). [Current evidence](../artifacts/evidence/fix-0020/index.md). [Validation records](../artifacts/evidence/fix-0020/validation.json). [Fix result](../events/fix-0020.yaml). [Fix start](../events/fix-start-0019.yaml). [Consumed review](../events/review-0017.yaml). [Review artifact](../artifacts/reviews/review-review-0017.md).
+
+## Retained projection before fix-0020 (historical)
+
+All status and source statements below are historical. The current fix above supersedes them. Earlier summaries, changed paths, checks, review history and supporting links remain intact.
+
 # Preserve Surf and Playwright in collect-evidence
 
 REVIEW_FAILED. One blocking Spec finding remains on the current clean source.

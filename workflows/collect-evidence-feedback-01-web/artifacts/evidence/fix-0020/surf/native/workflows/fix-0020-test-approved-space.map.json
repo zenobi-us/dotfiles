@@ -1,0 +1,51 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "driver-map",
+  "entries": [
+    {
+      "step": "approved-space.1",
+      "kind": "navigate",
+      "target": "/?case=approved-space",
+      "from": 0,
+      "count": 6,
+      "shot": "",
+      "dialog": "dialog_617070726f7665642d73706163652e31",
+      "url": "url_617070726f7665642d73706163652e31"
+    },
+    {
+      "step": "approved-space.2",
+      "kind": "press",
+      "target": "Space",
+      "from": 6,
+      "count": 3,
+      "shot": "",
+      "dialog": "dialog_617070726f7665642d73706163652e32"
+    },
+    {
+      "step": "approved-space.3",
+      "kind": "expect",
+      "target": "p",
+      "from": 9,
+      "count": 7,
+      "shot": "shots/step-approved-space-003-approved-keyboard--capture-002.png",
+      "dialog": "dialog_617070726f7665642d73706163652e33",
+      "value": "assert_617070726f7665642d73706163652e33",
+      "check": "text",
+      "captures": [
+        {
+          "shot": "shots/step-approved-space-003-approved-keyboard--capture-001.png",
+          "metadata": "capture_1_617070726f7665642d73706163652e33",
+          "index": 11,
+          "sequence": 1
+        },
+        {
+          "shot": "shots/step-approved-space-003-approved-keyboard--capture-002.png",
+          "metadata": "capture_2_617070726f7665642d73706163652e33",
+          "index": 14,
+          "sequence": 2
+        }
+      ],
+      "assertionIndex": 13
+    }
+  ]
+}

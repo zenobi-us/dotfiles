@@ -1,0 +1,208 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "run",
+  "id": "surf",
+  "status": "sealed",
+  "startedAt": "2026-11-09T11:35:21.301Z",
+  "finishedAt": "2026-11-09T11:35:34.905Z",
+  "surface": "web",
+  "driver": "surf",
+  "driverVersion": "surf version 2.22.0",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "approved-space",
+      "path": "cases/approved-space/case.json"
+    },
+    {
+      "id": "a-b",
+      "path": "cases/a-b/case.json"
+    },
+    {
+      "id": "a.b",
+      "path": "cases/a.b/case.json"
+    },
+    {
+      "id": "a_b",
+      "path": "cases/a_b/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/a-b/case.json",
+      "sha256": "9ab21e9b265aef82b19ee65588b06fcbd2293c064293eb53a06c221a7c7e671f"
+    },
+    {
+      "path": "cases/a-b/events.jsonl",
+      "sha256": "54ca7a2fa81ddec859a4899346713fb6b22053c181ab5a034f3983881045f909"
+    },
+    {
+      "path": "cases/a-b/index.md",
+      "sha256": "37b2e743271d253d2a547d4f60433fc5e392f14f60a62be5e2c16cfdce3f01e1"
+    },
+    {
+      "path": "cases/a-b/media/step-002-step-a-b-002-punctuation-identity--capture-001--capture-001.png",
+      "sha256": "a83ab1666afd2646bf226f17a6aaf37fad75ef4baed09261c4ed36743ab217c7"
+    },
+    {
+      "path": "cases/a-b/media/step-002-step-a-b-002-punctuation-identity--capture-002--capture-002.png",
+      "sha256": "a83ab1666afd2646bf226f17a6aaf37fad75ef4baed09261c4ed36743ab217c7"
+    },
+    {
+      "path": "cases/a.b/case.json",
+      "sha256": "b6a72a3e065c9dc7604b2ee9d2edcfd0684eb48c653b033bcbeb2b9088c6c559"
+    },
+    {
+      "path": "cases/a.b/events.jsonl",
+      "sha256": "ff83e6a832194e51e672993817fcf4d9477764fde0c35548d521057ff9f6dbf4"
+    },
+    {
+      "path": "cases/a.b/index.md",
+      "sha256": "ad806423eddc58d379b55c78b476335ddafae5c19ee19e1647a25af9e314fb4e"
+    },
+    {
+      "path": "cases/a.b/media/step-002-step-a-b-002-punctuation-identity--capture-001--capture-001.png",
+      "sha256": "1464b4fef6401fcfbba7f5f170ec96ec5359517c00c60fde45643a4f4ccb5416"
+    },
+    {
+      "path": "cases/a.b/media/step-002-step-a-b-002-punctuation-identity--capture-002--capture-002.png",
+      "sha256": "1464b4fef6401fcfbba7f5f170ec96ec5359517c00c60fde45643a4f4ccb5416"
+    },
+    {
+      "path": "cases/a_b/case.json",
+      "sha256": "ede196b6fd3115b1ec9660a7a5ec17a7e1941e31674552fa5489aeba229a753c"
+    },
+    {
+      "path": "cases/a_b/events.jsonl",
+      "sha256": "84e4f3861598e07b10fecba7b0da4a6efeb0fe40705cc52567c20f1458cb5511"
+    },
+    {
+      "path": "cases/a_b/index.md",
+      "sha256": "f6149dd30de35ef92f37e239072367ecc96b75bc65cddbbec69bcad1d3216110"
+    },
+    {
+      "path": "cases/a_b/media/step-002-step-a-b-002-punctuation-identity--capture-001--capture-001.png",
+      "sha256": "39a393a720d17f3fff2482746e192e9c8c15625c56d73db5aebfeed01941e7cc"
+    },
+    {
+      "path": "cases/a_b/media/step-002-step-a-b-002-punctuation-identity--capture-002--capture-002.png",
+      "sha256": "39a393a720d17f3fff2482746e192e9c8c15625c56d73db5aebfeed01941e7cc"
+    },
+    {
+      "path": "cases/approved-space/case.json",
+      "sha256": "35da9a87dfbef7fcd1e111c5e42bc66e8b03a298bea9adf240bd533fa8755349"
+    },
+    {
+      "path": "cases/approved-space/events.jsonl",
+      "sha256": "2fd8d806f5bb6fc9fa3170a7bd0bc2517df7fba0f330f9468c1ddb7defb37399"
+    },
+    {
+      "path": "cases/approved-space/index.md",
+      "sha256": "c4c86b46dc7f9891d8b81f69e1d5ad0051bcc2935d0e5ead60626952c253e711"
+    },
+    {
+      "path": "cases/approved-space/media/step-003-step-approved-space-003-approved-keyboard--capture-001--capture-001.png",
+      "sha256": "6b0e42415b3e6b79dd17d092902912a06231c8add67b5f810d746f211842f8be"
+    },
+    {
+      "path": "cases/approved-space/media/step-003-step-approved-space-003-approved-keyboard--capture-002--capture-002.png",
+      "sha256": "6b0e42415b3e6b79dd17d092902912a06231c8add67b5f810d746f211842f8be"
+    },
+    {
+      "path": "index.md",
+      "sha256": "fa63e99ef7618589628696d3e36a2ac54895134f97d7c816a08e9edaaae19da7"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "ac30abc0d4cfa7d28e18124419879da0660be90d48cc27a363e4af2f07a451f6"
+    },
+    {
+      "path": "native/report/shots/step-a-b-002-punctuation-identity--capture-001.png",
+      "sha256": "a83ab1666afd2646bf226f17a6aaf37fad75ef4baed09261c4ed36743ab217c7"
+    },
+    {
+      "path": "native/report/shots/step-a-b-002-punctuation-identity--capture-002.png",
+      "sha256": "a83ab1666afd2646bf226f17a6aaf37fad75ef4baed09261c4ed36743ab217c7"
+    },
+    {
+      "path": "native/report/shots/step-a.b-002-punctuation-identity--capture-001.png",
+      "sha256": "1464b4fef6401fcfbba7f5f170ec96ec5359517c00c60fde45643a4f4ccb5416"
+    },
+    {
+      "path": "native/report/shots/step-a.b-002-punctuation-identity--capture-002.png",
+      "sha256": "1464b4fef6401fcfbba7f5f170ec96ec5359517c00c60fde45643a4f4ccb5416"
+    },
+    {
+      "path": "native/report/shots/step-a_b-002-punctuation-identity--capture-001.png",
+      "sha256": "39a393a720d17f3fff2482746e192e9c8c15625c56d73db5aebfeed01941e7cc"
+    },
+    {
+      "path": "native/report/shots/step-a_b-002-punctuation-identity--capture-002.png",
+      "sha256": "39a393a720d17f3fff2482746e192e9c8c15625c56d73db5aebfeed01941e7cc"
+    },
+    {
+      "path": "native/report/shots/step-approved-space-003-approved-keyboard--capture-001.png",
+      "sha256": "6b0e42415b3e6b79dd17d092902912a06231c8add67b5f810d746f211842f8be"
+    },
+    {
+      "path": "native/report/shots/step-approved-space-003-approved-keyboard--capture-002.png",
+      "sha256": "6b0e42415b3e6b79dd17d092902912a06231c8add67b5f810d746f211842f8be"
+    },
+    {
+      "path": "native/runs/case-a-b.log",
+      "sha256": "e7fd95fa4b8692a6e9a78c2d7034986183d621f708ac4f169e11b40ef208ef0f"
+    },
+    {
+      "path": "native/runs/case-a.b.log",
+      "sha256": "a43fa593896afe40c7a3efd17c8873a3478f4d80dad0e522535c63b896588f6c"
+    },
+    {
+      "path": "native/runs/case-a_b.log",
+      "sha256": "2715b5be3b05f1f3831783bcb9eebdc1ac390df69fd4abb843d6c522617b9343"
+    },
+    {
+      "path": "native/runs/case-approved-space.log",
+      "sha256": "b0bbc371a33fa954f063457ec85c0465258f3d5569f41c74f97db6eb511eba91"
+    },
+    {
+      "path": "native/workflows/fix-0020-test-a-b.json",
+      "sha256": "acd6c33d0562f8d5c17265b494abec3a6aab8e244305a1b09f1fcc74c087b511"
+    },
+    {
+      "path": "native/workflows/fix-0020-test-a-b.map.json",
+      "sha256": "f6c7e91c41a02132b4de57f23031a8e886f0737716499a19e68372c8348c55b9"
+    },
+    {
+      "path": "native/workflows/fix-0020-test-a.b.json",
+      "sha256": "4a03d1400ae2640bde24de527d0e4b9e0e8a193eec42e9577e6c9864970ed36b"
+    },
+    {
+      "path": "native/workflows/fix-0020-test-a.b.map.json",
+      "sha256": "d9e4394a89aef4a0f6af30c3b2bbeb1557e162e0082a4e087c72febfe664be04"
+    },
+    {
+      "path": "native/workflows/fix-0020-test-a_b.json",
+      "sha256": "8402dbc87f0874aa3541504986f120f5b6919858b6912661fee5273d7ce146de"
+    },
+    {
+      "path": "native/workflows/fix-0020-test-a_b.map.json",
+      "sha256": "047f301a7e67ed64cbd97cda53d6b571f015a9a90083d9324558f60d46250b71"
+    },
+    {
+      "path": "native/workflows/fix-0020-test-approved-space.json",
+      "sha256": "c05c4130455baa9b1a03b86df77256fe56cb5292c2cc32bd28f3f07dda67e79d"
+    },
+    {
+      "path": "native/workflows/fix-0020-test-approved-space.map.json",
+      "sha256": "4f46c5c20ec2831327230a54f88efa57c00733fc05c97ac323e283727799174f"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "9a82417ad3e08e109570ce00dcb533b202f9e6b8e81d4440b092111fbb7e687b"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "ac30abc0d4cfa7d28e18124419879da0660be90d48cc27a363e4af2f07a451f6"
+    }
+  ]
+}

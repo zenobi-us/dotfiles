@@ -1,0 +1,55 @@
+{
+  "schema": "fix-smoke/v1",
+  "root": "/tmp/ce-fix-0020-ZAiCZF",
+  "confirmations": 2,
+  "evidence": [
+    {
+      "driver": "surf",
+      "verdicts": [
+        {
+          "caseId": "approved-space",
+          "verdict": "PASS"
+        },
+        {
+          "caseId": "a-b",
+          "verdict": "PASS"
+        },
+        {
+          "caseId": "a.b",
+          "verdict": "PASS"
+        },
+        {
+          "caseId": "a_b",
+          "verdict": "PASS"
+        }
+      ],
+      "source": "/tmp/ce-fix-0020-ZAiCZF/repository/workflows/fix-0020/artifacts/evidence/surf",
+      "destination": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0020/surf",
+      "cleanup": "before/after session lists match"
+    },
+    {
+      "driver": "playwright",
+      "verdicts": [
+        {
+          "caseId": "approved-space",
+          "verdict": "PASS"
+        },
+        {
+          "caseId": "a-b",
+          "verdict": "PASS"
+        },
+        {
+          "caseId": "a.b",
+          "verdict": "PASS"
+        },
+        {
+          "caseId": "a_b",
+          "verdict": "PASS"
+        }
+      ],
+      "source": "/tmp/ce-fix-0020-ZAiCZF/repository/workflows/fix-0020/artifacts/evidence/playwright",
+      "destination": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0020/playwright",
+      "cleanup": "before/after session lists match"
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "a_b",
+  "runId": "surf",
+  "order": 4,
+  "purpose": "Preserve a_b",
+  "preconditions": [],
+  "expected": {
+    "pass": "The matching page is observed",
+    "fail": "The identity changes"
+  },
+  "steps": [
+    {
+      "id": "a_b.1",
+      "order": 1,
+      "purpose": "navigate",
+      "actions": {
+        "do": "navigate",
+        "to": "/?case=a_b"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "a_b.2",
+      "order": 2,
+      "purpose": "expect",
+      "actions": {
+        "do": "expect",
+        "locator": "h1",
+        "text": "Case a_b",
+        "shot": "punctuation-identity"
+      },
+      "expected": {
+        "text": "Case a_b",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "Found text: Case a_b"
+      ],
+      "assertionResult": "passed"
+    }
+  ],
+  "events": "cases/a_b/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "a_b.2.capture-001",
+      "caseId": "a_b",
+      "stepId": "a_b.2",
+      "path": "cases/a_b/media/step-002-step-a-b-002-punctuation-identity--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "39a393a720d17f3fff2482746e192e9c8c15625c56d73db5aebfeed01941e7cc",
+      "mediaType": "image/png",
+      "width": 1984,
+      "height": 1068,
+      "capturedAt": "2026-11-09T11:35:34.104Z",
+      "viewport": {
+        "width": 1984,
+        "height": 1068,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "surf",
+      "driverVersion": "surf version 2.22.0",
+      "captureMethod": "surf-screenshot",
+      "url": "http://127.0.0.1:39411/?case=a_b"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "a_b.2.capture-002",
+      "caseId": "a_b",
+      "stepId": "a_b.2",
+      "path": "cases/a_b/media/step-002-step-a-b-002-punctuation-identity--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "39a393a720d17f3fff2482746e192e9c8c15625c56d73db5aebfeed01941e7cc",
+      "mediaType": "image/png",
+      "width": 1984,
+      "height": 1068,
+      "capturedAt": "2026-11-09T11:35:34.671Z",
+      "viewport": {
+        "width": 1984,
+        "height": 1068,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "surf",
+      "driverVersion": "surf version 2.22.0",
+      "captureMethod": "surf-screenshot",
+      "url": "http://127.0.0.1:39411/?case=a_b"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion.",
+    "Video is unavailable with the Surf driver. Image captures remain valid."
+  ],
+  "sideEffects": "not-recorded"
+}

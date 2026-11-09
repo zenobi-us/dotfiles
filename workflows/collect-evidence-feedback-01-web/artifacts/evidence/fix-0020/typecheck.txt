@@ -1,0 +1,3 @@
+(no output, exit code 0)
+
+Wall time: 1.04 seconds

@@ -1,0 +1,29 @@
+bun test v1.4.3 (c6da4a4d3)
+../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts:
+103 |         const collected = await invoke(["run", work]);
+104 |         expect(collected.code).toBe(1);
+105 |         const directory = collected.result.destination.path;
+106 |         const keyboard = JSON.parse(await readFile(join(directory, "cases/approved-space/case.json"), "utf8"));
+107 |         if (keyboard.errors.length) throw new Error(JSON.stringify(keyboard.errors));
+108 |         expect(collected.result.verdicts).toEqual([{ caseId: "pass", verdict: "PASS" }, { caseId: "failure", verdict: "FAIL" }, { caseId: "unapproved", verdict: "BLOCKED" }, { caseId: "space", verdict: "BLOCKED" }, { caseId: "approved-space", v…[+176]
+                                                ^
+error: expect(received).toEqual(expected)
+@@ -3,3 +3,3 @@
+      "caseId": "pass",
+-     "verdict": "PASS",
++     "verdict": "FAIL",
+    },
+- Expected  - 1
++ Received  + 1
+      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workf…[+19]
+(fail) real public browser workflows > playwright: capture, assertions, safety, sealing and read-only consumers [13992.83ms]
+ 13 pass
+ 1 fail
+ 94 expect() calls
+Ran 14 tests across 4 files. [55.15s]
+[raw output: artifact://34]
+
+
+Wall time: 55.23 seconds
+
+Command exited with code 1

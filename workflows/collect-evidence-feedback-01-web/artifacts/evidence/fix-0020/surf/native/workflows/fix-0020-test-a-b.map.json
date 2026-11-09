@@ -1,0 +1,42 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "driver-map",
+  "entries": [
+    {
+      "step": "a-b.1",
+      "kind": "navigate",
+      "target": "/?case=a-b",
+      "from": 0,
+      "count": 6,
+      "shot": "",
+      "dialog": "dialog_612d622e31",
+      "url": "url_612d622e31"
+    },
+    {
+      "step": "a-b.2",
+      "kind": "expect",
+      "target": "h1",
+      "from": 6,
+      "count": 7,
+      "shot": "shots/step-a-b-002-punctuation-identity--capture-002.png",
+      "dialog": "dialog_612d622e32",
+      "value": "assert_612d622e32",
+      "check": "text",
+      "captures": [
+        {
+          "shot": "shots/step-a-b-002-punctuation-identity--capture-001.png",
+          "metadata": "capture_1_612d622e32",
+          "index": 8,
+          "sequence": 1
+        },
+        {
+          "shot": "shots/step-a-b-002-punctuation-identity--capture-002.png",
+          "metadata": "capture_2_612d622e32",
+          "index": 11,
+          "sequence": 2
+        }
+      ],
+      "assertionIndex": 10
+    }
+  ]
+}

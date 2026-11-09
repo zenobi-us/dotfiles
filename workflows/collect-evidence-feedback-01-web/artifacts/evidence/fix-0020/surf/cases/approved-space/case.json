@@ -1,0 +1,122 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "approved-space",
+  "runId": "surf",
+  "order": 1,
+  "purpose": "Preserve approved-space",
+  "preconditions": [],
+  "expected": {
+    "pass": "The matching page is observed",
+    "fail": "The identity changes"
+  },
+  "steps": [
+    {
+      "id": "approved-space.1",
+      "order": 1,
+      "purpose": "navigate",
+      "actions": {
+        "do": "navigate",
+        "to": "/?case=approved-space"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "approved-space.2",
+      "order": 2,
+      "purpose": "press",
+      "actions": {
+        "do": "press",
+        "key": "Space"
+      },
+      "expected": null,
+      "observed": [
+        "Pressed Space."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "approved-space.3",
+      "order": 3,
+      "purpose": "expect",
+      "actions": {
+        "do": "expect",
+        "locator": "p",
+        "text": "Submitted",
+        "shot": "approved-keyboard"
+      },
+      "expected": {
+        "text": "Submitted",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "Found text: Submitted"
+      ],
+      "assertionResult": "passed"
+    }
+  ],
+  "events": "cases/approved-space/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "approved-space.3.capture-001",
+      "caseId": "approved-space",
+      "stepId": "approved-space.3",
+      "path": "cases/approved-space/media/step-003-step-approved-space-003-approved-keyboard--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "6b0e42415b3e6b79dd17d092902912a06231c8add67b5f810d746f211842f8be",
+      "mediaType": "image/png",
+      "width": 1984,
+      "height": 1068,
+      "capturedAt": "2026-11-09T11:35:24.470Z",
+      "viewport": {
+        "width": 1984,
+        "height": 1068,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "surf",
+      "driverVersion": "surf version 2.22.0",
+      "captureMethod": "surf-screenshot",
+      "url": "http://127.0.0.1:39411/?case=approved-space"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "approved-space.3.capture-002",
+      "caseId": "approved-space",
+      "stepId": "approved-space.3",
+      "path": "cases/approved-space/media/step-003-step-approved-space-003-approved-keyboard--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "6b0e42415b3e6b79dd17d092902912a06231c8add67b5f810d746f211842f8be",
+      "mediaType": "image/png",
+      "width": 1984,
+      "height": 1068,
+      "capturedAt": "2026-11-09T11:35:25.053Z",
+      "viewport": {
+        "width": 1984,
+        "height": 1068,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "surf",
+      "driverVersion": "surf version 2.22.0",
+      "captureMethod": "surf-screenshot",
+      "url": "http://127.0.0.1:39411/?case=approved-space"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion.",
+    "Video is unavailable with the Surf driver. Image captures remain valid."
+  ],
+  "sideEffects": "not-recorded"
+}
