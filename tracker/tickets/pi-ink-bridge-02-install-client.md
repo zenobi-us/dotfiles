@@ -8,7 +8,7 @@ sequence: 2
 title: Install and launch the tablet client
 triage: ready-for-agent
 type: task
-work_status: implemented
+work_status: completed
 ---
 
 ## What to build
@@ -65,3 +65,8 @@ Native launch and the available connection screen passed in [parent receipt 0057
 ### Independent review 0076 — 2026-11-09T05:27:57.007Z
 
 Verdict: **SUCCESS**. Reviewed commit: `16d1122ae182d38630af5126dcf00a0aa7e8b626`; tree: `149bf25a63f328a6e0df06004d1b397792851ec1`. [Immutable review artifact](../../workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0076.md). Metadata publication deferred until exact integration to preserve the frozen base.
+
+### Completed — 2026-11-09T05:33:36.839Z
+
+Independent review0076 SUCCESS; both axes passed with no findings. Exact integration `16d1122ae182d38630af5126dcf00a0aa7e8b626` published on `origin/master` through `cc53ef2f094e8b5d0af24d27be19b1b8464d0331`. Installer regression (8 tests/31 assertions), local typecheck after locked dependency restoration, Go race suite, native host CLI version and shell syntax passed. [Integration and publication receipt](../../workflows/pi-ink-bridge-02-install-client/events/finish-pushed-0082.json). Historical native and repeat-install acceptance remains bound by earlier receipts; no new device or deployment changes.
+
