@@ -150,3 +150,8 @@ The post-close check found that the source workspace was no longer open. The par
 ## Independent review attempt 1
 
 The user requested an independent review. [review-start-0008](../events/review-start-0008.yaml) freezes source commit `0acff3b4c45705336028263a0b20d41dbc1aee63` and tree `9480fa07ed2783674efa8f0d3efc6bc7daa81047`. The comparison base is master at `7f981d2f47f24276159bec1719a50667a61494c6`; the merge base is `859341b01ef7be474a3128b7f94772aab731c2f7`. No reviewer verdict is available yet. The source remains unchanged.
+
+
+## Independent review launch recovery
+
+[review-aborted-0009](../events/review-aborted-0009.yaml) records a Herdr worktree lookup failure before a reviewer started. No verdict exists. Source commit `0acff3b4c45705336028263a0b20d41dbc1aee63` and its clean tree are unchanged. [review-start-0010](../events/review-start-0010.yaml) authorizes a fresh launch retry under the same user review request. No source, claim or unrelated service changed.
