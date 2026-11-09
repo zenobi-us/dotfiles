@@ -1,0 +1,31 @@
+{
+  "schema": "worktree-launch/v1",
+  "phase_start": "workflows/collect-evidence-feedback-01-web/events/review-start-0022.yaml",
+  "source_commit": "12b6345ac32f4ae30b078e5344fb5bae7a1ee244",
+  "created_at": "2026-11-09T12:36:14.485Z",
+  "runId": "b46a18d7-15e9-4376-b0c8-a32bdee19246",
+  "target": "w73:p6",
+  "operationId": "collect-evidence-feedback-01-web-review-0023",
+  "contextFile": "/home/zenobius/.local/state/result-delivery/runs/b46a18d7-15e9-4376-b0c8-a32bdee19246/context.json",
+  "deliveryContext": {
+    "schema": "result-delivery/v1",
+    "kind": "context",
+    "audience": "agent",
+    "mode": "artifact-reference",
+    "runId": "b46a18d7-15e9-4376-b0c8-a32bdee19246",
+    "operationId": "collect-evidence-feedback-01-web-review-0023",
+    "target": {
+      "path": "/var/home/zenobius/.local/state/result-delivery/runs/web-review-0023-rTdIcF/result.json",
+      "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-review-0023-rTdIcF/result.json",
+      "schema": "worktree-receipt/v1"
+    }
+  },
+  "resultTarget": {
+    "path": "/var/home/zenobius/.local/state/result-delivery/runs/web-review-0023-rTdIcF/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-review-0023-rTdIcF/result.json",
+    "schema": "worktree-receipt/v1"
+  },
+  "muxer": "herdr",
+  "agent": "omp",
+  "depth": 1
+}
