@@ -1,0 +1,80 @@
+{
+  "created_at": "2026-11-09T05:02:03.333Z",
+  "review_receipt": "workflows/pi-ink-bridge-02-install-client/events/review-0069.yaml",
+  "reviewed_source": {
+    "commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+    "tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+    "clean": true
+  },
+  "base_at_merge_calculation": {
+    "commit": "d88dfb2f52f67a54e7671e4d4827b4b5ad3cade1",
+    "tree": "8d0dd9e00573fb1d7f8e1861a71bf1fac636061a"
+  },
+  "base_later_observed": {
+    "commit": "dd0ef4db40591a565dae463255fee72651e0aae4",
+    "tree": "ee58ddf5c956b01d11d83ab5cb2f0a12bd76c4e3"
+  },
+  "base_advanced_concurrently": true,
+  "base_has_unrelated_user_edits": true,
+  "merge_tree": {
+    "command": "git merge-tree --write-tree --name-only d88dfb2f52f67a54e7671e4d4827b4b5ad3cade1 b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+    "exit_code": 1,
+    "conflicted_tree": "750ec86635f612d8f96de6ed172e147f3353cc18",
+    "clean_tree_established": false,
+    "conflicts": [
+      "tracker/tickets/pi-ink-bridge-02-install-client.md",
+      "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+      "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+      "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml",
+      "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    ],
+    "product_code_conflicts_reported": []
+  },
+  "worktrunk": {
+    "version": "0.80.0",
+    "squash": true,
+    "commit": false,
+    "rebase": false,
+    "no_rebase_requires_target_fast_forwardable": true,
+    "source_merge_conflicts": true
+  },
+  "remote": {
+    "name": "origin",
+    "url": "git@github.com:zenobi-us/dotfiles.git",
+    "ref": "refs/heads/master",
+    "fetch_command": "git fetch origin master",
+    "fetch_exit": 0,
+    "observed_commit": "1b5558e32d1877e8f95999a6eb4b1a83bbdf6987",
+    "behind": 0,
+    "ahead": 16,
+    "unpublished_base_commits": [
+      "dd0ef4db",
+      "d88dfb2f",
+      "bc94185a",
+      "d96ece00",
+      "57fe9067",
+      "e4bbb8af",
+      "859341b0",
+      "9f590050",
+      "015eaef3",
+      "2cd21dd6",
+      "265923b3",
+      "997d05cc",
+      "12725bb0",
+      "5bd17eeb",
+      "522b119a",
+      "155e01d9"
+    ]
+  },
+  "safety_decision": "Stop: expected clean reviewed-source-to-base mapping is unavailable. No merge or target/source reset; no implicit conflict preference, rebase, squash, push or cleanup.",
+  "required_decisions": [
+    "Authorize metadata/history reconciliation and a newly reviewed source candidate. Keep master stable during that review; defer review/finish Git metadata publication until after integration to avoid advancing the target.",
+    "Approve publication of the existing pending master history through the explicitly recorded base, plus only scoped ticket02 integration/records; otherwise keep finish blocked."
+  ],
+  "merge_command_invocations": 0,
+  "push_invocations": 0,
+  "ticket_completion_invocations": 0,
+  "worktree_removal_invocations": 0,
+  "workspace_close_invocations": 0,
+  "source_or_device_changes": 0
+}

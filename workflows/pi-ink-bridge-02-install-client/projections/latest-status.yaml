@@ -2,8 +2,8 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "pi-ink-bridge-02-install-client",
   "ticket": "tracker/tickets/pi-ink-bridge-02-install-client.md",
-  "state": "REVIEW_PASSED",
-  "latest_receipt": "review-complete-0070",
+  "state": "FINISH_FAILED",
+  "latest_receipt": "finish-failed-0072",
   "latest_source_commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
   "latest_source_tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
   "latest_review_verdict": "SUCCESS",
@@ -38,7 +38,7 @@
   "pane_id": "w6X:p7",
   "pane_closed": true,
   "source_clean": true,
-  "next_action": "Follow fresh canonical inspection for integration/publication. Current exact-source SUCCESS has no blockers; no finish or deployment has started.",
+  "next_action": "Stop before merge. Explicit metadata reconciliation/fresh review and pending-base-publication approval required.",
   "current_fix_device_actions": 0,
   "current_fix_deployment_changes": 0,
   "hardware_acceptance": "historical only; no native installation or launch exercised by fix-0066",
@@ -163,5 +163,21 @@
   "review_artifact": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0069.md",
   "reviewed_source_commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
   "reviewed_source_tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
-  "tracker_review_commit": "57fe9067b926b4703e6ec66f3e3608e6c769e7db"
+  "tracker_review_commit": "57fe9067b926b4703e6ec66f3e3608e6c769e7db",
+  "finish_checkpoint": null,
+  "finish_failure_step": "prepare",
+  "finish_failure_receipt": "workflows/pi-ink-bridge-02-install-client/events/finish-failed-0072.json",
+  "finish_preflight": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/finish-0071/preflight.json",
+  "finish_conflicts": [
+    "tracker/tickets/pi-ink-bridge-02-install-client.md",
+    "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+  ],
+  "merged": false,
+  "pushed": false,
+  "ticket_completed": false,
+  "worktree_removed": false,
+  "workspace_closed": false
 }

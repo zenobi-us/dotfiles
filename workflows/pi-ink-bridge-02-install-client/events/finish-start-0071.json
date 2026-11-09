@@ -1,0 +1,89 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "finish-start-0071",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "finish",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": "review-complete-0070",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+  "source_tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+  "created_at": "2026-11-09T04:52:06.528Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/finish-0071"
+  },
+  "status": "FINISHING",
+  "checkpoint": null,
+  "next_step": "Prepare exact clean integration mapping; no merge is authorized before all safety preconditions pass.",
+  "review_receipt": "workflows/pi-ink-bridge-02-install-client/events/review-0069.yaml",
+  "reviewed_source_commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+  "reviewed_source_tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+  "base_observed": "d88dfb2f52f67a54e7671e4d4827b4b5ad3cade1",
+  "base_observed_tree": "8d0dd9e00573fb1d7f8e1861a71bf1fac636061a",
+  "base_worktree_has_unrelated_edits": true,
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_url": "git@github.com:zenobi-us/dotfiles.git",
+  "expected_merge_tree": null,
+  "worktrunk_effective_merge_config": {
+    "squash": true,
+    "commit": false,
+    "rebase": false
+  },
+  "worktrunk_preflight_merge_conflicts": true,
+  "authorization": "User explicitly requested finish pi-ink-bridge-02-install-client. Only verified integration/publication/completion and scoped cleanup are authorized. Do not discard unrelated edits, rewrite reviewed source, force-push, or run device/service actions.",
+  "recovery": {
+    "mode": "begin",
+    "reason": "Canonical inspector selects finish/begin. SUCCESS0069 matches exact clean source and parent0070. No target agents remain active. Preparation must resolve actual base, remote and integration conflicts before any merge."
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/review-complete-0070.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/review-0069.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0069.md"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-review-0070.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/finish-start-0071.json"
+    }
+  ],
+  "merged_commit": null,
+  "pushed": false,
+  "ticket_completed": false,
+  "worktree_removed": false,
+  "workspace_closed": false
+}
