@@ -7,7 +7,7 @@ sequence: 1
 title: Preserve Surf and Playwright in collect-evidence
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 # Preserve Surf and Playwright in collect-evidence
