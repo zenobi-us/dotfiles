@@ -186,3 +186,8 @@ The fix records were committed as `ace3f774`. The typed result is acknowledged a
 - `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts`
 - `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts`
 - `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts`
+
+
+## Post-fix independent review
+
+The user requested a fresh review. [review-start-0016](../events/review-start-0016.yaml) freezes source commit `3d1b282520a74db5409457f83ed0f766670b86cb` and tree `0c68cbc0d31e344ea2071352e81ca33c13c31b9f`. The full source comparison uses master at `4a66d0606604299d82d1bd5149c70828b9eef726`, not only the latest fix delta. No new verdict exists. Source changes are not authorized.

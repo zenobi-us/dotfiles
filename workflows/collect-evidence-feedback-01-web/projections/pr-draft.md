@@ -163,3 +163,8 @@ The source fix is committed as `3d1b282520a74db5409457f83ed0f766670b86cb`. The f
 ## Parent fix completion
 
 [fix-complete-0015](../events/fix-complete-0015.yaml) records independent receipt, source, scope, evidence and publication validation. The parent accepted the external ..captures workspace, rejected the repository descendant before file creation, and removed the temporary fixture. Both sealed driver runs passed validation; their actual native PNGs show Submitted once. The acknowledged fixer pane `w73:p3` is closed. Workspace `w73` and the clean source worktree remain available. A fresh independent review is pending.
+
+
+## Post-fix independent review
+
+The user requested a fresh review. [review-start-0016](../events/review-start-0016.yaml) freezes source commit `3d1b282520a74db5409457f83ed0f766670b86cb` and tree `0c68cbc0d31e344ea2071352e81ca33c13c31b9f`. The full source comparison uses master at `4a66d0606604299d82d1bd5149c70828b9eef726`, not only the latest fix delta. No new verdict exists. Source changes are not authorized.
