@@ -1,12 +1,12 @@
 ---
-latest_receipt: fix-complete-0021
+latest_receipt: review-complete-0024
 title: Collect-evidence web implementation log
 type: Projection
 ---
 
-# Current fix-0020
+# Collect-evidence web implementation log
 
-FIXED. Parent completion is recorded. A fresh independent review is required.
+REVIEW_FAILED. The current independent review records two blocking Spec findings.
 
 Source commit 12b6345ac32f4ae30b078e5344fb5bae7a1ee244; tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. Branch feature/collect-evidence-feedback-01-web.
 
@@ -249,4 +249,15 @@ Base artifacts were committed as 41cf8b51. The result is acknowledged and only f
 
 ## Independent review attempt 4
 
-[review-start-0022](../events/review-start-0022.yaml) freezes source 12b6345ac32f4ae30b078e5344fb5bae7a1ee244 and tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. The full cutover comparison uses master at b7f84419e6242037c3b2e4e2e828ad84b9041aa6. The user authorized a fresh review only. No new verdict exists. The earlier Playwright failure remains an explicit review input.
+[review-start-0022](../events/review-start-0022.yaml) freezes source 12b6345ac32f4ae30b078e5344fb5bae7a1ee244 and tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. The full cutover comparison uses master at b7f84419e6242037c3b2e4e2e828ad84b9041aa6. The user authorized a fresh review only. At phase start, no new verdict existed. The earlier Playwright failure remains an explicit review input.
+
+## Independent review attempt 4 completion
+
+[review-0023](../events/review-0023.yaml) records FAILURE for source 12b6345ac32f4ae30b078e5344fb5bae7a1ee244 and tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. [The immutable review](../artifacts/reviews/review-review-0023.md) keeps Standards and Spec separate. Two P2 Spec findings block completion: SPEC-R4-001 and SPEC-R4-002. STD-R3-001 remains an advisory. All five earlier selected fixes were confirmed.
+
+The single fresh scoped suite passed 14 tests and 116 expectations. Focused public proofs confirmed the a/a.map private-file collision and rejection of the documented empty screenshot slug. A separate Playwright approved-space confirmation returned FAIL: expected Submitted once, observed Ready. The actual native PNG shows Ready. The cause remains unknown. No repeat or fixture change ran. Native diagnostics remain at /tmp/ce-review-0023-proof-2TiFur. The historical Playwright failure also remains unexplained.
+
+[review-complete-0024](../events/review-complete-0024.yaml) records parent transport, artifact hash, source, canonical verdict, public validation, publication and closure checks. Review artifacts and the verdict-only ticket comment were committed as 799b6539. The typed result is acknowledged. Only reviewer pane w73:p6 is closed. Workspace w73 and the clean source worktree remain open. No source fix, merge, push or ticket completion ran.
+
+The inspector requires Fix review findings. [Review start](../events/review-start-0022.yaml) and [launch identity](../artifacts/snapshots/launch-review-start-0022.json) retain this attempt.
+

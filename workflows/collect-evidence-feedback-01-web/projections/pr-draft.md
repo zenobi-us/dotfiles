@@ -1,12 +1,12 @@
 ---
-latest_receipt: fix-complete-0021
+latest_receipt: review-complete-0024
 title: Collect-evidence web PR draft
 type: Projection
 ---
 
 # Preserve Surf and Playwright in collect-evidence
 
-FIXED. A fresh independent review is required.
+REVIEW_FAILED. Two blocking Spec findings remain on the current clean source.
 
 Ticket: tracker/tickets/collect-evidence-feedback-01-web.md. Branch: feature/collect-evidence-feedback-01-web.
 
@@ -101,7 +101,7 @@ This list covers the original cutover and both fixes. It includes old and new pa
 
 ## Validation
 
-- Final scoped suite: 14 passed, 0 failed, 116 expectations. Both real drivers ran. Scoped TypeScript passed.
+- Fresh review suite: 14 passed, 0 failed, 116 expectations. Both real drivers ran. The prior fix-phase scoped TypeScript check passed.
 - Both owned driver workflows passed approved-space, a-b, a.b and a_b. Public IDs stayed unchanged. Session lists matched before and after collection. The owned endpoint recorded one approved submission per driver.
 - The parent validated both retained sealed runs. Actual native PNGs show Case approved-space and Submitted. Surf images are 1984x1068. Playwright images are 1280x720.
 - The parent ran init, compile, run and validate from /tmp with an unchanged approved-space case. All commands exited 0. The run returned PASS and sealed records with the original public ID. The actual PNG shows Parent Surf identity proof and approved-space. The owned server stopped and the temporary fixture was removed.
@@ -125,9 +125,9 @@ This list covers the original cutover and both fixes. It includes old and new pa
 
 ## Current verdict and remaining work
 
-No review verdict covers 12b6345a. The two FAILURE verdicts apply only to their recorded older commits. The inspector requires Review changed source. No new review ran in this fix phase.
+FAILURE covers source 12b6345a in review-0023. The two earlier FAILURE verdicts remain historical for their recorded commits. The inspector requires Fix review findings.
 
-STD-001, SPEC-001, SPEC-002, SPEC-003 and SPEC-R3-001 are corrected. STD-R3-001 remains an unselected P3 advisory. Its cleanupRow hooks are unchanged.
+The fresh review confirms STD-001, SPEC-001, SPEC-002, SPEC-003 and SPEC-R3-001 corrected. SPEC-R4-001 and SPEC-R4-002 are current P2 blockers. STD-R3-001 remains an unselected P3 advisory. Its cleanupRow hooks are unchanged.
 
 ## Limits and open questions
 
@@ -139,9 +139,9 @@ STD-001, SPEC-001, SPEC-002, SPEC-003 and SPEC-R3-001 are corrected. STD-R3-001 
 
 ## Publication and ownership
 
-Source fix: 12b6345ac32f4ae30b078e5344fb5bae7a1ee244. Base fix records, draft and evidence: 41cf8b51. [fix-complete-0021](../events/fix-complete-0021.yaml) records parent completion. The typed result is acknowledged. Only fixer pane w73:p5 was closed. Workspace w73 and the source worktree remain available.
+Fix-phase history: source fix 12b6345ac32f4ae30b078e5344fb5bae7a1ee244. Base fix records, draft and evidence: 41cf8b51. [fix-complete-0021](../events/fix-complete-0021.yaml) records parent completion. The typed result is acknowledged. Only fixer pane w73:p5 was closed. Workspace w73 and the source worktree remain available.
 
-The canonical ticket remains implemented. No tracker mutation, remote Git operation, merge, push or ticket completion ran. Unrelated changes and the old hk pending stash were left unchanged.
+The canonical ticket remains implemented. This review added only its verdict comment. No remote Git operation, merge, push or ticket completion ran. Unrelated changes and the old hk pending stash were left unchanged.
 
 ## Supporting receipts
 
@@ -171,4 +171,14 @@ The canonical ticket remains implemented. No tracker mutation, remote Git operat
 
 ## Independent review attempt 4
 
-[review-start-0022](../events/review-start-0022.yaml) freezes source 12b6345ac32f4ae30b078e5344fb5bae7a1ee244 and tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. The full cutover comparison uses master at b7f84419e6242037c3b2e4e2e828ad84b9041aa6. The user authorized a fresh review only. No new verdict exists. The earlier Playwright failure remains an explicit review input.
+[review-start-0022](../events/review-start-0022.yaml) freezes source 12b6345ac32f4ae30b078e5344fb5bae7a1ee244 and tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. The full cutover comparison uses master at b7f84419e6242037c3b2e4e2e828ad84b9041aa6. The user authorized a fresh review only. At phase start, no new verdict existed. The earlier Playwright failure remains an explicit review input.
+
+## Independent review attempt 4 completion
+
+[review-0023](../events/review-0023.yaml) records FAILURE for source 12b6345ac32f4ae30b078e5344fb5bae7a1ee244 and tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. [The immutable review](../artifacts/reviews/review-review-0023.md) keeps Standards and Spec separate. Two P2 Spec findings block completion: SPEC-R4-001 and SPEC-R4-002. STD-R3-001 remains an advisory. All five earlier selected fixes were confirmed.
+
+The single fresh scoped suite passed 14 tests and 116 expectations. Focused public proofs confirmed the a/a.map private-file collision and rejection of the documented empty screenshot slug. A separate Playwright approved-space confirmation returned FAIL: expected Submitted once, observed Ready. The actual native PNG shows Ready. The cause remains unknown. No repeat or fixture change ran. Native diagnostics remain at /tmp/ce-review-0023-proof-2TiFur. The historical Playwright failure also remains unexplained.
+
+[review-complete-0024](../events/review-complete-0024.yaml) records parent transport, artifact hash, source, canonical verdict, public validation, publication and closure checks. Review artifacts and the verdict-only ticket comment were committed as 799b6539. The typed result is acknowledged. Only reviewer pane w73:p6 is closed. Workspace w73 and the clean source worktree remain open. No source fix, merge, push or ticket completion ran.
+
+The inspector requires Fix review findings. [Review start](../events/review-start-0022.yaml) and [launch identity](../artifacts/snapshots/launch-review-start-0022.json) retain this attempt.
