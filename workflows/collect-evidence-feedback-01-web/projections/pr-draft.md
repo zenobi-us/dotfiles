@@ -98,7 +98,9 @@ Exact commands, directories, results and media are linked in the evidence index 
 
 ## Review history
 
-No formal review has run. Attempt 1 was blocked by missing Surf connectivity; the restored connection enabled attempt 2. The parent verified and acknowledged implementation-0005. [start-complete-0006](../events/start-complete-0006.yaml) records the completed start phase. The child pane is closed. Independent review remains pending.
+At implementation completion, no formal review had run. Implementation attempt 1 was blocked by missing Surf connectivity; the restored connection enabled attempt 2. The parent verified and acknowledged implementation-0005. [start-complete-0006](../events/start-complete-0006.yaml) records the completed start phase. The child pane is closed. Independent review was pending at that point.
+
+Review attempt 1 failed before a reviewer started; [review-aborted-0009](../events/review-aborted-0009.yaml) records that launch failure. A fresh independent reviewer completed attempt 2 at source `0acff3b4c45705336028263a0b20d41dbc1aee63`. [review-0011](../events/review-0011.yaml) records FAILURE: Standards has one blocking finding and one advisory finding; Spec has three blocking findings. [The immutable review](../artifacts/reviews/review-review-0011.md) holds the complete reports. [review-complete-0012](../events/review-complete-0012.yaml) records parent validation and closure. No finding was fixed.
 
 ## Resolved findings
 
@@ -106,22 +108,22 @@ None: no review findings exist.
 
 ## Remaining findings and questions
 
-No persisted review findings. Independent review and integration remain pending.
+Open blocking findings: STD-001, SPEC-001, SPEC-002, SPEC-003. Advisory finding: STD-002. The immutable review holds the details. Integration remains pending.
 
 - The cause of the initial owned-preview tab invalidation is unknown; fresh owned-preview and borrowed-resource checks passed.
 - The tracker graph labels implemented as COMPLETED despite the canonical implemented state; this out-of-scope presentation mismatch was reported.
 
 ## Latest reviewer verdict
 
-Null. No review success is claimed.
+FAILURE for source `0acff3b4c45705336028263a0b20d41dbc1aee63`. [review-0011](../events/review-0011.yaml) records the verdict.
 
 ## Merge and publication status
 
-Not merged or pushed. Ticket work_status is implemented, not completed. Source and tracker commits are separate; tracker commit `e089ab179408aef2f9ed335bcc4f128e950db508`. This projection and its supporting event are published by their containing scoped workflow commit. The child worktree and workspace remain available.
+Not merged or pushed. Ticket work_status is implemented, not completed. Source and tracker commits are separate; implementation tracker commit `e089ab179408aef2f9ed335bcc4f128e950db508` and review publication commit `93233151`. This projection and its supporting event are published by their containing scoped workflow commit. The child worktree and workspace remain available.
 
 ## Limits
 
-- Independent review, submit, merge, push and ticket completion were not performed. The feature worktree remains available.
+- Fix, submit, merge, push and ticket completion were not performed. The feature worktree remains available.
 - The default Playwright Chrome path is absent on this host. Real runs used the existing cached Chromium executable through PLAYWRIGHT_MCP_EXECUTABLE_PATH; no browser installation was performed.
 - One owned preview tab was invalidated before its first navigation. A fresh owned preview, real playback and both borrowed-resource sentinel checks succeeded. The invalidation cause is unknown; no collector-caused defect or fix is claimed.
 - The tracker graph displays implemented as COMPLETED, while its canonical work_status remains implemented. This existing tracker presentation mismatch was reported, not changed in this web ticket.
@@ -142,6 +144,15 @@ Not merged or pushed. Ticket work_status is implemented, not completed. Source a
 - [All evidence, commands, native logs and media](../artifacts/evidence/implementation-0005/index.md).
 
 
+- [Review start attempt 1](../events/review-start-0008.yaml).
+- [Failed launch](../events/review-aborted-0009.yaml).
+- [Review start attempt 2](../events/review-start-0010.yaml).
+- [Review result](../events/review-0011.yaml).
+- [Review completion](../events/review-complete-0012.yaml).
+- [Immutable review](../artifacts/reviews/review-review-0011.md).
+- [Frozen review inspection](../artifacts/snapshots/inspection-review-start-0008.json).
+- [Fresh reviewer launch](../artifacts/snapshots/launch-review-start-0010.json).
+
 ## Workspace availability
 
 The post-close check found that the source workspace was no longer open. The parent reopened the same worktree as Herdr workspace w71. No source change or new agent launch occurred. [workspace-restored-0007](../events/workspace-restored-0007.yaml) records the restoration. [start-complete-0006](../events/start-complete-0006.yaml) remains unchanged. Independent review is pending.
@@ -155,3 +166,8 @@ The user requested an independent review. [review-start-0008](../events/review-s
 ## Independent review launch recovery
 
 [review-aborted-0009](../events/review-aborted-0009.yaml) records a Herdr worktree lookup failure before a reviewer started. No verdict exists. Source commit `0acff3b4c45705336028263a0b20d41dbc1aee63` and its clean tree are unchanged. [review-start-0010](../events/review-start-0010.yaml) authorizes a fresh launch retry under the same user review request. No source, claim or unrelated service changed.
+
+
+## Review completion
+
+The parent validated the authoritative result and artifact, exact clean source, typed transport and canonical ticket update. The public validator accepted the retained sealed Playwright run. Review records and the verdict comment were committed as `93233151`; no push ran. The acknowledged reviewer pane `w73:p2` is closed. Herdr workspace `w73` and the source worktree remain open. Four findings block completion; one is advisory. No fixes, merge, submit or ticket completion ran.
