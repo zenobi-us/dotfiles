@@ -171,3 +171,8 @@ The user requested an independent review. [review-start-0008](../events/review-s
 ## Review completion
 
 The parent validated the authoritative result and artifact, exact clean source, typed transport and canonical ticket update. The public validator accepted the retained sealed Playwright run. Review records and the verdict comment were committed as `93233151`; no push ran. The acknowledged reviewer pane `w73:p2` is closed. Herdr workspace `w73` and the source worktree remain open. Four findings block completion; one is advisory. No fixes, merge, submit or ticket completion ran.
+
+
+## Fix attempt 1
+
+The user requested a fresh independent fixer for STD-001, SPEC-001, SPEC-002, SPEC-003. [fix-start-0013](../events/fix-start-0013.yaml) consumes [review-0011](../events/review-0011.yaml) at source `0acff3b4c45705336028263a0b20d41dbc1aee63`. STD-002 remains advisory and is not selected. No fix result or new review verdict exists yet.

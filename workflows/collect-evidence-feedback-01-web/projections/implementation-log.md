@@ -147,3 +147,8 @@ The user requested an independent review. [review-start-0008](../events/review-s
 Review attempt 1 failed before a reviewer started; [review-aborted-0009](../events/review-aborted-0009.yaml) records that launch failure. A fresh independent reviewer completed attempt 2 at source `0acff3b4c45705336028263a0b20d41dbc1aee63`. [review-0011](../events/review-0011.yaml) records FAILURE: Standards has one blocking finding and one advisory finding; Spec has three blocking findings. [The immutable review](../artifacts/reviews/review-review-0011.md) holds the complete reports. [review-complete-0012](../events/review-complete-0012.yaml) records parent validation and closure. No finding was fixed.
 
 The reviewer ran one scoped public suite after both axes returned: 11 passed, 0 failed, 70 expectations. The reviewer recorded public reproductions for four blocking findings. The parent independently validated the retained sealed Playwright run and exact clean source. Source commit `0acff3b4c45705336028263a0b20d41dbc1aee63` and tree `9480fa07ed2783674efa8f0d3efc6bc7daa81047` did not change. Review publication: `93233151`. The typed result is acknowledged; reviewer pane `w73:p2` is closed. Workspace `w73` remains open. Earlier implementation, review-launch and unresolved-question history remains unchanged.
+
+
+## Fix attempt 1
+
+The user requested a fresh independent fixer for STD-001, SPEC-001, SPEC-002, SPEC-003. [fix-start-0013](../events/fix-start-0013.yaml) consumes [review-0011](../events/review-0011.yaml) at source `0acff3b4c45705336028263a0b20d41dbc1aee63`. STD-002 remains advisory and is not selected. No fix result or new review verdict exists yet.
