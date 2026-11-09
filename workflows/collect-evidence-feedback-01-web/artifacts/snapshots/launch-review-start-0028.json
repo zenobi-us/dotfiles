@@ -1,0 +1,32 @@
+{
+  "schema": "worktree-launch/v1",
+  "purpose": "diagnostic-recovery",
+  "phase_start": "workflows/collect-evidence-feedback-01-web/events/review-start-0028.yaml",
+  "created_at": "2026-11-09T22:19:30.984Z",
+  "source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
+  "runId": "ffc5ae8d-7399-40f8-a68c-7bc6eb536b00",
+  "target": "w73:p8",
+  "operationId": "collect-evidence-feedback-01-web-recovery-0029",
+  "contextFile": "/home/zenobius/.local/state/result-delivery/runs/ffc5ae8d-7399-40f8-a68c-7bc6eb536b00/context.json",
+  "deliveryContext": {
+    "schema": "result-delivery/v1",
+    "kind": "context",
+    "audience": "agent",
+    "mode": "artifact-reference",
+    "runId": "ffc5ae8d-7399-40f8-a68c-7bc6eb536b00",
+    "operationId": "collect-evidence-feedback-01-web-recovery-0029",
+    "target": {
+      "path": "/var/home/zenobius/.local/state/result-delivery/runs/web-recovery-0029-2IQtMg/result.json",
+      "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-recovery-0029-2IQtMg/result.json",
+      "schema": "worktree-receipt/v1"
+    }
+  },
+  "resultTarget": {
+    "path": "/var/home/zenobius/.local/state/result-delivery/runs/web-recovery-0029-2IQtMg/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-recovery-0029-2IQtMg/result.json",
+    "schema": "worktree-receipt/v1"
+  },
+  "muxer": "herdr",
+  "agent": "omp",
+  "depth": 1
+}
