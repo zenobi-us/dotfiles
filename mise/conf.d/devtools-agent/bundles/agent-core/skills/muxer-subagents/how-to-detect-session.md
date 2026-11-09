@@ -1,5 +1,4 @@
 ---
-kind: how-to
 title: Find the muxer and agent of a session
 ---
 

@@ -1,5 +1,4 @@
 ---
-kind: how-to
 title: Remove merged branches and worktrees
 ---
 

@@ -1,12 +1,12 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { DataTable } from "../../../components/DataTable";
-import { Disclosure } from "../../../components/Disclosure";
 import { DocSection } from "../../../components/DocSection";
 import { Page } from "../../../components/Page";
 import { Prose } from "../../../components/Prose";
 import { SectionLinks } from "../../../components/SectionLinks";
 import { SiteFooter } from "../../../components/SiteFooter";
 import { SiteHeader } from "../../../components/SiteHeader";
+import { SkillIndex } from "../../../components/SkillIndex";
 import { SkipLink } from "../../../components/SkipLink";
 import { SupportMatrix } from "../../../components/SupportMatrix";
 import {
@@ -15,6 +15,7 @@ import {
   type BundleDoc,
   docsOfKind,
   harnessSupport,
+  howTosOf,
   invocationOf,
   navigation,
   partsOf,
@@ -118,7 +119,7 @@ function BundlePage() {
             summary="Steps for one task each."
           />
           <DocSection.Content>
-            <Articles docs={docsOfKind(bundle, "how-to")} />
+            <HowTos bundle={bundle} />
             <DocSection.Article title={`Reload ${name} after a change`}>
               <DataTable label={`Reload ${name}`}>
                 <DataTable.Head columns={["Harness", "Steps"]} />
@@ -172,6 +173,21 @@ function Articles(props: { docs: BundleDoc[] }) {
   ));
 }
 
+/** The `how-to-*.md` guides next to each skill's SKILL.md, each linked to its skill in the reference. */
+function HowTos(props: { bundle: Bundle }) {
+  return howTosOf(props.bundle).map((entry) => (
+    <DocSection.Article key={entry.howTo._meta.path} title={entry.howTo.title}>
+      <p className="mb-3 text-[11px] text-muted">
+        Skill: <a href={`#${entry.skill.anchor}`}>{entry.skill.name}</a>
+      </p>
+      <Prose
+        html={entry.howTo.html}
+        className="[&_li+li]:mt-1 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:max-w-[90ch] [&_p+p]:mt-3 [&_ul]:list-disc [&_ul]:pl-5"
+      />
+    </DocSection.Article>
+  ));
+}
+
 function Reference(props: { bundle: Bundle }) {
   const name = props.bundle.manifest.name;
   const supported = harnessSupport.harnesses.filter((harness) => harness.status === "supported");
@@ -198,15 +214,15 @@ function Reference(props: { bundle: Bundle }) {
 
       {props.bundle.skills.length > 0 && (
         <DocSection.Article title={`Skills (${props.bundle.skills.length})`}>
-          {props.bundle.categories.map(([category, skills]) => (
-            <Disclosure key={category}>
-              <Disclosure.Summary title={category} count={skills.length} />
-              <Disclosure.Content>
+          <SkillIndex>
+            <SkillIndex.Filter label="Filter skills" placeholder="type to fuzzy match, as in fzf" />
+            <SkillIndex.Groups categories={props.bundle.categories}>
+              {(category, skills) => (
                 <DataTable label={`${category} skills`}>
                   <DataTable.Head columns={["Skill", "Invoked by", "Scripts", "Description"]} />
                   <DataTable.Body>
                     {skills.map((skill) => (
-                      <DataTable.Row key={skill.path}>
+                      <DataTable.Row key={skill.path} id={skill.anchor}>
                         <DataTable.Cell code>
                           {skillsWithPages.has(`${name}/${skill.name}`) ? (
                             <a href={siteHref(`/bundles/${name}/skill/${skill.name}/`)}>{skill.name} ↗</a>
@@ -221,9 +237,9 @@ function Reference(props: { bundle: Bundle }) {
                     ))}
                   </DataTable.Body>
                 </DataTable>
-              </Disclosure.Content>
-            </Disclosure>
-          ))}
+              )}
+            </SkillIndex.Groups>
+          </SkillIndex>
         </DocSection.Article>
       )}
 

@@ -30,8 +30,13 @@ function Body(props: { children: ReactNode }) {
   return <tbody>{props.children}</tbody>;
 }
 
-function Row(props: { children: ReactNode }) {
-  return <tr className="align-top [&+&]:border-t [&+&]:border-border">{props.children}</tr>;
+/** Give a row an `id` to make it a link target. The targeted row is highlighted. */
+function Row(props: { id?: string; children: ReactNode }) {
+  return (
+    <tr id={props.id} className="scroll-mt-16 align-top target:bg-card [&+&]:border-t [&+&]:border-border">
+      {props.children}
+    </tr>
+  );
 }
 
 function Cell(props: { code?: boolean; muted?: boolean; children: ReactNode }) {

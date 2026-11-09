@@ -7,6 +7,7 @@ import {
   allBundleManifests,
   allBundleSkills,
   allSkillDiagrams,
+  allSkillHowTos,
   allSkillPages,
   allSkillSourceNotes,
   allEntries,
@@ -27,6 +28,7 @@ export type {
   Entry,
   Section,
   SkillDiagram,
+  SkillHowTo,
   SkillPage,
 } from "../.content-collections/generated";
 export { bundlesHub, harnessSupport, landing, navigation, redirectConfig };
@@ -68,6 +70,16 @@ export function bundleOf(name: string) {
 }
 
 export type Bundle = NonNullable<ReturnType<typeof bundleOf>>;
+
+/** The how-to guides next to each skill's SKILL.md, by skill name, then file name. */
+export function howTosOf(bundle: Bundle) {
+  return bundle.skills.flatMap((skill) =>
+    allSkillHowTos
+      .filter((howTo) => howTo.skillPath === skill.path)
+      .toSorted(byFilePath)
+      .map((howTo) => ({ howTo, skill })),
+  );
+}
 
 /** The docs of one Diátaxis kind for a bundle, in file-name order. */
 export function docsOfKind(bundle: Bundle, kind: BundleDoc["kind"]) {

@@ -11,7 +11,9 @@ A static TanStack Start site, published to GitHub Pages. Content lives in `conte
 ## Agent bundle pages
 
 - `/bundles` and `/bundles/<bundle>` read skills, agents, hooks and manifests from `mise/conf.d/devtools-agent/bundles/` at build time. Do not copy that data into `content/`.
-- Hand-written bundle text lives in `content/bundles/<bundle>/NN-*.md`, with `kind: tutorial`, `how-to` or `explanation`.
+- Hand-written bundle text lives in `content/bundles/<bundle>/NN-*.md`, with `kind: tutorial` or `explanation`.
+- A how-to guide lives next to its skill's `SKILL.md`, as `how-to-*.md` with a `title` in its frontmatter. The bundle page lists these guides under "How-to guides", by skill name, and links each guide to its skill in the reference. A guide in a subfolder of a skill is not shown.
+- Each skill row in the reference has the id `skill-<name>`. A link to that id opens the row's category and highlights the row.
 - Harness facts that no bundle file holds live in `content/bundles/harnesses.yaml`.
 - A skill gets its own page at `/bundles/<bundle>/skill/<skill>/` when `content/bundles/<bundle>/skills/<skill>/page.md` exists. Diagrams and a source note for that page sit in the same folder. The bundle reference links the skill name to its page.
 - GitHub Pages prefers a folder to a file with the same name. Write each page that has pages below it as `<path>/index.html` (`asFolder` in `vite.config.ts`), and link to it with a trailing `/`.

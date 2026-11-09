@@ -157,13 +157,13 @@ const bundlesHub = defineSingleton({
   }),
 });
 
-/** Hand-written tutorial, how-to and explanation text for one bundle: `content/bundles/<bundle>/NN-*.md`. */
+/** Hand-written tutorial and explanation text for one bundle: `content/bundles/<bundle>/NN-*.md`. How-to guides live with their skill. */
 const bundleDocs = defineCollection({
   name: "bundleDocs",
   directory: "content/bundles",
   include: "*/[0-9]*.md",
   schema: z.object({
-    kind: z.enum(["tutorial", "how-to", "explanation"]),
+    kind: z.enum(["tutorial", "explanation"]),
     title: z.string(),
     content: z.string(),
   }),
@@ -204,11 +204,29 @@ const bundleSkills = defineCollection({
       bundle: parts[0] ?? "",
       category: parts.length > 3 ? parts[2] : "general",
       path: document._meta.directory,
+      // The id of the skill's row in the bundle reference, so other parts of the page can link to it.
+      anchor: `skill-${document.name}`,
       userInvocable: document["user-invocable"] ?? true,
       modelInvocable: !(document["model-invocable"] === false || document["disable-model-invocation"] === true),
       hasScripts: existsSync(join(bundlesDirectory, document._meta.directory, "scripts")),
     };
   },
+});
+
+/** A how-to guide that sits next to a skill's SKILL.md: `<bundle>/skills/[<category>/]<skill>/how-to-*.md`. */
+const skillHowTos = defineCollection({
+  name: "skillHowTos",
+  directory: bundlesDirectory,
+  include: "*/skills/**/how-to-*.md",
+  exclude: "**/node_modules/**",
+  schema: z.object({ title: z.string(), content: z.string() }),
+  transform: async (document, context) => ({
+    ...document,
+    bundle: document._meta.directory.split("/")[0] ?? "",
+    // Matches `path` of the skill in the same folder. A guide in a skill's subfolder matches no skill and is not shown.
+    skillPath: document._meta.directory,
+    html: await compileMarkdown(context, document),
+  }),
 });
 
 const bundleAgents = defineCollection({
@@ -318,6 +336,7 @@ export default defineConfig({
     bundleDocs,
     bundleManifests,
     bundleSkills,
+    skillHowTos,
     bundleAgents,
     bundleHooks,
     skillPages,

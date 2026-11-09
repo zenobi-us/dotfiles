@@ -1,8 +1,19 @@
 import type { ReactNode } from "react";
 
-/** A native `<details>` block, so long reference lists stay closed until the reader opens them. */
-function Root(props: { children: ReactNode }) {
-  return <details className="group border border-border [&+&]:border-t-0">{props.children}</details>;
+/**
+ * A native `<details>` block, so long reference lists stay closed until the reader opens them.
+ * Pass `open` and `onToggle` to let a parent open it, for example when a filter or a link targets its content.
+ */
+function Root(props: { open?: boolean; onToggle?: (open: boolean) => void; children: ReactNode }) {
+  return (
+    <details
+      className="group border border-border [&+&]:border-t-0"
+      open={props.open}
+      onToggle={(event) => props.onToggle?.(event.currentTarget.open)}
+    >
+      {props.children}
+    </details>
+  );
 }
 
 function Summary(props: { title: string; count: number }) {
