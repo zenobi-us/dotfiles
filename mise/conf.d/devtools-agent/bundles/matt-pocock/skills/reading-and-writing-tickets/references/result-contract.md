@@ -3,7 +3,13 @@
 Use this contract for every subcommand, including setup.
 
 
-Return one JSON object with `schema: tracker-result/v1` for every operation, including setup, check, migration plans, failures, and publication results. Use a string ID and the canonical tracker URL or resolved local file reference. This result schema is independent of record, setup-state, route, and receipt versions.
+Produce one canonical JSON object with `schema: tracker-result/v1` for every operation, including setup, check, migration plans, failures, and publication results. Use a string ID and the canonical tracker URL or resolved local file reference. This result schema is independent of record, setup-state, route, and receipt versions.
+
+Use the agent-core `result-delivery` skill before returning. It owns audience selection, transport and presentation. Human sessions receive an outcome, canonical references, validation, publication state and blockers, not a raw JSON dump. Machine clients receive JSON. Delegated children preserve the caller's required handoff. A muxer name or depth alone does not select the audience.
+
+The records CLI supports `--format human|json`, `--deliver` and `--delivery-context <absolute-file>`. Use `--deliver` to bind the selected operation to `RESULT_DELIVERY_CONTEXT`. An explicit context file also binds that operation. Intermediate ticket commands do not consume an inherited final-result target. Its direct CLI default remains JSON for machine callers. Required artifact delivery takes precedence over presentation flags. The operation validates its context before mutation and emits the unchanged domain object through the delivery library. If delivery fails after an operation, recovery JSON goes to stdout and a warning goes to stderr. Inspect existing state; do not repeat the operation merely to resend its result.
+
+For skill-owned operations without an integrated CLI, use the shared delivery library at the operation boundary. Do not serialize the result again in final chat. Transport envelopes and acknowledgements do not replace tracker records or worktree phase receipts. Transport alone does not commit or push.
 
 ```json
 {
@@ -29,7 +35,7 @@ Return one JSON object with `schema: tracker-result/v1` for every operation, inc
 
 Always return both `initiatives` and `tickets`; use an empty array for a kind not returned. Initiatives are not executable tickets. Each initiative has string `id`, `title`, canonical `ref`, and `children` entries with string `id` and canonical `ref`. Copy canonical references from tracker results or the shared-context resolver's `ref`, not its physical `path`. For Local Markdown, append `/index.md` to the initiative directory reference to identify the specification document. Return initiative `state` only when its backend defines it. Never invent ticket `work_status` for an initiative.
 
-For example, publishing a local specification returns:
+For example, publishing a local specification produces this domain result before delivery:
 
 ```json
 {

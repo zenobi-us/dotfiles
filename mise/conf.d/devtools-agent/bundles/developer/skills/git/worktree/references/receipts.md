@@ -168,6 +168,20 @@ Review receipts MUST also record `verdict: SUCCESS|FAILURE` and every finding wi
 
 Fix receipts MUST record the consumed review receipt IDs, resolved finding IDs, unresolved finding IDs, validation results, and the new source commit.
 
+## Child result delivery
+
+Use the agent-core result-delivery skill for the transport, not for workflow authority. Before launch, the parent selects worktree-receipt/v1 as the result schema and retains the muxer router's delivery context and target. The context is independent of the phase-start receipt and its storage route.
+
+Launch the child through the muxer spawn router with --result-schema worktree-receipt/v1. That router opens the fresh pane, sets RESULT_DELIVERY_CONTEXT and binds the run identity. Do not open another pane or launch the child a second time through an agent contract. Include the phase-start reference and the result requirements in the handoff.
+
+The child prepares its phase-result as one JSON object with the existing receipt fields. Resolve WORKTREE_SKILL_ROOT to this installed skill directory. From the source repository, invoke its absolute scripts/write-result.ts entrypoint with --repository, --input and the prepared JSON filename. Its mise shebang selects Bun. The command resolves the workflow through shared-context, checks the envelope and current source identities, writes an immutable YAML event and delivers the same object to the parent. It does not approve the phase, claim a ticket, merge, commit or push. Existing phase preconditions still apply.
+
+The writer accepts only phase-result events. Parent phase-start and phase-complete events keep their existing protocol. An existing event is never overwritten. If the event was written but transport failed, preserve its recovery JSON and use delivery recovery; do not repeat implementation, review or fix.
+
+After the muxer reports completion, the parent reads the assigned result target through result-delivery. Validate its schema, run, operation and hash. Independently verify the authoritative YAML event, parent chain, source commit/tree, artifacts, validation, ownership and required publication. Acknowledge only after those checks. A blocked signal is not terminal completion. No pane marker is required.
+
+Transport data and acknowledgement remain outside temporary muxer cleanup. Keep the authoritative event and transport result separate. Human sessions receive a summary and canonical receipt/artifact references. Machine callers can request JSON.
+
 ## Receipt protocol
 
 Set `event: phase-start` and `status: started` before launching an agent. Set

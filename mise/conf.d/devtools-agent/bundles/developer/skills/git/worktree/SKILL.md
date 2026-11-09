@@ -6,6 +6,8 @@ user-invocable: true
 
 Route `UserRequest` to the correct worktree workflow. This skill dispatches only. It does not resolve tickets, run validation, or launch agents itself. All of that lives in the playbook it points to.
 
+Use the agent-core `result-delivery` skill for operation output. Keep `worktree-receipt/v1` phase records and muxer process signals separate. Human sessions receive a short outcome, canonical references, checks, publication and blockers. Delegated phases use the caller's typed handoff; JSON or pane text is not authoritative workflow state.
+
 # Global workflow rules
 
 - 0. Resolve this installed skill directory as `WORKTREE_SKILL_ROOT`. Script paths are relative to that directory, not the target repository. Invoke `"$WORKTREE_SKILL_ROOT/scripts/router.ts"` directly from the target repository; its shebang selects the runtime.
@@ -74,7 +76,7 @@ Load the `muxer-subagents` skill before any playbook that opens a pane or launch
 
 Run the `muxer-subagents` skill’s `scripts/router.ts` script with the `contracts` argument.
 
-Take `muxer`, `agent`, `muxerContract`, and `agentContract` from its output and pass them to the playbook as working context. If it reports `needsOperatorInput: true`, ask the user. Do not guess.
+Take `muxer`, `agent`, `muxerContract`, `agentContract`, explicit session context and transport capabilities from its output. Pass them to the playbook as working context. Before a formal child launch, pass `--result-schema worktree-receipt/v1` to the muxer spawn router. Retain the returned delivery context and parent-assigned target. The parent validates the delivered receipt against the authoritative event record before acknowledgement. A result envelope does not authorize a phase or establish completion. If it reports `needsOperatorInput: true`, ask the user. Do not guess.
 
 `submit`, `tasks`, and goal preparation do not launch an agent. Skip launch setup for them. Goal preparation may resolve/read contracts for read-only liveness inspection. Authorized goal execution applies launch setup through each mutating phase playbook.
 

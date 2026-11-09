@@ -88,7 +88,7 @@ Iterate until the user approves the breakdown.
 
 After the user approves the breakdown, use `/reading-and-writing-tickets` to publish any approved new initiative and create its child tickets. Pass the initiative ID as each child's parent, plus the approved title, end-to-end behaviour, acceptance criteria, ticket type, sequence, and direct blocking edges. Ask that skill to update the initiative's child links and validate both sides of membership through normal tracker discovery. That skill owns schema, paths, fields, labels, dependency validation, and publication. Creating children authorizes membership updates only; preserve the specification and discussion, and do not close the initiative.
 
-Request `tracker-ticket/v1` for new Local Markdown children and `tracker-initiative/v1` for a new parent. The ticket skill validates these contracts and returns `tracker-result/v1`. Legacy parent or membership records require an approved migration before publication; ticket-decomposition approval is not migration approval.
+Request `tracker-ticket/v1` for new Local Markdown children and `tracker-initiative/v1` for a new parent. The ticket skill validates these contracts and produces `tracker-result/v1`. Use the agent-core `result-delivery` skill for the result. Show a human session the created records, dependency summary, validation and publication state. Preserve required parent handoffs; do not paste raw JSON unless the selected machine output requires it. Legacy parent or membership records require an approved migration before publication; ticket-decomposition approval is not migration approval.
 
 Work the **frontier**: any ticket whose blockers are all done. For a purely linear chain that means top to bottom.
 

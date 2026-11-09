@@ -52,15 +52,15 @@ Follow the shared decision and execution gates in `references/receipts.md` befor
    completion requirements:
    - Implement the ticket.
    - Run validation.
-   - Write an immutable implementation receipt under `events/`.
+   - Write the immutable implementation phase-result with `scripts/write-result.ts` as specified in `references/receipts.md`, so authoritative YAML and parent delivery use one operation.
    - Write `artifacts/snapshots/pr-draft-<receipt-id>.md`.
    - Regenerate `manifest.yaml`, `projections/pr-draft.md`,
      `projections/implementation-log.md`, and
      `projections/latest-status.yaml`.
-   - End the final response with `WORKTREE_IMPLEMENTATION_DONE` only when implementation and validation pass.
-6. Open one agent session with the `muxer-subagents` skill. Pass the worktree path as the target directory and the handoff file to the agent contract's launch command.
+   - Preserve failed or blocked outcomes in the result. Do not paste the full receipt or a completion marker into final chat.
+6. Use the `muxer-subagents` spawn router with the worktree, handoff file, explicit muxer and agent, and `--result-schema worktree-receipt/v1`. Retain its delivery context and assigned target. The router opens and launches the fresh session; do not launch it again.
 7. Do not open another implementation session for this worktree while one is active.
-8. Wait for completion using the muxer contract. Read final output, but validate the durable result independently: a marker alone is not success and its absence alone does not invalidate an otherwise verified result.
+8. Wait for completion using the muxer contract. Read the assigned result through result-delivery, then validate the authoritative result and artifacts independently. Acknowledge the transport after domain checks. Do not scrape final pane text for JSON or a completion marker.
 9. If the result is blocked, validation fails, or no usable result exists, append an accurate failed/blocked phase-complete receipt and keep the worktree and partial source. A later start recovers this attempt through a fresh session after the recovery gates.
 10. If the agent succeeds, verify the implementation phase-result receipt, draft snapshot, and projections. Record their paths in a phase-complete receipt.
 11. Close the implementation pane. Keep the worktree and workspace available for review.

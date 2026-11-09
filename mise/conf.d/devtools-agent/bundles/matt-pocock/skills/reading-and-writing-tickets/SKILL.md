@@ -12,7 +12,7 @@ Own tracker setup, initiatives, and ticket operations. Use the `iso-24495-1` and
 
 1. Select the requested operation and record kind. An initiative holds the complete specification and groups executable tickets. “Spec” and “initiative” name the same record. Publishing a spec creates or updates an initiative, not an executable ticket.
 2. For `setup`, read its playbook directly. Tracker configuration need not exist yet. For all other subcommands, read [Usage and store routing](references/usage.md), then the task and store playbooks it selects.
-3. Execute only the selected playbook. Before returning, follow [Result contract](references/result-contract.md).
+3. Execute only the selected playbook. Build and validate the domain result with [Result contract](references/result-contract.md). Use the agent-core `result-delivery` skill to deliver it. Give a human session a short summary and canonical references. Keep required parent handoffs intact.
 
 | Subcommand | Read when | Playbook |
 |---|---|---|

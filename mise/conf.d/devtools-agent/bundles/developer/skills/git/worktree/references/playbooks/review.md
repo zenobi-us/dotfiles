@@ -57,9 +57,9 @@ Reject the request when any of these conditions is true:
    - relevant ADRs and validation commands;
    - exact review artifact path;
    - review receipt path.
-7. Open a fresh agent session in the existing worktree workspace. Follow the `muxer-subagents` skill's fresh-session mechanic and the resolved `muxerContract`. Do not send input to the previous session.
-8. Launch the agent with the agent contract and the review handoff.
-9. Wait for the fresh reviewer session to finish. Read its output through the muxer contract.
+7. Use the muxer spawn router in the existing worktree workspace with the review handoff and `--result-schema worktree-receipt/v1`. It opens the fresh session. Retain its delivery context and assigned result target. Do not send input to the previous session.
+8. Require the reviewer to write its phase-result through `scripts/write-result.ts`, following `references/receipts.md`. This writes the authoritative YAML event and delivers the same object without a second reporting call. Do not launch the agent a second time.
+9. Wait through the muxer contract. Read the assigned transport result through result-delivery. Validate the authoritative receipt and artifact independently before acknowledgement. Do not extract JSON from pane output.
 10. Verify that the reviewer created one immutable phase-result receipt and one
     review artifact. The artifact MUST identify the frozen source commit.
 11. Make sure that the reviewer did not change the source tree. If the tree changed, create a failed phase-complete receipt and stop.

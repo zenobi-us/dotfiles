@@ -24,7 +24,7 @@ The issue tracker and triage label vocabulary should have been provided to you �
 
 Publish through `/reading-and-writing-tickets` as an initiative create or update operation. “Spec” and “initiative” name the same record. For Local Markdown, the complete specification belongs in the resolved initiative's `index.md`, not a ticket or separate `spec.md`. The ticket skill owns paths, metadata, child membership, publication, and read-back validation. Preserve existing discussion and children. Legacy specification tickets require explicit migration approval.
 
-Request the current initiative schema through the ticket skill and return its `tracker-result/v1` result. For Local Markdown, this is `tracker-initiative/v1`. For legacy input, request a read-only migration plan; publication approval alone does not authorize applying that plan.
+Request the current initiative schema through the ticket skill. Produce its `tracker-result/v1` result and deliver it with the agent-core `result-delivery` skill. Show human sessions a short outcome and the canonical initiative reference. Preserve required parent handoffs; do not paste raw JSON unless the selected machine output requires it. For Local Markdown, this is `tracker-initiative/v1`. For legacy input, request a read-only migration plan; publication approval alone does not authorize applying that plan.
 
 ## Process
 
