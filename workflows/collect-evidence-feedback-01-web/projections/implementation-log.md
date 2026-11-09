@@ -1,5 +1,5 @@
 ---
-latest_receipt: fix-0026
+latest_receipt: fix-complete-0027
 schema: worktree-projection/v1
 title: Collect-evidence web implementation log
 type: Projection
@@ -7,7 +7,7 @@ type: Projection
 
 # Collect-evidence web implementation log
 
-FIXED. Waiting for fresh independent review. Source 8c4015418f6b3fee244708d9937e45bb358fc45d; tree 28784b1a67c200888c53a947b3b056f2569cccbc. No current reviewer verdict exists. The selected fixes passed focused proof; the scoped suite failed. Parent completion is pending.
+FIX_FAILED. Selected source changes are committed, but validation failed. Diagnostic recovery is required before acceptance review. Source 8c4015418f6b3fee244708d9937e45bb358fc45d; tree 28784b1a67c200888c53a947b3b056f2569cccbc. No current reviewer verdict exists. The selected fixes passed focused proof; the scoped suite failed. Parent completion is pending.
 
 ## Current implementation
 
@@ -501,4 +501,16 @@ Recorded selected finding ids: SPEC-R4-001, SPEC-R4-002.
 ### fix-0026
 
 [Fix result](../events/fix-0026.yaml) records the two selected source fixes and all actual checks on 8c4015418f6b3fee244708d9937e45bb358fc45d. [Immutable current draft](../artifacts/snapshots/pr-draft-fix-0026.md). The scoped suite failed; the selected focused smokes and corrected compile regression passed. Parent completion is pending.
+
+## Parent failed-fix completion
+
+[fix-complete-0027](../events/fix-complete-0027.yaml) records failed validation for [fix-0026](../events/fix-0026.yaml). The source is clean at 8c4015418f6b3fee244708d9937e45bb358fc45d, tree 28784b1a67c200888c53a947b3b056f2569cccbc. The parent validated the transport hash, authoritative event, source ancestry, exact five-file scope, commit titles, immutable draft and retained diagnostics.
+
+A distinct parent public Surf workflow passed a, a.map and empty-shot unchanged. Each empty screenshot slug executed its assertion without creating an asset. A separate explicit capture produced actual media. The run sealed and validated. Its native PNG shows Parent public contract proof and a.map. Both retained driver runs validated, and their actual PNGs show Identity a.map. The owned parent server stopped and the temporary fixture was removed.
+
+These focused passes do not replace the failed full suite. That suite reported 15 passes and 2 failures. The compile fixture was corrected and its targeted regression passed; the full suite was not repeated. The Surf pre-workflow about:blank timeout remains unexplained. Earlier Playwright failures also remain unexplained. No current reviewer verdict exists.
+
+Artifacts and actual evidence were committed as 716255ad. The typed failed result is acknowledged. Only completed fixer pane w73:p7 is closed. Workspace w73 and the source worktree remain available. The ticket remains implemented. No tracker mutation, source change by the parent, merge, push or ticket completion ran.
+
+The inspector returns Recover findings (action review, mode retry). This is a diagnostic recovery requirement, not ordinary acceptance-review readiness. The mismatch between that review action and the fix playbook validation gate was reported. Diagnose the retained failure before accepting or merging the work.
 
