@@ -1,5 +1,5 @@
 ---
-latest_receipt: review-complete-0030
+latest_receipt: review-complete-0031
 schema: worktree-projection/v1
 title: Collect-evidence web implementation log
 type: Projection
@@ -525,4 +525,18 @@ The mandated writer rejected status blocked without SUCCESS or FAILURE. No child
 [review-complete-0030](../events/review-complete-0030.yaml) records the blocked parent outcome with result_missing. Only verified completed diagnostic panes w73:p8, w73:p9 and w73:pA were closed. The two nested launches had started despite timeout reports; their delivery failures were reported. Workspace w73 and the unchanged clean source remain available. No source changes, tracker changes, acceptance, merge, push or ticket completion ran.
 
 The inspector labels the next action Retry interrupted review. Do not automatically repeat the same probes or suite. Recovery needs a correlated failing trace and correction of the blocked-review writer contract. [Review start](../events/review-start-0028.yaml) and [launch record](../artifacts/snapshots/launch-review-start-0028.json) retain approval and process identity.
+
+## Delivery recovery and original native trace: current state
+
+This section supersedes the earlier missing-result and missing-native-trace notes. Historical receipts and artifacts remain unchanged.
+
+The protocol correction is committed as cf79f45a71fa489934aa97baaa3caee92ccd77eb. It accepts blocked or failed reviews without a fabricated verdict. It keeps completed reviews and explicit verdicts strict. The final 49 protocol tests and scoped TypeScript check passed. The [scoped review notes](../artifacts/reviews/review-writer-delivery-0031.md) state the independent review scope and the later type-safe test assertion correction. These checks do not accept the feature source.
+
+The original [review-0029 result](../events/review-0029.yaml) is now committed and its assigned result hash is acknowledged. The historical [review-complete-0030](../events/review-complete-0030.yaml) correctly records that delivery was missing at that time. New [review-complete-0031](../events/review-complete-0031.yaml) records late recovery. No SUCCESS or FAILURE verdict was added.
+
+The [owned native trace](../artifacts/evidence/transport-recovery-0031/index.md) was recovered from the original host audit. Request cli-1794260360730 acquired its lane with queueMs 0. The native host emitted a hard timeout after 60041 ms and released the lane. This rules out a native lane-acquisition delay for that request. It does not establish the extension or navigation completion cause. The nearby extension target event has no logged payload or outbound request mapping.
+
+No failed workflow was rerun. No service was restarted or modified. The feature source remains 8c4015418f6b3fee244708d9937e45bb358fc45d. The ticket remains implemented. Existing feature acceptance failures remain unresolved. No acceptance, merge, push or ticket completion ran.
+
+Inspect the recovered native trace before another review. The inspector requires approval for a fresh review. Do not repeat the failed suite without a distinct trace-supported question. Existing acceptance failures remain unresolved.
 
