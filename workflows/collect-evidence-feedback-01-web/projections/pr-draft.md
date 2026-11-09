@@ -5,7 +5,7 @@ latest_receipt: fix-0014
 ---
 # Preserve Surf and Playwright in collect-evidence
 
-FIXED, awaiting a fresh independent review.
+REVIEW_FAILED. One blocking Spec finding remains on the current clean source.
 
 Source commit 3d1b282520a74db5409457f83ed0f766670b86cb; tree 0c68cbc0d31e344ea2071352e81ca33c13c31b9f. Branch feature/collect-evidence-feedback-01-web.
 
@@ -110,17 +110,19 @@ Implementation attempt 1 was blocked. Attempt 2 completed at 0acff3b4c4570533602
 - [Fix authorization](../events/fix-start-0013.yaml).
 - [Fix result](../events/fix-0014.yaml).
 
+Review attempt 3 checked the full source at `3d1b282520a74db5409457f83ed0f766670b86cb`. [review-0017](../events/review-0017.yaml) confirms the four prior blocking fixes. It records FAILURE for one remaining blocking Spec finding, SPEC-R3-001, and retains one advisory, STD-R3-001. [The immutable review](../artifacts/reviews/review-review-0017.md) contains both axis reports. [review-complete-0018](../events/review-complete-0018.yaml) records parent validation, publication, acknowledgement and closure.
+
 ## Resolved findings
 
-The fixer reports STD-001, SPEC-001, SPEC-002, SPEC-003 resolved at source `3d1b282520a74db5409457f83ed0f766670b86cb`. Regression and real-driver results support these fixes. A fresh independent review must verify the new source.
+Review-0017 confirms STD-001, SPEC-001, SPEC-002, SPEC-003 corrected at source `3d1b282520a74db5409457f83ed0f766670b86cb`. SPEC-R3-001 is a distinct remaining blocker.
 
 ## Latest reviewer verdict
 
-No current verdict exists for source `3d1b282520a74db5409457f83ed0f766670b86cb`. The FAILURE in review-0011 belongs only to the old source and remains in the review history.
+FAILURE for source `3d1b282520a74db5409457f83ed0f766670b86cb`, recorded in [review-0017](../events/review-0017.yaml). The earlier review remains historical for its old source.
 
 ## Remaining work and ownership
 
-STD-002 remains unresolved, advisory and outside the selected scope. cleanupRow hooks remain unchanged. Parent validation and acknowledgement are complete. A fresh independent review remains pending. No review verdict, remote Git, merge, push, tracker update or ticket completion was performed. The clean source worktree and workspace w73 remain open. The acknowledged fixer pane w73:p3 is closed.
+SPEC-R3-001 blocks completion. STD-R3-001 is advisory and continues the prior cleanupRow advisory. The four earlier blocking fixes passed this review. The post-fix review produced FAILURE. No source fix, remote Git operation, merge, push or ticket completion ran in this review phase. The clean source worktree and workspace w73 remain open. The acknowledged fixer pane w73:p3 is closed.
 
 - The cause of the initial owned-preview tab invalidation is unknown; fresh owned-preview and borrowed-resource checks passed.
 - The tracker graph labels implemented as COMPLETED despite the canonical implemented state; this out-of-scope presentation mismatch was reported.
@@ -128,12 +130,12 @@ STD-002 remains unresolved, advisory and outside the selected scope. cleanupRow 
 
 ## Merge and publication status
 
-The source fix is committed as `3d1b282520a74db5409457f83ed0f766670b86cb`. The fix result, draft, evidence and current views were committed in the base store as `ace3f774`. Parent validation and result acknowledgement are complete. No merge, push, tracker mutation or ticket completion ran.
+The source remains `3d1b282520a74db5409457f83ed0f766670b86cb` on the feature branch. Fix records were committed as `ace3f774`; the new review and canonical verdict comment were committed as `3dac61da`. No merge, push or ticket completion ran. The source worktree and workspace remain available.
 
 ## Limits
 
-- STD-002 remains unresolved and outside the selected fix scope; cleanupRow hooks remain unchanged.
-- No new review verdict, remote Git, merge, push, tracker mutation or ticket completion. Parent owns publication and acknowledgement.
+- The prior STD-002 advisory remains as STD-R3-001. No cleanup change ran.
+- This review produced FAILURE. No source fix, merge, push or ticket completion ran in the review phase.
 - TypeScript LSP initialization failed because the source worktree has no installed TypeScript. References used scoped source search; final compiler check used existing base-checkout dependencies.
 - The first smoke script expected exit 1 for a BLOCKED/PASS run; the CLI correctly returned 3. Corrected the throwaway expectation; retained the first log under /tmp/ce-fix-0014-smoke-mZ4FQp.
 - A hyphenated test fixture case ID exposed an existing Surf variable substitution error. The fixture now uses an alphanumeric case ID; no unrelated production fix was made.
@@ -168,3 +170,8 @@ The source fix is committed as `3d1b282520a74db5409457f83ed0f766670b86cb`. The f
 ## Post-fix independent review
 
 The user requested a fresh review. [review-start-0016](../events/review-start-0016.yaml) freezes source commit `3d1b282520a74db5409457f83ed0f766670b86cb` and tree `0c68cbc0d31e344ea2071352e81ca33c13c31b9f`. The full source comparison uses master at `4a66d0606604299d82d1bd5149c70828b9eef726`, not only the latest fix delta. No new verdict exists. Source changes are not authorized.
+
+
+## Post-fix review completion
+
+The fresh suite passed 14 tests and 93 expectations. The focused compile proof accepted a hyphenated case ID and emitted the affected Surf keys. The reported native failure was not rerun. The parent validated the authoritative receipt, immutable artifact, exact clean source, canonical comment and existing sealed Surf run. Reviewer pane `w73:p4` is acknowledged and closed. Workspace `w73` remains open. No source change ran.
