@@ -1,0 +1,182 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-0029",
+  "workflow_id": "collect-evidence-feedback-01-web",
+  "phase": "review",
+  "event": "phase-result",
+  "attempt": 5,
+  "parent_receipt": "review-start-0028",
+  "purpose": "diagnostic-recovery",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "source_branch": "feature/collect-evidence-feedback-01-web",
+  "base_branch": "master",
+  "source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
+  "source_tree": "28784b1a67c200888c53a947b3b056f2569cccbc",
+  "base_commit": "d1e14fdf1ad8820d7d5e5236f10432d5244d5a15",
+  "merge_base": "859341b01ef7be474a3128b7f94772aab731c2f7",
+  "created_at": "2026-11-09T22:28:05.646Z",
+  "muxer": "herdr",
+  "workspace_id": "w73",
+  "pane_id": "w73:p8",
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-collect-evidence-feedback-01-web--/2026-11-09T22-19-30-126Z_01a1c265-21ce-7572-97d7-5ff7d2670106.jsonl",
+  "run_id": "ffc5ae8d-7399-40f8-a68c-7bc6eb536b00",
+  "operation_id": "collect-evidence-feedback-01-web-recovery-0029",
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-01-web",
+    "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-01-web"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026"
+  },
+  "status": "blocked",
+  "failure_reason": "The retained pre-workflow Surf timeout has no correlated failing native trace. The focused actual-driver comparison did not reproduce it. No supported actionable blocking source finding exists; no acceptance verdict is issued.",
+  "findings": [],
+  "review_artifact": {
+    "store": "repository",
+    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0029.md"
+  },
+  "artifact_ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0029.md",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/collect-evidence-feedback/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-start-0028.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-0026.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-complete-0027.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-0023.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0026.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/index.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/final-scoped-suite.stderr.log"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/failed-suite-surf/native/runs/case-blocked.log"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/failed-suite-surf/cases/blocked/case.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0029.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-0029.yaml"
+    }
+  ],
+  "validation_results": [
+    {
+      "check": "retained-scoped-suite",
+      "result": "failed",
+      "executed_this_attempt": false,
+      "exit_code": 1,
+      "passed": 15,
+      "failed": 2,
+      "expectations": 73,
+      "observation": "Surf blocked.1 expected BLOCKED but returned FAIL after pre-workflow navigate about:blank timed out. Full suite not rerun."
+    },
+    {
+      "check": "native-health",
+      "command": "surf doctor",
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "result": "passed"
+    },
+    {
+      "check": "initial-focused-probe",
+      "command": "MISE_AUTO_INSTALL=false bun /tmp/review-0029-probe.ts",
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "result": "inconclusive",
+      "observation": "Fresh arm reached guard; later arms invalid because session remained on credential page."
+    },
+    {
+      "check": "isolated-boundary-matrix",
+      "command": "MISE_AUTO_INSTALL=false bun /tmp/review-0029-probe-matrix.ts",
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "result": "not-reproduced",
+      "observation": "Fresh and capture-predecessor arms reached SAFETY STOP, attempts=1. Actual blank resets took 597ms and 612ms; precursor reset 566ms. No native timeout reproduced. Not acceptance."
+    },
+    {
+      "check": "owned-resource-cleanup",
+      "result": "passed",
+      "observation": "All three newly opened Surf sessions closed through surfDriver.close; owned servers stopped. No borrowed resources closed."
+    },
+    {
+      "check": "independent-lifecycle-axis",
+      "result": "completed",
+      "observation": "Collector awaits subprocesses. Backend release unknown; failing request and queue trace absent."
+    },
+    {
+      "check": "independent-contract-axis",
+      "result": "completed",
+      "observation": "FAIL is valid for a pre-workflow transport error; credential fill was not reached."
+    },
+    {
+      "check": "frozen-source-preserved",
+      "command": "git rev-parse HEAD HEAD^{tree} && git status --porcelain",
+      "result": "passed",
+      "observation": "Exact frozen commit/tree; clean before and after probes."
+    },
+    {
+      "check": "review-artifact-markdown",
+      "result": "passed",
+      "observation": "mq with okf_parse/okf_validate returned [] for the single immutable artifact."
+    },
+    {
+      "check": "mandated-result-delivery",
+      "command": "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-result.ts --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --input /tmp/review-0029-result.json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+      "exit_code": 1,
+      "result": "blocked",
+      "observation": "A review result requires a SUCCESS or FAILURE verdict. Validation rejected before publication. No event or transport result was written. No second delivery tool used."
+    }
+  ],
+  "limits": [
+    "The new focused comparison is red-capable for the retained boundary but has not established deterministic or high-rate timeout reproduction.",
+    "No acceptance verdict. Earlier Surf/Playwright failures and all historical evidence remain intact.",
+    "Required result writer line 92 demands a verdict on every review result, including blocked; this conflicts with the authorized diagnostic result. No verdict is fabricated.",
+    "No source modifications, tests, builds, lint, formatters, tool installs, remote Git operations, tracker comments, projections, commits, merge or push."
+  ],
+  "next_action": "Retain blocked diagnosis. Obtain correlated owned-session CLI/native/extension/navigation trace at the failure. Resolve the result-writer blocked-review verdict conflict before delivery recovery. Parent owns publication, acknowledgement and pane closure."
+}
