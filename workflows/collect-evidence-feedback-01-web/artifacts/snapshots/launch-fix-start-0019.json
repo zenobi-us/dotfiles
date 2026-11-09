@@ -1,0 +1,27 @@
+{
+  "runId": "fb0bd456-c187-46c1-8cc8-de0017593e66",
+  "target": "w73:p5",
+  "operationId": "collect-evidence-feedback-01-web-fix-0020",
+  "contextFile": "/home/zenobius/.local/state/result-delivery/runs/fb0bd456-c187-46c1-8cc8-de0017593e66/context.json",
+  "deliveryContext": {
+    "schema": "result-delivery/v1",
+    "kind": "context",
+    "audience": "agent",
+    "mode": "artifact-reference",
+    "runId": "fb0bd456-c187-46c1-8cc8-de0017593e66",
+    "operationId": "collect-evidence-feedback-01-web-fix-0020",
+    "target": {
+      "path": "/var/home/zenobius/.local/state/result-delivery/runs/web-fix-0020-N16fmO/result.json",
+      "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-fix-0020-N16fmO/result.json",
+      "schema": "worktree-receipt/v1"
+    }
+  },
+  "resultTarget": {
+    "path": "/var/home/zenobius/.local/state/result-delivery/runs/web-fix-0020-N16fmO/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-fix-0020-N16fmO/result.json",
+    "schema": "worktree-receipt/v1"
+  },
+  "muxer": "herdr",
+  "agent": "omp",
+  "depth": 1
+}
