@@ -53,6 +53,16 @@ scripts/router.ts wait <run-id> --after-sequence <sequence>
 
 A terminal wait removes the run record. A blocked wait keeps it for the next wait.
 
+## Result delivery is separate
+
+`spawn --result-schema <domain-schema>` allocates a typed result context before launch. The output includes `contextFile`, `deliveryContext`, and `resultTarget`, plus the child `runId`, optional `parentRunId`, and `operationId`. Save these values before waiting. The contracts command reports the explicit session role and identities, the assigned context, and truthful transport capabilities. No muxer provides a native structured-result channel. Artifact-reference transport requires Linux with `/proc/self/fd` available. The contracts capability reports whether this backend is available.
+
+The child receives `RESULT_DELIVERY_CONTEXT`, `MUXER_SUBAGENT_RUN_ID`, and an explicit child role. When known, `MUXER_SUBAGENT_PARENT_RUN_ID` preserves the incoming run identity. Herdr receives the same context through tab `--env` flags; shell-launched muxers export it before starting the agent. The handoff tells the child to use the result-delivery skill through its operation CLI or shared library, not a second reporting CLI.
+
+Default contexts and transport artifacts live under `$XDG_STATE_HOME/result-delivery/runs/<run-id>`, or `~/.local/state/result-delivery/runs/<run-id>`. Terminal muxer cleanup does not remove them. Custom `--result-target <absolute-file>` and `--result-ref <approved-reference>` must be paired. The target parent directory must already exist. `--operation-id` defaults to the child run ID.
+
+A completed process can return a failed domain result. A published result can exist before the process completes. Neither artifact presence nor exit code zero establishes domain success. Keep the signal protocol unchanged: after completion, the parent reads and verifies the result with the saved delivery context, validates the domain result, and acknowledges the verified hash. Acknowledgement creates `<target>.ack.json`; it does not delete the result.
+
 ## Limits
 
 The router does not parse pane output. It does not ask the child agent to run a second reporting CLI. The launcher records process exit; Herdr supplies its native agent state.

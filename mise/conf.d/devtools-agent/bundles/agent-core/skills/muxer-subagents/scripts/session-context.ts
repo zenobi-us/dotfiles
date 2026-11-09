@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import { isAbsolute } from "node:path";
+import { parseDeliveryContext, type DeliveryContext } from "../../result-delivery/scripts/delivery.ts";
 import type { Agent, Muxer } from "./types.ts";
 
 export const MAX_SUBAGENTS_PER_SESSION = 5;
@@ -34,9 +37,35 @@ export function detectAgent(
   if (environment.CLAUDECODE === "1") return "claude";
   return "unknown-agent";
 }
+export function sessionMetadata(): {
+  role: "child" | "unspecified";
+  runId?: string;
+  parentRunId?: string;
+  operationId?: string;
+  contextFile?: string;
+  deliveryContext?: DeliveryContext;
+} {
+  const contextFile = process.env.RESULT_DELIVERY_CONTEXT;
+  if (contextFile !== undefined && !isAbsolute(contextFile)) {
+    throw new Error("RESULT_DELIVERY_CONTEXT must be an absolute file path.");
+  }
+  const context = contextFile === undefined
+    ? undefined
+    : parseDeliveryContext(JSON.parse(readFileSync(contextFile, "utf8")));
+  return {
+    role: process.env.MUXER_SUBAGENT_ROLE === "child" ? "child" : "unspecified",
+    runId: process.env.MUXER_SUBAGENT_RUN_ID ?? context?.runId,
+    parentRunId: process.env.MUXER_SUBAGENT_PARENT_RUN_ID,
+    operationId: context?.operationId,
+    contextFile,
+    deliveryContext: context,
+  };
+}
+
 
 export function renderSessionContext(muxer: Muxer, agent: Agent): string {
   const depth = currentSubagentDepth();
+  const session = sessionMetadata();
 
   return `
   Muxer Subagents Session Context
@@ -46,6 +75,8 @@ export function renderSessionContext(muxer: Muxer, agent: Agent): string {
   - maxSubagents: ${MAX_SUBAGENTS_PER_SESSION}
   - maxDepth: ${MAX_SUBAGENT_DEPTH}
   - depth: ${depth}
+  - session: ${JSON.stringify(session)}
+  - delivery: explicit result-delivery context; no native structured-result transport
 
   Detected once at session start by the \`muxer-subagents\` skill's Rule 1/Rule 2 logic.
 

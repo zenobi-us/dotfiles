@@ -37,7 +37,7 @@ The hooks can supply `omp`, `pi`, `zot`, `codex`, `claude`, or `unknown-agent`. 
 scripts/router.ts contracts --muxer <resolved-muxer> --agent <resolved-agent>
 ```
 
-Always pass `--muxer` and `--agent` explicitly. The command prints JSON with `muxer`, `agent`, contract paths, `limits` (`maxSubagentsPerSession`, `maxDepth`, `currentDepth`), and `needsOperatorInput`.
+Always pass `--muxer` and `--agent` explicitly. The command prints versioned JSON with `muxer`, `agent`, contract paths, `limits` (`maxSubagentsPerSession`, `maxDepth`, `currentDepth`), and `needsOperatorInput`. `session` reports the explicit role, run identity, parent run identity, operation identity, and context file. `delivery` reports the assigned context and supported transport capabilities. An absent role stays `unspecified`; muxer detection and depth do not establish a role. Native structured-result transport is not implemented.
 
 1. Read `muxerContract` before you open, wait on, read, or close a pane.
 2. Read `agentContract` before you launch an agent.
@@ -57,7 +57,7 @@ The current limits are five concurrently active direct child agents per parent s
 Use the router when you need to launch a child agent directly:
 
 ```bash
-scripts/router.ts spawn [--prompt <text> | --prompt-file <path>] [--cwd <path>] [--muxer <muxer>] [--agent <agent>]
+scripts/router.ts spawn --result-schema <domain-schema> [--prompt <text> | --prompt-file <path>] [--cwd <path>] [--muxer <muxer>] [--agent <agent>] [--result-target <absolute-file> --result-ref <approved-reference>] [--operation-id <id>]
 ```
 
 - If you set neither prompt option, the router reads stdin.
@@ -68,7 +68,16 @@ scripts/router.ts spawn [--prompt <text> | --prompt-file <path>] [--cwd <path>] 
 - The router rejects invalid depth and depth at or above the configured maximum.
 - If muxer or agent detection is unknown, pass its explicit option.
 
-The command prints a JSON record with `runId`, muxer, agent, target identifier, and child depth.
+The command prints a JSON record with `runId`, muxer, agent, target identifier, child depth, `parentRunId` when known, `operationId`, `contextFile`, `deliveryContext`, and `resultTarget`. Save the delivery fields before waiting: terminal cleanup removes the muxer run record.
+
+- `--result-schema` is required for the formal typed handoff. Use the domain operation's existing result schema.
+- `--result-target` and `--result-ref` must be supplied together. The target must be absolute and its parent directory must already exist.
+- Without a custom target, the router allocates `$XDG_STATE_HOME/result-delivery/runs/<runId>/result.json`, with a file URI reference. The fallback state root is `~/.local/state`.
+- `--operation-id` defaults to the child run ID.
+- Before launch, the router writes an artifact-reference context and passes `RESULT_DELIVERY_CONTEXT`, `MUXER_SUBAGENT_RUN_ID`, and the explicit child role through every muxer path. It also passes `MUXER_SUBAGENT_PARENT_RUN_ID` when the incoming run identity is known. Herdr receives these values through tab `--env` flags.
+- The child uses its existing operation CLI or the shared result-delivery library. Do not add a second reporting CLI. Read the `result-delivery` skill for the delivery protocol.
+- After completion, read and verify the delivered artifact with the saved context, validate the domain result, then acknowledge its hash. A result artifact or exit code zero does not prove domain success.
+- Result artifacts and contexts survive muxer run cleanup and acknowledgement.
 
 - Wait for completion with `scripts/router.ts wait <runId>`.
 - If the signal is `blocked`, resume the agent, then pass the signal's sequence with `--after-sequence`.
@@ -92,8 +101,8 @@ A caller that requires an independent agent session MUST get a new pane or tab. 
 1. MUST resolve the muxer and the agent with Rule 1 and Rule 2.
 2. MUST read the resolved `muxerContract` and `agentContract`.
 3. MUST receive the target directory from the caller. This skill does not create it.
-4. MUST open the pane, tab, or workspace with the muxer contract's command.
-5. MUST launch the child with the agent contract's launch command.
+4. For a formal handoff, MUST use `scripts/router.ts spawn --result-schema <domain-schema>` to allocate the delivery context before opening the pane. Save its delivery fields.
+5. The router opens the pane and launches the child through the resolved contracts. For manual launches, apply the same assigned context and run identity to the child environment.
 6. MUST wait for completion through the muxer contract. Do not poll a status command in a loop where the contract offers a wait or an event stream.
 7. MUST read the child output through the muxer contract's read command.
 8. MUST close the pane through the muxer contract.

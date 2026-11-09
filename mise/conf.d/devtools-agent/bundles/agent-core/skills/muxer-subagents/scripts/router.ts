@@ -12,6 +12,7 @@ import {
   MAX_SUBAGENT_DEPTH,
   MAX_SUBAGENTS_PER_SESSION,
   renderSessionContext,
+  sessionMetadata,
 } from "./session-context.ts";
 import { AGENTS, isAgent, isMuxer, MUXERS } from "./types.ts";
 import { spawnAgent } from "./spawn.ts";
@@ -117,9 +118,20 @@ const contractsCmd = app
       return;
     }
 
+    const { deliveryContext, ...session } = sessionMetadata();
     console.log(
       JSON.stringify(
         {
+          schema: "muxer-subagents/contracts",
+          version: 1,
+          session,
+          delivery: {
+            context: deliveryContext ?? null,
+            contextEnvironment: "RESULT_DELIVERY_CONTEXT",
+            artifactReference: process.platform === "linux" && existsSync("/proc/self/fd"),
+            nativeStructuredResult: false,
+            completionImpliesResultSuccess: false,
+          },
           muxer,
           agent,
           muxerContract,
@@ -165,6 +177,23 @@ const spawnCmd = app
     cwd: {
       type: "string",
       description: "Working directory for the child. Defaults to the current directory.",
+    },
+    "result-schema": {
+      type: "string",
+      description: "Required domain result schema for the child handoff.",
+      required: true,
+    },
+    "result-target": {
+      type: "string",
+      description: "Absolute transport artifact path. Requires --result-ref.",
+    },
+    "result-ref": {
+      type: "string",
+      description: "Caller-approved artifact reference. Requires --result-target.",
+    },
+    "operation-id": {
+      type: "string",
+      description: "Operation identity for delivery. Defaults to the child run id.",
     },
   })
   .run(async ({ flags }) => {
@@ -213,14 +242,18 @@ const spawnCmd = app
     }
 
     try {
-      const { runId, target } = await spawnAgent({
+      const result = await spawnAgent({
         muxer,
         agent,
         prompt,
         cwd: resolve(flags.cwd ?? process.cwd()),
         depth: depth + 1,
+        resultSchema: flags["result-schema"],
+        resultTarget: flags["result-target"],
+        resultRef: flags["result-ref"],
+        operationId: flags["operation-id"],
       });
-      console.log(JSON.stringify({ runId, muxer, agent, target, depth: depth + 1 }));
+      console.log(JSON.stringify({ ...result, muxer, agent, depth: depth + 1 }));
     } catch (error) {
       console.error(`Could not spawn child agent: ${error instanceof Error ? error.message : String(error)}`);
       process.exitCode = 1;
