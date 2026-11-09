@@ -120,7 +120,7 @@ No current verdict exists for source `3d1b282520a74db5409457f83ed0f766670b86cb`.
 
 ## Remaining work and ownership
 
-STD-002 remains unresolved, advisory and outside the selected scope. cleanupRow hooks remain unchanged. Parent phase completion and a fresh independent review remain pending. No review verdict, remote Git, merge, push, tracker update or ticket completion was performed. The clean source worktree, workspace w73 and child pane w73:p3 remain open.
+STD-002 remains unresolved, advisory and outside the selected scope. cleanupRow hooks remain unchanged. Parent validation and acknowledgement are complete. A fresh independent review remains pending. No review verdict, remote Git, merge, push, tracker update or ticket completion was performed. The clean source worktree and workspace w73 remain open. The acknowledged fixer pane w73:p3 is closed.
 
 - The cause of the initial owned-preview tab invalidation is unknown; fresh owned-preview and borrowed-resource checks passed.
 - The tracker graph labels implemented as COMPLETED despite the canonical implemented state; this out-of-scope presentation mismatch was reported.
@@ -128,7 +128,7 @@ STD-002 remains unresolved, advisory and outside the selected scope. cleanupRow 
 
 ## Merge and publication status
 
-The source fix is committed as `3d1b282520a74db5409457f83ed0f766670b86cb`. Base workflow publication and parent completion remain pending. No merge, push, tracker mutation or ticket completion ran.
+The source fix is committed as `3d1b282520a74db5409457f83ed0f766670b86cb`. The fix result, draft, evidence and current views were committed in the base store as `ace3f774`. Parent validation and result acknowledgement are complete. No merge, push, tracker mutation or ticket completion ran.
 
 ## Limits
 
@@ -158,3 +158,8 @@ The source fix is committed as `3d1b282520a74db5409457f83ed0f766670b86cb`. Base 
 - [Immutable fix draft](../artifacts/snapshots/pr-draft-fix-0014.md).
 - [Fix evidence](../artifacts/evidence/fix-0014/index.md).
 - [Fixer launch](../artifacts/snapshots/launch-fix-start-0013.json).
+
+
+## Parent fix completion
+
+[fix-complete-0015](../events/fix-complete-0015.yaml) records independent receipt, source, scope, evidence and publication validation. The parent accepted the external ..captures workspace, rejected the repository descendant before file creation, and removed the temporary fixture. Both sealed driver runs passed validation; their actual native PNGs show Submitted once. The acknowledged fixer pane `w73:p3` is closed. Workspace `w73` and the clean source worktree remain available. A fresh independent review is pending.

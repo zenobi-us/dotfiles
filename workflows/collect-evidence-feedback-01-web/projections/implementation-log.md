@@ -167,3 +167,22 @@ Final public suite: 14 passed, 0 failed, 93 expectations. Scoped TypeScript pass
 [Immutable draft](../artifacts/snapshots/pr-draft-fix-0014.md) lists nine changed source/doc paths. [Evidence](../artifacts/evidence/fix-0014/index.md) records exact commands, cwd, environment, results and limits.
 
 The FAILURE in review-0011 applies only to the old source and is historical/stale on this commit. No current SUCCESS or new verdict exists. Parent owns publication, acknowledgement, pane closure and phase completion. The child pane w73:p3 and workspace w73 remain open. No tracker update, remote Git, merge, push or ticket completion occurred.
+
+
+## Parent fix completion
+
+[fix-complete-0015](../events/fix-complete-0015.yaml) validates [fix-0014](../events/fix-0014.yaml), source `3d1b282520a74db5409457f83ed0f766670b86cb`, the immutable draft, selected findings and real driver evidence. The parent public init check accepted an external ..captures directory and rejected a repository descendant with exit 2 and no plan file. Both sealed runs validated and both native images showed Submitted once. Parent fixtures were removed.
+
+The fix records were committed as `ace3f774`. The typed result is acknowledged and fixer pane `w73:p3` is closed. Workspace `w73` and the clean source worktree remain available. No tracker mutation, merge, push or ticket completion ran. STD-002 remains advisory and unselected. A fresh independent review is pending.
+
+### Fix-phase changed source paths
+
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/evidence-schema.md`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/web.md`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/surf-driver.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/load-plan.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts`
