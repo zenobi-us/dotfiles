@@ -111,7 +111,7 @@ Start-complete-0003 records the blocked first attempt. Start-0004 authorizes the
 - The cause of the initial owned-preview tab invalidation is unknown; fresh owned-preview and borrowed-resource checks passed.
 - The tracker graph labels implemented as COMPLETED despite the canonical implemented state; this out-of-scope presentation mismatch was reported.
 
-Independent review, parent phase completion and integration remain pending; the ticket is implemented, not completed.
+[start-complete-0006](../events/start-complete-0006.yaml) records parent validation, acknowledgement and child pane closure. Independent review and integration remain pending. The ticket is implemented, not completed.
 
 ## Supporting records
 

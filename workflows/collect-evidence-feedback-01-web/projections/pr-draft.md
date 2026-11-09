@@ -98,7 +98,7 @@ Exact commands, directories, results and media are linked in the evidence index 
 
 ## Review history
 
-No formal review has run. Attempt 1 was blocked by missing Surf connectivity; the restored connection enabled attempt 2. Parent acknowledgement of this child result remains pending.
+No formal review has run. Attempt 1 was blocked by missing Surf connectivity; the restored connection enabled attempt 2. The parent verified and acknowledged implementation-0005. [start-complete-0006](../events/start-complete-0006.yaml) records the completed start phase. The child pane is closed. Independent review remains pending.
 
 ## Resolved findings
 
