@@ -1,0 +1,35 @@
+{
+  "created_at": "2026-11-09T04:18:26.745Z",
+  "phase_start": "review-start-0068",
+  "run_id": "ba5a5987-8815-4327-ba0e-d87bf734b51e",
+  "operation_id": "pi-ink-bridge-02-review-0069",
+  "context": "/var/home/zenobius/.local/state/result-delivery/runs/ba5a5987-8815-4327-ba0e-d87bf734b51e/context.json",
+  "target": "/var/home/zenobius/.local/state/result-delivery/runs/pi-ink-review-0069-h2H1no/result.json",
+  "pane": "w6X:p7",
+  "spawn_error": "agent_pane_busy: not an available shell",
+  "agent_get": "agent_not_found",
+  "pane_process": {
+    "shell": "/usr/bin/zsh",
+    "pid": 3043401,
+    "foreground": [
+      "zsh"
+    ],
+    "prompt_ready": true
+  },
+  "reviewer_processes_started_before_recovery": 0,
+  "source": {
+    "commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+    "tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+    "dirty": false
+  },
+  "inspector": {
+    "action": "review",
+    "mode": "retry",
+    "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/review-start-0068.json",
+    "reason": "Inspect prior review output, then use a fresh reviewer. An interrupted review is not a verdict."
+  },
+  "authorization": "Current explicit user review request authorizes this read-only retry. Same parent and allocated new pane; no previous reviewer exists to resume or take over.",
+  "recovery_plan": "Start first reviewer process in this same fresh pane with retained typed environment. No duplicate pane/agent. Use native Herdr completion wait because failed router removed transient muxer run metadata.",
+  "source_changes": 0,
+  "device_actions": 0
+}

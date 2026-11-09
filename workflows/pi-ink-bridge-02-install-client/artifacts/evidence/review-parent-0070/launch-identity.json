@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-11-09T04:19:41.694Z",
+  "run_id": "ba5a5987-8815-4327-ba0e-d87bf734b51e",
+  "operation_id": "pi-ink-bridge-02-review-0069",
+  "context": "/var/home/zenobius/.local/state/result-delivery/runs/ba5a5987-8815-4327-ba0e-d87bf734b51e/context.json",
+  "target": "/var/home/zenobius/.local/state/result-delivery/runs/pi-ink-review-0069-h2H1no/result.json",
+  "pane": "w6X:p7",
+  "session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-09T04-18-33-034Z_01a1be87-7dca-76bc-bc38-49e79bd037d1.jsonl",
+  "agent": "omp",
+  "observed_state": "working",
+  "state_change_seq": 489,
+  "native_start_timeout_reported": true,
+  "agent_confirmed_working_after_timeout": true,
+  "actual_reviewers_started": 1,
+  "duplicate_launches": 0,
+  "wait_contract": "Native herdr agent wait w6X:p7 --until done --until blocked; typed context retained after failed formal-router shell-readiness launch."
+}

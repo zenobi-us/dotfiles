@@ -1,0 +1,83 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-start-0068",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "review",
+  "event": "phase-start",
+  "attempt": 2,
+  "parent_receipt": "fix-complete-0067",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+  "source_tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+  "created_at": "2026-11-09T04:16:56.768Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "status": "started",
+  "review_target": {
+    "commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+    "tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+    "base_branch": "master",
+    "base_commit": "9f590050eb03c988375acd118edbf2ed090ab62c",
+    "diff_command": "git diff 9f590050eb03c988375acd118edbf2ed090ab62c...b6f4c7af4da729d1dfb175855247b74dc3d106d3"
+  },
+  "expected_result": "workflows/pi-ink-bridge-02-install-client/events/review-0069.yaml",
+  "review_artifact": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0069.md",
+  "authorization": "User explicitly requested review pi-ink-bridge-02-install-client. Read-only source review; no device/service/deployment actions.",
+  "recovery": {
+    "mode": "retry",
+    "reason": "Canonical inspector requires fresh review because source changed after review0063. Clean new source b6f4c7af and completed fix0066/parent0067 establish the target. All prior reviewer/fixer sessions completed and closed; no live target agents or matching goal reservations.",
+    "ownership": "Same parent. Launch new reviewer and independent Standards/Spec analysis; do not reuse prior sessions."
+  },
+  "delivery_assignment": {
+    "schema": "worktree-receipt/v1",
+    "operation_id": "pi-ink-bridge-02-review-0069",
+    "target": "/var/home/zenobius/.local/state/result-delivery/runs/pi-ink-review-0069-h2H1no/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/pi-ink-review-0069-h2H1no/result.json",
+    "canonical_realpath_parent": true
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/fix-complete-0067.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/fix-0066.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0063.md"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-fix-0066.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/review-start-0068.json"
+    }
+  ]
+}

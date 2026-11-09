@@ -2,11 +2,11 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "pi-ink-bridge-02-install-client",
   "ticket": "tracker/tickets/pi-ink-bridge-02-install-client.md",
-  "state": "FIXED",
-  "latest_receipt": "fix-complete-0067",
+  "state": "REVIEW_PASSED",
+  "latest_receipt": "review-complete-0070",
   "latest_source_commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
   "latest_source_tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
-  "latest_review_verdict": null,
+  "latest_review_verdict": "SUCCESS",
   "prior_review_verdict": "FAILURE",
   "prior_review_stale": true,
   "open_findings": [],
@@ -22,15 +22,23 @@
       "source_tree": "c1526ae02dc828ab1a75ac479e7a4c3b782edc21",
       "artifact": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0063.md",
       "current": false
+    },
+    {
+      "receipt": "workflows/pi-ink-bridge-02-install-client/events/review-0069.yaml",
+      "verdict": "SUCCESS",
+      "source_commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+      "source_tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+      "artifact": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0069.md",
+      "current": true
     }
   ],
   "evidence": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066",
-  "snapshot": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-fix-0066.md",
+  "snapshot": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-review-0070.md",
   "parent_completion_pending": false,
-  "pane_id": "w6X:p6",
+  "pane_id": "w6X:p7",
   "pane_closed": true,
   "source_clean": true,
-  "next_action": "Fresh independent review of clean source b6f4c7af4da729d1dfb175855247b74dc3d106d3; prior review0063 is stale. No review started.",
+  "next_action": "Follow fresh canonical inspection for integration/publication. Current exact-source SUCCESS has no blockers; no finish or deployment has started.",
   "current_fix_device_actions": 0,
   "current_fix_deployment_changes": 0,
   "hardware_acceptance": "historical only; no native installation or launch exercised by fix-0066",
@@ -147,7 +155,13 @@
       }
     ]
   },
-  "parent_validation": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066/parent-validation.json",
+  "parent_validation": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/review-parent-0070/parent-validation.json",
   "fix_receipt": "workflows/pi-ink-bridge-02-install-client/events/fix-0066.yaml",
-  "fix_completion": "workflows/pi-ink-bridge-02-install-client/events/fix-complete-0067.json"
+  "fix_completion": "workflows/pi-ink-bridge-02-install-client/events/fix-complete-0067.json",
+  "current_review_valid": true,
+  "review_receipt": "workflows/pi-ink-bridge-02-install-client/events/review-0069.yaml",
+  "review_artifact": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0069.md",
+  "reviewed_source_commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+  "reviewed_source_tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+  "tracker_review_commit": "57fe9067b926b4703e6ec66f3e3608e6c769e7db"
 }

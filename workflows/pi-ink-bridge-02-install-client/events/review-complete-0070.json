@@ -1,0 +1,225 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-complete-0070",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 2,
+  "parent_receipt": "review-0069",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+  "source_tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+  "created_at": "2026-11-09T04:33:49.832Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/review-parent-0070"
+  },
+  "status": "completed",
+  "review_receipt": "workflows/pi-ink-bridge-02-install-client/events/review-0069.yaml",
+  "review_artifact": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0069.md",
+  "reviewed_source_commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+  "reviewed_source_tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+  "reviewed_base_commit": "9f590050eb03c988375acd118edbf2ed090ab62c",
+  "open_finding_ids": [],
+  "resolved_finding_ids": [
+    "STD-001",
+    "SPEC-001"
+  ],
+  "tracker_review_commit": "57fe9067b926b4703e6ec66f3e3608e6c769e7db",
+  "snapshot": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-review-0070.md",
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Canonical inspector selects review/reconcile for result0069. Parent verified authoritative YAML against typed result, complete immutable artifact, exact clean source, independent-axis outcome, schema checks, recorded evidence and reviewer shutdown. No child work repeated.",
+    "authorization": "Current explicit user review request; same-attempt read-only startup recovery recorded in launch diagnostic. No code/deployment authority.",
+    "ownership": "Reviewer completed497; pane w6X:p7 closed with ok. Both independent axes completed and closed; source workspace retained."
+  },
+  "validation_results": [
+    {
+      "scenario": "Installed result-delivery read and authoritative comparison",
+      "status": "passed",
+      "sha256": "19ad01224a1b358135716b939fbb2ad73b31f9a77a57439d8241dc0f81ce5601",
+      "authoritative_matches": true
+    },
+    {
+      "scenario": "Source commit/tree and history",
+      "status": "passed",
+      "command": "Canonical inspector from base",
+      "historyValid": true,
+      "source_clean": true,
+      "commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+      "tree": "2c63ba1d51dd94de767f0d688719f938a0a97031"
+    },
+    {
+      "scenario": "Immutable review schema",
+      "status": "passed",
+      "command": "mq -I raw -F json: okf_parse | okf_validate",
+      "errors": []
+    },
+    {
+      "scenario": "Tracker schema before and after verdict comment",
+      "status": "passed",
+      "command": "records.ts check --repository <base> --ticket pi-ink-bridge-02-install-client --format human"
+    },
+    {
+      "scenario": "Independent axes and recorded runtime validation",
+      "status": "accepted-recorded-evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0069.md",
+      "axes": [
+        "Standards PASS",
+        "Spec PASS"
+      ],
+      "current_source_tests": "8 tests/31 assertions, typecheck and shell syntax passed in fix0066; five isolated smoke cases passed. Not rerun during review."
+    },
+    {
+      "scenario": "Native process completion and pane closure",
+      "status": "passed",
+      "completion_seq": 497,
+      "pane": "w6X:p7",
+      "pane_close": "ok",
+      "workspace_retained": true
+    }
+  ],
+  "delivery": {
+    "run_id": "ba5a5987-8815-4327-ba0e-d87bf734b51e",
+    "operation_id": "pi-ink-bridge-02-review-0069",
+    "context": "/var/home/zenobius/.local/state/result-delivery/runs/ba5a5987-8815-4327-ba0e-d87bf734b51e/context.json",
+    "target": "/var/home/zenobius/.local/state/result-delivery/runs/pi-ink-review-0069-h2H1no/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/pi-ink-review-0069-h2H1no/result.json",
+    "canonical_payload_sha256": "19ad01224a1b358135716b939fbb2ad73b31f9a77a57439d8241dc0f81ce5601",
+    "authoritative_matches": true,
+    "acknowledgement_required_after_publication": true,
+    "acknowledgement_ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/pi-ink-review-0069-h2H1no/result.json.ack.json"
+  },
+  "reviewer": {
+    "agent": "omp",
+    "pane": "w6X:p7",
+    "session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-09T04-18-33-034Z_01a1be87-7dca-76bc-bc38-49e79bd037d1.jsonl",
+    "completion_seq": 497,
+    "pane_closed": true,
+    "workspace_retained": true
+  },
+  "analysis_sessions": [
+    {
+      "axis": "Standards",
+      "run_id": "f0f9e329-9c67-4bc0-9858-56591a1734e4",
+      "pane_id": "w6X:p8",
+      "session_id": "01a1be89-9d1e-76fd-917f-100e42810801",
+      "depth": 2,
+      "status": "completed-and-closed",
+      "result_ref": "file:///tmp/standards0069.96QyHS/result.json",
+      "payload_sha256": "dfcc39d0b42c83cb5a150be128669623bb052ec08376b4dab5a58b65b5d83bb5",
+      "transport_verified": true,
+      "acknowledged": true
+    },
+    {
+      "axis": "Spec",
+      "run_id": "23396614-fdbd-4fdd-8fb9-f34e63ebaa36",
+      "pane_id": "w6X:p9",
+      "session_id": "01a1be8a-8885-778a-a9ab-edfd9cd9ce63",
+      "depth": 2,
+      "status": "completed-and-closed",
+      "result_ref": "file:///tmp/pi-ink-review0069-spec-g9z6mA/result.json",
+      "payload_sha256": "9aecb5fd499257b245cdcaa75b9edba9d6ea0e8fd9482f132488f1dbfb5643ce",
+      "transport_verified": true,
+      "acknowledged": true,
+      "launch_recovery": "First router launch rejected shell readiness before reviewer existed. Native shell-only state established. First reviewer started in same pane; native process/environment proved depth2 and retained typed identity. No duplicate."
+    }
+  ],
+  "handoff": {
+    "path": "/tmp/pi-ink-review-0068-6oQq6c/recovery-handoff.txt",
+    "temporary": true,
+    "authoritative": false,
+    "cleanup": "Remove owned handoffs after publication and acknowledgement."
+  },
+  "coverage_limits": [
+    "No new device, SSH, installation/reinstallation, native launch, restart/reboot, pairing, mod-helper invocation, private-record access, existing service manipulation, or port47840 contact.",
+    "No deployment or ARM64 rebuild. Installed tablet and service retain earlier approved payload; source-only fixes were not deployed.",
+    "Native launch0057 and repeat-install0059 are historical acceptance, not a fresh physical test of changed installer bytes.",
+    "Device state.json was absent before and after repeat installation. Nonempty pairing preservation is host-fixture coverage only.",
+    "Host sentinel proves preflight reachability, not native ARM64 installation.",
+    "Recorded passing/failing checks were not rerun solely to confirm them. No new bounded product check was needed.",
+    "Full meaningful implementation reviewed; historical workflow records used selectively as evidence, not replayed."
+  ],
+  "source_changes": false,
+  "device_actions": 0,
+  "deployment_changes": 0,
+  "reviewed": true,
+  "merged": false,
+  "pushed": false,
+  "publication_requirement": "Commit workflow review records locally in base checkout and acknowledge verified delivery. Keep source branch frozen. No push or integration in this phase.",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/review-start-0068.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/review-0069.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0069.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/fix-complete-0067.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/review-parent-0070/parent-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/review-parent-0070/launch-recovery.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/review-complete-0070.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-review-0070.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    }
+  ]
+}
