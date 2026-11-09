@@ -1,0 +1,217 @@
+{
+  "schema": "surf-native-audit/v1",
+  "kind": "historical-owned-request-trace",
+  "collectedAt": "2026-11-09T23:28:44.789Z",
+  "historical": true,
+  "source": {
+    "path": "/tmp/surf-host.log",
+    "lines": "28890-28934",
+    "excerptSha256": "4ebc2f29967d8834d07e5560ec18134b09af45417975ada663daf05f0c441bf6",
+    "rawOriginalRetainedOutsideRepository": true
+  },
+  "correlation": {
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/failed-suite-surf",
+    "session": "ce-10659c4a-9e18-4ccb-ab91-66cb6aac8620",
+    "requestId": "cli-1794260360730",
+    "tool": "navigate",
+    "laneKey": "tab:0f7e3319-f5c6-4a20-b561-37d27f7825c9:498730741",
+    "queueMs": 0,
+    "elapsedMs": 60041,
+    "outcome": "hard-timeout"
+  },
+  "auditEvents": [
+    {
+      "timestamp": "2026-11-09T21:39:20.628Z",
+      "event": "scheduler",
+      "outcome": "released",
+      "principalId": "local",
+      "principalLabel": "local",
+      "peer": "local",
+      "requestId": "cli-1794260360625",
+      "tool": "dialog.info",
+      "session": "ce-10659c4a-9e18-4ccb-ab91-66cb6aac8620",
+      "laneKey": "tab:0f7e3319-f5c6-4a20-b561-37d27f7825c9:498730741",
+      "scope": "host",
+      "resourceKeys": []
+    },
+    {
+      "timestamp": "2026-11-09T21:39:20.628Z",
+      "event": "request",
+      "outcome": "completed",
+      "principalId": "local",
+      "principalLabel": "local",
+      "peer": "local",
+      "requestId": "cli-1794260360625",
+      "tool": "dialog.info",
+      "session": "ce-10659c4a-9e18-4ccb-ab91-66cb6aac8620",
+      "laneKey": "tab:0f7e3319-f5c6-4a20-b561-37d27f7825c9:498730741",
+      "scope": "host",
+      "resourceKeys": [],
+      "elapsedMs": 1
+    },
+    {
+      "timestamp": "2026-11-09T21:39:20.681Z",
+      "event": "scheduler",
+      "outcome": "acquired",
+      "principalId": "local",
+      "principalLabel": "local",
+      "peer": "local",
+      "requestId": "cli-1794260360677",
+      "tool": "js",
+      "session": "ce-10659c4a-9e18-4ccb-ab91-66cb6aac8620",
+      "laneKey": "tab:0f7e3319-f5c6-4a20-b561-37d27f7825c9:498730741",
+      "scope": "tab",
+      "resourceKeys": [],
+      "queueMs": 0
+    },
+    {
+      "timestamp": "2026-11-09T21:39:20.683Z",
+      "event": "scheduler",
+      "outcome": "released",
+      "principalId": "local",
+      "principalLabel": "local",
+      "peer": "local",
+      "requestId": "cli-1794260360677",
+      "tool": "js",
+      "session": "ce-10659c4a-9e18-4ccb-ab91-66cb6aac8620",
+      "laneKey": "tab:0f7e3319-f5c6-4a20-b561-37d27f7825c9:498730741",
+      "scope": "tab",
+      "resourceKeys": []
+    },
+    {
+      "timestamp": "2026-11-09T21:39:20.683Z",
+      "event": "request",
+      "outcome": "completed",
+      "principalId": "local",
+      "principalLabel": "local",
+      "peer": "local",
+      "requestId": "cli-1794260360677",
+      "tool": "js",
+      "session": "ce-10659c4a-9e18-4ccb-ab91-66cb6aac8620",
+      "laneKey": "tab:0f7e3319-f5c6-4a20-b561-37d27f7825c9:498730741",
+      "scope": "tab",
+      "resourceKeys": [],
+      "elapsedMs": 4
+    },
+    {
+      "timestamp": "2026-11-09T21:39:20.731Z",
+      "event": "admission",
+      "outcome": "accepted",
+      "principalId": "local",
+      "principalLabel": "local",
+      "peer": "local",
+      "requestId": "cli-1794260360730",
+      "tool": "navigate"
+    },
+    {
+      "timestamp": "2026-11-09T21:39:20.732Z",
+      "event": "scheduler",
+      "outcome": "acquired",
+      "principalId": "local",
+      "principalLabel": "local",
+      "peer": "local",
+      "requestId": "cli-1794260360730",
+      "tool": "navigate",
+      "session": "ce-10659c4a-9e18-4ccb-ab91-66cb6aac8620",
+      "laneKey": "tab:0f7e3319-f5c6-4a20-b561-37d27f7825c9:498730741",
+      "scope": "tab",
+      "resourceKeys": [],
+      "queueMs": 0
+    },
+    {
+      "timestamp": "2026-11-09T21:40:20.771Z",
+      "event": "request",
+      "outcome": "hard-timeout",
+      "principalId": "local",
+      "principalLabel": "local",
+      "peer": "local",
+      "requestId": "cli-1794260360730",
+      "tool": "navigate",
+      "session": "ce-10659c4a-9e18-4ccb-ab91-66cb6aac8620",
+      "laneKey": "tab:0f7e3319-f5c6-4a20-b561-37d27f7825c9:498730741",
+      "scope": "tab",
+      "resourceKeys": []
+    },
+    {
+      "timestamp": "2026-11-09T21:40:20.772Z",
+      "event": "scheduler",
+      "outcome": "released",
+      "principalId": "local",
+      "principalLabel": "local",
+      "peer": "local",
+      "requestId": "cli-1794260360730",
+      "tool": "navigate",
+      "session": "ce-10659c4a-9e18-4ccb-ab91-66cb6aac8620",
+      "laneKey": "tab:0f7e3319-f5c6-4a20-b561-37d27f7825c9:498730741",
+      "scope": "tab",
+      "resourceKeys": []
+    },
+    {
+      "timestamp": "2026-11-09T21:40:20.772Z",
+      "event": "request",
+      "outcome": "hard-timeout",
+      "principalId": "local",
+      "principalLabel": "local",
+      "peer": "local",
+      "requestId": "cli-1794260360730",
+      "tool": "navigate",
+      "session": "ce-10659c4a-9e18-4ccb-ab91-66cb6aac8620",
+      "laneKey": "tab:0f7e3319-f5c6-4a20-b561-37d27f7825c9:498730741",
+      "scope": "tab",
+      "resourceKeys": [],
+      "elapsedMs": 60041
+    }
+  ],
+  "extensionEvents": [
+    {
+      "timestamp": "2026-11-09T21:39:20.628Z",
+      "message": "Received from extension: unknown id=6643",
+      "attribution": "Only temporal proximity is known; extension payload is not logged."
+    },
+    {
+      "timestamp": "2026-11-09T21:39:20.628Z",
+      "message": "Received from extension: unknown id=6644",
+      "attribution": "Only temporal proximity is known; extension payload is not logged."
+    },
+    {
+      "timestamp": "2026-11-09T21:39:20.680Z",
+      "message": "Received from extension: unknown id=6645",
+      "attribution": "Only temporal proximity is known; extension payload is not logged."
+    },
+    {
+      "timestamp": "2026-11-09T21:39:20.683Z",
+      "message": "Received from extension: unknown id=6646",
+      "attribution": "Only temporal proximity is known; extension payload is not logged."
+    },
+    {
+      "timestamp": "2026-11-09T21:39:20.732Z",
+      "message": "Received from extension: unknown id=6647",
+      "attribution": "Only temporal proximity is known; extension payload is not logged."
+    },
+    {
+      "timestamp": "2026-11-09T21:39:20.748Z",
+      "message": "Received from extension: TARGET_EVENT",
+      "attribution": "Only temporal proximity is known; extension payload is not logged."
+    },
+    {
+      "timestamp": "2026-11-09T21:40:20.842Z",
+      "message": "Received from extension: TARGET_EVENT",
+      "attribution": "Only temporal proximity is known; extension payload is not logged."
+    },
+    {
+      "timestamp": "2026-11-09T21:40:20.843Z",
+      "message": "Received from extension: unknown id=6649",
+      "attribution": "Only temporal proximity is known; extension payload is not logged."
+    }
+  ],
+  "observations": [
+    "The native scheduler acquired the owned tab without queue delay.",
+    "The same request reached the native host hard deadline after 60041 milliseconds and released the tab lane.",
+    "An extension TARGET_EVENT was logged after acquisition. Its payload and navigation-completion cause were not logged.",
+    "No claim is made that the extension event identifies the root cause, or that a later passing run resolves this failure."
+  ],
+  "limits": [
+    "No outbound extension request IDs or extension event payloads are present in this native log.",
+    "The trace establishes a post-acquisition native timeout, not its underlying extension/browser cause."
+  ]
+}

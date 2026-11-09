@@ -1,0 +1,56 @@
+{
+  "schema": "worktree-protocol-checks/v1",
+  "created_at": "2026-11-09T23:32:45.780Z",
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+  "protocol_commit": "cf79f45a71fa489934aa97baaa3caee92ccd77eb",
+  "protocol_suite": {
+    "command": "mise x -- bun test /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/",
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "passed": 49,
+    "failed": 0,
+    "expectations": 244,
+    "files": 4,
+    "duration_seconds": 10.2
+  },
+  "typescript": {
+    "command": "mise x -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc --noEmit -p <temporary-scoped-config>",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "configuration": {
+      "extends": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/tsconfig.base.json",
+      "compilerOptions": {
+        "typeRoots": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/@types"
+        ],
+        "paths": {
+          "@crustjs/core": [
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/@crustjs/core/dist/index.d.ts"
+          ],
+          "@crustjs/plugins": [
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/@crustjs/plugins/dist/index.d.ts"
+          ]
+        }
+      },
+      "include": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/write-result.ts",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.ts",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.test.ts",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/types/**/*.d.ts"
+      ]
+    }
+  },
+  "live_smoke": {
+    "event_ref": "workflows/collect-evidence-feedback-01-web/events/review-0029.yaml",
+    "status": "blocked",
+    "verdict_present": false,
+    "delivered_sha256": "f121f99befbc8a3195ad5218895d93ab2b047653cdf02d0ebdd0a1ea43f66ca7",
+    "event_matches_delivery": true
+  },
+  "limits": [
+    "These checks cover workflow protocol changes, not collect-evidence acceptance.",
+    "The historical failed collect-evidence suite was not rerun."
+  ]
+}
