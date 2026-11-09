@@ -1,0 +1,183 @@
+{
+  "ok": false,
+  "summary": {
+    "pass": 7,
+    "warn": 0,
+    "fail": 2
+  },
+  "environment": {
+    "platform": "linux",
+    "runningInWsl": false,
+    "effectiveTarget": "linux",
+    "socketPath": "/tmp/surf.sock",
+    "surfSocketSet": false,
+    "socketOverrideSet": false,
+    "browsers": [
+      "chrome"
+    ]
+  },
+  "manifests": [
+    {
+      "browser": "chrome",
+      "name": "Google Chrome",
+      "path": "/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json",
+      "supported": true,
+      "manifest": {
+        "name": "surf.browser.host",
+        "description": "Surf CLI Native Host",
+        "path": "/home/zenobius/.local/share/surf-cli/host-wrapper.sh",
+        "type": "stdio",
+        "allowed_origins": [
+          "chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/",
+          "chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/",
+          "chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/"
+        ]
+      },
+      "checks": [
+        {
+          "id": "manifest-file",
+          "status": "pass",
+          "message": "Manifest found: /home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json",
+          "path": "/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json",
+          "fsPath": "/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json",
+          "browser": "chrome"
+        },
+        {
+          "id": "manifest-json",
+          "status": "pass",
+          "message": "Manifest JSON is valid",
+          "browser": "chrome"
+        },
+        {
+          "id": "manifest-name",
+          "status": "pass",
+          "message": "Manifest name is surf.browser.host",
+          "browser": "chrome"
+        },
+        {
+          "id": "manifest-type",
+          "status": "pass",
+          "message": "Manifest type is stdio",
+          "browser": "chrome"
+        },
+        {
+          "id": "manifest-origins",
+          "status": "pass",
+          "message": "Manifest has 3 Chrome extension origins",
+          "origins": [
+            "chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/",
+            "chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/",
+            "chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/"
+          ],
+          "browser": "chrome"
+        },
+        {
+          "id": "manifest-path",
+          "status": "pass",
+          "message": "Manifest path exists: /home/zenobius/.local/share/surf-cli/host-wrapper.sh",
+          "path": "/home/zenobius/.local/share/surf-cli/host-wrapper.sh",
+          "fsPath": "/home/zenobius/.local/share/surf-cli/host-wrapper.sh",
+          "browser": "chrome"
+        },
+        {
+          "id": "manifest-path-executable",
+          "status": "pass",
+          "message": "Manifest wrapper is executable",
+          "browser": "chrome"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "id": "socket-file",
+      "status": "fail",
+      "message": "Socket path does not exist: /tmp/surf.sock",
+      "path": "/tmp/surf.sock"
+    },
+    {
+      "id": "socket-connect",
+      "status": "fail",
+      "message": "Could not connect to socket: connect ENOENT /tmp/surf.sock",
+      "code": "ENOENT"
+    },
+    {
+      "id": "manifest-file",
+      "status": "pass",
+      "message": "Manifest found: /home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json",
+      "path": "/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json",
+      "fsPath": "/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json",
+      "browser": "chrome"
+    },
+    {
+      "id": "manifest-json",
+      "status": "pass",
+      "message": "Manifest JSON is valid",
+      "browser": "chrome"
+    },
+    {
+      "id": "manifest-name",
+      "status": "pass",
+      "message": "Manifest name is surf.browser.host",
+      "browser": "chrome"
+    },
+    {
+      "id": "manifest-type",
+      "status": "pass",
+      "message": "Manifest type is stdio",
+      "browser": "chrome"
+    },
+    {
+      "id": "manifest-origins",
+      "status": "pass",
+      "message": "Manifest has 3 Chrome extension origins",
+      "origins": [
+        "chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/",
+        "chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/",
+        "chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/"
+      ],
+      "browser": "chrome"
+    },
+    {
+      "id": "manifest-path",
+      "status": "pass",
+      "message": "Manifest path exists: /home/zenobius/.local/share/surf-cli/host-wrapper.sh",
+      "path": "/home/zenobius/.local/share/surf-cli/host-wrapper.sh",
+      "fsPath": "/home/zenobius/.local/share/surf-cli/host-wrapper.sh",
+      "browser": "chrome"
+    },
+    {
+      "id": "manifest-path-executable",
+      "status": "pass",
+      "message": "Manifest wrapper is executable",
+      "browser": "chrome"
+    },
+    {
+      "id": "platform",
+      "status": "info",
+      "message": "Platform: linux"
+    },
+    {
+      "id": "target",
+      "status": "info",
+      "message": "Install target: linux"
+    },
+    {
+      "id": "socket-path",
+      "status": "info",
+      "message": "Socket path: /tmp/surf.sock",
+      "path": "/tmp/surf.sock"
+    }
+  ],
+  "recommendations": [
+    "Make sure the browser is running with the Surf extension enabled, then restart the browser after install changes.",
+    "Open chrome://extensions and inspect Surf's service worker console. In Surf's Details > Extension options, enable Debug Mode, reproduce the failure, then disable Debug Mode when finished."
+  ]
+}
+/var/home/zenobius/.local/share/mise/installs/npm-surf-cli/2.22.0/node_modules/.mise/surf-cli@2.22.0_typebox@1.3.36/node_modules/surf-cli/dist
+Error: Socket connect failed: Socket not found.
+Attempted socket: /tmp/surf.sock
+Make sure the browser is running with the Surf extension enabled, then restart the browser after native host install changes.
+Run `surf doctor --browser all` for detailed native host diagnostics.
+SURF_SOCKET is set; make sure the native host and CLI use the same value.
+On WSL2 with Windows Chrome, run `surf install <extension-id>` from WSL and restart Windows Chrome.
