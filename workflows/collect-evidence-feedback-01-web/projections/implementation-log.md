@@ -1,12 +1,12 @@
 ---
+latest_receipt: fix-complete-0021
 title: Collect-evidence web implementation log
 type: Projection
-latest_receipt: fix-0020
 ---
 
 # Current fix-0020
 
-FIXED. Waiting for fresh independent review. Parent completion is pending.
+FIXED. Parent completion is recorded. A fresh independent review is required.
 
 Source commit 12b6345ac32f4ae30b078e5344fb5bae7a1ee244; tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. Branch feature/collect-evidence-feedback-01-web.
 
@@ -236,3 +236,12 @@ Review publication: `3dac61da`. All earlier implementation, review and fix recor
 ## Surf identity fix attempt 2
 
 The user requested a fresh independent fix for SPEC-R3-001. [fix-start-0019](../events/fix-start-0019.yaml) consumes [review-0017](../events/review-0017.yaml) at source `3d1b282520a74db5409457f83ed0f766670b86cb`. Public IDs and their accepted grammar must not change. STD-R3-001 remains advisory and unselected. No new fix result or review verdict exists yet.
+
+## Parent Surf identity fix completion
+
+[fix-complete-0021](../events/fix-complete-0021.yaml) validates [fix-0020](../events/fix-0020.yaml) at source 12b6345ac32f4ae30b078e5344fb5bae7a1ee244. The parent confirmed exact scope, source ancestry, clean source, the immutable draft, selected findings and retained review hash. Both retained sealed driver runs validated. Their actual PNGs show Case approved-space and Submitted.
+
+The parent ran a separate real Surf workflow from /tmp with unchanged case ID approved-space. init, compile, run and validate exited 0. The run returned PASS and sealed records with the original ID. Its actual native PNG shows Parent Surf identity proof and approved-space. The owned server stopped. Sealed read-only temporary directories first refused removal; the parent made only its guarded temporary tree owner-writable and removed it.
+
+Base artifacts were committed as 41cf8b51. The result is acknowledged and only fixer pane w73:p5 is closed. Workspace w73 and the source worktree remain open. The inspector requires Review changed source. No current review verdict exists. The earlier Playwright suite failure remains unexplained and recorded. STD-R3-001 remains advisory. The canonical ticket stays implemented. No remote Git operation, merge, push, tracker change or ticket completion ran.
+

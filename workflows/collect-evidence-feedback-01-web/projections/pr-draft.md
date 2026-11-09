@@ -1,59 +1,30 @@
 ---
+latest_receipt: fix-complete-0021
 title: Collect-evidence web PR draft
 type: Projection
-latest_receipt: fix-0020
 ---
-
-# Current fix-0020
-
-FIXED. Waiting for fresh independent review. Parent completion is pending.
-
-Source commit 12b6345ac32f4ae30b078e5344fb5bae7a1ee244; tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. Branch feature/collect-evidence-feedback-01-web.
-
-## Fix
-
-Encoded Surf-internal step identities as UTF-8 hex under the existing fixed prefixes. This makes substitutions safe and keeps a-b, a.b and a_b distinct. Public IDs and accepted grammar are unchanged.
-
-Changed files:
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/drivers/surf-cli.md
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/surf-driver.ts
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts
-
-## Current validation
-
-Final scoped suite: 14 passed, 0 failed, 116 expectations. Both real drivers ran. Scoped TypeScript passed. Real owned workflows passed approved-space, a-b, a.b and a_b with stable public IDs, native screenshots and matching session lists before/after. Transferred sealed evidence validated. Source commit hooks passed.
-
-An earlier scoped suite attempt had one Playwright failure in the existing pass case. A targeted diagnostic copy then passed without source changes. The final unchanged suite passed 14/14. The original failure cause is unknown; it is not suppressed. The first post-fix regression used the wrong native-log path; corrected runs/ to native/runs/. TypeScript LSP was unavailable; the scoped compiler used existing base-checkout dependencies. No installation, remote Git operation, stash operation, merge, push, formal review or ticket completion occurred. No existing changelog was present, as recorded in the prior draft. STD-R3-001 remains advisory and untouched, including cleanupRow hooks.
-
-## Findings, verdict and merge
-
-Resolved: SPEC-R3-001. Prior resolved: STD-001, SPEC-001, SPEC-002, SPEC-003. Unresolved: STD-R3-001, P3 advisory, unchanged. No reviewer verdict covers the new source. review-0017 FAILURE is historical and applies only to 3d1b282520a74db5409457f83ed0f766670b86cb. No merge or push. No ticket completion.
-
-[Immutable current draft](../artifacts/snapshots/pr-draft-fix-0020.md). [Current evidence](../artifacts/evidence/fix-0020/index.md). [Validation records](../artifacts/evidence/fix-0020/validation.json). [Fix result](../events/fix-0020.yaml). [Fix start](../events/fix-start-0019.yaml). [Consumed review](../events/review-0017.yaml). [Review artifact](../artifacts/reviews/review-review-0017.md).
-
-## Retained projection before fix-0020 (historical)
-
-All status and source statements below are historical. The current fix above supersedes them. Earlier summaries, changed paths, checks, review history and supporting links remain intact.
 
 # Preserve Surf and Playwright in collect-evidence
 
-REVIEW_FAILED. One blocking Spec finding remains on the current clean source.
+FIXED. A fresh independent review is required.
 
-Source commit 3d1b282520a74db5409457f83ed0f766670b86cb; tree 0c68cbc0d31e344ea2071352e81ca33c13c31b9f. Branch feature/collect-evidence-feedback-01-web.
+Ticket: tracker/tickets/collect-evidence-feedback-01-web.md. Branch: feature/collect-evidence-feedback-01-web.
 
-[Immutable fix draft](../artifacts/snapshots/pr-draft-fix-0014.md) records the changed files, exact fixes, checks and limits. [Prior implementation draft](../artifacts/snapshots/pr-draft-implementation-0005.md) preserves the original cutover. [New evidence](../artifacts/evidence/fix-0014/index.md) preserves both real drivers.
+Source commit: 12b6345ac32f4ae30b078e5344fb5bae7a1ee244. Tree: 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6.
 
 ## Problem
 
-The browser-only collector lacked common versioned evidence records and storage rules. The cutover must preserve both web drivers. Its review found defects in plan validation, confirmation approval, watched-tree exclusion and missing-media handling.
+The browser-only collector lacked common versioned records and storage rules. The cutover must preserve both existing web drivers.
 
 ## Implementation
 
-collect-evidence provides the canonical mise Bun CrustJS commands, typed browser plans, versioned records, routed immutable evidence, verdicts, read-only reports and generated comments. Surf and Playwright remain active. The original cutover and its caller migration are recorded in the immutable implementation draft.
+collect-evidence provides mise Bun CrustJS commands, typed browser plans, preconditions, approval checks, attended operation, routed immutable evidence, verdicts, read-only reports and generated comments. Surf and Playwright remain available. Active callers move to the new skill in the same cutover.
+
+Surf-internal step identities now use UTF-8 hex under fixed prefixes. Public case and step IDs and their accepted grammar remain unchanged. The IDs a-b, a.b and a_b stay distinct.
 
 ## Changed files
 
-This list covers the original cutover and the selected fix. It includes old and new paths where a rename occurred.
+This list covers the original cutover and both fixes. It includes old and new paths for renames.
 
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/writing-skills/references/skill-anatomy.md`
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/writing-skills/references/skill-checklist.md`
@@ -120,59 +91,59 @@ This list covers the original cutover and the selected fix. It includes old and 
 - `mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/SKILL.md`
 - `mise/conf.d/devtools-agent/bundles/developer/types/versioned-imports.d.ts`
 
-## Fixes and validation
+## Fixes
 
 - **STD-001:** loadPlan calls the same checkPlan used by finalization and record reading. Case IDs, precondition IDs and declared references fail before driver execution. Authoring-only TODO and human-step checks remain in the loader.
 - **SPEC-001:** Both drivers guard Enter, Space, Spacebar and literal-space activation before dispatch. The real public workflow checks BLOCKED and zero unapproved HTTP operations while preserving approved Space activation.
 - **SPEC-002:** The watched-tree guard recognizes only exact .. or a parent-directory separator prefix as traversal. A repository descendant named ..captures is rejected.
 - **SPEC-003:** Surf retains expected references for successful screenshot commands. The public collector checks those files after saving native logs and rejects missing media before finalization.
+- **SPEC-R3-001:** Encoded Surf-internal step identities as UTF-8 hex under the existing fixed prefixes. This makes substitutions safe and keeps a-b, a.b and a_b distinct. Public IDs and accepted grammar are unchanged.
 
-Final public suite: 14 passed, 0 failed, 93 expectations. Scoped TypeScript passed. Both real drivers blocked unapproved Space and allowed approved Space, with one approved HTTP operation per driver. The native screenshots were inspected. Transferred sealed runs validated.
+## Validation
 
-## Review history
+- Final scoped suite: 14 passed, 0 failed, 116 expectations. Both real drivers ran. Scoped TypeScript passed.
+- Both owned driver workflows passed approved-space, a-b, a.b and a_b. Public IDs stayed unchanged. Session lists matched before and after collection. The owned endpoint recorded one approved submission per driver.
+- The parent validated both retained sealed runs. Actual native PNGs show Case approved-space and Submitted. Surf images are 1984x1068. Playwright images are 1280x720.
+- The parent ran init, compile, run and validate from /tmp with an unchanged approved-space case. All commands exited 0. The run returned PASS and sealed records with the original public ID. The actual PNG shows Parent Surf identity proof and approved-space. The owned server stopped and the temporary fixture was removed.
+- The parent validated transport identity, receipt equality, source ancestry, clean source, exact three-file fix scope, the canonical-ticket commit title and the retained review hash. Scoped publication hooks passed.
 
-Implementation attempt 1 was blocked. Attempt 2 completed at 0acff3b4c45705336028263a0b20d41dbc1aee63. Review attempt 1 failed before launch. Review attempt 2 recorded FAILURE for that old source. The verdict is now historical and stale, not current SUCCESS.
+[Current evidence](../artifacts/evidence/fix-0020/index.md) records the native runs. [Validation history](../artifacts/evidence/fix-0020/validation.json) preserves earlier failures. [Parent completion](../events/fix-complete-0021.yaml) records independent checks.
 
-- [First review start](../events/review-start-0008.yaml).
-- [Review launch failure](../events/review-aborted-0009.yaml).
-- [Second review start](../events/review-start-0010.yaml).
-- [Review result](../events/review-0011.yaml).
-- [Immutable full review](../artifacts/reviews/review-review-0011.md).
-- [Parent review completion](../events/review-complete-0012.yaml).
-- [Fix authorization](../events/fix-start-0013.yaml).
-- [Fix result](../events/fix-0014.yaml).
+## Review and implementation history
 
-Review attempt 3 checked the full source at `3d1b282520a74db5409457f83ed0f766670b86cb`. [review-0017](../events/review-0017.yaml) confirms the four prior blocking fixes. It records FAILURE for one remaining blocking Spec finding, SPEC-R3-001, and retains one advisory, STD-R3-001. [The immutable review](../artifacts/reviews/review-review-0017.md) contains both axis reports. [review-complete-0018](../events/review-complete-0018.yaml) records parent validation, publication, acknowledgement and closure.
+| Record | Source | Outcome |
+|---|---|---|
+| [implementation-0002](../events/implementation-0002.yaml) | Initial source | Blocked because required Surf was unavailable. |
+| [implementation-0005](../events/implementation-0005.yaml) | 0acff3b4 | Implemented the cutover. |
+| [review-aborted-0009](../events/review-aborted-0009.yaml) | 0acff3b4 | Launch failed before review. No verdict. |
+| [review-0011](../events/review-0011.yaml) | 0acff3b4 | FAILURE. Four blocking findings and one advisory. |
+| [fix-0014](../events/fix-0014.yaml) | 3d1b2825 | Corrected the four selected blockers. |
+| [review-0017](../events/review-0017.yaml) | 3d1b2825 | Confirmed the earlier fixes. FAILURE for SPEC-R3-001. STD-R3-001 remained advisory. |
+| [fix-0020](../events/fix-0020.yaml) | 12b6345a | Corrected SPEC-R3-001. Parent validation is complete. |
 
-## Resolved findings
+[First immutable review](../artifacts/reviews/review-review-0011.md) and [latest consumed review](../artifacts/reviews/review-review-0017.md) retain both review axes. [Original implementation draft](../artifacts/snapshots/pr-draft-implementation-0005.md), [first fix draft](../artifacts/snapshots/pr-draft-fix-0014.md) and [current fix draft](../artifacts/snapshots/pr-draft-fix-0020.md) retain each source snapshot and its checks.
 
-Review-0017 confirms STD-001, SPEC-001, SPEC-002, SPEC-003 corrected at source `3d1b282520a74db5409457f83ed0f766670b86cb`. SPEC-R3-001 is a distinct remaining blocker.
+## Current verdict and remaining work
 
-## Latest reviewer verdict
+No review verdict covers 12b6345a. The two FAILURE verdicts apply only to their recorded older commits. The inspector requires Review changed source. No new review ran in this fix phase.
 
-FAILURE for source `3d1b282520a74db5409457f83ed0f766670b86cb`, recorded in [review-0017](../events/review-0017.yaml). The earlier review remains historical for its old source.
+STD-001, SPEC-001, SPEC-002, SPEC-003 and SPEC-R3-001 are corrected. STD-R3-001 remains an unselected P3 advisory. Its cleanupRow hooks are unchanged.
 
-## Remaining work and ownership
+## Limits and open questions
 
-SPEC-R3-001 blocks completion. STD-R3-001 is advisory and continues the prior cleanupRow advisory. The four earlier blocking fixes passed this review. The post-fix review produced FAILURE. No source fix, remote Git operation, merge, push or ticket completion ran in this review phase. The clean source worktree and workspace w73 remain open. The acknowledged fixer pane w73:p3 is closed.
+- One earlier scoped-suite attempt failed in the existing Playwright pass case. A diagnostic copy and the final unchanged suite passed. The cause remains unknown. The earlier failure remains in the evidence.
+- The first post-fix regression used runs/ instead of native/runs/. Only that regression log path was corrected.
+- TypeScript LSP was unavailable. The compiler used existing base-checkout dependencies. No dependency installation ran.
+- The cause of the earlier owned-preview tab invalidation remains unknown. Later owned-preview and borrowed-resource checks passed.
+- The tracker graph labels implemented as COMPLETED despite the canonical implemented state. This out-of-scope presentation issue remains recorded.
 
-- The cause of the initial owned-preview tab invalidation is unknown; fresh owned-preview and borrowed-resource checks passed.
-- The tracker graph labels implemented as COMPLETED despite the canonical implemented state; this out-of-scope presentation mismatch was reported.
+## Publication and ownership
 
+Source fix: 12b6345ac32f4ae30b078e5344fb5bae7a1ee244. Base fix records, draft and evidence: 41cf8b51. [fix-complete-0021](../events/fix-complete-0021.yaml) records parent completion. The typed result is acknowledged. Only fixer pane w73:p5 was closed. Workspace w73 and the source worktree remain available.
 
-## Merge and publication status
+The canonical ticket remains implemented. No tracker mutation, remote Git operation, merge, push or ticket completion ran. Unrelated changes and the old hk pending stash were left unchanged.
 
-The source remains `3d1b282520a74db5409457f83ed0f766670b86cb` on the feature branch. Fix records were committed as `ace3f774`; the new review and canonical verdict comment were committed as `3dac61da`. No merge, push or ticket completion ran. The source worktree and workspace remain available.
-
-## Limits
-
-- The prior STD-002 advisory remains as STD-R3-001. No cleanup change ran.
-- This review produced FAILURE. No source fix, merge, push or ticket completion ran in the review phase.
-- TypeScript LSP initialization failed because the source worktree has no installed TypeScript. References used scoped source search; final compiler check used existing base-checkout dependencies.
-- The first smoke script expected exit 1 for a BLOCKED/PASS run; the CLI correctly returned 3. Corrected the throwaway expectation; retained the first log under /tmp/ce-fix-0014-smoke-mZ4FQp.
-- A hyphenated test fixture case ID exposed an existing Surf variable substitution error. The fixture now uses an alphanumeric case ID; no unrelated production fix was made.
-
-## Supporting records
+## Supporting receipts
 
 - [start-0001](../events/start-0001.yaml).
 - [implementation-0002](../events/implementation-0002.yaml).
@@ -188,27 +159,11 @@ The source remains `3d1b282520a74db5409457f83ed0f766670b86cb` on the feature bra
 - [review-complete-0012](../events/review-complete-0012.yaml).
 - [fix-start-0013](../events/fix-start-0013.yaml).
 - [fix-0014](../events/fix-0014.yaml).
-- [Original implementation draft](../artifacts/snapshots/pr-draft-implementation-0005.md).
-- [Immutable fix draft](../artifacts/snapshots/pr-draft-fix-0014.md).
-- [Fix evidence](../artifacts/evidence/fix-0014/index.md).
-- [Fixer launch](../artifacts/snapshots/launch-fix-start-0013.json).
+- [fix-complete-0015](../events/fix-complete-0015.yaml).
+- [review-start-0016](../events/review-start-0016.yaml).
+- [review-0017](../events/review-0017.yaml).
+- [review-complete-0018](../events/review-complete-0018.yaml).
+- [fix-start-0019](../events/fix-start-0019.yaml).
+- [fix-0020](../events/fix-0020.yaml).
+- [fix-complete-0021](../events/fix-complete-0021.yaml).
 
-
-## Parent fix completion
-
-[fix-complete-0015](../events/fix-complete-0015.yaml) records independent receipt, source, scope, evidence and publication validation. The parent accepted the external ..captures workspace, rejected the repository descendant before file creation, and removed the temporary fixture. Both sealed driver runs passed validation; their actual native PNGs show Submitted once. The acknowledged fixer pane `w73:p3` is closed. Workspace `w73` and the clean source worktree remain available. A fresh independent review is pending.
-
-
-## Post-fix independent review
-
-The user requested a fresh review. [review-start-0016](../events/review-start-0016.yaml) freezes source commit `3d1b282520a74db5409457f83ed0f766670b86cb` and tree `0c68cbc0d31e344ea2071352e81ca33c13c31b9f`. The full source comparison uses master at `4a66d0606604299d82d1bd5149c70828b9eef726`, not only the latest fix delta. No new verdict exists. Source changes are not authorized.
-
-
-## Post-fix review completion
-
-The fresh suite passed 14 tests and 93 expectations. The focused compile proof accepted a hyphenated case ID and emitted the affected Surf keys. The reported native failure was not rerun. The parent validated the authoritative receipt, immutable artifact, exact clean source, canonical comment and existing sealed Surf run. Reviewer pane `w73:p4` is acknowledged and closed. Workspace `w73` remains open. No source change ran.
-
-
-## Surf identity fix attempt 2
-
-The user requested a fresh independent fix for SPEC-R3-001. [fix-start-0019](../events/fix-start-0019.yaml) consumes [review-0017](../events/review-0017.yaml) at source `3d1b282520a74db5409457f83ed0f766670b86cb`. Public IDs and their accepted grammar must not change. STD-R3-001 remains advisory and unselected. No new fix result or review verdict exists yet.
