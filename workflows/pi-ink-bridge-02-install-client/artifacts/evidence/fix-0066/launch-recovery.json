@@ -1,0 +1,36 @@
+{
+  "created_at": "2026-11-09T02:55:33.237Z",
+  "phase_start": "workflows/pi-ink-bridge-02-install-client/events/fix-start-0065.json",
+  "run_id": "f30e0657-c6dd-4da7-9dd9-3790077ba88b",
+  "operation_id": "pi-ink-bridge-02-fix-0066",
+  "context": "/var/home/zenobius/.local/state/result-delivery/runs/f30e0657-c6dd-4da7-9dd9-3790077ba88b/context.json",
+  "target": "/var/home/zenobius/.local/state/result-delivery/runs/pi-ink-fix-0066-0pSV04/result.json",
+  "pane": "w6X:p6",
+  "spawn_error": "agent_pane_busy: agent target pane w6X:p6 is not an available shell",
+  "agent_get": "agent_not_found",
+  "observed_pane_process": {
+    "shell": "/usr/bin/zsh",
+    "shell_pid": 2933608,
+    "foreground_processes": [
+      "zsh"
+    ],
+    "prompt_ready": true
+  },
+  "confirmed_fixer_sessions_started": 0,
+  "source": {
+    "commit": "e7f90b0b5b6233c3fb21b33b3924633115d32d6c",
+    "tree": "c1526ae02dc828ab1a75ac479e7a4c3b782edc21",
+    "dirty": false
+  },
+  "inspector": {
+    "action": "fix",
+    "mode": "takeover",
+    "parentReceipt": "workflows/pi-ink-bridge-02-install-client/events/fix-start-0065.json",
+    "reason": "The findings and fix handoff identify the same source. Preserve dirty work and obtain scoped takeover approval before continuing.",
+    "requiredApproval": true
+  },
+  "recovery_plan": "After scoped approval, start the FIRST fixer process in the already allocated fresh pane using existing context/run identity. Do not create a second pane or duplicate agent. Native Herdr completion wait is required because failed router spawn removed its transient muxer run record.",
+  "approval": "pending",
+  "source_changes": 0,
+  "device_actions": 0
+}

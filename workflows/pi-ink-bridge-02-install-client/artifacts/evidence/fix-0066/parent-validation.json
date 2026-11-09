@@ -1,0 +1,119 @@
+{
+  "created_at": "2026-11-09T03:24:20.002Z",
+  "authoritative_result": "workflows/pi-ink-bridge-02-install-client/events/fix-0066.yaml",
+  "typed_result": "file:///var/home/zenobius/.local/state/result-delivery/runs/pi-ink-fix-0066-0pSV04/result.json",
+  "context": "/var/home/zenobius/.local/state/result-delivery/runs/f30e0657-c6dd-4da7-9dd9-3790077ba88b/context.json",
+  "canonical_payload_sha256": "e96f1b61f69736552ffa47fd93facefa8ea49db7bb85b493cce416508d67384d",
+  "installed_delivery_cli_verified": true,
+  "authoritative_yaml_matches_transport": true,
+  "source": {
+    "commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+    "tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+    "dirty": false
+  },
+  "source_scope": {
+    "command": "git diff --name-only e7f90b0b5b6233c3fb21b33b3924633115d32d6c..b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+    "files": [
+      "README.md",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh",
+      "mise/conf.d/devtools-omp/extensions/image-annotator/test/production-install.test.ts"
+    ],
+    "unexpected_files": []
+  },
+  "reviewed_delta": "Read complete source changes for the installer and tests, plus README delta through mq. Both native guards precede extraction. Three production diagnostic assertions are deleted; controlled firmware and new dependency behavior coverage remain.",
+  "validation_results": [
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec bun@1.4.3 -- bun test test/production-install.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "status": "passed",
+      "exit_code": 0,
+      "tests_passed": 8,
+      "tests_failed": 0,
+      "assertions": 31
+    },
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec bun@1.4.3 -- bun run typecheck",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "command": "sh -n tablet-client/production-install.sh",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "scenario": "Independent host-only production shell smoke",
+      "status": "passed",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066/host-smoke.json",
+      "outcome": "Both libraries absent/directory: exit 1, no extraction, no client execution. Both regular: exit 0, extraction and client sentinel reached. Five temporary fixtures removed."
+    },
+    {
+      "scenario": "Failing-before review reproductions",
+      "status": "accepted-evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0063.md",
+      "rerun": false
+    },
+    {
+      "scenario": "Normal source commit hooks",
+      "status": "passed",
+      "outcome": "Both commits completed with hooks enabled; no stash operations requested."
+    },
+    {
+      "scenario": "Generated Report Markdown validation",
+      "command": "MISE_AUTO_INSTALL=0 mise exec -- mq --allow-http-import -I raw -F json 'import \"github.com/harehare/okf.mq\" | okf::okf_parse(.) | okf::okf_validate(.)' <pr-draft, implementation-log, fix snapshot>",
+      "status": "passed",
+      "errors": [
+        [],
+        [],
+        []
+      ],
+      "bundle_validation": "Not applicable: workflow reports are not an OKF bundle."
+    }
+  ],
+  "smoke_evidence": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066/host-smoke.json",
+  "smoke_cases": {
+    "missing_or_directory_rejections": 4,
+    "rejection_exit": 1,
+    "negative_extraction": false,
+    "negative_client_execution": false,
+    "regular_files_continuation": 1,
+    "positive_exit": 0,
+    "positive_extraction": true,
+    "positive_client_sentinel": true,
+    "temporary_fixtures_removed": true
+  },
+  "generated_reports": {
+    "status": "passed",
+    "errors": [
+      [],
+      [],
+      []
+    ]
+  },
+  "process_signal": {
+    "agent_status": "done",
+    "completion_seq": 481,
+    "pane": "w6X:p6",
+    "session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-09T03-09-53-581Z_01a1be48-a22d-727d-bc74-02cb78145838.jsonl"
+  },
+  "pane_close": {
+    "pane": "w6X:p6",
+    "result": "ok",
+    "workspace_retained": true
+  },
+  "recovery_authorization": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066/launch-recovery-approval.json",
+  "current_inspector": {
+    "history_valid": true,
+    "action": "fix",
+    "mode": "reconcile",
+    "parent": "workflows/pi-ink-bridge-02-install-client/events/fix-0066.yaml"
+  },
+  "tests_or_smoke_repeated_by_parent": false,
+  "device_actions": 0,
+  "deployment_changes": 0,
+  "review_started": false,
+  "merged": false,
+  "pushed": false
+}

@@ -1,0 +1,232 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "fix-complete-0067",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "fix",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "fix-0066",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+  "source_tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+  "created_at": "2026-11-09T03:24:20.002Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066"
+  },
+  "status": "completed",
+  "consumed_review_receipt_ids": [
+    "review-0063"
+  ],
+  "resolved_finding_ids": [
+    "STD-001",
+    "SPEC-001"
+  ],
+  "unresolved_finding_ids": [],
+  "changed_files": [
+    "README.md",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh",
+    "mise/conf.d/devtools-omp/extensions/image-annotator/test/production-install.test.ts"
+  ],
+  "source_commits": [
+    {
+      "commit": "9c8209c1a5a066fa57eecdb98613e1188c2a5a50",
+      "finding_ids": [
+        "STD-001"
+      ],
+      "title": "test(ink): drop prose checks tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+      "finding_ids": [
+        "SPEC-001"
+      ],
+      "title": "fix(ink): check native libs tracker/tickets/pi-ink-bridge-02-install-client.md"
+    }
+  ],
+  "snapshot": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-fix-0066.md",
+  "projection_refs": [
+    "workflows/pi-ink-bridge-02-install-client/manifest.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml",
+    "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md",
+    "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+  ],
+  "validation_results": [
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec bun@1.4.3 -- bun test test/production-install.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "status": "passed",
+      "exit_code": 0,
+      "tests_passed": 8,
+      "tests_failed": 0,
+      "assertions": 31
+    },
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec bun@1.4.3 -- bun run typecheck",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "command": "sh -n tablet-client/production-install.sh",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "scenario": "Independent host-only production shell smoke",
+      "status": "passed",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066/host-smoke.json",
+      "outcome": "Both libraries absent/directory: exit 1, no extraction, no client execution. Both regular: exit 0, extraction and client sentinel reached. Five temporary fixtures removed."
+    },
+    {
+      "scenario": "Failing-before review reproductions",
+      "status": "accepted-evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0063.md",
+      "rerun": false
+    },
+    {
+      "scenario": "Normal source commit hooks",
+      "status": "passed",
+      "outcome": "Both commits completed with hooks enabled; no stash operations requested."
+    },
+    {
+      "scenario": "Generated Report Markdown validation",
+      "command": "MISE_AUTO_INSTALL=0 mise exec -- mq --allow-http-import -I raw -F json 'import \"github.com/harehare/okf.mq\" | okf::okf_parse(.) | okf::okf_validate(.)' <pr-draft, implementation-log, fix snapshot>",
+      "status": "passed",
+      "errors": [
+        [],
+        [],
+        []
+      ],
+      "bundle_validation": "Not applicable: workflow reports are not an OKF bundle."
+    }
+  ],
+  "source_clean": true,
+  "prior_review_stale": true,
+  "recovery": {
+    "mode": "reconcile",
+    "reason": "Canonical inspector selects fix/reconcile. Authoritative result, typed delivery, exact committed source, scoped changes, validations, snapshot, projections and completed fixer were verified; do not repeat child work.",
+    "authorization_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066/launch-recovery-approval.json",
+    "launch_recovery": "Approved takeover of first failed shell-readiness launch; one actual fresh fixer process. Native startup timed out but the agent was confirmed working. Native Herdr completion481 verified; pane closed."
+  },
+  "fixer": {
+    "agent": "omp",
+    "pane": "w6X:p6",
+    "session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-09T03-09-53-581Z_01a1be48-a22d-727d-bc74-02cb78145838.jsonl",
+    "completion_seq": 481,
+    "pane_close": "ok",
+    "workspace_retained": true
+  },
+  "handoff": {
+    "path": "/tmp/pi-ink-fix-0065-ZRO8qh/recovery-handoff.txt",
+    "temporary": true,
+    "authoritative": false,
+    "cleanup": "Remove owned temporary handoffs after publication and acknowledgement."
+  },
+  "delivery": {
+    "run_id": "f30e0657-c6dd-4da7-9dd9-3790077ba88b",
+    "operation_id": "pi-ink-bridge-02-fix-0066",
+    "context": "/var/home/zenobius/.local/state/result-delivery/runs/f30e0657-c6dd-4da7-9dd9-3790077ba88b/context.json",
+    "target": "/var/home/zenobius/.local/state/result-delivery/runs/pi-ink-fix-0066-0pSV04/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/pi-ink-fix-0066-0pSV04/result.json",
+    "canonical_payload_sha256": "e96f1b61f69736552ffa47fd93facefa8ea49db7bb85b493cce416508d67384d",
+    "authoritative_matches": true,
+    "acknowledgement_required_after_publication": true,
+    "acknowledgement_ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/pi-ink-fix-0066-0pSV04/result.json.ack.json"
+  },
+  "publication_requirement": "Commit base workflow records locally, then acknowledge verified delivery. Source fixes already committed. Do not push or mutate source again.",
+  "device_actions": 0,
+  "deployment_changes": 0,
+  "host_service_changes": 0,
+  "arm64_rebuilds": 0,
+  "review_started": false,
+  "merged": false,
+  "pushed": false,
+  "limits": [
+    "Source-only fix; no device access, SSH, tablet changes, native launch, restart or reboot.",
+    "No service or port47840 contact, pairing, private-record read, deployment, ARM64 ZIP/RCC rebuild, or runtime refresh.",
+    "Bounded host sentinel proves consumer preflight reachability, not native ARM64 installation.",
+    "Installed service/payload unchanged; device acceptance remains historical.",
+    "No merge, rebase or push. No base checkout commit, tracker mutation, review launch, parent completion, acknowledgement or pane closure."
+  ],
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/fix-start-0065.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/fix-0066.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/review-0063.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0063.md"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-fix-0066.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066/validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066/host-smoke.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066/parent-validation.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066/launch-recovery-approval.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/fix-complete-0067.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-02-install-client/projections/implementation-log.md"
+    }
+  ]
+}

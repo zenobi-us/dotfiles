@@ -1,0 +1,85 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "fix-start-0065",
+  "workflow_id": "pi-ink-bridge-02-install-client",
+  "phase": "fix",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": "review-complete-0064",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "source_branch": "feature/pi-ink-bridge-02-install-client",
+  "base_branch": "master",
+  "source_commit": "e7f90b0b5b6233c3fb21b33b3924633115d32d6c",
+  "source_tree": "c1526ae02dc828ab1a75ac479e7a4c3b782edc21",
+  "created_at": "2026-11-09T02:49:36.756Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-07T12-39-17-120Z_01a1b605-3580-7197-82cf-62beefc41ca3.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-02-install-client",
+    "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-02-install-client.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-02-install-client"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066"
+  },
+  "status": "started",
+  "consumed_review_receipt_ids": [
+    "review-0063"
+  ],
+  "selected_finding_ids": [
+    "STD-001",
+    "SPEC-001"
+  ],
+  "authorization": "User explicitly requested fix pi-ink-bridge-02-install-client. Scope is these two source findings, behavioral validation, required docs and workflow records only. No device or service/deployment actions.",
+  "recovery": {
+    "mode": "begin",
+    "reason": "Canonical inspector selects fix/begin from valid current FAILURE at e7f90b0b/c1526ae0; same source branch is clean. No live target agents or matching goal reservations. Direct blocker01 is completed.",
+    "ownership": "Same parent; all implementation and review sessions completed/closed. Start a new independent fixer in existing worktree."
+  },
+  "delivery_assignment": {
+    "schema": "worktree-receipt/v1",
+    "operation_id": "pi-ink-bridge-02-fix-0066",
+    "target": "/var/home/zenobius/.local/state/result-delivery/runs/pi-ink-fix-0066-0pSV04/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/pi-ink-fix-0066-0pSV04/result.json",
+    "canonical_realpath_parent": true
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/review-complete-0064.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/review-0063.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0063.md"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/snapshots/pr-draft-review-0064.md"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-02-install-client/events/fix-start-0065.json"
+    }
+  ]
+}

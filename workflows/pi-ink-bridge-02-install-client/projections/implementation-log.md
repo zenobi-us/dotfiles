@@ -1,7 +1,32 @@
 ---
-title: Pi Ink client phase history 0064
+title: Pi Ink implementation log through fix 0066
 type: Report
 ---
+
+# Fix 0066 implementation log
+
+Completed source-only fixes for STD-001 and SPEC-001 from review-0063.
+
+## Source commits
+
+- STD-001: `9c8209c1a5a066fa57eecdb98613e1188c2a5a50` removes only production-prose assertions.
+- SPEC-001: `b6f4c7af4da729d1dfb175855247b74dc3d106d3` adds dependency guards, five consumer-boundary cases, and README guidance. Final tree: `2c63ba1d51dd94de767f0d688719f938a0a97031`.
+
+## Changed files and validation
+
+Production installer, production-install tests, and README only. Eight Bun tests passed with 31 assertions; TypeScript and shell syntax passed. A separate five-case host-only smoke passed with no extraction or client execution on rejection.
+
+See [validation](../artifacts/evidence/fix-0066/validation.json), [smoke](../artifacts/evidence/fix-0066/host-smoke.json), [fix result](../events/fix-0066.yaml), and [phase start](../events/fix-start-0065.json). Both normal source commits passed enabled hooks.
+
+## Unresolved questions and limits
+
+No selected findings remain unresolved. Fresh review is required. No device/service/deployment change or native ARM64 acceptance occurred. Previous hardware acceptance remains historical. Parent owns completion, publication, acknowledgement, and pane closure.
+
+Recovery: authorized same-attempt takeover, first fixer process in w6X:p6; retained run and transport target. [Approval](../artifacts/evidence/fix-0066/launch-recovery-approval.json).
+
+## Earlier phase history
+
+All earlier report text and links follow unchanged. Earlier verdicts describe their own source, not this fix.
 
 # Review phase history through 0064
 
@@ -515,3 +540,9 @@ Current generated reports have Report frontmatter. The immutable child snapshot 
 The canonical inspector requested product-outcome reconciliation after lifecycle completion60. [Product completion61](../events/implementation-complete-0061.json) explicitly links completed child59 and lifecycle60, and binds the validated product to inspected commit4dc988e6/tree25c44dc499195d698eebeef913513982fdb0fb03. Comparison with child result source57491dc0 found only10workflow paths changed, with no production source changes. [Source-equivalence validation](../artifacts/evidence/repeat-install-0058/product-completion-validation.json). This is parent reconciliation, not a new child implementation or repeated device/test action. Original receipts, evidence and snapshots remain unchanged. Fresh independent review remains the next product step.
 </details>
 
+
+## Parent fix reconciliation 0067
+
+The parent verified authoritative fix0066 against the typed result and exact clean source `b6f4c7af4da729d1dfb175855247b74dc3d106d3` / tree `2c63ba1d51dd94de767f0d688719f938a0a97031`. The actual three-file diff, recorded8 passing tests/31assertions, typecheck, shell syntax and five isolated smoke outcomes support STD-001 and SPEC-001 resolution. These checks were not rerun solely to confirm the fixer.
+
+Fixer OMP in w6X:p6 completed at sequence481 and closed with result ok. The workspace and worktree remain available. [Parent completion](../events/fix-complete-0067.json) and [parent validation](../artifacts/evidence/fix-0066/parent-validation.json). Both source commits are recorded in the fix result. Fresh independent review is required; no device, service, deployment, ARM64 rebuild, merge or push occurred.

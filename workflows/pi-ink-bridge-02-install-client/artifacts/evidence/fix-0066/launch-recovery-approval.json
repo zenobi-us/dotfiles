@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-11-09T03:09:45.271Z",
+  "approval_source": "Explicit user questionnaire response",
+  "selection": "Continue source-only fix",
+  "authorized_phase_start": "fix-start-0065",
+  "authorized_recovery": "fix/takeover",
+  "scope": [
+    "Start the first fixer in existing fresh pane w6X:p6",
+    "Resolve only STD-001 and SPEC-001",
+    "Retain assigned run f30e0657-c6dd-4da7-9dd9-3790077ba88b and typed context/target",
+    "Source/test/docs commits and workflow records only"
+  ],
+  "prohibited": [
+    "Device access or actions",
+    "Host service/deployment changes",
+    "Duplicate fixer/pane",
+    "Merge or push"
+  ],
+  "prior_launch_diagnostic": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066/launch-recovery.json"
+}

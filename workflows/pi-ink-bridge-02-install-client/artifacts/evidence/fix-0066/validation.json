@@ -1,0 +1,65 @@
+{
+  "source_commit": "b6f4c7af4da729d1dfb175855247b74dc3d106d3",
+  "source_tree": "2c63ba1d51dd94de767f0d688719f938a0a97031",
+  "source_clean": true,
+  "validation_results": [
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec bun@1.4.3 -- bun test test/production-install.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "status": "passed",
+      "exit_code": 0,
+      "tests_passed": 8,
+      "tests_failed": 0,
+      "assertions": 31
+    },
+    {
+      "command": "MISE_AUTO_INSTALL=0 mise exec bun@1.4.3 -- bun run typecheck",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "command": "sh -n tablet-client/production-install.sh",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "status": "passed",
+      "exit_code": 0
+    },
+    {
+      "scenario": "Independent host-only production shell smoke",
+      "status": "passed",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066/host-smoke.json",
+      "outcome": "Both libraries absent/directory: exit 1, no extraction, no client execution. Both regular: exit 0, extraction and client sentinel reached. Five temporary fixtures removed."
+    },
+    {
+      "scenario": "Failing-before review reproductions",
+      "status": "accepted-evidence",
+      "ref": "workflows/pi-ink-bridge-02-install-client/artifacts/reviews/review-review-0063.md",
+      "rerun": false
+    },
+    {
+      "scenario": "Normal source commit hooks",
+      "status": "passed",
+      "outcome": "Both commits completed with hooks enabled; no stash operations requested."
+    },
+    {
+      "scenario": "Generated Report Markdown validation",
+      "command": "MISE_AUTO_INSTALL=0 mise exec -- mq --allow-http-import -I raw -F json 'import \"github.com/harehare/okf.mq\" | okf::okf_parse(.) | okf::okf_validate(.)' <pr-draft, implementation-log, fix snapshot>",
+      "status": "passed",
+      "errors": [
+        [],
+        [],
+        []
+      ],
+      "bundle_validation": "Not applicable: workflow reports are not an OKF bundle."
+    }
+  ],
+  "device_actions": 0,
+  "service_changes": 0,
+  "deployment_changes": 0,
+  "arm64_rebuilds": 0,
+  "limits": [
+    "Native installation and hardware acceptance not exercised.",
+    "Installed service and payload unchanged.",
+    "Historical device proof remains historical."
+  ]
+}

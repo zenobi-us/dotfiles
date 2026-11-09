@@ -1,7 +1,56 @@
 ---
-title: Pi Ink client review FAILURE 0063
+title: Pi Ink source-only fix 0066
 type: Report
 ---
+
+# Source-only fix 0066 completed
+
+Ticket: [Install and launch the tablet client](../../../tracker/tickets/pi-ink-bridge-02-install-client.md).
+
+## Problem
+
+Review 0063 found production-prose assertions and missing native dependency checks.
+
+## Implementation
+
+STD-001: removed three production error-prose assertions. Firmware exit-status and stock-check reachability coverage remain.
+
+SPEC-001: require regular XOVI and qt-resource-rebuilder native library files before extraction or installation changes. Errors direct the owner to repair and verify dependencies separately. No extra hash, mode, symlink, or race policy was added.
+
+Source commit: `b6f4c7af4da729d1dfb175855247b74dc3d106d3`. Tree: `2c63ba1d51dd94de767f0d688719f938a0a97031`. Source is clean.
+
+## Changed files
+
+- `README.md`: document native-library preflight and host regression requirements.
+- `mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client/production-install.sh`: add both native-library guards.
+- `mise/conf.d/devtools-omp/extensions/image-annotator/test/production-install.test.ts`: retain firmware behavior coverage; add four rejection cases and one positive continuation case.
+
+## Validation
+
+- Scoped Bun suite: 8 passed, 0 failed, 31 assertions.
+- TypeScript and shell syntax checks passed.
+- Independent host-only shell smoke: missing/directory cases reject before extraction and client execution; regular-file case reaches the bounded client sentinel. ZIP and trust-record digests remain real.
+- Normal commit hooks passed.
+
+[Validation evidence](../artifacts/evidence/fix-0066/validation.json) and [five smoke cases](../artifacts/evidence/fix-0066/host-smoke.json) record commands and outcomes.
+
+## Review history and findings
+
+Consumed [review-0063](../events/review-0063.yaml), whose [immutable review](../artifacts/reviews/review-review-0063.md) remains unchanged. Its FAILURE applies only to the earlier source and is stale for this new source. Resolved IDs: STD-001 and SPEC-001. Unresolved IDs: none. A fresh independent review is required; this fix is not a SUCCESS verdict.
+
+## Merge and runtime status
+
+Not merged or pushed. No device access, native launch, ARM64 rebuild, deployment, or host-service change occurred. The installed payload and service remain unchanged. Hardware evidence below is historical, not fresh acceptance of this source.
+
+## Supporting records
+
+- [Phase start](../events/fix-start-0065.json) and [fix result](../events/fix-0066.yaml).
+- [Approved launch recovery](../artifacts/evidence/fix-0066/launch-recovery-approval.json) and [launch diagnostic](../artifacts/evidence/fix-0066/launch-recovery.json).
+- [Previous immutable draft](../artifacts/snapshots/pr-draft-review-0064.md).
+
+## Earlier workflow history
+
+The retained report below describes earlier source and observation windows. Its verdict is stale for the source above.
 
 # Independent review 0063 — FAILURE
 
@@ -511,3 +560,9 @@ Current generated reports have Report frontmatter. The immutable child snapshot 
 The canonical inspector requested product-outcome reconciliation after lifecycle completion60. [Product completion61](../events/implementation-complete-0061.json) explicitly links completed child59 and lifecycle60, and binds the validated product to inspected commit4dc988e6/tree25c44dc499195d698eebeef913513982fdb0fb03. Comparison with child result source57491dc0 found only10workflow paths changed, with no production source changes. [Source-equivalence validation](../artifacts/evidence/repeat-install-0058/product-completion-validation.json). This is parent reconciliation, not a new child implementation or repeated device/test action. Original receipts, evidence and snapshots remain unchanged. Fresh independent review remains the next product step.
 </details>
 
+
+## Parent fix reconciliation 0067
+
+The parent verified authoritative fix0066 against the typed result and exact clean source `b6f4c7af4da729d1dfb175855247b74dc3d106d3` / tree `2c63ba1d51dd94de767f0d688719f938a0a97031`. The actual three-file diff, recorded8 passing tests/31assertions, typecheck, shell syntax and five isolated smoke outcomes support STD-001 and SPEC-001 resolution. These checks were not rerun solely to confirm the fixer.
+
+Fixer OMP in w6X:p6 completed at sequence481 and closed with result ok. The workspace and worktree remain available. [Parent completion](../events/fix-complete-0067.json) and [parent validation](../artifacts/evidence/fix-0066/parent-validation.json). Both source commits are recorded in the fix result. Fresh independent review is required; no device, service, deployment, ARM64 rebuild, merge or push occurred.

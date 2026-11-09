@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-11-09T03:11:24.984Z",
+  "run_id": "f30e0657-c6dd-4da7-9dd9-3790077ba88b",
+  "operation_id": "pi-ink-bridge-02-fix-0066",
+  "context": "/var/home/zenobius/.local/state/result-delivery/runs/f30e0657-c6dd-4da7-9dd9-3790077ba88b/context.json",
+  "target": "/var/home/zenobius/.local/state/result-delivery/runs/pi-ink-fix-0066-0pSV04/result.json",
+  "pane": "w6X:p6",
+  "session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-pi-ink-bridge-02-install-client--/2026-11-09T03-09-53-581Z_01a1be48-a22d-727d-bc74-02cb78145838.jsonl",
+  "agent": "omp",
+  "observed_state": "working",
+  "state_change_seq": 479,
+  "native_start_command": "herdr agent start pi-ink-fix-0066 --kind omp --pane w6X:p6 -- @/tmp/pi-ink-fix-0065-ZRO8qh/recovery-handoff.txt",
+  "native_start_timeout_reported": true,
+  "agent_confirmed_working_after_timeout": true,
+  "actual_fixer_processes_started": 1,
+  "duplicate_launches": 0,
+  "fresh_pane_reused_only_before_any_agent_started": true,
+  "approval_ref": "workflows/pi-ink-bridge-02-install-client/artifacts/evidence/fix-0066/launch-recovery-approval.json",
+  "wait_contract": "Native herdr agent wait w6X:p6 --until done --until blocked; original failed router removed transient muxer run metadata. Typed context remains retained."
+}
