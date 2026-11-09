@@ -1,0 +1,217 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "1",
+  "runId": "playwright-video-final",
+  "order": 1,
+  "purpose": "Record a controlled project selection",
+  "preconditions": [],
+  "expected": {
+    "pass": "Orbit is selected in the final frame",
+    "fail": "Orbit is not selected"
+  },
+  "steps": [
+    {
+      "id": "1.1",
+      "order": 1,
+      "purpose": "Open the controlled page",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the controlled page",
+        "to": "/"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "1.2",
+      "order": 2,
+      "purpose": "Check the initial project state",
+      "actions": {
+        "do": "expect",
+        "says": "Check the initial project state",
+        "locator": "#status",
+        "text": "No project selected",
+        "shot": "initial-project"
+      },
+      "expected": {
+        "text": "No project selected",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "Found text: No project selected"
+      ],
+      "assertionResult": "passed"
+    },
+    {
+      "id": "1.3",
+      "order": 3,
+      "purpose": "Select Select project",
+      "actions": {
+        "do": "click",
+        "says": "Select Select project",
+        "locator": "#choose"
+      },
+      "expected": null,
+      "observed": [
+        "Clicked."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "1.4",
+      "order": 4,
+      "purpose": "Check that Orbit is selected",
+      "actions": {
+        "do": "expect",
+        "says": "Check that Orbit is selected",
+        "locator": "#status",
+        "text": "Project selected: Orbit",
+        "shot": "selected-project"
+      },
+      "expected": {
+        "text": "Project selected: Orbit",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "Found text: Project selected: Orbit"
+      ],
+      "assertionResult": "passed"
+    }
+  ],
+  "events": "cases/1/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "1.2.capture-001",
+      "caseId": "1",
+      "stepId": "1.2",
+      "path": "cases/1/media/step-002-step-1-002-initial-project--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "230977fe8db331f9bfc5bc05897c779415e0eb6bd14403b2ef45eeb6f2e521de",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-09T06:09:07.757Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:18765/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "1.2.capture-002",
+      "caseId": "1",
+      "stepId": "1.2",
+      "path": "cases/1/media/step-002-step-1-002-initial-project--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "230977fe8db331f9bfc5bc05897c779415e0eb6bd14403b2ef45eeb6f2e521de",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-09T06:09:07.817Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:18765/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "1.4.capture-001",
+      "caseId": "1",
+      "stepId": "1.4",
+      "path": "cases/1/media/step-004-step-1-004-selected-project--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "914a558096c604ebfd33bf3135aba9bb358af44dad8275c82f4202509fb67f42",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-09T06:09:07.916Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:18765/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "1.4.capture-002",
+      "caseId": "1",
+      "stepId": "1.4",
+      "path": "cases/1/media/step-004-step-1-004-selected-project--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "914a558096c604ebfd33bf3135aba9bb358af44dad8275c82f4202509fb67f42",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-09T06:09:07.948Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:18765/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "1.video.capture-001",
+      "caseId": "1",
+      "stepId": "1.1",
+      "scope": "case",
+      "path": "cases/1/media/step-001-case-recording--capture-001.webm",
+      "sourcePath": "native/report/videos/test-1.webm",
+      "captureSequence": 1,
+      "sha256": "e73ff1ce32ee6c4182a27bbcb81f2ed4df4bc4363ab901ba2e5544b67226f881",
+      "mediaType": "video/webm",
+      "width": 800,
+      "height": 450,
+      "durationMs": 1640,
+      "capturedAt": "2026-11-09T06:09:08.860Z",
+      "viewport": null,
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-video",
+      "url": ""
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded"
+}

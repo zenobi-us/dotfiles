@@ -1,0 +1,87 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "driver-map",
+  "entries": [
+    {
+      "step": "1.1",
+      "kind": "navigate",
+      "target": "/",
+      "from": 0,
+      "count": 6,
+      "shot": "",
+      "dialog": "dialog_1_1",
+      "url": "url_1_1"
+    },
+    {
+      "step": "1.2",
+      "kind": "expect",
+      "target": "h1",
+      "from": 6,
+      "count": 7,
+      "shot": "shots/step-1-002-controlled-heading--capture-002.png",
+      "dialog": "dialog_1_2",
+      "value": "assert_1_2",
+      "check": "text",
+      "captures": [
+        {
+          "shot": "shots/step-1-002-controlled-heading--capture-001.png",
+          "metadata": "capture_1_1_2",
+          "index": 8,
+          "sequence": 1
+        },
+        {
+          "shot": "shots/step-1-002-controlled-heading--capture-002.png",
+          "metadata": "capture_2_1_2",
+          "index": 11,
+          "sequence": 2
+        }
+      ],
+      "assertionIndex": 10
+    },
+    {
+      "step": "1.3",
+      "kind": "fill",
+      "target": "#project",
+      "from": 13,
+      "count": 4,
+      "shot": "",
+      "dialog": "dialog_1_3"
+    },
+    {
+      "step": "1.4",
+      "kind": "click",
+      "target": "#choose",
+      "from": 17,
+      "count": 6,
+      "shot": "",
+      "dialog": "dialog_1_4",
+      "url": "url_1_4"
+    },
+    {
+      "step": "1.5",
+      "kind": "expect",
+      "target": "#status",
+      "from": 23,
+      "count": 7,
+      "shot": "shots/step-1-005-project-selected--capture-002.png",
+      "dialog": "dialog_1_5",
+      "value": "assert_1_5",
+      "check": "text",
+      "captures": [
+        {
+          "shot": "shots/step-1-005-project-selected--capture-001.png",
+          "metadata": "capture_1_1_5",
+          "index": 25,
+          "sequence": 1
+        },
+        {
+          "shot": "shots/step-1-005-project-selected--capture-002.png",
+          "metadata": "capture_2_1_5",
+          "index": 28,
+          "sequence": 2
+        }
+      ],
+      "assertionIndex": 27
+    }
+  ]
+}

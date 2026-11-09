@@ -1,0 +1,100 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "run",
+  "id": "playwright-video",
+  "status": "sealed",
+  "startedAt": "2026-11-09T05:47:35.236Z",
+  "finishedAt": "2026-11-09T05:47:38.188Z",
+  "surface": "web",
+  "driver": "playwright",
+  "driverVersion": "0.1.22",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "1",
+      "path": "cases/1/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/1/case.json",
+      "sha256": "6bfd6f9c0aa0f5dc6afc4e43a2a33e1da4b84092c8df6b25d17e1d1232064fe0"
+    },
+    {
+      "path": "cases/1/events.jsonl",
+      "sha256": "115cc380b61c363bbccb1e1363d80135ec2f123220671da81b7dd1fb199af118"
+    },
+    {
+      "path": "cases/1/index.md",
+      "sha256": "90336f35c437827370207afef95ae0c01eddac51fe4bf3d13cf7a63d60b67718"
+    },
+    {
+      "path": "cases/1/media/step-001-case-recording--capture-001.webm",
+      "sha256": "a42550e7e395304aed41612d7069d99de6027f33cb171f0d43cbbe761feb0330"
+    },
+    {
+      "path": "cases/1/media/step-002-step-1-002-initial-project--capture-001--capture-001.png",
+      "sha256": "230977fe8db331f9bfc5bc05897c779415e0eb6bd14403b2ef45eeb6f2e521de"
+    },
+    {
+      "path": "cases/1/media/step-002-step-1-002-initial-project--capture-002--capture-002.png",
+      "sha256": "230977fe8db331f9bfc5bc05897c779415e0eb6bd14403b2ef45eeb6f2e521de"
+    },
+    {
+      "path": "cases/1/media/step-004-step-1-004-selected-project--capture-001--capture-001.png",
+      "sha256": "914a558096c604ebfd33bf3135aba9bb358af44dad8275c82f4202509fb67f42"
+    },
+    {
+      "path": "cases/1/media/step-004-step-1-004-selected-project--capture-002--capture-002.png",
+      "sha256": "914a558096c604ebfd33bf3135aba9bb358af44dad8275c82f4202509fb67f42"
+    },
+    {
+      "path": "index.md",
+      "sha256": "de1b835bf97e929268748adaf506f0da07327a852f9744d09d18c40c75e067ab"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "a3aed99c1f78f934f9b06f9b81f6b13ae645198c55211bcd9401b40f10c1f3e5"
+    },
+    {
+      "path": "native/report/shots/step-1-002-initial-project--capture-001.png",
+      "sha256": "230977fe8db331f9bfc5bc05897c779415e0eb6bd14403b2ef45eeb6f2e521de"
+    },
+    {
+      "path": "native/report/shots/step-1-002-initial-project--capture-002.png",
+      "sha256": "230977fe8db331f9bfc5bc05897c779415e0eb6bd14403b2ef45eeb6f2e521de"
+    },
+    {
+      "path": "native/report/shots/step-1-004-selected-project--capture-001.png",
+      "sha256": "914a558096c604ebfd33bf3135aba9bb358af44dad8275c82f4202509fb67f42"
+    },
+    {
+      "path": "native/report/shots/step-1-004-selected-project--capture-002.png",
+      "sha256": "914a558096c604ebfd33bf3135aba9bb358af44dad8275c82f4202509fb67f42"
+    },
+    {
+      "path": "native/report/videos/test-1.webm",
+      "sha256": "a42550e7e395304aed41612d7069d99de6027f33cb171f0d43cbbe761feb0330"
+    },
+    {
+      "path": "native/report/videos/test-1.webm.metadata.json",
+      "sha256": "6ee42e77750d3d1b18067d22cabf609015a5839ae3607e2fc957521d92d21734"
+    },
+    {
+      "path": "native/runs/case-1.log",
+      "sha256": "5e2d08af3a0668fc51f2bfa7dfbe740e82a4c3f1fd713cb39e5aa184d167f9b0"
+    },
+    {
+      "path": "native/workflows/web-public-test-1.js",
+      "sha256": "4012063377a4ca964cfd673fe7f2eb5dcc2deb063ee2676bd95bb0cf5125fa00"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "49eb0d3bd89b692fd64f98e69303993fd2798ac37506acacff61403523e94cd2"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "a3aed99c1f78f934f9b06f9b81f6b13ae645198c55211bcd9401b40f10c1f3e5"
+    }
+  ]
+}

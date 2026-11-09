@@ -1,0 +1,14 @@
+hk ERROR hk (pid 4190092, hook `pre-commit`, started 2026-10-29 10:42:11) was stopped while it had your unstaged changes stashed, and they were not put back. The working tree has changes of its own, so hk did not apply them itself.
+To get them back, once the working tree is ready for them, run:
+  git stash apply 1e89555dcd3ecaddb8a12f3c18464e50adc557d2
+If git reports conflicts in files that are also staged, `git restore --source=<commit> --worktree -- <file>` takes the stashed version of one file.
+hk keeps reminding you until the stash entries are dropped (`git stash list`, then `git stash drop`), or until you delete /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/.git/hk-pending-stash.
+  files - Fetching git status
+  files - Fetching staged files
+  files - Fetching staged files (1 file)
+✔ files - Fetching staged files (1 file)
+❯ bundle-versions
+  bundle-versions – 1 file –  – mise run checks:agent-bundle-versions -- check --staged
+  bundle-versions – [checks:agent-bundle-versions] $ /run/media/zenobius/Store/Projects/Mine/Github…
+✔ bundle-versions
+│  No config files with names ["lefthook" ".lefthook" ".config/lefthook"] have been found in "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"

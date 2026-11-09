@@ -1,0 +1,1 @@
+{"schema":"collect-evidence/v1","kind":"event","command":"verdicts","success":true,"verdicts":[{"caseId":"1","verdict":"PASS"}]}

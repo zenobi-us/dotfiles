@@ -1,0 +1,9 @@
+### Browser `ce-borrowed-cleanup-0005` opened with pid 3367395.
+### Ran Playwright code
+```js
+await page.goto('about:blank');
+```
+### Page
+- Page URL: about:blank
+### Snapshot
+- [Snapshot](.playwright-cli/page-2026-11-09T06-14-39-155Z.yml)

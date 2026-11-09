@@ -1,0 +1,221 @@
+{
+  "status": "completed",
+  "completedSteps": 30,
+  "totalSteps": 30,
+  "results": [
+    {
+      "step": 1,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 2,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 106
+    },
+    {
+      "step": 3,
+      "cmd": "navigate",
+      "status": "ok",
+      "ms": 632
+    },
+    {
+      "step": 4,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 5,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 6,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 7,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 111
+    },
+    {
+      "step": 8,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 9,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 397
+    },
+    {
+      "step": 10,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 11,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 12,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 378
+    },
+    {
+      "step": 13,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 14,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 15,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 16,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 17,
+      "cmd": "type",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 18,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 19,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 109
+    },
+    {
+      "step": 20,
+      "cmd": "click",
+      "status": "ok",
+      "ms": 381
+    },
+    {
+      "step": 21,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 22,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 107
+    },
+    {
+      "step": 23,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 24,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 25,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 26,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 383
+    },
+    {
+      "step": 27,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 28,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 29,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 371
+    },
+    {
+      "step": 30,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    }
+  ],
+  "failed": 0,
+  "totalMs": 5052,
+  "vars": {
+    "base": "http://127.0.0.1:18765",
+    "shots": "/tmp/collect-evidence-DSgpYz/report/shots",
+    "dialog_1_1": {
+      "id": 26,
+      "hasDialog": false
+    },
+    "url_1_1": "http://127.0.0.1:18765/",
+    "dialog_1_2": {
+      "id": 40,
+      "hasDialog": false
+    },
+    "capture_1_1_2": "{\"capturedAt\":\"2026-11-09T05:29:13.839Z\",\"url\":\"http://127.0.0.1:18765/\",\"viewport\":{\"width\":1984,\"height\":1068,\"deviceScaleFactor\":1}}",
+    "assert_1_2": "Evidence controlled page",
+    "capture_2_1_2": "{\"capturedAt\":\"2026-11-09T05:29:14.427Z\",\"url\":\"http://127.0.0.1:18765/\",\"viewport\":{\"width\":1984,\"height\":1068,\"deviceScaleFactor\":1}}",
+    "dialog_1_3": {
+      "id": 54,
+      "hasDialog": false
+    },
+    "dialog_1_4": {
+      "id": 62,
+      "hasDialog": false
+    },
+    "url_1_4": "http://127.0.0.1:18765/",
+    "dialog_1_5": {
+      "id": 76,
+      "hasDialog": false
+    },
+    "capture_1_1_5": "{\"capturedAt\":\"2026-11-09T05:29:16.446Z\",\"url\":\"http://127.0.0.1:18765/\",\"viewport\":{\"width\":1984,\"height\":1068,\"deviceScaleFactor\":1}}",
+    "assert_1_5": "Project selected: Aurora",
+    "capture_2_1_5": "{\"capturedAt\":\"2026-11-09T05:29:17.024Z\",\"url\":\"http://127.0.0.1:18765/\",\"viewport\":{\"width\":1984,\"height\":1068,\"deviceScaleFactor\":1}}"
+  }
+}

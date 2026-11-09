@@ -1,0 +1,19 @@
+---
+schema: collect-evidence/v1
+kind: comment
+---
+**Acceptance steps: web-public** [1]
+
+**Test 1: Record a controlled project selection**
+
+1. Open the controlled page
+2. Check the initial project state
+3. Select Select project
+4. Check that Orbit is selected
+
+Pass: Orbit is selected in the final frame
+
+---
+
+[1] Steps and evidence (screenshots, verdicts, video): https://example.invalid/explicit-report
+

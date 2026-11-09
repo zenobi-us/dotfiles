@@ -1,0 +1,12 @@
+{
+  "result": "about:blank",
+  "target": {
+    "source": "session",
+    "session": "ce-borrowed-cleanup-0005",
+    "tabId": 498730606,
+    "windowId": 498730514,
+    "browserEpoch": "0f7e3319-f5c6-4a20-b561-37d27f7825c9",
+    "queuedMs": 0
+  },
+  "notice": null
+}

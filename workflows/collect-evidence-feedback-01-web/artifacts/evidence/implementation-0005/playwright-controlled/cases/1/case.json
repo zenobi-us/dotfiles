@@ -1,0 +1,220 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "1",
+  "runId": "playwright-controlled",
+  "order": 1,
+  "purpose": "Select a named project on the controlled page",
+  "preconditions": [
+    {
+      "id": "controlled",
+      "desc": "Owned local page is ready",
+      "check": {
+        "goto": "/",
+        "locator": "h1",
+        "text": "Evidence controlled page"
+      }
+    }
+  ],
+  "expected": {
+    "pass": "The page shows Project selected: Aurora",
+    "fail": "The page does not show the selected project"
+  },
+  "steps": [
+    {
+      "id": "1.1",
+      "order": 1,
+      "purpose": "Open the controlled page",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the controlled page",
+        "to": "/"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "1.2",
+      "order": 2,
+      "purpose": "Check the page heading",
+      "actions": {
+        "do": "expect",
+        "says": "Check the page heading",
+        "locator": "h1",
+        "text": "Evidence controlled page",
+        "shot": "controlled-heading"
+      },
+      "expected": {
+        "text": "Evidence controlled page",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "Found text: Evidence controlled page"
+      ],
+      "assertionResult": "passed"
+    },
+    {
+      "id": "1.3",
+      "order": 3,
+      "purpose": "Set Project name to Aurora",
+      "actions": {
+        "do": "fill",
+        "says": "Set Project name to Aurora",
+        "locator": "#project",
+        "text": "Aurora"
+      },
+      "expected": null,
+      "observed": [
+        "Typed."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "1.4",
+      "order": 4,
+      "purpose": "Select Select project",
+      "actions": {
+        "do": "click",
+        "says": "Select Select project",
+        "locator": "#choose"
+      },
+      "expected": null,
+      "observed": [
+        "Clicked."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "1.5",
+      "order": 5,
+      "purpose": "Check that Aurora is selected",
+      "actions": {
+        "do": "expect",
+        "says": "Check that Aurora is selected",
+        "locator": "#status",
+        "text": "Project selected: Aurora",
+        "shot": "project-selected"
+      },
+      "expected": {
+        "text": "Project selected: Aurora",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "Found text: Project selected: Aurora"
+      ],
+      "assertionResult": "passed"
+    }
+  ],
+  "events": "cases/1/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "1.2.capture-001",
+      "caseId": "1",
+      "stepId": "1.2",
+      "path": "cases/1/media/step-002-step-1-002-controlled-heading--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "230977fe8db331f9bfc5bc05897c779415e0eb6bd14403b2ef45eeb6f2e521de",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-09T05:30:45.905Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:18765/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "1.2.capture-002",
+      "caseId": "1",
+      "stepId": "1.2",
+      "path": "cases/1/media/step-002-step-1-002-controlled-heading--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "230977fe8db331f9bfc5bc05897c779415e0eb6bd14403b2ef45eeb6f2e521de",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-09T05:30:45.954Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:18765/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "1.5.capture-001",
+      "caseId": "1",
+      "stepId": "1.5",
+      "path": "cases/1/media/step-005-step-1-005-project-selected--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "02975f36195cd075426b78db4e94c519ce05bbb694ec4cbdae21a89c3442e64e",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-09T05:30:46.055Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:18765/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "1.5.capture-002",
+      "caseId": "1",
+      "stepId": "1.5",
+      "path": "cases/1/media/step-005-step-1-005-project-selected--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "02975f36195cd075426b78db4e94c519ce05bbb694ec4cbdae21a89c3442e64e",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-09T05:30:46.087Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:18765/"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded"
+}

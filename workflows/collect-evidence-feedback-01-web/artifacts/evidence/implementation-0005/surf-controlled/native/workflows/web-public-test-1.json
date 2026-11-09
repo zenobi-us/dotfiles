@@ -1,0 +1,197 @@
+{
+  "name": "web-public-test-1",
+  "description": "Test 1 - Select a named project on the controlled page",
+  "args": {
+    "base": {
+      "required": true,
+      "desc": "App base URL"
+    },
+    "shots": {
+      "required": true,
+      "desc": "Absolute directory for evidence screenshots"
+    }
+  },
+  "steps": [
+    {
+      "tool": "dialog.info",
+      "args": {},
+      "as": "dialog_1_1"
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "(function(){var d=%{dialog_1_1};if(d.hasDialog||(d.result&&d.result.hasDialog))throw new Error(\"SAFETY STOP 1.1: native dialog; human handling required\");return (function(){\n    var origins=[\"http://127.0.0.1:18765\"];\n    var visible=function(e){var r=e.getBoundingClientRect();var s=getComputedStyle(e);return r.width>0&&r.height>0&&s.visibility!=='hidden'&&s.display!=='none';};\n    var inspect=function(root){\n      var nodes=Array.from(root.querySelectorAll('input,form,dialog,[role=\"dialog\"],h1,h2,h3,[role=\"heading\"],iframe'));\n      if(nodes.some(function(e){\n        if(!visible(e))return false;\n        if(e.tagName==='IFRAME') { try { return !e.contentDocument||inspect(e.contentDocument); } catch { return true; } }\n        if(e.tagName==='INPUT')return e.type==='password'||/^(username|current-password|new-password|one-time-code)$/.test(e.autocomplete);\n        return /\\b(sign\\s*in|log\\s*in|username|password|passcode|verification code|two.factor|authenticate|credentials?)\\b/i.test(e.innerText||'');\n      }))return true;\n      return Array.from(root.querySelectorAll('*')).some(function(e){return visible(e)&&e.shadowRoot&&inspect(e.shadowRoot);});\n    };\n    if(inspect(document))throw new Error(\"SAFETY STOP 1.1: credential prompt or uninspectable frame; human handling required\");\n    if(location.href!=='about:blank'&&!origins.includes(location.origin))throw new Error(\"SAFETY STOP 1.1: current origin is not approved\");\n    if(!origins.includes(new URL(\"/\",\"http://127.0.0.1:18765\").origin))throw new Error(\"SAFETY STOP 1.1: navigation origin is not approved\");\n    if(!true)throw new Error(\"SAFETY STOP 1.1: confirmation step is not explicitly approved\");\n    return 'safe';\n  })();})()"
+      }
+    },
+    {
+      "tool": "navigate",
+      "args": {
+        "url": "http://127.0.0.1:18765/"
+      }
+    },
+    {
+      "tool": "wait.load",
+      "args": {}
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "location.href"
+      },
+      "as": "url_1_1"
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "(function(){\n    var origins=[\"http://127.0.0.1:18765\"];\n    var visible=function(e){var r=e.getBoundingClientRect();var s=getComputedStyle(e);return r.width>0&&r.height>0&&s.visibility!=='hidden'&&s.display!=='none';};\n    var inspect=function(root){\n      var nodes=Array.from(root.querySelectorAll('input,form,dialog,[role=\"dialog\"],h1,h2,h3,[role=\"heading\"],iframe'));\n      if(nodes.some(function(e){\n        if(!visible(e))return false;\n        if(e.tagName==='IFRAME') { try { return !e.contentDocument||inspect(e.contentDocument); } catch { return true; } }\n        if(e.tagName==='INPUT')return e.type==='password'||/^(username|current-password|new-password|one-time-code)$/.test(e.autocomplete);\n        return /\\b(sign\\s*in|log\\s*in|username|password|passcode|verification code|two.factor|authenticate|credentials?)\\b/i.test(e.innerText||'');\n      }))return true;\n      return Array.from(root.querySelectorAll('*')).some(function(e){return visible(e)&&e.shadowRoot&&inspect(e.shadowRoot);});\n    };\n    if(inspect(document))throw new Error(\"SAFETY STOP 1.1: credential prompt or uninspectable frame; human handling required\");\n    if(location.href!=='about:blank'&&!origins.includes(location.origin))throw new Error(\"SAFETY STOP 1.1: current origin is not approved\");\n    \n    if(!true)throw new Error(\"SAFETY STOP 1.1: confirmation step is not explicitly approved\");\n    return 'safe';\n  })()"
+      }
+    },
+    {
+      "tool": "dialog.info",
+      "args": {},
+      "as": "dialog_1_2"
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "(function(){var d=%{dialog_1_2};if(d.hasDialog||(d.result&&d.result.hasDialog))throw new Error(\"SAFETY STOP 1.2: native dialog; human handling required\");return (function(){\n    var origins=[\"http://127.0.0.1:18765\"];\n    var visible=function(e){var r=e.getBoundingClientRect();var s=getComputedStyle(e);return r.width>0&&r.height>0&&s.visibility!=='hidden'&&s.display!=='none';};\n    var inspect=function(root){\n      var nodes=Array.from(root.querySelectorAll('input,form,dialog,[role=\"dialog\"],h1,h2,h3,[role=\"heading\"],iframe'));\n      if(nodes.some(function(e){\n        if(!visible(e))return false;\n        if(e.tagName==='IFRAME') { try { return !e.contentDocument||inspect(e.contentDocument); } catch { return true; } }\n        if(e.tagName==='INPUT')return e.type==='password'||/^(username|current-password|new-password|one-time-code)$/.test(e.autocomplete);\n        return /\\b(sign\\s*in|log\\s*in|username|password|passcode|verification code|two.factor|authenticate|credentials?)\\b/i.test(e.innerText||'');\n      }))return true;\n      return Array.from(root.querySelectorAll('*')).some(function(e){return visible(e)&&e.shadowRoot&&inspect(e.shadowRoot);});\n    };\n    if(inspect(document))throw new Error(\"SAFETY STOP 1.2: credential prompt or uninspectable frame; human handling required\");\n    if(location.href!=='about:blank'&&!origins.includes(location.origin))throw new Error(\"SAFETY STOP 1.2: current origin is not approved\");\n    \n    if(!true)throw new Error(\"SAFETY STOP 1.2: confirmation step is not explicitly approved\");\n    return 'safe';\n  })();})()"
+      }
+    },
+    {
+      "tool": "screenshot",
+      "args": {
+        "output": "%{shots}/step-1-002-controlled-heading--capture-001.png"
+      }
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "JSON.stringify({capturedAt:new Date().toISOString(),url:location.href,viewport:{width:innerWidth,height:innerHeight,deviceScaleFactor:devicePixelRatio}})"
+      },
+      "as": "capture_1_1_2"
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "new Promise(function(res,rej){var t0=Date.now();(function tick(){try{res((function(){var e=document.querySelector(\"h1\");if(!e)throw new Error(\"ASSERT FAIL 1.2: h1 not found\");var t=e.innerText.trim();if(t.indexOf(\"Evidence controlled page\")<0)throw new Error(\"ASSERT FAIL 1.2: expected Evidence controlled page, got \"+t);return t;})());}catch(e){if(Date.now()-t0>5000)rej(e);else setTimeout(tick,200);}})();})"
+      },
+      "as": "assert_1_2"
+    },
+    {
+      "tool": "screenshot",
+      "args": {
+        "output": "%{shots}/step-1-002-controlled-heading--capture-002.png"
+      }
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "JSON.stringify({capturedAt:new Date().toISOString(),url:location.href,viewport:{width:innerWidth,height:innerHeight,deviceScaleFactor:devicePixelRatio}})"
+      },
+      "as": "capture_2_1_2"
+    },
+    {
+      "tool": "dialog.info",
+      "args": {},
+      "as": "dialog_1_3"
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "(function(){var d=%{dialog_1_3};if(d.hasDialog||(d.result&&d.result.hasDialog))throw new Error(\"SAFETY STOP 1.3: native dialog; human handling required\");return (function(){\n    var origins=[\"http://127.0.0.1:18765\"];\n    var visible=function(e){var r=e.getBoundingClientRect();var s=getComputedStyle(e);return r.width>0&&r.height>0&&s.visibility!=='hidden'&&s.display!=='none';};\n    var inspect=function(root){\n      var nodes=Array.from(root.querySelectorAll('input,form,dialog,[role=\"dialog\"],h1,h2,h3,[role=\"heading\"],iframe'));\n      if(nodes.some(function(e){\n        if(!visible(e))return false;\n        if(e.tagName==='IFRAME') { try { return !e.contentDocument||inspect(e.contentDocument); } catch { return true; } }\n        if(e.tagName==='INPUT')return e.type==='password'||/^(username|current-password|new-password|one-time-code)$/.test(e.autocomplete);\n        return /\\b(sign\\s*in|log\\s*in|username|password|passcode|verification code|two.factor|authenticate|credentials?)\\b/i.test(e.innerText||'');\n      }))return true;\n      return Array.from(root.querySelectorAll('*')).some(function(e){return visible(e)&&e.shadowRoot&&inspect(e.shadowRoot);});\n    };\n    if(inspect(document))throw new Error(\"SAFETY STOP 1.3: credential prompt or uninspectable frame; human handling required\");\n    if(location.href!=='about:blank'&&!origins.includes(location.origin))throw new Error(\"SAFETY STOP 1.3: current origin is not approved\");\n    \n    if(!true)throw new Error(\"SAFETY STOP 1.3: confirmation step is not explicitly approved\");\n    return 'safe';\n  })();})()"
+      }
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "(function(){var e=document.querySelector(\"#project\");if(!e)throw new Error(\"ASSERT FAIL 1.3: #project not found\");if(e.type==='password'||/username|password|one-time-code/.test(e.autocomplete||''))throw new Error('SAFETY STOP 1.3: credential input');return 'safe';})()"
+      }
+    },
+    {
+      "tool": "type",
+      "args": {
+        "text": "Aurora",
+        "into": "#project",
+        "clear": true
+      }
+    },
+    {
+      "tool": "dialog.info",
+      "args": {},
+      "as": "dialog_1_4"
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "(function(){var d=%{dialog_1_4};if(d.hasDialog||(d.result&&d.result.hasDialog))throw new Error(\"SAFETY STOP 1.4: native dialog; human handling required\");return (function(){\n    var origins=[\"http://127.0.0.1:18765\"];\n    var visible=function(e){var r=e.getBoundingClientRect();var s=getComputedStyle(e);return r.width>0&&r.height>0&&s.visibility!=='hidden'&&s.display!=='none';};\n    var inspect=function(root){\n      var nodes=Array.from(root.querySelectorAll('input,form,dialog,[role=\"dialog\"],h1,h2,h3,[role=\"heading\"],iframe'));\n      if(nodes.some(function(e){\n        if(!visible(e))return false;\n        if(e.tagName==='IFRAME') { try { return !e.contentDocument||inspect(e.contentDocument); } catch { return true; } }\n        if(e.tagName==='INPUT')return e.type==='password'||/^(username|current-password|new-password|one-time-code)$/.test(e.autocomplete);\n        return /\\b(sign\\s*in|log\\s*in|username|password|passcode|verification code|two.factor|authenticate|credentials?)\\b/i.test(e.innerText||'');\n      }))return true;\n      return Array.from(root.querySelectorAll('*')).some(function(e){return visible(e)&&e.shadowRoot&&inspect(e.shadowRoot);});\n    };\n    if(inspect(document))throw new Error(\"SAFETY STOP 1.4: credential prompt or uninspectable frame; human handling required\");\n    if(location.href!=='about:blank'&&!origins.includes(location.origin))throw new Error(\"SAFETY STOP 1.4: current origin is not approved\");\n    \n    if(!true)throw new Error(\"SAFETY STOP 1.4: confirmation step is not explicitly approved\");\n    return 'safe';\n  })();})()"
+      }
+    },
+    {
+      "tool": "click",
+      "args": {
+        "selector": "#choose"
+      }
+    },
+    {
+      "tool": "wait.load",
+      "args": {}
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "(function(){\n    var origins=[\"http://127.0.0.1:18765\"];\n    var visible=function(e){var r=e.getBoundingClientRect();var s=getComputedStyle(e);return r.width>0&&r.height>0&&s.visibility!=='hidden'&&s.display!=='none';};\n    var inspect=function(root){\n      var nodes=Array.from(root.querySelectorAll('input,form,dialog,[role=\"dialog\"],h1,h2,h3,[role=\"heading\"],iframe'));\n      if(nodes.some(function(e){\n        if(!visible(e))return false;\n        if(e.tagName==='IFRAME') { try { return !e.contentDocument||inspect(e.contentDocument); } catch { return true; } }\n        if(e.tagName==='INPUT')return e.type==='password'||/^(username|current-password|new-password|one-time-code)$/.test(e.autocomplete);\n        return /\\b(sign\\s*in|log\\s*in|username|password|passcode|verification code|two.factor|authenticate|credentials?)\\b/i.test(e.innerText||'');\n      }))return true;\n      return Array.from(root.querySelectorAll('*')).some(function(e){return visible(e)&&e.shadowRoot&&inspect(e.shadowRoot);});\n    };\n    if(inspect(document))throw new Error(\"SAFETY STOP 1.4: credential prompt or uninspectable frame; human handling required\");\n    if(location.href!=='about:blank'&&!origins.includes(location.origin))throw new Error(\"SAFETY STOP 1.4: current origin is not approved\");\n    \n    if(!true)throw new Error(\"SAFETY STOP 1.4: confirmation step is not explicitly approved\");\n    return 'safe';\n  })()"
+      }
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "location.href"
+      },
+      "as": "url_1_4"
+    },
+    {
+      "tool": "dialog.info",
+      "args": {},
+      "as": "dialog_1_5"
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "(function(){var d=%{dialog_1_5};if(d.hasDialog||(d.result&&d.result.hasDialog))throw new Error(\"SAFETY STOP 1.5: native dialog; human handling required\");return (function(){\n    var origins=[\"http://127.0.0.1:18765\"];\n    var visible=function(e){var r=e.getBoundingClientRect();var s=getComputedStyle(e);return r.width>0&&r.height>0&&s.visibility!=='hidden'&&s.display!=='none';};\n    var inspect=function(root){\n      var nodes=Array.from(root.querySelectorAll('input,form,dialog,[role=\"dialog\"],h1,h2,h3,[role=\"heading\"],iframe'));\n      if(nodes.some(function(e){\n        if(!visible(e))return false;\n        if(e.tagName==='IFRAME') { try { return !e.contentDocument||inspect(e.contentDocument); } catch { return true; } }\n        if(e.tagName==='INPUT')return e.type==='password'||/^(username|current-password|new-password|one-time-code)$/.test(e.autocomplete);\n        return /\\b(sign\\s*in|log\\s*in|username|password|passcode|verification code|two.factor|authenticate|credentials?)\\b/i.test(e.innerText||'');\n      }))return true;\n      return Array.from(root.querySelectorAll('*')).some(function(e){return visible(e)&&e.shadowRoot&&inspect(e.shadowRoot);});\n    };\n    if(inspect(document))throw new Error(\"SAFETY STOP 1.5: credential prompt or uninspectable frame; human handling required\");\n    if(location.href!=='about:blank'&&!origins.includes(location.origin))throw new Error(\"SAFETY STOP 1.5: current origin is not approved\");\n    \n    if(!true)throw new Error(\"SAFETY STOP 1.5: confirmation step is not explicitly approved\");\n    return 'safe';\n  })();})()"
+      }
+    },
+    {
+      "tool": "screenshot",
+      "args": {
+        "output": "%{shots}/step-1-005-project-selected--capture-001.png"
+      }
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "JSON.stringify({capturedAt:new Date().toISOString(),url:location.href,viewport:{width:innerWidth,height:innerHeight,deviceScaleFactor:devicePixelRatio}})"
+      },
+      "as": "capture_1_1_5"
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "new Promise(function(res,rej){var t0=Date.now();(function tick(){try{res((function(){var e=document.querySelector(\"#status\");if(!e)throw new Error(\"ASSERT FAIL 1.5: #status not found\");var t=e.innerText.trim();if(t.indexOf(\"Project selected: Aurora\")<0)throw new Error(\"ASSERT FAIL 1.5: expected Project selected: Aurora, got \"+t);return t;})());}catch(e){if(Date.now()-t0>5000)rej(e);else setTimeout(tick,200);}})();})"
+      },
+      "as": "assert_1_5"
+    },
+    {
+      "tool": "screenshot",
+      "args": {
+        "output": "%{shots}/step-1-005-project-selected--capture-002.png"
+      }
+    },
+    {
+      "tool": "js",
+      "args": {
+        "code": "JSON.stringify({capturedAt:new Date().toISOString(),url:location.href,viewport:{width:innerWidth,height:innerHeight,deviceScaleFactor:devicePixelRatio}})"
+      },
+      "as": "capture_2_1_5"
+    }
+  ]
+}

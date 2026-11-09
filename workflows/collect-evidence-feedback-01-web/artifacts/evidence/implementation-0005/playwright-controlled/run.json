@@ -1,0 +1,88 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "run",
+  "id": "playwright-controlled",
+  "status": "sealed",
+  "startedAt": "2026-11-09T05:30:42.642Z",
+  "finishedAt": "2026-11-09T05:30:46.915Z",
+  "surface": "web",
+  "driver": "playwright",
+  "driverVersion": "0.1.22",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "1",
+      "path": "cases/1/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/1/case.json",
+      "sha256": "e97626682ffe76bd38b0cb63200755f0e519fa536d348df8c39f6d9f69d06d2d"
+    },
+    {
+      "path": "cases/1/events.jsonl",
+      "sha256": "7bd145330e41358b7a48c8803826310aaf593ce20bbc3559e471eedc97a89747"
+    },
+    {
+      "path": "cases/1/index.md",
+      "sha256": "9306a0222fe8a2b5b8061f9dae5d308feb4d6b0e6a24051a27e87d0fbbab1dfe"
+    },
+    {
+      "path": "cases/1/media/step-002-step-1-002-controlled-heading--capture-001--capture-001.png",
+      "sha256": "230977fe8db331f9bfc5bc05897c779415e0eb6bd14403b2ef45eeb6f2e521de"
+    },
+    {
+      "path": "cases/1/media/step-002-step-1-002-controlled-heading--capture-002--capture-002.png",
+      "sha256": "230977fe8db331f9bfc5bc05897c779415e0eb6bd14403b2ef45eeb6f2e521de"
+    },
+    {
+      "path": "cases/1/media/step-005-step-1-005-project-selected--capture-001--capture-001.png",
+      "sha256": "02975f36195cd075426b78db4e94c519ce05bbb694ec4cbdae21a89c3442e64e"
+    },
+    {
+      "path": "cases/1/media/step-005-step-1-005-project-selected--capture-002--capture-002.png",
+      "sha256": "02975f36195cd075426b78db4e94c519ce05bbb694ec4cbdae21a89c3442e64e"
+    },
+    {
+      "path": "index.md",
+      "sha256": "251396ae2df510c2ff79ecc66b9c214177fe6cf6fa16ce58561003d36e9dcba5"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "6eeba3521ff2425ff0c1c7f0e6093e424c4ad127f0e5e1743783010ce5121c90"
+    },
+    {
+      "path": "native/report/shots/step-1-002-controlled-heading--capture-001.png",
+      "sha256": "230977fe8db331f9bfc5bc05897c779415e0eb6bd14403b2ef45eeb6f2e521de"
+    },
+    {
+      "path": "native/report/shots/step-1-002-controlled-heading--capture-002.png",
+      "sha256": "230977fe8db331f9bfc5bc05897c779415e0eb6bd14403b2ef45eeb6f2e521de"
+    },
+    {
+      "path": "native/report/shots/step-1-005-project-selected--capture-001.png",
+      "sha256": "02975f36195cd075426b78db4e94c519ce05bbb694ec4cbdae21a89c3442e64e"
+    },
+    {
+      "path": "native/report/shots/step-1-005-project-selected--capture-002.png",
+      "sha256": "02975f36195cd075426b78db4e94c519ce05bbb694ec4cbdae21a89c3442e64e"
+    },
+    {
+      "path": "native/runs/case-1.log",
+      "sha256": "7fd3684280584f48d0f316b77f960309348724cc1139e5ee07de35a60eebbd65"
+    },
+    {
+      "path": "native/workflows/web-public-test-1.js",
+      "sha256": "00a186ac5e36ba05e856bfcb8451f2ed88d7c74de812697553dc69ddbbf51c3b"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "96eb44f2eff8f317e334923637a84890cf993013664ec5005f4c03a253b1349f"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "6eeba3521ff2425ff0c1c7f0e6093e424c4ad127f0e5e1743783010ce5121c90"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+  files - Fetching git status
+  files - Fetching staged files
+  files - Fetching staged files (28 files)
+✔ files - Fetching staged files (28 files)
+❯ bundle-versions
+  bundle-versions – 28 files –  – mise run checks:agent-bundle-versions -- check --staged
+  bundle-versions – [checks:agent-bundle-versions] $ /run/media/zenobius/Store/Projects/Mine/Github…
+✔ bundle-versions
+│  No config files with names ["lefthook" ".lefthook" ".config/lefthook"] have been found in "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web"

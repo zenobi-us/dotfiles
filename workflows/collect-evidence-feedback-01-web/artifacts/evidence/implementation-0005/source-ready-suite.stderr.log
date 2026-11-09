@@ -1,0 +1,24 @@
+
+../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/playwright-driver.test.ts:
+(pass) failureFromOutput > names the step in the ASSERT FAIL message [1.16ms]
+(pass) failureFromOutput > blames the last step when there is no ASSERT FAIL [0.04ms]
+
+../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts:
+(pass) dry-run resolves a temporary store without creating a workspace or starting a driver [299.19ms]
+(pass) unsupported explicit schema is rejected by the public validator [124.69ms]
+(pass) force cannot authorize evidence replacement [131.86ms]
+(pass) unknown arguments return usage error rather than a valid-looking result [123.27ms]
+
+../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts:
+(pass) real public browser workflows > surf: capture, assertions, safety, sealing and read-only consumers [19593.69ms]
+(pass) real public browser workflows > playwright: capture, assertions, safety, sealing and read-only consumers [15809.42ms]
+
+../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts:
+(pass) decideVerdict > will not pass a run with no image [0.32ms]
+(pass) decideVerdict > caps a run with a human step at PARTIAL [0.09ms]
+(pass) decideVerdict > adds a FAIL record when the driver returned none for the failing step [0.07ms]
+
+ 11 pass
+ 0 fail
+ 70 expect() calls
+Ran 11 tests across 4 files. [36.14s]

@@ -1,0 +1,9 @@
+
+../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts:
+(pass) real public browser workflows > surf: capture, assertions, safety, sealing and read-only consumers [20687.44ms]
+
+ 1 pass
+ 1 filtered out
+ 0 fail
+ 26 expect() calls
+Ran 1 test across 1 file. [20.70s]

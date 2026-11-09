@@ -1,0 +1,19 @@
+Playwright browser launch is unavailable. Configure an installed browser before capture: open failed: /var/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.mise/playwright-core@1.64.0-alpha-1790635538000/node_modules/playwright-core/lib/tools/cli-client/session.js:172
+    const rejectWithPid = (reject, message) => reject(Object.assign(new Error(`Daemon pid=${child.pid}: ${message}`), { daemonPid: child.pid }));
+                                                                    ^
+
+Error: Daemon pid=3353586: Daemon process exited with code 1
+[PlaywrightError: Failed to launch chromium because executable doesn't exist at /tmp/collect-evidence-browser-does-not-exist] {
+  log: []
+}
+
+    at rejectWithPid (/var/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.mise/playwright-core@1.64.0-alpha-1790635538000/node_modules/playwright-core/lib/tools/cli-client/session.js:172:69)
+    at ChildProcess.<anonymous> (/var/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.mise/playwright-core@1.64.0-alpha-1790635538000/node_modules/playwright-core/lib/tools/cli-client/session.js:182:11)
+    at ChildProcess.emit (node:events:519:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+  daemonPid: 3353586
+}
+
+Node.js v22.23.3
+

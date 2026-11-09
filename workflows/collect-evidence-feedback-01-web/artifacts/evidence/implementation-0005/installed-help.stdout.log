@@ -1,0 +1,18 @@
+collect-evidence - Collect immutable, versioned real browser evidence
+
+USAGE:
+  collect-evidence <command> [options]
+
+COMMANDS:
+  doctor     Check installed driver and connection; never install tools
+  init       Create an external working plan and resolve its evidence destination
+  render     Generate the versioned plan and human procedure
+  compile    Compile the typed plan for its existing driver
+  run        Collect in private temporary storage and finalize a new immutable run
+  validate   Verify record contracts, references and media hashes
+  report     Render a read-only HTML export from validated common records
+  verdicts   Read the case outcomes from validated common records
+  comment    Generate manual steps and a report link; never publish
+
+OPTIONS:
+  -h, --help                   Show help
