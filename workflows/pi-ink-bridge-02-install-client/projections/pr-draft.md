@@ -3,6 +3,14 @@ title: Install and launch the tablet client
 type: Report
 ---
 
+## Published and completed; worktree cleanup blocked
+
+Ticket completed and published through `57ef5a8cb6bea7f3cda00feba3bd518b8e0e2aee`. Exact integration `16d1122ae182d38630af5126dcf00a0aa7e8b626`, tree `149bf25a63f328a6e0df06004d1b397792851ec1`, independent review0076 SUCCESS. Integrated installer regression, typecheck, Go race suite, actual host CLI and shell syntax passed.
+
+Workspace w6X closed. Scoped cleanup refused the source worktree because existing Pitchfork supervisor 1182041 and global/pi-ink-bridge log sink 2532008 retain its working directory. Worktree/branch preserved; no service or device changes, process signals, or port47840 contact. See events/finish-failed-0084.json and artifacts/evidence/finish-0071/cleanup-process-blockers.json. Separately approved service handling is required before cleanup, not another merge.
+
+<details><summary>Preserved history</summary>
+
 ## Integrated; publication pending
 
 Review0076 SUCCESS on `16d1122ae182d38630af5126dcf00a0aa7e8b626`; both axes PASS, zero findings. Exact Worktrunk integration has tree `149bf25a63f328a6e0df06004d1b397792851ec1` and sole parent `7e2faef76a47130e9e5e4c8beab5390d22bed8d4`. Installer 8 tests/31 assertions, Go race suite, native host CLI and shell syntax passed. Base dependency repair restored locked Bun types; local typecheck then passed. See events/finish-reconciled-0081.json and artifacts/evidence/finish-0071/{integrated-validation,dependency-recovery}.json. No push, ticket completion or cleanup yet.
@@ -610,6 +618,7 @@ The canonical inspector requested product-outcome reconciliation after lifecycle
 The parent verified authoritative fix0066 against the typed result and exact clean source `b6f4c7af4da729d1dfb175855247b74dc3d106d3` / tree `2c63ba1d51dd94de767f0d688719f938a0a97031`. The actual three-file diff, recorded8 passing tests/31assertions, typecheck, shell syntax and five isolated smoke outcomes support STD-001 and SPEC-001 resolution. These checks were not rerun solely to confirm the fixer.
 
 Fixer OMP in w6X:p6 completed at sequence481 and closed with result ok. The workspace and worktree remain available. [Parent completion](../events/fix-complete-0067.json) and [parent validation](../artifacts/evidence/fix-0066/parent-validation.json). Both source commits are recorded in the fix result. Fresh independent review is required; no device, service, deployment, ARM64 rebuild, merge or push occurred.
+</details>
 </details>
 </details>
 </details>

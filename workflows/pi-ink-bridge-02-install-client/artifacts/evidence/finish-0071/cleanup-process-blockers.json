@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-11-09T05:36:07.341Z",
+  "blockers": [
+    {
+      "pid": "1182041",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator"
+    },
+    {
+      "pid": "2532008",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client/mise/conf.d/devtools-omp/extensions/image-annotator"
+    }
+  ],
+  "no_processes_signalled": true
+}
