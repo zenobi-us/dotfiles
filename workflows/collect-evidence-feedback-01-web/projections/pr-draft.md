@@ -167,3 +167,8 @@ The canonical ticket remains implemented. No tracker mutation, remote Git operat
 - [fix-0020](../events/fix-0020.yaml).
 - [fix-complete-0021](../events/fix-complete-0021.yaml).
 
+
+
+## Independent review attempt 4
+
+[review-start-0022](../events/review-start-0022.yaml) freezes source 12b6345ac32f4ae30b078e5344fb5bae7a1ee244 and tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. The full cutover comparison uses master at b7f84419e6242037c3b2e4e2e828ad84b9041aa6. The user authorized a fresh review only. No new verdict exists. The earlier Playwright failure remains an explicit review input.

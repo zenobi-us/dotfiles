@@ -245,3 +245,8 @@ The parent ran a separate real Surf workflow from /tmp with unchanged case ID ap
 
 Base artifacts were committed as 41cf8b51. The result is acknowledged and only fixer pane w73:p5 is closed. Workspace w73 and the source worktree remain open. The inspector requires Review changed source. No current review verdict exists. The earlier Playwright suite failure remains unexplained and recorded. STD-R3-001 remains advisory. The canonical ticket stays implemented. No remote Git operation, merge, push, tracker change or ticket completion ran.
 
+
+
+## Independent review attempt 4
+
+[review-start-0022](../events/review-start-0022.yaml) freezes source 12b6345ac32f4ae30b078e5344fb5bae7a1ee244 and tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. The full cutover comparison uses master at b7f84419e6242037c3b2e4e2e828ad84b9041aa6. The user authorized a fresh review only. No new verdict exists. The earlier Playwright failure remains an explicit review input.
