@@ -1,5 +1,5 @@
 ---
-latest_receipt: fix-complete-0027
+latest_receipt: review-complete-0030
 schema: worktree-projection/v1
 title: Collect-evidence web implementation log
 type: Projection
@@ -7,7 +7,7 @@ type: Projection
 
 # Collect-evidence web implementation log
 
-FIX_FAILED. Selected source changes are committed, but validation failed. Diagnostic recovery is required before acceptance review. Source 8c4015418f6b3fee244708d9937e45bb358fc45d; tree 28784b1a67c200888c53a947b3b056f2569cccbc. No current reviewer verdict exists. The selected fixes passed focused proof; the scoped suite failed. Parent completion is pending.
+RECOVERY_BLOCKED. Source fixes remain committed. The Surf timeout was not reproduced. No acceptance verdict exists. Source 8c4015418f6b3fee244708d9937e45bb358fc45d; tree 28784b1a67c200888c53a947b3b056f2569cccbc. No current reviewer verdict exists. The selected fixes passed focused proof; the scoped suite failed. Parent completion is pending.
 
 ## Current implementation
 
@@ -513,4 +513,16 @@ These focused passes do not replace the failed full suite. That suite reported 1
 Artifacts and actual evidence were committed as 716255ad. The typed failed result is acknowledged. Only completed fixer pane w73:p7 is closed. Workspace w73 and the source worktree remain available. The ticket remains implemented. No tracker mutation, source change by the parent, merge, push or ticket completion ran.
 
 The inspector returns Recover findings (action review, mode retry). This is a diagnostic recovery requirement, not ordinary acceptance-review readiness. The mismatch between that review action and the fix playbook validation gate was reported. Diagnose the retained failure before accepting or merging the work.
+
+## Blocked diagnostic recovery
+
+[Diagnostic report review-0029](../artifacts/reviews/review-review-0029.md) records read-only recovery at source 8c4015418f6b3fee244708d9937e45bb358fc45d. Separate owned-session probes covered a fresh reset and a reset after capture. Both reached the credential safety stop; neither reproduced the timeout. The initial shared-session comparison was contaminated and was not counted as proof. No actionable source cause or acceptance verdict is established. The earlier failed suite remains failed.
+
+The retained reset error occurred before the credential guard. FAIL is valid for that transport failure. Changing all transport errors to BLOCKED would conceal the distinct failure. A failing trace must correlate CLI requests, native queue/resource state, extension responses, session/tab/browser identity and navigation completion. Green probes cannot reconstruct the missing failure-time trace. Raw originals remain outside the repository; the report contains sanitized owned-session summaries.
+
+The mandated writer rejected status blocked without SUCCESS or FAILURE. No child event review-0029 or assigned transport result exists. [The undelivered prepared snapshot](../artifacts/snapshots/undelivered-review-0029.json) is forensic data only, not workflow authority. No acknowledgement or canonical verdict comment was fabricated. The report and snapshot were committed as 3c4d897a.
+
+[review-complete-0030](../events/review-complete-0030.yaml) records the blocked parent outcome with result_missing. Only verified completed diagnostic panes w73:p8, w73:p9 and w73:pA were closed. The two nested launches had started despite timeout reports; their delivery failures were reported. Workspace w73 and the unchanged clean source remain available. No source changes, tracker changes, acceptance, merge, push or ticket completion ran.
+
+The inspector labels the next action Retry interrupted review. Do not automatically repeat the same probes or suite. Recovery needs a correlated failing trace and correction of the blocked-review writer contract. [Review start](../events/review-start-0028.yaml) and [launch record](../artifacts/snapshots/launch-review-start-0028.json) retain approval and process identity.
 
