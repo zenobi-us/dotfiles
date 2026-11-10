@@ -1,5 +1,5 @@
 ---
-latest_receipt: fix-complete-0037
+latest_receipt: review-complete-0040
 schema: worktree-projection/v1
 title: Current web PR draft
 type: Projection
@@ -7,7 +7,7 @@ type: Projection
 
 # Preserve Surf and Playwright in collect-evidence
 
-FIXED. SPEC-R5-001 is resolved in committed source. Fresh independent review is required. Prior browser failures remain unresolved.
+REVIEW_FAILED. Review-0039 records current P2 blockers for source 3dbab24c. SPEC-R5-001 is resolved; earlier browser failures remain unresolved.
 
 ## Source
 
@@ -45,7 +45,7 @@ Scoped TypeScript passed using existing base dependencies. TypeScript LSP initia
 
 Selected and resolved: SPEC-R4-001 and SPEC-R4-002. Prior resolved: STD-001, SPEC-001, SPEC-002, SPEC-003 and SPEC-R3-001. Unresolved: STD-R3-001 (P3 advisory, unselected). CleanupRow and cleanupRow hooks are unchanged.
 
-Review-0033 records historical FAILURE for prior source 8c401541. The current fixed source awaits independent review. review-0023 FAILURE is historical and applies only to 12b6345ac32f4ae30b078e5344fb5bae7a1ee244, tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. Earlier FAILURE reviews remain historical.
+Review-0033 records historical FAILURE for prior source 8c401541. Review-0039 now records FAILURE for the current source. review-0023 FAILURE is historical and applies only to 12b6345ac32f4ae30b078e5344fb5bae7a1ee244, tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. Earlier FAILURE reviews remain historical.
 
 [Consumed immutable review](../artifacts/reviews/review-review-0023.md). [Earlier fix draft](../artifacts/snapshots/pr-draft-fix-0020.md). [Original implementation draft](../artifacts/snapshots/pr-draft-implementation-0005.md).
 
@@ -57,7 +57,7 @@ The earlier fix-0020 Playwright pass-case suite failure and the separate review-
 
 The initial throwaway smoke fixture omitted required says and capture locator/as. Its failed native output and commands are retained. Corrected fixture smoke passed both real drivers without another production change.
 
-Review-0033 FAILURE is historical; no verdict covers the current fixed source. STD-R3-001 and cleanupRow hooks remain unchanged. No new video proof, tool installation, remote Git operation, stash operation, base-store commit, formal review, merge, push or ticket completion. Existing records reported no changelog; the existing Surf driver reference was updated.
+Review-0033 FAILURE is historical; review-0039 records FAILURE for the current source. STD-R3-001 and cleanupRow hooks remain unchanged. No new video proof, tool installation, remote Git operation, stash operation, base-store commit, formal review, merge, push or ticket completion. Existing records reported no changelog; the existing Surf driver reference was updated.
 
 Source fixes and actual workflow artifacts are committed locally. Parent completion records failed validation, acknowledgement and closure of fixer pane w73:p7. Workspace w73 and the source worktree remain open. The canonical ticket remains implemented. No merge or push occurred.
 
@@ -590,7 +590,7 @@ Historical blocking finding SPEC-R5-001 is resolved by fix-0036, pending indepen
 
 Next: Fix review findings: The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs. Scoped approval is required; no fix is authorized by this review request.
 
-## Current fix fix-0036
+## Latest implementation fix-0036 (before review-0039)
 
 Source commit: `3dbab24ce09d4cf1c3eaedf467af63e007b9e976`; tree: `213b91da7d7589912d53f67c19cc5e5c76adc54f`. State: FIXED. Current review verdict: null; review-0033 FAILURE is historical and does not cover this source.
 
@@ -613,3 +613,17 @@ Resolved by the scoped fix: SPEC-R5-001. Unchanged advisories: STD-AXIS-001 and 
 Old Surf/Playwright browser failures remain unresolved. No failed browser workflow rerun, merge, push or ticket completion occurred. Records are locally committed; the canonical ticket remains implemented.
 
 Next: Review changed source: The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing. Fresh-review approval is required; no review was launched in this fix phase.
+
+## Current independent review review-0039
+
+Reviewed commit: `3dbab24ce09d4cf1c3eaedf467af63e007b9e976`; tree: `213b91da7d7589912d53f67c19cc5e5c76adc54f`. Verdict: **FAILURE**. State: REVIEW_FAILED. Prior required-field finding SPEC-R5-001 remains resolved.
+
+- **Standards:** One P2 blocker (STD-R6-001); two P3 advisories (STD-R6-002 and STD-R6-003).
+- **Spec:** Two P2 blockers (SPEC-R6-001 and SPEC-R6-002). STD-R6-001 and SPEC-R6-002 concern the same fixture, not independent runtime failures.
+- **Canonical findings:** [Immutable review](../artifacts/reviews/review-review-0039.md) and [authoritative result](../events/review-0039.yaml). Detailed commands and observations remain in the result; no new evidence run was created.
+- **Parent validation:** Valid Surf compile and Playwright render controls passed from /tmp without launching drivers. These controls do not erase malformed-input defects or retained browser failures. Ticket schema/discovery validation passed before and after the review comment.
+- **Phase provenance:** [Approved start](../events/review-start-0038.yaml), [parent completion](../events/review-complete-0040.yaml). Typed result acknowledged; reviewer t20 and axes t21/t22 closed and removed; source unchanged and clean.
+
+Review and tracker records are committed locally. No merge, push, source fix or ticket completion occurred. Earlier Surf/Playwright acceptance failures remain unresolved. Historical review and fix records above remain intact.
+
+Next: Fix review findings: The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs. Separate scoped fix approval is required; no source fix ran during review.

@@ -1,5 +1,5 @@
 ---
-latest_receipt: fix-complete-0037
+latest_receipt: review-complete-0040
 schema: worktree-projection/v1
 title: Collect-evidence web implementation log
 type: Projection
@@ -554,7 +554,7 @@ Historical blocking finding SPEC-R5-001 is resolved by fix-0036, pending indepen
 
 Next: Fix review findings: The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs. Scoped approval is required; no fix is authorized by this review request.
 
-## Current fix fix-0036
+## Latest implementation fix-0036 (before review-0039)
 
 Source commit: `3dbab24ce09d4cf1c3eaedf467af63e007b9e976`; tree: `213b91da7d7589912d53f67c19cc5e5c76adc54f`. State: FIXED. Current review verdict: null; review-0033 FAILURE is historical and does not cover this source.
 
@@ -577,3 +577,17 @@ Resolved by the scoped fix: SPEC-R5-001. Unchanged advisories: STD-AXIS-001 and 
 Old Surf/Playwright browser failures remain unresolved. No failed browser workflow rerun, merge, push or ticket completion occurred. Records are locally committed; the canonical ticket remains implemented.
 
 Next: Review changed source: The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing. Fresh-review approval is required; no review was launched in this fix phase.
+
+## Current independent review review-0039
+
+Reviewed commit: `3dbab24ce09d4cf1c3eaedf467af63e007b9e976`; tree: `213b91da7d7589912d53f67c19cc5e5c76adc54f`. Verdict: **FAILURE**. State: REVIEW_FAILED. Prior required-field finding SPEC-R5-001 remains resolved.
+
+- **Standards:** One P2 blocker (STD-R6-001); two P3 advisories (STD-R6-002 and STD-R6-003).
+- **Spec:** Two P2 blockers (SPEC-R6-001 and SPEC-R6-002). STD-R6-001 and SPEC-R6-002 concern the same fixture, not independent runtime failures.
+- **Canonical findings:** [Immutable review](../artifacts/reviews/review-review-0039.md) and [authoritative result](../events/review-0039.yaml). Detailed commands and observations remain in the result; no new evidence run was created.
+- **Parent validation:** Valid Surf compile and Playwright render controls passed from /tmp without launching drivers. These controls do not erase malformed-input defects or retained browser failures. Ticket schema/discovery validation passed before and after the review comment.
+- **Phase provenance:** [Approved start](../events/review-start-0038.yaml), [parent completion](../events/review-complete-0040.yaml). Typed result acknowledged; reviewer t20 and axes t21/t22 closed and removed; source unchanged and clean.
+
+Review and tracker records are committed locally. No merge, push, source fix or ticket completion occurred. Earlier Surf/Playwright acceptance failures remain unresolved. Historical review and fix records above remain intact.
+
+Next: Fix review findings: The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs. Separate scoped fix approval is required; no source fix ran during review.
