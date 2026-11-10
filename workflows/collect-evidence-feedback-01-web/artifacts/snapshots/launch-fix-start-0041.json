@@ -1,0 +1,10 @@
+{
+  "runId": "1e6a5145-daba-4073-8e91-a660f3e7fb8f",
+  "target": "t27",
+  "operationId": "collect-evidence-feedback-01-web-fix-0042",
+  "contextFile": "/home/zenobius/.local/state/result-delivery/runs/1e6a5145-daba-4073-8e91-a660f3e7fb8f/context.json",
+  "resultTarget": "/var/home/zenobius/.local/state/result-delivery/runs/collect-evidence-fix-0042/result.json",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "depth": 1
+}
