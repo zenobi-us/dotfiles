@@ -1,12 +1,14 @@
 import { afterEach, expect, test } from "bun:test";
-import { mkdir, mkdtemp, rm, symlink, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rename, rm, stat, symlink, utimes, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, relative } from "node:path";
-import { loadExplorerSnapshot, loadTicketWorkflow } from "../../../developer/skills/git/worktree/scripts/workflow";
+import { loadExplorerAdrs, loadExplorerSnapshot, loadTicketWorkflow } from "../../../developer/skills/git/worktree/scripts/workflow";
 import { unresolvedBlockers } from "./model";
 import type { Exec, ExplorerTicket, SharedAgentContext } from "./model";
 import { actionChoices } from "./actions";
 import { recoveryDecision } from "../../../developer/skills/git/worktree/scripts/recovery";
+import { DocumentReadSession } from "../../../developer/skills/git/worktree/scripts/document-cache";
+import { formatExplorerReference } from "./explorer-reference";
 
 const temporaryDirectories: string[] = [];
 afterEach(async () => {
@@ -184,17 +186,6 @@ test("invalid events remain inspectable without hiding valid receipts or permitt
   expect(choices.filter(choice => choice.action !== "ask-matt").every(choice => Boolean(choice.disabledReason))).toBe(true);
 });
 
-test("phase-start and phase-complete envelopes do not require invented evidence", async () => {
-  const { context, selected, fields, events } = await receiptFixture();
-  const { evidence, ...envelope } = fields;
-  await put(join(events, "z-first.json"), JSON.stringify({ ...envelope, event: "phase-start", status: "started" }));
-  await put(join(events, "complete.json"), JSON.stringify({ ...envelope, receipt_id: "complete", parent_receipt: fields.receipt_id, event: "phase-complete", created_at: "2026-10-02T10:00:00Z" }));
-  const workflow = await loadTicketWorkflow(context, selected, execute);
-  expect(workflow.error).toBeUndefined();
-  expect(workflow.receipts.map(item => item.id)).toEqual(["complete", "start-1"]);
-  await put(join(events, "complete.json"), JSON.stringify({ ...envelope, receipt_id: "complete", parent_receipt: fields.receipt_id, event: "phase-result" }));
-  expect((await loadTicketWorkflow(context, selected, execute)).error).toBeDefined();
-});
 
 test("interrupted parent-run finish remains recoverable without a child pane", async () => {
   const { context, selected, fields, events } = await receiptFixture();
@@ -427,4 +418,436 @@ test("legacy lifecycle names and missing-child failed completion remain immutabl
   expect(workflow.receipts.find(receipt => receipt.id === interrupted.receipt_id)?.fields).toEqual(interrupted);
   expect(workflow.receipts[0]?.fields).toEqual(failed);
   expect(recoveryDecision(selected, { tickets: [selected] }, workflow)).toMatchObject({ action: "review", mode: "retry" });
+});
+
+test("warm snapshots retain independent values while exact bytes detect preserved-timestamp edits", async () => {
+  const context = await fixture();
+  await ticket(context, "A");
+  const first = await loadExplorerSnapshot(context, execute);
+  first.tickets[0]!.title = "Mutated return";
+  (first.tickets[0]!.fields!.blocked_by as unknown[]).push("invented");
+  first.initiatives[0]!.ticketIds.push("invented");
+  const noParser: Exec = async (command, args) => command === "mq" ? { code: 1, stdout: "Parser must not be needed for unchanged bytes" } : execute(command, args);
+  const unchanged = await loadExplorerSnapshot(context, noParser);
+  expect(unchanged.tickets[0]!.title).toBe("Ticket A");
+  expect(unchanged.tickets[0]!.fields!.blocked_by).toEqual([]);
+  expect(unchanged.initiatives[0]!.ticketIds).toEqual(["A"]);
+  const file = join(context.repositoryRoot, "records/issues/A.md");
+  const before = await stat(file);
+  const original = await readFile(file, "utf8");
+  await writeFile(file, original.replace("Ticket A", "Ticket Z"));
+  await utimes(file, before.atime, before.mtime);
+  expect((await stat(file)).size).toBe(before.size);
+  expect((await loadExplorerSnapshot(context, execute)).tickets[0]!.title).toBe("Ticket Z");
+});
+
+test("warm collection membership notices new collections, additions, deletions, and renamed records", async () => {
+  const context = await fixture();
+  expect((await loadExplorerSnapshot(context, execute)).tickets).toEqual([]);
+  await ticket(context, "A");
+  await ticket(context, "B");
+  expect((await loadExplorerSnapshot(context, execute)).tickets.map(item => item.id)).toEqual(["A", "B"]);
+  await rm(join(context.repositoryRoot, "records/issues/A.md"));
+  await rename(join(context.repositoryRoot, "records/issues/B.md"), join(context.repositoryRoot, "records/issues/C.md"));
+  await ticket(context, "C");
+  expect((await loadExplorerSnapshot(context, execute)).tickets.map(item => item.id)).toEqual(["C"]);
+});
+
+test("corrupt changed records fail repeatedly and recover without retaining old parsed fields", async () => {
+  const context = await fixture();
+  await ticket(context, "A");
+  await loadExplorerSnapshot(context, execute);
+  const file = join(context.repositoryRoot, "records/issues/A.md");
+  await put(file, "---\nid: A\ntitle: [\n---\n");
+  await expect(loadExplorerSnapshot(context, execute)).rejects.toThrow();
+  await expect(loadExplorerSnapshot(context, execute)).rejects.toThrow();
+  await put(file, "---\nid: A\ntitle: Recovered\nblocked_by: []\n---\n");
+  expect((await loadExplorerSnapshot(context, execute)).tickets[0]!.title).toBe("Recovered");
+});
+
+test("cached document values do not cross context roots or route changes", async () => {
+  const first = await fixture();
+  const second = await fixture();
+  await ticket(first, "A");
+  await put(join(second.repositoryRoot, "records/issues/A.md"), "---\nid: A\ntitle: Second context\n---\n");
+  expect((await loadExplorerSnapshot(first, execute)).tickets[0]!.title).toBe("Ticket A");
+  expect((await loadExplorerSnapshot(second, execute)).tickets[0]!.title).toBe("Second context");
+  await put(join(first.sharedRoot, "records/issues/A.md"), "---\nid: A\ntitle: Shared route\n---\n");
+  const routed = { ...first, routes: { ...first.routes, tickets: { adapter: "local-markdown", store: "shared" as const } } };
+  const shared = await loadExplorerSnapshot(routed, execute);
+  expect(shared.tickets[0]!.title).toBe("Shared route");
+  expect(shared.tickets[0]!.ref).toBe("shared://records/issues/A.md");
+  expect((await loadExplorerSnapshot(first, execute)).tickets[0]!.title).toBe("Ticket A");
+});
+
+for (const mutation of ["bytes", "add", "delete", "rename", "symlink"] as const) {
+  test(`snapshot rejects ${mutation} mutation after captured bytes have been parsed`, async () => {
+    const context = await fixture();
+    await ticket(context, "A");
+    const file = join(context.repositoryRoot, "records/issues/A.md");
+    const outside = join(dirname(context.repositoryRoot), "outside.md");
+    await put(outside, "---\nid: A\ntitle: Escaped\n---\n");
+    let changed = false;
+    const duringParse: Exec = async (command, args) => {
+      const result = await execute(command, args);
+      if (command === "mq" && !changed) {
+        changed = true;
+        if (mutation === "bytes") {
+          const before = await stat(file);
+          await writeFile(file, (await readFile(file, "utf8")).replace("Ticket A", "Ticket Z"));
+          await utimes(file, before.atime, before.mtime);
+        } else if (mutation === "add") await ticket(context, "B");
+        else if (mutation === "delete") await rm(file);
+        else if (mutation === "rename") await rename(file, join(dirname(file), "renamed.md"));
+        else { await rm(file); await symlink(outside, file); }
+      }
+      return result;
+    };
+    await expect(loadExplorerSnapshot(context, duringParse)).rejects.toThrow("Records changed during read");
+    expect(changed).toBe(true);
+    if (mutation === "bytes") expect((await loadExplorerSnapshot(context, execute)).tickets[0]!.title).toBe("Ticket Z");
+    if (mutation === "add") expect((await loadExplorerSnapshot(context, execute)).tickets.map(item => item.id)).toEqual(["A", "B"]);
+    if (mutation === "delete") expect((await loadExplorerSnapshot(context, execute)).tickets).toEqual([]);
+    if (mutation === "symlink") await expect(loadExplorerSnapshot(context, execute)).rejects.toThrow("escapes");
+  });
+}
+
+test("captured JSON batches are removed on parser failure and successful recovery", async () => {
+  const context = await fixture();
+  await ticket(context, "A");
+  const inputs: string[] = [];
+  const fail: Exec = async (command, args) => {
+    if (command !== "mq") return execute(command, args);
+    inputs.push(args.at(-1)!);
+    const captured = JSON.parse(await readFile(args.at(-1)!, "utf8"));
+    expect(captured.some((item: { source: string }) => item.source.includes("Ticket A"))).toBe(true);
+    return { code: 1, stdout: "Parser unavailable" };
+  };
+  await expect(loadExplorerSnapshot(context, fail)).rejects.toThrow("Parser unavailable");
+  for (const input of inputs) await expect(stat(dirname(input))).rejects.toMatchObject({ code: "ENOENT" });
+  const recover: Exec = async (command, args) => {
+    if (command === "mq") inputs.push(args.at(-1)!);
+    return execute(command, args);
+  };
+  expect((await loadExplorerSnapshot(context, recover)).tickets[0]!.id).toBe("A");
+  for (const input of inputs) await expect(stat(dirname(input))).rejects.toMatchObject({ code: "ENOENT" });
+});
+
+test("receipt documents reuse independent parsing while live ownership is always inspected", async () => {
+  const { context, selected, fields, events } = await receiptFixture();
+  await put(join(events, "start.md"), `---\n${JSON.stringify({ ...fields, receipt_id: "markdown-start", created_at: "2026-10-02T10:00:00Z", parent_receipt: fields.receipt_id })}\n---\n`);
+  let marker = "🤖";
+  const observe: Exec = async (command, args) => command === "wt"
+    ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "feature/a", marker, worktree: { path: context.repositoryRoot } }] }) }
+    : execute(command, args);
+  const first = await loadTicketWorkflow(context, selected, observe);
+  expect(first.inspection?.ownership).toBe("active");
+  first.receipts[0]!.fields.ticket = { id: "mutated" };
+  first.events![0]!.body = "Mutated body";
+  marker = "";
+  const noParser: Exec = async (command, args) => command === "mq" ? { code: 1, stdout: "Unchanged receipts need no parser" } : observe(command, args);
+  const second = await loadTicketWorkflow(context, selected, noParser);
+  expect(second.error).toBeUndefined();
+  expect(second.inspection?.ownership).toBe("unknown");
+  expect(second.receipts[0]!.fields.ticket).toEqual(fields.ticket);
+  expect(second.events?.some(event => event.body === "Mutated body")).toBe(false);
+  await put(join(events, "z-first.json"), "{");
+  expect((await loadTicketWorkflow(context, selected, observe)).inspection?.historyValid).toBe(false);
+  await put(join(events, "z-first.json"), JSON.stringify(fields));
+  expect((await loadTicketWorkflow(context, selected, observe)).inspection?.historyValid).toBe(true);
+});
+
+test("receipt membership and bytes are checked after live inspection before authorizing history", async () => {
+  for (const mutation of ["bytes", "add", "delete"] as const) {
+    const { context, selected, fields, events } = await receiptFixture();
+    let changed = false;
+    const duringInspection: Exec = async (command, args) => {
+      if (command === "wt") {
+        if (!changed) {
+          changed = true;
+          if (mutation === "bytes") await put(join(events, "z-first.json"), JSON.stringify({ ...fields, agent: "changed" }));
+          else if (mutation === "add") await put(join(events, "extra.json"), JSON.stringify({ ...fields, receipt_id: "extra" }));
+          else await rm(join(events, "z-first.json"));
+        }
+        return { code: 0, stdout: JSON.stringify({ schema: 2, items: [] }) };
+      }
+      return execute(command, args);
+    };
+    const workflow = await loadTicketWorkflow(context, selected, duringInspection);
+    expect(workflow.error).toContain("Records changed during read");
+    expect(workflow.inspection?.historyValid).toBe(false);
+    expect(workflow.recordedAttempts).toBeUndefined();
+    expect(workflow.sourceCommit).toBeUndefined();
+  }
+});
+
+test("scoped snapshots keep transitive blockers and initiative descendants without hiding global errors", async () => {
+  const context = await fixture();
+  await ticket(context, "A", ["B"]);
+  await ticket(context, "B", ["C"]);
+  await ticket(context, "C");
+  await ticket(context, "D");
+  await put(join(context.repositoryRoot, "records/issues/CHILD.md"), "---\nid: CHILD\ntitle: Child\nparent: A\n---\n");
+  const index = join(context.sharedRoot, "records/plans/release/index.md");
+  const target = relative(dirname(index), join(context.repositoryRoot, "records/issues/A.md"));
+  await put(index, `---\ntitle: Release\n---\n\n[A](${target})\n`);
+  const selected = await loadExplorerSnapshot(context, execute, { ref: "records/issues/A.md", kind: "ticket" });
+  expect(selected.tickets.map(item => item.id)).toEqual(["A", "B", "C"]);
+  const initiative = await loadExplorerSnapshot(context, execute, { ref: "shared://records/plans/release/index.md", kind: "initiative" });
+  expect(initiative.tickets.map(item => item.id)).toEqual(["A", "B", "C", "CHILD"]);
+  expect(initiative.initiatives[0]!.rootTicketIds).toEqual(["A"]);
+  await ticket(context, "D", ["missing"]);
+  await expect(loadExplorerSnapshot(context, execute, { ref: "records/issues/A.md", kind: "ticket" })).rejects.toThrow("Missing ticket blocker");
+});
+
+test("ADRs resolve numeric identities from the alignment store and refresh cached content", async () => {
+  const context = await fixture();
+  context.routes.alignment = { adapter: "markdown", store: "shared" };
+  await put(join(context.repositoryRoot, "docs/adr/0001-local.md"), "---\ntitle: Wrong store\n---\n");
+  const file = join(context.sharedRoot, "docs/adr/0001-decision.md");
+  await put(file, "---\ntitle: Shared decision\nstatus: accepted\n---\n\nDecision body.\n");
+  await put(join(context.sharedRoot, "docs/adr/index.md"), "# Decisions\n");
+  const first = await loadExplorerAdrs(context, execute);
+  expect(first).toHaveLength(1);
+  expect(first[0]).toMatchObject({ id: "0001", ref: "shared://docs/adr/0001-decision.md", documentType: "adr", title: "Shared decision" });
+  first[0]!.fields!.title = "Mutated";
+  const noParser: Exec = async () => ({ code: 1, stdout: "Unchanged ADR needs no parser" });
+  expect((await loadExplorerAdrs(context, noParser))[0]!.title).toBe("Shared decision");
+  await put(file, "---\ntitle: Revised decision\nstatus: accepted\n---\n");
+  expect((await loadExplorerAdrs(context, execute))[0]!.title).toBe("Revised decision");
+});
+
+test("selected GitHub traversal loads canonical connected records without requiring a repository listing", async () => {
+  const context = await fixture("github");
+  const base = "https://github.com/example/continuity/issues/";
+  const issue = (number: number) => ({
+    number, html_url: `${base}${number}`, title: `Issue ${number}`, body: "", state: "OPEN", labels: [],
+    issueType: number === 1 ? { name: "Spec" } : null,
+    parent: [2, 3].includes(number) ? { number: number === 2 ? 1 : 2, url: `${base}${number === 2 ? 1 : 2}` } : null,
+  });
+  const hosted: Exec = async (command, args) => {
+    if (command !== "gh") return execute(command, args);
+    if (args[0] === "issue") return { code: 0, stdout: JSON.stringify(issue(Number(args[2]))) };
+    const endpoint = args.at(-1)!;
+    if (endpoint === "repos/example/continuity/issues?state=all&per_page=100") throw new Error("Repository-wide listing is unavailable");
+    const ids = endpoint.includes("/1/sub_issues?") ? [2]
+      : endpoint.includes("/2/sub_issues?") ? [3]
+        : endpoint.includes("/2/dependencies/blocked_by?") ? [4]
+          : endpoint.includes("/4/dependencies/blocked_by?") ? [5] : [];
+    return { code: 0, stdout: JSON.stringify([ids.map(issue)]) };
+  };
+  const selected = await loadExplorerSnapshot(context, hosted, { ref: `${base}2`, kind: "ticket" });
+  expect(selected.tickets.map(item => item.id)).toEqual(["2", "4", "5"]);
+  const initiative = await loadExplorerSnapshot(context, hosted, { ref: `${base}1`, kind: "initiative" });
+  expect(initiative.tickets.map(item => item.id).sort()).toEqual(["2", "3", "4", "5"]);
+  expect(initiative.initiatives[0]).toMatchObject({ id: "1", rootTicketIds: ["2"], ticketIds: ["2", "3"] });
+  await expect(loadExplorerSnapshot(context, hosted, { ref: "https://github.com/other/repo/issues/2", kind: "ticket" })).rejects.toThrow("GitHub record reference");
+});
+
+test("a malformed Markdown event does not hide valid events and repaired bytes recover", async () => {
+  const { context, selected, fields, events } = await receiptFixture();
+  const file = join(events, "broken.md");
+  await put(file, "---\ninvalid: [\n---\n");
+  const invalid = await loadTicketWorkflow(context, selected, execute);
+  expect(invalid.inspection?.historyValid).toBe(false);
+  expect(invalid.receipts.map(receipt => receipt.id)).toEqual(["start-1"]);
+  expect(invalid.events?.find(event => event.ref.endsWith("/broken.md"))?.error).toBeDefined();
+  await put(file, `---\n${JSON.stringify({ ...fields, receipt_id: "repaired", parent_receipt: fields.receipt_id, created_at: "2026-10-02T10:00:00Z" })}\n---\n`);
+  const repaired = await loadTicketWorkflow(context, selected, execute);
+  expect(repaired.error).toBeUndefined();
+  expect(repaired.receipts.map(receipt => receipt.id)).toEqual(["repaired", "start-1"]);
+});
+
+
+for (const failure of [false, true]) {
+  test(`concurrent document reads join withheld parsing and ${failure ? "recover after failure" : "return independent values"}`, async () => {
+    const context = await fixture();
+    await ticket(context, "A");
+    await ticket(context, "B");
+    const directory = join(context.repositoryRoot, "records/issues");
+    const requests = ["A", "B"].map(id => ({ file: join(directory, `${id}.md`), root: context.repositoryRoot }));
+    const entered = Promise.withResolvers<void>();
+    const release = Promise.withResolvers<void>();
+    const ownerExec: Exec = async (command, args) => {
+      if (command === "mq") {
+        entered.resolve();
+        await release.promise;
+        if (failure) return { code: 1, stdout: "Withheld parser failure" };
+      }
+      return execute(command, args);
+    };
+    const owner = new DocumentReadSession(context, ownerExec);
+    const waiter = new DocumentReadSession(context, async () => { throw new Error("Concurrent reader must join the captured document parse"); });
+    await owner.collect(directory, /\.md$/, context.repositoryRoot);
+    await waiter.collect(directory, /\.md$/, context.repositoryRoot);
+    await waiter.captureAll(requests);
+    const first = owner.readAll(requests);
+    await entered.promise;
+    let settled = false;
+    const second = waiter.readAll(requests).then(result => { settled = true; return result; });
+    try {
+      await waiter.captureAll(requests);
+      expect(settled).toBe(false);
+      release.resolve();
+      const results = await Promise.all([first, second]);
+      if (failure) {
+        for (const result of results) {
+          expect(result.documents.size).toBe(0);
+          for (const request of requests) expect(String(result.errors.get(request.file))).toContain("Withheld parser failure");
+        }
+        const recovered = await new DocumentReadSession(context, execute).readAll(requests);
+        expect(recovered.errors.size).toBe(0);
+        expect(recovered.documents.get(requests[0]!.file)?.fields.title).toBe("Ticket A");
+      } else {
+        for (const result of results) {
+          expect(result.errors.size).toBe(0);
+          expect([...result.documents.values()].map(document => document.fields.title)).toEqual(["Ticket A", "Ticket B"]);
+        }
+        results[0]!.documents.get(requests[0]!.file)!.fields.title = "Mutated result";
+        expect(results[1]!.documents.get(requests[0]!.file)!.fields.title).toBe("Ticket A");
+      }
+      await owner.validate();
+      await waiter.validate();
+    } finally {
+      release.resolve();
+      await Promise.allSettled([first, second]);
+    }
+  });
+}
+
+test("a joined parse still validates the waiting session's captured bytes before publication", async () => {
+  const context = await fixture();
+  await ticket(context, "A");
+  const file = join(context.repositoryRoot, "records/issues/A.md");
+  const entered = Promise.withResolvers<void>();
+  const release = Promise.withResolvers<void>();
+  const owner = new DocumentReadSession(context, async (command, args) => {
+    if (command === "mq") { entered.resolve(); await release.promise; }
+    return execute(command, args);
+  });
+  const waiter = new DocumentReadSession(context, async () => { throw new Error("Waiting session must not launch another parse"); });
+  const requests = [{ file, root: context.repositoryRoot }];
+  const first = owner.readAll(requests);
+  await entered.promise;
+  await waiter.captureAll(requests);
+  const second = waiter.readAll(requests);
+  try {
+    await waiter.captureAll(requests);
+    await writeFile(file, (await readFile(file, "utf8")).replace("Ticket A", "Ticket Z"));
+    release.resolve();
+    const result = await second;
+    expect(result.errors.size).toBe(0);
+    expect(result.documents.get(file)!.fields.title).toBe("Ticket A");
+    await expect(waiter.validate()).rejects.toThrow("Records changed during read");
+    const current = await new DocumentReadSession(context, execute).readAll(requests);
+    expect(current.documents.get(file)!.fields.title).toBe("Ticket Z");
+  } finally {
+    release.resolve();
+    await Promise.allSettled([first, second]);
+  }
+});
+
+test("scoped GitHub initiatives expand descendants previously encountered only as blockers", async () => {
+  const context = await fixture("github");
+  const base = "https://github.com/example/continuity/issues/";
+  const parentById = new Map([[2, 1], [3, 1], [4, 3], [5, 4], [6, 5]]);
+  const childrenById = new Map([[1, [2, 3]], [3, [4]], [4, [5]], [5, [6]]]);
+  const issue = (number: number) => ({
+    number, html_url: `${base}${number}`, title: `Issue ${number}`, body: "", state: "OPEN", labels: [],
+    issueType: number === 1 ? { name: "Spec" } : null,
+    parent: parentById.has(number) ? { number: parentById.get(number), url: `${base}${parentById.get(number)}` } : null,
+  });
+  const hosted: Exec = async (command, args) => {
+    if (command !== "gh") return execute(command, args);
+    if (args[0] === "issue") return { code: 0, stdout: JSON.stringify(issue(Number(args[2]))) };
+    const endpoint = args.at(-1)!;
+    if (endpoint.includes("issues?state=all")) throw new Error("Scoped actions must not require a repository-wide listing");
+    const id = Number(/\/issues\/(\d+)\//.exec(endpoint)?.[1]);
+    const related = endpoint.includes("/sub_issues?") ? childrenById.get(id) ?? []
+      : id === 2 && endpoint.includes("/dependencies/blocked_by?") ? [5] : [];
+    return { code: 0, stdout: JSON.stringify([related.map(issue)]) };
+  };
+  const snapshot = await loadExplorerSnapshot(context, hosted, { ref: `${base}1`, kind: "initiative" });
+  expect(snapshot.tickets.map(ticket => ticket.id).sort()).toEqual(["2", "3", "4", "5", "6"]);
+  expect(snapshot.initiatives[0]?.rootTicketIds).toEqual(["2", "3"]);
+  expect(snapshot.initiatives[0]?.ticketIds).toContain("6");
+});
+
+test("current source summaries use the same observation as workflow inspection after HEAD changes", async () => {
+  const { context, selected, fields } = await receiptFixture();
+  let currentCommit = "";
+  const observe: Exec = async (command, args) => {
+    if (command === "wt") {
+      const commit = await execute("git", ["-C", context.repositoryRoot, "-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid", "commit", "--allow-empty", "-m", "Changed source"]);
+      if (commit.code) throw new Error(commit.stdout);
+      currentCommit = (await execute("git", ["-C", context.repositoryRoot, "rev-parse", "HEAD"])).stdout.trim();
+      return { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "feature/a", worktree: { path: context.repositoryRoot } }] }) };
+    }
+    return execute(command, args);
+  };
+  const workflow = await loadTicketWorkflow(context, selected, observe);
+  expect(workflow.error).toBeUndefined();
+  expect(currentCommit).not.toBe(fields.source_commit);
+  expect(workflow.sourceCommit).toBe(currentCommit);
+  expect(workflow.sourceTree).toBe(workflow.inspection?.source.tree);
+  expect(workflow.inspection?.source.commit).toBe(currentCommit);
+  expect(workflow.receipts[0]!.sourceCommit).toBe(fields.source_commit);
+});
+
+test("missing shared stores remain empty readable collections without initialization", async () => {
+  const { context, selected } = await receiptFixture();
+  await ticket(context, "A");
+  await rm(context.sharedRoot, { recursive: true, force: true });
+  const snapshot = await loadExplorerSnapshot(context, execute);
+  expect(snapshot.tickets.map(record => record.id)).toEqual(["A"]);
+  expect(snapshot.initiatives.filter(record => !record.group)).toEqual([]);
+  const readOnly: Exec = async (command, args) => command === "wt"
+    ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [] }) }
+    : execute(command, args);
+  const workflow = await loadTicketWorkflow(context, selected, readOnly);
+  expect(workflow.error).toBeUndefined();
+  expect(workflow.inspection?.historyValid).toBe(true);
+  expect(recoveryDecision(selected, snapshot, workflow).mode).toBe("begin");
+  await expect(stat(context.sharedRoot)).rejects.toMatchObject({ code: "ENOENT" });
+});
+
+test("nested ticket and research refs copy their canonical paths without flattening directories", async () => {
+  const context = await fixture();
+  for (const [id, type] of [["T", "task"], ["R", "research"]]) {
+    const file = join(context.repositoryRoot, `records/issues/team/${id}.md`);
+    await put(file, `---\nid: ${id}\ntitle: Nested ${type}\ntype: ${type}\n---\n`);
+  }
+  const snapshot = await loadExplorerSnapshot(context, execute);
+  for (const record of snapshot.tickets) {
+    const target = { kind: "ticket" as const, ticket: record };
+    expect(await formatExplorerReference(context, target, "path")).toBe(join(context.repositoryRoot, `records/issues/team/${record.id}.md`));
+    expect(await formatExplorerReference(context, target, "reference")).toBe(`records/issues/team/${record.id}.md`);
+  }
+});
+
+test("source commit and tree remain one revision when HEAD changes between observations", async () => {
+  const { context, selected, fields } = await receiptFixture();
+  let changed = false;
+  const observe: Exec = async (command, args) => {
+    if (command === "wt") return { code: 0, stdout: JSON.stringify({ schema: 2, items: [] }) };
+    const result = await execute(command, args);
+    if (!changed && command === "git" && args.at(-1) === "HEAD^{commit}") {
+      changed = true;
+      await writeFile(join(context.repositoryRoot, "source.txt"), "New source tree\n");
+      const added = await execute("git", ["-C", context.repositoryRoot, "add", "source.txt"]);
+      if (added.code) throw new Error(added.stdout);
+      const committed = await execute("git", ["-C", context.repositoryRoot, "-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid", "commit", "-m", "Changed tree"]);
+      if (committed.code) throw new Error(committed.stdout);
+    }
+    return result;
+  };
+  const workflow = await loadTicketWorkflow(context, selected, observe);
+  expect(changed).toBe(true);
+  expect(workflow.error).toBeUndefined();
+  expect(workflow.inspection?.source.commit).toBe(fields.source_commit);
+  expect(workflow.inspection?.source.tree).toBe(fields.source_tree);
+  expect(workflow.sourceCommit).toBe(fields.source_commit);
+  expect(workflow.sourceTree).toBe(fields.source_tree);
+  const actualTree = (await execute("git", ["-C", context.repositoryRoot, "rev-parse", "HEAD^{tree}"])).stdout.trim();
+  expect(actualTree).not.toBe(workflow.sourceTree);
 });

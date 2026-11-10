@@ -20,6 +20,8 @@ export interface ExplorerInitiative {
   title: string;
   ref: string;
   ticketIds: string[];
+  // Direct membership roots keep CLI DAG semantics separate from expanded children.
+  rootTicketIds?: string[];
   body: string;
   phase?: string;
   group?: true;
@@ -28,6 +30,8 @@ export interface ExplorerInitiative {
 export interface ExplorerSnapshot {
   initiatives: ExplorerInitiative[];
   tickets: ExplorerTicket[];
+  // ADR identifiers are independent from tracker ticket identifiers.
+  adrs?: ExplorerTicket[];
   backend: string;
 }
 

@@ -1,4 +1,5 @@
 // Collects observations only. Receipt validation stays in workflow.ts; decisions stay in recovery.ts.
+import { createHash } from "node:crypto";
 import { access, realpath, stat } from "node:fs/promises";
 import { isAbsolute, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -43,7 +44,7 @@ export async function inspectWorkflow(context: SharedAgentContext, ticket: Explo
       const repositoryCommon = (await run(exec, "git", ["-C", context.repositoryRoot, "rev-parse", "--git-common-dir"])).trim();
       if (await realpath(resolve(sourcePath, common)) !== await realpath(resolve(context.repositoryRoot, repositoryCommon))) throw new Error("Recorded worktree belongs to a different Git repository.");
       const commit = (await run(exec, "git", ["-C", sourcePath, "rev-parse", "--verify", "HEAD^{commit}"])).trim();
-      const tree = (await run(exec, "git", ["-C", sourcePath, "rev-parse", "--verify", "HEAD^{tree}"])).trim();
+      const tree = (await run(exec, "git", ["-C", sourcePath, "rev-parse", "--verify", `${commit}^{tree}`])).trim();
       const branch = (await run(exec, "git", ["-C", sourcePath, "branch", "--show-current"])).trim();
       // --no-optional-locks prevents status from refreshing the index on disk.
       const dirty = Boolean(await run(exec, "git", ["--no-optional-locks", "-C", sourcePath, "status", "--porcelain=v1", "--untracked-files=all"]));
@@ -74,6 +75,7 @@ export async function inspectWorkflow(context: SharedAgentContext, ticket: Explo
           const content = JSON.parse(body);
           artifact.state = typeof content === "string" && content.trim() ? "readable" : "unusable";
           artifact.matchesSource = typeof content === "string" && content.includes(receipt.sourceCommit);
+          if (typeof content === "string") artifact.contentHash = createHash("sha256").update(content).digest("hex");
         } catch (error) {
           artifact.state = (error as NodeJS.ErrnoException).code === "ENOENT" ? "missing" : "unusable";
           artifact.error = message(error);
