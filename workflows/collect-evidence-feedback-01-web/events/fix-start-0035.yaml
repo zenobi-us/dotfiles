@@ -1,0 +1,93 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "fix-start-0035",
+  "workflow_id": "collect-evidence-feedback-01-web",
+  "phase": "fix",
+  "event": "phase-start",
+  "attempt": 4,
+  "parent_receipt": "review-0033",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "source_branch": "feature/collect-evidence-feedback-01-web",
+  "base_branch": "master",
+  "source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
+  "source_tree": "28784b1a67c200888c53a947b3b056f2569cccbc",
+  "created_at": "2026-11-10T07:20:26.170830+00:00",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.config/herdr-app/data/shared-context-sessions/1794291799878-ade59c2e9362a/2026-11-10T06-23-21-611Z_01a1c420-1e0b-77ac-b8f8-5d84635bfaba.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-01-web",
+    "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-01-web"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-0033.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-complete-0034.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0033.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0033-invalid-plan"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-0026.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0026.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-start-0035.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery_mode": "begin",
+  "recovery_reason": "The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs.",
+  "approval": {
+    "source": "user",
+    "request": "approved",
+    "scope": "Fresh fixer for SPEC-R5-001: reject missing required step fields before generated outputs and add public-command regression. Preserve prior browser failures. P3 advisory untouched; no merge, push or completion."
+  },
+  "ownership_checks": {
+    "source_clean": true,
+    "source_branch_matches_review": true,
+    "live_terminals": "hc ls shows no live terminal launched from source worktree",
+    "reviewer": "t1t closed and removed after native done; review-complete-0034 records closure",
+    "coordinator_reservations": "No ticket reference in workflows/goal-*/events/*.yaml",
+    "user_approval": "approved for scoped fresh fix",
+    "direct_blockers": []
+  },
+  "preserve_prior_evidence": true,
+  "selected_finding_ids": [
+    "SPEC-R5-001"
+  ],
+  "unselected_finding_ids": [
+    "STD-AXIS-001",
+    "STD-R3-001"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "runId": "d6ec2d14-b694-4f96-b93a-bc4fe9acba63",
+  "target": "t1x",
+  "operationId": "collect-evidence-feedback-01-web-fix-0036",
+  "contextFile": "/home/zenobius/.local/state/result-delivery/runs/d6ec2d14-b694-4f96-b93a-bc4fe9acba63/context.json",
+  "resultTarget": "/var/home/zenobius/.local/state/result-delivery/runs/collect-evidence-fix-0036/result.json",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "depth": 1
+}
