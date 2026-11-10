@@ -1,5 +1,5 @@
 ---
-latest_receipt: review-complete-0031
+latest_receipt: review-complete-0034
 schema: worktree-projection/v1
 title: Current web PR draft
 type: Projection
@@ -7,7 +7,7 @@ type: Projection
 
 # Preserve Surf and Playwright in collect-evidence
 
-RECOVERY_BLOCKED. Source fixes remain committed. The Surf timeout was not reproduced. No acceptance verdict exists.
+REVIEW_FAILED. The current review records FAILURE for the frozen source. Prior browser failures remain unresolved.
 
 ## Source
 
@@ -45,7 +45,7 @@ Scoped TypeScript passed using existing base dependencies. TypeScript LSP initia
 
 Selected and resolved: SPEC-R4-001 and SPEC-R4-002. Prior resolved: STD-001, SPEC-001, SPEC-002, SPEC-003 and SPEC-R3-001. Unresolved: STD-R3-001 (P3 advisory, unselected). CleanupRow and cleanupRow hooks are unchanged.
 
-No reviewer verdict covers this commit. Current/latest reviewer verdict is null. review-0023 FAILURE is historical and applies only to 12b6345ac32f4ae30b078e5344fb5bae7a1ee244, tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. Earlier FAILURE reviews remain historical.
+Current review review-0033 records FAILURE for this commit. Earlier verdicts below remain historical. review-0023 FAILURE is historical and applies only to 12b6345ac32f4ae30b078e5344fb5bae7a1ee244, tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. Earlier FAILURE reviews remain historical.
 
 [Consumed immutable review](../artifacts/reviews/review-review-0023.md). [Earlier fix draft](../artifacts/snapshots/pr-draft-fix-0020.md). [Original implementation draft](../artifacts/snapshots/pr-draft-implementation-0005.md).
 
@@ -57,13 +57,13 @@ The earlier fix-0020 Playwright pass-case suite failure and the separate review-
 
 The initial throwaway smoke fixture omitted required says and capture locator/as. Its failed native output and commands are retained. Corrected fixture smoke passed both real drivers without another production change.
 
-No current reviewer verdict covers the new source. STD-R3-001 and cleanupRow hooks remain unchanged. No new video proof, tool installation, remote Git operation, stash operation, base-store commit, formal review, merge, push or ticket completion. Existing records reported no changelog; the existing Surf driver reference was updated.
+Review review-0033 now records FAILURE for the frozen source. STD-R3-001 and cleanupRow hooks remain unchanged. No new video proof, tool installation, remote Git operation, stash operation, base-store commit, formal review, merge, push or ticket completion. Existing records reported no changelog; the existing Surf driver reference was updated.
 
 Source fixes and actual workflow artifacts are committed locally. Parent completion records failed validation, acknowledgement and closure of fixer pane w73:p7. Workspace w73 and the source worktree remain open. The canonical ticket remains implemented. No merge or push occurred.
 
 ## Authoritative workflow history
 
-Each entry below records its own source and past outcome. None supplies a reviewer verdict for the new source. Full immutable details remain linked.
+Each entry below records its own source and outcome. The review-0033 entry covers the current frozen source. Full immutable details remain linked.
 
 ### start-0001
 
@@ -576,3 +576,16 @@ No failed workflow was rerun. No service was restarted or modified. The feature 
 
 Inspect the recovered native trace before another review. The inspector requires approval for a fresh review. Do not repeat the failed suite without a distinct trace-supported question. Existing acceptance failures remain unresolved.
 
+
+## Current independent review review-0033
+
+Reviewed commit: `8c4015418f6b3fee244708d9937e45bb358fc45d`; tree: `28784b1a67c200888c53a947b3b056f2569cccbc`. Verdict: **FAILURE**. Current state: REVIEW_FAILED.
+
+- **Review start:** [Approved recovery](../events/review-start-0032.yaml).
+- **Review result:** [Authoritative receipt](../events/review-0033.yaml) and [immutable review](../artifacts/reviews/review-review-0033.md).
+- **Bounded validation:** [Exact observations](../artifacts/evidence/review-0033-invalid-plan/observations.json). No driver ran; retained browser failures remain unresolved.
+- **Parent completion:** [Reconciliation receipt](../events/review-complete-0034.yaml). Delivery recovered and acknowledged; reviewer and axes closed.
+
+Current blocking finding: SPEC-R5-001. Current advisory: STD-AXIS-001. Earlier resolved findings and historical reviews above remain preserved. Source unchanged; ticket remains implemented. Records committed locally; no merge, push or completion.
+
+Next: Fix review findings: The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs. Scoped approval is required; no fix is authorized by this review request.

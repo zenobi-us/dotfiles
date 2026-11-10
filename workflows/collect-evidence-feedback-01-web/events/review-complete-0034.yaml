@@ -1,0 +1,240 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-complete-0034",
+  "workflow_id": "collect-evidence-feedback-01-web",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 6,
+  "parent_receipt": "review-0033",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "source_branch": "feature/collect-evidence-feedback-01-web",
+  "base_branch": "master",
+  "source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
+  "source_tree": "28784b1a67c200888c53a947b3b056f2569cccbc",
+  "created_at": "2026-11-10T07:03:31.889409+00:00",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.config/herdr-app/data/shared-context-sessions/1794291799878-ade59c2e9362a/2026-11-10T06-23-21-611Z_01a1c420-1e0b-77ac-b8f8-5d84635bfaba.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-01-web",
+    "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-01-web"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-complete-0031.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-0029.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0029.md"
+    },
+    {
+      "kind": "native-trace",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/transport-recovery-0031/native-request-trace.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-0026.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0026.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-start-0032.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-0033.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0033.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0033-invalid-plan"
+    },
+    {
+      "kind": "launch",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/launch-review-start-0032.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-complete-0034.yaml"
+    },
+    {
+      "kind": "tracker-comment",
+      "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-01-web/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-01-web/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-01-web/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-01-web/projections/implementation-log.md"
+    }
+  ],
+  "status": "completed",
+  "recovery_mode": "reconcile",
+  "recovery_reason": "Read the child result and artifacts, verify the frozen source and outcome, then append the parent completion. Do not repeat the child work.",
+  "approval": {
+    "source": "user",
+    "request": "Approve fresh review",
+    "scope": "Check prior-owner liveness and reservations, then launch one fresh reviewer against 8c401541. Preserve prior evidence; no source fixes, merge, or push."
+  },
+  "ownership_checks": {
+    "previous_owner": "unknown; scoped user approval obtained",
+    "old_muxer": "herdr server_not_running",
+    "source_processes": "No process cwd under source worktree; /proc cmdline and cwd inspected",
+    "current_terminal": "t1n",
+    "desktop_other_terminals": "No other terminal launched from source worktree; t1n is this parent",
+    "goal_reservations": "No collect-evidence-feedback-01-web reference in workflows/goal-*/events/*.yaml",
+    "direct_blockers": [],
+    "source_clean": true
+  },
+  "preserve_prior_evidence": true,
+  "reconciled_prior_result": "review-0029 was already acknowledged and parent-completed by review-complete-0031; no usable verdict",
+  "child_pane_id": "t1t",
+  "child_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-collect-evidence-feedback-01-web--/2026-11-10T06-49-30-625Z_01a1c438-0f01-762b-b127-f253b7794ab2.jsonl",
+  "child_run_id": "3872347d-dd98-43e7-ad15-11dedccac2a5",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0033-invalid-plan"
+  },
+  "review_result": "FAILURE",
+  "review_receipt": "workflows/collect-evidence-feedback-01-web/events/review-0033.yaml",
+  "review_artifact": {
+    "store": "repository",
+    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0033.md"
+  },
+  "source_clean": true,
+  "source_changed": false,
+  "child_pane_closed": true,
+  "worktree_preserved": true,
+  "workspace_preserved": true,
+  "merged": false,
+  "pushed": false,
+  "ticket_completed": false,
+  "ticket_status": "implemented",
+  "tracker_changed": true,
+  "publication": {
+    "review_records_commit": "2474e4cf",
+    "tracker_commit": "0a368749",
+    "launch_commit": "71646073",
+    "pushed": false
+  },
+  "transport": {
+    "status": "acknowledged",
+    "runId": "3872347d-dd98-43e7-ad15-11dedccac2a5",
+    "operationId": "collect-evidence-feedback-01-web-review-0033",
+    "sha256": "d47e2bd225bf4df66039974a0000e61aa2b5817b725fbf6d965ab79be16cef4b",
+    "context_file": "/var/home/zenobius/.local/state/result-delivery/runs/3872347d-dd98-43e7-ad15-11dedccac2a5/context-physical.json",
+    "original_context_file": "/home/zenobius/.local/state/result-delivery/runs/3872347d-dd98-43e7-ad15-11dedccac2a5/context.json",
+    "target_path": "/var/home/zenobius/.local/state/result-delivery/runs/3872347d-dd98-43e7-ad15-11dedccac2a5/result.json",
+    "ref": "file:///home/zenobius/.local/state/result-delivery/runs/3872347d-dd98-43e7-ad15-11dedccac2a5/result.json",
+    "recovery": "Original /home target traversed a symlink and failed ENOTDIR. Recovered identical authoritative payload through the same physical target under /var/home; run, operation, schema and approved ref unchanged. No phase repeated."
+  },
+  "validation_results": [
+    {
+      "check": "authoritative-event-transport-equality",
+      "result": "passed"
+    },
+    {
+      "check": "receipt-history-and-source-identity",
+      "result": "passed",
+      "source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
+      "source_tree": "28784b1a67c200888c53a947b3b056f2569cccbc",
+      "source_clean": true
+    },
+    {
+      "check": "public-command-help-from-unrelated-directory",
+      "result": "passed",
+      "exit_code": 0
+    },
+    {
+      "check": "retained-sealed-surf-evidence-integrity",
+      "command": "collect-evidence.ts validate /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/surf --json",
+      "cwd": "/tmp",
+      "result": "passed",
+      "exit_code": 0
+    },
+    {
+      "check": "retained-sealed-playwright-evidence-integrity",
+      "command": "collect-evidence.ts validate /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/playwright --json",
+      "cwd": "/tmp",
+      "result": "passed",
+      "exit_code": 0
+    },
+    {
+      "check": "canonical-ticket-schema-and-discovery",
+      "result": "passed",
+      "before_and_after": true
+    },
+    {
+      "check": "independent-invalid-capture-smoke",
+      "result": "reproduced-P2-blocker",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0033-invalid-plan/observations.json",
+      "driver_executed": false
+    },
+    {
+      "check": "native-reviewer-completion-and-closure",
+      "result": "passed",
+      "native_status": "done",
+      "terminal": "t1t",
+      "removed": true,
+      "axes_removed": [
+        "t1w",
+        "t1v"
+      ]
+    }
+  ],
+  "hook_recovery": {
+    "failed_commit_attempts": 2,
+    "reason": "Configured hook.hk-pre-commit.command runs independently of core.hooksPath and attempted git stash; sealed evidence directory cleanup failed.",
+    "restoration": "Restored only missing untracked paths from the two stashes of each failed attempt. Verified all 691 restored paths match retained Git blob hashes; no existing file overwritten.",
+    "stash_commits_retained": [
+      "c079c8ca0e8d92a5befaa96566d0f9b14d247638",
+      "fd5de5c71f3a481de72a5e60702a7b863df20be2",
+      "5588b83dbf78022323e62055b9bd99e27725fae3",
+      "dc6fed47d10da9d6907a4cfc8039433839a8555e"
+    ],
+    "successful_commit_mode": "Per-command hook.hk-pre-commit.command=hk run pre-commit --from-hook --stash none; hooks run without stashing."
+  },
+  "limits": [
+    "No full suite or failed browser workflow rerun; old Surf/Playwright failures remain unresolved.",
+    "P2 SPEC-R5-001 blocks completion; P3 STD-AXIS-001 is advisory.",
+    "Source, source branch and source worktree remain unchanged.",
+    "No merge, push, ticket completion, browser service restart or tool installation."
+  ]
+}

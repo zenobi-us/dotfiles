@@ -1,5 +1,5 @@
 ---
-latest_receipt: review-complete-0031
+latest_receipt: review-complete-0034
 schema: worktree-projection/v1
 title: Collect-evidence web implementation log
 type: Projection
@@ -540,3 +540,16 @@ No failed workflow was rerun. No service was restarted or modified. The feature 
 
 Inspect the recovered native trace before another review. The inspector requires approval for a fresh review. Do not repeat the failed suite without a distinct trace-supported question. Existing acceptance failures remain unresolved.
 
+
+## Current independent review review-0033
+
+Reviewed commit: `8c4015418f6b3fee244708d9937e45bb358fc45d`; tree: `28784b1a67c200888c53a947b3b056f2569cccbc`. Verdict: **FAILURE**. Current state: REVIEW_FAILED.
+
+- **Review start:** [Approved recovery](../events/review-start-0032.yaml).
+- **Review result:** [Authoritative receipt](../events/review-0033.yaml) and [immutable review](../artifacts/reviews/review-review-0033.md).
+- **Bounded validation:** [Exact observations](../artifacts/evidence/review-0033-invalid-plan/observations.json). No driver ran; retained browser failures remain unresolved.
+- **Parent completion:** [Reconciliation receipt](../events/review-complete-0034.yaml). Delivery recovered and acknowledged; reviewer and axes closed.
+
+Current blocking finding: SPEC-R5-001. Current advisory: STD-AXIS-001. Earlier resolved findings and historical reviews above remain preserved. Source unchanged; ticket remains implemented. Records committed locally; no merge, push or completion.
+
+Next: Fix review findings: The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs. Scoped approval is required; no fix is authorized by this review request.
