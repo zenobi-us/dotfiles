@@ -1,0 +1,10 @@
+{
+  "runId": "3872347d-dd98-43e7-ad15-11dedccac2a5",
+  "target": "t1t",
+  "operationId": "collect-evidence-feedback-01-web-review-0033",
+  "contextFile": "/home/zenobius/.local/state/result-delivery/runs/3872347d-dd98-43e7-ad15-11dedccac2a5/context.json",
+  "resultTarget": "/home/zenobius/.local/state/result-delivery/runs/3872347d-dd98-43e7-ad15-11dedccac2a5/result.json",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "depth": 1
+}

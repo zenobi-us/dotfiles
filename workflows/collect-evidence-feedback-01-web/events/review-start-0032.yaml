@@ -1,0 +1,88 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-start-0032",
+  "workflow_id": "collect-evidence-feedback-01-web",
+  "phase": "review",
+  "event": "phase-start",
+  "attempt": 6,
+  "parent_receipt": "review-complete-0031",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "source_branch": "feature/collect-evidence-feedback-01-web",
+  "base_branch": "master",
+  "source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
+  "source_tree": "28784b1a67c200888c53a947b3b056f2569cccbc",
+  "created_at": "2026-11-10T06:48:31.214986+00:00",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.config/herdr-app/data/shared-context-sessions/1794291799878-ade59c2e9362a/2026-11-10T06-23-21-611Z_01a1c420-1e0b-77ac-b8f8-5d84635bfaba.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-01-web",
+    "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-01-web"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-complete-0031.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-0029.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0029.md"
+    },
+    {
+      "kind": "native-trace",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/transport-recovery-0031/native-request-trace.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-0026.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0026.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-start-0032.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery_mode": "retry",
+  "recovery_reason": "Inspect prior review output, then use a fresh reviewer. An interrupted review is not a verdict.",
+  "approval": {
+    "source": "user",
+    "request": "Approve fresh review",
+    "scope": "Check prior-owner liveness and reservations, then launch one fresh reviewer against 8c401541. Preserve prior evidence; no source fixes, merge, or push."
+  },
+  "ownership_checks": {
+    "previous_owner": "unknown; scoped user approval obtained",
+    "old_muxer": "herdr server_not_running",
+    "source_processes": "No process cwd under source worktree; /proc cmdline and cwd inspected",
+    "current_terminal": "t1n",
+    "desktop_other_terminals": "No other terminal launched from source worktree; t1n is this parent",
+    "goal_reservations": "No collect-evidence-feedback-01-web reference in workflows/goal-*/events/*.yaml",
+    "direct_blockers": [],
+    "source_clean": true
+  },
+  "preserve_prior_evidence": true,
+  "reconciled_prior_result": "review-0029 was already acknowledged and parent-completed by review-complete-0031; no usable verdict"
+}
