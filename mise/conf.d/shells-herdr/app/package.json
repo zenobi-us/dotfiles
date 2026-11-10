@@ -1,0 +1,11 @@
+{
+  "name": "herdr-shared-context",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "bun test tests"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.0"
+  }
+}

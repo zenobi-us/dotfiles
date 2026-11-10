@@ -1,0 +1,7 @@
+{
+  "$schema": "./mod.schema.json",
+  "version": "1.0.0",
+  "title": "Shared Context",
+  "place": "none",
+  "focusable": true
+}

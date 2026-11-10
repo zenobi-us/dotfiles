@@ -589,3 +589,29 @@ proxy. The owned-only future removal and recovery procedure is recorded in
 Any device inspection, change or restart needs fresh, exact owner approval.
 Production work in tickets 02–10 is not part of the ticket 01 prototype gate.
 
+
+## Herdr-app Context and Tracker
+
+The native panels add **Context** and **Tracker** beside **Files** and **Changes**.
+
+Keep Herdr-app open. Run this command from the repository root:
+
+```sh
+bun mise/conf.d/shells-herdr/app/install.ts --better-config
+```
+
+The installer creates the `shared-context` layout from a main-based layout. It keeps the Files and Changes mods. It does not replace an existing Better Config installation.
+
+Open the panel settings button. In Better Config, select **Shared Context → Tracker layout**:
+
+- **C — Bottom drawer:** Select a record to open its details below the tree. Expand covers the tree. Collapse restores the split. Close slides the drawer down. Press Escape to collapse, then close.
+- **C2 — Two columns:** Show the same tree beside the record. If the panel is narrower than 600 pixels, use the drawer.
+
+Disable **Drawer motion** to remove animation. Select **Refresh** after external tracker changes.
+
+Context provides explicit repository or shared-store setup and read-only file previews. The tree omits `.git` and symbolic links. Text previews have a 400 KB limit. Tracker shows canonical initiatives, prerequisites, queues, record details, and workflow events. Shared prerequisites link to one canonical record. New-agent actions require prompt preparation and confirmation.
+
+The GPUI mods use a local Bun service. The service imports the existing shared-context and tracker TypeScript APIs. Those APIs use `mq` with `okf.mq` to parse Markdown. The mods do not execute the shared-context or tracker CLIs.
+
+The panels operate on local repositories. The backend imports modules from this checkout, so keep it available. If you update Bun or `mq`, run the installer again.
+

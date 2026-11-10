@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shared Context",
+  "type": "object",
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "string" },
+    "title": { "type": "string" },
+    "place": { "enum": ["none", "right", "left", "top", "bottom"] },
+    "focusable": { "type": "boolean" },
+    "settings": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "layout": {
+          "title": "Tracker layout",
+          "description": "C uses a bottom drawer. C2 places the same tree beside the record. Changes apply immediately.",
+          "type": "string",
+          "enum": ["C", "C2"],
+          "x-labels": { "C": "C — Bottom drawer", "C2": "C2 — Two columns" },
+          "default": "C"
+        },
+        "motion": {
+          "title": "Drawer motion",
+          "description": "Slide the drawer when it expands, collapses, or closes. Disable this setting to remove motion.",
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  },
+  "required": ["version", "title", "place"],
+  "additionalProperties": false
+}
