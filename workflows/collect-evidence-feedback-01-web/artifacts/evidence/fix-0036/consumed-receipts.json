@@ -1,0 +1,56 @@
+[
+  {
+    "receipt_id": "review-0033",
+    "parent_receipt": "review-start-0032",
+    "source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
+    "source_tree": "28784b1a67c200888c53a947b3b056f2569cccbc",
+    "status": "completed",
+    "approval": {
+      "source": "user via review-start-0032",
+      "request": "Approve fresh review",
+      "scope": "One fresh review against frozen source; preserve prior evidence; no source fixes, merge or push."
+    }
+  },
+  {
+    "receipt_id": "review-complete-0034",
+    "parent_receipt": "review-0033",
+    "source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
+    "source_tree": "28784b1a67c200888c53a947b3b056f2569cccbc",
+    "status": "completed",
+    "approval": {
+      "source": "user",
+      "request": "Approve fresh review",
+      "scope": "Check prior-owner liveness and reservations, then launch one fresh reviewer against 8c401541. Preserve prior evidence; no source fixes, merge, or push."
+    }
+  },
+  {
+    "receipt_id": "fix-0026",
+    "parent_receipt": "fix-start-0025",
+    "source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
+    "source_tree": "28784b1a67c200888c53a947b3b056f2569cccbc",
+    "status": "failed",
+    "selected_finding_ids": [
+      "SPEC-R4-001",
+      "SPEC-R4-002"
+    ],
+    "approval": {
+      "source": "user handoff",
+      "scope": "Fix only SPEC-R4-001 and SPEC-R4-002. Commit owned source and prepare draft/views/evidence/result. Parent owns publication, tracker changes, acknowledgement, pane closure and phase completion."
+    }
+  },
+  {
+    "receipt_id": "fix-start-0035",
+    "parent_receipt": "review-0033",
+    "source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
+    "source_tree": "28784b1a67c200888c53a947b3b056f2569cccbc",
+    "status": "started",
+    "selected_finding_ids": [
+      "SPEC-R5-001"
+    ],
+    "approval": {
+      "source": "user",
+      "request": "approved",
+      "scope": "Fresh fixer for SPEC-R5-001: reject missing required step fields before generated outputs and add public-command regression. Preserve prior browser failures. P3 advisory untouched; no merge, push or completion."
+    }
+  }
+]

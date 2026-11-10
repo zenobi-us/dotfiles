@@ -1,0 +1,25 @@
+{
+  "identity": {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD",
+      "HEAD^{tree}"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+    "exit_code": 0,
+    "stdout": "3dbab24ce09d4cf1c3eaedf467af63e007b9e976\n213b91da7d7589912d53f67c19cc5e5c76adc54f\n",
+    "stderr": ""
+  },
+  "clean": {
+    "command": [
+      "git",
+      "status",
+      "--porcelain"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+}

@@ -1,0 +1,253 @@
+[
+  {
+    "check": "test-first-public-malformed-steps",
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
+      "--test-name-pattern",
+      "public commands reject malformed Step payloads"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+    "exit_code": 1,
+    "result": "expected-failing-before",
+    "failed": 18,
+    "passed": 0,
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0036/regression-before.txt"
+  },
+  {
+    "check": "scoped-non-browser-suite",
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/playwright-driver.test.ts"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+    "exit_code": 0,
+    "result": "passed",
+    "passed": 35,
+    "failed": 0,
+    "expectations": 283,
+    "limits": [
+      "No browser-workflow suite run."
+    ],
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0036/regression-after.txt"
+  },
+  {
+    "check": "independent-surf-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix-0036-jqAO6c/surf-compile",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed-invalid-input-rejected",
+    "files": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "driver_executed": false
+  },
+  {
+    "check": "independent-surf-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix-0036-jqAO6c/surf-render",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed-invalid-input-rejected",
+    "files": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "driver_executed": false
+  },
+  {
+    "check": "independent-surf-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix-0036-jqAO6c/surf-run",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed-invalid-input-rejected",
+    "files": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "driver_executed": false
+  },
+  {
+    "check": "independent-playwright-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix-0036-jqAO6c/playwright-compile",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed-invalid-input-rejected",
+    "files": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "driver_executed": false
+  },
+  {
+    "check": "independent-playwright-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix-0036-jqAO6c/playwright-render",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed-invalid-input-rejected",
+    "files": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "driver_executed": false
+  },
+  {
+    "check": "independent-playwright-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix-0036-jqAO6c/playwright-run",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed-invalid-input-rejected",
+    "files": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "driver_executed": false
+  },
+  {
+    "check": "retained-fixture-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix-0036-jqAO6c/retained-compile",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed-invalid-input-rejected",
+    "files": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "driver_executed": false
+  },
+  {
+    "check": "retained-fixture-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix-0036-jqAO6c/retained-render",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed-invalid-input-rejected",
+    "files": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "driver_executed": false
+  },
+  {
+    "check": "scoped-strict-typescript",
+    "command": [
+      "mise",
+      "x",
+      "--",
+      "bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc",
+      "--noEmit",
+      "-p",
+      "/tmp/ce-fix-0036-jqAO6c/tsconfig.json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "result": "passed",
+    "limits": [
+      "Existing BASE dependencies only; temporary paths resolve versioned Crust imports to installed declaration files."
+    ]
+  },
+  {
+    "check": "typescript-lsp-references",
+    "result": "unavailable",
+    "limits": [
+      "TypeScript language server initialize failed: Could not find a valid TypeScript installation. No dependency installation attempted; direct scoped tsc passed."
+    ]
+  },
+  {
+    "check": "commit-hooks",
+    "command": [
+      "git",
+      "-c",
+      "hook.hk-pre-commit.command=hk run pre-commit --from-hook --stash none",
+      "commit",
+      "-m",
+      "fix: validate steps collect-evidence-feedback-01-web"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+    "exit_code": 0,
+    "result": "passed",
+    "limits": [
+      "bundle-versions hook ran; no stash."
+    ]
+  },
+  {
+    "check": "immutable-draft-okf",
+    "exit_code": 0,
+    "result": "passed",
+    "errors": []
+  },
+  {
+    "check": "existing-web-guide-okf",
+    "exit_code": 0,
+    "result": "existing-schema-limit",
+    "limits": [
+      "Generic concept validator requires type. Existing guide uses owned schema/kind frontmatter; no schema migration performed."
+    ]
+  },
+  {
+    "check": "source-clean",
+    "command": [
+      "git",
+      "status",
+      "--porcelain"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+    "exit_code": 0,
+    "result": "passed",
+    "stdout": ""
+  }
+]

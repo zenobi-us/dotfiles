@@ -1,0 +1,280 @@
+{
+  "setup": [
+    {
+      "command": [
+        "git",
+        "init",
+        "--quiet",
+        "/tmp/ce-fix-0036-jqAO6c/repository"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/tmp/ce-fix-0036-jqAO6c/repository",
+        "remote",
+        "add",
+        "origin",
+        "https://example.invalid/owned/fix-0036.git"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "observations": [
+    {
+      "driver": "surf",
+      "operation": "compile",
+      "workspace": "/tmp/ce-fix-0036-jqAO6c/surf-compile",
+      "init": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "init",
+          "/tmp/ce-fix-0036-jqAO6c/surf-compile",
+          "--repository",
+          "/tmp/ce-fix-0036-jqAO6c/repository",
+          "--workflow",
+          "step-validation",
+          "--run",
+          "surf-compile",
+          "--driver",
+          "surf",
+          "--json"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 0,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix-0036-jqAO6c/surf-compile\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/ce-fix-0036-jqAO6c/repository\",\"path\":\"/tmp/ce-fix-0036-jqAO6c/repository/workflows/step-validation/artifacts/evidence/surf-compile\",\"ref\":\"workflows/step-validation/artifacts/evidence/surf-compile\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+        "stderr": ""
+      },
+      "result": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "compile",
+          "/tmp/ce-fix-0036-jqAO6c/surf-compile",
+          "--json"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 2,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"compile\",\"success\":false,\"code\":2,\"message\":\"Step locator must be a string\"}\n",
+        "stderr": "Step locator must be a string\n"
+      },
+      "files": [
+        "plan.ts",
+        "workspace.json"
+      ]
+    },
+    {
+      "driver": "surf",
+      "operation": "render",
+      "workspace": "/tmp/ce-fix-0036-jqAO6c/surf-render",
+      "init": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "init",
+          "/tmp/ce-fix-0036-jqAO6c/surf-render",
+          "--repository",
+          "/tmp/ce-fix-0036-jqAO6c/repository",
+          "--workflow",
+          "step-validation",
+          "--run",
+          "surf-render",
+          "--driver",
+          "surf",
+          "--json"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 0,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix-0036-jqAO6c/surf-render\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/ce-fix-0036-jqAO6c/repository\",\"path\":\"/tmp/ce-fix-0036-jqAO6c/repository/workflows/step-validation/artifacts/evidence/surf-render\",\"ref\":\"workflows/step-validation/artifacts/evidence/surf-render\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+        "stderr": ""
+      },
+      "result": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "render",
+          "/tmp/ce-fix-0036-jqAO6c/surf-render",
+          "--json"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 2,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"render\",\"success\":false,\"code\":2,\"message\":\"Step locator must be a string\"}\n",
+        "stderr": "Step locator must be a string\n"
+      },
+      "files": [
+        "plan.ts",
+        "workspace.json"
+      ]
+    },
+    {
+      "driver": "surf",
+      "operation": "run",
+      "workspace": "/tmp/ce-fix-0036-jqAO6c/surf-run",
+      "init": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "init",
+          "/tmp/ce-fix-0036-jqAO6c/surf-run",
+          "--repository",
+          "/tmp/ce-fix-0036-jqAO6c/repository",
+          "--workflow",
+          "step-validation",
+          "--run",
+          "surf-run",
+          "--driver",
+          "surf",
+          "--json"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 0,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix-0036-jqAO6c/surf-run\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/ce-fix-0036-jqAO6c/repository\",\"path\":\"/tmp/ce-fix-0036-jqAO6c/repository/workflows/step-validation/artifacts/evidence/surf-run\",\"ref\":\"workflows/step-validation/artifacts/evidence/surf-run\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+        "stderr": ""
+      },
+      "result": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "run",
+          "/tmp/ce-fix-0036-jqAO6c/surf-run",
+          "--json"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 2,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":2,\"message\":\"Step locator must be a string\"}\n",
+        "stderr": "Step locator must be a string\n"
+      },
+      "files": [
+        "plan.ts",
+        "workspace.json"
+      ]
+    },
+    {
+      "driver": "playwright",
+      "operation": "compile",
+      "workspace": "/tmp/ce-fix-0036-jqAO6c/playwright-compile",
+      "init": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "init",
+          "/tmp/ce-fix-0036-jqAO6c/playwright-compile",
+          "--repository",
+          "/tmp/ce-fix-0036-jqAO6c/repository",
+          "--workflow",
+          "step-validation",
+          "--run",
+          "playwright-compile",
+          "--driver",
+          "playwright",
+          "--json"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 0,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix-0036-jqAO6c/playwright-compile\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/ce-fix-0036-jqAO6c/repository\",\"path\":\"/tmp/ce-fix-0036-jqAO6c/repository/workflows/step-validation/artifacts/evidence/playwright-compile\",\"ref\":\"workflows/step-validation/artifacts/evidence/playwright-compile\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+        "stderr": ""
+      },
+      "result": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "compile",
+          "/tmp/ce-fix-0036-jqAO6c/playwright-compile",
+          "--json"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 2,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"compile\",\"success\":false,\"code\":2,\"message\":\"Step locator must be a string\"}\n",
+        "stderr": "Step locator must be a string\n"
+      },
+      "files": [
+        "plan.ts",
+        "workspace.json"
+      ]
+    },
+    {
+      "driver": "playwright",
+      "operation": "render",
+      "workspace": "/tmp/ce-fix-0036-jqAO6c/playwright-render",
+      "init": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "init",
+          "/tmp/ce-fix-0036-jqAO6c/playwright-render",
+          "--repository",
+          "/tmp/ce-fix-0036-jqAO6c/repository",
+          "--workflow",
+          "step-validation",
+          "--run",
+          "playwright-render",
+          "--driver",
+          "playwright",
+          "--json"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 0,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix-0036-jqAO6c/playwright-render\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/ce-fix-0036-jqAO6c/repository\",\"path\":\"/tmp/ce-fix-0036-jqAO6c/repository/workflows/step-validation/artifacts/evidence/playwright-render\",\"ref\":\"workflows/step-validation/artifacts/evidence/playwright-render\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+        "stderr": ""
+      },
+      "result": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "render",
+          "/tmp/ce-fix-0036-jqAO6c/playwright-render",
+          "--json"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 2,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"render\",\"success\":false,\"code\":2,\"message\":\"Step locator must be a string\"}\n",
+        "stderr": "Step locator must be a string\n"
+      },
+      "files": [
+        "plan.ts",
+        "workspace.json"
+      ]
+    },
+    {
+      "driver": "playwright",
+      "operation": "run",
+      "workspace": "/tmp/ce-fix-0036-jqAO6c/playwright-run",
+      "init": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "init",
+          "/tmp/ce-fix-0036-jqAO6c/playwright-run",
+          "--repository",
+          "/tmp/ce-fix-0036-jqAO6c/repository",
+          "--workflow",
+          "step-validation",
+          "--run",
+          "playwright-run",
+          "--driver",
+          "playwright",
+          "--json"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 0,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix-0036-jqAO6c/playwright-run\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/ce-fix-0036-jqAO6c/repository\",\"path\":\"/tmp/ce-fix-0036-jqAO6c/repository/workflows/step-validation/artifacts/evidence/playwright-run\",\"ref\":\"workflows/step-validation/artifacts/evidence/playwright-run\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+        "stderr": ""
+      },
+      "result": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "run",
+          "/tmp/ce-fix-0036-jqAO6c/playwright-run",
+          "--json"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 2,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":2,\"message\":\"Step locator must be a string\"}\n",
+        "stderr": "Step locator must be a string\n"
+      },
+      "files": [
+        "plan.ts",
+        "workspace.json"
+      ]
+    }
+  ],
+  "driverExecuted": false
+}

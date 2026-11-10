@@ -1,0 +1,29 @@
+{
+  "draft": {
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "mq",
+      "--allow-http-import",
+      "-I",
+      "raw",
+      "-F",
+      "json",
+      "import \"github.com/harehare/okf.mq\" | okf::okf_parse(.) | okf::okf_validate(.)",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0036.md"
+    ],
+    "exit_code": 0,
+    "errors": []
+  },
+  "existing_web_guide": {
+    "generic_okf_validation": [
+      {
+        "rule": "missing_required_field",
+        "field": "type",
+        "message": "frontmatter must have a 'type' field, but it is missing"
+      }
+    ],
+    "limit": "Existing collect-evidence/v1 schema/kind frontmatter is retained. No OKF concept migration or bundle change is part of this fix."
+  }
+}

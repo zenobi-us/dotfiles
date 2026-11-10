@@ -1,0 +1,16 @@
+{
+  "command": [
+    "mise",
+    "x",
+    "--",
+    "bun",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc",
+    "--noEmit",
+    "-p",
+    "/tmp/ce-fix-0036-jqAO6c/tsconfig.json"
+  ],
+  "cwd": "/tmp",
+  "exit_code": 2,
+  "stdout": "../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts(3,23): error TS2307: Cannot find module '@crustjs/core@0.0.19' or its corresponding type declarations.\n../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts(4,28): error TS2307: Cannot find module '@crustjs/plugins@0.1.2' or its corresponding type declarations.\n../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts(81,52): error TS7006: Parameter '_context' implicitly has an 'any' type.\n../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts(81,62): error TS7006: Parameter 'next' implicitly has an 'any' type.\n../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts(107,24): error TS7031: Binding element 'flags' implicitly has an 'any' type.\n../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts(108,148): error TS7031: Binding element 'args' implicitly has an 'any' type.\n../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts(108,154): error TS7031: Binding element 'flags' implicitly has an 'any' type.\n",
+  "stderr": ""
+}

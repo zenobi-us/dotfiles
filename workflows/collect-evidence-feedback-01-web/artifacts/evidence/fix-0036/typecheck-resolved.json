@@ -1,0 +1,16 @@
+{
+  "command": [
+    "mise",
+    "x",
+    "--",
+    "bun",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc",
+    "--noEmit",
+    "-p",
+    "/tmp/ce-fix-0036-jqAO6c/tsconfig.json"
+  ],
+  "cwd": "/tmp",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": ""
+}

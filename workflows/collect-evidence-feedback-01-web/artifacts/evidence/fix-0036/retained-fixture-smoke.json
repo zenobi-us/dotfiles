@@ -1,0 +1,86 @@
+{
+  "input": "../review-0033-invalid-plan/invalid-plan.ts",
+  "results": [
+    {
+      "operation": "compile",
+      "init": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "init",
+          "/tmp/ce-fix-0036-jqAO6c/retained-compile",
+          "--repository",
+          "/tmp/ce-fix-0036-jqAO6c/repository",
+          "--workflow",
+          "step-validation",
+          "--run",
+          "retained-compile",
+          "--driver",
+          "surf",
+          "--json"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 0,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix-0036-jqAO6c/retained-compile\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/ce-fix-0036-jqAO6c/repository\",\"path\":\"/tmp/ce-fix-0036-jqAO6c/repository/workflows/step-validation/artifacts/evidence/retained-compile\",\"ref\":\"workflows/step-validation/artifacts/evidence/retained-compile\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+        "stderr": ""
+      },
+      "result": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "compile",
+          "/tmp/ce-fix-0036-jqAO6c/retained-compile",
+          "--json",
+          "--no-input"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 2,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"compile\",\"success\":false,\"code\":2,\"message\":\"Step locator must be a string\"}\n",
+        "stderr": "Step locator must be a string\n"
+      },
+      "files": [
+        "plan.ts",
+        "workspace.json"
+      ]
+    },
+    {
+      "operation": "render",
+      "init": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "init",
+          "/tmp/ce-fix-0036-jqAO6c/retained-render",
+          "--repository",
+          "/tmp/ce-fix-0036-jqAO6c/repository",
+          "--workflow",
+          "step-validation",
+          "--run",
+          "retained-render",
+          "--driver",
+          "surf",
+          "--json"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 0,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix-0036-jqAO6c/retained-render\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/ce-fix-0036-jqAO6c/repository\",\"path\":\"/tmp/ce-fix-0036-jqAO6c/repository/workflows/step-validation/artifacts/evidence/retained-render\",\"ref\":\"workflows/step-validation/artifacts/evidence/retained-render\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+        "stderr": ""
+      },
+      "result": {
+        "command": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+          "render",
+          "/tmp/ce-fix-0036-jqAO6c/retained-render",
+          "--json",
+          "--no-input"
+        ],
+        "cwd": "/tmp",
+        "exit_code": 2,
+        "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"render\",\"success\":false,\"code\":2,\"message\":\"Step locator must be a string\"}\n",
+        "stderr": "Step locator must be a string\n"
+      },
+      "files": [
+        "plan.ts",
+        "workspace.json"
+      ]
+    }
+  ],
+  "driverExecuted": false
+}
