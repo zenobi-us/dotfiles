@@ -2,11 +2,11 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "collect-evidence-feedback-01-web",
   "ticket": "tracker/tickets/collect-evidence-feedback-01-web.md",
-  "state": "REVIEW_FAILED",
-  "latest_receipt": "review-complete-0040",
-  "latest_source_commit": "3dbab24ce09d4cf1c3eaedf467af63e007b9e976",
-  "latest_source_tree": "213b91da7d7589912d53f67c19cc5e5c76adc54f",
-  "latest_review_verdict": "FAILURE",
+  "state": "FIXED",
+  "latest_receipt": "fix-complete-0043",
+  "latest_source_commit": "6923f54f331697f6e8e591346d8071951909bfc7",
+  "latest_source_tree": "9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7",
+  "latest_review_verdict": null,
   "open_findings": [
     {
       "adr_reference": "NO ADR \u2014 ADR 0001 concerns Pi Ink device cleanup, not browser reporting.",
@@ -40,19 +40,6 @@
       "validation_command": "mise exec -- bun test /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts"
     },
     {
-      "adr": "NO ADR; tracker/initiatives/collect-evidence-feedback/index.md, Testing Decisions 3 and 14; references/web.md, Plan approval",
-      "blocking": true,
-      "description": "Hard documented public-workflow coverage violation. The missing-media fixture omits says from navigate and expect, but line 152 requires compile exit 0. checkPlan now rejects both actions before compilation. Once earlier driver failures are resolved, this branch cannot reach its real screenshot-deletion check or subsequent interruption checks. This is a source finding, not a rerun result.",
-      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
-      "id": "STD-R6-001",
-      "line": 148,
-      "required_change": "Add genuine reader instructions to both fixture steps. Keep the missing-media scenario valid until its intended filesystem failure.",
-      "severity": "P2",
-      "validation_command": "COLLECT_EVIDENCE_REAL_DRIVERS=1 mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
-      "axis": "Standards",
-      "blocking_reason": "Required public media and interruption checks are unreachable because their fixture violates the new required-field contract."
-    },
-    {
       "adr": "NO ADR; baseline Duplicated Code, judgement call",
       "blocking": false,
       "description": "Possible Duplicated Code. This markdown helper and records.ts:479 both construct schema/kind frontmatter and invoke mise/mq. Their output format, lock policy, overwrite policy and error handling already differ.",
@@ -75,32 +62,6 @@
       "severity": "P3",
       "validation_command": "COLLECT_EVIDENCE_REAL_DRIVERS=1 mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
       "axis": "Standards"
-    },
-    {
-      "adr": "NO ADR; ADR 0001 concerns Pi Ink cleanup",
-      "blocking": true,
-      "description": "Ticket: \u2018Reject invalid records, missing media and unsupported explicit schemas without a valid-looking partial run.\u2019 checkPlan leaves capture.attr, click.dom, wait.gone and timeoutMs unchecked. For example, gone: \"false\" passes validation but both drivers treat it as true and wait for disappearance. compile/render can emit successful generated output for this invalid typed Step. This follows from source inspection, not a runtime reproduction.",
-      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts",
-      "id": "SPEC-R6-001",
-      "line": 354,
-      "required_change": "Validate present optional Step fields against their declared types. Reject invalid timeouts before generation or execution. Preserve omitted fields, timeoutMs: 0, empty fill text, empty shot and visible: false.",
-      "severity": "P2",
-      "validation_command": "Run public compile/render/run with malformed optional fields for both drivers; require exit 2, versioned errors, no generated writes and no driver execution.",
-      "axis": "Spec",
-      "blocking_reason": "Invalid typed Step input is accepted as successful output and changes wait semantics before any driver acceptance question."
-    },
-    {
-      "adr": "NO ADR",
-      "blocking": true,
-      "description": "Ticket: \u2018Update the relevant docs and public workflow checks.\u2019 The Surf missing-media fixture omits says on navigate and expect, yet line 152 requires compile exit 0. The new required-field validator rejects this fixture. Once earlier cases pass, this assertion prevents the missing-media, interruption and tamper checks from running.",
-      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
-      "id": "SPEC-R6-002",
-      "line": 148,
-      "required_change": "Add valid reader-facing says fields to both fixture steps. Keep missing-media assertions and subsequent checks reachable.",
-      "severity": "P2",
-      "validation_command": "COLLECT_EVIDENCE_REAL_DRIVERS=1 mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
-      "axis": "Spec",
-      "blocking_reason": "Required public media and interruption checks are unreachable because their fixture violates the new required-field contract."
     }
   ],
   "implementation_status": "fixed",
@@ -118,7 +79,7 @@
   "evidence": {
     "store": "repository",
     "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
-    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0036"
+    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042"
   },
   "supporting_receipts": [
     "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml",
@@ -158,10 +119,13 @@
     "workflows/collect-evidence-feedback-01-web/events/fix-complete-0037.yaml",
     "workflows/collect-evidence-feedback-01-web/events/review-start-0038.yaml",
     "workflows/collect-evidence-feedback-01-web/events/review-0039.yaml",
-    "workflows/collect-evidence-feedback-01-web/events/review-complete-0040.yaml"
+    "workflows/collect-evidence-feedback-01-web/events/review-complete-0040.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/fix-start-0041.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/fix-0042.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/fix-complete-0043.yaml"
   ],
-  "draft": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0036.md",
-  "evidence_index": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0036/validation.json",
+  "draft": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0042.md",
+  "evidence_index": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/scoped-suite.json",
   "open_questions": [
     "The cause of the initial owned-preview tab invalidation is unknown; fresh owned-preview and borrowed-resource checks passed.",
     "The tracker graph labels implemented as COMPLETED despite the canonical implemented state; this out-of-scope presentation mismatch was reported.",
@@ -170,26 +134,26 @@
     "Surf blocked.1 timed out during pre-workflow about:blank navigation in the only fix-0026 scoped suite; underlying timeout cause unknown. Native diagnostics retained. No retry.",
     "The fix-0026 scoped suite had a new regression fixture metadata error, corrected and verified through targeted public coverage; the full suite was not repeated."
   ],
-  "receipt_ref": "workflows/collect-evidence-feedback-01-web/events/review-complete-0040.yaml",
+  "receipt_ref": "workflows/collect-evidence-feedback-01-web/events/fix-complete-0043.yaml",
   "workspace_id": "w73",
   "latest_review_receipt": "workflows/collect-evidence-feedback-01-web/events/review-0039.yaml",
   "latest_review_artifact": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0039.md",
-  "blocking_finding_ids": [
-    "STD-R6-001",
-    "SPEC-R6-001",
-    "SPEC-R6-002"
-  ],
+  "blocking_finding_ids": [],
   "advisory_finding_ids": [
-    "STD-AXIS-001",
-    "STD-R3-001",
     "STD-R6-002",
-    "STD-R6-003"
+    "STD-R6-003",
+    "STD-AXIS-001",
+    "STD-R3-001"
   ],
-  "selected_fix_finding_ids": [],
+  "selected_fix_finding_ids": [
+    "SPEC-R6-001",
+    "SPEC-R6-002",
+    "STD-R6-001"
+  ],
   "fix_status": "completed",
-  "current_review_verdict": "FAILURE",
-  "latest_review_applicability": "current",
-  "review_status": "completed",
+  "current_review_verdict": null,
+  "latest_review_applicability": "historical-stale",
+  "review_status": "required",
   "reviewed_source_commit": "3dbab24ce09d4cf1c3eaedf467af63e007b9e976",
   "reviewed_source_tree": "213b91da7d7589912d53f67c19cc5e5c76adc54f",
   "historical_findings": [
@@ -276,16 +240,16 @@
     "SPEC-R3-001",
     "SPEC-R4-001",
     "SPEC-R4-002",
-    "SPEC-R5-001"
+    "SPEC-R5-001",
+    "SPEC-R6-001",
+    "SPEC-R6-002",
+    "STD-R6-001"
   ],
   "unresolved_finding_ids": [
-    "STD-AXIS-001",
-    "STD-R3-001",
-    "STD-R6-001",
     "STD-R6-002",
     "STD-R6-003",
-    "SPEC-R6-001",
-    "SPEC-R6-002"
+    "STD-AXIS-001",
+    "STD-R3-001"
   ],
   "historical_review_transport": {
     "schema": "result-delivery/v1",
@@ -303,7 +267,7 @@
     "source_tree": "9480fa07ed2783674efa8f0d3efc6bc7daa81047",
     "verdict": "FAILURE"
   },
-  "latest_fix_receipt": "workflows/collect-evidence-feedback-01-web/events/fix-0036.yaml",
+  "latest_fix_receipt": "workflows/collect-evidence-feedback-01-web/events/fix-0042.yaml",
   "verified_prior_finding_ids": [
     "SPEC-001",
     "SPEC-002",
@@ -343,7 +307,7 @@
     "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-review-0017-ntpR2G/result.json",
     "resultSchema": "worktree-receipt/v1"
   },
-  "next_action": "Fix review findings: The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs. Separate scoped fix approval is required; no source fix ran during review.",
+  "next_action": "Review changed source: The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing. Fresh independent review approval is required; no review was launched by this fix phase.",
   "merge_status": "not merged; not pushed",
   "validation_results": [
     {
@@ -745,7 +709,7 @@
       "result": "passed"
     }
   ],
-  "validation_status": "current-P2-input-and-workflow-fixture-defects; historical-browser-failures-preserved",
+  "validation_status": "scoped-passed; historical-browser-failures-preserved",
   "child_pane_id": "w73:p8",
   "child_run_id": "ffc5ae8d-7399-40f8-a68c-7bc6eb536b00",
   "transport_status": "acknowledged",
@@ -769,7 +733,7 @@
     "diagnostic_records_commit": "6aeaf06417ca906d7c5d3baa82b0b3bade9c1455",
     "pushed": false
   },
-  "review_readiness": false,
+  "review_readiness": true,
   "transport_ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-recovery-0029-2IQtMg/result.json",
   "fix_publication_commit": "716255ad",
   "next_action_kind": "review",

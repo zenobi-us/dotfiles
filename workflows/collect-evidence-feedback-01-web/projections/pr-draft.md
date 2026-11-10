@@ -1,5 +1,5 @@
 ---
-latest_receipt: review-complete-0040
+latest_receipt: fix-complete-0043
 schema: worktree-projection/v1
 title: Current web PR draft
 type: Projection
@@ -7,13 +7,13 @@ type: Projection
 
 # Preserve Surf and Playwright in collect-evidence
 
-REVIEW_FAILED. Review-0039 records current P2 blockers for source 3dbab24c. SPEC-R5-001 is resolved; earlier browser failures remain unresolved.
+FIXED. Review-0039 P2 findings are resolved in source 6923f54f. Fresh independent review is required. Earlier browser failures remain unresolved.
 
 ## Source
 
 Ticket: tracker/tickets/collect-evidence-feedback-01-web.md. Branch: feature/collect-evidence-feedback-01-web against master.
 
-Commit: 3dbab24ce09d4cf1c3eaedf467af63e007b9e976. Tree: 213b91da7d7589912d53f67c19cc5e5c76adc54f. Current fix: required Step fields validated before public commands generate output.
+Commit: 6923f54f331697f6e8e591346d8071951909bfc7. Tree: 9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7. Current fix: optional Step fields validated and missing-media fixture repaired.
 
 ## Problem and implementation
 
@@ -45,7 +45,7 @@ Scoped TypeScript passed using existing base dependencies. TypeScript LSP initia
 
 Selected and resolved: SPEC-R4-001 and SPEC-R4-002. Prior resolved: STD-001, SPEC-001, SPEC-002, SPEC-003 and SPEC-R3-001. Unresolved: STD-R3-001 (P3 advisory, unselected). CleanupRow and cleanupRow hooks are unchanged.
 
-Review-0033 records historical FAILURE for prior source 8c401541. Review-0039 now records FAILURE for the current source. review-0023 FAILURE is historical and applies only to 12b6345ac32f4ae30b078e5344fb5bae7a1ee244, tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. Earlier FAILURE reviews remain historical.
+Review-0033 records historical FAILURE for prior source 8c401541. Review-0039 FAILURE applies to prior source 3dbab24c. New source 6923f54f awaits independent review. review-0023 FAILURE is historical and applies only to 12b6345ac32f4ae30b078e5344fb5bae7a1ee244, tree 77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6. Earlier FAILURE reviews remain historical.
 
 [Consumed immutable review](../artifacts/reviews/review-review-0023.md). [Earlier fix draft](../artifacts/snapshots/pr-draft-fix-0020.md). [Original implementation draft](../artifacts/snapshots/pr-draft-implementation-0005.md).
 
@@ -57,7 +57,7 @@ The earlier fix-0020 Playwright pass-case suite failure and the separate review-
 
 The initial throwaway smoke fixture omitted required says and capture locator/as. Its failed native output and commands are retained. Corrected fixture smoke passed both real drivers without another production change.
 
-Review-0033 FAILURE is historical; review-0039 records FAILURE for the current source. STD-R3-001 and cleanupRow hooks remain unchanged. No new video proof, tool installation, remote Git operation, stash operation, base-store commit, formal review, merge, push or ticket completion. Existing records reported no changelog; the existing Surf driver reference was updated.
+Review-0033 FAILURE is historical; review-0039 FAILURE is historical; no verdict covers source 6923f54f. STD-R3-001 and cleanupRow hooks remain unchanged. No new video proof, tool installation, remote Git operation, stash operation, base-store commit, formal review, merge, push or ticket completion. Existing records reported no changelog; the existing Surf driver reference was updated.
 
 Source fixes and actual workflow artifacts are committed locally. Parent completion records failed validation, acknowledgement and closure of fixer pane w73:p7. Workspace w73 and the source worktree remain open. The canonical ticket remains implemented. No merge or push occurred.
 
@@ -614,7 +614,7 @@ Old Surf/Playwright browser failures remain unresolved. No failed browser workfl
 
 Next: Review changed source: The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing. Fresh-review approval is required; no review was launched in this fix phase.
 
-## Current independent review review-0039
+## Historical review review-0039 (before fix-0042)
 
 Reviewed commit: `3dbab24ce09d4cf1c3eaedf467af63e007b9e976`; tree: `213b91da7d7589912d53f67c19cc5e5c76adc54f`. Verdict: **FAILURE**. State: REVIEW_FAILED. Prior required-field finding SPEC-R5-001 remains resolved.
 
@@ -627,3 +627,28 @@ Reviewed commit: `3dbab24ce09d4cf1c3eaedf467af63e007b9e976`; tree: `213b91da7d75
 Review and tracker records are committed locally. No merge, push, source fix or ticket completion occurred. Earlier Surf/Playwright acceptance failures remain unresolved. Historical review and fix records above remain intact.
 
 Next: Fix review findings: The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs. Separate scoped fix approval is required; no source fix ran during review.
+
+## Current fix fix-0042
+
+Source commit: `6923f54f331697f6e8e591346d8071951909bfc7`; tree: `9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7`. State: FIXED. Review-0039 FAILURE applies only to prior source 3dbab24c; no verdict covers this new source.
+
+Resolved by this scoped fix: SPEC-R6-001, SPEC-R6-002 and overlapping STD-R6-001. Unchanged advisories: STD-R6-002, STD-R6-003, STD-AXIS-001 and STD-R3-001. Atomic source commits: 35b4bbe9 (optional fields) and 6923f54f (fixture).
+
+### Changed files
+
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/web.md`
+
+### Validation and records
+
+- **Scoped suite:** 67 tests passed, 603 assertions, no failures; [result](../artifacts/evidence/fix-0042/scoped-suite.json).
+- **Strict TypeScript:** Passed using existing dependencies; [result](../artifacts/evidence/fix-0042/strict-typecheck.json). LSP initialization remains unavailable.
+- **Public boundary:** Parent independently observed malformed gone rejected by Surf compile and negative timeout rejected by Playwright render with exit2 and no generated outputs. The corrected missing-media fixture compiled with exit0. Commands ran from /tmp without browser execution.
+- **Immutable outputs:** [Fix result](../events/fix-0042.yaml), [draft snapshot](../artifacts/snapshots/pr-draft-fix-0042.md), [fixture compile](../artifacts/evidence/fix-0042/fixture-compile.json), [fixture render](../artifacts/evidence/fix-0042/fixture-render.json).
+- **Phase provenance:** [Approved start](../events/fix-start-0041.yaml) and [parent completion](../events/fix-complete-0043.yaml). Typed result acknowledged; fresh fixer t27 closed and removed; source workspace preserved.
+
+Source and workflow records are committed locally. No merge, push, ticket completion or browser workflow rerun occurred. Historical Surf/Playwright failures remain unresolved. Passing compile/render checks do not establish browser acceptance.
+
+Next: Review changed source: The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing. Fresh independent review approval is required; no review was launched by this fix phase.

@@ -1,0 +1,320 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "fix-complete-0043",
+  "workflow_id": "collect-evidence-feedback-01-web",
+  "phase": "fix",
+  "event": "phase-complete",
+  "attempt": 5,
+  "parent_receipt": "fix-0042",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "source_branch": "feature/collect-evidence-feedback-01-web",
+  "base_branch": "master",
+  "source_commit": "6923f54f331697f6e8e591346d8071951909bfc7",
+  "source_tree": "9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7",
+  "created_at": "2026-11-10T12:13:39.085953+00:00",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.config/herdr-app/data/shared-context-sessions/1794291799878-ade59c2e9362a/2026-11-10T06-23-21-611Z_01a1c420-1e0b-77ac-b8f8-5d84635bfaba.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-01-web",
+    "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-01-web"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-0039.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-complete-0040.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0039.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-0036.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0036.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0036"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-start-0041.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-0042.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0042.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042"
+    },
+    {
+      "kind": "launch",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/launch-fix-start-0041.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-complete-0043.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-01-web/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-01-web/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-01-web/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-01-web/projections/implementation-log.md"
+    }
+  ],
+  "status": "completed",
+  "recovery_mode": "reconcile",
+  "recovery_reason": "Read the child result and artifacts, verify the frozen source and outcome, then append the parent completion. Do not repeat the child work.",
+  "approval": {
+    "source": "user",
+    "request": "fix tickets/collect-evidence-feedback-01-web",
+    "scope": "Fresh fixer for current review-0039 P2 findings SPEC-R6-001, SPEC-R6-002 and overlapping STD-R6-001; leave P3 advisories unchanged, preserve historical browser failures. No merge, push or completion."
+  },
+  "ownership_checks": {
+    "source_clean": true,
+    "source_branch_matches_review": true,
+    "live_terminals": "No live source-worktree terminal in hc ls",
+    "previous_reviewer": "t20 and axes t21/t22 closed/removed after native done; review-complete-0040 records closure",
+    "coordinator_reservations": "No ticket reference in workflows/goal-*/events/*.yaml",
+    "current_parent_terminal": "t1n",
+    "direct_blockers": []
+  },
+  "preserve_prior_evidence": true,
+  "selected_finding_ids": [
+    "SPEC-R6-001",
+    "SPEC-R6-002",
+    "STD-R6-001"
+  ],
+  "unselected_finding_ids": [
+    "STD-R6-002",
+    "STD-R6-003",
+    "STD-AXIS-001",
+    "STD-R3-001"
+  ],
+  "new_source_commit": "6923f54f331697f6e8e591346d8071951909bfc7",
+  "new_source_tree": "9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7",
+  "source_commits": [
+    "35b4bbe9",
+    "6923f54f"
+  ],
+  "child_pane_id": "t27",
+  "child_session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-collect-evidence-feedback-01-web--/2026-11-10T12-03-20-985Z_01a1c557-6319-71ea-ae6f-9ffe7c1a7c69.jsonl",
+  "child_run_id": "1e6a5145-daba-4073-8e91-a660f3e7fb8f",
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042"
+  },
+  "consumed_review_receipt_ids": [
+    "review-0039"
+  ],
+  "resolved_finding_ids": [
+    "SPEC-R6-001",
+    "SPEC-R6-002",
+    "STD-R6-001"
+  ],
+  "unresolved_finding_ids": [
+    "STD-R6-002",
+    "STD-R6-003",
+    "STD-AXIS-001",
+    "STD-R3-001"
+  ],
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/web.md"
+  ],
+  "implementation_summary": "Validate present optional Step attr/dom/gone and wait/expect timeoutMs at checkPlan before public generation or execution. Preserve typed optional boundaries. Add public failing-before/passing-after coverage across both drivers. Repair reader instructions in the missing-media fixture without changing its failure, interruption or tamper assertions. Update the existing web guide in both atomic fixes.",
+  "fix_status": "FIXED",
+  "draft_snapshot": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0042.md",
+  "source_clean": true,
+  "child_pane_closed": true,
+  "worktree_preserved": true,
+  "workspace_preserved": true,
+  "ticket_status": "implemented",
+  "ticket_changed": false,
+  "merged": false,
+  "pushed": false,
+  "ticket_completed": false,
+  "publication": {
+    "launch_commit": "0fccb8e8",
+    "source_commit": "6923f54f331697f6e8e591346d8071951909bfc7",
+    "fix_artifacts_commit": "599fe0b9",
+    "pushed": false
+  },
+  "transport": {
+    "status": "acknowledged",
+    "runId": "1e6a5145-daba-4073-8e91-a660f3e7fb8f",
+    "operationId": "collect-evidence-feedback-01-web-fix-0042",
+    "sha256": "1691f121c10eafc09cfe5dee284e20d7d36bceee1ea2e140c3d8acb91bbe13d4",
+    "context_file": "/home/zenobius/.local/state/result-delivery/runs/1e6a5145-daba-4073-8e91-a660f3e7fb8f/context.json",
+    "result_target": "/var/home/zenobius/.local/state/result-delivery/runs/collect-evidence-fix-0042/result.json"
+  },
+  "validation_results": [
+    {
+      "check": "authoritative-event-equals-verified-transport",
+      "result": "passed"
+    },
+    {
+      "check": "receipt-history-source-branch-commit-tree-cleanliness",
+      "result": "passed"
+    },
+    {
+      "check": "child-scoped-non-browser-suite",
+      "result": "passed",
+      "passed": 67,
+      "failed": 0,
+      "expectations": 603,
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/scoped-suite.json"
+    },
+    {
+      "check": "child-scoped-strict-typescript",
+      "result": "passed",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/strict-typecheck.json"
+    },
+    {
+      "check": "parent-public-optional-field-and-fixture-smoke",
+      "result": "passed",
+      "observations": [
+        {
+          "scenario": "gone",
+          "driver": "surf",
+          "command": [
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+            "compile",
+            "/tmp/ce-parent-fix0042-1ejkz99c/gone",
+            "--json",
+            "--no-input"
+          ],
+          "cwd": "/tmp",
+          "exit_code": 2,
+          "event": {
+            "schema": "collect-evidence/v1",
+            "kind": "error",
+            "command": "compile",
+            "success": false,
+            "code": 2,
+            "message": "Step gone must be a boolean"
+          },
+          "files": [
+            "workspace.json",
+            "plan.ts"
+          ],
+          "driver_executed": false
+        },
+        {
+          "scenario": "timeout",
+          "driver": "playwright",
+          "command": [
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+            "render",
+            "/tmp/ce-parent-fix0042-1ejkz99c/timeout",
+            "--json",
+            "--no-input"
+          ],
+          "cwd": "/tmp",
+          "exit_code": 2,
+          "event": {
+            "schema": "collect-evidence/v1",
+            "kind": "error",
+            "command": "render",
+            "success": false,
+            "code": 2,
+            "message": "Step timeoutMs must be a finite non-negative number"
+          },
+          "files": [
+            "workspace.json",
+            "plan.ts"
+          ],
+          "driver_executed": false
+        },
+        {
+          "scenario": "fixture",
+          "driver": "surf",
+          "command": [
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+            "compile",
+            "/tmp/ce-parent-fix0042-1ejkz99c/fixture",
+            "--json",
+            "--no-input"
+          ],
+          "cwd": "/tmp",
+          "exit_code": 0,
+          "event": {
+            "schema": "collect-evidence/v1",
+            "kind": "event",
+            "command": "compile",
+            "success": true,
+            "directory": "/tmp/ce-parent-fix0042-1ejkz99c/fixture",
+            "driver": "surf",
+            "tests": 1
+          },
+          "files": [
+            "compiled.json",
+            "workflows",
+            "workspace.json",
+            "plan.ts"
+          ],
+          "driver_executed": false
+        }
+      ],
+      "temporary_workspaces_removed": true,
+      "browser_executed": false
+    },
+    {
+      "check": "native-fixer-completion-and-closure",
+      "result": "passed",
+      "native_status": "done",
+      "terminal": "t27",
+      "removed": true
+    }
+  ],
+  "limits": [
+    "Browser acceptance remains unverified. No browser suite, historical failed workflow, screenshot-deletion scenario, installation, service restart, credential entry, fake driver, merge, push, stash or BASE commit ran.",
+    "Historical Surf blocked.1 reset timed out with queueMs 0 and hard timeout 60041 ms. Earlier Playwright pass-case and approved-space failures remain unresolved. No native timeout root-cause claim.",
+    "LSP initialization unavailable; direct scoped strict tsc passed with existing BASE dependencies.",
+    "The existing web guide retains collect-evidence/v1 schema/kind; its owned schema was checked. Standalone draft OKF validation returned []. No full bundle audit or schema migration applies.",
+    "Two ancillary mq YAML metadata query attempts failed syntactically or returned null-valued structure. Both outputs retained. Bun.YAML.parse verified consumed receipt metadata; this did not affect source checks.",
+    "strace unavailable; no process trace recorded. Public invalid run errors and unchanged directory contents prove rejection at checkPlan; static loadPlan ordering places this before doctor and driver dispatch. No claim of browser runtime acceptance."
+  ]
+}
