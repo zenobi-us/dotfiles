@@ -1,0 +1,87 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-start-0038",
+  "workflow_id": "collect-evidence-feedback-01-web",
+  "phase": "review",
+  "event": "phase-start",
+  "attempt": 7,
+  "parent_receipt": "fix-complete-0037",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "source_branch": "feature/collect-evidence-feedback-01-web",
+  "base_branch": "master",
+  "source_commit": "3dbab24ce09d4cf1c3eaedf467af63e007b9e976",
+  "source_tree": "213b91da7d7589912d53f67c19cc5e5c76adc54f",
+  "created_at": "2026-11-10T11:27:33.886275+00:00",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.config/herdr-app/data/shared-context-sessions/1794291799878-ade59c2e9362a/2026-11-10T06-23-21-611Z_01a1c420-1e0b-77ac-b8f8-5d84635bfaba.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-01-web",
+    "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-01-web"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-complete-0037.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-0036.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0036.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0036"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-0033.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0033.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-start-0038.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery_mode": "retry",
+  "recovery_reason": "The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing.",
+  "approval": {
+    "source": "user",
+    "request": "review collect-evidence-feedback-01-web",
+    "scope": "Fresh independent review of current fixed source 3dbab24c; record verdict/artifact and tracker comment, no source edits, merge, push or ticket completion."
+  },
+  "ownership_checks": {
+    "source_clean": true,
+    "source_branch_matches_fix": true,
+    "previous_fixer": "t1x closed/removed after native done; fix-complete-0037 records closure",
+    "live_terminals": "No live terminal launched from source worktree in hc ls",
+    "coordinator_reservations": "No ticket reference in workflows/goal-*/events/*.yaml",
+    "current_parent_terminal": "t1n",
+    "direct_blockers": []
+  },
+  "preserve_prior_evidence": true,
+  "reconciled_prior_result": "fix-0036 delivered, acknowledged and completed by fix-complete-0037; no duplicate fix or review reuse."
+}
