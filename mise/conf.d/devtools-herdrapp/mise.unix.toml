@@ -1,0 +1,4 @@
+[tasks."herdrapp.install"]
+description = "Install the Herdr-app Context and Tracker mods (keep Herdr-app open)"
+dir = "{{ config_root }}/app"
+run = "bun install.ts"

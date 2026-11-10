@@ -597,7 +597,7 @@ The native panels add **Context** and **Tracker** beside **Files** and **Changes
 Keep Herdr-app open. Run this command from the repository root:
 
 ```sh
-bun mise/conf.d/shells-herdr/app/install.ts --better-config
+bun mise/conf.d/devtools-herdrapp/app/install.ts --better-config
 ```
 
 The installer creates the `shared-context` layout from a main-based layout. It keeps the Files and Changes mods. It does not replace an existing Better Config installation.
