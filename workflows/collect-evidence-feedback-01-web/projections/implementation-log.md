@@ -1,5 +1,5 @@
 ---
-latest_receipt: review-complete-0034
+latest_receipt: fix-complete-0037
 schema: worktree-projection/v1
 title: Collect-evidence web implementation log
 type: Projection
@@ -541,7 +541,7 @@ No failed workflow was rerun. No service was restarted or modified. The feature 
 Inspect the recovered native trace before another review. The inspector requires approval for a fresh review. Do not repeat the failed suite without a distinct trace-supported question. Existing acceptance failures remain unresolved.
 
 
-## Current independent review review-0033
+## Historical review review-0033 (before fix-0036)
 
 Reviewed commit: `8c4015418f6b3fee244708d9937e45bb358fc45d`; tree: `28784b1a67c200888c53a947b3b056f2569cccbc`. Verdict: **FAILURE**. Current state: REVIEW_FAILED.
 
@@ -550,6 +550,30 @@ Reviewed commit: `8c4015418f6b3fee244708d9937e45bb358fc45d`; tree: `28784b1a67c2
 - **Bounded validation:** [Exact observations](../artifacts/evidence/review-0033-invalid-plan/observations.json). No driver ran; retained browser failures remain unresolved.
 - **Parent completion:** [Reconciliation receipt](../events/review-complete-0034.yaml). Delivery recovered and acknowledged; reviewer and axes closed.
 
-Current blocking finding: SPEC-R5-001. Current advisory: STD-AXIS-001. Earlier resolved findings and historical reviews above remain preserved. Source unchanged; ticket remains implemented. Records committed locally; no merge, push or completion.
+Historical blocking finding SPEC-R5-001 is resolved by fix-0036, pending independent review. Advisory STD-AXIS-001 remains unchanged. Earlier resolved findings and historical reviews above remain preserved. Source unchanged; ticket remains implemented. Records committed locally; no merge, push or completion.
 
 Next: Fix review findings: The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs. Scoped approval is required; no fix is authorized by this review request.
+
+## Current fix fix-0036
+
+Source commit: `3dbab24ce09d4cf1c3eaedf467af63e007b9e976`; tree: `213b91da7d7589912d53f67c19cc5e5c76adc54f`. State: FIXED. Current review verdict: null; review-0033 FAILURE is historical and does not cover this source.
+
+Resolved by the scoped fix: SPEC-R5-001. Unchanged advisories: STD-AXIS-001 and STD-R3-001.
+
+### Changed files
+
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/web.md`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts`
+
+### Validation and records
+
+- **Scoped suite:** 35 passed, 0 failed, 283 expectations; [test output](../artifacts/evidence/fix-0036/regression-after.txt).
+- **Strict TypeScript:** Passed with existing dependencies; [check output](../artifacts/evidence/fix-0036/typecheck-resolved.json). LSP initialization unavailable.
+- **Public boundary:** Parent independently exercised Surf compile and Playwright render from /tmp. Both returned versioned error/exit 2 for missing capture fields and created no generated outputs. No driver ran.
+- **Immutable fix:** [Result receipt](../events/fix-0036.yaml), [draft snapshot](../artifacts/snapshots/pr-draft-fix-0036.md), [validation details](../artifacts/evidence/fix-0036/validation.json).
+- **Phase provenance:** [Approved start](../events/fix-start-0035.yaml) and [parent completion](../events/fix-complete-0037.yaml). Typed result acknowledged; fresh fixer t1x closed and removed; source workspace preserved.
+
+Old Surf/Playwright browser failures remain unresolved. No failed browser workflow rerun, merge, push or ticket completion occurred. Records are locally committed; the canonical ticket remains implemented.
+
+Next: Review changed source: The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing. Fresh-review approval is required; no review was launched in this fix phase.

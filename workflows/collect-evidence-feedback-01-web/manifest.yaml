@@ -6,24 +6,23 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "review-complete-0034",
-  "state": "REVIEW_FAILED",
+  "latest_receipt": "fix-complete-0037",
+  "state": "FIXED",
   "parent_completion_pending": false,
   "workspace_id": "w73",
-  "latest_source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
-  "latest_source_tree": "28784b1a67c200888c53a947b3b056f2569cccbc",
-  "review_status": "completed",
-  "latest_review_applicability": "current",
-  "draft": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0026.md",
-  "latest_review_verdict": "FAILURE",
-  "fix_status": "failed-validation",
+  "latest_source_commit": "3dbab24ce09d4cf1c3eaedf467af63e007b9e976",
+  "latest_source_tree": "213b91da7d7589912d53f67c19cc5e5c76adc54f",
+  "review_status": "required",
+  "latest_review_applicability": "historical-stale",
+  "draft": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0036.md",
+  "latest_review_verdict": null,
+  "fix_status": "completed",
   "selected_fix_finding_ids": [
-    "SPEC-R4-001",
-    "SPEC-R4-002"
+    "SPEC-R5-001"
   ],
-  "current_review_verdict": "FAILURE",
-  "validation_status": "P2-invalid-input-defect; historical-browser-failures-preserved",
-  "evidence_index": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/transport-recovery-0031/index.md",
+  "current_review_verdict": null,
+  "validation_status": "scoped-passed; historical-browser-failures-preserved",
+  "evidence_index": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0036/validation.json",
   "merge_status": "not merged; not pushed",
   "resolved_finding_ids": [
     "STD-001",
@@ -32,15 +31,15 @@
     "SPEC-003",
     "SPEC-R3-001",
     "SPEC-R4-001",
-    "SPEC-R4-002"
+    "SPEC-R4-002",
+    "SPEC-R5-001"
   ],
   "unresolved_finding_ids": [
-    "STD-R3-001",
-    "SPEC-R5-001",
-    "STD-AXIS-001"
+    "STD-AXIS-001",
+    "STD-R3-001"
   ],
-  "next_action": "Fix review findings: The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs. Scoped approval is required; no fix is authorized by this review request.",
-  "review_readiness": false,
+  "next_action": "Review changed source: The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing. Fresh-review approval is required; no review was launched in this fix phase.",
+  "review_readiness": true,
   "result_missing": false,
   "transport_acknowledged": true,
   "protocol_source_commit": "cf79f45a71fa489934aa97baaa3caee92ccd77eb"

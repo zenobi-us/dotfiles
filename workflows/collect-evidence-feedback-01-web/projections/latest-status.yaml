@@ -2,11 +2,11 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "collect-evidence-feedback-01-web",
   "ticket": "tracker/tickets/collect-evidence-feedback-01-web.md",
-  "state": "REVIEW_FAILED",
-  "latest_receipt": "review-complete-0034",
-  "latest_source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
-  "latest_source_tree": "28784b1a67c200888c53a947b3b056f2569cccbc",
-  "latest_review_verdict": "FAILURE",
+  "state": "FIXED",
+  "latest_receipt": "fix-complete-0037",
+  "latest_source_commit": "3dbab24ce09d4cf1c3eaedf467af63e007b9e976",
+  "latest_source_tree": "213b91da7d7589912d53f67c19cc5e5c76adc54f",
+  "latest_review_verdict": null,
   "open_findings": [
     {
       "adr_reference": "NO ADR \u2014 ADR 0001 concerns Pi Ink device cleanup, not browser reporting.",
@@ -38,22 +38,9 @@
       "description": "Possible Duplicated Code: Markdown helpers duplicate frontmatter and mise/mq invocation but differ in overwrite, lock and failure policies.",
       "required_change": "Optional: extract shared Markdown generation into a leaf module while preserving caller policies.",
       "validation_command": "mise exec -- bun test /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts"
-    },
-    {
-      "id": "SPEC-R5-001",
-      "axis": "Spec",
-      "severity": "P2",
-      "blocking": true,
-      "adr": "NO ADR: ticket/initiative input validation applies; the indexed Pi Ink ADR does not.",
-      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts",
-      "line": 354,
-      "end_line": 357,
-      "description": "Missing capture.locator/as passes public compile and render with exit 0 and success:true, creating generated outputs instead of rejecting invalid author input.",
-      "required_change": "Validate required capture fields and other required Step fields before compile/render output or driver execution. Preserve explicitly optional fields. Return exit 2 with versioned error and add a public invalid-input regression.",
-      "validation_command": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts compile \"$FRESH_WORKSPACE\" --json --no-input; repeat with render in a separate freshly initialized external workspace containing retained invalid-plan.ts. Expect exit 2, kind:error, no generated outputs or driver execution."
     }
   ],
-  "implementation_status": "completed",
+  "implementation_status": "fixed",
   "ticket_work_status": "implemented",
   "tracker_commit": "0a368749",
   "parent_completion_pending": false,
@@ -67,7 +54,8 @@
   },
   "evidence": {
     "store": "repository",
-    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/transport-recovery-0031"
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0036"
   },
   "supporting_receipts": [
     "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml",
@@ -101,10 +89,13 @@
     "workflows/collect-evidence-feedback-01-web/events/review-complete-0030.yaml",
     "workflows/collect-evidence-feedback-01-web/events/review-start-0032.yaml",
     "workflows/collect-evidence-feedback-01-web/events/review-0033.yaml",
-    "workflows/collect-evidence-feedback-01-web/events/review-complete-0034.yaml"
+    "workflows/collect-evidence-feedback-01-web/events/review-complete-0034.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/fix-start-0035.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/fix-0036.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/fix-complete-0037.yaml"
   ],
-  "draft": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0026.md",
-  "evidence_index": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/transport-recovery-0031/index.md",
+  "draft": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0036.md",
+  "evidence_index": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0036/validation.json",
   "open_questions": [
     "The cause of the initial owned-preview tab invalidation is unknown; fresh owned-preview and borrowed-resource checks passed.",
     "The tracker graph labels implemented as COMPLETED despite the canonical implemented state; this out-of-scope presentation mismatch was reported.",
@@ -113,25 +104,22 @@
     "Surf blocked.1 timed out during pre-workflow about:blank navigation in the only fix-0026 scoped suite; underlying timeout cause unknown. Native diagnostics retained. No retry.",
     "The fix-0026 scoped suite had a new regression fixture metadata error, corrected and verified through targeted public coverage; the full suite was not repeated."
   ],
-  "receipt_ref": "workflows/collect-evidence-feedback-01-web/events/review-complete-0034.yaml",
+  "receipt_ref": "workflows/collect-evidence-feedback-01-web/events/fix-complete-0037.yaml",
   "workspace_id": "w73",
   "latest_review_receipt": "workflows/collect-evidence-feedback-01-web/events/review-0033.yaml",
   "latest_review_artifact": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0033.md",
-  "blocking_finding_ids": [
-    "SPEC-R5-001"
-  ],
+  "blocking_finding_ids": [],
   "advisory_finding_ids": [
-    "STD-R3-001",
-    "STD-AXIS-001"
+    "STD-AXIS-001",
+    "STD-R3-001"
   ],
   "selected_fix_finding_ids": [
-    "SPEC-R4-001",
-    "SPEC-R4-002"
+    "SPEC-R5-001"
   ],
-  "fix_status": "failed-validation",
-  "current_review_verdict": "FAILURE",
-  "latest_review_applicability": "current",
-  "review_status": "completed",
+  "fix_status": "completed",
+  "current_review_verdict": null,
+  "latest_review_applicability": "historical-stale",
+  "review_status": "required",
   "reviewed_source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
   "reviewed_source_tree": "28784b1a67c200888c53a947b3b056f2569cccbc",
   "historical_findings": [
@@ -217,12 +205,12 @@
     "SPEC-003",
     "SPEC-R3-001",
     "SPEC-R4-001",
-    "SPEC-R4-002"
+    "SPEC-R4-002",
+    "SPEC-R5-001"
   ],
   "unresolved_finding_ids": [
-    "STD-R3-001",
-    "SPEC-R5-001",
-    "STD-AXIS-001"
+    "STD-AXIS-001",
+    "STD-R3-001"
   ],
   "historical_review_transport": {
     "schema": "result-delivery/v1",
@@ -240,7 +228,7 @@
     "source_tree": "9480fa07ed2783674efa8f0d3efc6bc7daa81047",
     "verdict": "FAILURE"
   },
-  "latest_fix_receipt": "workflows/collect-evidence-feedback-01-web/events/fix-0026.yaml",
+  "latest_fix_receipt": "workflows/collect-evidence-feedback-01-web/events/fix-0036.yaml",
   "verified_prior_finding_ids": [
     "SPEC-001",
     "SPEC-002",
@@ -280,7 +268,7 @@
     "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-review-0017-ntpR2G/result.json",
     "resultSchema": "worktree-receipt/v1"
   },
-  "next_action": "Fix review findings: The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs. Scoped approval is required; no fix is authorized by this review request.",
+  "next_action": "Review changed source: The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing. Fresh-review approval is required; no review was launched in this fix phase.",
   "merge_status": "not merged; not pushed",
   "validation_results": [
     {
@@ -682,7 +670,7 @@
       "result": "passed"
     }
   ],
-  "validation_status": "P2-invalid-input-defect; historical-browser-failures-preserved",
+  "validation_status": "scoped-passed; historical-browser-failures-preserved",
   "child_pane_id": "w73:p8",
   "child_run_id": "ffc5ae8d-7399-40f8-a68c-7bc6eb536b00",
   "transport_status": "acknowledged",
@@ -706,7 +694,7 @@
     "diagnostic_records_commit": "6aeaf06417ca906d7c5d3baa82b0b3bade9c1455",
     "pushed": false
   },
-  "review_readiness": false,
+  "review_readiness": true,
   "transport_ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-recovery-0029-2IQtMg/result.json",
   "fix_publication_commit": "716255ad",
   "next_action_kind": "review",
