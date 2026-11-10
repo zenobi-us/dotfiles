@@ -113,7 +113,7 @@ async function main() {
   for (const mode of ["context", "tracker"]) {
     if (!body.children.some(child => child.id === mode)) body.children.push({ id: mode, type: "block", content: { mod: "shared-context", props: { mode } } });
   }
-  panel.max = Math.max(panel.max ?? 0, 1200);
+  delete panel.max;
   const temporary = `${file}.next`;
   await fs.writeFile(temporary, JSON.stringify(tree, null, 2) + "\n");
   await fs.rename(temporary, file);

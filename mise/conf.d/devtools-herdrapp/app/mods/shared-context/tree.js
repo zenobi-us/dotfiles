@@ -1,38 +1,49 @@
-// A DAG can appear in a tree only if repeated nodes remain references to one record.
+// Initiative membership belongs in the tree; dependency edges belong in the graph.
 export function dependencyRows(snapshot, queue, collapsed) {
   const tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
   const eligible = ticket => queue === "initiatives" || queue === "all" || (queue === "ready" ? snapshot.states[ticket.id]?.state === "READY" : queue === "review" ? ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(snapshot.states[ticket.id]?.state) : ["BLOCKED", "ERROR", "UNKNOWN"].includes(snapshot.states[ticket.id]?.state));
-  const rows = [], canonical = new Map();
-  for (const initiative of snapshot.initiatives) {
-    const candidates = queue === "initiatives" ? initiative.rootTicketIds ?? initiative.ticketIds : initiative.ticketIds.filter(id => tickets.has(id) && eligible(tickets.get(id)));
-    const required = new Set();
-    function collect(id, chain = new Set()) {
-      if (chain.has(id)) throw new Error(`Dependency cycle at ${id}.`);
+  const rows = [], canonical = new Map(), assigned = new Set();
+  const add = (record, parent, depth, visible) => {
+    const path = `${parent}/${record.id}`, reference = canonical.get(record.id);
+    if (visible) rows.push({ type: "ticket", record, itemType: itemType(record), path, depth, reference, expanded: false, children: 0, state: snapshot.states[record.id]?.state ?? record.status });
+    if (!reference) canonical.set(record.id, path);
+  };
+  const section = (id, title) => rows.push({ type: "section", record: { id, title }, path: `section:${id}`, depth: 0, expanded: true, children: 0 });
+  const initiatives = snapshot.initiatives.filter(item => !item.group);
+  if (initiatives.length) section("initiatives", "Initiatives");
+  for (const initiative of initiatives) {
+    const members = [...new Set(initiative.ticketIds)].map(id => {
       const ticket = tickets.get(id);
-      if (!ticket) throw new Error(`Missing prerequisite ${id}.`);
-      if (required.has(id)) return;
-      required.add(id);
-      for (const blocker of ticket.blockedBy) collect(blocker, new Set([...chain, id]));
-    }
-    candidates.forEach(id => tickets.get(id)?.blockedBy.forEach(blocker => collect(blocker)));
-    const roots = [...new Set(candidates)].filter(id => !required.has(id));
-    if (!roots.length && queue !== "initiatives" && queue !== "all") continue;
-    const groupPath = `initiative:${initiative.id}`;
-    rows.push({ type: "initiative", record: initiative, path: groupPath, depth: 0, expanded: !collapsed.has(groupPath), children: roots.length });
-    function visit(id, parent, depth, visible, chain) {
-      if (chain.has(id)) throw new Error(`Dependency cycle at ${id}.`);
-      const ticket = tickets.get(id);
-      if (!ticket) throw new Error(`Missing prerequisite ${id}.`);
-      const path = `${parent}/${id}`, reference = canonical.get(id), expanded = !collapsed.has(path);
-      if (visible) rows.push({ type: "ticket", record: ticket, path, depth, reference, expanded, children: reference ? 0 : ticket.blockedBy.length, state: snapshot.states[id]?.state ?? ticket.status, context: !eligible(ticket) });
-      if (reference) return;
-      canonical.set(id, path);
-      // Record canonical paths even below a collapsed row, so references can reveal it.
-      for (const blocker of ticket.blockedBy) visit(blocker, path, depth + 1, visible && expanded, new Set([...chain, id]));
-    }
-    for (const root of roots) visit(root, groupPath, 1, !collapsed.has(groupPath), new Set());
+      if (!ticket) throw new Error(`Missing initiative member ${id}.`);
+      assigned.add(id);
+      return ticket;
+    }).filter(ticket => eligible(ticket) && itemType(ticket) === "ticket");
+    const path = `initiative:${initiative.id}`, expanded = !collapsed.has(path);
+    rows.push({ type: "initiative", itemType: "initiative", record: initiative, path, depth: 0, expanded, children: members.length });
+    for (const member of members) add(member, path, 1, expanded);
+  }
+  const groups = new Map();
+  for (const ticket of snapshot.tickets) {
+    const type = itemType(ticket);
+    if (!eligible(ticket) || type === "ticket" && assigned.has(ticket.id)) continue;
+    if (!groups.has(type)) groups.set(type, []);
+    groups.get(type).push(ticket);
+  }
+  for (const type of ["ticket", "prototype", "research", "planning", "record"]) {
+    const members = groups.get(type);
+    if (!members?.length) continue;
+    section(type, { ticket: "Other tickets", prototype: "Prototypes", research: "Research", planning: "Planning", record: "Records" }[type]);
+    for (const member of members) add(member, `section:${type}`, 0, true);
   }
   return { rows, canonical };
+}
+
+export function itemType(ticket) {
+  const type = ticket.documentType?.trim().toLowerCase();
+  if (!type || ["ticket", "issue", "task", "bug", "fix", "feature", "enhancement", "chore"].includes(type)) return "ticket";
+  if (["prototype", "research"].includes(type)) return type;
+  if (["spec", "specification", "initiative", "plan"].includes(type)) return "planning";
+  return "record";
 }
 
 export function revealPath(collapsed, path) {

@@ -1,29 +1,34 @@
 // Native Context and Tracker panels. The settings select C or C2 without changing data APIs.
 import { View, div } from "gpui-kit";
-import { h_flex, v_flex, TextView, Scrollbar } from "gpui-base";
-import { spaces, panes, focused, props, theme, run, layout, openOverlay, nextCommand } from "herdr";
+import { h_flex, v_flex, TextView, Scrollbar, h_resizable, resizable_panel } from "gpui-base";
+import { spaces, panes, focused, props, theme, run, openOverlay, nextCommand } from "herdr";
 import { request } from "./client.js";
 import { loadPreferences, DEFAULTS } from "./preferences.js";
-import { dependencyRows, revealPath } from "./tree.js";
+import { dependencyRows, revealPath, itemType } from "./tree.js";
 import { button, icon, note, select } from "./ui.js";
 import { initAction, renderAction } from "./action.js";
+import { graphView, initGraphMenu, renderGraphMenu } from "./graph-view.js";
 
 function location() {
   const given = props() ?? {}, space = spaces().find(item => item.active), focus = focused();
   const pane = panes().find(item => item.pane === focus?.pane);
   return { cwd: given.cwd ?? pane?.cwd ?? focus?.cwd ?? space?.folder, machine: given.cwd ? null : space?.machine, space: given.space ?? space?.id };
 }
-function find(node, id) { if (node?.id === id) return node; for (const child of node?.children ?? []) { const found = find(child, id); if (found) return found; } return null; }
 function statusColor(value, t) { return value === "READY" || value === "DONE" ? t.ansi2 : ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(value) ? t.ansi3 : ["ERROR", "BLOCKED", "UNKNOWN"].includes(value) ? t.blocked : t.dim; }
+function typeColor(type, t) { return ({ initiative: t.ansi5, ticket: t.ansi4, prototype: t.ansi3, research: t.ansi6, planning: t.ansi13, record: t.ansi14 })[type] ?? t.muted; }
+function typeIcon(type) { return ({ initiative: "◇", ticket: "▤", prototype: "△", research: "⌕", planning: "▱", record: "▧" })[type] ?? "▧"; }
+function stateIcon(state) { return state === "READY" ? "▷" : state === "DONE" ? "✓" : ["BLOCKED", "ERROR", "UNKNOWN"].includes(state) ? "⊘" : "◉"; }
 
 export default class SharedContext extends View {
   init(_given, cx) {
     this.mode = props()?.mode ?? "tracker";
     if (this.mode === "action") { initAction(this, cx); return; }
+    if (this.mode === "graph-actions") { initGraphMenu(this, cx); return; }
     this.focus = cx.focus_handle();
     this.selectFocus = { "context-store": cx.focus_handle(), "context-preset": cx.focus_handle() };
     this.recordTab = "description"; this.detailError = "";
-    this.recordTabFocus = { description: cx.focus_handle(), activity: cx.focus_handle(), details: cx.focus_handle() };
+    this.recordTabFocus = { description: cx.focus_handle(), activity: cx.focus_handle(), details: cx.focus_handle(), lineage: cx.focus_handle() };
+    this.graphInitiative = null;
     this.preferences = DEFAULTS; this.preferencesReady = false;
     this.key = ""; this.revision = 0; this.detailRevision = 0;
     this.viewStorageKey = `shared-context:${this.mode}:views:v1`;
@@ -33,7 +38,7 @@ export default class SharedContext extends View {
     this.fileFolders = new Set(); this.fileEntries = new Map(); this.filePending = new Set(); this.fileSelection = null;
     this.error = ""; this.loading = false; this.store = "repository"; this.preset = ""; this.bodySize = { width: 408, height: 500 };
     cx.spawn(async cx => {
-      try { this.preferences = await loadPreferences(); this.preferencesReady = true; this.follow(cx); this.resizePanel(); }
+      try { this.preferences = await loadPreferences(); this.preferencesReady = true; this.follow(cx); }
       catch (error) { this.error = String(error.message ?? error); }
       cx.notify();
     });
@@ -53,12 +58,6 @@ export default class SharedContext extends View {
     if (this.mode === "action") this.input.release();
   }
 
-  resizePanel() {
-    if (this.mode !== "tracker") return;
-    const panel = find(layout(), "panel"), body = find(layout(), "panel-body");
-    if (panel && body?.active === "tracker") run("layout.resize", { id: "panel", px: this.preferences.layout === "C2" ? 850 : 408 });
-  }
-
   remember() {
     if (!this.viewKey) return;
     this.saved.set(this.viewKey, { selected: this.selected, queue: this.queue, collapsed: new Set(this.collapsed), drawer: this.drawer, fileSelection: this.fileSelection, fileFolders: new Set(this.fileFolders) });
@@ -73,7 +72,7 @@ export default class SharedContext extends View {
     this.remember(); this.key = key; this.where = next;
     this.context = null; this.snapshot = null; this.detail = null; this.filePreview = null; this.viewKey = null;
     this.recordTab = "description"; this.detailError = "";
-    this.openSelect = null; this.selectKeyHandlers = null;
+    this.openSelect = null; this.selectKeyHandlers = null; this.graphInitiative = null; this.graphViews = new Map();
     this.revision++; this.detailRevision++; this.loading = false; this.error = "";
     if (next.machine) { this.error = "The selected repository is remote. Its Bun service must run on that machine. Local paths are not a remote fallback."; return; }
     if (!next.cwd) { this.error = "Select a repository folder."; return; }
@@ -225,19 +224,46 @@ export default class SharedContext extends View {
     try { forest = dependencyRows(this.snapshot, this.queue, this.collapsed); }
     catch (error) { return note(String(error.message ?? error), true); }
     const rows = forest.rows.map(row => {
-      const group = row.type === "initiative", selected = this.selected?.id === row.record.id && this.selected.kind === row.type;
-      const expanded = row.expanded, action = (_event, cx) => {
+      if (row.type === "section") return div().px(10).pt(16).pb(6).text_size(10).text_color(t.muted).child(row.record.title.toUpperCase());
+      const group = row.type === "initiative", type = row.itemType ?? (group ? "initiative" : itemType(row.record));
+      const selected = this.selected?.id === row.record.id && this.selected.kind === row.type;
+      const action = (_event, cx) => {
         if (disabled) return;
-        if (group && row.record.group) { if (this.collapsed.has(row.path)) this.collapsed.delete(row.path); else this.collapsed.add(row.path); this.remember(); cx.notify(); }
-        else if (group) this.choose(row.record, "initiative", cx);
-        else { if (row.reference) revealPath(this.collapsed, row.reference); this.choose(row.record, "ticket", cx); }
+        if (row.reference) revealPath(this.collapsed, row.reference);
+        this.choose(row.record, group ? "initiative" : "ticket", cx);
       };
-      return h_flex().id(`tracker-row:${row.path}`).h(28).flex_none().pl(8 + row.depth * 18).pr(8).gap(7).items_center().rounded(7).bg(selected ? t.selected : t.background).hover(el => el.bg(selected ? t.selected : t.hover))
-        .child(row.children && !row.reference ? button(`toggle:${row.path}`, "", (_event, cx) => { cx.stop_propagation(); if (disabled) return; if (this.collapsed.has(row.path)) this.collapsed.delete(row.path); else this.collapsed.add(row.path); this.remember(); cx.notify(); }, { label: `${expanded ? "Collapse" : "Expand"} ${row.record.id}`, disabled }).w(12).px(0).rounded(0).bg("#00000000").hover(el => el.bg("#00000000")).child(icon(expanded ? "down" : "right", 12)) : div().w(12).flex_none())
-        .child(button(`select:${row.path}`, "", action, { label: `${row.record.id}: ${row.record.title}${row.state ? `. ${row.state}.` : ""}${row.context ? " Prerequisite context." : ""}${row.reference ? " Shared prerequisite." : ""}`, disabled }).flex_1().min_w(0).px(0).rounded(0).bg("#00000000").hover(el => el.bg("#00000000")).text_color(row.context ? t.dim : t.foreground).tooltip(group ? row.record.title : `${row.record.title}\n${row.record.id} · ${row.state}${row.context ? " · Prerequisite context" : ""}`)
-          .child(h_flex().gap(7).items_center().min_w(0).flex_1().child(icon(group ? "folder" : "file")).child(div().flex_1().min_w(0).truncate().text_size(13).child(row.record.title)).when(!group, el => el.child(div().text_size(9).text_color(t.dim).child(row.record.id))).when(Boolean(row.reference), el => el.child(div().text_color(t.accent).child("↗"))).when(!group, el => el.child(div().text_size(10).text_color(statusColor(row.state, t)).child(row.state.slice(0, 1))))));
+      return h_flex().id(`tracker-row:${row.path}`).h(60).flex_none().pl(8 + row.depth * 18).pr(6).gap(6).items_center().rounded(6).bg(selected ? t.selected : t.background).hover(el => el.bg(selected ? t.selected : t.hover))
+        .child(row.children ? button(`toggle:${row.path}`, "", (_event, cx) => { cx.stop_propagation(); if (disabled) return; if (this.collapsed.has(row.path)) this.collapsed.delete(row.path); else this.collapsed.add(row.path); this.remember(); cx.notify(); }, { label: `${row.expanded ? "Collapse" : "Expand"} ${row.record.title}`, disabled }).w(24).px(0).bg("#00000000").child(icon(row.expanded ? "down" : "right", 12)) : div().w(24).flex_none())
+        .child(button(`select:${row.path}`, "", action, { label: `${type}: ${row.record.title}. ${row.record.id}. ${row.state ?? `${row.children} tickets`}${row.reference ? ". Shared membership." : ""}`, disabled, height: 56 }).flex_1().min_w(0).px(0).bg("#00000000").hover(el => el.bg("#00000000")).text_color(t.foreground).tooltip(`${row.record.title}\n${row.record.id} · ${type}${row.state ? ` · ${row.state}` : ""}`)
+          .child(v_flex().flex_1().min_w(0).gap(5)
+            .child(h_flex().gap(7).items_center().min_w(0).child(div().w(16).text_size(16).text_color(typeColor(type, t)).child(typeIcon(type))).child(div().flex_1().min_w(0).truncate().text_size(13).child(row.record.title)))
+            .child(h_flex().pl(23).gap(7).items_center().min_w(0).child(div().flex_1().min_w(0).truncate().text_size(10).text_color(t.muted).child(row.record.id))
+              .child(div().flex_none().text_size(10).text_color(row.state ? statusColor(row.state, t) : t.dim).child(row.state ? `${stateIcon(row.state)} ${row.state}` : `${row.children} tickets`))
+              .when(Boolean(row.reference), el => el.child(div().text_color(t.accent).child("↗"))))))
+        .when(group, el => el.child(button(`initiative-graph:${row.record.id}`, "⑂", (_event, cx) => { cx.stop_propagation(); this.openInitiativeGraph(row.record, cx); }, { label: `Open dependency graph for ${row.record.title}`, disabled }).w(28).px(0).text_color(typeColor("initiative", t)).tooltip("Initiative dependency graph")));
     });
-    return v_flex().id("tracker-tree").min_w(0).min_h(0).h(height ?? "100%").overflow_y_scrollbar().p(6).bg(t.background).children(rows.length ? rows : [note(this.loading ? "Read tracker records…" : "No records match this queue.")]);
+    return v_flex().id("tracker-tree-frame").min_w(0).min_h(0).h(height ?? "100%").bg(t.background)
+      .child(v_flex().id("tracker-tree").flex_1().min_w(0).min_h(0).overflow_y_scrollbar().p(6).children(rows.length ? rows : [note(this.loading ? "Read tracker records…" : "No records match this queue.")]))
+      .child(this.treeFilters());
+  }
+
+  treeFilters() {
+    const t = theme();
+    return h_flex().id("tracker-tree-footer").role("toolbar").accessibility_label("Tracker filters").flex_none().flex_wrap().min_h(36).p(6).gap(3).items_center().border_t(1).border_color(t.border)
+      .children(["initiatives", "ready", "review", "blocked", "all"].map(queue => button(`queue:${queue}`, queue[0].toUpperCase() + queue.slice(1), (_event, cx) => { this.queue = queue; this.selected = null; this.detail = null; this.detailRevision++; this.remember(); cx.notify(); }).text_size(10).px(5).bg(this.queue === queue ? t.selected : t.background)));
+  }
+
+  openInitiativeGraph(initiative, cx) {
+    this.graphInitiative = initiative.id;
+    this.focus.focus(); cx.notify();
+  }
+
+  initiativeGraphDrawer() {
+    const t = theme(), initiative = this.snapshot.initiatives.find(item => item.id === this.graphInitiative);
+    if (!initiative) return note("The initiative is unavailable. Close the graph and refresh.", true);
+    return v_flex().id("initiative-graph-drawer").absolute().left(0).right(0).bottom(0).h(Math.min(460, this.bodySize.height)).min_h(0).bg(t.chrome).border_t(2).border_color(t.ansi5).p(12).gap(8)
+      .child(h_flex().flex_none().gap(8).items_center().child(div().text_color(t.ansi5).child("⑂")).child(div().flex_1().min_w(0).truncate().font_semibold().child(initiative.title)).child(button("initiative-graph-close", "Close · Esc", (_event, cx) => { this.graphInitiative = null; this.focus.focus(); cx.notify(); })))
+      .child(graphView(this, `initiative:${initiative.id}`, initiative.rootTicketIds ?? initiative.ticketIds, this.selected?.kind === "ticket" ? this.selected.id : undefined));
   }
 
   selectRecordTab(tab, cx) {
@@ -247,7 +273,7 @@ export default class SharedContext extends View {
   }
 
   recordTabKey(event, cx) {
-    const tabs = ["description", "activity", "details"];
+    const tabs = ["description", "lineage", "activity", "details"];
     const index = tabs.indexOf(this.recordTab);
     let next;
     if (event.key === "right") next = tabs[(index + 1) % tabs.length];
@@ -265,7 +291,7 @@ export default class SharedContext extends View {
     const state = kind === "ticket" ? this.snapshot.states?.[record.id]?.state : null;
     return v_flex().flex_none().px(16).pt(14).gap(10)
       .child(h_flex().gap(8).items_center().min_w(0)
-        .child(div().flex_none().text_size(11).text_color(t.muted).child(kind === "ticket" ? "Ticket" : "Initiative"))
+        .child(div().flex_none().text_size(11).text_color(typeColor(kind === "initiative" ? kind : itemType(record), t)).child(kind === "initiative" ? "◇ Initiative" : `${typeIcon(itemType(record))} ${itemType(record)}`))
         .child(div().flex_1().min_w(0).truncate().text_size(10).text_color(t.muted).tooltip(record.id).child(record.id))
         .when(Boolean(state), el => el.child(div().flex_none().text_size(10).text_color(statusColor(state, t)).child(state))))
       .child(div().text_size(18).font_semibold().child(record.title))
@@ -276,7 +302,7 @@ export default class SharedContext extends View {
   }
 
   recordTabs(events) {
-    const t = theme(), tabs = [["description", "Description"], ["activity", `Activity · ${events.length}`], ["details", "Details"]];
+    const t = theme(), tabs = [["description", "Description"], ["lineage", this.selected.kind === "initiative" ? "Initiative DAG" : "Blocking lineage"], ["activity", `Activity · ${events.length}`], ["details", "Details"]];
     // Base Tab is pointer-only. Plain focusable tabs keep the full keyboard path.
     return h_flex().role("tab_list").accessibility_label("Artifact views").flex_none().px(16).gap(18).border_b(1).border_color(t.border)
       .children(tabs.map(([tab, label], index) => {
@@ -345,8 +371,11 @@ export default class SharedContext extends View {
     // Inactive readers sit outside the clipped viewport and cannot intercept its wheel events.
     return reader.child(this.recordTabs(events))
       .child(div().relative().flex_1().min_h(0).overflow_hidden()
-        .children(["description", "activity", "details"].map(tab => {
+        .children(["description", "lineage", "activity", "details"].map(tab => {
           const panelId = `record-panel:${this.viewKey}:${record.ref}:${tab}`, active = this.recordTab === tab;
+          if (tab === "lineage") return div().absolute().top(0).left(active ? 0 : "100%").size_full().when(!active, el => el.invisible())
+            .child(v_flex().id(panelId).size_full().min_h(0).p(12).when(active, el => el.role("tab_panel").accessibility_label(`Blocking lineage for ${record.title}`)
+              .child(graphView(this, `lineage:${this.selected.kind}:${record.id}`, this.selected.kind === "initiative" ? record.rootTicketIds ?? record.ticketIds : [record.id], this.selected.kind === "ticket" ? record.id : undefined))));
           return div().absolute().top(0).left(active ? 0 : "100%").size_full().when(!active, el => el.invisible())
             .child(v_flex().id(panelId).when(active, el => el.role("tab_panel").accessibility_label(`${tab} for ${record.title}`))
               .tab_index(0).tab_stop(active).size_full().overflow_y_scroll().p(20)
@@ -357,11 +386,12 @@ export default class SharedContext extends View {
 
   trackerView() {
     const t = theme(), columns = this.preferences.layout === "C2" && this.bodySize.width >= 600;
-    const bar = h_flex().h(36).flex_none().px(6).gap(3).items_center().border_b(1).border_color(t.border).children(["initiatives", "ready", "review", "blocked", "all"].map(queue => button(`queue:${queue}`, queue[0].toUpperCase() + queue.slice(1), (_event, cx) => { this.queue = queue; this.selected = null; this.detail = null; this.detailRevision++; this.remember(); cx.notify(); }).text_size(11).px(6).bg(this.queue === queue ? t.selected : t.background)));
     const size = this.bodySize, selected = Boolean(this.selected);
     const drawerTop = !selected || this.drawer === "closed" ? size.height : this.drawer === "expanded" ? 0 : Math.round(size.height / 2);
     const body = columns
-      ? h_flex().size_full().min_h(0).child(div().w(360).min_w(240).h_full().border_r(1).border_color(t.border).child(this.treeView())).child(v_flex().flex_1().min_w(0).h_full().bg(t.chrome).child(this.recordView()))
+      ? h_resizable(`tracker-columns:${this.viewKey}`).size_full().min_h(0)
+        .child(resizable_panel().size(360).size_range(220, Math.max(220, size.width - 300)).child(this.treeView()))
+        .child(resizable_panel().size_range(280).child(v_flex().size_full().min_w(0).min_h(0).bg(t.chrome).child(this.recordView())))
       : div().id("tracker-drawer-body").relative().size_full().min_h(0).overflow_hidden()
         .child(this.treeView(selected && this.drawer === "peek" ? "50%" : "100%"))
         .when(selected, el => el.child(v_flex().id("tracker-detail-drawer").absolute().left(0).right(0).top(drawerTop).h(size.height).bg(t.chrome).border_t(1).border_color(t.border).transition("top", { duration: this.preferences.motion ? this.drawer === "closed" ? 240 : 340 : 0, easing: "ease-out" })
@@ -371,15 +401,16 @@ export default class SharedContext extends View {
             .child(button("drawer-expand", this.drawer === "expanded" ? "↓ Collapse" : "↑ Expand", (_event, cx) => { this.drawer = this.drawer === "expanded" ? "peek" : "expanded"; this.remember(); cx.notify(); }))
             .child(button("drawer-close", "×", (_event, cx) => { this.drawer = "closed"; this.focus.focus(); this.remember(); cx.notify(); }, { label: "Close details", disabled: this.drawer === "closed" })))
           .child(v_flex().h(this.drawer === "peek" ? Math.max(1, size.height / 2 - 44) : Math.max(1, size.height - 44)).min_h(0).child(this.recordView()))));
-    return v_flex().flex_1().min_h(0).child(bar).child(div().id("tracker-body-size").flex_1().min_h(0).on_size_change((next, cx) => { if (Math.abs(next.height - this.bodySize.height) > 1 || Math.abs(next.width - this.bodySize.width) > 1) { this.bodySize = next; cx.notify(); } }).child(body));
+    return v_flex().flex_1().min_h(0).child(div().id("tracker-body-size").relative().flex_1().min_h(0).overflow_hidden().on_size_change((next, cx) => { if (Math.abs(next.height - this.bodySize.height) > 1 || Math.abs(next.width - this.bodySize.width) > 1) { this.bodySize = next; cx.notify(); } }).child(body).when(Boolean(this.graphInitiative), el => el.child(this.initiativeGraphDrawer())));
   }
 
   render(cx) {
     if (this.mode === "action") return renderAction(this);
+    if (this.mode === "graph-actions") return renderGraphMenu(this);
     this.follow(cx);
     const t = theme(), title = this.mode === "context" ? "Context" : "Tracker";
     return v_flex().id(`shared-context:${this.mode}`).track_focus(this.focus).size_full().min_h(0).rounded(10).overflow_hidden().bg(t.background).border_1().border_color(t.border).text_color(t.foreground).text_size(13)
-      .on_key_down((event, cx) => { if (this.selectKeyHandlers) for (const id in this.selectKeyHandlers) if (this.selectKeyHandlers[id](event, cx)) return; if (event.key !== "escape" || this.mode !== "tracker" || (this.preferences.layout === "C2" && this.bodySize.width >= 600) || !this.selected || this.drawer === "closed") return; this.drawer = this.drawer === "expanded" ? "peek" : "closed"; this.focus.focus(); this.remember(); cx.stop_propagation(); cx.notify(); })
+      .on_key_down((event, cx) => { if (this.selectKeyHandlers) for (const id in this.selectKeyHandlers) if (this.selectKeyHandlers[id](event, cx)) return; if (event.key === "escape" && this.graphInitiative) { this.graphInitiative = null; this.focus.focus(); cx.stop_propagation(); cx.notify(); return; } if (event.key !== "escape" || this.mode !== "tracker" || (this.preferences.layout === "C2" && this.bodySize.width >= 600) || !this.selected || this.drawer === "closed") return; this.drawer = this.drawer === "expanded" ? "peek" : "closed"; this.focus.focus(); this.remember(); cx.stop_propagation(); cx.notify(); })
       .child(h_flex().h(42).flex_none().px(14).gap(7).items_center().border_b(1).border_color(t.border).child(icon(this.mode === "context" ? "context" : "tracker")).child(div().font_semibold().child(title)).child(div().flex_1().min_w(0).truncate().text_right().text_size(10).text_color(t.dim).child(this.context?.identity ?? ""))
         .child(button("context-settings", "⚙", () => run("mod.open", { name: "better-config" }), { label: "Open mod settings" }))
         .child(button("context-refresh", "↻", (_event, cx) => this.refresh(cx), { label: "Refresh shared context", disabled: this.loading })))
@@ -388,6 +419,6 @@ export default class SharedContext extends View {
       .when(this.preferencesReady && !this.context && this.loading && !this.error, el => el.child(note("Read repository context…")))
       .when(Boolean(this.context) && !this.context.ready, el => el.child(this.onboarding()))
       .when(Boolean(this.context?.ready), el => el.child(this.mode === "context" ? this.filesView() : this.snapshot ? this.trackerView() : note(this.error ? "The tracker is unavailable. Correct the error, then select Refresh." : "Read tracker records and workflow state…")))
-      .when(Boolean(this.context?.ready), el => el.child(h_flex().h(25).flex_none().px(10).gap(8).items_center().border_t(1).border_color(t.border).text_size(10).text_color(t.dim).child(this.loading ? "Refresh records…" : `Canonical records · ${this.context.mode}`).when(this.mode === "tracker", el => el.child("Parent → prerequisites · ↗ shared"))));
+      .when(Boolean(this.context?.ready), el => el.child(h_flex().h(25).flex_none().px(10).gap(8).items_center().border_t(1).border_color(t.border).text_size(10).text_color(t.dim).child(this.loading ? "Refresh records…" : `Canonical records · ${this.context.mode}`).when(this.mode === "tracker", el => el.child("Grouped by type · ⑂ initiative graph · ↗ shared membership"))));
   }
 }

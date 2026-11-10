@@ -605,7 +605,7 @@ The installer creates the `shared-context` layout from a main-based layout. It k
 Open the panel settings button. In Better Config, select **Shared Context → Tracker layout**:
 
 - **C — Bottom drawer:** Select a record to open its details below the tree. Expand covers the tree. Collapse restores the split. Close slides the drawer down. Press Escape to collapse, then close.
-- **C2 — Two columns:** Show the same tree beside the record. If the panel is narrower than 600 pixels, use the drawer.
+- **C2 — Two columns:** Show the same tree beside the record. Drag the divider to change pane widths. The panel has no fixed maximum width and keeps your chosen width when the mod reloads. If the panel is narrower than 600 pixels, use the drawer.
 
 Record details keep the title, actions, and **Copy reference** above the scrolling reader. Use **Description** for the document, **Activity** for workflow events and receipts, and **Details** for the canonical reference, store, status, and direct prerequisites. Each tab keeps its scroll position while the record stays selected. Use Left/Right, Home, and End when a detail tab has keyboard focus. A failed detail read shows **Retry read** without clearing the selected record.
 
@@ -613,7 +613,13 @@ The tree paints one selection background per row. Disclosure and title controls 
 
 Disable **Drawer motion** to remove animation. Select **Refresh** after external tracker changes.
 
-Context provides explicit repository or shared-store setup and read-only file previews. The tree omits `.git` and symbolic links. Text previews have a 400 KB limit. Tracker shows canonical initiatives, prerequisites, queues, record details, and workflow events. Shared prerequisites link to one canonical record. New-agent actions require prompt preparation and confirmation.
+Context provides explicit repository or shared-store setup and read-only file previews. The tree omits `.git` and symbolic links. Text previews have a 400 KB limit.
+
+Tracker groups initiatives first, then other tickets, prototypes, research, planning, and records. Each item uses a title line and a dimmed ID/status line. Filters stay in a fixed footer below the tree.
+
+Initiative members stay one level deep; shared membership links to one canonical record. The right-aligned initiative graph button opens a bottom drawer. Graphs support pan, zoom, fit, and node actions through right-click, Shift+F10, or Actions. Blocking lineage shows only the selected ticket and its transitive prerequisites.
+
+Graph actions read canonical workflow availability before opening the existing confirmed handoff. Description, Activity, and Details remain available. New-agent actions require prompt preparation and confirmation.
 
 The GPUI mods use a local Bun service. The service imports the existing shared-context and tracker TypeScript APIs. Those APIs use `mq` with `okf.mq` to parse Markdown. The mods do not execute the shared-context or tracker CLIs.
 
