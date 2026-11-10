@@ -21,7 +21,8 @@ async function installMod(name: string) {
   await fs.mkdir(to, { recursive: true });
   await fs.writeFile(marker, from);
   if (name === "shared-context") await fs.writeFile(path.join(to, ".runtime.json"), JSON.stringify({ binary: process.execPath, path: runtimePath }) + "\n");
-  const entries = await fs.readdir(from, { withFileTypes: true });
+  // Herdr generates these editor files. Keep the installed copies and any local editor changes.
+  const entries = (await fs.readdir(from, { withFileTypes: true })).filter(entry => entry.name !== "gpui-kit.d.ts" && entry.name !== "jsconfig.json");
   // Copy the entrypoint last so the final reload sees all imports.
   entries.sort((a, b) => Number(a.name === "main.js") - Number(b.name === "main.js"));
   for (const entry of entries) {
