@@ -1,0 +1,47 @@
+{
+  "schema": "review-evidence/v1",
+  "kind": "verification",
+  "source_commit": "6923f54f331697f6e8e591346d8071951909bfc7",
+  "initial_workspace_error": "init existing tempfile directory returned exit 2; corrected by using child work path",
+  "initial_fixture_error": "default export returned exit 1; corrected to required named plan export",
+  "init": {
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-parent-review0045-i9gzyyes/work",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "parent-review-0045-smoke",
+      "--driver",
+      "surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-parent-review0045-i9gzyyes/work\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/parent-review-0045-smoke\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/parent-review-0045-smoke\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "stderr": ""
+  },
+  "compile": {
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-parent-review0045-i9gzyyes/work",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"compile\",\"success\":false,\"code\":2,\"message\":\"Step gone must be a boolean\"}\n",
+    "stderr": "Step gone must be a boolean\n"
+  },
+  "remaining_files": [
+    "workspace.json",
+    "plan.ts"
+  ],
+  "browser_executed": false,
+  "temporary_workspace_removed": true
+}

@@ -1,0 +1,113 @@
+{
+  "schema": "review-evidence/v1",
+  "kind": "verification",
+  "observations": [
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "init",
+        "/tmp/ce-review0045-precondition-ef2hzme3/surf",
+        "--repository",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "--workflow",
+        "collect-evidence-feedback-01-web",
+        "--run",
+        "review0045-precondition-surf",
+        "--driver",
+        "surf",
+        "--json",
+        "--no-input",
+        "--no-color"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-review0045-precondition-ef2hzme3/surf\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/review0045-precondition-surf\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/review0045-precondition-surf\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "compile",
+        "/tmp/ce-review0045-precondition-ef2hzme3/surf",
+        "--json",
+        "--no-input",
+        "--no-color"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/ce-review0045-precondition-ef2hzme3/surf\",\"driver\":\"surf\",\"tests\":1}\n",
+      "stderr": "",
+      "invalid_precondition_accepted": true
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "render",
+        "/tmp/ce-review0045-precondition-ef2hzme3/surf",
+        "--json",
+        "--no-input",
+        "--no-color"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/ce-review0045-precondition-ef2hzme3/surf\",\"tests\":1}\n",
+      "stderr": "",
+      "invalid_precondition_accepted": true
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "init",
+        "/tmp/ce-review0045-precondition-ef2hzme3/playwright",
+        "--repository",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "--workflow",
+        "collect-evidence-feedback-01-web",
+        "--run",
+        "review0045-precondition-playwright",
+        "--driver",
+        "playwright",
+        "--json",
+        "--no-input",
+        "--no-color"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-review0045-precondition-ef2hzme3/playwright\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/review0045-precondition-playwright\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/review0045-precondition-playwright\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "compile",
+        "/tmp/ce-review0045-precondition-ef2hzme3/playwright",
+        "--json",
+        "--no-input",
+        "--no-color"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/ce-review0045-precondition-ef2hzme3/playwright\",\"driver\":\"playwright\",\"tests\":1}\n",
+      "stderr": "",
+      "invalid_precondition_accepted": true
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "render",
+        "/tmp/ce-review0045-precondition-ef2hzme3/playwright",
+        "--json",
+        "--no-input",
+        "--no-color"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/ce-review0045-precondition-ef2hzme3/playwright\",\"tests\":1}\n",
+      "stderr": "",
+      "invalid_precondition_accepted": true
+    }
+  ],
+  "driver_executed": false,
+  "temporary_workspaces_removed": true,
+  "defect_reproduced": "false locator accepted by compile/render for both drivers"
+}

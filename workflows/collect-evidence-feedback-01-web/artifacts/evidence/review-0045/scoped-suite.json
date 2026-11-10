@@ -1,0 +1,10 @@
+{
+  "schema": "review-evidence/v1",
+  "kind": "verification",
+  "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/playwright-driver.test.ts",
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "exit_code": 0,
+  "observed_output": "bun test v1.4.3 (c6da4a4d3)\n67 pass\n0 fail\n603 expect() calls\nRan 67 tests across 3 files. [34.89s]",
+  "browser_suite_executed": false,
+  "browser_acceptance": false
+}

@@ -6,24 +6,24 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "fix-complete-0043",
-  "state": "FIXED",
+  "latest_receipt": "review-complete-0046",
+  "state": "REVIEW_FAILED",
   "parent_completion_pending": false,
   "workspace_id": "w73",
   "latest_source_commit": "6923f54f331697f6e8e591346d8071951909bfc7",
   "latest_source_tree": "9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7",
-  "review_status": "required",
-  "latest_review_applicability": "historical-stale",
+  "review_status": "completed",
+  "latest_review_applicability": "current",
   "draft": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0042.md",
-  "latest_review_verdict": null,
+  "latest_review_verdict": "FAILURE",
   "fix_status": "completed",
   "selected_fix_finding_ids": [
     "SPEC-R6-001",
     "SPEC-R6-002",
     "STD-R6-001"
   ],
-  "current_review_verdict": null,
-  "validation_status": "scoped-passed; historical-browser-failures-preserved",
+  "current_review_verdict": "FAILURE",
+  "validation_status": "67 scoped tests passed; 3 P2 blockers; real-driver acceptance unverified",
   "evidence_index": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/scoped-suite.json",
   "merge_status": "not merged; not pushed",
   "resolved_finding_ids": [
@@ -40,14 +40,22 @@
     "STD-R6-001"
   ],
   "unresolved_finding_ids": [
+    "STD-R7-001",
     "STD-R6-002",
     "STD-R6-003",
-    "STD-AXIS-001",
-    "STD-R3-001"
+    "SPEC-R7-001",
+    "SPEC-R7-002",
+    "STD-R3-001",
+    "STD-AXIS-001"
   ],
-  "next_action": "Review changed source: The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing. Fresh independent review approval is required; no review was launched by this fix phase.",
-  "review_readiness": true,
+  "next_action": "Fix current P2 findings only after separate scoped authorization. Real-driver acceptance remains blocked.",
+  "review_readiness": false,
   "result_missing": false,
   "transport_acknowledged": true,
-  "protocol_source_commit": "cf79f45a71fa489934aa97baaa3caee92ccd77eb"
+  "protocol_source_commit": "cf79f45a71fa489934aa97baaa3caee92ccd77eb",
+  "latest_review_receipt": "workflows/collect-evidence-feedback-01-web/events/review-0045.yaml",
+  "latest_review_artifact": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0045.md",
+  "reviewed_source_commit": "6923f54f331697f6e8e591346d8071951909bfc7",
+  "reviewed_source_tree": "9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7",
+  "next_action_kind": "fix"
 }

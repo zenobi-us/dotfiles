@@ -2,14 +2,69 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "collect-evidence-feedback-01-web",
   "ticket": "tracker/tickets/collect-evidence-feedback-01-web.md",
-  "state": "FIXED",
-  "latest_receipt": "fix-complete-0043",
+  "state": "REVIEW_FAILED",
+  "latest_receipt": "review-complete-0046",
   "latest_source_commit": "6923f54f331697f6e8e591346d8071951909bfc7",
   "latest_source_tree": "9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7",
-  "latest_review_verdict": null,
+  "latest_review_verdict": "FAILURE",
   "open_findings": [
     {
-      "adr_reference": "NO ADR \u2014 ADR 0001 concerns Pi Ink device cleanup, not browser reporting.",
+      "adr": "NO ADR. tracker/initiatives/collect-evidence-feedback/index.md, Testing Decisions 3 and 14: exercise public Surf workflows and retain reachable failure checks.",
+      "description": "Hard public-workflow coverage violation. Lines 119–121 require every native vars key to be unique across cases. All five identity cases deliberately use as: \"identity\" at line 81. surf-driver.ts:158–160 emits that literal alias unchanged. [INFERENCE] Once earlier browser gates succeed, the second completed identity case fails this assertion on the legitimate identity key. Missing-media, interruption and tamper checks below cannot run.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+      "id": "STD-R7-001",
+      "line": 119,
+      "required_change": "Restrict cross-case uniqueness checks to collector-owned generated keys. Keep the authored identity alias valid in each separate workflow. Preserve checks that punctuation-distinct cases retain their correct URL and captures.",
+      "severity": "P2",
+      "validation_command": "git show 6923f54f331697f6e8e591346d8071951909bfc7:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+      "axis": "standards"
+    },
+    {
+      "adr": "NO ADR. Baseline Duplicated Code; judgement call, unchanged and unselected.",
+      "description": "Possible Duplicated Code. This helper and records.ts:484 both create schema/kind frontmatter and invoke mise/mq, with different output, lock and overwrite policies.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
+      "id": "STD-R6-002",
+      "line": 48,
+      "required_change": "Optional: share a leaf Markdown writer with explicit caller policies; avoid a dependency cycle.",
+      "severity": "P3",
+      "validation_command": "git diff master...6923f54f331697f6e8e591346d8071951909bfc7 -- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
+      "axis": "standards"
+    },
+    {
+      "adr": "NO ADR. Baseline Duplicated Code and Shotgun Surgery; judgement call, unchanged and unselected.",
+      "description": "Possible Duplicated Code. The click/Enter/Space approval predicate repeats at surf-driver.ts:127 despite a shared safetyCode owner.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts",
+      "id": "STD-R6-003",
+      "line": 47,
+      "required_change": "Optional: define confirmation classification once beside safetyCode and use it in both compilers.",
+      "severity": "P3",
+      "validation_command": "git diff master...6923f54f331697f6e8e591346d8071951909bfc7 -- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts",
+      "axis": "standards"
+    },
+    {
+      "adr": "NO ADR; ticket acceptance: Reject invalid records, missing media and unsupported explicit schemas without a valid-looking partial run.",
+      "description": "Static source defect: checkPlan validates only the precondition check object's existence. A required precondition with check: {locator: false} passes this boundary. Both drivers treat its false locator as an omitted machine check and return ok:true. Malformed timeoutMs, text and goto fields are also unchecked. Invalid typed input can therefore bypass a required check instead of returning invalid-input exit 2.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts",
+      "id": "SPEC-R7-001",
+      "line": 345,
+      "required_change": "Validate present Precondition.check fields against their declared types before generation or dispatch. Preserve valid omitted checks and non-negative finite timeout boundaries.",
+      "severity": "P2",
+      "validation_command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
+      "axis": "spec"
+    },
+    {
+      "adr": "NO ADR; ticket acceptance: Remove the old active entrypoints and aliases only after both driver workflow checks pass.",
+      "description": "Unmet evidence gate, not a newly diagnosed runtime cause. The full diff deletes the old skill and entrypoints. review-0039 and pr-draft-fix-0042 retain Surf blocked.1 reset timeout (queueMs 0, hard timeout 60041 ms) and Playwright pass-case/approved-space failures. fix-0042 explicitly leaves browser acceptance unverified. Successful compile/render and scoped tests do not satisfy both-driver visible-page, actual-image, assertion and cleanup proof.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/browser-acceptance-evidence/SKILL.md",
+      "id": "SPEC-R7-002",
+      "line": 1,
+      "required_change": "Keep cutover approval blocked. Resolve the retained browser failures or prerequisites, then obtain authorized real controlled-page acceptance for both drivers before approving removal.",
+      "severity": "P2",
+      "validation_command": "COLLECT_EVIDENCE_REAL_DRIVERS=1 mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+      "axis": "spec"
+    },
+    {
+      "adr_reference": "NO ADR — ADR 0001 concerns Pi Ink device cleanup, not browser reporting.",
       "axis": "Standards",
       "blocking": false,
       "completion_impact": "Not blocking.",
@@ -38,35 +93,11 @@
       "description": "Possible Duplicated Code: Markdown helpers duplicate frontmatter and mise/mq invocation but differ in overwrite, lock and failure policies.",
       "required_change": "Optional: extract shared Markdown generation into a leaf module while preserving caller policies.",
       "validation_command": "mise exec -- bun test /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts"
-    },
-    {
-      "adr": "NO ADR; baseline Duplicated Code, judgement call",
-      "blocking": false,
-      "description": "Possible Duplicated Code. This markdown helper and records.ts:479 both construct schema/kind frontmatter and invoke mise/mq. Their output format, lock policy, overwrite policy and error handling already differ.",
-      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
-      "id": "STD-R6-002",
-      "line": 48,
-      "required_change": "Optional: use one leaf Markdown writer with explicit caller policies. Avoid a pipeline/records dependency cycle.",
-      "severity": "P3",
-      "validation_command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
-      "axis": "Standards"
-    },
-    {
-      "adr": "NO ADR; baseline Duplicated Code and Shotgun Surgery, judgement call",
-      "blocking": false,
-      "description": "Possible Duplicated Code. The complete click/Enter/Space/Spacebar/literal-space approval predicate repeats at surf-driver.ts:127. One safety-policy change needs edits in both drivers despite their shared safetyCode owner.",
-      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts",
-      "id": "STD-R6-003",
-      "line": 47,
-      "required_change": "Optional: define confirmation classification once beside safetyCode and call it from both compilers.",
-      "severity": "P3",
-      "validation_command": "COLLECT_EVIDENCE_REAL_DRIVERS=1 mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
-      "axis": "Standards"
     }
   ],
   "implementation_status": "fixed",
   "ticket_work_status": "implemented",
-  "tracker_commit": "f891e609",
+  "tracker_commit": "6b71c1be",
   "parent_completion_pending": false,
   "child_pane_closed": true,
   "worktree_preserved": true,
@@ -79,7 +110,7 @@
   "evidence": {
     "store": "repository",
     "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
-    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042"
+    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0045"
   },
   "supporting_receipts": [
     "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml",
@@ -134,11 +165,15 @@
     "Surf blocked.1 timed out during pre-workflow about:blank navigation in the only fix-0026 scoped suite; underlying timeout cause unknown. Native diagnostics retained. No retry.",
     "The fix-0026 scoped suite had a new regression fixture metadata error, corrected and verified through targeted public coverage; the full suite was not repeated."
   ],
-  "receipt_ref": "workflows/collect-evidence-feedback-01-web/events/fix-complete-0043.yaml",
+  "receipt_ref": "workflows/collect-evidence-feedback-01-web/events/review-complete-0046.yaml",
   "workspace_id": "w73",
-  "latest_review_receipt": "workflows/collect-evidence-feedback-01-web/events/review-0039.yaml",
-  "latest_review_artifact": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0039.md",
-  "blocking_finding_ids": [],
+  "latest_review_receipt": "workflows/collect-evidence-feedback-01-web/events/review-0045.yaml",
+  "latest_review_artifact": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0045.md",
+  "blocking_finding_ids": [
+    "STD-R7-001",
+    "SPEC-R7-001",
+    "SPEC-R7-002"
+  ],
   "advisory_finding_ids": [
     "STD-R6-002",
     "STD-R6-003",
@@ -151,11 +186,11 @@
     "STD-R6-001"
   ],
   "fix_status": "completed",
-  "current_review_verdict": null,
-  "latest_review_applicability": "historical-stale",
-  "review_status": "required",
-  "reviewed_source_commit": "3dbab24ce09d4cf1c3eaedf467af63e007b9e976",
-  "reviewed_source_tree": "213b91da7d7589912d53f67c19cc5e5c76adc54f",
+  "current_review_verdict": "FAILURE",
+  "latest_review_applicability": "current",
+  "review_status": "completed",
+  "reviewed_source_commit": "6923f54f331697f6e8e591346d8071951909bfc7",
+  "reviewed_source_tree": "9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7",
   "historical_findings": [
     {
       "id": "STD-001",
@@ -198,7 +233,7 @@
       "review_artifact": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0011.md"
     },
     {
-      "adr_reference": "NO ADR \u2014 ADR 0001 concerns Pi Ink, not evidence collection.",
+      "adr_reference": "NO ADR — ADR 0001 concerns Pi Ink, not evidence collection.",
       "axis": "Spec",
       "blocking": true,
       "completion_impact": "Blocks completion because an accepted typed plan cannot complete required Surf collection.",
@@ -215,7 +250,7 @@
       "review_artifact": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0023.md"
     },
     {
-      "adr_reference": "NO ADR \u2014 ADR 0001 does not govern browser plan semantics.",
+      "adr_reference": "NO ADR — ADR 0001 does not govern browser plan semantics.",
       "axis": "Spec",
       "blocking": true,
       "completion_impact": "Blocks completion because a previously supported typed-plan value is rejected.",
@@ -246,10 +281,13 @@
     "STD-R6-001"
   ],
   "unresolved_finding_ids": [
+    "STD-R7-001",
     "STD-R6-002",
     "STD-R6-003",
-    "STD-AXIS-001",
-    "STD-R3-001"
+    "SPEC-R7-001",
+    "SPEC-R7-002",
+    "STD-R3-001",
+    "STD-AXIS-001"
   ],
   "historical_review_transport": {
     "schema": "result-delivery/v1",
@@ -296,6 +334,27 @@
       "source_commit": "12b6345ac32f4ae30b078e5344fb5bae7a1ee244",
       "source_tree": "77e90021870efcf8c8d8cb1f8dc36ac0cc0107f6",
       "applicability": "historical-stale"
+    },
+    {
+      "receipt": "review-0033",
+      "source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
+      "source_tree": "28784b1a67c200888c53a947b3b056f2569cccbc",
+      "verdict": "FAILURE",
+      "applicability": "historical-stale"
+    },
+    {
+      "receipt": "review-0039",
+      "source_commit": "3dbab24ce09d4cf1c3eaedf467af63e007b9e976",
+      "source_tree": "213b91da7d7589912d53f67c19cc5e5c76adc54f",
+      "verdict": "FAILURE",
+      "applicability": "historical-stale"
+    },
+    {
+      "receipt": "review-0045",
+      "source_commit": "6923f54f331697f6e8e591346d8071951909bfc7",
+      "source_tree": "9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7",
+      "verdict": "FAILURE",
+      "applicability": "current"
     }
   ],
   "historical_transport": {
@@ -307,213 +366,58 @@
     "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-review-0017-ntpR2G/result.json",
     "resultSchema": "worktree-receipt/v1"
   },
-  "next_action": "Review changed source: The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing. Fresh independent review approval is required; no review was launched by this fix phase.",
+  "next_action": "Fix current P2 findings only after separate scoped authorization. Real-driver acceptance remains blocked.",
   "merge_status": "not merged; not pushed",
   "validation_results": [
     {
-      "check": "test-first-empty-slug",
-      "command": [
-        "mise",
-        "x",
-        "--",
-        "bun",
-        "test",
-        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
-        "--test-name-pattern",
-        "screenshot slugs"
-      ],
-      "cwd": "/tmp",
-      "started_at": "2026-11-09T21:36:19.028208+00:00",
-      "exit_code": 1,
-      "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/test-first-empty-slug.stdout.log",
-      "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/test-first-empty-slug.stderr.log",
-      "result": "failed"
-    },
-    {
-      "check": "focused-public-smoke",
-      "command": [
-        "mise",
-        "x",
-        "--",
-        "bun",
-        "/tmp/ce-fix-0026-smoke.ts",
-        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts"
-      ],
-      "cwd": "/tmp",
-      "started_at": "2026-11-09T21:37:10.563859+00:00",
-      "exit_code": 1,
-      "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/focused-public-smoke.stdout.log",
-      "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/focused-public-smoke.stderr.log",
-      "result": "failed"
-    },
-    {
-      "check": "focused-public-smoke-corrected-fixture",
-      "command": [
-        "mise",
-        "x",
-        "--",
-        "bun",
-        "/tmp/ce-fix-0026-smoke.ts",
-        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts"
-      ],
-      "cwd": "/tmp",
-      "started_at": "2026-11-09T21:37:57.416875+00:00",
+      "check": "scoped-non-browser-suite",
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/playwright-driver.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
       "exit_code": 0,
-      "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/focused-public-smoke-corrected-fixture.stdout.log",
-      "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/focused-public-smoke-corrected-fixture.stderr.log",
-      "result": "passed"
+      "passed": 67,
+      "failed": 0,
+      "expectations": 603,
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0045/scoped-suite.json"
     },
     {
-      "check": "final-scoped-suite",
-      "command": [
-        "mise",
-        "x",
-        "--",
-        "bun",
-        "test",
-        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test"
-      ],
+      "check": "public-cli-optional-and-fixture-smoke",
       "cwd": "/tmp",
-      "started_at": "2026-11-09T21:38:38.515717+00:00",
-      "exit_code": 1,
-      "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/final-scoped-suite.stdout.log",
-      "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/final-scoped-suite.stderr.log",
-      "result": "failed"
-    },
-    {
-      "check": "corrected-public-slug-regression",
-      "command": [
-        "mise",
-        "x",
-        "--",
-        "bun",
-        "test",
-        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
-        "--test-name-pattern",
-        "screenshot slugs"
-      ],
-      "cwd": "/tmp",
-      "started_at": "2026-11-09T21:41:14.464346+00:00",
-      "exit_code": 0,
-      "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/corrected-public-slug-regression.stdout.log",
-      "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/corrected-public-slug-regression.stderr.log",
-      "result": "passed"
-    },
-    {
-      "check": "scoped-typescript",
-      "command": [
-        "mise",
-        "x",
-        "--",
-        "bun",
-        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc",
-        "--noEmit",
-        "-p",
-        "/tmp/ce-fix-0026-a5i1nb7n/tsconfig.json"
-      ],
-      "cwd": "/tmp",
-      "started_at": "2026-11-09T21:41:15.597785+00:00",
-      "exit_code": 0,
-      "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/scoped-typescript.stdout.log",
-      "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/scoped-typescript.stderr.log",
-      "result": "passed"
-    },
-    {
-      "check": "finalized-surf-validate",
-      "command": [
-        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
-        "validate",
-        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/surf",
-        "--json"
-      ],
-      "cwd": "/tmp",
-      "started_at": "2026-11-09T21:44:07.138944+00:00",
-      "exit_code": 0,
-      "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/finalized-surf-validate.stdout.log",
-      "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/finalized-surf-validate.stderr.log",
-      "result": "passed"
-    },
-    {
-      "check": "finalized-playwright-validate",
-      "command": [
-        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
-        "validate",
-        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/playwright",
-        "--json"
-      ],
-      "cwd": "/tmp",
-      "started_at": "2026-11-09T21:44:07.273383+00:00",
-      "exit_code": 0,
-      "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/finalized-playwright-validate.stdout.log",
-      "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/finalized-playwright-validate.stderr.log",
-      "result": "passed"
-    },
-    {
-      "check": "new smoke fixture diagnosis",
-      "result": "corrected-fixture",
-      "description": "Initial throwaway plan omitted required says and capture locator/as. Native Surf log reported ASSERT FAIL a.3: undefined not found; finalization rejected non-string evidence. Corrected only the throwaway fixture; production scope unchanged."
-    },
-    {
-      "check": "scoped suite diagnosis",
-      "result": "failed",
-      "description": "15 passed, 2 failed, 73 expectations. Empty-slug regression fixture lacked required schema/kind and approval metadata; corrected targeted regression passed 3/3. Surf blocked.1 failed during pre-workflow about:blank navigation with Request timed out before credential fill. Underlying timeout cause unknown. No repeat or production expansion."
-    },
-    {
-      "check": "visual inspection",
+      "command_count": 32,
+      "exit_0": 8,
+      "expected_exit_2": 24,
+      "driver_executed": false,
+      "temporary_workspaces_removed": true,
       "result": "passed",
-      "description": "All four native PNGs inspected: Identity a and Identity a.map. Surf 1984x1068; Playwright 1280x720. No image generated for empty navigation slug; explicit step 3 produced actual image. Both public IDs and all step IDs unchanged."
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0045/public-cli-smoke.json"
     },
     {
-      "check": "source commit hooks",
-      "result": "passed",
-      "description": "bundle-versions passed on both b711ef1b and 8c401541 with --stash none. No stash operations, base-store staging, remote Git operations, merge or push."
-    },
-    {
-      "check": "TypeScript LSP",
-      "result": "unavailable",
-      "description": "Configured typescript-language-server failed initialization. Scoped tsc used existing base dependencies; no installation."
-    },
-    {
-      "check": "final-surf-session-observation",
-      "command": [
-        "mise",
-        "x",
-        "--",
-        "surf",
-        "session.list",
-        "--json"
-      ],
+      "check": "public-malformed-precondition-smoke",
       "cwd": "/tmp",
-      "started_at": "2026-11-09T21:48:05.572909+00:00",
-      "exit_code": 0,
-      "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/final-surf-session-observation.stdout.log",
-      "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/final-surf-session-observation.stderr.log",
-      "result": "passed"
+      "command_count": 6,
+      "exit_0": 6,
+      "driver_executed": false,
+      "result": "defect-reproduced: malformed locator:false accepted by both compile/render drivers",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0045/public-precondition-smoke.json"
     },
     {
-      "check": "final-playwright-session-observation",
-      "command": [
-        "mise",
-        "x",
-        "--",
-        "playwright-cli",
-        "list"
-      ],
-      "cwd": "/tmp",
-      "started_at": "2026-11-09T21:48:05.694829+00:00",
+      "check": "review-okf-validation",
+      "command": "mise exec -- mq --allow-http-import --no-lockfile -I raw -F json 'import \"github.com/harehare/okf.mq\" | okf::okf_parse(.) | okf::okf_validate(.)' workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0045.md",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
       "exit_code": 0,
-      "stdout": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/final-playwright-session-observation.stdout.log",
-      "stderr": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0026/checks/final-playwright-session-observation.stderr.log",
-      "result": "passed"
+      "result": []
     },
     {
-      "check": "workflow Markdown validation",
-      "result": "passed",
-      "description": "The immutable new draft, evidence index and both regenerated Markdown projections returned [] through okf_parse/okf_validate. These standalone records are not an OKF bundle migration."
+      "check": "frozen-source-final-invariants",
+      "result": "passed: clean source, matching branch, commit and tree"
+    },
+    {
+      "check": "axis-transport-verification",
+      "result": "passed: identities, schemas, finding fields, hashes and unchanged recovery payloads; acknowledged both",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0045/axis-transport-validation.json"
     }
   ],
-  "source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
-  "source_tree": "28784b1a67c200888c53a947b3b056f2569cccbc",
+  "source_commit": "6923f54f331697f6e8e591346d8071951909bfc7",
+  "source_tree": "9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7",
   "historical_fix_publication_commit": "41cf8b51",
   "historical_review_0017": {
     "receipt": "review-0017",
@@ -522,51 +426,34 @@
     "source_tree": "0c68cbc0d31e344ea2071352e81ca33c13c31b9f",
     "applicability": "historical-stale"
   },
-  "transport_sha256": "f121f99befbc8a3195ad5218895d93ab2b047653cdf02d0ebdd0a1ea43f66ca7",
+  "transport_sha256": "87b78843bfb6b44009fdd1a2702671053a16d5345aadf0f749012a274ef35b3f",
   "next_action_reason": "Blocked delivery is repaired. The original native audit identifies a post-acquisition timeout, not its browser or extension cause. Acceptance failures remain unresolved.",
   "parent_validation_results": [
     {
-      "check": "protocol-regression-suite",
-      "result": "passed",
-      "passed": 49,
-      "failed": 0,
-      "expectations": 244
+      "check": "authoritative-receipt-equals-verified-transport",
+      "result": "passed"
     },
     {
-      "check": "scoped-protocol-typescript",
-      "result": "passed",
-      "exit_code": 0
+      "check": "inspector-history-and-frozen-clean-source",
+      "result": "passed"
     },
     {
-      "check": "original-blocked-result-recovery",
-      "result": "passed",
-      "event_ref": "workflows/collect-evidence-feedback-01-web/events/review-0029.yaml",
-      "status": "blocked",
-      "verdict_present": false,
-      "acknowledged": true
+      "check": "public-optional-gone-smoke",
+      "result": "passed: compile exit 2 before dispatch",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/parent-review-0045/public-smoke.json"
     },
     {
-      "check": "historical-owned-native-audit",
-      "result": "recovered",
-      "request_id": "cli-1794260360730",
-      "session": "ce-10659c4a-9e18-4ccb-ab91-66cb6aac8620",
-      "queue_ms": 0,
-      "elapsed_ms": 60041,
-      "outcome": "hard-timeout",
-      "root_cause_established": false
+      "check": "native-reviewer-completion",
+      "result": "completed",
+      "sequence": 2
     },
     {
-      "check": "protocol-reviewer-process-closure",
-      "result": "passed",
-      "closed_panes": [
-        "w64:p20",
-        "w64:p31"
-      ]
+      "check": "reviewer-closure",
+      "result": "hc kill and hc rm succeeded; t2f absent from herdr-app ls"
     },
     {
-      "check": "feature-acceptance",
-      "result": "not-run",
-      "observation": "Retained negative evidence is unchanged. This operation does not issue an acceptance verdict."
+      "check": "tracker-record-after-review",
+      "result": "passed: tracker-ticket/v1, state implemented"
     }
   ],
   "historical_transport_ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-review-0023-rTdIcF/result.json",
@@ -709,9 +596,9 @@
       "result": "passed"
     }
   ],
-  "validation_status": "scoped-passed; historical-browser-failures-preserved",
-  "child_pane_id": "w73:p8",
-  "child_run_id": "ffc5ae8d-7399-40f8-a68c-7bc6eb536b00",
+  "validation_status": "scoped-passed; browser-acceptance-unverified",
+  "child_pane_id": "t2f",
+  "child_run_id": "074159cc-2b2c-4d90-8595-ad5f2133ddc7",
   "transport_status": "acknowledged",
   "problem_summary": "Supported typed plans were rejected or overwritten: a/a.map collided in Surf private files and empty screenshot slugs failed validation.",
   "implementation_summary": "Separated Surf workflows (.json) from private maps (.json.map), so a and a.map cannot overwrite each other. Accepted shot: \"\" as no screenshot while preserving rejection of invalid non-empty slugs. Added public compile and real-driver regression coverage without changing public IDs or their grammar.",
@@ -729,14 +616,13 @@
     "No failed workflow was rerun. No browser service was restarted or modified. No feature source, ticket status, merge or push changed."
   ],
   "publication": {
-    "protocol_commit": "cf79f45a71fa489934aa97baaa3caee92ccd77eb",
-    "diagnostic_records_commit": "6aeaf06417ca906d7c5d3baa82b0b3bade9c1455",
+    "tracker_commit": "6b71c1be",
     "pushed": false
   },
-  "review_readiness": true,
+  "review_readiness": false,
   "transport_ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-recovery-0029-2IQtMg/result.json",
   "fix_publication_commit": "716255ad",
-  "next_action_kind": "review",
+  "next_action_kind": "fix",
   "inspection_action": "review",
   "validation_blockers": [
     "Evidence that identifies why the owned native navigation did not complete after immediate lane acquisition. The retained log lacks the outbound extension message correlation.",
@@ -821,7 +707,6 @@
       "blocking": 2,
       "advisory": 0,
       "worst_severity": "P2"
-    },
-    "overlap": "STD-R6-001 and SPEC-R6-002 identify the same malformed workflow fixture; axes remain separate."
+    }
   }
 }

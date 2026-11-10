@@ -1,0 +1,48 @@
+{
+  "schema": "review-evidence/v1",
+  "kind": "verification",
+  "axes": [
+    {
+      "axis": "standards",
+      "run_id": "b9f14f6d-a488-4e46-88f3-64a1fa304b18",
+      "context": "/var/home/zenobius/.local/state/result-delivery/runs/b9f14f6d-a488-4e46-88f3-64a1fa304b18/context.json",
+      "sha256": "28f2e3a4f773a00562b515f2256b0b7659b7d71e2ffa11dd620e47bf18608ea6",
+      "acknowledged": true,
+      "session": {
+        "agent": "omp",
+        "muxer": "herdr-app",
+        "operationId": "review-0045-standards",
+        "parentRunId": "074159cc-2b2c-4d90-8595-ad5f2133ddc7",
+        "runId": "b9f14f6d-a488-4e46-88f3-64a1fa304b18",
+        "sessionId": "01a1c729-e3a6-7380-83c0-ab7d24756739",
+        "sourceCommit": "6923f54f331697f6e8e591346d8071951909bfc7",
+        "sourceTree": "9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7"
+      },
+      "findings": [
+        "STD-R7-001",
+        "STD-R6-002",
+        "STD-R6-003"
+      ]
+    },
+    {
+      "axis": "spec",
+      "run_id": "504d8d03-87e9-4df6-998e-81a98a5591fa",
+      "context": "/var/home/zenobius/.local/state/result-delivery/runs/504d8d03-87e9-4df6-998e-81a98a5591fa/context.json",
+      "sha256": "851a721ca49b1514e8677dbbe940316b583df154bfb50c041585781c4c4fb154",
+      "acknowledged": true,
+      "session": {
+        "agent": "omp",
+        "muxer": "herdr-app",
+        "operationId": "review-0045-spec",
+        "runId": "504d8d03-87e9-4df6-998e-81a98a5591fa",
+        "sessionId": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles.worktrees-feature-collect-evidence-feedback-01-web--/2026-11-10T20-32-53-726Z_01a1c729-e3de-75cc-8634-d8c75283b905.jsonl",
+        "terminal": "t2h"
+      },
+      "findings": [
+        "SPEC-R7-001",
+        "SPEC-R7-002"
+      ]
+    }
+  ],
+  "recovery_payloads_unchanged": true
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "review-evidence/v1",
+  "kind": "transport-recovery",
+  "authorized_by": "parent terminal t2c",
+  "authorization": "Rebind all three transport contexts and target refs to canonical /var/home equivalents; same directories, no conflicting result; preserve identities and exact payloads. Transport-only recovery.",
+  "bindings": [
+    {
+      "run_id": "074159cc-2b2c-4d90-8595-ad5f2133ddc7",
+      "original_context": {
+        "schema": "result-delivery/v1",
+        "kind": "context",
+        "audience": "agent",
+        "mode": "artifact-reference",
+        "runId": "074159cc-2b2c-4d90-8595-ad5f2133ddc7",
+        "operationId": "collect-evidence-feedback-01-web-review-0045",
+        "target": {
+          "path": "/home/zenobius/.local/state/result-delivery/runs/074159cc-2b2c-4d90-8595-ad5f2133ddc7/result.json",
+          "ref": "file:///home/zenobius/.local/state/result-delivery/runs/074159cc-2b2c-4d90-8595-ad5f2133ddc7/result.json",
+          "schema": "worktree-receipt/v1"
+        }
+      },
+      "canonical_directory": "/var/home/zenobius/.local/state/result-delivery/runs/074159cc-2b2c-4d90-8595-ad5f2133ddc7",
+      "same_directory_verified": true,
+      "result_absent": true,
+      "original_sha256": "68b77b924c9cdb8a24b4d7dbd9c2da9e82a65b62dbbd9514a4ad3044bd9a4e5d"
+    },
+    {
+      "run_id": "b9f14f6d-a488-4e46-88f3-64a1fa304b18",
+      "original_context": {
+        "schema": "result-delivery/v1",
+        "kind": "context",
+        "audience": "agent",
+        "mode": "artifact-reference",
+        "runId": "b9f14f6d-a488-4e46-88f3-64a1fa304b18",
+        "operationId": "review-0045-standards",
+        "target": {
+          "path": "/home/zenobius/.local/state/result-delivery/runs/b9f14f6d-a488-4e46-88f3-64a1fa304b18/result.json",
+          "ref": "file:///home/zenobius/.local/state/result-delivery/runs/b9f14f6d-a488-4e46-88f3-64a1fa304b18/result.json",
+          "schema": "code-review-axis/v1"
+        }
+      },
+      "canonical_directory": "/var/home/zenobius/.local/state/result-delivery/runs/b9f14f6d-a488-4e46-88f3-64a1fa304b18",
+      "same_directory_verified": true,
+      "result_absent": true,
+      "original_sha256": "9df87c69f541734fdf6898d1843dff32e1bde8346f77b67b1b474c3ff8e99524"
+    },
+    {
+      "run_id": "504d8d03-87e9-4df6-998e-81a98a5591fa",
+      "original_context": {
+        "schema": "result-delivery/v1",
+        "kind": "context",
+        "audience": "agent",
+        "mode": "artifact-reference",
+        "runId": "504d8d03-87e9-4df6-998e-81a98a5591fa",
+        "operationId": "review-0045-spec",
+        "target": {
+          "path": "/home/zenobius/.local/state/result-delivery/runs/504d8d03-87e9-4df6-998e-81a98a5591fa/result.json",
+          "ref": "file:///home/zenobius/.local/state/result-delivery/runs/504d8d03-87e9-4df6-998e-81a98a5591fa/result.json",
+          "schema": "code-review-axis/v1"
+        }
+      },
+      "canonical_directory": "/var/home/zenobius/.local/state/result-delivery/runs/504d8d03-87e9-4df6-998e-81a98a5591fa",
+      "same_directory_verified": true,
+      "result_absent": true,
+      "original_sha256": "9d42cbea0f37c830aa571a9b0c0cbe54c4fcdde2d0db8f6284ff6d81341d27bb"
+    }
+  ]
+}
