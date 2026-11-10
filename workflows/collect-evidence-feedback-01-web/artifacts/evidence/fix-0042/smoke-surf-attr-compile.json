@@ -1,0 +1,14 @@
+{
+  "name": "smoke-surf-attr-compile",
+  "command": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+    "compile",
+    "/tmp/ce-fix0042-0eef5dde/surf-attr",
+    "--json",
+    "--no-input"
+  ],
+  "cwd": "/tmp",
+  "exit_code": 2,
+  "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"compile\",\"success\":false,\"code\":2,\"message\":\"Step attr must be a string\"}\n",
+  "stderr": "Step attr must be a string\n"
+}

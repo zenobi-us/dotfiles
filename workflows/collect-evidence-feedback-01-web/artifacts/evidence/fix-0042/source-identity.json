@@ -1,0 +1,13 @@
+{
+  "name": "source-identity",
+  "command": [
+    "git",
+    "rev-parse",
+    "HEAD",
+    "HEAD^{tree}"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "exit_code": 0,
+  "stdout": "6923f54f331697f6e8e591346d8071951909bfc7\n9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7\n",
+  "stderr": ""
+}

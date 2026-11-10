@@ -1,0 +1,22 @@
+{
+  "name": "guide-fixture-update",
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "-I",
+    "raw",
+    "-F",
+    "text",
+    "import \"github.com/harehare/okf.mq\" | replace(., \"The checks never install tools.\", \"The checks never install tools. Keep the missing-media plan valid through public compile and render before running its screenshot-deletion scenario. Its navigation and heading assertion need reader-facing says fields. Compile success does not verify missing-media rejection or browser acceptance.\")",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/web.md",
+    "-o",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/web.md"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+}

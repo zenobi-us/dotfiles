@@ -1,0 +1,35 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "plan",
+  "workId": "missing-media",
+  "driver": "surf",
+  "base": "http://127.0.0.1:1",
+  "approval": {
+    "origins": [
+      "http://127.0.0.1:1"
+    ],
+    "confirmations": []
+  },
+  "tests": [
+    {
+      "id": "media",
+      "claim": "Reject lost media",
+      "pass": "Missing media is rejected",
+      "fail": "A partial run is sealed",
+      "steps": [
+        {
+          "do": "navigate",
+          "says": "Open the owned evidence page",
+          "to": "/"
+        },
+        {
+          "do": "expect",
+          "says": "Check that the heading reads Owned evidence test",
+          "locator": "h1",
+          "text": "Owned evidence test",
+          "shot": "required-heading"
+        }
+      ]
+    }
+  ]
+}

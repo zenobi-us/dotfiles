@@ -1,0 +1,784 @@
+[
+  {
+    "name": "smoke-init-surf-attr",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/surf-attr",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-surf-attr",
+      "--driver",
+      "surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-0eef5dde/surf-attr\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-surf-attr\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-surf-attr\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "smoke-surf-attr-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/surf-attr",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"compile\",\"success\":false,\"code\":2,\"message\":\"Step attr must be a string\"}\n",
+    "stderr": "Step attr must be a string\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-surf-attr-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/surf-attr",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"render\",\"success\":false,\"code\":2,\"message\":\"Step attr must be a string\"}\n",
+    "stderr": "Step attr must be a string\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-surf-attr-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/surf-attr",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":2,\"message\":\"Step attr must be a string\"}\n",
+    "stderr": "Step attr must be a string\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-init-surf-dom",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/surf-dom",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-surf-dom",
+      "--driver",
+      "surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-0eef5dde/surf-dom\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-surf-dom\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-surf-dom\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "smoke-surf-dom-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/surf-dom",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"compile\",\"success\":false,\"code\":2,\"message\":\"Step dom must be a boolean\"}\n",
+    "stderr": "Step dom must be a boolean\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-surf-dom-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/surf-dom",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"render\",\"success\":false,\"code\":2,\"message\":\"Step dom must be a boolean\"}\n",
+    "stderr": "Step dom must be a boolean\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-surf-dom-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/surf-dom",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":2,\"message\":\"Step dom must be a boolean\"}\n",
+    "stderr": "Step dom must be a boolean\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-init-surf-gone",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/surf-gone",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-surf-gone",
+      "--driver",
+      "surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-0eef5dde/surf-gone\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-surf-gone\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-surf-gone\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "smoke-surf-gone-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/surf-gone",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"compile\",\"success\":false,\"code\":2,\"message\":\"Step gone must be a boolean\"}\n",
+    "stderr": "Step gone must be a boolean\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-surf-gone-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/surf-gone",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"render\",\"success\":false,\"code\":2,\"message\":\"Step gone must be a boolean\"}\n",
+    "stderr": "Step gone must be a boolean\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-surf-gone-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/surf-gone",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":2,\"message\":\"Step gone must be a boolean\"}\n",
+    "stderr": "Step gone must be a boolean\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-init-surf-timeout",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/surf-timeout",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-surf-timeout",
+      "--driver",
+      "surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-0eef5dde/surf-timeout\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-surf-timeout\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-surf-timeout\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "smoke-surf-timeout-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/surf-timeout",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"compile\",\"success\":false,\"code\":2,\"message\":\"Step timeoutMs must be a finite non-negative number\"}\n",
+    "stderr": "Step timeoutMs must be a finite non-negative number\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-surf-timeout-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/surf-timeout",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"render\",\"success\":false,\"code\":2,\"message\":\"Step timeoutMs must be a finite non-negative number\"}\n",
+    "stderr": "Step timeoutMs must be a finite non-negative number\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-surf-timeout-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/surf-timeout",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":2,\"message\":\"Step timeoutMs must be a finite non-negative number\"}\n",
+    "stderr": "Step timeoutMs must be a finite non-negative number\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-init-playwright-attr",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/playwright-attr",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-playwright-attr",
+      "--driver",
+      "playwright",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-0eef5dde/playwright-attr\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-playwright-attr\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-playwright-attr\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "smoke-playwright-attr-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/playwright-attr",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"compile\",\"success\":false,\"code\":2,\"message\":\"Step attr must be a string\"}\n",
+    "stderr": "Step attr must be a string\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-playwright-attr-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/playwright-attr",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"render\",\"success\":false,\"code\":2,\"message\":\"Step attr must be a string\"}\n",
+    "stderr": "Step attr must be a string\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-playwright-attr-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/playwright-attr",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":2,\"message\":\"Step attr must be a string\"}\n",
+    "stderr": "Step attr must be a string\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-init-playwright-dom",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/playwright-dom",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-playwright-dom",
+      "--driver",
+      "playwright",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-0eef5dde/playwright-dom\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-playwright-dom\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-playwright-dom\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "smoke-playwright-dom-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/playwright-dom",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"compile\",\"success\":false,\"code\":2,\"message\":\"Step dom must be a boolean\"}\n",
+    "stderr": "Step dom must be a boolean\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-playwright-dom-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/playwright-dom",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"render\",\"success\":false,\"code\":2,\"message\":\"Step dom must be a boolean\"}\n",
+    "stderr": "Step dom must be a boolean\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-playwright-dom-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/playwright-dom",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":2,\"message\":\"Step dom must be a boolean\"}\n",
+    "stderr": "Step dom must be a boolean\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-init-playwright-gone",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/playwright-gone",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-playwright-gone",
+      "--driver",
+      "playwright",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-0eef5dde/playwright-gone\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-playwright-gone\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-playwright-gone\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "smoke-playwright-gone-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/playwright-gone",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"compile\",\"success\":false,\"code\":2,\"message\":\"Step gone must be a boolean\"}\n",
+    "stderr": "Step gone must be a boolean\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-playwright-gone-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/playwright-gone",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"render\",\"success\":false,\"code\":2,\"message\":\"Step gone must be a boolean\"}\n",
+    "stderr": "Step gone must be a boolean\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-playwright-gone-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/playwright-gone",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":2,\"message\":\"Step gone must be a boolean\"}\n",
+    "stderr": "Step gone must be a boolean\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-init-playwright-timeout",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/playwright-timeout",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-playwright-timeout",
+      "--driver",
+      "playwright",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-0eef5dde/playwright-timeout\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-playwright-timeout\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-playwright-timeout\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "smoke-playwright-timeout-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/playwright-timeout",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"compile\",\"success\":false,\"code\":2,\"message\":\"Step timeoutMs must be a finite non-negative number\"}\n",
+    "stderr": "Step timeoutMs must be a finite non-negative number\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-playwright-timeout-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/playwright-timeout",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"render\",\"success\":false,\"code\":2,\"message\":\"Step timeoutMs must be a finite non-negative number\"}\n",
+    "stderr": "Step timeoutMs must be a finite non-negative number\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "smoke-playwright-timeout-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/playwright-timeout",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":2,\"message\":\"Step timeoutMs must be a finite non-negative number\"}\n",
+    "stderr": "Step timeoutMs must be a finite non-negative number\n",
+    "files_after": [
+      "plan.ts",
+      "workspace.json"
+    ],
+    "result": "rejected-before-generation-or-driver-dispatch"
+  },
+  {
+    "name": "fixture-init",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/missing-media",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-fixture",
+      "--driver",
+      "surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-0eef5dde/missing-media\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-fixture\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-fixture\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "fixture-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/missing-media",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-0eef5dde/missing-media\",\"driver\":\"surf\",\"tests\":1}\n",
+    "stderr": ""
+  },
+  {
+    "name": "fixture-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/missing-media",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-0eef5dde/missing-media\",\"tests\":1}\n",
+    "stderr": ""
+  },
+  {
+    "name": "valid-init-surf",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-valid-k71xv1zd/surf",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-valid-surf",
+      "--driver",
+      "surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-valid-k71xv1zd/surf\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-valid-surf\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-valid-surf\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "valid-surf-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-valid-k71xv1zd/surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-valid-k71xv1zd/surf\",\"driver\":\"surf\",\"tests\":1}\n",
+    "stderr": ""
+  },
+  {
+    "name": "valid-surf-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-valid-k71xv1zd/surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-valid-k71xv1zd/surf\",\"tests\":1}\n",
+    "stderr": ""
+  },
+  {
+    "name": "valid-init-playwright",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-valid-k71xv1zd/playwright",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-valid-playwright",
+      "--driver",
+      "playwright",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-valid-k71xv1zd/playwright\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-valid-playwright\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-valid-playwright\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "stderr": ""
+  },
+  {
+    "name": "valid-playwright-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-valid-k71xv1zd/playwright",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-valid-k71xv1zd/playwright\",\"driver\":\"playwright\",\"tests\":1}\n",
+    "stderr": ""
+  },
+  {
+    "name": "valid-playwright-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-valid-k71xv1zd/playwright",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-valid-k71xv1zd/playwright\",\"tests\":1}\n",
+    "stderr": ""
+  }
+]

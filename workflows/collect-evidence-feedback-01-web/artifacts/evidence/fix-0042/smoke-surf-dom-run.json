@@ -1,0 +1,14 @@
+{
+  "name": "smoke-surf-dom-run",
+  "command": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+    "run",
+    "/tmp/ce-fix0042-0eef5dde/surf-dom",
+    "--json",
+    "--no-input"
+  ],
+  "cwd": "/tmp",
+  "exit_code": 2,
+  "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":2,\"message\":\"Step dom must be a boolean\"}\n",
+  "stderr": "Step dom must be a boolean\n"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "smoke-playwright-timeout-compile",
+  "command": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+    "compile",
+    "/tmp/ce-fix0042-0eef5dde/playwright-timeout",
+    "--json",
+    "--no-input"
+  ],
+  "cwd": "/tmp",
+  "exit_code": 2,
+  "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"compile\",\"success\":false,\"code\":2,\"message\":\"Step timeoutMs must be a finite non-negative number\"}\n",
+  "stderr": "Step timeoutMs must be a finite non-negative number\n"
+}

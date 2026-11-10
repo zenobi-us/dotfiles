@@ -1,0 +1,804 @@
+[
+  {
+    "check": "regression-before",
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
+      "--test-name-pattern",
+      "malformed optional"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+    "exit_code": 1,
+    "result": "expected-failing-before: 32 malformed optional cases accepted",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/regression-before.json"
+  },
+  {
+    "check": "scoped-suite",
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/playwright-driver.test.ts"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/scoped-suite.json"
+  },
+  {
+    "check": "strict-typecheck",
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc",
+      "--noEmit",
+      "-p",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/tsconfig.json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/strict-typecheck.json"
+  },
+  {
+    "check": "smoke-init-surf-attr",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/surf-attr",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-surf-attr",
+      "--driver",
+      "surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-init-surf-attr.json"
+  },
+  {
+    "check": "smoke-surf-attr-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/surf-attr",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-surf-attr-compile.json"
+  },
+  {
+    "check": "smoke-surf-attr-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/surf-attr",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-surf-attr-render.json"
+  },
+  {
+    "check": "smoke-surf-attr-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/surf-attr",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-surf-attr-run.json"
+  },
+  {
+    "check": "smoke-init-surf-dom",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/surf-dom",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-surf-dom",
+      "--driver",
+      "surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-init-surf-dom.json"
+  },
+  {
+    "check": "smoke-surf-dom-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/surf-dom",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-surf-dom-compile.json"
+  },
+  {
+    "check": "smoke-surf-dom-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/surf-dom",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-surf-dom-render.json"
+  },
+  {
+    "check": "smoke-surf-dom-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/surf-dom",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-surf-dom-run.json"
+  },
+  {
+    "check": "smoke-init-surf-gone",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/surf-gone",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-surf-gone",
+      "--driver",
+      "surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-init-surf-gone.json"
+  },
+  {
+    "check": "smoke-surf-gone-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/surf-gone",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-surf-gone-compile.json"
+  },
+  {
+    "check": "smoke-surf-gone-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/surf-gone",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-surf-gone-render.json"
+  },
+  {
+    "check": "smoke-surf-gone-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/surf-gone",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-surf-gone-run.json"
+  },
+  {
+    "check": "smoke-init-surf-timeout",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/surf-timeout",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-surf-timeout",
+      "--driver",
+      "surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-init-surf-timeout.json"
+  },
+  {
+    "check": "smoke-surf-timeout-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/surf-timeout",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-surf-timeout-compile.json"
+  },
+  {
+    "check": "smoke-surf-timeout-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/surf-timeout",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-surf-timeout-render.json"
+  },
+  {
+    "check": "smoke-surf-timeout-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/surf-timeout",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-surf-timeout-run.json"
+  },
+  {
+    "check": "smoke-init-playwright-attr",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/playwright-attr",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-playwright-attr",
+      "--driver",
+      "playwright",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-init-playwright-attr.json"
+  },
+  {
+    "check": "smoke-playwright-attr-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/playwright-attr",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-playwright-attr-compile.json"
+  },
+  {
+    "check": "smoke-playwright-attr-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/playwright-attr",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-playwright-attr-render.json"
+  },
+  {
+    "check": "smoke-playwright-attr-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/playwright-attr",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-playwright-attr-run.json"
+  },
+  {
+    "check": "smoke-init-playwright-dom",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/playwright-dom",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-playwright-dom",
+      "--driver",
+      "playwright",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-init-playwright-dom.json"
+  },
+  {
+    "check": "smoke-playwright-dom-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/playwright-dom",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-playwright-dom-compile.json"
+  },
+  {
+    "check": "smoke-playwright-dom-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/playwright-dom",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-playwright-dom-render.json"
+  },
+  {
+    "check": "smoke-playwright-dom-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/playwright-dom",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-playwright-dom-run.json"
+  },
+  {
+    "check": "smoke-init-playwright-gone",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/playwright-gone",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-playwright-gone",
+      "--driver",
+      "playwright",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-init-playwright-gone.json"
+  },
+  {
+    "check": "smoke-playwright-gone-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/playwright-gone",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-playwright-gone-compile.json"
+  },
+  {
+    "check": "smoke-playwright-gone-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/playwright-gone",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-playwright-gone-render.json"
+  },
+  {
+    "check": "smoke-playwright-gone-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/playwright-gone",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-playwright-gone-run.json"
+  },
+  {
+    "check": "smoke-init-playwright-timeout",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/playwright-timeout",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-playwright-timeout",
+      "--driver",
+      "playwright",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-init-playwright-timeout.json"
+  },
+  {
+    "check": "smoke-playwright-timeout-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/playwright-timeout",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-playwright-timeout-compile.json"
+  },
+  {
+    "check": "smoke-playwright-timeout-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/playwright-timeout",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-playwright-timeout-render.json"
+  },
+  {
+    "check": "smoke-playwright-timeout-run",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "run",
+      "/tmp/ce-fix0042-0eef5dde/playwright-timeout",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "result": "passed: invalid input rejected before generated output and driver dispatch",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/smoke-playwright-timeout-run.json"
+  },
+  {
+    "check": "fixture-init",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-0eef5dde/missing-media",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-fixture",
+      "--driver",
+      "surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/fixture-init.json"
+  },
+  {
+    "check": "fixture-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-0eef5dde/missing-media",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/fixture-compile.json"
+  },
+  {
+    "check": "fixture-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-0eef5dde/missing-media",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/fixture-render.json"
+  },
+  {
+    "check": "commit-validation",
+    "command": [
+      "git",
+      "-c",
+      "hook.hk-pre-commit.command=hk run pre-commit --from-hook --stash none",
+      "commit",
+      "-m",
+      "fix: check optionals collect-evidence-feedback-01-web"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/commit-validation.json"
+  },
+  {
+    "check": "commit-fixture",
+    "command": [
+      "git",
+      "-c",
+      "hook.hk-pre-commit.command=hk run pre-commit --from-hook --stash none",
+      "commit",
+      "-m",
+      "fix: repair fixture collect-evidence-feedback-01-web"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/commit-fixture.json"
+  },
+  {
+    "check": "source-clean",
+    "command": [
+      "git",
+      "status",
+      "--porcelain"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/source-clean.json"
+  },
+  {
+    "check": "valid-init-surf",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-valid-k71xv1zd/surf",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-valid-surf",
+      "--driver",
+      "surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/valid-init-surf.json"
+  },
+  {
+    "check": "valid-surf-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-valid-k71xv1zd/surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/valid-surf-compile.json"
+  },
+  {
+    "check": "valid-surf-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-valid-k71xv1zd/surf",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/valid-surf-render.json"
+  },
+  {
+    "check": "valid-init-playwright",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/ce-fix0042-valid-k71xv1zd/playwright",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-01-web",
+      "--run",
+      "fix0042-valid-playwright",
+      "--driver",
+      "playwright",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/valid-init-playwright.json"
+  },
+  {
+    "check": "valid-playwright-compile",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/ce-fix0042-valid-k71xv1zd/playwright",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/valid-playwright-compile.json"
+  },
+  {
+    "check": "valid-playwright-render",
+    "command": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/ce-fix0042-valid-k71xv1zd/playwright",
+      "--json",
+      "--no-input"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/valid-playwright-render.json"
+  },
+  {
+    "check": "draft-validation",
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "mq",
+      "--allow-http-import",
+      "-I",
+      "raw",
+      "-F",
+      "json",
+      "import \"github.com/harehare/okf.mq\" | okf::okf_parse(.) | okf::okf_validate(.)",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0042.md"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/draft-validation.json"
+  },
+  {
+    "check": "guide-owned-schema",
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "mq",
+      "--allow-http-import",
+      "-I",
+      "raw",
+      "-F",
+      "json",
+      "import \"github.com/harehare/okf.mq\" | okf::okf_parse(.)[\"frontmatter\"]",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/web.md"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+    "exit_code": 0,
+    "result": "passed",
+    "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0042/guide-owned-schema.json"
+  },
+  {
+    "check": "typescript-lsp-references",
+    "result": "unavailable",
+    "limits": [
+      "Initialization failed: Could not find a valid TypeScript installation. No installation attempted. Static references used."
+    ]
+  }
+]

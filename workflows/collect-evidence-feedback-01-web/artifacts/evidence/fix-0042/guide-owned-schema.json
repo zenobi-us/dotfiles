@@ -1,0 +1,20 @@
+{
+  "name": "guide-owned-schema",
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "-I",
+    "raw",
+    "-F",
+    "json",
+    "import \"github.com/harehare/okf.mq\" | okf::okf_parse(.)[\"frontmatter\"]",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/web.md"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "exit_code": 0,
+  "stdout": "{\n  \"schema\": \"collect-evidence/v1\",\n  \"kind\": \"procedure\"\n}\n",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+}

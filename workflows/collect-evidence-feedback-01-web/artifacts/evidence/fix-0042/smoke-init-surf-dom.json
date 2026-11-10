@@ -1,0 +1,22 @@
+{
+  "name": "smoke-init-surf-dom",
+  "command": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+    "init",
+    "/tmp/ce-fix0042-0eef5dde/surf-dom",
+    "--repository",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "--workflow",
+    "collect-evidence-feedback-01-web",
+    "--run",
+    "fix0042-surf-dom",
+    "--driver",
+    "surf",
+    "--json",
+    "--no-input"
+  ],
+  "cwd": "/tmp",
+  "exit_code": 0,
+  "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-0eef5dde/surf-dom\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-surf-dom\",\"ref\":\"workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix0042-surf-dom\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+  "stderr": ""
+}

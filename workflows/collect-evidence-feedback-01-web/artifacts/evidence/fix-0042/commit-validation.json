@@ -1,0 +1,15 @@
+{
+  "name": "commit-validation",
+  "command": [
+    "git",
+    "-c",
+    "hook.hk-pre-commit.command=hk run pre-commit --from-hook --stash none",
+    "commit",
+    "-m",
+    "fix: check optionals collect-evidence-feedback-01-web"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "exit_code": 0,
+  "stdout": "[feature/collect-evidence-feedback-01-web 35b4bbe9] fix: check optionals collect-evidence-feedback-01-web\n 3 files changed, 46 insertions(+), 1 deletion(-)\n",
+  "stderr": "  files - Fetching git status\n  files - Fetching staged files\n  files - Fetching staged files (3 files)\n\u2714 files - Fetching staged files (3 files)\n\u276f bundle-versions\n  bundle-versions \u2013 3 files \u2013  \u2013 mise run checks:agent-bundle-versions -- check --staged\n  bundle-versions \u2013 mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n  bundle-versions \u2013 [checks:agent-bundle-versions] $ /run/media/zenobius/Store/Projects/Mine/Github\u2026\n  bundle-versions \u2013 mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n\u2714 bundle-versions\n\u2502  No config files with names [\"lefthook\" \".lefthook\" \".config/lefthook\"] have been found in \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web\"\n"
+}

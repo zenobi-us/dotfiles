@@ -1,0 +1,22 @@
+{
+  "name": "guide-validation-update",
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "-I",
+    "raw",
+    "-F",
+    "text",
+    "import \"github.com/harehare/okf.mq\" | replace(., \"Locators retain driver-specific syntax.\", \"Present optional Step fields must match their types: attr is a string; dom, gone and visible are booleans. Wait and expect timeoutMs values must be finite non-negative numbers. Omitted fields, false, timeoutMs: 0 and fractional timeouts remain valid. Locators retain driver-specific syntax.\")",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/web.md",
+    "-o",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/web.md"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+}

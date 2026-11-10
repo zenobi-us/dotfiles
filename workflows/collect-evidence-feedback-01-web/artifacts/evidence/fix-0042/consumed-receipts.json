@@ -1,0 +1,23 @@
+{
+  "name": "consumed-receipts",
+  "command": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "-I",
+    "yaml",
+    "-F",
+    "json",
+    "import \"github.com/harehare/okf.mq\" | {receipt_id: .receipt_id, source_commit: .source_commit, source_tree: .source_tree, status: .status, validation_results: .validation_results}",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/events/fix-0036.yaml",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/events/review-0039.yaml",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/events/review-complete-0040.yaml",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/events/fix-start-0041.yaml"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\nError: mq::syntax\n\n  \u00d7 Unknown selector `.receipt_id`\n   \u256d\u2500[:1:89]\n 1 \u2502 import \"yaml\" | yaml::yaml_parse() | import \"github.com/harehare/okf.mq\" | {receipt_id: .receipt_id, source_commit: .source_commit, source_tree: .source_tree, status: .status, validation_results: .validation_results}\n   \u00b7                                                                                         \u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\n   \u00b7                                                                                              \u2570\u2500\u2500 unknown selector\n   \u2570\u2500\u2500\u2500\u2500\n  help: Unknown selector. Valid selectors include node types\n        (e.g. .h1, .p, .code) and bracket access (e.g. .[0], .[n][m]).\n\n"
+}

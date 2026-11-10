@@ -1,0 +1,14 @@
+{
+  "name": "valid-playwright-compile",
+  "command": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+    "compile",
+    "/tmp/ce-fix0042-valid-k71xv1zd/playwright",
+    "--json",
+    "--no-input"
+  ],
+  "cwd": "/tmp",
+  "exit_code": 0,
+  "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/ce-fix0042-valid-k71xv1zd/playwright\",\"driver\":\"playwright\",\"tests\":1}\n",
+  "stderr": ""
+}

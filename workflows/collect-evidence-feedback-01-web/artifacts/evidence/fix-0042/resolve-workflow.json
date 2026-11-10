@@ -1,0 +1,15 @@
+{
+  "name": "resolve-workflow",
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts",
+    "resolve",
+    "workflow",
+    "--id",
+    "collect-evidence-feedback-01-web",
+    "--json"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "exit_code": 0,
+  "stdout": "{\n  \"kind\": \"workflow\",\n  \"adapter\": \"files\",\n  \"store\": \"repository\",\n  \"root\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web\",\n  \"ref\": \"workflows/collect-evidence-feedback-01-web\",\n  \"publication\": \"repository\"\n}\n",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+}
