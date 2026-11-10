@@ -83,8 +83,8 @@ export function buildSessionPrompt(request: ExplorerSessionRequest): string {
   ].join("\n");
 }
 
+/** The caller waits for idle, then revalidates the confirmed inputs before opening the session. */
 export async function launchExplorerSession(pi: ExtensionAPI, ctx: ExtensionCommandContext, request: ExplorerSessionRequest): Promise<boolean> {
-  await ctx.waitForIdle();
   const choice = actionChoices(request.target, request.snapshot, request.workflow, pi.getCommands()).find(item => item.action === request.action);
   if (!choice) throw new Error("This action is not available for the selected target.");
   if (choice.disabledReason) throw new Error(choice.disabledReason);

@@ -152,6 +152,10 @@ Each action shows its canonical record and handoff before it opens a fresh sessi
 
 Missing skills disable their actions. Unassigned is a browsing group, not a planning initiative. Preserve a durable planning handoff before splitting unfinished initiative work across chats.
 
+Before confirmation, the extension resolves current routes and reads the selected record and its required dependencies. Workflow transitions also inspect current workflow state. After confirmation and the idle wait, it checks the inputs again. Changes to record bodies, blockers, routes, source observations, ownership or review artifact content require a new confirmation. Failed validation does not open a chat. GitHub action reads fetch connected records instead of listing the whole repository.
+
+These checks do not lock files, agents or remote services. External state can change after an observation. The receiving worktree skill must inspect again before mutation; a cached display or confirmed handoff is not authorization.
+
 ### Tracker and receipt boundaries
 
 - **Configured sources:** The backend in the resolved alignment root's `docs/agents/issue-tracker.md` must agree with the ticket route. Supported explorer backends are `local-markdown` and `github`. Local collection paths and workflow stores come from shared-context resolution.

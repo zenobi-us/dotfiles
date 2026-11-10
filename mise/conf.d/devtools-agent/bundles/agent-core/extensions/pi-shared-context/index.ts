@@ -7,8 +7,8 @@ import { buildSharedContextReport, initializeContextForCwd } from "../../skills/
 import { listSharedContexts, renderSharedContext, resolveSharedContext, resolveStoredContext } from "../../skills/shared-context/scripts/shared-context/lib";
 import { GraphExplorer } from "./explorer";
 import type { ExplorerNavigation, ExplorerResult } from "./explorer";
-import { buildSessionPrompt, launchExplorerSession } from "./actions";
-import { loadExplorerSnapshot, loadTicketWorkflow } from "../../../developer/skills/git/worktree/scripts/workflow";
+import { actionChoices, buildSessionPrompt, launchExplorerSession } from "./actions";
+import { confirmSessionRequest, prepareSessionRequest } from "./preparation";
 import type { Exec, ExplorerSessionRequest, SharedAgentContext } from "./model";
 import { safeTerminalText } from "./terminal-text";
 import { SharedContextModal, type ProjectEntry, type ProjectWorkspace } from "./modal";
@@ -543,19 +543,22 @@ export async function openGraphContext(pi: ExtensionAPI, ctx: ExtensionCommandCo
     }
     request = { ...request, prompt: prompt.trim() };
     try {
-      request = await refreshSessionRequest(context, exec, request);
-      const confirmed = await ctx.ui.confirm(
-        "Send this prompt in a fresh chat?",
-        safeTerminalText(`${buildSessionPrompt(request)}\n\nConfirm to open a NEW chat and send this prompt immediately. Saved sessions remain available in /resume.`, true),
+      const confirmed = await confirmSessionRequest(
+        () => prepareSessionRequest(context, exec, request),
+        async prepared => {
+          const current = prepared.request;
+          const choice = actionChoices(current.target, current.snapshot, current.workflow, pi.getCommands()).find(choice => choice.action === current.action);
+          if (!choice || choice.disabledReason) throw new Error(choice?.disabledReason ?? "The selected action is no longer available.");
+          return ctx.ui.confirm(
+            "Send this prompt in a fresh chat?",
+            safeTerminalText(`${buildSessionPrompt(current)}\n\nConfirm to open a NEW chat and send this prompt immediately. Saved sessions remain available in /resume.`, true),
+          );
+        },
+        () => ctx.waitForIdle(),
+        () => ctx.ui.notify("Action inputs changed. Inspect the updated handoff and confirm again.", "warning"),
       );
       if (!confirmed) continue;
-      const refreshed = await refreshSessionRequest(context, exec, request);
-      if (buildSessionPrompt(refreshed) !== buildSessionPrompt(request)) {
-        ctx.ui.notify("Workflow state changed during confirmation. Inspect the new next step before opening a chat.", "warning");
-        continue;
-      }
-      request = refreshed;
-      if (await launchExplorerSession(pi, ctx, request)) return;
+      if (await launchExplorerSession(pi, ctx, confirmed)) return;
       ctx.ui.notify("Chat creation was cancelled. The current session is unchanged.", "info");
     } catch (error) {
       ctx.ui.notify(safeTerminalText(`Could not prepare the next chat: ${error instanceof Error ? error.message : String(error)}`), "error");
@@ -563,19 +566,6 @@ export async function openGraphContext(pi: ExtensionAPI, ctx: ExtensionCommandCo
   }
 }
 
-async function refreshSessionRequest(context: SharedAgentContext, exec: Exec, request: ExplorerSessionRequest): Promise<ExplorerSessionRequest> {
-  const snapshot = await loadExplorerSnapshot(context, exec);
-  if (request.target.kind === "ticket") {
-    const previous = request.target.ticket;
-    const ticket = snapshot.tickets.find(ticket => ticket.id === previous.id && ticket.ref === previous.ref);
-    if (!ticket) throw new Error("The selected ticket changed or disappeared. Reload the explorer.");
-    return { ...request, snapshot, target: { kind: "ticket", ticket }, workflow: await loadTicketWorkflow(context, ticket, exec) };
-  }
-  const previous = request.target.initiative;
-  const initiative = snapshot.initiatives.find(initiative => initiative.id === previous.id && initiative.ref === previous.ref);
-  if (!initiative) throw new Error("The selected initiative changed or disappeared. Reload the explorer.");
-  return { ...request, snapshot, target: { kind: "initiative", initiative } };
-}
 
 
 class ReportModal {
