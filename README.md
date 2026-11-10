@@ -607,7 +607,13 @@ Open the panel settings button. In Better Config, select **Shared Context → Tr
 - **C — Bottom drawer:** Select a record to open its details below the tree. Expand covers the tree. Collapse restores the split. Close slides the drawer down. Press Escape to collapse, then close.
 - **C2 — Two columns:** Show the same tree beside the record. Drag the divider to change pane widths. The panel has no fixed maximum width and keeps your chosen width when the mod reloads. If the panel is narrower than 600 pixels, use the drawer.
 
-Record details keep the title, actions, and **Copy reference** above the scrolling reader. Use **Description** for the document, **Activity** for workflow events and receipts, and **Details** for the canonical reference, store, status, and direct prerequisites. Each tab keeps its scroll position while the record stays selected. Use Left/Right, Home, and End when a detail tab has keyboard focus. A failed detail read shows **Retry read** without clearing the selected record.
+Record headers keep Type, ID, title and workflow actions above the scrolling reader. Same-hue badges distinguish the label and value by luminance. The compact band contains Store and Reference. Clicking Reference or **Copy reference** copies the full canonical value and briefly shows confirmation.
+
+Workflow badges distinguish **next** (recommended action), **status** (readiness or outcome), and **current** (a validated active phase bound to the inspected source). If phase evidence is incomplete, show **status: active** instead of inferring fixing or reviewing. Badges and reasons reflect the latest tracker refresh.
+
+Reason and direct prerequisites now live in the header. Prerequisite links open the prerequisite record. Header metadata scrolls internally when long content would otherwise consume the reader.
+
+Use **Description** for the document, **Blocking lineage** for dependencies, and **Activity** for workflow events and receipts. Each tab keeps its scroll position while the record stays selected. Use Left/Right, Home, and End when a detail tab has keyboard focus. A failed detail read shows **Retry read** without clearing the selected record.
 
 The tree paints one selection background per row. Disclosure and title controls stay transparent.
 
@@ -619,7 +625,7 @@ Tracker groups initiatives first, then other tickets, prototypes, research, plan
 
 Initiative members stay one level deep; shared membership links to one canonical record. The right-aligned initiative graph button opens a bottom drawer. Graphs support pan, zoom, fit, and node actions through right-click, Shift+F10, or Actions. Blocking lineage shows only the selected ticket and its transitive prerequisites.
 
-Graph actions read canonical workflow availability before opening the existing confirmed handoff. Description, Activity, and Details remain available. New-agent actions require prompt preparation and confirmation.
+Graph actions read canonical workflow availability before opening the existing confirmed handoff. Description, Blocking lineage, and Activity remain available. New-agent actions require prompt preparation and confirmation.
 
 The GPUI mods use a local Bun service. The service imports the existing shared-context and tracker TypeScript APIs. Those APIs use `mq` with `okf.mq` to parse Markdown. The mods do not execute the shared-context or tracker CLIs.
 

@@ -5,9 +5,10 @@ import { spaces, panes, focused, props, theme, run, openOverlay, nextCommand } f
 import { request } from "./client.js";
 import { loadPreferences, DEFAULTS } from "./preferences.js";
 import { dependencyRows, revealPath, itemType } from "./tree.js";
-import { button, icon, note, select } from "./ui.js";
+import { button, icon, note, select, typeColor, typeIcon } from "./ui.js";
 import { initAction, renderAction } from "./action.js";
 import { graphView, initGraphMenu, renderGraphMenu } from "./graph-view.js";
+import { compactHeader } from "./header.js";
 
 function location() {
   const given = props() ?? {}, space = spaces().find(item => item.active), focus = focused();
@@ -15,8 +16,6 @@ function location() {
   return { cwd: given.cwd ?? pane?.cwd ?? focus?.cwd ?? space?.folder, machine: given.cwd ? null : space?.machine, space: given.space ?? space?.id };
 }
 function statusColor(value, t) { return value === "READY" || value === "DONE" ? t.ansi2 : ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(value) ? t.ansi3 : ["ERROR", "BLOCKED", "UNKNOWN"].includes(value) ? t.blocked : t.dim; }
-function typeColor(type, t) { return ({ initiative: t.ansi5, ticket: t.ansi4, prototype: t.ansi3, research: t.ansi6, planning: t.ansi13, record: t.ansi14 })[type] ?? t.muted; }
-function typeIcon(type) { return ({ initiative: "◇", ticket: "▤", prototype: "△", research: "⌕", planning: "▱", record: "▧" })[type] ?? "▧"; }
 function stateIcon(state) { return state === "READY" ? "▷" : state === "DONE" ? "✓" : ["BLOCKED", "ERROR", "UNKNOWN"].includes(state) ? "⊘" : "◉"; }
 
 export default class SharedContext extends View {
@@ -27,7 +26,7 @@ export default class SharedContext extends View {
     this.focus = cx.focus_handle();
     this.selectFocus = { "context-store": cx.focus_handle(), "context-preset": cx.focus_handle() };
     this.recordTab = "description"; this.detailError = "";
-    this.recordTabFocus = { description: cx.focus_handle(), activity: cx.focus_handle(), details: cx.focus_handle(), lineage: cx.focus_handle() };
+    this.recordTabFocus = { description: cx.focus_handle(), activity: cx.focus_handle(), lineage: cx.focus_handle() };
     this.graphInitiative = null;
     this.preferences = DEFAULTS; this.preferencesReady = false;
     this.key = ""; this.revision = 0; this.detailRevision = 0;
@@ -273,7 +272,7 @@ export default class SharedContext extends View {
   }
 
   recordTabKey(event, cx) {
-    const tabs = ["description", "lineage", "activity", "details"];
+    const tabs = ["description", "lineage", "activity"];
     const index = tabs.indexOf(this.recordTab);
     let next;
     if (event.key === "right") next = tabs[(index + 1) % tabs.length];
@@ -286,23 +285,9 @@ export default class SharedContext extends View {
     this.selectRecordTab(next, cx);
   }
 
-  recordHeader(record) {
-    const t = theme(), kind = this.selected.kind;
-    const state = kind === "ticket" ? this.snapshot.states?.[record.id]?.state : null;
-    return v_flex().flex_none().px(16).pt(14).gap(10)
-      .child(h_flex().gap(8).items_center().min_w(0)
-        .child(div().flex_none().text_size(11).text_color(typeColor(kind === "initiative" ? kind : itemType(record), t)).child(kind === "initiative" ? "◇ Initiative" : `${typeIcon(itemType(record))} ${itemType(record)}`))
-        .child(div().flex_1().min_w(0).truncate().text_size(10).text_color(t.muted).tooltip(record.id).child(record.id))
-        .when(Boolean(state), el => el.child(div().flex_none().text_size(10).text_color(statusColor(state, t)).child(state))))
-      .child(div().text_size(18).font_semibold().child(record.title))
-      .child(h_flex().flex_wrap().gap(6).items_center().pb(12)
-        .children((this.detail?.actions ?? []).map(choice => button(`action:${choice.action}`, choice.label, () => openOverlay({ mod: "shared-context", kind: "dialog", width: 760, height: 600, props: { mode: "action", cwd: this.context.repository, space: this.where.space, id: record.id, kind, action: choice.action } }), { disabled: Boolean(choice.disabledReason) }).tooltip(choice.disabledReason ?? `Prepare ${choice.label}`)))
-        .child(div().flex_1())
-        .child(button("copy-record-ref", "Copy reference", (_event, cx) => cx.write_to_clipboard(record.ref)).bg("#00000000")));
-  }
 
   recordTabs(events) {
-    const t = theme(), tabs = [["description", "Description"], ["lineage", this.selected.kind === "initiative" ? "Initiative DAG" : "Blocking lineage"], ["activity", `Activity · ${events.length}`], ["details", "Details"]];
+    const t = theme(), tabs = [["description", "Description"], ["lineage", this.selected.kind === "initiative" ? "Initiative DAG" : "Blocking lineage"], ["activity", `Activity · ${events.length}`]];
     // Base Tab is pointer-only. Plain focusable tabs keep the full keyboard path.
     return h_flex().role("tab_list").accessibility_label("Artifact views").flex_none().px(16).gap(18).border_b(1).border_color(t.border)
       .children(tabs.map(([tab, label], index) => {
@@ -316,12 +301,7 @@ export default class SharedContext extends View {
   }
 
   recordDescription(record) {
-    const t = theme();
-    return v_flex().gap(16)
-      .when(Boolean(record.blockedBy?.length), el => el.child(v_flex().border_l(2).border_color(t.blocked).pl(12).gap(4)
-        .child(div().text_size(12).text_color(t.blocked).child("Direct prerequisites"))
-        .children(record.blockedBy.map(id => button(`prerequisite:${id}`, `${id} · View details`, (_event, cx) => this.selectRecordTab("details", cx)).tab_stop(this.recordTab === "description").bg("#00000000").text_color(t.accent)))))
-      .child(TextView.markdown(`record-body:${record.ref}`, record.body ?? "").scrollable(false));
+    return v_flex().min_w(0).child(TextView.markdown(`record-body:${record.ref}`, record.body ?? "").scrollable(false));
   }
 
   recordActivity(events, workflow) {
@@ -343,19 +323,6 @@ export default class SharedContext extends View {
       }));
   }
 
-  recordDetails(record) {
-    const t = theme(), kind = this.selected.kind;
-    const state = kind === "ticket" ? this.snapshot.states?.[record.id] : null;
-    const collection = this.context.collections.find(item => item.id === (kind === "ticket" ? "tickets" : "initiatives"));
-    const fields = [["Type", kind === "ticket" ? "Ticket" : "Initiative"], ["ID", record.id], ["Reference", record.ref], ["Store", collection?.store ?? collection?.adapter ?? this.context.mode]];
-    if (state) fields.push(["Status", state.state], ["Reason", state.reason]);
-    if (record.blockedBy?.length) fields.push(["Direct prerequisites", record.blockedBy.join("\n")]);
-    return v_flex().gap(16)
-      .child(div().text_size(15).font_semibold().child("Canonical record"))
-      .children(fields.filter(([_label, value]) => value).map(([label, value]) => v_flex().gap(5)
-        .child(div().text_size(11).text_color(t.muted).child(label))
-        .child(div().text_size(12).child(value))));
-  }
 
   recordView() {
     if (!this.selected) return note("Select an initiative or ticket.");
@@ -363,7 +330,9 @@ export default class SharedContext extends View {
     const record = this.detail?.record ?? records.find(item => item.id === this.selected.id);
     if (!record) return note("The selected record is unavailable. Refresh the tracker.", true);
     const events = this.detail?.workflow?.events ?? this.detail?.workflow?.receipts ?? [];
-    const reader = v_flex().id(`record-reader:${record.ref}`).flex_1().min_w(0).min_h(0).child(this.recordHeader(record));
+    const reader = v_flex().id(`record-reader:${record.ref}`).flex_1().min_w(0).min_h(0)
+      .on_size_change((size, cx) => { if (Math.abs(size.height - (this.readerHeight ?? 0)) > 1) { this.readerHeight = size.height; cx.notify(); } })
+      .child(compactHeader(this, record));
     if (this.detailError) return reader.child(v_flex().p(16).gap(8).child(note(this.detailError, true))
       .child(button("retry-record", "Retry read", (_event, cx) => this.choose(record, this.selected.kind, cx, false))));
     if (this.detailLoading || !this.detail) return reader.child(note("Read the selected record…"));
@@ -371,7 +340,7 @@ export default class SharedContext extends View {
     // Inactive readers sit outside the clipped viewport and cannot intercept its wheel events.
     return reader.child(this.recordTabs(events))
       .child(div().relative().flex_1().min_h(0).overflow_hidden()
-        .children(["description", "lineage", "activity", "details"].map(tab => {
+        .children(["description", "lineage", "activity"].map(tab => {
           const panelId = `record-panel:${this.viewKey}:${record.ref}:${tab}`, active = this.recordTab === tab;
           if (tab === "lineage") return div().absolute().top(0).left(active ? 0 : "100%").size_full().when(!active, el => el.invisible())
             .child(v_flex().id(panelId).size_full().min_h(0).p(12).when(active, el => el.role("tab_panel").accessibility_label(`Blocking lineage for ${record.title}`)
@@ -379,7 +348,7 @@ export default class SharedContext extends View {
           return div().absolute().top(0).left(active ? 0 : "100%").size_full().when(!active, el => el.invisible())
             .child(v_flex().id(panelId).when(active, el => el.role("tab_panel").accessibility_label(`${tab} for ${record.title}`))
               .tab_index(0).tab_stop(active).size_full().overflow_y_scroll().p(20)
-              .child(tab === "description" ? this.recordDescription(record) : tab === "activity" ? this.recordActivity(events, this.detail.workflow) : this.recordDetails(record)))
+              .child(tab === "description" ? this.recordDescription(record) : this.recordActivity(events, this.detail.workflow)))
             .child(Scrollbar.vertical(panelId).absolute().inset_0());
         })));
   }

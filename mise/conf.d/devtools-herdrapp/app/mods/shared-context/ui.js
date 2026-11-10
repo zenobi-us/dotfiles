@@ -3,6 +3,8 @@ import { div, svg } from "gpui-kit";
 import { Button, h_flex, v_flex, Popup } from "gpui-base";
 import { theme } from "herdr";
 export function icon(name, size = 14) { return svg(`mods/shared-context/icons/${name}.svg`).size(size).flex_none(); }
+export function typeColor(type, t) { return ({ initiative: t.ansi5, ticket: t.ansi4, prototype: t.ansi3, research: t.ansi6, planning: t.ansi13, record: t.ansi14 })[type] ?? t.muted; }
+export function typeIcon(type) { return ({ initiative: "◇", ticket: "▤", prototype: "△", research: "⌕", planning: "▱", record: "▧" })[type] ?? "▧"; }
 export function button(id, label, action, options = {}) {
   const t = theme(), disabled = Boolean(options.disabled);
   return Button.new(id).h(options.height ?? 28).px(8).rounded(6).bg(options.primary && !disabled ? t.solid : t.raised).text_color(disabled ? t.dim : options.primary ? t.solid_foreground : t.muted).text_size(12).disabled(disabled).accessibility_label(options.label ?? label).on_click(action).child(label);
