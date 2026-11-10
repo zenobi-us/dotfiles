@@ -607,6 +607,10 @@ Open the panel settings button. In Better Config, select **Shared Context → Tr
 - **C — Bottom drawer:** Select a record to open its details below the tree. Expand covers the tree. Collapse restores the split. Close slides the drawer down. Press Escape to collapse, then close.
 - **C2 — Two columns:** Show the same tree beside the record. If the panel is narrower than 600 pixels, use the drawer.
 
+Record details keep the title, actions, and **Copy reference** above the scrolling reader. Use **Description** for the document, **Activity** for workflow events and receipts, and **Details** for the canonical reference, store, status, and direct prerequisites. Each tab keeps its scroll position while the record stays selected. Use Left/Right, Home, and End when a detail tab has keyboard focus. A failed detail read shows **Retry read** without clearing the selected record.
+
+The tree paints one selection background per row. Disclosure and title controls stay transparent.
+
 Disable **Drawer motion** to remove animation. Select **Refresh** after external tracker changes.
 
 Context provides explicit repository or shared-store setup and read-only file previews. The tree omits `.git` and symbolic links. Text previews have a 400 KB limit. Tracker shows canonical initiatives, prerequisites, queues, record details, and workflow events. Shared prerequisites link to one canonical record. New-agent actions require prompt preparation and confirmation.

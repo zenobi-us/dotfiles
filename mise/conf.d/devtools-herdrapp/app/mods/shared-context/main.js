@@ -1,6 +1,6 @@
 // Native Context and Tracker panels. The settings select C or C2 without changing data APIs.
 import { View, div } from "gpui-kit";
-import { h_flex, v_flex, TextView } from "gpui-base";
+import { h_flex, v_flex, TextView, Scrollbar } from "gpui-base";
 import { spaces, panes, focused, props, theme, run, layout, openOverlay, nextCommand } from "herdr";
 import { request } from "./client.js";
 import { loadPreferences, DEFAULTS } from "./preferences.js";
@@ -22,6 +22,8 @@ export default class SharedContext extends View {
     if (this.mode === "action") { initAction(this, cx); return; }
     this.focus = cx.focus_handle();
     this.selectFocus = { "context-store": cx.focus_handle(), "context-preset": cx.focus_handle() };
+    this.recordTab = "description"; this.detailError = "";
+    this.recordTabFocus = { description: cx.focus_handle(), activity: cx.focus_handle(), details: cx.focus_handle() };
     this.preferences = DEFAULTS; this.preferencesReady = false;
     this.key = ""; this.revision = 0; this.detailRevision = 0;
     this.viewStorageKey = `shared-context:${this.mode}:views:v1`;
@@ -70,6 +72,7 @@ export default class SharedContext extends View {
     if (key === this.key) return;
     this.remember(); this.key = key; this.where = next;
     this.context = null; this.snapshot = null; this.detail = null; this.filePreview = null; this.viewKey = null;
+    this.recordTab = "description"; this.detailError = "";
     this.openSelect = null; this.selectKeyHandlers = null;
     this.revision++; this.detailRevision++; this.loading = false; this.error = "";
     if (next.machine) { this.error = "The selected repository is remote. Its Bun service must run on that machine. Local paths are not a remote fallback."; return; }
@@ -117,6 +120,7 @@ export default class SharedContext extends View {
 
   choose(record, kind, cx, reveal = true) {
     if (this.drawer === "expanded" && this.selected?.id === record.id && reveal) return;
+    if (this.selected?.id !== record.id || this.selected.kind !== kind) this.recordTab = "description";
     this.selected = { id: record.id, kind, ref: record.ref };
     if (reveal && this.drawer === "closed") this.drawer = "peek";
     if (kind === "ticket" && this.snapshot) {
@@ -124,12 +128,12 @@ export default class SharedContext extends View {
       if (path) revealPath(this.collapsed, path);
     }
     const serial = ++this.detailRevision, revision = this.revision;
-    this.detail = null; this.detailLoading = true; this.event = null;
+    this.detail = null; this.detailLoading = true; this.detailError = ""; this.event = null;
     cx.spawn(async cx => {
       try {
         const detail = await request("detail", this.where.cwd, { id: record.id, kind });
         if (serial === this.detailRevision && revision === this.revision) this.detail = detail;
-      } catch (error) { if (serial === this.detailRevision && revision === this.revision) this.error = String(error.message ?? error); }
+      } catch (error) { if (serial === this.detailRevision && revision === this.revision) this.detailError = String(error.message ?? error); }
       finally { if (serial === this.detailRevision && revision === this.revision) { this.detailLoading = false; cx.notify(); } }
     });
     this.remember(); cx.notify();
@@ -228,30 +232,127 @@ export default class SharedContext extends View {
         else if (group) this.choose(row.record, "initiative", cx);
         else { if (row.reference) revealPath(this.collapsed, row.reference); this.choose(row.record, "ticket", cx); }
       };
-      return h_flex().id(`tracker-row:${row.path}`).h(28).pl(8 + row.depth * 18).pr(8).gap(7).items_center().rounded(7).bg(selected ? t.selected : t.background)
-        .child(row.children && !row.reference ? button(`toggle:${row.path}`, "", (_event, cx) => { cx.stop_propagation(); if (disabled) return; if (this.collapsed.has(row.path)) this.collapsed.delete(row.path); else this.collapsed.add(row.path); this.remember(); cx.notify(); }, { label: `${expanded ? "Collapse" : "Expand"} ${row.record.id}`, disabled }).w(12).px(0).rounded(0).bg(selected ? t.selected : t.background).child(icon(expanded ? "down" : "right", 12)) : div().w(12).flex_none())
-        .child(button(`select:${row.path}`, "", action, { label: `${row.record.id}: ${row.record.title}${row.state ? `. ${row.state}.` : ""}${row.context ? " Prerequisite context." : ""}${row.reference ? " Shared prerequisite." : ""}`, disabled }).flex_1().min_w(0).px(0).bg(selected ? t.selected : t.background).text_color(row.context ? t.dim : t.foreground).tooltip(group ? row.record.title : `${row.record.title}\n${row.record.id} · ${row.state}${row.context ? " · Prerequisite context" : ""}`)
+      return h_flex().id(`tracker-row:${row.path}`).h(28).flex_none().pl(8 + row.depth * 18).pr(8).gap(7).items_center().rounded(7).bg(selected ? t.selected : t.background).hover(el => el.bg(selected ? t.selected : t.hover))
+        .child(row.children && !row.reference ? button(`toggle:${row.path}`, "", (_event, cx) => { cx.stop_propagation(); if (disabled) return; if (this.collapsed.has(row.path)) this.collapsed.delete(row.path); else this.collapsed.add(row.path); this.remember(); cx.notify(); }, { label: `${expanded ? "Collapse" : "Expand"} ${row.record.id}`, disabled }).w(12).px(0).rounded(0).bg("#00000000").hover(el => el.bg("#00000000")).child(icon(expanded ? "down" : "right", 12)) : div().w(12).flex_none())
+        .child(button(`select:${row.path}`, "", action, { label: `${row.record.id}: ${row.record.title}${row.state ? `. ${row.state}.` : ""}${row.context ? " Prerequisite context." : ""}${row.reference ? " Shared prerequisite." : ""}`, disabled }).flex_1().min_w(0).px(0).rounded(0).bg("#00000000").hover(el => el.bg("#00000000")).text_color(row.context ? t.dim : t.foreground).tooltip(group ? row.record.title : `${row.record.title}\n${row.record.id} · ${row.state}${row.context ? " · Prerequisite context" : ""}`)
           .child(h_flex().gap(7).items_center().min_w(0).flex_1().child(icon(group ? "folder" : "file")).child(div().flex_1().min_w(0).truncate().text_size(13).child(row.record.title)).when(!group, el => el.child(div().text_size(9).text_color(t.dim).child(row.record.id))).when(Boolean(row.reference), el => el.child(div().text_color(t.accent).child("↗"))).when(!group, el => el.child(div().text_size(10).text_color(statusColor(row.state, t)).child(row.state.slice(0, 1))))));
     });
     return v_flex().id("tracker-tree").min_w(0).min_h(0).h(height ?? "100%").overflow_y_scrollbar().p(6).bg(t.background).children(rows.length ? rows : [note(this.loading ? "Read tracker records…" : "No records match this queue.")]);
   }
 
-  recordView() {
-    const t = theme();
-    if (this.detailLoading || !this.detail) return note(this.detailLoading ? "Read the selected record…" : "Select a record.");
-    const { record, workflow, actions } = this.detail;
-    const events = workflow?.events ?? workflow?.receipts ?? [];
-    return v_flex().id(`record-reader:${record.ref}`).flex_1().min_h(0).overflow_y_scrollbar().p(14).gap(12)
-      .child(div().text_size(10).text_color(t.dim).child(record.ref))
-      .child(h_flex().justify_between().child(div().text_size(11).text_color(t.muted).child(record.id)).child(button("copy-record-ref", "Copy reference", (_event, cx) => cx.write_to_clipboard(record.ref))))
+  selectRecordTab(tab, cx) {
+    this.recordTab = tab;
+    this.recordTabFocus[tab].focus();
+    cx.notify();
+  }
+
+  recordTabKey(event, cx) {
+    const tabs = ["description", "activity", "details"];
+    const index = tabs.indexOf(this.recordTab);
+    let next;
+    if (event.key === "right") next = tabs[(index + 1) % tabs.length];
+    else if (event.key === "left") next = tabs[(index + tabs.length - 1) % tabs.length];
+    else if (event.key === "home") next = tabs[0];
+    else if (event.key === "end") next = tabs[tabs.length - 1];
+    else if (event.key === "enter" || event.key === "space") next = this.recordTab;
+    else return;
+    cx.stop_propagation();
+    this.selectRecordTab(next, cx);
+  }
+
+  recordHeader(record) {
+    const t = theme(), kind = this.selected.kind;
+    const state = kind === "ticket" ? this.snapshot.states?.[record.id]?.state : null;
+    return v_flex().flex_none().px(16).pt(14).gap(10)
+      .child(h_flex().gap(8).items_center().min_w(0)
+        .child(div().flex_none().text_size(11).text_color(t.muted).child(kind === "ticket" ? "Ticket" : "Initiative"))
+        .child(div().flex_1().min_w(0).truncate().text_size(10).text_color(t.muted).tooltip(record.id).child(record.id))
+        .when(Boolean(state), el => el.child(div().flex_none().text_size(10).text_color(statusColor(state, t)).child(state))))
       .child(div().text_size(18).font_semibold().child(record.title))
-      .when(Boolean(record.blockedBy?.length), el => el.child(div().text_size(12).text_color(t.blocked).child(`Direct prerequisites: ${record.blockedBy.join(", ")}`)))
-      .child(TextView.markdown(`record-body:${record.ref}`, record.body ?? ""))
+      .child(h_flex().flex_wrap().gap(6).items_center().pb(12)
+        .children((this.detail?.actions ?? []).map(choice => button(`action:${choice.action}`, choice.label, () => openOverlay({ mod: "shared-context", kind: "dialog", width: 760, height: 600, props: { mode: "action", cwd: this.context.repository, space: this.where.space, id: record.id, kind, action: choice.action } }), { disabled: Boolean(choice.disabledReason) }).tooltip(choice.disabledReason ?? `Prepare ${choice.label}`)))
+        .child(div().flex_1())
+        .child(button("copy-record-ref", "Copy reference", (_event, cx) => cx.write_to_clipboard(record.ref)).bg("#00000000")));
+  }
+
+  recordTabs(events) {
+    const t = theme(), tabs = [["description", "Description"], ["activity", `Activity · ${events.length}`], ["details", "Details"]];
+    // Base Tab is pointer-only. Plain focusable tabs keep the full keyboard path.
+    return h_flex().role("tab_list").accessibility_label("Artifact views").flex_none().px(16).gap(18).border_b(1).border_color(t.border)
+      .children(tabs.map(([tab, label], index) => {
+        const selected = this.recordTab === tab, focus = this.recordTabFocus[tab];
+        return div().id(`record-tab:${tab}`).role("tab").accessibility_label(label).aria_selected(selected).set_position(index + 1, tabs.length)
+          .track_focus(focus).tab_index(0).tab_stop(selected).cursor_pointer().py(10).text_size(12).text_color(selected ? t.foreground : t.muted)
+          .border_b(2).border_color(selected || focus.is_focused() ? t.accent : "#00000000")
+          .on_click((_event, cx) => this.selectRecordTab(tab, cx))
+          .on_key_down((event, cx) => this.recordTabKey(event, cx)).child(label);
+      }));
+  }
+
+  recordDescription(record) {
+    const t = theme();
+    return v_flex().gap(16)
+      .when(Boolean(record.blockedBy?.length), el => el.child(v_flex().border_l(2).border_color(t.blocked).pl(12).gap(4)
+        .child(div().text_size(12).text_color(t.blocked).child("Direct prerequisites"))
+        .children(record.blockedBy.map(id => button(`prerequisite:${id}`, `${id} · View details`, (_event, cx) => this.selectRecordTab("details", cx)).tab_stop(this.recordTab === "description").bg("#00000000").text_color(t.accent)))))
+      .child(TextView.markdown(`record-body:${record.ref}`, record.body ?? "").scrollable(false));
+  }
+
+  recordActivity(events, workflow) {
+    const t = theme();
+    return v_flex().gap(12)
       .when(Boolean(workflow?.error), el => el.child(note(workflow.error, true)))
-      .child(div().text_size(12).font_semibold().child("Actions"))
-      .children(actions.map(choice => button(`action:${choice.action}`, choice.label, () => openOverlay({ mod: "shared-context", kind: "dialog", width: 760, height: 600, props: { mode: "action", cwd: this.context.repository, space: this.where.space, id: record.id, kind: this.detail.kind, action: choice.action } }), { disabled: Boolean(choice.disabledReason) }).tooltip(choice.disabledReason ?? `Prepare ${choice.label}`)))
-      .when(this.detail.kind === "ticket", el => el.child(div().text_size(12).font_semibold().child("Workflow events")))
-      .children(events.map(event => v_flex().gap(5).child(button(`event:${event.id}`, `${event.fields?.kind ?? event.phase ?? "Event"} · ${event.id}`, (_event, cx) => { this.event = this.event === event.id ? null : event.id; cx.notify(); })).when(this.event === event.id, el => el.child(div().text_size(11).text_color(t.dim).child(event.ref)).child(TextView.markdown(`event-body:${event.id}`, event.body ?? "")).child(div().text_size(11).text_color(t.muted).child(JSON.stringify(event.fields ?? event, null, 2))))));
+      .when(events.length === 0 && !workflow?.error, el => el.child(v_flex().py(32).gap(8).items_center()
+        .child(div().text_size(15).child("No workflow events"))
+        .child(div().text_size(12).text_color(t.muted).child("No canonical events or receipts are available for this record."))))
+      .children(events.map(event => {
+        const label = `${event.fields?.kind ?? event.phase ?? "Event"} · ${event.id}`;
+        return v_flex().gap(5).min_w(0)
+          .child(button(`event:${event.id}`, "", (_event, cx) => { this.event = this.event === event.id ? null : event.id; cx.notify(); }, { label })
+            .tab_stop(this.recordTab === "activity").min_w(0).w_full().tooltip(label)
+            .child(div().flex_1().min_w(0).truncate().child(label)))
+          .when(this.event === event.id, el => el.child(div().text_size(11).text_color(t.muted).child(event.ref))
+            .child(TextView.markdown(`event-body:${event.id}`, event.body ?? "").scrollable(false))
+            .child(div().text_size(11).text_color(t.muted).child(JSON.stringify(event.fields ?? event, null, 2))));
+      }));
+  }
+
+  recordDetails(record) {
+    const t = theme(), kind = this.selected.kind;
+    const state = kind === "ticket" ? this.snapshot.states?.[record.id] : null;
+    const collection = this.context.collections.find(item => item.id === (kind === "ticket" ? "tickets" : "initiatives"));
+    const fields = [["Type", kind === "ticket" ? "Ticket" : "Initiative"], ["ID", record.id], ["Reference", record.ref], ["Store", collection?.store ?? collection?.adapter ?? this.context.mode]];
+    if (state) fields.push(["Status", state.state], ["Reason", state.reason]);
+    if (record.blockedBy?.length) fields.push(["Direct prerequisites", record.blockedBy.join("\n")]);
+    return v_flex().gap(16)
+      .child(div().text_size(15).font_semibold().child("Canonical record"))
+      .children(fields.filter(([_label, value]) => value).map(([label, value]) => v_flex().gap(5)
+        .child(div().text_size(11).text_color(t.muted).child(label))
+        .child(div().text_size(12).child(value))));
+  }
+
+  recordView() {
+    if (!this.selected) return note("Select an initiative or ticket.");
+    const records = this.selected.kind === "initiative" ? this.snapshot.initiatives : this.snapshot.tickets;
+    const record = this.detail?.record ?? records.find(item => item.id === this.selected.id);
+    if (!record) return note("The selected record is unavailable. Refresh the tracker.", true);
+    const events = this.detail?.workflow?.events ?? this.detail?.workflow?.receipts ?? [];
+    const reader = v_flex().id(`record-reader:${record.ref}`).flex_1().min_w(0).min_h(0).child(this.recordHeader(record));
+    if (this.detailError) return reader.child(v_flex().p(16).gap(8).child(note(this.detailError, true))
+      .child(button("retry-record", "Retry read", (_event, cx) => this.choose(record, this.selected.kind, cx, false))));
+    if (this.detailLoading || !this.detail) return reader.child(note("Read the selected record…"));
+    // Keep all readers laid out so their native scroll state survives a tab switch.
+    // Inactive readers sit outside the clipped viewport and cannot intercept its wheel events.
+    return reader.child(this.recordTabs(events))
+      .child(div().relative().flex_1().min_h(0).overflow_hidden()
+        .children(["description", "activity", "details"].map(tab => {
+          const panelId = `record-panel:${this.viewKey}:${record.ref}:${tab}`, active = this.recordTab === tab;
+          return div().absolute().top(0).left(active ? 0 : "100%").size_full().when(!active, el => el.invisible())
+            .child(v_flex().id(panelId).when(active, el => el.role("tab_panel").accessibility_label(`${tab} for ${record.title}`))
+              .tab_index(0).tab_stop(active).size_full().overflow_y_scroll().p(20)
+              .child(tab === "description" ? this.recordDescription(record) : tab === "activity" ? this.recordActivity(events, this.detail.workflow) : this.recordDetails(record)))
+            .child(Scrollbar.vertical(panelId).absolute().inset_0());
+        })));
   }
 
   trackerView() {
