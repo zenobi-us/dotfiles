@@ -1,0 +1,29 @@
+{
+  "schema": "review-axis/v1",
+  "axis": "Spec",
+  "findings": [
+    {
+      "id": "SPEC-R5-001",
+      "severity": "P2",
+      "blocking": true,
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts",
+      "lines": "354-357",
+      "requirement": "\"Reject invalid records, missing media and unsupported explicit schemas without a valid-looking partial run.\"",
+      "problem": "checkPlan validates the action name, screenshot slug and expect shape, but not required fields for other actions. loadPlan also accepts absent says. A capture without locator/as passes compile and render and reaches real browser execution. Retained invalid-smoke-fixture-commands.json records compile/render success; invalid-smoke-fixture-native/runs/case-a.log records ASSERT FAIL a.3: undefined not found. This is an input error, not an application assertion failure. Correcting the fixture does not fix the missing validator.",
+      "requiredChange": "Validate every Step variant and required precondition field before compile/render writes. Reject missing capture.locator/as, fill.locator/text, press.key and required human descriptions with exit 2. Keep optional wait/scroll descriptions optional.",
+      "validationCommand": "<absolute collect-evidence/scripts/collect-evidence.ts> compile <temporary-workspace-with-missing-capture-locator-and-as> --json; require exit 2, kind:error, no compiled.json and no driver execution. Repeat with render.",
+      "adr": "NO ADR: the indexed Pi Ink cleanup ADR concerns another subsystem. The ticket and initiative define this requirement."
+    }
+  ],
+  "checks": [
+    "Read the complete canonical ticket and initiative from BASE. Inspected master...8c401541 implementation, plan validation, drivers, records and command boundary.",
+    "Read fix-0026 draft, validation records, native failed capture, Surf failure and historical Playwright output. Latest suite: 15 pass, 2 fail. Corrected slug regression: 3/3. Focused identity workflows passed both drivers.",
+    "CONTEXT.md is absent. Read CONTEXT-MAP.md, domain configuration and ADR index."
+  ],
+  "limits": [
+    "Read-only review: no edits, tests, builds, browser actions or installations. Proposed validation was not executed.",
+    "Acceptance remains blocked by unexplained Surf pre-workflow timeout and earlier Playwright pass-case/approved-space failures. No source cause established. queueMs=0 and timeout duration do not identify an extension fault.",
+    "Focused successful workflows do not erase retained failures. Video was not independently verified."
+  ],
+  "summary": "One blocking source defect: incomplete plan validation. Full acceptance is not established; retained runtime failures remain unresolved."
+}

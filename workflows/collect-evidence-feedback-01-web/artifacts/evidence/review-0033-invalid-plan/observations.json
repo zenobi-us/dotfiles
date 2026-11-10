@@ -1,0 +1,47 @@
+{
+  "schema": "review-validation/v1",
+  "kind": "public-command-smoke",
+  "source_commit": "8c4015418f6b3fee244708d9937e45bb358fc45d",
+  "question": "Does compile/render reject a capture step missing locator/as before output?",
+  "driver_executed": false,
+  "results": [
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "compile",
+        "/tmp/review-0033-invalid-plan-PM8CgD/compile",
+        "--json",
+        "--no-input"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/review-0033-invalid-plan-PM8CgD/compile\",\"driver\":\"surf\",\"tests\":1}\n",
+      "stderr": "",
+      "files": [
+        "compiled.json",
+        "workflows",
+        "plan.ts",
+        "workspace.json"
+      ]
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "render",
+        "/tmp/review-0033-invalid-plan-PM8CgD/render",
+        "--json",
+        "--no-input"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/review-0033-invalid-plan-PM8CgD/render\",\"tests\":1}\n",
+      "stderr": "",
+      "files": [
+        "test-plan.md",
+        "plan.json",
+        "plan.ts",
+        "workspace.json"
+      ]
+    }
+  ]
+}

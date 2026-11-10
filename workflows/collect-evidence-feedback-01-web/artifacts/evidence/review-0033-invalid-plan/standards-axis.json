@@ -1,0 +1,42 @@
+{
+  "schema": "review-axis/v1",
+  "axis": "Standards",
+  "findings": [
+    {
+      "id": "STD-AXIS-001",
+      "severity": "P3",
+      "blocking": false,
+      "classification": "judgement-call",
+      "smell": "Duplicated Code",
+      "locations": [
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
+          "line": 48
+        },
+        {
+          "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts",
+          "line": 450
+        }
+      ],
+      "rule": "code-review smell baseline: Duplicated Code -> extract shared logic. This is a heuristic, not a documented-standard violation.",
+      "evidence": "Both markdown helpers build identical schema/kind frontmatter and invoke mise exec mq with the required OKF import. They differ in subprocess handling, lock policy, output format, overwrite policy and failure classification.",
+      "requiredChange": "Optional: extract the shared Markdown-generation operation into one leaf module. Preserve explicit overwrite and failure policies at each caller; avoid a pipeline/records dependency cycle.",
+      "adr": "NO ADR: the only indexed ADR concerns Pi Ink cleanup, not evidence Markdown generation.",
+      "validationCommand": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
+      "validationStatus": "Not run; this assignment prohibits tests."
+    }
+  ],
+  "checks": [
+    "Read actual hunks from git diff master...8c4015418f6b3fee244708d9937e45bb358fc45d, including drivers, records, pipeline, commands, tests and caller migration.",
+    "Read canonical BASE CONTEXT-MAP.md, docs/agents/domain.md, docs/adr/index.md, ticket, initiative and pr-draft-fix-0026.md through mq with OKF import and explicit formats.",
+    "CONTEXT.md does not exist in BASE. NO ADR applies: the index lists only Pi Ink cleanup trust boundary.",
+    "No blocking documented-standard violation found. Shared-context routing, separate capture/assertion results, explicit publication and owned-session cleanup follow the documented design."
+  ],
+  "limits": [
+    "Read-only review. No repository edits, tests, builds, lint, browser actions or installations.",
+    "Latest suite remains 15 passed/2 failed. Earlier Playwright approved-space and pass-case failures remain unexplained. These prevent a green validation claim, but do not independently establish a Standards source defect.",
+    "Surf queueMs=0 and timeout=60041ms do not establish an extension cause. No cause attribution made.",
+    "No full OKF bundle audit: this review reads selected records, not a bundle integrity check."
+  ],
+  "summary": "Standards: no blocking finding; one optional duplication advisory. Runtime validation remains unresolved."
+}
