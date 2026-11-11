@@ -1,0 +1,38 @@
+{
+  "source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
+  "method": "read-only source and retained evidence inspection; no new browser execution",
+  "observations": [
+    {
+      "file": "pipeline.ts",
+      "lines": "63-85,169-186",
+      "observation": "doctor and collect each enter withCancellation. collect calls checkPrerequisites with the same state, not a nested doctor scope."
+    },
+    {
+      "file": "pipeline.ts",
+      "lines": "64-80,103-113,205-209",
+      "observation": "Acquisition remains noncancellable until ownership is recorded. A received signal sets interrupted; owned doctor browser closes in finally. A later cancellation check prevents run session acquisition."
+    },
+    {
+      "file": "pipeline.ts",
+      "lines": "67-70,228-246",
+      "observation": "Only first signal cancels active driver commands. Cleanup disables cancellation; repeated signals return immediately. Listeners are removed in finally."
+    },
+    {
+      "file": "drivers/playwright-driver.ts",
+      "lines": "240-247,324-327",
+      "observation": "Existing session is refused. Close acts only on ownedSessions and deletes ownership only after checked close succeeds."
+    },
+    {
+      "file": "drivers/surf-driver.ts",
+      "lines": "382-399,482-485",
+      "observation": "Existing session is refused. Owned post-acquisition switch failure invokes cleanup. Close checks ownership and propagates cleanup failure."
+    }
+  ],
+  "limitations": [
+    "Repeated-signal and cleanup-failure reasoning is static; retained browser evidence covers single signals during prerequisite acquisition.",
+    "Cleanup command failure cannot establish resource removal; code propagates failure and does not publish a successful sealed capture.",
+    "Historical failed-before evidence is retained and was not rerun."
+  ],
+  "retained_before": "../fix-0054/prerequisite-before-lifecycle.json",
+  "retained_after": "../fix-0054/prerequisite-after-final.json"
+}

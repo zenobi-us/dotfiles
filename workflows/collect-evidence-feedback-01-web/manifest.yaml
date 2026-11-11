@@ -6,22 +6,22 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "fix-complete-0055",
-  "state": "FIXED",
+  "latest_receipt": "review-complete-0058",
+  "state": "REVIEW_PASSED",
   "parent_completion_pending": false,
   "workspace_id": "w73",
   "latest_source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
   "latest_source_tree": "5385016678fec6057d508c1c5bb9561180afb9cc",
-  "review_status": "required",
-  "latest_review_applicability": "superseded-source",
+  "review_status": "passed",
+  "latest_review_applicability": "current-clean-source",
   "draft": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0054.md",
-  "latest_review_verdict": "FAILURE",
+  "latest_review_verdict": "SUCCESS",
   "fix_status": "completed",
   "selected_fix_finding_ids": [
     "SPEC-R8-001"
   ],
-  "current_review_verdict": null,
-  "validation_status": "passed: 95 scoped tests/871 assertions; real Playwright 64 assertions; real Surf 86 assertions; final prerequisite matrix 36 assertions; strict TypeScript and independent installed-command smoke",
+  "current_review_verdict": "SUCCESS",
+  "validation_status": "Fresh review 90 tests/864 assertions and both sealed-run validations passed; no blocking findings",
   "evidence_index": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/validation-final.json",
   "merge_status": "not merged; not pushed",
   "resolved_finding_ids": [
@@ -47,30 +47,35 @@
     "STD-R3-001",
     "STD-AXIS-001"
   ],
-  "next_action": "Review changed source: The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing.",
-  "review_readiness": true,
+  "next_action": "Finish reviewed work: The successful review matches the current clean source. The finish playbook must still verify its full safety mapping.",
+  "review_readiness": false,
   "result_missing": false,
   "transport_acknowledged": true,
   "protocol_source_commit": "cf79f45a71fa489934aa97baaa3caee92ccd77eb",
-  "latest_review_receipt": "workflows/collect-evidence-feedback-01-web/events/review-0051.yaml",
-  "latest_review_artifact": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0051.md",
-  "reviewed_source_commit": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
-  "reviewed_source_tree": "97fa1a4794c2ab10d4676993de8414890c525134",
-  "next_action_kind": "review",
+  "latest_review_receipt": "workflows/collect-evidence-feedback-01-web/events/review-0057.yaml",
+  "latest_review_artifact": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0057.md",
+  "reviewed_source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
+  "reviewed_source_tree": "5385016678fec6057d508c1c5bb9561180afb9cc",
+  "next_action_kind": "finish",
   "inspection_action": {
-    "action": "review",
-    "mode": "retry",
-    "label": "Review changed source",
-    "reason": "The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing.",
+    "action": "finish",
+    "mode": "begin",
+    "label": "Finish reviewed work",
+    "reason": "The successful review matches the current clean source. The finish playbook must still verify its full safety mapping.",
     "requiredApproval": true,
-    "parentReceipt": "workflows/collect-evidence-feedback-01-web/events/fix-complete-0055.yaml",
+    "parentReceipt": "workflows/collect-evidence-feedback-01-web/events/review-complete-0058.yaml",
     "inputs": [
       "tracker/tickets/collect-evidence-feedback-01-web.md",
-      "workflows/collect-evidence-feedback-01-web/events/fix-complete-0055.yaml",
+      "workflows/collect-evidence-feedback-01-web/events/review-complete-0058.yaml",
       "workflows/collect-evidence-feedback-01-web/manifest.yaml",
       "workflows/collect-evidence-feedback-01-web/projections/latest-status.yaml",
       "workflows/collect-evidence-feedback-01-web/projections/pr-draft.md",
       "workflows/collect-evidence-feedback-01-web/projections/implementation-log.md",
+      "workflows/collect-evidence-feedback-01-web/events/review-0057.yaml",
+      "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0057.md",
+      "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0057",
+      "workflows/collect-evidence-feedback-01-web/events/review-start-0056.yaml",
+      "workflows/collect-evidence-feedback-01-web/events/fix-complete-0055.yaml",
       "workflows/collect-evidence-feedback-01-web/events/fix-0054.yaml",
       "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054",
       "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0054.md",
@@ -155,6 +160,9 @@
       "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-implementation-0002.md",
       "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/surf-preflight-implementation-0002.txt",
       "workflows/collect-evidence-feedback-01-web/events/start-0001.yaml"
+    ],
+    "alternatives": [
+      "submit"
     ]
   },
   "latest_fix_receipt": "workflows/collect-evidence-feedback-01-web/events/fix-0054.yaml",
@@ -164,26 +172,26 @@
   "blocking_finding_ids": [],
   "open_findings": [
     {
-      "adr": "NO ADR. Code-review baseline: Duplicated Code. Advisory judgement call, not a documented-standard breach.",
+      "adr": "NO ADR. Code-review smell baseline: Duplicated Code. Advisory judgement call, not a documented-standard breach.",
       "axis": "standards",
-      "description": "Possible Duplicated Code. pipeline.ts:48-55 and records.ts:490-493 each create schema/kind Markdown frontmatter and invoke mise/mq. Their output format, lock and overwrite policies differ. This remains an unchanged, unselected advisory.",
+      "description": "Possible Duplicated Code: pipeline.ts:48-55 and records.ts:490-493 both construct schema/kind Markdown frontmatter and invoke mise/mq. Their format, lock and overwrite policies differ. Independently verified; unchanged and unselected.",
       "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
       "id": "STD-R6-002",
       "line": 48,
-      "required_change": "Optional: share a leaf Markdown writer with explicit caller policies. Avoid a pipeline/records dependency cycle. No change is required for this review.",
+      "required_change": "Optional: share a leaf Markdown writer with explicit caller policies. Avoid a pipeline/records dependency cycle. No required change for this review.",
       "severity": "P3",
-      "validation_command": "git show 4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts"
+      "validation_command": "git show fc122615ba485d1059313b5b6ed54d3a459a0704:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts"
     },
     {
-      "adr": "NO ADR. Code-review baseline: Duplicated Code and Shotgun Surgery. Advisory judgement call, not a documented-standard breach.",
+      "adr": "NO ADR. Code-review smell baseline: Duplicated Code and Shotgun Surgery. Advisory judgement call, not a documented-standard breach.",
       "axis": "standards",
-      "description": "Possible Duplicated Code. The click/Enter/Space approval predicate also appears at surf-driver.ts:127. A future activation-key change must update both compilers despite their shared safetyCode owner. This remains an unchanged, unselected advisory.",
+      "description": "Possible Duplicated Code: the click/Enter/Space approval predicate also appears at surf-driver.ts:127. Activation-key changes require edits in both compilers despite shared safetyCode. Independently verified; unchanged and unselected.",
       "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts",
       "id": "STD-R6-003",
       "line": 47,
-      "required_change": "Optional: define confirmation classification once beside safetyCode and use it in both compilers. No change is required for this review.",
+      "required_change": "Optional: define confirmation classification beside safetyCode and call it from both compilers. No required change for this review.",
       "severity": "P3",
-      "validation_command": "git show 4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts"
+      "validation_command": "git show fc122615ba485d1059313b5b6ed54d3a459a0704:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts"
     }
   ],
   "source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
@@ -245,7 +253,10 @@
     "workflows/collect-evidence-feedback-01-web/events/fix-0054.yaml",
     "workflows/collect-evidence-feedback-01-web/events/fix-start-0053.yaml",
     "workflows/collect-evidence-feedback-01-web/events/fix-0054.yaml",
-    "workflows/collect-evidence-feedback-01-web/events/fix-complete-0055.yaml"
+    "workflows/collect-evidence-feedback-01-web/events/fix-complete-0055.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/review-start-0056.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/review-0057.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/review-complete-0058.yaml"
   ],
   "source_clean": true
 }

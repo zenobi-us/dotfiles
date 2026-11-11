@@ -1,0 +1,23 @@
+{
+  "source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
+  "source_tree": "5385016678fec6057d508c1c5bb9561180afb9cc",
+  "source_clean": true,
+  "transport_sha256": "32a1332b845b9070130a487ac606013bd54291cb877dd58fed98a88b94cae466",
+  "authoritative_payload_matches": true,
+  "independent_axes_verified": true,
+  "public_validation": {
+    "command": "MISE_AUTO_INSTALL=0 collect-evidence.ts validate <fix-0054/acceptance/playwright> --json --no-input --no-color",
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "success": true
+  },
+  "native_completion": {
+    "terminal": "t3y",
+    "status": "done",
+    "turn": 1
+  },
+  "closure": "hc kill and rm succeeded; t3y absent from herdr-app ls",
+  "retained_prior_evidence": "Actual current real-browser interruption and both-driver acceptance proof was consumed; not rerun during review",
+  "provenance_recovery": "Exact review-start0056 bytes restored from external hk stash; hash retained in launch-review-start-0056.json",
+  "environment_limit": "Spec axis observed mise automatic cockpit installation/lock-wait messages during a read. No installation command requested; completion not established. Later verification set MISE_AUTO_INSTALL=0."
+}

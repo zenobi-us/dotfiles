@@ -1,0 +1,296 @@
+{
+  "agent": "omp",
+  "attempt": 9,
+  "axes": {
+    "app_after_closure": "herdr-app ls showed only reviewer t3y in source workspace; unrelated terminals retained",
+    "spec": {
+      "acknowledged": true,
+      "closed": true,
+      "context": "/var/home/zenobius/.local/state/result-delivery/runs/d4722320-a39f-49d3-b80c-cf87f23e05fe/context.json",
+      "native_done": true,
+      "operationId": "review-0057-spec",
+      "runId": "d4722320-a39f-49d3-b80c-cf87f23e05fe",
+      "sha256": "978f29f4a6a9ba64a2a35a36fa2776bbfd324788d8ff86713eef5a4541fe4ae0",
+      "terminal": "t3z",
+      "transport_verified": true
+    },
+    "standards": {
+      "acknowledged": true,
+      "closed": true,
+      "context": "/var/home/zenobius/.local/state/result-delivery/runs/52051fa5-5191-47cc-b608-7d53bb1b4e44/context.json",
+      "native_done": true,
+      "operationId": "review-0057-standards",
+      "runId": "52051fa5-5191-47cc-b608-7d53bb1b4e44",
+      "sha256": "fb7faaf90c965677c3a0dc625581c746cf33f80cd61b8d5a91b33468bb8ea3bb",
+      "terminal": "t40",
+      "transport_verified": true
+    },
+    "workspace_preserved": true
+  },
+  "base_branch": "master",
+  "blocking_findings": [],
+  "created_at": "2026-11-11T06:24:21.339Z",
+  "event": "phase-complete",
+  "evidence": {
+    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0057",
+    "store": "repository"
+  },
+  "findings": [
+    {
+      "adr": "NO ADR. Code-review smell baseline: Duplicated Code. Advisory judgement call, not a documented-standard breach.",
+      "axis": "standards",
+      "description": "Possible Duplicated Code: pipeline.ts:48-55 and records.ts:490-493 both construct schema/kind Markdown frontmatter and invoke mise/mq. Their format, lock and overwrite policies differ. Independently verified; unchanged and unselected.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
+      "id": "STD-R6-002",
+      "line": 48,
+      "required_change": "Optional: share a leaf Markdown writer with explicit caller policies. Avoid a pipeline/records dependency cycle. No required change for this review.",
+      "severity": "P3",
+      "validation_command": "git show fc122615ba485d1059313b5b6ed54d3a459a0704:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts"
+    },
+    {
+      "adr": "NO ADR. Code-review smell baseline: Duplicated Code and Shotgun Surgery. Advisory judgement call, not a documented-standard breach.",
+      "axis": "standards",
+      "description": "Possible Duplicated Code: the click/Enter/Space approval predicate also appears at surf-driver.ts:127. Activation-key changes require edits in both compilers despite shared safetyCode. Independently verified; unchanged and unselected.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts",
+      "id": "STD-R6-003",
+      "line": 47,
+      "required_change": "Optional: define confirmation classification beside safetyCode and call it from both compilers. No required change for this review.",
+      "severity": "P3",
+      "validation_command": "git show fc122615ba485d1059313b5b6ed54d3a459a0704:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts"
+    }
+  ],
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/collect-evidence-feedback/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-start-0056.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-complete-0055.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-0054.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-0051.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0051.md"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0054.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-0057.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0057.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0057"
+    },
+    {
+      "kind": "launch",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/launch-review-start-0056.json"
+    },
+    {
+      "kind": "validation",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/parent-validation-review-0057.json"
+    }
+  ],
+  "limitations": [
+    "No new browser execution authorization used. Repeated-signal and cleanup-failure assessment is static.",
+    "Spec axis observed mise automatic cockpit installation/lock-wait messages during a read. No installation command requested; completion not established. Later verification set MISE_AUTO_INSTALL=0.",
+    "No source/test/config/generated-source changes; no tracker/projection writes; no credentials, remote Git, commit, merge, push, borrowed closure or service/browser restart.",
+    "Parent owns phase-complete, tracker summary, projections, publication, acknowledgement and reviewer closure.",
+    "Initial review-authoring mq query rejected an unquoted property selector before creating a file. Corrected query created the sole immutable body and OKF validation returned no errors."
+  ],
+  "muxer": "herdr-app",
+  "operation_id": "collect-evidence-feedback-01-web-review-0057",
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-complete-0058.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/collect-evidence-feedback-01-web/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-01-web/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-01-web/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-01-web/projections/implementation-log.md"
+    }
+  ],
+  "pane_id": null,
+  "parent_receipt": "review-0057",
+  "phase": "review",
+  "preserved_unselected_finding_ids": [
+    "STD-R6-002",
+    "STD-R6-003",
+    "STD-AXIS-001",
+    "STD-R3-001"
+  ],
+  "pushed": false,
+  "receipt_id": "review-complete-0058",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "resolved_finding_ids": [
+    "SPEC-R8-001"
+  ],
+  "retained_validation": {
+    "note": "Prior executions only. 95/871 scoped; Playwright 2/64; Surf 1/86; strict tsc and standalone doctor both drivers. No browser re-execution by reviewer.",
+    "prerequisite_after": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/prerequisite-after-final.json",
+    "prerequisite_before": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/prerequisite-before-lifecycle.json",
+    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/validation-final.json"
+  },
+  "review_artifact": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0057.md",
+  "review_scope": {
+    "complete_ticket_slice": true,
+    "diff_command": "git diff c649f00ce82b994c7260915c8d76ac572bb22819...fc122615ba485d1059313b5b6ed54d3a459a0704",
+    "diff_sha256": "a560024049e7cc3f4c29c664ddbfff4733647a090599845bbf52dcd73418481e",
+    "files": 60,
+    "final_base": "d3f7d8beec8786aa52475d78a7393226fc119112",
+    "initial_base": "c649f00ce82b994c7260915c8d76ac572bb22819",
+    "merge_base": "859341b01ef7be474a3128b7f94772aab731c2f7"
+  },
+  "run_id": "9f0d837c-73da-4501-9d73-75f556826939",
+  "schema": "worktree-receipt/v1",
+  "session_id": "herdr-app:t30",
+  "source_branch": "feature/collect-evidence-feedback-01-web",
+  "source_clean": true,
+  "source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
+  "source_tree": "5385016678fec6057d508c1c5bb9561180afb9cc",
+  "spec_verdict": "SUCCESS",
+  "standards_verdict": "SUCCESS",
+  "status": "completed",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-01-web",
+    "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+  },
+  "ticket_completed": false,
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+  "validation_results": [
+    {
+      "assertions": 864,
+      "code": 0,
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts"
+      ],
+      "cwd": "/tmp",
+      "execution": "this reviewer, after both axes completed",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0057/scoped-suite.json",
+      "status": "passed",
+      "tests": 90
+    },
+    {
+      "code": 0,
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "validate",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/acceptance/playwright",
+        "--json",
+        "--no-input",
+        "--no-color"
+      ],
+      "cwd": "/tmp",
+      "execution": "this reviewer; no browser started",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0057/validate-retained-playwright.json",
+      "status": "passed"
+    },
+    {
+      "code": 0,
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "validate",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/acceptance/surf",
+        "--json",
+        "--no-input",
+        "--no-color"
+      ],
+      "cwd": "/tmp",
+      "execution": "this reviewer; no browser started",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0057/validate-retained-surf.json",
+      "status": "passed"
+    },
+    {
+      "command": "mise exec -- mq --allow-http-import --no-lockfile -I raw -F json 'import \"github.com/harehare/okf.mq\" | okf::okf_parse(.) | okf::okf_validate(.)' /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0057.md",
+      "execution": "this reviewer; individual review OKF validation",
+      "output": [],
+      "status": "passed"
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree} master; git status --porcelain=v1; git branch --show-current",
+      "execution": "this reviewer; frozen source check",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0057/source-final.json",
+      "status": "passed"
+    },
+    {
+      "execution": "this reviewer; decoded four retained native PNGs",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0057/image-inspection.json",
+      "status": "inspected"
+    }
+  ],
+  "validation_status": "passed",
+  "workflow": {
+    "ref": "workflows/collect-evidence-feedback-01-web",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "store": "repository"
+  },
+  "workflow_id": "collect-evidence-feedback-01-web",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "workspace_preserved": true,
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "worktree_preserved": true,
+  "recovery_mode": "reconcile",
+  "recovery_reason": "Read the child result and artifacts, verify the frozen source and outcome, then append the parent completion. Do not repeat the child work.",
+  "child_pane_closed": true,
+  "delivery_acknowledged": true,
+  "delivery_sha256": "32a1332b845b9070130a487ac606013bd54291cb877dd58fed98a88b94cae466",
+  "ticket_comment_added": true,
+  "ticket_status": "implemented",
+  "source_unchanged": true,
+  "parent_validation": [
+    "Verified typed transport identity/hash and authoritative YAML deep-equality",
+    "Frozen clean source branch/commit/tree match handoff",
+    "Both independent axis schemas/identity/hash verified; axis acknowledgement and shutdown recorded",
+    "Parent public validate of sealed Playwright run from /tmp returned success with MISE_AUTO_INSTALL=0",
+    "Canonical summary-only ticket comment validated before and after mutation",
+    "Reviewer native done confirmed; only t3y killed/removed; workspace preserved"
+  ]
+}

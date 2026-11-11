@@ -1,0 +1,26 @@
+{
+  "standards": {
+    "runId": "52051fa5-5191-47cc-b608-7d53bb1b4e44",
+    "operationId": "review-0057-standards",
+    "context": "/var/home/zenobius/.local/state/result-delivery/runs/52051fa5-5191-47cc-b608-7d53bb1b4e44/context.json",
+    "terminal": "t40",
+    "native_done": true,
+    "sha256": "fb7faaf90c965677c3a0dc625581c746cf33f80cd61b8d5a91b33468bb8ea3bb",
+    "transport_verified": true,
+    "acknowledged": true,
+    "closed": true
+  },
+  "spec": {
+    "runId": "d4722320-a39f-49d3-b80c-cf87f23e05fe",
+    "operationId": "review-0057-spec",
+    "context": "/var/home/zenobius/.local/state/result-delivery/runs/d4722320-a39f-49d3-b80c-cf87f23e05fe/context.json",
+    "terminal": "t3z",
+    "native_done": true,
+    "sha256": "978f29f4a6a9ba64a2a35a36fa2776bbfd324788d8ff86713eef5a4541fe4ae0",
+    "transport_verified": true,
+    "acknowledged": true,
+    "closed": true
+  },
+  "workspace_preserved": true,
+  "app_after_closure": "herdr-app ls showed only reviewer t3y in source workspace; unrelated terminals retained"
+}

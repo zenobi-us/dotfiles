@@ -1,0 +1,10 @@
+fc122615 fix: clean sessions collect-evidence-feedback-01-web
+4c0b7737 fix: guard checks collect-evidence-feedback-01-web
+6923f54f fix: repair fixture collect-evidence-feedback-01-web
+35b4bbe9 fix: check optionals collect-evidence-feedback-01-web
+3dbab24c fix: validate steps collect-evidence-feedback-01-web
+8c401541 fix: isolate surf maps tracker/tickets/collect-evidence-feedback-01-web.md
+b711ef1b fix: allow empty slug tracker/tickets/collect-evidence-feedback-01-web.md
+12b6345a fix: encode ids tracker/tickets/collect-evidence-feedback-01-web.md
+3d1b2825 fix: guard tracker/tickets/collect-evidence-feedback-01-web.md
+0acff3b4 feat: implement tracker/tickets/collect-evidence-feedback-01-web.md

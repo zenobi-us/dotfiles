@@ -5,7 +5,7 @@ type: PRDraft
 ---
 # Preserve Surf and Playwright in collect-evidence
 
-SPEC-R8-001 is resolved at fc122615ba485d1059313b5b6ed54d3a459a0704, tree 5385016678fec6057d508c1c5bb9561180afb9cc. Source is clean. Fresh independent review is required. Review-0051 remains FAILURE for its older source.
+SPEC-R8-001 is resolved at fc122615ba485d1059313b5b6ed54d3a459a0704, tree 5385016678fec6057d508c1c5bb9561180afb9cc. Source is clean. Independent review-0057 is SUCCESS. Finish safety checks remain required. Review-0051 remains FAILURE for its older source.
 
 ## Change
 
@@ -46,4 +46,14 @@ No credentials, installation, browser/service restart, remote Git, rebase, merge
 [Completion receipt](../events/fix-complete-0055.yaml). Parent verified the exact clean source commit `fc122615ba485d1059313b5b6ed54d3a459a0704` and tree, the immutable fix receipt and transport payload hash, the real failing-before/passing-after interruption records, and both actual selected-project PNGs. Both current sealed runs passed public validate from /tmp.
 
 Delivery acknowledged. Only fixer t3j closed and removed; worktree and workspace preserved. Canonical ticket remains implemented. Next: fresh independent review because source changed after review-0051. No merge or push.
+
+
+
+## Independent review review-0057
+
+SUCCESS for `fc122615ba485d1059313b5b6ed54d3a459a0704`, tree `5385016678fec6057d508c1c5bb9561180afb9cc`. Standards SUCCESS with two unchanged optional P3 advisories. Spec SUCCESS with no findings. SPEC-R8-001 is resolved. No blocking findings remain.
+
+[Immutable review](../artifacts/reviews/review-review-0057.md), [review receipt](../events/review-0057.yaml), [parent completion](../events/review-complete-0058.yaml), [fresh validation](../artifacts/evidence/review-0057/scoped-suite.json). The reviewer ran 90 tests with 864 assertions; both current sealed runs validated. Retained real-driver acceptance and actual PNGs were inspected, not rerun.
+
+Delivery acknowledged; reviewer t3y and its axes closed. Source/workspace preserved. Canonical ticket remains implemented. Next: finish, subject to the finish safety mapping. No merge or push was performed. The environment observation about unsolicited mise cockpit setup messages is retained in the immutable review; installation completion was not established.
 

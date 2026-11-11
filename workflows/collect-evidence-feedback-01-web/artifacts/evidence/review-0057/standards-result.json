@@ -1,0 +1,42 @@
+{
+  "kind": "result",
+  "operationId": "review-0057-standards",
+  "ref": "file:///tmp/review-0057-standards-result.json",
+  "result": {
+    "axis": "standards",
+    "findings": [
+      {
+        "adr": "NO ADR. Code-review smell baseline: Duplicated Code. Advisory judgement call, not a documented-standard breach.",
+        "axis": "standards",
+        "description": "Possible Duplicated Code: pipeline.ts:48-55 and records.ts:490-493 both construct schema/kind Markdown frontmatter and invoke mise/mq. Their format, lock and overwrite policies differ. Independently verified; unchanged and unselected.",
+        "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
+        "id": "STD-R6-002",
+        "line": 48,
+        "required_change": "Optional: share a leaf Markdown writer with explicit caller policies. Avoid a pipeline/records dependency cycle. No required change for this review.",
+        "severity": "P3",
+        "validation_command": "git show fc122615ba485d1059313b5b6ed54d3a459a0704:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts"
+      },
+      {
+        "adr": "NO ADR. Code-review smell baseline: Duplicated Code and Shotgun Surgery. Advisory judgement call, not a documented-standard breach.",
+        "axis": "standards",
+        "description": "Possible Duplicated Code: the click/Enter/Space approval predicate also appears at surf-driver.ts:127. Activation-key changes require edits in both compilers despite shared safetyCode. Independently verified; unchanged and unselected.",
+        "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts",
+        "id": "STD-R6-003",
+        "line": 47,
+        "required_change": "Optional: define confirmation classification beside safetyCode and call it from both compilers. No required change for this review.",
+        "severity": "P3",
+        "validation_command": "git show fc122615ba485d1059313b5b6ed54d3a459a0704:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts"
+      }
+    ],
+    "report": "No blocking documented-standard violation found in the complete pinned 60-file cutover. Reviewed deleted paths, skill authoring changes, new instructions, CLI, common records, pipeline, safety checks, both drivers, tests and writing-reports migration. Canonical context and ADR guidance came from BASE. CONTEXT.md is absent. ADR 0001 governs Pi Ink and does not apply. Updated authoring rules permit schema and boolean user-invocable frontmatter. Two independently checked P3 smells remain advisory and unselected. The lifecycle change wraps doctor and run in command-scoped cancellation, shares prerequisite state, waits for ownership acquisition and cleanup, and removes signal listeners in finally. This addresses the earlier SPEC-R8-001 window by static inspection. Fix-0054 receipts record passing real-driver workflows and prerequisite SIGINT/SIGTERM coverage; those are prior observations, not checks executed here. The pinned Git diff and retained complete diff have matching SHA-256 a560024049e7cc3f4c29c664ddbfff4733647a090599845bbf52dcd73418481e. No builds, tests, lint, formatters or browser executions ran. No source, tracker or workflow files changed. This verdict covers Standards only; parent owns acknowledgement and closure.",
+    "schema": "code-review-axis/v1",
+    "source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
+    "source_tree": "5385016678fec6057d508c1c5bb9561180afb9cc",
+    "status": "completed",
+    "verdict": "SUCCESS"
+  },
+  "resultSchema": "code-review-axis/v1",
+  "runId": "52051fa5-5191-47cc-b608-7d53bb1b4e44",
+  "schema": "result-delivery/v1",
+  "sha256": "fb7faaf90c965677c3a0dc625581c746cf33f80cd61b8d5a91b33468bb8ea3bb"
+}

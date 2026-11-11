@@ -1,0 +1,15 @@
+{
+  "method": "read tool decoded four existing native PNGs; no browser launch",
+  "root": "../fix-0054/acceptance",
+  "assets": [
+    "playwright/cases/pass/media/step-004-step-pass-004-selected-project--capture-002--capture-002.png",
+    "surf/cases/pass/media/step-004-step-pass-004-selected-project--capture-002--capture-002.png",
+    "playwright/cases/approved-space/media/step-003-step-approved-space-003-keyboard-submitted--capture-002--capture-002.png",
+    "surf/cases/approved-space/media/step-003-step-approved-space-003-keyboard-submitted--capture-002--capture-002.png"
+  ],
+  "observed": [
+    "Both pass images show Owned evidence test and Project selected: Aurora.",
+    "Both approved-space images show Confirm operation and Submitted."
+  ],
+  "new_capture": false
+}

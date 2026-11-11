@@ -1,0 +1,11 @@
+{
+  "commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
+  "tree": "5385016678fec6057d508c1c5bb9561180afb9cc",
+  "base": "d3f7d8beec8786aa52475d78a7393226fc119112",
+  "branch": "feature/collect-evidence-feedback-01-web",
+  "status": "",
+  "clean": true,
+  "source_commit_matches": true,
+  "source_tree_matches": true,
+  "checked_at": "2026-11-11T06:19:40.041Z"
+}
