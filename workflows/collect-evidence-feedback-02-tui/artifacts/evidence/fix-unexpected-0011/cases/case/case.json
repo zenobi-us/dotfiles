@@ -1,0 +1,54 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "case",
+  "runId": "fix-unexpected-0011",
+  "order": 1,
+  "purpose": "Native unexpected",
+  "preconditions": [],
+  "expected": {
+    "pass": "Approved native outcome",
+    "fail": "Unexpected native outcome"
+  },
+  "steps": [
+    {
+      "id": "case.1",
+      "order": 1,
+      "purpose": "Open details.",
+      "actions": {
+        "do": "press",
+        "says": "Open details.",
+        "key": "RET",
+        "screen": "Ready screen"
+      },
+      "expected": null,
+      "observed": [
+        "SAFETY STOP: unexpected terminal confirmation; approve the actual prompt before input"
+      ],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/case/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "case.error-001",
+      "caseId": "case",
+      "stepId": "case.1",
+      "category": "blocked",
+      "message": "SAFETY STOP: unexpected terminal confirmation; approve the actual prompt before input"
+    }
+  ],
+  "limits": [
+    "Native video is unavailable.",
+    "OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.",
+    "The private headless display does not reproduce a borrowed desktop terminal.",
+    "Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match."
+  ],
+  "sideEffects": [
+    "The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.",
+    "Collector-owned resources were released before sealing; borrowed terminals were not attached or closed."
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "run",
+  "id": "fix-capture-0011",
+  "status": "sealed",
+  "startedAt": "2026-11-11T11:47:30.370Z",
+  "finishedAt": "2026-11-11T11:47:30.577Z",
+  "surface": "tui",
+  "driver": "tui",
+  "driverVersion": "termscope 0.1.1",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "case",
+      "path": "cases/case/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/case/case.json",
+      "sha256": "41f6f35b84b2c77cb6694d3a7a04407e3575629d537b3ab0fc655401be118132"
+    },
+    {
+      "path": "cases/case/events.jsonl",
+      "sha256": "dfd2819a47c2b5023746857aee700f3884a2e4712022035b86d3e81354970631"
+    },
+    {
+      "path": "cases/case/index.md",
+      "sha256": "8d810e019cda6b65dfbd2d88602ffc6e0cfebbafa4b5c3e5fbf91cae9a8117b4"
+    },
+    {
+      "path": "index.md",
+      "sha256": "5a913d0119b8e854b092efa88505b1c1b6ad56ca3cbe253506b4be6f262d3c56"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "686bcb297c2f7381319d3896d2249e82977267e07284e3651f241c1f59389457"
+    },
+    {
+      "path": "native/runs/case-case.log",
+      "sha256": "0f576ece854f5c8f802798893fed949d2b57d2d8d20e5e8ac6e0b9211962acd5"
+    },
+    {
+      "path": "native/workflows/ce-tui-70bad1a9-a807-4e73-b395-5c2c57164840-cage.stderr",
+      "sha256": "cff642bab40ea04bc5e91cbd67dfc941538e5782af57d36f94529c7e2db38b6a"
+    },
+    {
+      "path": "native/workflows/ce-tui-70bad1a9-a807-4e73-b395-5c2c57164840-termscope.jsonl",
+      "sha256": "d3362a09537ecdda4ce04adfd9cddd71c0af61e4b1a3cd388af5d7ade088d11d"
+    },
+    {
+      "path": "native/workflows/ce-tui-70bad1a9-a807-4e73-b395-5c2c57164840-termscope.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/workflows/tui-case.json",
+      "sha256": "9de2570ee96bdcb3c9da5b821cfe171653678765dd4e1cfa69e5ab2e0aa92ee0"
+    },
+    {
+      "path": "native/workflows/tui-case.log",
+      "sha256": "0f576ece854f5c8f802798893fed949d2b57d2d8d20e5e8ac6e0b9211962acd5"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "c25759ad1ad627e84add12e9501dba16a27c5f972b25b19ffca32009fa8e7aae"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "686bcb297c2f7381319d3896d2249e82977267e07284e3651f241c1f59389457"
+    }
+  ]
+}

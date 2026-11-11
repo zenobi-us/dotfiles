@@ -1,0 +1,80 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "run",
+  "id": "fix-unexpected-0011",
+  "status": "sealed",
+  "startedAt": "2026-11-11T11:47:23.887Z",
+  "finishedAt": "2026-11-11T11:47:24.477Z",
+  "surface": "tui",
+  "driver": "tui",
+  "driverVersion": "termscope 0.1.1",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "case",
+      "path": "cases/case/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/case/case.json",
+      "sha256": "2e91c525c093b4a7a6a21b7b7575a6f736bda7e3bf71ed507ebf4b76a3333bdc"
+    },
+    {
+      "path": "cases/case/events.jsonl",
+      "sha256": "728dcb258de4c3bf1d42c862aecada9d5da4adb5e9d90fdb6efa4c7c0d56b523"
+    },
+    {
+      "path": "cases/case/index.md",
+      "sha256": "df32611569d7b44c28a4d249f5702e5d9873576ef6b36f6f91840658f2e4e96e"
+    },
+    {
+      "path": "index.md",
+      "sha256": "bf4daa4b5e9c521259c38807de9ee8c3d78feeb614b70817ee0986a1dcbd52eb"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "3a9e8790459d1be0be53ed09628aa4b14756b45f1d945668d9779ed60e4f9a84"
+    },
+    {
+      "path": "native/runs/case-case.log",
+      "sha256": "865e950b6cf301baf79865784b9546d09fe545d982961bc9688dd9e9517da077"
+    },
+    {
+      "path": "native/workflows/ce-tui-13e4edba-e7e7-4f55-b6d7-72f97c14c16f-cage.stderr",
+      "sha256": "cff642bab40ea04bc5e91cbd67dfc941538e5782af57d36f94529c7e2db38b6a"
+    },
+    {
+      "path": "native/workflows/ce-tui-13e4edba-e7e7-4f55-b6d7-72f97c14c16f-frame-000001.png",
+      "sha256": "cec04114320172706aff70a86c72ac2add97865b96d57a5007f4f5afed47f356"
+    },
+    {
+      "path": "native/workflows/ce-tui-13e4edba-e7e7-4f55-b6d7-72f97c14c16f-frame-000002.png",
+      "sha256": "7500ec5ac44ceca863bb412bf508b8de9b6fb19e47fd330aa0f73ad328994fca"
+    },
+    {
+      "path": "native/workflows/ce-tui-13e4edba-e7e7-4f55-b6d7-72f97c14c16f-termscope.jsonl",
+      "sha256": "6d865250dfd5c2cda46d11778237a4dff3fe9cc0aab57d840ae755b4ab10d76f"
+    },
+    {
+      "path": "native/workflows/ce-tui-13e4edba-e7e7-4f55-b6d7-72f97c14c16f-termscope.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/workflows/tui-case.json",
+      "sha256": "7e55f49f5f99e16134a65dd02e47f1c366e403149471a6d6c2e66d0b221d03b7"
+    },
+    {
+      "path": "native/workflows/tui-case.log",
+      "sha256": "865e950b6cf301baf79865784b9546d09fe545d982961bc9688dd9e9517da077"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "58037e055d0a3cbc0fba6891e3e0ba44e9f39595d2df3f92da3b890f0a6f6f1a"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "3a9e8790459d1be0be53ed09628aa4b14756b45f1d945668d9779ed60e4f9a84"
+    }
+  ]
+}

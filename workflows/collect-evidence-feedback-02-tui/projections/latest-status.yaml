@@ -2,20 +2,29 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "collect-evidence-feedback-02-tui",
   "ticket": "tracker/tickets/collect-evidence-feedback-02-tui.md",
-  "state": "REVIEW_FAILED",
+  "state": "FIXED",
   "status": "completed",
-  "latest_receipt": "review-0009",
-  "latest_source_commit": "68acd4074c636933fdf5e8645a09d1acf6abdf67",
-  "latest_source_tree": "68589997ea8dafb4a336777829a0105806fa44d2",
-  "source_identity_kind": "clean-review-target-after-result-receipt-commit",
+  "latest_receipt": "fix-0011",
+  "latest_source_commit": "acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa",
+  "latest_source_tree": "1c5b4864e098d70b53519051d2df6d05184f5729",
+  "source_identity_kind": "clean-source-fix-commit",
   "latest_review_verdict": "FAILURE",
-  "open_findings": ["STD-01", "STD-02", "SPEC-1", "SPEC-2"],
-  "parent_completion": "completed",
+  "open_findings": [],
+  "parent_completion": "pending",
   "limits": [
     "Private Linux headless terminal only; not a reproduction of an existing user terminal.",
     "Native video unavailable; no simulated recording.",
     "Host font and dimensions constrain explicit image expectations.",
     "Prior Playwright Chrome absence and Surf Submitted/Not submitted failure remain unchanged, not rerun. Both web drivers are unchanged.",
     "TypeScript compiler/LSP unavailable."
-  ]
+  ],
+  "resolved_findings": [
+    "STD-01",
+    "STD-02",
+    "SPEC-1",
+    "SPEC-2"
+  ],
+  "latest_review_source_commit": "68acd4074c636933fdf5e8645a09d1acf6abdf67",
+  "current_source_reviewed": false,
+  "next_action": "Parent validates child result, then requests fresh independent review."
 }

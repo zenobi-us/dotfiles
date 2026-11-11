@@ -6,7 +6,7 @@ kind: pr-draft
 
 ## Status
 
-Implementation acceptance and parent completion passed. Independent review returned FAILURE for commit 68acd4074c636933fdf5e8645a09d1acf6abdf67. Fixes and a fresh review are required. No merge, push or ticket completion occurred.
+Fix child completed all four finding IDs on acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa. Parent acceptance and a fresh independent review are required. The prior FAILURE remains historical. No merge, push or ticket completion occurred.
 
 ## Ticket summary and problem
 
@@ -57,3 +57,36 @@ Parent approved the bounded local fixture and private resources. Exact command, 
 ## Handoff
 
 Child terminal t4z, parent t4t, run a9b3db3b-2456-4b2a-ad85-babd66c2428b. [Result receipt](../events/implementation-0005.yaml). Parent verified and acknowledged the result and closed child terminal t4z. [Parent acceptance](../events/implementation-0006.yaml) records clean review target 68acd4074c636933fdf5e8645a09d1acf6abdf67 and its workflow-only advance. Keep the source worktree.
+
+## fix-0011 — native review findings resolved
+
+Source: acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa, tree 1c5b4864e098d70b53519051d2df6d05184f5729. [Fix start](../events/fix-0010.yaml). [Child result](../events/fix-0011.yaml). [Exact validation](../artifacts/snapshots/validation-fix-0011.json). Parent acceptance and a fresh independent review remain pending. Latest historical verdict: FAILURE on the previous commit; it does not review this source. No merge, rebase, push, publication or ticket completion occurred.
+
+### Resolved findings
+
+- **STD-01 / SPEC-2:** Native capture errors now set capture failure and leave unexecuted assertions not-run. A genuine image assertion failure remains an assertion failure.
+- **STD-02:** Register the native diagnostics destination at session open, before preconditions. All-blocked cases retain native JSONL, stderr and frames. The public regression verifies the private runtime, tmux server, application, termscope, Cage and foot are released.
+- **SPEC-1:** Before input, compare live confirmation lines from terminal text and native OCR with the approved expected screen. A retained heading alone cannot approve a different operation. An explicitly expected prompt still accepts its approved key.
+
+### Changed files in this fix
+
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/tui.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/driver.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/tui-driver.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/native-workflow.test.ts
+
+The commit hook advanced the developer bundle to 0.2.16 in both metadata files. Neither web driver changed.
+
+### Validation in this fix
+
+- **Native public regressions:** 6 passed, 0 failed, 42 assertions. Cases cover delayed rendering, post-doctor grim failure, unmet precondition, unexpected confirmation, expected confirmation and genuine image failure.
+- **Common regressions:** 99 passed, 0 failed, 892 assertions across workflow.test.ts and verdict.test.ts.
+- **Real native smoke:** Public doctor, init, render, compile, run, validate and verdicts exercised. [Transition](../artifacts/evidence/fix-transition-0011/run.json) passed two native image assertions; report generated. [Unexpected confirmation](../artifacts/evidence/fix-unexpected-0011/run.json) returned 3/BLOCKED with no input side effect. [Unmet precondition](../artifacts/evidence/fix-precondition-0011/run.json) returned 3/BLOCKED and retained native diagnostics after cleanup. [Post-doctor capture failure](../artifacts/evidence/fix-capture-0011/run.json) returned 1/FAIL with capture-category failure and not-run assertion. All four sealed runs validate.
+- **Original image inspection:** Both 1280×720 originals show Ready/Details, Selected item on the next 20 px line, purple bar and native background. Actual SHA-256 matches sealed assets: ready 2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f; details b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a.
+
+### Remaining findings and limits
+
+No consumed finding remains unresolved in this fix. Fresh independent review is still required. TypeScript LSP initialization failed because no valid TypeScript installation was available; no compiler check is claimed. Native support remains bounded to the prepared Linux CPU toolchain. Prompt detection is conservative, English/OCR-dependent, and does not establish arbitrary dialog support. Prior web failures remain unchanged and were not rerun. No tools were installed.

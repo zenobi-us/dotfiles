@@ -1,0 +1,29 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "plan",
+  "terminal": {
+    "command": [
+      "/var/home/zenobius/.local/share/mise/installs/bun/1.4.3/bin/bun",
+      "/tmp/native-fix-0011-7kb2L4/unexpected.ts"
+    ],
+    "cwd": "/tmp/native-fix-0011-7kb2L4",
+    "columns": 80,
+    "rows": 24,
+    "font": "monospace:size=12",
+    "lineHeight": 20
+  },
+  "test": {
+    "id": "case",
+    "claim": "Native unexpected",
+    "pass": "Approved native outcome",
+    "fail": "Unexpected native outcome",
+    "steps": [
+      {
+        "do": "press",
+        "says": "Open details.",
+        "key": "RET",
+        "screen": "Ready screen"
+      }
+    ]
+  }
+}
