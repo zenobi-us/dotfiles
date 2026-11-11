@@ -1,0 +1,138 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "a53c09ef6fc30a4aaf072761dc3f4e9defd7f4c1",
+  "source_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "receipt_id": "finish-finished-0033",
+  "created_at": "2026-11-11T21:47:05.364438+00:00",
+  "session_id": "hc:t5k",
+  "pane_id": null,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-finished-0033.json"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/projections/latest-status.yaml"
+    }
+  ],
+  "phase": "finish",
+  "attempt": 2,
+  "review_receipt": "workflows/skill-contract-manifests-01-local-definitions/events/review-final-0022.yaml",
+  "reviewed_source_commit": "a53c09ef6fc30a4aaf072761dc3f4e9defd7f4c1",
+  "reviewed_source_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "base_before": "cd0e4d6a7becc5f8ad9c841346965f8a9bece0ec",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "event": "phase-complete",
+  "status": "FINISHED",
+  "parent_receipt": "finish-worktree-removed-0032",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-worktree-removed-0032.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-ticket-completed-0028.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-cleanup-approval-0030.json"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/artifacts/reviews/review-review-final-0022.md"
+    }
+  ],
+  "merged_commit": "26f56acbda0de958891709d4152ee9b123d96327",
+  "merged_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "merged_parents": [
+    "cd0e4d6a7becc5f8ad9c841346965f8a9bece0ec"
+  ],
+  "pushed": true,
+  "ticket_completed": true,
+  "worktree_removed": true,
+  "workspace_closed": true,
+  "remote_observed_commit": "d42f57e1dfe631ca227af56c6b69490f75b2a3d6",
+  "tracker_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "tracker_state": "completed",
+  "tracker_commit": "fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c",
+  "cleanup_repair_commit": "d42f57e1dfe631ca227af56c6b69490f75b2a3d6",
+  "integrated_validation": [
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts mise/conf.d/devtools-agent/bundles/agent-core/skills/result-delivery mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "result": "PASS: 122 tests, 0 failures, 534 assertions across 6 files"
+    },
+    {
+      "command": "mise exec -- bun /tmp/skill-contract-finish-smoke.ts /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "result": "PASS: actual public executable from /tmp; exact local/builtin definitions; valid/empty/malformed/unresolved manifests; separate produces/accepts; persisted bytes unchanged"
+    },
+    {
+      "command": "retained bundle typecheck baseline",
+      "result": "Known unrelated muxer-subagents/scripts/router.ts:154 TS2554 retained and not rerun; no clean typecheck claim"
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/cleanup-merged/scripts/cleanup-merged.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "result": "PASS: 8 tests, 0 failures, 21 assertions; inline-option regression failed before fix"
+    },
+    {
+      "command": "cleanup-merged.ts remove feature/skill-contract-manifests-01-local-definitions --min-age=0s",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "result": "PASS: exactly named source branch/worktree removed; refused []; source path absent"
+    },
+    {
+      "command": "records.ts check after ticket completion",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "result": "PASS: tracker-ticket/v1, completed state, membership, dependencies, normal discovery"
+    }
+  ],
+  "recovery_mode": "reconcile",
+  "recovery_reason": "Reviewed source integrated once; remote integration, canonical ticket completion and authorized cleanup repair published; guarded removal succeeded. Earlier failure and approval preserved append-only.",
+  "cleanup_observation": {
+    "branch": "feature/skill-contract-manifests-01-local-definitions",
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+    "path_exists": false,
+    "cleanup_script_removed": [
+      "feature/skill-contract-manifests-01-local-definitions"
+    ],
+    "cleanup_script_refused": [],
+    "source_workspace": "absent after all dispatched child tabs closed; parent and unrelated spaces retained"
+  },
+  "summary": "FINISHED: reviewed feature squash integrated and published; ticket completed and validated; named source branch/worktree removed; all child/workspace sessions closed. Inline age-option blocker repaired, regression verified and repair published. Unrelated typecheck baseline retained."
+}

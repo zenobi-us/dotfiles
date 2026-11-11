@@ -5,5 +5,5 @@ initiative: skill-contract-manifests
 event_root: events
 artifact_root: artifacts
 projection_root: projections
-latest_receipt: implementation-reconcile-0013
-state: IMPLEMENTED
+latest_receipt: finish-finished-0033
+state: FINISHED

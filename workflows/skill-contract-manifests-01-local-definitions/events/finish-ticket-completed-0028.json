@@ -1,0 +1,101 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "a53c09ef6fc30a4aaf072761dc3f4e9defd7f4c1",
+  "source_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "receipt_id": "finish-ticket-completed-0028",
+  "created_at": "2026-11-11T21:13:07.451519+00:00",
+  "session_id": "hc:t5k",
+  "pane_id": null,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-ticket-completed-0028.json"
+    }
+  ],
+  "phase": "finish",
+  "attempt": 2,
+  "review_receipt": "workflows/skill-contract-manifests-01-local-definitions/events/review-final-0022.yaml",
+  "reviewed_source_commit": "a53c09ef6fc30a4aaf072761dc3f4e9defd7f4c1",
+  "reviewed_source_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "base_before": "cd0e4d6a7becc5f8ad9c841346965f8a9bece0ec",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "event": "phase-checkpoint",
+  "status": "FINISHING",
+  "checkpoint": "ticket_completed",
+  "next_step": "cleanup",
+  "parent_receipt": "finish-pushed-0027",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-pushed-0027.json"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+    }
+  ],
+  "merged_commit": "26f56acbda0de958891709d4152ee9b123d96327",
+  "merged_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "merged_parents": [
+    "cd0e4d6a7becc5f8ad9c841346965f8a9bece0ec"
+  ],
+  "pushed": true,
+  "remote_observed_commit": "fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c",
+  "ticket_completed": true,
+  "tracker_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "tracker_state": "completed",
+  "tracker_commit": "fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c",
+  "tracker_publication": {
+    "remote": "origin",
+    "ref": "refs/heads/master",
+    "observed_commit": "fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c",
+    "commit_reachable": true
+  },
+  "integrated_validation": [
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts mise/conf.d/devtools-agent/bundles/agent-core/skills/result-delivery mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "result": "PASS: 122 tests, 0 failures, 534 assertions across 6 files"
+    },
+    {
+      "command": "mise exec -- bun /tmp/skill-contract-finish-smoke.ts /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "result": "PASS: actual public executable from /tmp; exact local/builtin definitions; valid/empty/malformed/unresolved manifests; separate produces/accepts; persisted bytes unchanged"
+    },
+    {
+      "command": "retained bundle typecheck baseline",
+      "result": "Known unrelated muxer-subagents/scripts/router.ts:154 TS2554 retained and not rerun; no clean typecheck claim"
+    }
+  ],
+  "validation": [
+    {
+      "command": "records.ts check after completion",
+      "result": "PASS tracker-ticket/v1, completed state, membership and normal discovery; all four acceptance criteria checked"
+    },
+    {
+      "command": "git push origin master:master and named remote reachability",
+      "result": "PASS; ticket completion and reviewed integration reachable on observed origin/master"
+    }
+  ]
+}

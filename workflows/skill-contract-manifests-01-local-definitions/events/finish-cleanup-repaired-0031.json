@@ -1,0 +1,84 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "a53c09ef6fc30a4aaf072761dc3f4e9defd7f4c1",
+  "source_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "receipt_id": "finish-cleanup-repaired-0031",
+  "created_at": "2026-11-11T21:45:15.835175+00:00",
+  "session_id": "hc:t5k",
+  "pane_id": null,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-cleanup-repaired-0031.json"
+    }
+  ],
+  "phase": "finish",
+  "attempt": 2,
+  "review_receipt": "workflows/skill-contract-manifests-01-local-definitions/events/review-final-0022.yaml",
+  "reviewed_source_commit": "a53c09ef6fc30a4aaf072761dc3f4e9defd7f4c1",
+  "reviewed_source_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "base_before": "cd0e4d6a7becc5f8ad9c841346965f8a9bece0ec",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "event": "phase-checkpoint",
+  "status": "FINISHING",
+  "checkpoint": "ticket_completed",
+  "next_step": "cleanup_verification",
+  "parent_receipt": "finish-cleanup-approval-0030",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-cleanup-approval-0030.json"
+    }
+  ],
+  "merged_commit": "26f56acbda0de958891709d4152ee9b123d96327",
+  "merged_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "merged_parents": [
+    "cd0e4d6a7becc5f8ad9c841346965f8a9bece0ec"
+  ],
+  "pushed": true,
+  "ticket_completed": true,
+  "cleanup_repair": {
+    "cause": "CLI option helper recognized split --min-age 0s but ignored --min-age=0s; default age guard hid freshly squashed integrated branch",
+    "change": "Two-line support for inline option values; existing split parsing, age guard, Worktrunk authority and busy-worktree check unchanged",
+    "files": [
+      "mise/conf.d/devtools-agent/bundles/developer/skills/git/cleanup-merged/scripts/cleanup-merged.ts",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/git/cleanup-merged/scripts/cleanup-merged.test.ts",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/git/cleanup-merged/SKILL.md"
+    ]
+  },
+  "validation": [
+    {
+      "command": "public CLI regression before fix",
+      "result": "FAIL: split preview includes young integrated branch; inline remove returns 1 instead of 0"
+    },
+    {
+      "command": "mise exec -- bun test cleanup-merged/scripts/cleanup-merged.test.ts",
+      "result": "PASS: 8 tests, 21 assertions; default age, busy worktree, named branch removal and both option forms"
+    },
+    {
+      "command": "cleanup-merged.ts remove feature/skill-contract-manifests-01-local-definitions --min-age=0s",
+      "result": "PASS: removed exactly named branch; refused []"
+    }
+  ]
+}

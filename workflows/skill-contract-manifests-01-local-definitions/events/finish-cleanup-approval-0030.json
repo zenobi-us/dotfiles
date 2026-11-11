@@ -1,0 +1,54 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "a53c09ef6fc30a4aaf072761dc3f4e9defd7f4c1",
+  "source_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "receipt_id": "finish-cleanup-approval-0030",
+  "created_at": "2026-11-11T21:42:26.907827+00:00",
+  "session_id": "hc:t5k",
+  "pane_id": null,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-cleanup-approval-0030.json"
+    }
+  ],
+  "phase": "finish",
+  "attempt": 2,
+  "review_receipt": "workflows/skill-contract-manifests-01-local-definitions/events/review-final-0022.yaml",
+  "reviewed_source_commit": "a53c09ef6fc30a4aaf072761dc3f4e9defd7f4c1",
+  "reviewed_source_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "base_before": "cd0e4d6a7becc5f8ad9c841346965f8a9bece0ec",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "event": "operator-approval",
+  "status": "approved",
+  "parent_receipt": "finish-cleanup-failed-0029",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-cleanup-failed-0029.json"
+    }
+  ],
+  "recovery_mode": "reconcile",
+  "ownership_approval": "User selected Repair cleanup and finish: diagnose/fix cleanup-merged Worktrunk handling, verify, retry only this finished branch."
+}
