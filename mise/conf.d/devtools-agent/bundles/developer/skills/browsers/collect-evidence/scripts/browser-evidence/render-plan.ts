@@ -43,8 +43,11 @@ function test(t: Test): string {
 export function renderPlan(plan: Plan): string {
   const env = plan.environment ?? {};
   const envLines = [
-    `- URL: \`${plan.base}\``,
-    `- Account: ${env.account ?? "the signed-in test account"}`,
+    `- Surface: \`${plan.base}\``,
+    plan.driver === "tui" ? `- Command: \`${JSON.stringify(plan.terminal?.command)}\`` : `- Account: ${env.account ?? "the signed-in test account"}`,
+    plan.driver === "tui" ? `- Working directory: \`${plan.terminal?.cwd}\`` : "",
+    plan.driver === "tui" ? `- Terminal: ${plan.terminal?.columns} × ${plan.terminal?.rows}; ${plan.terminal?.font}; line height ${plan.terminal?.lineHeight}px` : "",
+    plan.driver === "tui" ? `- Approved input steps: ${plan.approval.confirmations?.join(", ") || "None"}` : "",
     env.branch ? `- Branch: \`${env.branch}\`` : "",
     env.notes ? `- Notes: ${env.notes}` : "",
   ].filter(Boolean).join("\n");
@@ -52,7 +55,7 @@ export function renderPlan(plan: Plan): string {
   return [
     `# Manual test plan — ${plan.workId}`,
     "",
-    "Steps for a person to follow in a browser. Written before the browser opened,",
+    `Steps for a person to follow in ${plan.driver === "tui" ? "the approved private terminal" : "a browser"}. Written before collection,`,
     "and generated from `plan.ts`; edit the plan, not this file. The same steps were",
     `driven with \`${plan.driver}\`, which is how the evidence was captured.`,
     "",

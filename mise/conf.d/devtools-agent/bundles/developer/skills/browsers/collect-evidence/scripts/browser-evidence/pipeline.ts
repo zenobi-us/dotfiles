@@ -14,6 +14,7 @@ import { renderPlan } from "./render-plan.ts";
 import { planJson, renderComment } from "./results.ts";
 import { CliError, sh, cancelDriverCommands } from "./sh.ts";
 import { finalizeRun, validateRun } from "./records.ts";
+import { doctorTui } from "./drivers/tui-driver.ts";
 
 export const schema = "collect-evidence/v1";
 export type Options = {
@@ -88,13 +89,14 @@ export async function doctor(options: Options): Promise<object> {
 async function checkPrerequisites(options: Options, state: Cancellation): Promise<object> {
   checkCancellation(state);
   const driver = options.driver ?? "playwright";
-  if (driver !== "surf" && driver !== "playwright") invalid("--driver must be surf or playwright");
+  if (!["surf", "playwright", "tui"].includes(driver)) invalid("--driver must be surf, playwright or tui");
   if (!Bun.which("mq") || !Bun.which("/usr/bin/mv")) throw new CliError("Collection requires installed mq and GNU /usr/bin/mv; complete setup separately", 3);
   const publication = await sh(["/usr/bin/mv", "--help"]);
   checkCancellation(state);
   if (publication.code !== 0 || !publication.out.includes("--no-copy") || !publication.out.includes("none-fail")) {
     throw new CliError("GNU /usr/bin/mv lacks exclusive no-copy publication support", 3);
   }
+  if (driver === "tui") return doctorTui();
   if (!Bun.which(driver === "surf" ? "surf" : "playwright-cli")) throw new CliError(`${driver} CLI is unavailable; install it separately before capture`, 3);
   const r = await sh(driver === "surf" ? ["surf", "doctor", "--json"] : ["playwright-cli", "--version"]);
   checkCancellation(state);
@@ -118,13 +120,16 @@ async function checkPrerequisites(options: Options, state: Cancellation): Promis
 export async function initWorkspace(dir: string, options: Options): Promise<object> {
   const destination = await route(options);
   const driver = options.driver ?? "playwright";
-  if (driver !== "playwright" && driver !== "surf") invalid("--driver must be surf or playwright");
+  if (!["playwright", "surf", "tui"].includes(driver)) invalid("--driver must be surf, playwright or tui");
   await outsideSource(dir, options.repository!);
   if (existsSync(dir)) invalid(`Working directory already exists: ${dir}`);
   if (options.dryRun) return { dryRun: true, directory: dir, destination };
   await mkdir(dir, { recursive: true });
   const planModule = join(import.meta.dir, "plan.ts");
-  await writeFile(join(dir, "plan.ts"), `import type { Plan } from ${JSON.stringify(planModule)};\n\nexport const plan: Plan = {\n  schema: "collect-evidence/v1", kind: "plan",\n  workId: ${JSON.stringify(options.workflow)}, driver: ${JSON.stringify(driver)},\n  base: "http://127.0.0.1:8090",\n  approval: { origins: ["http://127.0.0.1:8090"], confirmations: [] },\n  tests: [],\n};\n`, { flag: "wx" });
+  const scope = driver === "tui"
+    ? `base: "terminal://private",\n  terminal: { command: [], cwd: ${JSON.stringify(resolve(options.repository!))}, columns: 80, rows: 24, font: "monospace:size=12", lineHeight: 20 },\n  approval: { origins: [], confirmations: [] },`
+    : `base: "http://127.0.0.1:8090",\n  approval: { origins: ["http://127.0.0.1:8090"], confirmations: [] },`;
+  await writeFile(join(dir, "plan.ts"), `import type { Plan } from ${JSON.stringify(planModule)};\n\nexport const plan: Plan = {\n  schema: "collect-evidence/v1", kind: "plan",\n  workId: ${JSON.stringify(options.workflow)}, driver: ${JSON.stringify(driver)},\n  ${scope}\n  tests: [],\n};\n`, { flag: "wx" });
   await writeFile(join(dir, "workspace.json"), json("event", { repository: resolve(options.repository!), workflow: options.workflow, runId: options.run, destination }));
   return { directory: dir, destination, next: "Author cases in plan.ts, then render and compile. Confirm the plan before run." };
 }
@@ -185,7 +190,7 @@ async function collectWithCancellation(dir: string, options: Options, state: Can
   if (options.dryRun) return { dryRun: true, destination, driver: plan.driver, tests: tests.map(t => t.id) };
   const capability = await checkPrerequisites({ driver: plan.driver }, state);
   checkCancellation(state);
-  const version = await sh([plan.driver === "surf" ? "surf" : "playwright-cli", "--version"]);
+  const version = await sh([plan.driver === "tui" ? "termscope" : plan.driver === "surf" ? "surf" : "playwright-cli", "--version"]);
   checkCancellation(state);
   const staging = await mkdtemp(join(tmpdir(), "collect-evidence-"));
   await outsideSource(staging, workspace.repository);
@@ -203,7 +208,7 @@ async function collectWithCancellation(dir: string, options: Options, state: Can
     if (plan.video) await mkdir(join(staging, "report", "videos"));
     await compileInto(staging, plan);
     checkCancellation(state);
-    await driver.open(session);
+    await driver.open(session, join(staging, "workflows"));
     opened = true;
     checkCancellation(state);
     state.cancellable = true;
@@ -267,9 +272,9 @@ export async function reportRun(dir: string): Promise<{ runId: string; html: str
       const media = asset.mediaType === "video/webm"
         ? `<video controls aria-label="Case ${escape(c.id)} recording" src="data:${asset.mediaType};base64,${bytes.toString("base64")}" width="${asset.width}" height="${asset.height}"></video>`
         : `<img alt="Step ${escape(asset.stepId)}, capture ${asset.captureSequence}" src="data:${asset.mediaType};base64,${bytes.toString("base64")}" width="${asset.width}" height="${asset.height}">`;
-      images.push(`<figure>${media}<figcaption>${escape(asset.id)} · ${asset.width} × ${asset.height} · ${escape(asset.capturedAt ?? "Capture time unknown")}<br>URL: ${escape(asset.url)}<br>SHA-256: <code>${asset.sha256}</code></figcaption></figure>`);
+      images.push(`<figure>${media}<figcaption>${escape(asset.id)} · ${asset.width} × ${asset.height} · ${escape(asset.capturedAt ?? "Capture time unknown")}<br>Source: ${escape(asset.url)}${asset.terminal ? `<br>Terminal identity: <code>${escape(JSON.stringify(asset.terminal))}</code>` : ""}<br>SHA-256: <code>${asset.sha256}</code></figcaption></figure>`);
     }
-    sections.push(`<section><h2>Case ${escape(c.id)}: ${escape(c.purpose)} — ${verdicts[i]!.verdict}</h2><p>Expected: ${escape(c.expected.pass)}</p><p>Failure: ${escape(c.expected.fail)}</p><ol>${c.steps.map(s => `<li>${escape(s.purpose)}<p>Observed: ${escape(s.observed.join("; ") || "Not executed")}</p><p>Assertion: ${s.assertionResult}</p></li>`).join("")}</ol>${c.errors.map(e => `<p>${escape(e.category)}: ${escape(e.message)}</p>`).join("")}${images.join("\n")}<p>Limits: ${escape(c.limits.join("; ") || "None recorded")}</p></section>`);
+    sections.push(`<section><h2>Case ${escape(c.id)}: ${escape(c.purpose)} — ${verdicts[i]!.verdict}</h2><p>Expected: ${escape(c.expected.pass)}</p><p>Failure: ${escape(c.expected.fail)}</p><ol>${c.steps.map(s => `<li>${escape(s.purpose)}<p>Observed: ${escape(s.observed.join("; ") || "Not executed")}</p><p>Assertion: ${s.assertionResult}</p></li>`).join("")}</ol>${c.errors.map(e => `<p>${escape(e.category)}: ${escape(e.message)}</p>`).join("")}${images.join("\n")}<p>Limits: ${escape(c.limits.join("; ") || "None recorded")}</p><p>Side effects: ${escape(Array.isArray(c.sideEffects) ? c.sideEffects.join("; ") : c.sideEffects)}</p></section>`);
   }
   return { runId: run.id, html: `<!doctype html><html lang="en"><meta charset="utf-8"><title>Evidence ${escape(run.id)}</title><style>body{font:16px system-ui;max-width:1000px;margin:32px auto;padding:16px}img{max-width:100%;height:auto}section{border-top:1px solid;padding-block:16px}code{overflow-wrap:anywhere}figcaption{font-size:14px}</style><body><h1>Evidence ${escape(run.id)}</h1><p>Driver: ${escape(plan.driver)} · ${escape(run.driverVersion)}</p><p>Capture status and assertions are separate. A screenshot does not prove a passing assertion.</p>${sections.join("\n")}<h2>Cleanup</h2><p>The collector closed only its owned driver session before finalization. Publication is separate.</p></body></html>`, cases, verdicts };
 }

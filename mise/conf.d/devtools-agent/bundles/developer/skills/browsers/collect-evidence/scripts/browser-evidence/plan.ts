@@ -33,7 +33,7 @@ export type Step =
   */
  | { do: "click"; says: Says; locator: string; dom?: boolean; shot?: Slug }
  /** Type into a locator. `text` is a literal; never put a secret here. */
- | { do: "fill"; says: Says; locator: string; text: string; shot?: Slug }
+ | { do: "fill"; says: Says; locator: string; text: string; screen?: string; shot?: Slug }
  /**
   * Read something and keep it. The captured value lands in the evidence
   * record's `resolved` field, so capture the thing that identifies the
@@ -61,6 +61,11 @@ export type Step =
    */
   timeoutMs?: number;
   shot?: Slug;
+  image?: {
+   width: number; height: number;
+   pixels: Array<{ x: number; y: number; rgb: [number, number, number]; tolerance?: number }>;
+   lines: Array<{ text: string; top: number; tolerance?: number }>;
+  };
  }
  /**
   * Wait for a locator to appear before going on. A single-page app renders
@@ -76,6 +81,7 @@ export type Step =
   do: "wait";
   says?: Says;
   locator: string;
+  text?: string;
   /**
    * Wait for the locator to be gone instead. This is the gate after a
    * delete or a dismiss: the next check only means something once the
@@ -102,7 +108,7 @@ export type Step =
   * as `Enter`, `Escape`, `Tab` or `ArrowDown`; they spell combinations
   * differently (surf `ctrl+a`, playwright `Control+a`).
   */
- | { do: "press"; says: Says; key: string; shot?: Slug }
+ | { do: "press"; says: Says; key: string; screen?: string; shot?: Slug }
  /**
   * Something only a human can finish — a popup the driver suppresses, a
   * payment, a second factor. The run records PARTIAL and `needs` says what
@@ -139,9 +145,10 @@ export type Plan = {
  schema: "collect-evidence/v1";
  kind: "plan";
  /** Origins and stable step IDs approved before collection starts. */
- approval: { origins: string[]; confirmations?: string[] };
+ approval: { origins: string[]; confirmations?: string[]; terminal?: { command: string[]; cwd: string } };
  workId: string;
- driver: "playwright" | "surf";
+ driver: "playwright" | "surf" | "tui";
+ terminal?: { command: string[]; cwd: string; columns: number; rows: number; font: string; lineHeight: number };
  /** Base URL. Every relative `navigate` hangs off this. */
  base: string;
  /** Printed in the report's environment line. */
@@ -207,6 +214,12 @@ export type Evidence = {
  captureSequence?: number;
  captureStatus?: "captured" | "failed" | "not-requested";
  toolVersion?: string;
+ terminal?: {
+  session: string; socket: string; pane: string; tty: string;
+  display: string; runtime: string; cagePid: number; footPid: number;
+  columns: number; rows: number; font: string; lineHeight: number;
+  cleanup: "pending" | "released";
+ };
 };
 
 /** `1.4` — the plan position of a step, used everywhere as its identity. */

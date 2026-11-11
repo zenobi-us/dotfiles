@@ -35,3 +35,11 @@ Finalization builds privately, validates records and source assets, seals files 
 Consumers reject unsupported schemas, missing or changed media, invalid PNG or WebM data, bad references and order, symlinks, writable sealed files and incomplete finalization. A rejected run is not rewritten or resealed. Validation and reporting are read-only.
 
 Retries use new run IDs. Captures within a step increase their sequence without replacing earlier media. Titles can change without changing case IDs. Do not migrate earlier archives automatically. Explicit historical reuse preserves original bytes and provenance and must not claim to show the current application.
+
+## Native terminal surface
+
+The common run surface is web for Surf/Playwright and tui for the Linux native driver. Native assets use driver tui and captureMethod grim-native. Terminal metadata binds session, socket, pane, PTY, runtime directory, Wayland display, Cage PID, foot PID, columns, rows, font, lineHeight and released owned cleanup to the captured PNG. Event and asset metadata must agree. Image dimensions and SHA-256 come from actual media bytes, not the character grid.
+
+The same Plan/Test/Step model records the approved terminal command and directory. approval.terminal must match that scope exactly. Every input requires expected current screen content and an approved stable step ID. Native expect steps check image dimensions, RGB probes and at least two distinct text line positions. A matching buffer alone cannot prove the visible frame. Read tui.md for the playbook and current native verification blocker.
+
+Case notes and reports retain native limitations and application-side-effect warnings. Native video is explicitly unavailable. Preserve native termscope JSONL, stderr and frame images without schema injection or reconstruction.

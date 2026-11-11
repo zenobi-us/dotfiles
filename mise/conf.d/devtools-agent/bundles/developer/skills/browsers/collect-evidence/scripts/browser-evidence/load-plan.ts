@@ -16,24 +16,26 @@ export async function loadPlan(dir: string): Promise<Plan> {
   if (plan.schema !== "collect-evidence/v1" || plan.kind !== "plan") {
     die(`${file} requires schema: "collect-evidence/v1" and kind: "plan"`, 2);
   }
-  if (!/^[A-Za-z0-9._-]+$/.test(plan.workId) || !["surf", "playwright"].includes(plan.driver)) {
+  if (!/^[A-Za-z0-9._-]+$/.test(plan.workId) || !["surf", "playwright", "tui"].includes(plan.driver)) {
     die(`${file} has an invalid workId or driver`, 2);
   }
-  if (!Array.isArray(plan.tests) || !plan.tests.length || !plan.approval ||
-      !Array.isArray(plan.approval.origins) || !plan.approval.origins.length ||
-      (plan.approval.confirmations !== undefined && !Array.isArray(plan.approval.confirmations))) {
-    die(`${file} requires tests and explicit approval.origins`, 2);
-  }
-  const origins = plan.approval.origins;
-  try {
-    for (const origin of origins) {
-      const url = new URL(origin);
-      if (!["http:", "https:"].includes(url.protocol) || url.origin !== origin || url.username || url.password) throw new Error();
+  if (plan.driver !== "tui") {
+    if (!Array.isArray(plan.tests) || !plan.tests.length || !plan.approval ||
+        !Array.isArray(plan.approval.origins) || !plan.approval.origins.length ||
+        (plan.approval.confirmations !== undefined && !Array.isArray(plan.approval.confirmations))) {
+      die(`${file} requires tests and explicit approval.origins`, 2);
     }
-    const base = new URL(plan.base);
-    if (!origins.includes(base.origin) || base.username || base.password) throw new Error();
-  } catch {
-    die(`${file} requires HTTP(S) origins and an approved base without credentials`, 2);
+    const origins = plan.approval.origins;
+    try {
+      for (const origin of origins) {
+        const url = new URL(origin);
+        if (!["http:", "https:"].includes(url.protocol) || url.origin !== origin || url.username || url.password) throw new Error();
+      }
+      const base = new URL(plan.base);
+      if (!origins.includes(base.origin) || base.username || base.password) throw new Error();
+    } catch {
+      die(`${file} requires HTTP(S) origins and an approved base without credentials`, 2);
+    }
   }
   const ids = new Set(plan.tests.flatMap(test => test.steps.map((_, index) => stepNumber(test.id, index))));
   if (plan.approval.confirmations?.some((id) => typeof id !== "string" || !ids.has(id))) {
@@ -45,7 +47,7 @@ export async function loadPlan(dir: string): Promise<Plan> {
   ]) {
     try {
       const url = new URL(to, plan.base);
-      if (!origins.includes(url.origin) || url.username || url.password) throw new Error();
+      if (!plan.approval.origins.includes(url.origin) || url.username || url.password) throw new Error();
     } catch {
       die(`${file} navigation is outside approved origins or contains credentials`, 2);
     }

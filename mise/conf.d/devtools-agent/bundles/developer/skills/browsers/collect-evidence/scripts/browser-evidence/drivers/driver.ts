@@ -9,6 +9,7 @@ import type { Plan, Precondition, Test } from "../plan.ts";
 import type { DriverRun } from "../verdict.ts";
 import { playwrightDriver } from "./playwright-driver.ts";
 import { surfDriver } from "./surf-driver.ts";
+import { tuiDriver } from "./tui-driver.ts";
 
 export type DriverName = Plan["driver"];
 
@@ -37,7 +38,7 @@ export interface Driver {
   compile(plan: Plan, test: Test, shotsDir: string): CompiledTest;
   /** A driver-safe session name derived from the plan. */
   sessionName(plan: Plan): string;
-  open(session: string): Promise<void>;
+  open(session: string, workflowDir?: string): Promise<void>;
   checkPrecondition(plan: Plan, p: Precondition, session: string): Promise<{ ok: boolean; detail: string }>;
   runTest(ctx: RunContext): Promise<DriverRun>;
   close(session: string): Promise<void>;
@@ -48,6 +49,7 @@ export interface Driver {
 const DRIVERS: Record<DriverName, Driver> = {
   playwright: playwrightDriver,
   surf: surfDriver,
+  tui: tuiDriver,
 };
 
 export function getDriver(name: DriverName): Driver {

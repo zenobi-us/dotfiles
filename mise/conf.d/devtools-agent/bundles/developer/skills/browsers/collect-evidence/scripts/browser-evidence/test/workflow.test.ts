@@ -254,3 +254,36 @@ for (const driver of ["surf", "playwright"]) {
     expect(JSON.parse(await readFile(join(dir, "plan.json"), "utf8")).data.preconditions).toEqual(preconditions);
   });
 }
+
+test("native TUI dry-run resolves its store without opening a terminal", async () => {
+  const dir = join(root, "native-dry");
+  const before = await readdir(root);
+  const result = await command(["init", dir, "--repository", repository, "--workflow", "native", "--run", "dry", "--driver", "tui", "--dry-run", "--json"]);
+  expect(result.code).toBe(0);
+  expect(JSON.parse(result.out)).toMatchObject({ dryRun: true, destination: { store: "repository", path: join(repository, "workflows/native/artifacts/evidence/dry") } });
+  expect(await readdir(root)).toEqual(before);
+});
+
+test.each(["scope", "screen", "image", "control", "confirmations"])("native TUI rejects unsafe %s before a driver starts", async (fault) => {
+  const dir = join(root, `native-${fault}`);
+  expect((await command(["init", dir, "--repository", repository, "--workflow", "native", "--run", fault, "--driver", "tui", "--json"])).code).toBe(0);
+  const plan = {
+    schema: "collect-evidence/v1", kind: "plan", workId: "native", driver: "tui", base: "terminal://private",
+    terminal: { command: ["/usr/bin/cat"], cwd: root, columns: 80, rows: 24, font: "monospace:size=12", lineHeight: 20 },
+    approval: { origins: [], confirmations: ["1.1"], terminal: { command: ["/usr/bin/cat"], cwd: root } },
+    tests: [{ id: "1", claim: "Read the selected screen", pass: "The screen is visible", fail: "The wrong screen is visible", steps: [
+      { do: "fill", says: "Type the label.", locator: "screen", text: "label", screen: "Ready" },
+      { do: "expect", says: "Check the label.", locator: "screen", text: "label", shot: "label", image: { width: 1280, height: 720, pixels: [{ x: 0, y: 0, rgb: [0, 0, 0] }], lines: [{ text: "label", top: 0 }, { text: "Ready", top: 20 }] } },
+    ] }],
+  };
+  if (fault === "scope") plan.approval.terminal.command = ["/usr/bin/false"];
+  if (fault === "screen") plan.tests[0]!.steps[0]!.screen = "";
+  if (fault === "image") plan.tests[0]!.steps[1]!.image!.pixels[0]!.x = 1280;
+  if (fault === "control") plan.tests[0]!.steps[0]!.text = "label" + String.fromCharCode(10);
+  const source = JSON.stringify(plan);
+  await writeFile(join(dir, "plan.ts"), `export const plan = ${fault === "confirmations" ? source.replace('\"confirmations\":[\"1.1\"]', '\"confirmations\":true') : source};`);
+  const result = await command(["compile", dir, "--json"]);
+  expect(result.code).toBe(2);
+  expect(JSON.parse(result.out)).toMatchObject({ schema: "collect-evidence/v1", kind: "error", success: false, code: 2 });
+  expect((await readdir(dir)).sort()).toEqual(["plan.ts", "workspace.json"]);
+});

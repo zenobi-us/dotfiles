@@ -10,6 +10,7 @@ import { spawn } from "node:child_process";
 import { inflateSync } from "node:zlib";
 import type { Evidence, Plan, Step, Test } from "./plan.ts";
 import { CliError } from "./sh.ts";
+import { checkTuiPlan } from "./tui-plan.ts";
 
 export const SCHEMA = "collect-evidence/v1" as const;
 type Kind = "run" | "plan" | "case" | "asset" | "event" | "error";
@@ -27,7 +28,8 @@ export interface ImageAssetRecord extends RecordHeader {
   captureSequence: number; sha256: string; mediaType: "image/png";
   width: number; height: number; capturedAt: string | null;
   viewport: CaptureEvidence["viewport"] | null;
-  surface: "web"; driver: Plan["driver"]; driverVersion: string; captureMethod: string; url: string;
+  surface: "web" | "tui"; driver: Plan["driver"]; driverVersion: string; captureMethod: string; url: string;
+  terminal?: Evidence["terminal"];
 }
 export interface VideoAssetRecord extends Omit<ImageAssetRecord, "mediaType"> {
   mediaType: "video/webm"; scope: "case"; durationMs: number | null;
@@ -55,11 +57,11 @@ export interface CaseRecord extends RecordHeader {
   kind: "case"; id: string; runId: string; order: number; purpose: string;
   preconditions: NonNullable<Plan["preconditions"]>; steps: StepRecord[];
   expected: { pass: string; fail: string }; events: string; assets: AssetRecord[];
-  errors: ErrorRecord[]; limits: string[]; sideEffects: "not-recorded";
+  errors: ErrorRecord[]; limits: string[]; sideEffects: "not-recorded" | string[];
 }
 export interface RunRecord extends RecordHeader {
   kind: "run"; id: string; status: "sealed"; startedAt: string; finishedAt: string;
-  surface: "web"; driver: Plan["driver"]; driverVersion: string;
+  surface: "web" | "tui"; driver: Plan["driver"]; driverVersion: string;
   plan: "plan.json"; cases: Array<{ id: string; path: string }>;
   files: Array<{ path: string; sha256: string }>;
 }
@@ -127,8 +129,9 @@ export async function finalizeRun(options: FinalizeRunOptions): Promise<Validate
             caseId: test.id, stepId: evidence.step, path, captureSequence: sequence,
             sha256: hash(bytes), mediaType: "image/png", ...dimensions,
             capturedAt: evidence.capturedAt ?? null, viewport: evidence.viewport ?? null,
-            surface: "web", driver: options.plan.driver, driverVersion: evidence.toolVersion ?? options.driverVersion,
-            captureMethod: `${options.plan.driver}-screenshot`, url: evidence.url,
+            surface: options.plan.driver === "tui" ? "tui" : "web", driver: options.plan.driver, driverVersion: evidence.toolVersion ?? options.driverVersion,
+            captureMethod: options.plan.driver === "tui" ? "grim-native" : `${options.plan.driver}-screenshot`, url: evidence.url,
+            ...(evidence.terminal ? { terminal: evidence.terminal } : {}),
           };
           assets.push(asset);
         }
@@ -153,7 +156,7 @@ export async function finalizeRun(options: FinalizeRunOptions): Promise<Validate
     await markdown(join(temporary, "index.md"), "run", `# Evidence ${options.runId}\n\nDriver: ${options.plan.driver} (${options.driverVersion})\n\n${cases.map((record) => `- [Case ${record.id}](cases/${record.id}/index.md): ${record.purpose}`).join("\n")}\n\nAssertions and captures have separate results. Unknown capture times remain unknown.\n`);
     const run: RunRecord = {
       schema: SCHEMA, kind: "run", id: options.runId, status: "sealed",
-      startedAt: options.startedAt, finishedAt: options.finishedAt, surface: "web",
+      startedAt: options.startedAt, finishedAt: options.finishedAt, surface: options.plan.driver === "tui" ? "tui" : "web",
       driver: options.plan.driver, driverVersion: options.driverVersion, plan: "plan.json",
       cases: cases.map((record) => ({ id: record.id, path: `cases/${record.id}/case.json` })),
       files: await inventory(temporary),
@@ -190,12 +193,13 @@ async function inspectRun(root: string): Promise<ValidatedRun> {
   const run = await readJson<RunRecord>(root, "run.json", "run");
   checkId(run.id); checkTime(run.startedAt); checkTime(run.finishedAt);
   requireValue(Date.parse(run.finishedAt) >= Date.parse(run.startedAt), "Run finishes before it starts");
-  requireValue(run.status === "sealed" && run.surface === "web" && run.plan === "plan.json", "Invalid run state");
+  requireValue(run.status === "sealed" && ["web", "tui"].includes(run.surface) && run.plan === "plan.json", "Invalid run state");
   requireValue(typeof run.driverVersion === "string" && run.driverVersion.length > 0, "Missing driver provenance");
   const envelope = await readJson<RecordHeader & { data: Plan }>(root, "plan.json", "plan");
   const plan = envelope.data;
   checkPlan(plan);
   requireValue(run.driver === plan.driver, "Run driver differs from plan");
+  requireValue(run.surface === (plan.driver === "tui" ? "tui" : "web"), "Run surface differs from plan");
   await safeFile(root, "plan.ts");
   const actualFiles = (await inventory(root)).filter((file) => file.path !== "run.json");
   requireValue(same(actualFiles, run.files), "Run files are missing, changed or unregistered");
@@ -240,7 +244,10 @@ async function inspectRun(root: string): Promise<ValidatedRun> {
       const original = await readFile(await safeFile(root, `native/report/${safeRelative(event.evidence.screenshot)}`));
       requireValue(bytes.equals(original), "Asset differs from its preserved native screenshot");
       requireValue(asset.capturedAt === (event.evidence.capturedAt ?? null) && same(asset.viewport, event.evidence.viewport ?? null), "Asset capture metadata differs from evidence");
-      requireValue(asset.surface === "web" && asset.driver === run.driver && asset.driverVersion === (event.evidence.toolVersion ?? run.driverVersion) && asset.captureMethod === `${run.driver}-screenshot` && asset.url === event.evidence.url, "Invalid asset provenance");
+      requireValue(asset.surface === run.surface && asset.driver === run.driver && asset.driverVersion === (event.evidence.toolVersion ?? run.driverVersion) && asset.captureMethod === (run.driver === "tui" ? "grim-native" : `${run.driver}-screenshot`) && asset.url === event.evidence.url, "Invalid asset provenance");
+      if (run.driver === "tui") {
+        requireValue(same(asset.terminal, event.evidence.terminal) && asset.terminal?.cleanup === "released" && asset.terminal.session && asset.terminal.socket && asset.terminal.pane && asset.terminal.tty && asset.terminal.display && asset.terminal.runtime && Number.isInteger(asset.terminal.cagePid) && Number.isInteger(asset.terminal.footPid), "Missing native terminal identity or owned cleanup");
+      }
     }
     const video = await readVideoAsset(root, "native/", plan, test, run.driverVersion);
     if (video) {
@@ -288,7 +295,8 @@ function buildCase(runId: string, plan: Plan, test: Test, index: number, events:
       message: event.evidence.observed || event.evidence.note || "Driver reported failure",
     })),
     limits: ["Capture time and viewport are unknown when the driver did not record them.", "Only executed expect evidence with assertionPassed=true can establish a passing assertion.", ...(plan.driver === "surf" ? ["Video is unavailable with the Surf driver. Image captures remain valid."] : plan.video && !assets.some((asset) => asset.mediaType === "video/webm") ? ["Video was requested but the driver produced no recording."] : []), ...assets.filter((asset) => asset.mediaType === "video/webm" && asset.durationMs === null).map(() => "Video duration is unknown: neither native container nor driver metadata supplied timing.")],
-    sideEffects: "not-recorded",
+    ...(plan.driver === "tui" ? { limits: ["Native video is unavailable.", "OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.", "The private headless display does not reproduce a borrowed desktop terminal.", "Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match."] } : {}),
+    sideEffects: plan.driver === "tui" ? ["The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.", "Collector-owned resources were released before sealing; borrowed terminals were not attached or closed."] : "not-recorded",
   };
 }
 
@@ -335,7 +343,7 @@ export function checkPlan(plan: Plan): void {
   requireValue(plan && typeof plan === "object", "Plan must be an object");
   if ("schema" in plan) requireValue(plan.schema === SCHEMA, "Unsupported explicit plan schema");
   if ("kind" in plan) requireValue(plan.kind === "plan", "Invalid explicit plan kind");
-  requireValue(["surf", "playwright"].includes(plan.driver) && typeof plan.workId === "string" && typeof plan.base === "string" && Array.isArray(plan.tests) && plan.tests.length > 0, "Invalid browser plan");
+  requireValue(["surf", "playwright", "tui"].includes(plan.driver) && typeof plan.workId === "string" && typeof plan.base === "string" && Array.isArray(plan.tests) && plan.tests.length > 0, "Invalid evidence plan");
   requireValue(plan.preconditions === undefined || Array.isArray(plan.preconditions), "Preconditions must be an array");
   const ids = new Set<string>();
   const preconditions = new Set<string>();
@@ -397,6 +405,7 @@ export function checkPlan(plan: Plan): void {
       if (step.do === "expect") requireValue(!!step.url || (!!step.locator && (typeof step.text === "string" || typeof step.visible === "boolean")), "Expect needs an executable assertion");
     }
   }
+  if (plan.driver === "tui") checkTuiPlan(plan);
 }
 function header(value: unknown, kind: Kind): asserts value is RecordHeader {
   requireValue(value && typeof value === "object" && "schema" in value && value.schema === SCHEMA && "kind" in value && value.kind === kind, "Unsupported schema or invalid record kind");

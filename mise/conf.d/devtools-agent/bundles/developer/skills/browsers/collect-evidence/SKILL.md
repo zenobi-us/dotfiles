@@ -1,7 +1,7 @@
 ---
 schema: collect-evidence/v1
 name: collect-evidence
-description: Collects real browser screenshots, checked assertions and immutable evidence through Surf or Playwright. Use for QA, acceptance checks, visual proof and screenshot handoffs. Produces versioned runs, case notes, verified media, reports and manual-step comments.
+description: Collects real browser and native terminal images, checked assertions and immutable evidence through Surf, Playwright or the Linux TUI driver. Use for QA, acceptance checks, visual proof and screenshot handoffs. Produces versioned runs, case notes, verified media, reports and manual-step comments.
 user-invocable: true
 ---
 
@@ -11,15 +11,15 @@ Use one typed `Plan` and the existing `Driver` boundary. Capture completion and 
 
 ## Procedure
 
-1. Read the ticket, changed source and approved scope. Select Surf for an attended Chrome session or Playwright for an isolated browser. Read `references/web.md`.
+1. Read the ticket, changed source and approved scope. For Surf or Playwright, read `references/web.md`. For the native Linux TUI driver, read `references/tui.md`, including its host limits.
 2. Resolve the installed directory containing this `SKILL.md`. Script paths are relative to that directory, not the repository. Use its absolute `scripts/collect-evidence.ts` entrypoint from any working directory.
-3. Complete dependency setup separately. Run `doctor --driver surf` or `doctor --driver playwright`. Doctor checks installed capabilities. Never install a browser or tool during collection.
+3. Complete dependency setup separately. Run `doctor --driver surf`, `doctor --driver playwright` or `doctor --driver tui`. Doctor checks installed capabilities. Never install a browser or tool during collection.
 4. Run `init <external-working-directory> --repository <repository-in-scope> --workflow <workflow-id> --run <new-run-id> --driver <driver>`. The CLI resolves the evidence destination through shared-context. The working directory must be outside the watched repository.
 5. Author only `plan.ts`. Give cases stable IDs, purposes, preconditions, actions and executable assertions. Give captures scene names, not success claims. Read `scripts/browser-evidence/plan.ts` for the typed contract.
-6. Run `render <working-directory>`. Show the generated procedure to the user. Confirm the origins, actions, attended operation and optional video. Put approved origins in `approval.origins`. Put approved click and Enter step IDs in `approval.confirmations`. These fields record approval; they do not grant it.
+6. Run `render <working-directory>`. Show the generated procedure to the user. Confirm the origins, actions, attended operation and optional video. Put approved origins in `approval.origins`. Put approved click and Enter step IDs in `approval.confirmations`. For TUI collection, record the exact approved command and directory in `approval.terminal`, keep origins empty and approve every input step. These fields record approval; they do not grant it.
 7. Run `compile <working-directory>`. Use `run <working-directory> --dry-run` to inspect the selected destination without starting a driver or writing files.
 8. Run `run <working-directory>`. Temporary captures stay outside the watched source tree. The CLI checks preconditions, runs the real driver, closes its owned session, validates the common records and finalizes a new sealed run into the selected evidence store.
-9. Inspect actual images and visible page state. Check assertion outcomes and cleanup. Read every limitation. A missing required driver blocks that case. Never replace it with a fake capture or another browser API.
+9. Inspect actual images and visible screen state. Check assertion outcomes and cleanup. Read every limitation. A missing required driver blocks that case. Never replace it with a fake capture, reconstructed terminal image or another capture API.
 10. Run `validate <sealed-run>`. Use `verdicts`, `report` and `comment` as read-only consumers. Keep publication separate and explicit.
 
 ## Safety
@@ -60,4 +60,4 @@ Use `writing-reports` only to present validated common records. Do not create an
 
 ## Surface limits
 
-This slice supports real web evidence through Surf and Playwright. TUI and GUI collection belong to separate tickets. Do not claim native terminal or desktop support from browser screenshots. Use the relevant native-driver skill only when that separately approved slice is available.
+Surf and Playwright remain the web drivers. The `tui` driver implements the private Linux foot/Cage/wlroots/grim path in `references/tui.md`. A prepared Fedora 45 host passed the real delayed-transition workflow, native RGB and 20 px line-spacing checks, credential and unapproved-input stops, and interrupted owned cleanup. See the TUI playbook for evidence and host limits. GUI collection remains a separate ticket. Browser screenshots do not prove native terminal or desktop behaviour.

@@ -18,7 +18,7 @@ const flags = {
   repository: { type: "string", description: "Repository whose shared-context evidence route applies" },
   workflow: { type: "string", description: "Workflow ID" },
   run: { type: "string", description: "New immutable run ID" },
-  driver: { type: "string", description: "surf or playwright" },
+  driver: { type: "string", description: "surf, playwright or tui (native Linux terminal)" },
   test: { type: "string", description: "Collect only this case ID" },
   url: { type: "string", description: "Explicit published evidence URL for a generated comment" },
   title: { type: "string", description: "Generated comment heading (default: Manual test steps)" },
@@ -76,7 +76,7 @@ async function execute(command: string, dir: string | undefined, raw: Record<str
 if (process.argv.includes("--version") && !process.argv.some(arg => arg === "--help" || arg === "-h")) {
   console.log(process.argv.includes("--json") ? JSON.stringify({ schema, kind: "event", version: VERSION }) : VERSION);
 } else {
-  let cli = new Crust("collect-evidence").meta({ description: "Collect immutable, versioned real browser evidence" })
+  let cli = new Crust("collect-evidence").meta({ description: "Collect immutable, versioned web and native terminal evidence" })
     .use({
       name: "versioned-errors", middleware: async (_context, next) => {
         try { await next(); }
