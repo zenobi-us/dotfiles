@@ -1,0 +1,170 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "fix-0024",
+  "workflow_id": "collect-evidence-feedback-02-tui",
+  "phase": "fix",
+  "event": "phase-complete",
+  "attempt": 5,
+  "parent_receipt": "fix-0023",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "source_branch": "feature/collect-evidence-feedback-02-tui",
+  "base_branch": "master",
+  "source_commit": "3d05a5611dae33c992d8bbd81ed265a27d23892c",
+  "source_tree": "e758e20e8bc45d732d01028960802390d347d11b",
+  "created_at": "2026-11-11T21:53:50.862Z",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t5j",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-02-tui",
+    "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-02-tui.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-02-tui"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0020.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0021.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0020.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/fix-0023.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/snapshots/pr-draft-fix-0023.md"
+    },
+    {
+      "kind": "validation",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/snapshots/validation-fix-0023.json"
+    },
+    {
+      "kind": "fixture",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/snapshots/native-smoke-fix-0023.ts"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/evidence/fix-0023-smoke/validation.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/fix-0024.yaml"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/collect-evidence-feedback-02-tui/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-02-tui/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-02-tui/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-02-tui/projections/latest-status.yaml"
+    }
+  ],
+  "status": "completed",
+  "approval": "User approved ticket fix takeover earlier in this same parent session and now explicitly requested fix collect-evidence-feedback-02-tui for current review SPEC-02. Scope fresh fixer for blocking credential safety finding and verification only; no merge or push.",
+  "ownership_observation": "Same parent owns accepted fix-0018 and completed review-0021; reviewer closed and acknowledged. Fresh hc ls has no target-worktree terminal. Inspector historical ownership unknown; no competing live owner or goal context observed.",
+  "recovery_mode": "reconcile",
+  "recovery_reason": "Read the child result and artifacts, verify the frozen source and outcome, then append the parent completion. Do not repeat the child work.",
+  "compiler_check": "Not run; prior TypeScript prerequisite unavailable. No compiler success claimed.",
+  "source_preserved": true,
+  "consumed_review_receipts": [
+    "review-0020"
+  ],
+  "resolved_findings": [
+    "SPEC-02"
+  ],
+  "unresolved_findings": [
+    "STD-01"
+  ],
+  "child_validation": [
+    {
+      "command": "env PATH=/home/zenobius/.local/share/collect-evidence/native-tools/fedora-45-x86_64/bin:$PATH RUN_NATIVE_EVIDENCE_TESTS=1 mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/native-workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+      "result": "28 pass, 0 fail, 362 assertions; 66.15s. Includes six prompt variants across expect-only, approved fill and approved Enter; no input; owned runtime/server/process cleanup. Ordinary non-prompt words PASS."
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+      "result": "99 pass, 0 fail, 892 assertions; 56.54s."
+    },
+    {
+      "command": "env PATH=/home/zenobius/.local/share/collect-evidence/native-tools/fedora-45-x86_64/bin:$PATH mise exec -- bun /tmp/native-smoke-fix-0023.ts",
+      "cwd": "/tmp",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/evidence/fix-0023-smoke/validation.json",
+      "result": "Public doctor/init/render/compile/run/validate/verdicts/report. Delayed transition 0/PASS; twelve token/API-key/PIN/OTP expect/fill/press cases 3/BLOCKED with no input. All read-only consumers exit 0."
+    },
+    {
+      "command": "Public validate on thirteen retained sealed runs",
+      "cwd": "/tmp",
+      "result": "13 exit 0 after byte-preserving copy; source hashes retained."
+    },
+    {
+      "command": "Image read on original retained Ready and Details PNGs",
+      "result": "1280x720, distinct native headings; Selected item on next 20px line; purple RGB [201,166,255]; shared pane/socket/display; original padding visible. Native checks verified dimensions, RGB and line tops 11/31px."
+    },
+    {
+      "command": "Owned private runtime/server/process checks and borrowed fixture doctor",
+      "result": "All smoke runtime directories absent and fixture/server PIDs exited. Transition Cage 2942320 and foot 2942321 exited. Borrowed sentinel pane PID 2958856 unchanged through public doctor with inherited TMUX; only the owned sentinel was then removed."
+    },
+    {
+      "command": "Compiler/LSP",
+      "result": "Not run: previously unavailable prerequisite. No compiler success claimed."
+    },
+    {
+      "command": "mq okf_new/okf_validate for new draft and projections; relative-link checks",
+      "result": "Three generated Markdown records validate with []; nonempty type. Thirty-eight draft/projection links resolve except the two references to this not-yet-written receipt. Workflow is not an OKF bundle; a whole-repository bundle audit is not applicable."
+    },
+    {
+      "command": "Retained image and script SHA-256; owned temporary cleanup",
+      "result": "Retained PNG hashes match common records. Retained fixture SHA-256 2814643f8c91ea6abce0ca12ff95b1f4c1be2f7e5876c9e375c1ac12869a06b4. Removed only owned temporary smoke root and script after preserving evidence."
+    }
+  ],
+  "validation": [
+    {
+      "command": "result-delivery read and authoritative YAML equality; shared inspector",
+      "result": "Schema/run/operation/hash verified. Payload matches immutable event. Valid receipt history and clean exact source 3d05a561 / e758e20e."
+    },
+    {
+      "command": "Public validate and verdicts across all thirteen retained native runs",
+      "result": "All 26 commands exit 0. Delayed transition PASS; twelve API token/API-key/PIN/OTP expect/fill/press cases BLOCKED, no received input; original native Details image inspected."
+    },
+    {
+      "command": "muxer wait; result-delivery ack; hc kill t61; hc rm t61; herdr-app ls",
+      "result": "Completion sequence 3 observed; hash acknowledged; only t61 targeted and removed. Source worktree preserved."
+    }
+  ],
+  "summary": "Accepted scoped SPEC-02 fix. Native28 and common99 checks passed; real credential cases block without input. STD-01 remains Low nonblocking. Fresh independent review required; no merge or push.",
+  "transport_sha256": "833028daef9136ee82c4062b8b28dec8ae5d5297469fffee9279b108996a5c35",
+  "child_terminal": "t61",
+  "child_terminal_removed": true,
+  "worktree_preserved": true
+}

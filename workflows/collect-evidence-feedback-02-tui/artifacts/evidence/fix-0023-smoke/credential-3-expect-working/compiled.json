@@ -1,0 +1,6 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "event",
+  "planHash": "740c4c614c9a109e6b0c40fbf305b0ed226bd47a80a30ce3b92203588e460585",
+  "driver": "tui"
+}

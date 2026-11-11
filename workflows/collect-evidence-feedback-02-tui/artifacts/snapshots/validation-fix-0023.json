@@ -1,0 +1,198 @@
+{
+  "schema": "worktree-validation/v1",
+  "kind": "fix-validation",
+  "finding": "SPEC-02",
+  "sourceCommit": "3d05a5611dae33c992d8bbd81ed265a27d23892c",
+  "sourceTree": "e758e20e8bc45d732d01028960802390d347d11b",
+  "baseline": {
+    "commit": "a50eb7b56c79151c48abe4e5595b8da2b63eec98",
+    "tree": "0aafea468291c367eac265ad883de220cd48b442",
+    "proof": "Consumed review-0020 reproduced API-token expect PASS and approved fill PARTIAL with fixture-probe; not rerun to reconfirm."
+  },
+  "changedFiles": [
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/tui-driver.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/native-workflow.test.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/tui.md",
+    "mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json"
+  ],
+  "validation": [
+    {
+      "command": "env PATH=/home/zenobius/.local/share/collect-evidence/native-tools/fedora-45-x86_64/bin:$PATH RUN_NATIVE_EVIDENCE_TESTS=1 mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/native-workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+      "result": "28 pass, 0 fail, 362 assertions; 66.15s. Includes six prompt variants across expect-only, approved fill and approved Enter; no input; owned runtime/server/process cleanup. Ordinary non-prompt words PASS."
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+      "result": "99 pass, 0 fail, 892 assertions; 56.54s."
+    },
+    {
+      "command": "env PATH=/home/zenobius/.local/share/collect-evidence/native-tools/fedora-45-x86_64/bin:$PATH mise exec -- bun /tmp/native-smoke-fix-0023.ts",
+      "cwd": "/tmp",
+      "result": "Public doctor/init/render/compile/run/validate/verdicts/report. Delayed transition 0/PASS; twelve token/API-key/PIN/OTP expect/fill/press cases 3/BLOCKED with no input. All read-only consumers exit 0.",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/evidence/fix-0023-smoke/validation.json"
+    },
+    {
+      "command": "Public validate on thirteen retained sealed runs",
+      "cwd": "/tmp",
+      "result": "13 exit 0 after byte-preserving copy; source hashes retained."
+    },
+    {
+      "command": "Image read on original retained Ready and Details PNGs",
+      "result": "1280x720, distinct native headings; Selected item on next 20px line; purple RGB [201,166,255]; shared pane/socket/display; original padding visible. Native checks verified dimensions, RGB and line tops 11/31px."
+    },
+    {
+      "command": "Owned private runtime/server/process checks and borrowed fixture doctor",
+      "result": "All smoke runtime directories absent and fixture/server PIDs exited. Transition Cage 2942320 and foot 2942321 exited. Borrowed sentinel pane PID 2958856 unchanged through public doctor with inherited TMUX; only the owned sentinel was then removed."
+    },
+    {
+      "command": "Compiler/LSP",
+      "result": "Not run: previously unavailable prerequisite. No compiler success claimed."
+    }
+  ],
+  "copyChecks": [
+    {
+      "id": "transition",
+      "code": 0
+    },
+    {
+      "id": "credential-0-expect",
+      "code": 0
+    },
+    {
+      "id": "credential-0-fill",
+      "code": 0
+    },
+    {
+      "id": "credential-0-press",
+      "code": 0
+    },
+    {
+      "id": "credential-1-expect",
+      "code": 0
+    },
+    {
+      "id": "credential-1-fill",
+      "code": 0
+    },
+    {
+      "id": "credential-1-press",
+      "code": 0
+    },
+    {
+      "id": "credential-2-expect",
+      "code": 0
+    },
+    {
+      "id": "credential-2-fill",
+      "code": 0
+    },
+    {
+      "id": "credential-2-press",
+      "code": 0
+    },
+    {
+      "id": "credential-3-expect",
+      "code": 0
+    },
+    {
+      "id": "credential-3-fill",
+      "code": 0
+    },
+    {
+      "id": "credential-3-press",
+      "code": 0
+    }
+  ],
+  "borrowedProof": {
+    "initial": {
+      "argv": [
+        "tmux",
+        "-S",
+        "/tmp/ce-borrowed-fix0023-OK3qAx/sentinel.sock",
+        "display-message",
+        "-p",
+        "#{pane_pid}"
+      ],
+      "cwd": "/tmp",
+      "code": 0,
+      "stdout": "2958856\n",
+      "stderr": ""
+    },
+    "doctor": {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "doctor",
+        "--driver",
+        "tui",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "code": 0,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"doctor\",\"success\":true,\"driver\":\"tui\",\"available\":true,\"attended\":false,\"diagnostic\":\"termscope 0.1.1\",\"video\":\"unavailable\",\"method\":\"private CPU foot/Cage/wlroots/grim\",\"permissions\":\"private display launch and native PNG capture succeeded\"}\n",
+      "stderr": ""
+    },
+    "final": {
+      "argv": [
+        "tmux",
+        "-S",
+        "/tmp/ce-borrowed-fix0023-OK3qAx/sentinel.sock",
+        "display-message",
+        "-p",
+        "#{pane_pid}"
+      ],
+      "cwd": "/tmp",
+      "code": 0,
+      "stdout": "2958856\n",
+      "stderr": ""
+    },
+    "unchanged": true
+  },
+  "images": [
+    {
+      "path": "/tmp/ce-fix-0023-lu0flE/repository/workflows/native/artifacts/evidence/transition/cases/case/media/step-001-step-case-001-ready--capture-001--capture-001.png",
+      "hash": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f",
+      "width": 1280,
+      "height": 720,
+      "terminal": {
+        "session": "ce-tui-8ce01fca-6262-4b92-8016-f121d2738dce",
+        "socket": "/tmp/ce-native-sqajDh/tmux.sock",
+        "pane": "%0",
+        "tty": "/dev/pts/17",
+        "display": "wayland-0",
+        "runtime": "/tmp/ce-native-sqajDh",
+        "cagePid": 2942320,
+        "footPid": 2942321,
+        "columns": 80,
+        "rows": 24,
+        "font": "monospace:size=12",
+        "lineHeight": 20,
+        "cleanup": "released"
+      }
+    },
+    {
+      "path": "/tmp/ce-fix-0023-lu0flE/repository/workflows/native/artifacts/evidence/transition/cases/case/media/step-003-step-case-003-details--capture-001--capture-001.png",
+      "hash": "b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a",
+      "width": 1280,
+      "height": 720,
+      "terminal": {
+        "session": "ce-tui-8ce01fca-6262-4b92-8016-f121d2738dce",
+        "socket": "/tmp/ce-native-sqajDh/tmux.sock",
+        "pane": "%0",
+        "tty": "/dev/pts/17",
+        "display": "wayland-0",
+        "runtime": "/tmp/ce-native-sqajDh",
+        "cagePid": 2942320,
+        "footPid": 2942321,
+        "columns": 80,
+        "rows": 24,
+        "font": "monospace:size=12",
+        "lineHeight": 20,
+        "cleanup": "released"
+      }
+    }
+  ],
+  "smokeRef": "workflows/collect-evidence-feedback-02-tui/artifacts/evidence/fix-0023-smoke/validation.json",
+  "limits": "English prompt patterns and OCR; native private Linux display only; no video, compiler or new web-driver runtime proof. Credential snapshot stops may precede PNG capture. STD-01 remains Low/nonblocking."
+}

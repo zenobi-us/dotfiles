@@ -1,0 +1,17 @@
+00:00:00.000 [INFO] [backend/backend.c:342] Loading user-specified backends due to WLR_BACKENDS: headless
+00:00:00.000 [INFO] [backend/headless/backend.c:60] Creating headless backend
+00:00:00.000 [INFO] [util/env.c:25] Loading WLR_RENDERER option: pixman
+00:00:00.000 [INFO] [render/pixman/renderer.c:328] Creating pixman renderer
+00:00:00.000 [INFO] [../cage.c:521] Failed to create wlr_drm_lease_manager_v1
+00:00:00.006 [INFO] [backend/headless/backend.c:17] Starting headless backend
+warn: wayland.c:1874: compositor does not implement XDG activation, bell.urgent will fall back to coloring the window margins red
+warn: wayland.c:1880: compositor does not implement fractional scaling
+warn: wayland.c:1883: compositor does not implement server-side cursors, falling back to client-side cursors
+warn: wayland.c:1888: compositor does not implement the xdg-toplevel-icon protocol
+warn: wayland.c:1893: text input interface not implemented by compositor; IME will be disabled
+warn: wayland.c:1736: unknown global removed: 0x00000018
+ err: wayland.c:1769: failed to read events from the Wayland socket: Broken pipe
+ err: wayland.c:2477: failed to roundtrip Wayland display: Broken pipe
+ err: wayland.c:2477: failed to roundtrip Wayland display: Broken pipe
+ err: wayland.c:2477: failed to roundtrip Wayland display: Broken pipe
+ err: wayland.c:2442: failed to flush wayland socket: Broken pipe

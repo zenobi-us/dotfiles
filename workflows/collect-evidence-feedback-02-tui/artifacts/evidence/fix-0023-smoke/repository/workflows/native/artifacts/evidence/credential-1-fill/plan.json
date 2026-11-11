@@ -1,0 +1,52 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "plan",
+  "data": {
+    "schema": "collect-evidence/v1",
+    "kind": "plan",
+    "workId": "native",
+    "driver": "tui",
+    "base": "terminal://private",
+    "terminal": {
+      "command": [
+        "/var/home/zenobius/.local/share/mise/installs/bun/1.4.3/bin/bun",
+        "/tmp/ce-fix-0023-lu0flE/credential-1-fill.ts"
+      ],
+      "cwd": "/tmp/ce-fix-0023-lu0flE",
+      "columns": 80,
+      "rows": 24,
+      "font": "monospace:size=12",
+      "lineHeight": 20
+    },
+    "approval": {
+      "origins": [],
+      "confirmations": [
+        "case.1"
+      ],
+      "terminal": {
+        "command": [
+          "/var/home/zenobius/.local/share/mise/installs/bun/1.4.3/bin/bun",
+          "/tmp/ce-fix-0023-lu0flE/credential-1-fill.ts"
+        ],
+        "cwd": "/tmp/ce-fix-0023-lu0flE"
+      }
+    },
+    "tests": [
+      {
+        "id": "case",
+        "claim": "Credential safety and delayed native transition",
+        "pass": "Expected outcome",
+        "fail": "Unexpected outcome",
+        "steps": [
+          {
+            "do": "fill",
+            "says": "Try approved harmless input.",
+            "locator": "screen",
+            "screen": "API-key:",
+            "text": "fixture-probe"
+          }
+        ]
+      }
+    ]
+  }
+}

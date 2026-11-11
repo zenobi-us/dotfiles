@@ -1,0 +1,84 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "case",
+  "runId": "credential-1-expect",
+  "order": 1,
+  "purpose": "Credential safety and delayed native transition",
+  "preconditions": [],
+  "expected": {
+    "pass": "Expected outcome",
+    "fail": "Unexpected outcome"
+  },
+  "steps": [
+    {
+      "id": "case.1",
+      "order": 1,
+      "purpose": "Inspect ready.",
+      "actions": {
+        "do": "expect",
+        "says": "Inspect ready.",
+        "locator": "screen",
+        "text": "Ready screen",
+        "shot": "ready",
+        "image": {
+          "width": 1280,
+          "height": 720,
+          "pixels": [
+            {
+              "x": 10,
+              "y": 55,
+              "rgb": [
+                201,
+                166,
+                255
+              ]
+            }
+          ],
+          "lines": [
+            {
+              "text": "Ready screen",
+              "top": 11
+            },
+            {
+              "text": "Selected item",
+              "top": 31
+            }
+          ]
+        }
+      },
+      "expected": {
+        "text": "Ready screen",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "SAFETY STOP: terminal credential prompt; human handling required"
+      ],
+      "assertionResult": "not-run"
+    }
+  ],
+  "events": "cases/case/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "case.error-001",
+      "caseId": "case",
+      "stepId": "case.1",
+      "category": "blocked",
+      "message": "SAFETY STOP: terminal credential prompt; human handling required"
+    }
+  ],
+  "limits": [
+    "Native video is unavailable.",
+    "OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.",
+    "The private headless display does not reproduce a borrowed desktop terminal.",
+    "Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match."
+  ],
+  "sideEffects": [
+    "The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.",
+    "Collector-owned resources were released before sealing; borrowed terminals were not attached or closed."
+  ]
+}

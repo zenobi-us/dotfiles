@@ -1,7 +1,10 @@
 ---
-schema: worktree-artifact/v1
 kind: implementation-log
+schema: worktree-artifact/v1
+title: Implementation and fix history
+type: Log
 ---
+
 # Implementation history
 
 ## implementation-0002 — blocked
@@ -140,3 +143,29 @@ fix-0016 records user-approved scoped takeover and source/terminal preservation.
 ## Independent review attempt 3 — review-0021
 
 [Review artifact](../artifacts/reviews/review-review-0020.md), [child result](../events/review-0020.yaml), [parent completion](../events/review-0021.yaml). Verdict FAILURE for `a50eb7b56c79151c48abe4e5595b8da2b63eec98`, tree `0aafea468291c367eac265ad883de220cd48b442`. Standards: one Low nonblocking finding. Spec: one High blocking finding, SPEC-02. Prior SPEC-01 is resolved. Native suite: 9 pass; common suites: 99 pass. Public credential fixture received harmless input at an API-token prompt. Parent verified unchanged clean source, artifact, matching delivered receipt and completion sequence 2, acknowledged delivery and closed only reviewer t5t. No fix, merge, push or ticket completion. Next: fresh fixer for the current blocking finding.
+
+## fix-0023 — completed; parent acceptance pending
+
+Consumed [review-0020](../events/review-0020.yaml), [review completion](../events/review-0021.yaml), [review artifact](../artifacts/reviews/review-review-0020.md) and [authorization fix-0022](../events/fix-0022.yaml). Resolved SPEC-02 (High, NO ADR). STD-01 remains Low/nonblocking and outside scope. Prior SPEC-01 stays resolved.
+
+Source: 3d05a5611dae33c992d8bbd81ed265a27d23892c; tree e758e20e8bc45d732d01028960802390d347d11b. Clean committed source. Parent artifacts remain outside source.
+
+Changed files:
+
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/tui-driver.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/native-workflow.test.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/tui.md
+- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+
+Native suite 28 pass/0 fail/362 assertions; common suites 99 pass/0 fail/892 assertions. Public CLI smoke: delayed transition PASS, twelve credential cases BLOCKED/exit 3 with no input, all consumer commands exit 0. Thirteen retained runs validate. Original 1280x720 PNGs inspected: correct headings, purple bar, 20px spacing, hashes and shared identity. Owned runtime/server/process cleanup passed; borrowed sentinel PID 2958856 unchanged through public doctor. Compiler/LSP unavailable; no compiler success claimed.
+
+[Fix result](../events/fix-0023.yaml). [Immutable draft](../artifacts/snapshots/pr-draft-fix-0023.md). [Exact validation](../artifacts/snapshots/validation-fix-0023.json). [Retained fixture](../artifacts/snapshots/native-smoke-fix-0023.ts). [Real evidence](../artifacts/evidence/fix-0023-smoke/validation.json).
+
+Unresolved questions: independent review of the new source is required. No merge, rebase, push or ticket completion. Parent owns phase-complete, acknowledgement and workflow publication.
+
+
+
+## Parent acceptance — fix-0024
+
+[Completion receipt](../events/fix-0024.yaml) accepts [fix-0023](../events/fix-0023.yaml) for clean source `3d05a5611dae33c992d8bbd81ed265a27d23892c`, tree `e758e20e8bc45d732d01028960802390d347d11b`. Parent verified the delivered payload against its immutable event, current clean source, child completion sequence 3 and acknowledged hash. All thirteen retained runs validate through the public CLI: positive transition PASS, twelve credential cases BLOCKED with no received input. Parent inspected the original native Details image. Only completed child t61 was targeted for removal. No merge, push or ticket completion. Next: fresh independent review. STD-01 remains Low and nonblocking.

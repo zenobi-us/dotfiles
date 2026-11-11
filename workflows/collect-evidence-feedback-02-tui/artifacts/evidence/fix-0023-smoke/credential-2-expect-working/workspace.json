@@ -1,0 +1,16 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "event",
+  "repository": "/tmp/ce-fix-0023-lu0flE/repository",
+  "workflow": "native",
+  "runId": "credential-2-expect",
+  "destination": {
+    "kind": "evidence",
+    "adapter": "files",
+    "store": "repository",
+    "root": "/tmp/ce-fix-0023-lu0flE/repository",
+    "path": "/tmp/ce-fix-0023-lu0flE/repository/workflows/native/artifacts/evidence/credential-2-expect",
+    "ref": "workflows/native/artifacts/evidence/credential-2-expect",
+    "publication": "repository"
+  }
+}
