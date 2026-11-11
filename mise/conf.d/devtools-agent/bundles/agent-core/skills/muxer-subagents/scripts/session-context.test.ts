@@ -2,7 +2,23 @@ import { afterEach, describe, expect, test } from "bun:test";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { detectAgent, sessionMetadata } from "./session-context.ts";
+import { detectAgent, detectMuxer, sessionMetadata } from "./session-context.ts";
+
+describe("desktop muxer detection", () => {
+  test("distinguishes core terminals from the separate TUI", () => {
+    expect(detectMuxer({ HC_TERMINAL_ID: "t7" })).toBe("herdr-app");
+    expect(detectMuxer({ HERDR_ENV: "1" })).toBe("herdr");
+    expect(detectMuxer({ HC_SESSION: "test", HC_SOCKET: "/tmp/core.sock" })).toBe("unknown-muxer");
+    expect(detectMuxer({ HC_TERMINAL_ID: "" })).toBe("unknown-muxer");
+  });
+
+  test("keeps explicit nested muxer markers ahead of inherited core identity", () => {
+    expect(detectMuxer({ HC_TERMINAL_ID: "t7", TMUX: "/tmp/tmux" })).toBe("tmux");
+    expect(detectMuxer({ HC_TERMINAL_ID: "t7", ZELLIJ: "1" })).toBe("zellij");
+    expect(detectMuxer({ HC_TERMINAL_ID: "t7", HERDR_ENV: "1" })).toBe("herdr");
+    expect(detectMuxer({ HC_TERMINAL_ID: "t7", HRDX: "1" })).toBe("hrdx");
+  });
+});
 
 describe("agent detection", () => {
   test("detects each agent from its marker", () => {

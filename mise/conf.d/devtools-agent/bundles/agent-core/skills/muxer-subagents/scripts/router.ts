@@ -18,13 +18,15 @@ import { AGENTS, isAgent, isMuxer, MUXERS } from "./types.ts";
 import { spawnAgent } from "./spawn.ts";
 import { readRun, removeRun } from "./signals.ts";
 import { waitForAgent } from "./wait.ts";
+import { agents, muxers } from "./modules/index.ts";
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const skillDir = resolve(scriptDir, "..");
 const referencesDir = join(skillDir, "references");
 
-function contractPath(kind: string, name: string): string | null {
-  const path = join(referencesDir, kind, `${name}.md`);
+function contractPath(relativePath: string | null): string | null {
+  if (relativePath === null) return null;
+  const path = join(skillDir, relativePath);
   return existsSync(path) ? path : null;
 }
 const app = new Crust("muxer-subagents").meta({
@@ -36,7 +38,7 @@ const detectMuxerCmd = app
   .sub("detect-muxer")
   .meta({
     description:
-      "Print the active terminal multiplexer: herdr, zellij, tmux, hrdx, or unknown-muxer.",
+      "Print the active terminal multiplexer: herdr, herdr-app, zellij, tmux, hrdx, or unknown-muxer.",
   })
   .run(() => {
     console.log(detectMuxer());
@@ -95,22 +97,24 @@ const contractsCmd = app
     },
   })
   .run(({ flags }) => {
-    if (flags.muxer && !isMuxer(flags.muxer)) {
+    const muxer = flags.muxer ?? detectMuxer();
+    const agent = flags.agent ?? detectAgent();
+    if (!isMuxer(muxer)) {
       console.error(`Unknown --muxer ${flags.muxer}. Expected one of: ${MUXERS.join(", ")}`);
       process.exitCode = 1;
       return;
     }
 
-    if (flags.agent && !isAgent(flags.agent)) {
+    if (!isAgent(agent)) {
       console.error(`Unknown --agent ${flags.agent}. Expected one of: ${AGENTS.join(", ")}`);
       process.exitCode = 1;
       return;
     }
 
-    const muxer = flags.muxer ?? detectMuxer();
-    const agent = flags.agent ?? detectAgent();
-    const muxerContract = contractPath("muxers", muxer);
-    const agentContract = contractPath("agents", agent);
+    const muxerContract = contractPath(muxer === "unknown-muxer"
+      ? "references/muxers/unknown-muxer.md"
+      : muxers[muxer].contract);
+    const agentContract = contractPath(agent === "unknown-agent" ? null : agents[agent].contract);
 
     if (!muxerContract) {
       console.error(`Missing muxer contract for: ${muxer}`);

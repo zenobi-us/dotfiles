@@ -2,7 +2,7 @@
 
 ## Detection
 
-`HERDR_ENV=1` is set. This is the only muxer with a confirmed self-identifying signal today.
+`HERDR_ENV=1` identifies the older Herdr TUI. The separate desktop app uses herdr-core terminal addresses; read `herdr-app.md` for that route. Do not mix their CLIs or agent state.
 
 ## Worktree awareness
 
@@ -33,6 +33,10 @@ herdr agent wait <agent-name> --until done --until blocked --timeout <ms>
 
 Only `done` means completed. On `blocked`, resume the agent and wait again. A timeout, an idle pane, or output that looks finished is not proof of completion. Read output after completion or when diagnosing a blocked/failed run; do not use pane text as the completion signal.
 
+## Fresh-shell startup
+
+The spawn router waits through an explicit `agent_pane_busy` rejection only while process inspection proves that the pane foreground contains solely its shell. This bounded wait handles new tabs whose shell prompt is not ready yet. Other failures stop launch. If the expected agent already started despite a readiness timeout, the router retains that session instead of dispatching it again.
+
 ## Opening a pane for an agent
 
 1. If the current Herdr space is not the target worktree space, run `herdr worktree open --path <worktree-path> --cwd <repository-root>`. Start the agent in the returned worktree space and root pane.
@@ -48,3 +52,4 @@ Only `done` means completed. On `blocked`, resume the agent and wait again. A ti
 
 - Do not use `git worktree` directly. Worktrunk (`wt`) creates and removes the worktree; Herdr only opens a pane onto its path.
 - Do not use Zellij commands inside a Herdr session.
+

@@ -32,12 +32,14 @@ The router stores one versioned JSON signal per run. It replaces the record atom
 
 - `starting`: the router created the run record.
 - `running`: the agent launch succeeded.
-- `blocked`: Herdr reports that the agent is blocked. This state is not terminal.
-- `completed`: the agent process exited with code `0`, or Herdr reported `done`.
+- `blocked`: Herdr TUI or herdr-core reports that the agent is blocked. This state is not terminal.
+- `completed`: the agent process exited with code `0`, or Herdr TUI/herdr-core reported `done`.
 - `failed`: the agent process exited with a non-zero code.
 - `cancelled`: the launcher caught an interrupt or termination signal.
 
 For Herdr, `wait` uses Herdr's agent state. It does not read pane text. It returns `blocked` or `completed`.
+
+For herdr-app, `wait` reads native herdr-core state through `hc wait --json`. It accepts explicit `done`, `blocked`, `error`, or a confirmed process exit. Startup idle and terminal loss without an exit code or signal do not confirm completion. Read `muxers/herdr-app.md` for message interruptions and resumption.
 
 For hrdx, tmux, and Zellij, a shell wrapper writes `running` before it starts the agent. The wrapper writes `completed`, `failed`, or `cancelled` after the process exits. A pane becoming idle does not mean that the agent completed.
 
@@ -65,6 +67,7 @@ A completed process can return a failed domain result. A published result can ex
 
 ## Limits
 
-The router does not parse pane output. It does not ask the child agent to run a second reporting CLI. The launcher records process exit; Herdr supplies its native agent state.
+The router does not parse pane output. It does not ask the child agent to run a second reporting CLI. The launcher records process exit; Herdr TUI and herdr-app supply native agent state through their separate CLIs.
 
 If a process is killed in a way that prevents the wrapper from writing its final signal, the router cannot confirm completion. A timed-out wait reports that it has no terminal signal. It does not infer success or emit `lost`.
+

@@ -1,9 +1,11 @@
 ---
 name: muxer-subagents
-description: Spawn a child agent in a terminal multiplexer pane, tab, or workspace. Detects the active muxer (herdr, hrdx, zellij, tmux) and agent CLI (claude, omp, pi, zot), then resolves the contract that says how to open, launch, wait, read, and close a session.
+description: Spawn a child agent in a terminal multiplexer pane, tab, or workspace. Detects the active muxer (herdr, herdr-app, hrdx, zellij, tmux) and agent CLI (claude, omp, pi, zot), then resolves the contract that says how to open, launch, wait, read, and close a session.
 ---
 
 Use this skill whenever a parent agent must start a child agent in its own pane.
+
+Resolve `SKILL_DIR` to the absolute installed directory containing this file. All `scripts/` paths below are relative to `SKILL_DIR`, not the caller’s working directory. Run scripts by their absolute paths when working elsewhere.
 
 This skill owns session mechanics only. It does not create worktrees, resolve tickets, write receipts, or decide what the child agent works on. The caller owns that.
 
@@ -19,7 +21,11 @@ MUST resolve the muxer before opening a pane, every time, in this order:
 
 The Claude `SessionStart` hook and the OMP `hooks/pre/muxer-session.ts` hook both inject this tag. Both call `scripts/session-context.ts`, so they render the same context.
 
-Either source gives `herdr`, `zellij`, `tmux`, `hrdx`, or `unknown-muxer`. If detection is wrong, pass `--muxer <actual>` to `contracts`.
+Either source gives `herdr-app`, `herdr`, `zellij`, `tmux`, `hrdx`, or `unknown-muxer`. If detection is wrong, pass `--muxer <actual>` to `contracts`.
+
+# Desktop app versus TUI
+
+`herdr-app` is separate from the older `herdr` TUI. `HC_TERMINAL_ID` identifies a herdr-core terminal; it does not prove that the app window is open. Explicit TUI, Zellij, tmux, and hrdx markers take precedence over an inherited core address. Read `references/muxers/herdr-app.md` before using the desktop route. Never use `herdr agent` or `herdr worktree` commands for the desktop app.
 
 # Rule 2: detect the agent
 
@@ -74,7 +80,7 @@ The command prints a JSON record with `runId`, muxer, agent, target identifier, 
 - `--result-target` and `--result-ref` must be supplied together. The target must be absolute and its parent directory must already exist.
 - Without a custom target, the router allocates `$XDG_STATE_HOME/result-delivery/runs/<runId>/result.json`, with a file URI reference. The fallback state root is `~/.local/state`.
 - `--operation-id` defaults to the child run ID.
-- Before launch, the router writes an artifact-reference context and passes `RESULT_DELIVERY_CONTEXT`, `MUXER_SUBAGENT_RUN_ID`, and the explicit child role through every muxer path. It also passes `MUXER_SUBAGENT_PARENT_RUN_ID` when the incoming run identity is known. Herdr receives these values through tab `--env` flags.
+- Before launch, the router writes an artifact-reference context and passes `RESULT_DELIVERY_CONTEXT`, `MUXER_SUBAGENT_RUN_ID`, and the explicit child role through every muxer path. It also passes `MUXER_SUBAGENT_PARENT_RUN_ID` when the incoming run identity is known. Herdr TUI receives these values through tab `--env` flags. The desktop route passes them as `env` arguments in a new tab.
 - The child uses its existing operation CLI or the shared result-delivery library. Do not add a second reporting CLI. Read the `result-delivery` skill for the delivery protocol.
 - After completion, read and verify the delivered artifact with the saved context, validate the domain result, then acknowledge its hash. A result artifact or exit code zero does not prove domain success.
 - Result artifacts and contexts survive muxer run cleanup and acknowledgement.
@@ -90,7 +96,7 @@ Herdr's `agent start` does not support `zot`. The router reports this combinatio
 
 A caller that requires an independent agent session MUST get a new pane or tab. Apply these mechanics:
 
-- Keep the existing workspace. Create a new tab in it. Do not create a second workspace for the same directory.
+- Reuse the workspace for the caller’s target directory, not the orchestrator’s workspace. Create a new tab in it. Do not create a second workspace for the same directory. For a missing herdr-app space, follow the desktop contract’s target-directory creation rule.
 - Address the workspace by its absolute path, never by its name. See the hrdx contract's trap list.
 - Launch a new agent process in the returned pane.
 - MUST NOT send text to, resume, or reuse an earlier child pane.
@@ -119,7 +125,7 @@ Use one pane for each independent task. Give each child a short name, one clear 
 
 | Kind | Contracts |
 |---|---|
-| Muxer | `references/muxers/herdr.md`, `hrdx.md`, `zellij.md`, `tmux.md`, `unknown-muxer.md` |
+| Muxer | `references/muxers/herdr-app.md`, `references/muxers/herdr.md`, `hrdx.md`, `zellij.md`, `tmux.md`, `unknown-muxer.md` |
 | Agent | `references/agents/claude.md`, `omp.md`, `pi.md`, `zot.md` |
 | Completion | `references/completion-signals.md` |
 
@@ -136,3 +142,14 @@ Use one pane for each independent task. Give each child a short name, one clear 
 | Claude `SessionStart` | `hooks/hooks.json`, through `scripts/router.ts session-context` |
 | OMP extension | `hooks/pre/muxer-session.ts`, through `renderSessionContext` |
 | This skill's CLI | `scripts/router.ts detect-muxer`, `detect-agent`, `contracts`, `spawn`, `wait` |
+
+
+
+# Module implementation
+
+When changing muxer or agent behaviour, use the interfaces in `scripts/modules/types.ts`. Each `muxer-*.ts` file exports one `muxer` object. Each `agent-*.ts` file exports one `agent` object. Keep helpers private unless multiple muxers use them.
+
+Register modules explicitly in `scripts/modules/index.ts`. Detection order is authoritative there; preserve precedence when adding a module. Agent modules own detection and command arguments. Muxer modules own detection, compatibility, launch, native waiting and prompt lifetime. Check compatibility before allocating a run or opening a terminal.
+
+Keep delivery context and run allocation in `spawn.ts`, shared completion handling in `wait.ts`, and lifecycle records in `signals.ts`. Use `shell-launch.ts` for shared shell quoting and process signals. A completed lifecycle signal does not establish domain-result success.
+

@@ -1,8 +1,6 @@
-import { spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { homedir, tmpdir } from "node:os";
-import { dirname, isAbsolute, join, relative, resolve } from "node:path";
-import * as net from "node:net";
+import { dirname, isAbsolute, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { parseDeliveryContext, type DeliveryContext } from "../../result-delivery/scripts/delivery.ts";
 import type { Agent, Muxer } from "./types.ts";
@@ -10,11 +8,11 @@ import {
   createRun,
   removeRun,
   runPromptPath,
-  runSignalPath,
   updateRunTarget,
-  writeRunSignal,
 } from "./signals.ts";
 import { sessionMetadata } from "./session-context.ts";
+import { agents, muxers } from "./modules/index.ts";
+import type { AgentModule, MuxerModule } from "./modules/types.ts";
 
 export type SpawnMuxer = Exclude<Muxer, "unknown-muxer">;
 export type SpawnAgent = Exclude<Agent, "unknown-agent">;
@@ -41,243 +39,6 @@ export interface SpawnResult {
   resultTarget: NonNullable<DeliveryContext["target"]>;
 }
 
-function run(command: string, args: string[], cwd?: string): string {
-  const result = spawnSync(command, args, { cwd, encoding: "utf8" });
-  if (result.error) throw result.error;
-  if (result.status !== 0) {
-    throw new Error(result.stderr.trim() || `${command} exited with status ${result.status}`);
-  }
-  return result.stdout.trim();
-}
-
-function shellQuote(value: string): string {
-  return `'${value.replaceAll("'", "'\\''")}'`;
-}
-
-function agentCommand(agent: SpawnAgent, handoffFile: string): string {
-  return [agent, "--", `@${handoffFile}`].map(shellQuote).join(" ");
-}
-
-function shellLaunch(
-  agent: SpawnAgent,
-  cwd: string,
-  handoffFile: string,
-  depth: number,
-  runId: string,
-  signalFile: string,
-  environment: Record<string, string>,
-): string {
-  const command = agentCommand(agent, handoffFile);
-  const signalPath = shellQuote(signalFile);
-  const runIdValue = shellQuote(runId);
-  return [
-    `cd ${shellQuote(cwd)} || exit $?`,
-    "umask 077",
-    `signal_file=${signalPath}`,
-    `run_id=${runIdValue}`,
-    "emit_signal() {",
-    "  state=\"$1\"; code=\"${2-}\"; timestamp=$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-    "  if [ \"$state\" = running ]; then",
-    `    printf '{"version":1,"runId":"%s","sequence":1,"state":"running","source":"process","timestamp":"%s"}\\n' "$run_id" "$timestamp" > "$signal_file.tmp"`,
-    "  else",
-    `    printf '{"version":1,"runId":"%s","sequence":2,"state":"%s","source":"process","timestamp":"%s","exitCode":%s}\\n' "$run_id" "$state" "$timestamp" "$code" > "$signal_file.tmp"`,
-    "  fi",
-    "  mv \"$signal_file.tmp\" \"$signal_file\"",
-    "}",
-    `cleanup() { rm -f ${shellQuote(handoffFile)}; rmdir ${shellQuote(dirname(handoffFile))} 2>/dev/null; }`,
-    "trap 'emit_signal cancelled 130; cleanup; exit 130' INT",
-    "trap 'emit_signal cancelled 143; cleanup; exit 143' TERM",
-    "trap 'emit_signal cancelled 129; cleanup; exit 129' HUP",
-    "trap 'emit_signal cancelled 131; cleanup; exit 131' QUIT",
-    `export MUXER_SUBAGENT_DEPTH=${depth}`,
-    ...Object.entries(environment).map(([key, value]) => `export ${key}=${shellQuote(value)}`),
-    "emit_signal running",
-    `${command}`,
-    "status=$?",
-    "if [ \"$status\" -eq 0 ]; then emit_signal completed 0; else emit_signal failed \"$status\"; fi",
-    "cleanup",
-    "exit \"$status\"",
-  ].join("\n");
-}
-
-function resultValue(output: string): Record<string, unknown> {
-  const parsed: unknown = JSON.parse(output);
-  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
-    throw new Error("Muxer returned an invalid JSON object");
-  }
-  const response = parsed as Record<string, unknown>;
-  const result = response.result;
-  return result && typeof result === "object" && !Array.isArray(result)
-    ? result as Record<string, unknown>
-    : response;
-}
-
-function nestedRecord(record: Record<string, unknown>, key: string): Record<string, unknown> | undefined {
-  const value = record[key];
-  return value && typeof value === "object" && !Array.isArray(value)
-    ? value as Record<string, unknown>
-    : undefined;
-}
-
-function isInside(path: string, root: string): boolean {
-  const relativePath = relative(root, path);
-  return relativePath === "" || (!relativePath.startsWith("..") && !isAbsolute(relativePath));
-}
-
-// The worktree list "source" is the main checkout. A linked worktree has its
-// own workspace, so pick the entry that holds cwd and open it when needed.
-function herdrWorktreeWorkspace(cwd: string): string {
-  const listing = resultValue(run("herdr", ["worktree", "list", "--cwd", cwd, "--json"]));
-  const worktrees = Array.isArray(listing.worktrees) ? listing.worktrees as Record<string, unknown>[] : [];
-  const worktree = worktrees
-    .filter((entry) => typeof entry.path === "string" && isInside(resolve(cwd), entry.path))
-    .sort((a, b) => String(b.path).length - String(a.path).length)[0];
-  if (!worktree) throw new Error(`Herdr did not report a worktree that contains ${cwd}`);
-  if (worktree.open_workspace_id) return String(worktree.open_workspace_id);
-
-  const opened = resultValue(run("herdr", ["worktree", "open", "--path", String(worktree.path), "--no-focus"]));
-  const workspace = opened.workspace_id
-    ?? nestedRecord(opened, "workspace")?.workspace_id
-    ?? nestedRecord(opened, "workspace")?.id
-    ?? opened.open_workspace_id;
-  if (!workspace) throw new Error(`Herdr did not report a workspace for worktree ${String(worktree.path)}`);
-  return String(workspace);
-}
-
-// `herdr agent start` can time out on readiness although the agent started.
-function herdrAgentInPane(paneId: string, agent: SpawnAgent): boolean {
-  const result = spawnSync("herdr", ["agent", "get", paneId], { encoding: "utf8" });
-  if (result.status !== 0) return false;
-  try {
-    return nestedRecord(resultValue(result.stdout), "agent")?.agent === agent;
-  } catch {
-    return false;
-  }
-}
-
-function spawnHerdr(agent: SpawnAgent, cwd: string, handoffFile: string, depth: number, environment: Record<string, string>): { target: string; agentName: string } {
-  if (agent === "zot") throw new Error("Herdr agent start does not support zot.");
-  const workspace = herdrWorktreeWorkspace(cwd);
-  const agentName = `agent-${Date.now()}`;
-  const tab = resultValue(run("herdr", [
-    "tab", "create", "--workspace", String(workspace), "--cwd", cwd,
-    "--label", agentName, "--no-focus", "--env", `MUXER_SUBAGENT_DEPTH=${depth}`,
-    ...Object.entries(environment).flatMap(([key, value]) => ["--env", `${key}=${value}`]),
-  ]));
-  const paneId = tab.pane_id ?? tab.root_pane_id ?? nestedRecord(tab, "root_pane")?.pane_id ?? nestedRecord(tab, "pane")?.id;
-  if (paneId === undefined) throw new Error("Herdr did not report the new tab's root pane id");
-  try {
-    run("herdr", [
-      "agent", "start", agentName, "--kind", agent, "--pane", String(paneId), "--", `@${handoffFile}`,
-    ]);
-  } catch (error) {
-    // The name may not be applied after a failed start; the pane ID is a valid wait target.
-    if (herdrAgentInPane(String(paneId), agent)) return { target: String(paneId), agentName: String(paneId) };
-    throw error;
-  }
-  return { target: String(paneId), agentName };
-}
-
-function spawnTmux(
-  agent: SpawnAgent,
-  cwd: string,
-  handoffFile: string,
-  depth: number,
-  runId: string,
-  signalFile: string,
-  environment: Record<string, string>,
-): string {
-  return run("tmux", [
-    "split-window", "-d", "-P", "-F", "#{pane_id}", "-c", cwd,
-    "-e", `MUXER_SUBAGENT_DEPTH=${depth}`,
-    "sh", "-lc", shellLaunch(agent, cwd, handoffFile, depth, runId, signalFile, environment),
-  ]);
-}
-
-function spawnZellij(
-  agent: SpawnAgent,
-  cwd: string,
-  handoffFile: string,
-  depth: number,
-  runId: string,
-  signalFile: string,
-  environment: Record<string, string>,
-): string {
-  const name = `agent-${Date.now()}`;
-  run("zellij", ["action", "new-tab", "--name", name, "--cwd", cwd]);
-  run("zellij", [
-    "action", "new-pane", "--cwd", cwd, "--", "sh", "-lc",
-    shellLaunch(agent, cwd, handoffFile, depth, runId, signalFile, environment),
-  ]);
-  return name;
-}
-
-function hrdxSocketPath(): string {
-  return join(process.env.XDG_CONFIG_HOME || join(homedir(), ".config"), "hrdx", "hrdx.sock");
-}
-
-async function hrdxRequest(method: string, params: Record<string, unknown>): Promise<Record<string, unknown>> {
-  const socket = net.createConnection(hrdxSocketPath());
-  const { promise, resolve, reject } = Promise.withResolvers<Record<string, unknown>>();
-  let buffer = "";
-  socket.setTimeout(5000, () => {
-    socket.destroy();
-    reject(new Error("Timed out waiting for hrdx"));
-  });
-  socket.on("error", reject);
-  socket.on("connect", () => socket.write(`${JSON.stringify({ id: "muxer-subagents-spawn", method, params })}\n`));
-  socket.on("data", (chunk) => {
-    buffer += chunk.toString();
-    const newline = buffer.indexOf("\n");
-    if (newline < 0) return;
-    let response: unknown;
-    try {
-      response = JSON.parse(buffer.slice(0, newline));
-    } catch (error) {
-      socket.destroy();
-      reject(error);
-      return;
-    }
-    socket.end();
-    if (!response || typeof response !== "object" || Array.isArray(response)) {
-      reject(new Error("hrdx returned an invalid response"));
-      return;
-    }
-    const result = response as Record<string, unknown>;
-    const error = result.error;
-    if (error) {
-      const message = typeof error === "object" && error !== null && "message" in error
-        ? String(error.message)
-        : String(error);
-      reject(new Error(message));
-    } else {
-      const payload = result.result;
-      if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
-        reject(new Error("hrdx returned an invalid result"));
-      } else resolve(payload as Record<string, unknown>);
-    }
-  });
-  return promise;
-}
-
-async function spawnHrdx(
-  agent: SpawnAgent,
-  cwd: string,
-  handoffFile: string,
-  depth: number,
-  runId: string,
-  signalFile: string,
-  environment: Record<string, string>,
-): Promise<string> {
-  const pane = await hrdxRequest("pane.create", { workspace: cwd, kind: "shell", split: "tab" });
-  const paneId = pane.pane_id;
-  if (typeof paneId !== "number") throw new Error("hrdx did not report the new pane id");
-  await hrdxRequest("pane.wait", { pane_id: paneId, until: "idle", timeout_ms: 30000 });
-  const text = `sh -lc ${shellQuote(shellLaunch(agent, cwd, handoffFile, depth, runId, signalFile, environment))}`;
-  await hrdxRequest("pane.send_text", { pane_id: paneId, text, enter: true });
-  return String(paneId);
-}
-
 export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
   if (!options.resultSchema?.trim()) throw new Error("A non-empty result schema is required.");
   if ((options.resultTarget !== undefined) !== (options.resultRef !== undefined)) {
@@ -288,9 +49,13 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
       throw new Error("Result target must be absolute and its parent directory must exist.");
     }
   }
+  const muxer: MuxerModule = muxers[options.muxer];
+  const agent: AgentModule = agents[options.agent];
+  if (!muxer.supports(agent.id)) {
+    throw new Error(`${muxer.id} does not support ${agent.id}.`);
+  }
   const parentRunId = sessionMetadata().runId;
   const run = await createRun(options.muxer, options.agent);
-  const signalFile = runSignalPath(run.runId);
   let directory: string | undefined;
   try {
     const stateRoot = process.env.XDG_STATE_HOME || join(homedir(), ".local", "state");
@@ -319,10 +84,10 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
       MUXER_SUBAGENT_ROLE: "child",
       ...(parentRunId ? { MUXER_SUBAGENT_PARENT_RUN_ID: parentRunId } : {}),
     };
-    // The agent reads `@<prompt>` after it starts. Herdr keeps the prompt until
-    // the run ends; the shell launch of the other muxers deletes it on exit.
+    // Native-state muxers retain the prompt until the reported turn ends.
+    // Shell-launch muxers remove it when the process exits.
     let handoffFile: string;
-    if (options.muxer === "herdr") {
+    if (muxer.promptLifetime === "turn") {
       handoffFile = runPromptPath(run.runId);
     } else {
       directory = mkdtempSync(join(tmpdir(), "muxer-subagents-"));
@@ -330,20 +95,17 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
     }
     const handoff = `${options.prompt}\n\nResult handoff: Read the result-delivery skill. Use the operation CLI or shared delivery library with RESULT_DELIVERY_CONTEXT=${JSON.stringify(contextFile)}. Deliver the required ${JSON.stringify(options.resultSchema)} domain result to ${JSON.stringify(resultPath)}. Do not replace artifact delivery with a chat summary. Completion signals remain separate from domain success.\n`;
     writeFileSync(handoffFile, handoff, { encoding: "utf8", mode: 0o600 });
-    let target: string;
-    let agentName: string | undefined;
-    if (options.muxer === "herdr") {
-      const herdrTarget = spawnHerdr(options.agent, options.cwd, handoffFile, options.depth, environment);
-      target = herdrTarget.target;
-      agentName = herdrTarget.agentName;
-      await writeRunSignal(run.runId, "running", "launcher");
-    } else if (options.muxer === "tmux") {
-      target = spawnTmux(options.agent, options.cwd, handoffFile, options.depth, run.runId, signalFile, environment);
-    } else if (options.muxer === "zellij") {
-      target = spawnZellij(options.agent, options.cwd, handoffFile, options.depth, run.runId, signalFile, environment);
-    } else {
-      target = await spawnHrdx(options.agent, options.cwd, handoffFile, options.depth, run.runId, signalFile, environment);
-    }
+    const { target, agentName } = await muxer.launch({
+      runId: run.runId,
+      cwd: options.cwd,
+      depth: options.depth,
+      promptFile: handoffFile,
+      environment,
+      agent: {
+        id: agent.id,
+        argv: agent.command({ muxer: muxer.id, promptFile: handoffFile }),
+      },
+    });
     await updateRunTarget(run.runId, target, agentName);
     return { runId: run.runId, target, parentRunId, operationId, contextFile, deliveryContext, resultTarget: deliveryContext.target! };
   } catch (error) {

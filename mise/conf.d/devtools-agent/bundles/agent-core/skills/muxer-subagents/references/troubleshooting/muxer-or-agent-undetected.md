@@ -10,8 +10,11 @@ Detection checks these agent markers in priority order: `OMPCODE=1` (omp), `PI_C
 
 Anything outside that list reports `unknown-muxer`/`unknown-agent` on purpose, rather than guessing from a weaker signal like a binary being on `PATH`.
 
+For the desktop app, a non-empty `HC_TERMINAL_ID` selects `herdr-app` only when no explicit nested muxer marker wins. The older TUI still uses `HERDR_ENV=1`. A core address does not prove that the window is open; check `herdr-app ls` before launching. Read `../muxers/herdr-app.md`.
+
 ## Fix
 
 - Pass the override explicitly: `route "<request>" --agent zot` (or any other case detection cannot see).
 - If a new, real, confirmed signal appears, update `detectAgent()` in `scripts/session-context.ts` and the matching `references/agents/*.md` file. Do not add weak signals such as executable availability.
 - Never silently pick a muxer or agent when detection returns `unknown-muxer`/`unknown-agent` and no override was given — ask the user.
+

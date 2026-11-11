@@ -11,7 +11,7 @@ import { waitForAgent } from "./wait.ts";
 // A fake herdr CLI answers the calls spawnHerdr makes and records the
 // `agent start` arguments, so the test can find the prompt file it was given.
 const fakeHerdr = `#!/usr/bin/env bun
-import { appendFileSync, readFileSync } from "node:fs";
+import { appendFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 const args = process.argv.slice(2);
 const log = process.env.FAKE_HERDR_LOG;
@@ -32,6 +32,11 @@ if (args[0] === "worktree" && args[1] === "list") {
   appendFileSync(log + ".environment", JSON.stringify(environment));
   console.log(JSON.stringify({ result: { pane_id: "w1:p1" } }));
 } else if (args[0] === "agent" && args[1] === "start") {
+  if (process.env.FAKE_HERDR_STARTUP && !existsSync(log + ".busy")) {
+    writeFileSync(log + ".busy", "rejected before dispatch");
+    console.error(JSON.stringify({ error: { code: "agent_pane_busy" } }));
+    process.exit(1);
+  }
   if (process.env.FAKE_AGENT_CAPTURE) {
     const environment = JSON.parse(readFileSync(log + ".environment", "utf8"));
     const child = spawnSync(process.execPath, [process.env.FAKE_AGENT_EXECUTABLE, "--", args.at(-1)], {
@@ -43,6 +48,11 @@ if (args[0] === "worktree" && args[1] === "list") {
     }
   }
   console.log("{}");
+} else if (args[0] === "agent" && args[1] === "get") {
+  process.exit(1);
+} else if (args[0] === "pane" && args[1] === "process-info") {
+  const foreground = process.env.FAKE_HERDR_STARTUP === "other-process" ? 200 : 100;
+  console.log(JSON.stringify({ result: { process_info: { shell_pid: 100, foreground_processes: [{ pid: foreground }] } } }));
 } else {
   process.exit(1);
 }
@@ -67,13 +77,14 @@ describe("muxer spawn", () => {
     delete process.env.MUXER_SUBAGENT_PARENT_RUN_ID;
     delete process.env.FAKE_AGENT_CAPTURE;
     delete process.env.FAKE_AGENT_EXECUTABLE;
+    delete process.env.FAKE_HERDR_STARTUP;
   });
 
   afterEach(() => {
     process.env.PATH = saved.PATH;
     process.env.XDG_STATE_HOME = saved.XDG_STATE_HOME;
     delete process.env.FAKE_HERDR_LOG;
-    for (const key of ["RESULT_DELIVERY_CONTEXT", "MUXER_SUBAGENT_RUN_ID", "MUXER_SUBAGENT_PARENT_RUN_ID", "XDG_CONFIG_HOME", "FAKE_AGENT_CAPTURE", "FAKE_AGENT_EXECUTABLE"]) {
+    for (const key of ["RESULT_DELIVERY_CONTEXT", "MUXER_SUBAGENT_RUN_ID", "MUXER_SUBAGENT_PARENT_RUN_ID", "XDG_CONFIG_HOME", "HC_TERMINAL_ID", "FAKE_AGENT_CAPTURE", "FAKE_AGENT_EXECUTABLE", "FAKE_HERDR_STARTUP"]) {
       if (saved[key] === undefined) delete process.env[key];
       else process.env[key] = saved[key];
     }
@@ -100,6 +111,7 @@ const context = await loadDeliveryContext();
 const promptFile = process.argv.at(-1).slice(1);
 writeFileSync(process.env.FAKE_AGENT_CAPTURE, JSON.stringify({
   context,
+  argv: process.argv.slice(2),
   operationId: context.operationId,
   contextFile: process.env.RESULT_DELIVERY_CONTEXT,
   runId: process.env.MUXER_SUBAGENT_RUN_ID,
@@ -116,6 +128,133 @@ await deliverResult({ schema: context.target.schema, status: "failed", checks: [
     process.env.FAKE_AGENT_EXECUTABLE = executable;
     return capture;
   }
+
+  test("rejects an unsupported agent before creating a terminal or run", async () => {
+    await expect(spawnAgent({
+      muxer: "herdr", agent: "zot", prompt: "task", cwd: root, depth: 1,
+      resultSchema: "test-result/v1",
+    })).rejects.toThrow("does not support zot");
+    expect(existsSync(log)).toBe(false);
+    expect(existsSync(join(root, "state", "muxer-subagents", "runs"))).toBe(false);
+  });
+
+  function prepareDesktop(spaces: Array<Record<string, unknown>>): () => Array<{ command: string; request: Record<string, unknown> }> {
+    process.env.HC_TERMINAL_ID = "t7";
+    const state = join(root, "desktop.json");
+    writeFileSync(state, JSON.stringify({ spaces, calls: [] }));
+    const desktop = join(root, "herdr-app");
+    writeFileSync(desktop, `#!${process.execPath}
+import { readFileSync, writeFileSync } from "node:fs";
+const file = ${JSON.stringify(state)};
+const state = JSON.parse(readFileSync(file, "utf8"));
+const args = process.argv.slice(2);
+if (args[0] === "ls") {
+  console.log(JSON.stringify({ spaces: state.spaces }));
+} else if (args[0] === "do") {
+  const request = JSON.parse(args[2]);
+  state.calls.push({ command: args[1], request });
+  const terminal = "child-" + state.calls.length;
+  if (args[1] === "space.new") {
+    state.spaces.push({ id: "created", folder: request.folder, machine: request.machine, tabs: [{ terminals: [{ terminal }] }] });
+  }
+  writeFileSync(file, JSON.stringify(state));
+  console.log(JSON.stringify({ terminal }));
+} else {
+  process.exit(1);
+}
+`);
+    chmodSync(desktop, 0o755);
+    return () => JSON.parse(readFileSync(state, "utf8")).calls;
+  }
+
+  function parentSpace(): Record<string, unknown> {
+    return { id: "parent", folder: join(root, "orchestrator"), machine: null, tabs: [{ terminals: [{ terminal: "t7" }] }] };
+  }
+
+  test("opens a fresh tab in the target directory space rather than the parent or focused space", async () => {
+    const calls = prepareDesktop([
+      { id: "focused", folder: join(root, "other"), active: true, tabs: [] },
+      parentSpace(),
+      { id: "remote", folder: root, machine: "remote-host", tabs: [] },
+      { id: "worktree", folder: root + "/nested/../", machine: null, tabs: [] },
+    ]);
+    const spawned = await spawnAgent({
+      muxer: "herdr-app", agent: "codex", prompt: "review", cwd: root + "/./", depth: 1, resultSchema: "test-result/v1",
+    });
+    expect(calls()).toMatchObject([{ command: "tab.new", request: { space: "worktree", folder: root } }]);
+    await removeRun(spawned.runId);
+  });
+
+  test("creates a local target space once and reuses it for later fresh sessions", async () => {
+    const calls = prepareDesktop([
+      parentSpace(),
+      { id: "remote", folder: root, machine: "remote-host", tabs: [] },
+    ]);
+    const first = await spawnAgent({
+      muxer: "herdr-app", agent: "omp", prompt: "implement", cwd: root, depth: 1, resultSchema: "test-result/v1",
+    });
+    const second = await spawnAgent({
+      muxer: "herdr-app", agent: "omp", prompt: "review", cwd: root, depth: 1, resultSchema: "test-result/v1",
+    });
+    expect(calls()).toMatchObject([
+      { command: "space.new", request: { folder: root, machine: "" } },
+      { command: "tab.new", request: { space: "created", folder: root } },
+    ]);
+    expect(first.target).not.toBe(second.target);
+    await removeRun(first.runId);
+    await removeRun(second.runId);
+  });
+
+  test("rejects ambiguous local target spaces without opening a terminal", async () => {
+    const calls = prepareDesktop([
+      parentSpace(),
+      { id: "worktree-a", folder: root, tabs: [] },
+      { id: "worktree-b", folder: root + "/", tabs: [] },
+    ]);
+    await expect(spawnAgent({
+      muxer: "herdr-app", agent: "omp", prompt: "review", cwd: root, depth: 1, resultSchema: "test-result/v1",
+    })).rejects.toThrow("worktree-a, worktree-b");
+    expect(calls()).toEqual([]);
+  });
+
+  test("requires a visible local parent before creating a target space", async () => {
+    const calls = prepareDesktop([{ id: "unrelated", folder: root, tabs: [] }]);
+    await expect(spawnAgent({
+      muxer: "herdr-app", agent: "omp", prompt: "review", cwd: root, depth: 1, resultSchema: "test-result/v1",
+    })).rejects.toThrow("did not report a space containing t7");
+    expect(calls()).toEqual([]);
+  });
+
+  test("rejects a remote parent without opening a local target terminal", async () => {
+    const calls = prepareDesktop([{ ...parentSpace(), machine: "remote-host" }]);
+    await expect(spawnAgent({
+      muxer: "herdr-app", agent: "omp", prompt: "review", cwd: root, depth: 1, resultSchema: "test-result/v1",
+    })).rejects.toThrow("requires a local space");
+    expect(calls()).toEqual([]);
+  });
+
+  test("launches once the fresh shell becomes available after an explicit rejection", async () => {
+    process.env.FAKE_HERDR_STARTUP = "shell";
+    prepareFakeAgent();
+    const spawned = await spawnAgent({
+      muxer: "herdr", agent: "claude", prompt: "produce result", cwd: root, depth: 1,
+      resultSchema: "test-result/v1",
+    });
+    expect((await readDeliveredResult(spawned.deliveryContext)).result).toEqual({
+      schema: "test-result/v1", status: "failed", checks: ["domain failure"],
+    });
+    await removeRun(spawned.runId);
+  });
+
+  test("does not retry a busy pane with another foreground process", async () => {
+    process.env.FAKE_HERDR_STARTUP = "other-process";
+    const capture = prepareFakeAgent();
+    await expect(spawnAgent({
+      muxer: "herdr", agent: "claude", prompt: "produce result", cwd: root, depth: 1,
+      resultSchema: "test-result/v1",
+    })).rejects.toThrow("agent_pane_busy");
+    expect(existsSync(capture)).toBe(false);
+  });
 
   test("keeps the prompt file after spawnAgent returns", async () => {
     const { runId } = await spawnAgent({ muxer: "herdr", agent: "claude", prompt: "do the task", cwd: root, depth: 1, resultSchema: "test-result/v1" });

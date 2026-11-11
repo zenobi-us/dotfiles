@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { isAbsolute } from "node:path";
 import { parseDeliveryContext, type DeliveryContext } from "../../result-delivery/scripts/delivery.ts";
 import type { Agent, Muxer } from "./types.ts";
+import { agentDetectionOrder, muxerDetectionOrder } from "./modules/index.ts";
 
 export const MAX_SUBAGENTS_PER_SESSION = 5;
 export const MAX_SUBAGENT_DEPTH = 2;
@@ -13,12 +14,8 @@ export function currentSubagentDepth(): number {
   return Number.isInteger(depth) && depth >= 0 ? depth : -1;
 }
 
-export function detectMuxer(): Muxer {
-  if (process.env.HERDR_ENV === "1") return "herdr";
-  if (process.env.ZELLIJ) return "zellij";
-  if (process.env.TMUX) return "tmux";
-  if (process.env.HRDX === "1") return "hrdx";
-  return "unknown-muxer";
+export function detectMuxer(environment: Record<string, string | undefined> = process.env): Muxer {
+  return muxerDetectionOrder.find((muxer) => muxer.detect(environment))?.id ?? "unknown-muxer";
 }
 
 export function detectAgent(
@@ -27,15 +24,7 @@ export function detectAgent(
 ): Agent {
   if (identity !== undefined) return identity;
 
-  if (environment.OMPCODE === "1") return "omp";
-  if (
-    environment.PI_CODING_AGENT === "true" ||
-    environment.AI_AGENT === "pi"
-  ) return "pi";
-  if (environment.AGENT === "zot") return "zot";
-  if (environment.AGENT === "codex") return "codex";
-  if (environment.CLAUDECODE === "1") return "claude";
-  return "unknown-agent";
+  return agentDetectionOrder.find((agent) => agent.detect(environment))?.id ?? "unknown-agent";
 }
 export function sessionMetadata(): {
   role: "child" | "unspecified";
