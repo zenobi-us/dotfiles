@@ -1,0 +1,72 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "7ff2f96ebf1c2eae3b795af011e197dae0314911",
+  "source_tree": "3a838d99e033537106c4cd9a7584b4d78a66d468",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "receipt_id": "start-reconcile-complete-0014",
+  "created_at": "2026-11-11T20:48:41.652095+00:00",
+  "session_id": "hc:t5k",
+  "pane_id": null,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/start-reconcile-complete-0014.json"
+    }
+  ],
+  "phase": "start",
+  "event": "phase-complete",
+  "status": "completed",
+  "attempt": 3,
+  "parent_receipt": "implementation-reconcile-0013",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/implementation-reconcile-0013.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/artifacts/snapshots/pr-draft-implementation-reconcile-0013.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/artifacts/evidence/implementation-reconcile-0013/checks.json"
+    }
+  ],
+  "validation": [
+    {
+      "command": "result-delivery read and normalized authoritative YAML equality",
+      "result": "passed; exact source identity, parent, outputs and SHA-256 verified; transport acknowledged"
+    },
+    {
+      "command": "hc kill t5n; hc rm t5n",
+      "result": "completed child removed; source workspace retained"
+    },
+    {
+      "command": "record-schema check",
+      "result": "passed: tracker-ticket/v1 membership and graph discovery"
+    }
+  ],
+  "summary": "Authorized source reconciliation completed. 122 scoped tests, 11 inspector tests, public CLI smoke passed. Unchanged master TS2554 baseline recorded. Prior review stale. Fresh review required.",
+  "workspace_cleanup": {
+    "terminal": "t5n",
+    "closed": true
+  }
+}
