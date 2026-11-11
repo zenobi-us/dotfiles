@@ -4,7 +4,7 @@ id: "worktree-receipt-recovery-01-validation"
 title: "Reject inconsistent receipts before publication"
 type: "bug"
 triage: "ready-for-agent"
-work_status: "unclaimed"
+work_status: "claimed"
 parent: "worktree-receipt-recovery"
 sequence: 1
 blocked_by: []
