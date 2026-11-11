@@ -91,15 +91,15 @@ describe("worktree recovery actions", () => {
     for (const action of ["start", "review", "fix", "finish", "submit"] as const) expect(enabled(action, state)).toBe(false);
   });
 
-  test("recovery handoff names the interrupted attempt without granting takeover", () => {
-    const interrupted = receipt(1, "start", { status: "started", fields: { event: "phase-start" } });
-    const handoff = buildSessionPrompt(request("start", workflow([interrupted])));
-    const data = JSON.parse(handoff.split("\n").find(line => line.startsWith("Recovery DATA: "))!.slice("Recovery DATA: ".length));
-    expect(data).toMatchObject({ action: "start", mode: "takeover", requiredApproval: true });
-    expect([interrupted.id, interrupted.ref]).toContain(data.parentReceipt);
-    const parent = JSON.parse(handoff.split("\n").find(line => line.startsWith("Parent receipt DATA: "))!.slice("Parent receipt DATA: ".length));
-    expect(parent).toMatchObject({ id: interrupted.id, ref: interrupted.ref });
-  });
+});
+
+test("worktree handoffs contain only the action and canonical reference, regardless of workflow size", () => {
+  const state = workflow([receipt(1, "implementation", { body: "Private workflow data".repeat(15000) })]);
+  state.inspection!.worktrees = [{ path: "/worktrees/GH-42", marker: "Large inspection data".repeat(15000) }];
+  for (const action of ["start", "review", "fix", "finish", "submit"] as const) {
+    const handoff = buildSessionPrompt({ ...request(action, state), prompt: "" });
+    expect(handoff).toBe(`/skill:worktree ${action} ${JSON.stringify(ticket.ref)}`);
+  }
 });
 
 test("prototype tickets offer their skill without production transitions", () => {
@@ -194,7 +194,6 @@ describe("fresh-session boundaries", () => {
       }]);
       expect(messages[0].text).toContain(ticket.ref);
       expect(messages[0].text).toContain("Assess the remaining design questions.");
-      expect(messages[0].text).toContain('Return session DATA: "/sessions/parent.jsonl"');
     });
   }
 

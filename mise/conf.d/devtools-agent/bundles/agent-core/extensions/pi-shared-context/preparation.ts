@@ -53,7 +53,7 @@ export async function prepareSessionRequest(context: SharedAgentContext, exec: E
   return { request: refreshed, key };
 }
 
-/** Include full consumed records, not just the summaries present in the confirmation prompt. */
+/** Bind confirmation to current records and observations; the handoff itself contains only the selector and user request. */
 export function sessionRequestKey(context: SharedAgentContext, request: ExplorerSessionRequest): string {
   const roots = request.target.kind === "ticket" ? [request.target.ticket.id] : request.target.initiative.ticketIds;
   const inputs = relatedTickets(request.snapshot, roots);
