@@ -1,0 +1,94 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "finish-0010",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "phase": "finish",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "review-complete-0009",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "c2135fa5e78208c39e18e49eaa95ba0128f936e7",
+  "source_tree": "b52dae2fbcb6198342f30cc361b974d605e83b56",
+  "created_at": "2026-11-11T07:49:46.098960+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc:t4d",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-complete-0009.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-0008.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/artifacts/reviews/review-review-0008.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-0010.yaml"
+    }
+  ],
+  "status": "FINISH_FAILED",
+  "failure_step": "prepare",
+  "failure_reason": "Read-only git merge-tree --write-tree master feature/skill-contract-manifests-01-local-definitions exited 1: content conflicts in muxer-subagents/scripts/spawn.ts and canonical ticket; add/add conflicts in manifest.yaml and three projections. No unambiguous expected clean integration tree. Finish playbook requires stopping before merge.",
+  "base_before": "88ad11146989ee9e6176d694777cf80a296c7a14",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_observed_commit": "d3f7d8beec8786aa52475d78a7393226fc119112",
+  "review_receipt": "workflows/skill-contract-manifests-01-local-definitions/events/review-0008.yaml",
+  "reviewed_source_commit": "c2135fa5e78208c39e18e49eaa95ba0128f936e7",
+  "reviewed_source_tree": "b52dae2fbcb6198342f30cc361b974d605e83b56",
+  "merged_commit": null,
+  "pushed": false,
+  "ticket_completed": false,
+  "worktree_removed": false,
+  "workspace_closed": false,
+  "worktree_preserved": true,
+  "workspace_preserved": true,
+  "recovery_mode": "begin",
+  "recovery_reason": "Explicit user finish request; inspector selects finish begin with matching clean SUCCESS review. Stopped at prepare conflict gate. No takeover, merge, push, tracker change or session closure attempted.",
+  "validation": [
+    {
+      "command": "inspect.ts tracker/tickets/skill-contract-manifests-01-local-definitions.md --json",
+      "result": "historyValid true; exact clean reviewed source; finish begin recommended"
+    },
+    {
+      "command": "git fetch origin master; git rev-list --left-right --count master...origin/master",
+      "result": "base ahead 9, behind 0; no divergence"
+    },
+    {
+      "command": "git merge-tree --write-tree master feature/skill-contract-manifests-01-local-definitions",
+      "result": "exit 1; six conflicting paths; working trees and index unchanged"
+    },
+    {
+      "command": "hc ls --json; herdr-app ls",
+      "result": "read current liveness and workspace state; no terminal killed or workspace closed"
+    }
+  ],
+  "next_step": "Resolve integration conflicts under an authorized source update, then obtain fresh review for the changed source before retrying finish."
+}
