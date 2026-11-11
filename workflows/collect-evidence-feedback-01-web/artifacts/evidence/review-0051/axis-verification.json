@@ -1,0 +1,38 @@
+[
+  {
+    "axis": "standards",
+    "runId": "13d2ac02-e01d-4591-8264-9a3e277aa63c",
+    "terminal": "t3d",
+    "depth": 2,
+    "context": "/home/zenobius/.local/state/result-delivery/runs/13d2ac02-e01d-4591-8264-9a3e277aa63c/context.json",
+    "result": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/standards-result.json",
+    "sha256": "886ebd502c6e93ac4e07ae6e3b2cd58732a119394e489916f5b2d30a9603789c",
+    "verified": true,
+    "acknowledged": true,
+    "native_completion": {
+      "state": "completed",
+      "source": "agent",
+      "sequence": 2
+    },
+    "closed": true,
+    "closure": "hc kill and hc rm succeeded; herdr-app ls no longer contained this terminal"
+  },
+  {
+    "axis": "spec",
+    "runId": "63812aab-d493-416b-8da3-9ad160031ffb",
+    "terminal": "t3c",
+    "depth": 2,
+    "context": "/home/zenobius/.local/state/result-delivery/runs/63812aab-d493-416b-8da3-9ad160031ffb/context.json",
+    "result": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/spec-result.json",
+    "sha256": "b6b216f39b0391778dea16596118381f622b74b5559a1262d93065a2f5fbd55c",
+    "verified": true,
+    "acknowledged": true,
+    "native_completion": {
+      "state": "completed",
+      "source": "agent",
+      "sequence": 2
+    },
+    "closed": true,
+    "closure": "hc kill and hc rm succeeded; herdr-app ls no longer contained this terminal"
+  }
+]

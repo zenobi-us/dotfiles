@@ -1,0 +1,954 @@
+[
+  {
+    "driver": "playwright",
+    "run": {
+      "id": "controlled",
+      "status": "sealed",
+      "startedAt": "2026-11-11T00:27:44.011Z",
+      "finishedAt": "2026-11-11T00:27:55.764Z",
+      "driverVersion": "0.1.22"
+    },
+    "cases": [
+      {
+        "id": "pass",
+        "steps": [
+          {
+            "id": "pass.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "pass.2",
+            "assertionResult": "passed"
+          },
+          {
+            "id": "pass.3",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "pass.4",
+            "assertionResult": "passed"
+          }
+        ],
+        "errors": [],
+        "assetCount": 4,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "pass.2.capture-001",
+          "caseId": "pass",
+          "stepId": "pass.2",
+          "path": "cases/pass/media/step-002-step-pass-002-heading--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "6687f726e4c259df7a36efd2cc79d6926412f1259e32894608047cef1d5ee3c0",
+          "mediaType": "image/png",
+          "width": 1280,
+          "height": 720,
+          "capturedAt": "2026-11-11T00:27:45.385Z",
+          "viewport": {
+            "width": 1280,
+            "height": 720,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-screenshot",
+          "url": "http://127.0.0.1:37869/"
+        }
+      },
+      {
+        "id": "failure",
+        "steps": [
+          {
+            "id": "failure.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "failure.2",
+            "assertionResult": "failed"
+          }
+        ],
+        "errors": [
+          {
+            "schema": "collect-evidence/v1",
+            "kind": "error",
+            "id": "failure.error-001",
+            "caseId": "failure",
+            "stepId": "failure.2",
+            "category": "assertion",
+            "message": "ASSERT FAIL failure.2: expected \"This text is absent\", got \"No project selected\""
+          }
+        ],
+        "assetCount": 1,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "failure.2.capture-001",
+          "caseId": "failure",
+          "stepId": "failure.2",
+          "path": "cases/failure/media/step-002-step-failure-002-unselected-project--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "6687f726e4c259df7a36efd2cc79d6926412f1259e32894608047cef1d5ee3c0",
+          "mediaType": "image/png",
+          "width": 1280,
+          "height": 720,
+          "capturedAt": "2026-11-11T00:27:46.350Z",
+          "viewport": {
+            "width": 1280,
+            "height": 720,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-screenshot",
+          "url": "http://127.0.0.1:37869/"
+        }
+      },
+      {
+        "id": "unapproved",
+        "steps": [
+          {
+            "id": "unapproved.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "unapproved.2",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [
+          {
+            "schema": "collect-evidence/v1",
+            "kind": "error",
+            "id": "unapproved.error-001",
+            "caseId": "unapproved",
+            "stepId": "unapproved.2",
+            "category": "blocked",
+            "message": "page.evaluate: Error: SAFETY STOP unapproved.2: confirmation step is not explicitly approved\n    at eval (eval at evaluate (:368:30), <anonymous>:17:21)\n    at eval (eval at evaluate (:368:30), <anonymous>:19:5)\n    at UtilityScript.evaluate (<anonymous>:370:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+          }
+        ],
+        "assetCount": 0
+      },
+      {
+        "id": "space",
+        "steps": [
+          {
+            "id": "space.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "space.2",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [
+          {
+            "schema": "collect-evidence/v1",
+            "kind": "error",
+            "id": "space.error-001",
+            "caseId": "space",
+            "stepId": "space.2",
+            "category": "blocked",
+            "message": "page.evaluate: Error: SAFETY STOP space.2: confirmation step is not explicitly approved\n    at eval (eval at evaluate (:368:30), <anonymous>:17:21)\n    at eval (eval at evaluate (:368:30), <anonymous>:19:5)\n    at UtilityScript.evaluate (<anonymous>:370:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+          }
+        ],
+        "assetCount": 0
+      },
+      {
+        "id": "approved-space",
+        "steps": [
+          {
+            "id": "approved-space.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "approved-space.2",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "approved-space.3",
+            "assertionResult": "passed"
+          }
+        ],
+        "errors": [],
+        "assetCount": 2,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "approved-space.3.capture-001",
+          "caseId": "approved-space",
+          "stepId": "approved-space.3",
+          "path": "cases/approved-space/media/step-003-step-approved-space-003-keyboard-submitted--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "029ceae1c832fc0249d5c1ecbf47d14ed0f4a760d39ff7d843fe855c775b2287",
+          "mediaType": "image/png",
+          "width": 1280,
+          "height": 720,
+          "capturedAt": "2026-11-11T00:27:48.931Z",
+          "viewport": {
+            "width": 1280,
+            "height": 720,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-screenshot",
+          "url": "http://127.0.0.1:37869/confirmation"
+        }
+      },
+      {
+        "id": "a-b",
+        "steps": [
+          {
+            "id": "a-b.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "a-b.2",
+            "assertionResult": "passed"
+          },
+          {
+            "id": "a-b.3",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [],
+        "assetCount": 3,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "a-b.2.capture-001",
+          "caseId": "a-b",
+          "stepId": "a-b.2",
+          "path": "cases/a-b/media/step-002-step-a-b-002-case-identity--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "6687f726e4c259df7a36efd2cc79d6926412f1259e32894608047cef1d5ee3c0",
+          "mediaType": "image/png",
+          "width": 1280,
+          "height": 720,
+          "capturedAt": "2026-11-11T00:27:49.784Z",
+          "viewport": {
+            "width": 1280,
+            "height": 720,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-screenshot",
+          "url": "http://127.0.0.1:37869/?case=a-b"
+        }
+      },
+      {
+        "id": "a.b",
+        "steps": [
+          {
+            "id": "a.b.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "a.b.2",
+            "assertionResult": "passed"
+          },
+          {
+            "id": "a.b.3",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [],
+        "assetCount": 3,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "a.b.2.capture-001",
+          "caseId": "a.b",
+          "stepId": "a.b.2",
+          "path": "cases/a.b/media/step-002-step-a-b-002-case-identity--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "6687f726e4c259df7a36efd2cc79d6926412f1259e32894608047cef1d5ee3c0",
+          "mediaType": "image/png",
+          "width": 1280,
+          "height": 720,
+          "capturedAt": "2026-11-11T00:27:50.650Z",
+          "viewport": {
+            "width": 1280,
+            "height": 720,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-screenshot",
+          "url": "http://127.0.0.1:37869/?case=a.b"
+        }
+      },
+      {
+        "id": "a_b",
+        "steps": [
+          {
+            "id": "a_b.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "a_b.2",
+            "assertionResult": "passed"
+          },
+          {
+            "id": "a_b.3",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [],
+        "assetCount": 3,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "a_b.2.capture-001",
+          "caseId": "a_b",
+          "stepId": "a_b.2",
+          "path": "cases/a_b/media/step-002-step-a-b-002-case-identity--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "6687f726e4c259df7a36efd2cc79d6926412f1259e32894608047cef1d5ee3c0",
+          "mediaType": "image/png",
+          "width": 1280,
+          "height": 720,
+          "capturedAt": "2026-11-11T00:27:51.518Z",
+          "viewport": {
+            "width": 1280,
+            "height": 720,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-screenshot",
+          "url": "http://127.0.0.1:37869/?case=a_b"
+        }
+      },
+      {
+        "id": "a",
+        "steps": [
+          {
+            "id": "a.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "a.2",
+            "assertionResult": "passed"
+          },
+          {
+            "id": "a.3",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [],
+        "assetCount": 3,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "a.2.capture-001",
+          "caseId": "a",
+          "stepId": "a.2",
+          "path": "cases/a/media/step-002-step-a-002-case-identity--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "6687f726e4c259df7a36efd2cc79d6926412f1259e32894608047cef1d5ee3c0",
+          "mediaType": "image/png",
+          "width": 1280,
+          "height": 720,
+          "capturedAt": "2026-11-11T00:27:52.384Z",
+          "viewport": {
+            "width": 1280,
+            "height": 720,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-screenshot",
+          "url": "http://127.0.0.1:37869/?case=a"
+        }
+      },
+      {
+        "id": "a.map",
+        "steps": [
+          {
+            "id": "a.map.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "a.map.2",
+            "assertionResult": "passed"
+          },
+          {
+            "id": "a.map.3",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [],
+        "assetCount": 3,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "a.map.2.capture-001",
+          "caseId": "a.map",
+          "stepId": "a.map.2",
+          "path": "cases/a.map/media/step-002-step-a-map-002-case-identity--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "6687f726e4c259df7a36efd2cc79d6926412f1259e32894608047cef1d5ee3c0",
+          "mediaType": "image/png",
+          "width": 1280,
+          "height": 720,
+          "capturedAt": "2026-11-11T00:27:53.266Z",
+          "viewport": {
+            "width": 1280,
+            "height": 720,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-screenshot",
+          "url": "http://127.0.0.1:37869/?case=a.map"
+        }
+      },
+      {
+        "id": "capture",
+        "steps": [
+          {
+            "id": "capture.1",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [],
+        "assetCount": 1,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "capture.1.capture-001",
+          "caseId": "capture",
+          "stepId": "capture.1",
+          "path": "cases/capture/media/step-001-step-capture-001-page-without-assertion--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "6687f726e4c259df7a36efd2cc79d6926412f1259e32894608047cef1d5ee3c0",
+          "mediaType": "image/png",
+          "width": 1280,
+          "height": 720,
+          "capturedAt": "2026-11-11T00:27:54.166Z",
+          "viewport": {
+            "width": 1280,
+            "height": 720,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-screenshot",
+          "url": "http://127.0.0.1:37869/"
+        }
+      },
+      {
+        "id": "blocked",
+        "steps": [
+          {
+            "id": "blocked.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "blocked.2",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [
+          {
+            "schema": "collect-evidence/v1",
+            "kind": "error",
+            "id": "blocked.error-001",
+            "caseId": "blocked",
+            "stepId": "blocked.1",
+            "category": "blocked",
+            "message": "page.evaluate: Error: SAFETY STOP blocked.1: credential prompt or uninspectable frame; human handling required\n    at eval (eval at evaluate (:368:30), <anonymous>:14:32)\n    at eval (eval at evaluate (:368:30), <anonymous>:19:5)\n    at UtilityScript.evaluate (<anonymous>:370:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+          }
+        ],
+        "assetCount": 0
+      }
+    ]
+  },
+  {
+    "driver": "surf",
+    "run": {
+      "id": "controlled",
+      "status": "sealed",
+      "startedAt": "2026-11-11T02:27:16.128Z",
+      "finishedAt": "2026-11-11T02:27:55.877Z",
+      "driverVersion": "surf version 2.22.0"
+    },
+    "cases": [
+      {
+        "id": "pass",
+        "steps": [
+          {
+            "id": "pass.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "pass.2",
+            "assertionResult": "passed"
+          },
+          {
+            "id": "pass.3",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "pass.4",
+            "assertionResult": "passed"
+          }
+        ],
+        "errors": [],
+        "assetCount": 4,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "pass.2.capture-001",
+          "caseId": "pass",
+          "stepId": "pass.2",
+          "path": "cases/pass/media/step-002-step-pass-002-heading--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "93823085a87d7fd78e8f04a59663791fc3e94353e2aa1e5e1950616aec62b1f1",
+          "mediaType": "image/png",
+          "width": 1185,
+          "height": 1047,
+          "capturedAt": "2026-11-11T02:27:18.836Z",
+          "viewport": {
+            "width": 1185,
+            "height": 1047,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "surf",
+          "driverVersion": "surf version 2.22.0",
+          "captureMethod": "surf-screenshot",
+          "url": "http://127.0.0.1:37361/"
+        }
+      },
+      {
+        "id": "failure",
+        "steps": [
+          {
+            "id": "failure.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "failure.2",
+            "assertionResult": "failed"
+          }
+        ],
+        "errors": [
+          {
+            "schema": "collect-evidence/v1",
+            "kind": "error",
+            "id": "failure.error-001",
+            "caseId": "failure",
+            "stepId": "failure.2",
+            "category": "assertion",
+            "message": "Error: ASSERT FAIL failure.2: expected This text is absent, got No project selected\n    at <anonymous>:2:261\n    at tick (<anonymous>:2:345)"
+          }
+        ],
+        "assetCount": 1,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "failure.2.capture-001",
+          "caseId": "failure",
+          "stepId": "failure.2",
+          "path": "cases/failure/media/step-002-step-failure-002-unselected-project--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "93823085a87d7fd78e8f04a59663791fc3e94353e2aa1e5e1950616aec62b1f1",
+          "mediaType": "image/png",
+          "width": 1185,
+          "height": 1047,
+          "capturedAt": "2026-11-11T02:27:24.080Z",
+          "viewport": {
+            "width": 1185,
+            "height": 1047,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "surf",
+          "driverVersion": "surf version 2.22.0",
+          "captureMethod": "surf-screenshot",
+          "url": "http://127.0.0.1:37361/"
+        }
+      },
+      {
+        "id": "unapproved",
+        "steps": [
+          {
+            "id": "unapproved.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "unapproved.2",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [
+          {
+            "schema": "collect-evidence/v1",
+            "kind": "error",
+            "id": "unapproved.error-001",
+            "caseId": "unapproved",
+            "stepId": "unapproved.2",
+            "category": "blocked",
+            "message": "Error: SAFETY STOP unapproved.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6"
+          }
+        ],
+        "assetCount": 0
+      },
+      {
+        "id": "space",
+        "steps": [
+          {
+            "id": "space.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "space.2",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [
+          {
+            "schema": "collect-evidence/v1",
+            "kind": "error",
+            "id": "space.error-001",
+            "caseId": "space",
+            "stepId": "space.2",
+            "category": "blocked",
+            "message": "Error: SAFETY STOP space.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6"
+          }
+        ],
+        "assetCount": 0
+      },
+      {
+        "id": "approved-space",
+        "steps": [
+          {
+            "id": "approved-space.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "approved-space.2",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "approved-space.3",
+            "assertionResult": "passed"
+          }
+        ],
+        "errors": [],
+        "assetCount": 2,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "approved-space.3.capture-001",
+          "caseId": "approved-space",
+          "stepId": "approved-space.3",
+          "path": "cases/approved-space/media/step-003-step-approved-space-003-keyboard-submitted--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "c7ecf031200ad0a2a47c5aeb99fa3f6751262629dd96a9164db8095d6d7e94c7",
+          "mediaType": "image/png",
+          "width": 1185,
+          "height": 1047,
+          "capturedAt": "2026-11-11T02:27:31.398Z",
+          "viewport": {
+            "width": 1185,
+            "height": 1047,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "surf",
+          "driverVersion": "surf version 2.22.0",
+          "captureMethod": "surf-screenshot",
+          "url": "http://127.0.0.1:37361/confirmation"
+        }
+      },
+      {
+        "id": "a-b",
+        "steps": [
+          {
+            "id": "a-b.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "a-b.2",
+            "assertionResult": "passed"
+          },
+          {
+            "id": "a-b.3",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [],
+        "assetCount": 3,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "a-b.2.capture-001",
+          "caseId": "a-b",
+          "stepId": "a-b.2",
+          "path": "cases/a-b/media/step-002-step-a-b-002-case-identity--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "93823085a87d7fd78e8f04a59663791fc3e94353e2aa1e5e1950616aec62b1f1",
+          "mediaType": "image/png",
+          "width": 1185,
+          "height": 1047,
+          "capturedAt": "2026-11-11T02:27:34.519Z",
+          "viewport": {
+            "width": 1185,
+            "height": 1047,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "surf",
+          "driverVersion": "surf version 2.22.0",
+          "captureMethod": "surf-screenshot",
+          "url": "http://127.0.0.1:37361/?case=a-b"
+        }
+      },
+      {
+        "id": "a.b",
+        "steps": [
+          {
+            "id": "a.b.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "a.b.2",
+            "assertionResult": "passed"
+          },
+          {
+            "id": "a.b.3",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [],
+        "assetCount": 3,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "a.b.2.capture-001",
+          "caseId": "a.b",
+          "stepId": "a.b.2",
+          "path": "cases/a.b/media/step-002-step-a-b-002-case-identity--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "93823085a87d7fd78e8f04a59663791fc3e94353e2aa1e5e1950616aec62b1f1",
+          "mediaType": "image/png",
+          "width": 1185,
+          "height": 1047,
+          "capturedAt": "2026-11-11T02:27:38.420Z",
+          "viewport": {
+            "width": 1185,
+            "height": 1047,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "surf",
+          "driverVersion": "surf version 2.22.0",
+          "captureMethod": "surf-screenshot",
+          "url": "http://127.0.0.1:37361/?case=a.b"
+        }
+      },
+      {
+        "id": "a_b",
+        "steps": [
+          {
+            "id": "a_b.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "a_b.2",
+            "assertionResult": "passed"
+          },
+          {
+            "id": "a_b.3",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [],
+        "assetCount": 3,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "a_b.2.capture-001",
+          "caseId": "a_b",
+          "stepId": "a_b.2",
+          "path": "cases/a_b/media/step-002-step-a-b-002-case-identity--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "93823085a87d7fd78e8f04a59663791fc3e94353e2aa1e5e1950616aec62b1f1",
+          "mediaType": "image/png",
+          "width": 1185,
+          "height": 1047,
+          "capturedAt": "2026-11-11T02:27:42.256Z",
+          "viewport": {
+            "width": 1185,
+            "height": 1047,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "surf",
+          "driverVersion": "surf version 2.22.0",
+          "captureMethod": "surf-screenshot",
+          "url": "http://127.0.0.1:37361/?case=a_b"
+        }
+      },
+      {
+        "id": "a",
+        "steps": [
+          {
+            "id": "a.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "a.2",
+            "assertionResult": "passed"
+          },
+          {
+            "id": "a.3",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [],
+        "assetCount": 3,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "a.2.capture-001",
+          "caseId": "a",
+          "stepId": "a.2",
+          "path": "cases/a/media/step-002-step-a-002-case-identity--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "93823085a87d7fd78e8f04a59663791fc3e94353e2aa1e5e1950616aec62b1f1",
+          "mediaType": "image/png",
+          "width": 1185,
+          "height": 1047,
+          "capturedAt": "2026-11-11T02:27:46.160Z",
+          "viewport": {
+            "width": 1185,
+            "height": 1047,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "surf",
+          "driverVersion": "surf version 2.22.0",
+          "captureMethod": "surf-screenshot",
+          "url": "http://127.0.0.1:37361/?case=a"
+        }
+      },
+      {
+        "id": "a.map",
+        "steps": [
+          {
+            "id": "a.map.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "a.map.2",
+            "assertionResult": "passed"
+          },
+          {
+            "id": "a.map.3",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [],
+        "assetCount": 3,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "a.map.2.capture-001",
+          "caseId": "a.map",
+          "stepId": "a.map.2",
+          "path": "cases/a.map/media/step-002-step-a-map-002-case-identity--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "93823085a87d7fd78e8f04a59663791fc3e94353e2aa1e5e1950616aec62b1f1",
+          "mediaType": "image/png",
+          "width": 1185,
+          "height": 1047,
+          "capturedAt": "2026-11-11T02:27:50.077Z",
+          "viewport": {
+            "width": 1185,
+            "height": 1047,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "surf",
+          "driverVersion": "surf version 2.22.0",
+          "captureMethod": "surf-screenshot",
+          "url": "http://127.0.0.1:37361/?case=a.map"
+        }
+      },
+      {
+        "id": "capture",
+        "steps": [
+          {
+            "id": "capture.1",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [],
+        "assetCount": 1,
+        "provenance": {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "capture.1.capture-001",
+          "caseId": "capture",
+          "stepId": "capture.1",
+          "path": "cases/capture/media/step-001-step-capture-001-page-without-assertion--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "93823085a87d7fd78e8f04a59663791fc3e94353e2aa1e5e1950616aec62b1f1",
+          "mediaType": "image/png",
+          "width": 1185,
+          "height": 1047,
+          "capturedAt": "2026-11-11T02:27:53.794Z",
+          "viewport": {
+            "width": 1185,
+            "height": 1047,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "surf",
+          "driverVersion": "surf version 2.22.0",
+          "captureMethod": "surf-screenshot",
+          "url": "http://127.0.0.1:37361/"
+        }
+      },
+      {
+        "id": "blocked",
+        "steps": [
+          {
+            "id": "blocked.1",
+            "assertionResult": "not-applicable"
+          },
+          {
+            "id": "blocked.2",
+            "assertionResult": "not-applicable"
+          }
+        ],
+        "errors": [
+          {
+            "schema": "collect-evidence/v1",
+            "kind": "error",
+            "id": "blocked.error-001",
+            "caseId": "blocked",
+            "stepId": "blocked.1",
+            "category": "blocked",
+            "message": "Error: SAFETY STOP blocked.1: credential prompt or uninspectable frame; human handling required\n    at <anonymous>:15:32\n    at <anonymous>:20:5\n    at <anonymous>:21:6"
+          }
+        ],
+        "assetCount": 0
+      }
+    ]
+  }
+]

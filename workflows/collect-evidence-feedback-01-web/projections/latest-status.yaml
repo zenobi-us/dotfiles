@@ -2,64 +2,44 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "collect-evidence-feedback-01-web",
   "ticket": "tracker/tickets/collect-evidence-feedback-01-web.md",
-  "state": "FIXED",
-  "latest_receipt": "fix-complete-0049",
+  "state": "REVIEW_FAILED",
+  "latest_receipt": "review-complete-0052",
   "latest_source_commit": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
   "latest_source_tree": "97fa1a4794c2ab10d4676993de8414890c525134",
   "latest_review_verdict": "FAILURE",
   "open_findings": [
     {
-      "adr": "NO ADR. Baseline Duplicated Code; judgement call, unchanged and unselected.",
-      "description": "Possible Duplicated Code. This helper and records.ts:484 both create schema/kind frontmatter and invoke mise/mq, with different output, lock and overwrite policies.",
+      "adr": "NO ADR. Code-review baseline: Duplicated Code. Advisory judgement call, not a documented-standard breach.",
+      "axis": "standards",
+      "description": "Possible Duplicated Code. pipeline.ts:48-55 and records.ts:490-493 each create schema/kind Markdown frontmatter and invoke mise/mq. Their output format, lock and overwrite policies differ. This remains an unchanged, unselected advisory.",
       "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
       "id": "STD-R6-002",
       "line": 48,
-      "required_change": "Optional: share a leaf Markdown writer with explicit caller policies; avoid a dependency cycle.",
+      "required_change": "Optional: share a leaf Markdown writer with explicit caller policies. Avoid a pipeline/records dependency cycle. No change is required for this review.",
       "severity": "P3",
-      "validation_command": "git diff master...6923f54f331697f6e8e591346d8071951909bfc7 -- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
-      "axis": "standards"
+      "validation_command": "git show 4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts"
     },
     {
-      "adr": "NO ADR. Baseline Duplicated Code and Shotgun Surgery; judgement call, unchanged and unselected.",
-      "description": "Possible Duplicated Code. The click/Enter/Space approval predicate repeats at surf-driver.ts:127 despite a shared safetyCode owner.",
+      "adr": "NO ADR. Code-review baseline: Duplicated Code and Shotgun Surgery. Advisory judgement call, not a documented-standard breach.",
+      "axis": "standards",
+      "description": "Possible Duplicated Code. The click/Enter/Space approval predicate also appears at surf-driver.ts:127. A future activation-key change must update both compilers despite their shared safetyCode owner. This remains an unchanged, unselected advisory.",
       "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts",
       "id": "STD-R6-003",
       "line": 47,
-      "required_change": "Optional: define confirmation classification once beside safetyCode and use it in both compilers.",
+      "required_change": "Optional: define confirmation classification once beside safetyCode and use it in both compilers. No change is required for this review.",
       "severity": "P3",
-      "validation_command": "git diff master...6923f54f331697f6e8e591346d8071951909bfc7 -- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts",
-      "axis": "standards"
+      "validation_command": "git show 4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts"
     },
     {
-      "adr_reference": "NO ADR — ADR 0001 concerns Pi Ink device cleanup, not browser reporting.",
-      "axis": "Standards",
-      "blocking": false,
-      "completion_impact": "Not blocking.",
-      "description": "Possible Speculative Generality. CleanupRow and cleanupRow remain after removal of the report consumer. Static references show only the contract and implementations. This is an advisory judgment call, not a mandatory documented-rule breach.",
-      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts",
-      "id": "STD-R3-001",
-      "line": 330,
-      "required_change": "Optionally remove CleanupRow, the interface method and both driver implementations.",
-      "severity": "P3",
-      "validation_command": "mise x -- bun test /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test"
-    },
-    {
-      "id": "STD-AXIS-001",
-      "axis": "Standards",
-      "severity": "P3",
-      "blocking": false,
-      "adr": "NO ADR: ADR 0001 concerns Pi Ink cleanup, not Markdown generation.",
+      "adr": "NO ADR; tracker/initiatives/collect-evidence-feedback/index.md:108, Implementation Decisions 15, interruption and owned-resource cleanup.",
+      "axis": "spec",
+      "description": "Spec line 108: \"On Ctrl-C or SIGTERM, stop new work, finish or fail pending saves explicitly, and release owned resources. Do not claim that an interrupted operation completed.\" collect calls doctor at line 146 before installing signal handlers at lines 159–160 or entering its cleanup try/finally. Playwright doctor opens a real owned browser session at lines 69–76. The standalone doctor command also has no signal handler. [INFERENCE] SIGTERM during that launch/close window terminates the collector instead of awaiting browser.close; an owned daemon browser session can remain open. The retained interruption workflow sends SIGTERM only after the later /interrupt navigation, so its pass does not cover this earlier lifecycle window.",
       "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
-      "line": 48,
-      "related_locations": [
-        {
-          "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts",
-          "line": 450
-        }
-      ],
-      "description": "Possible Duplicated Code: Markdown helpers duplicate frontmatter and mise/mq invocation but differ in overwrite, lock and failure policies.",
-      "required_change": "Optional: extract shared Markdown generation into a leaf module while preserving caller policies.",
-      "validation_command": "mise exec -- bun test /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts"
+      "id": "SPEC-R8-001",
+      "line": 146,
+      "required_change": "Put signal handling and owned-resource cleanup around the complete resource-owning command lifecycle, including doctor and its invocation from run. Preserve cancellation state through prerequisite checks, stop before subsequent driver work, and finish owned-session cleanup before exit. Add a public process-level regression for interruption during the prerequisite browser session, while preserving a borrowed session.",
+      "severity": "P2",
+      "validation_command": "COLLECT_EVIDENCE_REAL_DRIVERS=1 mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts --test-name-pattern 'playwright:' (extend with the prerequisite-phase SIGTERM regression before running)"
     }
   ],
   "implementation_status": "fixed",
@@ -123,16 +103,21 @@
     "workflows/collect-evidence-feedback-01-web/events/fix-complete-0043.yaml",
     "workflows/collect-evidence-feedback-01-web/events/fix-start-0047.yaml",
     "workflows/collect-evidence-feedback-01-web/events/fix-0048.yaml",
-    "workflows/collect-evidence-feedback-01-web/events/fix-complete-0049.yaml"
+    "workflows/collect-evidence-feedback-01-web/events/fix-complete-0049.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/review-start-0050.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/review-0051.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/review-complete-0052.yaml"
   ],
   "draft": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0048.md",
   "evidence_index": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/validation-final.json",
   "open_questions": [],
-  "receipt_ref": "workflows/collect-evidence-feedback-01-web/events/fix-complete-0049.yaml",
+  "receipt_ref": "workflows/collect-evidence-feedback-01-web/events/review-complete-0052.yaml",
   "workspace_id": "w73",
-  "latest_review_receipt": "workflows/collect-evidence-feedback-01-web/events/review-0045.yaml",
-  "latest_review_artifact": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0045.md",
-  "blocking_finding_ids": [],
+  "latest_review_receipt": "workflows/collect-evidence-feedback-01-web/events/review-0051.yaml",
+  "latest_review_artifact": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0051.md",
+  "blocking_finding_ids": [
+    "SPEC-R8-001"
+  ],
   "advisory_finding_ids": [
     "STD-R6-002",
     "STD-R6-003",
@@ -145,11 +130,11 @@
     "SPEC-R7-002"
   ],
   "fix_status": "completed",
-  "current_review_verdict": null,
-  "latest_review_applicability": "historical-source-changed",
-  "review_status": "required",
-  "reviewed_source_commit": "6923f54f331697f6e8e591346d8071951909bfc7",
-  "reviewed_source_tree": "9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7",
+  "current_review_verdict": "FAILURE",
+  "latest_review_applicability": "current-clean-source",
+  "review_status": "failed",
+  "reviewed_source_commit": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+  "reviewed_source_tree": "97fa1a4794c2ab10d4676993de8414890c525134",
   "historical_findings": [
     {
       "id": "STD-001",
@@ -246,7 +231,8 @@
     "STD-R6-002",
     "STD-R6-003",
     "STD-R3-001",
-    "STD-AXIS-001"
+    "STD-AXIS-001",
+    "SPEC-R8-001"
   ],
   "historical_review_transport": {
     "schema": "result-delivery/v1",
@@ -314,6 +300,13 @@
       "source_tree": "9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7",
       "verdict": "FAILURE",
       "applicability": "current"
+    },
+    {
+      "receipt": "review-0051",
+      "verdict": "FAILURE",
+      "source_commit": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+      "source_tree": "97fa1a4794c2ab10d4676993de8414890c525134",
+      "applicability": "current-clean-source"
     }
   ],
   "historical_transport": {
@@ -325,7 +318,7 @@
     "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-review-0017-ntpR2G/result.json",
     "resultSchema": "worktree-receipt/v1"
   },
-  "next_action": "Review changed source: The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing.",
+  "next_action": "Fix review findings: The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs.",
   "merge_status": "not merged; not pushed",
   "validation_results": [
     {
@@ -791,7 +784,7 @@
       "result": "passed"
     }
   ],
-  "validation_status": "95 scoped tests, strict tsc and both current real browser workflows passed; images and cleanup inspected",
+  "validation_status": "95 scoped tests/871 assertions and both sealed run validations passed; prerequisite-phase SIGTERM risk remains unexercised",
   "child_pane_id": "t37",
   "child_run_id": "e9a2814c-9bf6-45ba-9fca-8788952ed954",
   "transport_status": "delivered; parent acknowledgement pending",
@@ -811,24 +804,29 @@
     "Initial standalone smoke route omitted required tracker adapter; corrected to the existing complete route convention before successful public smoke."
   ],
   "publication": "Source committed locally; BASE artifact publication and parent completion pending.",
-  "review_readiness": true,
+  "review_readiness": false,
   "transport_ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/e9a2814c-9bf6-45ba-9fca-8788952ed954/result.json",
   "fix_publication_commit": null,
-  "next_action_kind": "review",
+  "next_action_kind": "fix",
   "inspection_action": {
-    "action": "review",
-    "mode": "retry",
-    "label": "Review changed source",
-    "reason": "The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing.",
+    "action": "fix",
+    "mode": "begin",
+    "label": "Fix review findings",
+    "reason": "The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs.",
     "requiredApproval": true,
-    "parentReceipt": "workflows/collect-evidence-feedback-01-web/events/fix-complete-0049.yaml",
+    "parentReceipt": "workflows/collect-evidence-feedback-01-web/events/review-complete-0052.yaml",
     "inputs": [
       "tracker/tickets/collect-evidence-feedback-01-web.md",
-      "workflows/collect-evidence-feedback-01-web/events/fix-complete-0049.yaml",
+      "workflows/collect-evidence-feedback-01-web/events/review-complete-0052.yaml",
       "workflows/collect-evidence-feedback-01-web/manifest.yaml",
       "workflows/collect-evidence-feedback-01-web/projections/latest-status.yaml",
       "workflows/collect-evidence-feedback-01-web/projections/pr-draft.md",
       "workflows/collect-evidence-feedback-01-web/projections/implementation-log.md",
+      "workflows/collect-evidence-feedback-01-web/events/review-0051.yaml",
+      "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0051.md",
+      "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051",
+      "workflows/collect-evidence-feedback-01-web/events/review-start-0050.yaml",
+      "workflows/collect-evidence-feedback-01-web/events/fix-complete-0049.yaml",
       "workflows/collect-evidence-feedback-01-web/events/fix-0048.yaml",
       "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0048.md",
       "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048",

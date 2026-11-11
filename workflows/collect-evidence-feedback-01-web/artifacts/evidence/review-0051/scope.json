@@ -1,0 +1,23 @@
+{
+  "source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "base": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "source_commit": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+  "source_tree": "97fa1a4794c2ab10d4676993de8414890c525134",
+  "source_clean": true,
+  "base_branch": "master",
+  "base_commit": "3fdabf2f7009c700c5c698fea9e185288975eda3",
+  "merge_base": "859341b01ef7be474a3128b7f94772aab731c2f7",
+  "diff_command": "git diff master...4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+  "commits": [
+    "4c0b7737 fix: guard checks collect-evidence-feedback-01-web",
+    "6923f54f fix: repair fixture collect-evidence-feedback-01-web",
+    "35b4bbe9 fix: check optionals collect-evidence-feedback-01-web",
+    "3dbab24c fix: validate steps collect-evidence-feedback-01-web",
+    "8c401541 fix: isolate surf maps tracker/tickets/collect-evidence-feedback-01-web.md",
+    "b711ef1b fix: allow empty slug tracker/tickets/collect-evidence-feedback-01-web.md",
+    "12b6345a fix: encode ids tracker/tickets/collect-evidence-feedback-01-web.md",
+    "3d1b2825 fix: guard tracker/tickets/collect-evidence-feedback-01-web.md",
+    "0acff3b4 feat: implement tracker/tickets/collect-evidence-feedback-01-web.md"
+  ],
+  "diff": "full.diff"
+}

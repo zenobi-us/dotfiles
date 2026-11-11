@@ -1,0 +1,26 @@
+{
+  "source_commit": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+  "images": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/acceptance/playwright/cases/pass/media/step-004-step-pass-004-selected-project--capture-002--capture-002.png",
+      "observed": "Owned evidence test heading, Select project button, Project selected: Aurora status visible",
+      "reviewer_inspected": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/acceptance/playwright/cases/approved-space/media/step-003-step-approved-space-003-keyboard-submitted--capture-002--capture-002.png",
+      "observed": "Confirm operation button focused; Submitted text visible",
+      "reviewer_inspected": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/acceptance/surf/cases/pass/media/step-004-step-pass-004-selected-project--capture-002--capture-002.png",
+      "observed": "Owned evidence test heading, Select project button and Project selected: Aurora visible",
+      "reviewer_inspected": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/acceptance/surf/cases/approved-space/media/step-003-step-approved-space-003-keyboard-submitted--capture-002--capture-002.png",
+      "observed": "Confirm operation button and Submitted text visible",
+      "reviewer_inspected": true
+    }
+  ],
+  "note": "Reviewed actual PNG pixels with read. Retained image observations match. No browser started."
+}

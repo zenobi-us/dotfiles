@@ -1,0 +1,14 @@
+{
+  "name": "source-final",
+  "args": [
+    "git",
+    "rev-parse",
+    "HEAD",
+    "HEAD^{tree}",
+    "master"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "code": 0,
+  "out": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23\n97fa1a4794c2ab10d4676993de8414890c525134\ne7d5058f0a597b551aac1ce7bd152fe1a1bd4309\n",
+  "err": ""
+}

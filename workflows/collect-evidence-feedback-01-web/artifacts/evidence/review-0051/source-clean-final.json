@@ -1,0 +1,12 @@
+{
+  "name": "source-clean-final",
+  "args": [
+    "git",
+    "status",
+    "--porcelain"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "code": 0,
+  "out": "",
+  "err": ""
+}

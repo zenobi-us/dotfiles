@@ -1,0 +1,13 @@
+{
+  "name": "merge-base-final",
+  "args": [
+    "git",
+    "merge-base",
+    "master",
+    "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "code": 0,
+  "out": "859341b01ef7be474a3128b7f94772aab731c2f7\n",
+  "err": ""
+}

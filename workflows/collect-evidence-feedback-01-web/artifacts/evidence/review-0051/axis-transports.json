@@ -1,0 +1,60 @@
+[
+  {
+    "axis": "standards",
+    "runId": "13d2ac02-e01d-4591-8264-9a3e277aa63c",
+    "target": "t3d",
+    "parentRunId": "3d68cafd-49be-4924-9715-b83f0c1f275e",
+    "operationId": "review-0051-standards",
+    "contextFile": "/home/zenobius/.local/state/result-delivery/runs/13d2ac02-e01d-4591-8264-9a3e277aa63c/context.json",
+    "deliveryContext": {
+      "schema": "result-delivery/v1",
+      "kind": "context",
+      "audience": "agent",
+      "mode": "artifact-reference",
+      "runId": "13d2ac02-e01d-4591-8264-9a3e277aa63c",
+      "operationId": "review-0051-standards",
+      "target": {
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/standards-result.json",
+        "ref": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/standards-result.json",
+        "schema": "code-review-axis/v1"
+      }
+    },
+    "resultTarget": {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/standards-result.json",
+      "ref": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/standards-result.json",
+      "schema": "code-review-axis/v1"
+    },
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "depth": 2
+  },
+  {
+    "axis": "spec",
+    "runId": "63812aab-d493-416b-8da3-9ad160031ffb",
+    "target": "t3c",
+    "parentRunId": "3d68cafd-49be-4924-9715-b83f0c1f275e",
+    "operationId": "review-0051-spec",
+    "contextFile": "/home/zenobius/.local/state/result-delivery/runs/63812aab-d493-416b-8da3-9ad160031ffb/context.json",
+    "deliveryContext": {
+      "schema": "result-delivery/v1",
+      "kind": "context",
+      "audience": "agent",
+      "mode": "artifact-reference",
+      "runId": "63812aab-d493-416b-8da3-9ad160031ffb",
+      "operationId": "review-0051-spec",
+      "target": {
+        "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/spec-result.json",
+        "ref": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/spec-result.json",
+        "schema": "code-review-axis/v1"
+      }
+    },
+    "resultTarget": {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/spec-result.json",
+      "ref": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/spec-result.json",
+      "schema": "code-review-axis/v1"
+    },
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "depth": 2
+  }
+]

@@ -1,0 +1,55 @@
+{
+  "schema": "code-review-axis/v1",
+  "axis": "standards",
+  "source_commit": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+  "source_tree": "97fa1a4794c2ab10d4676993de8414890c525134",
+  "verdict": "SUCCESS",
+  "findings": [
+    {
+      "id": "STD-R6-002",
+      "severity": "P3",
+      "adr": "NO ADR. Code-review baseline: Duplicated Code. Advisory judgement call, not a documented-standard breach.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
+      "line": 48,
+      "description": "Possible Duplicated Code. pipeline.ts:48-55 and records.ts:490-493 each create schema/kind Markdown frontmatter and invoke mise/mq. Their output format, lock and overwrite policies differ. This remains an unchanged, unselected advisory.",
+      "required_change": "Optional: share a leaf Markdown writer with explicit caller policies. Avoid a pipeline/records dependency cycle. No change is required for this review.",
+      "validation_command": "git show 4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
+      "axis": "standards"
+    },
+    {
+      "id": "STD-R6-003",
+      "severity": "P3",
+      "adr": "NO ADR. Code-review baseline: Duplicated Code and Shotgun Surgery. Advisory judgement call, not a documented-standard breach.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts",
+      "line": 47,
+      "description": "Possible Duplicated Code. The click/Enter/Space approval predicate also appears at surf-driver.ts:127. A future activation-key change must update both compilers despite their shared safetyCode owner. This remains an unchanged, unselected advisory.",
+      "required_change": "Optional: define confirmation classification once beside safetyCode and use it in both compilers. No change is required for this review.",
+      "validation_command": "git show 4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts",
+      "axis": "standards"
+    }
+  ],
+  "report": "Standards SUCCESS: no blocking documented-standard breach found in the complete frozen diff. Two existing P3 smell advisories remain unselected: duplicated Markdown writers and duplicated confirmation classification. Neither advisory establishes a hard requirement. STD-R7-001 is resolved: the Surf workflow excludes the authored identity alias from generated-key uniqueness and still checks its observed value. The required precondition fields now receive structural validation before dispatch. Current retained acceptance establishes both-driver coverage; historical browser failures do not override that evidence. ADR 0001 applies to Pi Ink device cleanup, not this web collector. Repository authoring rules explicitly permit schema and user-invocable frontmatter. The review covered the skill cutover, driver implementations, common records, CLI, public workflow checks, removed paths and migrated writing-reports caller. Source HEAD and tree match the assignment, and the initial source status was clean. Local master moved since launch; the pinned base produces exactly the retained diff. This result approves only the Standards axis, not merge, publication or ticket completion.",
+  "scope": {
+    "ticket": "tracker/tickets/collect-evidence-feedback-01-web.md",
+    "base_commit": "3fdabf2f7009c700c5c698fea9e185288975eda3",
+    "observed_master": "e7d5058f0a597b551aac1ce7bd152fe1a1bd4309",
+    "merge_base": "859341b01ef7be474a3128b7f94772aab731c2f7",
+    "diff_command": "git diff 3fdabf2f7009c700c5c698fea9e185288975eda3...4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+    "diff_sha256": "7d606248cdbef13fe66faa8e5fba7fd1954fcf06fe68b5a3d3c699227013f124",
+    "blocking_findings": 0,
+    "advisory_findings": 2
+  },
+  "validation": [
+    "Ran git rev-parse HEAD HEAD^{tree} master, git merge-base master HEAD and git status --porcelain. Assigned HEAD/tree matched; status was empty.",
+    "Compared SHA-256 of the pinned three-dot Git diff with retained review-0051/full.diff. Both were 7d606248cdbef13fe66faa8e5fba7fd1954fcf06fe68b5a3d3c699227013f124.",
+    "Read canonical context, ADR, ticket, full initiative, fix-0048 draft and review/fix receipts. Used mise mq with the required OKF import and explicit input/output formats for local Markdown.",
+    "Inspected retained fix-0048/validation-final.json and acceptance-inspection-final.json. They record 95 scoped tests/871 assertions, strict tsc, Playwright 28 assertions, Surf 86 assertions, inspected screenshots and owned-resource cleanup. These checks were not rerun.",
+    "Read the complete 7052-line retained diff, including deleted code, new code, tests, docs, unchanged rename declarations and active caller migration."
+  ],
+  "limitations": [
+    "Read-only independent Standards axis. No source/test/config edits, builds, lint, tests, formatters, browsers, services, credentials, installations or remote Git operations.",
+    "No fresh runtime or visual proof was authorized. Browser acceptance statements refer only to retained current evidence, not this review's execution.",
+    "No full OKF bundle validation was needed: individual canonical Markdown documents were read, not changed or audited as a bundle.",
+    "Parent owns acknowledgement, aggregate review, publication and closure. No review body file was created."
+  ]
+}

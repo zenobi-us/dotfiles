@@ -1,0 +1,436 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-0051",
+  "workflow_id": "collect-evidence-feedback-01-web",
+  "phase": "review",
+  "event": "phase-result",
+  "attempt": 8,
+  "parent_receipt": "review-start-0050",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "source_branch": "feature/collect-evidence-feedback-01-web",
+  "base_branch": "master",
+  "source_commit": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+  "source_tree": "97fa1a4794c2ab10d4676993de8414890c525134",
+  "source_clean": true,
+  "created_at": "2026-11-11T03:26:33.984Z",
+  "muxer": "herdr-app",
+  "pane_id": "t3b",
+  "agent": "omp",
+  "session_id": "herdr-app:t3b",
+  "run_id": "3d68cafd-49be-4924-9715-b83f0c1f275e",
+  "operation_id": "collect-evidence-feedback-01-web-review-0051",
+  "caller_run_id": "3d68cafd-49be-4924-9715-b83f0c1f275e",
+  "caller_operation_id": "collect-evidence-feedback-01-web-review-0051",
+  "delivery_context": "/var/home/zenobius/.local/state/result-delivery/runs/3d68cafd-49be-4924-9715-b83f0c1f275e/context-canonical.json",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-01-web",
+    "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-01-web"
+  },
+  "evidence": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051"
+  },
+  "status": "completed",
+  "verdict": "FAILURE",
+  "review_artifact": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0051.md",
+  "findings": [
+    {
+      "adr": "NO ADR. Code-review baseline: Duplicated Code. Advisory judgement call, not a documented-standard breach.",
+      "axis": "standards",
+      "description": "Possible Duplicated Code. pipeline.ts:48-55 and records.ts:490-493 each create schema/kind Markdown frontmatter and invoke mise/mq. Their output format, lock and overwrite policies differ. This remains an unchanged, unselected advisory.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
+      "id": "STD-R6-002",
+      "line": 48,
+      "required_change": "Optional: share a leaf Markdown writer with explicit caller policies. Avoid a pipeline/records dependency cycle. No change is required for this review.",
+      "severity": "P3",
+      "validation_command": "git show 4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts"
+    },
+    {
+      "adr": "NO ADR. Code-review baseline: Duplicated Code and Shotgun Surgery. Advisory judgement call, not a documented-standard breach.",
+      "axis": "standards",
+      "description": "Possible Duplicated Code. The click/Enter/Space approval predicate also appears at surf-driver.ts:127. A future activation-key change must update both compilers despite their shared safetyCode owner. This remains an unchanged, unselected advisory.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts",
+      "id": "STD-R6-003",
+      "line": 47,
+      "required_change": "Optional: define confirmation classification once beside safetyCode and use it in both compilers. No change is required for this review.",
+      "severity": "P3",
+      "validation_command": "git show 4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts"
+    },
+    {
+      "adr": "NO ADR; tracker/initiatives/collect-evidence-feedback/index.md:108, Implementation Decisions 15, interruption and owned-resource cleanup.",
+      "axis": "spec",
+      "description": "Spec line 108: \"On Ctrl-C or SIGTERM, stop new work, finish or fail pending saves explicitly, and release owned resources. Do not claim that an interrupted operation completed.\" collect calls doctor at line 146 before installing signal handlers at lines 159–160 or entering its cleanup try/finally. Playwright doctor opens a real owned browser session at lines 69–76. The standalone doctor command also has no signal handler. [INFERENCE] SIGTERM during that launch/close window terminates the collector instead of awaiting browser.close; an owned daemon browser session can remain open. The retained interruption workflow sends SIGTERM only after the later /interrupt navigation, so its pass does not cover this earlier lifecycle window.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
+      "id": "SPEC-R8-001",
+      "line": 146,
+      "required_change": "Put signal handling and owned-resource cleanup around the complete resource-owning command lifecycle, including doctor and its invocation from run. Preserve cancellation state through prerequisite checks, stop before subsequent driver work, and finish owned-session cleanup before exit. Add a public process-level regression for interruption during the prerequisite browser session, while preserving a borrowed session.",
+      "severity": "P2",
+      "validation_command": "COLLECT_EVIDENCE_REAL_DRIVERS=1 mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts --test-name-pattern 'playwright:' (extend with the prerequisite-phase SIGTERM regression before running)"
+    }
+  ],
+  "axis_reports": [
+    {
+      "axis": "standards",
+      "findings": [
+        {
+          "adr": "NO ADR. Code-review baseline: Duplicated Code. Advisory judgement call, not a documented-standard breach.",
+          "axis": "standards",
+          "description": "Possible Duplicated Code. pipeline.ts:48-55 and records.ts:490-493 each create schema/kind Markdown frontmatter and invoke mise/mq. Their output format, lock and overwrite policies differ. This remains an unchanged, unselected advisory.",
+          "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
+          "id": "STD-R6-002",
+          "line": 48,
+          "required_change": "Optional: share a leaf Markdown writer with explicit caller policies. Avoid a pipeline/records dependency cycle. No change is required for this review.",
+          "severity": "P3",
+          "validation_command": "git show 4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts"
+        },
+        {
+          "adr": "NO ADR. Code-review baseline: Duplicated Code and Shotgun Surgery. Advisory judgement call, not a documented-standard breach.",
+          "axis": "standards",
+          "description": "Possible Duplicated Code. The click/Enter/Space approval predicate also appears at surf-driver.ts:127. A future activation-key change must update both compilers despite their shared safetyCode owner. This remains an unchanged, unselected advisory.",
+          "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts",
+          "id": "STD-R6-003",
+          "line": 47,
+          "required_change": "Optional: define confirmation classification once beside safetyCode and use it in both compilers. No change is required for this review.",
+          "severity": "P3",
+          "validation_command": "git show 4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23:mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts"
+        }
+      ],
+      "limitations": [
+        "Read-only independent Standards axis. No source/test/config edits, builds, lint, tests, formatters, browsers, services, credentials, installations or remote Git operations.",
+        "No fresh runtime or visual proof was authorized. Browser acceptance statements refer only to retained current evidence, not this review's execution.",
+        "No full OKF bundle validation was needed: individual canonical Markdown documents were read, not changed or audited as a bundle.",
+        "Parent owns acknowledgement, aggregate review, publication and closure. No review body file was created."
+      ],
+      "report": "Standards SUCCESS: no blocking documented-standard breach found in the complete frozen diff. Two existing P3 smell advisories remain unselected: duplicated Markdown writers and duplicated confirmation classification. Neither advisory establishes a hard requirement. STD-R7-001 is resolved: the Surf workflow excludes the authored identity alias from generated-key uniqueness and still checks its observed value. The required precondition fields now receive structural validation before dispatch. Current retained acceptance establishes both-driver coverage; historical browser failures do not override that evidence. ADR 0001 applies to Pi Ink device cleanup, not this web collector. Repository authoring rules explicitly permit schema and user-invocable frontmatter. The review covered the skill cutover, driver implementations, common records, CLI, public workflow checks, removed paths and migrated writing-reports caller. Source HEAD and tree match the assignment, and the initial source status was clean. Local master moved since launch; the pinned base produces exactly the retained diff. This result approves only the Standards axis, not merge, publication or ticket completion.",
+      "schema": "code-review-axis/v1",
+      "scope": {
+        "advisory_findings": 2,
+        "base_commit": "3fdabf2f7009c700c5c698fea9e185288975eda3",
+        "blocking_findings": 0,
+        "diff_command": "git diff 3fdabf2f7009c700c5c698fea9e185288975eda3...4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+        "diff_sha256": "7d606248cdbef13fe66faa8e5fba7fd1954fcf06fe68b5a3d3c699227013f124",
+        "merge_base": "859341b01ef7be474a3128b7f94772aab731c2f7",
+        "observed_master": "e7d5058f0a597b551aac1ce7bd152fe1a1bd4309",
+        "ticket": "tracker/tickets/collect-evidence-feedback-01-web.md"
+      },
+      "source_commit": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+      "source_tree": "97fa1a4794c2ab10d4676993de8414890c525134",
+      "validation": [
+        "Ran git rev-parse HEAD HEAD^{tree} master, git merge-base master HEAD and git status --porcelain. Assigned HEAD/tree matched; status was empty.",
+        "Compared SHA-256 of the pinned three-dot Git diff with retained review-0051/full.diff. Both were 7d606248cdbef13fe66faa8e5fba7fd1954fcf06fe68b5a3d3c699227013f124.",
+        "Read canonical context, ADR, ticket, full initiative, fix-0048 draft and review/fix receipts. Used mise mq with the required OKF import and explicit input/output formats for local Markdown.",
+        "Inspected retained fix-0048/validation-final.json and acceptance-inspection-final.json. They record 95 scoped tests/871 assertions, strict tsc, Playwright 28 assertions, Surf 86 assertions, inspected screenshots and owned-resource cleanup. These checks were not rerun.",
+        "Read the complete 7052-line retained diff, including deleted code, new code, tests, docs, unchanged rename declarations and active caller migration."
+      ],
+      "verdict": "SUCCESS"
+    },
+    {
+      "axis": "spec",
+      "findings": [
+        {
+          "adr": "NO ADR; tracker/initiatives/collect-evidence-feedback/index.md:108, Implementation Decisions 15, interruption and owned-resource cleanup.",
+          "axis": "spec",
+          "description": "Spec line 108: \"On Ctrl-C or SIGTERM, stop new work, finish or fail pending saves explicitly, and release owned resources. Do not claim that an interrupted operation completed.\" collect calls doctor at line 146 before installing signal handlers at lines 159–160 or entering its cleanup try/finally. Playwright doctor opens a real owned browser session at lines 69–76. The standalone doctor command also has no signal handler. [INFERENCE] SIGTERM during that launch/close window terminates the collector instead of awaiting browser.close; an owned daemon browser session can remain open. The retained interruption workflow sends SIGTERM only after the later /interrupt navigation, so its pass does not cover this earlier lifecycle window.",
+          "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
+          "id": "SPEC-R8-001",
+          "line": 146,
+          "required_change": "Put signal handling and owned-resource cleanup around the complete resource-owning command lifecycle, including doctor and its invocation from run. Preserve cancellation state through prerequisite checks, stop before subsequent driver work, and finish owned-session cleanup before exit. Add a public process-level regression for interruption during the prerequisite browser session, while preserving a borrowed session.",
+          "severity": "P2",
+          "validation_command": "COLLECT_EVIDENCE_REAL_DRIVERS=1 mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts --test-name-pattern 'playwright:' (extend with the prerequisite-phase SIGTERM regression before running)"
+        }
+      ],
+      "limitations": [
+        "No source, test or configuration edits; no builds, lint, tests, formatters, browser execution, services, installation, credentials or remote Git operations.",
+        "SPEC-R8-001 is a source-derived interruption risk. No prerequisite-phase signal scenario was executed under this read-only assignment.",
+        "Retained browser evidence establishes the exercised workflows, not every interruption timing window.",
+        "No full OKF bundle audit. No standards-axis reranking or changes to unselected P3 findings. Parent owns acknowledgement and closure."
+      ],
+      "report": "One P2 spec gap remains: interruption handling starts after the prerequisite doctor has already opened and closed a browser. The standalone doctor path has the same gap. The source does not guarantee owned-resource cleanup when SIGTERM arrives in this phase. This is a static inference, not a reproduced browser leak. The latest precondition-field validation resolves SPEC-R7-001. Retained current Surf and Playwright workflows, their inspection record, and both selected-project screenshots satisfy the prior two-driver evidence gate; SPEC-R7-002 is resolved. The screenshots show Project selected: Aurora. The full ticket slice otherwise retains typed plans, both drivers, common records, separate capture/assertion outcomes, sealed media, reports, generated comments and explicit publication boundaries. No missing TUI, GUI or feedback implementation is charged to this web ticket. Unselected standards advisories remain unchanged.",
+      "schema": "code-review-axis/v1",
+      "scope": {
+        "boundary": "Independent Spec axis only; complete web slice, not only latest fix.",
+        "comparison": "master...4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+        "initiative": "tracker/initiatives/collect-evidence-feedback/index.md",
+        "merge_base": "859341b01ef7be474a3128b7f94772aab731c2f7",
+        "retained_full_diff": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/full.diff",
+        "ticket": "tracker/tickets/collect-evidence-feedback-01-web.md"
+      },
+      "source_commit": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+      "source_tree": "97fa1a4794c2ab10d4676993de8414890c525134",
+      "validation": [
+        "Observed HEAD and tree match the assigned frozen identities; git status --porcelain returned empty.",
+        "Observed merge-base matches the assigned merge-base. Local master now resolves to e7d5058f0a597b551aac1ce7bd152fe1a1bd4309 rather than the launch value; review used the retained full diff and matching merge-base.",
+        "Read canonical ticket, initiative, context/domain/tracker guidance, ADR index and ADR 0001 through mq with the required OKF import and explicit formats. ADR 0001 applies to Pi Ink, not this web slice.",
+        "Read canonical review-0045, fix-0048, fix-complete-0049, pr-draft-fix-0048 and acceptance-inspection-final.json.",
+        "Inspected retained actual Surf and Playwright selected-project PNGs; both visibly show Project selected: Aurora.",
+        "Inspected collection lifecycle, signal registration, driver session ownership, cancellation helper, common record validation, command boundary, typed plan safety, report/comment consumers and public workflow checks read-only.",
+        "Retained fix evidence reports 95 scoped tests/871 assertions, strict tsc, Playwright 28 assertions and Surf 86 assertions passed. These were not rerun."
+      ],
+      "verdict": "FAILURE"
+    }
+  ],
+  "axis_transports": [
+    {
+      "axis": "standards",
+      "runId": "13d2ac02-e01d-4591-8264-9a3e277aa63c",
+      "terminal": "t3d",
+      "depth": 2,
+      "context": "/home/zenobius/.local/state/result-delivery/runs/13d2ac02-e01d-4591-8264-9a3e277aa63c/context.json",
+      "result": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/standards-result.json",
+      "sha256": "886ebd502c6e93ac4e07ae6e3b2cd58732a119394e489916f5b2d30a9603789c",
+      "verified": true,
+      "acknowledged": true,
+      "native_completion": {
+        "state": "completed",
+        "source": "agent",
+        "sequence": 2
+      },
+      "closed": true,
+      "closure": "hc kill and hc rm succeeded; herdr-app ls no longer contained this terminal"
+    },
+    {
+      "axis": "spec",
+      "runId": "63812aab-d493-416b-8da3-9ad160031ffb",
+      "terminal": "t3c",
+      "depth": 2,
+      "context": "/home/zenobius/.local/state/result-delivery/runs/63812aab-d493-416b-8da3-9ad160031ffb/context.json",
+      "result": "file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/spec-result.json",
+      "sha256": "b6b216f39b0391778dea16596118381f622b74b5559a1262d93065a2f5fbd55c",
+      "verified": true,
+      "acknowledged": true,
+      "native_completion": {
+        "state": "completed",
+        "source": "agent",
+        "sequence": 2
+      },
+      "closed": true,
+      "closure": "hc kill and hc rm succeeded; herdr-app ls no longer contained this terminal"
+    }
+  ],
+  "scope": {
+    "diff_command": "git diff master...4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+    "base_commit": "3fdabf2f7009c700c5c698fea9e185288975eda3",
+    "base_commit_final": "e7d5058f0a597b551aac1ce7bd152fe1a1bd4309",
+    "merge_base": "859341b01ef7be474a3128b7f94772aab731c2f7",
+    "commits": [
+      "4c0b7737 fix: guard checks collect-evidence-feedback-01-web",
+      "6923f54f fix: repair fixture collect-evidence-feedback-01-web",
+      "35b4bbe9 fix: check optionals collect-evidence-feedback-01-web",
+      "3dbab24c fix: validate steps collect-evidence-feedback-01-web",
+      "8c401541 fix: isolate surf maps tracker/tickets/collect-evidence-feedback-01-web.md",
+      "b711ef1b fix: allow empty slug tracker/tickets/collect-evidence-feedback-01-web.md",
+      "12b6345a fix: encode ids tracker/tickets/collect-evidence-feedback-01-web.md",
+      "3d1b2825 fix: guard tracker/tickets/collect-evidence-feedback-01-web.md",
+      "0acff3b4 feat: implement tracker/tickets/collect-evidence-feedback-01-web.md"
+    ],
+    "full_diff": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/full.diff"
+  },
+  "validation_results": [
+    {
+      "check": "scoped-suite",
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/playwright-driver.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+      "exit_code": 0,
+      "result": "passed",
+      "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/scoped-suite.json"
+    },
+    {
+      "check": "validate-retained-surf",
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "validate",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/acceptance/surf",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "result": "passed",
+      "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/validate-retained-surf.json"
+    },
+    {
+      "check": "validate-retained-playwright",
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "validate",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/acceptance/playwright",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "result": "passed",
+      "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/validate-retained-playwright.json"
+    },
+    {
+      "check": "source-final",
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}",
+        "master"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+      "exit_code": 0,
+      "result": "passed",
+      "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/source-final.json"
+    },
+    {
+      "check": "source-clean-final",
+      "command": [
+        "git",
+        "status",
+        "--porcelain"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+      "exit_code": 0,
+      "result": "passed",
+      "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/source-clean-final.json"
+    },
+    {
+      "check": "merge-base-final",
+      "command": [
+        "git",
+        "merge-base",
+        "master",
+        "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+      "exit_code": 0,
+      "result": "passed",
+      "evidence": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051/merge-base-final.json"
+    }
+  ],
+  "retained_acceptance": {
+    "both_driver_gate_satisfied": true,
+    "source": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048",
+    "fresh_browser_execution": false,
+    "actual_images_inspected": 4,
+    "strict_tsc": "Retained prior pass only; not rerun",
+    "playwright": "Retained current real workflow passed 28 assertions",
+    "surf": "Retained current real workflow passed 86 assertions"
+  },
+  "resolved_prior_finding_ids": [
+    "STD-R7-001",
+    "SPEC-R7-001",
+    "SPEC-R7-002"
+  ],
+  "preserved_unselected_finding_ids": [
+    "STD-R6-002",
+    "STD-R6-003",
+    "STD-AXIS-001",
+    "STD-R3-001"
+  ],
+  "ownership_checks": {
+    "fresh_independent_session": true,
+    "assigned_phase_start": "workflows/collect-evidence-feedback-01-web/events/review-start-0050.yaml",
+    "parent_terminal": "t30",
+    "actual_reviewer_terminal": "t3b",
+    "owned_axis_terminals": [
+      "t3c",
+      "t3d"
+    ],
+    "owned_axis_terminals_closed": true,
+    "source_initially_clean": true,
+    "source_finally_clean": true,
+    "source_unchanged": true,
+    "tracker_projections_commits_owned_by_parent": true
+  },
+  "limitations": [
+    "SPEC-R8-001 is a static source-derived interruption risk, not a reproduced browser leak. No browser workflow was rerun.",
+    "Current retained browser acceptance is valid for its exercised paths; it does not cover prerequisite-phase SIGTERM.",
+    "No source/test/config edits, browser/service restarts, installations, credential entry, remote Git, commit, merge, push or borrowed-resource closure.",
+    "Base master moved during review; frozen source and merge base stayed unchanged.",
+    "Parent owns tracker comment, projections, workflow-artifact commits, phase-complete, acknowledgement and this terminal closure."
+  ],
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/collect-evidence-feedback/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-start-0050.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-complete-0049.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-0048.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-0045.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0048.md"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0045.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048"
+    },
+    {
+      "kind": "context",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/agents/domain.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/agents/issue-tracker.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/adr/index.md"
+    },
+    {
+      "kind": "context",
+      "ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-0051.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0051.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/review-0051"
+    }
+  ]
+}

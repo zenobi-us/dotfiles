@@ -6,7 +6,7 @@ type: PRDraft
 
 # Preserve Surf and Playwright in collect-evidence
 
-All three selected blocking findings are resolved. Both real controlled-page workflows passed. Fresh independent review is required for the new source commit.
+All three selected blocking findings are resolved. Both real controlled-page workflows passed. Independent review failed: SPEC-R8-001 remains blocking.
 
 ## Source
 
@@ -53,7 +53,7 @@ No credential entry, tool installation, browser/service restart, remote Git oper
 
 The source commit used HK=0 only after the same pre-commit check passed in documented --staged no-stash mode. This skipped the duplicate hook invocation and avoided the known stash failure.
 
-Parent verified fix-complete-0049, acknowledged delivery and removed fixer t37. Fresh review remains required. The canonical ticket remains implemented. Prior review-0045 remains FAILURE for its old source; it does not approve the new commit.
+Parent verified fix-complete-0049, acknowledged delivery and removed fixer t37. Current review is FAILURE; fix SPEC-R8-001 before another review. The canonical ticket remains implemented. Prior review-0045 remains FAILURE for its old source; it does not approve the new commit.
 
 
 
@@ -61,4 +61,14 @@ Parent verified fix-complete-0049, acknowledged delivery and removed fixer t37. 
 ## Parent completion: fix-complete-0049
 
 [Completion receipt](../events/fix-complete-0049.yaml). Parent verified the exact clean source commit and tree, validated both sealed runs from /tmp, and inspected both selected-project screenshots. Delivery hash acknowledged; only fixer t37 closed. Canonical ticket remains implemented. Next: fresh independent review because source changed after review-0045. No merge or push.
+
+
+
+## Independent review review-0051
+
+FAILURE for `4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23`, tree `97fa1a4794c2ab10d4676993de8414890c525134`. Standards SUCCESS with two unchanged P3 advisories. Spec FAILURE: SPEC-R8-001 P2. [INFERENCE] Signal handling starts after doctor opens an owned Playwright browser; interruption in that prerequisite window may leave it open. This leak was not reproduced. The retained normal two-driver acceptance gate remains satisfied.
+
+[Immutable review](../artifacts/reviews/review-review-0051.md), [review receipt](../events/review-0051.yaml), [parent completion](../events/review-complete-0052.yaml), [validation](../artifacts/evidence/review-0051/scoped-suite.json). Previous review/fix history remains intact. 95 scoped tests and 871 assertions passed; both retained sealed runs validated. Parent validation also passed from /tmp.
+
+Delivery acknowledged; reviewer t3b and its axes closed. Worktree preserved. Ticket remains implemented. Next: fix current SPEC-R8-001 in a fresh session. No merge or push.
 

@@ -1,0 +1,44 @@
+{
+  "checks": [
+    {
+      "name": "scoped-suite",
+      "args": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/playwright-driver.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+      "code": 0
+    },
+    {
+      "name": "validate-retained-surf",
+      "args": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "validate",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/acceptance/surf",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "code": 0
+    },
+    {
+      "name": "validate-retained-playwright",
+      "args": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "validate",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/acceptance/playwright",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "code": 0
+    }
+  ],
+  "browser_workflows": "Not rerun; inspected retained current fix-0048 outputs and four actual screenshots.",
+  "source_finding": "SPEC-R8-001 is a static source-derived lifecycle risk, not a reproduced browser leak.",
+  "source_changes": false
+}

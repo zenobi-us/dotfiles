@@ -1,0 +1,21 @@
+{
+  "source_commit": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+  "source_tree": "97fa1a4794c2ab10d4676993de8414890c525134",
+  "source_clean": true,
+  "transport_sha256": "552a5c8e2c93f58636d6b4bf570203f163269a4410923db3e2c96d8dcaaea8ec",
+  "authoritative_payload_matches": true,
+  "axes_verified": true,
+  "public_validation": {
+    "command": "collect-evidence.ts validate <fix-0048/acceptance/playwright> --json",
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "success": true
+  },
+  "finding_check": "Read pipeline.ts:57-79 and 138-180. doctor opens/closes browser before collect installs SIGINT/SIGTERM handlers. No leak reproduction claimed.",
+  "native_completion": {
+    "terminal": "t3b",
+    "status": "done",
+    "turn": 1
+  },
+  "core_restart": "Wait returned unavailable during core update; reviewer remained live, completed and delivered; no duplicate launch."
+}

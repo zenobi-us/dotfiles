@@ -4,7 +4,11 @@ title: Collect-evidence web implementation log
 type: Projection
 latest_receipt: fix-0048
 ---
-# Current fix: fix-0048
+# Current review: review-0051
+
+FAILURE: SPEC-R8-001 P2 remains blocking. See the current review section below.
+
+## Prior fix: fix-0048
 
 FIXED at 4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23, tree 97fa1a4794c2ab10d4676993de8414890c525134. Parent reconciliation completed in fix-complete-0049. Delivery acknowledged; fixer t37 removed. Selected STD-R7-001, SPEC-R7-001 and SPEC-R7-002 are resolved. Prior review-0045 remains FAILURE only for its old source.
 
@@ -653,4 +657,14 @@ Next: Review changed source: The source changed after the recorded review, inclu
 ## Parent completion: fix-complete-0049
 
 [Completion receipt](../events/fix-complete-0049.yaml). Parent verified the exact clean source commit and tree, validated both sealed runs from /tmp, and inspected both selected-project screenshots. Delivery hash acknowledged; only fixer t37 closed. Canonical ticket remains implemented. Next: fresh independent review because source changed after review-0045. No merge or push.
+
+
+
+## Independent review review-0051
+
+FAILURE for `4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23`, tree `97fa1a4794c2ab10d4676993de8414890c525134`. Standards SUCCESS with two unchanged P3 advisories. Spec FAILURE: SPEC-R8-001 P2. [INFERENCE] Signal handling starts after doctor opens an owned Playwright browser; interruption in that prerequisite window may leave it open. This leak was not reproduced. The retained normal two-driver acceptance gate remains satisfied.
+
+[Immutable review](../artifacts/reviews/review-review-0051.md), [review receipt](../events/review-0051.yaml), [parent completion](../events/review-complete-0052.yaml), [validation](../artifacts/evidence/review-0051/scoped-suite.json). Previous review/fix history remains intact. 95 scoped tests and 871 assertions passed; both retained sealed runs validated. Parent validation also passed from /tmp.
+
+Delivery acknowledged; reviewer t3b and its axes closed. Worktree preserved. Ticket remains implemented. Next: fix current SPEC-R8-001 in a fresh session. No merge or push.
 
