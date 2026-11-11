@@ -1,0 +1,60 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "driver-map",
+  "entries": [
+    {
+      "step": "a.map.1",
+      "kind": "navigate",
+      "target": "/?case=a.map",
+      "from": 0,
+      "count": 6,
+      "shot": "",
+      "dialog": "dialog_612e6d61702e31",
+      "url": "url_612e6d61702e31"
+    },
+    {
+      "step": "a.map.2",
+      "kind": "expect",
+      "target": "url ~ case=a\\.map$",
+      "from": 6,
+      "count": 7,
+      "shot": "shots/step-a.map-002-case-identity--capture-002.png",
+      "dialog": "dialog_612e6d61702e32",
+      "value": "assert_612e6d61702e32",
+      "check": "url",
+      "captures": [
+        {
+          "shot": "shots/step-a.map-002-case-identity--capture-001.png",
+          "metadata": "capture_1_612e6d61702e32",
+          "index": 8,
+          "sequence": 1
+        },
+        {
+          "shot": "shots/step-a.map-002-case-identity--capture-002.png",
+          "metadata": "capture_2_612e6d61702e32",
+          "index": 11,
+          "sequence": 2
+        }
+      ],
+      "assertionIndex": 10
+    },
+    {
+      "step": "a.map.3",
+      "kind": "capture",
+      "target": "h1",
+      "from": 13,
+      "count": 5,
+      "shot": "shots/step-a.map-003-identity-capture--capture-001.png",
+      "dialog": "dialog_612e6d61702e33",
+      "value": "identity",
+      "captures": [
+        {
+          "shot": "shots/step-a.map-003-identity-capture--capture-001.png",
+          "metadata": "capture_1_612e6d61702e33",
+          "index": 16,
+          "sequence": 1
+        }
+      ]
+    }
+  ]
+}

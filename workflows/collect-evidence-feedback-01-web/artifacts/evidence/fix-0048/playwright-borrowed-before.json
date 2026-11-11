@@ -1,0 +1,12 @@
+{
+  "args": [
+    "playwright-cli",
+    "-s=fix0048-borrowed-control",
+    "open",
+    "about:blank"
+  ],
+  "cwd": "/tmp",
+  "code": 0,
+  "out": "### Browser `fix0048-borrowed-control` opened with pid 846067.\n### Ran Playwright code\n```js\nawait page.goto('about:blank');\n```\n### Page\n- Page URL: about:blank\n### Snapshot\n- [Snapshot](.playwright-cli/page-2026-11-11T00-27-37-045Z.yml)\n",
+  "err": "\n╔════════════════════════════════════════════════════════════════════╗\n║ Update available for @playwright/cli: 0.1.22 → 0.1.24              ║\n║ Run `npm install -g @playwright/cli@latest` (global) or            ║\n║ `npm install --save-dev @playwright/cli@latest` (local) to update. ║\n╚════════════════════════════════════════════════════════════════════╝\n\n"
+}

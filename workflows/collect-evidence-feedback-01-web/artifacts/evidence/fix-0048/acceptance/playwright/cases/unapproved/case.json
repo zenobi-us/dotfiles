@@ -1,0 +1,63 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "unapproved",
+  "runId": "controlled",
+  "order": 3,
+  "purpose": "Stop before an unapproved confirmation",
+  "preconditions": [],
+  "expected": {
+    "pass": "The button is not clicked",
+    "fail": "The collector clicks without approval"
+  },
+  "steps": [
+    {
+      "id": "unapproved.1",
+      "order": 1,
+      "purpose": "Open the owned page",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the owned page",
+        "to": "/"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "unapproved.2",
+      "order": 2,
+      "purpose": "Attempt Select project without approval",
+      "actions": {
+        "do": "click",
+        "says": "Attempt Select project without approval",
+        "locator": "#select"
+      },
+      "expected": null,
+      "observed": [
+        "page.evaluate: Error: SAFETY STOP unapproved.2: confirmation step is not explicitly approved\n    at eval (eval at evaluate (:368:30), <anonymous>:17:21)\n    at eval (eval at evaluate (:368:30), <anonymous>:19:5)\n    at UtilityScript.evaluate (<anonymous>:370:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+      ],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/unapproved/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "unapproved.error-001",
+      "caseId": "unapproved",
+      "stepId": "unapproved.2",
+      "category": "blocked",
+      "message": "page.evaluate: Error: SAFETY STOP unapproved.2: confirmation step is not explicitly approved\n    at eval (eval at evaluate (:368:30), <anonymous>:17:21)\n    at eval (eval at evaluate (:368:30), <anonymous>:19:5)\n    at UtilityScript.evaluate (<anonymous>:370:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    }
+  ],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded"
+}

@@ -1,0 +1,11 @@
+{
+  "args": [
+    "playwright-cli",
+    "-s=fix0048-borrowed-control",
+    "close"
+  ],
+  "cwd": "/tmp",
+  "code": 0,
+  "out": "Browser 'fix0048-borrowed-control' closed\n\n",
+  "err": ""
+}

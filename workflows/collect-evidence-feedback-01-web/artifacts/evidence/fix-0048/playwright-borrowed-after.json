@@ -1,0 +1,10 @@
+{
+  "args": [
+    "playwright-cli",
+    "list"
+  ],
+  "cwd": "/tmp",
+  "code": 0,
+  "out": "### Browsers\n- fix0048-borrowed-control:\n  - status: open\n  - browser-type: chrome\n  - user-data-dir: <in-memory>\n  - headed: false\n",
+  "err": ""
+}

@@ -1,0 +1,13 @@
+{
+  "args": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+    "run",
+    "/tmp/ce-fix0048-smoke-3VNq8S/surf",
+    "--json",
+    "--no-input"
+  ],
+  "cwd": "/tmp",
+  "code": 2,
+  "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":2,\"message\":\"Precondition check locator must be a string\"}\n",
+  "err": "Precondition check locator must be a string\n"
+}

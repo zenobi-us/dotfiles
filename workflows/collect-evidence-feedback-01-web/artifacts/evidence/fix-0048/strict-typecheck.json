@@ -1,0 +1,16 @@
+{
+  "args": [
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc",
+    "--noEmit",
+    "-p",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/tsconfig.json"
+  ],
+  "cwd": "/tmp",
+  "code": 0,
+  "out": "",
+  "err": ""
+}

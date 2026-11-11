@@ -1,0 +1,53 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "plan",
+  "data": {
+    "schema": "collect-evidence/v1",
+    "kind": "plan",
+    "workId": "boundary-smoke",
+    "driver": "playwright",
+    "base": "http://127.0.0.1:43761",
+    "approval": {
+      "origins": [
+        "http://127.0.0.1:43761"
+      ]
+    },
+    "preconditions": [
+      {
+        "id": "ready",
+        "desc": "The heading is ready",
+        "check": {
+          "goto": "/",
+          "locator": "h1",
+          "text": "Boundary smoke ready",
+          "timeoutMs": 0.5
+        }
+      }
+    ],
+    "tests": [
+      {
+        "id": "case",
+        "claim": "Check the owned heading",
+        "pass": "Heading matches",
+        "fail": "Heading does not match",
+        "requires": [
+          "ready"
+        ],
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the owned page",
+            "to": "/"
+          },
+          {
+            "do": "expect",
+            "says": "Check the heading",
+            "locator": "h1",
+            "text": "Boundary smoke ready",
+            "shot": "heading"
+          }
+        ]
+      }
+    ]
+  }
+}

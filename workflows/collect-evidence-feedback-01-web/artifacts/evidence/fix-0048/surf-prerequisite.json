@@ -1,0 +1,10 @@
+{
+  "args": [
+    "surf",
+    "doctor"
+  ],
+  "cwd": "/tmp",
+  "code": 1,
+  "out": "Surf doctor\n\nPlatform: linux\nTarget: linux\nSocket: /tmp/surf.sock\nBrowsers: chrome\n\n[FAIL] Socket path does not exist: /tmp/surf.sock\n[FAIL] Could not connect to socket: connect ENOENT /tmp/surf.sock\n[PASS] [chrome] Manifest found: /home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\n[PASS] [chrome] Manifest JSON is valid\n[PASS] [chrome] Manifest name is surf.browser.host\n[PASS] [chrome] Manifest type is stdio\n[PASS] [chrome] Manifest has 3 Chrome extension origins\n[PASS] [chrome] Manifest path exists: /home/zenobius/.local/share/surf-cli/host-wrapper.sh\n[PASS] [chrome] Manifest wrapper is executable\n\nNext steps:\n- Make sure the browser is running with the Surf extension enabled, then restart the browser after install changes.\n- Open chrome://extensions and inspect Surf's service worker console. In Surf's Details > Extension options, enable Debug Mode, reproduce the failure, then disable Debug Mode when finished.\n- SURF_SOCKET is set; make sure Chrome launches the native host with the same socket value.\n\nDoctor result: issues found\n",
+  "err": ""
+}

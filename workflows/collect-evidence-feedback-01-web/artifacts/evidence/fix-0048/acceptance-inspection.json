@@ -1,0 +1,47 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "event",
+  "source_commit": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+  "source_tree": "97fa1a4794c2ab10d4676993de8414890c525134",
+  "playwright": {
+    "configured_executable": "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome",
+    "workflow": "passed",
+    "checks": [
+      "Expected PASS/FAIL/BLOCKED/PARTIAL outcomes matched for all 12 cases",
+      "One approved Space confirmation submitted; unapproved click and Space stopped",
+      "Credential page stopped before fill",
+      "Punctuation-distinct cases retained URL assertions and captures",
+      "SIGTERM after owned interrupt navigation returned 1 without sealing",
+      "Changed media and removed media rejected with exit 2",
+      "Standalone real screenshot-loss injection returned exit 2 without sealed run",
+      "Borrowed control session remained open after collector sessions closed"
+    ],
+    "images_inspected": [
+      {
+        "path": "acceptance/playwright/cases/pass/media/step-004-step-pass-004-selected-project--capture-002--capture-002.png",
+        "observed": "Owned evidence test heading, Select project button, Project selected: Aurora status visible"
+      },
+      {
+        "path": "acceptance/playwright/cases/approved-space/media/step-003-step-approved-space-003-keyboard-submitted--capture-002--capture-002.png",
+        "observed": "Confirm operation button focused; Submitted text visible"
+      }
+    ],
+    "cleanup": "Only the fixer-created control session was explicitly closed after proving it survived collector cleanup. No user-owned browser or session was closed."
+  },
+  "surf": {
+    "status": "blocked-prerequisite",
+    "socket": "/tmp/surf.sock",
+    "diagnostic": "ENOENT; native host manifest and wrapper pass doctor; no Surf listener in ss -xlpn",
+    "required_action": "Operator reconnects the installed Surf native host in existing Chrome or supplies its active socket. No restart or installation authorized.",
+    "historical_timeout": "Retained blocked.1 reset timeout is ground truth, not rerun. No root-cause claim."
+  },
+  "cutover_approved": false,
+  "selected_resolved": [
+    "STD-R7-001",
+    "SPEC-R7-001"
+  ],
+  "selected_unresolved": [
+    "SPEC-R7-002"
+  ],
+  "prior_playwright_failure_cause": "Not established. Current controlled workflows pass after configuring an existing Chromium executable; no claim that this explains prior assertion failures."
+}

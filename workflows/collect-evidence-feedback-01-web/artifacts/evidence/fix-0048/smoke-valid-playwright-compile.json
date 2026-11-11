@@ -1,0 +1,13 @@
+{
+  "args": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+    "compile",
+    "/tmp/ce-fix0048-smoke-3VNq8S/playwright",
+    "--json",
+    "--no-input"
+  ],
+  "cwd": "/tmp",
+  "code": 0,
+  "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/ce-fix0048-smoke-3VNq8S/playwright\",\"driver\":\"playwright\",\"tests\":1}\n",
+  "err": ""
+}

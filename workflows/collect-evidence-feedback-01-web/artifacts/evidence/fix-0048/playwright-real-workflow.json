@@ -1,0 +1,16 @@
+{
+  "args": [
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "test",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+    "--test-name-pattern",
+    "playwright:"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "code": 0,
+  "out": "bun test v1.4.3 (c6da4a4d3)\n",
+  "err": "\nmise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts:\n(pass) real public browser workflows > playwright: capture, assertions, safety, sealing and read-only consumers [21556.07ms]\n\n 1 pass\n 1 filtered out\n 0 fail\n 28 expect() calls\nRan 1 test across 1 file. [21.57s]\n"
+}

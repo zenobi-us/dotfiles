@@ -1,0 +1,15 @@
+{
+  "args": [
+    "git",
+    "-C",
+    "/tmp/ce-fix0048-smoke-3VNq8S/repository",
+    "remote",
+    "add",
+    "origin",
+    "https://example.invalid/owned/fix0048.git"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "code": 0,
+  "out": "",
+  "err": ""
+}

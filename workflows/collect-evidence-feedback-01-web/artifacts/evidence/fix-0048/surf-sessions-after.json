@@ -1,0 +1,11 @@
+{
+  "args": [
+    "surf",
+    "session.list",
+    "--json"
+  ],
+  "cwd": "/tmp",
+  "code": 0,
+  "out": "{\n  \"sessions\": [],\n  \"browser\": {\n    \"browserInstanceId\": \"d7ab5223-3322-49d4-958a-19c1ac76a30b\",\n    \"browserEpoch\": \"cd431efc-703f-41c4-83f7-a9e3d415407e\",\n    \"extensionVersion\": \"2.6.0\",\n    \"protocolVersion\": 2,\n    \"capabilities\": [\n      \"browser-sessions\",\n      \"strict-targets\",\n      \"keyed-lanes\",\n      \"video-recording\"\n    ]\n  },\n  \"scheduler\": {\n    \"activeTabLanes\": [],\n    \"activeReaders\": 0,\n    \"writerActive\": false,\n    \"writer\": null,\n    \"activeResources\": [],\n    \"blockedResourceKeys\": [],\n    \"queued\": 0,\n    \"queuedWriters\": 0,\n    \"queuedWriterSessions\": [],\n    \"queuedByLane\": {}\n  }\n}\n",
+  "err": ""
+}

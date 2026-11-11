@@ -1,0 +1,24 @@
+{
+  "args": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "-I",
+    "raw",
+    "-F",
+    "text",
+    "--argjson",
+    "prefix",
+    "\"---\\nschema: worktree-projection/v1\\ntitle: Collect-evidence web implementation log\\ntype: Projection\\nlatest_receipt: fix-0048\\n---\\n# Current fix: fix-0048\\n\\nFIXED at 4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23, tree 97fa1a4794c2ab10d4676993de8414890c525134. Parent reconciliation is pending. Selected STD-R7-001, SPEC-R7-001 and SPEC-R7-002 are resolved. Prior review-0045 remains FAILURE only for its old source.\\n\\n95 scoped tests and strict tsc passed. Real Playwright passed with 28 assertions; real Surf passed with 86 assertions. Actual screenshots, credential and confirmation stops, missing-media, interruption, tamper and owned-versus-borrowed cleanup were checked.\\n\\n[Receipt](../events/fix-0048.yaml), [immutable draft](../artifacts/snapshots/pr-draft-fix-0048.md), [validation](../artifacts/evidence/fix-0048/validation-final.json), [image observations](../artifacts/evidence/fix-0048/acceptance-inspection-final.json).\\n\\nNext: Reconcile fix. Read the child result and artifacts, verify the frozen source and outcome, then append the parent completion. Do not repeat the child work. Fresh independent review follows parent completion. No merge or push. P3 advisories remain unchanged.\\n\\n## Historical projection\\n\\nThe following text is retained verbatim as historical state, not the current outcome.\\n\\n\"",
+    "-o",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/projections/implementation-log.md",
+    "import \"github.com/harehare/okf.mq\" | prefix + .",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/projections/implementation-log.md"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "code": 0,
+  "out": "",
+  "err": ""
+}

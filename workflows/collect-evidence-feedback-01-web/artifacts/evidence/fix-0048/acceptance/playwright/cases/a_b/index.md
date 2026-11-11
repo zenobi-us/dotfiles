@@ -1,0 +1,46 @@
+---
+schema: collect-evidence/v1
+kind: case
+---
+# Case a_b
+
+Preserve identity a_b
+
+## Step a_b.1
+
+Open the case-specific page without a screenshot
+
+Expected: null
+
+Observed: Page loaded.
+
+Assertion: not-applicable
+
+## Step a_b.2
+
+Check the case-specific URL
+
+Expected: {"text":null,"visible":null,"url":"case=a_b$"}
+
+Observed: Captured before expect.; URL matched: http://127.0.0.1:37869/?case=a_b
+
+Assertion: passed
+
+## Step a_b.3
+
+Capture the case-specific heading
+
+Expected: null
+
+Observed: Read: Owned evidence test
+
+Assertion: not-applicable
+
+![Capture 1 for step a_b.2](media/step-002-step-a-b-002-case-identity--capture-001--capture-001.png)
+
+![Capture 2 for step a_b.2](media/step-002-step-a-b-002-case-identity--capture-002--capture-002.png)
+
+![Capture 1 for step a_b.3](media/step-003-step-a-b-003-identity-capture--capture-001--capture-001.png)
+
+Limits: Capture time and viewport are unknown when the driver did not record them.; Only executed expect evidence with assertionPassed=true can establish a passing assertion.
+

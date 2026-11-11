@@ -1,0 +1,63 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "space",
+  "runId": "controlled",
+  "order": 4,
+  "purpose": "Stop unapproved keyboard confirmation",
+  "preconditions": [],
+  "expected": {
+    "pass": "No operation is submitted",
+    "fail": "An operation is submitted"
+  },
+  "steps": [
+    {
+      "id": "space.1",
+      "order": 1,
+      "purpose": "Open the confirmation page",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the confirmation page",
+        "to": "/confirmation"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "space.2",
+      "order": 2,
+      "purpose": "Activate the focused confirmation",
+      "actions": {
+        "do": "press",
+        "says": "Activate the focused confirmation",
+        "key": "Space"
+      },
+      "expected": null,
+      "observed": [
+        "page.evaluate: Error: SAFETY STOP space.2: confirmation step is not explicitly approved\n    at eval (eval at evaluate (:368:30), <anonymous>:17:21)\n    at eval (eval at evaluate (:368:30), <anonymous>:19:5)\n    at UtilityScript.evaluate (<anonymous>:370:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+      ],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/space/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "space.error-001",
+      "caseId": "space",
+      "stepId": "space.2",
+      "category": "blocked",
+      "message": "page.evaluate: Error: SAFETY STOP space.2: confirmation step is not explicitly approved\n    at eval (eval at evaluate (:368:30), <anonymous>:17:21)\n    at eval (eval at evaluate (:368:30), <anonymous>:19:5)\n    at UtilityScript.evaluate (<anonymous>:370:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    }
+  ],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded"
+}

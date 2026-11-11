@@ -1,0 +1,11 @@
+{
+  "source_commit_reported": "4c0b7737",
+  "checks": [
+    {"command": "collect-evidence.ts validate <fix-0048/acceptance/surf> --json", "cwd": "/tmp", "exit_code": 0, "success": true},
+    {"command": "collect-evidence.ts validate <fix-0048/acceptance/playwright> --json", "cwd": "/tmp", "exit_code": 0, "success": true}
+  ],
+  "image_inspection": [
+    {"ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/acceptance/surf/cases/pass/media/step-004-step-pass-004-selected-project--capture-001--capture-001.png", "observed": "Owned evidence test heading, Select project button and Project selected: Aurora visible"},
+    {"ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/acceptance/playwright/cases/pass/media/step-004-step-pass-004-selected-project--capture-001--capture-001.png", "observed": "Owned evidence test heading, Select project button and Project selected: Aurora visible"}
+  ]
+}

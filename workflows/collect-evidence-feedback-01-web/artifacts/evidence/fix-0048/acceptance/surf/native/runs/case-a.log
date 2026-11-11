@@ -1,0 +1,139 @@
+{
+  "status": "completed",
+  "completedSteps": 18,
+  "totalSteps": 18,
+  "results": [
+    {
+      "step": 1,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 2,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 3,
+      "cmd": "navigate",
+      "status": "ok",
+      "ms": 643
+    },
+    {
+      "step": 4,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 5,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 6,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 7,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 8,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 9,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 350
+    },
+    {
+      "step": 10,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 11,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 12,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 341
+    },
+    {
+      "step": 13,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 14,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 15,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 16,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 17,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 351
+    },
+    {
+      "step": 18,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    }
+  ],
+  "failed": 0,
+  "totalMs": 3132,
+  "vars": {
+    "base": "http://127.0.0.1:37361",
+    "shots": "/tmp/ce-surf-public-AW0gXj/collect-evidence-MwkaMG/report/shots",
+    "dialog_612e31": {
+      "id": 341,
+      "hasDialog": false
+    },
+    "url_612e31": "http://127.0.0.1:37361/?case=a",
+    "dialog_612e32": {
+      "id": 355,
+      "hasDialog": false
+    },
+    "capture_1_612e32": "{\"capturedAt\":\"2026-11-11T02:27:46.160Z\",\"url\":\"http://127.0.0.1:37361/?case=a\",\"viewport\":{\"width\":1185,\"height\":1047,\"deviceScaleFactor\":1}}",
+    "assert_612e32": "http://127.0.0.1:37361/?case=a",
+    "capture_2_612e32": "{\"capturedAt\":\"2026-11-11T02:27:46.709Z\",\"url\":\"http://127.0.0.1:37361/?case=a\",\"viewport\":{\"width\":1185,\"height\":1047,\"deviceScaleFactor\":1}}",
+    "dialog_612e33": {
+      "id": 369,
+      "hasDialog": false
+    },
+    "identity": "Owned evidence test",
+    "capture_1_612e33": "{\"capturedAt\":\"2026-11-11T02:27:47.471Z\",\"url\":\"http://127.0.0.1:37361/?case=a\",\"viewport\":{\"width\":1185,\"height\":1047,\"deviceScaleFactor\":1}}"
+  }
+}

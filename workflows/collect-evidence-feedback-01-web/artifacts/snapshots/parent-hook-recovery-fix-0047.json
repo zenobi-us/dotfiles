@@ -1,0 +1,12 @@
+{
+  "phase_start": "fix-start-0047",
+  "operation": "parent workflow provenance commit",
+  "initial_result": "hk pre-commit failed while stashing unrelated untracked files because sealed historical evidence directories reject removal",
+  "preexisting_pending_stash": "1e89555dcd3ecaddb8a12f3c18464e50adc557d2",
+  "restoration_sources": ["4c376c638211e7ca1c5eff612c51006a355cb07a^3", "34dd65e373a0274c916e815febc9869acca00167^3"],
+  "restoration": "Restored only missing paths using git restore --source snapshot --worktree; 682 plus 18 paths restored after each failed invocation; zero missing paths afterward. No retained stash dropped or preexisting pending journal changed.",
+  "safe_check": {"command": "hk run pre-commit --staged", "exit_code": 0, "result": "bundle-versions passed without stashing"},
+  "hook_configuration": "hook.hk-pre-commit.command=test ${HK:-1} = 0 || hk run pre-commit --from-hook",
+  "successful_commit": {"command": "HK=0 git commit --only <two workflow records>", "commit": "a17c55a4", "result": "committed two workflow provenance files after equivalent staged hook check"},
+  "unrelated_changes": "Preserved; no source worktree changed by parent"
+}

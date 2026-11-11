@@ -1,0 +1,96 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "failure",
+  "runId": "controlled",
+  "order": 2,
+  "purpose": "Reject an incorrect observation",
+  "preconditions": [],
+  "expected": {
+    "pass": "The missing text appears",
+    "fail": "The missing text is absent"
+  },
+  "steps": [
+    {
+      "id": "failure.1",
+      "order": 1,
+      "purpose": "Open the owned page",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the owned page",
+        "to": "/"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "failure.2",
+      "order": 2,
+      "purpose": "Check for missing text",
+      "actions": {
+        "do": "expect",
+        "says": "Check for missing text",
+        "locator": "#status",
+        "text": "This text is absent",
+        "timeoutMs": 100,
+        "shot": "unselected-project"
+      },
+      "expected": {
+        "text": "This text is absent",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "ASSERT FAIL failure.2: expected \"This text is absent\", got \"No project selected\""
+      ],
+      "assertionResult": "failed"
+    }
+  ],
+  "events": "cases/failure/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "failure.2.capture-001",
+      "caseId": "failure",
+      "stepId": "failure.2",
+      "path": "cases/failure/media/step-002-step-failure-002-unselected-project--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "6687f726e4c259df7a36efd2cc79d6926412f1259e32894608047cef1d5ee3c0",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-11T00:27:46.350Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:37869/"
+    }
+  ],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "failure.error-001",
+      "caseId": "failure",
+      "stepId": "failure.2",
+      "category": "assertion",
+      "message": "ASSERT FAIL failure.2: expected \"This text is absent\", got \"No project selected\""
+    }
+  ],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded"
+}

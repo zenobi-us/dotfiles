@@ -1,0 +1,12 @@
+{
+  "args": [
+    "git",
+    "init",
+    "--quiet",
+    "/tmp/ce-fix0048-smoke-3VNq8S/repository"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "code": 0,
+  "out": "",
+  "err": ""
+}

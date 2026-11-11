@@ -1,0 +1,46 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "event",
+  "source_commit": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+  "source_tree": "97fa1a4794c2ab10d4676993de8414890c525134",
+  "source_clean": true,
+  "resolved": [
+    "STD-R7-001",
+    "SPEC-R7-001",
+    "SPEC-R7-002"
+  ],
+  "unresolved": [],
+  "scoped": {
+    "passed": 95,
+    "failed": 0,
+    "assertions": 871
+  },
+  "strict_typecheck": "passed",
+  "real_playwright": {
+    "passed": 1,
+    "failed": 0,
+    "assertions": 28,
+    "images_inspected": true,
+    "borrowed_session_preserved": true,
+    "missing_media_injection": "rejected with exit 2",
+    "interruption": "exit 1 without sealing",
+    "tamper": "exit 2"
+  },
+  "real_surf": {
+    "passed": 1,
+    "failed": 0,
+    "assertions": 86,
+    "images_inspected": true,
+    "borrowed_tab_preserved": true,
+    "owned_sessions_remaining": 0,
+    "missing_media": "exit 2 without sealing",
+    "interruption": "exit 1 without sealing",
+    "tamper": "exit 2"
+  },
+  "remote_git": false,
+  "installed_tools": false,
+  "service_restart": false,
+  "credentials_entered": false,
+  "source_commit_hook": "hk run pre-commit --staged passed; HK=0 skipped duplicate hook only",
+  "cutover_gate_evidence_satisfied": true
+}

@@ -1,3 +1,23 @@
+---
+schema: worktree-projection/v1
+title: Collect-evidence web implementation log
+type: Projection
+latest_receipt: fix-0048
+---
+# Current fix: fix-0048
+
+FIXED at 4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23, tree 97fa1a4794c2ab10d4676993de8414890c525134. Parent reconciliation completed in fix-complete-0049. Delivery acknowledged; fixer t37 removed. Selected STD-R7-001, SPEC-R7-001 and SPEC-R7-002 are resolved. Prior review-0045 remains FAILURE only for its old source.
+
+95 scoped tests and strict tsc passed. Real Playwright passed with 28 assertions; real Surf passed with 86 assertions. Actual screenshots, credential and confirmation stops, missing-media, interruption, tamper and owned-versus-borrowed cleanup were checked.
+
+[Receipt](../events/fix-0048.yaml), [immutable draft](../artifacts/snapshots/pr-draft-fix-0048.md), [validation](../artifacts/evidence/fix-0048/validation-final.json), [image observations](../artifacts/evidence/fix-0048/acceptance-inspection-final.json).
+
+Next: Reconcile fix. Read the child result and artifacts, verify the frozen source and outcome, then append the parent completion. Do not repeat the child work. Fresh independent review follows parent completion. No merge or push. P3 advisories remain unchanged.
+
+## Historical projection
+
+The following text is retained verbatim as historical state, not the current outcome.
+
 ## Current review: review-0045
 
 REVIEW_FAILED at `6923f54f331697f6e8e591346d8071951909bfc7` (tree `9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7`). Current verdict: FAILURE. Standards: one P2 blocker and two P3 advisories. Spec: two P2 blockers. Prior selected findings SPEC-R6-001, SPEC-R6-002 and STD-R6-001 are resolved.
@@ -626,4 +646,11 @@ Resolved by this scoped fix: SPEC-R6-001, SPEC-R6-002 and overlapping STD-R6-001
 Source and workflow records are committed locally. No merge, push, ticket completion or browser workflow rerun occurred. Historical Surf/Playwright failures remain unresolved. Passing compile/render checks do not establish browser acceptance.
 
 Next: Review changed source: The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing. Fresh independent review approval is required; no review was launched by this fix phase.
+
+
+
+
+## Parent completion: fix-complete-0049
+
+[Completion receipt](../events/fix-complete-0049.yaml). Parent verified the exact clean source commit and tree, validated both sealed runs from /tmp, and inspected both selected-project screenshots. Delivery hash acknowledged; only fixer t37 closed. Canonical ticket remains implemented. Next: fresh independent review because source changed after review-0045. No merge or push.
 

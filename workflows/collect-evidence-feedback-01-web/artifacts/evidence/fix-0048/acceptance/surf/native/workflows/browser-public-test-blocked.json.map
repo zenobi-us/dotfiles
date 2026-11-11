@@ -1,0 +1,25 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "driver-map",
+  "entries": [
+    {
+      "step": "blocked.1",
+      "kind": "navigate",
+      "target": "/credential",
+      "from": 0,
+      "count": 6,
+      "shot": "",
+      "dialog": "dialog_626c6f636b65642e31",
+      "url": "url_626c6f636b65642e31"
+    },
+    {
+      "step": "blocked.2",
+      "kind": "fill",
+      "target": "#secret",
+      "from": 6,
+      "count": 4,
+      "shot": "",
+      "dialog": "dialog_626c6f636b65642e32"
+    }
+  ]
+}

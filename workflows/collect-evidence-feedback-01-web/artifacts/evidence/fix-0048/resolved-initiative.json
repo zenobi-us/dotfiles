@@ -1,0 +1,14 @@
+{
+  "args": [
+    "/home/zenobius/.omp/agent/bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts",
+    "resolve",
+    "initiative",
+    "--id",
+    "collect-evidence-feedback",
+    "--json"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "code": 0,
+  "out": "{\n  \"kind\": \"initiative\",\n  \"adapter\": \"markdown\",\n  \"store\": \"repository\",\n  \"root\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/initiatives/collect-evidence-feedback\",\n  \"ref\": \"tracker/initiatives/collect-evidence-feedback\",\n  \"publication\": \"repository\"\n}\n",
+  "err": ""
+}

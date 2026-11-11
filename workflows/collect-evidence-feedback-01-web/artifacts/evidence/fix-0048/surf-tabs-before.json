@@ -1,0 +1,11 @@
+{
+  "args": [
+    "surf",
+    "tab.list",
+    "--json"
+  ],
+  "cwd": "/tmp",
+  "code": 0,
+  "out": "[\n  {\n    \"id\": 498730810,\n    \"title\": \"New Tab\",\n    \"url\": \"chrome://newtab/\",\n    \"active\": true,\n    \"windowId\": 498730809\n  }\n]\n",
+  "err": ""
+}

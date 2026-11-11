@@ -1,0 +1,19 @@
+{
+  "args": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "-I",
+    "raw",
+    "-F",
+    "json",
+    "import \"github.com/harehare/okf.mq\" | okf::okf_parse(.) | okf::okf_validate(.)",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0048.md"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "code": 0,
+  "out": "[]\n",
+  "err": ""
+}

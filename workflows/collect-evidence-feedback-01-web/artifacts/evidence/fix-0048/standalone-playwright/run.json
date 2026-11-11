@@ -1,0 +1,72 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "run",
+  "id": "playwright",
+  "status": "sealed",
+  "startedAt": "2026-11-11T00:30:43.619Z",
+  "finishedAt": "2026-11-11T00:30:47.664Z",
+  "surface": "web",
+  "driver": "playwright",
+  "driverVersion": "0.1.22",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "case",
+      "path": "cases/case/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/case/case.json",
+      "sha256": "926dcba7ac3e471a93a1d807dcd25ed705e0dd0490b9fda81114d6506fa1d28f"
+    },
+    {
+      "path": "cases/case/events.jsonl",
+      "sha256": "17e0ebc065e29a53e000632c3496484dbf6d59ea10474454cd0de4f021838d38"
+    },
+    {
+      "path": "cases/case/index.md",
+      "sha256": "bae3ea80126ff8fd55edda7ad674681b2e09c6ef8b867b8f34d1cedef42679db"
+    },
+    {
+      "path": "cases/case/media/step-002-step-case-002-heading--capture-001--capture-001.png",
+      "sha256": "f0fb5af64ffd120b9e361f2f5cd3b36613f8fd1e8b8c09abd5105da6ef2f7cc3"
+    },
+    {
+      "path": "cases/case/media/step-002-step-case-002-heading--capture-002--capture-002.png",
+      "sha256": "f0fb5af64ffd120b9e361f2f5cd3b36613f8fd1e8b8c09abd5105da6ef2f7cc3"
+    },
+    {
+      "path": "index.md",
+      "sha256": "3345f2fc2e85c366913f046f0dd8dbfd1d5e1fc5335a3a5f2f6769b2ce87e59e"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "a4e0d4c52207e388013f3ec82212099b4d61c9f9f7fc7fd776abc325c48a3f91"
+    },
+    {
+      "path": "native/report/shots/step-case-002-heading--capture-001.png",
+      "sha256": "f0fb5af64ffd120b9e361f2f5cd3b36613f8fd1e8b8c09abd5105da6ef2f7cc3"
+    },
+    {
+      "path": "native/report/shots/step-case-002-heading--capture-002.png",
+      "sha256": "f0fb5af64ffd120b9e361f2f5cd3b36613f8fd1e8b8c09abd5105da6ef2f7cc3"
+    },
+    {
+      "path": "native/runs/case-case.log",
+      "sha256": "665f31818bedc610d2657f019c08b91c7f5c86bb31aba3f2b24c45ca7f8e75d3"
+    },
+    {
+      "path": "native/workflows/boundary-smoke-test-case.js",
+      "sha256": "d20c3cffa74174d319a57a55caa950e75a9e0043c5eda196a3bf9574e0de805e"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "8a80d73222a8bc3d27631e0fb506a77dd33a33484df78a7ba712e7b7a1ac1e86"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "a4e0d4c52207e388013f3ec82212099b4d61c9f9f7fc7fd776abc325c48a3f91"
+    }
+  ]
+}
