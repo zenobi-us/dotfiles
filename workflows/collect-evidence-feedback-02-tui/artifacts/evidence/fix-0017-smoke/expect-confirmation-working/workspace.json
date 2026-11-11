@@ -1,0 +1,16 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "event",
+  "repository": "/tmp/ce-fix-0017-ns4SuA/repository",
+  "workflow": "native",
+  "runId": "expect-confirmation",
+  "destination": {
+    "kind": "evidence",
+    "adapter": "files",
+    "store": "repository",
+    "root": "/tmp/ce-fix-0017-ns4SuA/repository",
+    "path": "/tmp/ce-fix-0017-ns4SuA/repository/workflows/native/artifacts/evidence/expect-confirmation",
+    "ref": "workflows/native/artifacts/evidence/expect-confirmation",
+    "publication": "repository"
+  }
+}

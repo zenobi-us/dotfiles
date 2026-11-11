@@ -104,3 +104,34 @@ No consumed finding remains unresolved in this fix. Fresh independent review is 
 
 [Independent review](../artifacts/reviews/review-review-0014.md), [result](../events/review-0014.yaml), and [parent completion](../events/review-0015.yaml). Verdict: FAILURE for `acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa`. Standards: one Low non-blocking finding. Spec: one P2 blocking finding. Findings remain in the immutable review. Common regressions: 99 pass. Native suite: 5 pass, 1 timeout; isolated capture: 1 pass. Positive public native smoke passed; unexpected-confirmation smoke proved the remaining defect. No merge or push. Fix requires a fresh session.
 
+
+## fix-0017 — SPEC-01 resolved
+
+Source: a50eb7b56c79151c48abe4e5595b8da2b63eec98, tree 0aafea468291c367eac265ad883de220cd48b442. [Fix start](../events/fix-0016.yaml). [Child result](../events/fix-0017.yaml). Consumed [review-0014](../artifacts/reviews/review-review-0014.md). Parent acceptance, delivery acknowledgement and fresh independent review remain pending. No merge, rebase, push or ticket completion occurred.
+
+### Implementation and changed files
+
+Removed the before-input-only confirmation guard. Every inspected native screen now screens terminal text and OCR for unapproved confirmations. Only an explicitly approved input operation may permit the actual prompt named by its screen. Expect-only, precondition and wait cases block without input; approved prompt behavior remains covered.
+
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/tui-driver.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/native-workflow.test.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/tui.md
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
+
+The commit hook advanced the developer bundle to 0.2.17. Neither web driver changed.
+
+### Validation
+
+Final native suite: 9 pass, 0 fail, 90 assertions. Common workflow/verdict suites: 99 pass, 0 fail, 892 assertions. Public doctor/init/render/compile/run/validate/verdicts/report passed for the positive delayed transition. The expect-only Delete files? [y/N] fixture returned exit 3/BLOCKED with no approved input IDs and no submitted input. Both sealed runs validate after byte-preserving retention. Inspected original Ready, Details and prompt PNGs. Native colours, 20 px line spacing, dimensions, terminal identity and hashes remain intact. Owned resources were released. [Exact checks and initial test-authoring failures](../artifacts/snapshots/validation-fix-0017.json). [Public smoke commands and evidence](../artifacts/evidence/fix-0017-smoke/validation.json). [Retained smoke harness](../artifacts/snapshots/native-smoke-fix-0017.ts).
+
+### Findings, limits and provenance
+
+Resolved SPEC-01 (P2, NO ADR) from review-0014. STD-01 (Low, nonblocking, NO ADR) remains unresolved by explicit scope: the shell failure shim is unchanged. Latest reviewer verdict remains historical FAILURE on acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa; it does not review this new source. Fresh review is required. No TypeScript compiler success is claimed; its prerequisite was previously unavailable. Linux CPU rendering, host font metrics, English/OCR prompt detection and unavailable native video remain limits.
+
+fix-0016 records user-approved scoped takeover and source/terminal preservation. This independent fixer is run 78d50e8a-5487-4007-a610-0b15377d7ea3, terminal t5m. Existing Notes terminal t5c was not touched. Handoff approved only harmless throwaway fixture operations and private resources. Temporary smoke store and harness were removed after evidence retention. Parent owns completion, acknowledgement and terminal close.
+
+
+## Parent acceptance — fix-0018
+
+[Parent completion](../events/fix-0018.yaml) accepts [fix-0017](../events/fix-0017.yaml) at clean source `a50eb7b56c79151c48abe4e5595b8da2b63eec98`. Delivered payload matches the authoritative receipt; completion sequence 2 and transport acknowledgement verified. Public validate succeeds for both retained native runs: transition PASS and expect-only confirmation BLOCKED. Parent inspected the original prompt image. Only child terminal t5m was targeted for removal. No merge, push or ticket completion. Next: fresh independent review; STD-01 remains Low and nonblocking.
