@@ -155,6 +155,7 @@ const contractsCmd = app
         null,
         null,
         null,
+        null,
         2,
       ),
     );
