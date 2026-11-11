@@ -12,7 +12,6 @@
   },
   "devDependencies": {
     "@excalidraw/excalidraw": "^0.18.0",
-    "@types/bun": "1.4.4",
     "@types/node": "25.6.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
