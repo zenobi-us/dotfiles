@@ -5,7 +5,7 @@ schema: tracker-ticket/v1
 title: Add native Context and Tracker panels to Herdr
 triage: ready-for-agent
 type: task
-work_status: claimed
+work_status: completed
 ---
 
 ## What to build
@@ -78,3 +78,15 @@ Other work remains outside these commits. The ticket remains claimed until merge
 ### Independent review — review-0008
 
 Verdict: FAILURE. Reviewed commit: `fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c`. Timestamp: `2026-11-11T22:14:38.698Z`. [Immutable review](../../workflows/herdr-context-panels/artifacts/reviews/review-review-0008.md). The ticket remains claimed. Current implementation path: `mise/conf.d/devtools-herdrapp/app/`.
+
+### Independent review — review-0015
+
+Verdict: SUCCESS. Reviewed commit: `6fac3b638ca19c670ce9df7f4d1ee20b0414d40c`. Timestamp: `2026-11-11T23:02:18.447368+00:00`. [Immutable review](../../workflows/herdr-context-panels/artifacts/reviews/review-review-0015.md). No blocking findings remain.
+
+### Verified completion
+
+Completed after review-0015 passed and Worktrunk integrated the two scoped corrections as `f3142189bc4a1a61bb7860eb3a0a7733e577a9c5`. The reviewed tree and integrated tree match. `git ls-remote origin refs/heads/master` observed that integration commit exactly after a successful non-force push.
+
+Integrated checks passed: 35 tests, 114 assertions, TypeScript, and the real canonical context request. Native C/C2, expanded-directory restoration, stale action responses, fresh-session launch and preview ordering passed in the isolated app. [Native correction evidence](../../workflows/herdr-context-panels/artifacts/evidence/fix-0011-native/acceptance.json). [Integrated validation](../../workflows/herdr-context-panels/artifacts/evidence/finish-0020-integrated/validation.json). [Successful review](../../workflows/herdr-context-panels/artifacts/reviews/review-review-0015.md).
+
+The source worktree remains until tracker publication succeeds. The workflow records its actual cleanup separately. No historical review or repeated merge of the original implementation is asserted.
