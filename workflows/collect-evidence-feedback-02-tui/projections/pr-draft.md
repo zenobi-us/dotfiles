@@ -130,3 +130,8 @@ fix-0016 records user-approved scoped takeover and source/terminal preservation.
 ## Parent acceptance — fix-0018
 
 [Parent completion](../events/fix-0018.yaml) accepts [fix-0017](../events/fix-0017.yaml) at clean source `a50eb7b56c79151c48abe4e5595b8da2b63eec98`. Delivered payload matches the authoritative receipt; completion sequence 2 and transport acknowledgement verified. Public validate succeeds for both retained native runs: transition PASS and expect-only confirmation BLOCKED. Parent inspected the original prompt image. Only child terminal t5m was targeted for removal. No merge, push or ticket completion. Next: fresh independent review; STD-01 remains Low and nonblocking.
+
+
+## Independent review attempt 3 — review-0021
+
+[Review artifact](../artifacts/reviews/review-review-0020.md), [child result](../events/review-0020.yaml), [parent completion](../events/review-0021.yaml). Verdict FAILURE for `a50eb7b56c79151c48abe4e5595b8da2b63eec98`, tree `0aafea468291c367eac265ad883de220cd48b442`. Standards: one Low nonblocking finding. Spec: one High blocking finding, SPEC-02. Prior SPEC-01 is resolved. Native suite: 9 pass; common suites: 99 pass. Public credential fixture received harmless input at an API-token prompt. Parent verified unchanged clean source, artifact, matching delivered receipt and completion sequence 2, acknowledged delivery and closed only reviewer t5t. No fix, merge, push or ticket completion. Next: fresh fixer for the current blocking finding.
