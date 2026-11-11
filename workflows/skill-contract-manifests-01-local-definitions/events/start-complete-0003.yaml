@@ -1,0 +1,65 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0003",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "implementation-0002",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "6e63ddbe3ab8820c1e56c28af9d710cb84ffd45a",
+  "source_tree": "4517fbe221ab9767c6e021e99702f91d0d92a2a3",
+  "created_at": "2026-11-11T04:48:05.902152+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc:t3h",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/start-0001.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/implementation-0002.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/start-complete-0003.yaml"
+    }
+  ],
+  "status": "blocked",
+  "recovery_mode": "takeover",
+  "recovery_reason": "Inspector found tracker-only provenance, no source candidate or prior workflow events. User explicitly authorized recovery and a fresh implementation session.",
+  "ownership_approval": "User selected Authorize recovery in this session. No prior source worktree, receipt owner, or goal reservation found; active t39 and t3f are unrelated; t3h is this parent.",
+  "validation": [
+    {
+      "command": "git status --short (source worktree)",
+      "result": "only workflow records untracked; source remains claim commit"
+    },
+    {
+      "command": "Bun.YAML.parse authoritative event compared to retained JSON",
+      "result": "exact payload equality; blocked result verified; transport not acknowledged"
+    }
+  ],
+  "failure_reason": "Child stopped before implementation: parent receipt workflow root rejected from source worktree; muxer module unavailable; artifact delivery ENOTDIR. No implementation, tests, snapshot or projections.",
+  "transport_status": "failed; no acknowledgement",
+  "result_sha256": "b6061958436b9e68dd742ecbb5ef4ade4fcc891f4f7f52edee72f813281ccc80"
+}
