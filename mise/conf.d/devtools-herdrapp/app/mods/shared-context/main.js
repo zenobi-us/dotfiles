@@ -12,6 +12,7 @@ import { initiativeProgress } from "./progress-model.js";
 import { initiativeProgressRow } from "./progress.js";
 import { workflowActivity } from "./activity-model.js";
 import { initActionMenus } from "./action-menu.js";
+import { invalidateAction } from "./action.js";
 
 function location() {
   const given = props() ?? {}, space = spaces().find(item => item.active), focus = focused();
@@ -33,7 +34,7 @@ export default class SharedContext extends View {
     this.recordTabFocus = { description: cx.focus_handle(), activity: cx.focus_handle(), lineage: cx.focus_handle() };
     this.graphInitiative = null;
     this.preferences = DEFAULTS; this.preferencesReady = false;
-    this.key = ""; this.revision = 0; this.detailRevision = 0;
+    this.key = ""; this.revision = 0; this.detailRevision = 0; this.fileRevision = 0;
     this.viewStorageKey = `shared-context:${this.mode}:views:v1`;
     // Settings reload the mod. Keep view state, but revalidate record IDs against the next snapshot.
     this.saved = new Map(JSON.parse(localStorage.getItem(this.viewStorageKey) ?? "[]").map(([key, value]) => [key, { ...value, collapsed: new Set(value.collapsed), fileFolders: new Set(value.fileFolders) }]));
@@ -59,6 +60,8 @@ export default class SharedContext extends View {
   }
 
   close() {
+    invalidateAction(this);
+    this.revision++; this.fileRevision++;
     this.actionInput?.release();
   }
 
@@ -75,13 +78,14 @@ export default class SharedContext extends View {
     const next = location(), key = JSON.stringify([next.machine, next.cwd]);
     if (key === this.key) return;
     this.remember(); this.key = key; this.where = next;
+    invalidateAction(this);
     this.context = null; this.snapshot = null; this.detail = null; this.filePreview = null; this.viewKey = null;
     this.progress = new Map();
     this.recordTab = "description"; this.detailError = "";
     this.activity = workflowActivity(); this.activityFilter = "all";
     this.actionOpen = null; this.actionError = "";
     this.openSelect = null; this.selectKeyHandlers = null; this.graphInitiative = null; this.graphViews = new Map();
-    this.revision++; this.detailRevision++; this.loading = false; this.error = "";
+    this.revision++; this.detailRevision++; this.fileRevision++; this.loading = false; this.error = "";
     if (next.machine) { this.error = "The selected repository is remote. Context requests currently execute locally. Select a local repository."; return; }
     if (!next.cwd) { this.error = "Select a repository folder."; return; }
     this.refresh(cx);
@@ -108,7 +112,11 @@ export default class SharedContext extends View {
         cx.notify();
         if (!context.ready) return;
         if (this.mode === "context") {
-          for (const collection of context.collections) if (collection.path && this.fileFolders.has(`${collection.id}:`)) this.loadFolder(collection.id, "", cx);
+          for (const collection of context.collections) {
+            if (!collection.path) continue;
+            const prefix = `${collection.id}:`;
+            for (const folder of this.fileFolders) if (folder.startsWith(prefix)) this.loadFolder(collection.id, folder.slice(prefix.length), cx);
+          }
           if (this.fileSelection) this.openFile(this.fileSelection.collection, this.fileSelection.path, cx);
         } else {
           const snapshot = await request("tracker", cwd);
@@ -118,7 +126,7 @@ export default class SharedContext extends View {
           if (this.selected) {
             const records = this.selected.kind === "initiative" ? snapshot.initiatives : snapshot.tickets;
             const record = records.find(item => item.id === this.selected.id);
-            if (record) this.choose(record, this.selected.kind, cx, false); else { this.selected = null; this.detail = null; }
+            if (record) this.choose(record, this.selected.kind, cx, false); else { invalidateAction(this); this.actionOpen = null; this.selected = null; this.detail = null; }
           }
         }
       } catch (error) { if (revision === this.revision) this.error = String(error.message ?? error); }
@@ -129,6 +137,7 @@ export default class SharedContext extends View {
   choose(record, kind, cx, reveal = true) {
     if (this.drawer === "expanded" && this.selected?.id === record.id && reveal) return;
     if (this.selected?.id !== record.id || this.selected.kind !== kind) {
+      invalidateAction(this);
       this.recordTab = "description"; this.activityFilter = "all";
       this.actionOpen = null; this.actionError = "";
     }
@@ -176,14 +185,14 @@ export default class SharedContext extends View {
   }
 
   openFile(collection, path, cx) {
-    this.fileSelection = { collection, path }; this.filePreview = null;
-    const revision = this.revision, selected = `${collection}:${path}`;
+    this.fileSelection = { collection, path }; this.filePreview = null; this.error = "";
+    const revision = this.revision, serial = ++this.fileRevision;
     cx.spawn(async cx => {
       try {
         const preview = await request("file", this.where.cwd, { collection, path });
-        if (revision === this.revision && `${this.fileSelection?.collection}:${this.fileSelection?.path}` === selected) this.filePreview = preview;
-      } catch (error) { if (revision === this.revision) this.error = String(error.message ?? error); }
-      cx.notify();
+        if (revision === this.revision && serial === this.fileRevision) this.filePreview = preview;
+      } catch (error) { if (revision === this.revision && serial === this.fileRevision) this.error = String(error.message ?? error); }
+      if (revision === this.revision && serial === this.fileRevision) cx.notify();
     });
     this.remember(); cx.notify();
   }
@@ -215,7 +224,7 @@ export default class SharedContext extends View {
   filesView() {
     const t = theme();
     if (this.fileSelection) return v_flex().size_full().min_h(0)
-      .child(button("context-files-back", "← Context files", (_event, cx) => { this.fileSelection = null; this.filePreview = null; cx.notify(); }))
+      .child(button("context-files-back", "← Context files", (_event, cx) => { this.fileRevision++; this.fileSelection = null; this.filePreview = null; this.error = ""; this.remember(); cx.notify(); }))
       .child(div().px(14).py(8).text_size(10).text_color(t.dim).child(this.filePreview?.ref ?? this.fileSelection.path))
       .child(div().id("context-file-reader").flex_1().min_h(0).overflow_y_scrollbar().p(14).child(this.filePreview ? TextView.markdown("context-file", this.filePreview.body) : note("Read the file…")));
     const rows = [];
@@ -250,7 +259,7 @@ export default class SharedContext extends View {
       };
       return h_flex().id(`tracker-row:${row.path}`).h(group ? 80 : 60).flex_none().pl(8 + row.depth * 18).pr(6).gap(6).items_center().rounded(6).bg(selected ? t.selected : t.background).hover(el => el.bg(selected ? t.selected : t.hover))
         .child(row.children ? button(`toggle:${row.path}`, "", (_event, cx) => { cx.stop_propagation(); if (disabled) return; if (this.collapsed.has(row.path)) this.collapsed.delete(row.path); else this.collapsed.add(row.path); this.remember(); cx.notify(); }, { label: `${row.expanded ? "Collapse" : "Expand"} ${row.record.title}`, disabled }).w(24).px(0).bg("#00000000").child(icon(row.expanded ? "down" : "right", 12)) : div().w(24).flex_none())
-        .child(button(`select:${row.path}`, "", action, { label: `${type}: ${row.record.title}. ${row.record.id}. ${row.state ?? `${row.children} tickets`}${row.reference ? ". Shared membership." : ""}`, disabled, height: group ? 76 : 56 }).flex_1().min_w(0).px(0).bg("#00000000").hover(el => el.bg("#00000000")).text_color(t.foreground).tooltip(`${row.record.title}\n${row.record.id} · ${type}${row.state ? ` · ${row.state}` : ""}`)
+        .child(button(`select:${row.path}`, "", action, { label: `${type}: ${row.record.title}. ${row.record.id}. ${row.state ?? `${row.children} tickets`}${row.reference ? ". Shared prerequisite. Open canonical path." : ""}`, disabled, height: group ? 76 : 56 }).flex_1().min_w(0).px(0).bg("#00000000").hover(el => el.bg("#00000000")).text_color(t.foreground).tooltip(`${row.record.title}\n${row.record.id} · ${type}${row.state ? ` · ${row.state}` : ""}`)
           .child(v_flex().flex_1().min_w(0).gap(5)
             .child(h_flex().gap(7).items_center().min_w(0).child(div().w(16).text_size(16).text_color(typeColor(type, t)).child(typeIcon(type))).child(div().flex_1().min_w(0).truncate().text_size(13).child(row.record.title)))
             .child(h_flex().pl(23).gap(7).items_center().min_w(0).child(div().flex_1().min_w(0).truncate().text_size(10).text_color(t.muted).child(row.record.id))

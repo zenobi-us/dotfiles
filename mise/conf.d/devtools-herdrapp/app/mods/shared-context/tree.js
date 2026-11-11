@@ -1,12 +1,28 @@
-// Initiative membership belongs in the tree; dependency edges belong in the graph.
+// Repeated dependency paths point to one canonical record, including beneath collapsed rows.
 export function dependencyRows(snapshot, queue, collapsed) {
   const tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
   const eligible = ticket => queue === "initiatives" || queue === "all" || (queue === "ready" ? snapshot.states[ticket.id]?.state === "READY" : queue === "review" ? ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(snapshot.states[ticket.id]?.state) : ["BLOCKED", "ERROR", "UNKNOWN"].includes(snapshot.states[ticket.id]?.state));
   const rows = [], canonical = new Map(), assigned = new Set();
+  const requiredBy = members => {
+    const required = new Set(), visited = new Set(), chain = new Set();
+    const collect = id => {
+      if (chain.has(id)) throw new Error(`Dependency cycle at ${id}.`);
+      const record = tickets.get(id);
+      if (!record) throw new Error(`Missing prerequisite ${id}.`);
+      if (visited.has(id)) return;
+      chain.add(id);
+      for (const blocker of record.blockedBy) { required.add(blocker); collect(blocker); }
+      chain.delete(id); visited.add(id);
+    };
+    for (const member of members) collect(member.id);
+    return required;
+  };
   const add = (record, parent, depth, visible) => {
-    const path = `${parent}/${record.id}`, reference = canonical.get(record.id);
-    if (visible) rows.push({ type: "ticket", record, itemType: itemType(record), path, depth, reference, expanded: false, children: 0, state: ticketDisplayState(record, snapshot.states?.[record.id]) });
-    if (!reference) canonical.set(record.id, path);
+    const path = `${parent}/${record.id}`, reference = canonical.get(record.id), expanded = !collapsed.has(path);
+    if (visible) rows.push({ type: "ticket", record, itemType: itemType(record), path, depth, reference, expanded, children: reference ? 0 : record.blockedBy.length, state: ticketDisplayState(record, snapshot.states?.[record.id]), context: !eligible(record) });
+    if (reference) return;
+    canonical.set(record.id, path);
+    for (const blocker of record.blockedBy) add(tickets.get(blocker), path, depth + 1, visible && expanded);
   };
   const section = (id, title) => rows.push({ type: "section", record: { id, title }, path: `section:${id}`, depth: 0, expanded: true, children: 0 });
   const initiatives = snapshot.initiatives.filter(item => !item.group);
@@ -18,9 +34,10 @@ export function dependencyRows(snapshot, queue, collapsed) {
       assigned.add(id);
       return ticket;
     }).filter(ticket => eligible(ticket) && itemType(ticket) === "ticket");
+    const required = requiredBy(members), roots = members.filter(member => !required.has(member.id));
     const path = `initiative:${initiative.id}`, expanded = !collapsed.has(path);
-    rows.push({ type: "initiative", itemType: "initiative", record: initiative, path, depth: 0, expanded, children: members.length });
-    for (const member of members) add(member, path, 1, expanded);
+    rows.push({ type: "initiative", itemType: "initiative", record: initiative, path, depth: 0, expanded, children: roots.length });
+    for (const member of roots) add(member, path, 1, expanded);
   }
   const groups = new Map();
   for (const ticket of snapshot.tickets) {
@@ -33,7 +50,8 @@ export function dependencyRows(snapshot, queue, collapsed) {
     const members = groups.get(type);
     if (!members?.length) continue;
     section(type, { ticket: "Other tickets", prototype: "Prototypes", research: "Research", planning: "Planning", record: "Records" }[type]);
-    for (const member of members) add(member, `section:${type}`, 0, true);
+    const required = requiredBy(members);
+    for (const member of members) if (!required.has(member.id)) add(member, `section:${type}`, 0, true);
   }
   return { rows, canonical };
 }

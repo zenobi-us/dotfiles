@@ -4,10 +4,10 @@ import { h_flex, v_flex, Popup, Input, InputState } from "gpui-base";
 import { theme } from "herdr";
 import { button, note } from "./ui.js";
 import { ACTION_PRESETS, actionPrompt } from "./action-model.js";
-import { launchAction } from "./action.js";
+import { launchAction, invalidateAction } from "./action.js";
 
 export function initActionMenus(view, cx) {
-  view.actionBusy = false; view.actionError = ""; view.actionOpen = null;
+  invalidateAction(view); view.actionOpen = null;
   view.actionDrafts = new Map();
   view.actionTriggerFocus = new Map(Object.keys(ACTION_PRESETS).map(action => [action, cx.focus_handle()]));
   view.actionFocus = cx.focus_handle();
@@ -16,6 +16,7 @@ export function initActionMenus(view, cx) {
   view.actionInput = InputState.new({ placeholder: "e.g. Focus on the narrow-screen flow" });
   view.actionInput.on("change", (_event, cx) => {
     if (view.actionOpen) view.actionOpen.draft.detail = view.actionInput.value();
+    invalidateAction(view);
     view.actionError = ""; cx.notify();
   });
   view.actionInput.on("focus", () => { view.actionInputFocused = true; });
@@ -49,6 +50,7 @@ function openActionMenu(view, choice, given, cx) {
   let draft = view.actionDrafts.get(key);
   if (!draft) { draft = { preset: 0, detail: "" }; view.actionDrafts.set(key, draft); }
   view.actionOpen = { key, choice, given, draft };
+  invalidateAction(view);
   view.actionError = ""; view.openSelect = null;
   view.actionInput.set_value(draft.detail);
   view.actionFocus.focus(); cx.notify();
@@ -57,6 +59,7 @@ function openActionMenu(view, choice, given, cx) {
 function closeActionMenu(view, cx, restoreFocus = true) {
   if (view.actionBusy || !view.actionOpen) return;
   const action = view.actionOpen.choice.action;
+  invalidateAction(view);
   view.actionOpen = null; view.actionError = "";
   if (restoreFocus) view.actionTriggerFocus.get(action).focus();
   cx.notify();
@@ -68,6 +71,7 @@ function actionMenuContent(view) {
     const selected = open.draft.preset === index;
     const row = button(`choose-action-preset:${index}`, "", (_event, cx) => {
       if (view.actionBusy) return;
+      invalidateAction(view);
       open.draft.preset = index; view.actionError = ""; view.actionFocus.focus(); cx.notify();
     }, { disabled: view.actionBusy, label: `${preset.label}${selected ? ". Selected" : ""}`, height: "auto" })
       .tab_stop(false).w_full().min_h(34).py(8).bg(selected ? t.selected : t.popover)
@@ -128,6 +132,7 @@ function actionMenuKey(view, event, cx) {
   }
   if (cancel || launch || !["up", "down", "home", "end"].includes(event.key)) return;
   cx.stop_propagation();
+  invalidateAction(view);
   draft.preset = event.key === "home" ? 0 : event.key === "end" ? presets.length - 1 : (draft.preset + (event.key === "down" ? 1 : presets.length - 1)) % presets.length;
   view.actionError = ""; cx.notify();
 }
