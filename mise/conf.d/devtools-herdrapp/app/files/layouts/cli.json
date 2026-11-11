@@ -187,16 +187,22 @@
     }
   ],
   "background": "canvas",
-  "terminal_padding": [2, 8],
+  "terminal_padding": [
+    2,
+    8
+  ],
   "divider": {
     "width": 1,
     "color": "#1f2530"
   },
   "titlebar": "none",
-  "traffic_lights": [12, 16],
+  "traffic_lights": [
+    12,
+    16
+  ],
   "theme": "cli",
   "font": "Roboto Mono",
-  "font_size": 14,
+  "font_size": 16,
   "ui_font": "Roboto Mono",
   "preview": "layouts/cli.svg"
 }
