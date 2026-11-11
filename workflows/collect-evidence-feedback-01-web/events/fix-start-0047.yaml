@@ -1,0 +1,90 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-01-web",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "source_branch": "feature/collect-evidence-feedback-01-web",
+  "base_branch": "master",
+  "source_commit": "6923f54f331697f6e8e591346d8071951909bfc7",
+  "source_tree": "9ed7f6b5ed3a9f93da589cfac566a29938bf9bb7",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-01-web",
+    "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-01-web"
+  },
+  "receipt_id": "fix-start-0047",
+  "phase": "fix",
+  "event": "phase-start",
+  "attempt": 6,
+  "parent_receipt": "review-0045",
+  "created_at": "2026-11-11T00:22:00.517962+00:00",
+  "pane_id": null,
+  "session_id": "herdr-app:t30",
+  "status": "started",
+  "recovery_mode": "begin",
+  "recovery_reason": "The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs.",
+  "approval": {
+    "source": "user",
+    "request": "Authorize fix takeover",
+    "scope": "Take ownership and fresh fixer for STD-R7-001, SPEC-R7-001, SPEC-R7-002; preserve source and history; no merge or push."
+  },
+  "ownership_checks": {
+    "source_clean": true,
+    "source_branch_matches_review": true,
+    "parent_terminal": "t30",
+    "prior_review_completed": "review-complete-0046",
+    "live_owner": "hc ls shows no other live terminal in source worktree",
+    "goal_reservations": "No ticket matches in workflows/goal-*/events/*.yaml",
+    "direct_blockers": []
+  },
+  "selected_finding_ids": [
+    "STD-R7-001",
+    "SPEC-R7-001",
+    "SPEC-R7-002"
+  ],
+  "unselected_finding_ids": [
+    "STD-R6-002",
+    "STD-R6-003"
+  ],
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-0045.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-complete-0046.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0045.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-0042.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0042.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-start-0047.yaml"
+    }
+  ]
+}

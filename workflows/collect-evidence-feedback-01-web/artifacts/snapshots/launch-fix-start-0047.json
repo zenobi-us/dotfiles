@@ -1,0 +1,13 @@
+{
+  "runId": "e9a2814c-9bf6-45ba-9fca-8788952ed954",
+  "target": "t37",
+  "operationId": "collect-evidence-feedback-01-web-fix-0048",
+  "contextFile": "/home/zenobius/.local/state/result-delivery/runs/e9a2814c-9bf6-45ba-9fca-8788952ed954/context.json",
+  "approvedCanonicalContext": "/var/home/zenobius/.local/state/result-delivery/runs/e9a2814c-9bf6-45ba-9fca-8788952ed954/context-canonical.json",
+  "approvedCanonicalTarget": {
+    "path": "/var/home/zenobius/.local/state/result-delivery/runs/e9a2814c-9bf6-45ba-9fca-8788952ed954/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/e9a2814c-9bf6-45ba-9fca-8788952ed954/result.json",
+    "schema": "worktree-receipt/v1"
+  },
+  "originalContextFile": "/home/zenobius/.local/state/result-delivery/runs/e9a2814c-9bf6-45ba-9fca-8788952ed954/context.json"
+}
