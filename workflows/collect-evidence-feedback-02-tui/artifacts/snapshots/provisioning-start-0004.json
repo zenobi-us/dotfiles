@@ -1,0 +1,77 @@
+{
+  "schema": "worktree-artifact/v1",
+  "kind": "prerequisite-provisioning",
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-02-tui.md",
+  "created_at": "2026-11-11T10:52:57.766489+00:00",
+  "approval": "User replied approved after proposed separate prerequisite provisioning and scoped start recovery.",
+  "prefix": "/home/zenobius/.local/share/collect-evidence/native-tools/fedora-45-x86_64",
+  "packages": [
+    {
+      "package": "foot-1.28.0-1.fc45.x86_64.rpm",
+      "sha256": "184027aa65cd6f9495da4b9b6d1d26e82795a0dcfa30e06ab3743b24532eca12",
+      "signature": "rpmkeys: digests signatures OK"
+    },
+    {
+      "package": "foot-terminfo-1.28.0-1.fc45.x86_64.rpm",
+      "sha256": "81c08f89caec71c66e83b418373cc1a441625b9eb76cd5ef459770e90a0fe73d",
+      "signature": "rpmkeys: digests signatures OK"
+    },
+    {
+      "package": "grim-1.5.0-4.fc45.x86_64.rpm",
+      "sha256": "250c718d4c1ff738d320fec19c02e3c0fb70d3b9d7c52a59ac0760b5b4358863",
+      "signature": "rpmkeys: digests signatures OK"
+    },
+    {
+      "package": "tesseract-5.5.4-1.fc45.x86_64.rpm",
+      "sha256": "558356be76de1a70656bc7fc3037f8c98a39a5b80c900d931259776440b6fe4b",
+      "signature": "rpmkeys: digests signatures OK"
+    },
+    {
+      "package": "fcft-3.3.3-3.fc45.x86_64.rpm",
+      "sha256": "24f39f9a728eac4c2ccfdd69ad6351521f0c8a935428a6494d85cfe8057359fe",
+      "signature": "rpmkeys: digests signatures OK"
+    },
+    {
+      "package": "utf8proc-2.11.3-3.fc45.x86_64.rpm",
+      "sha256": "b08658cc856feb5d26f044030a5353c9fe1110777479ea469fec5a29b881b5e0",
+      "signature": "rpmkeys: digests signatures OK"
+    }
+  ],
+  "host_unchanged": {
+    "os_deployment": true,
+    "sudo_used": false,
+    "reboot": false,
+    "graphics_libraries_replaced": false
+  },
+  "launcher_environment": {
+    "PATH_prefix": "/home/zenobius/.local/share/collect-evidence/native-tools/fedora-45-x86_64/bin",
+    "foot_only_LD_LIBRARY_PATH": "/home/zenobius/.local/share/collect-evidence/native-tools/fedora-45-x86_64/usr/lib64",
+    "foot_TERMINFO_DIRS": "/home/zenobius/.local/share/collect-evidence/native-tools/fedora-45-x86_64/usr/share/terminfo:/usr/share/terminfo"
+  },
+  "validation": [
+    {
+      "command": "rpmkeys --checksig <six x86_64 Fedora RPMs>",
+      "result": "digests signatures OK"
+    },
+    {
+      "command": "foot --version",
+      "result": "1.28.0"
+    },
+    {
+      "command": "tesseract --list-langs",
+      "result": "eng available from host tessdata"
+    },
+    {
+      "command": "collect-evidence.ts doctor --driver tui --json",
+      "cwd": "/tmp",
+      "result": {
+        "success": true,
+        "driver": "tui",
+        "available": true,
+        "diagnostic": "termscope 0.1.1",
+        "method": "private CPU foot/Cage/wlroots/grim",
+        "permissions": "private display launch and native PNG capture succeeded"
+      }
+    }
+  ]
+}
