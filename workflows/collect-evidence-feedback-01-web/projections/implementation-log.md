@@ -708,3 +708,12 @@ Integrated validation passed from /tmp: 90 tests, 864 assertions, and public val
 Source cleanup was refused because a process runs in the source worktree. No process was killed. Finish is FINISH_FAILED at cleanup, not FINISHED. The source workspace was already absent from the desktop inventory.
 
 [Finish receipt](../events/finish-ticket_completed-0064.yaml). Resume only cleanup after the owning process releases the source worktree; do not repeat merge, push, or ticket completion.
+
+
+## Finished: finish-complete-0068
+
+Integration `7fd69d8b2cdf875bd4e8dfe01b7a8b6d68fc0456` and ticket completion remain published on `origin/master`; reachability verified at `79c2203979ee81ace71687d4e2f772680bf9a381`. No merge or ticket completion was repeated. Prior integrated validation remains valid: 90 tests, 864 assertions, and both sealed driver runs validated.
+
+User-authorised orphan shutdown released the source worktree. Scoped cleanup removed `feature/collect-evidence-feedback-01-web`; its path is absent. Source workspace was already absent. No unrelated resources were closed.
+
+[Terminal finish receipt](../events/finish-complete-0068.yaml). Earlier failure sections remain historical.

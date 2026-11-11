@@ -6,8 +6,8 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "finish-ticket_completed-0064",
-  "state": "FINISH_FAILED",
+  "latest_receipt": "finish-complete-0068",
+  "state": "FINISHED",
   "parent_completion_pending": false,
   "workspace_id": "w73",
   "latest_source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
@@ -23,7 +23,7 @@
   "current_review_verdict": "SUCCESS",
   "validation_status": "Fresh review 90 tests/864 assertions and both sealed-run validations passed; no blocking findings",
   "evidence_index": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/validation-final.json",
-  "merge_status": "merged and published; ticket completed; source cleanup refused",
+  "merge_status": "merged and published; ticket completed; source worktree removed",
   "resolved_finding_ids": [
     "STD-001",
     "SPEC-001",
@@ -47,7 +47,7 @@
     "STD-R3-001",
     "STD-AXIS-001"
   ],
-  "next_action": "Resolve busy source worktree and resume finish cleanup",
+  "next_action": "None; workflow finished",
   "review_readiness": false,
   "result_missing": false,
   "transport_acknowledged": true,
@@ -152,15 +152,18 @@
     "workflows/collect-evidence-feedback-01-web/events/finish-validated-0061.yaml",
     "workflows/collect-evidence-feedback-01-web/events/finish-pushed-0062.yaml",
     "workflows/collect-evidence-feedback-01-web/events/finish-ticket_completed-0063.yaml",
-    "workflows/collect-evidence-feedback-01-web/events/finish-ticket_completed-0064.yaml"
+    "workflows/collect-evidence-feedback-01-web/events/finish-ticket_completed-0064.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/finish-recovery-0065.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/finish-recovery-0066.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/finish-worktree_removed-0067.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/finish-complete-0068.yaml"
   ],
   "source_clean": true,
   "merged_commit": "7fd69d8b2cdf875bd4e8dfe01b7a8b6d68fc0456",
   "pushed": true,
   "ticket_completed": true,
   "ticket_work_status": "completed",
-  "worktree_removed": false,
+  "worktree_removed": true,
   "workspace_closed": true,
-  "failure_step": "cleanup",
-  "failure_reason": "cleanup-merged refused source branch: a process (for example an agent or shell) runs in the worktree"
+  "remote_observed_commit": "79c2203979ee81ace71687d4e2f772680bf9a381"
 }

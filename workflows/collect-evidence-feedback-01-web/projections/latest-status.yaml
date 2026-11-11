@@ -2,8 +2,8 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "collect-evidence-feedback-01-web",
   "ticket": "tracker/tickets/collect-evidence-feedback-01-web.md",
-  "state": "FINISH_FAILED",
-  "latest_receipt": "finish-ticket_completed-0064",
+  "state": "FINISHED",
+  "latest_receipt": "finish-complete-0068",
   "latest_source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
   "latest_source_tree": "5385016678fec6057d508c1c5bb9561180afb9cc",
   "latest_review_verdict": "SUCCESS",
@@ -112,7 +112,11 @@
     "workflows/collect-evidence-feedback-01-web/events/finish-validated-0061.yaml",
     "workflows/collect-evidence-feedback-01-web/events/finish-pushed-0062.yaml",
     "workflows/collect-evidence-feedback-01-web/events/finish-ticket_completed-0063.yaml",
-    "workflows/collect-evidence-feedback-01-web/events/finish-ticket_completed-0064.yaml"
+    "workflows/collect-evidence-feedback-01-web/events/finish-ticket_completed-0064.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/finish-recovery-0065.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/finish-recovery-0066.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/finish-worktree_removed-0067.yaml",
+    "workflows/collect-evidence-feedback-01-web/events/finish-complete-0068.yaml"
   ],
   "draft": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0054.md",
   "evidence_index": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/validation-final.json",
@@ -327,8 +331,8 @@
     "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/web-review-0017-ntpR2G/result.json",
     "resultSchema": "worktree-receipt/v1"
   },
-  "next_action": "Resolve busy source worktree and resume finish cleanup",
-  "merge_status": "merged and published; ticket completed; source cleanup refused",
+  "next_action": "None; workflow finished",
+  "merge_status": "merged and published; ticket completed; source worktree removed",
   "validation_results": [
     {
       "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/playwright-driver.test.ts",
@@ -1020,8 +1024,7 @@
   "merged_commit": "7fd69d8b2cdf875bd4e8dfe01b7a8b6d68fc0456",
   "pushed": true,
   "ticket_completed": true,
-  "worktree_removed": false,
+  "worktree_removed": true,
   "workspace_closed": true,
-  "failure_step": "cleanup",
-  "failure_reason": "cleanup-merged refused source branch: a process (for example an agent or shell) runs in the worktree"
+  "remote_observed_commit": "79c2203979ee81ace71687d4e2f772680bf9a381"
 }
