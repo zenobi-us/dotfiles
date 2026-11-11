@@ -192,11 +192,17 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     const status = text(fields.status, "receipt status");
     const phase = receiptPhase({ phase: text(fields.phase, "receipt phase") });
     const lifecycleEvent = receiptEvent({ phase: String(fields.phase), fields });
-    const started = lifecycleEvent === "phase-start" && status === "started";
+    const started = ["phase-start", "phase-input-ready", "phase-checkpoint"].includes(lifecycleEvent ?? "")
+     && (status === "started" || (lifecycleEvent === "phase-start" && phase === "finish" && status === "RUNNING"));
+    const operatorEvent = lifecycleEvent === "operator-approval" || lifecycleEvent === "operator-decision-required";
+    const approved = lifecycleEvent === "operator-approval" && status === "approved";
+    const prepared = ["source-once-inputs-prepared", "bounded-review-inputs-prepared"].includes(lifecycleEvent ?? "") && status === "prepared";
     const finishing = phase === "finish" && status === "FINISHING";
-    if (!started && !finishing && !["completed", "failed", "blocked", "FINISHED", "FINISH_FAILED"].includes(status)) throw new Error("Receipt status is not a supported phase result or lifecycle state.");
+    if (!started && !approved && !prepared && !finishing && !["completed", "failed", "blocked", "FINISHED", "FINISH_FAILED"].includes(status)) throw new Error("Receipt status is not a supported phase result or lifecycle state.");
+    // Control records remain parents in the audit graph, but cannot stand in for a review result.
+    if ((started || approved || prepared || operatorEvent) && fields.verdict != null) throw new Error("Lifecycle and operator records cannot carry a review verdict.");
     if (fields.verdict != null && !["SUCCESS", "FAILURE"].includes(String(fields.verdict))) throw new Error("Receipt verdict must be SUCCESS or FAILURE.");
-    if (!Number.isInteger(fields.attempt) || Number(fields.attempt) < 1) throw new Error("Receipt attempt must be a positive integer.");
+    if (!Number.isInteger(fields.attempt) || Number(fields.attempt) < (operatorEvent ? 0 : 1)) throw new Error(operatorEvent ? "Receipt attempt must be a non-negative integer for an operator decision." : "Receipt attempt must be a positive integer.");
     text(fields.muxer, "receipt muxer");
     text(fields.agent, "receipt agent");
     // Starts precede pane creation; parent completions can outlive the child pane.

@@ -212,6 +212,18 @@ Do not invent an evidence run to satisfy the envelope.
 5. Read the receipt after writing it.
 6. Stop when a required field is missing or the target path exists.
 
+Lifecycle control records remain part of the parent graph. They do not prove a phase result or authorize integration. The reader accepts these event/status pairs:
+
+| Event | Status | Minimum attempt |
+| --- | --- | --- |
+| `phase-start` | `started`; retained finish starts may use `RUNNING` | 1 |
+| `phase-input-ready`, `phase-checkpoint` | `started` | 1 |
+| `operator-approval` | `approved` | 0 |
+| `operator-decision-required` | `blocked` | 0 |
+| `source-once-inputs-prepared`, `bounded-review-inputs-prepared` | `prepared` | 1 |
+
+These control records MUST NOT carry a review verdict. Attempt zero records an operator decision, not a phase execution. Phase results still require a positive attempt and a result status below. Preserve historical status fields; do not rewrite receipts to make them readable.
+
 Use these phase result values for `status`:
 
 ```text

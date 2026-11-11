@@ -203,7 +203,22 @@ test("removed source permits finish recovery only after exact squash mapping and
     ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
     workflow: { root: context.repositoryRoot, store: "repository", ref: "workflows/T-1" }, evidence: { store: "repository", ref: "workflows/T-1/artifacts/evidence/run-1" }, inputs: [], outputs: [],
   };
-  const review = { ...common, receipt_id: "review-2", parent_receipt: null, phase: "review", status: "completed", verdict: "SUCCESS", created_at: "2026-10-01T00:00:00Z", outputs: [{ kind: "review-artifact", ref: "workflows/T-1/artifacts/reviews/review-2.md" }] };
+  const lifecycle = [
+    { event: "phase-start", phase: "finish", status: "RUNNING", attempt: 2 },
+    { event: "phase-input-ready", phase: "review", status: "started", attempt: 1 },
+    { event: "phase-checkpoint", phase: "review", status: "started", attempt: 1 },
+    { event: "operator-decision-required", phase: "review", status: "blocked", attempt: 0 },
+    { event: "operator-approval", phase: "review", status: "approved", attempt: 0 },
+    { event: "source-once-inputs-prepared", phase: "review", status: "prepared", attempt: 1 },
+    { event: "bounded-review-inputs-prepared", phase: "review", status: "prepared", attempt: 1 },
+  ];
+  for (const [index, fields] of lifecycle.entries()) {
+    await put(join(context.repositoryRoot, `workflows/T-1/events/lifecycle-${index}.json`), JSON.stringify({
+      ...common, ...fields, receipt_id: `lifecycle-${index}`, parent_receipt: index ? `lifecycle-${index - 1}` : null,
+      created_at: `2026-09-0${index + 1}T00:00:00Z`,
+    }));
+  }
+  const review = { ...common, receipt_id: "review-2", parent_receipt: "lifecycle-6", phase: "review", status: "completed", verdict: "SUCCESS", created_at: "2026-10-01T00:00:00Z", outputs: [{ kind: "review-artifact", ref: "workflows/T-1/artifacts/reviews/review-2.md" }] };
   const finish = { ...common, receipt_id: "finish-3", parent_receipt: "review-2", phase: "finish", status: "FINISHED", pane_id: null, created_at: "2026-10-02T00:00:00Z", merged_commit: merged, merged_tree: mergedTree, base_before: base, expected_merge_tree: mergedTree, reviewed_source_commit: sourceCommit, reviewed_source_tree: sourceTree, review_receipt: "review-2", remote: "origin", remote_ref: "refs/heads/main", pushed: true, ticket_completed: true, worktree_removed: true, workspace_closed: true };
   await put(join(context.repositoryRoot, "workflows/T-1/events/review.json"), JSON.stringify(review));
   await put(join(context.repositoryRoot, "workflows/T-1/events/finish.json"), JSON.stringify(finish));
@@ -219,6 +234,36 @@ test("removed source permits finish recovery only after exact squash mapping and
   expect(workflow.inspection?.finishVerified).not.toBe(true);
   expect(workflow.inspection?.finishError).toContain("base parent and expected merge tree");
   expect(recoveryDecision(ticket, { tickets: [ticket] }, workflow)).toMatchObject({ action: "finish", mode: "reconcile", requiredApproval: true });
+});
+
+test("lifecycle statuses cannot replace review results or authorize a zero-attempt result", async () => {
+  const { context, ticket } = await fixture();
+  const root = context.repositoryRoot;
+  const commit = await run("git", ["-C", root, "rev-parse", "HEAD"]);
+  const tree = await run("git", ["-C", root, "rev-parse", "HEAD^{tree}"]);
+  const common = {
+    schema: "worktree-receipt/v1", workflow_id: ticket.id, receipt_id: "review-1", parent_receipt: null,
+    repository: root, worktree: root, workspace_path: root, source_branch: "main", base_branch: "main",
+    source_commit: commit, source_tree: tree, muxer: "herdr", pane_id: "1", agent: "omp", session_id: "parent",
+    created_at: "2026-10-01T00:00:00Z", ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend },
+    ticket_ref: ticket.ref, workflow: { root, store: "repository", ref: "workflows/T-1" }, inputs: [], outputs: [],
+    phase: "review", event: "phase-result", status: "completed", attempt: 1, verdict: "SUCCESS",
+  };
+  const inventory: Exec = async (command, args, cwd) => command === "wt"
+    ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [] }) } : exec(command, args, cwd);
+  const invalid = [
+    ...["RUNNING", "approved", "prepared", "started"].map(status => ({ status })),
+    { attempt: 0 },
+    { event: "operator-approval", status: "approved", attempt: 0 },
+    { event: "phase-input-ready", status: "started" },
+    { event: "bounded-review-inputs-prepared", status: "prepared" },
+  ];
+  for (const fields of invalid) {
+    await put(join(root, "workflows/T-1/events/review.json"), JSON.stringify({ ...common, ...fields }));
+    const workflow = await loadTicketWorkflow(context, ticket, inventory);
+    expect(workflow.events?.find(event => event.ref.endsWith("/review.json"))?.error).toBeDefined();
+    expect(recoveryDecision(ticket, { tickets: [ticket] }, workflow).mode).toBe("blocked");
+  }
 });
 
 test("branch-only and ambiguous inventory remain explicit recovery inputs", async () => {
