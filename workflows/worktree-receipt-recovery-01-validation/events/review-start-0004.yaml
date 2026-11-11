@@ -1,0 +1,71 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-start-0004",
+  "workflow_id": "worktree-receipt-recovery-01-validation",
+  "phase": "review",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": "start-0003",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+  "source_branch": "feature/worktree-receipt-recovery-01-validation",
+  "base_branch": "master",
+  "source_commit": "b2764c46af75893c000cae3d2ea62b26062b7848",
+  "source_tree": "9322e9541dfcdfb3a158665d368ce74d9cd80202",
+  "created_at": "2026-11-11T06:42:17.508424+00:00",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "herdr-app:t3x",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "worktree-receipt-recovery-01-validation",
+    "ref": "tracker/tickets/worktree-receipt-recovery-01-validation.md"
+  },
+  "ticket_ref": "tracker/tickets/worktree-receipt-recovery-01-validation.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/worktree-receipt-recovery-01-validation"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/worktree-receipt-recovery-01-validation.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/worktree-receipt-recovery-01-validation/events/start-0003.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/worktree-receipt-recovery-01-validation/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/worktree-receipt-recovery-01-validation/artifacts/snapshots/pr-draft-implementation-0002.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/worktree-receipt-recovery-01-validation/events/review-start-0004.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery_mode": "begin",
+  "recovery_reason": "Inspector selects review begin for valid clean implementation. User explicitly requests review in this session.",
+  "ownership_approval": "Same parent herdr-app:t3x retains scoped takeover approval; user explicitly requested review. No matching goal reservation or active target-worktree agent.",
+  "ownership_observations": "Ticket was unclaimed. No workflow receipts or matching goal reservations. Existing live terminals concern other workflows. Source worktree created by this parent through Worktrunk after approval.",
+  "validation": [
+    {
+      "command": "inspect.ts canonical ticket --json",
+      "result": "historyValid true; source clean; action review, mode begin"
+    },
+    {
+      "command": "herdr-app ls; goal reservation search",
+      "result": "No active target-worktree session or matching reservation"
+    }
+  ]
+}

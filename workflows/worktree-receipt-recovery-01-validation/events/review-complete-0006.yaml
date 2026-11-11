@@ -1,0 +1,121 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-complete-0006",
+  "workflow_id": "worktree-receipt-recovery-01-validation",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "review-0005",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+  "source_branch": "feature/worktree-receipt-recovery-01-validation",
+  "base_branch": "master",
+  "source_commit": "b2764c46af75893c000cae3d2ea62b26062b7848",
+  "source_tree": "9322e9541dfcdfb3a158665d368ce74d9cd80202",
+  "created_at": "2026-11-11T06:48:23.736544+00:00",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "herdr-app:t3x",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "worktree-receipt-recovery-01-validation",
+    "ref": "tracker/tickets/worktree-receipt-recovery-01-validation.md"
+  },
+  "ticket_ref": "tracker/tickets/worktree-receipt-recovery-01-validation.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/worktree-receipt-recovery-01-validation"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/worktree-receipt-recovery-01-validation/events/review-start-0004.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/worktree-receipt-recovery-01-validation/events/review-0005.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/worktree-receipt-recovery-01-validation/artifacts/reviews/review-review-0005.md"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/worktree-receipt-recovery-01-validation.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/worktree-receipt-recovery-01-validation/events/review-complete-0006.yaml"
+    },
+    {
+      "kind": "ticket-comment",
+      "ref": "tracker/tickets/worktree-receipt-recovery-01-validation.md"
+    }
+  ],
+  "status": "completed",
+  "recovery_mode": "begin",
+  "recovery_reason": "Inspector selects review begin for valid clean implementation. User explicitly requests review in this session.",
+  "ownership_approval": "Same parent herdr-app:t3x retains scoped takeover approval; user explicitly requested review. No matching goal reservation or active target-worktree agent.",
+  "ownership_observations": "Ticket was unclaimed. No workflow receipts or matching goal reservations. Existing live terminals concern other workflows. Source worktree created by this parent through Worktrunk after approval.",
+  "validation": [
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts --test-name-pattern 'writer and inspector reject|published valid receipt'",
+      "result": "passed",
+      "details": "4 tests; 34 assertions; mismatch, relative and nested paths rejected; prior bytes preserved; valid publication accepted by actual inspector."
+    },
+    {
+      "command": "SOURCE/scripts/inspect.ts tracker/tickets/worktree-receipt-recovery-01-validation.md --json (cwd BASE)",
+      "result": "passed",
+      "details": "Actual source CLI read base workflow. historyValid true; exact source commit/tree; dirty false. Pending review result correctly does not establish a verdict."
+    },
+    {
+      "command": "SOURCE/scripts/write-result.ts --repository BASE --input /tmp/review-0005-mismatch.json",
+      "result": "passed (expected rejection)",
+      "details": "Exit 1: Receipt worktree and workspace_path must name the same absolute worktree. Neither authoritative review-0005 event nor assigned transport result existed after rejection."
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}; git status --porcelain",
+      "result": "passed",
+      "details": "Frozen commit/tree match; clean before and after review checks."
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+      "result": "passed: 14 tests, 86 assertions"
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts --test-name-pattern 'writer and inspector reject|published valid receipt'",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+      "result": "passed after review result: 4 tests, 34 assertions"
+    },
+    {
+      "command": "result-delivery read; authoritative event equality; source identity and cleanliness",
+      "result": "passed"
+    }
+  ],
+  "review_artifact": "workflows/worktree-receipt-recovery-01-validation/artifacts/reviews/review-review-0005.md",
+  "review_receipt": "review-0005",
+  "child_run_id": "404a0cf4-0033-4863-92c2-dca6e70f19f3",
+  "child_shutdown": {
+    "terminal": "t49",
+    "completion_sequence": 2,
+    "terminal_removed": true,
+    "axes_terminals_removed": [
+      "t4b",
+      "t4c"
+    ],
+    "source_worktree_retained": true
+  },
+  "ticket_review_comment": {
+    "verdict": "SUCCESS",
+    "reviewed_commit": "b2764c46af75893c000cae3d2ea62b26062b7848",
+    "reviewed_tree": "9322e9541dfcdfb3a158665d368ce74d9cd80202",
+    "timestamp": "2026-11-11T06:46:37.468Z",
+    "artifact": "workflows/worktree-receipt-recovery-01-validation/artifacts/reviews/review-review-0005.md"
+  }
+}

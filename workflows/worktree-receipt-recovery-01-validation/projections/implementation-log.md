@@ -2,7 +2,7 @@
 
 ## Implementation attempt 1
 
-[Phase-start](../events/start-0001.yaml) → [phase-result](../events/implementation-0002.yaml). [Parent completion](../events/start-0003.yaml) validated the result and exact source identity. Child terminal t44 closed. The source checkout is clean. Independent review remains pending.
+[Phase-start](../events/start-0001.yaml) → [phase-result](../events/implementation-0002.yaml). [Parent completion](../events/start-0003.yaml) validated the result and exact source identity. Child terminal t44 closed. The source checkout is clean. Independent review later passed; see review history below.
 
 Share receipt envelope validation between publication and inspection. Require identical absolute source paths and verify available paths against the real Git worktree root before publication or result delivery. Preserve immutable prior events. Keep historical removed-worktree inspection and sibling-ticket behavior unchanged.
 
@@ -31,7 +31,10 @@ Source commit: `b2764c46af75893c000cae3d2ea62b26062b7848`. Source tree: `9322e95
 
 ### Questions and review
 
-No unresolved path-contract questions. Independent review remains pending. The ticket remains claimed. Project-wide static checks have the limitations above.
+No unresolved path-contract questions. Independent review later passed; see review history below. The ticket remains claimed. Project-wide static checks have the limitations above.
 
 [Immutable implementation draft](../artifacts/snapshots/pr-draft-implementation-0002.md).
 
+
+## Review attempt 1
+[Review result](../events/review-0005.yaml) and [parent completion](../events/review-complete-0006.yaml). Verdict SUCCESS for commit b2764c46af75893c000cae3d2ea62b26062b7848. [Immutable artifact](../artifacts/reviews/review-review-0005.md). No findings. Parent validation passed 14 integration tests and 4 targeted cases. Source unchanged; no implementation fix was needed.

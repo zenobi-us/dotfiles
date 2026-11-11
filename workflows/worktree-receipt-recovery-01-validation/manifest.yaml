@@ -6,8 +6,8 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "start-0003",
-  "latest_receipt_ref": "workflows/worktree-receipt-recovery-01-validation/events/start-0003.yaml",
-  "state": "IMPLEMENTED",
+  "latest_receipt": "review-complete-0006",
+  "latest_receipt_ref": "workflows/worktree-receipt-recovery-01-validation/events/review-complete-0006.yaml",
+  "state": "REVIEW_PASSED",
   "parent_completion": "completed"
 }

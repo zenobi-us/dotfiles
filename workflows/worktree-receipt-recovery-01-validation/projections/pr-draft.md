@@ -45,8 +45,8 @@ Standards: checked the complete source diff and new module. No remaining local f
 
 Spec: covered mismatched paths, absolute paths, root verification, shared validation, valid publication, actual inspection and unchanged prior events. No sibling identity, repair or recovery-UX feature was added.
 
-## Pending review
-
+## Review history
+Attempt 1: [review-0005](../events/review-0005.yaml), [immutable artifact](../artifacts/reviews/review-review-0005.md). Verdict SUCCESS for commit b2764c46af75893c000cae3d2ea62b26062b7848 at 2026-11-11T06:46:37.468Z. No findings or resolved findings. [Parent completion](../events/review-complete-0006.yaml). Merge and push have not run.
 Independent review has not run. No review verdict exists. No findings are marked resolved by an independent reviewer. No merge or push occurred. The parent validated the result and recorded completion. Independent review is the next phase.
 
 ## Records and source identity
@@ -63,4 +63,7 @@ None for the implemented path contract. Project-wide static checking remains lim
 
 
 ## Parent completion
-[Validated phase completion](../events/start-0003.yaml). Child terminal t44 closed. Source worktree retained. Independent review remains pending. No push or merge occurred.
+[Validated phase completion](../events/start-0003.yaml). Child terminal t44 closed. Source worktree retained. Independent review passed; finish is the next phase. No push or merge occurred.
+
+## Review validation
+Parent integration check: 14 tests and 86 assertions passed. Post-review targeted check: 4 tests and 34 assertions passed. Source stayed clean and unchanged. Review terminals closed.
