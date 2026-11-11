@@ -3,7 +3,7 @@ amends "package://github.com/jdx/hk/releases/download/v1.50.0/hk@1.50.0#/Config.
 hooks {
   ["pre-commit"] {
     fix = false
-    stash = "git"
+    stash = "none"
     stage = false
     steps {
       ["bundle-versions"] {

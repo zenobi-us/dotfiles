@@ -109,6 +109,8 @@ mise bootstrap --yes
 
 ## Common commands
 
+The pre-commit hook checks staged bundle changes without stashing unstaged or untracked files. Stashes from earlier interrupted hook runs remain untouched.
+
 Apply the full machine setup:
 
 ```bash
