@@ -1,0 +1,61 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "a53c09ef6fc30a4aaf072761dc3f4e9defd7f4c1",
+  "source_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "receipt_id": "review-final-start-0021",
+  "created_at": "2026-11-11T21:01:41.963361+00:00",
+  "session_id": "hc:t5k",
+  "pane_id": null,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-final-start-0021.json"
+    }
+  ],
+  "phase": "review",
+  "event": "phase-start",
+  "status": "started",
+  "attempt": 3,
+  "parent_receipt": "start-final-sync-complete-0020",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/start-final-sync-complete-0020.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/implementation-final-sync-0019.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/artifacts/snapshots/pr-draft-implementation-final-sync-0019.md"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/artifacts/reviews/review-review-reconcile-0016.md"
+    }
+  ],
+  "recovery_mode": "retry",
+  "recovery_reason": "Inspector selects review changed source; authorized final metadata synchronization completed, source clean, master stable, implementation session closed.",
+  "ownership_approval": "User selected Reconcile and resolve conflicts: verify prior integration and ownership; resolve source conflicts, obtain fresh independent review, then finish.",
+  "base_commit": "cd0e4d6a7becc5f8ad9c841346965f8a9bece0ec"
+}

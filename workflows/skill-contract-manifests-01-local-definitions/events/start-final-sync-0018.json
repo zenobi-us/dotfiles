@@ -1,0 +1,53 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "7ff2f96ebf1c2eae3b795af011e197dae0314911",
+  "source_tree": "3a838d99e033537106c4cd9a7584b4d78a66d468",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "receipt_id": "start-final-sync-0018",
+  "created_at": "2026-11-11T20:57:14.247055+00:00",
+  "session_id": "hc:t5k",
+  "pane_id": null,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/start-final-sync-0018.json"
+    }
+  ],
+  "phase": "start",
+  "event": "phase-start",
+  "status": "started",
+  "attempt": 4,
+  "parent_receipt": "review-reconcile-complete-0017",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-reconcile-complete-0017.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-approval-0011.json"
+    }
+  ],
+  "recovery_mode": "takeover",
+  "recovery_reason": "Finish safety preflight found master advanced to cd0e4d6a after source freeze. Real isolated Worktrunk no-rebase smoke proves stable-base prerequisite. Authorized metadata-only source synchronization, followed by new fresh review. Current source clean, reviewer and axes closed; t5j confirms unrelated base mutation finished.",
+  "ownership_approval": "User selected Reconcile and resolve conflicts: verify prior integration and ownership; resolve source conflicts, obtain fresh independent review, then finish.",
+  "base_before": "cd0e4d6a7becc5f8ad9c841346965f8a9bece0ec"
+}

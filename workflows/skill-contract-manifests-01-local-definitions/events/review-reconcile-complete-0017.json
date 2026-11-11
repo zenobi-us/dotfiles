@@ -1,0 +1,66 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "7ff2f96ebf1c2eae3b795af011e197dae0314911",
+  "source_tree": "3a838d99e033537106c4cd9a7584b4d78a66d468",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "receipt_id": "review-reconcile-complete-0017",
+  "created_at": "2026-11-11T20:56:51.231945+00:00",
+  "session_id": "hc:t5k",
+  "pane_id": null,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-reconcile-complete-0017.json"
+    }
+  ],
+  "phase": "review",
+  "event": "phase-complete",
+  "status": "completed",
+  "attempt": 2,
+  "parent_receipt": "review-reconcile-0016",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-reconcile-0016.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/artifacts/reviews/review-review-reconcile-0016.md"
+    }
+  ],
+  "validation": [
+    {
+      "command": "result-delivery read + authoritative YAML/source identity checks",
+      "result": "passed; SUCCESS, no findings, exact frozen source clean; acknowledged verified payload hash"
+    },
+    {
+      "command": "public CLI smoke from parent",
+      "result": "passed; cross-cwd valid/empty/malformed/unresolved, exact definition bytes, no mutation"
+    }
+  ],
+  "workspace_cleanup": {
+    "terminal": "t5p",
+    "closed": true,
+    "axes_closed": true
+  },
+  "next_step": "Source metadata sync required because master advanced; new exact source requires fresh review. Defer base tracker/projection writes until integration to keep target safe; final sync session records this review comment in source ticket.",
+  "summary": "Independent Standards and Spec SUCCESS; 122 scoped tests and 19 reviewer CLI cases passed. No blocking findings. Unchanged unrelated TS2554 baseline retained."
+}

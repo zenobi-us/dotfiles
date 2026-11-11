@@ -1,0 +1,88 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "a53c09ef6fc30a4aaf072761dc3f4e9defd7f4c1",
+  "source_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "receipt_id": "finish-prepared-0024",
+  "created_at": "2026-11-11T21:08:41.736267+00:00",
+  "session_id": "hc:t5k",
+  "pane_id": null,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-prepared-0024.json"
+    }
+  ],
+  "phase": "finish",
+  "attempt": 2,
+  "review_receipt": "workflows/skill-contract-manifests-01-local-definitions/events/review-final-0022.yaml",
+  "reviewed_source_commit": "a53c09ef6fc30a4aaf072761dc3f4e9defd7f4c1",
+  "reviewed_source_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "base_before": "cd0e4d6a7becc5f8ad9c841346965f8a9bece0ec",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "event": "phase-checkpoint",
+  "status": "FINISHING",
+  "checkpoint": "prepared",
+  "next_step": "merge",
+  "parent_receipt": "review-final-complete-0023",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-final-complete-0023.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-final-0022.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/artifacts/reviews/review-review-final-0022.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-approval-0011.json"
+    }
+  ],
+  "proposed_merge_message": "feat: skill-contract-manifests-01-local-definitions implement\n\nValidate shared contract manifests and resolve local authoritative\nskill definitions independently of the caller working directory.\n\nTicket: tracker/tickets/skill-contract-manifests-01-local-definitions.md\nReview: workflows/skill-contract-manifests-01-local-definitions/artifacts/reviews/review-review-final-0022.md\nReviewed source: a53c09ef6fc30a4aaf072761dc3f4e9defd7f4c1\nReviewed tree: 009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c\nADRs: no relevant ADR applies to this ticket.",
+  "merge_message_ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "recovery_mode": "begin",
+  "recovery_reason": "Current clean final SUCCESS; authorized source reconciliation completed; base stable; isolated Worktrunk proof verifies no-rebase squash with pending parent receipts.",
+  "validation": [
+    {
+      "command": "git merge-tree --write-tree recorded base/source",
+      "result": "exit 0; exact expected tree equals frozen reviewed source tree"
+    },
+    {
+      "command": "35 contract tests and public executable smoke",
+      "result": "passed on exact final frozen source; 125 assertions; cross-cwd valid/empty/malformed/unresolved and exact local/builtin definition behavior"
+    },
+    {
+      "command": "hc live source owner inventory",
+      "result": "empty; all implementation/review/axis sessions closed"
+    },
+    {
+      "command": "remote base safety",
+      "result": "master ahead 4 behind 0; safe non-force push expected; remote observed 2abfeffa812b63f1e0a3ff2ee523cbed40cde3e9"
+    }
+  ]
+}

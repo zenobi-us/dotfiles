@@ -1,0 +1,69 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "a53c09ef6fc30a4aaf072761dc3f4e9defd7f4c1",
+  "source_tree": "009468ec2f7311d2d2f9a20e40bcb2a0ddb7755c",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "receipt_id": "review-final-complete-0023",
+  "created_at": "2026-11-11T21:07:54.644018+00:00",
+  "session_id": "hc:t5k",
+  "pane_id": null,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-final-complete-0023.json"
+    }
+  ],
+  "phase": "review",
+  "event": "phase-complete",
+  "status": "completed",
+  "attempt": 3,
+  "parent_receipt": "review-final-0022",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-final-0022.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/artifacts/reviews/review-review-final-0022.md"
+    }
+  ],
+  "validation": [
+    {
+      "command": "result-delivery read plus authoritative YAML and source identity checks",
+      "result": "passed: exact current clean source, SUCCESS, no findings, payload verified and acknowledged"
+    },
+    {
+      "command": "final reviewer scoped checks",
+      "result": "35 contract tests, 125 assertions and public executable smoke passed"
+    }
+  ],
+  "workspace_cleanup": {
+    "terminal": "t5x",
+    "closed": true,
+    "axes": [
+      "t5y",
+      "t5z"
+    ],
+    "axes_closed": true
+  },
+  "summary": "Final independent Standards and Spec SUCCESS for stable-base exact source. Tracker verdict and current projections deferred until integration to preserve clean reviewed source and safe base; immutable review artifact and result durable uncommitted in base."
+}
