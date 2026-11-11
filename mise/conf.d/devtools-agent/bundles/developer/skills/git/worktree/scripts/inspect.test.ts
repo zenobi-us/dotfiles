@@ -228,7 +228,12 @@ test("branch-only and ambiguous inventory remain explicit recovery inputs", asyn
     const workflow = await loadTicketWorkflow(context, ticket, inventory);
     expect(workflow.inspection?.source.candidates).toBe(items.length);
     expect(workflow.inspection?.source.error).toBeDefined();
-    expect(recoveryDecision(ticket, { tickets: [ticket] }, workflow)).toMatchObject({ action: "start", mode: "takeover", requiredApproval: true });
+    const decision = recoveryDecision(ticket, { tickets: [ticket] }, workflow);
+    if (items.length === 1) expect(decision).toMatchObject({ action: "start", mode: "takeover", requiredApproval: true });
+    else {
+      expect(decision).toMatchObject({ mode: "blocked", label: "Resolve source workspace" });
+      expect(decision.action).toBeUndefined();
+    }
   }
 });
 

@@ -7,7 +7,7 @@ export type CollectionKind = "alignment" | "tickets" | "initiatives" | "sources"
 import { initializeContextForCwd } from "../../../../devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/api";
 import { loadExplorerSnapshot, loadTicketWorkflow } from "../../../../devtools-agent/bundles/developer/skills/git/worktree/scripts/workflow";
 import { createInspectionExecutor } from "../../../../devtools-agent/bundles/developer/skills/git/worktree/scripts/inspection-exec";
-import { recoveryDecision } from "../../../../devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery";
+import { recoveryDecision, recoveryState } from "../../../../devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery";
 import { actionChoices, buildSessionPrompt } from "../../../../devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions";
 import { prepareSessionRequest } from "../../../../devtools-agent/bundles/agent-core/extensions/pi-shared-context/preparation";
 import { recordKind, type ExplorerAction, type ExplorerSessionRequest } from "../../../../devtools-agent/bundles/agent-core/extensions/pi-shared-context/model";
@@ -105,7 +105,7 @@ export async function tracker(cwd: string) {
       try {
         const workflow = await loadTicketWorkflow(context, ticket, inspectionExec);
         const decision = recoveryDecision(ticket, snapshot, workflow);
-        const state = decision.mode === "complete" ? "DONE" : decision.action === "start" ? "READY" : decision.action?.toUpperCase() ?? (decision.mode === "observe" ? "ACTIVE" : "BLOCKED");
+        const state = recoveryState(decision);
         states[ticket.id] = { state, reason: decision.reason, next: decision.label };
       } catch (error) { states[ticket.id] = { state: "ERROR", reason: message(error) }; }
     }

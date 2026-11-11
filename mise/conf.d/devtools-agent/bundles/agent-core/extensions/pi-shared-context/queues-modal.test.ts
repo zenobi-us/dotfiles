@@ -64,7 +64,7 @@ test("four queues separate status, next action, recorded activity, and canonical
   } finally { f.graph.dispose(); }
 });
 
-test("interrupted phases remain actionable through their own queue and hotkey", async () => {
+test("interrupted start leaves the ready queue but remains recoverable from the blocked queue", async () => {
   const f = await fixture();
   try {
     const pending = receipt("start-pending", "start", "started");
@@ -73,6 +73,8 @@ test("interrupted phases remain actionable through their own queue and hotkey", 
     f.workflows.set("A", { ticketId: "A", receipts: [{ ...pending, workflowId: "A", ref: "workflows/A/events/start-pending.yaml" }] });
     await f.graph.load();
     await f.key("5");
+    expect(f.view()).not.toContain("Work A");
+    await f.key("7");
     expect(f.view()).toContain("Work A");
     await f.key("a");
     await f.key("s");

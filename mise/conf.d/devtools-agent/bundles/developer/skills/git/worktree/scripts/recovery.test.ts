@@ -1,6 +1,6 @@
 // Exercises the same decision contract used by inspect and the explorer.
 import { expect, test } from "bun:test";
-import { recoveryDecision } from "./recovery";
+import { recoveryDecision, recoveryState } from "./recovery";
 import type { WorkflowInspection } from "./recovery";
 import type { ExplorerReceipt, ExplorerTicket, TicketWorkflow } from "../../../../../agent-core/extensions/pi-shared-context/model";
 
@@ -44,9 +44,45 @@ test("claimed, implemented, and merged tracker states never prove phase completi
   for (const status of ["implemented", "merged"]) expect(recoveryDecision({ ...ticket, status }, snapshot, workflow([receipt("implementation")]))).toMatchObject({ action: "review", mode: "begin" });
 });
 
-test("tracker and evidence-only commits never promote a ticket to review or finish", () => {
-  const state = workflow([], { source: { state: "missing" }, commits: [{ commit, paths: [ticket.ref, "workflows/T-1/events/start.json"], kind: "tracker-evidence-only", relatedBy: "ticket-path" }] });
-  expect(recoveryDecision(ticket, snapshot, state)).toMatchObject({ action: "start", mode: "takeover", requiredApproval: true });
+test("tracker-only history leaves an unclaimed ticket available without takeover approval", () => {
+  const state = workflow([], { source: { state: "missing", candidates: 0 }, ownership: "unknown", commits: [{ commit, paths: [ticket.ref, "workflows/T-1/events/start.json"], kind: "tracker-evidence-only", relatedBy: "ticket-path" }] });
+  const decision = recoveryDecision({ ...ticket, status: "unclaimed" }, snapshot, state);
+  expect(decision).toMatchObject({ action: "start", mode: "begin", requiredApproval: false });
+  expect(recoveryState(decision)).toBe("READY");
+});
+
+test("source history and workspaces require inspection without inventing implementation receipts", () => {
+  for (const evidence of [
+    { source: { state: "missing" as const }, commits: [{ commit, paths: ["src/app.ts"], kind: "source" as const, relatedBy: "message-and-diff" as const }] },
+    { source: { state: "available" as const, dirty: true } },
+  ]) {
+    for (const ownership of ["inactive", "unknown"] as const) {
+      const decision = recoveryDecision(ticket, snapshot, workflow([], { ...evidence, ownership }));
+      expect(decision).toMatchObject({ action: "start", mode: "takeover", requiredApproval: ownership === "unknown" });
+      expect(recoveryState(decision)).toBe("BLOCKED");
+    }
+  }
+});
+
+test("inspection failures block a new start and retain the specific error", () => {
+  for (const [failure, error] of [
+    [{ inventoryError: "Worktree inventory unavailable" }, "Worktree inventory unavailable"],
+    [{ commitsError: "Commit history unavailable" }, "Commit history unavailable"],
+    [{ source: { state: "unknown", error: "Source cannot be read" } }, "Source cannot be read"],
+  ] satisfies [Partial<WorkflowInspection>, string][]) {
+    const decision = recoveryDecision(ticket, snapshot, workflow([], { source: { state: "missing" }, ...failure }));
+    expect(decision).toMatchObject({ mode: "blocked", requiredApproval: false });
+    expect(decision.action).toBeUndefined();
+    expect(decision.reason).toContain(error);
+    expect(recoveryState(decision)).toBe("BLOCKED");
+  }
+});
+
+test("an active owner and unresolved blockers override tracker-only history", () => {
+  const state = workflow([], { source: { state: "missing" }, ownership: "active", commits: [{ commit, paths: [ticket.ref], kind: "tracker-evidence-only", relatedBy: "ticket-path" }] });
+  expect(recoveryState(recoveryDecision(ticket, snapshot, state))).toBe("ACTIVE");
+  state.inspection!.ownership = "inactive";
+  expect(recoveryDecision({ ...ticket, blockedBy: ["OTHER"] }, snapshot, state)).toMatchObject({ mode: "blocked" });
 });
 
 test("interrupted start preserves work and requires scoped approval for unknown ownership", () => {
@@ -210,11 +246,12 @@ test("verified submission leaves publication recovery only with a current succes
   expect(recoveryDecision(ticket, snapshot, state)).toMatchObject({ action: "submit", mode: "reconcile" });
 });
 
-test("known branch-only and ambiguous workspace candidates cannot begin a duplicate start", () => {
-  for (const candidates of [1, 2]) {
-    const state = workflow([], { source: { state: "unknown", candidates } });
-    expect(recoveryDecision(ticket, snapshot, state)).toMatchObject({ action: "start", mode: "takeover", requiredApproval: true });
-  }
+test("branch-only candidates require inspection while ambiguous workspaces block selection", () => {
+  const branch = recoveryDecision(ticket, snapshot, workflow([], { source: { state: "unknown", candidates: 1 }, ownership: "unknown" }));
+  expect(branch).toMatchObject({ action: "start", mode: "takeover", requiredApproval: true });
+  const ambiguous = recoveryDecision(ticket, snapshot, workflow([], { source: { state: "unknown", candidates: 2 } }));
+  expect(ambiguous).toMatchObject({ mode: "blocked", label: "Resolve source workspace", requiredApproval: false });
+  expect(ambiguous.action).toBeUndefined();
 });
 
 test("failed or missing-result review cannot become a successful next phase from a copied verdict", () => {

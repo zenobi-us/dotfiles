@@ -9,7 +9,7 @@ import { isCompleted, recordKind, type Exec, type ExplorerActionChoice, type Exp
 import { safeTerminalText } from "./terminal-text";
 import type { ExplorerEvent } from "./model";
 import { DirectoryMonitor, type WatchTarget } from "./watch";
-import { chronologicalReceipts, isUnstarted, recoveryDecision } from "../../../developer/skills/git/worktree/scripts/recovery";
+import { chronologicalReceipts, isUnstarted, recoveryDecision, recoveryState } from "../../../developer/skills/git/worktree/scripts/recovery";
 import { initiativeDag, type InitiativeDag } from "./explorer-dag";
 import { copyMode, cycleCopyMode, formatExplorerReference } from "./explorer-reference";
 import { recallSnapshot, rememberSnapshot, snapshotIdentity } from "./explorer-state";
@@ -1284,9 +1284,7 @@ export class GraphExplorer {
     const cached = this.ticketStates.get(ticket.id);
     if (cached) return cached;
     const decision = recoveryDecision(ticket, this.snapshot!, workflow);
-    const state = decision.mode === "complete" ? "DONE"
-      : decision.action === "start" ? "READY"
-        : decision.action?.toUpperCase() ?? (decision.mode === "observe" ? "ACTIVE" : "BLOCKED");
+    const state = recoveryState(decision);
     this.ticketStates.set(ticket.id, state);
     return state;
   }

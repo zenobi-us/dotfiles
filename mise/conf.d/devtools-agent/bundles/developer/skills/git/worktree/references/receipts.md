@@ -77,6 +77,14 @@ A valid result without parent completion is reconciled, not rerun. Missing/unusa
 
 For every recovery attempt append provenance to new receipts: consumed receipts and artifacts in `inputs`, prior attempt/parent reference, observed source and session identities, recovery mode/reason, ownership and approval evidence, validation and actual outcomes. Preserve older receipts and partial source. Do not rewrite an abandoned attempt, invent an evidence run, or add recovery frontmatter to tickets. Shared-context resolves locations; it does not prove workflow existence. Recovery never runs storage `init` or `migrate`.
 
+## Initial start classification
+
+Tracker and evidence-only commits do not establish implementation. For an unstarted ticket with no receipts, source commits, or source workspace, offer `Start` after direct prerequisites complete. Run normal ownership and reservation checks during start; unknown ownership alone does not imply takeover.
+
+Source commits or a matching workspace without receipts require inspection and preservation of existing work. A branch without a checked-out workspace also requires inspection. Multiple candidate workspaces block selection until the source is identified. Inventory, commit-history, and source-inspection failures block a new start and retain the specific error.
+
+Graphs show `READY` only for `start` in `begin` mode. Start recovery and takeover remain `BLOCKED`, with the recovery action and reason available in the detail view. Receipt-based recovery and active-owner decisions retain precedence.
+
 ## Append-only envelope repair
 
 An explicitly authorized history repair may restore missing receipts from retained source-worktree or Git records. Create byte-identical copies with exclusive writes; record their source and SHA-256. Preserve every original receipt and parent link.

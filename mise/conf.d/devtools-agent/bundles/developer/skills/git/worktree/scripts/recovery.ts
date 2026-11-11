@@ -107,9 +107,24 @@ export function recoveryDecision(ticket: Ticket, snapshot: { tickets: Ticket[] }
   }
   if (latest && ["implementation", "start", "fix"].includes(latest.phase)) return decision("review", "begin", "Review implementation", "Implementation history is available. Review the current clean source in a fresh session; implementation is not completion.", unknownOwner);
   if (!latest && !["open", "ready", "todo", "backlog", "queued", "unclaimed", "claimed", "in_progress", "in-progress", "implemented", "merged", "reviewed"].includes(ticket.status.trim().toLowerCase())) return decision(undefined, "blocked", "Inspect tracker state", "The tracker state is unknown. Resolve its meaning through the ticket adapter before starting work.");
-  if (inspection?.commits.length || inspection?.inventoryError || inspection?.commitsError || source?.state === "available" || source?.error || source?.candidates) return decision("start", "takeover", "Inspect existing work", "Existing work or incomplete inspection needs reconciliation. Tracker and evidence-only commits do not prove implementation. Preserve changes and resolve ownership before takeover.", true);
+  if (inspection?.inventoryError) return decision(undefined, "blocked", "Retry inspection", `Worktree inventory inspection failed: ${inspection.inventoryError}`);
+  if (inspection?.commitsError) return decision(undefined, "blocked", "Retry inspection", `Commit history inspection failed: ${inspection.commitsError}`);
+  if ((source?.candidates ?? 0) > 1) return decision(undefined, "blocked", "Resolve source workspace", source?.error ?? "Multiple worktrees match the ticket. Identify its source workspace before starting.");
+  if (source?.state === "available") return decision("start", "takeover", "Inspect existing work", "A source workspace exists without validated implementation receipts. Inspect and preserve its changes before continuing.", unknownOwner);
+  if (source?.candidates) return decision("start", "takeover", "Inspect existing work", source.error ?? "A ticket branch exists without a checked-out worktree. Locate and inspect its source before starting.", unknownOwner);
+  if (source?.error || source?.state === "unknown") return decision(undefined, "blocked", "Retry inspection", source.error ?? "Source workspace inspection is incomplete. Inspect it before starting.");
+  // Recording a ticket or evidence does not mean implementation has started.
+  if (inspection?.commits.some(commit => commit.kind === "source")) return decision("start", "takeover", "Inspect existing work", "Source commits exist without validated implementation receipts. Inspect those changes and resolve ownership before continuing.", unknownOwner);
   if (["claimed", "in_progress", "in-progress", "implemented", "merged", "reviewed"].includes(ticket.status.trim().toLowerCase())) return decision("start", "takeover", "Recover ticket context", "Tracker state alone does not prove a phase result. Inspect the existing branch, workflow, and owner before a scoped takeover.", true);
-  return decision("start", "begin", "Start work", "No validated implementation history was found. Resolve ownership and active reservations before starting.", unknownOwner);
+  return decision("start", "begin", "Start", "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.");
+}
+
+/** Keep graph readiness aligned with the action's execution mode. */
+export function recoveryState(decision: RecoveryDecision): string {
+  if (decision.mode === "complete") return "DONE";
+  if (decision.mode === "observe") return "ACTIVE";
+  if (decision.action === "start") return decision.mode === "begin" ? "READY" : "BLOCKED";
+  return decision.action?.toUpperCase() ?? "BLOCKED";
 }
 
 export function isUnstarted(ticket: { status: string }): boolean {
