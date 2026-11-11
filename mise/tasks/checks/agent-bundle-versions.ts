@@ -5,7 +5,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
-const bundlesRoot = ".mise/conf.d/devtools-agent/bundles";
+const bundlesRoot = "mise/conf.d/devtools-agent/bundles";
 const marketplacePath = `${bundlesRoot}/.claude-plugin/marketplace.json`;
 const semverPattern = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/;
 
@@ -363,7 +363,7 @@ function fixBundles(repoRoot: string, affected: Set<string>): void {
 function printErrors(errors: string[]): void {
   console.error("bundle version check failed:");
   for (const error of errors) console.error(`  - ${error}`);
-  console.error("Run: hk fix --step bundle-versions --no-stage");
+  console.error("Run: hk fix --step bundle-versions");
 }
 
 export function run(command: string, args: string[], repoRoot = process.cwd()): number {

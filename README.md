@@ -109,7 +109,7 @@ mise bootstrap --yes
 
 ## Common commands
 
-The pre-commit hook checks staged bundle changes without stashing unstaged or untracked files. Stashes from earlier interrupted hook runs remain untouched.
+The pre-commit hook automatically bumps bundle versions for staged bundle changes and stages the plugin manifests and marketplace record in the same commit. `hk fix` also stages its version fixes. Neither operation stashes local changes. Review unstaged edits in those version files before committing, because automatic staging can include them. Stashes from earlier interrupted hook runs remain untouched.
 
 If hk reports an interrupted stash recovery, compare each unresolved file with the preserved stash before you restore it. Do not apply the whole stash after hk has restored other files. Archive `.git/hk-pending-stash` only after you verify recovery. When replacing Lefthook with hk, remove obsolete Lefthook hooks from `.git/hooks/` as well.
 

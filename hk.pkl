@@ -2,12 +2,14 @@ amends "package://github.com/jdx/hk/releases/download/v1.50.0/hk@1.50.0#/Config.
 
 hooks {
   ["pre-commit"] {
-    fix = false
+    fix = true
     stash = "none"
-    stage = false
+    stage = true
     steps {
       ["bundle-versions"] {
         check = "mise run checks:agent-bundle-versions -- check --staged"
+        fix = "mise run checks:agent-bundle-versions -- fix --staged"
+        stage = List("mise/conf.d/devtools-agent/bundles/*/.claude-plugin/plugin.json", "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json")
         exclusive = true
       }
     }
@@ -24,11 +26,12 @@ hooks {
 
   ["fix"] {
     fix = true
-    stage = false
+    stage = true
     steps {
       ["bundle-versions"] {
         check = "mise run checks:agent-bundle-versions -- check --dirty"
         fix = "mise run checks:agent-bundle-versions -- fix --dirty"
+        stage = List("mise/conf.d/devtools-agent/bundles/*/.claude-plugin/plugin.json", "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json")
         exclusive = true
       }
     }
