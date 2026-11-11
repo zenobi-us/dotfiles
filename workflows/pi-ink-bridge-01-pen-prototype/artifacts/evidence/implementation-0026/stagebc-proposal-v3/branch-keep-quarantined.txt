@@ -1,0 +1,13 @@
+NOT APPROVED. Alternative branch: keep-quarantined
+Keep the exact original proxy backup quarantined. This deliberately retains a persistent owned-path deviation and is not restoration of the original proxy-file position.
+Select exactly this triplet OR the other branch, never both. All three actions require the common approval-scope.txt; only recovery mutates.
+
+recover-keep-quarantined.sh SHA256 76346dbd3e95d2dfa50883b5c5174db61fc855de081de4858f6260f0a64f8876
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_STAGE_BC_APPROVED=stagebc-0026-v3 PI_INK_STAGE_BC_STAGE_A=parent-validated-v2-preserve-host-root PI_INK_STAGE_BC_PROXY_CHOICE=keep-quarantined PI_INK_STAGE_BC_RESTART_ALLOWANCE=at-most-one-new-current-config PI_INK_STAGE_BC_SAVED_CLOSED=confirmed-for-this-new-restart PI_INK_STAGE_BC_USB=connected-for-this-new-restart sh /tmp/pi-ink-stagebc-0026-v3/host.sh recover-keep-quarantined
+
+verify-keep-quarantined.sh SHA256 d9611496d112c69afb86152b7b1144d0ebfc54eefae3bbe6c3f394cd65a42cc2
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_STAGE_BC_APPROVED=stagebc-0026-v3 PI_INK_STAGE_BC_STAGE_A=parent-validated-v2-preserve-host-root PI_INK_STAGE_BC_PROXY_CHOICE=keep-quarantined PI_INK_STAGE_BC_RECOVERY_OUTCOME=observed-success-same-selected-branch sh /tmp/pi-ink-stagebc-0026-v3/host.sh verify-keep-quarantined
+
+postinventory-keep-quarantined.sh SHA256 4333cc3c0f56b0f0f1e3d6cc02efb0e3a26a5cd802e1f2189b6e9bb65e1ef2c0
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_STAGE_BC_APPROVED=stagebc-0026-v3 PI_INK_STAGE_BC_STAGE_A=parent-validated-v2-preserve-host-root PI_INK_STAGE_BC_PROXY_CHOICE=keep-quarantined PI_INK_STAGE_BC_RECOVERY_OUTCOME=observed-success-same-selected-branch PI_INK_STAGE_BC_VERIFY_OUTCOME=observed-success-same-selected-branch sh /tmp/pi-ink-stagebc-0026-v3/host.sh postinventory-keep-quarantined
+

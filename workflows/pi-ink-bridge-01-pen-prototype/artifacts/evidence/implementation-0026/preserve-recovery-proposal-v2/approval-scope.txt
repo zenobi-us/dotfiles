@@ -1,0 +1,237 @@
+V2 PRESERVE-CURRENT RECOVERY — ACTUAL BOUNDED NO-FOLLOW HOST READS
+Ticket: tracker/tickets/pi-ink-bridge-01-pen-prototype.md
+Same validator: w6N:p5 / session01a19fe2-4d68-770a-a05b-0a20eca7c412
+Source unchanged: bb5df500f4a06c61ebde6073470ef5ed51f4b006 / tree9a9acbfbc65d17f87eb44f2e0a7898000b1d735b.
+STATUS: OFFLINE PROPOSAL ONLY. NO NEW DEVICE OR HOST-INVENTORY ACTION APPROVED.
+
+V2 CHANGE — PROPOSAL ONLY, NOT APPROVED
+V1 remains unchanged as pre-consent history. All seven device target payloads
+are byte-identical to v1. Only the prospective host reader, consent wrapper,
+scope and validation/index change. The v2 approval guard value is distinct:
+preserve-recovery-0026-v2. No old approval token is fresh v2 consent.
+Every owner-marker, config/key/public-code, binary, log and known process-env
+CONTENT read uses one primitive. It walks directories with O_DIRECTORY and
+O_NOFOLLOW openat fds, opens the leaf O_NOFOLLOW/O_NONBLOCK, checks regular
+owned fstat identity against no-follow metadata, and reads no more than cap+1
+ACTUAL bytes. Oversize refuses before data reaches hashing/parsing/log checks.
+After reading it rechecks fd/path identity, owner/type/mode/size/mtime/ctime and
+parent fd/path identity. Replacement, growth, symlinks, nonregular files,
+unknown ownership or caps produce fixed refusal reasons, never secret output.
+Metadata now includes device/inode identity pins. No source-app edits, device
+calls, real credential reads, restart, host process action or cleanup occurred.
+Host-local fixtures exercise exact-cap, oversize, growth after fstat, leaf and
+parent symlinks, directory, FIFO and expected-identity mismatch. The growth
+case appends to a REAL fixture after fstat; the delegated OS read consumes at
+most cap+1 and refuses. No fixture bytes or sensitive values are output.
+
+DECISIONS AND CONSENT GATES
+A. Approve the exact new read-only DEVICE preflight and HOST preflight below,
+   separately identifying any selected subset. Preserve exclusive operator
+   handoff and connected USB. This authorizes no stop, move, restart or deletion.
+B. After parent validates those fresh results, choose ONE proxy disposition:
+   RETURN-ORIGINAL: return exact original webserver-remote.so to extensions.d.
+   If XOVI loads, this may re-enable its pre-existing wildcard80 HTTP listener.
+   It is the owner's original proxy, NOT paired-authenticated Pi transport.
+   KEEP-QUARANTINED: keep exact original backup quarantined. This is an explicit
+   persistent deviation from its original owned-path placement; do not claim
+   full original baseline restoration or delete that original.
+C. Before the selected recovery command, obtain a NEW confirmation that ALL
+   documents are saved/closed and USB remains connected. Request an explicit
+   NEW allowance for AT MOST ONE further Xochitl restart command. Historical
+   restart total is UNKNOWN. No unused historical attempt, retry or second
+   branch is authorized. Choosing a proxy policy is not mutation approval.
+D. After successful recovery, run only the chosen branch's approved read-only
+   verify and separately approved bounded postinventory. Inactive retention
+   is NOT final credential/code cleanup.
+E. Build a fresh exact deletion manifest from observed entries/identities and
+   obtain separate irreversible cleanup approval. No deletion command or
+   manifest is represented as approved or complete in this proposal. Missing
+   fresh entry facts/host ownership are real prerequisites, not invented data.
+
+FILES AND HASHES
+Frozen directory: /tmp/pi-ink-preserve-recovery-0026-v2
+Durable identical copies: BASE/workflows/pi-ink-bridge-01-pen-prototype/artifacts/evidence/implementation-0026/preserve-recovery-proposal-v2
+8f27e09f3489d6bc284ac2d1cc92aa72e81f07bafe7a62bd47913dae72d79820  preflight.sh
+44a8f5c1f1765d17bd1176acc97adeb8af73d31dd28878af078e4baad5d6ac6e  host-inventory.py
+c2fa1f41ad0a902f0a5a563cc2a2a473ad81f6450f7d6080ce9a834aca776172  recover-return-original.sh
+f5ac3475dabfcb3d2492b8c625fe4ea8473da88d771d3f7fe55e8a93f555cf11  recover-keep-quarantined.sh
+f5909cf1128295b9e55229226ef4bb937614b08d08404db0480fb6f650a76ee9  verify-return-original.sh
+d9611496d112c69afb86152b7b1144d0ebfc54eefae3bbe6c3f394cd65a42cc2  verify-keep-quarantined.sh
+f441619afe6d590715aa32b39652dc6eb0e1ceabf3c30eb086cd1408043021c1  postinventory-return-original.sh
+8572114c18b834b1a09bdade99f5dc9d0801c1ba5c0032bc2840318b2a791a65  postinventory-keep-quarantined.sh
+a1413ebff9fa33fc0b8ff76d6017a401b7de66b889d3694953b01f7291abb341  host.sh
+7a39ea56a73a1958bff45ed0b2f4e2f5565813f5aa754dece07acd339ba7be1e  path-audit.json
+6fa4bc85369e2767bf6963241cab3c07c3cbe0a6cffd54c787655ef4b0e45b8c  cleanup-boundaries.json
+Changed bytes require new exact review/approval. Only selected frozen target
+scripts are streamed. Helper source fragments are not runtime dependencies.
+
+STAGE A — EXACT READ-ONLY COMMANDS, ONCE EACH IF EXPLICITLY APPROVED
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_RECOVERY_PREFLIGHT_APPROVED=preserve-recovery-0026-v2 sh /tmp/pi-ink-preserve-recovery-0026-v2/host.sh preflight-device
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_RECOVERY_PREFLIGHT_APPROVED=preserve-recovery-0026-v2 sh /tmp/pi-ink-preserve-recovery-0026-v2/host.sh preflight-host
+No positive approval path has been executed during preparation. Tokens are
+accident guards; durable owner consent and parent evidence validation remain
+mandatory. A failure stops that action; no automatic retry or guard amendment.
+
+DEVICE PREFLIGHT BOUNDARY
+Reuse the previous fixed102entry set and exact proven experimental roots, not
+arbitrary file discovery. Parent chains must be non-symlink root-owned dirs.
+Root ownership requires mode700 and the exact known owner-marker hash. Unknown,
+unowned, inaccessible, symlink or cap states are preserved and reported.
+The prior nine-million-byte hash skip is NOT binary identity evidence. This
+NEW preflight permits at most10MiB per Go/public file, with a64MiB aggregate
+budget. It obtains actual active/stage/backup Go binary SHA256 and accepts
+only exact known old/new hashes. Before any stop, both the current on-disk
+client AND its known /proc/106748/exe target must match0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd.
+The known client command is validated without raw argv output. An additional
+comparison-only SHA check of the ONE current client config requires exact
+a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca;
+it validates the audited state-write location without emitting config/token
+contents or an unknown digest. Other opaque state/config/CA inventory remains
+metadata-only. Any changed current identity aborts, never guesses a new PID.
+
+Add direct-entry inventory ONLY at17explicit known owned dirs under the prior
+payload/stage/backup roots. Never recurse or traverse unknown subdirs. Each
+scan is bounded by65536bytes,128entries; total512entries. Emit only exact
+allowlisted names/metadata. Unknown names are redacted to a name digest and
+block final cleanup. Links/unowned entries block cleanup without dereference.
+Operation/history PID subtrees are deliberately not listed or modified.
+
+OFFLINE AUDIT FINDING: Go persistLocked writes state.json plus same-directory
+CreateTemp .tablet-state- records, chmod0600, fsync/rename/deferred removal.
+An interrupted numeric .tablet-state- suffix (at most20digits) is recognized
+as OPAQUE STATE TO PRESERVE, never a deletion target or content/hash read.
+No tablet Go PDF cache write was found; stock import/export uses memory and
+loopback HTTP. Do not invent cache paths or clear Qt/system caches. The copied
+resource-rebuilder source modifies resources in memory; its test writer has
+no found src callsite. This is source evidence, not universal cache absence.
+
+Current service configuration is preserved, not the old activation restored.
+Hash-match stock service, existing preflight drop-in and vendor override;
+require absent00-xovi.conf/QRE drop-in to remain absent, never recreate them.
+Require the exact two currently known DropInPaths and prospective exact known
+vendor-only Environment=MALLOC_ARENA_MAX=8. That exact environment has NOT yet
+been established by the prior redacted comparison; Stage A must prove it.
+Any mismatch blocks Stage B and needs new evidence/scope, not a hash bypass.
+Do not print unknown environment or argv. No daemon-reload, boot activation,
+service-file, settings, account/cloud, stock-binary or other extension changes.
+
+Service/module/listener/client checks retain the prior bounded read-only
+filters: only five known module booleans (including deleted mappings),4096map
+rows; only LISTEN80/81/9821,4096rows/family and at most8relevant rows/family;
+fd0..511 of at most3qualified candidates. No connections, unrelated map paths,
+process argv/environment values, general logs, screenshots or notebook reads.
+The actor record must remain the exact known prior failed-restore record,
+mode600/uid0/gid0/size81, rollback/latest-manifest/PID125204, with that PID path
+not present under a verified /proc root. Recorded prior exit1 and fresh owner
+handoff are REQUIRED context; absence alone is not generic shutdown proof.
+No lock is acquired, no actor/history marker is changed, no signals are sent.
+An unknown or present actor blocks recovery. Preserve current exact unit/PID
+checks; any concurrent change aborts without guessed amendments.
+
+HOST PREFLIGHT BOUNDARY — NEW EXPLICIT DIGEST/PRESENCE-ONLY PERMISSION
+Read only five proven /tmp roots: pi-ink-0020-trust, sidebar-reviewed-payload,
+sidebar-payload, native-button-repair-payload and the frozen0023payload dir.
+Also inspect exact prior build /tmp/pi-ink-0020-offline/pi-ink-tablet, not its
+surrounding research tree. Paths derive from actual prior command artifacts
+and observed host filenames; path-audit.json records provenance. No private
+notebook, arbitrary config-derived path, new pairing or stale-job revival.
+Parent/owner/link guards apply. Root marker must match. At most128entries/dir,
+256total;10MiB/file and64MiB total hashing. Unknown entries stay redacted and
+preserved. Explicit config/token/key file identity may be hashed for future
+exact deletion pinning; ONLY digests/metadata leave the script, no bytes.
+Known token fields may be compared INTERNALLY against at most1MiB per known
+owned log. Emit only token-presence/private-key-marker booleans, never values
+or log text. Preserve state/PDF/history. A positive/incomplete secret check
+blocks a complete credential-copy-removal claim and requires separate precise
+preservation/redaction authority; never delete history silently.
+
+Read only host9443/9444 listener metadata. Emit listener presence and bounded
+candidate PIDs, uid, known SOURCE-cwd and known gateway-config environment-path
+comparison. Read at most1MiB of a verified owned PID environment internally,
+selecting only OMP_IMAGE_ANNOTATOR_TABLET_CONFIG against four known paths; no
+raw argv/environment output. At most4candidate PIDs/port. These are candidates,
+NOT termination authority: shared OMP sessions must not be killed. Host origin
+closure requires separately approved actual gateway/request/session ownership.
+No source/evidence writes, host stops, signals or deletion in Stage A.
+
+STAGE B — ONE SELECTED NEW RECOVERY BRANCH ONLY AFTER FRESH CONSENT
+The parent must validate fresh Stage A and pin its evidence before either
+branch. Both frozen scripts require active Xochitl112810, idle Job, current
+known service fingerprints/activation, exact owned transient client106748,
+exact running/file Go hash and known owner/actor/proxy/adapter/QMD identities.
+Unknown/unowned/colliding paths abort. No fallback or current PID amendments.
+
+Exact common environment before the chosen command:
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent
+PI_INK_EXACT_RECOVERY_APPROVED=preserve-recovery-0026-v2
+PI_INK_ENTRY_PREFLIGHT=parent-validated-exact-evidence
+PI_INK_NEW_RESTART_ALLOWANCE=at-most-one-current-config
+PI_INK_SAVED_CLOSED=confirmed-for-this-new-restart
+Add EITHER PI_INK_PROXY_CHOICE=return-original and invoke:
+sh /tmp/pi-ink-preserve-recovery-0026-v2/host.sh recover-return-original
+OR PI_INK_PROXY_CHOICE=keep-quarantined and invoke:
+sh /tmp/pi-ink-preserve-recovery-0026-v2/host.sh recover-keep-quarantined
+These are environment assignments for the SAME single command, not approvals
+in themselves. Record fresh owner saved/closed/cable reply separately first.
+
+Mutation order: request only the exact owned sidebar-client stop ONCE, poll
+inactive at most10seconds, create collision-guarded prior rollback-owned root,
+copy its known owner marker, move only exact owned live adapter/QMD into that
+root. Do not claim moving files unmaps loaded code. Apply the chosen original
+proxy-file disposition, preserving its exact SHA and stat644/0/0/8453696/1793049401.
+Recheck current service fingerprints and unchanged pre-restart PID. Request
+Xochitl restart ONCE under CURRENT configuration; wait at most20one-second
+readiness observations, then settle2seconds. No target timeout assumption.
+Recheck unchanged service files/activation, stable changed PID, inactive owned
+client, absent active adapter/QMD, actual adapter unmapped and9821absent.
+Report bounded actual other known mappings/listeners; do not assume XOVI or
+original proxy activation from service properties. Returning a proxy FILE does
+not prove its runtime activation. Keep-quarantined requires proxy not mapped.
+A host deadline or failed guard is NOT target shutdown. Never retry/restore
+concurrently, spend another restart, recreate settings or repair a mismatch.
+
+STAGE C — EXACT READ-ONLY SELECTED POSTPROOF/POSTINVENTORY
+With explicit postproof approval and the selected proxy choice:
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_EXACT_RECOVERY_APPROVED=preserve-recovery-0026-v2 PI_INK_PROXY_CHOICE=return-original sh /tmp/pi-ink-preserve-recovery-0026-v2/host.sh verify-return-original
+OR the matching keep-quarantined choice/action, once, never both branches.
+With separately approved bounded postinventory and the selected proxy choice:
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_POSTRECOVERY_INVENTORY_APPROVED=preserve-recovery-0026-v2 PI_INK_PROXY_CHOICE=return-original sh /tmp/pi-ink-preserve-recovery-0026-v2/host.sh postinventory-return-original
+OR matching keep-quarantined choice/action, once. These are read-only. They
+collect final cleanup facts after client quiescence and retain opaque state.
+
+STAGES D–F — REACHABLE FINAL CLEANUP, NOT A RETENTION STOP
+cleanup-boundaries.json specifies exact approval boundaries and completion.
+After actual A/C results, freeze a NEW immutable per-file deletion manifest:
+path/type/uid/gid/mode/size/mtime/hash/root provenance and reason. Resolve host
+gateway closure first; never kill shared sessions or revive old jobs. Obtain
+explicit exact irreversible cleanup approval. No recursive or wildcard delete.
+Then fresh guards precede the FIRST deletion; unlink ONLY approved exact known
+owned runtime code, config/token/CA/key and parked/staged copies, including
+host credential payload copies and exact prior Go build. Preserve original
+proxy bytes per chosen policy, SOURCE/evidence/history, opaque state.json and
+interrupted numeric state-temp records at their original owned locations,
+all stock/synthetic notebooks and durable desktop PDF/image analysis outputs
+under ~/.local/share/omp/image-annotator. Rmdir only explicitly approved dirs
+proved empty. Unknown files are never removed. Any failure stops with honest
+partial-cleanup evidence; no retry or extra restart implied.
+Final bounded postproof must establish approved removals absent, preserved
+state/original/service metadata intact, no owned mapped runtime/client/UI,
+closed retired host gateways and approved credential/code copies absent.
+Positive/incomplete retained-history secret checks remain an explicit blocker.
+Do not claim machine-wide erasure, full original restoration under quarantine,
+UI deployment, full request acceptance or production readiness. Ticket claimed;
+production blocked. Do not finalize result0026 during proposal preparation.
+
+EXACT TRANSPORT / HOST DEADLINE
+Only USB10.11.99.1/source10.11.99.10/interfaceenp2s0f0u4c2, no gateway; physical
+syspath /sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0.
+Reject wireless/phy80211. Strict existing keys, BatchMode, exact binds, no mux,
+proxy/jump/Wi-Fi/fallback, packages or network changes. Each SSH has45second
+HOST deadline and8second connect timeout. Host-only inventory has45second host
+deadline. A timeout does not prove target actor shutdown; preserve raw output.
+
+HOST-ONLY VALIDATION
+Frozen shell syntax, Python AST, actual missing-consent/handoff/preflight/new-
+restart/new-saved-closed/proxy-choice guard paths, and actual entry-allowlist
+boundaries are exercised without route, SSH, host inventory or mutation. No
+implementation/build/browser tests or device operations occur in preparation.

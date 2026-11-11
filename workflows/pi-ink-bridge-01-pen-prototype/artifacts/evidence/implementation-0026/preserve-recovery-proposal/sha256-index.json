@@ -1,0 +1,71 @@
+{
+  "schema": "pi-ink-evidence-sha256/v1",
+  "recorded_at": "2026-11-04T04:45:39.905494+00:00",
+  "status": "EXACT_PROPOSAL_ONLY_NOT_APPROVED_NOT_EXECUTED",
+  "scope_sha256": "8d9126968c702b5ed7be6dfcf574997007c347ebb4cb7983f3213438c6d2d2dd",
+  "files": [
+    {
+      "path": "preflight.sh",
+      "sha256": "8f27e09f3489d6bc284ac2d1cc92aa72e81f07bafe7a62bd47913dae72d79820"
+    },
+    {
+      "path": "host-inventory.py",
+      "sha256": "70bb62f9c410fb3df4806a56f2872df53bd116601b2f7c3fbcafdc7dfcafcbb5"
+    },
+    {
+      "path": "recover-return-original.sh",
+      "sha256": "c2fa1f41ad0a902f0a5a563cc2a2a473ad81f6450f7d6080ce9a834aca776172"
+    },
+    {
+      "path": "recover-keep-quarantined.sh",
+      "sha256": "f5ac3475dabfcb3d2492b8c625fe4ea8473da88d771d3f7fe55e8a93f555cf11"
+    },
+    {
+      "path": "verify-return-original.sh",
+      "sha256": "f5909cf1128295b9e55229226ef4bb937614b08d08404db0480fb6f650a76ee9"
+    },
+    {
+      "path": "verify-keep-quarantined.sh",
+      "sha256": "d9611496d112c69afb86152b7b1144d0ebfc54eefae3bbe6c3f394cd65a42cc2"
+    },
+    {
+      "path": "postinventory-return-original.sh",
+      "sha256": "f441619afe6d590715aa32b39652dc6eb0e1ceabf3c30eb086cd1408043021c1"
+    },
+    {
+      "path": "postinventory-keep-quarantined.sh",
+      "sha256": "8572114c18b834b1a09bdade99f5dc9d0801c1ba5c0032bc2840318b2a791a65"
+    },
+    {
+      "path": "host.sh",
+      "sha256": "f18ec2b63a7d56063de58f24d66e2dae03cce4237e03c972965091749366e8a9"
+    },
+    {
+      "path": "path-audit.json",
+      "sha256": "7a39ea56a73a1958bff45ed0b2f4e2f5565813f5aa754dece07acd339ba7be1e"
+    },
+    {
+      "path": "cleanup-boundaries.json",
+      "sha256": "6fa4bc85369e2767bf6963241cab3c07c3cbe0a6cffd54c787655ef4b0e45b8c"
+    },
+    {
+      "path": "approval-scope.txt",
+      "sha256": "8d9126968c702b5ed7be6dfcf574997007c347ebb4cb7983f3213438c6d2d2dd"
+    },
+    {
+      "path": "host-only-validation.json",
+      "sha256": "58524119aae745734c231a97d7e156e46df41dce47b8c0651f6c07534c60fca6"
+    }
+  ],
+  "required_decisions": [
+    "Exact device+host read-only preflight approval",
+    "Explicit original proxy disposition",
+    "After fresh validated preflight, NEW at-most-one restart allowance plus NEW all-documents-saved/closed and USB confirmation",
+    "Postrecovery read-only inventory approval and final per-file irreversible cleanup approval from actual observed manifest"
+  ],
+  "execution_count": 0,
+  "total_historical_restart_count": "UNKNOWN",
+  "source_preserved": true,
+  "evidence_history_preserved": true,
+  "no_final_result0026": true
+}

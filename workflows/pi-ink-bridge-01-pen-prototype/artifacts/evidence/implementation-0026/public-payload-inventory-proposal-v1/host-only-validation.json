@@ -1,0 +1,222 @@
+{
+  "status": "NOT_APPROVED_HOST_ONLY_CANDIDATE",
+  "recorded_at": "2026-11-04T07:52:59.751602+00:00",
+  "actual_negative_gate_checks": [
+    {
+      "case": "missing new consent",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+        "inventory-public-payload"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact protected-public-payload read-only approval required\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "reject old/wrong new variable value preserve-recovery-0026-v2",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+        "inventory-public-payload"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact protected-public-payload read-only approval required\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "reject old/wrong new variable value stagebc-0026-v3",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+        "inventory-public-payload"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact protected-public-payload read-only approval required\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "reject old/wrong new variable value wrong",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+        "inventory-public-payload"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact protected-public-payload read-only approval required\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "reject stale flag PI_INK_RECOVERY_PREFLIGHT_APPROVED",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+        "inventory-public-payload"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: previous-scope approval flags forbidden\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "reject stale flag PI_INK_STAGE_BC_APPROVED",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+        "inventory-public-payload"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: previous-scope approval flags forbidden\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "reject stale flag PI_INK_EXACT_PLAN_APPROVED",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+        "inventory-public-payload"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: previous-scope approval flags forbidden\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "reject action preflight-host",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+        "preflight-host"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact host-only inventory-public-payload action required\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "reject action preflight-device",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+        "preflight-device"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact host-only inventory-public-payload action required\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "reject action recover-return-original",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+        "recover-return-original"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact host-only inventory-public-payload action required\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "reject action verify-return-original",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+        "verify-return-original"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact host-only inventory-public-payload action required\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "reject action postinventory-return-original",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+        "postinventory-return-original"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact host-only inventory-public-payload action required\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "reject action cleanup",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+        "cleanup"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact host-only inventory-public-payload action required\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "reject extra wrapper argument",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+        "inventory-public-payload",
+        "extra"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact host-only inventory-public-payload action required\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "script defense missing consent",
+      "argv": [
+        "python3",
+        "-I",
+        "-B",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/inventory.py"
+      ],
+      "exit_code": 2,
+      "stdout": "{\"status\": \"ABORT_NEW_EXACT_PUBLIC_PAYLOAD_SCOPE_APPROVAL_REQUIRED\"}\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    },
+    {
+      "case": "script rejects arbitrary root argument",
+      "argv": [
+        "python3",
+        "-I",
+        "-B",
+        "/tmp/pi-ink-public-payload-inventory-0026-v1/inventory.py",
+        "--root=/tmp"
+      ],
+      "exit_code": 2,
+      "stdout": "{\"status\": \"ABORT_NEW_EXACT_PUBLIC_PAYLOAD_SCOPE_APPROVAL_REQUIRED\"}\n",
+      "stderr": "",
+      "protected_root_accessed": false
+    }
+  ],
+  "positive_consent_guard_prefix_only": {
+    "exit_code": 0,
+    "stdout": "HOST_ONLY_CONSENT_PREFIX_PASSED_NO_ROOT_ACCESS\n",
+    "production_dispatch_hash_inventory_excluded": true
+  },
+  "syntax": {
+    "python_AST": [
+      "inventory.py",
+      "host-fixtures.py"
+    ],
+    "sh_n_exit_code": 0
+  },
+  "reviewed_bounded_read_fragment_sha256": "1ee14ba4ec8c007cc99168e8d30e79bd3a89a32e6889d2acaa1700c4fd1b16ff",
+  "fragment_byte_identical_inline": true,
+  "fixtures_ref": "fixture-outcome.json",
+  "fixtures_passed": 13,
+  "production_root_read": false,
+  "prior_preflight_or_recovery_retried": false,
+  "device_network_process_or_production_mutation": false,
+  "approval": "NOT_APPROVED"
+}

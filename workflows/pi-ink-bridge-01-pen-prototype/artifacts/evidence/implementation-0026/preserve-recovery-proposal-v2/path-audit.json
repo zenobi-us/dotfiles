@@ -1,0 +1,197 @@
+{
+  "schema": "pi-ink-cleanup-path-audit/v1",
+  "recorded_at": "2026-11-04T04:20:39.622814+00:00",
+  "mode": "OFFLINE_ONLY_NO_DEVICE_CALLS",
+  "device_code_audit": [
+    {
+      "ref": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/state.go:147-182",
+      "finding": "Only persistent client write is configured statePath; mkdir parent0700, CreateTemp same directory .tablet-state-, chmod0600, fsync, rename to statePath, deferred temporary unlink. Abrupt exit can leave opaque state temporaries."
+    },
+    {
+      "ref": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/state.go:23-59",
+      "finding": "Config contains server token; diskState contains bindings and terminal maps, not ServerConfig credentials. Preserve state and matching interrupted state temporaries without contents."
+    },
+    {
+      "ref": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet/stock.go:114-167",
+      "finding": "Import/export uses in-memory buffers and stock loopback API; no client PDF disk-cache path found."
+    },
+    {
+      "ref": "/tmp/pi-ink-0020-extensions/qt-resource-rebuilder/src/main.c",
+      "finding": "Copied source edits resources in memory. testWriteToFile exists; no callsite found under copied src after LSP reported no server and scoped search. This is source inspection, not proof about every Qt-generated cache. No unproven cache paths added."
+    }
+  ],
+  "host_code_audit": [
+    {
+      "ref": "mise/conf.d/devtools-omp/extensions/image-annotator/pdf-session.ts:14,34-38,68-74,123-138",
+      "finding": "Durable originals/analysis under ~/.local/share/omp/image-annotator/requestId. Preserve entire durable-output root; not a disposable credential cache."
+    }
+  ],
+  "host_paths_from_prior_commands": {
+    "/tmp/pi-ink-0020-native-button-repair-payload": [
+      "device-approval-phase-c-component-repair.txt"
+    ],
+    "/tmp/pi-ink-0020-native-button-repair-payload/PiInkToolbar.qml": [
+      "device-approval-phase-c-component-repair.txt"
+    ],
+    "/tmp/pi-ink-0020-native-button-repair-payload/owner.txt": [
+      "device-approval-phase-c-component-repair.txt"
+    ],
+    "/tmp/pi-ink-0020-native-button-repair-payload/payload-sha256.txt": [
+      "device-approval-phase-c-component-repair.txt"
+    ],
+    "/tmp/pi-ink-0020-observe-fresh-origin.mjs": [
+      "device-approval-phase-c-component-repair.txt"
+    ],
+    "/tmp/pi-ink-0020-offline/pi-ink-tablet": [
+      "phase-b-staging.json"
+    ],
+    "/tmp/pi-ink-0020-phase-c-component-repair-host.sh": [
+      "device-approval-phase-c-component-repair.txt"
+    ],
+    "/tmp/pi-ink-0020-phase-c-component-repair-load.sh": [
+      "device-approval-phase-c-component-repair.txt"
+    ],
+    "/tmp/pi-ink-0020-phase-c-component-repair-prepare.sh": [
+      "device-approval-phase-c-component-repair.txt"
+    ],
+    "/tmp/pi-ink-0020-phase-c-component-repair-rollback-v5.sh": [
+      "device-approval-phase-c-component-repair.txt"
+    ],
+    "/tmp/pi-ink-0020-phase-c-host-setup.sh": [
+      "device-approval-phase-c-native-sidebar.txt"
+    ],
+    "/tmp/pi-ink-0020-phase-c-load-v3.sh": [
+      "device-approval-phase-c-native-sidebar.txt",
+      "phase-c-final-command-scripts.json"
+    ],
+    "/tmp/pi-ink-0020-phase-c-load.sh": [
+      "phase-c-prospective-command-scripts.json"
+    ],
+    "/tmp/pi-ink-0020-phase-c-preflight-v3.sh": [
+      "device-approval-phase-c-native-sidebar.txt",
+      "phase-c-final-command-scripts.json"
+    ],
+    "/tmp/pi-ink-0020-phase-c-preflight.sh": [
+      "phase-c-prospective-command-scripts.json"
+    ],
+    "/tmp/pi-ink-0020-phase-c-prepare-v3.sh": [
+      "device-approval-phase-c-native-sidebar.txt",
+      "phase-c-final-command-scripts.json"
+    ],
+    "/tmp/pi-ink-0020-phase-c-prepare.sh": [
+      "phase-c-prospective-command-scripts.json"
+    ],
+    "/tmp/pi-ink-0020-phase-c-rollback-native-sidebar.sh": [
+      "phase-c-prospective-command-scripts.json"
+    ],
+    "/tmp/pi-ink-0020-phase-c-rollback-original-overlay.sh": [
+      "phase-c-prospective-command-scripts.json"
+    ],
+    "/tmp/pi-ink-0020-phase-c-rollback-v3.sh": [
+      "device-approval-phase-c-native-sidebar.txt",
+      "phase-c-final-command-scripts.json"
+    ],
+    "/tmp/pi-ink-0020-phase-c-rollback-v4.sh": [
+      "device-approval-phase-c-component-repair.txt"
+    ],
+    "/tmp/pi-ink-0020-sidebar-reviewed-payload": [
+      "device-approval-phase-c-native-sidebar.txt"
+    ],
+    "/tmp/pi-ink-0020-sidebar-reviewed-payload/adapter.so": [
+      "device-approval-phase-c-native-sidebar.txt"
+    ],
+    "/tmp/pi-ink-0020-sidebar-reviewed-payload/config.json": [
+      "device-approval-phase-c-native-sidebar.txt"
+    ],
+    "/tmp/pi-ink-0020-sidebar-reviewed-payload/owner.txt": [
+      "device-approval-phase-c-native-sidebar.txt"
+    ],
+    "/tmp/pi-ink-0020-sidebar-reviewed-payload/payload-sha256.txt": [
+      "device-approval-phase-c-native-sidebar.txt"
+    ],
+    "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-bridge.qmd": [
+      "device-approval-phase-c-native-sidebar.txt"
+    ],
+    "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-tablet": [
+      "device-approval-phase-c-native-sidebar.txt"
+    ],
+    "/tmp/pi-ink-0020-sidebar-reviewed-payload/tablet-qml/PiInkToolbar.qml": [
+      "device-approval-phase-c-native-sidebar.txt"
+    ],
+    "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-a.pem": [
+      "device-approval-phase-c-native-sidebar.txt"
+    ],
+    "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-b.pem": [
+      "device-approval-phase-c-native-sidebar.txt"
+    ],
+    "/tmp/pi-ink-0020-trust": [
+      "device-approval-phase-b.txt",
+      "device-approval-phase-c-component-repair.txt"
+    ],
+    "/tmp/pi-ink-0020-trust/desktop-sidebar-a.json": [
+      "device-approval-phase-c-component-repair.txt",
+      "device-approval-phase-c-native-sidebar.txt",
+      "fresh-origin-host-config-identities.json"
+    ],
+    "/tmp/pi-ink-0020-trust/desktop-sidebar-b.json": [
+      "device-approval-phase-c-component-repair.txt",
+      "device-approval-phase-c-native-sidebar.txt",
+      "fresh-origin-host-config-identities.json"
+    ],
+    "/tmp/pi-ink-0020-trust/owner.txt": [
+      "phase-b-staging.json"
+    ],
+    "/tmp/pi-ink-0020-trust/payload-sha256.txt": [
+      "phase-b-staging.json"
+    ],
+    "/tmp/pi-ink-0020-trust/server-a.pem": [
+      "phase-b-staging.json"
+    ],
+    "/tmp/pi-ink-0020-trust/server-b.pem": [
+      "phase-b-staging.json"
+    ],
+    "/tmp/pi-ink-0020-trust/tablet.json": [
+      "phase-b-staging.json"
+    ]
+  },
+  "host_trust_observed_names_without_contents": [
+    "tablet-sidebar.json",
+    "sidebar-origin-a-stderr.log",
+    "sidebar-origin-b-stderr.log",
+    "desktop-sidebar-b.json",
+    "desktop-sidebar-a.json",
+    "payload-sha256.txt",
+    "owner.txt",
+    "tablet.json",
+    "b-source.pdf",
+    "a-source.pdf",
+    "host-client-state.json",
+    "env-fixed-origin-b-stderr.log",
+    "env-fixed-origin-a-stderr.log",
+    "host-tablet.json",
+    "final-origin-a-stderr.log",
+    "final-origin-b-stderr.log",
+    "origin-b-stderr.log",
+    "origin-a-stderr.log",
+    "desktop-b.json",
+    "server-b.pem",
+    "server-b-key.pem",
+    "desktop-a.json",
+    "server-a.pem",
+    "server-a-key.pem"
+  ],
+  "preserve_boundaries": [
+    "SOURCE and BASE evidence/history",
+    "All stock and known synthetic notebooks/documents",
+    "Opaque state.json and .tablet-state-* records at original paths",
+    "Durable request originals under ~/.local/share/omp/image-annotator",
+    "Operation/history records; no lock acquisition or history mutation",
+    "Pre-existing service/settings/extensions except explicitly owned adapter/QMD and owner-chosen original proxy file disposition"
+  ],
+  "unresolved_before_final_deletion": [
+    "Fresh bounded entry/identity inventory and exact allowlisted deletion manifest",
+    "Host origin/gateway PID ownership and credential-retirement proof; no stale PID kills",
+    "Unknown files/subdirectories or generated cache paths must remain protected; no unbounded discovery",
+    "Explicit original proxy disposition and NEW at-most-one restart allowance plus fresh saved/closed confirmation"
+  ]
+}

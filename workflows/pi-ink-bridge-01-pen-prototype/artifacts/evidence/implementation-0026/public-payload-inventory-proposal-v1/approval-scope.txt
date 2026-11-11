@@ -1,0 +1,33 @@
+NOT APPROVED. NEW separate HOST-ONLY read-only public-payload inventory candidate.
+This is a new explicit0755 permission boundary, NOT chmod, a0700 guard bypass, or an old preflight/recovery retry. NO actual protected-root read has occurred during preparation.
+
+EXACT ONCE-ONLY COMMAND AFTER NEW DURABLE OWNER CONSENT
+PI_INK_PUBLIC_PAYLOAD_INVENTORY_APPROVED=public-payload-0026-v1 sh /tmp/pi-ink-public-payload-inventory-0026-v1/host.sh inventory-public-payload
+Record only this approved env flag, argv/timestamps/exit/stdout/stderr; never inherited secrets. Parent may batch this new read-only permission with generic stock-library readiness observation. That observation is NOT permission to open documents or run tablet commands.
+
+ONLY ALLOWED HOST ROOT
+/tmp/pi-ink-ui-validation-0023/payload
+Require no-follow directory parent chain owned root/current uid, and exact previously observed root device55/inode24900/uid1000/gid1000/mode0755. Main requires real/effective uid1000. Never repair a mismatch, chmod/chown, follow a symlink, traverse an unknown directory, or accept a replacement root. Root metadata and four known public leaf metadata/digests ONLY. This preserves current config; no tablet/network/USB query or process action exists.
+
+ONLY FOUR PUBLIC LEAF NAMES / EXPECTED IMMUTABLE PINS
+owner.txt SHA256 a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d actual-read cap 4096 bytes (cap+1 oversize probe, refuse before hashing).
+PiInkToolbar.qml SHA256 c09f7f617760b4dc839787d228a2ab2bf12ba26f1f52a6ec910124072b8db869 actual-read cap 65536 bytes (cap+1 oversize probe, refuse before hashing).
+pi-ink-bridge.qmd SHA256 0dc1dad15002559d943f63fb73298aca68c570a9f46cefe38bb42c5798e8edc0 actual-read cap 65536 bytes (cap+1 oversize probe, refuse before hashing).
+payload-sha256.txt SHA256 9ce7ecaa8bd9607e938ea75ea7cae957728e6592a7d2bdb4b329f06e0939a57c actual-read cap 4096 bytes (cap+1 oversize probe, refuse before hashing).
+Read owner.txt FIRST; marker hash must match before direct-entry enumeration or other leaf reads. For every leaf require no-follow owned regular uid/gid1000 fd/path identity, bounded actual cap+1 read, stable full metadata/parent identities; recheck successful leaf stamps and root before final marker. Expected hashes come ONLY from preserved ui-validation-plan-0023/sha256-index.json, not new reads of protected payload. No file/config/key/token/state/document contents printed. No key/config/state leaf name is authorized.
+
+BOUNDS / UNKNOWN POLICY
+One direct-level iterator only: accept at most16entries and1024summed basename bytes; detect the first overflow entry and abort without expansion. Never recurse. Unknown entry names emit SHA256 of basename bytes ONLY, with PRESERVED_UNOPENED status; no unknown lstat/open/hash/read/type discovery. Four leaf actual reads together are bounded by139268bytes including four oversize probes; no unknown child content is read. Missing/unsafe/symlink/nonregular/mismatched known leaves are preserved and reported, never amended or deleted. Owner-marker, parent/root consistency or entry-bound failure aborts collection. A collection exit0 does NOT mean four public pins matched or cleanup complete: require explicit final counts/booleans; any unknown/refusal/mismatch remains a cleanup gate. No retries after abort or timeout.
+
+HOST READ PRIMITIVE / DEADLINE
+Reuse the reviewed bounded-read-fragment.py byte-identically inline (SHA2561ee14ba4ec8c007cc99168e8d30e79bd3a89a32e6889d2acaa1700c4fd1b16ff). It opens no-follow directory/file fds, verifies owned regular fd identity, reads at most cap+1 bytes and refuses growth/replacement; no lstat-then-unbounded read_bytes. Wrapper pins script hash and rejects old scope flags, wrong actions/args and missing new consent. Python -I -B avoids import-path injection/bytecode writes. Host deadline45s, no target call or target timeout assumption. No full builds/browser/source tests. Host fixtures use ONLY newly created disposable directories, never production ROOT.
+
+EXCLUSIONS / LATER CLEANUP
+No writes/chmod/chown/unlink/rmdir, process discovery/signals/stops, device calls, restart, previous preflight/recovery/postcheck retry, old activation, settings/cache/boot/account/cloud change, general logs, screenshots, private/synthetic notebook or durable-output access. Preserve original returned proxy/hash/stat and current service config/other extension files, SOURCE/evidence/history, opaque state/temps and unknown files. This inventory may supply exact facts for a LATER separately approved per-file ownership/hash deletion manifest; it does NOT authorize any deletion. Until actual consent/run/output, root remains UNEXAMINED/PRESERVED and full cleanup blocked. Successful four-pin inventory alone is not global credential cleanup or production acceptance. ONE NEW restart allowance already SPENT; historical totalUNKNOWN. Keep result0026/session OPEN.
+
+OFFLINE CANDIDATE AUDIT
+candidate-pins-audit.json derives ONLY actual StageA/StageC/host digest pins and retained setup provenance. No invented paths or live reads. It identifies two currently unpinned private device config copies; this host-only inventory does NOT authorize reading them. Every deletion remains a separate exact reviewed scope.
+
+FROZEN EXECUTABLES
+inventory.py SHA256 e7e6f0ceaa706397da54bfcec67626978011ff9e608726e72028a0217c685e01
+host.sh SHA256 60530df3a85417829168194ecc619cf4ca0e245dfe1f3d49ee0dbb3bd4134ac2

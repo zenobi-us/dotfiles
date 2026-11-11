@@ -1,0 +1,29 @@
+{
+  "schema": "pi-ink-raw-operation/v1",
+  "approval_ref": "approval-final-identity-reads-v1.json",
+  "approval_sha256": "940bb4ef9c967c92cc3e642b8cc41b6f8614b6d0fb994846ec5256af56b96f05",
+  "action": "two-config-digests",
+  "argv": [
+    "sh",
+    "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+    "two-config-digests"
+  ],
+  "approved_env_only": {
+    "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+    "PI_INK_CONFIG_DIGEST_APPROVED": "two-configs-0026-v1"
+  },
+  "host_deadline_seconds": 45,
+  "started_at": "2026-11-04T08:25:11.975120+00:00",
+  "finished_at": "2026-11-04T08:25:12.286938+00:00",
+  "exit_code": 1,
+  "host_timeout": false,
+  "stdout": "/tmp/pi-ink-two-config-digests-0026-v1/digest.sh: OK\nEXACT_USB_GUARD_PASSED_NEW_PRESERVE_CURRENT_SCOPE\nABORT_FIXED_LEAF_OWNER_OR_MODE_REFUSED\n",
+  "stderr": "",
+  "output_inspection": {
+    "credential_pattern_hits": 0,
+    "only_fixed_path_metadata_actual_hashes_or_constant_refusal": true
+  },
+  "retry_fallback_or_amendment_performed": false,
+  "deletion_process_or_restart_authorized": false,
+  "result0026": "OPEN_NOT_FINALIZED"
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "pi-ink-evidence-sha256/v1",
+  "recorded_at": "2026-11-04T08:45:05.678791+00:00",
+  "status": "NOT_APPROVED_NEW_TWO_CONFIG_V2_CANDIDATE",
+  "scope_sha256": "c94fbd788c53b7009891449744f07e837532aefaceeef1b35e5a6075dfc9c559",
+  "target_sha256": "287ad1c97012ba9ee695d32b47d498e3e288df2f18852c9a19f67f96cc54abbc",
+  "wrapper_sha256": "6b7f33ee93ff79872a8fce2d6c4b6be9803a30e0b2fe96ba063cd0675a2c02f3",
+  "files": [
+    {
+      "path": "digest.sh",
+      "sha256": "287ad1c97012ba9ee695d32b47d498e3e288df2f18852c9a19f67f96cc54abbc"
+    },
+    {
+      "path": "host.sh",
+      "sha256": "6b7f33ee93ff79872a8fce2d6c4b6be9803a30e0b2fe96ba063cd0675a2c02f3"
+    },
+    {
+      "path": "host-only-validation.json",
+      "sha256": "3f3b8795913792b6d68fb1aa9a6359bca0fc09568d03cec2fd4378af9a29b155"
+    },
+    {
+      "path": "provenance-and-manifest-facts.json",
+      "sha256": "26009adca6841294ba99a652a727da4d3535d8ad1301f15fad8c9ce947872f25"
+    },
+    {
+      "path": "approval-scope.txt",
+      "sha256": "c94fbd788c53b7009891449744f07e837532aefaceeef1b35e5a6075dfc9c559"
+    }
+  ],
+  "v1_preserved": true,
+  "immutable_correction": {
+    "ref": "../two-config-digests-v1-interpretation-correction.json",
+    "sha256": "f84e755e31c69f722d21c92b1b75b47a0f10fa6e507f5c2c1be5a67ce59391da"
+  },
+  "mode_policy": "Exact stage PUBLIC marker0644, backup PUBLIC marker0600, BOTH PRIVATE configs0600; uid/gid0 and known marker SHA unchanged.",
+  "diagnostic_output_delta": "Fixed per-leaf/role progress + PUBLIC marker metadata before mode gate + native dd/sha stderr retained, no values.",
+  "host_only_mode_checks": 16,
+  "actual_negative_consent_checks": 20,
+  "positive_guard_prefix_only": 1,
+  "syntax_scripts": 2,
+  "target_or_protected_host_calls": 0,
+  "current_private_config_sha256": "UNKNOWN",
+  "DD_pipefail_capabilities": "UNPROVED_NO_CALLS",
+  "deletion_restart_or_final_result_authority": false,
+  "result0026": "OPEN_NOT_FINALIZED"
+}

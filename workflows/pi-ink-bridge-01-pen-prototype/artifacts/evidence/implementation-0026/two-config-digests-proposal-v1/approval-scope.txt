@@ -1,0 +1,35 @@
+NOT APPROVED. NEW SEPARATE READ-ONLY TWO-DEVICE-CONFIG DIGEST SCOPE.
+No current private digest is inferred from a historical source or same-looking filename. New exact owner permission is required before either config read; parent may batch this independent permission with host public-payload permission and generic stock-library observation. No observation or other-scope token authorizes this action.
+
+EXACT ONCE-ONLY COMMAND AFTER NEW DURABLE CONSENT
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_CONFIG_DIGEST_APPROVED=two-configs-0026-v1 sh /tmp/pi-ink-two-config-digests-0026-v1/host.sh two-config-digests
+Capture actual argv, ONLY these approved env flags, timestamps/exit/stdout/stderr. Clear stale other-scope flags; do not record inherited secrets. Exclusive owner-as-operator handoff must remain in force. No retry or guard repair after abort/timeout.
+
+ONLY PRIVATE CONTENT READS (SHA256 INPUT, NEVER VALUES)
+/home/root/pi-ink-sidebar-stage-0020/config.json
+/home/root/pi-ink-sidebar-backup-0020/config.json
+Require non-symlink regular uid0/gid0/mode600 files, size<=65536, same full metadata before/after. No JSON parsing, config values, endpoints, token/key/CA/state contents or excerpts output. Emit only these FIXED paths, metadata and actual SHA256. Values/digests are not yet known. A future exact deletion manifest must use observed facts and fresh identity/hash guards, never this proposal as deletion authority.
+
+ONLY PUBLIC OWNERSHIP READS / PARENT METADATA EXCEPTION
+/home/root/pi-ink-sidebar-stage-0020/owner.txt
+/home/root/pi-ink-sidebar-backup-0020/owner.txt
+Both known root markers must match SHA256 a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d before EITHER private read. Marker provenance: actual successful postinventory-return-original-v3.json public marker hashes; no new marker read during preparation. Markers require no-link regular uid0/gid0/mode600/<=4096. Exact roots require known0700 uid0/gid0 directories; only fixed ancestor metadata for /, /home, /home/root and those two roots. No listings/traversal/unknown-link dereference or other target file reads. Root/marker stamps checked again without content rereads; unknown/missing/changed/unsafe ownership remains protected and aborts.
+
+BOUNDED NO-FOLLOW HASHING / EXPLICIT CAPABILITY RISK
+Use dd with nofollow,nonblock,fullblock, one block cap+1 (65537 per config,4097 per public marker), piped directly to sha256sum under REQUIRED shell pipefail. No temporary/copy file, config parsing or config bytes in shell variables. Require stable pre/post stat stamp (type/mode/uid/gid/size/device/inode/mtime/ctime); no digest emitted for a failed read or changed leaf. Leaf opening is no-follow; fixed root-owned parent checks occur before/after, not a claim of an atomic directory-fd snapshot. Exclusive handoff and inactive-copy context remain required; no lock acquisition/history writes.
+Target shell pipefail and dd nofollow/nonblock/fullblock/status=none support are NOT yet established. Unsupported capability/read/hash failure ABORTS, with constant refusal reason and NO digest claim; do NOT replace flags, fall back to unbounded sha256sum, install utilities, retry or repair. Only host syntax/consent-refusal checks were authorized during preparation; no target capability probe was performed. This is an explicit safe-failure prerequisite, not a guarantee the target utilities support it.
+
+OUTPUT / FAILURE
+Only fixed config-path metadata, actual64hex SHA256 and final TWO_FIXED_CONFIG_DIGESTS_COMPLETE_NO_DELETION_AUTHORITY marker; constant ABORT reason on refusal. Earlier partial facts remain partial if the later root/read fails. Host45s deadline and wrapper timeout45 SSH; timeout is NOT target shutdown or permission to repeat. No subsequent device command is authorized by this one-shot result.
+
+UNCHANGED EXACT TRANSPORT
+Direct USB10.11.99.1/source10.11.99.10/enp2s0f0u4c2; physical /sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0. Strict host keys/BatchMode/ConnectTimeout8; no mux/proxy/jump/fallback/wireless or host network changes. Only this frozen wrapper may use SSH, never extra SSH/SCP.
+
+ABSOLUTE EXCLUSIONS
+NO service/activation/process metadata or argv/environment reads, signals/stops/restart, network/listener/log reads on tablet, general discovery, notebook/private/synthetic document reads, state reset, config/key/CA value output, copies/moves/unlinks/rmdir/chmod/chown, lock/history writes, settings/cache/boot/account/cloud change or source edits. Preserve current service config/other extension FILES, exact returned original proxy/hash/stat, SOURCE/evidence/history/durable outputs and opaque state/temp records. Host protected0755 public payload is a DIFFERENT separately consented scope and is NOT accessed here. No recovery/postcheck/preflight retry. ONE NEW restart allowance already SPENT; historical totalUNKNOWN.
+
+Deletion remains entirely separate. Neither tiny evidence proposal is approved yet. Protected host root remains UNEXAMINED/PRESERVED until its own explicit consent/run. Full cleanup and production acceptance are not claimed. Keep result0026/session OPEN.
+
+FROZEN FILES
+digest.sh SHA256 5fe65f87690f2c918b346ef792a7b7cdbe9e52a090de842592edd43be8d77c4c
+host.sh SHA256 176406c84ff17dc08f187ab1c98083dee0d1d1d062d4cdf79c7fee048ca52710

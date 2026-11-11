@@ -1,0 +1,559 @@
+{
+  "schema": "pi-ink-current-inventory-outcome/v1",
+  "recorded_at": "2026-11-04T04:10:07.243759+00:00",
+  "raw_result_ref": "current-inventory.json",
+  "approval_ref": "approval-current-inventory-with-handoff.json",
+  "status": "approved_read_only_inventory_completed_no_mutation",
+  "observed_runtime": {
+    "xochitl": {
+      "active": true,
+      "pid": 112810,
+      "job": "IDLE",
+      "pid_stable": true,
+      "known_command_match": true,
+      "old_activation_dropin_environment_match": false,
+      "known_old_preload_root_tokens": "NOT_CONFIRMED"
+    },
+    "actual_known_module_maps": {
+      "xovi": true,
+      "owned_adapter": true,
+      "original_proxy": false,
+      "resource_rebuilder": true,
+      "appload": true,
+      "scan_complete": true
+    },
+    "owned_sidebar": {
+      "unit": "pi-ink-bridge-sidebar-0020.service",
+      "load": "loaded",
+      "active": true,
+      "transient": true,
+      "pid": 106748,
+      "known_single_command_match": true,
+      "known_executable_link_match": true,
+      "pid_stable": true,
+      "binary_hash": "NOT_READ; fixed asset exceeded size cap"
+    },
+    "other_owned_client_unit": "not-found",
+    "relevant_listeners": [
+      {
+        "family": "tcp",
+        "port": 81,
+        "binding": "ipv4_loopback",
+        "candidate_owner_match": "xochitl112810 withinfd0..511"
+      },
+      {
+        "family": "tcp",
+        "port": 9821,
+        "binding": "ipv4_loopback",
+        "candidate_owner_match": "sidebar106748 withinfd0..511"
+      }
+    ],
+    "relevant_tcp_and_tcp6_scan_complete": true,
+    "port80_listener_observed": false,
+    "candidate_negative_matches": "NOT_FOUND_WITHIN_BOUND; not exhaustive absence proof",
+    "actor": {
+      "phase": "rollback",
+      "known_manifest": "9ce7ecaa8bd9607e938ea75ea7cae957728e6592a7d2bdb4b329f06e0939a57c",
+      "pid": 125204,
+      "presence": "ABSENT_INACCESSIBLE_OR_UNSAFE"
+    }
+  },
+  "fixed_inventory_records": [
+    {
+      "path": "/home/root/pi-ink-bridge-0020",
+      "observations": [
+        "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793676327",
+        "ROOT_OWNER_MARKER_KNOWN_MATCH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/adapter.so",
+      "observations": [
+        "TYPE=regular file MODE=755 UID=0 GID=0 SIZE=504280 MTIME=1793658648",
+        "PUBLIC_ARTIFACT_SHA256=aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/config.json",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=924 MTIME=1793671283",
+        "SENSITIVE_OR_OPAQUE_METADATA_ONLY_NO_HASH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/config.json.0020-next",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/owner.txt",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+        "PUBLIC_ARTIFACT_SHA256=a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/payload-sha256.txt",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793675614",
+        "PUBLIC_ARTIFACT_SHA256=261f3409cc7315a86710b72308de30396eee651870d0c145dd800c786c1d8a72",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/payload-sha256.txt.0020-next",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/payload-sha256.txt.0020-repair-next",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/payload-sha256.txt.0023-ui-next",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=7321 MTIME=1793671283",
+        "PUBLIC_ARTIFACT_SHA256=09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd.0020-next",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd.0023-ui-next",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/pi-ink-tablet",
+      "observations": [
+        "TYPE=regular file MODE=755 UID=0 GID=0 SIZE=9324489 MTIME=1793671283",
+        "HASH_BOUND_REACHED_PRESERVE_NO_READ"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/pi-ink-tablet.0020-next",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/state.json",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=212 MTIME=1793676327",
+        "SENSITIVE_OR_OPAQUE_METADATA_ONLY_NO_HASH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/tablet-qml",
+      "observations": [
+        "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793675614",
+        "DIRECTORY_METADATA_ONLY_NO_LISTING"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=20154 MTIME=1793675614",
+        "PUBLIC_ARTIFACT_SHA256=8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml.0020-next",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml.0020-repair-next",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml.0023-ui-next",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/trust",
+      "observations": [
+        "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793658647",
+        "SENSITIVE_OR_OPAQUE_METADATA_ONLY_NO_HASH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/trust/server-a.pem",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=1184 MTIME=1793658647",
+        "SENSITIVE_OR_OPAQUE_METADATA_ONLY_NO_HASH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/trust/server-b.pem",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=1184 MTIME=1793658647",
+        "SENSITIVE_OR_OPAQUE_METADATA_ONLY_NO_HASH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-retained-0020",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-webserver-remote-backup-0020",
+      "observations": [
+        "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793658681",
+        "ROOT_OWNER_MARKER_KNOWN_MATCH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-webserver-remote-backup-0020/owner.txt",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658645",
+        "PUBLIC_ARTIFACT_SHA256=a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=8453696 MTIME=1793049401",
+        "PUBLIC_ARTIFACT_SHA256=24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-rollback-owned-0020",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020",
+      "observations": [
+        "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793669022",
+        "ROOT_OWNER_MARKER_KNOWN_MATCH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/adapter.so",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=504280 MTIME=1793669021",
+        "PUBLIC_ARTIFACT_SHA256=aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/config.json",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=924 MTIME=1793669020",
+        "SENSITIVE_OR_OPAQUE_METADATA_ONLY_NO_HASH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/owner.txt",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=88 MTIME=1793669022",
+        "PUBLIC_ARTIFACT_SHA256=a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/payload-sha256.txt",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793669022",
+        "PUBLIC_ARTIFACT_SHA256=d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/pi-ink-bridge.qmd",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=7321 MTIME=1793669021",
+        "PUBLIC_ARTIFACT_SHA256=09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/pi-ink-tablet",
+      "observations": [
+        "TYPE=regular file MODE=755 UID=0 GID=0 SIZE=9324489 MTIME=1793669019",
+        "HASH_BOUND_REACHED_PRESERVE_NO_READ"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/tablet-qml",
+      "observations": [
+        "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793669021",
+        "DIRECTORY_METADATA_ONLY_NO_LISTING"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/tablet-qml/PiInkToolbar.qml",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=19697 MTIME=1793669021",
+        "PUBLIC_ARTIFACT_SHA256=e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/trust",
+      "observations": [
+        "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793669020",
+        "SENSITIVE_OR_OPAQUE_METADATA_ONLY_NO_HASH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/trust/server-a.pem",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=1184 MTIME=1793669020",
+        "SENSITIVE_OR_OPAQUE_METADATA_ONLY_NO_HASH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/trust/server-b.pem",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=1184 MTIME=1793669020",
+        "SENSITIVE_OR_OPAQUE_METADATA_ONLY_NO_HASH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020",
+      "observations": [
+        "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793671283",
+        "ROOT_OWNER_MARKER_KNOWN_MATCH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/config.json",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=851 MTIME=1793658646",
+        "SENSITIVE_OR_OPAQUE_METADATA_ONLY_NO_HASH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/live-pi-ink-bridge.qmd",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=1878 MTIME=1793658681",
+        "PUBLIC_ARTIFACT_SHA256=c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/owner.txt",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+        "PUBLIC_ARTIFACT_SHA256=a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/payload-sha256.txt",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793658648",
+        "PUBLIC_ARTIFACT_SHA256=27645009e37fec8270d7d2e7541d4b1ae2a4da4378736d0b6a0277c39a354278",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/pi-ink-bridge.qmd",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=1878 MTIME=1793658648",
+        "PUBLIC_ARTIFACT_SHA256=c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/pi-ink-tablet",
+      "observations": [
+        "TYPE=regular file MODE=700 UID=0 GID=0 SIZE=9323806 MTIME=1793658646",
+        "HASH_BOUND_REACHED_PRESERVE_NO_READ"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/tablet-qml",
+      "observations": [
+        "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793671283",
+        "DIRECTORY_METADATA_ONLY_NO_LISTING"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/tablet-qml/PiInkToolbar.qml",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=15661 MTIME=1793658647",
+        "PUBLIC_ARTIFACT_SHA256=57416f0b80a3a100c6dc7ee2162647b2c866588a85cf46ef09106bbf1354595f",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-stage-0020",
+      "observations": [
+        "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793675604",
+        "ROOT_OWNER_MARKER_KNOWN_MATCH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-stage-0020/PiInkToolbar.qml",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=20154 MTIME=1793675603",
+        "PUBLIC_ARTIFACT_SHA256=8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-stage-0020/owner.txt",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793675604",
+        "PUBLIC_ARTIFACT_SHA256=a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-stage-0020/payload-sha256.txt",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793675603",
+        "PUBLIC_ARTIFACT_SHA256=261f3409cc7315a86710b72308de30396eee651870d0c145dd800c786c1d8a72",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-backup-0020",
+      "observations": [
+        "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793675614",
+        "ROOT_OWNER_MARKER_KNOWN_MATCH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-backup-0020/PiInkToolbar.qml",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=19697 MTIME=1793671283",
+        "PUBLIC_ARTIFACT_SHA256=e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-backup-0020/owner.txt",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+        "PUBLIC_ARTIFACT_SHA256=a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-backup-0020/payload-sha256.txt",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793671283",
+        "PUBLIC_ARTIFACT_SHA256=d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-ui-stage-0023",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-ui-backup-0023",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-operation-history-0020",
+      "observations": [
+        "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793685385",
+        "ROOT_OWNER_MARKER_KNOWN_MATCH"
+      ]
+    },
+    {
+      "path": "/home/root/pi-ink-operation-history-0020/owner.txt",
+      "observations": [
+        "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793675614",
+        "PUBLIC_ARTIFACT_SHA256=a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/xovi/extensions.d/webserver-remote.so",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/xovi/extensions.d/pi-ink-loopback-0020.so",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=504280 MTIME=1793658681",
+        "PUBLIC_ARTIFACT_SHA256=aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd",
+      "observations": [
+        "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=7321 MTIME=1793671283",
+        "PUBLIC_ARTIFACT_SHA256=09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9",
+        "KNOWN_PUBLIC_BYTES=MATCH_NO_REMOVAL_AUTHORITY"
+      ]
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0020-next",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd.0023-ui-next",
+      "observations": [
+        "ARTIFACT_MISSING_OR_INACCESSIBLE"
+      ]
+    }
+  ],
+  "fixed_records_observed": 66,
+  "fixed_records_possible_with_present_roots": 102,
+  "hash_budget_counter": 38064313,
+  "hash_budget_counter_limit": "Counter charges even files skipped by individual-size guard; not a claim that all counter bytes were read.",
+  "oversize_unhashed_files": [
+    "/home/root/pi-ink-bridge-0020/pi-ink-tablet",
+    "/home/root/pi-ink-sidebar-stage-0020/pi-ink-tablet",
+    "/home/root/pi-ink-sidebar-backup-0020/pi-ink-tablet"
+  ],
+  "original_proxy_disposition": "Known original file remains quarantined with exact prior hash and mode644 uid0 gid0 size8453696 mtime1793049401. Active file path MISSING_OR_INACCESSIBLE; original module not observed mapped.",
+  "limits": [
+    "Current service definition comparisons differ from old activation, while actual running Xochitl still maps XOVI and owned adapter; do not infer runtime unloaded from effective service Environment.",
+    "Fixed inventory is nonrecursive: unknown siblings and operation-history PID subtrees preserved and uninventoried.",
+    "Config/token/CA/state contents and hashes not read.",
+    "Three Go executable hashes skipped by9MB per-file limit; link/size metadata does not prove current binary digest.",
+    "No UI, document, synthetic notebook, drawing, Send, screenshot, cleanup or restoration action.",
+    "This child issued zero restart commands; total historical count remains UNKNOWN after owner intervening work."
+  ],
+  "safe_next_prerequisite": "Freeze and obtain separate exact preserve-current recovery/cleanup approval, including explicit original-proxy file disposition, treatment of mapped owned adapter/activeclient, fresh mutation-specific identity/ownership guards and any additional bounded evidence needed for oversized binaries/uninventoried paths. Inventory alone authorizes no mutation.",
+  "parent_notified": true,
+  "result0026_open": true,
+  "source_changed": false,
+  "cleanup_complete": false,
+  "restoration_complete": false,
+  "production_blocked": true
+}

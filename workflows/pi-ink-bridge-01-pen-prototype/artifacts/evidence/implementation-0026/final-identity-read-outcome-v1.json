@@ -1,0 +1,140 @@
+{
+  "schema": "pi-ink-final-identity-read-outcome/v1",
+  "recorded_at": "2026-11-04T08:30:32.495174+00:00",
+  "approval_ref": "approval-final-identity-reads-v1.json",
+  "owner_stock_surface_observation": {
+    "ref": "owner-stock-library-ready-after-recovery.json",
+    "verbatim": "Yes, library and sidebar are normal",
+    "classification": "OWNER_OBSERVATION_NOT_AGENT_UI_OR_LATEST_PI_INK_ACCEPTANCE"
+  },
+  "host_public_payload": {
+    "raw_ref": "public-payload-inventory-v1.json",
+    "sha256": "f776bf6afe5756098e475646b59b6bbd14a49a51c5702d9240d396eb830fec86",
+    "exit_code": 0,
+    "host_timeout": false,
+    "entry_rows": 4,
+    "entry_name_bytes": 60,
+    "known_public_pin_matches": 4,
+    "unknown_children": 0,
+    "refused_or_mismatched_known_leaves": 0,
+    "root_status_now": "EXAMINED_FOUR_KNOWN_PUBLIC_LEAVES_MATCHED_RETAINED_NOT_DELETED",
+    "actual_root_and_leaf_metadata_digest_rows": [
+      {
+        "ctime_ns": 1793681398634259480,
+        "device": 55,
+        "gid": 1000,
+        "inode": 24900,
+        "mode": "0o755",
+        "mtime_ns": 1793681398634259480,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload",
+        "size": 120,
+        "status": "FIXED0755_ROOT_METADATA",
+        "uid": 1000
+      },
+      {
+        "ctime_ns": 1793681398634259480,
+        "device": 55,
+        "gid": 1000,
+        "inode": 24904,
+        "known_public_pin_match": true,
+        "mode": "0o644",
+        "mtime_ns": 1793681398634259480,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload/owner.txt",
+        "sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+        "size": 88,
+        "status": "KNOWN_PUBLIC_LEAF_METADATA_DIGEST",
+        "uid": 1000
+      },
+      {
+        "ctime_ns": 1793681398629259507,
+        "device": 55,
+        "gid": 1000,
+        "inode": 24901,
+        "known_public_pin_match": true,
+        "mode": "0o644",
+        "mtime_ns": 1793681398629259507,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload/PiInkToolbar.qml",
+        "sha256": "c09f7f617760b4dc839787d228a2ab2bf12ba26f1f52a6ec910124072b8db869",
+        "size": 20150,
+        "status": "KNOWN_PUBLIC_LEAF_METADATA_DIGEST",
+        "uid": 1000
+      },
+      {
+        "ctime_ns": 1793681398631259496,
+        "device": 55,
+        "gid": 1000,
+        "inode": 24902,
+        "known_public_pin_match": true,
+        "mode": "0o644",
+        "mtime_ns": 1793681398631259496,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload/pi-ink-bridge.qmd",
+        "sha256": "0dc1dad15002559d943f63fb73298aca68c570a9f46cefe38bb42c5798e8edc0",
+        "size": 8298,
+        "status": "KNOWN_PUBLIC_LEAF_METADATA_DIGEST",
+        "uid": 1000
+      },
+      {
+        "ctime_ns": 1793681398632259491,
+        "device": 55,
+        "gid": 1000,
+        "inode": 24903,
+        "known_public_pin_match": true,
+        "mode": "0o644",
+        "mtime_ns": 1793681398632259491,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload/payload-sha256.txt",
+        "sha256": "9ce7ecaa8bd9607e938ea75ea7cae957728e6592a7d2bdb4b329f06e0939a57c",
+        "size": 659,
+        "status": "KNOWN_PUBLIC_LEAF_METADATA_DIGEST",
+        "uid": 1000
+      }
+    ],
+    "global_secret_free_or_cleanup_claim": false
+  },
+  "device_two_configs": {
+    "raw_ref": "two-config-digests-v1.json",
+    "sha256": "1324af9f68eeba3d3b3f94cd68bd3e592a32029bc2afae4631446071404d8c46",
+    "exit_code": 1,
+    "host_timeout": false,
+    "stderr": "",
+    "literal_refusal": "ABORT_FIXED_LEAF_OWNER_OR_MODE_REFUSED",
+    "current_digest_rows_obtained": 0,
+    "current_config_digests": {
+      "/home/root/pi-ink-sidebar-stage-0020/config.json": null,
+      "/home/root/pi-ink-sidebar-backup-0020/config.json": null
+    },
+    "exact_refused_leaf": "UNPROVED_REUSED_GUARD_NO_PER_CALL_PROGRESS_OUTPUT",
+    "current_rejected_uid_gid_mode": "NOT_EMITTED_UNPROVED",
+    "public_marker_DD_or_SHA_reads_reached": "UNPROVED_DO_NOT_CLAIM_ZERO",
+    "DD_capability_result": "UNPROVED_NO_CAPABILITY_REFUSAL_EMITTED",
+    "prior_public_marker_facts": [
+      {
+        "path": "/home/root/pi-ink-sidebar-stage-0020/owner.txt",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=88 MTIME=1793669022",
+        "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+        "source_ref": "postinventory-return-original-v3.json",
+        "current_rejected_metadata_not_observed": true
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-backup-0020/owner.txt",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+        "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+        "source_ref": "postinventory-return-original-v3.json",
+        "current_rejected_metadata_not_observed": true
+      }
+    ],
+    "prospective_v1_guard_discrepancy": "v1 hash_guarded required uid0/gid0/mode600 for BOTH public markers, although actual retained StageC stage marker was0644. This was an unnecessary prospective assumption; not a reason to change the file or bypass the approved guard.",
+    "first_stage_marker_failure_hypothesis": "INFERENCE_ONLY supported by prior0644 metadata, not identified by actual refusal output.",
+    "parent_boundary_correction": "Initial parent message overstated first-marker/pre-DD location. Immediately corrected: reused guard makes exact leaf/current metadata and public-marker read boundary unproved. Raw output is authoritative.",
+    "retry_fallback_amendment_or_target_probe": false
+  },
+  "remaining_exact_prerequisite": "NEW reviewed evidence scope/owner permission needed to resolve marker-policy discrepancy using actual per-leaf provenance and obtain two real current config hashes. Do not chmod, guess hashes, amend/retry old script or infer unsupported tools/missing files.",
+  "final_complete_deletion_program_reachable": false,
+  "reason": "Two required private device-copy hashes remain unknown; do not silently omit them or claim cleanup complete. All reachable actual public/other-known identity facts are retained separately.",
+  "deletion_or_restart_authority": false,
+  "restart_allowance_remaining": 0,
+  "historical_restart_total": "UNKNOWN",
+  "latest_ui_deployed": false,
+  "production_acceptance": "BLOCKED",
+  "result0026": "OPEN_NOT_FINALIZED",
+  "parent_files_untouched_unstaged": true
+}

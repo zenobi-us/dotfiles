@@ -1,0 +1,20 @@
+{
+  "schema": "pi-ink-device-preflight-approval/v1",
+  "proposal": "device-preflight-0053.json",
+  "selection": "Approve corrected preflight",
+  "approval_source": "Explicit user selection through the Corrected preflight questionnaire",
+  "target": "root@10.11.99.1",
+  "script": "device-preflight-0053.sh",
+  "script_sha256": "c7a89fea04d54d3d01acf9a531bc45e5325385a4ef5817ee30e7506db9c07e93",
+  "scope": "One new corrected read-only cable-connected SSH attempt. Check product IMG_VERSION, the same four approved file hashes and metadata for the same eight target paths. Stop on mismatches, collisions or failure.",
+  "excluded": [
+    "Uploads, writes, configuration contents, installation or activation",
+    "Documents, restarts, screenshots, process scans, process termination or cleanup"
+  ],
+  "installation_authorized": false,
+  "activation_authorized": false,
+  "restart_authorized": false,
+  "document_operations_authorized": false,
+  "cleanup_authorized": false,
+  "previous_attempt_retried": false
+}

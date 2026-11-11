@@ -1,0 +1,49 @@
+direction: down
+label: "Pi Ink Bridge — systems, devices, and identity relationships\nRevised target design · not an end-to-end acceptance claim"
+style.font-size: 22
+
+host: "Desktop / server host\nOne host per paired server; same host shown for Pi/OMP" {
+  direction: down
+  agent: "Pi / OMP\nOriginating tool request"
+  server: "Pi Ink server\nPairing · request/job state · authenticated transport"
+  convert: "Desktop PDF conversion\nAnnotated PDF → source-size PNG\nExplicit consent before clipping"
+  retained: "Retained full annotated PDF\nRecoverable artifact" {shape: cylinder}
+  agent -> server: "creates request + source"
+  server -> convert: "annotated PDF + source geometry"
+  convert -> retained: "preserves full export"
+  convert -> agent: "completes the originating request with PNG"
+}
+
+tablet: "reMarkable Paper Pro\nOnly tested firmware: 3.28.0.172" {
+  direction: down
+  client: "Pi Ink tablet client\nPairing · file receipt · associations · transport"
+  manager: "Global Pi Ink manager\nPaired servers · connection state\nFolder-to-server associations"
+  bindings: "Conceptual associations (not a database schema)" {
+    shape: sql_table
+    document_uuid: "stock document identity"
+    folder_id: "stock folder identity"
+    server_id: "stable paired-server identity"
+    job_id: "bound job identity"
+  }
+  stock: "Stock library + Xochitl editor\nNormal open · draw · save\nEditable annotations remain here"
+  toolbar: "Document Pi Ink popover\nCurrent document · bound server · status\nExplicit Send; save is not Send"
+  adapter: "Setup-installed XOVI loopback adapter\nStock import/export HTTP service\nCandidate verified in experiment: 127.0.0.1:81"
+  manager -> client: "manages pairing and folder associations"
+  client -> bindings: "persists and checks identities"
+  stock -> toolbar: "supplies current document UUID"
+  toolbar -> client: "Send bound document only"
+  client -> adapter: "local import / annotated PDF export"
+  adapter <-> stock: "uses stock document service"
+}
+
+browser_device: "Browser-capable device\nDesktop or another device" {
+  browser: "Existing browser editor\nIndependent annotation path\nRetained-PDF import exercised separately"
+}
+
+host.server <-> tablet.client: "Authenticated LAN\nWSS control/status + HTTPS content\nNo runtime USB or SSH"
+tablet.bindings -> host.server: "server_id + job_id resolve to originating request" {
+  style.stroke-dash: 4
+}
+browser_device.browser <-> host.server: "Browser request and result path"
+
+boundary: "Boundaries\nUSB-connected SSH: installation / repair only\nNo custom drawing engine on the tablet\nNo LAN exposure of arbitrary stock-library requests\nCancellation and document switching must reject stale Send"

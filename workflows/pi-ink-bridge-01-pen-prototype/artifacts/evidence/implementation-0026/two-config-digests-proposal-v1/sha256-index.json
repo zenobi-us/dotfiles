@@ -1,0 +1,48 @@
+{
+  "schema": "pi-ink-evidence-sha256/v1",
+  "recorded_at": "2026-11-04T08:12:03.925747+00:00",
+  "status": "NOT_APPROVED_SEPARATE_TWO_CONFIG_READ_ONLY_CANDIDATE",
+  "scope_sha256": "2166076ac860a3b6505c25b127940a060a23ca5a79126c1495b06318d9554831",
+  "target_sha256": "5fe65f87690f2c918b346ef792a7b7cdbe9e52a090de842592edd43be8d77c4c",
+  "wrapper_sha256": "176406c84ff17dc08f187ab1c98083dee0d1d1d062d4cdf79c7fee048ca52710",
+  "files": [
+    {
+      "path": "digest.sh",
+      "sha256": "5fe65f87690f2c918b346ef792a7b7cdbe9e52a090de842592edd43be8d77c4c"
+    },
+    {
+      "path": "host.sh",
+      "sha256": "176406c84ff17dc08f187ab1c98083dee0d1d1d062d4cdf79c7fee048ca52710"
+    },
+    {
+      "path": "approval-scope.txt",
+      "sha256": "2166076ac860a3b6505c25b127940a060a23ca5a79126c1495b06318d9554831"
+    },
+    {
+      "path": "host-only-validation.json",
+      "sha256": "f231936abc86d6cab28d6a728d92d8bb1798a1f13cd3119afed38a4e1509a4e3"
+    }
+  ],
+  "private_config_paths": [
+    "/home/root/pi-ink-sidebar-stage-0020/config.json",
+    "/home/root/pi-ink-sidebar-backup-0020/config.json"
+  ],
+  "current_config_digests": "UNKNOWN_UNREAD_NO_HISTORICAL_GUESSES",
+  "public_owner_marker_source": {
+    "ref": "../postinventory-return-original-v3.json",
+    "sha256": "b9926313fafee66706c9b4a69fcf74ea5fa48a6356f6c7b422c90ff17ce56084",
+    "fixed_owner_paths": [
+      "/home/root/pi-ink-sidebar-stage-0020/owner.txt",
+      "/home/root/pi-ink-sidebar-backup-0020/owner.txt"
+    ],
+    "known_owner_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d"
+  },
+  "new_owner_permission_required": true,
+  "separate_host_public_inventory_permission_not_implied": true,
+  "host_only_negative_refusals": 19,
+  "positive_guard_prefix_only": 1,
+  "target_capabilities": "UNPROVED_SAFE_ABORT_IF_UNSUPPORTED",
+  "target_or_protected_host_access_during_preparation": false,
+  "deletion_or_restart_authority": false,
+  "result0026": "OPEN_NOT_FINALIZED"
+}

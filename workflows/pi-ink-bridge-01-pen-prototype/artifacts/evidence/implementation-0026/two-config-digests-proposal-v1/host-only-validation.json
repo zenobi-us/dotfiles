@@ -1,0 +1,273 @@
+{
+  "status": "NOT_APPROVED_SEPARATE_TWO_CONFIG_DIGEST_CANDIDATE",
+  "recorded_at": "2026-11-04T08:11:47.268509+00:00",
+  "syntax_sh_n": [
+    "digest.sh",
+    "host.sh"
+  ],
+  "actual_negative_wrapper_refusals": [
+    {
+      "case": "missing handoff",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: exclusive operator handoff required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "missing NEW config digest consent",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact two-private-config digest approval required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "new token alone insufficient",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: exclusive operator handoff required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "wrong or other-scope token preserve-recovery-0026-v2",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact two-private-config digest approval required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "wrong or other-scope token stagebc-0026-v3",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact two-private-config digest approval required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "wrong or other-scope token public-payload-0026-v1",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact two-private-config digest approval required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "wrong or other-scope token wrong",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact two-private-config digest approval required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "reject stale flag PI_INK_RECOVERY_PREFLIGHT_APPROVED",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: other-scope approval flags forbidden\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "reject stale flag PI_INK_STAGE_BC_APPROVED",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: other-scope approval flags forbidden\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "reject stale flag PI_INK_EXACT_PLAN_APPROVED",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: other-scope approval flags forbidden\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "reject stale flag PI_INK_PUBLIC_PAYLOAD_INVENTORY_APPROVED",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: other-scope approval flags forbidden\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "reject wrong action inventory-public-payload",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "inventory-public-payload"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "reject wrong action preflight-device",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "preflight-device"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "reject wrong action preflight-host",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "preflight-host"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "reject wrong action recover-return-original",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "recover-return-original"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "reject wrong action verify-return-original",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "verify-return-original"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "reject wrong action postinventory-return-original",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "postinventory-return-original"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "reject wrong action cleanup",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "cleanup"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    },
+    {
+      "case": "reject extra argument",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v1/host.sh",
+        "two-config-digests",
+        "extra"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "target_transport_reached": false
+    }
+  ],
+  "positive_guard_prefix_only": {
+    "exit_code": 0,
+    "stdout": "HOST_ONLY_GUARD_PREFIX_PASSED_NO_USB_NO_TARGET\n",
+    "hash_route_USB_SSH_target_excluded": true
+  },
+  "target_script_executed": false,
+  "target_utilities_capability_proved": false,
+  "capability_safe_failure": "Target pipefail/dd nofollow,nonblock,fullblock/status=none support remains unproved; target must abort rather than relax flags if unsupported.",
+  "target_calls": 0,
+  "protected_host_root_accessed": false,
+  "config_current_hashes": "UNKNOWN_NO_GUESSES",
+  "owner_pin_source": {
+    "ref": "../postinventory-return-original-v3.json",
+    "sha256": "b9926313fafee66706c9b4a69fcf74ea5fa48a6356f6c7b422c90ff17ce56084",
+    "fixed_owner_paths": [
+      "/home/root/pi-ink-sidebar-stage-0020/owner.txt",
+      "/home/root/pi-ink-sidebar-backup-0020/owner.txt"
+    ],
+    "known_owner_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d"
+  },
+  "actual_historical_config_metadata": [
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/config.json",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=924 MTIME=1793669020",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/config.json",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=851 MTIME=1793658646",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+    }
+  ],
+  "deletion_process_restart_or_source_authority": false,
+  "result0026": "OPEN_NOT_FINALIZED"
+}

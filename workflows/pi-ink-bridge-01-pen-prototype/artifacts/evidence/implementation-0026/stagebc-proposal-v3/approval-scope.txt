@@ -1,0 +1,72 @@
+NOT APPROVED — NEW Stage B/C-only preserve-current recovery candidate v3.
+NO COMMAND AUTHORITY EXISTS UNTIL PARENT RELAYS DURABLE EXACT OWNER APPROVAL.
+
+Completed Stage A is NOT requested again. No preflight or host digest-reader action exists in this wrapper. Parent-owned parent-stage-a-v2-validation.json validates the completed v2 results and explicitly preserves the host protected-root boundary. Parent approval/validation files remain untouched and unstaged.
+Parent validation relative to implementation-0026: parent-stage-a-v2-validation.json SHA256 7ddfb74f64815660fef0c35042cf101fa4b5c0d9762f2178fdc2cfda5f9d0993
+Device raw preflight-device-v2.json SHA256 a8b57ad0797b1ffdf56035c7eda612131761bc887664b7c8fb01128fdf6c6e4a
+Host raw preflight-host-v2.json SHA256 1f9629dc824c6a557f9da43fe0995ac807704444562d94bee92d50df03c2a5f9
+
+PROTECTED HOST BOUNDARY
+Preserve /tmp/pi-ink-ui-validation-0023/payload and ALL its unexamined children unchanged. Reported0755 is a failed0700 mode guard, not proof of a different user. NO chmod, child read, hash, inventory or deletion of this root. Nothing in these device-only actions accesses it. Its contents are NOT established secret-free or cleaned. It remains a FULL FINAL CLEANUP BLOCKER. This explicit preservation policy does not relax ANY device guard.
+
+OWNER DECISIONS REQUIRED TOGETHER
+Choose exactly ONE branch: return-original OR keep-quarantined. Approve its exactly THREE matching once-only actions: recover, verify, postinventory. Give an explicit NEW allowance for AT MOST ONE further Xochitl restart under CURRENT configuration, and NEW confirmation that ALL documents are saved/closed and USB remains connected. Existing exclusive owner-as-operator handoff must still be in force; any intervening tablet work suspends the plan. Prior restart allowances are unusable; historical total is UNKNOWN. Tokens are accident guards, not consent.
+
+SEQUENCE / FAILURE BOUNDARY
+Run chosen recover ONCE only after the new durable approval/readiness. Capture actual argv/env/timestamps/exit/stdout/stderr. Only after observed exit0 and required recovery postproof may matching verify run ONCE. Only after verify exit0 may matching postinventory run ONCE. Do not mix branches or run the other triplet. ANY abort, failed postcondition, timeout or unknown/live actor stops ALL subsequent target commands. No retry, guessed PID amendment, guard repair, fallback or extra SSH. Host timeout is NOT target shutdown. Recovery emits target shell PID and a literal branch immediately before the first mutation, providing an ownership reference without writing any actor/lock/history record. Preserve partial output; no signals or duplicate work.
+
+EXACT DEVICE EFFECTS / UNCHANGED GUARDS
+All v2 target guards remain intact, including strict current-service hashes/drop-ins/vendor-only Environment, current Xochitl112810/owned client106748 identities, 10MiB known Go binary hashes, original proxy SHA/stat, terminal prior actor classification and protected parent/link/ownership checks. Stage A established current facts but does NOT permit ignoring any fresh guard failure.
+Stop ONLY exact owned pi-ink-bridge-sidebar-0020.service once and prove inactivity within the existing10s bound. Create only collision-guarded /home/root/pi-ink-rollback-owned-0020, copy the known owner marker, move exact owned active adapter and stored live QMD to adapter.so and pi-ink-bridge.qmd there. Moving mapped files does NOT unmap them. Preserve retained source/config/CA/token/state/stages/backups/history at this milestone.
+Return-original additionally moves ONLY exact original /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so to /home/root/xovi/extensions.d/webserver-remote.so, verifying SHA25624bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f and stat644 0 0 8453696 1793049401. Its pre-existing wildcard80 MAY return IF XOVI loads; this is NOT Pi paired authentication. Keep-quarantined leaves that exact backup untouched, verifies ownership/hash/stat and requires it not mapped; persistent owned-path deviation remains explicit.
+Preserve current service files/settings BYTE-FOR-BYTE. Never recreate00-xovi.conf or qt-resource-rebuilder.conf, restore old activation, daemon-reload, change boot/config/account/cloud/cache/settings, install packages or reboot. Other original extension FILES remain untouched. A restart under CURRENT configuration MAY change which original extensions load; existing runtime mapping is not a continuity guarantee. Do not assume runtime activation from service properties.
+Request exactly ONE systemctl --no-block restart xochitl; existing readiness bound20s plus2s settle and bounded actual map/client/listener postproof remain unchanged. A failure after request spends the allowance: no second request.
+The two matching read-only checks retain their v2 fixed paths, cap limits, parent/link/unknown-file guards, map/listener/service/actor checks and bounded nonrecursive entry allowlist. They read no notebook paths or config/token/key/state contents; no private data/log/general listings/screenshots/connections/process argv output. Unknown/unowned entries are PRESERVED and block cleanup. Postinventory success marker is emitted ONLY AFTER all required map/proxy assertions.
+
+NARROW CODE DELTA
+V1/v2 remain byte-for-byte. Recovery targets add only one stdout PID+literal-branch line before first mutation. Postinventory targets move only the final success marker after final assertions. Verify targets are byte-identical to v2. Host digest reader remains unchanged and is NOT copied into or executed by this Stage B/C wrapper. No app/source change, full build, browser or device test. New wrapper allows ONLY six literal Stage B/C branch actions; rejects old tokens, preflights, cleanup, mismatched branch and missing/new readiness guards. Positive host guard tests use a guard-only prefix, never transport; all full-wrapper negative tests abort before hashing/route/SSH.
+
+TRANSPORT / DEADLINES
+Exact direct USB10.11.99.1/source10.11.99.10/enp2s0f0u4c2, physical /sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0. Same strict host keys, BatchMode, ConnectTimeout8, no mux/proxy/jump/fallback, no wireless or host network changes. Each host invocation has an external45s deadline; wrapper retains timeout45 SSH. No target-shutdown assumption from either deadline.
+
+SEPARATE IRREVERSIBLE CLEANUP / OPEN ACCEPTANCE
+NO deletion authorized here. After actual recovery/verify/postinventory, prepare a separate exact file/ownership/hash deletion manifest and scope; never recursive deletion from nonrecursive proof. Host protected0755 root remains unexamined/preserved and a full-cleanup blocker. Host known-log negatives and absent9443/9444 listeners are not universal erasure or process-death proof. Preserve opaque state and .tablet-state-* temps, source/evidence/history, durable output/PDF documents, unknown files and other extensions. Credentials/code retention is NOT cleanup completion. Latest approved UI remains NOT DEPLOYED; production acceptance remains BLOCKED. Keep result0026/session open; no final receipt/snapshot/projection/commit implying restoration or cleanup complete.
+
+FROZEN ACTIONS
+host.sh SHA256 ce82b2b19871f96d69111b8ec4fade3874dc978abdb3ee836efae14dd6669005
+recover-return-original.sh SHA256 d2a223e80b8ec6fa94439616fb49ceb0bce45b2f96474513b126216f35b0dfbc
+verify-return-original.sh SHA256 f5909cf1128295b9e55229226ef4bb937614b08d08404db0480fb6f650a76ee9
+postinventory-return-original.sh SHA256 a14afee9524893a97ced369acce945baa328ccb613c37bafafe96850fe193dee
+recover-keep-quarantined.sh SHA256 76346dbd3e95d2dfa50883b5c5174db61fc855de081de4858f6260f0a64f8876
+verify-keep-quarantined.sh SHA256 d9611496d112c69afb86152b7b1144d0ebfc54eefae3bbe6c3f394cd65a42cc2
+postinventory-keep-quarantined.sh SHA256 4333cc3c0f56b0f0f1e3d6cc02efb0e3a26a5cd802e1f2189b6e9bb65e1ef2c0
+
+EXACT ALTERNATIVE COMMAND TRIPLETS (choose ONE only):
+
+NOT APPROVED. Alternative branch: return-original
+Return ONLY the exact original proxy file to its original path. Its pre-existing wildcard HTTP80 can return if XOVI loads; this is not paired Pi authentication.
+Select exactly this triplet OR the other branch, never both. All three actions require the common approval-scope.txt; only recovery mutates.
+
+recover-return-original.sh SHA256 d2a223e80b8ec6fa94439616fb49ceb0bce45b2f96474513b126216f35b0dfbc
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_STAGE_BC_APPROVED=stagebc-0026-v3 PI_INK_STAGE_BC_STAGE_A=parent-validated-v2-preserve-host-root PI_INK_STAGE_BC_PROXY_CHOICE=return-original PI_INK_STAGE_BC_RESTART_ALLOWANCE=at-most-one-new-current-config PI_INK_STAGE_BC_SAVED_CLOSED=confirmed-for-this-new-restart PI_INK_STAGE_BC_USB=connected-for-this-new-restart sh /tmp/pi-ink-stagebc-0026-v3/host.sh recover-return-original
+
+verify-return-original.sh SHA256 f5909cf1128295b9e55229226ef4bb937614b08d08404db0480fb6f650a76ee9
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_STAGE_BC_APPROVED=stagebc-0026-v3 PI_INK_STAGE_BC_STAGE_A=parent-validated-v2-preserve-host-root PI_INK_STAGE_BC_PROXY_CHOICE=return-original PI_INK_STAGE_BC_RECOVERY_OUTCOME=observed-success-same-selected-branch sh /tmp/pi-ink-stagebc-0026-v3/host.sh verify-return-original
+
+postinventory-return-original.sh SHA256 a14afee9524893a97ced369acce945baa328ccb613c37bafafe96850fe193dee
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_STAGE_BC_APPROVED=stagebc-0026-v3 PI_INK_STAGE_BC_STAGE_A=parent-validated-v2-preserve-host-root PI_INK_STAGE_BC_PROXY_CHOICE=return-original PI_INK_STAGE_BC_RECOVERY_OUTCOME=observed-success-same-selected-branch PI_INK_STAGE_BC_VERIFY_OUTCOME=observed-success-same-selected-branch sh /tmp/pi-ink-stagebc-0026-v3/host.sh postinventory-return-original
+
+
+NOT APPROVED. Alternative branch: keep-quarantined
+Keep the exact original proxy backup quarantined. This deliberately retains a persistent owned-path deviation and is not restoration of the original proxy-file position.
+Select exactly this triplet OR the other branch, never both. All three actions require the common approval-scope.txt; only recovery mutates.
+
+recover-keep-quarantined.sh SHA256 76346dbd3e95d2dfa50883b5c5174db61fc855de081de4858f6260f0a64f8876
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_STAGE_BC_APPROVED=stagebc-0026-v3 PI_INK_STAGE_BC_STAGE_A=parent-validated-v2-preserve-host-root PI_INK_STAGE_BC_PROXY_CHOICE=keep-quarantined PI_INK_STAGE_BC_RESTART_ALLOWANCE=at-most-one-new-current-config PI_INK_STAGE_BC_SAVED_CLOSED=confirmed-for-this-new-restart PI_INK_STAGE_BC_USB=connected-for-this-new-restart sh /tmp/pi-ink-stagebc-0026-v3/host.sh recover-keep-quarantined
+
+verify-keep-quarantined.sh SHA256 d9611496d112c69afb86152b7b1144d0ebfc54eefae3bbe6c3f394cd65a42cc2
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_STAGE_BC_APPROVED=stagebc-0026-v3 PI_INK_STAGE_BC_STAGE_A=parent-validated-v2-preserve-host-root PI_INK_STAGE_BC_PROXY_CHOICE=keep-quarantined PI_INK_STAGE_BC_RECOVERY_OUTCOME=observed-success-same-selected-branch sh /tmp/pi-ink-stagebc-0026-v3/host.sh verify-keep-quarantined
+
+postinventory-keep-quarantined.sh SHA256 4333cc3c0f56b0f0f1e3d6cc02efb0e3a26a5cd802e1f2189b6e9bb65e1ef2c0
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_STAGE_BC_APPROVED=stagebc-0026-v3 PI_INK_STAGE_BC_STAGE_A=parent-validated-v2-preserve-host-root PI_INK_STAGE_BC_PROXY_CHOICE=keep-quarantined PI_INK_STAGE_BC_RECOVERY_OUTCOME=observed-success-same-selected-branch PI_INK_STAGE_BC_VERIFY_OUTCOME=observed-success-same-selected-branch sh /tmp/pi-ink-stagebc-0026-v3/host.sh postinventory-keep-quarantined
+

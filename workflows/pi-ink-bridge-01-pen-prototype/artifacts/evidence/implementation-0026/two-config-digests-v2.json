@@ -1,0 +1,29 @@
+{
+  "schema": "pi-ink-raw-operation/v1",
+  "approval_ref": "approval-two-config-digests-v2.json",
+  "approval_sha256": "0a4aee2f5b94c316e29ef765662cde438ceb6879f487ebf0b4f42f3b3a477938",
+  "action": "two-config-digests-v2",
+  "argv": [
+    "sh",
+    "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+    "two-config-digests"
+  ],
+  "approved_env_only": {
+    "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+    "PI_INK_CONFIG_DIGEST_APPROVED": "two-configs-0026-v2"
+  },
+  "host_deadline_seconds": 45,
+  "started_at": "2026-11-04T08:59:32.584872+00:00",
+  "finished_at": "2026-11-04T08:59:32.930312+00:00",
+  "exit_code": 1,
+  "host_timeout": false,
+  "stdout": "/tmp/pi-ink-two-config-digests-0026-v2/digest.sh: OK\nEXACT_USB_GUARD_PASSED_NEW_PRESERVE_CURRENT_SCOPE\nFIXED_LEAF_PROGRESS ROLE=public-stage-marker PATH=/home/root/pi-ink-sidebar-stage-0020/owner.txt\nPUBLIC_MARKER_METADATA PATH=/home/root/pi-ink-sidebar-stage-0020/owner.txt TYPE=regular file MODE=644 UID=0 GID=0 SIZE=88 DEV=65026 INODE=1690 MTIME=2026-11-03 01:23:42.137091281 +0000 CTIME=2026-11-03 01:23:42.137091281 +0000\nABORT_BOUNDED_NOFOLLOW_READ_OR_HASH_FAILED\n",
+  "stderr": "dd: invalid argument 'nofollow' to 'iflag'\n",
+  "output_inspection": {
+    "credential_pattern_hits": 0,
+    "fixed_roles_paths_public_metadata_config_metadata_SHA_or_native_utility_diagnostics_only": true
+  },
+  "retry_amendment_or_fallback_performed": false,
+  "deletion_restart_or_permission_change_authority": false,
+  "result0026": "OPEN_NOT_FINALIZED"
+}

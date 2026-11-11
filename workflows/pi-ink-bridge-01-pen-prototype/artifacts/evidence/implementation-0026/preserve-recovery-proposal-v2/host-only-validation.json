@@ -1,0 +1,301 @@
+{
+  "recorded_at": "2026-11-04T04:55:29.591694+00:00",
+  "status": "NOT_APPROVED_HOST_ONLY_CHECKS_NO_DEVICE_OR_REAL_CREDENTIAL_ACCESS",
+  "v1_preserved": true,
+  "narrow_fix": "All host content reads use read_owned_regular: no-follow directory and file fds, fstat regular/owned/identity proof, actual cap+1 byte ceiling, post-read FD/path/parent identity/stability checks.",
+  "real_file_checks": [
+    {
+      "name": "exact-cap-owned-regular",
+      "real_file_check": true,
+      "cap": 32,
+      "actual_bytes_read": 32,
+      "refused": false,
+      "reason": null,
+      "result": "passed",
+      "sensitive_content_output": false
+    },
+    {
+      "name": "oversize-actual-cap-plus-one",
+      "real_file_check": true,
+      "cap": 32,
+      "actual_bytes_read": 33,
+      "refused": true,
+      "reason": "ACTUAL_READ_EXCEEDS_BYTE_CAP",
+      "result": "passed",
+      "sensitive_content_output": false
+    },
+    {
+      "name": "growth-after-fstat",
+      "real_file_check": true,
+      "cap": 32,
+      "actual_bytes_read": 33,
+      "refused": true,
+      "reason": "ACTUAL_READ_EXCEEDS_BYTE_CAP",
+      "result": "passed",
+      "sensitive_content_output": false
+    },
+    {
+      "name": "leaf-symlink-refused",
+      "real_file_check": true,
+      "cap": 32,
+      "actual_bytes_read": 0,
+      "refused": true,
+      "reason": "REGULAR_OWNED_FILE_REQUIRED",
+      "result": "passed",
+      "sensitive_content_output": false
+    },
+    {
+      "name": "parent-symlink-refused",
+      "real_file_check": true,
+      "cap": 32,
+      "actual_bytes_read": 0,
+      "refused": true,
+      "reason": "NOFOLLOW_OR_IDENTITY_READ_REFUSED",
+      "result": "passed",
+      "sensitive_content_output": false
+    },
+    {
+      "name": "directory-not-regular",
+      "real_file_check": true,
+      "cap": 32,
+      "actual_bytes_read": 0,
+      "refused": true,
+      "reason": "REGULAR_OWNED_FILE_REQUIRED",
+      "result": "passed",
+      "sensitive_content_output": false
+    },
+    {
+      "name": "fifo-not-regular",
+      "real_file_check": true,
+      "cap": 32,
+      "actual_bytes_read": 0,
+      "refused": true,
+      "reason": "REGULAR_OWNED_FILE_REQUIRED",
+      "result": "passed",
+      "sensitive_content_output": false
+    },
+    {
+      "name": "expected-identity-mismatch",
+      "real_file_check": true,
+      "cap": 32,
+      "actual_bytes_read": 0,
+      "refused": true,
+      "reason": "EXPECTED_FILE_IDENTITY_CHANGED",
+      "result": "passed",
+      "sensitive_content_output": false
+    }
+  ],
+  "fixture_notes": "Only disposable synthetic host files. Growth case appends to a real fixture after fd stat, delegates actual os.read, and records only byte counts/refusal reasons. No permanent test or fixture remains.",
+  "syntax": {
+    "shell_wrapper_exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "host_Python_AST": "passed; not actual approved inventory execution"
+  },
+  "actual_consent_gates": [
+    {
+      "name": "no-handoff",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026-v2/host.sh",
+        "preflight-device"
+      ],
+      "environment": {},
+      "exit_code": 1,
+      "stdout": "ABORT: fresh exclusive operator handoff required\n",
+      "stderr": "",
+      "boundary": "Before host inventory, route, SSH or mutation"
+    },
+    {
+      "name": "no-preflight-approval",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026-v2/host.sh",
+        "preflight-device"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: exact new read-only preflight scope approval required\n",
+      "stderr": "",
+      "boundary": "Before host inventory, route, SSH or mutation"
+    },
+    {
+      "name": "no-recovery-approval",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026-v2/host.sh",
+        "recover-return-original"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: exact new recovery branch approval required\n",
+      "stderr": "",
+      "boundary": "Before host inventory, route, SSH or mutation"
+    },
+    {
+      "name": "no-validated-preflight",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026-v2/host.sh",
+        "recover-return-original"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+        "PI_INK_EXACT_RECOVERY_APPROVED": "preserve-recovery-0026-v2"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: parent must validate fresh preflight evidence first\n",
+      "stderr": "",
+      "boundary": "Before host inventory, route, SSH or mutation"
+    },
+    {
+      "name": "no-new-restart",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026-v2/host.sh",
+        "recover-return-original"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+        "PI_INK_EXACT_RECOVERY_APPROVED": "preserve-recovery-0026-v2",
+        "PI_INK_ENTRY_PREFLIGHT": "parent-validated-exact-evidence"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: new explicit at-most-one restart allowance required\n",
+      "stderr": "",
+      "boundary": "Before host inventory, route, SSH or mutation"
+    },
+    {
+      "name": "no-new-saved-closed",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026-v2/host.sh",
+        "recover-return-original"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+        "PI_INK_EXACT_RECOVERY_APPROVED": "preserve-recovery-0026-v2",
+        "PI_INK_ENTRY_PREFLIGHT": "parent-validated-exact-evidence",
+        "PI_INK_NEW_RESTART_ALLOWANCE": "at-most-one-current-config"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: NEW all-documents-saved/closed confirmation required\n",
+      "stderr": "",
+      "boundary": "Before host inventory, route, SSH or mutation"
+    },
+    {
+      "name": "wrong-proxy-branch",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026-v2/host.sh",
+        "recover-return-original"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+        "PI_INK_EXACT_RECOVERY_APPROVED": "preserve-recovery-0026-v2",
+        "PI_INK_ENTRY_PREFLIGHT": "parent-validated-exact-evidence",
+        "PI_INK_NEW_RESTART_ALLOWANCE": "at-most-one-current-config",
+        "PI_INK_SAVED_CLOSED": "confirmed-for-this-new-restart",
+        "PI_INK_PROXY_CHOICE": "keep-quarantined"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: explicit proxy disposition does not match frozen branch\n",
+      "stderr": "",
+      "boundary": "Before host inventory, route, SSH or mutation"
+    },
+    {
+      "name": "verify-wrong-branch",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026-v2/host.sh",
+        "verify-return-original"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+        "PI_INK_EXACT_RECOVERY_APPROVED": "preserve-recovery-0026-v2",
+        "PI_INK_PROXY_CHOICE": "keep-quarantined"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: verification proxy branch mismatch\n",
+      "stderr": "",
+      "boundary": "Before host inventory, route, SSH or mutation"
+    },
+    {
+      "name": "postinventory-not-approved",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026-v2/host.sh",
+        "postinventory-return-original"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: separate exact postrecovery entry inventory approval required\n",
+      "stderr": "",
+      "boundary": "Before host inventory, route, SSH or mutation"
+    },
+    {
+      "name": "direct-host-v2-without-approval",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "ABORT: exact fresh host recovery inventory approval required\n",
+      "boundary": "Before host real roots/process reads"
+    },
+    {
+      "name": "v1-approval-value-rejected-by-v2",
+      "exit_code": 1,
+      "stdout": "ABORT: exact new read-only preflight scope approval required\n",
+      "stderr": "",
+      "boundary": "Before host paths/route/SSH"
+    }
+  ],
+  "unchanged_target_payloads": [
+    {
+      "path": "preflight.sh",
+      "sha256": "8f27e09f3489d6bc284ac2d1cc92aa72e81f07bafe7a62bd47913dae72d79820",
+      "byte_identical_to_v1": true
+    },
+    {
+      "path": "recover-return-original.sh",
+      "sha256": "c2fa1f41ad0a902f0a5a563cc2a2a473ad81f6450f7d6080ce9a834aca776172",
+      "byte_identical_to_v1": true
+    },
+    {
+      "path": "recover-keep-quarantined.sh",
+      "sha256": "f5ac3475dabfcb3d2492b8c625fe4ea8473da88d771d3f7fe55e8a93f555cf11",
+      "byte_identical_to_v1": true
+    },
+    {
+      "path": "verify-return-original.sh",
+      "sha256": "f5909cf1128295b9e55229226ef4bb937614b08d08404db0480fb6f650a76ee9",
+      "byte_identical_to_v1": true
+    },
+    {
+      "path": "verify-keep-quarantined.sh",
+      "sha256": "d9611496d112c69afb86152b7b1144d0ebfc54eefae3bbe6c3f394cd65a42cc2",
+      "byte_identical_to_v1": true
+    },
+    {
+      "path": "postinventory-return-original.sh",
+      "sha256": "f441619afe6d590715aa32b39652dc6eb0e1ceabf3c30eb086cd1408043021c1",
+      "byte_identical_to_v1": true
+    },
+    {
+      "path": "postinventory-keep-quarantined.sh",
+      "sha256": "8572114c18b834b1a09bdade99f5dc9d0801c1ba5c0032bc2840318b2a791a65",
+      "byte_identical_to_v1": true
+    }
+  ],
+  "unresolved": "Exact current vendor-only Environment remains unestablished. Unknown current config aborts; no modification to satisfy guards. Proxy choice/new restart/saved-closed/final cleanup approvals remain unresolved.",
+  "parent_committed_handoff_ref": "Parent reports5c65df0c; file untouched/unstaged by child.",
+  "source_app_edits": false,
+  "device_calls": 0,
+  "actual_host_inventory_calls": 0,
+  "approval_status": "NOT_APPROVED",
+  "result0026_open": true
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "pi-ink-read-only-preflight-outcome/v1",
+  "created_at": "2026-11-05T12:13:11.727Z",
+  "attempt_ref": "device-preflight-0053-attempt.json",
+  "exit_code": 0,
+  "stdout": "PREFLIGHT_BEGIN\t0053\nOS_VERSION_ID\t5.8.203\nPRODUCT_IMG_VERSION\t3.28.0.172\nHASH_FILE_METADATA\t/usr/bin/xochitl\tregular file|755|0|0|24705704\nSHA256\t/usr/bin/xochitl\tb1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021\nHASH_FILE_METADATA\t/home/root/xovi/exthome/qt-resource-rebuilder/hashtab\tregular file|644|0|0|674428\nSHA256\t/home/root/xovi/exthome/qt-resource-rebuilder/hashtab\t9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615\nHASH_FILE_METADATA\t/home/root/pi-ink-client/pi-ink-client\tregular file|700|0|0|6488248\nSHA256\t/home/root/pi-ink-client/pi-ink-client\t5dcde59a057207951ed0ac0532c78d3bf0ef03a379b41ed50329d08c9b3e565f\nHASH_FILE_METADATA\t/home/root/xovi/extensions.d/webserver-remote.so\tregular file|644|0|0|8453696\nSHA256\t/home/root/xovi/extensions.d/webserver-remote.so\t24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f\nPATH_METADATA\t/home/root/pi-ink-client\tdirectory|700|0|0|4096\nPATH_METADATA\t/home/root/pi-ink-client/pi-ink-client\tregular file|700|0|0|6488248\nABSENT\t/home/root/pi-ink-bridge-0049\nABSENT\t/home/root/pi-ink-bridge-0049/runtime.json\nABSENT\t/home/root/pi-ink-bridge-0049/tablet-qml/PiInkToolbar.qml\nABSENT\t/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd\nABSENT\t/home/root/xovi/extensions.d/pi-ink-loopback.so\nPATH_METADATA\t/home/root/xovi/extensions.d/webserver-remote.so\tregular file|644|0|0|8453696\nPREFLIGHT_READ_ONLY_COMPLETE\n",
+  "stderr": "",
+  "completed": true,
+  "remote_files_written": false,
+  "remote_files_uploaded": false,
+  "document_operations": false,
+  "service_restarts": false,
+  "cleanup_retry": false,
+  "retry_authorized": false
+}

@@ -1,0 +1,13 @@
+NOT APPROVED. Alternative branch: return-original
+Return ONLY the exact original proxy file to its original path. Its pre-existing wildcard HTTP80 can return if XOVI loads; this is not paired Pi authentication.
+Select exactly this triplet OR the other branch, never both. All three actions require the common approval-scope.txt; only recovery mutates.
+
+recover-return-original.sh SHA256 d2a223e80b8ec6fa94439616fb49ceb0bce45b2f96474513b126216f35b0dfbc
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_STAGE_BC_APPROVED=stagebc-0026-v3 PI_INK_STAGE_BC_STAGE_A=parent-validated-v2-preserve-host-root PI_INK_STAGE_BC_PROXY_CHOICE=return-original PI_INK_STAGE_BC_RESTART_ALLOWANCE=at-most-one-new-current-config PI_INK_STAGE_BC_SAVED_CLOSED=confirmed-for-this-new-restart PI_INK_STAGE_BC_USB=connected-for-this-new-restart sh /tmp/pi-ink-stagebc-0026-v3/host.sh recover-return-original
+
+verify-return-original.sh SHA256 f5909cf1128295b9e55229226ef4bb937614b08d08404db0480fb6f650a76ee9
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_STAGE_BC_APPROVED=stagebc-0026-v3 PI_INK_STAGE_BC_STAGE_A=parent-validated-v2-preserve-host-root PI_INK_STAGE_BC_PROXY_CHOICE=return-original PI_INK_STAGE_BC_RECOVERY_OUTCOME=observed-success-same-selected-branch sh /tmp/pi-ink-stagebc-0026-v3/host.sh verify-return-original
+
+postinventory-return-original.sh SHA256 a14afee9524893a97ced369acce945baa328ccb613c37bafafe96850fe193dee
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_STAGE_BC_APPROVED=stagebc-0026-v3 PI_INK_STAGE_BC_STAGE_A=parent-validated-v2-preserve-host-root PI_INK_STAGE_BC_PROXY_CHOICE=return-original PI_INK_STAGE_BC_RECOVERY_OUTCOME=observed-success-same-selected-branch PI_INK_STAGE_BC_VERIFY_OUTCOME=observed-success-same-selected-branch sh /tmp/pi-ink-stagebc-0026-v3/host.sh postinventory-return-original
+

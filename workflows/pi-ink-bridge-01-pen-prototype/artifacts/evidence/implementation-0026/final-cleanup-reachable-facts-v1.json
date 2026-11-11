@@ -1,0 +1,1186 @@
+{
+  "schema": "pi-ink-cleanup-reachable-facts/v1",
+  "recorded_at": "2026-11-04T08:30:32.505644+00:00",
+  "status": "ACTUAL_KNOWN_FACTS_ONLY_NOT_FINAL_EXECUTABLE_DELETION_MANIFEST",
+  "refs": [
+    {
+      "ref": "public-payload-inventory-v1.json",
+      "sha256": "f776bf6afe5756098e475646b59b6bbd14a49a51c5702d9240d396eb830fec86"
+    },
+    {
+      "ref": "two-config-digests-v1.json",
+      "sha256": "1324af9f68eeba3d3b3f94cd68bd3e592a32029bc2afae4631446071404d8c46"
+    },
+    {
+      "ref": "final-identity-read-outcome-v1.json",
+      "sha256": "65d8250c5d30f750fa57667d5a823a2c27244e69028f4fe71d3c79c928beefc4"
+    },
+    {
+      "ref": "public-payload-inventory-proposal-v1/candidate-pins-audit.json",
+      "sha256": "dd1229ace0ecba4a52f51b04ed4603837d5d1cee85c83e69d30eaf856c534041"
+    }
+  ],
+  "device_actual_entry_candidates": [
+    {
+      "path": "/home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=7321 MTIME=1793671283",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/payload-sha256.txt",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793675614",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "261f3409cc7315a86710b72308de30396eee651870d0c145dd800c786c1d8a72",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/tablet-qml",
+      "observed_metadata": "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793675614",
+      "classification": "DIRECTORY_NOT_RECURSIVE_DELETION_PROOF_RMDIR_ONLY_IF_APPROVED_EMPTY",
+      "category": "DIRECTORY_NONRECURSIVE_PROOF_ONLY",
+      "observed_sha256": null,
+      "pin_source": null,
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/pi-ink-tablet",
+      "observed_metadata": "TYPE=regular file MODE=755 UID=0 GID=0 SIZE=9324489 MTIME=1793671283",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/trust",
+      "observed_metadata": "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793658647",
+      "classification": "DIRECTORY_NOT_RECURSIVE_DELETION_PROOF_RMDIR_ONLY_IF_APPROVED_EMPTY",
+      "category": "DIRECTORY_NONRECURSIVE_PROOF_ONLY",
+      "observed_sha256": null,
+      "pin_source": null,
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/adapter.so",
+      "observed_metadata": "TYPE=regular file MODE=755 UID=0 GID=0 SIZE=504280 MTIME=1793658648",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/owner.txt",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+      "classification": "OWNERSHIP_MARKER_RETAIN_UNTIL_ALL_APPROVED_CHILD_CHECKS_COMPLETE_AND_PRESERVE_WITH_RETAINED_STATE",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/state.json",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=212 MTIME=1793676327",
+      "classification": "PRESERVE_OPAQUE_STATE_NO_CONTENT_READ_RESET_OR_UNLINK",
+      "category": "PRESERVE_OPAQUE_STATE_NO_CONTENT_READ",
+      "observed_sha256": null,
+      "pin_source": null,
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/config.json",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=924 MTIME=1793671283",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "observed_sha256": "a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca",
+      "pin_source": "recover-return-original-v3.json exact known config identity guard before client stop",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=20154 MTIME=1793675614",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/trust/server-a.pem",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=1184 MTIME=1793658647",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "observed_sha256": null,
+      "pin_source": null,
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-bridge-0020/trust/server-b.pem",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=1184 MTIME=1793658647",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "observed_sha256": null,
+      "pin_source": null,
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-webserver-remote-backup-0020/owner.txt",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658645",
+      "classification": "OWNERSHIP_MARKER_RETAIN_UNTIL_ALL_APPROVED_CHILD_CHECKS_COMPLETE_AND_PRESERVE_WITH_RETAINED_STATE",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-rollback-owned-0020/pi-ink-bridge.qmd",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=7321 MTIME=1793671283",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-rollback-owned-0020/adapter.so",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=504280 MTIME=1793658681",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-rollback-owned-0020/owner.txt",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+      "classification": "OWNERSHIP_MARKER_RETAIN_UNTIL_ALL_APPROVED_CHILD_CHECKS_COMPLETE_AND_PRESERVE_WITH_RETAINED_STATE",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/pi-ink-bridge.qmd",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=7321 MTIME=1793669021",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/payload-sha256.txt",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793669022",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/tablet-qml",
+      "observed_metadata": "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793669021",
+      "classification": "DIRECTORY_NOT_RECURSIVE_DELETION_PROOF_RMDIR_ONLY_IF_APPROVED_EMPTY",
+      "category": "DIRECTORY_NONRECURSIVE_PROOF_ONLY",
+      "observed_sha256": null,
+      "pin_source": null,
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/pi-ink-tablet",
+      "observed_metadata": "TYPE=regular file MODE=755 UID=0 GID=0 SIZE=9324489 MTIME=1793669019",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/trust",
+      "observed_metadata": "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793669020",
+      "classification": "DIRECTORY_NOT_RECURSIVE_DELETION_PROOF_RMDIR_ONLY_IF_APPROVED_EMPTY",
+      "category": "DIRECTORY_NONRECURSIVE_PROOF_ONLY",
+      "observed_sha256": null,
+      "pin_source": null,
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/adapter.so",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=504280 MTIME=1793669021",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/owner.txt",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=88 MTIME=1793669022",
+      "classification": "OWNERSHIP_MARKER_RETAIN_UNTIL_ALL_APPROVED_CHILD_CHECKS_COMPLETE_AND_PRESERVE_WITH_RETAINED_STATE",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/config.json",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=924 MTIME=1793669020",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "observed_sha256": null,
+      "pin_source": null,
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/tablet-qml/PiInkToolbar.qml",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=19697 MTIME=1793669021",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/trust/server-a.pem",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=1184 MTIME=1793669020",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "observed_sha256": null,
+      "pin_source": null,
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/trust/server-b.pem",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=1184 MTIME=1793669020",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "observed_sha256": null,
+      "pin_source": null,
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/pi-ink-bridge.qmd",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=1878 MTIME=1793658648",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/payload-sha256.txt",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793658648",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "27645009e37fec8270d7d2e7541d4b1ae2a4da4378736d0b6a0277c39a354278",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/tablet-qml",
+      "observed_metadata": "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793671283",
+      "classification": "DIRECTORY_NOT_RECURSIVE_DELETION_PROOF_RMDIR_ONLY_IF_APPROVED_EMPTY",
+      "category": "DIRECTORY_NONRECURSIVE_PROOF_ONLY",
+      "observed_sha256": null,
+      "pin_source": null,
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/pi-ink-tablet",
+      "observed_metadata": "TYPE=regular file MODE=700 UID=0 GID=0 SIZE=9323806 MTIME=1793658646",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "f601436dd591ae782f15c0714bcfd4412fb3facebeadeb7d31914a5dc69ecada",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/live-pi-ink-bridge.qmd",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=1878 MTIME=1793658681",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "c631208b621272227551a557dfee2e28142c79cb8a47987ac3460dab9304efc8",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/owner.txt",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+      "classification": "OWNERSHIP_MARKER_RETAIN_UNTIL_ALL_APPROVED_CHILD_CHECKS_COMPLETE_AND_PRESERVE_WITH_RETAINED_STATE",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/config.json",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=851 MTIME=1793658646",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "observed_sha256": null,
+      "pin_source": null,
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/tablet-qml/PiInkToolbar.qml",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=15661 MTIME=1793658647",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "57416f0b80a3a100c6dc7ee2162647b2c866588a85cf46ef09106bbf1354595f",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-stage-0020/payload-sha256.txt",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793675603",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "261f3409cc7315a86710b72308de30396eee651870d0c145dd800c786c1d8a72",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-stage-0020/owner.txt",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793675604",
+      "classification": "OWNERSHIP_MARKER_RETAIN_UNTIL_ALL_APPROVED_CHILD_CHECKS_COMPLETE_AND_PRESERVE_WITH_RETAINED_STATE",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-stage-0020/PiInkToolbar.qml",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=20154 MTIME=1793675603",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-backup-0020/payload-sha256.txt",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793671283",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-backup-0020/owner.txt",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+      "classification": "OWNERSHIP_MARKER_RETAIN_UNTIL_ALL_APPROVED_CHILD_CHECKS_COMPLETE_AND_PRESERVE_WITH_RETAINED_STATE",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/home/root/pi-ink-native-button-backup-0020/PiInkToolbar.qml",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=19697 MTIME=1793671283",
+      "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_sha256": "e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf",
+      "pin_source": "postinventory-return-original-v3.json",
+      "deletion_authorized": false
+    }
+  ],
+  "host_prior_actual_digest_candidates": [
+    {
+      "path": "/tmp/pi-ink-0020-trust/tablet-sidebar.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22546,
+        "mode": "0o600",
+        "mtime_ns": 1793661827749869219,
+        "path": "/tmp/pi-ink-0020-trust/tablet-sidebar.json",
+        "regular": true,
+        "size": 924,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/desktop-sidebar-b.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21973,
+        "mode": "0o600",
+        "mtime_ns": 1793661564127979686,
+        "path": "/tmp/pi-ink-0020-trust/desktop-sidebar-b.json",
+        "regular": true,
+        "size": 549,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "23f4b8c51d02c3a26e04e88779421c7bf141dea92a9227be81258b2a3cfa74f0",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/desktop-sidebar-a.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21971,
+        "mode": "0o600",
+        "mtime_ns": 1793661564126919040,
+        "path": "/tmp/pi-ink-0020-trust/desktop-sidebar-a.json",
+        "regular": true,
+        "size": 549,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "fe556fd030b47b189cc433d3968f48be52e2f1e0111fda8b9f2e3e5a3c965d18",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/payload-sha256.txt",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21005,
+        "mode": "0o600",
+        "mtime_ns": 1793658044360498022,
+        "path": "/tmp/pi-ink-0020-trust/payload-sha256.txt",
+        "regular": true,
+        "size": 659,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "27645009e37fec8270d7d2e7541d4b1ae2a4da4378736d0b6a0277c39a354278",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21004,
+        "mode": "0o600",
+        "mtime_ns": 1793658044342405677,
+        "path": "/tmp/pi-ink-0020-trust/owner.txt",
+        "regular": true,
+        "size": 88,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/tablet.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21003,
+        "mode": "0o600",
+        "mtime_ns": 1793658044342340064,
+        "path": "/tmp/pi-ink-0020-trust/tablet.json",
+        "regular": true,
+        "size": 851,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "1c4bf78285b08464e38e7af16f0096fda55c4dcd86a5d86ac5c1399b1becf9a6",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/host-tablet.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20980,
+        "mode": "0o600",
+        "mtime_ns": 1793657753850905709,
+        "path": "/tmp/pi-ink-0020-trust/host-tablet.json",
+        "regular": true,
+        "size": 756,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "aabd21c21039b30cc8a3022cda6203bd50de04cf33030b4ea46d61f72fba41f8",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/desktop-b.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20652,
+        "mode": "0o600",
+        "mtime_ns": 1793657356522662418,
+        "path": "/tmp/pi-ink-0020-trust/desktop-b.json",
+        "regular": true,
+        "size": 540,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "a170239ade0fa731eda1e09224575691a4c5b56802ec93812dcde9ba66bf6ed3",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/server-b.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20651,
+        "mode": "0o644",
+        "mtime_ns": 1793657356522210822,
+        "path": "/tmp/pi-ink-0020-trust/server-b.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/server-b-key.pem",
+      "category": "OWNED_EXPERIMENT_PRIVATE_KEY_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20650,
+        "mode": "0o600",
+        "mtime_ns": 1793657356520457262,
+        "path": "/tmp/pi-ink-0020-trust/server-b-key.pem",
+        "regular": true,
+        "size": 1704,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "32db8f1e57d86315eb9801b0210bc72692cf32928b74158c8b02ba242e34236d",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/desktop-a.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20649,
+        "mode": "0o600",
+        "mtime_ns": 1793657356469719643,
+        "path": "/tmp/pi-ink-0020-trust/desktop-a.json",
+        "regular": true,
+        "size": 540,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "9465e80a3ddbaf01be7673656e8df37193310347e917a235454d094a81c90aec",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/server-a.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20648,
+        "mode": "0o644",
+        "mtime_ns": 1793657356469303063,
+        "path": "/tmp/pi-ink-0020-trust/server-a.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-trust/server-a-key.pem",
+      "category": "OWNED_EXPERIMENT_PRIVATE_KEY_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20647,
+        "mode": "0o600",
+        "mtime_ns": 1793657356467457546,
+        "path": "/tmp/pi-ink-0020-trust/server-a-key.pem",
+        "regular": true,
+        "size": 1708,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "d0a6f9d49907926d2eb5952d3dc22951c6e943672d822da8ff343a6545301108",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/payload-sha256.txt",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23147,
+        "mode": "0o600",
+        "mtime_ns": 1793664156829327292,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/payload-sha256.txt",
+        "regular": true,
+        "size": 659,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "d5b0222e8806b5a3bc1874fb49a07290eedfb54892573257f6a08d607df9a8fa",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23146,
+        "mode": "0o644",
+        "mtime_ns": 1793658044342405677,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/owner.txt",
+        "regular": true,
+        "size": 88,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-bridge.qmd",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23145,
+        "mode": "0o644",
+        "mtime_ns": 1793664103715726862,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-bridge.qmd",
+        "regular": true,
+        "size": 7321,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "09aff9e7671d2931ffc54e16f943e922d2b66712fa40fb5e940acb1480e5b4e9",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/adapter.so",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23144,
+        "mode": "0o644",
+        "mtime_ns": 1793657056555908645,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/adapter.so",
+        "regular": true,
+        "size": 504280,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/config.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23138,
+        "mode": "0o600",
+        "mtime_ns": 1793661827749869219,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/config.json",
+        "regular": true,
+        "size": 924,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-tablet",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23136,
+        "mode": "0o755",
+        "mtime_ns": 1793664156818445957,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-tablet",
+        "regular": true,
+        "size": 9324489,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/tablet-qml/PiInkToolbar.qml",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23143,
+        "mode": "0o644",
+        "mtime_ns": 1793664103711726883,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/tablet-qml/PiInkToolbar.qml",
+        "regular": true,
+        "size": 19697,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "e008dec2b9df0bc7115fbc1dc5535defeeff1ad72d62b8dc718a67e06cd780bf",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-b.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23141,
+        "mode": "0o644",
+        "mtime_ns": 1793657356522210822,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-b.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-a.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23140,
+        "mode": "0o644",
+        "mtime_ns": 1793657356469303063,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-a.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/payload-sha256.txt",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22809,
+        "mode": "0o600",
+        "mtime_ns": 1793662188153058223,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/payload-sha256.txt",
+        "regular": true,
+        "size": 659,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "bf1502fde05c33de4a171cb02256f5d7909c9b8a0c0bc10c5ba36574bbc3ca34",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22808,
+        "mode": "0o644",
+        "mtime_ns": 1793658044342405677,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/owner.txt",
+        "regular": true,
+        "size": 88,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/pi-ink-bridge.qmd",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22807,
+        "mode": "0o644",
+        "mtime_ns": 1793661978556968125,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/pi-ink-bridge.qmd",
+        "regular": true,
+        "size": 7315,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "b4eaa94504b974b949c09ff74dd902883ea69d7990712d97cb73cc78507192e1",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/adapter.so",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22806,
+        "mode": "0o644",
+        "mtime_ns": 1793657056555908645,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/adapter.so",
+        "regular": true,
+        "size": 504280,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "aeba9fc3d8aa816bda0db8c08d4cc5929a677a83f5e8e14b02a39bc70aef5c4f",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/config.json",
+      "category": "OWNED_EXPERIMENT_CONFIG_CREDENTIAL_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22800,
+        "mode": "0o600",
+        "mtime_ns": 1793661827749869219,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/config.json",
+        "regular": true,
+        "size": 924,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "a861d40e488cdfe39f13366b4903052bb775910a8b7238dd1a6d1187cd585eca",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/pi-ink-tablet",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21966,
+        "mode": "0o755",
+        "mtime_ns": 1793662146719879398,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/pi-ink-tablet",
+        "regular": true,
+        "size": 9323977,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "272630c5ee94b7b0d7739322930ddd08797d5d1fc5d24639339abf395c1cf05d",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/tablet-qml/PiInkToolbar.qml",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22805,
+        "mode": "0o644",
+        "mtime_ns": 1793661978551968151,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/tablet-qml/PiInkToolbar.qml",
+        "regular": true,
+        "size": 18976,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "c301944154498f7d0e29c605a667b54cf0ad6f2b097489e8088e19f957708deb",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/trust/server-b.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22803,
+        "mode": "0o644",
+        "mtime_ns": 1793657356522210822,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/trust/server-b.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "9688d866717139a0fe03bd0e2a1d322e4ef8a61577717f4e5247f1eb2645db55",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-sidebar-payload/trust/server-a.pem",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CA_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22802,
+        "mode": "0o644",
+        "mtime_ns": 1793657356469303063,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/trust/server-a.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "9bf9c54d5fc8cc4c14b342a80020f2b31ca0b7e87d27faa05ff7324c22b1c3ba",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-native-button-repair-payload/owner.txt",
+      "category": "OWNERSHIP_MARKER_RETAIN_UNTIL_FINAL_APPROVED_CHILD_DISPOSITION",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23929,
+        "mode": "0o600",
+        "mtime_ns": 1793674770996734323,
+        "path": "/tmp/pi-ink-0020-native-button-repair-payload/owner.txt",
+        "regular": true,
+        "size": 88,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-native-button-repair-payload/payload-sha256.txt",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23928,
+        "mode": "0o600",
+        "mtime_ns": 1793674770996701251,
+        "path": "/tmp/pi-ink-0020-native-button-repair-payload/payload-sha256.txt",
+        "regular": true,
+        "size": 659,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "261f3409cc7315a86710b72308de30396eee651870d0c145dd800c786c1d8a72",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-native-button-repair-payload/PiInkToolbar.qml",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23927,
+        "mode": "0o600",
+        "mtime_ns": 1793674770996650526,
+        "path": "/tmp/pi-ink-0020-native-button-repair-payload/PiInkToolbar.qml",
+        "regular": true,
+        "size": 20154,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "8e976fa96d01babb6a9c5ea405544ce3b1fd63eef7de72e53e8fe5ac4aa929d9",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-0020-offline/pi-ink-tablet",
+      "category": "OWNED_EXPERIMENT_PUBLIC_CODE_OR_MANIFEST_COPY",
+      "observed_metadata": {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20939,
+        "mode": "0o755",
+        "mtime_ns": 1793657670135776272,
+        "path": "/tmp/pi-ink-0020-offline/pi-ink-tablet",
+        "regular": true,
+        "size": 9323806,
+        "symlink": false,
+        "uid": 1000
+      },
+      "observed_sha256": "f601436dd591ae782f15c0714bcfd4412fb3facebeadeb7d31914a5dc69ecada",
+      "pin_source": "preflight-host-v2.json",
+      "deletion_authorized": false
+    }
+  ],
+  "host_new_public_payload_candidates": [
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/payload/owner.txt",
+      "observed_metadata": {
+        "ctime_ns": 1793681398634259480,
+        "device": 55,
+        "gid": 1000,
+        "inode": 24904,
+        "mode": "0o644",
+        "mtime_ns": 1793681398634259480,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload/owner.txt",
+        "size": 88,
+        "uid": 1000
+      },
+      "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "pin_source": "public-payload-inventory-v1.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/payload/PiInkToolbar.qml",
+      "observed_metadata": {
+        "ctime_ns": 1793681398629259507,
+        "device": 55,
+        "gid": 1000,
+        "inode": 24901,
+        "mode": "0o644",
+        "mtime_ns": 1793681398629259507,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload/PiInkToolbar.qml",
+        "size": 20150,
+        "uid": 1000
+      },
+      "observed_sha256": "c09f7f617760b4dc839787d228a2ab2bf12ba26f1f52a6ec910124072b8db869",
+      "pin_source": "public-payload-inventory-v1.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/payload/pi-ink-bridge.qmd",
+      "observed_metadata": {
+        "ctime_ns": 1793681398631259496,
+        "device": 55,
+        "gid": 1000,
+        "inode": 24902,
+        "mode": "0o644",
+        "mtime_ns": 1793681398631259496,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload/pi-ink-bridge.qmd",
+        "size": 8298,
+        "uid": 1000
+      },
+      "observed_sha256": "0dc1dad15002559d943f63fb73298aca68c570a9f46cefe38bb42c5798e8edc0",
+      "pin_source": "public-payload-inventory-v1.json",
+      "deletion_authorized": false
+    },
+    {
+      "path": "/tmp/pi-ink-ui-validation-0023/payload/payload-sha256.txt",
+      "observed_metadata": {
+        "ctime_ns": 1793681398632259491,
+        "device": 55,
+        "gid": 1000,
+        "inode": 24903,
+        "mode": "0o644",
+        "mtime_ns": 1793681398632259491,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload/payload-sha256.txt",
+        "size": 659,
+        "uid": 1000
+      },
+      "observed_sha256": "9ce7ecaa8bd9607e938ea75ea7cae957728e6592a7d2bdb4b329f06e0939a57c",
+      "pin_source": "public-payload-inventory-v1.json",
+      "deletion_authorized": false
+    }
+  ],
+  "host_protected_root_previous_unexamined_gate": "RESOLVED_ONLY_FOR_THE_FOUR_KNOWN_PUBLIC_FILES_BY_ACTUAL_NEW_APPROVED_INVENTORY; all files still retained; no deletion authority.",
+  "unresolved_private_device_paths": [
+    "/home/root/pi-ink-sidebar-stage-0020/config.json",
+    "/home/root/pi-ink-sidebar-backup-0020/config.json"
+  ],
+  "unresolved_sha256_values": {
+    "/home/root/pi-ink-sidebar-stage-0020/config.json": null,
+    "/home/root/pi-ink-sidebar-backup-0020/config.json": null
+  },
+  "final_program_not_created": "A complete exact deletion program cannot honestly be frozen yet without the two actual private device-copy hashes. No narrowed/partial executable cutover or invented pins.",
+  "required_future_approval_boundary": "Any new metadata/digest scope is separate exact owner consent. Final per-file unlink/rmdir manifest/program requires separate irreversible approval, fresh per-path hash/identity/no-link guards, no recursive deletion, no unknown-file removal.",
+  "preserve": [
+    "Returned original proxy/hash/stat/current service configuration/other original extensions.",
+    "SOURCE/evidence/history/parent approvals/durable outputs/private and synthetic documents.",
+    "Opaque state.json and actual .tablet-state-* interrupted temp records, without reading/resetting them.",
+    "Unknown/unowned/unsafe/missing paths and all files not explicitly listed in a later approved manifest."
+  ],
+  "cleanup_complete": false,
+  "operation_authority": false,
+  "result0026": "OPEN_NOT_FINALIZED"
+}

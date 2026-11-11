@@ -1,0 +1,310 @@
+{
+  "recorded_at": "2026-11-04T04:45:39.905153+00:00",
+  "status": "HOST_ONLY_PROPOSAL_VALIDATION_NO_DEVICE_ACTION",
+  "checks": [
+    {
+      "name": "shell-syntax:preflight.sh",
+      "argv": [
+        "sh",
+        "-n",
+        "/tmp/pi-ink-preserve-recovery-0026/preflight.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell-syntax:recover-return-original.sh",
+      "argv": [
+        "sh",
+        "-n",
+        "/tmp/pi-ink-preserve-recovery-0026/recover-return-original.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell-syntax:recover-keep-quarantined.sh",
+      "argv": [
+        "sh",
+        "-n",
+        "/tmp/pi-ink-preserve-recovery-0026/recover-keep-quarantined.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell-syntax:verify-return-original.sh",
+      "argv": [
+        "sh",
+        "-n",
+        "/tmp/pi-ink-preserve-recovery-0026/verify-return-original.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell-syntax:verify-keep-quarantined.sh",
+      "argv": [
+        "sh",
+        "-n",
+        "/tmp/pi-ink-preserve-recovery-0026/verify-keep-quarantined.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell-syntax:postinventory-return-original.sh",
+      "argv": [
+        "sh",
+        "-n",
+        "/tmp/pi-ink-preserve-recovery-0026/postinventory-return-original.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell-syntax:postinventory-keep-quarantined.sh",
+      "argv": [
+        "sh",
+        "-n",
+        "/tmp/pi-ink-preserve-recovery-0026/postinventory-keep-quarantined.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "shell-syntax:host.sh",
+      "argv": [
+        "sh",
+        "-n",
+        "/tmp/pi-ink-preserve-recovery-0026/host.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "host-inventory-Python-AST",
+      "result": "passed; no module execution or bytecode write"
+    },
+    {
+      "name": "no-handoff",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026/host.sh",
+        "preflight-device"
+      ],
+      "environment": {},
+      "exit_code": 1,
+      "stdout": "ABORT: fresh exclusive operator handoff required\n",
+      "stderr": "",
+      "boundary": "Before hash/host inventory/route/SSH/mutation"
+    },
+    {
+      "name": "no-preflight-approval",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026/host.sh",
+        "preflight-device"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: exact new read-only preflight scope approval required\n",
+      "stderr": "",
+      "boundary": "Before hash/host inventory/route/SSH/mutation"
+    },
+    {
+      "name": "no-recovery-approval",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026/host.sh",
+        "recover-return-original"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: exact new recovery branch approval required\n",
+      "stderr": "",
+      "boundary": "Before hash/host inventory/route/SSH/mutation"
+    },
+    {
+      "name": "no-validated-preflight",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026/host.sh",
+        "recover-return-original"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+        "PI_INK_EXACT_RECOVERY_APPROVED": "preserve-recovery-0026"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: parent must validate fresh preflight evidence first\n",
+      "stderr": "",
+      "boundary": "Before hash/host inventory/route/SSH/mutation"
+    },
+    {
+      "name": "no-new-restart",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026/host.sh",
+        "recover-return-original"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+        "PI_INK_EXACT_RECOVERY_APPROVED": "preserve-recovery-0026",
+        "PI_INK_ENTRY_PREFLIGHT": "parent-validated-exact-evidence"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: new explicit at-most-one restart allowance required\n",
+      "stderr": "",
+      "boundary": "Before hash/host inventory/route/SSH/mutation"
+    },
+    {
+      "name": "no-new-saved-closed",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026/host.sh",
+        "recover-return-original"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+        "PI_INK_EXACT_RECOVERY_APPROVED": "preserve-recovery-0026",
+        "PI_INK_ENTRY_PREFLIGHT": "parent-validated-exact-evidence",
+        "PI_INK_NEW_RESTART_ALLOWANCE": "at-most-one-current-config"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: NEW all-documents-saved/closed confirmation required\n",
+      "stderr": "",
+      "boundary": "Before hash/host inventory/route/SSH/mutation"
+    },
+    {
+      "name": "wrong-proxy-branch",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026/host.sh",
+        "recover-return-original"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+        "PI_INK_EXACT_RECOVERY_APPROVED": "preserve-recovery-0026",
+        "PI_INK_ENTRY_PREFLIGHT": "parent-validated-exact-evidence",
+        "PI_INK_NEW_RESTART_ALLOWANCE": "at-most-one-current-config",
+        "PI_INK_SAVED_CLOSED": "confirmed-for-this-new-restart",
+        "PI_INK_PROXY_CHOICE": "keep-quarantined"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: explicit proxy disposition does not match frozen branch\n",
+      "stderr": "",
+      "boundary": "Before hash/host inventory/route/SSH/mutation"
+    },
+    {
+      "name": "verify-wrong-branch",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026/host.sh",
+        "verify-return-original"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+        "PI_INK_EXACT_RECOVERY_APPROVED": "preserve-recovery-0026",
+        "PI_INK_PROXY_CHOICE": "keep-quarantined"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: verification proxy branch mismatch\n",
+      "stderr": "",
+      "boundary": "Before hash/host inventory/route/SSH/mutation"
+    },
+    {
+      "name": "postinventory-not-approved",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-preserve-recovery-0026/host.sh",
+        "postinventory-return-original"
+      ],
+      "environment": {
+        "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent"
+      },
+      "exit_code": 1,
+      "stdout": "ABORT: separate exact postrecovery entry inventory approval required\n",
+      "stderr": "",
+      "boundary": "Before hash/host inventory/route/SSH/mutation"
+    },
+    {
+      "name": "direct-host-inventory-no-approval",
+      "argv": [
+        "python3",
+        "/tmp/pi-ink-preserve-recovery-0026/host-inventory.py"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "ABORT: exact fresh host recovery inventory approval required\n",
+      "boundary": "Before host paths or process inspection"
+    },
+    {
+      "name": "actual-entry-allowlist-boundary",
+      "directory": "/home/root/pi-ink-bridge-0020",
+      "basename": "config.json",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "name": "actual-entry-allowlist-boundary",
+      "directory": "/home/root/pi-ink-bridge-0020",
+      "basename": ".tablet-state-1234567890",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "name": "actual-entry-allowlist-boundary",
+      "directory": "/home/root/pi-ink-bridge-0020",
+      "basename": ".tablet-state-token",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "name": "actual-entry-allowlist-boundary",
+      "directory": "/home/root/pi-ink-bridge-0020",
+      "basename": "private.pdf",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "name": "actual-entry-allowlist-boundary",
+      "directory": "/home/root/pi-ink-bridge-0020",
+      "basename": "../config.json",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    {
+      "name": "actual-entry-allowlist-boundary",
+      "directory": "/home/root/pi-ink-sidebar-stage-0020/trust",
+      "basename": "server-a.pem",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    {
+      "name": "actual-entry-allowlist-boundary",
+      "directory": "/home/root/pi-ink-operation-history-0020",
+      "basename": "12345",
+      "exit_code": 1,
+      "expected_exit_code": 1
+    }
+  ],
+  "scope_sha256": "8d9126968c702b5ed7be6dfcf574997007c347ebb4cb7983f3213438c6d2d2dd",
+  "restart_authority": "NONE; prospective NEW at-most-one allowance and fresh saved/closed required after actual preflight validation",
+  "proxy_decision": "UNRESOLVED: return exact original file with wildcard80 risk versus keep exact quarantine with persistent deviation",
+  "final_cleanup_manifest": "Not yet available: fresh pre/post entry facts and host closure/credential-presence evidence are prerequisites. cleanup-boundaries.json specifies every reachable subsequent approval/completion step; no inactive-retention completion claim.",
+  "no_new_source_or_device_changes": true,
+  "result0026_open": true
+}

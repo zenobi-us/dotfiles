@@ -1,0 +1,981 @@
+{
+  "schema": "pi-ink-final-cleanup-prerequisites/v1",
+  "recorded_at": "2026-11-04T07:39:42.984692+00:00",
+  "status": "OFFLINE_PREREQUISITES_ONLY_NOT_APPROVED_NO_EXECUTABLE_DELETION_PLAN",
+  "evidence_basis": [
+    {
+      "ref": "postinventory-return-original-v3.json",
+      "sha256": "b9926313fafee66706c9b4a69fcf74ea5fa48a6356f6c7b422c90ff17ce56084"
+    },
+    {
+      "ref": "stagebc-return-original-outcome-v3.json",
+      "sha256": "7b68739a7880802616e0ab7e5b6664b53e013fc29a58c61058e6b2c44c2d16e6"
+    },
+    {
+      "ref": "preflight-host-v2.json",
+      "sha256": "1f9629dc824c6a557f9da43fe0995ac807704444562d94bee92d50df03c2a5f9"
+    },
+    {
+      "ref": "parent-stage-a-v2-validation.json",
+      "sha256": "7ddfb74f64815660fef0c35042cf101fa4b5c0d9762f2178fdc2cfda5f9d0993"
+    }
+  ],
+  "readiness_gate": "Parent must obtain generic stock-library readiness observation first. No UI pass inferred from service/maps/listeners; any obstruction stops owner actions and requires separately scoped recovery.",
+  "device_boundary": {
+    "actual_allowlisted_entry_rows": 41,
+    "actual_unknown_or_unsafe_entry_failures": 0,
+    "actual_observed_entries": [
+      {
+        "path": "/home/root/pi-ink-bridge-0020/pi-ink-bridge.qmd",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=7321 MTIME=1793671283",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-bridge-0020/payload-sha256.txt",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793675614",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-bridge-0020/tablet-qml",
+        "observed_metadata": "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793675614",
+        "classification": "DIRECTORY_NOT_RECURSIVE_DELETION_PROOF_RMDIR_ONLY_IF_APPROVED_EMPTY"
+      },
+      {
+        "path": "/home/root/pi-ink-bridge-0020/pi-ink-tablet",
+        "observed_metadata": "TYPE=regular file MODE=755 UID=0 GID=0 SIZE=9324489 MTIME=1793671283",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-bridge-0020/trust",
+        "observed_metadata": "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793658647",
+        "classification": "DIRECTORY_NOT_RECURSIVE_DELETION_PROOF_RMDIR_ONLY_IF_APPROVED_EMPTY"
+      },
+      {
+        "path": "/home/root/pi-ink-bridge-0020/adapter.so",
+        "observed_metadata": "TYPE=regular file MODE=755 UID=0 GID=0 SIZE=504280 MTIME=1793658648",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-bridge-0020/owner.txt",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+        "classification": "OWNERSHIP_MARKER_RETAIN_UNTIL_ALL_APPROVED_CHILD_CHECKS_COMPLETE_AND_PRESERVE_WITH_RETAINED_STATE"
+      },
+      {
+        "path": "/home/root/pi-ink-bridge-0020/state.json",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=212 MTIME=1793676327",
+        "classification": "PRESERVE_OPAQUE_STATE_NO_CONTENT_READ_RESET_OR_UNLINK"
+      },
+      {
+        "path": "/home/root/pi-ink-bridge-0020/config.json",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=924 MTIME=1793671283",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-bridge-0020/tablet-qml/PiInkToolbar.qml",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=20154 MTIME=1793675614",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-bridge-0020/trust/server-a.pem",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=1184 MTIME=1793658647",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-bridge-0020/trust/server-b.pem",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=1184 MTIME=1793658647",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-webserver-remote-backup-0020/owner.txt",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658645",
+        "classification": "OWNERSHIP_MARKER_RETAIN_UNTIL_ALL_APPROVED_CHILD_CHECKS_COMPLETE_AND_PRESERVE_WITH_RETAINED_STATE"
+      },
+      {
+        "path": "/home/root/pi-ink-rollback-owned-0020/pi-ink-bridge.qmd",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=7321 MTIME=1793671283",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-rollback-owned-0020/adapter.so",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=504280 MTIME=1793658681",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-rollback-owned-0020/owner.txt",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+        "classification": "OWNERSHIP_MARKER_RETAIN_UNTIL_ALL_APPROVED_CHILD_CHECKS_COMPLETE_AND_PRESERVE_WITH_RETAINED_STATE"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-stage-0020/pi-ink-bridge.qmd",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=7321 MTIME=1793669021",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-stage-0020/payload-sha256.txt",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793669022",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-stage-0020/tablet-qml",
+        "observed_metadata": "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793669021",
+        "classification": "DIRECTORY_NOT_RECURSIVE_DELETION_PROOF_RMDIR_ONLY_IF_APPROVED_EMPTY"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-stage-0020/pi-ink-tablet",
+        "observed_metadata": "TYPE=regular file MODE=755 UID=0 GID=0 SIZE=9324489 MTIME=1793669019",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-stage-0020/trust",
+        "observed_metadata": "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793669020",
+        "classification": "DIRECTORY_NOT_RECURSIVE_DELETION_PROOF_RMDIR_ONLY_IF_APPROVED_EMPTY"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-stage-0020/adapter.so",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=504280 MTIME=1793669021",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-stage-0020/owner.txt",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=88 MTIME=1793669022",
+        "classification": "OWNERSHIP_MARKER_RETAIN_UNTIL_ALL_APPROVED_CHILD_CHECKS_COMPLETE_AND_PRESERVE_WITH_RETAINED_STATE"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-stage-0020/config.json",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=924 MTIME=1793669020",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-stage-0020/tablet-qml/PiInkToolbar.qml",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=19697 MTIME=1793669021",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-stage-0020/trust/server-a.pem",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=1184 MTIME=1793669020",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-stage-0020/trust/server-b.pem",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=1184 MTIME=1793669020",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-backup-0020/pi-ink-bridge.qmd",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=1878 MTIME=1793658648",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-backup-0020/payload-sha256.txt",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793658648",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-backup-0020/tablet-qml",
+        "observed_metadata": "TYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793671283",
+        "classification": "DIRECTORY_NOT_RECURSIVE_DELETION_PROOF_RMDIR_ONLY_IF_APPROVED_EMPTY"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-backup-0020/pi-ink-tablet",
+        "observed_metadata": "TYPE=regular file MODE=700 UID=0 GID=0 SIZE=9323806 MTIME=1793658646",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-backup-0020/live-pi-ink-bridge.qmd",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=1878 MTIME=1793658681",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-backup-0020/owner.txt",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+        "classification": "OWNERSHIP_MARKER_RETAIN_UNTIL_ALL_APPROVED_CHILD_CHECKS_COMPLETE_AND_PRESERVE_WITH_RETAINED_STATE"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-backup-0020/config.json",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=851 MTIME=1793658646",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-sidebar-backup-0020/tablet-qml/PiInkToolbar.qml",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=15661 MTIME=1793658647",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-native-button-stage-0020/payload-sha256.txt",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793675603",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-native-button-stage-0020/owner.txt",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793675604",
+        "classification": "OWNERSHIP_MARKER_RETAIN_UNTIL_ALL_APPROVED_CHILD_CHECKS_COMPLETE_AND_PRESERVE_WITH_RETAINED_STATE"
+      },
+      {
+        "path": "/home/root/pi-ink-native-button-stage-0020/PiInkToolbar.qml",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=20154 MTIME=1793675603",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-native-button-backup-0020/payload-sha256.txt",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=659 MTIME=1793671283",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      },
+      {
+        "path": "/home/root/pi-ink-native-button-backup-0020/owner.txt",
+        "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+        "classification": "OWNERSHIP_MARKER_RETAIN_UNTIL_ALL_APPROVED_CHILD_CHECKS_COMPLETE_AND_PRESERVE_WITH_RETAINED_STATE"
+      },
+      {
+        "path": "/home/root/pi-ink-native-button-backup-0020/PiInkToolbar.qml",
+        "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=19697 MTIME=1793671283",
+        "classification": "EXACT_OBSERVED_ENTRY_ONLY_NO_DELETION_AUTHORITY_NEW_PER_FILE_HASH_IDENTITY_GUARDS_REQUIRED"
+      }
+    ],
+    "nonrecursive_only": true,
+    "runtime_precondition_for_future_unlink": "Fresh approved guards must preserve current service fingerprints/activation, require exact current Xochitl identity and owned adapter unmapped/client inactive/UI9821 absent; any change, unsafe parent, link, actor or unknown file aborts before deletion. No additional restart allowance exists.",
+    "hash_prerequisite": "Freeze exact per-file approved ownership/type/mode/size/hash pins from actual prior payload/public hashes and private digest-only provenance. Any unavailable private-copy hash needs separately approved bounded no-content digest evidence before an exact deletion manifest, not guessed matching or unknown deletion. Hash actual Go binaries with10MiB cap, not9MB skipped values.",
+    "deletion_shape_if_later_approved": "Explicit individual owned regular-file unlinks only, guarded immediately against approved identity/hash and safe parent chains. Never rm-r, glob, recursive traversal or deletion of an unknown path. Rmdir only explicitly approved verified-empty directories; retain owner markers with opaque state and until all child checks finish.",
+    "original_proxy": "Preserve returned exact original /home/root/xovi/extensions.d/webserver-remote.so and all other original extension files. Empty former quarantine root contains only known owner marker per actual bounded entry proof; any future marker/rmdir treatment needs explicit manifest approval."
+  },
+  "host_boundary": {
+    "basis": "Completed StageA host result only; no current host content or protected-root access performed by this offline preparation.",
+    "actual_metadata_rows_excluding_protected_root": [
+      {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 20646,
+        "mode": "0o700",
+        "mtime_ns": 1793661827748764777,
+        "path": "/tmp/pi-ink-0020-trust",
+        "regular": false,
+        "size": 520,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22546,
+        "mode": "0o600",
+        "mtime_ns": 1793661827749869219,
+        "path": "/tmp/pi-ink-0020-trust/tablet-sidebar.json",
+        "regular": true,
+        "size": 924,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21974,
+        "mode": "0o600",
+        "mtime_ns": 1793661566747143532,
+        "path": "/tmp/pi-ink-0020-trust/sidebar-origin-b-stderr.log",
+        "regular": true,
+        "size": 1350,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21973,
+        "mode": "0o600",
+        "mtime_ns": 1793661564127979686,
+        "path": "/tmp/pi-ink-0020-trust/desktop-sidebar-b.json",
+        "regular": true,
+        "size": 549,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21972,
+        "mode": "0o600",
+        "mtime_ns": 1793661566806143221,
+        "path": "/tmp/pi-ink-0020-trust/sidebar-origin-a-stderr.log",
+        "regular": true,
+        "size": 1195,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21971,
+        "mode": "0o600",
+        "mtime_ns": 1793661564126919040,
+        "path": "/tmp/pi-ink-0020-trust/desktop-sidebar-a.json",
+        "regular": true,
+        "size": 549,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21005,
+        "mode": "0o600",
+        "mtime_ns": 1793658044360498022,
+        "path": "/tmp/pi-ink-0020-trust/payload-sha256.txt",
+        "regular": true,
+        "size": 659,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21004,
+        "mode": "0o600",
+        "mtime_ns": 1793658044342405677,
+        "path": "/tmp/pi-ink-0020-trust/owner.txt",
+        "regular": true,
+        "size": 88,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21003,
+        "mode": "0o600",
+        "mtime_ns": 1793658044342340064,
+        "path": "/tmp/pi-ink-0020-trust/tablet.json",
+        "regular": true,
+        "size": 851,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21002,
+        "mode": "0o644",
+        "mtime_ns": 1793657852510284208,
+        "path": "/tmp/pi-ink-0020-trust/b-source.pdf",
+        "regular": true,
+        "size": 2403511,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21001,
+        "mode": "0o644",
+        "mtime_ns": 1793657852343065735,
+        "path": "/tmp/pi-ink-0020-trust/a-source.pdf",
+        "regular": true,
+        "size": 2403511,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20999,
+        "mode": "0o600",
+        "mtime_ns": 1793657841355670215,
+        "path": "/tmp/pi-ink-0020-trust/host-client-state.json",
+        "regular": true,
+        "size": 38,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20997,
+        "mode": "0o644",
+        "mtime_ns": 1793657837289880319,
+        "path": "/tmp/pi-ink-0020-trust/env-fixed-origin-b-stderr.log",
+        "regular": true,
+        "size": 885,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20996,
+        "mode": "0o644",
+        "mtime_ns": 1793657837236880603,
+        "path": "/tmp/pi-ink-0020-trust/env-fixed-origin-a-stderr.log",
+        "regular": true,
+        "size": 730,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20980,
+        "mode": "0o600",
+        "mtime_ns": 1793657753850905709,
+        "path": "/tmp/pi-ink-0020-trust/host-tablet.json",
+        "regular": true,
+        "size": 756,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20942,
+        "mode": "0o644",
+        "mtime_ns": 1793657688363678570,
+        "path": "/tmp/pi-ink-0020-trust/final-origin-b-stderr.log",
+        "regular": true,
+        "size": 730,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20941,
+        "mode": "0o644",
+        "mtime_ns": 1793657688500677835,
+        "path": "/tmp/pi-ink-0020-trust/final-origin-a-stderr.log",
+        "regular": true,
+        "size": 885,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20655,
+        "mode": "0o644",
+        "mtime_ns": 1793657390994272481,
+        "path": "/tmp/pi-ink-0020-trust/origin-b-stderr.log",
+        "regular": true,
+        "size": 1195,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20654,
+        "mode": "0o644",
+        "mtime_ns": 1793657390846273274,
+        "path": "/tmp/pi-ink-0020-trust/origin-a-stderr.log",
+        "regular": true,
+        "size": 885,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20652,
+        "mode": "0o600",
+        "mtime_ns": 1793657356522662418,
+        "path": "/tmp/pi-ink-0020-trust/desktop-b.json",
+        "regular": true,
+        "size": 540,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20651,
+        "mode": "0o644",
+        "mtime_ns": 1793657356522210822,
+        "path": "/tmp/pi-ink-0020-trust/server-b.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20650,
+        "mode": "0o600",
+        "mtime_ns": 1793657356520457262,
+        "path": "/tmp/pi-ink-0020-trust/server-b-key.pem",
+        "regular": true,
+        "size": 1704,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20649,
+        "mode": "0o600",
+        "mtime_ns": 1793657356469719643,
+        "path": "/tmp/pi-ink-0020-trust/desktop-a.json",
+        "regular": true,
+        "size": 540,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20648,
+        "mode": "0o644",
+        "mtime_ns": 1793657356469303063,
+        "path": "/tmp/pi-ink-0020-trust/server-a.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20647,
+        "mode": "0o600",
+        "mtime_ns": 1793657356467457546,
+        "path": "/tmp/pi-ink-0020-trust/server-a-key.pem",
+        "regular": true,
+        "size": 1708,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 23129,
+        "mode": "0o700",
+        "mtime_ns": 1793664156829193752,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload",
+        "regular": false,
+        "size": 200,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23147,
+        "mode": "0o600",
+        "mtime_ns": 1793664156829327292,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/payload-sha256.txt",
+        "regular": true,
+        "size": 659,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23146,
+        "mode": "0o644",
+        "mtime_ns": 1793658044342405677,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/owner.txt",
+        "regular": true,
+        "size": 88,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23145,
+        "mode": "0o644",
+        "mtime_ns": 1793664103715726862,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-bridge.qmd",
+        "regular": true,
+        "size": 7321,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23144,
+        "mode": "0o644",
+        "mtime_ns": 1793657056555908645,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/adapter.so",
+        "regular": true,
+        "size": 504280,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 23142,
+        "mode": "0o755",
+        "mtime_ns": 1793664156827969009,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/tablet-qml",
+        "regular": false,
+        "size": 60,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 23139,
+        "mode": "0o755",
+        "mtime_ns": 1793664156827830549,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust",
+        "regular": false,
+        "size": 80,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23138,
+        "mode": "0o600",
+        "mtime_ns": 1793661827749869219,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/config.json",
+        "regular": true,
+        "size": 924,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23136,
+        "mode": "0o755",
+        "mtime_ns": 1793664156818445957,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/pi-ink-tablet",
+        "regular": true,
+        "size": 9324489,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23143,
+        "mode": "0o644",
+        "mtime_ns": 1793664103711726883,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/tablet-qml/PiInkToolbar.qml",
+        "regular": true,
+        "size": 19697,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23141,
+        "mode": "0o644",
+        "mtime_ns": 1793657356522210822,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-b.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23140,
+        "mode": "0o644",
+        "mtime_ns": 1793657356469303063,
+        "path": "/tmp/pi-ink-0020-sidebar-reviewed-payload/trust/server-a.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 21712,
+        "mode": "0o700",
+        "mtime_ns": 1793662188152930113,
+        "path": "/tmp/pi-ink-0020-sidebar-payload",
+        "regular": false,
+        "size": 200,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22809,
+        "mode": "0o600",
+        "mtime_ns": 1793662188153058223,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/payload-sha256.txt",
+        "regular": true,
+        "size": 659,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22808,
+        "mode": "0o644",
+        "mtime_ns": 1793658044342405677,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/owner.txt",
+        "regular": true,
+        "size": 88,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22807,
+        "mode": "0o644",
+        "mtime_ns": 1793661978556968125,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/pi-ink-bridge.qmd",
+        "regular": true,
+        "size": 7315,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22806,
+        "mode": "0o644",
+        "mtime_ns": 1793657056555908645,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/adapter.so",
+        "regular": true,
+        "size": 504280,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 22804,
+        "mode": "0o755",
+        "mtime_ns": 1793662188143608509,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/tablet-qml",
+        "regular": false,
+        "size": 60,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 22801,
+        "mode": "0o755",
+        "mtime_ns": 1793662188143462696,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/trust",
+        "regular": false,
+        "size": 80,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22800,
+        "mode": "0o600",
+        "mtime_ns": 1793661827749869219,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/config.json",
+        "regular": true,
+        "size": 924,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 21966,
+        "mode": "0o755",
+        "mtime_ns": 1793662146719879398,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/pi-ink-tablet",
+        "regular": true,
+        "size": 9323977,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22805,
+        "mode": "0o644",
+        "mtime_ns": 1793661978551968151,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/tablet-qml/PiInkToolbar.qml",
+        "regular": true,
+        "size": 18976,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22803,
+        "mode": "0o644",
+        "mtime_ns": 1793657356522210822,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/trust/server-b.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 22802,
+        "mode": "0o644",
+        "mtime_ns": 1793657356469303063,
+        "path": "/tmp/pi-ink-0020-sidebar-payload/trust/server-a.pem",
+        "regular": true,
+        "size": 1184,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 23926,
+        "mode": "0o700",
+        "mtime_ns": 1793674770996701251,
+        "path": "/tmp/pi-ink-0020-native-button-repair-payload",
+        "regular": false,
+        "size": 100,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23929,
+        "mode": "0o600",
+        "mtime_ns": 1793674770996734323,
+        "path": "/tmp/pi-ink-0020-native-button-repair-payload/owner.txt",
+        "regular": true,
+        "size": 88,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23928,
+        "mode": "0o600",
+        "mtime_ns": 1793674770996701251,
+        "path": "/tmp/pi-ink-0020-native-button-repair-payload/payload-sha256.txt",
+        "regular": true,
+        "size": 659,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 23927,
+        "mode": "0o600",
+        "mtime_ns": 1793674770996650526,
+        "path": "/tmp/pi-ink-0020-native-button-repair-payload/PiInkToolbar.qml",
+        "regular": true,
+        "size": 20154,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "device": 55,
+        "directory": false,
+        "gid": 1000,
+        "inode": 20939,
+        "mode": "0o755",
+        "mtime_ns": 1793657670135776272,
+        "path": "/tmp/pi-ink-0020-offline/pi-ink-tablet",
+        "regular": true,
+        "size": 9323806,
+        "symlink": false,
+        "uid": 1000
+      }
+    ],
+    "digest_reader_requirement": "Use existing no-follow owned-regular fd identity checks, actual cap+1 reads and stable postread/parent identity; no lstat-then-read_bytes primitive. No raw secret/config/key/log contents in output or repository.",
+    "future_exact_manifest_scope": "Only actually proven experiment config/token/key/CA/public binary/stage copies from the retained setup/write audit and actual metadata/digest rows; per-path ownership/hash and parent guards required. Host deletion is separate irreversible approval; current absence of9443/9444 listeners is not proof all origin processes are gone. Unknown/live actors or unestablished key/config ownership must remain protected.",
+    "history_and_logs": "Preserve evidence/history/logs and durable image-annotator output/PDF originals. Eight known-token/private-key-marker negative bounded log checks do not establish universal credential absence; no history deletion or secret-free claim.",
+    "protected_payload": {
+      "path": "/tmp/pi-ink-ui-validation-0023/payload",
+      "policy": "Entire root and children UNEXAMINED/PRESERVED. NO child read/hash/list/chmod/delete authority.",
+      "full_cleanup_blocker": true,
+      "needed_for_eventual_full_cleanup": "A NEW separate exact owner-approved bounded inventory of this root would be needed before any future ownership/hash-scoped cleanup decision. Until then explicitly preserve it and do not claim full cleanup. This prerequisite is not an inventory request or command authority."
+    }
+  },
+  "preserve_without_reading_or_resetting": [
+    "Opaque state.json and any actual interrupted .tablet-state-* files.",
+    "Private and synthetic notebooks, document paths, original PDFs and durable image-annotator output.",
+    "SOURCE, workflow/evidence/history and all parent-authored approval/intent/validation files.",
+    "Current service/boot/settings/account/cloud configuration and other extension files.",
+    "Every missing/inaccessible/unknown/unowned/unsafe path; report rather than repair or delete."
+  ],
+  "reachable_next_steps": [
+    "Receive parent-relayed generic stock-library observation.",
+    "Derive exact device/host per-file deletion manifest from these actual entries and retained setup/write provenance; explicitly preserve opaque state/protected host root. Identify any missing digest/ownership fact without reading a target.",
+    "If evidence is insufficient, propose separately bounded read-only digest/metadata scope for only those proven fixed experiment paths, with owner approval before execution. Never silently add traversal or inspect the protected0755 root.",
+    "Freeze exact final device/host deletion scripts/scope with all expected pins, host-local safety checks and clearly separate irreversible owner approval; no restart, old activation, service edits or unknown deletion.",
+    "After explicitly approved deletion, perform only separately approved bounded postproof and report exact removed/retained artifacts. Protected0755 root continues to block full-cleanup claim unless separately resolved."
+  ],
+  "operation_authority": {
+    "device_commands": false,
+    "host_inventory_commands": false,
+    "restart": false,
+    "unlink_or_rmdir": false,
+    "chmod": false,
+    "protected_root_read": false
+  },
+  "cleanup_complete": false,
+  "production_acceptance": "BLOCKED",
+  "result0026": "OPEN_NOT_FINALIZED"
+}

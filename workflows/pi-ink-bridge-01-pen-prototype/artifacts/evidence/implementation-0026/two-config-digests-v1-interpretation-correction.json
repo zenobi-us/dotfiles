@@ -1,0 +1,30 @@
+{
+  "schema": "pi-ink-evidence-interpretation-correction/v1",
+  "recorded_at": "2026-11-04T08:40:14.757092+00:00",
+  "raw_ref": "two-config-digests-v1.json",
+  "raw_sha256": "1324af9f68eeba3d3b3f94cd68bd3e592a32029bc2afae4631446071404d8c46",
+  "literal_observation": "exit1, no timeout, empty stderr; script integrity/USB guard then ABORT_FIXED_LEAF_OWNER_OR_MODE_REFUSED; no current config digest rows.",
+  "withdrawn_parent_wording": "Exact script order locates refusal at FIRST stage-root marker before DD/hash/config reads.",
+  "corrected_boundary": "Reused guard and absent per-call progress do not identify exact refused leaf/current UID/GID/mode or establish whether public-marker DD/hash reads occurred. Do not claim a current mode/change, zero marker/DD reads, or DD capability failure/success.",
+  "proposal_error_owned": "v1 imposed mode0600 on BOTH public markers despite retained actual StageC stage marker0644 and backup marker0600. The policy assumption was mine; not a device mutation to fix.",
+  "actual_prior_marker_metadata": [
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/owner.txt",
+      "observed_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=88 MTIME=1793669022",
+      "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "source_ref": "postinventory-return-original-v3.json",
+      "current_rejected_metadata_not_observed": true
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/owner.txt",
+      "observed_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+      "observed_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+      "source_ref": "postinventory-return-original-v3.json",
+      "current_rejected_metadata_not_observed": true
+    }
+  ],
+  "status": "PARENT_ACKNOWLEDGED_PUBLIC_CORRECTION_RAW_V1_PRESERVED",
+  "subsequent_authority": "Offline NEW v2 proposal only. Stage marker exact0644, backup marker exact0600, both private configs exact0600. Add fixed role progress/public marker metadata before gate and explicitly scoped native dd/sha stderr; no calls, chmod, fallback or retry.",
+  "current_private_hashes": "UNKNOWN",
+  "parent_files_untouched_unstaged": true
+}

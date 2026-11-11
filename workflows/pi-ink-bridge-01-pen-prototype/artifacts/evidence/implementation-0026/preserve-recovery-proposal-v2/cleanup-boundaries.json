@@ -1,0 +1,459 @@
+{
+  "schema": "pi-ink-final-cleanup-boundaries/v1",
+  "status": "PROSPECTIVE_STAGED_PLAN_NO_MUTATION_APPROVAL",
+  "completion_is_not_inactive_retention": true,
+  "preserve_current_service": {
+    "required_files": {
+      "/usr/lib/systemd/system/xochitl.service": "23f537cf59d527bfbf4823f372385d613e1ade0961c98831c935a372018f9566",
+      "/etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf": "84a2d95c2284a2f2fdb5ae70b4f25eb4a5ef2fbf6f94391fc03e4c54643314ef",
+      "/usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf": "a9432caffacb29d6fcb35136dcc3cb43d8737eb6c2efcb35ea335725f42082d1"
+    },
+    "required_unavailable_paths_not_recreated": [
+      "/etc/systemd/system/xochitl.service.d/00-xovi.conf",
+      "/etc/systemd/system/xochitl.service.d/qt-resource-rebuilder.conf"
+    ],
+    "new_exact_known_environment_gate": "MALLOC_ARENA_MAX=8; preflight must establish exact match, otherwise abort and request new evidence/scope. Never print unknown values or infer activation from properties alone.",
+    "forbidden": [
+      "daemon-reload",
+      "boot activation",
+      "settings changes",
+      "stock binary replacement",
+      "other extension changes",
+      "cache clearing"
+    ]
+  },
+  "proxy_owner_choice": {
+    "return-original": "Move exact quarantined original back to its original extensions.d path, preserve stat644/0/0/8453696/1793049401. It may re-enable original wildcard80 if XOVI loads; this is not paired-authenticated Pi transport.",
+    "keep-quarantined": "Keep exact original backup where it is; explicitly accept persistent deviation from original file placement. Never delete this original. Do not claim original baseline restoration."
+  },
+  "restart_gate": "Explicit NEW at-most-ONE Xochitl restart command after fresh saved/closed and connected USB confirmation, selected frozen branch and exact parent-validated preflight. Historical total UNKNOWN; no spare/retry allowance.",
+  "stages": [
+    {
+      "stage": "A",
+      "action": "Owner approves exact device and host read-only preflights. Obtain10MiB binary identities and allowlisted direct-entry inventory; hash private host config/key identities only with explicit new digest-only permission; bounded secret-presence checks emit booleans only.",
+      "unknown_gate": "Any unknown/unowned entry, cap, process/actor mismatch or unexpected current service state blocks deletion or recovery; preserve and report, no repair."
+    },
+    {
+      "stage": "B",
+      "action": "After parent validates A, owner chooses proxy branch and separately renews saved/closed plus one new restart allowance. Selected recovery script stops only exact current transient client, parks only known owned adapter/liveQMD in prior approved rollback root, applies selected original-proxy disposition, requests restart once under CURRENT configuration, verifies service-byte fingerprints/current known activation unchanged and owned adapter/UIclient gone.",
+      "not_done": "Parked code, config, CA/token copies and stages still exist. This is recovery/unmapping, not final cleanup."
+    },
+    {
+      "stage": "C",
+      "action": "Run selected frozen read-only verify and postinventory once under their explicit approvals after successful B. Re-enumerate exact experimental roots and known state-temp pattern after client quiescence. Collect actual identity/ownership/mtime of all final removal candidates; preserve state/history and originals.",
+      "not_done": "A postinventory pass authorizes no deletion."
+    },
+    {
+      "stage": "D",
+      "action": "Build a NEW immutable exact deletion manifest from observed A/C facts. Each entry must carry absolute path, owner uid/gid, mode, type, size, mtime, exact allowed SHA256 or explicit opaque-preservation classification, root owner-marker provenance, and removal/preservation reason. Pin manifest SHA and exact deleting script bytes. Owner approves that exact irreversible scope before execution.",
+      "real_missing_prerequisite": "Fresh A/C entry/identity facts, owner proxy choice and host gateway ownership/closure have not yet been obtained for this new proposal. Therefore no final deletion program or deletion manifest is represented as approved or complete now."
+    },
+    {
+      "stage": "E-device",
+      "action": "Recheck current service fingerprints, client inactive, owned adapter unmapped, no9821, selected original disposition, no unsafe/live actor, all parent/link/allowlist/hash guards BEFORE first deletion. Unlink ONLY approved exact known credential/config/CA/runtime-code files and known parked files. Never rm -r, wildcard-remove, reset state, delete unknown files or traverse notebook storage. Rmdir only explicitly approved directories proved empty; keep original state/temp/history/original-proxy roots as needed. On first mismatch stop; no silent repair or new restart.",
+      "state_policy": "Keep /home/root/pi-ink-bridge-0020/state.json and numeric .tablet-state-* files in original owned root at0600, plus equivalent retained-root state if observed. No contents or state reset. Source diskState has association/terminal data rather than ServerConfig tokens.",
+      "candidates": "Only exact known files from bounded fixed-path/entry inventory; roots and direct-child allowlists are embedded in frozen pre/postinventory. Unknown siblings are not candidates."
+    },
+    {
+      "stage": "E-host",
+      "action": "Resolve any current9443/9444 listener candidates to actual owned live origin sessions. Obtain exact closure authority; close only their actual gateway/request handles or separately approved exact process identity. Never revive stale jobs or kill shared OMP sessions from stale PIDs. Once endpoints are proved closed, re-pin and remove exact known config/token/key/runtime-payload copies under the audited /tmp roots and exact offline Go binary path. Preserve source/PDF/log/state/history boundaries.",
+      "history_gate": "If bounded known-token/private-key-marker checks find credential material in retained logs, stop complete-cleanup claim. Obtain a separate precise preservation/redaction policy; never delete history silently. Unknown or oversized logs remain protected and block an exhaustive credential-copy claim."
+    },
+    {
+      "stage": "F",
+      "action": "Read-only bounded postproof verifies every approved removed file absent, all preserved opaque state metadata/original proxy metadata intact, no unknown deletion, service/settings fingerprints unchanged, owned runtime unmapped/inactive,9821 absent, host gateway listeners closed and approved credential/code copies absent. Record precise scoped completion and any preserved public source/evidence/history exceptions. Do not claim unsupported machine-wide erasure, original baseline restoration under quarantine choice, UI deployment or production acceptance."
+    }
+  ],
+  "device_root_entry_allowlists": [
+    {
+      "root": "/home/root/pi-ink-bridge-0020",
+      "children": [
+        "adapter.so",
+        "config.json",
+        "config.json.0020-next",
+        "owner.txt",
+        "payload-sha256.txt",
+        "payload-sha256.txt.0020-next",
+        "payload-sha256.txt.0020-repair-next",
+        "payload-sha256.txt.0023-ui-next",
+        "pi-ink-bridge.qmd",
+        "pi-ink-bridge.qmd.0020-next",
+        "pi-ink-bridge.qmd.0023-ui-next",
+        "pi-ink-tablet",
+        "pi-ink-tablet.0020-next",
+        "state.json",
+        "tablet-qml",
+        "tablet-qml/PiInkToolbar.qml",
+        "tablet-qml/PiInkToolbar.qml.0020-next",
+        "tablet-qml/PiInkToolbar.qml.0020-repair-next",
+        "tablet-qml/PiInkToolbar.qml.0023-ui-next",
+        "trust",
+        "trust/server-a.pem",
+        "trust/server-b.pem"
+      ],
+      "root_provenance": [
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:prepare-v3",
+        "phase-c-final-command-scripts.json:prepare-v3",
+        "phase-c-final-command-scripts.json:prepare-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/verify-restored.sh",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt"
+      ],
+      "policy": "Only these fixed children; no directory discovery or recursion. Unknown siblings/history subtrees preserved."
+    },
+    {
+      "root": "/home/root/pi-ink-bridge-retained-0020",
+      "children": [
+        "adapter.so",
+        "config.json",
+        "config.json.0020-next",
+        "owner.txt",
+        "payload-sha256.txt",
+        "payload-sha256.txt.0020-next",
+        "payload-sha256.txt.0020-repair-next",
+        "payload-sha256.txt.0023-ui-next",
+        "pi-ink-bridge.qmd",
+        "pi-ink-bridge.qmd.0020-next",
+        "pi-ink-bridge.qmd.0023-ui-next",
+        "pi-ink-tablet",
+        "pi-ink-tablet.0020-next",
+        "state.json",
+        "tablet-qml",
+        "tablet-qml/PiInkToolbar.qml",
+        "tablet-qml/PiInkToolbar.qml.0020-next",
+        "tablet-qml/PiInkToolbar.qml.0020-repair-next",
+        "tablet-qml/PiInkToolbar.qml.0023-ui-next",
+        "trust",
+        "trust/server-a.pem",
+        "trust/server-b.pem"
+      ],
+      "root_provenance": [
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt"
+      ],
+      "policy": "Only these fixed children; no directory discovery or recursion. Unknown siblings/history subtrees preserved."
+    },
+    {
+      "root": "/home/root/pi-ink-webserver-remote-backup-0020",
+      "children": [
+        "owner.txt",
+        "webserver-remote.so"
+      ],
+      "root_provenance": [
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:prepare-v3",
+        "phase-c-final-command-scripts.json:prepare-v3",
+        "phase-c-final-command-scripts.json:prepare-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt"
+      ],
+      "policy": "Only these fixed children; no directory discovery or recursion. Unknown siblings/history subtrees preserved."
+    },
+    {
+      "root": "/home/root/pi-ink-rollback-owned-0020",
+      "children": [
+        "adapter.so",
+        "interrupted-patch.0020-next",
+        "interrupted-patch.0023-ui-next",
+        "owner.txt",
+        "pi-ink-bridge.qmd"
+      ],
+      "root_provenance": [
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt"
+      ],
+      "policy": "Only these fixed children; no directory discovery or recursion. Unknown siblings/history subtrees preserved."
+    },
+    {
+      "root": "/home/root/pi-ink-sidebar-stage-0020",
+      "children": [
+        "adapter.so",
+        "config.json",
+        "owner.txt",
+        "payload-sha256.txt",
+        "pi-ink-bridge.qmd",
+        "pi-ink-tablet",
+        "tablet-qml",
+        "tablet-qml/PiInkToolbar.qml",
+        "trust",
+        "trust/server-a.pem",
+        "trust/server-b.pem"
+      ],
+      "root_provenance": [
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:prepare-v3",
+        "phase-c-final-command-scripts.json:prepare-v3",
+        "phase-c-final-command-scripts.json:prepare-v3",
+        "device-approval-phase-c-component-repair.txt"
+      ],
+      "policy": "Only these fixed children; no directory discovery or recursion. Unknown siblings/history subtrees preserved."
+    },
+    {
+      "root": "/home/root/pi-ink-sidebar-backup-0020",
+      "children": [
+        "config.json",
+        "live-pi-ink-bridge.qmd",
+        "owner.txt",
+        "payload-sha256.txt",
+        "pi-ink-bridge.qmd",
+        "pi-ink-tablet",
+        "tablet-qml",
+        "tablet-qml/PiInkToolbar.qml"
+      ],
+      "root_provenance": [
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "device-approval-phase-c-component-repair.txt"
+      ],
+      "policy": "Only these fixed children; no directory discovery or recursion. Unknown siblings/history subtrees preserved."
+    },
+    {
+      "root": "/home/root/pi-ink-native-button-stage-0020",
+      "children": [
+        "PiInkToolbar.qml",
+        "owner.txt",
+        "payload-sha256.txt"
+      ],
+      "root_provenance": [
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt"
+      ],
+      "policy": "Only these fixed children; no directory discovery or recursion. Unknown siblings/history subtrees preserved."
+    },
+    {
+      "root": "/home/root/pi-ink-native-button-backup-0020",
+      "children": [
+        "PiInkToolbar.qml",
+        "owner.txt",
+        "payload-sha256.txt"
+      ],
+      "root_provenance": [
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt"
+      ],
+      "policy": "Only these fixed children; no directory discovery or recursion. Unknown siblings/history subtrees preserved."
+    },
+    {
+      "root": "/home/root/pi-ink-ui-stage-0023",
+      "children": [
+        "PiInkToolbar.qml",
+        "owner.txt",
+        "payload-sha256.txt",
+        "pi-ink-bridge.qmd"
+      ],
+      "root_provenance": [
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/reload.sh"
+      ],
+      "policy": "Only these fixed children; no directory discovery or recursion. Unknown siblings/history subtrees preserved."
+    },
+    {
+      "root": "/home/root/pi-ink-ui-backup-0023",
+      "children": [
+        "PiInkToolbar.qml",
+        "live-pi-ink-bridge.qmd",
+        "owner.txt",
+        "payload-sha256.txt",
+        "pi-ink-bridge.qmd"
+      ],
+      "root_provenance": [
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/reload.sh"
+      ],
+      "policy": "Only these fixed children; no directory discovery or recursion. Unknown siblings/history subtrees preserved."
+    },
+    {
+      "root": "/home/root/pi-ink-operation-history-0020",
+      "children": [
+        "owner.txt"
+      ],
+      "root_provenance": [
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:preflight-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:load-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "phase-c-final-command-scripts.json:rollback-v3",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/prepare.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/reload.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "ui-validation-plan-0023/restore.sh",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt",
+        "device-approval-phase-c-component-repair.txt"
+      ],
+      "policy": "Only these fixed children; no directory discovery or recursion. Unknown siblings/history subtrees preserved."
+    }
+  ],
+  "host_roots_and_fixed_binary": [
+    "/tmp/pi-ink-0020-trust",
+    "/tmp/pi-ink-0020-sidebar-reviewed-payload",
+    "/tmp/pi-ink-0020-sidebar-payload",
+    "/tmp/pi-ink-0020-native-button-repair-payload",
+    "/tmp/pi-ink-ui-validation-0023/payload",
+    "/tmp/pi-ink-0020-offline/pi-ink-tablet"
+  ],
+  "host_preserve": [
+    "~/.local/share/omp/image-annotator",
+    "a-source.pdf",
+    "b-source.pdf",
+    "host-client-state.json",
+    "all public SOURCE/BASE evidence/history",
+    "logs unless a separate precise redaction scope is approved"
+  ],
+  "current_status": "Latest UI not deployed, original restoration and final credential/code cleanup incomplete, no new device operation or final result0026 authorized."
+}

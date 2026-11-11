@@ -1,0 +1,74 @@
+{
+  "status": "ACTUAL_RECORDED_POLICY_ONLY_NO_CURRENT_DEVICE_PROOF",
+  "recorded_at": "2026-11-04T08:44:03.982607+00:00",
+  "role_policy": [
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/owner.txt",
+      "recorded_StageC_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=88 MTIME=1793669022",
+      "required_mode": "644",
+      "source_ref": "../postinventory-return-original-v3.json"
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-stage-0020/config.json",
+      "recorded_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=924 MTIME=1793669020",
+      "required_mode": "600",
+      "source_ref": "../postinventory-return-original-v3.json"
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/owner.txt",
+      "recorded_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+      "required_mode": "600",
+      "source_ref": "../postinventory-return-original-v3.json"
+    },
+    {
+      "path": "/home/root/pi-ink-sidebar-backup-0020/config.json",
+      "recorded_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=851 MTIME=1793658646",
+      "required_mode": "600",
+      "source_ref": "../postinventory-return-original-v3.json"
+    }
+  ],
+  "both_public_marker_sha256": "a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d",
+  "refs": [
+    {
+      "ref": "../postinventory-return-original-v3.json",
+      "sha256": "b9926313fafee66706c9b4a69fcf74ea5fa48a6356f6c7b422c90ff17ce56084"
+    },
+    {
+      "ref": "../public-payload-inventory-v1.json",
+      "sha256": "f776bf6afe5756098e475646b59b6bbd14a49a51c5702d9240d396eb830fec86"
+    },
+    {
+      "ref": "../two-config-digests-v1.json",
+      "sha256": "1324af9f68eeba3d3b3f94cd68bd3e592a32029bc2afae4631446071404d8c46"
+    },
+    {
+      "ref": "../two-config-digests-v1-interpretation-correction.json",
+      "sha256": "f84e755e31c69f722d21c92b1b75b47a0f10fa6e507f5c2c1be5a67ce59391da"
+    },
+    {
+      "ref": "../final-cleanup-reachable-facts-v1.json",
+      "sha256": "fa0a1906829fce3cd245a1648f0d844bbae82870ec881499cbcf09aa3d20bfc3"
+    },
+    {
+      "ref": "../owner-stock-library-ready-after-recovery.json",
+      "sha256": "3659e818fb738bd2a44b984177e19c35330563a99db7dfbc829b71703ca6dac4"
+    }
+  ],
+  "reachable_manifest_facts": {
+    "device_entries": 41,
+    "prior_host_digest_pins": 35,
+    "new_actual_host_public_pins": 4,
+    "full_fact_ref": "../final-cleanup-reachable-facts-v1.json",
+    "two_current_private_config_sha256": {
+      "/home/root/pi-ink-sidebar-stage-0020/config.json": null,
+      "/home/root/pi-ink-sidebar-backup-0020/config.json": null
+    },
+    "complete_deletion_executor_ready": false,
+    "deletion_authorized": false
+  },
+  "v1_error_owned": "The earlier proposal assumed both public markers0600 despite recorded stage0644; device file permissions are not changed to match a proposal.",
+  "v1_boundary": "Raw refusal does not identify exact refused leaf/current rejected values or establish marker/DD reads/capabilities; immutable correction remains authoritative.",
+  "actual_host_boundary": "New approved inventory already examined four public leaves, all pins match and unknown/refused0; retained/not deleted. NO reread in this v2 preparation or future v2 action.",
+  "source_service_proxy_evidence_history_state_preserved": true,
+  "result0026": "OPEN_NOT_FINALIZED"
+}

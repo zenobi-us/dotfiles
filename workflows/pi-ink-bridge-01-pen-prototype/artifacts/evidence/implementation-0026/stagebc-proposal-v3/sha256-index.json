@@ -1,0 +1,70 @@
+{
+  "schema": "pi-ink-evidence-sha256/v1",
+  "recorded_at": "2026-11-04T05:22:16.198811+00:00",
+  "status": "NOT_APPROVED_STAGE_BC_ONLY_V3_CANDIDATE",
+  "scope_sha256": "defc80796473c31a159c9e47b01a83f85300833c392641b8c28e45bbaa2a1b6a",
+  "wrapper_sha256": "ce82b2b19871f96d69111b8ec4fade3874dc978abdb3ee836efae14dd6669005",
+  "files": [
+    {
+      "path": "recover-return-original.sh",
+      "sha256": "d2a223e80b8ec6fa94439616fb49ceb0bce45b2f96474513b126216f35b0dfbc"
+    },
+    {
+      "path": "verify-return-original.sh",
+      "sha256": "f5909cf1128295b9e55229226ef4bb937614b08d08404db0480fb6f650a76ee9"
+    },
+    {
+      "path": "postinventory-return-original.sh",
+      "sha256": "a14afee9524893a97ced369acce945baa328ccb613c37bafafe96850fe193dee"
+    },
+    {
+      "path": "recover-keep-quarantined.sh",
+      "sha256": "76346dbd3e95d2dfa50883b5c5174db61fc855de081de4858f6260f0a64f8876"
+    },
+    {
+      "path": "verify-keep-quarantined.sh",
+      "sha256": "d9611496d112c69afb86152b7b1144d0ebfc54eefae3bbe6c3f394cd65a42cc2"
+    },
+    {
+      "path": "postinventory-keep-quarantined.sh",
+      "sha256": "4333cc3c0f56b0f0f1e3d6cc02efb0e3a26a5cd802e1f2189b6e9bb65e1ef2c0"
+    },
+    {
+      "path": "host.sh",
+      "sha256": "ce82b2b19871f96d69111b8ec4fade3874dc978abdb3ee836efae14dd6669005"
+    },
+    {
+      "path": "approval-scope.txt",
+      "sha256": "defc80796473c31a159c9e47b01a83f85300833c392641b8c28e45bbaa2a1b6a"
+    },
+    {
+      "path": "branch-return-original.txt",
+      "sha256": "716cc5d19ac199485bdb87b2e237420e3182007cda3432b79488c51d1fe3720f"
+    },
+    {
+      "path": "branch-keep-quarantined.txt",
+      "sha256": "f051f72efc07c1707c7f31eb0033611d972bc57e0ed56f8eae01c824ae0c7503"
+    },
+    {
+      "path": "host-only-validation.json",
+      "sha256": "11491c7f49dcdfcf99fe3367757b6abbfdffa7aa4ec09f00caddeb12e49ebd69"
+    }
+  ],
+  "stage_a_reference": {
+    "ref": "../parent-stage-a-v2-validation.json",
+    "sha256": "7ddfb74f64815660fef0c35042cf101fa4b5c0d9762f2178fdc2cfda5f9d0993",
+    "parent_owned_untouched_unstaged": true,
+    "completed_stage_a_actions_not_requested_again": true
+  },
+  "protected_host_root": {
+    "path": "/tmp/pi-ink-ui-validation-0023/payload",
+    "status": "UNEXAMINED_PRESERVED_FULL_CLEANUP_BLOCKER",
+    "read_chmod_hash_delete_authorized": false
+  },
+  "prior_v1_v2_bytes_preserved": true,
+  "branch_choice": "OWNER_REQUIRED_EXACTLY_ONE_TRIPLET",
+  "new_restart_allowance_and_saved_closed_usb": "OWNER_REQUIRED_NOT_APPROVED",
+  "device_actions_during_proposal": 0,
+  "irreversible_deletion_authorized": false,
+  "result0026": "OPEN_NOT_FINALIZED"
+}

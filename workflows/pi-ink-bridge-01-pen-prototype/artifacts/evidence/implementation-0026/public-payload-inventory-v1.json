@@ -1,0 +1,27 @@
+{
+  "schema": "pi-ink-raw-operation/v1",
+  "approval_ref": "approval-final-identity-reads-v1.json",
+  "approval_sha256": "940bb4ef9c967c92cc3e642b8cc41b6f8614b6d0fb994846ec5256af56b96f05",
+  "action": "inventory-public-payload",
+  "argv": [
+    "sh",
+    "/tmp/pi-ink-public-payload-inventory-0026-v1/host.sh",
+    "inventory-public-payload"
+  ],
+  "approved_env_only": {
+    "PI_INK_PUBLIC_PAYLOAD_INVENTORY_APPROVED": "public-payload-0026-v1"
+  },
+  "host_deadline_seconds": 45,
+  "started_at": "2026-11-04T08:24:02.989913+00:00",
+  "finished_at": "2026-11-04T08:24:03.035828+00:00",
+  "exit_code": 0,
+  "host_timeout": false,
+  "stdout": "/tmp/pi-ink-public-payload-inventory-0026-v1/inventory.py: OK\n{\"ctime_ns\": 1793681398634259480, \"device\": 55, \"gid\": 1000, \"inode\": 24900, \"mode\": \"0o755\", \"mtime_ns\": 1793681398634259480, \"path\": \"/tmp/pi-ink-ui-validation-0023/payload\", \"size\": 120, \"status\": \"FIXED0755_ROOT_METADATA\", \"uid\": 1000}\n{\"ctime_ns\": 1793681398634259480, \"device\": 55, \"gid\": 1000, \"inode\": 24904, \"known_public_pin_match\": true, \"mode\": \"0o644\", \"mtime_ns\": 1793681398634259480, \"path\": \"/tmp/pi-ink-ui-validation-0023/payload/owner.txt\", \"sha256\": \"a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d\", \"size\": 88, \"status\": \"KNOWN_PUBLIC_LEAF_METADATA_DIGEST\", \"uid\": 1000}\n{\"ctime_ns\": 1793681398629259507, \"device\": 55, \"gid\": 1000, \"inode\": 24901, \"known_public_pin_match\": true, \"mode\": \"0o644\", \"mtime_ns\": 1793681398629259507, \"path\": \"/tmp/pi-ink-ui-validation-0023/payload/PiInkToolbar.qml\", \"sha256\": \"c09f7f617760b4dc839787d228a2ab2bf12ba26f1f52a6ec910124072b8db869\", \"size\": 20150, \"status\": \"KNOWN_PUBLIC_LEAF_METADATA_DIGEST\", \"uid\": 1000}\n{\"ctime_ns\": 1793681398631259496, \"device\": 55, \"gid\": 1000, \"inode\": 24902, \"known_public_pin_match\": true, \"mode\": \"0o644\", \"mtime_ns\": 1793681398631259496, \"path\": \"/tmp/pi-ink-ui-validation-0023/payload/pi-ink-bridge.qmd\", \"sha256\": \"0dc1dad15002559d943f63fb73298aca68c570a9f46cefe38bb42c5798e8edc0\", \"size\": 8298, \"status\": \"KNOWN_PUBLIC_LEAF_METADATA_DIGEST\", \"uid\": 1000}\n{\"ctime_ns\": 1793681398632259491, \"device\": 55, \"gid\": 1000, \"inode\": 24903, \"known_public_pin_match\": true, \"mode\": \"0o644\", \"mtime_ns\": 1793681398632259491, \"path\": \"/tmp/pi-ink-ui-validation-0023/payload/payload-sha256.txt\", \"sha256\": \"9ce7ecaa8bd9607e938ea75ea7cae957728e6592a7d2bdb4b329f06e0939a57c\", \"size\": 659, \"status\": \"KNOWN_PUBLIC_LEAF_METADATA_DIGEST\", \"uid\": 1000}\n{\"deletion_authorized\": false, \"entry_name_bytes\": 60, \"entry_rows\": 4, \"four_public_leaf_facts_complete\": true, \"global_cleanup_complete\": false, \"known_public_pin_matches\": 4, \"refused_or_mismatched_known_leaves\": 0, \"status\": \"PUBLIC_PAYLOAD_HOST_INVENTORY_COMPLETE\", \"unknown_children_preserved_unopened\": 0}\n",
+  "stderr": "",
+  "output_inspection": {
+    "credential_pattern_hits": 0,
+    "metadata_digest_and_boolean_only": true
+  },
+  "deletion_or_permission_change_authorized": false,
+  "result0026": "OPEN_NOT_FINALIZED"
+}

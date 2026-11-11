@@ -1,0 +1,23 @@
+{
+  "capture": "Exact case outcomes copied from observed successful host-fixtures.py tool output; successful fixture run was not repeated.",
+  "argv": ["python3", "-I", "-B", "/tmp/pi-ink-public-payload-inventory-0026-v1/host-fixtures.py"],
+  "exit_code": 0,
+  "fixtures": [
+    {"case": "four_known_public_files", "passed": true, "exit_code": 0, "read_bytes": 62},
+    {"case": "unknown_fifo_redacted_unopened", "passed": true, "exit_code": 0, "read_bytes": 62},
+    {"case": "known_symlink_unopened", "passed": true, "exit_code": 0, "read_bytes": 50},
+    {"case": "known_fifo_unopened", "passed": true, "exit_code": 0, "read_bytes": 50},
+    {"case": "exact_cap_accepted", "passed": true, "exit_code": 0, "read_bytes": 65586},
+    {"case": "oversize_cap_plus_one_refused", "passed": true, "exit_code": 0, "read_bytes": 65587, "capped_leaf_actual_read_bytes": 65537},
+    {"case": "live_growth_cap_plus_one_refused", "passed": true, "exit_code": 0, "read_bytes": 65587, "capped_leaf_actual_read_bytes": 65537},
+    {"case": "owner_marker_mismatch_stops_before_listing", "passed": true, "exit_code": 1, "read_bytes": 24},
+    {"case": "root0700_refused", "passed": true, "exit_code": 1, "read_bytes": 0},
+    {"case": "wrong_root_inode_refused", "passed": true, "exit_code": 1, "read_bytes": 0},
+    {"case": "parent_symlink_refused", "passed": true, "exit_code": 1, "read_bytes": 0},
+    {"case": "entry_count_cap_refused", "passed": true, "exit_code": 1, "read_bytes": 21},
+    {"case": "entry_name_bytes_cap_refused", "passed": true, "exit_code": 1, "read_bytes": 21}
+  ],
+  "production_root_read": false,
+  "production_device_network_process_or_deletion_action": false,
+  "fixture_writes_and_removal": "Only newly created disposable TemporaryDirectory fixture paths. No production chmod, unlink, read or inventory."
+}

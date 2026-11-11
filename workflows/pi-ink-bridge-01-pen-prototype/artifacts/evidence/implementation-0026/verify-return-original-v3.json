@@ -1,0 +1,30 @@
+{
+  "schema": "pi-ink-raw-operation/v1",
+  "approval_ref": "approval-stagebc-v3-return-original.json",
+  "action": "verify-return-original",
+  "prerequisite_ref": "recover-return-original-v3.json",
+  "argv": [
+    "sh",
+    "/tmp/pi-ink-stagebc-0026-v3/host.sh",
+    "verify-return-original"
+  ],
+  "approved_env_only": {
+    "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+    "PI_INK_STAGE_BC_APPROVED": "stagebc-0026-v3",
+    "PI_INK_STAGE_BC_STAGE_A": "parent-validated-v2-preserve-host-root",
+    "PI_INK_STAGE_BC_PROXY_CHOICE": "return-original",
+    "PI_INK_STAGE_BC_RECOVERY_OUTCOME": "observed-success-same-selected-branch"
+  },
+  "host_deadline_seconds": 45,
+  "started_at": "2026-11-04T07:34:32.167189+00:00",
+  "finished_at": "2026-11-04T07:34:37.836664+00:00",
+  "exit_code": 0,
+  "host_timeout": false,
+  "stdout": "/tmp/pi-ink-stagebc-0026-v3/verify-return-original.sh: OK\nEXACT_USB_GUARD_PASSED_NEW_PRESERVE_CURRENT_SCOPE\nEXACT_PUBLIC_HASH_MATCH /usr/lib/systemd/system/xochitl.service\nEXACT_PUBLIC_HASH_MATCH /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf\nEXACT_PUBLIC_HASH_MATCH /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf\nCURRENT_SERVICE_FILES_AND_EXACT_KNOWN_VENDOR_ACTIVATION_PRESERVED\nKNOWN_MODULE_MAPS XOCHITL_PID=230912 XOVI=no ADAPTER=no ORIGINAL_PROXY=no REBUILDER=no APPLOAD=no SCAN_COMPLETE=yes\nEXACT_PUBLIC_HASH_MATCH /home/root/xovi/extensions.d/webserver-remote.so\nRELEVANT_LISTENER FAMILY=tcp PORT=80 BINDING=other_REDACTED\nLISTENER_CANDIDATE_OWNER=xochitl PID=230912 MATCH_WITHIN_FD0_511=yes\nLISTENER_SCAN FAMILY=tcp RELEVANT_ROWS=1 SCAN_COMPLETE=yes\nLISTENER_SCAN FAMILY=tcp6 RELEVANT_ROWS=0 SCAN_COMPLETE=yes\nXOCHITL_PID_STABLE=yes\nREAD_ONLY_RECOVERY_VERIFY_COMPLETE PROXY_BRANCH=return-original FINAL_CLEANUP_STILL_REQUIRED\n",
+  "stderr": "",
+  "output_inspection": {
+    "credential_pattern_hits": 0,
+    "no_private_content_observed": true
+  },
+  "result0026": "OPEN_NOT_FINALIZED"
+}

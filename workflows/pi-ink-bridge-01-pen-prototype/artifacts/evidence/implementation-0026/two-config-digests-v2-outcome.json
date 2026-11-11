@@ -1,0 +1,50 @@
+{
+  "schema": "pi-ink-readonly-refusal-outcome/v1",
+  "recorded_at": "2026-11-04T09:04:19.914430+00:00",
+  "approval_ref": "approval-two-config-digests-v2.json",
+  "raw_ref": "two-config-digests-v2.json",
+  "raw_sha256": "a6ff84c6ff176eaf1a9c60118530158ca462a31e16a372fc1ded4d308a121797",
+  "allowed_invocations_consumed": 1,
+  "exit_code": 1,
+  "host_timeout": false,
+  "literal_refusal": "ABORT_BOUNDED_NOFOLLOW_READ_OR_HASH_FAILED",
+  "native_stderr_exact": "dd: invalid argument 'nofollow' to 'iflag'\n",
+  "observed_fixed_progress": "public-stage-marker /home/root/pi-ink-sidebar-stage-0020/owner.txt",
+  "actual_public_marker_metadata_line": "PUBLIC_MARKER_METADATA PATH=/home/root/pi-ink-sidebar-stage-0020/owner.txt TYPE=regular file MODE=644 UID=0 GID=0 SIZE=88 DEV=65026 INODE=1690 MTIME=2026-11-03 01:23:42.137091281 +0000 CTIME=2026-11-03 01:23:42.137091281 +0000",
+  "failure_location": "First public-stage-marker bounded hash pipeline, identified by new fixed role progress and native diagnostic. No backup-marker/private-config call progress was reached; pipeline failure invokes abort before those calls.",
+  "proved_capability_fact": "This dd invocation rejected literal nofollow as an iflag argument. Do not generalize to a missing dd executable, other flag support, or alternative reader availability.",
+  "unproved_details": [
+    "Whether any public-marker file was opened/read internally before flag rejection is not established by the output.",
+    "No successful new public-marker hash match was returned.",
+    "Other dd flags/status support and alternative tool capabilities were not tested."
+  ],
+  "current_private_config_digest_rows": 0,
+  "current_private_config_sha256": {
+    "/home/root/pi-ink-sidebar-stage-0020/config.json": null,
+    "/home/root/pi-ink-sidebar-backup-0020/config.json": null
+  },
+  "v1_relation": "v1 remains the distinct reused owner/mode guard refusal with unknown rejected leaf/values/read boundary; no retroactive v1 capability-failure claim. Raw v1 and immutable correction retained.",
+  "actions_not_performed": [
+    "Retry/amendment/fallback/alternative command/capability probe.",
+    "Install, temporary helper staging, config copy or protected-host reread.",
+    "Permissions/service/config changes, process action, restart or deletion."
+  ],
+  "exact_missing_prerequisite": "A NEW reviewed exact read-only scope and fresh owner approval for obtaining two real current config hashes with a reader compatible with the required guards and actual target capabilities. No supported alternative is assumed or deployed.",
+  "reachable_final_cleanup_facts": {
+    "ref": "final-cleanup-reachable-facts-v1.json",
+    "sha256": "fa0a1906829fce3cd245a1648f0d844bbae82870ec881499cbcf09aa3d20bfc3",
+    "device_entries": 41,
+    "prior_host_digest_pins": 35,
+    "new_actual_public_host_pins": 4,
+    "two_private_hash_gaps_remain": true,
+    "complete_final_deletion_program_created": false
+  },
+  "host_public_boundary": "Already examined4/4known pins,0unknown/refused; files retained/not deleted, no reread.",
+  "stock_library": "Owner-reported normal stock library/sidebar; not latest Pi Ink UI acceptance.",
+  "deletion_or_restart_authority": false,
+  "restart_allowance_remaining": 0,
+  "historical_restart_total": "UNKNOWN",
+  "production_acceptance": "BLOCKED",
+  "result0026": "OPEN_NOT_FINALIZED",
+  "parent_approval_untouched_unstaged": true
+}

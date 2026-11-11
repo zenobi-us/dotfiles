@@ -1,0 +1,495 @@
+{
+  "schema": "pi-ink-host-only-guard-validation/v1",
+  "status": "NOT_APPROVED_STAGE_BC_CANDIDATE",
+  "recorded_at": "2026-11-04T05:21:35.160298+00:00",
+  "syntax": [
+    {
+      "file": "host.sh",
+      "exit_code": 0
+    },
+    {
+      "file": "recover-return-original.sh",
+      "exit_code": 0
+    },
+    {
+      "file": "recover-keep-quarantined.sh",
+      "exit_code": 0
+    },
+    {
+      "file": "postinventory-return-original.sh",
+      "exit_code": 0
+    },
+    {
+      "file": "postinventory-keep-quarantined.sh",
+      "exit_code": 0
+    }
+  ],
+  "negative_actual_wrapper_checks": [
+    {
+      "case": "unsupported action preflight-device",
+      "action": "preflight-device",
+      "exit_code": 2,
+      "stdout": "ABORT: Stage B/C only; select one of the six literal matching branch actions\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "unsupported action preflight-host",
+      "action": "preflight-host",
+      "exit_code": 2,
+      "stdout": "ABORT: Stage B/C only; select one of the six literal matching branch actions\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "unsupported action prepare",
+      "action": "prepare",
+      "exit_code": 2,
+      "stdout": "ABORT: Stage B/C only; select one of the six literal matching branch actions\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "unsupported action stage",
+      "action": "stage",
+      "exit_code": 2,
+      "stdout": "ABORT: Stage B/C only; select one of the six literal matching branch actions\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "unsupported action reload",
+      "action": "reload",
+      "exit_code": 2,
+      "stdout": "ABORT: Stage B/C only; select one of the six literal matching branch actions\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "unsupported action restore",
+      "action": "restore",
+      "exit_code": 2,
+      "stdout": "ABORT: Stage B/C only; select one of the six literal matching branch actions\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "unsupported action cleanup",
+      "action": "cleanup",
+      "exit_code": 2,
+      "stdout": "ABORT: Stage B/C only; select one of the six literal matching branch actions\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "legacy token PI_INK_RECOVERY_PREFLIGHT_APPROVED",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: legacy scope tokens forbidden in Stage B/C v3\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "legacy token PI_INK_EXACT_RECOVERY_APPROVED",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: legacy scope tokens forbidden in Stage B/C v3\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "legacy token PI_INK_POSTRECOVERY_INVENTORY_APPROVED",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: legacy scope tokens forbidden in Stage B/C v3\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "legacy token PI_INK_EXACT_PLAN_APPROVED",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: legacy scope tokens forbidden in Stage B/C v3\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "legacy token PI_INK_PROXY_CHOICE",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: legacy scope tokens forbidden in Stage B/C v3\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "legacy token PI_INK_NEW_RESTART_ALLOWANCE",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: legacy scope tokens forbidden in Stage B/C v3\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "legacy token PI_INK_SAVED_CLOSED",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: legacy scope tokens forbidden in Stage B/C v3\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "legacy token PI_INK_ENTRY_PREFLIGHT",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: legacy scope tokens forbidden in Stage B/C v3\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "recover-return-original missing PI_INK_OPERATOR_HANDOFF",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: exclusive operator handoff required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "recover-return-original missing PI_INK_STAGE_BC_APPROVED",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: exact NEW Stage B/C v3 three-action branch approval required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "recover-return-original missing PI_INK_STAGE_BC_STAGE_A",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: durable parent Stage A validation and protected-root preservation required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "recover-return-original cross-branch",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: selected proxy branch and action mismatch\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "verify-return-original missing PI_INK_OPERATOR_HANDOFF",
+      "action": "verify-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: exclusive operator handoff required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "verify-return-original missing PI_INK_STAGE_BC_APPROVED",
+      "action": "verify-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: exact NEW Stage B/C v3 three-action branch approval required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "verify-return-original missing PI_INK_STAGE_BC_STAGE_A",
+      "action": "verify-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: durable parent Stage A validation and protected-root preservation required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "verify-return-original cross-branch",
+      "action": "verify-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: selected proxy branch and action mismatch\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "postinventory-return-original missing PI_INK_OPERATOR_HANDOFF",
+      "action": "postinventory-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: exclusive operator handoff required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "postinventory-return-original missing PI_INK_STAGE_BC_APPROVED",
+      "action": "postinventory-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: exact NEW Stage B/C v3 three-action branch approval required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "postinventory-return-original missing PI_INK_STAGE_BC_STAGE_A",
+      "action": "postinventory-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: durable parent Stage A validation and protected-root preservation required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "postinventory-return-original cross-branch",
+      "action": "postinventory-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: selected proxy branch and action mismatch\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "return-original missing PI_INK_STAGE_BC_RESTART_ALLOWANCE",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: NEW at-most-one further current-config restart allowance required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "return-original missing PI_INK_STAGE_BC_SAVED_CLOSED",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: NEW ALL-documents-saved/closed confirmation required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "return-original missing PI_INK_STAGE_BC_USB",
+      "action": "recover-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: NEW connected USB confirmation required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "return-original verify no recovery success",
+      "action": "verify-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: successful same-branch recovery must be observed before read-only checks\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "return-original postinventory no recovery success",
+      "action": "postinventory-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: successful same-branch recovery must be observed before read-only checks\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "return-original postinventory no verify success",
+      "action": "postinventory-return-original",
+      "exit_code": 1,
+      "stdout": "ABORT: successful same-branch verify required before postinventory\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "recover-keep-quarantined missing PI_INK_OPERATOR_HANDOFF",
+      "action": "recover-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: exclusive operator handoff required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "recover-keep-quarantined missing PI_INK_STAGE_BC_APPROVED",
+      "action": "recover-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: exact NEW Stage B/C v3 three-action branch approval required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "recover-keep-quarantined missing PI_INK_STAGE_BC_STAGE_A",
+      "action": "recover-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: durable parent Stage A validation and protected-root preservation required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "recover-keep-quarantined cross-branch",
+      "action": "recover-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: selected proxy branch and action mismatch\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "verify-keep-quarantined missing PI_INK_OPERATOR_HANDOFF",
+      "action": "verify-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: exclusive operator handoff required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "verify-keep-quarantined missing PI_INK_STAGE_BC_APPROVED",
+      "action": "verify-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: exact NEW Stage B/C v3 three-action branch approval required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "verify-keep-quarantined missing PI_INK_STAGE_BC_STAGE_A",
+      "action": "verify-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: durable parent Stage A validation and protected-root preservation required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "verify-keep-quarantined cross-branch",
+      "action": "verify-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: selected proxy branch and action mismatch\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "postinventory-keep-quarantined missing PI_INK_OPERATOR_HANDOFF",
+      "action": "postinventory-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: exclusive operator handoff required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "postinventory-keep-quarantined missing PI_INK_STAGE_BC_APPROVED",
+      "action": "postinventory-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: exact NEW Stage B/C v3 three-action branch approval required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "postinventory-keep-quarantined missing PI_INK_STAGE_BC_STAGE_A",
+      "action": "postinventory-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: durable parent Stage A validation and protected-root preservation required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "postinventory-keep-quarantined cross-branch",
+      "action": "postinventory-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: selected proxy branch and action mismatch\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "keep-quarantined missing PI_INK_STAGE_BC_RESTART_ALLOWANCE",
+      "action": "recover-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: NEW at-most-one further current-config restart allowance required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "keep-quarantined missing PI_INK_STAGE_BC_SAVED_CLOSED",
+      "action": "recover-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: NEW ALL-documents-saved/closed confirmation required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "keep-quarantined missing PI_INK_STAGE_BC_USB",
+      "action": "recover-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: NEW connected USB confirmation required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "keep-quarantined verify no recovery success",
+      "action": "verify-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: successful same-branch recovery must be observed before read-only checks\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "keep-quarantined postinventory no recovery success",
+      "action": "postinventory-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: successful same-branch recovery must be observed before read-only checks\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "keep-quarantined postinventory no verify success",
+      "action": "postinventory-keep-quarantined",
+      "exit_code": 1,
+      "stdout": "ABORT: successful same-branch verify required before postinventory\n",
+      "stderr": "",
+      "transport_reached": false
+    }
+  ],
+  "positive_guard_prefix_only_checks": [
+    {
+      "action": "recover-return-original",
+      "exit_code": 0,
+      "stdout": "HOST_ONLY_GUARD_PREFIX_PASSED_NO_TRANSPORT\n",
+      "scope": "Exact guard prefix only; dispatch/hash/route/SSH excluded; simulated accident guards are NOT owner consent."
+    },
+    {
+      "action": "verify-return-original",
+      "exit_code": 0,
+      "stdout": "HOST_ONLY_GUARD_PREFIX_PASSED_NO_TRANSPORT\n",
+      "scope": "Exact guard prefix only; dispatch/hash/route/SSH excluded; simulated accident guards are NOT owner consent."
+    },
+    {
+      "action": "postinventory-return-original",
+      "exit_code": 0,
+      "stdout": "HOST_ONLY_GUARD_PREFIX_PASSED_NO_TRANSPORT\n",
+      "scope": "Exact guard prefix only; dispatch/hash/route/SSH excluded; simulated accident guards are NOT owner consent."
+    },
+    {
+      "action": "recover-keep-quarantined",
+      "exit_code": 0,
+      "stdout": "HOST_ONLY_GUARD_PREFIX_PASSED_NO_TRANSPORT\n",
+      "scope": "Exact guard prefix only; dispatch/hash/route/SSH excluded; simulated accident guards are NOT owner consent."
+    },
+    {
+      "action": "verify-keep-quarantined",
+      "exit_code": 0,
+      "stdout": "HOST_ONLY_GUARD_PREFIX_PASSED_NO_TRANSPORT\n",
+      "scope": "Exact guard prefix only; dispatch/hash/route/SSH excluded; simulated accident guards are NOT owner consent."
+    },
+    {
+      "action": "postinventory-keep-quarantined",
+      "exit_code": 0,
+      "stdout": "HOST_ONLY_GUARD_PREFIX_PASSED_NO_TRANSPORT\n",
+      "scope": "Exact guard prefix only; dispatch/hash/route/SSH excluded; simulated accident guards are NOT owner consent."
+    }
+  ],
+  "unchanged_prior_indexes": [
+    {
+      "directory": "preserve-recovery-proposal",
+      "indexed_entries_matching": 13
+    },
+    {
+      "directory": "preserve-recovery-proposal-v2",
+      "indexed_entries_matching": 14
+    }
+  ],
+  "host_digest_reader": {
+    "sha256": "44a8f5c1f1765d17bd1176acc97adeb8af73d31dd28878af078e4baad5d6ac6e",
+    "executed": false,
+    "copied_to_stagebc": false
+  },
+  "device_or_network_commands": false,
+  "source_changes": false,
+  "protected0755root_accessed": false,
+  "app_build_browser_tests": false,
+  "target_deltas": "Recovery stdout PID+literal branch only; postinventory final success marker moved only; verification targets byte-identical."
+}

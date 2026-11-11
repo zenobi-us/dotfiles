@@ -1,0 +1,69 @@
+{
+  "schema": "pi-ink-evidence-sha256/v1",
+  "recorded_at": "2026-11-04T04:55:29.592275+00:00",
+  "status": "NOT_APPROVED_IMMUTABLE_V2_CANDIDATE",
+  "supersedes_for_new_consent": "preserve-recovery-proposal v1; original artifacts remain unchanged",
+  "scope_sha256": "1f5b54225bd79b9145904d399b8eab065939519c0673bc7bd3eb52acde152e47",
+  "files": [
+    {
+      "path": "preflight.sh",
+      "sha256": "8f27e09f3489d6bc284ac2d1cc92aa72e81f07bafe7a62bd47913dae72d79820"
+    },
+    {
+      "path": "host-inventory.py",
+      "sha256": "44a8f5c1f1765d17bd1176acc97adeb8af73d31dd28878af078e4baad5d6ac6e"
+    },
+    {
+      "path": "recover-return-original.sh",
+      "sha256": "c2fa1f41ad0a902f0a5a563cc2a2a473ad81f6450f7d6080ce9a834aca776172"
+    },
+    {
+      "path": "recover-keep-quarantined.sh",
+      "sha256": "f5ac3475dabfcb3d2492b8c625fe4ea8473da88d771d3f7fe55e8a93f555cf11"
+    },
+    {
+      "path": "verify-return-original.sh",
+      "sha256": "f5909cf1128295b9e55229226ef4bb937614b08d08404db0480fb6f650a76ee9"
+    },
+    {
+      "path": "verify-keep-quarantined.sh",
+      "sha256": "d9611496d112c69afb86152b7b1144d0ebfc54eefae3bbe6c3f394cd65a42cc2"
+    },
+    {
+      "path": "postinventory-return-original.sh",
+      "sha256": "f441619afe6d590715aa32b39652dc6eb0e1ceabf3c30eb086cd1408043021c1"
+    },
+    {
+      "path": "postinventory-keep-quarantined.sh",
+      "sha256": "8572114c18b834b1a09bdade99f5dc9d0801c1ba5c0032bc2840318b2a791a65"
+    },
+    {
+      "path": "host.sh",
+      "sha256": "a1413ebff9fa33fc0b8ff76d6017a401b7de66b889d3694953b01f7291abb341"
+    },
+    {
+      "path": "path-audit.json",
+      "sha256": "7a39ea56a73a1958bff45ed0b2f4e2f5565813f5aa754dece07acd339ba7be1e"
+    },
+    {
+      "path": "cleanup-boundaries.json",
+      "sha256": "6fa4bc85369e2767bf6963241cab3c07c3cbe0a6cffd54c787655ef4b0e45b8c"
+    },
+    {
+      "path": "approval-scope.txt",
+      "sha256": "1f5b54225bd79b9145904d399b8eab065939519c0673bc7bd3eb52acde152e47"
+    },
+    {
+      "path": "bounded-read-fragment.py",
+      "sha256": "1ee14ba4ec8c007cc99168e8d30e79bd3a89a32e6889d2acaa1700c4fd1b16ff"
+    },
+    {
+      "path": "host-only-validation.json",
+      "sha256": "5b28fb9626574b8a31684f5bbfce628f29e6866207eac61859153dab403f8bd9"
+    }
+  ],
+  "target_calls": 0,
+  "host_inventory_calls": 0,
+  "scope_or_approval_changed_to_pass_guard": false,
+  "all_old_approvals_not_authority_for_v2": true
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "pi-ink-evidence-sha256/v1",
+  "recorded_at": "2026-11-04T07:56:51.124463+00:00",
+  "status": "NOT_APPROVED_NEW_HOST_ONLY_READ_ONLY_CANDIDATE",
+  "scope_sha256": "8e07a26e84f3493cb2ed8ea8b05a9443391cc630ae967ac67d20396540f04be3",
+  "script_sha256": "e7e6f0ceaa706397da54bfcec67626978011ff9e608726e72028a0217c685e01",
+  "wrapper_sha256": "60530df3a85417829168194ecc619cf4ca0e245dfe1f3d49ee0dbb3bd4134ac2",
+  "files": [
+    {
+      "path": "inventory.py",
+      "sha256": "e7e6f0ceaa706397da54bfcec67626978011ff9e608726e72028a0217c685e01"
+    },
+    {
+      "path": "host.sh",
+      "sha256": "60530df3a85417829168194ecc619cf4ca0e245dfe1f3d49ee0dbb3bd4134ac2"
+    },
+    {
+      "path": "host-fixtures.py",
+      "sha256": "1e0db52fd8224be76277ae21b2a5e3e7537c475aa7928915f355ecb78dc0642c"
+    },
+    {
+      "path": "fixture-outcome.json",
+      "sha256": "278760223afce0ec5747c2ce4860f37fde61558ddc1e9cebc3e7b27537705a6e"
+    },
+    {
+      "path": "host-only-validation.json",
+      "sha256": "4e4a3308b17b99eed91dfcfc76adcc78456dc47cd48d7439ca440dc7b3d41e54"
+    },
+    {
+      "path": "candidate-pins-audit.json",
+      "sha256": "dd1229ace0ecba4a52f51b04ed4603837d5d1cee85c83e69d30eaf856c534041"
+    },
+    {
+      "path": "approval-scope.txt",
+      "sha256": "8e07a26e84f3493cb2ed8ea8b05a9443391cc630ae967ac67d20396540f04be3"
+    }
+  ],
+  "proven_root_metadata_source": {
+    "ref": "../preflight-host-v2.json",
+    "sha256": "1f9629dc824c6a557f9da43fe0995ac807704444562d94bee92d50df03c2a5f9",
+    "recorded_root_metadata": {
+      "device": 55,
+      "directory": true,
+      "gid": 1000,
+      "inode": 24900,
+      "mode": "0o755",
+      "mtime_ns": 1793681398634259480,
+      "path": "/tmp/pi-ink-ui-validation-0023/payload",
+      "regular": false,
+      "size": 120,
+      "symlink": false,
+      "uid": 1000
+    }
+  },
+  "known_public_leaf_count": 4,
+  "production_root_accessed_during_preparation": false,
+  "host_only_fixtures_passed": 13,
+  "actual_negative_consent_gates": 16,
+  "positive_consent_prefix_only": 1,
+  "device_process_or_deletion_authority": false,
+  "full_cleanup_complete": false,
+  "result0026": "OPEN_NOT_FINALIZED"
+}

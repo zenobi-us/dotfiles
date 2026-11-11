@@ -1,0 +1,6 @@
+{
+  "version": "1",
+  "remote": {
+    "https://raw.githubusercontent.com/harehare/okf.mq/HEAD/okf.mq": "5b05f96c7866640a90d41170ab4f2f0ebd2748081d87beef133c0c1397d05c29"
+  }
+}

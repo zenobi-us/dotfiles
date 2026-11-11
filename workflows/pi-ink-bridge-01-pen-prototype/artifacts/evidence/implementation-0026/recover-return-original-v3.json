@@ -1,0 +1,36 @@
+{
+  "schema": "pi-ink-raw-operation/v1",
+  "approval_ref": "approval-stagebc-v3-return-original.json",
+  "approval_sha256": "33633495407b19f6259414c32fa2d3e4ee743b6e9e020c182390a5246da214e0",
+  "action": "recover-return-original",
+  "argv": [
+    "sh",
+    "/tmp/pi-ink-stagebc-0026-v3/host.sh",
+    "recover-return-original"
+  ],
+  "approved_env_only": {
+    "PI_INK_OPERATOR_HANDOFF": "confirmed-to-parent",
+    "PI_INK_STAGE_BC_APPROVED": "stagebc-0026-v3",
+    "PI_INK_STAGE_BC_STAGE_A": "parent-validated-v2-preserve-host-root",
+    "PI_INK_STAGE_BC_PROXY_CHOICE": "return-original",
+    "PI_INK_STAGE_BC_RESTART_ALLOWANCE": "at-most-one-new-current-config",
+    "PI_INK_STAGE_BC_SAVED_CLOSED": "confirmed-for-this-new-restart",
+    "PI_INK_STAGE_BC_USB": "connected-for-this-new-restart"
+  },
+  "host_deadline_seconds": 45,
+  "started_at": "2026-11-04T07:32:57.545183+00:00",
+  "finished_at": "2026-11-04T07:33:09.723298+00:00",
+  "exit_code": 0,
+  "host_timeout": false,
+  "stdout": "/tmp/pi-ink-stagebc-0026-v3/recover-return-original.sh: OK\nEXACT_USB_GUARD_PASSED_NEW_PRESERVE_CURRENT_SCOPE\nEXACT_PUBLIC_HASH_MATCH /usr/lib/systemd/system/xochitl.service\nEXACT_PUBLIC_HASH_MATCH /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf\nEXACT_PUBLIC_HASH_MATCH /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf\nCURRENT_SERVICE_FILES_AND_EXACT_KNOWN_VENDOR_ACTIVATION_PRESERVED\nSTOP_PARENT_MISSING_OR_INACCESSIBLE /proc/125204\nKNOWN_PRIOR_EXIT1_ACTOR_RECORD_UNCHANGED_PID_PATH_ABSENT_HANDOFF_STILL_REQUIRED\nFIXED_ARTIFACT /home/root/pi-ink-bridge-0020\nTYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793676327\nROOT_OWNER_MARKER_KNOWN_MATCH\nFIXED_ARTIFACT /home/root/pi-ink-webserver-remote-backup-0020\nTYPE=directory MODE=700 UID=0 GID=0 SIZE=4096 MTIME=1793658681\nROOT_OWNER_MARKER_KNOWN_MATCH\nEXACT_PUBLIC_HASH_MATCH /home/root/pi-ink-bridge-0020/pi-ink-tablet\nEXACT_PUBLIC_HASH_MATCH /home/root/pi-ink-bridge-0020/config.json\nOWNED_CLIENT_FILE_AND_RUNNING_BINARY_EXACT_IDENTITY_MATCH\nEXACT_PUBLIC_HASH_MATCH /home/root/pi-ink-webserver-remote-backup-0020/webserver-remote.so\nEXACT_PUBLIC_HASH_MATCH /home/root/xovi/extensions.d/pi-ink-loopback-0020.so\nEXACT_PUBLIC_HASH_MATCH /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0020.qmd\nALL_MUTATION_GUARDS_PASSED_NEW_SAVED_CLOSED_AND_ONE_RESTART_APPROVAL_REQUIRED\nTARGET_RECOVERY_ACTOR_PID=230692 PROXY_BRANCH=return-original\nEXACT_OWNED_CLIENT_STOP_REQUESTED_ONCE\nOWNED_ADAPTER_AND_QMD_DISARMED_FILES_RETAINED_NO_UNMAPPING_CLAIM\nEXACT_PUBLIC_HASH_MATCH /home/root/xovi/extensions.d/webserver-remote.so\nOWNER_CHOSEN_ORIGINAL_PROXY_FILE_RETURNED_WILDCARD80_MAY_REAPPEAR_IF_XOVI_LOADS\nEXACT_PUBLIC_HASH_MATCH /usr/lib/systemd/system/xochitl.service\nEXACT_PUBLIC_HASH_MATCH /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf\nEXACT_PUBLIC_HASH_MATCH /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf\nCURRENT_SERVICE_FILES_AND_EXACT_KNOWN_VENDOR_ACTIVATION_PRESERVED\nNEW_ALLOWANCE_XOCHITL_RESTART_REQUESTED_ONCE_NO_HISTORICAL_COUNT_ASSUMPTION\nEXACT_PUBLIC_HASH_MATCH /usr/lib/systemd/system/xochitl.service\nEXACT_PUBLIC_HASH_MATCH /etc/systemd/system/xochitl.service.d/50-computed-widgets-01-preflight.conf\nEXACT_PUBLIC_HASH_MATCH /usr/lib/systemd/system/xochitl.service.d/xochitl-service-override.conf\nCURRENT_SERVICE_FILES_AND_EXACT_KNOWN_VENDOR_ACTIVATION_PRESERVED\nKNOWN_MODULE_MAPS XOCHITL_PID=230912 XOVI=no ADAPTER=no ORIGINAL_PROXY=no REBUILDER=no APPLOAD=no SCAN_COMPLETE=yes\nRELEVANT_LISTENER FAMILY=tcp PORT=80 BINDING=other_REDACTED\nLISTENER_CANDIDATE_OWNER=xochitl PID=230912 MATCH_WITHIN_FD0_511=NOT_FOUND_WITHIN_BOUND\nLISTENER_SCAN FAMILY=tcp RELEVANT_ROWS=1 SCAN_COMPLETE=yes\nLISTENER_SCAN FAMILY=tcp6 RELEVANT_ROWS=0 SCAN_COMPLETE=yes\nXOCHITL_PID_STABLE=yes\nCURRENT_CONFIG_RECOVERY_POSTPROOF PID=230912 PROXY_BRANCH=return-original OWNED_CLIENT=inactive OWNED_ADAPTER=unmapped UI9821=absent\nINACTIVE_CREDENTIAL_CODE_COPIES_REMAIN_FINAL_GUARDED_CLEANUP_AND_POSTINVENTORY_STILL_REQUIRED\n",
+  "stderr": "",
+  "target_controller_pid": 230692,
+  "new_restart_commands_observed": 1,
+  "historical_restart_total": "UNKNOWN",
+  "output_inspection": {
+    "credential_pattern_hits": 0,
+    "observed_output": "Known-path hashes, strict guards, actor PID, known-module booleans, relevant listener ownership and bounded postproof only; no config/key/token/state/document contents."
+  },
+  "protected_host_root": "UNEXAMINED_PRESERVED_FULL_CLEANUP_BLOCKER",
+  "result0026": "OPEN_NOT_FINALIZED"
+}

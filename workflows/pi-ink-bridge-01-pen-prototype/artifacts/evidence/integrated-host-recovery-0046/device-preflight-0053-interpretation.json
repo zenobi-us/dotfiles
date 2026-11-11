@@ -1,0 +1,46 @@
+{
+  "schema": "pi-ink-preflight-interpretation/v1",
+  "outcome_ref": "device-preflight-0053-outcome.json",
+  "approval_ref": "device-preflight-0053-approval.json",
+  "completed": true,
+  "product_IMG_VERSION": "3.28.0.172",
+  "underlying_OS_VERSION_ID": "5.8.203",
+  "stock_binary_hash_matches": true,
+  "hashtab_hash_matches": true,
+  "installed_client": {
+    "path": "/home/root/pi-ink-client/pi-ink-client",
+    "type": "regular file",
+    "mode": "700",
+    "uid": 0,
+    "gid": 0,
+    "bytes": 6488248,
+    "sha256": "5dcde59a057207951ed0ac0532c78d3bf0ef03a379b41ed50329d08c9b3e565f"
+  },
+  "original_webserver_remote": {
+    "path": "/home/root/xovi/extensions.d/webserver-remote.so",
+    "type": "regular file",
+    "mode": "644",
+    "uid": 0,
+    "gid": 0,
+    "bytes": 8453696,
+    "sha256": "24bcfe6c0b0b44c35401f214b0ccc451cdb60d2fd0e8c718beac92be25f6dd0f",
+    "loaded_state": "not observed",
+    "listener_bindings": "not observed"
+  },
+  "new_owned_paths": "Experiment root0049, proposed component/runtime, new QMD and loopback module are absent. No target collision observed in the approved fixed set.",
+  "not_proved": [
+    "Current complete extension/QMD inventory or loaded runtime state",
+    "Private stock HTTP listener bindings or activation settings",
+    "Native UI, folders, pairing, current document, Send or annotated delivery",
+    "Pen/palm/geometry/lifecycle acceptance or cleanup of any older experiment"
+  ],
+  "next_step": "Prepare exact host-only staging, activation and restoration program plus private desktop trust and actual originating OMP request. Obtain separate device mutation/restart/document approvals before any further device operation.",
+  "approval_consumed": true,
+  "retry_authorized": false,
+  "remote_writes": false,
+  "document_operations": false,
+  "restarts": false,
+  "cleanup_retry": false,
+  "full_ticket_complete": false,
+  "production_blocked": true
+}

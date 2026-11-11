@@ -1,0 +1,90 @@
+{
+  "schema": "pi-ink-recovery-preflight-outcomes/v2",
+  "recorded_at": "2026-11-04T05:09:23.792306+00:00",
+  "approval_ref": "approval-preserve-recovery-preflights-v2.json",
+  "raw_refs": [
+    "preflight-device-v2.json",
+    "preflight-host-v2.json"
+  ],
+  "device": {
+    "exit_code": 0,
+    "strict_gate": "PASS_NOT_MUTATION_APPROVAL",
+    "entry_allowlist_failures": 0,
+    "entry_rows": 39,
+    "Go_binary_identities": {
+      "active": "0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd",
+      "sidebar_stage": "0cdb83b531a1c7b9e3509504551dbd6e52e0908a29d13b6975208ac7cd5efbfd",
+      "sidebar_backup": "f601436dd591ae782f15c0714bcfd4412fb3facebeadeb7d31914a5dc69ecada",
+      "running106748": "exact current known SHA matched within10MiB"
+    },
+    "known_client_config_sha_comparison": "matched without raw content or unknown digest output",
+    "current_service_files": "three exact hashes matched; old activation drop-ins absent; exact known two DropInPaths matched",
+    "vendor_only_environment": "MALLOC_ARENA_MAX=8 now ESTABLISHED by unchanged strict comparison; no setting change",
+    "runtime": "Xochitl112810 active stable JobIDLE; actual XOVI/owned adapter/rebuilder/AppLoad mapped, original proxy not mapped; owned sidebar106748 active, other client unit not-found",
+    "listeners": "Only relevant81/9821 loopback observed, matching Xochitl/sidebar withinfd0..511; relevant scans complete; no relevant tcp6/80",
+    "actor": "known prior failed-restore record unchanged; PID125204 path absent with recorded exit1/exclusive handoff context; no generic shutdown inference or lock/history mutation"
+  },
+  "host": {
+    "exit_code": 0,
+    "summary": {
+      "entry_rows": 49,
+      "hashed_bytes": 29074356,
+      "host_process_stop_authorized": false,
+      "preserved_durable_root": "~/.local/share/omp/image-annotator",
+      "status": "READ_ONLY_HOST_INVENTORY_COMPLETE",
+      "unknown_preserve_gates": 1
+    },
+    "protected_root": [
+      {
+        "device": 55,
+        "directory": true,
+        "gid": 1000,
+        "inode": 24900,
+        "mode": "0o755",
+        "mtime_ns": 1793681398634259480,
+        "path": "/tmp/pi-ink-ui-validation-0023/payload",
+        "regular": false,
+        "size": 120,
+        "symlink": false,
+        "uid": 1000
+      },
+      {
+        "path": "/tmp/pi-ink-ui-validation-0023/payload",
+        "status": "UNOWNED_ROOT_PRESERVE_NO_CHILD_READ"
+      }
+    ],
+    "protected_root_interpretation": "The literal UNOWNED_ROOT_PRESERVE_NO_CHILD_READ gate was triggered by actual0755 versus required0700. Metadata shows uid/gid1000 and no symlink, not proof of wrong-user ownership. No children read, chmod, repair or retry.",
+    "known_logs": "All8bounded known logs: known_token_match=false and private_key_marker=false; no content output. Not a universal secret-absence proof.",
+    "listeners": [
+      {
+        "listener_present": false,
+        "port": 9443,
+        "status": "OWNERSHIP_NOT_ESTABLISHED_NO_ARGV_OR_SECRET_OUTPUT"
+      },
+      {
+        "listener_present": false,
+        "port": 9444,
+        "status": "OWNERSHIP_NOT_ESTABLISHED_NO_ARGV_OR_SECRET_OUTPUT"
+      }
+    ],
+    "process_metadata": "No listener PIDs found, so no process environment/argv values inspected or process action taken. Endpoint absence is not process-death or credential-erasure proof.",
+    "gate": "One protected host root remains; parent must validate/resolve under exact authority or explicit preservation policy before full readiness or cleanup claims."
+  },
+  "privacy_inspection": "Raw results stored only after credential-pattern and bounded fixed-label/approved JSON-field shape inspection. No raw private content observed. Approved metadata/digests/booleans retained.",
+  "future_gates": [
+    "Resolve protected host payload boundary without changing permissions to pass old guard",
+    "Explicit owner proxy-file disposition",
+    "NEW at-most-one current-config restart allowance plus NEW all-docs-saved/closed and USB confirmation",
+    "Separate exact selected recovery/postproof/postinventory approvals",
+    "Final observed per-file irreversible device/host cleanup manifest approval; preserve opaque state/SOURCE/evidence/history/notebooks"
+  ],
+  "mutation_authority_from_stage_A": false,
+  "restart_commands_issued": 0,
+  "historical_restart_total": "UNKNOWN",
+  "source_app_changes": false,
+  "latest_ui_deployed": false,
+  "restoration_complete": false,
+  "cleanup_complete": false,
+  "production_blocked": true,
+  "result0026_open": true
+}

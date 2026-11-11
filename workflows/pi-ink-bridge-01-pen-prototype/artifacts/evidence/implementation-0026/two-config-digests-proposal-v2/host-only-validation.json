@@ -1,0 +1,412 @@
+{
+  "status": "NOT_APPROVED_NEW_TWO_CONFIG_V2_CANDIDATE",
+  "recorded_at": "2026-11-04T08:41:53.732355+00:00",
+  "mode_policy_checks": [
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-stage-0020/owner.txt",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=88 MTIME=1793669022",
+      "fixture_mode": "644",
+      "fixture_uid": 1000,
+      "exit_code": 0,
+      "stdout": "MODE_CHECK ROLE=public-stage-marker EXPECTED=644 FIXTURE_MODE=644\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-stage-0020/owner.txt",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=88 MTIME=1793669022",
+      "fixture_mode": "600",
+      "fixture_uid": 1000,
+      "exit_code": 1,
+      "stdout": "MODE_CHECK ROLE=public-stage-marker EXPECTED=644 FIXTURE_MODE=600\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-stage-0020/owner.txt",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=88 MTIME=1793669022",
+      "fixture_mode": "640",
+      "fixture_uid": 1000,
+      "exit_code": 1,
+      "stdout": "MODE_CHECK ROLE=public-stage-marker EXPECTED=644 FIXTURE_MODE=640\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-stage-0020/owner.txt",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=644 UID=0 GID=0 SIZE=88 MTIME=1793669022",
+      "fixture_mode": "666",
+      "fixture_uid": 1000,
+      "exit_code": 1,
+      "stdout": "MODE_CHECK ROLE=public-stage-marker EXPECTED=644 FIXTURE_MODE=666\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-stage-0020/config.json",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=924 MTIME=1793669020",
+      "fixture_mode": "600",
+      "fixture_uid": 1000,
+      "exit_code": 0,
+      "stdout": "MODE_CHECK ROLE=private-stage-config EXPECTED=600 FIXTURE_MODE=600\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-stage-0020/config.json",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=924 MTIME=1793669020",
+      "fixture_mode": "644",
+      "fixture_uid": 1000,
+      "exit_code": 1,
+      "stdout": "MODE_CHECK ROLE=private-stage-config EXPECTED=600 FIXTURE_MODE=644\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-stage-0020/config.json",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=924 MTIME=1793669020",
+      "fixture_mode": "640",
+      "fixture_uid": 1000,
+      "exit_code": 1,
+      "stdout": "MODE_CHECK ROLE=private-stage-config EXPECTED=600 FIXTURE_MODE=640\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-stage-0020/config.json",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=924 MTIME=1793669020",
+      "fixture_mode": "666",
+      "fixture_uid": 1000,
+      "exit_code": 1,
+      "stdout": "MODE_CHECK ROLE=private-stage-config EXPECTED=600 FIXTURE_MODE=666\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-backup-0020/owner.txt",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+      "fixture_mode": "600",
+      "fixture_uid": 1000,
+      "exit_code": 0,
+      "stdout": "MODE_CHECK ROLE=public-backup-marker EXPECTED=600 FIXTURE_MODE=600\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-backup-0020/owner.txt",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+      "fixture_mode": "644",
+      "fixture_uid": 1000,
+      "exit_code": 1,
+      "stdout": "MODE_CHECK ROLE=public-backup-marker EXPECTED=600 FIXTURE_MODE=644\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-backup-0020/owner.txt",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+      "fixture_mode": "640",
+      "fixture_uid": 1000,
+      "exit_code": 1,
+      "stdout": "MODE_CHECK ROLE=public-backup-marker EXPECTED=600 FIXTURE_MODE=640\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-backup-0020/owner.txt",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=88 MTIME=1793658648",
+      "fixture_mode": "666",
+      "fixture_uid": 1000,
+      "exit_code": 1,
+      "stdout": "MODE_CHECK ROLE=public-backup-marker EXPECTED=600 FIXTURE_MODE=666\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-backup-0020/config.json",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=851 MTIME=1793658646",
+      "fixture_mode": "600",
+      "fixture_uid": 1000,
+      "exit_code": 0,
+      "stdout": "MODE_CHECK ROLE=private-backup-config EXPECTED=600 FIXTURE_MODE=600\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-backup-0020/config.json",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=851 MTIME=1793658646",
+      "fixture_mode": "644",
+      "fixture_uid": 1000,
+      "exit_code": 1,
+      "stdout": "MODE_CHECK ROLE=private-backup-config EXPECTED=600 FIXTURE_MODE=644\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-backup-0020/config.json",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=851 MTIME=1793658646",
+      "fixture_mode": "640",
+      "fixture_uid": 1000,
+      "exit_code": 1,
+      "stdout": "MODE_CHECK ROLE=private-backup-config EXPECTED=600 FIXTURE_MODE=640\n",
+      "full_target_or_root_ownership_test": false
+    },
+    {
+      "role_path_string_only_not_opened": "/home/root/pi-ink-sidebar-backup-0020/config.json",
+      "source_actual_StageC_metadata": "TYPE=regular file MODE=600 UID=0 GID=0 SIZE=851 MTIME=1793658646",
+      "fixture_mode": "666",
+      "fixture_uid": 1000,
+      "exit_code": 1,
+      "stdout": "MODE_CHECK ROLE=private-backup-config EXPECTED=600 FIXTURE_MODE=666\n",
+      "full_target_or_root_ownership_test": false
+    }
+  ],
+  "mode_check_boundary": "Actual new target role-selector fragment and mode predicate exercised using only new disposable HOST files. Remote role path is a string used in case, never opened. Fixture uid1000 is NOT root-ownership or current-tablet proof. No full hash/target execution.",
+  "syntax_sh_n": [
+    "digest.sh",
+    "host.sh"
+  ],
+  "actual_negative_consent_refusals": [
+    {
+      "case": "missing handoff",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: exclusive operator handoff required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "missing new v2consent",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact two-private-config digest approval required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "new token alone insufficient",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: exclusive operator handoff required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "old/wrong consent value two-configs-0026-v1",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact two-private-config digest approval required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "old/wrong consent value preserve-recovery-0026-v2",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact two-private-config digest approval required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "old/wrong consent value stagebc-0026-v3",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact two-private-config digest approval required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "old/wrong consent value public-payload-0026-v1",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact two-private-config digest approval required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "old/wrong consent value wrong",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: NEW exact two-private-config digest approval required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "forbidden other-scope flag PI_INK_RECOVERY_PREFLIGHT_APPROVED",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: other-scope approval flags forbidden\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "forbidden other-scope flag PI_INK_STAGE_BC_APPROVED",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: other-scope approval flags forbidden\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "forbidden other-scope flag PI_INK_EXACT_PLAN_APPROVED",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: other-scope approval flags forbidden\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "forbidden other-scope flag PI_INK_PUBLIC_PAYLOAD_INVENTORY_APPROVED",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "two-config-digests"
+      ],
+      "exit_code": 1,
+      "stdout": "ABORT: other-scope approval flags forbidden\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "wrong action inventory-public-payload",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "inventory-public-payload"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "wrong action preflight-device",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "preflight-device"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "wrong action preflight-host",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "preflight-host"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "wrong action recover-return-original",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "recover-return-original"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "wrong action verify-return-original",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "verify-return-original"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "wrong action postinventory-return-original",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "postinventory-return-original"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "wrong action cleanup",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "cleanup"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "transport_reached": false
+    },
+    {
+      "case": "extra argument",
+      "argv": [
+        "sh",
+        "/tmp/pi-ink-two-config-digests-0026-v2/host.sh",
+        "two-config-digests",
+        "extra"
+      ],
+      "exit_code": 2,
+      "stdout": "ABORT: exact two-config-digests action required\n",
+      "stderr": "",
+      "transport_reached": false
+    }
+  ],
+  "positive_guard_prefix_only": {
+    "exit_code": 0,
+    "stdout": "HOST_ONLY_V2_CONSENT_PREFIX_PASSED_NO_TARGET\n",
+    "dispatch_hash_route_USB_SSH_target_excluded": true
+  },
+  "v1_correction_ref": {
+    "ref": "../two-config-digests-v1-interpretation-correction.json",
+    "sha256": "f84e755e31c69f722d21c92b1b75b47a0f10fa6e507f5c2c1be5a67ce59391da"
+  },
+  "capability_status": "DD/pipefail remain UNPROVED; no capability calls performed. v1 was not classified as capability failure.",
+  "new_output_boundary": "Fixed leaf role/path progress; fixed PUBLIC marker metadata before mode gate; retain actual native dd/sha stderr for fixed paths/flag/I/O diagnostics, no file contents.",
+  "target_calls_or_protected_host_rereads": 0,
+  "new_private_config_hashes": "UNKNOWN",
+  "deletion_restart_or_source_changes": false
+}

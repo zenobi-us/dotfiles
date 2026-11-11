@@ -1,0 +1,76 @@
+{
+  "schema": "pi-ink-preserve-current-recovery-outcome/v1",
+  "recorded_at": "2026-11-04T07:35:56.441839+00:00",
+  "approval_ref": "approval-stagebc-v3-return-original.json",
+  "branch": "return-original",
+  "operations": [
+    {
+      "ref": "recover-return-original-v3.json",
+      "sha256": "5214545f190da5d35b78ab37ae17d04abb42b507074d30d0169d02a67f262010",
+      "exit_code": 0,
+      "host_timeout": false
+    },
+    {
+      "ref": "verify-return-original-v3.json",
+      "sha256": "f8af0cf1025b88ce213b75523389f1a59c39e4670beabd8fe463c899e936b788",
+      "exit_code": 0,
+      "host_timeout": false
+    },
+    {
+      "ref": "postinventory-return-original-v3.json",
+      "sha256": "b9926313fafee66706c9b4a69fcf74ea5fa48a6356f6c7b422c90ff17ce56084",
+      "exit_code": 0,
+      "host_timeout": false
+    }
+  ],
+  "target_controller_pid": 230692,
+  "xochitl_before_pid": 112810,
+  "xochitl_after_pid": 230912,
+  "new_restart_commands_observed": 1,
+  "allowance_remaining": 0,
+  "historical_restart_total": "UNKNOWN",
+  "owned_client": "Exact owned sidebar stop observed once and inactivity proved by required guards.",
+  "owned_adapter_and_qmd": "Exact active files parked in collision-guarded owned rollback root. Owned adapter unmapping proved by complete known-module map scan; file moves alone were not treated as unmapping.",
+  "current_service": "All three known hashes, exact drop-ins and vendor-only activation strict guards passed before/after; no service-file/old-activation changes.",
+  "known_maps_after": {
+    "xovi": false,
+    "owned_adapter": false,
+    "original_proxy": false,
+    "rebuilder": false,
+    "appload": false,
+    "complete": true
+  },
+  "original_extension_runtime": "Current-config restart changed observed module loading; original non-owned extension files were not modified.",
+  "original_proxy": "Exact original SHA/stat file returned to original path. Proxy module not mapped in complete scan. Owner accepted future/pre-existing wildcard80 risk if XOVI loads.",
+  "listener_observations": "Relevant TCP80 present with BINDING=other_REDACTED; ownership initially NOT_FOUND_WITHIN_BOUND during recover, then matched xochitl230912 within fd0..511 in verify/postinventory. This is NOT a claim of actual wildcard binding or Pi paired authentication. Relevant81/9821 absent within complete bounded scans; owned9821 absence explicitly proved.",
+  "postinventory": {
+    "entry_allowlist_failures": 0,
+    "entry_rows": 41,
+    "success_marker_after_final_assertions": true,
+    "nonrecursive_proof_only": true,
+    "deletion_authorized": false
+  },
+  "stock_library_owner_check": {
+    "instructions_verbatim": "Keep USB connected. Without opening a document, confirm that the stock library appears and responds, and that normal library/sidebar navigation opens and dismisses without obstruction. Do not open private or synthetic documents, use Pi Ink actions, import/draw/Send/Clip/export, or take screenshots. If anything is missing, errors, or blocks normal navigation, stop and report only the generic symptom; do not restart or try another close/recovery sequence.",
+    "observation": "PENDING_OWNER_GENERIC_READINESS_CHECK",
+    "ui_pass_inferred_from_runtime": false
+  },
+  "protected_host_root": {
+    "path": "/tmp/pi-ink-ui-validation-0023/payload",
+    "status": "UNEXAMINED_PRESERVED",
+    "full_cleanup_blocker": true,
+    "secret_free_claim": false
+  },
+  "remaining_gates": [
+    "Generic stock-library owner readiness observation.",
+    "Separate exact bounded final device/host owned-file deletion manifest, ownership/hash checks and explicit irreversible deletion approval.",
+    "Protected0755 host payload boundary remains unexamined/preserved; no full-cleanup claim.",
+    "No reset/deletion of opaque state, interrupted state temps, unknown/unowned files, source/evidence/history or documents."
+  ],
+  "cleanup_complete": false,
+  "original_historical_baseline_activation_restored": false,
+  "latest_ui_deployed": false,
+  "production_acceptance": "BLOCKED",
+  "result0026": "OPEN_NOT_FINALIZED",
+  "parent_approval_files_untouched_unstaged": true
+}

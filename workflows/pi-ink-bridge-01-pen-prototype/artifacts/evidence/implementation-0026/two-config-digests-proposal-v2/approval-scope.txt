@@ -1,0 +1,39 @@
+NOT APPROVED — NEW immutable two-device-config digest v2 scope.
+Offline candidate only. Requires NEW exact owner approval; v1/other approvals do NOT authorize v2. This is no permission repair, current-device fix, retry or fallback under the failed v1 scope. Raw v1 and immutable interpretation correction remain unchanged.
+
+EXACT NEW ONCE-ONLY ACTION AFTER DURABLE CONSENT
+PI_INK_OPERATOR_HANDOFF=confirmed-to-parent PI_INK_CONFIG_DIGEST_APPROVED=two-configs-0026-v2 sh /tmp/pi-ink-two-config-digests-0026-v2/host.sh two-config-digests
+Use clean per-call approval env; record ONLY these two flags plus actual argv/timestamps/exit/stdout/stderr, never inherited secrets. Existing exclusive owner-as-operator handoff must still hold. Host deadline45s. No second run, amendment, fallback or additional target call on refusal/timeout.
+
+ONLY PRIVATE CONFIG CONTENT READS — BYTES PIPE ONLY INTO SHA
+/home/root/pi-ink-sidebar-stage-0020/config.json
+/home/root/pi-ink-sidebar-backup-0020/config.json
+BOTH remain exact non-symlink regular uid0/gid0/mode0600/size<=65536 guards with unchanged pre/post metadata and bounded no-follow hashing. Actual current config digests remain UNKNOWN until this newly approved run. No values/JSON parsing/body/excerpts/token/key/CA/state/document contents in shell variables or output. Output only fixed-path metadata and actual SHA256.
+
+EXACT PUBLIC MARKER ROLE POLICY FROM ACTUAL STAGE C
+/home/root/pi-ink-sidebar-stage-0020/owner.txt: exact uid0/gid0/mode0644.
+/home/root/pi-ink-sidebar-backup-0020/owner.txt: exact uid0/gid0/mode0600.
+Both known SHA256 a9eecd4c06a5fa0ec38a0935ad97fd29654f7b8b828493b2ca96ffe1116cbf8d, non-symlink regular, size<=4096. BOTH known owners must be validated before EITHER private config read. Root directories remain exact0700/uid0/gid0; only fixed ancestor metadata for /, /home, /home/root and these two roots, no listings/traversal/unknown links. Exact per-leaf modes, NOT arbitrary mode alternatives. No chmod/chown or changed ownership accepted to satisfy a guard.
+Provenance: postinventory-return-original-v3.json records stage marker0644, backup marker0600 and both configs0600. V1 incorrectly imposed0600 on both public markers. Its actual reused-guard refusal did NOT emit current rejected values or identify the refused leaf; do NOT infer a current mode/change, zero public-marker/DD reads, or a capability failure. Immutable correction is two-config-digests-v1-interpretation-correction.json.
+
+NARROW V2 CODE / OUTPUT DELTA REQUIRING THIS NEW CONSENT
+Only marker-role handling and diagnostics change: stage public marker0644, backup public marker0600, private configs both0600; explicit four-path role dispatch refuses any other leaf. Before each leaf gate print FIXED_LEAF_PROGRESS with literal fixed role/path. For ONLY the two PUBLIC markers, print fixed-path stat metadata BEFORE owner/mode gate (after no-link/regular-type gate), so a future mismatch is observed rather than guessed. No private config values or early private-content output.
+Native dd and sha256sum STDERR is now RETAINED instead of discarded: fixed-path, literal-flag, usage/capability/I/O diagnostics only; no file contents. This is an explicit new output boundary. Inspect both streams for this boundary and secret patterns BEFORE repository storage; unexpected sensitive output must not be printed/committed. No other utility, unrelated file read, log dump or process/environment/argv discovery is added. All other target guards, config modes, caps and code/data flow stay unchanged; only wrapper path/token/hash change to bind v2.
+
+UNCHANGED BOUNDED HASHING / UNPROVED CAPABILITIES
+Require shell pipefail and dd nofollow,nonblock,fullblock/status=none. One block cap+1 per leaf:65537/config,4097/public marker, piped directly to sha256sum. No copy/temp file, config bytes in shell variables, lock or history mutation. Require unchanged type/mode/uid/gid/size/device/inode/mtime/ctime around read; check fixed owned parents/root/marker stamps. Leaf open is no-follow; pre/post parent checks are NOT a claim of an atomic directory-fd snapshot. Exclusive handoff/inactive-copy context remains required.
+DD/pipefail support remains UNPROVED; no capability or target calls during v2 preparation, and v1 is NOT classified as capability failure. Unsupported/read/hash failure safely ABORTS with retained dd/sha diagnostic if reached, no digest claim/fallback/install/retry. No guessed current digest or filename-copy inference. Earlier partial facts stay partial if later guard fails. Host timeout does NOT prove target shutdown.
+
+EXACT EXISTING USB TRANSPORT ONLY
+Direct10.11.99.1/source10.11.99.10/enp2s0f0u4c2, physical /sys/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-4/1-4:2.0. Strict host keys/BatchMode/ConnectTimeout8; no mux/proxy/jump/fallback/wireless or host network change. Wrapper timeout45 SSH plus per-call45s host deadline. No extra SSH/SCP or target network/listener/log/process/service reads.
+
+HOST-ONLY CHECKS / ACTUAL MANIFEST FACTS
+Focused mode checks execute only new role-selector/mode predicate against disposable HOST files with policy grounded in retained StageC metadata; they are NOT current-device/root-ownership/DD proof. Syntax/actual consent refusal/prefix-only checks exclude dispatch/route/USB/SSH. No full build/browser/source test, target call or protected-host reread.
+provenance-and-manifest-facts.json references actual existing facts:41device entries,35host digest pins plus4new actual public-host leaves. Host public payload already examined4/4pins,0unknown/refused and retained; v2 does NOT reread it. Two private device hashes remain null/unresolved until new permission/run, so a complete final deletion executor cannot yet be honestly frozen. Final exact per-file ownership/hash unlink/rmdir manifest/program needs SEPARATE irreversible approval; never recursive or unknown-file deletion.
+
+EXCLUSIONS / STATUS
+No writes/copies/moves/deletion/chmod/chown, process action/signals/stops, restart, old activation, settings/cache/boot/account/cloud change, source edit, state reset, private/synthetic notebook or durable-output access. Preserve exact returned original proxy/hash/stat, current service config and other extension FILES, SOURCE/evidence/history/parent-owned records/durable outputs and opaque state/temp records. ONE NEW restart allowance already SPENT; remaining0, historical totalUNKNOWN. Owner stock library/sidebar normal is an OWNER observation, NOT latest-UI acceptance; no UI deployment or production/full-cleanup claim. Keep result0026/session OPEN.
+
+FROZEN FILES
+digest.sh SHA256 287ad1c97012ba9ee695d32b47d498e3e288df2f18852c9a19f67f96cc54abbc
+host.sh SHA256 6b7f33ee93ff79872a8fce2d6c4b6be9803a30e0b2fe96ba063cd0675a2c02f3
