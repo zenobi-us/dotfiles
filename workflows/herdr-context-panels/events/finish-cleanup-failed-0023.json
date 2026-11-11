@@ -1,0 +1,88 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "herdr-context-panels",
+  "phase": "finish",
+  "attempt": 1,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "source_branch": "closeout/herdr-context-panels",
+  "base_branch": "master",
+  "source_commit": "f3142189bc4a1a61bb7860eb3a0a7733e577a9c5",
+  "source_tree": "c813ac0a32a4ef7103a424b7c5395a2192f39b84",
+  "created_at": "2026-11-11T23:10:45.885069+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t60-herdr-context-panels",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "herdr-context-panels",
+    "ref": "tracker/tickets/herdr-context-panels.md"
+  },
+  "ticket_ref": "tracker/tickets/herdr-context-panels.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/herdr-context-panels"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/finish-ticket-completed-0022.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/finish-cleanup-failed-0023.json"
+    }
+  ],
+  "receipt_id": "finish-cleanup-failed-0023",
+  "event": "phase-complete",
+  "parent_receipt": "finish-ticket-completed-0022",
+  "status": "FINISH_FAILED",
+  "review_receipt": "workflows/herdr-context-panels/events/review-0015.yaml",
+  "reviewed_source_commit": "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c",
+  "reviewed_source_tree": "c813ac0a32a4ef7103a424b7c5395a2192f39b84",
+  "base_before": "358da5adabbc33bb14c42646fb5b82cad8f3a7f2",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "c813ac0a32a4ef7103a424b7c5395a2192f39b84",
+  "merged_commit": "f3142189bc4a1a61bb7860eb3a0a7733e577a9c5",
+  "merged_tree": "c813ac0a32a4ef7103a424b7c5395a2192f39b84",
+  "merged_parents": [
+    "358da5adabbc33bb14c42646fb5b82cad8f3a7f2"
+  ],
+  "pushed": true,
+  "remote_observed_commit": "2775a93dbf32098dac9d7ac1da912cd8e21bb22c",
+  "ticket_completed": true,
+  "tracker_commit": "2775a93dbf32098dac9d7ac1da912cd8e21bb22c",
+  "worktree_removed": false,
+  "workspace_closed": true,
+  "failure_step": "cleanup",
+  "failure_reason": "Scoped cleanup refused because six retained processes hold the worktree. Three belong to the isolated implementation-check core/session, one to the completed Standards axis, one to the completed reviewer worker broker, and its runner. No unknown or unrelated process will be stopped without approval.",
+  "worktree_preserved": true,
+  "workspace_preserved": false,
+  "cleanup_blocking_pids": [
+    "3067557",
+    "3067567",
+    "3067575",
+    "3303563",
+    "3308412",
+    "3309089"
+  ],
+  "ownership_evidence": {
+    "implementation_run": "7a5360c8-9cb4-4e72-bd82-a5ad62d6a8e7",
+    "standards_run": "e24867e0-8485-493a-b529-c7f4af164b38",
+    "review_run": "327e5ce8-3af7-46fc-b871-100b8b375568",
+    "observed_pids": [
+      "3067557",
+      "3067567",
+      "3067575",
+      "3303563",
+      "3308412",
+      "3309089"
+    ]
+  }
+}

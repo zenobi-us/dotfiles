@@ -39,3 +39,7 @@ The consumed review remains FAILURE for its earlier source. This fix does not cr
 ## Review and integration
 
 [review-0015](../artifacts/reviews/review-review-0015.md) passed the exact fixed source. [Integration](../events/finish-merged-0019.json) preserved its tree. [Integrated validation](../artifacts/evidence/finish-0020-integrated/validation.json) passed 35 tests, 114 assertions, TypeScript and the real context request. [Source publication](../events/finish-pushed-0021.json) succeeded. Ticket publication and scoped cleanup remain.
+
+## Finished
+
+[finish-0027](../events/finish-0027.json) records published ticket completion and successful Worktrunk cleanup. Cleanup initially found retained owned processes; explicit [approval](../events/cleanup-approval-0024.json) permitted scoped shutdown. [Removal](../events/finish-worktree-removed-0026.json) succeeded. No other workflow process or user core was stopped. The inspector reports complete with valid history.

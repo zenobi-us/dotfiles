@@ -1,0 +1,104 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "herdr-context-panels",
+  "phase": "finish",
+  "attempt": 1,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "source_branch": "closeout/herdr-context-panels",
+  "base_branch": "master",
+  "source_commit": "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c",
+  "source_tree": "c813ac0a32a4ef7103a424b7c5395a2192f39b84",
+  "created_at": "2026-11-11T23:11:55.941486+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t60-herdr-context-panels",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "herdr-context-panels",
+    "ref": "tracker/tickets/herdr-context-panels.md"
+  },
+  "ticket_ref": "tracker/tickets/herdr-context-panels.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/herdr-context-panels"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/finish-cleanup-failed-0023.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/cleanup-approval-0024.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/review-0015.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/finish-reconcile-0025.json"
+    }
+  ],
+  "receipt_id": "finish-reconcile-0025",
+  "event": "phase-checkpoint",
+  "parent_receipt": "cleanup-approval-0024",
+  "status": "FINISHING",
+  "checkpoint": "ticket_completed",
+  "next_step": "cleanup",
+  "review_receipt": "workflows/herdr-context-panels/events/review-0015.yaml",
+  "reviewed_source_commit": "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c",
+  "reviewed_source_tree": "c813ac0a32a4ef7103a424b7c5395a2192f39b84",
+  "base_before": "358da5adabbc33bb14c42646fb5b82cad8f3a7f2",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "c813ac0a32a4ef7103a424b7c5395a2192f39b84",
+  "merged_commit": "f3142189bc4a1a61bb7860eb3a0a7733e577a9c5",
+  "merged_tree": "c813ac0a32a4ef7103a424b7c5395a2192f39b84",
+  "merged_parents": [
+    "358da5adabbc33bb14c42646fb5b82cad8f3a7f2"
+  ],
+  "pushed": true,
+  "remote_observed_commit": "2775a93dbf32098dac9d7ac1da912cd8e21bb22c",
+  "ticket_completed": true,
+  "tracker_commit": "2775a93dbf32098dac9d7ac1da912cd8e21bb22c",
+  "tracker_published": true,
+  "observed_source_branch_commit": "f3142189bc4a1a61bb7860eb3a0a7733e577a9c5",
+  "recovery_mode": "reconcile",
+  "recovery_reason": "Preserve earlier checkpoints. Finish envelope source_commit must identify the reviewed source, while merged_commit identifies squash integration; earlier post-merge envelopes used the integration commit. This new record preserves exact verified mapping without rewriting history or repeating integration.",
+  "integrated_validation": [
+    {
+      "command": "mise exec -- bun test tests /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/preparation.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-herdrapp/app",
+      "exit_code": 0,
+      "result": "35 pass, 0 fail, 114 assertions; seven files; includes 15 controlled native-boundary orderings"
+    },
+    {
+      "command": "mise exec -- bun x --package typescript tsc --noEmit --project tsconfig.json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-herdrapp/app",
+      "exit_code": 0,
+      "result": "No TypeScript diagnostics"
+    },
+    {
+      "command": "mise exec -- bun mise/conf.d/devtools-herdrapp/app/mods/shared-context/request.ts <context JSON>",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "result": {
+        "ready": true,
+        "mode": "repository",
+        "collections": [
+          "alignment",
+          "tickets",
+          "initiatives",
+          "sources"
+        ]
+      }
+    }
+  ]
+}

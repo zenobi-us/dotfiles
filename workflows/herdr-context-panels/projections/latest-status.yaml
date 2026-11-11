@@ -1,8 +1,8 @@
 schema: worktree-latest-status/v1
 workflow_id: herdr-context-panels
 ticket: tracker/tickets/herdr-context-panels.md
-state: FINISHING
-latest_receipt: finish-pushed-0021
+state: FINISHED
+latest_receipt: finish-0027
 latest_source_commit: f3142189bc4a1a61bb7860eb3a0a7733e577a9c5
 latest_source_tree: c813ac0a32a4ef7103a424b7c5395a2192f39b84
 base_before: 358da5adabbc33bb14c42646fb5b82cad8f3a7f2
@@ -31,8 +31,18 @@ supporting_receipts:
   - events/finish-merged-0019.json
   - events/finish-validated-0020.json
   - events/finish-pushed-0021.json
+  - events/finish-ticket-completed-0022.json
+  - events/finish-cleanup-failed-0023.json
+  - events/cleanup-approval-0024.json
+  - events/finish-reconcile-0025.json
+  - events/finish-worktree-removed-0026.json
+  - events/finish-0027.json
 review_artifacts:
   - artifacts/reviews/review-review-0008.md
   - artifacts/reviews/review-review-0015.md
-draft_snapshot: artifacts/snapshots/pr-draft-fix-0011.md
+draft_snapshot: artifacts/snapshots/pr-draft-finish-0027.md
 evidence: artifacts/evidence/fix-0011-native
+merged_commit: f3142189bc4a1a61bb7860eb3a0a7733e577a9c5
+ticket_completed: true
+worktree_removed: true
+workspace_closed: true

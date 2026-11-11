@@ -1,5 +1,5 @@
 ---
-title: Herdr Context and Tracker reviewed closeout
+title: Herdr Context and Tracker finished closeout
 type: Report
 ---
 
@@ -45,7 +45,7 @@ SUCCESS. Reviewed source `6fac3b638ca19c670ce9df7f4d1ee20b0414d40c`, tree `c813a
 
 ## Merge status
 
-Worktrunk squash integration `f3142189bc4a1a61bb7860eb3a0a7733e577a9c5` has sole parent `358da5adabbc33bb14c42646fb5b82cad8f3a7f2` and the exact prepared/reviewed tree. Non-force push to `origin/master` succeeded. Ticket publication and source-worktree cleanup are the remaining closeout operations.
+Worktrunk squash integration `f3142189bc4a1a61bb7860eb3a0a7733e577a9c5` has sole parent `358da5adabbc33bb14c42646fb5b82cad8f3a7f2` and the exact prepared/reviewed tree. Non-force push to `origin/master` succeeded. The completed ticket and evidence are published. Scoped worktree/branch removal succeeded after explicit approval to stop retained owned processes. The source workspace is absent.
 
 ## Supporting records
 
@@ -56,4 +56,8 @@ Worktrunk squash integration `f3142189bc4a1a61bb7860eb3a0a7733e577a9c5` has sole
 - [Verified integration](../events/finish-merged-0019.json)
 - [Integrated checks](../artifacts/evidence/finish-0020-integrated/validation.json)
 - [Source publication](../events/finish-pushed-0021.json)
+
+## Completion
+
+[finish-0027](../events/finish-0027.json) records FINISHED. The inspector verified integration, publication and ticket completion, and reports complete. The source worktree/branch and workspace are removed. Other workflows and the user core were untouched.
 
