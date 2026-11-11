@@ -1,4 +1,8 @@
 [tasks."herdrapp.install"]
-description = "Install the Herdr-app Context and Tracker mods (keep Herdr-app open)"
+description = "Install the CLI interface and preferences without switching layouts"
 dir = "{{ config_root }}/app"
 run = "bun install.ts"
+
+[tasks."herdrapp.activate"]
+description = "Activate the managed CLI layout (keep Herdr-app open)"
+run = "herdr-app do layout.switch '{\"name\":\"cli\"}'"
