@@ -4,13 +4,13 @@
   "ticket": "tracker/tickets/collect-evidence-feedback-02-tui.md",
   "state": "FIXED",
   "status": "completed",
-  "latest_receipt": "fix-0011",
+  "latest_receipt": "fix-0012",
   "latest_source_commit": "acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa",
   "latest_source_tree": "1c5b4864e098d70b53519051d2df6d05184f5729",
   "source_identity_kind": "clean-source-fix-commit",
   "latest_review_verdict": "FAILURE",
   "open_findings": [],
-  "parent_completion": "pending",
+  "parent_completion": "completed",
   "limits": [
     "Private Linux headless terminal only; not a reproduction of an existing user terminal.",
     "Native video unavailable; no simulated recording.",
@@ -26,5 +26,5 @@
   ],
   "latest_review_source_commit": "68acd4074c636933fdf5e8645a09d1acf6abdf67",
   "current_source_reviewed": false,
-  "next_action": "Parent validates child result, then requests fresh independent review."
+  "next_action": "Fresh independent review of the clean fixed source."
 }

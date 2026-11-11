@@ -6,10 +6,10 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "fix-0011",
+  "latest_receipt": "fix-0012",
   "state": "FIXED",
   "status": "completed",
-  "parent_completion": "pending",
+  "parent_completion": "completed",
   "history": [
     "start-0001",
     "implementation-0002",
@@ -21,7 +21,8 @@
     "review-0008",
     "review-0009",
     "fix-0010",
-    "fix-0011"
+    "fix-0011",
+    "fix-0012"
   ],
   "latest_source_commit": "acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa",
   "latest_source_tree": "1c5b4864e098d70b53519051d2df6d05184f5729"

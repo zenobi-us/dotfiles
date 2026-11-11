@@ -1,0 +1,182 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "fix-0012",
+  "workflow_id": "collect-evidence-feedback-02-tui",
+  "phase": "fix",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "fix-0011",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "source_branch": "feature/collect-evidence-feedback-02-tui",
+  "base_branch": "master",
+  "source_commit": "acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa",
+  "source_tree": "1c5b4864e098d70b53519051d2df6d05184f5729",
+  "created_at": "2026-11-11T11:58:56.340Z",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t55",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-02-tui",
+    "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-02-tui.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-02-tui"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/fix-0010.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/fix-0011.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/snapshots/pr-draft-fix-0011-final.md"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/snapshots/validation-fix-0011.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/evidence/fix-transition-0011/run.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/evidence/fix-unexpected-0011/run.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/evidence/fix-precondition-0011/run.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/evidence/fix-capture-0011/run.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/fix-0012.yaml"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/collect-evidence-feedback-02-tui/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-02-tui/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-02-tui/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-02-tui/projections/latest-status.yaml"
+    }
+  ],
+  "status": "completed",
+  "approval": "User selected Approve fix takeover. Scope: fresh fixer in existing source worktree, recorded findings and verification only; no merge or push.",
+  "ownership_observation": "Inspector ownership unknown; hc ls found no live terminal in exact source worktree; completed prior review. No goal run or dispatch in current context.",
+  "recovery_mode": "reconcile",
+  "recovery_reason": "Inspector selected reconciliation for usable completed result; exact source verified clean, child completion confirmed through muxer.",
+  "consumed_review_receipts": [
+    "review-0008"
+  ],
+  "finding_ids": [
+    "STD-01",
+    "STD-02",
+    "SPEC-1",
+    "SPEC-2"
+  ],
+  "summary": "Accepted all four finding IDs resolved across three defects. Retained original PNGs inspected; all four sealed runs validate. No merge, push or ticket completion. Fresh review required.",
+  "resolved_finding_ids": [
+    "STD-01",
+    "STD-02",
+    "SPEC-1",
+    "SPEC-2"
+  ],
+  "unresolved_finding_ids": [],
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/tui.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/driver.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/tui-driver.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/native-workflow.test.ts"
+  ],
+  "validation": [
+    {
+      "command": "Source collect-evidence validate on fix-transition/unexpected/precondition/capture-0011; transition verdicts",
+      "result": "All four valid; transition PASS. Capture assertion not-run and capture error retained; unexpected confirmation blocked; precondition native logs/stderr/frames retained."
+    },
+    {
+      "command": "Inspect actual Ready/Details originals",
+      "result": "Visible transition, purple bar, line spacing and 1280x720 originals inspected; sealed hash validation passed."
+    },
+    {
+      "command": "Inspect authoritative event versus typed result; shared inspector; muxer wait",
+      "result": "Payload deep-equals authoritative YAML; schema/run/operation/hash verified; history valid; source clean acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa tree 1c5b4864e098d70b53519051d2df6d05184f5729; completion sequence 2 from agent."
+    },
+    {
+      "command": "result-delivery ack; hc kill t56; hc rm t56; herdr-app ls",
+      "result": "Acknowledged e5469e1b19d801a74a04934dd0f6c3de346c5a131a19bfef9f38fb390a02ba91; only completed child removed. Empty target space removed automatically; source worktree retained."
+    }
+  ],
+  "child_validation": [
+    {
+      "command": "PATH=/home/zenobius/.local/share/collect-evidence/native-tools/fedora-45-x86_64/bin:$PATH RUN_NATIVE_EVIDENCE_TESTS=1 mise exec -- bun test <source>/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/native-workflow.test.ts",
+      "cwd": "/tmp",
+      "result": "6 pass, 0 fail, 42 assertions; real native toolchain; includes exact owned application/tmux/termscope/Cage/foot cleanup check."
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+      "result": "99 pass, 0 fail, 892 assertions."
+    },
+    {
+      "command": "Source collect-evidence doctor; init/render/compile/run/validate/verdicts for fix-transition-0011, fix-unexpected-0011, fix-precondition-0011, fix-capture-0011; transition report",
+      "cwd": "/tmp/native-fix-0011-7kb2L4 (removed after evidence retention)",
+      "result": "Transition 0/PASS; unexpected 3/BLOCKED and no input side effect; precondition 3/BLOCKED with retained native JSONL, stderr and frames and removed runtime; capture 1/FAIL with capture error and not-run assertion. All sealed runs validate. No remote commands or installations during capture."
+    },
+    {
+      "command": "Read original Ready/Details PNGs and SHA-256-check actual bytes against assets",
+      "result": "Inspected both 1280x720 originals. Ready/Details differ visibly; next Selected item line is 20 px below. Purple bar and native background preserved. Both hashes match common records.",
+      "sha256": [
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-02-tui/artifacts/evidence/fix-transition-0011/cases/case/media/step-001-step-case-001-ready--capture-001--capture-001.png",
+          "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-02-tui/artifacts/evidence/fix-transition-0011/cases/case/media/step-003-step-case-003-details--capture-001--capture-001.png",
+          "sha256": "b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a"
+        }
+      ]
+    },
+    {
+      "command": "git status --porcelain; git rev-parse HEAD HEAD^{tree}; git branch --show-current",
+      "result": "Source clean at acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa / 1c5b4864e098d70b53519051d2df6d05184f5729 on feature/collect-evidence-feedback-02-tui."
+    },
+    {
+      "command": "xd://lsp references Driver.open",
+      "result": "Unavailable: TypeScript initialization failed; no valid TypeScript installation. No compiler check claimed."
+    }
+  ],
+  "child_terminal": "t56",
+  "child_terminal_removed": true,
+  "worktree_preserved": true,
+  "workspace_closed_automatically_when_empty": true,
+  "transport_sha256": "e5469e1b19d801a74a04934dd0f6c3de346c5a131a19bfef9f38fb390a02ba91",
+  "draft_snapshot": "workflows/collect-evidence-feedback-02-tui/artifacts/snapshots/pr-draft-fix-0011-final.md"
+}

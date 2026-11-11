@@ -95,3 +95,7 @@ The commit hook advanced the developer bundle to 0.2.16 in both metadata files. 
 ### Remaining findings and limits
 
 No consumed finding remains unresolved in this fix. Fresh independent review is still required. TypeScript LSP initialization failed because no valid TypeScript installation was available; no compiler check is claimed. Native support remains bounded to the prepared Linux CPU toolchain. Prompt detection is conservative, English/OCR-dependent, and does not establish arbitrary dialog support. Prior web failures remain unchanged and were not rerun. No tools were installed.
+
+## Parent acceptance — fix-0012
+
+[Parent completion](../events/fix-0012.yaml) accepts [fix-0011](../events/fix-0011.yaml) for clean source `acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa`. All four sealed native runs validate. Parent inspected original Ready/Details images and retained precondition diagnostics. Typed delivery matched the authoritative event and was acknowledged. Completed fixer terminal `t56` was removed; the source worktree remains. Its empty desktop space closed automatically. No merge, push or ticket completion occurred. Next: fresh independent review of the new source; the previous FAILURE remains historical.
