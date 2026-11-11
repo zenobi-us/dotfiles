@@ -169,3 +169,8 @@ Unresolved questions: independent review of the new source is required. No merge
 ## Parent acceptance — fix-0024
 
 [Completion receipt](../events/fix-0024.yaml) accepts [fix-0023](../events/fix-0023.yaml) for clean source `3d05a5611dae33c992d8bbd81ed265a27d23892c`, tree `e758e20e8bc45d732d01028960802390d347d11b`. Parent verified the delivered payload against its immutable event, current clean source, child completion sequence 3 and acknowledged hash. All thirteen retained runs validate through the public CLI: positive transition PASS, twelve credential cases BLOCKED with no received input. Parent inspected the original native Details image. Only completed child t61 was targeted for removal. No merge, push or ticket completion. Next: fresh independent review. STD-01 remains Low and nonblocking.
+
+
+## Independent review attempt 4 — review-0027
+
+[Immutable review](../artifacts/reviews/review-review-0026.md), [child result](../events/review-0026.yaml), [parent completion](../events/review-0027.yaml). SUCCESS for clean source `3d05a5611dae33c992d8bbd81ed265a27d23892c`, tree `e758e20e8bc45d732d01028960802390d347d11b`. Standards: two Low nonblocking findings (test shell shim and possible duplicated test setup). Spec: no findings; prior SPEC-01/SPEC-02 resolved. Native28 and common99 checks passed. Fresh public transition PASS; twelve credential cases BLOCKED without input; owned cleanup verified. Parent verified the matching delivered event and exact source, exercised all13 fresh evidence consumers, inspected the original Details PNG, acknowledged delivery and closed only t63. No source changes, merge, rebase, push or ticket completion. Next: finish under current clean SUCCESS, or submit under publication policy.
