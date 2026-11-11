@@ -1,0 +1,17 @@
+{
+  "runId": "9f0d837c-73da-4501-9d73-75f556826939",
+  "target": "t3y",
+  "operationId": "collect-evidence-feedback-01-web-review-0057",
+  "contextFile": "/var/home/zenobius/.local/state/result-delivery/runs/9f0d837c-73da-4501-9d73-75f556826939/context.json",
+  "resultTarget": {
+    "path": "/var/home/zenobius/.local/state/result-delivery/runs/9f0d837c-73da-4501-9d73-75f556826939/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/9f0d837c-73da-4501-9d73-75f556826939/result.json",
+    "schema": "worktree-receipt/v1"
+  },
+  "provenanceRecovery": {
+    "reason": "External hk stash removed just-written untracked phase-start before verification",
+    "source": "deb8676ff47c8419c73aee1a462831fd2c639981^3:workflows/collect-evidence-feedback-01-web/events/review-start-0056.yaml",
+    "sha256": "311db5c66bc4c79edb422af48cda6efb0612ed643fdece7eee8b50e52fd35338",
+    "restoration": "git restore of this receipt only; byte-identical against retained creation payload; original hashline verified 72EB; unrelated external changes left untouched"
+  }
+}
