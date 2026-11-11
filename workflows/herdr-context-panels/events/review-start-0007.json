@@ -1,0 +1,60 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "herdr-context-panels",
+  "phase": "review",
+  "attempt": 1,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "source_branch": "closeout/herdr-context-panels",
+  "base_branch": "master",
+  "source_commit": "fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c",
+  "source_tree": "67b6bdd4a5722a71d6c9c3a2306628b8d412d90c",
+  "created_at": "2026-11-11T22:08:10.587546+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t60-herdr-context-panels",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "herdr-context-panels",
+    "ref": "tracker/tickets/herdr-context-panels.md"
+  },
+  "ticket_ref": "tracker/tickets/herdr-context-panels.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/herdr-context-panels"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/implementation-reconciled-0006.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/implementation-0003.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/herdr-context-panels/artifacts/snapshots/pr-draft-implementation-0003.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/herdr-context-panels/artifacts/evidence/implementation-0003-native-t62"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/review-start-0007.json"
+    }
+  ],
+  "receipt_id": "review-start-0007",
+  "event": "phase-start",
+  "parent_receipt": "implementation-reconciled-0006",
+  "status": "started",
+  "review_fixed_point": "e31985e76c5f3bdc0a6223c82248321f447f6ec0",
+  "authorization": "User explicitly approved takeover, independent review and completion of published implementation.",
+  "ownership_evidence": "Verifier t62 stopped and removed. Source checkout clean. Parent owns approved closeout; other live agents are unrelated."
+}
