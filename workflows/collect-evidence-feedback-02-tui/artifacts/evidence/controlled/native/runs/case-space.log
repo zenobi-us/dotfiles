@@ -1,0 +1,71 @@
+{
+  "status": "failed",
+  "completedSteps": 7,
+  "totalSteps": 9,
+  "results": [
+    {
+      "step": 1,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 2,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 3,
+      "cmd": "navigate",
+      "status": "ok",
+      "ms": 636
+    },
+    {
+      "step": 4,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 5,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 6,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 7,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 8,
+      "cmd": "js",
+      "status": "error",
+      "error": "Error: SAFETY STOP space.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6",
+      "ms": 5
+    }
+  ],
+  "error": "Error: SAFETY STOP space.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6",
+  "totalMs": 1260,
+  "vars": {
+    "base": "http://127.0.0.1:33633",
+    "shots": "/tmp/ce-surf-public-tfbaOL/collect-evidence-hApdMD/report/shots",
+    "dialog_73706163652e31": {
+      "id": 1196,
+      "hasDialog": false
+    },
+    "url_73706163652e31": "http://127.0.0.1:33633/confirmation",
+    "dialog_73706163652e32": {
+      "id": 1210,
+      "hasDialog": false
+    }
+  }
+}

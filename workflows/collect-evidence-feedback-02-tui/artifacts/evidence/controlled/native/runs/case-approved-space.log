@@ -1,0 +1,112 @@
+{
+  "status": "failed",
+  "completedSteps": 13,
+  "totalSteps": 16,
+  "results": [
+    {
+      "step": 1,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 2,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 3,
+      "cmd": "navigate",
+      "status": "ok",
+      "ms": 629
+    },
+    {
+      "step": 4,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 5,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 6,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 7,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 8,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 9,
+      "cmd": "key",
+      "status": "ok",
+      "ms": 936
+    },
+    {
+      "step": 10,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 11,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 12,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 220
+    },
+    {
+      "step": 13,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 14,
+      "cmd": "js",
+      "status": "error",
+      "error": "Error: ASSERT FAIL approved-space.3: expected Submitted, got Not submitted\n    at <anonymous>:2:246\n    at tick (<anonymous>:2:327)",
+      "ms": 5370
+    }
+  ],
+  "error": "Error: ASSERT FAIL approved-space.3: expected Submitted, got Not submitted\n    at <anonymous>:2:246\n    at tick (<anonymous>:2:327)",
+  "totalMs": 8188,
+  "vars": {
+    "base": "http://127.0.0.1:33633",
+    "shots": "/tmp/ce-surf-public-tfbaOL/collect-evidence-hApdMD/report/shots",
+    "dialog_617070726f7665642d73706163652e31": {
+      "id": 1222,
+      "hasDialog": false
+    },
+    "url_617070726f7665642d73706163652e31": "http://127.0.0.1:33633/confirmation",
+    "dialog_617070726f7665642d73706163652e32": {
+      "id": 1236,
+      "hasDialog": false
+    },
+    "dialog_617070726f7665642d73706163652e33": {
+      "id": 1244,
+      "hasDialog": false
+    },
+    "capture_1_617070726f7665642d73706163652e33": "{\"capturedAt\":\"2026-11-11T10:38:44.165Z\",\"url\":\"http://127.0.0.1:33633/confirmation\",\"viewport\":{\"width\":1379,\"height\":1022,\"deviceScaleFactor\":1}}"
+  }
+}

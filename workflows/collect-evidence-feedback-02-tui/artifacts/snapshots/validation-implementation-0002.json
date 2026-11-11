@@ -1,0 +1,187 @@
+{
+  "schema": "worktree-validation/v1",
+  "ticket": "collect-evidence-feedback-02-tui",
+  "status": "blocked",
+  "checks": [
+    {
+      "command": [
+        "git",
+        "init",
+        "--quiet",
+        "/tmp/ce-tui-public-smoke-DL9UxH/repository"
+      ],
+      "cwd": "/tmp/ce-tui-public-smoke-DL9UxH",
+      "code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/tmp/ce-tui-public-smoke-DL9UxH/repository",
+        "remote",
+        "add",
+        "origin",
+        "https://example.invalid/owned/tui-smoke.git"
+      ],
+      "cwd": "/tmp/ce-tui-public-smoke-DL9UxH",
+      "code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "--help"
+      ],
+      "cwd": "/tmp/ce-tui-public-smoke-DL9UxH",
+      "code": 0,
+      "stdout": "collect-evidence - Collect immutable, versioned web and native terminal evidence\n\nUSAGE:\n  collect-evidence <command> [options]\n\nCOMMANDS:\n  doctor     Check installed driver and connection; never install tools\n  init       Create an external working plan and resolve its evidence destination\n  render     Generate the versioned plan and human procedure\n  compile    Compile the typed plan for its existing driver\n  run        Collect in private temporary storage and finalize a new immutable run\n  validate   Verify record contracts, references and media hashes\n  report     Render a read-only HTML export from validated common records\n  verdicts   Read the case outcomes from validated common records\n  comment    Generate manual steps and a report link; never publish\n\nOPTIONS:\n  -h, --help                   Show help\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "--version",
+        "--json"
+      ],
+      "cwd": "/tmp/ce-tui-public-smoke-DL9UxH",
+      "code": 0,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"version\":\"1.0.0\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "init",
+        "/tmp/ce-tui-public-smoke-DL9UxH/working",
+        "--repository",
+        "/tmp/ce-tui-public-smoke-DL9UxH/repository",
+        "--workflow",
+        "native-public",
+        "--run",
+        "screen-transition",
+        "--driver",
+        "tui",
+        "--json"
+      ],
+      "cwd": "/tmp/ce-tui-public-smoke-DL9UxH",
+      "code": 0,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/ce-tui-public-smoke-DL9UxH/working\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/ce-tui-public-smoke-DL9UxH/repository\",\"path\":\"/tmp/ce-tui-public-smoke-DL9UxH/repository/workflows/native-public/artifacts/evidence/screen-transition\",\"ref\":\"workflows/native-public/artifacts/evidence/screen-transition\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "render",
+        "/tmp/ce-tui-public-smoke-DL9UxH/working",
+        "--json"
+      ],
+      "cwd": "/tmp/ce-tui-public-smoke-DL9UxH",
+      "code": 0,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/ce-tui-public-smoke-DL9UxH/working\",\"tests\":1}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "compile",
+        "/tmp/ce-tui-public-smoke-DL9UxH/working",
+        "--json"
+      ],
+      "cwd": "/tmp/ce-tui-public-smoke-DL9UxH",
+      "code": 0,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/ce-tui-public-smoke-DL9UxH/working\",\"driver\":\"tui\",\"tests\":1}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "run",
+        "/tmp/ce-tui-public-smoke-DL9UxH/working",
+        "--dry-run",
+        "--json",
+        "--no-input",
+        "--no-color"
+      ],
+      "cwd": "/tmp/ce-tui-public-smoke-DL9UxH",
+      "code": 0,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"run\",\"success\":true,\"dryRun\":true,\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/ce-tui-public-smoke-DL9UxH/repository\",\"path\":\"/tmp/ce-tui-public-smoke-DL9UxH/repository/workflows/native-public/artifacts/evidence/screen-transition\",\"ref\":\"workflows/native-public/artifacts/evidence/screen-transition\",\"publication\":\"repository\"},\"driver\":\"tui\",\"tests\":[\"screen\"]}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "run",
+        "/tmp/ce-tui-public-smoke-DL9UxH/working",
+        "--json"
+      ],
+      "cwd": "/tmp/ce-tui-public-smoke-DL9UxH",
+      "code": 3,
+      "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"run\",\"success\":false,\"code\":3,\"message\":\"Native TUI prerequisites unavailable: foot, grim, tesseract. Complete setup separately; no reconstruction or installation is permitted during collection.\"}\n",
+      "stderr": "Native TUI prerequisites unavailable: foot, grim, tesseract. Complete setup separately; no reconstruction or installation is permitted during collection.\n"
+    },
+    {
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+      "code": 0,
+      "result": "101 pass, 3 skip, 0 fail; 894 assertions; opt-in real browser checks were skipped in this run."
+    },
+    {
+      "command": [
+        "env",
+        "COLLECT_EVIDENCE_REAL_DRIVERS=1",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+      "code": 1,
+      "result": "0 pass, 3 fail. Playwright Chromium distribution chrome is missing at /opt/google/chrome/chrome. Surf approved-space.3 expected Submitted but observed Not submitted."
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "validate",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui/workflows/collect-evidence-feedback-02-tui/artifacts/evidence/controlled",
+        "--quiet",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "code": 0,
+      "result": "Preserved real Surf diagnostic run validates without rewriting records or media."
+    }
+  ],
+  "dryRunUnchanged": true,
+  "blockedRunSealed": false,
+  "nativeImagesInspected": false,
+  "blockers": [
+    "foot, grim and tesseract are unavailable; native transition image, colour, line spacing, live credential safety and owned cleanup remain unverified.",
+    "TypeScript compiler and LSP TypeScript installation are unavailable.",
+    "Live Playwright checks cannot launch the configured Chrome executable. Live Surf keyboard confirmation assertion failed; both web driver source files remain unchanged."
+  ],
+  "temporaryStoreRemoved": true,
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/evidence/controlled",
+    "surface": "web",
+    "driver": "surf",
+    "runId": "controlled",
+    "source": "/tmp/ce-surf-public-tfbaOL/repository/workflows/browser-public/artifacts/evidence/controlled",
+    "visualInspection": "Actual approved-space PNG shows Confirm operation and Not submitted. This is web diagnostic evidence, not TUI proof.",
+    "sha256": "7e539166edd28c47922a2f1edd852b92d8d8d884c67e0e2eaef7b7d06452c29f"
+  },
+  "sourceImplementationCommit": "8e8089f2032bceb03a182e262a1667f939e9d9b3",
+  "sourceImplementationTree": "490bfcbc1dfa1cfa52c67a5b350653e3b285b330"
+}
