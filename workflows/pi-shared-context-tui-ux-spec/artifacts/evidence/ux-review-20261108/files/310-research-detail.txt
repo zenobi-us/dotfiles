@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > shared-context-ux-evidence-zk6ioB"
+
+=== TEXT ===
+[001] Username for 'https://github.com': Username for 'https://github.com': Username for 'https://github.com':
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > shared-context-ux-evidence-zk6ioB                                                                               │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  UX evidence fixture — cancelled workflo  >  R-1                                                                   │
+[009]    │ [d] Full description                                                                                                              │
+[010]    │> UX-DEMO · Items 8                         │  research / recorded details                                                         │
+[011] ───├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤────
+[012]  Up│>[research]  ID: R-1                        │ ID: R-1                                                                              │
+[013]  Ne│ Research: understand navigation choices    │                                                                                      │
+[014] ───│ State: draft                               │ Title: Research: understand navigation choices                                       │────
+[015]    │ tracker/tickets/R-1.md                     │                                                                                      │
+[016] ───│                                            │ Type: research                                                                       │ ⟲ ─
+[017] ❯  │ [prototype]  ID: P-1                       │                                                                                      │
+[018] ───│ Prototype: compare navigation layouts      │ State: draft                                                                         │────
+[019]  ◑ │ State: draft                               │                                                                                      │
+[020]    │ tracker/tickets/P-1.md                     │ Reference: tracker/tickets/R-1.md                                                    │
+[021]    │                                            │                                                                                      │
+[022]    │ [task]  ID: T-READY                        │ Parent: UX-DEMO                                                                      │
+[023]    │ Inspect existing work before starting      │                                                                                      │
+[024]    │ State: unclaimed                           │ Summary: Which navigation model makes record identity clearest?                      │
+[025]    │ tracker/tickets/T-READY.md                 │                                                                                      │
+[026]    │                                            │ a actions · Esc return                                                               │
+[027]    │ [task]  ID: T-REVIEW                       │                                                                                      │
+[028]    │ Review a recorded implementation           │                                                                                      │
+[029]    │ State: implemented                         │                                                                                      │
+[030]    │ tracker/tickets/T-REVIEW.md                │                                                                                      │
+[031]    │                                            │                                                                                      │
+[032]    │ [task]  ID: T-FIX                          │                                                                                      │
+[033]    │ Fix recorded review findings               │                                                                                      │
+[034]    │ State: claimed                             │                                                                                      │
+[035]    │ tracker/tickets/T-FIX.md                   │                                                                                      │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:08:59 UTC · tracker/tickets/R-1.md · draft                                                                      │
+[038]    │ c path record · C mode · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh    │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

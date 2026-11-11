@@ -1,0 +1,39 @@
+=== TERMSCOPE ===
+cols=194 rows=38 cursor=0:0 screen=alternate title=""
+
+=== TEXT ===
+[001] 
+[002]                                                                                  ████████████
+[003]      ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]      │ Projects · Repo > Dotfiles                                                                                                                                                           │
+[005]      │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                                                                         │
+[006]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]      │ Initiatives  >  Pi Ink Bridge: paired Paper Pro image annotation                                                                                                                     │
+[008]      │ [d] Full description                                                                                                                                                                 │
+[009]      │> [v] Detail / >DAG<                                                                                                                                                                  │
+[010] ─────├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤─────
+[011]  Upda│ - [task] pi-ink-bridge-01-pen-prototype - Prove Paper Pro pen input  COMPLETED                                                                                                       │
+[012]  New │ - [task] pi-ink-bridge-02-install-client - Install and launch the tablet client  WAITING · blocked by pi-ink-bridge-01-pen-prototype                                                 │
+[013] ─────│   - [task] pi-ink-bridge-01-pen-prototype - Prove Paper Pro pen input  COMPLETED                                                                                                     │─────
+[014]      │ - [task] pi-ink-bridge-03-pair-device - Pair and revoke a tablet  WAITING · blocked by pi-ink-bridge-02-install-client                                                               │
+[015] ─────│   - [task] pi-ink-bridge-02-install-client - Install and launch the tablet client  WAITING · blocked by pi-ink-bridge-01-pen-prototype                                               │K ⟲ ─
+[016] ❯    │ - [task] pi-ink-bridge-04-annotation-round-trip - Send one annotation to its originating request  WAITING · blocked by pi-ink-bridge-03-pair-device                                  │
+[017] ─────│   - [task] pi-ink-bridge-03-pair-device - Pair and revoke a tablet  WAITING · blocked by pi-ink-bridge-02-install-client                                                             │─────
+[018]  ◑ GP│ - [task] pi-ink-bridge-05-inbox - Select and manage multiple inbox jobs  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip                                                 │
+[019]      │   - [task] pi-ink-bridge-04-annotation-round-trip - Send one annotation to its originating request  WAITING · blocked by pi-ink-bridge-03-pair-device                                │
+[020]      │ - [task] pi-ink-bridge-06-editing-tools - Correct annotations and inspect image details  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip                                 │
+[021]      │   - [task] pi-ink-bridge-04-annotation-round-trip - Send one annotation to its originating request  WAITING · blocked by pi-ink-bridge-03-pair-device                                │
+[022]      │ - [task] pi-ink-bridge-07-drafts - Save and recover editable drafts  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip                                                     │
+[023]      │   - [task] pi-ink-bridge-04-annotation-round-trip - Send one annotation to its originating request  WAITING · blocked by pi-ink-bridge-03-pair-device                                │
+[024]      │ - [task] pi-ink-bridge-08-delivery-recovery - Recover interrupted delivery without losing work  WAITING · blocked by pi-ink-bridge-07-drafts                                         │
+[025]      │   - [task] pi-ink-bridge-07-drafts - Save and recover editable drafts  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip                                                   │
+[026]      │ - [task] pi-ink-bridge-09-discovery - Discover servers and reconnect after network changes  WAITING · blocked by pi-ink-bridge-03-pair-device                                        │
+[027]      │   - [task] pi-ink-bridge-03-pair-device - Pair and revoke a tablet  WAITING · blocked by pi-ink-bridge-02-install-client                                                             │
+[028]      │ - [task] pi-ink-bridge-10-hardware-acceptance - Verify the complete Paper Pro workflow  WAITING · blocked by pi-ink-bridge-05-inbox, pi-ink-bridge-06-editing-tools,                 │
+[029]      │ pi-ink-bridge-08-delivery-recovery, pi-ink-bridge-09-discovery                                                                                                                       │
+[030]      │   - [task] pi-ink-bridge-05-inbox - Select and manage multiple inbox jobs  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip                                               │
+[031]      │   - [task] pi-ink-bridge-06-editing-tools - Correct annotations and inspect image details  WAITING · blocked by pi-ink-bridge-04-annotation-round-trip                               │
+[032]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[033]      │ Last validated 04:14:40 UTC · Completed history requires a terminal FINISHED receipt with pushed and ticket_completed.                                                               │
+[034]      │ c path record · C mode · i initiative · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                                        │
+[035]      ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

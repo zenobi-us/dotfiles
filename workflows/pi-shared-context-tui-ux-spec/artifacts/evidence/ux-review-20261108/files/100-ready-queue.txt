@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                                        │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  Queues                                                                                                            │
+[009]    │> Ticket queues · ready                                                                                                            │
+[010]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] ───│>[task]          artifact-share-0  Rename artifact-shares to artifact-share                                      State: unclaimed  │────
+[012]  Up│ ID: artifact-share-01-rename                                                                                                      │
+[013]  Ne│ Next: Inspect existing work                                                                                                       │
+[014] ───│ Recorded: No validated activity recorded                                                                                          │────
+[015]    │ tracker/tickets/artifact-share-01-rename.md                                                                                       │
+[016] ───│                                                                                                                                   │ ⟲ ─
+[017] ❯  │ [task]          pi-ink-bridge-02  Install and launch the tablet client                                          State: claimed    │
+[018] ───│ ID: pi-ink-bridge-02-install-client                                                                                               │────
+[019]  ◑ │ Next: Inspect existing work                                                                                                       │
+[020]    │ Recorded: No validated activity recorded                                                                                          │
+[021]    │ tracker/tickets/pi-ink-bridge-02-install-client.md                                                                                │
+[022]    │                                                                                                                                   │
+[023]    │                                                                                                                                   │
+[024]    │                                                                                                                                   │
+[025]    │                                                                                                                                   │
+[026]    │                                                                                                                                   │
+[027]    │                                                                                                                                   │
+[028]    │                                                                                                                                   │
+[029]    │                                                                                                                                   │
+[030]    │                                                                                                                                   │
+[031]    │                                                                                                                                   │
+[032]    │                                                                                                                                   │
+[033]    │                                                                                                                                   │
+[034]    │                                                                                                                                   │
+[035]    │                                                                                                                                   │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:02:52 UTC · tracker/tickets/artifact-share-01-rename.md · READY                                                 │
+[038]    │ c path record · C mode · 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                  │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

@@ -1,0 +1,3670 @@
+{
+  "shots": [
+    {
+      "id": "010-home",
+      "note": "The live initiative list has coloured labels, highlighted selection and aligned borders.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:18:53.088Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/010-home.png",
+      "text": "files/010-home.txt",
+      "spans": "files/010-home.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "title / phase"
+    },
+    {
+      "id": "020-initiative-detail",
+      "note": "Pi Ink Detail shows its summary, ticket identities, tracker states and selection.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:16:44.694Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/020-initiative-detail.png",
+      "text": "files/020-initiative-detail.txt",
+      "spans": "files/020-initiative-detail.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": ">Detail<"
+    },
+    {
+      "id": "030-initiative-dag",
+      "note": "Pi Ink DAG shows dependency order and blocker states.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:17:16.364Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/030-initiative-dag.png",
+      "text": "files/030-initiative-dag.txt",
+      "spans": "files/030-initiative-dag.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": ">DAG<"
+    },
+    {
+      "id": "040-initiative-description",
+      "note": "The full description reader shows the initiative body and return controls.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:17:18.321Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/040-initiative-description.png",
+      "text": "files/040-initiative-description.txt",
+      "spans": "files/040-initiative-description.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "Description"
+    },
+    {
+      "id": "045-description-scrolled",
+      "note": "The description scrolls while its title and Return controls remain visible.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:17:20.270Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/045-description-scrolled.png",
+      "text": "files/045-description-scrolled.txt",
+      "spans": "files/045-description-scrolled.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "[Return]"
+    },
+    {
+      "id": "050-ticket-detail",
+      "note": "The install-client ticket uses two panes and a yellow scoped-takeover notice.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:18:40.956Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/050-ticket-detail.png",
+      "text": "files/050-ticket-detail.txt",
+      "spans": "files/050-ticket-detail.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "Ticket / dependencies / receipts"
+    },
+    {
+      "id": "060-events-empty",
+      "note": "The install-client Events screen explicitly reports no recorded events.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:18:42.937Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/060-events-empty.png",
+      "text": "files/060-events-empty.txt",
+      "spans": "files/060-events-empty.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "No events recorded"
+    },
+    {
+      "id": "070-ticket-actions",
+      "note": "Inspect existing work is enabled; unavailable phase actions repeat the reconciliation explanation.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:18:45.111Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/070-ticket-actions.png",
+      "text": "files/070-ticket-actions.txt",
+      "spans": "files/070-ticket-actions.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "Inspect existing work"
+    },
+    {
+      "id": "080-ask-prompt",
+      "note": "Ask Matt requires a question before its handoff confirmation.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:18:47.286Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/080-ask-prompt.png",
+      "text": "files/080-ask-prompt.txt",
+      "spans": "files/080-ask-prompt.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "Ask Matt:"
+    },
+    {
+      "id": "090-handoff-confirmation",
+      "note": "Ask Matt confirmation displays the target and question. It is cancelled.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:18:49.307Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/090-handoff-confirmation.png",
+      "text": "files/090-handoff-confirmation.txt",
+      "spans": "files/090-handoff-confirmation.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "No"
+    },
+    {
+      "id": "100-ready-queue",
+      "note": "Ready shows a temporary receipt-validation placeholder before offering executable work.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:18:55.152Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/100-ready-queue.png",
+      "text": "files/100-ready-queue.txt",
+      "spans": "files/100-ready-queue.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "110-review-queue",
+      "note": "Review shows a temporary receipt-validation placeholder; it must not be mistaken for a settled empty queue.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:18:57.233Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/110-review-queue.png",
+      "text": "files/110-review-queue.txt",
+      "spans": "files/110-review-queue.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "120-blocked-queue",
+      "note": "Blocked exposes prerequisites and unknown or invalid workflow evidence.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:18:59.359Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/120-blocked-queue.png",
+      "text": "files/120-blocked-queue.txt",
+      "spans": "files/120-blocked-queue.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "130-all-queue",
+      "note": "All lists executable tickets regardless of readiness.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:19:01.595Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/130-all-queue.png",
+      "text": "files/130-all-queue.txt",
+      "spans": "files/130-all-queue.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "140-event-history",
+      "note": "The pen-prototype Events screen shows actual recorded attempts, independently of tracker completion.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:19:42.249Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/140-event-history.png",
+      "text": "files/140-event-history.txt",
+      "spans": "files/140-event-history.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "Events"
+    },
+    {
+      "id": "150-event-detail",
+      "note": "The selected pen-prototype event shows FINISH_FAILED and source unavailable, separately from tracker completion.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:20:07.077Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/150-event-detail.png",
+      "text": "files/150-event-detail.txt",
+      "spans": "files/150-event-detail.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "Event detail"
+    },
+    {
+      "id": "160-files-browser",
+      "note": "Files has independent column navigation and preview state.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:20:09.046Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/160-files-browser.png",
+      "text": "files/160-files-browser.txt",
+      "spans": "files/160-files-browser.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "[2 Files]"
+    },
+    {
+      "id": "225-file-preview",
+      "note": "The selected ADR is previewed as source text in a separate Files column.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:20:11.550Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/225-file-preview.png",
+      "text": "files/225-file-preview.txt",
+      "spans": "files/225-file-preview.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "230-files-path-format",
+      "note": "Files cycles its insertion format. The footer identifies the active format.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:20:13.520Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/230-files-path-format.png",
+      "text": "files/230-files-path-format.txt",
+      "spans": "files/230-files-path-format.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "235-editor-insertion",
+      "note": "The selected reference is inserted into the OMP editor as a draft. It is cleared without submission.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:20:15.518Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/235-editor-insertion.png",
+      "text": "files/235-editor-insertion.txt",
+      "spans": "files/235-editor-insertion.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "170-adr-detail",
+      "note": "ADR detail preserves its identity and decision body without production workflow actions.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:20:20.049Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/170-adr-detail.png",
+      "text": "files/170-adr-detail.txt",
+      "spans": "files/170-adr-detail.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "0001"
+    },
+    {
+      "id": "180-reference-copy",
+      "note": "Reference copy reports the ADR canonical reference. Clipboard read-back is not claimed.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:20:22.134Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/180-reference-copy.png",
+      "text": "files/180-reference-copy.txt",
+      "spans": "files/180-reference-copy.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "190-id-copy",
+      "note": "ID copy reports the ADR identifier.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:20:24.219Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/190-id-copy.png",
+      "text": "files/190-id-copy.txt",
+      "spans": "files/190-id-copy.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "200-path-copy",
+      "note": "Path copy reports the ADR local file path.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:20:26.310Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/200-path-copy.png",
+      "text": "files/200-path-copy.txt",
+      "spans": "files/200-path-copy.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "210-project-picker",
+      "note": "The project picker lists stored contexts and marks the current checkout.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:20:29.410Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/210-project-picker.png",
+      "text": "files/210-project-picker.txt",
+      "spans": "files/210-project-picker.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "215-project-filter",
+      "note": "Typing Dotfiles filters contexts before selection.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:20:31.514Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/215-project-filter.png",
+      "text": "files/215-project-filter.txt",
+      "spans": "files/215-project-filter.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "220-initiative-actions",
+      "note": "Initiative actions offer planning handoffs for the canonical initiative.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:20:45.306Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/220-initiative-actions.png",
+      "text": "files/220-initiative-actions.txt",
+      "spans": "files/220-initiative-actions.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "To tickets"
+    },
+    {
+      "id": "240-to-tickets-confirmation",
+      "note": "To tickets confirmation is inspected and cancelled. No Enter is sent at this confirmation.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:20:48.242Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/240-to-tickets-confirmation.png",
+      "text": "files/240-to-tickets-confirmation.txt",
+      "spans": "files/240-to-tickets-confirmation.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "No"
+    },
+    {
+      "id": "250-grill-confirmation",
+      "note": "Grill confirmation is inspected and cancelled without opening a questioning chat.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:20:51.973Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/250-grill-confirmation.png",
+      "text": "files/250-grill-confirmation.txt",
+      "spans": "files/250-grill-confirmation.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "No"
+    },
+    {
+      "id": "260-compact-80x24",
+      "note": "The real terminal is resized to 80 × 24 cells. This image records actual native wrapping and clipping.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:21:33.256Z",
+      "terminalCells": "80x24",
+      "framebuffer": "644x484 px (current)",
+      "screenshot": "shots/260-compact-80x24.png",
+      "text": "files/260-compact-80x24.txt",
+      "spans": "files/260-compact-80x24.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "DAG"
+    },
+    {
+      "id": "270-compact-40x12",
+      "note": "The real terminal is resized to 40 × 12 cells. The small image is the actual native viewport, not a scaled desktop screenshot.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:21:35.252Z",
+      "terminalCells": "40x12",
+      "framebuffer": "324x244 px (current)",
+      "screenshot": "shots/270-compact-40x12.png",
+      "text": "files/270-compact-40x12.txt",
+      "spans": "files/270-compact-40x12.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "440-route-report",
+      "note": "The shared-context report command shows resolved roots and routes without applying setup.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:21:38.676Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/440-route-report.png",
+      "text": "files/440-route-report.txt",
+      "spans": "files/440-route-report.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "300-fixture-home",
+      "note": "This screen names the disposable UX fixture. Its records and receipts demonstrate workflow states, not production completion.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:22:08.437Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/300-fixture-home.png",
+      "text": "files/300-fixture-home.txt",
+      "spans": "files/300-fixture-home.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "UX evidence fixture"
+    },
+    {
+      "id": "310-research-detail",
+      "note": "Research retains its record type, question and findings rather than entering production workflow queues.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:22:38.838Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/310-research-detail.png",
+      "text": "files/310-research-detail.txt",
+      "spans": "files/310-research-detail.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "R-1"
+    },
+    {
+      "id": "315-research-actions",
+      "note": "Research offers planning actions rather than Start, Review, Fix, Finish or Submit.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:22:40.799Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/315-research-actions.png",
+      "text": "files/315-research-actions.txt",
+      "spans": "files/315-research-actions.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "R-1"
+    },
+    {
+      "id": "320-prototype-actions",
+      "note": "Prototype has a prototype-specific planning action rather than production phase transitions.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:22:45.604Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/320-prototype-actions.png",
+      "text": "files/320-prototype-actions.txt",
+      "spans": "files/320-prototype-actions.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "Prototype"
+    },
+    {
+      "id": "325-prototype-confirmation",
+      "note": "Prototype handoff confirmation is previewed and cancelled.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:22:48.521Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/325-prototype-confirmation.png",
+      "text": "files/325-prototype-confirmation.txt",
+      "spans": "files/325-prototype-confirmation.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "No"
+    },
+    {
+      "id": "330-actions",
+      "note": "The Start-key action recommends inspecting existing work in this fixture.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:22:54.341Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/330-actions.png",
+      "text": "files/330-actions.txt",
+      "spans": "files/330-actions.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "Inspect existing work"
+    },
+    {
+      "id": "330-confirmation",
+      "note": "The Start/inspection handoff is previewed and cancelled. No worktree or agent is started.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:22:57.296Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/330-confirmation.png",
+      "text": "files/330-confirmation.txt",
+      "spans": "files/330-confirmation.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "No"
+    },
+    {
+      "id": "340-actions",
+      "note": "A controlled implementation receipt makes Review available for this source.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:23:03.113Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/340-actions.png",
+      "text": "files/340-actions.txt",
+      "spans": "files/340-actions.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "Review implementation"
+    },
+    {
+      "id": "340-confirmation",
+      "note": "The native Review confirmation is shown at the normal terminal size before cancellation.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:23:06.071Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/340-confirmation.png",
+      "text": "files/340-confirmation.txt",
+      "spans": "files/340-confirmation.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "No"
+    },
+    {
+      "id": "345-review-expanded",
+      "note": "The same native Review confirmation is shown in a taller terminal to expose more of the handoff content.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:23:08.091Z",
+      "terminalCells": "194x70",
+      "framebuffer": "1557x1404 px (current)",
+      "screenshot": "shots/345-review-expanded.png",
+      "text": "files/345-review-expanded.txt",
+      "spans": "files/345-review-expanded.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "No"
+    },
+    {
+      "id": "350-actions",
+      "note": "A controlled failed review exposes the Fix recommendation.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:23:23.512Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/350-actions.png",
+      "text": "files/350-actions.txt",
+      "spans": "files/350-actions.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "350-confirmation",
+      "note": "Fix handoff is previewed and cancelled; no fixer is started.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:23:26.483Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/350-confirmation.png",
+      "text": "files/350-confirmation.txt",
+      "spans": "files/350-confirmation.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "No"
+    },
+    {
+      "id": "360-actions",
+      "note": "A controlled successful source-bound review exposes Finish.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:23:32.810Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/360-actions.png",
+      "text": "files/360-actions.txt",
+      "spans": "files/360-actions.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "360-confirmation",
+      "note": "Finish handoff is previewed and cancelled; no merge, push, completion or cleanup runs.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:23:35.784Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/360-confirmation.png",
+      "text": "files/360-confirmation.txt",
+      "spans": "files/360-confirmation.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "No"
+    },
+    {
+      "id": "370-actions",
+      "note": "Submit is offered as an alternative for the reviewed source.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:23:42.069Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/370-actions.png",
+      "text": "files/370-actions.txt",
+      "spans": "files/370-actions.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": null
+    },
+    {
+      "id": "370-confirmation",
+      "note": "Submit handoff is previewed and cancelled; no push or PR creation runs.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:23:45.042Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/370-confirmation.png",
+      "text": "files/370-confirmation.txt",
+      "spans": "files/370-confirmation.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "No"
+    },
+    {
+      "id": "380-blocked-actions",
+      "note": "T-READY is an unfinished prerequisite. The blocked menu explains why production phases are unavailable.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:23:51.482Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/380-blocked-actions.png",
+      "text": "files/380-blocked-actions.txt",
+      "spans": "files/380-blocked-actions.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "T-READY"
+    },
+    {
+      "id": "390-invalid-history",
+      "note": "The deliberately invalid fixture event remains visible in history rather than authorizing a transition.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:23:57.214Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/390-invalid-history.png",
+      "text": "files/390-invalid-history.txt",
+      "spans": "files/390-invalid-history.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "invalid"
+    },
+    {
+      "id": "400-invalid-event-detail",
+      "note": "The invalid event detail exposes the rejected evidence instead of treating it as successful.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:23:59.184Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/400-invalid-event-detail.png",
+      "text": "files/400-invalid-event-detail.txt",
+      "spans": "files/400-invalid-event-detail.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "invalid"
+    },
+    {
+      "id": "410-live-update",
+      "note": "The selected disposable ticket title updates after a file-backed change, without reopening the TUI.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:25:40.680Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/410-live-update.png",
+      "text": "files/410-live-update.txt",
+      "spans": "files/410-live-update.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "Native refresh demonstration"
+    },
+    {
+      "id": "420-refresh-failure",
+      "note": "Invalid title metadata produces Live refresh failed. Cached content is explicitly marked unverified.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:25:42.790Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/420-refresh-failure.png",
+      "text": "files/420-refresh-failure.txt",
+      "spans": "files/420-refresh-failure.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "Live refresh failed"
+    },
+    {
+      "id": "430-refresh-recovery",
+      "note": "Restoring valid metadata clears the failure and restores the selected ticket title.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:25:44.903Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/430-refresh-recovery.png",
+      "text": "files/430-refresh-recovery.txt",
+      "spans": "files/430-refresh-recovery.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "Resolve an unfinished prerequisite"
+    },
+    {
+      "id": "365-git-guard",
+      "note": "The actual terminal rejects HTTPS Git transport before authentication. Exit status is 128; no credentials are supplied.",
+      "context": "safety",
+      "capturedAt": "2026-11-08T04:25:46.855Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/365-git-guard.png",
+      "text": "files/365-git-guard.txt",
+      "spans": "files/365-git-guard.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "Exit status: 128"
+    },
+    {
+      "id": "450-onboarding",
+      "note": "The unconfigured disposable repository shows storage choices and the files setup could create. Apply setup is not activated.",
+      "context": "onboarding",
+      "capturedAt": "2026-11-08T04:27:05.927Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/450-onboarding.png",
+      "text": "files/450-onboarding.txt",
+      "spans": "files/450-onboarding.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers",
+      "requiredScreenText": "Apply setup"
+    },
+    {
+      "id": "105-ready-rows",
+      "note": "Ready has rows after the initial validation placeholder; another ticket still says Refreshing workflow state. This is not an all-settled claim.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:30:22.005Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/105-ready-rows.png",
+      "text": "files/105-ready-rows.txt",
+      "spans": "files/105-ready-rows.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers"
+    },
+    {
+      "id": "112-review-rows",
+      "note": "Live Review has rows after the initial placeholder. Per-ticket next actions still show Refreshing workflow state, so this is not proof that those actions can run.",
+      "context": "live",
+      "capturedAt": "2026-11-08T04:30:24.020Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/112-review-rows.png",
+      "text": "files/112-review-rows.txt",
+      "spans": "files/112-review-rows.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers"
+    },
+    {
+      "id": "115-review-fixture",
+      "note": "The fixture Review queue contains controlled Review, Fix and Finish candidates after validation.",
+      "context": "fixture",
+      "capturedAt": "2026-11-08T04:30:32.003Z",
+      "terminalCells": "194x38",
+      "framebuffer": "1557x771 px (current)",
+      "screenshot": "shots/115-review-fixture.png",
+      "text": "files/115-review-fixture.txt",
+      "spans": "files/115-review-fixture.spans.txt",
+      "capture": "Native foot terminal pixels captured by grim after three redraw barriers"
+    }
+  ],
+  "actions": [
+    {
+      "key": "<down>",
+      "at": "2026-11-08T04:06:36.769Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:06:36.770Z"
+    },
+    {
+      "key": "v",
+      "at": "2026-11-08T04:06:37.452Z"
+    },
+    {
+      "key": "d",
+      "at": "2026-11-08T04:06:38.148Z"
+    },
+    {
+      "key": "<next>",
+      "at": "2026-11-08T04:07:15.544Z"
+    },
+    {
+      "key": "ESC",
+      "at": "2026-11-08T04:07:16.198Z"
+    },
+    {
+      "key": "v",
+      "at": "2026-11-08T04:07:16.198Z"
+    },
+    {
+      "key": "<down>",
+      "at": "2026-11-08T04:07:16.198Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:07:16.198Z"
+    },
+    {
+      "key": "ESC",
+      "at": "2026-11-08T04:08:06.547Z"
+    },
+    {
+      "key": "v",
+      "at": "2026-11-08T04:08:07.135Z"
+    },
+    {
+      "key": "<down>",
+      "at": "2026-11-08T04:08:07.248Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:08:07.333Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:08:08.135Z"
+    },
+    {
+      "key": "ESC",
+      "at": "2026-11-08T04:08:08.887Z"
+    },
+    {
+      "key": "a",
+      "at": "2026-11-08T04:08:08.967Z"
+    },
+    {
+      "key": "m",
+      "at": "2026-11-08T04:08:09.705Z"
+    },
+    {
+      "text": "Explain this ticket. Do not change files or start work.",
+      "at": "2026-11-08T04:08:24.560Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:08:25.211Z"
+    },
+    {
+      "key": "ESC",
+      "at": "2026-11-08T04:08:26.006Z"
+    },
+    {
+      "key": "h",
+      "at": "2026-11-08T04:09:31.612Z"
+    },
+    {
+      "key": "5",
+      "at": "2026-11-08T04:09:31.747Z"
+    },
+    {
+      "key": "6",
+      "at": "2026-11-08T04:09:32.497Z"
+    },
+    {
+      "key": "7",
+      "at": "2026-11-08T04:09:33.292Z"
+    },
+    {
+      "key": "8",
+      "at": "2026-11-08T04:09:34.089Z"
+    },
+    {
+      "key": "h",
+      "at": "2026-11-08T04:09:34.912Z"
+    },
+    {
+      "key": "<down>",
+      "at": "2026-11-08T04:09:35.115Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:09:35.199Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:09:35.348Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:09:35.501Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:09:36.278Z"
+    },
+    {
+      "key": "h",
+      "at": "2026-11-08T04:10:10.799Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:10.936Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:11.020Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:11.105Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:11.185Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:11.265Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:11.346Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:11.426Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:11.507Z"
+    },
+    {
+      "key": "<down>",
+      "at": "2026-11-08T04:10:11.587Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:10:11.671Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:11.817Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:11.901Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:11.994Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:12.075Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:12.156Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:12.236Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:12.317Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:12.397Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:12.478Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:12.558Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:12.638Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:12.719Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:10:12.799Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:10:12.964Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:10:13.730Z"
+    },
+    {
+      "key": "2",
+      "at": "2026-11-08T04:10:14.500Z"
+    },
+    {
+      "key": "<down>",
+      "at": "2026-11-08T04:10:28.297Z"
+    },
+    {
+      "key": "<down>",
+      "at": "2026-11-08T04:10:28.382Z"
+    },
+    {
+      "key": "<down>",
+      "at": "2026-11-08T04:10:28.465Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:10:28.548Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:10:38.965Z"
+    },
+    {
+      "key": "f",
+      "at": "2026-11-08T04:10:39.826Z"
+    },
+    {
+      "key": "y",
+      "at": "2026-11-08T04:10:40.554Z"
+    },
+    {
+      "key": "C-u",
+      "at": "2026-11-08T04:10:41.286Z"
+    },
+    {
+      "text": "/shared-context",
+      "at": "2026-11-08T04:10:41.369Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:10:41.369Z"
+    },
+    {
+      "key": "1",
+      "at": "2026-11-08T04:10:41.581Z"
+    },
+    {
+      "key": "h",
+      "at": "2026-11-08T04:10:41.661Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:41.792Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:41.872Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:41.953Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:42.033Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:42.114Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:42.194Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:42.275Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:10:42.394Z"
+    },
+    {
+      "key": "<down>",
+      "at": "2026-11-08T04:10:42.511Z"
+    },
+    {
+      "key": "<down>",
+      "at": "2026-11-08T04:10:42.603Z"
+    },
+    {
+      "key": "<down>",
+      "at": "2026-11-08T04:10:42.688Z"
+    },
+    {
+      "key": "<down>",
+      "at": "2026-11-08T04:10:42.773Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:10:42.857Z"
+    },
+    {
+      "key": "C",
+      "at": "2026-11-08T04:11:09.985Z"
+    },
+    {
+      "key": "c",
+      "at": "2026-11-08T04:11:10.069Z"
+    },
+    {
+      "key": "C",
+      "at": "2026-11-08T04:11:11.021Z"
+    },
+    {
+      "key": "c",
+      "at": "2026-11-08T04:11:11.104Z"
+    },
+    {
+      "key": "C",
+      "at": "2026-11-08T04:11:11.834Z"
+    },
+    {
+      "key": "c",
+      "at": "2026-11-08T04:11:11.917Z"
+    },
+    {
+      "key": "h",
+      "at": "2026-11-08T04:11:12.645Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:12.780Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:12.863Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:12.947Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:13.033Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:13.117Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:13.198Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:13.278Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:13.359Z"
+    },
+    {
+      "key": "ESC",
+      "at": "2026-11-08T04:11:13.439Z"
+    },
+    {
+      "text": "Dotfiles",
+      "at": "2026-11-08T04:11:14.689Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:11:15.347Z"
+    },
+    {
+      "key": "h",
+      "at": "2026-11-08T04:11:24.484Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:24.615Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:24.695Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:24.776Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:24.856Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:24.936Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:25.016Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:25.097Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:11:25.177Z"
+    },
+    {
+      "key": "a",
+      "at": "2026-11-08T04:11:25.257Z"
+    },
+    {
+      "key": "t",
+      "at": "2026-11-08T04:11:25.990Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:11:26.075Z"
+    },
+    {
+      "key": "ESC",
+      "at": "2026-11-08T04:11:26.853Z"
+    },
+    {
+      "key": "a",
+      "at": "2026-11-08T04:11:27.233Z"
+    },
+    {
+      "key": "g",
+      "at": "2026-11-08T04:11:27.313Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:11:27.394Z"
+    },
+    {
+      "key": "ESC",
+      "at": "2026-11-08T04:11:39.899Z"
+    },
+    {
+      "key": "C-u",
+      "at": "2026-11-08T04:12:31.182Z"
+    },
+    {
+      "text": "/shared-context",
+      "at": "2026-11-08T04:12:31.262Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:12:31.262Z"
+    },
+    {
+      "key": "ESC",
+      "at": "2026-11-08T04:13:38.939Z"
+    },
+    {
+      "key": "ESC",
+      "at": "2026-11-08T04:13:39.520Z"
+    },
+    {
+      "text": "/shared-context",
+      "at": "2026-11-08T04:13:42.752Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:13:42.752Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:14:30.556Z"
+    },
+    {
+      "key": "h",
+      "at": "2026-11-08T04:14:32.680Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:14:32.811Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:14:32.891Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:14:33.012Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:14:33.093Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:14:33.173Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:14:33.254Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:14:33.335Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:14:33.415Z"
+    },
+    {
+      "key": "<down>",
+      "at": "2026-11-08T04:14:33.496Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:14:33.581Z"
+    },
+    {
+      "key": "v",
+      "at": "2026-11-08T04:14:35.857Z"
+    },
+    {
+      "key": "d",
+      "at": "2026-11-08T04:14:37.852Z"
+    },
+    {
+      "key": "<next>",
+      "at": "2026-11-08T04:14:39.831Z"
+    },
+    {
+      "key": "ESC",
+      "at": "2026-11-08T04:14:41.832Z"
+    },
+    {
+      "key": "h",
+      "at": "2026-11-08T04:16:30.339Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:16:30.478Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:16:30.564Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:16:30.646Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:16:30.727Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:16:30.807Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:16:30.887Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:16:30.968Z"
+    },
+    {
+      "key": "<up>",
+      "at": "2026-11-08T04:16:31.048Z"
+    },
+    {
+      "key": "<down>",
+      "at": "2026-11-08T04:16:31.128Z"
+    },
+    {
+      "key": "RET",
+      "at": "2026-11-08T04:16:31.213Z"
+    },
+    {
+      "key": "v",
+      "at": "2026-11-08T04:16:42.752Z"
+    },
+    {
+      "key": "v",
+      "at": "2026-11-08T04:17:14.429Z"
+    },
+    {
+      "key": "d",
+      "at": "2026-11-08T04:17:16.380Z"
+    },
+    {
+      "key": "<next>",
+      "at": "2026-11-08T04:17:18.333Z"
+    },
+    {
+      "key": "ESC",
+      "at": "2026-11-08T04:17:20.282Z"
+    },
+    {
+      "key": "h",
+      "at": "2026-11-08T04:17:20.763Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:36.187Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:36.343Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:36.451Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:36.555Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:36.655Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:36.756Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:36.856Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:36.956Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:37.057Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:37.157Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:37.268Z"
+    },
+    {
+      "key": "v",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:37.464Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:37.576Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:37.676Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:37.776Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:37.877Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:37.977Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:38.077Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:38.180Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:38.281Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:38.382Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:38.483Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:38.585Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:38.685Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:38.785Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:38.890Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:40.974Z"
+    },
+    {
+      "key": "a",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:42.952Z"
+    },
+    {
+      "key": "m",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:45.127Z"
+    },
+    {
+      "text": "Explain this ticket without changing files.",
+      "at": "2026-11-08T04:18:45.237Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:47.299Z"
+    },
+    {
+      "key": "ESC",
+      "delivery": "tmux send-keys Escape",
+      "at": "2026-11-08T04:18:49.319Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:50.014Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:50.170Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:50.274Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:50.450Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:50.550Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:50.651Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:50.751Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:50.852Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:50.952Z"
+    },
+    {
+      "key": "5",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:53.103Z"
+    },
+    {
+      "key": "6",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:55.164Z"
+    },
+    {
+      "key": "7",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:57.244Z"
+    },
+    {
+      "key": "8",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:18:59.372Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:37.620Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:37.776Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:37.876Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:37.976Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:38.077Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:38.177Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:38.278Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:38.378Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:38.478Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:38.579Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:38.688Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:38.879Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:38.986Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:39.087Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:39.188Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:39.288Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:39.389Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:39.489Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:39.589Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:39.690Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:39.790Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:39.891Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:39.991Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:40.092Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:40.277Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:19:42.263Z"
+    },
+    {
+      "key": "2",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:07.092Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:09.059Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:09.163Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:09.266Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:09.369Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:09.483Z"
+    },
+    {
+      "key": "f",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:11.563Z"
+    },
+    {
+      "key": "y",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:13.561Z"
+    },
+    {
+      "key": "C-u",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:15.532Z"
+    },
+    {
+      "text": "/shared-context",
+      "at": "2026-11-08T04:20:15.636Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:15.841Z"
+    },
+    {
+      "key": "1",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:16.077Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:16.178Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:16.329Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:16.429Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:16.530Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:16.630Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:16.732Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:16.985Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:17.125Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:17.225Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:17.326Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:17.430Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:17.540Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:17.650Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:17.755Z"
+    },
+    {
+      "key": "C",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:20.063Z"
+    },
+    {
+      "key": "c",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:20.167Z"
+    },
+    {
+      "key": "C",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:22.146Z"
+    },
+    {
+      "key": "c",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:22.267Z"
+    },
+    {
+      "key": "C",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:24.232Z"
+    },
+    {
+      "key": "c",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:24.336Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:26.362Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:26.533Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:26.637Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:26.741Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:26.845Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:26.949Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:27.049Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:27.150Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:27.251Z"
+    },
+    {
+      "key": "ESC",
+      "delivery": "tmux send-keys Escape",
+      "at": "2026-11-08T04:20:27.351Z"
+    },
+    {
+      "text": "Dotfiles",
+      "at": "2026-11-08T04:20:29.427Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:31.531Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:42.396Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:42.547Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:42.647Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:42.748Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:42.848Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:42.949Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:43.049Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:43.149Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:43.249Z"
+    },
+    {
+      "key": "a",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:43.350Z"
+    },
+    {
+      "key": "t",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:45.319Z"
+    },
+    {
+      "text": "Inspect this request only. Do not change files.",
+      "at": "2026-11-08T04:20:45.724Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:45.930Z"
+    },
+    {
+      "key": "ESC",
+      "delivery": "tmux send-keys Escape",
+      "at": "2026-11-08T04:20:48.255Z"
+    },
+    {
+      "key": "a",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:48.952Z"
+    },
+    {
+      "key": "g",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:49.057Z"
+    },
+    {
+      "text": "Inspect this request only. Do not change files.",
+      "at": "2026-11-08T04:20:49.463Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:20:49.666Z"
+    },
+    {
+      "key": "ESC",
+      "delivery": "tmux send-keys Escape",
+      "at": "2026-11-08T04:20:51.986Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:21:29.909Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:21:30.060Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:21:30.160Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:21:30.261Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:21:30.361Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:21:30.461Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:21:30.562Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:21:30.662Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:21:30.763Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:21:30.863Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:21:30.970Z"
+    },
+    {
+      "key": "v",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:21:31.145Z"
+    },
+    {
+      "key": "ESC",
+      "delivery": "tmux send-keys Escape",
+      "at": "2026-11-08T04:21:35.272Z"
+    },
+    {
+      "key": "ESC",
+      "delivery": "tmux send-keys Escape",
+      "at": "2026-11-08T04:21:35.376Z"
+    },
+    {
+      "key": "ESC",
+      "delivery": "tmux send-keys Escape",
+      "at": "2026-11-08T04:21:35.567Z"
+    },
+    {
+      "key": "C-u",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:21:35.757Z"
+    },
+    {
+      "text": "/shared-context report",
+      "at": "2026-11-08T04:21:35.857Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:21:36.063Z"
+    },
+    {
+      "text": "/shared-context",
+      "at": "2026-11-08T04:22:05.415Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:05.622Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:08.448Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:08.599Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:08.699Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:08.799Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:08.900Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:09.000Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:09.100Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:09.201Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:09.301Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:09.401Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:36.871Z"
+    },
+    {
+      "key": "a",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:38.849Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:40.810Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:40.964Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:41.065Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:41.165Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:41.265Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:41.366Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:41.466Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:41.566Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:41.667Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:41.767Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:41.933Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:42.033Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:42.134Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:42.234Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:42.334Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:42.435Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:42.535Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:42.635Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:42.736Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:42.836Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:42.937Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:43.037Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:43.137Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:43.240Z"
+    },
+    {
+      "key": "a",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:43.655Z"
+    },
+    {
+      "key": "p",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:45.614Z"
+    },
+    {
+      "text": "Inspect this request only. Do not change files.",
+      "at": "2026-11-08T04:22:46.020Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:46.224Z"
+    },
+    {
+      "key": "ESC",
+      "delivery": "tmux send-keys Escape",
+      "at": "2026-11-08T04:22:48.531Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:49.423Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:49.578Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:49.679Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:49.779Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:49.879Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:49.980Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:50.080Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:50.180Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:50.281Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:50.381Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:50.548Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:50.652Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:50.752Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:50.852Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:50.953Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:51.053Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:51.153Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:51.254Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:51.354Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:51.455Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:51.555Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:51.655Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:51.755Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:51.861Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:51.967Z"
+    },
+    {
+      "key": "a",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:52.386Z"
+    },
+    {
+      "key": "s",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:54.355Z"
+    },
+    {
+      "text": "Inspect this request only. Do not change files.",
+      "at": "2026-11-08T04:22:54.760Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:54.964Z"
+    },
+    {
+      "key": "ESC",
+      "delivery": "tmux send-keys Escape",
+      "at": "2026-11-08T04:22:57.309Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:58.097Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:58.254Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:58.354Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:58.454Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:58.555Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:58.655Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:58.755Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:58.856Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:58.956Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:59.056Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:59.224Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:59.327Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:59.430Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:59.530Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:59.631Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:59.731Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:59.831Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:22:59.932Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:00.032Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:00.132Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:00.233Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:00.333Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:00.433Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:00.536Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:00.640Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:00.745Z"
+    },
+    {
+      "key": "a",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:01.161Z"
+    },
+    {
+      "key": "r",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:03.124Z"
+    },
+    {
+      "text": "Inspect this request only. Do not change files.",
+      "at": "2026-11-08T04:23:03.529Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:03.733Z"
+    },
+    {
+      "key": "ESC",
+      "delivery": "tmux send-keys Escape",
+      "at": "2026-11-08T04:23:08.121Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:18.306Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:18.462Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:18.562Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:18.663Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:18.763Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:18.863Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:18.964Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:19.064Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:19.164Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:19.265Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:19.431Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:19.566Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:19.669Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:19.772Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:19.872Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:19.972Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:20.073Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:20.173Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:20.273Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:20.374Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:20.474Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:20.574Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:20.674Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:20.778Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:20.881Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:20.985Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:21.145Z"
+    },
+    {
+      "key": "a",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:21.561Z"
+    },
+    {
+      "key": "x",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:23.523Z"
+    },
+    {
+      "text": "Inspect this request only. Do not change files.",
+      "at": "2026-11-08T04:23:23.928Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:24.132Z"
+    },
+    {
+      "key": "ESC",
+      "delivery": "tmux send-keys Escape",
+      "at": "2026-11-08T04:23:26.493Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:27.386Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:27.542Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:27.642Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:27.742Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:27.843Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:27.943Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:28.043Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:28.144Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:28.244Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:28.344Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:28.510Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:28.659Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:28.795Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:28.898Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:29.001Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:29.101Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:29.201Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:29.302Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:29.402Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:29.502Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:29.603Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:29.703Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:29.803Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:29.906Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:30.009Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:30.113Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:30.278Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:30.444Z"
+    },
+    {
+      "key": "a",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:30.859Z"
+    },
+    {
+      "key": "f",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:32.822Z"
+    },
+    {
+      "text": "Inspect this request only. Do not change files.",
+      "at": "2026-11-08T04:23:33.227Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:33.430Z"
+    },
+    {
+      "key": "ESC",
+      "delivery": "tmux send-keys Escape",
+      "at": "2026-11-08T04:23:35.794Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:36.582Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:36.737Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:36.838Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:36.938Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:37.038Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:37.139Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:37.239Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:37.339Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:37.440Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:37.540Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:37.705Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:37.867Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:38.016Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:38.152Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:38.255Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:38.357Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:38.458Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:38.558Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:38.658Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:38.759Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:38.859Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:38.959Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:39.060Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:39.162Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:39.266Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:39.370Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:39.534Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:39.699Z"
+    },
+    {
+      "key": "a",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:40.118Z"
+    },
+    {
+      "key": "u",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:42.080Z"
+    },
+    {
+      "text": "Inspect this request only. Do not change files.",
+      "at": "2026-11-08T04:23:42.484Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:42.688Z"
+    },
+    {
+      "key": "ESC",
+      "delivery": "tmux send-keys Escape",
+      "at": "2026-11-08T04:23:45.054Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:45.842Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:45.997Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:46.097Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:46.197Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:46.298Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:46.398Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:46.498Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:46.599Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:46.699Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:46.799Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:46.964Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:47.125Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:47.276Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:47.412Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:47.514Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:47.617Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:47.718Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:47.818Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:47.918Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:48.018Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:48.119Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:48.219Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:48.319Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:48.422Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:48.525Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:48.628Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:48.786Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:48.946Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:49.115Z"
+    },
+    {
+      "key": "a",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:49.530Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:51.492Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:51.647Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:51.747Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:51.848Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:51.948Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:52.049Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:52.149Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:52.249Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:52.350Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:52.450Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:52.616Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:52.719Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:52.878Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:53.027Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:53.163Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:53.266Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:53.369Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:53.469Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:53.570Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:53.670Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:53.770Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:53.870Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:53.971Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:54.074Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:54.177Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:54.280Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:54.440Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:54.599Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:54.734Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:54.839Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:55.253Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:23:57.224Z"
+    },
+    {
+      "key": "h",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:15.449Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:15.604Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:15.705Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:15.805Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:15.906Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:16.006Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:16.106Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:16.207Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:16.307Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:16.407Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:16.573Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:16.708Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:16.811Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:16.970Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:17.119Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:17.255Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:17.358Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:17.462Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:17.562Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:17.662Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:17.763Z"
+    },
+    {
+      "key": "<up>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:17.863Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:17.963Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:18.067Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:18.171Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:18.275Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:18.435Z"
+    },
+    {
+      "key": "<down>",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:18.596Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:18.732Z"
+    },
+    {
+      "text": "/shared-context",
+      "at": "2026-11-08T04:25:51.880Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:25:52.087Z"
+    },
+    {
+      "text": "/shared-context",
+      "at": "2026-11-08T04:27:03.677Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:27:03.882Z"
+    },
+    {
+      "key": "ESC",
+      "delivery": "tmux send-keys Escape",
+      "at": "2026-11-08T04:28:30.707Z"
+    },
+    {
+      "text": "/shared-context",
+      "at": "2026-11-08T04:30:10.987Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:30:11.309Z"
+    },
+    {
+      "key": "5",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:30:11.556Z"
+    },
+    {
+      "key": "6",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:30:22.008Z"
+    },
+    {
+      "text": "/shared-context",
+      "at": "2026-11-08T04:30:29.038Z"
+    },
+    {
+      "key": "RET",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:30:29.245Z"
+    },
+    {
+      "key": "6",
+      "delivery": "termscope press",
+      "at": "2026-11-08T04:30:30.042Z"
+    }
+  ]
+}

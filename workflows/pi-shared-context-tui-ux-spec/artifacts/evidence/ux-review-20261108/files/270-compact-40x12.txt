@@ -1,0 +1,24 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]     ████████████
+[003]        ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]        ██  ██       ▀▄▄▀ █ █ █ █▄▄▀
+[005]        ▒▒  ██                  █
+[006]            ██       v18.17.0
+[007] 
+[008] 
+[009] ────────────────────────────────────────
+[010]  ╭────────────────────────────────────╮
+[011]  │ Projects · Repo > Dotfiles         │
+[012]  │  [1 Tracker]     2 Files    Tab foc│
+[013] ─ Initiatives  >  artifact-share       ─
+[014]   [d] Full description
+[015]  > [v] Detail / >DAG<
+[016]   - [task] artifact-share-01-rename -
+[017] ─ Rename artifact-shares to            ─
+[018] ❯Last validated 03:08:32 UTC · Checkin…
+[019] ─c path record · C mode · i initiative…─
+[020]  ◑ GPT-6.1 Sol · 📁 …ne/Github/Dotfiles

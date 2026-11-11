@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                                        │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  artifact-share: one git stor  >  artifact-share-01-rename  >  Events                                              │
+[009]    │ [d] Full description                                                                                                              │
+[010]    │Ticket: artifact-share-01-rename · State: unclaimed                                                                                │
+[011] ───│Reviews: 0 · Fixes: 0 (receipts)                                                                                                   │────
+[012]  Up│> Events / newest first                                                                                                            │
+[013]  Ne├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[014] ───│ No events recorded.                                                                                                               │────
+[015]    │ Dependencies / unresolved blockers:                                                                                               │
+[016] ───│ → artifact-share-02-stores-config [BLOCKED] Read and write stores.toml in the XDG config directory                                │ ⟲ ─
+[017] ❯  │                                                                                                                                   │
+[018] ───│                                                                                                                                   │────
+[019]  ◑ │                                                                                                                                   │
+[020]    │                                                                                                                                   │
+[021]    │                                                                                                                                   │
+[022]    │                                                                                                                                   │
+[023]    │                                                                                                                                   │
+[024]    │                                                                                                                                   │
+[025]    │                                                                                                                                   │
+[026]    │                                                                                                                                   │
+[027]    │                                                                                                                                   │
+[028]    │                                                                                                                                   │
+[029]    │                                                                                                                                   │
+[030]    │                                                                                                                                   │
+[031]    │                                                                                                                                   │
+[032]    │                                                                                                                                   │
+[033]    │                                                                                                                                   │
+[034]    │                                                                                                                                   │
+[035]    │                                                                                                                                   │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:01:18 UTC · tracker/tickets/artifact-share-01-rename.md · READY                                                 │
+[038]    │ c path record · C mode · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh    │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

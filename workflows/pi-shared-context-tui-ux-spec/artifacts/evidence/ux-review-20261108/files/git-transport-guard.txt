@@ -1,0 +1,3 @@
+Command: git -C <fixture> ls-remote origin
+Exit: 128
+fatal: transport 'https' not allowed

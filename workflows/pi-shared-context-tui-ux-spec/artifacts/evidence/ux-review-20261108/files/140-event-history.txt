@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                                        │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  Pi Ink Bridge: paired Paper   >  pi-ink-bridge-01-pen-prototy  >  Events                                          │
+[009]    │ [d] Full description                                                                                                              │
+[010]    │Ticket: pi-ink-bridge-01-pen-prototype · State: completed                                                                          │
+[011] ───│Reviews: 3 · Fixes: 0 (receipts)                                                                                                   │────
+[012]  Up│> Events / newest first                                                                                                            │
+[013]  Ne├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[014] ───│>Event: finish-0068 · Phase: finish                                                                                                │────
+[015]    │ Execution: FINISH_FAILED                                                                                                          │
+[016] ───│ Source commit: e8ab1391eaab                                                                                                       │ ⟲ ─
+[017] ❯  │                                                                                                                                   │
+[018] ───│ Event: finish-0067 · Phase: finish                                                                                                │────
+[019]  ◑ │ Execution: FINISHING                                                                                                              │
+[020]    │ Source commit: e8ab1391eaab                                                                                                       │
+[021]    │                                                                                                                                   │
+[022]    │ Event: finish-0066 · Phase: finish                                                                                                │
+[023]    │ Execution: FINISHING                                                                                                              │
+[024]    │ Source commit: e8ab1391eaab                                                                                                       │
+[025]    │                                                                                                                                   │
+[026]    │ Event: finish-0065 · Phase: finish                                                                                                │
+[027]    │ Execution: FINISHING                                                                                                              │
+[028]    │ Source commit: e8ab1391eaab                                                                                                       │
+[029]    │                                                                                                                                   │
+[030]    │ Event: finish-0064 · Phase: finish                                                                                                │
+[031]    │ Execution: FINISHING                                                                                                              │
+[032]    │ Source commit: e8ab1391eaab                                                                                                       │
+[033]    │                                                                                                                                   │
+[034]    │ Event: finish-0063 · Phase: finish                                                                                                │
+[035]    │ Execution: FINISH_FAILED                                                                                                          │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:02:52 UTC · Completed history requires a terminal FINISHED receipt with pushed and ticket_completed.            │
+[038]    │ c path record · C mode · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh    │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

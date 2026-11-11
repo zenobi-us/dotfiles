@@ -1,0 +1,77 @@
+=== TERMSCOPE ===
+cols=194 rows=38 cursor=0:0 screen=alternate title=""
+
+=== TEXT ===
+[001] 
+[002]                                                                                  ████████████
+[003]      ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]      │ Projects · Repo > Dotfiles                                                                                                                                                           │
+[005]      │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                                                                         │
+[006]      │ Initiatives  >  Pi Ink Bridge: paired Paper Pro image annotation  >  Description                                                                                                     │
+[007]      │> Pi Ink Bridge: paired Paper Pro image annotation · Description                                                                                                                      │
+[008]      │                                                                                                                                                                                      │
+[009]      │  35. As a desktop user, I want each image to return to its originating request, so that another active conversation cannot receive it.                                               │
+[010] ─────│  36. As a desktop user, I want multiple extension instances to remain isolated, so that simultaneous jobs do not overwrite each other.                                               │─────
+[011]  Upda│  37. As a desktop user, I want cancellation to remain terminal, so that a late tablet submission cannot revive a cancelled request.                                                  │
+[012]  New │  38. As a desktop user, I want stored results to survive a service restart, so that an accepted annotation does not disappear.                                                       │
+[013] ─────│  39. As a desktop user, I want matching requests to recover stored results after reconnecting, so that a disconnected extension does not cause wrong-session delivery.               │─────
+[014]      │  40. As a tablet user, I want clear status when the originating request is unavailable, so that I do not mistake a local save for agent delivery.                                    │
+[015] ─────│  41. As a desktop user, I want the existing browser workflow to remain available, so that tablet setup is optional.                                                                  │K ⟲ ─
+[016] ❯    │  42. As a desktop user, I want credentials and images protected on the LAN, so that another network user cannot read or submit annotations.                                          │
+[017] ─────│                                                                                                                                                                                      │─────
+[018]  ◑ GP│  ## Implementation Decisions                                                                                                                                                         │
+[019]      │                                                                                                                                                                                      │
+[020]      │  ### Components and lifecycle                                                                                                                                                        │
+[021]      │                                                                                                                                                                                      │
+[022]      │  - **Extension integration:** Add `/annotate add-device` and target selection. Preserve existing image commands, tool completion, cancellation, source selection, and browser        │
+[023]      │  behaviour. Keep the existing completed PNG result contract.                                                                                                                         │
+[024]      │  - **Shared annotation service:** Use one service per desktop user, not one service per project or extension instance. It owns device registration, pairing, presence, job storage,  │
+[025]      │  and result routing. It must continue after an individual extension process exits.                                                                                                   │
+[026]      │  - **Service management:** Use mise to install pinned desktop dependencies and bootstrap the service. Use Pitchfork to supervise it and check readiness. Do not couple service       │
+[027]      │  lifetime to directory entry or exit. Concurrent startup requests must converge on one compatible service.                                                                           │
+[028]      │  - **Version checks:** Extension and tablet connections must negotiate a supported protocol version. Report an incompatible version without discarding existing jobs or device       │
+[029]      │  credentials.                                                                                                                                                                        │
+[030]      │  - **Tablet client:** Use an AppLoad application for the inbox and drawing surface. Use a thin XOVI integration for the sidebar entry. Keep networking and drawing logic outside the │
+[031]      │  firmware-sensitive sidebar patch.                                                                                                                                                   │
+[032]      │  - **Desktop management:** Provide a loopback management surface for pairing approval and revocation. The LAN setup page may provide instructions and installation downloads. It     │
+[033]      │  must not provide unauthenticated administrative actions. Protect browser mutations against cross-site requests and reject unexpected hosts and origins.                             │
+[034]      │                                                                                                                                                                                      │
+[035]      │ [Return]  [PgUp] [PgDn]                                                                                                                                                              │
+[036]      │↑↓ scroll · PgUp/Dn page · Esc return                                                                                                                                                 │
+
+=== SPANS ===
+[002] 81:248,79,204 82:239,81,208 83:230,82,211 84:220,84,215 85:211,86,219 86:202,88,222 87:193,89,226 88:184,91,229 89:175,93,233 90:165,95,237 91:156,96,240 92:147,98,244
+[003] 5-188:49,116,143
+[004] 5:49,116,143 6-32:196,167,231 188:49,116,143
+[005] 5:49,116,143 6-18:196,167,231 19-30:110,106,134 35-66:110,106,134 188:49,116,143
+[006] 5:49,116,143 6-17:196,167,231 18-20:110,106,134 21-70:196,167,231 71-73:110,106,134 188:49,116,143
+[007] 5:49,116,143 6-69:196,167,231 188:49,116,143
+[008] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[009] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[010] 0-4:246,193,119 5:49,116,143 6-187:38,35,58 188:49,116,143 189-193:246,193,119
+[011] 1-4:246,193,119+bold 5:49,116,143 6-187:38,35,58 188:49,116,143
+[012] 1-4:110,106,134 5:49,116,143 6-187:38,35,58 188:49,116,143
+[013] 0-4:246,193,119 5:49,116,143 6-187:38,35,58 188:49,116,143 189-193:246,193,119
+[014] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[015] 0-4:156,207,216 5:49,116,143 6-187:38,35,58 188:49,116,143 189:144,140,170 191:144,140,170 193:156,207,216
+[016] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[017] 0-4:156,207,216 5:49,116,143 6-187:38,35,58 188:49,116,143 189-193:156,207,216
+[018] 1-4:196,167,231 5:49,116,143 6-187:38,35,58 188:49,116,143
+[019] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[020] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[021] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[022] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[023] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[024] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[025] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[026] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[027] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[028] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[029] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[030] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[031] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[032] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[033] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[034] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[035] 5:49,116,143 6-29:196,167,231 188:49,116,143
+[036] 5:49,116,143 6-42:110,106,134 188:49,116,143

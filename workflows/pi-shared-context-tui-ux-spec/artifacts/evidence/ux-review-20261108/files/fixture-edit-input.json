@@ -1,0 +1,1 @@
+{"source":"---\nblocked_by: \n  - T-READY\nid: T-BLOCKED\nparent: UX-DEMO\ntitle: Resolve an unfinished prerequisite\ntype: task\nwork_status: unclaimed\n---\n\n## What to build\n\nDo not start until the direct prerequisite is complete."}

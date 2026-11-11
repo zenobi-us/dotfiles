@@ -1,0 +1,10 @@
+=== TERMSCOPE ===
+cols=50 rows=6 cursor=3:0 screen=primary title=""
+
+=== TEXT ===
+[001] PURPLE YELLOW
+[002] │        │
+[003] │        │
+
+=== SPANS ===
+[001] 0-5:180,140,220 7-12:240,198,116

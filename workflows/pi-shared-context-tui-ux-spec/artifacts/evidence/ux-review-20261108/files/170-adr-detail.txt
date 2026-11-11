@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                                        │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  0001                                                                                                              │
+[009]    │ [d] Full description                                                                                                              │
+[010]    │> adr / recorded details                                                                                                           │
+[011] ───├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤────
+[012]  Up│ ID: 0001                                                                                                                          │
+[013]  Ne│                                                                                                                                   │
+[014] ───│ Title: Pi Ink cleanup trust boundary                                                                                              │────
+[015]    │                                                                                                                                   │
+[016] ───│ Type: adr                                                                                                                         │ ⟲ ─
+[017] ❯  │                                                                                                                                   │
+[018] ───│ State: accepted                                                                                                                   │────
+[019]  ◑ │                                                                                                                                   │
+[020]    │ Reference: docs/adr/0001-pi-ink-cleanup-trust-boundary.md                                                                         │
+[021]    │                                                                                                                                   │
+[022]    │ date: 2026-11-04                                                                                                                  │
+[023]    │                                                                                                                                   │
+[024]    │ record_kind: adr                                                                                                                  │
+[025]    │                                                                                                                                   │
+[026]    │ Summary: Use cable-connected SSH for the bounded Pi Ink config-identity operation. Protect against operator mistakes, unexpected  │
+[027]    │ files, symlinks, and stale identities. A                                                                                          │
+[028]    │                                                                                                                                   │
+[029]    │ a actions · Esc return                                                                                                            │
+[030]    │                                                                                                                                   │
+[031]    │                                                                                                                                   │
+[032]    │                                                                                                                                   │
+[033]    │                                                                                                                                   │
+[034]    │                                                                                                                                   │
+[035]    │                                                                                                                                   │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:02:52 UTC · docs/adr/0001-pi-ink-cleanup-trust-boundary.md · accepted                                           │
+[038]    │ c path record · C mode · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh    │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

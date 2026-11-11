@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                                        │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  artifact-share: one git store, many publish targets                                                               │
+[009]    │ [d] Full description                                                                                                              │
+[010]    │> [v] >Detail< / DAG · artifact-share-publish-targets · Items 6                                                                    │
+[011] ───├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤────
+[012]  Up│ artifact-share-publish-targets · Phase: unavailable                                                                               │
+[013]  Ne│ Summary: The `artifact-shares` skill publishes only to GitHub Pages. Every share is a                                             │
+[014] ───│>[task]          artifact-share-0  Rename artifact-shares to artifact-share                                      State: unclaimed  │────
+[015]    │ ID: artifact-share-01-rename                                                                                                      │
+[016] ───│ tracker/tickets/artifact-share-01-rename.md                                                                                       │ ⟲ ─
+[017] ❯  │                                                                                                                                   │
+[018] ───│ [enhancement]   artifact-share-0  Read and write stores.toml in the XDG config directory                        State: unclaimed  │────
+[019]  ◑ │ ID: artifact-share-02-stores-config                                                                                               │
+[020]    │ Waiting for artifact-share-01-rename                                                                                              │
+[021]    │                                                                                                                                   │
+[022]    │ [enhancement]   artifact-share-0  Publish targets, with github-pages as the first target                        State: unclaimed  │
+[023]    │ ID: artifact-share-03-github-pages-target                                                                                         │
+[024]    │ Waiting for artifact-share-02-stores-config                                                                                       │
+[025]    │                                                                                                                                   │
+[026]    │ [enhancement]   artifact-share-0  Local build, the rsync target, and the publish command                        State: unclaimed  │
+[027]    │ ID: artifact-share-04-rsync-target                                                                                                │
+[028]    │ Waiting for artifact-share-03-github-pages-target                                                                                 │
+[029]    │                                                                                                                                   │
+[030]    │ [enhancement]   artifact-share-0  The s3 target with optional CloudFront                                        State: unclaimed  │
+[031]    │ ID: artifact-share-05-s3-target                                                                                                   │
+[032]    │ Waiting for artifact-share-04-rsync-target                                                                                        │
+[033]    │                                                                                                                                   │
+[034]    │ [enhancement]   artifact-share-0  The webdav target through rclone                                              State: unclaimed  │
+[035]    │ ID: artifact-share-06-webdav-target                                                                                               │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:01:18 UTC · Summary: The `artifact-shares` skill publishes only to GitHub Pages. Every share is a               │
+[038]    │ c path child · C mode · i initiative · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives ·│
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

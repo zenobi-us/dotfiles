@@ -1,0 +1,16 @@
+=== TERMSCOPE ===
+cols=40 rows=12 cursor=0:0 screen=alternate title=""
+
+=== TEXT ===
+[001] ────────────────────────────────────────
+[002]  ╭────────────────────────────────────╮
+[003]  │ Projects · Repo > Dotfiles         │
+[004]  │  [1 Tracker]     2 Files    Tab foc│
+[005] ─ Initiatives  >  Pi Ink Bridge:       ─
+[006]   [d] Full description
+[007]  > [v] Detail / >DAG<
+[008]   - [task]
+[009] ─ pi-ink-bridge-01-pen-prototype -     ─
+[010] ❯Last validated 04:21:00 UTC · Complet…
+[011] ─c path record · C mode · i initiative…─
+[012]  ◑ GPT-6.1 Sol · 📁 …ne/Github/Dotfiles

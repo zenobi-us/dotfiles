@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > shared-context-ux-evidence-zk6ioB"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > shared-context-ux-evidence-zk6ioB                                                                               │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  UX evidence fixture — cancelled workflo  >  T-BLOCKED                                                             │
+[009]    │ [d] Full description                                                                                                              │
+[010]    │> UX-DEMO · Items 8                         │  Ticket / dependencies / receipts                                                    │
+[011]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[012] ───│ Review a recorded implementation           │ T-BLOCKED Resolve an unfinished prerequisite                                         │────
+[013]  Up│ State: implemented                         │                                                                                      │
+[014]  Ne│ tracker/tickets/T-REVIEW.md                │ Summary: Do not start until the direct prerequisite is complete.                     │
+[015] ───│                                            │                                                                                      │────
+[016]    │ [task]  ID: T-FIX                          │ Type: task                                                                           │
+[017] ───│ Fix recorded review findings               │                                                                                      │ ⟲ ─
+[018] ❯  │ State: claimed                             │ State: BLOCKED                                                                       │
+[019] ───│ tracker/tickets/T-FIX.md                   │                                                                                      │────
+[020]  ◑ │                                            │ Reference: tracker/tickets/T-BLOCKED.md                                              │
+[021]    │ [task]  ID: T-FINISH                       │                                                                                      │
+[022]    │ Finish or submit reviewed source           │ Current source: not recorded                                                         │
+[023]    │ State: claimed                             │                                                                                      │
+[024]    │ tracker/tickets/T-FINISH.md                │ Next: Resolve blockers                                                               │
+[025]    │                                            │                                                                                      │
+[026]    │>[task]  ID: T-BLOCKED                      │ Unresolved prerequisites: T-READY.                                                   │
+[027]    │ Resolve an unfinished prerequisite         │                                                                                      │
+[028]    │ State: unclaimed                           │ Reviews: 0 · Fixes: 0 (validated phase receipts; recorded attempts, not quality or   │
+[029]    │ Waiting for T-READY                        │ completion)                                                                          │
+[030]    │                                            │                                                                                      │
+[031]    │ [task]  ID: T-INVALID                      │ Dependencies:                                                                        │
+[032]    │ Inspect a deliberately invalid event       │                                                                                      │
+[033]    │ State: claimed                             │ ← T-READY [READY] Inspect existing work before starting                              │
+[034]    │ Workflow warning · Enter to inspect details│                                                                                      │
+[035]    │                                            │ Receipts:                                                                            │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:23:10 UTC · Selected event was removed. Showing the nearest available history.                                  │
+[038]    │ c path record · C mode · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh    │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

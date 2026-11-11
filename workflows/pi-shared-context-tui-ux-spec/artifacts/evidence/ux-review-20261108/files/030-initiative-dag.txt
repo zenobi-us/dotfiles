@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                                        │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  artifact-share: one git store, many publish targets                                                               │
+[009]    │ [d] Full description                                                                                                              │
+[010]    │> [v] Detail / >DAG<                                                                                                               │
+[011] ───├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤────
+[012]  Up│ - [task] artifact-share-01-rename - Rename artifact-shares to artifact-share  NOT STARTED                                         │
+[013]  Ne│ - [enhancement] artifact-share-02-stores-config - Read and write stores.toml in the XDG config directory  WAITING · blocked by    │
+[014] ───│ artifact-share-01-rename                                                                                                          │────
+[015]    │   - [task] artifact-share-01-rename - Rename artifact-shares to artifact-share  NOT STARTED                                       │
+[016] ───│ - [enhancement] artifact-share-03-github-pages-target - Publish targets, with github-pages as the first target  WAITING · blocked │ ⟲ ─
+[017] ❯  │ by artifact-share-02-stores-config                                                                                                │
+[018] ───│   - [enhancement] artifact-share-02-stores-config - Read and write stores.toml in the XDG config directory  WAITING · blocked by  │────
+[019]  ◑ │ artifact-share-01-rename                                                                                                          │
+[020]    │ - [enhancement] artifact-share-04-rsync-target - Local build, the rsync target, and the publish command  WAITING · blocked by     │
+[021]    │ artifact-share-03-github-pages-target                                                                                             │
+[022]    │   - [enhancement] artifact-share-03-github-pages-target - Publish targets, with github-pages as the first target  WAITING ·       │
+[023]    │ blocked by artifact-share-02-stores-config                                                                                        │
+[024]    │ - [enhancement] artifact-share-05-s3-target - The s3 target with optional CloudFront  WAITING · blocked by                        │
+[025]    │ artifact-share-04-rsync-target                                                                                                    │
+[026]    │   - [enhancement] artifact-share-04-rsync-target - Local build, the rsync target, and the publish command  WAITING · blocked by   │
+[027]    │ artifact-share-03-github-pages-target                                                                                             │
+[028]    │ - [enhancement] artifact-share-06-webdav-target - The webdav target through rclone  WAITING · blocked by                          │
+[029]    │ artifact-share-04-rsync-target                                                                                                    │
+[030]    │   - [enhancement] artifact-share-04-rsync-target - Local build, the rsync target, and the publish command  WAITING · blocked by   │
+[031]    │ artifact-share-03-github-pages-target                                                                                             │
+[032]    │                                                                                                                                   │
+[033]    │                                                                                                                                   │
+[034]    │                                                                                                                                   │
+[035]    │                                                                                                                                   │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:01:18 UTC · Summary: The `artifact-shares` skill publishes only to GitHub Pages. Every share is a               │
+[038]    │ c path record · C mode · i initiative · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

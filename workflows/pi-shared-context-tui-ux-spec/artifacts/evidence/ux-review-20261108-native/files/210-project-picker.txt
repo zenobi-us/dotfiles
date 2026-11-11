@@ -1,0 +1,35 @@
+=== TERMSCOPE ===
+cols=194 rows=38 cursor=0:0 screen=alternate title=""
+
+=== TEXT ===
+[001] 
+[002]                                                                                  ████████████
+[003]                                                                                     ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]                                                                                     ██  ██       ▀▄▄▀ █ █ █ █▄▄▀
+[005]                                                                                     ▒▒  ██                  █
+[006]                                                                                         ██       v18.17.0
+[007] 
+[008]      ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[009]      │ Projects · Repo > Dotfiles                                                                                                                                                           │
+[010] ─────│   1 Tracker      2 Files    Tab focus · Space/Enter activate                                                                                                                         │─────
+[011]  Upda│ Projects (9/9) · ↑↓ select · Enter open · Esc close                                                                                                                                  │
+[012]  New │ Type to filter names and identities                                                                                                                                                  │
+[013] ─────│ > Dotfiles (current)                                                                                                                                                                 │─────
+[014]      │   github.com/zenobi-us/dotfiles                                                                                                                                                      │
+[015] ─────│   github-com-airtonix-age-plugin-yubikey                                                                                                                                             │K ⟲ ─
+[016] ❯    │   github-com-airtonix-age-plugin-yubikey--9f84d1d0                                                                                                                                   │
+[017] ─────│   github-com-airtonix-finance                                                                                                                                                        │─────
+[018]  ◑ GP│   github-com-airtonix-finance--1fb15e85                                                                                                                                              │
+[019]      │   github-com-airtonix-remarkableprocomputedwidgets                                                                                                                                   │
+[020]      │   github-com-airtonix-remarkableprocomputedwidgets--84f8c2c2                                                                                                                         │
+[021]      │   github-com-airtonix-syncplay                                                                                                                                                       │
+[022]      │   github-com-airtonix-syncplay--20d03bc5                                                                                                                                             │
+[023]      │   github-com-airtonix-zot                                                                                                                                                            │
+[024]      │   github-com-airtonix-zot--a27a5329                                                                                                                                                  │
+[025]      │   github-com-nicobailon-surf-cli                                                                                                                                                     │
+[026]      │   github-com-nicobailon-surf-cli--5b679dfc                                                                                                                                           │
+[027]      │   github-com-patriceckhart-zot                                                                                                                                                       │
+[028]      │   github-com-patriceckhart-zot--56255df1                                                                                                                                             │
+[029]      │   github-com-zenobi-us-isometric-ecs-game-godot                                                                                                                                      │
+[030]      │   github-com-zenobi-us-isometric-ecs-game-godot--222983d1                                                                                                                            │
+[031]      ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

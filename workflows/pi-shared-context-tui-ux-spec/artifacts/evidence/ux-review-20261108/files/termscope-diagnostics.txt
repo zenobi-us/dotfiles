@@ -1,0 +1,15 @@
+warning(stream): unimplemented mode: 5522
+warning(stream): ignoring unimplemented CSI S with intermediates: ?
+info(page_list): adjusting page capacity=.{ .cols = 140, .rows = 331, .styles = 128, .hyperlink_bytes = 192, .grapheme_bytes = 8192, .string_bytes = 2048 }
+info(page_list): adjusting page capacity=.{ .cols = 140, .rows = 331, .styles = 128, .hyperlink_bytes = 192, .grapheme_bytes = 8192, .string_bytes = 2048 }
+info(page_list): adjusting page capacity=.{ .cols = 140, .rows = 331, .styles = 128, .hyperlink_bytes = 192, .grapheme_bytes = 8192, .string_bytes = 2048 }
+info(page_list): adjusting page capacity=.{ .cols = 140, .rows = 331, .styles = 128, .hyperlink_bytes = 192, .grapheme_bytes = 8192, .string_bytes = 2048 }
+info(page_list): adjusting page capacity=.{ .cols = 140, .rows = 331, .styles = 128, .hyperlink_bytes = 192, .grapheme_bytes = 8192, .string_bytes = 2048 }
+info(page_list): adjusting page capacity=.{ .cols = 140, .rows = 331, .styles = 128, .hyperlink_bytes = 192, .grapheme_bytes = 8192, .string_bytes = 2048 }
+info(page_list): adjusting page capacity=.{ .cols = 140, .rows = 331, .styles = 128, .hyperlink_bytes = 192, .grapheme_bytes = 8192, .string_bytes = 2048 }
+info(page_list): adjusting page capacity=.{ .cols = 140, .rows = 331, .styles = 128, .hyperlink_bytes = 192, .grapheme_bytes = 8192, .string_bytes = 2048 }
+info(page_list): adjusting page capacity=.{ .cols = 140, .rows = 331, .styles = 128, .hyperlink_bytes = 192, .grapheme_bytes = 8192, .string_bytes = 2048 }
+info(page_list): adjusting page capacity=.{ .cols = 140, .rows = 331, .styles = 128, .hyperlink_bytes = 192, .grapheme_bytes = 8192, .string_bytes = 2048 }
+info(page_list): adjusting page capacity=.{ .cols = 140, .rows = 331, .styles = 128, .hyperlink_bytes = 192, .grapheme_bytes = 8192, .string_bytes = 2048 }
+info(page_list): adjusting page capacity=.{ .cols = 140, .rows = 331, .styles = 128, .hyperlink_bytes = 192, .grapheme_bytes = 8192, .string_bytes = 2048 }
+info(page_list): adjusting page capacity=.{ .cols = 140, .rows = 331, .styles = 128, .hyperlink_bytes = 384, .grapheme_bytes = 8192, .string_bytes = 2048 }

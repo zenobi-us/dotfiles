@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > shared-context-ux-evidence-zk6ioB"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > shared-context-ux-evidence-zk6ioB                                                                               │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  UX evidence fixture —  >  T-INVALID  >  Events  >  invalid-event                                                  │
+[009]    │ [d] Full description                                                                                                              │
+[010]    │> Event detail · outcome / body / exact evidence                                                                                   │
+[011]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[012] ───│ Execution: completed                                                                                                              │────
+[013]  Up│                                                                                                                                   │
+[014]  Ne│ INVALID / unvalidated evidence: Event must use schema worktree-receipt/v1.                                                        │
+[015] ───│                                                                                                                                   │────
+[016]    │ Recorded body:                                                                                                                    │
+[017] ───│                                                                                                                                   │ ⟲ ─
+[018] ❯  │ Deliberately invalid fixture event                                                                                                │
+[019] ───│                                                                                                                                   │────
+[020]  ◑ │ Evidence details:                                                                                                                 │
+[021]    │                                                                                                                                   │
+[022]    │ Source: unavailable                                                                                                               │
+[023]    │                                                                                                                                   │
+[024]    │ Workflow warning: workflows/T-INVALID/events/invalid.json: Event must use schema worktree-receipt/v1.                             │
+[025]    │                                                                                                                                   │
+[026]    │ Ticket action target: tracker/tickets/T-INVALID.md                                                                                │
+[027]    │                                                                                                                                   │
+[028]    │ Event reference: workflows/T-INVALID/events/invalid.json                                                                          │
+[029]    │                                                                                                                                   │
+[030]    │ Commit: unavailable                                                                                                               │
+[031]    │                                                                                                                                   │
+[032]    │ Tree: unavailable                                                                                                                 │
+[033]    │                                                                                                                                   │
+[034]    │ Current commit: unavailable                                                                                                       │
+[035]    │                                                                                                                                   │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:18:45 UTC · workflows/T-INVALID/events/invalid.json: Event must use schema worktree-receipt/v1.                 │
+[038]    │ c path record · C mode · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh    │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

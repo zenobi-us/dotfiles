@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > shared-context-ux-evidence-zk6ioB"
+
+=== TEXT ===
+[001] Username for 'https://github.com': Username for 'https://github.com': Username for 'https://github.com': Username for 'https://github.com':
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > shared-context-ux-evidence-zk6ioB                                                                               │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  UX evidence fixture — cancelled workflo  >  T-REVIEW                                                              │
+[009]    │> Open a fresh chat · commands are staged, not auto-sent                                                                           │
+[010]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] ───│ Target: T-REVIEW · tracker/tickets/T-REVIEW.md                                                                                    │────
+[012]  Up│>[m] Ask Matt                                                                                                                      │
+[013]  Ne│                                                                                                                                   │
+[014] ───│ [s] Start worktree — Next: Review implementation. Implementation history is available. Review the current clean source in a fresh │────
+[015]    │ session; implementation is not completion.                                                                                        │
+[016] ───│ [r] Review implementation                                                                                                         │ ⟲ ─
+[017] ❯  │ [x] Fix — Next: Review implementation. Implementation history is available. Review the current clean source in a fresh session;   │
+[018] ───│ implementation is not completion.                                                                                                 │────
+[019]  ◑ │ [f] Finish — Next: Review implementation. Implementation history is available. Review the current clean source in a fresh session;│
+[020]    │ implementation is not completion.                                                                                                 │
+[021]    │ [u] Submit — Next: Review implementation. Implementation history is available. Review the current clean source in a fresh session;│
+[022]    │ implementation is not completion.                                                                                                 │
+[023]    │                                                                                                                                   │
+[024]    │                                                                                                                                   │
+[025]    │                                                                                                                                   │
+[026]    │                                                                                                                                   │
+[027]    │                                                                                                                                   │
+[028]    │                                                                                                                                   │
+[029]    │                                                                                                                                   │
+[030]    │                                                                                                                                   │
+[031]    │                                                                                                                                   │
+[032]    │                                                                                                                                   │
+[033]    │                                                                                                                                   │
+[034]    │                                                                                                                                   │
+[035]    │                                                                                                                                   │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:12:08 UTC · Load the current workflow before choosing a recovery action.                                        │
+[038]    │ Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                             │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

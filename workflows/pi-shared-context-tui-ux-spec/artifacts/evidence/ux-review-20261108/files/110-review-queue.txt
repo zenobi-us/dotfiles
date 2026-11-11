@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                                        │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  Queues                                                                                                            │
+[009]    │> Ticket queues · review                                                                                                           │
+[010]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] ───│>[task]          pi-ink-bridge-01  Prove Paper Pro pen input                                                     State: completed  │────
+[012]  Up│ ID: pi-ink-bridge-01-pen-prototype                                                                                                │
+[013]  Ne│ Next: Unavailable: Refreshing workflow state.                                                                                     │
+[014] ───│ Recorded: Unavailable; refresh workflow receipts                                                                                  │────
+[015]    │ Workflow warning · Enter to inspect details                                                                                       │
+[016] ───│                                                                                                                                   │ ⟲ ─
+[017] ❯  │ [task]          pi-shared-contex  Route prototype tickets to the prototype skill                                State: completed  │
+[018] ───│ ID: pi-shared-context-ux-08-prototypes                                                                                            │────
+[019]  ◑ │ Next: Unavailable: Refreshing workflow state.                                                                                     │
+[020]    │ Recorded: No validated activity recorded                                                                                          │
+[021]    │ tracker/tickets/pi-shared-context-ux-08-prototypes.md                                                                             │
+[022]    │                                                                                                                                   │
+[023]    │                                                                                                                                   │
+[024]    │                                                                                                                                   │
+[025]    │                                                                                                                                   │
+[026]    │                                                                                                                                   │
+[027]    │                                                                                                                                   │
+[028]    │                                                                                                                                   │
+[029]    │                                                                                                                                   │
+[030]    │                                                                                                                                   │
+[031]    │                                                                                                                                   │
+[032]    │                                                                                                                                   │
+[033]    │                                                                                                                                   │
+[034]    │                                                                                                                                   │
+[035]    │                                                                                                                                   │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:02:52 UTC · tracker/tickets/pi-ink-bridge-01-pen-prototype.md · FINISH                                          │
+[038]    │ c path record · C mode · 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                  │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 860" width="1280" height="860">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="44" fill="rgb(255,255,255)">                                                      ████████████</text>
+<text x="10" y="64" fill="rgb(255,255,255)">   ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮</text>
+<text x="10" y="84" fill="rgb(255,255,255)">   │ Projects · Repo &gt; Dotfiles                                                                                                        │</text>
+<text x="10" y="104" fill="rgb(255,255,255)">   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │</text>
+<text x="10" y="124" fill="rgb(255,255,255)">   │ Initiatives  &gt;  artifact-share: one git store, many pub  &gt;  Description                                                           │</text>
+<text x="10" y="144" fill="rgb(255,255,255)">   │&gt; artifact-share: one git store, many publish targets · Description                                                                │</text>
+<text x="10" y="164" fill="rgb(255,255,255)">   │                                                                                                                                   │</text>
+<text x="10" y="184" fill="rgb(255,255,255)">   │  ## Problem Statement                                                                                                             │</text>
+<text x="10" y="204" fill="rgb(255,255,255)">   │                                                                                                                                   │</text>
+<text x="10" y="224" fill="rgb(255,255,255)">───│  The `artifact-shares` skill publishes only to GitHub Pages. Every share is a                                                     │────</text>
+<text x="10" y="244" fill="rgb(255,255,255)"> Up│  git commit, and the site is built only by the GitHub Actions deploy workflow.                                                    │</text>
+<text x="10" y="264" fill="rgb(255,255,255)"> Ne│  Users need to publish the same checked artifacts to other hosts: an S3 bucket                                                    │</text>
+<text x="10" y="284" fill="rgb(255,255,255)">───│  (with an S3 URL or a CloudFront URL), a WebDAV server, and an ssh host through                                                   │────</text>
+<text x="10" y="304" fill="rgb(255,255,255)">   │  rsync.                                                                                                                           │</text>
+<text x="10" y="324" fill="rgb(255,255,255)">───│                                                                                                                                   │ ⟲ ─</text>
+<text x="10" y="344" fill="rgb(255,255,255)">❯  │  The config lives at `~/.config/artifact-shares.json`, ignores                                                                    │</text>
+<text x="10" y="364" fill="rgb(255,255,255)">───│  `XDG_CONFIG_HOME`, and describes only GitHub repositories.                                                                       │────</text>
+<text x="10" y="384" fill="rgb(255,255,255)"> ◑ │                                                                                                                                   │</text>
+<text x="10" y="404" fill="rgb(255,255,255)">   │  ## Solution                                                                                                                      │</text>
+<text x="10" y="424" fill="rgb(255,255,255)">   │                                                                                                                                   │</text>
+<text x="10" y="444" fill="rgb(255,255,255)">   │  Split each share into two layers:                                                                                                │</text>
+<text x="10" y="464" fill="rgb(255,255,255)">   │                                                                                                                                   │</text>
+<text x="10" y="484" fill="rgb(255,255,255)">   │  1. **Store**: a local git repository. It is always present. It holds the share                                                   │</text>
+<text x="10" y="504" fill="rgb(255,255,255)">   │     hash, `.types`, the MDX pages, the checks, and the Fumapress site. A store                                                    │</text>
+<text x="10" y="524" fill="rgb(255,255,255)">   │     can have a git remote that the CLI pushes to. The remote is optional.                                                         │</text>
+<text x="10" y="544" fill="rgb(255,255,255)">   │  2. **Publish target**: where the built Fumapress site goes, and its public URL.                                                  │</text>
+<text x="10" y="564" fill="rgb(255,255,255)">   │     A store has zero or more targets.                                                                                             │</text>
+<text x="10" y="584" fill="rgb(255,255,255)">   │                                                                                                                                   │</text>
+<text x="10" y="604" fill="rgb(255,255,255)">   │  ```text                                                                                                                          │</text>
+<text x="10" y="624" fill="rgb(255,255,255)">   │  store (git repo, optional remote)                                                                                                │</text>
+<text x="10" y="644" fill="rgb(255,255,255)">   │    │  share / redact = commit, then run the checks                                                                                │</text>
+<text x="10" y="664" fill="rgb(255,255,255)">   │    ▼                                                                                                                              │</text>
+<text x="10" y="684" fill="rgb(255,255,255)">   │  publish targets (0..n per store)                                                                                                 │</text>
+<text x="10" y="704" fill="rgb(255,255,255)">   │    ├─ github-pages → needs a GitHub remote; push; the workflow builds the site                                                    │</text>
+<text x="10" y="724" fill="rgb(255,255,255)">   │    ├─ s3           → local build; aws s3 sync --delete; CloudFront invalidation                                                   │</text>
+<text x="10" y="744" fill="rgb(255,255,255)">   │                                                                                                                                   │</text>
+<text x="10" y="764" fill="rgb(255,255,255)">   │ [Return]  [PgUp] [PgDn]                                                                                                           │</text>
+<text x="10" y="784" fill="rgb(255,255,255)">   │↑↓ scroll · PgUp/Dn page · Esc return                                                                                              │</text>
+</svg>

@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > shared-context-ux-evidence-zk6ioB"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > shared-context-ux-evidence-zk6ioB                                                                               │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  UX evidence fixture — cancelled workflo  >  T-FINISH                                                              │
+[009]    │> Open a fresh chat · commands are staged, not auto-sent                                                                           │
+[010]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011]    │ Target: T-FINISH · tracker/tickets/T-FINISH.md                                                                                    │
+[012] ───│>[m] Ask Matt                                                                                                                      │────
+[013]  Up│                                                                                                                                   │
+[014]  Ne│ [s] Start worktree — Next: Finish reviewed work. The successful review matches the current clean source. The finish playbook must │
+[015] ───│ still verify its full safety mapping.                                                                                             │────
+[016]    │ [r] Review — Next: Finish reviewed work. The successful review matches the current clean source. The finish playbook must still   │
+[017] ───│ verify its full safety mapping.                                                                                                   │ ⟲ ─
+[018] ❯  │ [x] Fix — Next: Finish reviewed work. The successful review matches the current clean source. The finish playbook must still      │
+[019] ───│ verify its full safety mapping.                                                                                                   │────
+[020]  ◑ │ [f] Finish reviewed work                                                                                                          │
+[021]    │ [u] Submit                                                                                                                        │
+[022]    │                                                                                                                                   │
+[023]    │                                                                                                                                   │
+[024]    │                                                                                                                                   │
+[025]    │                                                                                                                                   │
+[026]    │                                                                                                                                   │
+[027]    │                                                                                                                                   │
+[028]    │                                                                                                                                   │
+[029]    │                                                                                                                                   │
+[030]    │                                                                                                                                   │
+[031]    │                                                                                                                                   │
+[032]    │                                                                                                                                   │
+[033]    │                                                                                                                                   │
+[034]    │                                                                                                                                   │
+[035]    │                                                                                                                                   │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:18:43 UTC · tracker/tickets/T-FINISH.md · FINISH                                                                │
+[038]    │ Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                             │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                                        │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  Queues                                                                                                            │
+[009]    │> Ticket queues · blocked                                                                                                          │
+[010]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] ───│>[enhancement]   artifact-share-0  Read and write stores.toml in the XDG config directory                        State: unclaimed  │────
+[012]  Up│ ID: artifact-share-02-stores-config                                                                                               │
+[013]  Ne│ Next: Unavailable: Refreshing workflow state.                                                                                     │
+[014] ───│ Recorded: No validated activity recorded                                                                                          │────
+[015]    │ Waiting for artifact-share-01-rename                                                                                              │
+[016] ───│                                                                                                                                   │ ⟲ ─
+[017] ❯  │ [enhancement]   artifact-share-0  Publish targets, with github-pages as the first target                        State: unclaimed  │
+[018] ───│ ID: artifact-share-03-github-pages-target                                                                                         │────
+[019]  ◑ │ Next: Unavailable: Refreshing workflow state.                                                                                     │
+[020]    │ Recorded: No validated activity recorded                                                                                          │
+[021]    │ Waiting for artifact-share-02-stores-config                                                                                       │
+[022]    │                                                                                                                                   │
+[023]    │ [enhancement]   artifact-share-0  Local build, the rsync target, and the publish command                        State: unclaimed  │
+[024]    │ ID: artifact-share-04-rsync-target                                                                                                │
+[025]    │ Next: Unavailable: Refreshing workflow state.                                                                                     │
+[026]    │ Recorded: No validated activity recorded                                                                                          │
+[027]    │ Waiting for artifact-share-03-github-pages-target                                                                                 │
+[028]    │                                                                                                                                   │
+[029]    │ [enhancement]   artifact-share-0  The s3 target with optional CloudFront                                        State: unclaimed  │
+[030]    │ ID: artifact-share-05-s3-target                                                                                                   │
+[031]    │ Next: Unavailable: Refreshing workflow state.                                                                                     │
+[032]    │ Recorded: No validated activity recorded                                                                                          │
+[033]    │ Waiting for artifact-share-04-rsync-target                                                                                        │
+[034]    │                                                                                                                                   │
+[035]    │ [enhancement]   artifact-share-0  The webdav target through rclone                                              State: unclaimed  │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:02:52 UTC · tracker/tickets/artifact-share-02-stores-config.md · BLOCKED                                        │
+[038]    │ c path record · C mode · 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                  │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

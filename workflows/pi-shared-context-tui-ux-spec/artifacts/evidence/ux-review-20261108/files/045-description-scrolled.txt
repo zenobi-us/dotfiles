@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]    │ Projects · Repo > Dotfiles                                                                                                        │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[006]    │ Initiatives  >  artifact-share: one git store, many pub  >  Description                                                           │
+[007]    │> artifact-share: one git store, many publish targets · Description                                                                │
+[008]    │                                                                                                                                   │
+[009]    │  ```                                                                                                                              │
+[010]    │                                                                                                                                   │
+[011] ───│  Rename the skill from `artifact-shares` to `artifact-share`.                                                                     │────
+[012]  Up│                                                                                                                                   │
+[013]  Ne│  ## User Stories                                                                                                                  │
+[014] ───│                                                                                                                                   │────
+[015]    │  1. As a user, I want to publish a share to every target of a store with one                                                      │
+[016] ───│     `share` command.                                                                                                              │ ⟲ ─
+[017] ❯  │  2. As a user, I want to publish a store to an S3 bucket and get a CloudFront URL                                                 │
+[018] ───│     back.                                                                                                                         │────
+[019]  ◑ │  3. As a user, I want to publish a store to a WebDAV server or an ssh host.                                                       │
+[020]    │  4. As a user, I want a redacted share to disappear from every target.                                                            │
+[021]    │  5. As a user, I want to list my stores and targets in one TOML file under my XDG                                                 │
+[022]    │     config directory.                                                                                                             │
+[023]    │  6. As a user, I want to keep a store local only, with no remote and no targets.                                                  │
+[024]    │                                                                                                                                   │
+[025]    │  ## Implementation Decisions                                                                                                      │
+[026]    │                                                                                                                                   │
+[027]    │  - The store is always a git repository. The publish step is the only part that                                                   │
+[028]    │    changes for each target type.                                                                                                  │
+[029]    │  - Every target receives the Fumapress build, not the bare `public/s/<hash>/`                                                     │
+[030]    │    files.                                                                                                                         │
+[031]    │  - `share` and `redact` commit, then publish to every target of the store.                                                        │
+[032]    │    `publish <store> [--target N]` re-syncs without a new share.                                                                   │
+[033]    │  - A `github-pages` target requires a GitHub remote. `doctor` refuses a store                                                     │
+[034]    │    that has a `github-pages` target and no remote.                                                                                │
+[035]    │  - Non-GitHub targets build the site locally. `BASE_PATH` comes from the path of                                                  │
+[036]    │    the target's `public_url`, so each target gets its own build.                                                                  │
+[037]    │                                                                                                                                   │
+[038]    │ [Return]  [PgUp] [PgDn]                                                                                                           │
+[039]    │↑↓ scroll · PgUp/Dn page · Esc return                                                                                              │

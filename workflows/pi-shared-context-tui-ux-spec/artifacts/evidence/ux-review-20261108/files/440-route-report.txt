@@ -1,0 +1,37 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]                                                          ██  ██       ▀▄▄▀ █ █ █ █▄▄▀
+[005]                                                          ▒▒  ██                  █
+[006]                                                              ██       v18.17.0
+[007] 
+[008]                                    Tip: Use /tan to fork the current conversation into a background agent
+[009] 
+[010] ──────────────Shared context report                                                                                           ──────────────
+[011]  Update Availa────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[012]  New version 1mode: repository
+[013] ──────────────root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles                                                   ──────────────
+[014]               shared root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+[015] ──────────────shared candidate: /home/zenobius/Notes/SharedAgentContext/github-com-zenobi-us-dotfiles--cf0ba890                0.5%/500K ⟲ ─
+[016] ❯             origin: git@github.com:zenobi-us/dotfiles.git
+[017] ──────────────slug: github-com-zenobi-us-dotfiles--cf0ba890                                                                   ──────────────
+[018]  ◑ GPT-6.1 Sol
+[019] 
+[020]               alignment: repository
+[021]               tickets: repository
+[022]               initiatives: repository
+[023]               workflows: repository
+[024]               evidence: workflows -> repository
+[025]               sources: alignment -> repository
+[026] 
+[027] 
+[028] 
+[029] 
+[030] 
+[031] 
+[032]               ────────────────────────────────────────────────────────────────────────────────────────────────────────────
+[033]               ↑↓ scroll  PgUp/PgDn page  Esc close

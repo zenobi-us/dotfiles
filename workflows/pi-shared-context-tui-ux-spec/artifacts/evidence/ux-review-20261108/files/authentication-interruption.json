@@ -1,0 +1,16 @@
+{
+  "source": "User-supplied screenshot during live OMP evidence collection",
+  "observed": "OpenSSH-labelled dialog requests Username for 'https://github.com'. This is an HTTPS credential prompt, not evidence of an SSH-key passphrase prompt.",
+  "context": "OMP/termscope evidence sessions were running. Read-only workflow inspection can query Git remotes; exact triggering subprocess was not retained when the interrupted Eval kernel exited.",
+  "response": "Capture session exited. Process inspection found no remaining matching termscope evidence, Git remote authentication or askpass processes. An unrelated termscope session was left untouched.",
+  "credentials": "The agent did not supply credentials or approve the dialog.",
+  "remaining_capture_policy": {
+    "GIT_ALLOW_PROTOCOL": "file",
+    "GIT_TERMINAL_PROMPT": "0",
+    "GIT_ASKPASS": "/bin/false",
+    "SSH_ASKPASS": "/bin/false",
+    "GCM_INTERACTIVE": "Never",
+    "GIT_SSH_COMMAND": "ssh -o BatchMode=yes -o NumberOfPasswordPrompts=0"
+  },
+  "coverage_limit": "Remaining captures cannot prove remote publication, PR creation, push or live remote verification. All action confirmations are cancelled before dispatch."
+}

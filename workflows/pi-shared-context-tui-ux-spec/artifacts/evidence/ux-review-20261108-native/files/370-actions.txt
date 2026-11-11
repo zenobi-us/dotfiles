@@ -1,0 +1,39 @@
+=== TERMSCOPE ===
+cols=194 rows=38 cursor=0:0 screen=alternate title=""
+
+=== TEXT ===
+[001] 
+[002]                                                                                  ████████████
+[003]      ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]      │ Projects · Repo > shared-context-ux-evidence-fC5qu3                                                                                                                                  │
+[005]      │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                                                                         │
+[006]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]      │ Initiatives  >  UX evidence fixture — cancelled workflows  >  T-FINISH                                                                                                               │
+[008]      │> Open a fresh chat · commands are staged, not auto-sent                                                                                                                              │
+[009]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[010] ─────│ Target: T-FINISH · tracker/tickets/T-FINISH.md                                                                                                                                       │─────
+[011]  Upda│>[m] Ask Matt                                                                                                                                                                         │
+[012]  New │                                                                                                                                                                                      │
+[013] ─────│ [s] Start worktree — Next: Finish reviewed work. The successful review matches the current clean source. The finish playbook must still verify its full safety mapping.              │─────
+[014]      │ [r] Review — Next: Finish reviewed work. The successful review matches the current clean source. The finish playbook must still verify its full safety mapping.                      │
+[015] ─────│ [x] Fix — Next: Finish reviewed work. The successful review matches the current clean source. The finish playbook must still verify its full safety mapping.                         │K ⟲ ─
+[016] ❯    │ [f] Finish reviewed work                                                                                                                                                             │
+[017] ─────│ [u] Submit                                                                                                                                                                           │─────
+[018]  ◑ GP│                                                                                                                                                                                      │
+[019]      │                                                                                                                                                                                      │
+[020]      │                                                                                                                                                                                      │
+[021]      │                                                                                                                                                                                      │
+[022]      │                                                                                                                                                                                      │
+[023]      │                                                                                                                                                                                      │
+[024]      │                                                                                                                                                                                      │
+[025]      │                                                                                                                                                                                      │
+[026]      │                                                                                                                                                                                      │
+[027]      │                                                                                                                                                                                      │
+[028]      │                                                                                                                                                                                      │
+[029]      │                                                                                                                                                                                      │
+[030]      │                                                                                                                                                                                      │
+[031]      │                                                                                                                                                                                      │
+[032]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[033]      │ Last validated 04:23:36 UTC · tracker/tickets/T-FINISH.md · FINISH                                                                                                                   │
+[034]      │ Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                                                                                │
+[035]      ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

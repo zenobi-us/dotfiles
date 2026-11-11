@@ -1,0 +1,811 @@
+{
+  "shots": [
+    {
+      "id": "370-actions",
+      "title": "Submit reviewed source — available actions",
+      "workflow": "Review phase-specific handoffs",
+      "goal": "Inspect Submit as the alternative for the same reviewed source.",
+      "steps": "Fixture → T-FINISH → a",
+      "notes": "Git network transports are blocked for this resumed capture. No push or PR operation is permitted.",
+      "feedback": "Should Submit and Finish explain their different publication and cleanup effects?",
+      "capturedAt": "2026-11-08T03:18:44.557Z",
+      "terminal": {
+        "cols": 140,
+        "rows": 42,
+        "cursor": [
+          0,
+          0
+        ],
+        "cursor_style": "block",
+        "cursor_visible": false,
+        "title": "π > shared-context-ux-evidence-zk6ioB",
+        "alt_screen": false
+      },
+      "source": "Controlled disposable fixture; Git network transports blocked",
+      "png": "shots/370-actions.png",
+      "svg": "files/370-actions.svg",
+      "text": "files/370-actions.txt"
+    },
+    {
+      "id": "370-confirmation",
+      "title": "Submit reviewed source — confirmation",
+      "workflow": "Review phase-specific handoffs",
+      "goal": "Review the prepared Submit handoff before allowing another chat.",
+      "steps": "Actions → u → optional prompt → Enter",
+      "notes": "The confirmation is cancelled. Network publication and new-chat dispatch are not exercised.",
+      "feedback": "Which publication details should be visible before Submit?",
+      "capturedAt": "2026-11-08T03:18:45.048Z",
+      "terminal": {
+        "cols": 140,
+        "rows": 42,
+        "cursor": [
+          0,
+          0
+        ],
+        "cursor_style": "block",
+        "cursor_visible": false,
+        "title": "π > shared-context-ux-evidence-zk6ioB",
+        "alt_screen": false
+      },
+      "source": "Controlled disposable fixture; Git network transports blocked",
+      "png": "shots/370-confirmation.png",
+      "svg": "files/370-confirmation.svg",
+      "text": "files/370-confirmation.txt"
+    },
+    {
+      "id": "380-blocked-actions",
+      "title": "Explain a blocked ticket",
+      "workflow": "Handle blocked or invalid data",
+      "goal": "Read the unfinished prerequisite before trying a workflow transition.",
+      "steps": "Fixture → T-BLOCKED → a",
+      "notes": "The direct prerequisite T-READY is incomplete. Disabled transitions show why the ticket cannot proceed.",
+      "feedback": "Would a direct jump to the prerequisite be more useful than repeated warnings?",
+      "capturedAt": "2026-11-08T03:19:32.343Z",
+      "terminal": {
+        "cols": 140,
+        "rows": 42,
+        "cursor": [
+          0,
+          0
+        ],
+        "cursor_style": "block",
+        "cursor_visible": false,
+        "title": "π > shared-context-ux-evidence-zk6ioB",
+        "alt_screen": false
+      },
+      "source": "Controlled disposable fixture; Git network transports blocked",
+      "png": "shots/380-blocked-actions.png",
+      "svg": "files/380-blocked-actions.svg",
+      "text": "files/380-blocked-actions.txt"
+    },
+    {
+      "id": "390-invalid-history",
+      "title": "Keep invalid events visible",
+      "workflow": "Handle blocked or invalid data",
+      "goal": "Inspect malformed history instead of hiding the event or treating it as success.",
+      "steps": "Fixture → T-INVALID → Enter",
+      "notes": "This event deliberately uses the wrong schema. Invalid history cannot authorize a transition.",
+      "feedback": "Can you tell that the event is invalid before opening it?",
+      "capturedAt": "2026-11-08T03:19:33.289Z",
+      "terminal": {
+        "cols": 140,
+        "rows": 42,
+        "cursor": [
+          0,
+          0
+        ],
+        "cursor_style": "block",
+        "cursor_visible": false,
+        "title": "π > shared-context-ux-evidence-zk6ioB",
+        "alt_screen": false
+      },
+      "source": "Controlled disposable fixture; Git network transports blocked",
+      "png": "shots/390-invalid-history.png",
+      "svg": "files/390-invalid-history.svg",
+      "text": "files/390-invalid-history.txt"
+    },
+    {
+      "id": "400-invalid-event-detail",
+      "title": "Read an invalid event and its error",
+      "workflow": "Handle blocked or invalid data",
+      "goal": "Read the stable event reference, raw fields and validation error.",
+      "steps": "Invalid event list → Enter",
+      "notes": "The invalid fixture remains inspectable. It is not repaired or rewritten by browsing.",
+      "feedback": "Should validation errors lead to repair guidance, raw fields or a separate diagnostics screen?",
+      "capturedAt": "2026-11-08T03:19:33.641Z",
+      "terminal": {
+        "cols": 140,
+        "rows": 42,
+        "cursor": [
+          0,
+          0
+        ],
+        "cursor_style": "block",
+        "cursor_visible": false,
+        "title": "π > shared-context-ux-evidence-zk6ioB",
+        "alt_screen": false
+      },
+      "source": "Controlled disposable fixture; Git network transports blocked",
+      "png": "shots/400-invalid-event-detail.png",
+      "svg": "files/400-invalid-event-detail.svg",
+      "text": "files/400-invalid-event-detail.txt"
+    },
+    {
+      "id": "410-live-update",
+      "title": "Refresh the selected record after a file edit",
+      "workflow": "Observe freshness and recovery",
+      "goal": "Observe a real file change without reopening the explorer or moving selection.",
+      "steps": "Edit the disposable fixture title through mq",
+      "notes": "The selected record updated through the live monitor. Production records were not changed.",
+      "feedback": "Does the refresh need a change indicator or a before/after summary?",
+      "capturedAt": "2026-11-08T03:23:09.273Z",
+      "terminal": {
+        "cols": 140,
+        "rows": 42,
+        "cursor": [
+          0,
+          0
+        ],
+        "cursor_style": "block",
+        "cursor_visible": false,
+        "title": "π > shared-context-ux-evidence-zk6ioB",
+        "alt_screen": false
+      },
+      "source": "Controlled disposable fixture; Git network transports blocked",
+      "png": "shots/410-live-update.png",
+      "svg": "files/410-live-update.svg",
+      "text": "files/410-live-update.txt"
+    },
+    {
+      "id": "420-refresh-failure",
+      "title": "Retain last readable data with an error",
+      "workflow": "Observe freshness and recovery",
+      "goal": "See the last valid record when a current read fails, without treating it as fresh authority.",
+      "steps": "Replace fixture metadata with an invalid document through mq",
+      "notes": "The prior readable title remains visible with a refresh error. The error is not treated as success.",
+      "feedback": "Is it obvious that this is older data? Where should the error appear?",
+      "capturedAt": "2026-11-08T03:23:09.887Z",
+      "terminal": {
+        "cols": 140,
+        "rows": 42,
+        "cursor": [
+          0,
+          0
+        ],
+        "cursor_style": "block",
+        "cursor_visible": false,
+        "title": "π > shared-context-ux-evidence-zk6ioB",
+        "alt_screen": false
+      },
+      "source": "Controlled disposable fixture; Git network transports blocked",
+      "png": "shots/420-refresh-failure.png",
+      "svg": "files/420-refresh-failure.svg",
+      "text": "files/420-refresh-failure.txt"
+    },
+    {
+      "id": "430-refresh-recovery",
+      "title": "Recover after valid data returns",
+      "workflow": "Observe freshness and recovery",
+      "goal": "Return to readable current data without restarting the TUI.",
+      "steps": "Restore the original fixture document through mq",
+      "notes": "The refresh error cleared and the canonical selection remained available.",
+      "feedback": "Should recovery be silent, announced once or recorded in diagnostics?",
+      "capturedAt": "2026-11-08T03:23:10.913Z",
+      "terminal": {
+        "cols": 140,
+        "rows": 42,
+        "cursor": [
+          0,
+          0
+        ],
+        "cursor_style": "block",
+        "cursor_visible": false,
+        "title": "π > shared-context-ux-evidence-zk6ioB",
+        "alt_screen": false
+      },
+      "source": "Controlled disposable fixture; Git network transports blocked",
+      "png": "shots/430-refresh-recovery.png",
+      "svg": "files/430-refresh-recovery.svg",
+      "text": "files/430-refresh-recovery.txt"
+    },
+    {
+      "id": "440-route-report",
+      "title": "Inspect resolved context routes",
+      "workflow": "Inspect storage and setup",
+      "goal": "Use the read-only report to understand repository roots, shared roots and record routes.",
+      "steps": "/shared-context report",
+      "notes": "This report displays routing information. It does not initialize or migrate storage. Git transports are blocked for this capture.",
+      "feedback": "Which storage details should be on the main screen instead of this report?",
+      "capturedAt": "2026-11-08T03:25:14.714Z",
+      "terminal": {
+        "cols": 140,
+        "rows": 42,
+        "cursor": [
+          0,
+          0
+        ],
+        "cursor_style": "block",
+        "cursor_visible": false,
+        "title": "π > Dotfiles",
+        "alt_screen": false
+      },
+      "source": "Live Dotfiles checkout; Git network transports blocked",
+      "png": "shots/440-route-report.png",
+      "svg": "files/440-route-report.svg",
+      "text": "files/440-route-report.txt"
+    },
+    {
+      "id": "450-onboarding",
+      "title": "Choose storage before setup",
+      "workflow": "Inspect storage and setup",
+      "goal": "Review Repository and Shared store before choosing whether to create missing context files.",
+      "steps": "Open unconfigured disposable repository → /shared-context",
+      "notes": "The onboarding screen names the target and files it could create. Apply setup was not selected; no storage initialization or migration ran.",
+      "feedback": "Does this screen explain storage ownership and which files will change?",
+      "capturedAt": "2026-11-08T03:25:19.723Z",
+      "terminal": {
+        "cols": 140,
+        "rows": 42,
+        "cursor": [
+          41,
+          0
+        ],
+        "cursor_style": "block",
+        "cursor_visible": false,
+        "title": "π > shared-context-ux-onboarding-9hlShd",
+        "alt_screen": true
+      },
+      "source": "Unconfigured disposable repository; setup preview only; Git network transports blocked",
+      "png": "shots/450-onboarding.png",
+      "svg": "files/450-onboarding.svg",
+      "text": "files/450-onboarding.txt"
+    }
+  ],
+  "actions": [
+    {
+      "method": "type",
+      "text": "/shared-context",
+      "at": "2026-11-08T03:18:43.430Z"
+    },
+    {
+      "method": "press",
+      "key": "RET",
+      "at": "2026-11-08T03:18:43.431Z"
+    },
+    {
+      "method": "type",
+      "text": "h",
+      "at": "2026-11-08T03:18:43.504Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:18:43.504Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:18:43.504Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:18:43.504Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:18:43.504Z"
+    },
+    {
+      "method": "press",
+      "key": "RET",
+      "at": "2026-11-08T03:18:43.505Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:18:43.537Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:18:43.537Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:18:43.537Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:18:43.537Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:18:43.537Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:18:43.537Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:18:43.537Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:18:43.538Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:18:43.538Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:18:43.538Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:18:43.538Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:18:43.538Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:18:43.538Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:18:43.538Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:18:43.538Z"
+    },
+    {
+      "method": "press",
+      "key": "RET",
+      "at": "2026-11-08T03:18:43.538Z"
+    },
+    {
+      "method": "type",
+      "text": "a",
+      "at": "2026-11-08T03:18:44.201Z"
+    },
+    {
+      "method": "type",
+      "text": "u",
+      "at": "2026-11-08T03:18:44.559Z"
+    },
+    {
+      "method": "press",
+      "key": "RET",
+      "at": "2026-11-08T03:18:44.563Z"
+    },
+    {
+      "method": "press",
+      "key": "ESC",
+      "at": "2026-11-08T03:18:45.052Z"
+    },
+    {
+      "method": "type",
+      "text": "h",
+      "at": "2026-11-08T03:19:31.398Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:31.406Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:31.406Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:31.406Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:31.406Z"
+    },
+    {
+      "method": "press",
+      "key": "RET",
+      "at": "2026-11-08T03:19:31.406Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:31.436Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:31.436Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:31.436Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:31.436Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:31.436Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:31.436Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:31.436Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:31.436Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:31.437Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:31.437Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:31.437Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:31.437Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:31.437Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:31.437Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:31.437Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:31.437Z"
+    },
+    {
+      "method": "press",
+      "key": "RET",
+      "at": "2026-11-08T03:19:31.437Z"
+    },
+    {
+      "method": "type",
+      "text": "a",
+      "at": "2026-11-08T03:19:32.002Z"
+    },
+    {
+      "method": "press",
+      "key": "<left>",
+      "at": "2026-11-08T03:19:32.347Z"
+    },
+    {
+      "method": "type",
+      "text": "h",
+      "at": "2026-11-08T03:19:32.347Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:32.350Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:32.350Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:32.350Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:32.350Z"
+    },
+    {
+      "method": "press",
+      "key": "RET",
+      "at": "2026-11-08T03:19:32.350Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:32.383Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:32.383Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:32.383Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:32.383Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:32.383Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:32.383Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:32.384Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:32.384Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:32.384Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:32.384Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:32.384Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:32.384Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:32.384Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:32.384Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:32.384Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:32.384Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:32.384Z"
+    },
+    {
+      "method": "press",
+      "key": "RET",
+      "at": "2026-11-08T03:19:32.384Z"
+    },
+    {
+      "method": "press",
+      "key": "RET",
+      "at": "2026-11-08T03:19:32.947Z"
+    },
+    {
+      "method": "press",
+      "key": "RET",
+      "at": "2026-11-08T03:19:33.292Z"
+    },
+    {
+      "method": "type",
+      "text": "h",
+      "at": "2026-11-08T03:19:33.644Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:33.648Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:33.648Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:33.648Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:33.648Z"
+    },
+    {
+      "method": "press",
+      "key": "RET",
+      "at": "2026-11-08T03:19:33.648Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:33.681Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:33.681Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:33.681Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:33.681Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:33.681Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:33.681Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:33.681Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:33.681Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:33.681Z"
+    },
+    {
+      "method": "press",
+      "key": "<up>",
+      "at": "2026-11-08T03:19:33.681Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:33.682Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:33.682Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:33.682Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:33.682Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:33.682Z"
+    },
+    {
+      "method": "press",
+      "key": "<down>",
+      "at": "2026-11-08T03:19:33.682Z"
+    },
+    {
+      "method": "press",
+      "key": "RET",
+      "at": "2026-11-08T03:19:33.682Z"
+    },
+    {
+      "method": "type",
+      "text": "/shared-context report",
+      "at": "2026-11-08T03:25:14.345Z"
+    },
+    {
+      "method": "press",
+      "key": "RET",
+      "at": "2026-11-08T03:25:14.345Z"
+    },
+    {
+      "method": "type",
+      "text": "/shared-context",
+      "at": "2026-11-08T03:25:19.330Z"
+    },
+    {
+      "method": "press",
+      "key": "RET",
+      "at": "2026-11-08T03:25:19.331Z"
+    }
+  ],
+  "safety": {
+    "GIT_ALLOW_PROTOCOL": "file",
+    "GIT_TERMINAL_PROMPT": "0",
+    "GIT_ASKPASS": "/bin/false",
+    "SSH_ASKPASS": "/bin/false",
+    "GCM_INTERACTIVE": "Never",
+    "GIT_SSH_COMMAND": "ssh -o BatchMode=yes -o NumberOfPasswordPrompts=0"
+  },
+  "cleanup": {
+    "fixtureRoot": "/tmp/shared-context-ux-evidence-zk6ioB",
+    "fixtureRemoved": true,
+    "onboardingRoot": "/tmp/shared-context-ux-onboarding-9hlShd",
+    "onboardingRemoved": true,
+    "sessionsClosed": true
+  }
+}

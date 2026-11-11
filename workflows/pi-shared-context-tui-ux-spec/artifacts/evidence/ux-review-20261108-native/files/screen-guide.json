@@ -1,0 +1,356 @@
+[
+  {
+    "id": "010-home",
+    "title": "Choose an initiative or an ADR",
+    "use": "Start from project-level records before drilling into children.",
+    "steps": "/shared-context"
+  },
+  {
+    "id": "020-initiative-detail",
+    "title": "Inspect initiative members",
+    "use": "Select child records while retaining initiative context.",
+    "steps": "Home → initiative → Enter"
+  },
+  {
+    "id": "030-initiative-dag",
+    "title": "Read direct blockers in the DAG",
+    "use": "Understand prerequisite order, including blockers outside an initiative.",
+    "steps": "Initiative Detail → v"
+  },
+  {
+    "id": "040-initiative-description",
+    "title": "Read the full initiative specification",
+    "use": "Read the complete body without losing the prior tab and selection.",
+    "steps": "Initiative → d"
+  },
+  {
+    "id": "045-description-scrolled",
+    "title": "Scroll a long specification",
+    "use": "Read beyond the first viewport while retaining title and return controls.",
+    "steps": "Description → Page Down"
+  },
+  {
+    "id": "050-ticket-detail",
+    "title": "Inspect a ticket before acting",
+    "use": "Compare canonical identity, tracker status, dependencies and workflow evidence.",
+    "steps": "Initiative Detail → selected ticket → Enter"
+  },
+  {
+    "id": "060-events-empty",
+    "title": "Inspect an empty event history",
+    "use": "Distinguish absent history from a completed workflow.",
+    "steps": "Ticket → Enter"
+  },
+  {
+    "id": "070-ticket-actions",
+    "title": "Choose an allowed ticket action",
+    "use": "Read the enabled recommendation and disabled alternatives.",
+    "steps": "Ticket → a"
+  },
+  {
+    "id": "080-ask-prompt",
+    "title": "Add a question for a fresh chat",
+    "use": "Describe what the next chat should help with.",
+    "steps": "Actions → m"
+  },
+  {
+    "id": "090-handoff-confirmation",
+    "title": "Review and cancel an Ask Matt handoff",
+    "use": "Check target and user request before opening a fresh chat.",
+    "steps": "Ask Matt prompt → Enter → confirmation → Escape"
+  },
+  {
+    "id": "100-ready-queue",
+    "title": "Find ready or inspectable work",
+    "use": "Use Ready to locate the current start/inspection recommendation.",
+    "steps": "Home or queue → 5"
+  },
+  {
+    "id": "110-review-queue",
+    "title": "Find review and recovery work",
+    "use": "Locate review, fix, finish and submit candidates.",
+    "steps": "Home or queue → 6"
+  },
+  {
+    "id": "120-blocked-queue",
+    "title": "Inspect blocked or unknown work",
+    "use": "Find records whose blockers or evidence need attention.",
+    "steps": "Home or queue → 7"
+  },
+  {
+    "id": "130-all-queue",
+    "title": "Browse every executable ticket",
+    "use": "Inspect executable records regardless of readiness.",
+    "steps": "Home or queue → 8"
+  },
+  {
+    "id": "140-event-history",
+    "title": "Read recorded workflow events",
+    "use": "Compare phase outcomes and attempts without assuming current source approval.",
+    "steps": "Pi Ink initiative → first ticket → Events"
+  },
+  {
+    "id": "150-event-detail",
+    "title": "Inspect exact event evidence",
+    "use": "Read the outcome, stable references and source comparison.",
+    "steps": "Event history → Enter"
+  },
+  {
+    "id": "160-files-browser",
+    "title": "Browse raw context files",
+    "use": "Inspect files while retaining independent tracker navigation.",
+    "steps": "Tracker → 2"
+  },
+  {
+    "id": "225-file-preview",
+    "title": "Preview an ADR file",
+    "use": "Read the selected file before inserting its path.",
+    "steps": "Files → docs → adr"
+  },
+  {
+    "id": "230-files-path-format",
+    "title": "Choose the Files insertion format",
+    "use": "Select the path format before inserting it into the editor.",
+    "steps": "Files preview → f"
+  },
+  {
+    "id": "235-editor-insertion",
+    "title": "Stage a path without sending it",
+    "use": "Inspect the inserted reference as an editor draft.",
+    "steps": "Files → y"
+  },
+  {
+    "id": "170-adr-detail",
+    "title": "Read an architecture decision",
+    "use": "Treat an ADR as recorded context rather than executable work.",
+    "steps": "Home → ADR → Enter"
+  },
+  {
+    "id": "180-reference-copy",
+    "title": "Copy a canonical reference",
+    "use": "Use the reference appropriate to the record's routed store.",
+    "steps": "ADR → C to Reference → c"
+  },
+  {
+    "id": "190-id-copy",
+    "title": "Copy a stable ID",
+    "use": "Copy an identifier for commands or discussion.",
+    "steps": "Reference mode → C → c"
+  },
+  {
+    "id": "200-path-copy",
+    "title": "Copy a local file path",
+    "use": "Open a record in a local editor or shell.",
+    "steps": "ID mode → C → c"
+  },
+  {
+    "id": "210-project-picker",
+    "title": "Choose a project context",
+    "use": "Browse the current checkout and stored contexts.",
+    "steps": "Home → Escape"
+  },
+  {
+    "id": "215-project-filter",
+    "title": "Filter project contexts",
+    "use": "Narrow project names and identities before opening one.",
+    "steps": "Project picker → type Dotfiles"
+  },
+  {
+    "id": "220-initiative-actions",
+    "title": "Choose an initiative planning action",
+    "use": "Discuss, split or question the canonical initiative.",
+    "steps": "Home → first initiative → a"
+  },
+  {
+    "id": "240-to-tickets-confirmation",
+    "title": "Preview To tickets",
+    "use": "Review the initiative before a ticket-planning chat.",
+    "steps": "Initiative actions → t → optional prompt → Enter"
+  },
+  {
+    "id": "250-grill-confirmation",
+    "title": "Preview Grill",
+    "use": "Review the target before a separate questioning chat.",
+    "steps": "Initiative actions → g → optional prompt → Enter"
+  },
+  {
+    "id": "260-compact-80x24",
+    "title": "DAG at 80 × 24 native cells",
+    "use": "Inspect real native wrapping and usable controls at 80 × 24 cells.",
+    "steps": "DAG → native terminal resized to 80 columns × 24 rows"
+  },
+  {
+    "id": "270-compact-40x12",
+    "title": "DAG at 40 × 12 native cells",
+    "use": "Inspect the actual small-screen layout at 40 × 12 cells.",
+    "steps": "DAG → native terminal resized to 40 columns × 12 rows"
+  },
+  {
+    "id": "440-route-report",
+    "title": "Inspect resolved storage routes",
+    "use": "Understand roots, stores and canonical routes.",
+    "steps": "/shared-context report"
+  },
+  {
+    "id": "300-fixture-home",
+    "title": "Identify controlled workflow examples",
+    "use": "Separate demonstration records from live project evidence.",
+    "steps": "Open disposable fixture → /shared-context"
+  },
+  {
+    "id": "310-research-detail",
+    "title": "Read a research record",
+    "use": "Read questions and findings without production transitions.",
+    "steps": "Fixture initiative → R-1 → Enter"
+  },
+  {
+    "id": "315-research-actions",
+    "title": "Choose a research planning action",
+    "use": "Discuss or split research without starting executable work.",
+    "steps": "Research detail → a"
+  },
+  {
+    "id": "320-prototype-actions",
+    "title": "Choose Prototype",
+    "use": "Use a prototype-specific handoff instead of production work.",
+    "steps": "Fixture → P-1 → a"
+  },
+  {
+    "id": "325-prototype-confirmation",
+    "title": "Preview a prototype request",
+    "use": "Check the prototype target and scope before another chat.",
+    "steps": "Prototype actions → p → optional prompt → Enter"
+  },
+  {
+    "id": "330-actions",
+    "title": "Inspect before starting — actions",
+    "use": "Read the current Start-key recommendation.",
+    "steps": "Fixture → T-READY → a"
+  },
+  {
+    "id": "330-confirmation",
+    "title": "Inspect before starting — confirmation",
+    "use": "Check the start command and recovery inputs.",
+    "steps": "Actions → s → optional prompt → Enter"
+  },
+  {
+    "id": "340-actions",
+    "title": "Review implementation — actions",
+    "use": "Find the review recommendation for recorded implementation.",
+    "steps": "Fixture → T-REVIEW → a"
+  },
+  {
+    "id": "340-confirmation",
+    "title": "Review confirmation — normal native terminal",
+    "use": "Check the action, target and approval controls in the native Review confirmation.",
+    "steps": "Review action → native confirmation at 194 × 38 cells"
+  },
+  {
+    "id": "345-review-expanded",
+    "title": "Review confirmation — taller native terminal",
+    "use": "Compare the same Review confirmation in a taller real terminal.",
+    "steps": "Same confirmation → native terminal resized to 194 × 70 cells"
+  },
+  {
+    "id": "350-actions",
+    "title": "Fix findings — actions",
+    "use": "Find Fix for a current failed review.",
+    "steps": "Fixture → T-FIX → a"
+  },
+  {
+    "id": "350-confirmation",
+    "title": "Fix findings — confirmation",
+    "use": "Review source-bound findings before a new fixer.",
+    "steps": "Actions → x → optional prompt → Enter"
+  },
+  {
+    "id": "360-actions",
+    "title": "Finish reviewed source — actions",
+    "use": "Find Finish for successfully reviewed clean source.",
+    "steps": "Fixture → T-FINISH → a"
+  },
+  {
+    "id": "360-confirmation",
+    "title": "Finish reviewed source — confirmation",
+    "use": "Inspect the consequential finish handoff.",
+    "steps": "Actions → f → optional prompt → Enter"
+  },
+  {
+    "id": "370-actions",
+    "title": "Submit reviewed source — actions",
+    "use": "Inspect the publication alternative for reviewed source.",
+    "steps": "Fixture → T-FINISH → a with Git network blocked"
+  },
+  {
+    "id": "370-confirmation",
+    "title": "Submit reviewed source — confirmation",
+    "use": "Review the publication handoff without running it.",
+    "steps": "Actions → u → optional prompt → Enter"
+  },
+  {
+    "id": "380-blocked-actions",
+    "title": "Explain an unfinished prerequisite",
+    "use": "Read blockers before trying a transition.",
+    "steps": "Fixture → T-BLOCKED → a"
+  },
+  {
+    "id": "390-invalid-history",
+    "title": "Keep invalid events visible",
+    "use": "Inspect malformed history without treating it as success.",
+    "steps": "Fixture → T-INVALID → Events"
+  },
+  {
+    "id": "400-invalid-event-detail",
+    "title": "Read an invalid event",
+    "use": "Inspect the stable reference, raw fields and validation error.",
+    "steps": "Invalid event → Enter"
+  },
+  {
+    "id": "410-live-update",
+    "title": "Observe a live record update",
+    "use": "See a current file edit without reopening the explorer.",
+    "steps": "Edit the disposable ticket title through mq"
+  },
+  {
+    "id": "420-refresh-failure",
+    "title": "Keep old readable data with an error",
+    "use": "Recognize that retained content is not current authority.",
+    "steps": "Write invalid fixture metadata through mq"
+  },
+  {
+    "id": "430-refresh-recovery",
+    "title": "Recover when valid data returns",
+    "use": "Resume current reads without restarting OMP.",
+    "steps": "Restore the valid fixture document through mq"
+  },
+  {
+    "id": "365-git-guard",
+    "title": "Git authentication guard",
+    "use": "Prove that this capture environment blocks HTTPS Git before authentication.",
+    "steps": "Isolated native terminal → guarded git ls-remote origin"
+  },
+  {
+    "id": "450-onboarding",
+    "title": "Preview storage setup",
+    "use": "Review Repository and Shared store choices before applying setup.",
+    "steps": "Unconfigured disposable repository → /shared-context"
+  },
+  {
+    "id": "105-ready-rows",
+    "title": "Ready — live rows after initial validation",
+    "use": "Find inspectable executable tickets while distinguishing per-ticket refresh from readiness.",
+    "steps": "Home → 5 → wait for rows"
+  },
+  {
+    "id": "112-review-rows",
+    "title": "Review — live rows and refresh status",
+    "use": "Compare cached queue membership with current per-ticket observation status.",
+    "steps": "Home → 6 → wait for rows"
+  },
+  {
+    "id": "115-review-fixture",
+    "title": "Review — validated fixture candidates",
+    "use": "Compare Review, Fix and Finish recommendations in a controlled context.",
+    "steps": "Fixture Home → 6 → wait for validation"
+  }
+]

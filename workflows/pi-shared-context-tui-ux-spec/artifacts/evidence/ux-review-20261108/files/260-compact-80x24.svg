@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 500" width="740" height="500">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="44" fill="rgb(255,255,255)">                        ████████████</text>
+<text x="10" y="64" fill="rgb(255,255,255)">  ╭──────────────────────────────────────────────────────────────────────────╮</text>
+<text x="10" y="84" fill="rgb(255,255,255)">  │ Projects · Repo &gt; Dotfiles                                               │</text>
+<text x="10" y="104" fill="rgb(255,255,255)">  │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │</text>
+<text x="10" y="124" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="144" fill="rgb(255,255,255)">  │ Initiatives  &gt;  artifact-share: one git store, ma                        │</text>
+<text x="10" y="164" fill="rgb(255,255,255)">  │ [d] Full description                                                     │</text>
+<text x="10" y="184" fill="rgb(255,255,255)">  │&gt; [v] Detail / &gt;DAG&lt;                                                      │</text>
+<text x="10" y="204" fill="rgb(255,255,255)">  ├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="224" fill="rgb(255,255,255)">──│ - [task] artifact-share-01-rename - Rename artifact-shares to            │──</text>
+<text x="10" y="244" fill="rgb(255,255,255)"> U│ artifact-share  NOT STARTED                                              │</text>
+<text x="10" y="264" fill="rgb(255,255,255)"> N│ - [enhancement] artifact-share-02-stores-config - Read and write         │</text>
+<text x="10" y="284" fill="rgb(255,255,255)">──│ stores.toml in the XDG config directory  WAITING · blocked by            │──</text>
+<text x="10" y="304" fill="rgb(255,255,255)">  │ artifact-share-01-rename                                                 │</text>
+<text x="10" y="324" fill="rgb(255,255,255)">──│   - [task] artifact-share-01-rename - Rename artifact-shares to          │ ─</text>
+<text x="10" y="344" fill="rgb(255,255,255)">❯ │ artifact-share  NOT STARTED                                              │</text>
+<text x="10" y="364" fill="rgb(255,255,255)">──│ - [enhancement] artifact-share-03-github-pages-target - Publish targets, │──</text>
+<text x="10" y="384" fill="rgb(255,255,255)"> ◑├──────────────────────────────────────────────────────────────────────────┤</text>
+<text x="10" y="404" fill="rgb(255,255,255)">  │ Last validated 03:08:32 UTC · Checking receipts 3/24                     │</text>
+<text x="10" y="424" fill="rgb(255,255,255)">  │ c path record · C mode · i initiative · Esc back · Enter drill · ↑↓ move │</text>
+<text x="10" y="444" fill="rgb(255,255,255)">  ╰──────────────────────────────────────────────────────────────────────────╯</text>
+</svg>

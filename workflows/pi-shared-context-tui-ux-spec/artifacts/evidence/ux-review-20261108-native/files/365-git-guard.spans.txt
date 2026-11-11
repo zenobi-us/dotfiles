@@ -1,0 +1,14 @@
+=== TERMSCOPE ===
+cols=194 rows=38 cursor=8:0 screen=alternate title=""
+
+=== TEXT ===
+[001] Git authentication safety check
+[002] 
+[003] GIT_ALLOW_PROTOCOL=file git ls-remote origin
+[004] fatal: transport 'https' not allowed
+[005] 
+[006] Exit status: 128
+[007] HTTPS transport was rejected before authentication.
+[008] No credentials were supplied.
+
+=== SPANS ===

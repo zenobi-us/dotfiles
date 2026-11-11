@@ -1,0 +1,136 @@
+{
+  "symptom": "User reported missing colours and broken lines in the original evidence images.",
+  "colourProbe": {
+    "command": [
+      "termscope",
+      "snapshot",
+      "--cols",
+      "50",
+      "--rows",
+      "6",
+      "--format",
+      "FORMAT",
+      "--",
+      "sh",
+      "-c",
+      "printf \"\\033[38;2;180;140;220mPURPLE\\033[0m \\033[33mYELLOW\\033[0m\\n│        │\\n│        │\\n\"; sleep 1"
+    ],
+    "svgContainsPurple": false,
+    "htmlContainsPurple": true,
+    "spansContainPurple": true,
+    "spansContainYellow": true,
+    "artifacts": [
+      "colour-probe.svg",
+      "colour-probe.html",
+      "colour-probe.spans.txt"
+    ]
+  },
+  "spacingComparison": {
+    "sameSource": "020-initiative-detail.svg",
+    "legacyRaster": "../shots/020-initiative-detail.png",
+    "imageMagick": "Visible whitespace collapsed; border columns shifted.",
+    "chromium": "The same SVG preserves whitespace and aligns borders.",
+    "svgComputedWhiteSpace": "pre"
+  },
+  "evidenceClasses": {
+    "user-screenshot": "Unchanged attachment. Native appearance for that screen only.",
+    "styled-terminal-reconstruction": "Real termscope styled HTML rendered by Chromium with documented defaults. Not an OS screenshot.",
+    "legacy-text-only": "Faulty SVG/ImageMagick image. Not evidence of native colour, alignment or wrapping."
+  },
+  "newCaptures": [
+    {
+      "id": "004-styled-home",
+      "description": "Initiative list in the live checkout",
+      "metadata": {
+        "cols": 180,
+        "rows": 44,
+        "cursor": [
+          0,
+          0
+        ],
+        "cursor_style": "block",
+        "cursor_visible": false,
+        "title": "π > Dotfiles",
+        "alt_screen": false
+      },
+      "proof": {
+        "colours": 23,
+        "backgrounds": 2,
+        "font": "14px / 17px monospace",
+        "spacePreserved": true
+      },
+      "rendering": "termscope native styled HTML rendered in Chromium; not an OS screenshot",
+      "terminalDefaults": {
+        "background": "rgb(30,30,30)",
+        "foreground": "rgb(212,212,212)",
+        "font": "14px/17px monospace"
+      },
+      "osTerminalFontParity": "not verified"
+    },
+    {
+      "id": "005-styled-detail",
+      "description": "Pi Ink initiative Detail",
+      "metadata": {
+        "cols": 180,
+        "rows": 44,
+        "cursor": [
+          0,
+          0
+        ],
+        "cursor_style": "block",
+        "cursor_visible": false,
+        "title": "π > Dotfiles",
+        "alt_screen": false
+      },
+      "proof": {
+        "colours": 23,
+        "backgrounds": 2,
+        "font": "14px / 17px monospace",
+        "spacePreserved": true
+      },
+      "rendering": "termscope native styled HTML rendered in Chromium; not an OS screenshot",
+      "terminalDefaults": {
+        "background": "rgb(30,30,30)",
+        "foreground": "rgb(212,212,212)",
+        "font": "14px/17px monospace"
+      },
+      "osTerminalFontParity": "not verified"
+    },
+    {
+      "id": "006-styled-ticket",
+      "description": "Install-client ticket detail",
+      "metadata": {
+        "cols": 180,
+        "rows": 44,
+        "cursor": [
+          0,
+          0
+        ],
+        "cursor_style": "block",
+        "cursor_visible": false,
+        "title": "π > Dotfiles",
+        "alt_screen": false
+      },
+      "proof": {
+        "colours": 23,
+        "backgrounds": 2,
+        "font": "14px / 17px monospace",
+        "spacePreserved": true
+      },
+      "rendering": "termscope native styled HTML rendered in Chromium; not an OS screenshot",
+      "terminalDefaults": {
+        "background": "rgb(30,30,30)",
+        "foreground": "rgb(212,212,212)",
+        "font": "14px/17px monospace"
+      },
+      "osTerminalFontParity": "not verified"
+    }
+  ],
+  "limitations": [
+    "No recovery of original colours is possible from the monochrome legacy SVGs.",
+    "No automatic recolouring or repair of old images was performed.",
+    "New captures use a later repository source hash and validation state than the user attachments.",
+    "The normal terminal font and pixel geometry have not been matched exactly.",
+    "Review-confirmation and compact native-terminal layouts remain unverified."
+  ]
+}

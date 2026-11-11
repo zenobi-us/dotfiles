@@ -1,0 +1,39 @@
+=== TERMSCOPE ===
+cols=194 rows=38 cursor=0:0 screen=alternate title=""
+
+=== TEXT ===
+[001] 
+[002]                                                                                  ████████████
+[003]      ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]      │ Projects · Repo > shared-context-ux-evidence-fC5qu3                                                                                                                                  │
+[005]      │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                                                                         │
+[006]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]      │ Initiatives  >  UX evidence fixture — cancelled workflows  >  T-BLOCKED                                                                                                              │
+[008]      │ [d] Full description                                                                                                                                                                 │
+[009]      │> UX-DEMO · Items 8                                          │  Ticket / dependencies / receipts                                                                                      │
+[010] ─────├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤─────
+[011]  Upda│                                                             │ T-BLOCKED Native refresh demonstration — changed title                                                                 │
+[012]  New │ [task]  ID: T-FIX                                           │                                                                                                                        │
+[013] ─────│ Fix recorded review findings                                │ Summary: Do not start until the direct prerequisite is complete.                                                       │─────
+[014]      │ State: claimed                                              │                                                                                                                        │
+[015] ─────│ tracker/tickets/T-FIX.md                                    │ Type: task                                                                                                             │K ⟲ ─
+[016] ❯    │                                                             │                                                                                                                        │
+[017] ─────│ [task]  ID: T-FINISH                                        │ State: BLOCKED                                                                                                         │─────
+[018]  ◑ GP│ Finish or submit reviewed source                            │                                                                                                                        │
+[019]      │ State: claimed                                              │ Reference: tracker/tickets/T-BLOCKED.md                                                                                │
+[020]      │ tracker/tickets/T-FINISH.md                                 │                                                                                                                        │
+[021]      │                                                             │ Current source: not recorded                                                                                           │
+[022]      │>[task]  ID: T-BLOCKED                                       │                                                                                                                        │
+[023]      │ Native refresh demonstration — changed title                │ Next: Resolve blockers                                                                                                 │
+[024]      │ State: unclaimed                                            │                                                                                                                        │
+[025]      │ Waiting for T-READY                                         │ Unresolved prerequisites: T-READY.                                                                                     │
+[026]      │                                                             │                                                                                                                        │
+[027]      │ [task]  ID: T-INVALID                                       │ Reviews: 0 · Fixes: 0 (validated phase receipts; recorded attempts, not quality or completion)                         │
+[028]      │ Inspect a deliberately invalid event                        │                                                                                                                        │
+[029]      │ State: claimed                                              │ Dependencies:                                                                                                          │
+[030]      │ Workflow warning · Enter to inspect details                 │                                                                                                                        │
+[031]      │                                                             │ ← T-READY [READY] Inspect existing work before starting                                                                │
+[032]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[033]      │ Cached · unverified · Live refresh failed: ticket title must be a string.                                                                                                            │
+[034]      │ c path record · C mode · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                                                       │
+[035]      ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

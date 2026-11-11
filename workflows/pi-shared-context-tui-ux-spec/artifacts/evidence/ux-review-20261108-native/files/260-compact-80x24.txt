@@ -1,0 +1,26 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=0:0 screen=alternate title=""
+
+=== TEXT ===
+[001] 
+[002]                         ████████████
+[003]   ╭──────────────────────────────────────────────────────────────────────────╮
+[004]   │ Projects · Repo > Dotfiles                                               │
+[005]   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │
+[006]   ├──────────────────────────────────────────────────────────────────────────┤
+[007]   │ Initiatives  >  Pi Ink Bridge: paired Paper Pro i                        │
+[008]   │ [d] Full description                                                     │
+[009]   │> [v] Detail / >DAG<                                                      │
+[010] ──├──────────────────────────────────────────────────────────────────────────┤──
+[011]  U│ - [task] pi-ink-bridge-01-pen-prototype - Prove Paper Pro pen input      │
+[012]  N│ COMPLETED                                                                │
+[013] ──│ - [task] pi-ink-bridge-02-install-client - Install and launch the tablet │──
+[014]   │ client  WAITING · blocked by pi-ink-bridge-01-pen-prototype              │
+[015] ──│   - [task] pi-ink-bridge-01-pen-prototype - Prove Paper Pro pen input    │ ─
+[016] ❯ │ COMPLETED                                                                │
+[017] ──│ - [task] pi-ink-bridge-03-pair-device - Pair and revoke a tablet  WAITING│──
+[018]  ◑│ · blocked by pi-ink-bridge-02-install-client                             │
+[019]   ├──────────────────────────────────────────────────────────────────────────┤
+[020]   │ Last validated 04:21:00 UTC · Completed history requires a terminal FINIS│
+[021]   │ c path record · C mode · i initiative · Esc back · Enter drill · ↑↓ move │
+[022]   ╰──────────────────────────────────────────────────────────────────────────╯

@@ -1,0 +1,39 @@
+=== TERMSCOPE ===
+cols=194 rows=38 cursor=0:0 screen=alternate title=""
+
+=== TEXT ===
+[001] 
+[002]                                                                                  ████████████
+[003]      ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]      │ Projects · Repo > shared-context-ux-evidence-fC5qu3                                                                                                                                  │
+[005]      │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                                                                         │
+[006]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]      │ Initiatives  >  UX evidence fixture — cancelled   >  T-INVALID  >  Events  >  invalid-event                                                                                          │
+[008]      │ [d] Full description                                                                                                                                                                 │
+[009]      │> Event detail · outcome / body / exact evidence                                                                                                                                      │
+[010] ─────├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤─────
+[011]  Upda│ Execution: completed                                                                                                                                                                 │
+[012]  New │                                                                                                                                                                                      │
+[013] ─────│ INVALID / unvalidated evidence: Event must use schema worktree-receipt/v1.                                                                                                           │─────
+[014]      │                                                                                                                                                                                      │
+[015] ─────│ Recorded body:                                                                                                                                                                       │K ⟲ ─
+[016] ❯    │                                                                                                                                                                                      │
+[017] ─────│ Deliberately invalid fixture event                                                                                                                                                   │─────
+[018]  ◑ GP│                                                                                                                                                                                      │
+[019]      │ Evidence details:                                                                                                                                                                    │
+[020]      │                                                                                                                                                                                      │
+[021]      │ Source: unavailable                                                                                                                                                                  │
+[022]      │                                                                                                                                                                                      │
+[023]      │ Workflow warning: workflows/T-INVALID/events/invalid.json: Event must use schema worktree-receipt/v1.                                                                                │
+[024]      │                                                                                                                                                                                      │
+[025]      │ Ticket action target: tracker/tickets/T-INVALID.md                                                                                                                                   │
+[026]      │                                                                                                                                                                                      │
+[027]      │ Event reference: workflows/T-INVALID/events/invalid.json                                                                                                                             │
+[028]      │                                                                                                                                                                                      │
+[029]      │ Commit: unavailable                                                                                                                                                                  │
+[030]      │                                                                                                                                                                                      │
+[031]      │ Tree: unavailable                                                                                                                                                                    │
+[032]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[033]      │ Last validated 04:23:45 UTC · workflows/T-INVALID/events/invalid.json: Event must use schema worktree-receipt/v1.                                                                    │
+[034]      │ c path record · C mode · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                                                       │
+[035]      ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

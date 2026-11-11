@@ -1,0 +1,45 @@
+=== TERMSCOPE ===
+cols=180 rows=44 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                                           ████████████
+[003]                                                                              ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]     ╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]     │ Projects · Repo > Dotfiles                                                                                                                                              │
+[006]     │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                                                            │
+[007]     ├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]     │ Initiatives  >  Pi Ink Bridge: paired Paper Pro image annotation                                                                                                        │
+[009]     │ [d] Full description                                                                                                                                                    │
+[010] ────│> [v] >Detail< / DAG · pi-ink-bridge · Items 10                                                                                                                          │─────
+[011]  Upd├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[012]  New│ pi-ink-bridge · Phase: unavailable                                                                                                                                      │
+[013] ────│ Summary: The image annotation extension opens a desktop browser editor. Users cannot choose a reMarkable Paper Pro, draw with its pen, and return the result to the     │─────
+[014]     │ originating Pi/OMP request. Manual image transfers interrupt the annotation workflow. Multiple conversations also need reliable result routing.                         │
+[015] ────│>[task]          pi-ink-bridge-01  Prove Paper Pro pen input                                                                                           State: completed  │K ⟲ ─
+[016] ❯   │ ID: pi-ink-bridge-01-pen-prototype                                                                                                                                      │
+[017] ────│ Workflow warning · Enter to inspect details                                                                                                                             │─────
+[018]  ◑ G│                                                                                                                                                                         │
+[019]     │ [task]          pi-ink-bridge-02  Install and launch the tablet client                                                                                State: claimed    │
+[020]     │ ID: pi-ink-bridge-02-install-client                                                                                                                                     │
+[021]     │ tracker/tickets/pi-ink-bridge-02-install-client.md                                                                                                                      │
+[022]     │                                                                                                                                                                         │
+[023]     │ [task]          pi-ink-bridge-03  Pair and revoke a tablet                                                                                            State: unclaimed  │
+[024]     │ ID: pi-ink-bridge-03-pair-device                                                                                                                                        │
+[025]     │ Waiting for pi-ink-bridge-02-install-client                                                                                                                             │
+[026]     │                                                                                                                                                                         │
+[027]     │ [task]          pi-ink-bridge-04  Send one annotation to its originating request                                                                      State: unclaimed  │
+[028]     │ ID: pi-ink-bridge-04-annotation-round-trip                                                                                                                              │
+[029]     │ Waiting for pi-ink-bridge-03-pair-device                                                                                                                                │
+[030]     │                                                                                                                                                                         │
+[031]     │ [task]          pi-ink-bridge-05  Select and manage multiple inbox jobs                                                                               State: unclaimed  │
+[032]     │ ID: pi-ink-bridge-05-inbox                                                                                                                                              │
+[033]     │ Waiting for pi-ink-bridge-04-annotation-round-trip                                                                                                                      │
+[034]     │                                                                                                                                                                         │
+[035]     │ [task]          pi-ink-bridge-06  Correct annotations and inspect image details                                                                       State: unclaimed  │
+[036]     │ ID: pi-ink-bridge-06-editing-tools                                                                                                                                      │
+[037]     │ Waiting for pi-ink-bridge-04-annotation-round-trip                                                                                                                      │
+[038]     ├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[039]     │ Last validated 03:42:21 UTC · Completed history requires a terminal FINISHED receipt with pushed and ticket_completed.                                                  │
+[040]     │ c path child · C mode · i initiative · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                            │
+[041]     ╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

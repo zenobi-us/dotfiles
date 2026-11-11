@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=41:0 screen=alternate title="π > shared-context-ux-onboarding-9hlShd"
+
+=== TEXT ===
+[001] 
+[002] 
+[003]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]    │                                                      Choose context storage                                                       │
+[005]    │                                         Target: /tmp/shared-context-ux-onboarding-9hlShd                                          │
+[006]    │                                                    Create missing files only:                                                     │
+[007]    │                                                       .context-routes.toml                                                        │
+[008]    │                                                             AGENTS.md                                                             │
+[009]    │                                                          CONTEXT-MAP.md                                                           │
+[010]    │                                                  Existing files stay unchanged.                                                   │
+[011]    │                                                                                                                                   │
+[012]    │                                                                                                                                   │
+[013]    │                                                                                                                                   │
+[014]    │                                                                                                                                   │
+[015]    │                                                                                                                                   │
+[016]    │                                                                                                                                   │
+[017]    │                                                                                                                                   │
+[018]    │                                                                                                                                   │
+[019]    │                                                                                                                                   │
+[020]    │                                                                                                                                   │
+[021]    │                                                                                                                                   │
+[022]    │                                                                                                                                   │
+[023]    │                                                                                                                                   │
+[024]    │                                                                                                                                   │
+[025]    │                                                                                                                                   │
+[026]    │                                                                                                                                   │
+[027]    │                                                                                                                                   │
+[028]    │                                                                                                                                   │
+[029]    │                                                                                                                                   │
+[030]    │                                                                                                                                   │
+[031]    │                                                                                                                                   │
+[032]    │                                                                                                                                   │
+[033]    │                                                                                                                                   │
+[034]    │                                                                                                                                   │
+[035]    │                                                                                                                                   │
+[036]    │                                > (*) Repository      ( ) Shared store      Apply setup      Cancel                                │
+[037]    │                                   Tab/↑↓ focus · Enter select · PgUp/PgDn details · Esc cancel                                    │
+[038]    │                                                                                                                                   │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

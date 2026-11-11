@@ -1,0 +1,26 @@
+=== TERMSCOPE ===
+cols=80 rows=24 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                         ████████████
+[003]   ╭──────────────────────────────────────────────────────────────────────────╮
+[004]   │ Projects · Repo > Dotfiles                                               │
+[005]   │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate             │
+[006]   ├──────────────────────────────────────────────────────────────────────────┤
+[007]   │ Initiatives  >  artifact-share: one git store, ma                        │
+[008]   │ [d] Full description                                                     │
+[009]   │> [v] Detail / >DAG<                                                      │
+[010]   ├──────────────────────────────────────────────────────────────────────────┤
+[011] ──│ - [task] artifact-share-01-rename - Rename artifact-shares to            │──
+[012]  U│ artifact-share  NOT STARTED                                              │
+[013]  N│ - [enhancement] artifact-share-02-stores-config - Read and write         │
+[014] ──│ stores.toml in the XDG config directory  WAITING · blocked by            │──
+[015]   │ artifact-share-01-rename                                                 │
+[016] ──│   - [task] artifact-share-01-rename - Rename artifact-shares to          │ ─
+[017] ❯ │ artifact-share  NOT STARTED                                              │
+[018] ──│ - [enhancement] artifact-share-03-github-pages-target - Publish targets, │──
+[019]  ◑├──────────────────────────────────────────────────────────────────────────┤
+[020]   │ Last validated 03:08:32 UTC · Checking receipts 3/24                     │
+[021]   │ c path record · C mode · i initiative · Esc back · Enter drill · ↑↓ move │
+[022]   ╰──────────────────────────────────────────────────────────────────────────╯

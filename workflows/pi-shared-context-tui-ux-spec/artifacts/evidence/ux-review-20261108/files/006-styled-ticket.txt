@@ -1,0 +1,45 @@
+=== TERMSCOPE ===
+cols=180 rows=44 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                                           ████████████
+[003]                                                                              ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]     ╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]     │ Projects · Repo > Dotfiles                                                                                                                                              │
+[006]     │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                                                            │
+[007]     ├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]     │ Initiatives  >  Pi Ink Bridge: paired Paper Pro image annotation  >  pi-ink-bridge-02-install-client                                                                    │
+[009]     │ [d] Full description                                                                                                                                                    │
+[010] ────│> pi-ink-bridge · Items 10                               │  Ticket / dependencies / receipts                                                                             │─────
+[011]  Upd├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[012]  New│ [task]  ID: pi-ink-bridge-01-pen-prototype              │ pi-ink-bridge-02-install-client Install and launch the tablet client                                          │
+[013] ────│ Prove Paper Pro pen input                               │                                                                                                               │─────
+[014]     │ State: completed                                        │ Summary: Run /annotate add-device to start the shared annotation service and obtain trusted installation      │
+[015] ────│ Workflow warning · Enter to inspect details             │ instructions. Install the production tablet client once and open                                              │K ⟲ ─
+[016] ❯   │                                                         │                                                                                                               │
+[017] ────│>[task]  ID: pi-ink-bridge-02-install-client             │ Type: task                                                                                                    │─────
+[018]  ◑ G│ Install and launch the tablet client                    │                                                                                                               │
+[019]     │ State: claimed                                          │ State: READY                                                                                                  │
+[020]     │ tracker/tickets/pi-ink-bridge-02-install-client.md      │                                                                                                               │
+[021]     │                                                         │ Reference: tracker/tickets/pi-ink-bridge-02-install-client.md                                                 │
+[022]     │ [task]  ID: pi-ink-bridge-03-pair-device                │                                                                                                               │
+[023]     │ Pair and revoke a tablet                                │ Current source: 8bb2d8b0f750c024d9cb472f55ae49e90e30375b                                                      │
+[024]     │ State: unclaimed                                        │                                                                                                               │
+[025]     │ Waiting for pi-ink-bridge-02-install-client             │ Next: Inspect existing work                                                                                   │
+[026]     │                                                         │                                                                                                               │
+[027]     │ [task]  ID: pi-ink-bridge-04-annotation-round-trip      │ Existing work or incomplete inspection needs reconciliation. Tracker and evidence-only commits do not prove   │
+[028]     │ Send one annotation to its originating request          │ implementation. Preserve changes and resolve ownership before takeover.                                       │
+[029]     │ State: unclaimed                                        │                                                                                                               │
+[030]     │ Waiting for pi-ink-bridge-03-pair-device                │ Takeover requires scoped approval after ownership and agent checks.                                           │
+[031]     │                                                         │                                                                                                               │
+[032]     │ [task]  ID: pi-ink-bridge-05-inbox                      │ Reviews: 0 · Fixes: 0 (validated phase receipts; recorded attempts, not quality or completion)                │
+[033]     │ Select and manage multiple inbox jobs                   │                                                                                                               │
+[034]     │ State: unclaimed                                        │ Dependencies:                                                                                                 │
+[035]     │ Waiting for pi-ink-bridge-04-annotation-round-trip      │                                                                                                               │
+[036]     │                                                         │ ← pi-ink-bridge-01-pen-prototype [FINISH] Prove Paper Pro pen input                                           │
+[037]     │ [task]  ID: pi-ink-bridge-06-editing-tools              │                                                                                                               │
+[038]     ├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[039]     │ Last validated 03:42:21 UTC · tracker/tickets/pi-ink-bridge-02-install-client.md · READY                                                                                │
+[040]     │ c path record · C mode · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                                          │
+[041]     ╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

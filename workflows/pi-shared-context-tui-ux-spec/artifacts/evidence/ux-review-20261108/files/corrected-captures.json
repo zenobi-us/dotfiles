@@ -1,0 +1,89 @@
+[
+  {
+    "id": "004-styled-home",
+    "description": "Initiative list in the live checkout",
+    "metadata": {
+      "cols": 180,
+      "rows": 44,
+      "cursor": [
+        0,
+        0
+      ],
+      "cursor_style": "block",
+      "cursor_visible": false,
+      "title": "π > Dotfiles",
+      "alt_screen": false
+    },
+    "proof": {
+      "colours": 23,
+      "backgrounds": 2,
+      "font": "14px / 17px monospace",
+      "spacePreserved": true
+    },
+    "rendering": "termscope native styled HTML rendered in Chromium; not an OS screenshot",
+    "terminalDefaults": {
+      "background": "rgb(30,30,30)",
+      "foreground": "rgb(212,212,212)",
+      "font": "14px/17px monospace"
+    },
+    "osTerminalFontParity": "not verified"
+  },
+  {
+    "id": "005-styled-detail",
+    "description": "Pi Ink initiative Detail",
+    "metadata": {
+      "cols": 180,
+      "rows": 44,
+      "cursor": [
+        0,
+        0
+      ],
+      "cursor_style": "block",
+      "cursor_visible": false,
+      "title": "π > Dotfiles",
+      "alt_screen": false
+    },
+    "proof": {
+      "colours": 23,
+      "backgrounds": 2,
+      "font": "14px / 17px monospace",
+      "spacePreserved": true
+    },
+    "rendering": "termscope native styled HTML rendered in Chromium; not an OS screenshot",
+    "terminalDefaults": {
+      "background": "rgb(30,30,30)",
+      "foreground": "rgb(212,212,212)",
+      "font": "14px/17px monospace"
+    },
+    "osTerminalFontParity": "not verified"
+  },
+  {
+    "id": "006-styled-ticket",
+    "description": "Install-client ticket detail",
+    "metadata": {
+      "cols": 180,
+      "rows": 44,
+      "cursor": [
+        0,
+        0
+      ],
+      "cursor_style": "block",
+      "cursor_visible": false,
+      "title": "π > Dotfiles",
+      "alt_screen": false
+    },
+    "proof": {
+      "colours": 23,
+      "backgrounds": 2,
+      "font": "14px / 17px monospace",
+      "spacePreserved": true
+    },
+    "rendering": "termscope native styled HTML rendered in Chromium; not an OS screenshot",
+    "terminalDefaults": {
+      "background": "rgb(30,30,30)",
+      "foreground": "rgb(212,212,212)",
+      "font": "14px/17px monospace"
+    },
+    "osTerminalFontParity": "not verified"
+  }
+]

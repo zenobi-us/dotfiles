@@ -1,0 +1,71 @@
+{
+  "report": "shared-context-native-tui-review-20261108",
+  "validator": "report validation: ok",
+  "nativeScreenshotReview": {
+    "count": 59,
+    "allNewNativeFramebuffers": true,
+    "oldSvgOrHtmlReconstructionsIncluded": false,
+    "reviewedVia": "56 images on seven contact sheets; three additional queue images inspected individually"
+  },
+  "browser": {
+    "heading": "Shared-context TUI — native workflow screenshots",
+    "images": 59,
+    "brokenImages": [],
+    "feedbackForms": 59,
+    "nativeCards": 59,
+    "duplicateIds": [],
+    "brokenAnchors": [],
+    "horizontalOverflow": false,
+    "viewport": 1440
+  },
+  "companionLinks": {
+    "checked": 124,
+    "failed": []
+  },
+  "lightbox": {
+    "initiativeImageOpened": true,
+    "reviewConfirmationOpened": true,
+    "captionsVisible": true,
+    "closeWorked": true
+  },
+  "feedback": {
+    "persistedAcrossReload": true,
+    "exportDownloaded": true,
+    "exportedScreenCount": 59,
+    "exportEvidenceKinds": [
+      "native-framebuffer"
+    ],
+    "exportedPriority": "p2",
+    "testStorageRestored": true
+  },
+  "compactLayout": {
+    "viewport": 390,
+    "scrollWidth": 390,
+    "horizontalOverflow": false,
+    "testCommentCleared": true
+  },
+  "cleanup": {
+    "nativeCaptureSessionsClosed": true,
+    "fixtureAndToolDirectoriesRemoved": [
+      {
+        "path": "/tmp/shared-context-ux-evidence-fC5qu3",
+        "exists": false
+      },
+      {
+        "path": "/tmp/shared-context-native-setup-4D6U25",
+        "exists": false
+      },
+      {
+        "path": "/tmp/shared-context-native-3NIQ8c",
+        "exists": false
+      }
+    ]
+  },
+  "sideEffects": {
+    "oneTemporaryToTicketsModelInvocation": true,
+    "toolsDisabled": true,
+    "modelReportedNoRecordsChanged": true,
+    "productionWorkPhasesNotExecuted": true,
+    "gitHttpsTransportRejectedWith128": true
+  }
+}

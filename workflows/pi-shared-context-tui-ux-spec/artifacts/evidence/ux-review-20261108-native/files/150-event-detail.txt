@@ -1,0 +1,39 @@
+=== TERMSCOPE ===
+cols=194 rows=38 cursor=0:0 screen=alternate title=""
+
+=== TEXT ===
+[001] 
+[002]                                                                                  ████████████
+[003]      ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]      │ Projects · Repo > Dotfiles                                                                                                                                                           │
+[005]      │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                                                                         │
+[006]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]      │ Initiatives  >  Pi Ink Bridge: paired Paper Pro   >  pi-ink-bridge-01-pen-prototype  >  Events  >  finish-0068                                                                       │
+[008]      │ [d] Full description                                                                                                                                                                 │
+[009]      │> Event detail · outcome / body / exact evidence                                                                                                                                      │
+[010] ─────├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤─────
+[011]  Upda│ Execution: FINISH_FAILED                                                                                                                                                             │
+[012]  New │                                                                                                                                                                                      │
+[013] ─────│ Recorded body:                                                                                                                                                                       │─────
+[014]      │                                                                                                                                                                                      │
+[015] ─────│ No readable body recorded.                                                                                                                                                           │K ⟲ ─
+[016] ❯    │                                                                                                                                                                                      │
+[017] ─────│ Evidence details:                                                                                                                                                                    │─────
+[018]  ◑ GP│                                                                                                                                                                                      │
+[019]      │ Source: unavailable                                                                                                                                                                  │
+[020]      │                                                                                                                                                                                      │
+[021]      │ Workflow warning: Completed history requires a terminal FINISHED receipt with pushed and ticket_completed.                                                                           │
+[022]      │                                                                                                                                                                                      │
+[023]      │ Ticket action target: tracker/tickets/pi-ink-bridge-01-pen-prototype.md                                                                                                              │
+[024]      │                                                                                                                                                                                      │
+[025]      │ Event reference: workflows/pi-ink-bridge-01-pen-prototype/events/finish-0068.yaml                                                                                                    │
+[026]      │                                                                                                                                                                                      │
+[027]      │ Commit: e8ab1391eaab3481131f3c3dfa934b7d523c38db                                                                                                                                     │
+[028]      │                                                                                                                                                                                      │
+[029]      │ Tree: 83cce09d711a12b72607aa735296c04eebe96dbc                                                                                                                                       │
+[030]      │                                                                                                                                                                                      │
+[031]      │ Current commit: unavailable                                                                                                                                                          │
+[032]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[033]      │ Last validated 04:18:57 UTC · Completed history requires a terminal FINISHED receipt with pushed and ticket_completed.                                                               │
+[034]      │ c path record · C mode · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                                                       │
+[035]      ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

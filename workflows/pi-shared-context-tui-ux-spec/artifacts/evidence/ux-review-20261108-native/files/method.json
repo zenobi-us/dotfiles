@@ -1,0 +1,49 @@
+{
+  "driver": "termscope JSON-lines session attached to an isolated tmux socket; Escape delivered with tmux send-keys after a demonstrated forwarding problem",
+  "pixels": "grim screenshots of a real foot 1.27.0 terminal running under isolated Cage/wlroots; software pixman rendering",
+  "application": "OMP 18.17.0 with the current shared-context extension explicitly loaded",
+  "font": "JetBrainsMono NFM, 10.5pt; native cell size 8 × 20px",
+  "defaultFramebuffer": "1557 × 771px",
+  "defaultCells": "194 × 38",
+  "additionalSizes": [
+    "644 × 484px, 80 × 24 cells",
+    "324 × 244px, 40 × 12 cells",
+    "1557 × 1404px, 194 × 70 cells"
+  ],
+  "screens": 59,
+  "noReconstruction": true,
+  "noRecolouring": true,
+  "noSvgRasterisation": true,
+  "viewStates": "Each image is the actual visible state, including receipt checks, warnings, cached data and invalid evidence. Later source hashes may differ from user reference images.",
+  "safeGitEnvironment": {
+    "GIT_ALLOW_PROTOCOL": "file",
+    "GIT_TERMINAL_PROMPT": "0",
+    "GIT_ASKPASS": "/bin/false",
+    "SSH_ASKPASS": "/bin/false",
+    "GCM_INTERACTIVE": "Never",
+    "GIT_SSH_COMMAND": "ssh -o BatchMode=yes -o NumberOfPasswordPrompts=0"
+  },
+  "fixture": {
+    "root": "/tmp/shared-context-ux-evidence-fC5qu3",
+    "commit": "87c74402dc9e39d1cb8ab18c5bf2106da8b7ac02",
+    "tree": "a4a87055d5d5f57e85c3d019f79da7b3602a90f2",
+    "syntheticReceipts": true
+  },
+  "captureSideEffect": {
+    "temporaryPlanningChatOpened": 1,
+    "modelResponseInvoked": 1,
+    "toolsEnabled": false,
+    "action": "To tickets",
+    "result": "The model reported it could not load the skill or read/write records because tools were unavailable. No records changed.",
+    "cause": "An Escape cancellation was not delivered through the tmux attachment as expected; a later Enter approved the existing confirmation while automation assumed a different screen.",
+    "subsequentProtection": "Direct Escape delivery plus explicit confirmation-state checks; all final handoff captures were cancelled."
+  },
+  "verification": "All 59 native screenshots visually reviewed: 56 on seven contact sheets and three additional live/fixture queue images individually.",
+  "notRun": [
+    "Approved Start, Review, Fix, Finish, Submit or Prototype execution",
+    "Setup application or shared-store migration",
+    "Remote push, PR creation or merge",
+    "Clipboard read-back, a11y audit or timing benchmark"
+  ],
+  "cleanup": "All native capture sessions and displays closed; fixture directories removed before final delivery. The requested serve service remains running."
+}

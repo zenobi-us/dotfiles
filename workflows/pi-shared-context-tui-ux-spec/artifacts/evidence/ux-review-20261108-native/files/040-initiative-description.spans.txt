@@ -1,0 +1,77 @@
+=== TERMSCOPE ===
+cols=194 rows=38 cursor=0:0 screen=alternate title=""
+
+=== TEXT ===
+[001] 
+[002]                                                                                  ████████████
+[003]      ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]      │ Projects · Repo > Dotfiles                                                                                                                                                           │
+[005]      │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                                                                         │
+[006]      │ Initiatives  >  Pi Ink Bridge: paired Paper Pro image annotation  >  Description                                                                                                     │
+[007]      │> Pi Ink Bridge: paired Paper Pro image annotation · Description                                                                                                                      │
+[008]      │                                                                                                                                                                                      │
+[009]      │  8. As a tablet owner, I want installation to reject unsupported hardware and firmware before changes, so that it does not damage my existing setup.                                 │
+[010] ─────│  9. As a tablet owner, I want installation to preserve unrelated tablet files, so that existing applications remain available.                                                       │─────
+[011]  Upda│  10. As a tablet owner, I want clear restart instructions, so that I know how to activate the installed sidebar entry.                                                               │
+[012]  New │  11. As a tablet user, I want a Pi Annotations sidebar entry, so that I can open the client without a terminal.                                                                      │
+[013] ─────│  12. As a tablet user, I want to discover nearby annotation servers, so that I do not need to enter their addresses during normal setup.                                             │─────
+[014]      │  13. As a tablet user, I want to add a server by address, so that pairing works when the network blocks multicast.                                                                   │
+[015] ─────│  14. As a tablet user, I want a recognizable server name and stable identity, so that I select the intended desktop.                                                                 │K ⟲ ─
+[016] ❯    │  15. As a desktop user, I want to approve pairing and compare a code, so that discovery alone cannot grant access to annotations.                                                    │
+[017] ─────│  16. As a desktop user, I want pairing requests to expire, so that an old request cannot grant later access.                                                                         │─────
+[018]  ◑ GP│  17. As a tablet user, I want pairing to persist across restarts, so that I do not approve the same trusted connection each time.                                                    │
+[019]      │  18. As a desktop user, I want to revoke a tablet, so that a lost or retired device cannot access new jobs.                                                                          │
+[020]      │  19. As a desktop user, I want to select a paired tablet or the browser editor, so that I can choose the appropriate drawing surface.                                                │
+[021]      │  20. As a desktop user, I want to distinguish online tablets from paired tablets, so that pairing does not imply availability.                                                       │
+[022]      │  21. As a desktop user, I want an offline error with recovery instructions, so that I know to turn on the tablet and open its widget.                                                │
+[023]      │  22. As a desktop user, I want acknowledgement that the tablet stored my job, so that delivery status is reliable.                                                                   │
+[024]      │  23. As a tablet user, I want a list or grid of assigned images, so that I can select the job to annotate.                                                                           │
+[025]      │  24. As a tablet user, I want thumbnails, request text, project context, and job status, so that I can distinguish similar images.                                                   │
+[026]      │  25. As a tablet user, I want a locked source image and pen annotation, so that I can mark the image without moving its background.                                                  │
+[027]      │  26. As a tablet user, I want erasing and undo, so that I can correct my annotations.                                                                                                │
+[028]      │  27. As a tablet user, I want pan and zoom, so that I can annotate image details.                                                                                                    │
+[029]      │  28. As a tablet user, I want saved strokes to remain aligned with the source, so that display scaling does not change their meaning.                                                │
+[030]      │  29. As a tablet user, I want to save an editable draft without sending it, so that unfinished work does not complete the agent request.                                             │
+[031]      │  30. As a tablet user, I want drafts to survive a client restart, so that closing the widget does not discard my work.                                                               │
+[032]      │  31. As a tablet user, I want to continue an already downloaded job while disconnected, so that a temporary network failure does not erase my work.                                  │
+[033]      │  32. As a tablet user, I want Send to return the completed annotation, so that Pi/OMP can use the marked image.                                                                      │
+[034]      │                                                                                                                                                                                      │
+[035]      │ [Return]  [PgUp] [PgDn]                                                                                                                                                              │
+[036]      │↑↓ scroll · PgUp/Dn page · Esc return                                                                                                                                                 │
+
+=== SPANS ===
+[002] 81:248,79,204 82:239,81,208 83:230,82,211 84:220,84,215 85:211,86,219 86:202,88,222 87:193,89,226 88:184,91,229 89:175,93,233 90:165,95,237 91:156,96,240 92:147,98,244
+[003] 5-188:49,116,143
+[004] 5:49,116,143 6-32:196,167,231 188:49,116,143
+[005] 5:49,116,143 6-18:196,167,231 19-30:110,106,134 35-66:110,106,134 188:49,116,143
+[006] 5:49,116,143 6-17:196,167,231 18-20:110,106,134 21-70:196,167,231 71-73:110,106,134 188:49,116,143
+[007] 5:49,116,143 6-69:196,167,231 188:49,116,143
+[008] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[009] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[010] 0-4:246,193,119 5:49,116,143 6-187:38,35,58 188:49,116,143 189-193:246,193,119
+[011] 1-4:246,193,119+bold 5:49,116,143 6-187:38,35,58 188:49,116,143
+[012] 1-4:110,106,134 5:49,116,143 6-187:38,35,58 188:49,116,143
+[013] 0-4:246,193,119 5:49,116,143 6-187:38,35,58 188:49,116,143 189-193:246,193,119
+[014] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[015] 0-4:156,207,216 5:49,116,143 6-187:38,35,58 188:49,116,143 189:144,140,170 191:144,140,170 193:156,207,216
+[016] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[017] 0-4:156,207,216 5:49,116,143 6-187:38,35,58 188:49,116,143 189-193:156,207,216
+[018] 1-4:196,167,231 5:49,116,143 6-187:38,35,58 188:49,116,143
+[019] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[020] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[021] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[022] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[023] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[024] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[025] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[026] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[027] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[028] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[029] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[030] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[031] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[032] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[033] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[034] 5:49,116,143 6-187:38,35,58 188:49,116,143
+[035] 5:49,116,143 6-29:196,167,231 188:49,116,143
+[036] 5:49,116,143 6-42:110,106,134 188:49,116,143

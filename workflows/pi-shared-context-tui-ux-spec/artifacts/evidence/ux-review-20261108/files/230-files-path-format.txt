@@ -1,0 +1,38 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]                                                          ██  ██       ▀▄▄▀ █ █ █ █▄▄▀
+[005]                                                          ▒▒  ██                  █
+[006]                                                              ██       v18.17.0
+[007] 
+[008]                                    Tip: Start your prompt with `$ ` to run Python — `$$ ` runs it without
+[009]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[010]    │ Projects · Repo > Dotfiles                                                                                                        │
+[011] ───│   1 Tracker     [2 Files]   Tab focus · Space/Enter activate                                                                      │────
+[012]  Up├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[013]  Ne│ Shared context  ›  Dotfiles  ›  docs  ›  adr  ›  Preview                                                                          │
+[014] ───├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤────
+[015]    │▸ .codemapper             │▸ adr                     │  0001-pi-ink-cleanup-trus│---                                               │
+[016] ───│▸ .github                 │▸ agents                  │  index.md                │date: 2026-11-04                                  │ ⟲ ─
+[017] ❯  │▸ .pi                     │▸ research                │                          │status: accepted                                  │
+[018] ───│▸ docs                    │▸ website                 │                          │title: Pi Ink cleanup trust boundary              │────
+[019]  ◑ │▸ mise                    │                          │                          │type: Decision                                    │
+[020]    │▸ node_modules            │                          │                          │---                                               │
+[021]    │▸ sources                 │                          │                          │                                                  │
+[022]    │▸ tracker                 │                          │                          │# Pi Ink cleanup uses a trusted, exclusive operat │
+[023]    │▸ workflows               │                          │                          │                                                  │
+[024]    │  .context-routes.toml    │                          │                          │Use cable-connected SSH for the bounded Pi Ink co │
+[025]    │  .gitignore              │                          │                          │                                                  │
+[026]    │  .gitmodules             │                          │                          │## Operation limits                               │
+[027]    │  .miserc.toml            │                          │                          │                                                  │
+[028]    │  AGENTS.md               │                          │                          │1. Create a new root-only helper directory. If it │
+[029]    │  banner.png              │                          │                          │2. Run the reader once. Obtain only the two confi │
+[030]    │  bun.lock                │                          │                          │3. After the reader process stops, verify helper  │
+[031]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[032]    │ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/docs/adr/0001-pi-ink-cleanup-trust-boundary.md                            │
+[033]    │ ←→ browse  ↑↓ move  Enter open  Backspace parent                                           y insert  f format: absolute  Esc close│
+[034]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

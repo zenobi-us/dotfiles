@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]    │ Projects · Repo > Dotfiles                                                                                                        │
+[005]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[006]    │ Initiatives  >  artifact-share: one git store, many pub  >  Description                                                           │
+[007]    │> artifact-share: one git store, many publish targets · Description                                                                │
+[008]    │                                                                                                                                   │
+[009]    │  ## Problem Statement                                                                                                             │
+[010]    │                                                                                                                                   │
+[011] ───│  The `artifact-shares` skill publishes only to GitHub Pages. Every share is a                                                     │────
+[012]  Up│  git commit, and the site is built only by the GitHub Actions deploy workflow.                                                    │
+[013]  Ne│  Users need to publish the same checked artifacts to other hosts: an S3 bucket                                                    │
+[014] ───│  (with an S3 URL or a CloudFront URL), a WebDAV server, and an ssh host through                                                   │────
+[015]    │  rsync.                                                                                                                           │
+[016] ───│                                                                                                                                   │ ⟲ ─
+[017] ❯  │  The config lives at `~/.config/artifact-shares.json`, ignores                                                                    │
+[018] ───│  `XDG_CONFIG_HOME`, and describes only GitHub repositories.                                                                       │────
+[019]  ◑ │                                                                                                                                   │
+[020]    │  ## Solution                                                                                                                      │
+[021]    │                                                                                                                                   │
+[022]    │  Split each share into two layers:                                                                                                │
+[023]    │                                                                                                                                   │
+[024]    │  1. **Store**: a local git repository. It is always present. It holds the share                                                   │
+[025]    │     hash, `.types`, the MDX pages, the checks, and the Fumapress site. A store                                                    │
+[026]    │     can have a git remote that the CLI pushes to. The remote is optional.                                                         │
+[027]    │  2. **Publish target**: where the built Fumapress site goes, and its public URL.                                                  │
+[028]    │     A store has zero or more targets.                                                                                             │
+[029]    │                                                                                                                                   │
+[030]    │  ```text                                                                                                                          │
+[031]    │  store (git repo, optional remote)                                                                                                │
+[032]    │    │  share / redact = commit, then run the checks                                                                                │
+[033]    │    ▼                                                                                                                              │
+[034]    │  publish targets (0..n per store)                                                                                                 │
+[035]    │    ├─ github-pages → needs a GitHub remote; push; the workflow builds the site                                                    │
+[036]    │    ├─ s3           → local build; aws s3 sync --delete; CloudFront invalidation                                                   │
+[037]    │                                                                                                                                   │
+[038]    │ [Return]  [PgUp] [PgDn]                                                                                                           │
+[039]    │↑↓ scroll · PgUp/Dn page · Esc return                                                                                              │

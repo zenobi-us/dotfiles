@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 860" width="1280" height="860">
+<style>text { font-family: "JetBrains Mono", "Fira Code", "SF Mono", monospace; font-size: 14px; white-space: pre; }</style>
+<rect width="100%" height="100%" fill="rgb(0,0,0)"/>
+<text x="10" y="44" fill="rgb(255,255,255)">                                                      ████████████</text>
+<text x="10" y="64" fill="rgb(255,255,255)">                                                         ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄</text>
+<text x="10" y="84" fill="rgb(255,255,255)">                                                         ██  ██       ▀▄▄▀ █ █ █ █▄▄▀</text>
+<text x="10" y="104" fill="rgb(255,255,255)">                                                         ▒▒  ██                  █</text>
+<text x="10" y="124" fill="rgb(255,255,255)">                                                             ██       v18.17.0</text>
+<text x="10" y="164" fill="rgb(255,255,255)">                                   Tip: Use /tan to fork the current conversation into a background agent</text>
+<text x="10" y="204" fill="rgb(255,255,255)">──────────────Shared context report                                                                                           ──────────────</text>
+<text x="10" y="224" fill="rgb(255,255,255)"> Update Availa────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>
+<text x="10" y="244" fill="rgb(255,255,255)"> New version 1mode: repository</text>
+<text x="10" y="264" fill="rgb(255,255,255)">──────────────root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles                                                   ──────────────</text>
+<text x="10" y="284" fill="rgb(255,255,255)">              shared root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles</text>
+<text x="10" y="304" fill="rgb(255,255,255)">──────────────shared candidate: /home/zenobius/Notes/SharedAgentContext/github-com-zenobi-us-dotfiles--cf0ba890                0.5%/500K ⟲ ─</text>
+<text x="10" y="324" fill="rgb(255,255,255)">❯             origin: git@github.com:zenobi-us/dotfiles.git</text>
+<text x="10" y="344" fill="rgb(255,255,255)">──────────────slug: github-com-zenobi-us-dotfiles--cf0ba890                                                                   ──────────────</text>
+<text x="10" y="364" fill="rgb(255,255,255)"> ◑ GPT-6.1 Sol</text>
+<text x="10" y="404" fill="rgb(255,255,255)">              alignment: repository</text>
+<text x="10" y="424" fill="rgb(255,255,255)">              tickets: repository</text>
+<text x="10" y="444" fill="rgb(255,255,255)">              initiatives: repository</text>
+<text x="10" y="464" fill="rgb(255,255,255)">              workflows: repository</text>
+<text x="10" y="484" fill="rgb(255,255,255)">              evidence: workflows -&gt; repository</text>
+<text x="10" y="504" fill="rgb(255,255,255)">              sources: alignment -&gt; repository</text>
+<text x="10" y="644" fill="rgb(255,255,255)">              ────────────────────────────────────────────────────────────────────────────────────────────────────────────</text>
+<text x="10" y="664" fill="rgb(255,255,255)">              ↑↓ scroll  PgUp/PgDn page  Esc close</text>
+</svg>

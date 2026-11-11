@@ -1,0 +1,95 @@
+{
+  "preview": "shared-context-annotation-20261109",
+  "url": "http://127.0.0.1:43989/",
+  "server": {
+    "name": "SharedContextAnnotationPreview",
+    "pid": 2389648,
+    "portSwitching": false
+  },
+  "scenario": "stateful-flow",
+  "fidelity": "medium",
+  "prototypeDepth": "interactive",
+  "options": [
+    "A: Near the pin",
+    "B: In the margin",
+    "C: Bottom card"
+  ],
+  "recommendation": "A, provisional; the user can choose in the preview",
+  "nativeScreenshots": 59,
+  "imageHashesBoundToAnnotations": true,
+  "checks": {
+    "allEmbeddedImagesDecode": true,
+    "optionCount": 3,
+    "dropdownCount": 0,
+    "expandingFormCount": 0,
+    "pointerBoxDrawing": true,
+    "reverseDirectionBoxDrawing": true,
+    "pointPins": true,
+    "requiredCommentError": true,
+    "allThreePriorityBadges": true,
+    "editingAndSameNoteDraftPreservation": true,
+    "deleteAndUndo": true,
+    "keyboardCreationMovementAndResize": true,
+    "keyboardOptionNavigation": true,
+    "ctrlEnterSave": true,
+    "draftSurvivesNavigationAndReload": true,
+    "unfinishedDraftBlocksExport": true,
+    "unchangedViewedNoteDoesNotBlockExport": true,
+    "jsonExportDownloaded": true,
+    "sourceHashMatchesOriginal": true,
+    "pixelEdgeBounds": {
+      "region": {
+        "x": 779,
+        "y": 193,
+        "width": 778,
+        "height": 154
+      },
+      "imageWidth": 1557,
+      "inBounds": true
+    },
+    "zoomKeepsNormalisedAnchors": true,
+    "inspectDoesNotCreateNotes": true,
+    "previousNextNavigation": true,
+    "storageFailureWarning": "Browser storage unavailable. Changes stay only in this tab; export before closing.",
+    "memoryOnlyNotesExportWhenStorageFails": true,
+    "mobile": {
+      "viewport": 390,
+      "overflow": false,
+      "pinVisibleAboveCard": true,
+      "cardWithinViewport": true,
+      "badgeHeights": [
+        44,
+        44,
+        44
+      ],
+      "scrollRestoration": "manual"
+    },
+    "badgeTextContrast": [
+      {
+        "label": "✓P1 Blocker",
+        "ratio": 5.72
+      },
+      {
+        "label": "✓P2 Friction",
+        "ratio": 5.68
+      },
+      {
+        "label": "✓P3 Polish",
+        "ratio": 6.05
+      }
+    ],
+    "desktopHorizontalOverflow": false,
+    "browserErrors": {
+      "entries": [],
+      "nextSeq": 0,
+      "dropped": 0
+    },
+    "verificationCommentsRemoved": true
+  },
+  "scope": "Preview only. The existing report and extension are unchanged.",
+  "knownGaps": [
+    "Native mobile keyboards and dense-pin collisions are not verified.",
+    "Pointer-based resizing, server submission and multi-user synchronisation are not implemented or claimed.",
+    "The managed browser could not resolve the repository file:// path; the served HTTP preview is verified. The delivered HTML contains all CSS, JavaScript and image bytes inline."
+  ]
+}

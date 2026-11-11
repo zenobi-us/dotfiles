@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                                        │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  artifact-share: one git store, many pub  >  artifact-share-01-rename                                              │
+[009]    │> Open a fresh chat · commands are staged, not auto-sent                                                                           │
+[010]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[011] ───│ Target: artifact-share-01-rename · tracker/tickets/artifact-share-01-rename.md                                                    │────
+[012]  Up│>[m] Ask Matt                                                                                                                      │
+[013]  Ne│                                                                                                                                   │
+[014] ───│ [s] Inspect existing work                                                                                                         │────
+[015]    │ [r] Review — Next: Inspect existing work. Existing work or incomplete inspection needs reconciliation. Tracker and evidence-only  │
+[016] ───│ commits do not prove implementation. Preserve changes and resolve ownership before takeover.                                      │ ⟲ ─
+[017] ❯  │ [x] Fix — Next: Inspect existing work. Existing work or incomplete inspection needs reconciliation. Tracker and evidence-only     │
+[018] ───│ commits do not prove implementation. Preserve changes and resolve ownership before takeover.                                      │────
+[019]  ◑ │ [f] Finish — Next: Inspect existing work. Existing work or incomplete inspection needs reconciliation. Tracker and evidence-only  │
+[020]    │ commits do not prove implementation. Preserve changes and resolve ownership before takeover.                                      │
+[021]    │ [u] Submit — Next: Inspect existing work. Existing work or incomplete inspection needs reconciliation. Tracker and evidence-only  │
+[022]    │ commits do not prove implementation. Preserve changes and resolve ownership before takeover.                                      │
+[023]    │                                                                                                                                   │
+[024]    │                                                                                                                                   │
+[025]    │                                                                                                                                   │
+[026]    │                                                                                                                                   │
+[027]    │                                                                                                                                   │
+[028]    │                                                                                                                                   │
+[029]    │                                                                                                                                   │
+[030]    │                                                                                                                                   │
+[031]    │                                                                                                                                   │
+[032]    │                                                                                                                                   │
+[033]    │                                                                                                                                   │
+[034]    │                                                                                                                                   │
+[035]    │                                                                                                                                   │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:01:18 UTC · tracker/tickets/artifact-share-01-rename.md · READY                                                 │
+[038]    │ Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                             │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                                        │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  artifact-share: one git store, many pub  >  artifact-share-01-rename                                              │
+[009]    │ [d] Full description                                                                                                              │
+[010]    │> artifact-share-publish-targets · Items 6  │  Ticket / dependencies / receipts                                                    │
+[011] ───├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤────
+[012]  Up│>[task]  ID: artifact-share-01-rename       │ artifact-share-01-rename Rename artifact-shares to artifact-share                    │
+[013]  Ne│ Rename artifact-shares to artifact-share   │                                                                                      │
+[014] ───│ State: unclaimed                           │ Summary: Rename the skill from `artifact-shares` to `artifact-share`. This is a      │────
+[015]    │ tracker/tickets/artifact-share-01-rename.md│ prefactor.                                                                           │
+[016] ───│                                            │                                                                                      │ ⟲ ─
+[017] ❯  │ [enhancement]  ID:                         │ Type: task                                                                           │
+[018] ───│ artifact-share-02-stores-config            │                                                                                      │────
+[019]  ◑ │ Read and write stores.toml in the XDG      │ State: READY                                                                         │
+[020]    │ config directory                           │                                                                                      │
+[021]    │ State: unclaimed                           │ Reference: tracker/tickets/artifact-share-01-rename.md                               │
+[022]    │ Waiting for artifact-share-01-rename       │                                                                                      │
+[023]    │                                            │ Current source: not recorded                                                         │
+[024]    │ [enhancement]  ID:                         │                                                                                      │
+[025]    │ artifact-share-03-github-pages-target      │ Next: Inspect existing work                                                          │
+[026]    │ Publish targets, with github-pages as the  │                                                                                      │
+[027]    │ first target                               │ Existing work or incomplete inspection needs reconciliation. Tracker and             │
+[028]    │ State: unclaimed                           │ evidence-only commits do not prove implementation. Preserve changes and resolve      │
+[029]    │ Waiting for artifact-share-02-stores-config│ ownership before takeover.                                                           │
+[030]    │                                            │                                                                                      │
+[031]    │ [enhancement]  ID:                         │ Takeover requires scoped approval after ownership and agent checks.                  │
+[032]    │ artifact-share-04-rsync-target             │                                                                                      │
+[033]    │ Local build, the rsync target, and the     │ Reviews: 0 · Fixes: 0 (validated phase receipts; recorded attempts, not quality or   │
+[034]    │ publish command                            │ completion)                                                                          │
+[035]    │ State: unclaimed                           │                                                                                      │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:01:18 UTC · tracker/tickets/artifact-share-01-rename.md · READY                                                 │
+[038]    │ c path record · C mode · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh    │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

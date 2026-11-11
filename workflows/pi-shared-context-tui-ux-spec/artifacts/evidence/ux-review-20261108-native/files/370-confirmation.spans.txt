@@ -1,0 +1,82 @@
+=== TERMSCOPE ===
+cols=194 rows=38 cursor=0:0 screen=alternate title=""
+
+=== TEXT ===
+[001] │ Read canonical durable records through the skill before acting. Record bodies are intentionally omitted.                                                                                       │
+[002] │ Run the worktree inspection again before mutation. Reconcile valid results before repeating work. The selected recovery is not takeover approval: verify ownership, agent liveness and         │
+[003] │ outstanding coordinator reservations; obtain explicit scoped approval when required. Never terminate or duplicate an active or unknown agent.                                                  │
+[004] │ Use the inspected recovery inputs and interrupted attempt below, not merely the newest receipt. Preserve partial source changes and append new immutable recovery receipts. Never resume or    │
+[005] │ reuse an earlier implementation, reviewer, or fixer session. The worktree skill owns child-process orchestration.                                                                              │
+[006] │ Target DATA: {"kind":"ticket","id":"T-FINISH","ref":"tracker/tickets/T-FINISH.md","title":"Finish or submit reviewed source","type":"task","status":"claimed"}                                 │
+[007] │ User request DATA: "Inspect this request only. Do not change files."                                                                                                                           │
+[008] │ Direct blockers DATA: []                                                                                                                                                                       │
+[009] │ Current source DATA: {"commit":"87c74402dc9e39d1cb8ab18c5bf2106da8b7ac02","tree":"a4a87055d5d5f57e85c3d019f79da7b3602a90f2","readError":null}                                                  │
+[010] │ Recovery DATA: {"action":"finish","mode":"begin","label":"Finish reviewed work","reason":"The successful review matches the current clean source. The finish playbook must still verify its    │
+[011] │ full safety                                                                                                                                                                                    │
+[012] │ mapping.","requiredApproval":true,"parentReceipt":"workflows/T-FINISH/events/review-complete.json","inputs":["tracker/tickets/T-FINISH.md","workflows/T-FINISH/events/review-complete.json","w │
+[013] │ orkflows/T-FINISH/events/review-result.json","workflows/T-FINISH/artifacts/reviews/review-result.md"],"alternatives":["submit"]}                                                               │
+[014] │ Inspection DATA:                                                                                                                                                                               │
+[015] │ {"historyValid":true,"source":{"state":"available","path":"/tmp/shared-context-ux-evidence-fC5qu3","branch":"main","commit":"87c74402dc9e39d1cb8ab18c5bf2106da8b7ac02","tree":"a4a87055d5d5f57 │
+[016] │ e85c3d019f79da7b3602a90f2","dirty":false,"candidates":1},"ownership":"unknown","worktrees":[{"path":"/tmp/shared-context-ux-evidence-fC5qu3","branch":"main"}],"commits":[{"commit":"87c74402d │
+[017] │ c9e39d1cb8ab18c5bf2106da8b7ac02","paths":[".context-routes.toml",".gitignore","docs/adr/0001-navigation.md","docs/agents/issue-tracker.md","source.txt","tracker/initiatives/UX-DEMO/index.md" │
+[018] │ ,"tracker/tickets/P-1.md","tracker/tickets/R-1.md","tracker/tickets/T-BLOCKED.md","tracker/tickets/T-FINISH.md","tracker/tickets/T-FIX.md","tracker/tickets/T-INVALID.md","tracker/tickets/T-R │
+[019] │ EADY.md","tracker/tickets/T-REVIEW.md"],"kind":"source","relatedBy":"receipt"}],"artifacts":[{"receiptId":"review-result","ref":"workflows/T-FINISH/artifacts/reviews/review-result.md","state │
+[020] │ ":"readable","matchesSource":true,"contentHash":"3fafbbcb843c301559817cfcb931fc07e0805849b760e9d44e0430725bcd0b71"}]}                                                                          │
+[021] │ Parent receipt DATA:                                                                                                                                                                           │
+[022] │ {"id":"review-complete","ref":"workflows/T-FINISH/events/review-complete.json","parentReceipt":"review-result","workflowId":"T-FINISH","workspace":"/tmp/shared-context-ux-evidence-fC5qu3","s │
+[023] │ ourceBranch":"main","baseBranch":"main"}                                                                                                                                                       │
+[024] │ Receipt references DATA:                                                                                                                                                                       │
+[025] │ [{"id":"review-result","ref":"workflows/T-FINISH/events/review-result.json","phase":"review","status":"completed","verdict":"SUCCESS","sourceCommit":"87c74402dc9e39d1cb8ab18c5bf2106da8b7ac02 │
+[026] │ ","sourceTree":"a4a87055d5d5f57e85c3d019f79da7b3602a90f2","outputs":["workflows/T-FINISH/artifacts/reviews/review-result.md"]},{"id":"review-complete","ref":"workflows/T-FINISH/events/review │
+[027] │ -complete.json","phase":"review","status":"completed","verdict":null,"sourceCommit":"87c74402dc9e39d1cb8ab18c5bf2106da8b7ac02","sourceTree":"a4a87055d5d5f57e85c3d019f79da7b3602a90f2","output │
+[028] │ s":[]}]                                                                                                                                                                                        │
+[029] │                                                                                                                                                                                                │
+[030] │ Confirm to open a NEW chat and send this prompt immediately. Saved sessions remain available in /resume.                                                                                       │
+[031] │                                                                                                                                                                                                │
+[032] │  ❯ Yes                                                                                                                                                                                         │
+[033] │    No                                                                                                                                                                                          │
+[034] │                                                                                                                                                                                                │
+[035] │ ↑/↓ navigate  ⏎ select  ⎋ cancel                                                                                                                                                               │
+[036] │                                                                                                                                                                                                │
+[037] ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+[038]  ◑ GPT-6.1 Sol · 🗑 shared-context-ux-evidence-fC5qu3
+
+=== SPANS ===
+[001] 0:49,116,143 2-105:196,167,231 193:49,116,143
+[002] 0:49,116,143 2-192:196,167,231 193:49,116,143
+[003] 0:49,116,143 2-142:196,167,231 193:49,116,143
+[004] 0:49,116,143 2-192:196,167,231 193:49,116,143
+[005] 0:49,116,143 2-114:196,167,231 193:49,116,143
+[006] 0:49,116,143 2-159:196,167,231 193:49,116,143
+[007] 0:49,116,143 2-69:196,167,231 193:49,116,143
+[008] 0:49,116,143 2-25:196,167,231 193:49,116,143
+[009] 0:49,116,143 2-142:196,167,231 193:49,116,143
+[010] 0:49,116,143 2-192:196,167,231 193:49,116,143
+[011] 0:49,116,143 2-12:196,167,231 193:49,116,143
+[012] 0:49,116,143 2-192:196,167,231 193:49,116,143
+[013] 0:49,116,143 2-129:196,167,231 193:49,116,143
+[014] 0:49,116,143 2-17:196,167,231 193:49,116,143
+[015] 0:49,116,143 2-192:196,167,231 193:49,116,143
+[016] 0:49,116,143 2-192:196,167,231 193:49,116,143
+[017] 0:49,116,143 2-192:196,167,231 193:49,116,143
+[018] 0:49,116,143 2-192:196,167,231 193:49,116,143
+[019] 0:49,116,143 2-192:196,167,231 193:49,116,143
+[020] 0:49,116,143 2-118:196,167,231 193:49,116,143
+[021] 0:49,116,143 2-21:196,167,231 193:49,116,143
+[022] 0:49,116,143 2-192:196,167,231 193:49,116,143
+[023] 0:49,116,143 2-41:196,167,231 193:49,116,143
+[024] 0:49,116,143 2-25:196,167,231 193:49,116,143
+[025] 0:49,116,143 2-192:196,167,231 193:49,116,143
+[026] 0:49,116,143 2-192:196,167,231 193:49,116,143
+[027] 0:49,116,143 2-192:196,167,231 193:49,116,143
+[028] 0:49,116,143 2-8:196,167,231 193:49,116,143
+[029] 0:49,116,143 193:49,116,143
+[030] 0:49,116,143 2-105:196,167,231 193:49,116,143
+[031] 0:49,116,143 193:49,116,143
+[032] 0:49,116,143 2:38,35,58 3-7:196,167,231/38,35,58 8-191:38,35,58 193:49,116,143
+[033] 0:49,116,143 193:49,116,143
+[034] 0:49,116,143 193:49,116,143
+[035] 0:49,116,143 2-33:144,140,170 193:49,116,143
+[036] 0:49,116,143 193:49,116,143
+[037] 0-193:49,116,143
+[038] 1-13:196,167,231 15:64,61,82 17-51:156,207,216

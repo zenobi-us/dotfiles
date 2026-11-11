@@ -1,0 +1,36 @@
+=== TERMSCOPE ===
+cols=194 rows=38 cursor=0:0 screen=alternate title=""
+
+=== TEXT ===
+[001] 
+[002]                                                                                  ████████████
+[003]                                                                                     ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]                                                                                     ██  ██       ▀▄▄▀ █ █ █ █▄▄▀
+[005]                                                                                     ▒▒  ██                  █
+[006]                                                                                         ██       v18.17.0
+[007]      ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[008]      │ Projects · Repo > Dotfiles                                                                                                                                                           │
+[009]      │   1 Tracker     [2 Files]   Tab focus · Space/Enter activate                                                                                                                         │
+[010] ─────├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤─────
+[011]  Upda│ Shared context  ›  Dotfiles  ›  docs  ›  adr  ›  Preview                                                                                                                             │
+[012]  New ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[013] ─────│▸ .codemapper                       │▸ adr                               │  0001-pi-ink-cleanup-trust-boundary│---                                                                    │─────
+[014]      │▸ .github                           │▸ agents                            │  index.md                          │date: 2026-11-04                                                       │
+[015] ─────│▸ .pi                               │▸ research                          │                                    │status: accepted                                                       │K ⟲ ─
+[016] ❯    │▸ docs                              │▸ website                           │                                    │title: Pi Ink cleanup trust boundary                                   │
+[017] ─────│▸ mise                              │                                    │                                    │type: Decision                                                         │─────
+[018]  ◑ GP│▸ node_modules                      │                                    │                                    │---                                                                    │
+[019]      │▸ sources                           │                                    │                                    │                                                                       │
+[020]      │▸ tracker                           │                                    │                                    │# Pi Ink cleanup uses a trusted, exclusive operation                   │
+[021]      │▸ workflows                         │                                    │                                    │                                                                       │
+[022]      │  .context-routes.toml              │                                    │                                    │Use cable-connected SSH for the bounded Pi Ink config-identity operat  │
+[023]      │  .gitignore                        │                                    │                                    │                                                                       │
+[024]      │  .gitmodules                       │                                    │                                    │## Operation limits                                                    │
+[025]      │  .miserc.toml                      │                                    │                                    │                                                                       │
+[026]      │  AGENTS.md                         │                                    │                                    │1. Create a new root-only helper directory. If its path is occupied,   │
+[027]      │  banner.png                        │                                    │                                    │2. Run the reader once. Obtain only the two config hashes and approve  │
+[028]      │  bun.lock                          │                                    │                                    │3. After the reader process stops, verify helper identity. Remove onl  │
+[029]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[030]      │ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/docs/adr/0001-pi-ink-cleanup-trust-boundary.md                                                                               │
+[031]      │ ←→ browse  ↑↓ move  Enter open  Backspace parent                                                                                              y insert  f format: absolute  Esc close│
+[032]      ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

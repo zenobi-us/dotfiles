@@ -1,0 +1,39 @@
+=== TERMSCOPE ===
+cols=194 rows=38 cursor=0:0 screen=alternate title=""
+
+=== TEXT ===
+[001] 
+[002]                                                                                  ████████████
+[003]      ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]      │ Projects · Repo > shared-context-ux-evidence-fC5qu3                                                                                                                                  │
+[005]      │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                                                                         │
+[006]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]      │ Initiatives  >  UX evidence fixture — cancelled workflows  >  T-REVIEW                                                                                                               │
+[008]      │> Open a fresh chat · commands are staged, not auto-sent                                                                                                                              │
+[009]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[010] ─────│ Target: T-REVIEW · tracker/tickets/T-REVIEW.md                                                                                                                                       │─────
+[011]  Upda│>[m] Ask Matt                                                                                                                                                                         │
+[012]  New │                                                                                                                                                                                      │
+[013] ─────│ [s] Start worktree — Next: Review implementation. Implementation history is available. Review the current clean source in a fresh session; implementation is not completion.         │─────
+[014]      │ [r] Review implementation                                                                                                                                                            │
+[015] ─────│ [x] Fix — Next: Review implementation. Implementation history is available. Review the current clean source in a fresh session; implementation is not completion.                    │K ⟲ ─
+[016] ❯    │ [f] Finish — Next: Review implementation. Implementation history is available. Review the current clean source in a fresh session; implementation is not completion.                 │
+[017] ─────│ [u] Submit — Next: Review implementation. Implementation history is available. Review the current clean source in a fresh session; implementation is not completion.                 │─────
+[018]  ◑ GP│                                                                                                                                                                                      │
+[019]      │                                                                                                                                                                                      │
+[020]      │                                                                                                                                                                                      │
+[021]      │                                                                                                                                                                                      │
+[022]      │                                                                                                                                                                                      │
+[023]      │                                                                                                                                                                                      │
+[024]      │                                                                                                                                                                                      │
+[025]      │                                                                                                                                                                                      │
+[026]      │                                                                                                                                                                                      │
+[027]      │                                                                                                                                                                                      │
+[028]      │                                                                                                                                                                                      │
+[029]      │                                                                                                                                                                                      │
+[030]      │                                                                                                                                                                                      │
+[031]      │                                                                                                                                                                                      │
+[032]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[033]      │ Last validated 04:22:57 UTC · tracker/tickets/T-REVIEW.md · REVIEW                                                                                                                   │
+[034]      │ Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh                                                                                │
+[035]      ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

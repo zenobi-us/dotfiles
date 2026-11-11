@@ -1,0 +1,39 @@
+=== TERMSCOPE ===
+cols=194 rows=38 cursor=0:0 screen=alternate title=""
+
+=== TEXT ===
+[001] 
+[002]                                                                                  ████████████
+[003]      ╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[004]      │ Projects · Repo > Dotfiles                                                                                                                                                           │
+[005]      │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                                                                         │
+[006]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[007]      │ Initiatives  >  Queues                                                                                                                                                               │
+[008]      │> Ticket queues · all                                                                                                                                                                 │
+[009]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[010] ─────│>[task]          artifact-share-0  Rename artifact-shares to artifact-share                                                                                         State: unclaimed  │─────
+[011]  Upda│ ID: artifact-share-01-rename                                                                                                                                                         │
+[012]  New │ Next: Inspect existing work                                                                                                                                                          │
+[013] ─────│ Recorded: No validated activity recorded                                                                                                                                             │─────
+[014]      │ tracker/tickets/artifact-share-01-rename.md                                                                                                                                          │
+[015] ─────│                                                                                                                                                                                      │K ⟲ ─
+[016] ❯    │ [enhancement]   artifact-share-0  Read and write stores.toml in the XDG config directory                                                                           State: unclaimed  │
+[017] ─────│ ID: artifact-share-02-stores-config                                                                                                                                                  │─────
+[018]  ◑ GP│ Next: Resolve blockers                                                                                                                                                               │
+[019]      │ Recorded: No validated activity recorded                                                                                                                                             │
+[020]      │ Waiting for artifact-share-01-rename                                                                                                                                                 │
+[021]      │                                                                                                                                                                                      │
+[022]      │ [enhancement]   artifact-share-0  Publish targets, with github-pages as the first target                                                                           State: unclaimed  │
+[023]      │ ID: artifact-share-03-github-pages-target                                                                                                                                            │
+[024]      │ Next: Resolve blockers                                                                                                                                                               │
+[025]      │ Recorded: No validated activity recorded                                                                                                                                             │
+[026]      │ Waiting for artifact-share-02-stores-config                                                                                                                                          │
+[027]      │                                                                                                                                                                                      │
+[028]      │ [enhancement]   artifact-share-0  Local build, the rsync target, and the publish command                                                                           State: unclaimed  │
+[029]      │ ID: artifact-share-04-rsync-target                                                                                                                                                   │
+[030]      │ Next: Resolve blockers                                                                                                                                                               │
+[031]      │ Recorded: No validated activity recorded                                                                                                                                             │
+[032]      ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[033]      │ Last validated 04:18:57 UTC · tracker/tickets/artifact-share-01-rename.md · READY                                                                                                    │
+[034]      │ c path record · C mode · 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                                                                     │
+[035]      ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

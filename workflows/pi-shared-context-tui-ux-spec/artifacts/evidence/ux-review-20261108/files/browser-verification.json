@@ -1,0 +1,79 @@
+{
+  "revision": "capture-fidelity-correction",
+  "reportValidator": "report validation: ok",
+  "servedAt": "http://127.0.0.1:43987/",
+  "reportAudit": {
+    "images": 62,
+    "broken": [],
+    "evidenceClasses": {
+      "legacy-text-only": 55,
+      "user-screenshot": 4,
+      "styled-terminal-reconstruction": 3
+    },
+    "legacyDisclosures": true,
+    "feedbackForms": 62,
+    "horizontalOverflow": false,
+    "correctionVisible": true
+  },
+  "compactAudit": {
+    "viewport": 390,
+    "scrollWidth": 390,
+    "horizontalOverflow": false,
+    "commentEmpty": true
+  },
+  "lightbox": {
+    "userReferenceOpened": true,
+    "captionRead": true,
+    "closeWorked": true
+  },
+  "feedbackExport": {
+    "revision": "capture-fidelity-correction",
+    "screens": 62,
+    "evidenceClasses": [
+      "legacy-text-only",
+      "user-screenshot",
+      "styled-terminal-reconstruction"
+    ],
+    "newTestFeedbackEntered": false
+  },
+  "userReferenceCopies": {
+    "sha256Match": true,
+    "hashes": [
+      "e26400f9155c3bcd1b8d3c2538a8a2fc08970f9d7b74cdfe315e1e833ea6e1e5",
+      "67c74a615c534efeab3985bb4fd4defb11ec9e1f8519305423fa28246db5ddf2",
+      "1136f785e981e67878e59e21197fc26f602752cea1673f1cfe83f074061412d0"
+    ]
+  },
+  "captureEvidence": [
+    {
+      "id": "004-styled-home",
+      "colours": 23,
+      "backgrounds": 2,
+      "font": "14px / 17px monospace",
+      "spacePreserved": true
+    },
+    {
+      "id": "005-styled-detail",
+      "colours": 23,
+      "backgrounds": 2,
+      "font": "14px / 17px monospace",
+      "spacePreserved": true
+    },
+    {
+      "id": "006-styled-ticket",
+      "colours": 23,
+      "backgrounds": 2,
+      "font": "14px / 17px monospace",
+      "spacePreserved": true
+    }
+  ],
+  "limitations": [
+    "This supersedes the earlier browser-verification record. A browser image-loading check did not establish fidelity of the original terminal captures.",
+    "Styled recaptures are browser-rendered terminal reconstructions, not OS screenshots.",
+    "Native visual appearance is established only for the three supplied reference screens."
+  ],
+  "cleanup": {
+    "ompEvidenceSessionExited": true,
+    "serveLeftRunningAsRequested": true
+  }
+}

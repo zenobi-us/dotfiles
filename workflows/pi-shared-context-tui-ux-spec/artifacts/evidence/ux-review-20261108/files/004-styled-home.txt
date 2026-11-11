@@ -1,0 +1,45 @@
+=== TERMSCOPE ===
+cols=180 rows=44 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                                           ████████████
+[003]                                                                              ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]     ╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]     │ Projects · Repo > Dotfiles                                                                                                                                              │
+[006]     │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                                                            │
+[007]     ├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]     │ Initiatives                                                                                                                                                             │
+[009]     │> Initiatives · title / phase / Items                                                                                                                                    │
+[010] ────├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤─────
+[011]  Upd│>artifact-share: one git store, many publish targets                                                                                      Phase: unavailable  Items: 6   │
+[012]  New│ artifact-share-publish-targets                                                                                                                                          │
+[013] ────│ Progress: todo                                                                                                                                                          │─────
+[014]     │                                                                                                                                                                         │
+[015] ────│ Pi Ink Bridge: paired Paper Pro image annotation                                                                                         Phase: unavailable  Items: 10  │K ⟲ ─
+[016] ❯   │ pi-ink-bridge                                                                                                                                                           │
+[017] ────│ Progress: 1/10 completed                                                                                                                                                │─────
+[018]  ◑ G│                                                                                                                                                                         │
+[019]     │ Improve shared-context project navigation and tracker readability                                                                        Phase: unavailable  Items: 8   │
+[020]     │ pi-shared-context-tui-ux-spec                                                                                                                                           │
+[021]     │ Progress: completed                                                                                                                                                     │
+[022]     │                                                                                                                                                                         │
+[023]     │ Ungrouped                                                                                                                                Phase: unavailable  Items: 0   │
+[024]     │ Collection                                                                                                                                                              │
+[025]     │ Progress: todo                                                                                                                                                          │
+[026]     │                                                                                                                                                                         │
+[027]     │ [adr]           0001              Pi Ink cleanup trust boundary                                                                                       State: accepted   │
+[028]     │ docs/adr/0001-pi-ink-cleanup-trust-boundary.md                                                                                                                          │
+[029]     │                                                                                                                                                                         │
+[030]     │                                                                                                                                                                         │
+[031]     │                                                                                                                                                                         │
+[032]     │                                                                                                                                                                         │
+[033]     │                                                                                                                                                                         │
+[034]     │                                                                                                                                                                         │
+[035]     │                                                                                                                                                                         │
+[036]     │                                                                                                                                                                         │
+[037]     │                                                                                                                                                                         │
+[038]     ├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[039]     │ Last validated 03:42:21 UTC · tracker/initiatives/artifact-share-publish-targets/index.md                                                                               │
+[040]     │ c path record · C mode · 5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back                                                        │
+[041]     ╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯

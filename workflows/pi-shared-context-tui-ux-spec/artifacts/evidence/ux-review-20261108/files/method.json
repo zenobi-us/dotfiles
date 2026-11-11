@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-08T03:46:31.156Z",
+  "driver": "termscope session JSON-lines protocol",
+  "application": "OMP 18.17.0",
+  "rendering": "Three unchanged user screenshots are the visual baseline. Three later recaptures use native styled termscope HTML rendered by Chromium. Fifty-five old SVG/ImageMagick captures are retained as text-only diagnostics, not visual proof. One separate user authentication attachment is retained.",
+  "captureFaults": [
+    "termscope SVG export drops ANSI foreground and background styles; the spans and HTML formats retain them",
+    "ImageMagick collapses spacing in these SVG text lines; Chromium preserves their whitespace"
+  ],
+  "correctedCaptureProvenance": "corrected-captures.json",
+  "screenCount": 62,
+  "defaultViewport": "Legacy: 140 columns × 42 rows; corrected: 180 × 44",
+  "additionalViewports": [
+    "140 × 70",
+    "80 × 24",
+    "40 × 12"
+  ],
+  "fixture": "Real disposable Git repository with controlled tracker documents and receipts; not a production completion claim",
+  "safeGitEnvironment": {
+    "GIT_ALLOW_PROTOCOL": "file",
+    "GIT_TERMINAL_PROMPT": "0",
+    "GIT_ASKPASS": "/bin/false",
+    "SSH_ASKPASS": "/bin/false",
+    "GCM_INTERACTIVE": "Never",
+    "GIT_SSH_COMMAND": "ssh -o BatchMode=yes -o NumberOfPasswordPrompts=0"
+  },
+  "transportGuard": "git ls-remote origin returned 128: fatal: transport 'https' not allowed",
+  "sideEffects": {
+    "workflowActionsExecuted": false,
+    "newChatsDispatched": false,
+    "productionRecordsChanged": false,
+    "setupApplied": false,
+    "editorDraft": "A file path was inserted and cleared without submission",
+    "clipboard": "The final live copy notice contained the local ADR path; prior clipboard contents were not read",
+    "sessions": "All evidence sessions closed",
+    "fixtures": "Both disposable repositories removed"
+  },
+  "limits": [
+    "Legacy captures are not valid evidence of native-terminal colour, alignment or wrapping",
+    "Corrected captures are browser-rendered terminal reconstructions, not OS screenshots; exact terminal font and state parity is not verified",
+    "Confirmation overflow and compact layout findings need native-terminal confirmation",
+    "No approved phase execution, remote publication, PR creation or merge",
+    "No shared-store URI or hosted tracker UI exercise",
+    "No screen-reader, mouse or clipboard read-back audit",
+    "No video or quantitative latency benchmark in this report"
+  ]
+}

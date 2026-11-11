@@ -1,0 +1,43 @@
+=== TERMSCOPE ===
+cols=140 rows=42 cursor=0:0 screen=primary title="π > Dotfiles"
+
+=== TEXT ===
+[001] 
+[002]                                                       ████████████
+[003]                                                          ██  ██       ▄▀▀▄ █▀▄▀▄ █▀▀▄
+[004]    ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+[005]    │ Projects · Repo > Dotfiles                                                                                                        │
+[006]    │  [1 Tracker]     2 Files    Tab focus · Space/Enter activate                                                                      │
+[007]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[008]    │ Initiatives  >  Pi Ink Bridge: paired  >  pi-ink-bridge-01-pen-  >  Events  >  finish-0068                                        │
+[009]    │ [d] Full description                                                                                                              │
+[010]    │> Event detail · outcome / body / exact evidence                                                                                   │
+[011] ───├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤────
+[012]  Up│ Execution: FINISH_FAILED                                                                                                          │
+[013]  Ne│                                                                                                                                   │
+[014] ───│ Recorded body:                                                                                                                    │────
+[015]    │                                                                                                                                   │
+[016] ───│ No readable body recorded.                                                                                                        │ ⟲ ─
+[017] ❯  │                                                                                                                                   │
+[018] ───│ Evidence details:                                                                                                                 │────
+[019]  ◑ │                                                                                                                                   │
+[020]    │ Source: unavailable                                                                                                               │
+[021]    │                                                                                                                                   │
+[022]    │ Workflow warning: Completed history requires a terminal FINISHED receipt with pushed and ticket_completed.                        │
+[023]    │                                                                                                                                   │
+[024]    │ Ticket action target: tracker/tickets/pi-ink-bridge-01-pen-prototype.md                                                           │
+[025]    │                                                                                                                                   │
+[026]    │ Event reference: workflows/pi-ink-bridge-01-pen-prototype/events/finish-0068.yaml                                                 │
+[027]    │                                                                                                                                   │
+[028]    │ Commit: e8ab1391eaab3481131f3c3dfa934b7d523c38db                                                                                  │
+[029]    │                                                                                                                                   │
+[030]    │ Tree: 83cce09d711a12b72607aa735296c04eebe96dbc                                                                                    │
+[031]    │                                                                                                                                   │
+[032]    │ Current commit: unavailable                                                                                                       │
+[033]    │                                                                                                                                   │
+[034]    │ Current tree: unavailable                                                                                                         │
+[035]    │                                                                                                                                   │
+[036]    ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+[037]    │ Last validated 03:02:52 UTC · Completed history requires a terminal FINISHED receipt with pushed and ticket_completed.            │
+[038]    │ c path record · C mode · Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh    │
+[039]    ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
