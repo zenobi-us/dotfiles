@@ -1,0 +1,161 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-0015",
+  "workflow_id": "collect-evidence-feedback-02-tui",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 2,
+  "parent_receipt": "review-0014",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "source_branch": "feature/collect-evidence-feedback-02-tui",
+  "base_branch": "master",
+  "source_commit": "acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa",
+  "source_tree": "1c5b4864e098d70b53519051d2df6d05184f5729",
+  "created_at": "2026-11-11T12:26:31.550Z",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t59",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-02-tui",
+    "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-02-tui.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-02-tui"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/fix-0012.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/fix-0011.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/snapshots/pr-draft-fix-0011-final.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0013.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0014.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0014.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0015.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/collect-evidence-feedback-02-tui/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-02-tui/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-02-tui/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-02-tui/projections/implementation-log.md"
+    }
+  ],
+  "status": "completed",
+  "approval": "User selected Approve review takeover in this session. Fresh independent review and review records only; no fix, merge or push.",
+  "ownership_observation": "hc ls and herdr-app ls show no target-worktree terminal. Prior fixer result and parent completion exist. No goal dispatch context.",
+  "recovery_mode": "reconcile",
+  "recovery_reason": "Validated existing result, sole immutable artifact, exact frozen clean source and child completion sequence 2. No repeated child work.",
+  "summary": "Accepted usable FAILURE review for frozen source. Standards: one Low non-blocking finding. Spec: one P2 blocking finding. No fix, merge, push or ticket completion.",
+  "review_artifact": "workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0014.md",
+  "child_validation": [
+    {
+      "command": "mise exec -- bun test <skill>/scripts/browser-evidence/test/workflow.test.ts <skill>/scripts/browser-evidence/test/verdict.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+      "result": "99 pass, 0 fail, 892 assertions."
+    },
+    {
+      "command": "PATH=<prepared-tools>:$PATH RUN_NATIVE_EVIDENCE_TESTS=1 mise exec -- bun test <skill>/scripts/browser-evidence/test/native-workflow.test.ts",
+      "cwd": "/tmp",
+      "result": "5 pass, 1 fail, 37 assertions. Capture scenario timed out after 60000ms; Bun killed one dangling process. Root cause unconfirmed; not a clean suite pass."
+    },
+    {
+      "command": "Same native test command with -t 'preserves capture outcomes'",
+      "cwd": "/tmp",
+      "result": "1 pass, 0 fail, 5 assertions, 1.95s. Does not erase full-suite timeout."
+    },
+    {
+      "command": "Public CLI doctor/init/render/compile/run/validate/verdicts/report against temporary resolved store",
+      "cwd": "/tmp",
+      "result": "All positive commands exit 0; real delayed transition PASS. Inspected both actual 1280x720 originals, native purple bar and 20px heading-to-second-line spacing. Same terminal/display identity; cleanup released. Hashes verified by public validate."
+    },
+    {
+      "command": "Public expect-only unexpected-confirmation fixture: init/render/compile/run/validate/verdicts",
+      "cwd": "/tmp",
+      "result": "run exit 0; validate exit 0; verdict PASS; assertion passed and no errors, despite visible Delete files? [y/N] and empty approved input IDs. Native PNG inspected; SHA-256 7500ec5ac44ceca863bb412bf508b8de9b6fb19e47fd330aa0f73ad328994fca. No input sent. Owned cleanup released.",
+      "temporary_run": "/tmp/review-0014-smoke-2aIlCG/repository/workflows/review-native/artifacts/evidence/unapproved-expect-3"
+    },
+    {
+      "command": "Public validate on retained fix-transition/unexpected/precondition/capture-0011, credential-01 and unapproved-01",
+      "cwd": "/tmp",
+      "result": "All six returned 0; historical records preserved, not claimed as new executions."
+    },
+    {
+      "command": "git status --porcelain=v1; git rev-parse HEAD HEAD^{tree}; git branch --show-current",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+      "result": "Clean before and after. Exact frozen commit/tree and branch unchanged."
+    },
+    {
+      "command": "mq okf_parse/okf_validate on sole review artifact",
+      "cwd": "/tmp",
+      "result": "[]: no document validation errors. No full bundle audit needed for one review artifact."
+    }
+  ],
+  "validation": [
+    {
+      "command": "result-delivery read; authoritative YAML versus delivered payload; shared inspector",
+      "result": "Schema/run/operation/hash verified; payload deep-equals authoritative receipt; inspector reconciles review with exact acca2d29 / 1c5b4864 source."
+    },
+    {
+      "command": "Public CLI validate and verdicts of retained fix-transition-0011; validate fix-capture-0011 and fix-precondition-0011",
+      "result": "Native transition validates/PASS. Capture error remains category capture with assertion not-run. All-blocked precondition retains JSONL, stderr and native frames."
+    },
+    {
+      "command": "Inspect actual Ready/Details and unapproved-expect-3 PNGs; public validate unapproved-expect-3",
+      "result": "Native colours, spacing and transition inspected. Unexpected Delete files? [y/N] visible while assertion passed and errors empty; sealed hash validation succeeds, confirming SPEC-01."
+    },
+    {
+      "command": "Muxer wait; result-delivery ack; hc kill t5b; hc rm t5b; herdr-app ls",
+      "result": "Agent completion sequence 2. Hash acknowledged; only t5b removed. User Notes workspace/t5c and source worktree preserved."
+    }
+  ],
+  "transport_sha256": "6ee21f44eed4b8392a1d8fb0247859ef130a67b27ebba1349f236657f6d20f69",
+  "child_terminal": "t5b",
+  "child_terminal_removed": true,
+  "worktree_preserved": true,
+  "workspace_closed_automatically_when_empty": true
+}

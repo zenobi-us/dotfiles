@@ -99,3 +99,8 @@ No consumed finding remains unresolved in this fix. Fresh independent review is 
 ## Parent acceptance — fix-0012
 
 [Parent completion](../events/fix-0012.yaml) accepts [fix-0011](../events/fix-0011.yaml) for clean source `acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa`. All four sealed native runs validate. Parent inspected original Ready/Details images and retained precondition diagnostics. Typed delivery matched the authoritative event and was acknowledged. Completed fixer terminal `t56` was removed; the source worktree remains. Its empty desktop space closed automatically. No merge, push or ticket completion occurred. Next: fresh independent review of the new source; the previous FAILURE remains historical.
+
+## Review attempt 2 — review-0015
+
+[Independent review](../artifacts/reviews/review-review-0014.md), [result](../events/review-0014.yaml), and [parent completion](../events/review-0015.yaml). Verdict: FAILURE for `acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa`. Standards: one Low non-blocking finding. Spec: one P2 blocking finding. Findings remain in the immutable review. Common regressions: 99 pass. Native suite: 5 pass, 1 timeout; isolated capture: 1 pass. Positive public native smoke passed; unexpected-confirmation smoke proved the remaining defect. No merge or push. Fix requires a fresh session.
+

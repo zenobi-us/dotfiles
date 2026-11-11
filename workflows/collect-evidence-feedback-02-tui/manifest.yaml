@@ -6,8 +6,8 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "fix-0012",
-  "state": "FIXED",
+  "latest_receipt": "review-0015",
+  "state": "REVIEW_FAILED",
   "status": "completed",
   "parent_completion": "completed",
   "history": [
@@ -22,7 +22,10 @@
     "review-0009",
     "fix-0010",
     "fix-0011",
-    "fix-0012"
+    "fix-0012",
+    "review-0013",
+    "review-0014",
+    "review-0015"
   ],
   "latest_source_commit": "acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa",
   "latest_source_tree": "1c5b4864e098d70b53519051d2df6d05184f5729"
