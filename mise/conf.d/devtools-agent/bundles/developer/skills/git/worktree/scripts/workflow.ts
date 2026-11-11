@@ -177,8 +177,8 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     if (!isAbsolute(workspacePath) || fields.workspace_path !== workspacePath) throw new Error("Receipt worktree and workspace_path must name the same absolute worktree.");
     const historicalWorktree = archive && workflow.store === "repository" && repository === workspacePath;
     let linkedWorkflowRoot = false;
-    if (workflow.store === "repository" && record.store === "repository" && workflow.root === workspacePath && workflow.root !== record.root) {
-     const [recordedRoot, currentRoot] = await Promise.all([repositoryIdentity(workspacePath), repositoryIdentity(record.root)]);
+    if (workflow.store === "repository" && record.store === "repository" && (workflow.root === workspacePath || workflow.root === repository) && workflow.root !== record.root) {
+     const [recordedRoot, currentRoot] = await Promise.all([repositoryIdentity(String(workflow.root)), repositoryIdentity(record.root)]);
      linkedWorkflowRoot = Boolean(recordedRoot && recordedRoot === currentRoot);
     }
     for (const field of ["ref", "store", "root"] as const) {

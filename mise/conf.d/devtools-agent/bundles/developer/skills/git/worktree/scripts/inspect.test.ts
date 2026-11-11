@@ -62,7 +62,7 @@ test("active receipts retain their base-checkout identity when inspected from a 
     repository: base, worktree: source, workspace_path: source, source_branch: "feature/T-1", base_branch: "main",
     source_commit: commit, source_tree: tree, muxer: "herdr", pane_id: "1", agent: "omp", session_id: "parent",
     created_at: "2026-10-01T00:00:00Z", ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend },
-    ticket_ref: ticket.ref, workflow: { root: source, store: "repository", ref: "workflows/T-1" }, inputs: [], outputs: [],
+    ticket_ref: ticket.ref, workflow: { root: base, store: "repository", ref: "workflows/T-1" }, inputs: [], outputs: [],
   };
   const path = join(source, "workflows/T-1/events/start.json");
   const original = JSON.stringify(event);
@@ -99,10 +99,13 @@ test("active receipts retain their base-checkout identity when inspected from a 
   workflow = await loadTicketWorkflow(context, ticket, inventory);
   expect(workflow.receipts.map(item => item.id)).toContain("start-1");
   expect(await readFile(baseRecord, "utf8")).toBe(original);
+  await put(baseRecord, JSON.stringify({ ...event, workflow: { ...event.workflow, root: source } }));
+  workflow = await loadTicketWorkflow(context, ticket, inventory);
+  expect(workflow.receipts.map(item => item.id)).toContain("start-1");
 
   const other = join(root, "unrelated");
   await run("git", ["init", "--quiet", other]);
-  await put(path, JSON.stringify({ ...event, repository: other }));
+  await put(path, JSON.stringify({ ...event, repository: other, workflow: { ...event.workflow, root: source } }));
   workflow = await loadTicketWorkflow(linked, ticket, inventory);
   expect(workflow.events?.find(item => item.ref.endsWith("/start.json"))?.error).toContain("Receipt repository does not match");
   expect(workflow.inspection?.historyValid).toBe(false);
