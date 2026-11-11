@@ -1,0 +1,20 @@
+{
+  "ticket_ref": "tracker/tickets/herdr-context-panels.md",
+  "recovery": "User-authorized retrospective verification of already published implementation; not a historical review or new integration.",
+  "implementation_commit": "54ae8fda502866b531edf4e08464d643ee5438cc",
+  "review_fixed_point": "e31985e76c5f3bdc0a6223c82248321f447f6ec0",
+  "integrated_commit": "fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c",
+  "integrated_tree": "67b6bdd4a5722a71d6c9c3a2306628b8d412d90c",
+  "integrated_parent": "747006cd2fc175ce383c7c0e44b7475584845372",
+  "source_branch": "closeout/herdr-context-panels",
+  "base_branch": "master",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "initial_remote_observed_commit": "fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c",
+  "observations": [
+    "git ls-remote origin refs/heads/master initially returned the integrated commit exactly.",
+    "git merge-base --is-ancestor 54ae8fda502866b531edf4e08464d643ee5438cc HEAD succeeded when HEAD was the integrated commit.",
+    "Worktrunk created the isolated closeout branch at the exact integrated commit.",
+    "Other agents are advancing master; their source and staged changes are outside this closeout."
+  ]
+}

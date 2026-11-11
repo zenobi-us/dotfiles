@@ -1,0 +1,108 @@
+{
+  "modules": [
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/main.js",
+      "sha256": "1fa9502979f56f7cdafa796b11b4e4fee5701f41c639006e225297dbfceb582a",
+      "private_copy_sha256": "1fa9502979f56f7cdafa796b11b4e4fee5701f41c639006e225297dbfceb582a",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/graph-view.js",
+      "sha256": "02aa5095026fb911d7b45b8e0c78b2be79f91f0a3fcacadba7ad66c37a87f230",
+      "private_copy_sha256": "02aa5095026fb911d7b45b8e0c78b2be79f91f0a3fcacadba7ad66c37a87f230",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/graph.js",
+      "sha256": "15b0908ec535ddf2d6a35a514f41fed772a6d2d6ccb26067145f452eb77f397e",
+      "private_copy_sha256": "15b0908ec535ddf2d6a35a514f41fed772a6d2d6ccb26067145f452eb77f397e",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/progress-model.js",
+      "sha256": "13bceb1774bd2385f5f5a7e1afc80a4f02b6331740e183ddb5209f763835f07f",
+      "private_copy_sha256": "13bceb1774bd2385f5f5a7e1afc80a4f02b6331740e183ddb5209f763835f07f",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/activity-model.js",
+      "sha256": "8d0e8efd62991fa1496c582edbe531f3183d83952b3e5a766293615131c3a448",
+      "private_copy_sha256": "8d0e8efd62991fa1496c582edbe531f3183d83952b3e5a766293615131c3a448",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/action-menu.js",
+      "sha256": "9ffdbca064b760ae8c7e38ab93a9d41aafa32afb0e16add77436a0eb149472f7",
+      "private_copy_sha256": "9ffdbca064b760ae8c7e38ab93a9d41aafa32afb0e16add77436a0eb149472f7",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/action.js",
+      "sha256": "a281e789bfc3f95208d7b5d4f3c4fa2ad435932df5126adb0399112ab7ab1a1a",
+      "private_copy_sha256": "a281e789bfc3f95208d7b5d4f3c4fa2ad435932df5126adb0399112ab7ab1a1a",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/action-model.js",
+      "sha256": "8fc4c7b98518090ac3226b5444735613863ad292cb501c62e6557274884958bb",
+      "private_copy_sha256": "8fc4c7b98518090ac3226b5444735613863ad292cb501c62e6557274884958bb",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/ui.js",
+      "sha256": "3a8a895f009ad524bd2a6189546953e4922bbf76de0ea0be3be3b5845c037559",
+      "private_copy_sha256": "3a8a895f009ad524bd2a6189546953e4922bbf76de0ea0be3be3b5845c037559",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/tree.js",
+      "sha256": "b7ac59433316d916ef58fb535e02e4e360b8e6efa70ff2654ec96858fb8bbb72",
+      "private_copy_sha256": "b7ac59433316d916ef58fb535e02e4e360b8e6efa70ff2654ec96858fb8bbb72",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/preferences.js",
+      "sha256": "c6da1486cd9315e783b1e45e4a00c313c569d1bedc81fe0fe8a5a4ff6aedeb7e",
+      "private_copy_sha256": "c6da1486cd9315e783b1e45e4a00c313c569d1bedc81fe0fe8a5a4ff6aedeb7e",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/header.js",
+      "sha256": "fb82a5713505effac77538041ab5bb7fbcf10902743b78e0bcb9cd63198fe71a",
+      "private_copy_sha256": "fb82a5713505effac77538041ab5bb7fbcf10902743b78e0bcb9cd63198fe71a",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/progress.js",
+      "sha256": "dbf1d9fb08598baf0d8ced4ab0a96163b48ab8afddb56d0b7c9e8773ff6bff4f",
+      "private_copy_sha256": "dbf1d9fb08598baf0d8ced4ab0a96163b48ab8afddb56d0b7c9e8773ff6bff4f",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/header-model.js",
+      "sha256": "ec46235f607ebcb8e4800db198d9ac7ffc470b32c77d3fe8a57174579ad9c36d",
+      "private_copy_sha256": "ec46235f607ebcb8e4800db198d9ac7ffc470b32c77d3fe8a57174579ad9c36d",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context/client.js",
+      "sha256": "81e197d005f5d302df6e3bd3710979d82567dfa1cdbf3f01b2470f9a29c5c3ef",
+      "private_copy_sha256": "81e197d005f5d302df6e3bd3710979d82567dfa1cdbf3f01b2470f9a29c5c3ef",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/shared-context-tabs/main.js",
+      "sha256": "cd3a9731b414a578c5f9e64c936941a057121a9044867b753237b221ff6fc676",
+      "private_copy_sha256": "cd3a9731b414a578c5f9e64c936941a057121a9044867b753237b221ff6fc676",
+      "matches": true
+    },
+    {
+      "file": "mise/conf.d/devtools-herdrapp/app/mods/cli-tabs/main.js",
+      "sha256": "4c39d271f00a23bba8d61217a7f6f5594d5d74c739b9900d0c109dbb142b2e73",
+      "private_copy_sha256": "4c39d271f00a23bba8d61217a7f6f5594d5d74c739b9900d0c109dbb142b2e73",
+      "matches": true
+    }
+  ],
+  "managed_layout_sha256": "113fd497fd5cf8bba04f05672c9e2a598d8069105c9245a3a7734b82e8995ee3",
+  "request_symlink": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app/mods/shared-context/request.ts"
+}

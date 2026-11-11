@@ -1,0 +1,44 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "herdr-context-panels",
+  "phase": "start",
+  "attempt": 0,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "source_branch": "closeout/herdr-context-panels",
+  "base_branch": "master",
+  "source_commit": "fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c",
+  "source_tree": "67b6bdd4a5722a71d6c9c3a2306628b8d412d90c",
+  "created_at": "2026-11-11T21:45:46.829066+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "pane_id": "t60",
+  "agent": "omp",
+  "session_id": "hc-t60-herdr-context-panels",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "herdr-context-panels",
+    "ref": "tracker/tickets/herdr-context-panels.md"
+  },
+  "ticket_ref": "tracker/tickets/herdr-context-panels.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/herdr-context-panels"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/herdr-context-panels.md"
+    }
+  ],
+  "outputs": [],
+  "receipt_id": "approval-0001",
+  "event": "operator-approval",
+  "parent_receipt": null,
+  "status": "approved",
+  "recovery_mode": "takeover",
+  "approval": "User selected Approve recovery and finish, then Verify published implementation. Authorizes isolated closeout branch from published fa5a5e22, new verification and retrospective independent review. Do not fabricate prior review or repeat integration. Preserve unrelated work.",
+  "ownership_evidence": "hc t1m explicitly handed off and is inactive; no recorded workflow owner or receipts. Other live agents concern unrelated collect-evidence tickets.",
+  "publication_evidence": "git ls-remote origin refs/heads/master returned fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c; 54ae8fda is an ancestor."
+}

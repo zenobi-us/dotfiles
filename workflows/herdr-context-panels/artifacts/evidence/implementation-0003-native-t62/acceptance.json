@@ -1,0 +1,404 @@
+{
+  "source_commit": "fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c",
+  "source_tree": "67b6bdd4a5722a71d6c9c3a2306628b8d412d90c",
+  "implementation_changes": [],
+  "case_count": 9,
+  "cases": [
+    {
+      "criterion": "Context and Tracker controls beside Files and Changes",
+      "result": "passed",
+      "observation": "Loaded the exact managed CLI layout and cli-* mods in the private home. Opened Files and Changes with their native controls; both rendered actual fixture data.",
+      "media": [
+        "managed-cli-actual.png",
+        "managed-files.png",
+        "managed-changes.png"
+      ],
+      "source": [
+        "mise/conf.d/devtools-herdrapp/app/files/layouts/cli.json:118-169",
+        "mise/conf.d/devtools-herdrapp/app/mods/cli-tabs/main.js:81-102"
+      ]
+    },
+    {
+      "criterion": "Explicit context onboarding and resolved file collections",
+      "result": "passed",
+      "observation": "A fresh Git repository with an origin showed explicit storage/preset/Create context controls. Clicking Create context created routes and context files only in fixture-A. Alignment, Tickets, Initiatives, Sources appeared. Opened the real Sources Markdown preview.",
+      "media": [
+        "onboarding-settled.png",
+        "setup-result.png",
+        "context-file-preview.png"
+      ],
+      "source": [
+        "mise/conf.d/devtools-herdrapp/app/mods/shared-context/data.ts:31-59",
+        "mise/conf.d/devtools-herdrapp/app/mods/shared-context/main.js:191-235"
+      ]
+    },
+    {
+      "criterion": "Canonical initiatives, dependency trees/shared prerequisites, queues, record details and workflow events",
+      "result": "passed",
+      "observation": "Canonical fixture has an initiative and three tickets, with base shared by alpha and beta. Membership tree, directed shared-prerequisite graph, prerequisite navigation, Ready(base), Blocked(alpha,beta), Review(empty), record details, and an explicitly invalid event with canonical validation error/payload all rendered natively. Invalid event is test input, not a claimed workflow execution.",
+      "media": [
+        "c2-alpha.png",
+        "initiative-shared-prerequisite.png",
+        "dependency-lineage.png",
+        "prerequisite-opened.png",
+        "queue-ready.png",
+        "queue-blocked.png",
+        "queue-review.png",
+        "activity-events.png",
+        "event-expanded.png"
+      ],
+      "source": [
+        "mise/conf.d/devtools-herdrapp/app/mods/shared-context/data.ts:94-146",
+        "mise/conf.d/devtools-herdrapp/app/mods/shared-context/tree.js:1-38",
+        "mise/conf.d/devtools-herdrapp/app/mods/shared-context/graph-view.js:11-63"
+      ]
+    },
+    {
+      "criterion": "C stacked drawer with expand/collapse/close, keyboard dismissal and native motion",
+      "result": "passed",
+      "observation": "C rendered half-height, Expand covered the tree, Escape collapsed then closed the drawer. Pointer Close reopened through a new selection. Successive real frames show native top interpolation during expansion; motion is not simulated by a browser.",
+      "media": [
+        "c-drawer.png",
+        "c-expanded.png",
+        "c-escape-collapsed.png",
+        "c-escape-closed.png",
+        "motion-start.png",
+        "motion-middle.png",
+        "motion-end.png"
+      ],
+      "source": [
+        "mise/conf.d/devtools-herdrapp/app/mods/shared-context/main.js:400-425"
+      ]
+    },
+    {
+      "criterion": "C2 uses the same compact tree beside record details",
+      "result": "passed",
+      "observation": "Better Config selected C2. Native tree and details appeared in resizable columns at 800px. At 500px the same selection used the drawer fallback. Exact managed CLI also rendered C2.",
+      "media": [
+        "c2-alpha.png",
+        "c2-narrow-fallback.png",
+        "managed-cli-actual.png"
+      ],
+      "source": [
+        "mise/conf.d/devtools-herdrapp/app/mods/shared-context/main.js:400-417"
+      ]
+    },
+    {
+      "criterion": "C/C2 preference exposed through mod.schema.json for Better Config",
+      "result": "passed",
+      "observation": "Native Better Config discovered Tracker layout and Drawer motion. C2 saved settings.layout=C2; C restored the default. Motion off saved settings.motion=false, then motion on was restored and real animated frames captured. Private mod reload/layout round-trip preserved selection.",
+      "media": [
+        "settings-motion-disabled.png",
+        "c2-alpha.png",
+        "c-drawer.png",
+        "motion-start.png",
+        "motion-end.png"
+      ],
+      "source": [
+        "mise/conf.d/devtools-herdrapp/app/mods/shared-context/mod.schema.json:11-28",
+        "mise/conf.d/devtools-herdrapp/app/mods/shared-context/preferences.js:1-12"
+      ]
+    },
+    {
+      "criterion": "Preserve selection per repository and discard stale responses",
+      "result": "passed",
+      "observation": "Selected alpha in A and beta in B. Returning to A restored alpha, B restored beta with the B-only alpha title sentinel. Switched away while the real source repository tracker read was pending; B stayed correct after other checks. Inspected revision/detailRevision guards for context, snapshot, detail, folder and preview responses.",
+      "media": [
+        "repo-b-selected.png",
+        "repo-a-restored.png",
+        "response-pending-root.png",
+        "response-current-b.png",
+        "response-b-stable.png"
+      ],
+      "source": [
+        "mise/conf.d/devtools-herdrapp/app/mods/shared-context/main.js:66-187"
+      ]
+    },
+    {
+      "criterion": "Setup/fresh-chat actions explicit; revalidate inputs before launch",
+      "result": "passed",
+      "observation": "Setup required Create context. Ask Matt required an explicit Open new pane click. Removed selected alpha after opening the menu: launch preparation rejected ENOENT and created no terminal. Restored alpha: native control launched real OMP t3 in fixture-A with canonical selector/prompt and a unique session directory, without --resume. Session header has no parent session; only user and assistant messages, zero tool calls; assistant replied NATIVE-LAUNCH-ONLY. All three tickets remained unclaimed. OMP process was stopped and removed.",
+      "media": [
+        "action-menu.png",
+        "stale-launch-rejected.png",
+        "fresh-chat-real-output.png"
+      ],
+      "source": [
+        "mise/conf.d/devtools-herdrapp/app/mods/shared-context/action-menu.js:98-105",
+        "mise/conf.d/devtools-herdrapp/app/mods/shared-context/action.js:11-27",
+        "mise/conf.d/devtools-herdrapp/app/mods/shared-context/data.ts:148-162",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/preparation.ts:14-53"
+      ]
+    },
+    {
+      "criterion": "Exercise native panels and setting changes in Herdr-app",
+      "result": "passed",
+      "observation": "All captures are real herdr-app shot output from a private app home, own HC_SESSION, headless cage/Xwayland :96, and software rendering. 17 runtime JavaScript copies match source hashes; managed layout bytes match source. Private status errors empty. User live layout remained cli with errors empty. Stopped only owned app/display/core resources.",
+      "media": [
+        "managed-cli-actual.png",
+        "settings-motion-disabled.png"
+      ],
+      "source": [
+        "mise/conf.d/devtools-herdrapp/app/mods/shared-context/main.js",
+        "mise/conf.d/devtools-herdrapp/app/mods/cli-tabs/main.js"
+      ]
+    }
+  ],
+  "media": [
+    {
+      "file": "media/onboarding-settled.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "b193a93f03278f536a1da8b4d336a55d2ee9a210effaef822b6823f2cc68936c",
+      "captured_at": "2026-11-11T21:50:44.382Z"
+    },
+    {
+      "file": "media/setup-result.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "fbbe09929d6cba7f2bd58a57709b4576fe3a03104c43f1997d46bf477d76bad5",
+      "captured_at": "2026-11-11T21:51:00.025Z"
+    },
+    {
+      "file": "media/context-file-preview.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "1977d4e157ce299e426dc67e03b94d6695b6f0d76b7273bacf4c288edb5389a3",
+      "captured_at": "2026-11-11T21:58:05.120Z"
+    },
+    {
+      "file": "media/c2-alpha.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "a5e6160ce502a076ae9b8e3dc60a6bacbb168d124940fd04e99f8c57f61de473",
+      "captured_at": "2026-11-11T21:52:51.950Z"
+    },
+    {
+      "file": "media/c-drawer.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "cbd123b6b9c35599de45a2a4f3e9dd5636140448875accb522efe5ac8af9c8f9",
+      "captured_at": "2026-11-11T21:56:03.528Z"
+    },
+    {
+      "file": "media/c-expanded.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "bb2df9c25ca76cbc9077a62d89ca25dd6987840c66a271af65bd19e629d878bb",
+      "captured_at": "2026-11-11T21:56:30.534Z"
+    },
+    {
+      "file": "media/c-escape-collapsed.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "ac1597c8b28d78eea2afa02bbf2f4f38ef92deae05539c7a13d66ef70e148249",
+      "captured_at": "2026-11-11T21:56:45.503Z"
+    },
+    {
+      "file": "media/c-escape-closed.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "e24aac75503fa3997c850644235e69e21f5cc9af98f92d3ef3138629f3188906",
+      "captured_at": "2026-11-11T21:56:45.931Z"
+    },
+    {
+      "file": "media/activity-events.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "421e936d47248b16d261641f856bf1e038cf60056f57c2b4861c09099f118448",
+      "captured_at": "2026-11-11T21:56:56.053Z"
+    },
+    {
+      "file": "media/event-expanded.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "0187e5b9967895deaccaff20b3e12cb46d018722ac2b4b2cca279da504582c8d",
+      "captured_at": "2026-11-11T21:57:06.517Z"
+    },
+    {
+      "file": "media/dependency-lineage.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "fab76f36c1aa7be369363997d68398f79d2af41a759c480fc2b13d3494878ab5",
+      "captured_at": "2026-11-11T21:57:06.935Z"
+    },
+    {
+      "file": "media/prerequisite-opened.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "f8efd6019d43b67b5da5f873fc482f0f5e797335cb102e05019ac271be8d43ab",
+      "captured_at": "2026-11-11T21:57:15.346Z"
+    },
+    {
+      "file": "media/initiative-shared-prerequisite.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "24852309d9a7eecedb41d8956a7a3eb15f08a209cc6ef7f7cfe7a75adfe30f54",
+      "captured_at": "2026-11-11T21:57:31.430Z"
+    },
+    {
+      "file": "media/queue-ready.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "6295802870b29cf6f1ac5082473f2af75d7d35fc3cedcfbfc316419b1b8b34ee",
+      "captured_at": "2026-11-11T21:57:41.419Z"
+    },
+    {
+      "file": "media/queue-blocked.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "36e7745dc355137dfaef88994f4115e5a0bc48a28bea1678d6550e6264ce2550",
+      "captured_at": "2026-11-11T21:57:41.836Z"
+    },
+    {
+      "file": "media/queue-review.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "d5d9bd43f77cb0f01b76f9949ff5b160274b3c5df047ac0c472408c2a5163348",
+      "captured_at": "2026-11-11T21:57:42.253Z"
+    },
+    {
+      "file": "media/repo-b-selected.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "5bb0737cd0366ffc9c570a734d2e014ccd63da9447a3dc066097e6ed726ae50b",
+      "captured_at": "2026-11-11T21:56:22.089Z"
+    },
+    {
+      "file": "media/repo-a-restored.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "6fa5eaa9ad047b9f5865b18ae88992164b6766542e76462999f666230d090176",
+      "captured_at": "2026-11-11T21:56:23.110Z"
+    },
+    {
+      "file": "media/stale-launch-rejected.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "82307ee557bf45ca2feb8b00bf09bcbe414dc97635565593506da3c769720534",
+      "captured_at": "2026-11-11T21:53:28.585Z"
+    },
+    {
+      "file": "media/fresh-chat-real-output.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "6c5f4324ca176cbdc848f38ea77520a8a1257febc2c79dd6333b9bb543315f78",
+      "captured_at": "2026-11-11T21:54:58.979Z"
+    },
+    {
+      "file": "media/settings-motion-disabled.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "93c7740c908fe4eb65d54ce03fa52ac64ac6df9d78dc72d7df30bccc6589a4e6",
+      "captured_at": "2026-11-11T21:58:10.700Z"
+    },
+    {
+      "file": "media/c2-narrow-fallback.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "6a7b50add7c4b7cdc0ffb8b3a0f72ac87e8ed1e9a3fa7667cec80991588ac00e",
+      "captured_at": "2026-11-11T21:58:31.187Z"
+    },
+    {
+      "file": "media/motion-start.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "bea1aa79aff9c40e80a00228133c3d084217bb32373c0b2f7e3e66713fa7ac05",
+      "captured_at": "2026-11-11T21:58:41.398Z"
+    },
+    {
+      "file": "media/motion-middle.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "dd8fb0c4494a315b5eab2247ab7f22e7d9a3054ec08917eba01bd779ef15ee52",
+      "captured_at": "2026-11-11T21:58:41.553Z"
+    },
+    {
+      "file": "media/motion-end.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "2de8dcf1a70f506d824111edad7db91d03e8ea9d36e7e2878fab978bd5f1a362",
+      "captured_at": "2026-11-11T21:58:41.970Z"
+    },
+    {
+      "file": "media/response-pending-root.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "ed00ef4f5815a96a78e9e4e2b7cd12cd5dd276c5da7483bb97f082b7b38e3765",
+      "captured_at": "2026-11-11T21:59:08.302Z"
+    },
+    {
+      "file": "media/response-current-b.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "88d0baf1ae0fac9f472b60bdf8ba46532fc294171d9075d7d846283eaca0ba9c",
+      "captured_at": "2026-11-11T21:59:09.348Z"
+    },
+    {
+      "file": "media/response-b-stable.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "88d0baf1ae0fac9f472b60bdf8ba46532fc294171d9075d7d846283eaca0ba9c",
+      "captured_at": "2026-11-11T21:59:51.664Z"
+    },
+    {
+      "file": "media/managed-cli-actual.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "423c106efc34ea27d6ddfffc98396e7c8f00041f0a6e3c8b6f82d8eab0914ee9",
+      "captured_at": "2026-11-11T22:01:43.173Z"
+    },
+    {
+      "file": "media/managed-files.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "89a11b97801113619fcba1a4fefd004785fac76cda22980e91898924ac7e7f4f",
+      "captured_at": "2026-11-11T22:01:59.872Z"
+    },
+    {
+      "file": "media/managed-changes.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "794a0bba9280de1fa2748a138c2cc8d503084466c2a7c79120353b76441a506b",
+      "captured_at": "2026-11-11T22:02:00.289Z"
+    }
+  ],
+  "validation": [
+    {
+      "command": "mise exec -- bun test tests /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/preparation.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app",
+      "exit_code": 0,
+      "result": "passed"
+    },
+    {
+      "command": "mise exec -- bun x --package typescript tsc --noEmit --project tsconfig.json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app",
+      "exit_code": 0,
+      "result": "passed"
+    }
+  ],
+  "fresh_chat": {
+    "session_id": "01a1cc9b-058e-7575-9258-07e96fb9fed0",
+    "cwd": "/tmp/herdr-closeout-t62/fixture-A",
+    "parent_session": null,
+    "tool_calls": 0,
+    "assistant_text": "NATIVE-LAUNCH-ONLY",
+    "terminal": "t3",
+    "core_session": "herdr-closeout-t62"
+  },
+  "cleanup": {
+    "private_core_stopped": true,
+    "private_app_stopped": true,
+    "private_display_stopped": true,
+    "live_layout": "cli",
+    "live_errors": []
+  },
+  "limitations": [
+    "Native captures use headless Xwayland/software rendering, not the physical user display.",
+    "Fresh-chat check used a harmless Ask Matt request; no Start/claim/implementation/review/merge/push workflow action was launched.",
+    "Actual OMP reported an existing ~/.omp/agent/hooks/pre extension-load warning and an update notice, but accepted the exact native argv/prompt and returned the requested harmless response.",
+    "Private shell startup displayed mise shim-version warnings because its isolated XDG config has no user tool versions. These are terminal output, not mod errors.",
+    "Rapid repository switching exercised an old pending tracker read and inspected response-generation guards; it did not force every possible response-completion ordering.",
+    "No historical review is asserted. Independent review and tracker completion belong to the parent."
+  ]
+}

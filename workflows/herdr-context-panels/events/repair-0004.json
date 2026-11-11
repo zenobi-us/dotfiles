@@ -1,0 +1,48 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "herdr-context-panels",
+  "phase": "start",
+  "attempt": 0,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "source_branch": "closeout/herdr-context-panels",
+  "base_branch": "master",
+  "source_commit": "fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c",
+  "source_tree": "67b6bdd4a5722a71d6c9c3a2306628b8d412d90c",
+  "created_at": "2026-11-11T21:51:45.651006+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "pane_id": "t60",
+  "agent": "omp",
+  "session_id": "hc-t60-herdr-context-panels",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "herdr-context-panels",
+    "ref": "tracker/tickets/herdr-context-panels.md"
+  },
+  "ticket_ref": "tracker/tickets/herdr-context-panels.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/herdr-context-panels"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/approval-0001.json"
+    }
+  ],
+  "outputs": [],
+  "receipt_id": "repair-0004",
+  "event": "operator-approval",
+  "parent_receipt": "approval-0001",
+  "status": "approved",
+  "history_repair_authorization": "User selected Correct the receipt. Explicitly permits changing only pane_id:null to pane_id:t60 in both unpublished approval-0001 copies, then appending this audit.",
+  "history_repair_reason": "Parent authored invalid approval envelope; null pane allowed only for phase-start/complete, not operator-approval. No domain outcome changed.",
+  "original_sha256": "8e1de8bf3f11ac82f5729e798b9923134d63007df347e616e9bfe968cd2b37ff",
+  "corrected_field": {
+    "path": "pane_id",
+    "before": null,
+    "after": "t60"
+  }
+}

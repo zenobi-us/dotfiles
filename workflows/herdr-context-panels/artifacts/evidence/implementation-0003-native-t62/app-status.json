@@ -1,0 +1,29 @@
+{
+  "isolated": {
+    "zoom": 1,
+    "font_size": 16,
+    "ui_font_size": 13,
+    "space": "sp30655ec937ff9efffa363a860359f0c7",
+    "tab": "tbba822fc1168523627d743e67e40adafd",
+    "focused_pane": "pd583f8962a6062eca0d7e400d6400b39",
+    "layout": "managed-cli",
+    "agent": null,
+    "floats": {},
+    "overlays": [],
+    "errors": []
+  },
+  "live": {
+    "zoom": 1,
+    "font_size": 16,
+    "ui_font_size": 13,
+    "space": "sp2fc383910a3914d554f504430da4abcc",
+    "tab": "tb186257101226a274ac736057a41ccf6a",
+    "focused_pane": "pb6a5aeecdccbb3d23a9a8d579950e72a",
+    "layout": "cli",
+    "agent": "t65",
+    "floats": {},
+    "overlays": [],
+    "errors": []
+  },
+  "live_initial_layout": "cli"
+}

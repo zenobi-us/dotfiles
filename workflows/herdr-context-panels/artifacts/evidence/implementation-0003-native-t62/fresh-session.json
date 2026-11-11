@@ -1,0 +1,30 @@
+{
+  "session": {
+    "type": "session",
+    "version": 3,
+    "id": "01a1cc9b-058e-7575-9258-07e96fb9fed0",
+    "timestamp": "2026-11-11T21:54:33.998Z",
+    "cwd": "/tmp/herdr-closeout-t62/fixture-A"
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "/skill:ask-matt \"tracker/tickets/alpha.md\"\n\nUser request: \"What should I do next on this record, and why?\\n\\nACCEPTANCE_ONLY:DO_NOT_USE_TOOLS;DO_NOT_CLAIM_TICKETS;DO_NOT_IMPLEMENT;DO_NOT_CHANGE_FILES;DO_NOT_SPAWN_AGENTS.ReplyNATIVE-LAUNCH-ONLYandstop.\""
+        }
+      ]
+    },
+    {
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "NATIVE-LAUNCH-ONLY"
+        }
+      ]
+    }
+  ],
+  "tool_call_count": 0
+}

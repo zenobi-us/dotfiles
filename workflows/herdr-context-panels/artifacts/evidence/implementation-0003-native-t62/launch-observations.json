@@ -1,0 +1,26 @@
+[
+  {
+    "args": [
+      "hc",
+      "get",
+      "t3"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+    "code": 0,
+    "stdout": "{\"address\":\"t3\",\"argv\":[\"/home/zenobius/.local/share/mise/installs/github-can1357-oh-my-pi/latest/omp\",\"--cwd\",\"/tmp/herdr-closeout-t62/fixture-A\",\"--session-dir\",\"/tmp/herdr-closeout-t62/app/data/shared-context-sessions/1794434073844-8661ea84e2df1\",\"/skill:ask-matt \\\"tracker/tickets/alpha.md\\\"\\n\\nUser request: \\\"What should I do next on this record, and why?\\\\n\\\\nACCEPTANCE_ONLY:DO_NOT_USE_TOOLS;DO_NOT_CLAIM_TICKETS;DO_NOT_IMPLEMENT;DO_NOT_CHANGE_FILES;DO_NOT_SPAWN_AGENTS.ReplyNATIVE-LAUNCH-ONLYandstop.\\\"\"],\"cols\":52,\"created_ms\":1794434073848,\"cwd\":\"/tmp/herdr-closeout-t62/fixture-A\",\"die_with_parent\":false,\"exit_code\":null,\"finished_ms\":null,\"foreground\":{\"argv\":[\"/home/zenobius/.local/share/mise/installs/github-can1357-oh-my-pi/latest/omp\",\"--cwd\",\"/tmp/herdr-closeout-t62/fixture-A\",\"--session-dir\",\"/tmp/herdr-closeout-t62/app/data/shared-context-sessions/1794434073844-8661ea84e2df1\",\"/skill:ask-matt \\\"tracker/tickets/alpha.md\\\"\\n\\nUser request: \\\"What should I do next on this record, and why?\\\\n\\\\nACCEPTANCE_ONLY:DO_NOT_USE_TOOLS;DO_NOT_CLAIM_TICKETS;DO_NOT_IMPLEMENT;DO_NOT_CHANGE_FILES;DO_NOT_SPAWN_AGENTS.ReplyNATIVE-LAUNCH-ONLYandstop.\\\"\"],\"cwd\":\"/tmp/herdr-closeout-t62/fixture-A\",\"name\":\"omp\",\"pid\":2982207},\"identity\":\"ghostty\",\"keep\":true,\"labels\":{\"herdr.seen\":\"0\",\"herdr.space\":\"spd006a6153c3d9a35e2fa05b683511de9\",\"herdr.tab\":\"tbeba7853f1c56944671d510ca2b0d8a3b\",\"where\":\"Onboarding A / 1\"},\"name\":null,\"notify\":true,\"parent\":null,\"pid\":2982207,\"reason\":null,\"reported\":true,\"rm\":false,\"rows\":31,\"screen\":\"exact\",\"signal\":null,\"state\":\"live\",\"status\":{\"app\":\"omp\",\"state\":\"done\"},\"status_ms\":1794434081756,\"template\":null,\"title\":\"π > 📋 RECORD: Choose this record’s next action\",\"turn\":1}\n",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "hc",
+      "read",
+      "t3",
+      "--lines",
+      "40"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+    "code": 0,
+    "stdout": " Warning: Failed to load extension\n ~/.omp/agent/hooks/pre: Failed to load extension:\n Cannot find module\n '/home/zenobius/.omp/agent/hooks/pre?mtime=1794434\n 0740…\n\n\n /skill:ask-matt \"tracker/tickets/alpha.md\"\n\n User request: \"What should I do next on this\n record, and\n why?\\n\\nACCEPTANCE_ONLY:DO_NOT_USE_TOOLS;DO_NOT_CL\n AIM_TICKETS;DO_NOT_IMPLEMENT;DO_NOT_CHANGE_FILES;D\n O_NOT_SPAWN_AGENTS.ReplyNATIVE-LAUNCH-ONLYandstop.\n \"\n\n\n────────────────────────────────────────────────────\n Update Available\n New version 18.18.9 is available. Run: omp update\n────────────────────────────────────────────────────\n\n NATIVE-LAUNCH-ONLY\n\n 2026-11-12 08:24:34  ⤵ 13K  ⤴ 73  ⏱ 2.0s  ⚡ 9.9/s\n\n─ 📋 RECORD: Choos… · 🪙 14K · S0.03 · ◫ 2.7%/500K…─\n❯\n────────────────────────────────────────────────────\n ◑ GPT-6.1 Sol · 🗑 herdr-closeout-t62/fixture-A\n[hc] incomplete: older output may be missing\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,68 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "herdr-context-panels",
+  "phase": "start",
+  "attempt": 1,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "source_branch": "closeout/herdr-context-panels",
+  "base_branch": "master",
+  "source_commit": "fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c",
+  "source_tree": "67b6bdd4a5722a71d6c9c3a2306628b8d412d90c",
+  "created_at": "2026-11-11T22:07:17.957911+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t60-herdr-context-panels",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "herdr-context-panels",
+    "ref": "tracker/tickets/herdr-context-panels.md"
+  },
+  "ticket_ref": "tracker/tickets/herdr-context-panels.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/herdr-context-panels"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/implementation-0003.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/herdr-context-panels/artifacts/snapshots/pr-draft-implementation-0003.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/herdr-context-panels/artifacts/evidence/implementation-0003-native-t62"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/implementation-complete-0005.json"
+    }
+  ],
+  "receipt_id": "implementation-complete-0005",
+  "event": "phase-complete",
+  "parent_receipt": "implementation-0003",
+  "status": "completed",
+  "validation": {
+    "source_identity": "matched fa5a5e22 and tree 67b6bdd4",
+    "artifact_transfer": "byte-identical child tree; diff reports only extra parent baseline snapshot",
+    "native_evidence": "inspected structured cases, validation logs, managed-cli-actual.png",
+    "transport_sha256": "069641db63a9bb23aeb175e570e65e1c69d72b74ab700a6bbdb7474d23d45e8b",
+    "source_clean": true
+  },
+  "child_shutdown": {
+    "terminal": "t62",
+    "killed": true,
+    "removed": true,
+    "workspace": "absent after last terminal removal"
+  },
+  "recovery_mode": "reconcile",
+  "recovery_reason": "Current native verification completed; preserve source, do not repeat implementation or integration."
+}
