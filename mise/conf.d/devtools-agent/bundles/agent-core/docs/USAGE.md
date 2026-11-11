@@ -105,8 +105,9 @@ replacement updates the preview without changing selection or its scroll
 position. Tracker monitoring continues while the Files tab is active.
 
 Refresh failures retain the last displayed records and show an error. Worktree
-actions remain disabled while data is refreshing or the tracker is stale.
-Closing the modal stops watchers and timers and prevents late render requests.
+actions remain disabled while the selected inputs need validation. Planning
+actions do not wait for unrelated workflow inspections. Closing the modal stops
+watchers and timers and prevents late render requests.
 
 The event list includes invalid receipts instead of stopping at the first error.
 Select an invalid event to inspect its stable reference, validation error, and
@@ -114,8 +115,10 @@ recorded fields. Parse failures remain listed with their file reference.
 Invalid history blocks worktree actions and does not establish source freshness.
 Existing events remain append-only; inspection does not repair or rewrite them.
 
-Phase-start events can use `status: started`. Phase-start and phase-complete
-envelopes can omit an evidence run; phase-result receipts still require one.
+Phase-start events can use `status: started`. A receipt without a separate
+evidence run can omit its evidence envelope. A supplied envelope must contain
+its store and reference. Review recovery still requires a readable artifact
+that names the recorded source commit.
 The receipt producer must copy `workflow.root` from the resolver store root,
 not its workflow directory path.
 
@@ -134,12 +137,31 @@ Ticket rows show the frontmatter `type`, or the GitHub issue type, separately fr
 | Shift+Tab | Cycle list, detail, and receipt dependency context |
 | Page Up / Page Down | Scroll detail or page through navigation records |
 | `a` | Show actions and each unavailable action's reason |
+| `v` in an initiative | Switch between Detail and DAG; retain each tab's scroll position |
+| `C` | Cycle copy mode: path, Reference, id |
+| `c` | Copy the selected record in the current mode |
+| `i` in an initiative | Copy the initiative instead of its selected child |
 | `h`, `R`, `q` | Home, refresh authoritative records, or close |
 | `b` | Browse raw files; close that browser to return to the explorer |
 
-Initiatives show their tickets with directed dependency edges. `A → B` means B depends on A. Drilling right removes full parent columns from the viewport and gives their space to detail. Receipt inspection keeps a compact dependency neighborhood beside the receipt list and evidence. Pi redraws text panes; it does not use the browser demo's pixel animation.
+The initiative Detail tab shows its child records. Press `d` to read the full specification. Press `v` to open the DAG tab. The DAG uses the same dependency builder and text renderer as `/skill:worktree tasks`. Direct initiative members form the roots. Indented records are blockers, including blockers outside the initiative. Missing records and cycles produce errors, not a partial replacement diagram. Switching tabs retains the child selection and separate scroll positions. Receipt inspection keeps its dependency neighborhood beside the event evidence.
 
 At narrow terminal sizes, one pane is visible. Right / Enter opens detail from its list. Tab can reveal the receipt list, exact evidence, and dependency context. Left first restores the list, then the parent level. Full object IDs wrap without dropping characters.
+
+### Cache and freshness
+
+The initial watcher reconciliation starts the tracker load. The explorer does not start a second full inspection while subscriptions initialise. Changes observed during loading still receive another pass.
+
+Each Pi or Herdr tracker refresh shares identical read-only Git, Worktrunk and GitHub observations across its ticket inspections. The shared results expire at the end of that refresh. Document reads remain uncached by this executor, so byte and collection checks still run. Action preparation and confirmation use the original executor and obtain fresh observations.
+
+
+The extension keeps a bounded, session-only document cache. It hashes current file bytes with SHA-256 before it reuses parsed content. It does not treat timestamps or watcher events as proof that content is unchanged. Changed Markdown documents use one `mq` batch. Parsing uses the captured bytes that produced each hash. Concurrent readers share parsing but receive separate values.
+
+Collection and byte checks detect additions, deletions, replacements and changes during loading. A changed collection produces an explicit error instead of publishing mixed records. Local action reads still validate the full collection before selecting related records. The document cache holds at most 2,048 entries or 32 MiB. Oversized or evicted records parse again.
+
+Reopening the modal can show a cached snapshot immediately. It remains marked unverified until validation finishes. The footer shows the last validation time in UTC. The display cache stores no live workflow authorization. Description freshness warnings remain visible while you scroll. Filesystem watchers schedule updates; metadata reconciliation recovers missed events.
+
+DAG results use ordered roots, the complete blocker closure and displayed node fields as their key. A description-only edit does not require a new graph. No agent session or graph CLI starts when you open the DAG tab.
 
 ### Fresh-chat actions
 
@@ -179,7 +201,9 @@ Ticket rows keep workflow warnings short. Open ticket details with Enter to read
 
 Press `d` to read the complete Markdown body on a separate padded background. Press Escape to return without changing selection.
 
-Press `c` on a canonical initiative or Local Markdown ticket to copy its absolute file path. The footer shows this shortcut only on views that accept it, not in the action menu. Initiative paths end in `index.md`. Generated collections have no canonical initiative path and do not offer copy. Clipboard failures appear in the status line.
+Press `C` to select `path`, `Reference` or `id`. The mode stays selected across explorer openings in the same session. Press `c` to copy an initiative, research record, ADR or ticket. In initiative Detail, `c` copies the selected child and `i` copies the initiative. In DAG, `c` copies the initiative. Initiative paths end in `index.md`.
+
+Reference mode uses the resolver's canonical reference: `shared://` for shared-store records, a relative path for repository records, or a hosted tracker URL. Hosted records support Reference and id, not a local path. Nested record directories remain part of copied paths and references. Generated collections have no record to copy. Clipboard failures appear in the status line. ADRs appear as separate records on Home and do not enter workflow queues. ADR selection uses its reference, so a numeric ADR ID cannot replace a ticket with the same ID.
 
 Initiative progress counts executable tickets, not research or planning records. It shows `todo` before work starts, `completed` when every ticket is complete, and `X/Y completed` otherwise. Started work with no completed tickets shows `0/Y completed`. Empty initiatives show `todo`.
 

@@ -590,17 +590,21 @@ Any device inspection, change or restart needs fresh, exact owner approval.
 Production work in tickets 02–10 is not part of the ticket 01 prototype gate.
 
 
-## Herdr-app Context and Tracker
+## Herdr-app CLI, Context, and Tracker
 
 The native panels add **Context** and **Tracker** beside **Files** and **Changes**.
 
-Keep Herdr-app open. Run this command from the repository root:
+Run `mise run herdrapp.install` from the repository root. To also install Better Config, run:
 
 ```sh
 bun mise/conf.d/devtools-herdrapp/app/install.ts --better-config
 ```
 
-The installer creates the `shared-context` layout from a main-based layout. It keeps the Files and Changes mods. It does not replace an existing Better Config installation.
+The installer copies the 13 `cli-*` mods, CLI layout and preview, and CLI theme. It downloads Roboto Mono and its licence from a pinned revision and checks SHA-256 hashes. Departure Mono is not managed.
+
+The installer merges only the JSON keys in `mise/conf.d/devtools-herdrapp/app/preferences.json`. These keys cover global and terminal bindings, selected app settings, OMP registration, diff and file-tree preferences, and the Shared Context C2 layout. Other keys, zoom, workspace data, sessions, and generated editor files stay local. Cockpit and Departures bindings are not imported.
+
+Installation preserves the selected layout. After installation, keep Herdr-app open and run `mise run herdrapp.activate` to select `cli`. Activation does not reinstall files. Existing `shared-context` layouts stay unchanged. Existing CLI mods are adopted only when their tracked files match dotfiles. Save any local changes before installation. Better Config remains optional; an existing installation stays unchanged.
 
 Open the panel settings button. In Better Config, select **Shared Context → Tracker layout**:
 
@@ -609,11 +613,13 @@ Open the panel settings button. In Better Config, select **Shared Context → Tr
 
 Record headers keep Type, ID, title and workflow actions above the scrolling reader. Same-hue badges distinguish the label and value by luminance. The compact band contains Store and Reference. Clicking Reference or **Copy reference** copies the full canonical value and briefly shows confirmation.
 
-Workflow badges distinguish **next** (recommended action), **status** (readiness or outcome), and **current** (a validated active phase bound to the inspected source). If phase evidence is incomplete, show **status: active** instead of inferring fixing or reviewing. Badges and reasons reflect the latest tracker refresh.
+Workflow badges distinguish **next** (recommended action), **status** (readiness or outcome), and **current** (a validated active phase bound to the inspected source). If phase evidence is incomplete, keep the recorded work status visible instead of inferring fixing or reviewing. Badges and reasons reflect the latest tracker refresh.
 
-Reason and direct prerequisites now live in the header. Prerequisite links open the prerequisite record. Header metadata scrolls internally when long content would otherwise consume the reader.
+The ticket header shows the recorded work status separately from workflow recommendations and validation. Invalid workflow history does not replace the recorded status. The file tree and its totals remain unchanged. Direct prerequisites live in the header. Prerequisite links open the prerequisite record. Header metadata scrolls internally when long content would otherwise consume the reader.
 
-Use **Description** for the document, **Blocking lineage** for dependencies, and **Activity** for workflow events and receipts. Each tab keeps its scroll position while the record stays selected. Use Left/Right, Home, and End when a detail tab has keyboard focus. A failed detail read shows **Retry read** without clearing the selected record.
+Use **Description** for the document, **Blocking lineage** for dependencies, and **Activity** for workflow events and receipts. A grouped workflow warning links to **View in Activity**. This action opens Activity with invalid receipts filtered. **All events** restores the full list. The Activity tab count always includes all events. Each shared validation cause appears once above the list. Expand an affected receipt to inspect its error, reference, body, and original fields. Validation rules and receipts remain unchanged. Each tab keeps its scroll position while the record stays selected. Use Left/Right, Home, and End when a detail tab has keyboard focus. A failed detail read shows **Retry read** without clearing the selected record.
+
+Use **Description** for the document, **Blocking lineage** for its prerequisites, and **Activity** for workflow events and receipts. The separate Details tab is removed. Each tab keeps its scroll position while the record stays selected. Use Left/Right, Home, and End when a detail tab has keyboard focus. A failed detail read shows **Retry read** without clearing the selected record.
 
 The tree paints one selection background per row. Disclosure and title controls stay transparent.
 
@@ -621,13 +627,14 @@ Disable **Drawer motion** to remove animation. Select **Refresh** after external
 
 Context provides explicit repository or shared-store setup and read-only file previews. The tree omits `.git` and symbolic links. Text previews have a 400 KB limit.
 
-Tracker groups initiatives first, then other tickets, prototypes, research, planning, and records. Each item uses a title line and a dimmed ID/status line. Filters stay in a fixed footer below the tree.
+Tracker groups initiatives first, then other tickets, prototypes, research, planning, and records. Each item uses a title line and a dimmed ID/status line. Filters form a flush, square-edged strip below the tree, with vertical dividers matching the tree border. The panel-wide canonical-records legend footer is removed.
 
 Initiative members stay one level deep; shared membership links to one canonical record. The right-aligned initiative graph button opens a bottom drawer. Graphs support pan, zoom, fit, and node actions through right-click, Shift+F10, or Actions. Blocking lineage shows only the selected ticket and its transitive prerequisites.
 
-Graph actions read canonical workflow availability before opening the existing confirmed handoff. Description, Blocking lineage, and Activity remain available. New-agent actions require prompt preparation and confirmation.
+Each available Tracker and graph action opens a dropdown. Select a preset, add an optional instruction in the final inline input, then select **Open new pane**. Selecting a preset does not start an agent. Workflow actions offer **No extra instructions**; Ask Matt offers questions such as **What next?** and **Why is this blocked?**. Submit includes **Capture evidence + attach to ticket**. Preset and detail drafts stay separate for each repository, record, and action while the panel is open. Dismissal and preparation errors keep the draft. Escape dismisses the dropdown; arrow keys select a preset, and Enter in the input launches.
+
+Before launch, the service re-reads canonical workflow availability and prepares the skill command with the combined instructions. It starts a fresh OMP session in a new pane to the right. Each launch uses an isolated session directory and leaves existing chats unchanged. Prompts do not bypass workflow checks. Preparation errors appear in the dropdown. Description, Blocking lineage, and Activity remain available. No prompt-preview dialog is required.
 
 The GPUI mods use a local Bun service. The service imports the existing shared-context and tracker TypeScript APIs. Those APIs use `mq` with `okf.mq` to parse Markdown. The mods do not execute the shared-context or tracker CLIs.
 
 The panels operate on local repositories. The backend imports modules from this checkout, so keep it available. If you update Bun or `mq`, run the installer again.
-
