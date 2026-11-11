@@ -2,16 +2,20 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "collect-evidence-feedback-02-tui",
   "ticket": "tracker/tickets/collect-evidence-feedback-02-tui.md",
-  "state": "IMPLEMENTING",
-  "status": "blocked",
-  "latest_receipt": "implementation-0002",
-  "latest_source_commit": "621ebb571da6a30274ed8b2cab387936f5d8dd02",
-  "latest_source_tree": "a7d660233d6cf7a65297571a0f2273a57eba4270",
+  "state": "IMPLEMENTED",
+  "status": "completed",
+  "latest_receipt": "implementation-0006",
+  "latest_source_commit": "68acd4074c636933fdf5e8645a09d1acf6abdf67",
+  "latest_source_tree": "68589997ea8dafb4a336777829a0105806fa44d2",
+  "source_identity_kind": "clean-review-target-after-result-receipt-commit",
   "latest_review_verdict": null,
   "open_findings": [],
-  "blockers": [
-    "foot, grim and tesseract are unavailable; native transition image, colour, line spacing, live credential safety and owned cleanup remain unverified.",
-    "TypeScript compiler and LSP TypeScript installation are unavailable.",
-    "Live Playwright checks cannot launch the configured Chrome executable. Live Surf keyboard confirmation assertion failed; both web driver source files remain unchanged."
+  "parent_completion": "completed",
+  "limits": [
+    "Private Linux headless terminal only; not a reproduction of an existing user terminal.",
+    "Native video unavailable; no simulated recording.",
+    "Host font and dimensions constrain explicit image expectations.",
+    "Prior Playwright Chrome absence and Surf Submitted/Not submitted failure remain unchanged, not rerun. Both web drivers are unchanged.",
+    "TypeScript compiler/LSP unavailable."
   ]
 }

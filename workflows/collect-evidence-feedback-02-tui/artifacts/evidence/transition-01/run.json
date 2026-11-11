@@ -1,0 +1,156 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "run",
+  "id": "transition-01",
+  "status": "sealed",
+  "startedAt": "2026-11-11T10:55:36.351Z",
+  "finishedAt": "2026-11-11T10:55:41.633Z",
+  "surface": "tui",
+  "driver": "tui",
+  "driverVersion": "termscope 0.1.1",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "transition",
+      "path": "cases/transition/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/transition/case.json",
+      "sha256": "08492603609eea0ecffb5242a4b5225c8fc5d90983b12bc3946e15fb0282a37c"
+    },
+    {
+      "path": "cases/transition/events.jsonl",
+      "sha256": "95a519b9d23e99dc3a04ca0e351d093673bc56eb1f2d218cf581d05115e27b13"
+    },
+    {
+      "path": "cases/transition/index.md",
+      "sha256": "1d250cbf807d1ee5320b30c96c07d36b6b887fcb0d35a550916764db4bc96247"
+    },
+    {
+      "path": "index.md",
+      "sha256": "ac20299a46e3d339046caaeb942daff4309ad059faab1c752378eb5f2072be5c"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "e0106e90b3e87299937222a55fc5df79e30ae97e5992b3daf66ea6c9b589c5f7"
+    },
+    {
+      "path": "native/runs/case-transition.log",
+      "sha256": "d9f0505a7d6f2e9a622bd6977f90c807043613fa5cc20f86a660675e7b86dc64"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-cage.stderr",
+      "sha256": "9d5f4b7212e6fb115fa0422847aba783a94e96ff29304854f717ae3f33f48022"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000001.png",
+      "sha256": "cec04114320172706aff70a86c72ac2add97865b96d57a5007f4f5afed47f356"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000002.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000003.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000004.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000005.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000006.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000007.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000008.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000009.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000010.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000011.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000012.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000013.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000014.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000015.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000016.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000017.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000018.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000019.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000020.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-frame-000021.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-termscope.jsonl",
+      "sha256": "c59b996e7e29cb1cbce85d850fe62a0359e4dd4c4bac2441d7e34bb05308b35b"
+    },
+    {
+      "path": "native/workflows/ce-tui-b7e95933-1a7b-46ef-8b80-a2e0a3a4320e-termscope.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/workflows/tui-transition.json",
+      "sha256": "3008add63512eb8afd28f2da65c5b667ee1db2c6efaaf1a2bd9957fa38417102"
+    },
+    {
+      "path": "native/workflows/tui-transition.log",
+      "sha256": "d9f0505a7d6f2e9a622bd6977f90c807043613fa5cc20f86a660675e7b86dc64"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "8f3ffc7954c531cf3a1d5f75bd01a6be66653fec5d050dc7a6fa56428b0c0430"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "e0106e90b3e87299937222a55fc5df79e30ae97e5992b3daf66ea6c9b589c5f7"
+    }
+  ]
+}

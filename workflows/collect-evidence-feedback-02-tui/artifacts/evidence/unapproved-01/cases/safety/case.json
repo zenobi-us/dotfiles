@@ -1,0 +1,54 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "safety",
+  "runId": "unapproved-01",
+  "order": 1,
+  "purpose": "Stop before unsafe input",
+  "preconditions": [],
+  "expected": {
+    "pass": "No unsafe input is sent",
+    "fail": "Unsafe input is sent"
+  },
+  "steps": [
+    {
+      "id": "safety.1",
+      "order": 1,
+      "purpose": "Do not send unapproved input.",
+      "actions": {
+        "do": "press",
+        "says": "Do not send unapproved input.",
+        "key": "n",
+        "screen": "Ready screen"
+      },
+      "expected": null,
+      "observed": [
+        "SAFETY STOP safety.1: input step is not explicitly approved"
+      ],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/safety/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "safety.error-001",
+      "caseId": "safety",
+      "stepId": "safety.1",
+      "category": "blocked",
+      "message": "SAFETY STOP safety.1: input step is not explicitly approved"
+    }
+  ],
+  "limits": [
+    "Native video is unavailable.",
+    "OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.",
+    "The private headless display does not reproduce a borrowed desktop terminal.",
+    "Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match."
+  ],
+  "sideEffects": [
+    "The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.",
+    "Collector-owned resources were released before sealing; borrowed terminals were not attached or closed."
+  ]
+}

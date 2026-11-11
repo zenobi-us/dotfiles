@@ -1,0 +1,82 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "transition",
+  "runId": "transition-01",
+  "order": 1,
+  "purpose": "Native delayed screen transition",
+  "preconditions": [],
+  "expected": {
+    "pass": "Both screens match native pixels",
+    "fail": "Screen or native pixels differ"
+  },
+  "steps": [
+    {
+      "id": "transition.1",
+      "order": 1,
+      "purpose": "wait",
+      "actions": {
+        "do": "wait",
+        "locator": "screen",
+        "text": "Ready screen",
+        "shot": "ready-screen"
+      },
+      "expected": null,
+      "observed": [
+        "Native screen did not settle on the expected visible content before timeout"
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "transition.2",
+      "order": 2,
+      "purpose": "Open details.",
+      "actions": {
+        "do": "press",
+        "says": "Open details.",
+        "key": "n",
+        "screen": "Ready screen"
+      },
+      "expected": null,
+      "observed": [],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "transition.3",
+      "order": 3,
+      "purpose": "wait",
+      "actions": {
+        "do": "wait",
+        "locator": "screen",
+        "text": "Details screen",
+        "shot": "details-screen"
+      },
+      "expected": null,
+      "observed": [],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/transition/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "transition.error-001",
+      "caseId": "transition",
+      "stepId": "transition.1",
+      "category": "operation",
+      "message": "Native screen did not settle on the expected visible content before timeout"
+    }
+  ],
+  "limits": [
+    "Native video is unavailable.",
+    "OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.",
+    "The private headless display does not reproduce a borrowed desktop terminal.",
+    "Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match."
+  ],
+  "sideEffects": [
+    "The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.",
+    "Collector-owned resources were released before sealing; borrowed terminals were not attached or closed."
+  ]
+}

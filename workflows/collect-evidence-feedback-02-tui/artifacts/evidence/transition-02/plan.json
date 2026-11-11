@@ -1,0 +1,137 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "plan",
+  "data": {
+    "schema": "collect-evidence/v1",
+    "kind": "plan",
+    "workId": "native-validation",
+    "driver": "tui",
+    "base": "terminal://private",
+    "terminal": {
+      "command": [
+        "/usr/bin/python3",
+        "/tmp/ce-native-recovery-LxHQWV/fixture.py"
+      ],
+      "cwd": "/tmp/ce-native-recovery-LxHQWV",
+      "columns": 80,
+      "rows": 24,
+      "font": "monospace:size=12",
+      "lineHeight": 20
+    },
+    "approval": {
+      "origins": [],
+      "confirmations": [
+        "transition.2"
+      ],
+      "terminal": {
+        "command": [
+          "/usr/bin/python3",
+          "/tmp/ce-native-recovery-LxHQWV/fixture.py"
+        ],
+        "cwd": "/tmp/ce-native-recovery-LxHQWV"
+      }
+    },
+    "tests": [
+      {
+        "id": "transition",
+        "claim": "Native delayed screen transition",
+        "pass": "Both screens match native pixels",
+        "fail": "Screen or native pixels differ",
+        "steps": [
+          {
+            "do": "expect",
+            "locator": "screen",
+            "text": "Ready screen",
+            "shot": "ready-screen",
+            "says": "Inspect the ready screen.",
+            "image": {
+              "width": 1280,
+              "height": 720,
+              "pixels": [
+                {
+                  "x": 10,
+                  "y": 55,
+                  "rgb": [
+                    201,
+                    166,
+                    255
+                  ]
+                },
+                {
+                  "x": 10,
+                  "y": 100,
+                  "rgb": [
+                    36,
+                    36,
+                    36
+                  ]
+                }
+              ],
+              "lines": [
+                {
+                  "text": "Ready screen",
+                  "top": 12,
+                  "tolerance": 2
+                },
+                {
+                  "text": "Selected item",
+                  "top": 32,
+                  "tolerance": 2
+                }
+              ]
+            }
+          },
+          {
+            "do": "press",
+            "says": "Open details.",
+            "key": "n",
+            "screen": "Ready screen"
+          },
+          {
+            "do": "expect",
+            "locator": "screen",
+            "text": "Details screen",
+            "shot": "details-screen",
+            "says": "Inspect the delayed details screen.",
+            "image": {
+              "width": 1280,
+              "height": 720,
+              "pixels": [
+                {
+                  "x": 10,
+                  "y": 55,
+                  "rgb": [
+                    201,
+                    166,
+                    255
+                  ]
+                },
+                {
+                  "x": 10,
+                  "y": 100,
+                  "rgb": [
+                    36,
+                    36,
+                    36
+                  ]
+                }
+              ],
+              "lines": [
+                {
+                  "text": "Details screen",
+                  "top": 12,
+                  "tolerance": 2
+                },
+                {
+                  "text": "Selected item",
+                  "top": 32,
+                  "tolerance": 2
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

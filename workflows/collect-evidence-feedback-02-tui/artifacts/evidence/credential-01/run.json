@@ -1,0 +1,88 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "run",
+  "id": "credential-01",
+  "status": "sealed",
+  "startedAt": "2026-11-11T10:57:32.245Z",
+  "finishedAt": "2026-11-11T10:57:33.219Z",
+  "surface": "tui",
+  "driver": "tui",
+  "driverVersion": "termscope 0.1.1",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "safety",
+      "path": "cases/safety/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/safety/case.json",
+      "sha256": "c1988dbd9677c3575f8f333c1e6a4c2574e4d07a51ec13e5b6b9e8b740249edb"
+    },
+    {
+      "path": "cases/safety/events.jsonl",
+      "sha256": "28e81cc9fa79ae3cac230ef3d999ddc0b9850ccc741f8b95d05785e60b20bdb1"
+    },
+    {
+      "path": "cases/safety/index.md",
+      "sha256": "9461cfa45d7b6ccc160c521f544b5ec882095ef16baf5f2272b27d0b43e0454a"
+    },
+    {
+      "path": "index.md",
+      "sha256": "388a87056aeb91d3bf8520be8960a3179cc163c25cd7ec88c20aa53397db2cc1"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "eacb9ef3408bf19578501a99be5cfdef042fe5ba03edb2e4a9172ca230747da1"
+    },
+    {
+      "path": "native/runs/case-safety.log",
+      "sha256": "c90b100cef04f7b9c460addbab8136ccab812501ecf8fa37995f8e53f31757ae"
+    },
+    {
+      "path": "native/workflows/ce-tui-686cd8c6-ecdc-47ec-9a24-ef9a5b5a392d-cage.stderr",
+      "sha256": "cff642bab40ea04bc5e91cbd67dfc941538e5782af57d36f94529c7e2db38b6a"
+    },
+    {
+      "path": "native/workflows/ce-tui-686cd8c6-ecdc-47ec-9a24-ef9a5b5a392d-frame-000001.png",
+      "sha256": "cec04114320172706aff70a86c72ac2add97865b96d57a5007f4f5afed47f356"
+    },
+    {
+      "path": "native/workflows/ce-tui-686cd8c6-ecdc-47ec-9a24-ef9a5b5a392d-frame-000002.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-686cd8c6-ecdc-47ec-9a24-ef9a5b5a392d-frame-000003.png",
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+    },
+    {
+      "path": "native/workflows/ce-tui-686cd8c6-ecdc-47ec-9a24-ef9a5b5a392d-frame-000004.png",
+      "sha256": "dab54e50b108b8191cb5825890e9dd937363cce80da7225c2aa359a27e070225"
+    },
+    {
+      "path": "native/workflows/ce-tui-686cd8c6-ecdc-47ec-9a24-ef9a5b5a392d-termscope.jsonl",
+      "sha256": "5f4a0c5586cc40939cd43364b6c48449aa105f49ba9bb1fa4da9a459bc2fdf16"
+    },
+    {
+      "path": "native/workflows/ce-tui-686cd8c6-ecdc-47ec-9a24-ef9a5b5a392d-termscope.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/workflows/tui-safety.json",
+      "sha256": "0b748d23cbfc19bb99727016e527443158ad378de0d80b1850503a572dc93a81"
+    },
+    {
+      "path": "native/workflows/tui-safety.log",
+      "sha256": "c90b100cef04f7b9c460addbab8136ccab812501ecf8fa37995f8e53f31757ae"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "6158c745ffae3c7bb21673bd3b91b267772e0856fd2d93f65e31cb75dd773c54"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "eacb9ef3408bf19578501a99be5cfdef042fe5ba03edb2e4a9172ca230747da1"
+    }
+  ]
+}
