@@ -1,0 +1,207 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "case",
+  "runId": "transition",
+  "order": 1,
+  "purpose": "Credential safety and delayed native transition",
+  "preconditions": [],
+  "expected": {
+    "pass": "Expected outcome",
+    "fail": "Unexpected outcome"
+  },
+  "steps": [
+    {
+      "id": "case.1",
+      "order": 1,
+      "purpose": "Inspect ready.",
+      "actions": {
+        "do": "expect",
+        "says": "Inspect ready.",
+        "locator": "screen",
+        "text": "Ready screen",
+        "shot": "ready",
+        "image": {
+          "width": 1280,
+          "height": 720,
+          "pixels": [
+            {
+              "x": 10,
+              "y": 55,
+              "rgb": [
+                201,
+                166,
+                255
+              ]
+            }
+          ],
+          "lines": [
+            {
+              "text": "Ready screen",
+              "top": 11
+            },
+            {
+              "text": "Selected item",
+              "top": 31
+            }
+          ]
+        }
+      },
+      "expected": {
+        "text": "Ready screen",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Expected screen, native dimensions, colour probes and text line positions match"
+      ],
+      "assertionResult": "passed"
+    },
+    {
+      "id": "case.2",
+      "order": 2,
+      "purpose": "Open details.",
+      "actions": {
+        "do": "press",
+        "says": "Open details.",
+        "key": "n",
+        "screen": "Ready screen"
+      },
+      "expected": null,
+      "observed": [
+        "Input completed on the owned terminal"
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "case.3",
+      "order": 3,
+      "purpose": "Inspect details.",
+      "actions": {
+        "do": "expect",
+        "says": "Inspect details.",
+        "locator": "screen",
+        "text": "Details screen",
+        "shot": "details",
+        "image": {
+          "width": 1280,
+          "height": 720,
+          "pixels": [
+            {
+              "x": 10,
+              "y": 55,
+              "rgb": [
+                201,
+                166,
+                255
+              ]
+            }
+          ],
+          "lines": [
+            {
+              "text": "Details screen",
+              "top": 11
+            },
+            {
+              "text": "Selected item",
+              "top": 31
+            }
+          ]
+        }
+      },
+      "expected": {
+        "text": "Details screen",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Expected screen, native dimensions, colour probes and text line positions match"
+      ],
+      "assertionResult": "passed"
+    }
+  ],
+  "events": "cases/case/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "case.1.capture-001",
+      "caseId": "case",
+      "stepId": "case.1",
+      "path": "cases/case/media/step-001-step-case-001-ready--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-11T22:16:25.792Z",
+      "viewport": null,
+      "surface": "tui",
+      "driver": "tui",
+      "driverVersion": "termscope 0.1.1",
+      "captureMethod": "grim-native",
+      "url": "terminal://ce-tui-dd42e286-1966-4da7-bfde-114dd876cd49",
+      "terminal": {
+        "session": "ce-tui-dd42e286-1966-4da7-bfde-114dd876cd49",
+        "socket": "/tmp/ce-native-KNu2J8/tmux.sock",
+        "pane": "%0",
+        "tty": "/dev/pts/24",
+        "display": "wayland-0",
+        "runtime": "/tmp/ce-native-KNu2J8",
+        "cagePid": 3138939,
+        "footPid": 3138958,
+        "columns": 80,
+        "rows": 24,
+        "font": "monospace:size=12",
+        "lineHeight": 20,
+        "cleanup": "released"
+      }
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "case.3.capture-001",
+      "caseId": "case",
+      "stepId": "case.3",
+      "path": "cases/case/media/step-003-step-case-003-details--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-11T22:16:28.287Z",
+      "viewport": null,
+      "surface": "tui",
+      "driver": "tui",
+      "driverVersion": "termscope 0.1.1",
+      "captureMethod": "grim-native",
+      "url": "terminal://ce-tui-dd42e286-1966-4da7-bfde-114dd876cd49",
+      "terminal": {
+        "session": "ce-tui-dd42e286-1966-4da7-bfde-114dd876cd49",
+        "socket": "/tmp/ce-native-KNu2J8/tmux.sock",
+        "pane": "%0",
+        "tty": "/dev/pts/24",
+        "display": "wayland-0",
+        "runtime": "/tmp/ce-native-KNu2J8",
+        "cagePid": 3138939,
+        "footPid": 3138958,
+        "columns": 80,
+        "rows": 24,
+        "font": "monospace:size=12",
+        "lineHeight": 20,
+        "cleanup": "released"
+      }
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Native video is unavailable.",
+    "OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.",
+    "The private headless display does not reproduce a borrowed desktop terminal.",
+    "Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match."
+  ],
+  "sideEffects": [
+    "The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.",
+    "Collector-owned resources were released before sealing; borrowed terminals were not attached or closed."
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-0035",
+  "workflow_id": "collect-evidence-feedback-02-tui",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 6,
+  "parent_receipt": "review-0034",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "source_branch": "feature/collect-evidence-feedback-02-tui",
+  "base_branch": "master",
+  "source_commit": "e9d1a62de21fc2b8ccff7940fa333f42a87e5e3d",
+  "source_tree": "d879ba9c67b26a573e1b5eebb1d5741e734c15c7",
+  "created_at": "2026-11-11T22:31:40.706435+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t69",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-02-tui",
+    "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-02-tui.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-02-tui"
+  },
+  "status": "completed",
+  "base_before": "fe759f72c0fe01e1a037ec1a7d5f03b710725141",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_observed_commit": "f9274afe29f29f9eb00ce4469a3463b7c15c2869",
+  "recovery_mode": "reconcile",
+  "approval": "User selected Resolve and re-review: authorize conflict resolution against current master, preserve append-only records, validate, obtain a fresh review, then retry finish.",
+  "ownership_observation": "hc ls returned no terminal with the source worktree cwd. Prior review parent confirms child terminals removed. No terminal killed or removed in this finish attempt.",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0034.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0034.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/evidence/finish-0030-smoke"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0035.yaml"
+    }
+  ],
+  "review_artifact": "workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0034.md",
+  "validation": [
+    {
+      "command": "mise exec -- bun test workflow.test.ts verdict.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+      "result": "99 pass;0 fail;892 assertions;53.11s"
+    },
+    {
+      "command": "PATH=<existing-native-tools>/bin:$PATH RUN_NATIVE_EVIDENCE_TESTS=1 mise exec -- bun test native-workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+      "result": "28 pass;0 fail;362 assertions;63.44s"
+    },
+    {
+      "command": "PATH=<existing-native-tools>/bin:$PATH mise exec -- bun <isolated-public-smoke.ts>",
+      "cwd": "/tmp",
+      "result": "94 command exits;13 scenarios:transitionPASS,12credentialBLOCKED; hashes,pixel/spacing,screen transition,input safety,owned cleanup verified"
+    },
+    {
+      "command": "Original Details PNG inspected",
+      "result": "1280x720, distinct Details screen and purple bar observed"
+    }
+  ],
+  "summary": "Accepted current SUCCESS after authoritative/transport equality, exact source/tree, original artifact and completion sequence2 verified. Transport acknowledged; t6g removed. No source change.",
+  "transport_sha256": "bec240bd81b248fc835ec5b1cf850e5563f9486b4c7382b5c4c40bb529d33b13"
+}

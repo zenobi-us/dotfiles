@@ -2,14 +2,14 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "collect-evidence-feedback-02-tui",
   "ticket": "tracker/tickets/collect-evidence-feedback-02-tui.md",
-  "state": "REVIEW_PASSED",
-  "latest_receipt": "review-0027",
-  "latest_source_commit": "3d05a5611dae33c992d8bbd81ed265a27d23892c",
-  "latest_source_tree": "e758e20e8bc45d732d01028960802390d347d11b",
+  "state": "FINISHED",
+  "latest_receipt": "finish-0044",
+  "latest_source_commit": "e9d1a62de21fc2b8ccff7940fa333f42a87e5e3d",
+  "latest_source_tree": "d879ba9c67b26a573e1b5eebb1d5741e734c15c7",
   "latest_review_verdict": "SUCCESS",
-  "latest_review_receipt": "review-0026",
-  "reviewed_source_commit": "3d05a5611dae33c992d8bbd81ed265a27d23892c",
-  "reviewed_source_tree": "e758e20e8bc45d732d01028960802390d347d11b",
+  "latest_review_receipt": "review-0034",
+  "reviewed_source_commit": "e9d1a62de21fc2b8ccff7940fa333f42a87e5e3d",
+  "reviewed_source_tree": "d879ba9c67b26a573e1b5eebb1d5741e734c15c7",
   "review_current": true,
   "current_source_reviewed": true,
   "open_findings": [],
@@ -32,5 +32,10 @@
     }
   ],
   "parent_completion": "completed",
-  "next_action": "finish collect-evidence-feedback-02-tui or submit under publication policy."
+  "merged_commit": "50872fcdb85a85ef14256ae56c0c169a1f14aefe",
+  "pushed": true,
+  "ticket_completed": true,
+  "worktree_removed": true,
+  "workspace_closed": true,
+  "next_action": null
 }

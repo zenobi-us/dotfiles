@@ -1,0 +1,76 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "run",
+  "id": "credential-2-press",
+  "status": "sealed",
+  "startedAt": "2026-11-11T22:16:48.066Z",
+  "finishedAt": "2026-11-11T22:16:48.523Z",
+  "surface": "tui",
+  "driver": "tui",
+  "driverVersion": "termscope 0.1.1",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "case",
+      "path": "cases/case/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/case/case.json",
+      "sha256": "be1be2a0a212cc1cd6bbc9229d6a3f73985421e88732b96e1ae2591feeb1b2de"
+    },
+    {
+      "path": "cases/case/events.jsonl",
+      "sha256": "0664a7fb14b5592913291fedd9693493ea0ce67d2c0e3449bf09fab9f3167122"
+    },
+    {
+      "path": "cases/case/index.md",
+      "sha256": "dc93b36c26ae6ac8104648b9dc8601b61c2c472546b20edd0cf0f38078d8d895"
+    },
+    {
+      "path": "index.md",
+      "sha256": "a3e17248b5dc42d90cd203f0ec43cb36434509ea460143c71e1ed144db1aa834"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "d424d07e1e848550fa6b5f4f6a2456f8d8d45c2408d6dbf490ab6941cfaf9d48"
+    },
+    {
+      "path": "native/runs/case-case.log",
+      "sha256": "5f6bc335a77ca5cd7d1467e1d0e88935e1a2a12693580abc9078cdc4b0804180"
+    },
+    {
+      "path": "native/workflows/ce-tui-ef478970-bff1-4df1-9ec1-f79bf34744b0-cage.stderr",
+      "sha256": "cff642bab40ea04bc5e91cbd67dfc941538e5782af57d36f94529c7e2db38b6a"
+    },
+    {
+      "path": "native/workflows/ce-tui-ef478970-bff1-4df1-9ec1-f79bf34744b0-frame-000001.png",
+      "sha256": "cec04114320172706aff70a86c72ac2add97865b96d57a5007f4f5afed47f356"
+    },
+    {
+      "path": "native/workflows/ce-tui-ef478970-bff1-4df1-9ec1-f79bf34744b0-termscope.jsonl",
+      "sha256": "f3dc6d28c62b3e03566a671c158e63ae2579648ae1b3b023acbc5a5e7b5fb18d"
+    },
+    {
+      "path": "native/workflows/ce-tui-ef478970-bff1-4df1-9ec1-f79bf34744b0-termscope.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/workflows/tui-case.json",
+      "sha256": "70c6cb6871c8f425bc21f38f39cabb9efecec0555c4d608aa49bac608bc47d39"
+    },
+    {
+      "path": "native/workflows/tui-case.log",
+      "sha256": "5f6bc335a77ca5cd7d1467e1d0e88935e1a2a12693580abc9078cdc4b0804180"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "73cf22796352f2bc0330538869a552fddaa089f09d71584438d842f7acf8dc9b"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "d424d07e1e848550fa6b5f4f6a2456f8d8d45c2408d6dbf490ab6941cfaf9d48"
+    }
+  ]
+}

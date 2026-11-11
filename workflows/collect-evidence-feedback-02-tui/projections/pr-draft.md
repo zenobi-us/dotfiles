@@ -7,7 +7,20 @@ type: Report
 
 # collect-evidence-feedback-02-tui
 
-## Status
+## Current finish — FINISHED
+
+[Terminal receipt](../events/finish-0044.yaml). Source branch feature/collect-evidence-feedback-02-tui was squash-merged into master as 50872fcdb85a85ef14256ae56c0c169a1f14aefe and pushed. Ticket completion commit 358da5adabbc33bb14c42646fb5b82cad8f3a7f2 is published. Source worktree and branch are removed; reviewer workspace is closed.
+
+Latest [independent review](../artifacts/reviews/review-review-0034.md) returned SUCCESS for source e9d1a62de21fc2b8ccff7940fa333f42a87e5e3d, tree d879ba9c67b26a573e1b5eebb1d5741e734c15c7; [parent acceptance](../events/review-0035.yaml). [Earlier recovery review](../artifacts/reviews/review-review-0031.md) remains preserved. Two historical Low nonblocking Standards findings remain; no blocking findings.
+
+Verification: 99 common tests and 28 native tests passed. The integrated public CLI completed 94 commands across 13 scenarios: transition PASS and twelve credential cases BLOCKED without input. Original PNGs verified colour, 20px spacing, 1280×720 dimensions, source hashes and terminal/display identity. Owned runtimes and processes exited. [Integrated proof](../artifacts/evidence/finish-0038-integrated/validation.json). [Source recovery proof](../artifacts/evidence/finish-0030-smoke/finish-validation.json).
+
+Recovery: [initial finish refusal](../events/finish-0028.yaml), [scoped conflict approval](../events/finish-0029.yaml), [prepared mapping](../events/finish-0036.yaml), [verified integration](../events/finish-0037.yaml), [published integration](../events/finish-0038.yaml), [published ticket](../events/finish-0039.yaml). Two retained OMP runs blocked cleanup. Explicit user approvals for [SIGTERM](../events/finish-0040.yaml) and [SIGKILL of two remaining agents](../events/finish-0041.yaml) preceded [verified scoped removal](../events/finish-0042.yaml). Unrelated worktrees remained untouched.
+
+Limits: prepared private Linux CPU display and English OCR. No native video, compiler success, or new web-driver runtime verification is claimed.
+
+
+## Historical status before finish
 
 Independent review review-0026 returned SUCCESS for clean source 3d05a5611dae33c992d8bbd81ed265a27d23892c, tree e758e20e8bc45d732d01028960802390d347d11b. Parent review-0027 accepted the result. No blocking findings remain. Standards retains two Low nonblocking findings; Spec has none. Source is unchanged and clean. No merge, push or ticket completion occurred.
 
@@ -64,3 +77,6 @@ Resolved in this attempt: SPEC-02 (High, NO ADR). Prior SPEC-01 remains resolved
 ## Independent review attempt 4 — review-0027
 
 [Immutable review](../artifacts/reviews/review-review-0026.md), [child result](../events/review-0026.yaml), [parent completion](../events/review-0027.yaml). SUCCESS for clean source `3d05a5611dae33c992d8bbd81ed265a27d23892c`, tree `e758e20e8bc45d732d01028960802390d347d11b`. Standards: two Low nonblocking findings (test shell shim and possible duplicated test setup). Spec: no findings; prior SPEC-01/SPEC-02 resolved. Native28 and common99 checks passed. Fresh public transition PASS; twelve credential cases BLOCKED without input; owned cleanup verified. Parent verified the matching delivered event and exact source, exercised all13 fresh evidence consumers, inspected the original Details PNG, acknowledged delivery and closed only t63. No source changes, merge, rebase, push or ticket completion. Next: finish under current clean SUCCESS, or submit under publication policy.
+
+
+Historical envelope repair: [authorized checksum-pinned supplement](../events/finish-0044.yaml) normalizes only the workflow root of implementation-0002 and implementation-0005. Both original receipts remain byte-identical. Final inspection reports complete after refreshing remote objects for reachability.

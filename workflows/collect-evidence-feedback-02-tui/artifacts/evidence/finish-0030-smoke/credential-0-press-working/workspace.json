@@ -1,0 +1,16 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "event",
+  "repository": "/tmp/ce-fix-0023-PLVQar/repository",
+  "workflow": "native",
+  "runId": "credential-0-press",
+  "destination": {
+    "kind": "evidence",
+    "adapter": "files",
+    "store": "repository",
+    "root": "/tmp/ce-fix-0023-PLVQar/repository",
+    "path": "/tmp/ce-fix-0023-PLVQar/repository/workflows/native/artifacts/evidence/credential-0-press",
+    "ref": "workflows/native/artifacts/evidence/credential-0-press",
+    "publication": "repository"
+  }
+}

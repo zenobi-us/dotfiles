@@ -1,0 +1,85 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "finish-0039",
+  "workflow_id": "collect-evidence-feedback-02-tui",
+  "phase": "finish",
+  "event": "phase-checkpoint",
+  "attempt": 2,
+  "parent_receipt": "finish-0038",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "source_branch": "feature/collect-evidence-feedback-02-tui",
+  "base_branch": "master",
+  "source_commit": "e9d1a62de21fc2b8ccff7940fa333f42a87e5e3d",
+  "source_tree": "d879ba9c67b26a573e1b5eebb1d5741e734c15c7",
+  "created_at": "2026-11-11T22:36:24.108461+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t69",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-02-tui",
+    "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-02-tui.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-02-tui"
+  },
+  "status": "FINISHING",
+  "base_before": "fe759f72c0fe01e1a037ec1a7d5f03b710725141",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_observed_commit": "358da5adabbc33bb14c42646fb5b82cad8f3a7f2",
+  "recovery_mode": "reconcile",
+  "approval": "User selected Resolve and re-review: authorize conflict resolution against current master, preserve append-only records, validate, obtain a fresh review, then retry finish.",
+  "ownership_observation": "hc ls returned no terminal with the source worktree cwd. Prior review parent confirms child terminals removed. No terminal killed or removed in this finish attempt.",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/finish-0038.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/finish-0039.yaml"
+    }
+  ],
+  "checkpoint": "ticket_completed",
+  "next_step": "cleanup",
+  "review_receipt": "workflows/collect-evidence-feedback-02-tui/events/review-0034.yaml",
+  "reviewed_source_commit": "e9d1a62de21fc2b8ccff7940fa333f42a87e5e3d",
+  "reviewed_source_tree": "d879ba9c67b26a573e1b5eebb1d5741e734c15c7",
+  "expected_merge_tree": "d879ba9c67b26a573e1b5eebb1d5741e734c15c7",
+  "proposed_merge_message": "feat(evidence): collect-evidence-feedback-02-tui native capture\n\nTicket: tracker/tickets/collect-evidence-feedback-02-tui.md\nReview: workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0034.md\nReviewed source: e9d1a62de21fc2b8ccff7940fa333f42a87e5e3d\nNo applicable ADR; ADR0001 concerns a separate device operation.",
+  "merged_commit": "50872fcdb85a85ef14256ae56c0c169a1f14aefe",
+  "merged_tree": "d879ba9c67b26a573e1b5eebb1d5741e734c15c7",
+  "merged_parents": [
+    "fe759f72c0fe01e1a037ec1a7d5f03b710725141"
+  ],
+  "pushed": true,
+  "ticket_completed": true,
+  "tracker_commit": "358da5adabbc33bb14c42646fb5b82cad8f3a7f2",
+  "tracker_observed_state": "completed",
+  "tracker_publication": "origin/master equals tracker_commit after non-force push; integrated commit reachable",
+  "integrated_validation": [
+    {
+      "command": "PATH=/home/zenobius/.local/share/collect-evidence/native-tools/fedora-45-x86_64/bin:$PATH mise exec -- bun /tmp/ce-finish-smoke-15e0fm4e/integrated.ts",
+      "cwd": "/tmp",
+      "source_checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "result": "94 public command exits; transitionPASS;12credentialBLOCKED;sourcePNG hashes,1280x720,purpleRGB201166255,20px line spacing,current screen/input checks and owned cleanup pass"
+    },
+    {
+      "command": "Read integrated original Details PNG",
+      "result": "Details screen, Selected item and purple bar visibly correct."
+    }
+  ]
+}

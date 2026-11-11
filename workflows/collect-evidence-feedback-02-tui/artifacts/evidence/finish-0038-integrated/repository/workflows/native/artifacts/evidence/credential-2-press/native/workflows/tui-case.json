@@ -1,0 +1,29 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "plan",
+  "terminal": {
+    "command": [
+      "/var/home/zenobius/.local/share/mise/installs/bun/1.4.3/bin/bun",
+      "/tmp/ce-fix-0023-Fxybzl/credential-2-press.ts"
+    ],
+    "cwd": "/tmp/ce-fix-0023-Fxybzl",
+    "columns": 80,
+    "rows": 24,
+    "font": "monospace:size=12",
+    "lineHeight": 20
+  },
+  "test": {
+    "id": "case",
+    "claim": "Credential safety and delayed native transition",
+    "pass": "Expected outcome",
+    "fail": "Unexpected outcome",
+    "steps": [
+      {
+        "do": "press",
+        "says": "Try approved Enter.",
+        "key": "RET",
+        "screen": "PIN:"
+      }
+    ]
+  }
+}

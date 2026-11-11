@@ -1,0 +1,19 @@
+schema = 2
+[records.alignment]
+adapter = "markdown"
+store = "repository"
+[records.tickets]
+adapter = "local-markdown"
+store = "repository"
+[records.initiatives]
+adapter = "markdown"
+store = "repository"
+[records.sources]
+adapter = "files"
+store = "inherit:alignment"
+[records.workflows]
+adapter = "files"
+store = "repository"
+[records.evidence]
+adapter = "files"
+store = "repository"

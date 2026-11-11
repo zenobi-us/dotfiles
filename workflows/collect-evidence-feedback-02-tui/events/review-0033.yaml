@@ -1,0 +1,60 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-0033",
+  "workflow_id": "collect-evidence-feedback-02-tui",
+  "phase": "review",
+  "event": "phase-start",
+  "attempt": 6,
+  "parent_receipt": "review-0032",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "source_branch": "feature/collect-evidence-feedback-02-tui",
+  "base_branch": "master",
+  "source_commit": "e9d1a62de21fc2b8ccff7940fa333f42a87e5e3d",
+  "source_tree": "d879ba9c67b26a573e1b5eebb1d5741e734c15c7",
+  "created_at": "2026-11-11T22:25:18.043769+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t69",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-02-tui",
+    "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-02-tui.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-02-tui"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0032.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0031.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0033.yaml"
+    }
+  ],
+  "status": "started",
+  "base_before": "fe759f72c0fe01e1a037ec1a7d5f03b710725141",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_observed_commit": "f9274afe29f29f9eb00ce4469a3463b7c15c2869",
+  "review_receipt": "workflows/collect-evidence-feedback-02-tui/events/review-0031.yaml",
+  "reviewed_source_commit": "e9d1a62de21fc2b8ccff7940fa333f42a87e5e3d",
+  "reviewed_source_tree": "d879ba9c67b26a573e1b5eebb1d5741e734c15c7",
+  "recovery_mode": "reconcile",
+  "approval": "User selected Resolve and re-review: authorize conflict resolution against current master, preserve append-only records, validate, obtain a fresh review, then retry finish.",
+  "ownership_observation": "hc ls returned no terminal with the source worktree cwd. Prior review parent confirms child terminals removed. No terminal killed or removed in this finish attempt.",
+  "recovery_reason": "Master advanced before exclusive publication window. Source merge e9d1a62d imports six unrelated herdr tracker/workflow files only. Fresh exact-source review required; no TUI production/test/docs change from accepted review0031."
+}

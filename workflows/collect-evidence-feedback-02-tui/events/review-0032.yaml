@@ -1,0 +1,62 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-0032",
+  "workflow_id": "collect-evidence-feedback-02-tui",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 5,
+  "parent_receipt": "review-0031",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "source_branch": "feature/collect-evidence-feedback-02-tui",
+  "base_branch": "master",
+  "source_commit": "de8615f5eb03069289e7d594872e5dc3dff5c325",
+  "source_tree": "503685216d7702a7da97712d1799cde2a77088b3",
+  "created_at": "2026-11-11T22:24:47.726145+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t69",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-02-tui",
+    "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-02-tui.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-02-tui"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0031.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0031.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0032.yaml"
+    }
+  ],
+  "status": "completed",
+  "base_before": "38326504e48e347f99b9205b6ec937187c2545ff",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_observed_commit": "f9274afe29f29f9eb00ce4469a3463b7c15c2869",
+  "review_receipt": "workflows/collect-evidence-feedback-02-tui/events/review-0026.yaml",
+  "reviewed_source_commit": "3d05a5611dae33c992d8bbd81ed265a27d23892c",
+  "reviewed_source_tree": "e758e20e8bc45d732d01028960802390d347d11b",
+  "recovery_mode": "reconcile",
+  "approval": "User selected Resolve and re-review: authorize conflict resolution against current master, preserve append-only records, validate, obtain a fresh review, then retry finish.",
+  "ownership_observation": "hc ls returned no terminal with the source worktree cwd. Prior review parent confirms child terminals removed. No terminal killed or removed in this finish attempt.",
+  "recovery_reason": "Explicit operator recovery authorized conflict resolution and fresh independent review. Merge de8615f5 reconciles master while preserving reviewed driver behavior; original implementation and fixes remain consumed provenance.",
+  "review_artifact": "workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0031.md",
+  "summary": "Accepted SUCCESS for de8615f5. Source unchanged, authoritative result and artifact verified; transport acknowledged; reviewer terminal t6b closed. Current master includes two later unrelated tracker-only commits requiring source reconciliation before Worktrunk no-rebase integration."
+}

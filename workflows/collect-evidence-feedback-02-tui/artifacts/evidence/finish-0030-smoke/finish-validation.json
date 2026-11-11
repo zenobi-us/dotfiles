@@ -1,0 +1,31 @@
+{
+  "source_commit": "de8615f5eb03069289e7d594872e5dc3dff5c325",
+  "source_tree": "503685216d7702a7da97712d1799cde2a77088b3",
+  "resolution": {
+    "versions": "Preserved newer source versions; normal commit hook advanced developer to0.2.19 and agent-core to0.1.24.",
+    "workflow": "Latest master projections and fixture mode; immutable receipt bytes preserved."
+  },
+  "checks": [
+    {
+      "command": "mise exec -- bun test workflow.test.ts verdict.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+      "result": "99 pass;0 fail;892 assertions;53.11s"
+    },
+    {
+      "command": "PATH=<existing-native-tools>/bin:$PATH RUN_NATIVE_EVIDENCE_TESTS=1 mise exec -- bun test native-workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+      "result": "28 pass;0 fail;362 assertions;63.44s"
+    },
+    {
+      "command": "PATH=<existing-native-tools>/bin:$PATH mise exec -- bun <isolated-public-smoke.ts>",
+      "cwd": "/tmp",
+      "result": "94 command exits;13 scenarios:transitionPASS,12credentialBLOCKED; hashes,pixel/spacing,screen transition,input safety,owned cleanup verified"
+    },
+    {
+      "command": "Original Details PNG inspected",
+      "result": "1280x720, distinct Details screen and purple bar observed"
+    }
+  ],
+  "initial_attempts": "Native test/smoke initially failed because provisioned foot/grim/tesseract were not on PATH. Existing provisioning record supplied the PATH; no installation or source workaround.",
+  "limits": "No compiler/LSP success claimed. No web driver runtime revalidation; neither web driver changed."
+}
