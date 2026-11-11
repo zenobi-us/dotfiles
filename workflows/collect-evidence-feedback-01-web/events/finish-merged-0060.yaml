@@ -1,0 +1,72 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-01-web",
+  "phase": "finish",
+  "attempt": 1,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "source_branch": "feature/collect-evidence-feedback-01-web",
+  "base_branch": "master",
+  "source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
+  "source_tree": "5385016678fec6057d508c1c5bb9561180afb9cc",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "herdr-app:t45",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-01-web",
+    "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-01-web"
+  },
+  "review_receipt": "review-0057",
+  "reviewed_source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
+  "reviewed_source_tree": "5385016678fec6057d508c1c5bb9561180afb9cc",
+  "base_before": "3d47cfaeb710c3e4a8b5594806c9189126d3b14f",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "a6375fd582aa2bd59560fa4516bd1906009747ff",
+  "operator_authorization": "User selected: Preserve source; use integration worktree. Authorizes temporary integration branch/worktree and exact-tree squash commit, then Worktrunk fast-forward integration.",
+  "ownership_evidence": "Current parent terminal; prior reviewer t3y closed in review-complete-0058. Source workspace absent from herdr-app ls; no source agents observed.",
+  "merged_commit": "7fd69d8b2cdf875bd4e8dfe01b7a8b6d68fc0456",
+  "merged_tree": "a6375fd582aa2bd59560fa4516bd1906009747ff",
+  "merged_parents": [
+    "3d47cfaeb710c3e4a8b5594806c9189126d3b14f"
+  ],
+  "integration_branch": "integration/collect-evidence-feedback-01-web",
+  "integration_worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-collect-evidence-feedback-01-web",
+  "receipt_id": "finish-merged-0060",
+  "parent_receipt": "finish-prepared-0059",
+  "created_at": "2026-11-11T08:10:55.698933+00:00",
+  "event": "phase-complete",
+  "checkpoint": "merged",
+  "status": "FINISHING",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/finish-prepared-0059.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0057.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/finish-merged-0060.yaml"
+    }
+  ],
+  "next_step": "integrated validation",
+  "source_unchanged": true
+}

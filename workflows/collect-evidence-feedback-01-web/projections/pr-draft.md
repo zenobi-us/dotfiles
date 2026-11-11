@@ -57,3 +57,13 @@ SUCCESS for `fc122615ba485d1059313b5b6ed54d3a459a0704`, tree `5385016678fec6057d
 
 Delivery acknowledged; reviewer t3y and its axes closed. Source/workspace preserved. Canonical ticket remains implemented. Next: finish, subject to the finish safety mapping. No merge or push was performed. The environment observation about unsolicited mise cockpit setup messages is retained in the immutable review; installation completion was not established.
 
+
+## Finish attempt finish-ticket_completed-0064
+
+Integration `7fd69d8b2cdf875bd4e8dfe01b7a8b6d68fc0456` is on `origin/master`. Ticket status is completed and published at `c3af78774fdec28b805f57fa081fe6c22e010f8e`. Reviewed source `fc122615ba485d1059313b5b6ed54d3a459a0704` was preserved unchanged. The authorized temporary integration worktree was removed.
+
+Integrated validation passed from /tmp: 90 tests, 864 assertions, and public validate for both sealed driver runs.
+
+Source cleanup was refused because a process runs in the source worktree. No process was killed. Finish is FINISH_FAILED at cleanup, not FINISHED. The source workspace was already absent from the desktop inventory.
+
+[Finish receipt](../events/finish-ticket_completed-0064.yaml). Resume only cleanup after the owning process releases the source worktree; do not repeat merge, push, or ticket completion.
