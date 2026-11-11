@@ -56,6 +56,53 @@ async function fixture() {
   return { root, context, ticket, receipt };
 }
 
+test("live startup publishes one graph read and still discovers later record changes", async () => {
+  const f = await fixture();
+  await f.ticket("A", [], "Original ticket");
+  let graphReads = 0;
+  let firstInspection = true;
+  const graph = new GraphExplorer({
+    context: f.context, exec: execute, theme, done: () => { }, requestRender: () => { }, height: () => 40,
+    commands: () => [], live: true,
+    navigation: { screen: "queues", queue: "all", focus: "list", offsets: [] },
+    loadSnapshot: async (...args) => { graphReads++; return loadExplorerSnapshot(...args); },
+    loadWorkflow: async (...args) => {
+      // Native fs.watch must run past its real debounce while the first inspection is in flight.
+      if (firstInspection) { firstInspection = false; await Bun.sleep(300); }
+      return loadTicketWorkflow(...args);
+    },
+  });
+  cleanups.push(() => graph.dispose());
+  await graph.load();
+  expect(graphReads).toBe(1);
+  await f.ticket("A", [], "Changed after startup");
+  await until(() => graphReads > 1 && graph.render(180).join("\n").includes("Changed after startup"), "post-startup record change");
+});
+
+test("reopening a cached live explorer awaits fresh records and workflow observations", async () => {
+  const f = await fixture();
+  await f.ticket("A", [], "Before closing");
+  let inspections = 0;
+  const options = {
+    context: f.context, exec: execute, theme, done: () => { }, requestRender: () => { }, height: () => 40,
+    commands: () => [], live: true,
+    loadSnapshot: loadExplorerSnapshot,
+    loadWorkflow: async (...args: Parameters<typeof loadTicketWorkflow>) => { inspections++; return loadTicketWorkflow(...args); },
+  };
+  const first = new GraphExplorer(options);
+  cleanups.push(() => first.dispose());
+  await first.load();
+  first.dispose();
+  const before = inspections;
+  await f.ticket("A", [], "Changed on disk");
+  const reopened = new GraphExplorer(options);
+  cleanups.push(() => reopened.dispose());
+  await reopened.load();
+  await reopened.handleInput("8");
+  expect(reopened.render(180).join("\n")).toContain("Changed on disk");
+  expect(inspections).toBeGreaterThan(before);
+});
+
 test("the open modal refreshes focused DAG history and discovers a new dependent outside its scope", async () => {
   const f = await fixture();
   await f.ticket("A"); await f.ticket("B", ["A"]); await f.ticket("C", ["B"]); await f.ticket("D");
@@ -81,7 +128,6 @@ test("the open modal refreshes focused DAG history and discovers a new dependent
   const files = new ContextBrowser(f.root, theme, () => { }, () => { renders++; }, f.root, execute, () => { }, () => 40);
   cleanups.push(() => files.dispose());
   const modal = new SharedContextModal(f.context, theme, graph, files, () => { renders++; });
-  await until(() => graphReads >= 2 && (counts.get("D") ?? 0) >= 2, "initial subscriptions");
   await until(() => modal.render(180).join("\n").includes("initial-A"), "selected receipt");
   const unrelatedReads = counts.get("D");
   const snapshotsBefore = graphReads;

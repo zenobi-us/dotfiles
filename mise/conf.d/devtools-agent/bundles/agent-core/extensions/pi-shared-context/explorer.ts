@@ -3,12 +3,16 @@ import { resolveContextRecord, resolveSharedContext } from "../../skills/shared-
 import { copyToClipboard, type Theme } from "@earendil-works/pi-coding-agent";
 import { matchesKey, truncateToWidth, visibleWidth, wrapTextWithAnsi, type TuiMouseEvent, type TuiMouseEventResult } from "@earendil-works/pi-tui";
 import { actionChoices } from "./actions";
-import { loadExplorerSnapshot, loadTicketWorkflow } from "../../../developer/skills/git/worktree/scripts/workflow";
+import { loadExplorerSnapshot, loadTicketWorkflow, loadExplorerAdrs } from "../../../developer/skills/git/worktree/scripts/workflow";
+import { createInspectionExecutor } from "../../../developer/skills/git/worktree/scripts/inspection-exec";
 import { isCompleted, recordKind, type Exec, type ExplorerActionChoice, type ExplorerInitiative, type ExplorerSessionRequest, type ExplorerSnapshot, type ExplorerTarget, type ExplorerTicket, type SharedAgentContext, type TicketWorkflow } from "./model";
 import { safeTerminalText } from "./terminal-text";
 import type { ExplorerEvent } from "./model";
 import { DirectoryMonitor, type WatchTarget } from "./watch";
 import { chronologicalReceipts, isUnstarted, recoveryDecision } from "../../../developer/skills/git/worktree/scripts/recovery";
+import { initiativeDag, type InitiativeDag } from "./explorer-dag";
+import { copyMode, cycleCopyMode, formatExplorerReference } from "./explorer-reference";
+import { recallSnapshot, rememberSnapshot, snapshotIdentity } from "./explorer-state";
 
 type Screen = "home" | "queues" | "initiatives" | "tickets" | "receipts" | "actions";
 type Queue = "ready" | "review" | "blocked" | "all";
@@ -24,6 +28,7 @@ export interface ExplorerNavigation {
   screen: Screen;
   initiativeId?: string;
   ticketId?: string;
+  standaloneRef?: string;
   receiptId?: string;
   eventDetail?: boolean;
   queue: Queue;
@@ -36,6 +41,7 @@ export interface ExplorerNavigation {
   initiativeMemory?: { initiativeId?: string; ticketId?: string; receiptId?: string };
   childSelections?: [string, string][];
   reader?: DescriptionReader;
+  initiativeTabs?: [string, "detail" | "dag"][];
 }
 
 export type ExplorerResult =
@@ -54,6 +60,8 @@ interface ExplorerOptions {
   navigation?: ExplorerNavigation;
   loadSnapshot?: typeof loadExplorerSnapshot;
   loadWorkflow?: typeof loadTicketWorkflow;
+  loadAdrs?: typeof loadExplorerAdrs;
+  copy?: (value: string) => void | Promise<void>;
   live?: boolean;
   contextChanged?: (context: SharedAgentContext) => void;
   projects?: () => void;
@@ -65,6 +73,7 @@ export class GraphExplorer {
   private snapshot?: ExplorerSnapshot;
   private tickets = new Map<string, ExplorerTicket>();
   private workflows = new Map<string, TicketWorkflow>();
+  private inspectingIds = new Set<string>();
   private scopes = new Map<string, string[]>();
   private ticketStates = new Map<string, string>();
   private screen: Screen;
@@ -72,6 +81,7 @@ export class GraphExplorer {
   private queue: Queue;
   private initiativeId?: string;
   private ticketId?: string;
+  private standaloneRef?: string;
   private receiptId?: string;
   private eventDetail = false;
   private homeIndex = 0;
@@ -114,6 +124,13 @@ export class GraphExplorer {
   private sourceTimer?: NodeJS.Timeout;
   private remoteTimer?: NodeJS.Timeout;
   private pollingSource = false;
+  private initiativeTabs = new Map<string, "detail" | "dag">();
+  private dagResults = new Map<string, InitiativeDag>();
+  private dagPending = new Set<string>();
+  private graphRevision = 0;
+  private validatedAt?: number;
+  private snapshotUnverified = false;
+  private checkingGraph = false;
 
   constructor(private options: ExplorerOptions) {
     options.context.checkoutAvailable ??= options.checkoutAvailable ?? true;
@@ -122,6 +139,7 @@ export class GraphExplorer {
     this.queue = navigation?.queue ?? "ready";
     this.initiativeId = navigation?.initiativeId;
     this.ticketId = navigation?.ticketId;
+    this.standaloneRef = navigation?.standaloneRef;
     this.receiptId = navigation?.receiptId;
     this.eventDetail = navigation?.eventDetail ?? false;
     this.focus = navigation?.focus ?? "list";
@@ -133,16 +151,30 @@ export class GraphExplorer {
     this.queueSelections = new Map(navigation?.queueSelections ?? []);
     this.initiativeMemory = navigation?.initiativeMemory;
     this.childSelections = new Map(navigation?.childSelections ?? []);
+    this.initiativeTabs = new Map(navigation?.initiativeTabs ?? []);
+    const cached = recallSnapshot(snapshotIdentity(options.context, options.loadSnapshot));
+    if (cached) {
+      this.snapshot = cached.snapshot;
+      this.validatedAt = cached.validatedAt;
+      this.snapshotUnverified = true;
+      this.tickets = new Map(this.snapshot.tickets.map(ticket => [ticket.id, ticket]));
+      this.scopes = new Map(this.snapshot.initiatives.map(initiative => [initiative.id, initiative.ticketIds.filter(id => this.tickets.has(id))]));
+      if (!this.standaloneRef) this.initiativeId ??= this.snapshot.initiatives[0]?.id;
+      this.ticketId ??= this.initiative()?.ticketIds[0];
+    }
   }
 
   async load(): Promise<void> {
     if (this.disposed) return;
+    this.snapshotUnverified = Boolean(this.snapshot);
+    this.checkingGraph = true;
     if (this.options.live && this.monitor) { await this.refresh(new Set(["routes"])); return; }
     if (this.options.live && !this.monitor) {
-      try { await this.startWatching(); }
+      try { await this.startWatching(); return; }
       catch (error) { this.stopWatching(); this.refreshFailed(error); }
     }
     this.pendingGraph = true;
+    this.checkingGraph = true;
     this.pendingAll = true;
     await this.drainRefresh();
   }
@@ -179,12 +211,21 @@ export class GraphExplorer {
       this.pendingIds = new Set();
       const initial = !this.snapshot;
       this.loading = initial;
+      if (graph || routes) this.checkingGraph = true;
       this.options.requestRender();
       try {
         if (routes) {
           const context = await (this.options.resolveContext?.() ?? resolveSharedContext(this.options.exec, this.options.context.repositoryRoot));
           if (!context || context.error) throw new Error(context?.error ?? "Repository context is unavailable.");
           if (this.disposed) return;
+          if (snapshotIdentity(this.options.context, this.options.loadSnapshot) !== snapshotIdentity(context, this.options.loadSnapshot)) {
+            this.snapshot = undefined;
+            this.workflows.clear();
+            this.tickets.clear();
+            this.scopes.clear();
+            this.validatedAt = undefined;
+            this.snapshotUnverified = true;
+          }
           Object.assign(this.options.context, context);
           this.options.contextChanged?.(this.options.context);
           this.scopeKey = "";
@@ -194,9 +235,17 @@ export class GraphExplorer {
           all = true;
         }
         if (graph || !this.snapshot) {
-          const snapshot = await (this.options.loadSnapshot ?? loadExplorerSnapshot)(this.options.context, this.options.exec);
+          this.checkingGraph = true;
+          const [loaded, adrs] = await Promise.all([
+            (this.options.loadSnapshot ?? loadExplorerSnapshot)(this.options.context, this.options.exec),
+            this.options.loadAdrs ? this.options.loadAdrs(this.options.context, this.options.exec)
+              : this.options.loadSnapshot ? Promise.resolve([]) : loadExplorerAdrs(this.options.context, this.options.exec),
+          ]);
+          const snapshot = structuredClone(loaded);
+          snapshot.adrs = structuredClone(adrs.length || this.options.loadAdrs || !this.options.loadSnapshot ? adrs : loaded.adrs ?? []);
           if (this.disposed) return;
           const selected = this.target();
+          const standalone = selected?.kind === "ticket" && (Boolean(this.standaloneRef) || !this.initiativeId && recordKind(selected.ticket) !== "ticket");
           const previousChildIndex = Math.max(0, this.initiative()?.ticketIds.indexOf(this.ticketId ?? "") ?? 0);
           for (const [id] of this.workflows) {
             const before = this.tickets.get(id);
@@ -204,6 +253,14 @@ export class GraphExplorer {
             if (!after || before?.ref !== after.ref || before?.backend !== after.backend || recordKind(after) !== "ticket") this.workflows.delete(id);
           }
           this.snapshot = snapshot;
+          this.validatedAt = Date.now();
+          this.snapshotUnverified = false;
+          this.checkingGraph = false;
+          this.graphRevision++;
+          this.dagResults.clear();
+          this.graphError = "";
+          this.refreshError = this.routeError;
+          rememberSnapshot(snapshotIdentity(this.options.context, this.options.loadSnapshot), snapshot, this.validatedAt);
           this.tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
           this.scopes.clear();
           for (const initiative of snapshot.initiatives) {
@@ -220,18 +277,20 @@ export class GraphExplorer {
             this.focus = "list";
           }
           if ((logicalScreen === "tickets" || logicalScreen === "receipts") && this.itemOrigin === "queues") this.initiativeId = snapshot.initiatives.find(initiative => initiative.ticketIds.includes(this.ticketId ?? ""))?.id;
+          else if (standalone) this.initiativeId = undefined;
           else if (!this.initiative() || removedInitiative) this.initiativeId = snapshot.initiatives[0]?.id;
           // A remembered child is not the active target in home or queue action menus.
-          const removedTarget = selected?.kind === "ticket" && !snapshot.tickets.some(ticket => ticket.ref === selected.ticket.ref && ticket.backend === selected.ticket.backend);
+          const removedTarget = selected?.kind === "ticket" && ![...snapshot.tickets, ...snapshot.adrs].some(ticket => ticket.ref === selected.ticket.ref && ticket.backend === selected.ticket.backend);
           if (removedTarget) {
             this.notice = "Selected item was removed. Selected a nearby item or its parent.";
             if (this.screen === "tickets" || this.screen === "receipts" || this.screen === "actions") {
-              this.screen = logicalScreen === "queues" ? "queues" : this.itemOrigin;
+              this.screen = logicalScreen === "queues" ? "queues" : standalone ? "home" : this.itemOrigin;
+              if (standalone) this.standaloneRef = undefined;
               this.focus = "list";
             }
           }
           const children = this.initiative()?.ticketIds ?? [];
-          if (initiativeView && !removedInitiative && this.ticketId && !children.includes(this.ticketId)) {
+          if (initiativeView && !standalone && !removedInitiative && this.ticketId && !children.includes(this.ticketId)) {
             this.notice = "Selected item was removed from this collection. Selected a nearby item or its parent.";
             this.screen = "initiatives";
             this.focus = "list";
@@ -264,13 +323,16 @@ export class GraphExplorer {
         this.loading = false;
         this.error = "";
         const tickets = this.snapshot!.tickets.filter(ticket => recordKind(ticket) === "ticket" && (all || ids.has(ticket.id) || !this.workflows.has(ticket.id)));
+        const inspectionExec = createInspectionExecutor(this.options.exec, this.options.context.repositoryRoot);
+        for (const ticket of tickets) { this.pendingIds.delete(ticket.id); this.inspectingIds.add(ticket.id); }
+        this.options.requestRender();
         let index = 0;
         const worker = async () => {
           while (index < tickets.length && !this.disposed) {
             const ticket = tickets[index++];
             let workflow: TicketWorkflow;
             try {
-              workflow = await (this.options.loadWorkflow ?? loadTicketWorkflow)(this.options.context, ticket, this.options.exec);
+              workflow = await (this.options.loadWorkflow ?? loadTicketWorkflow)(this.options.context, ticket, inspectionExec);
             } catch (error) {
               workflow = { ticketId: ticket.id, receipts: [], error: error instanceof Error ? error.message : String(error) };
             }
@@ -281,6 +343,7 @@ export class GraphExplorer {
               workflow = { ...previous, sourceCommit: workflow.sourceCommit, sourceTree: workflow.sourceTree, inspection: workflow.inspection, error: `History refresh failed; showing last readable history. ${workflow.error}` };
             }
             this.workflows.set(ticket.id, workflow);
+            this.inspectingIds.delete(ticket.id);
             if (ticket.id === this.ticketId && (!this.receiptId || !(workflow.events ?? workflow.receipts).some(event => event.id === this.receiptId))) {
               const removed = Boolean(this.receiptId);
               this.receiptId = (workflow.events ?? workflow.receipts)[0]?.id;
@@ -308,6 +371,7 @@ export class GraphExplorer {
         this.refreshFailed(error);
         if (routes) this.routeError = this.refreshError;
         if (graph) this.graphError = this.refreshError;
+        if (graph || routes) { this.snapshotUnverified = true; this.checkingGraph = false; }
         if (!this.snapshot) this.error = `Tracker unreadable: ${error instanceof Error ? error.message : String(error)}`;
         this.loading = false;
       }
@@ -380,6 +444,9 @@ export class GraphExplorer {
     const monitor = this.monitor;
     await this.configureTargets();
     if (this.disposed || this.monitor !== monitor) return;
+    // The monitor's first notification owns startup; a separate load repeats every inspection.
+    await monitor.start();
+    if (this.disposed || this.monitor !== monitor) return;
     this.sourceTimer = setInterval(() => { void this.pollSources(); }, 5_000);
     this.sourceTimer.unref();
     this.remoteTimer = setInterval(() => {
@@ -428,6 +495,7 @@ export class GraphExplorer {
       { key: "routes", path: join(context.candidateSharedRoot ?? context.repositoryRoot, ".context-routes.toml") },
     ];
     if (alignment.path && !(context.checkoutAvailable === false && alignment.store === "repository")) for (const file of ["issue-tracker.md", "context-layout.toml"]) targets.push({ key: "routes", path: join(alignment.path, "docs/agents", file) });
+    if (alignment.path && !(context.checkoutAvailable === false && alignment.store === "repository")) targets.push({ key: "graph", path: join(alignment.path, "docs/adr"), recursive: true, suffixes: [".md"] });
     for (const kind of ["tickets", "initiatives"] as const) {
       if (kind === "tickets" && context.routes.tickets.adapter !== "local-markdown") continue;
       const record = await resolveContextRecord(context, { kind });
@@ -435,13 +503,14 @@ export class GraphExplorer {
     }
     if (this.disposed) return;
     this.liveTargets = targets;
+    this.monitor?.setTargets(targets);
     this.updateWatchScope();
   }
 
   private updateWatchScope(): void {
     if (!this.monitor || this.disposed) return;
     const target = this.target();
-    const key = `${target?.kind}:${target?.kind === "ticket" ? target.ticket.id : target?.initiative.id}`;
+    const key = JSON.stringify(target?.kind === "ticket" ? ["ticket", target.ticket.backend, target.ticket.ref] : ["initiative", target?.initiative.ref]);
     if (key === this.scopeKey) return;
     this.scopeKey = key;
     const previous = this.focusedIds;
@@ -460,7 +529,7 @@ export class GraphExplorer {
     }
     if (this.disposed || this.scopeRevision !== revision) return;
     this.monitor?.setTargets(targets);
-    if (this.pendingIds.size) await this.drainRefresh();
+    if (this.pendingIds.size && !this.checkingGraph) await this.drainRefresh();
   }
 
   moveFocus(reverse: boolean): boolean {
@@ -503,7 +572,7 @@ export class GraphExplorer {
     const crumbs: { label: string; screen: Screen }[] = [{ label: "Initiatives", screen: "home" }];
     if (screen === "home") return crumbs;
     if (screen === "queues" || (screen === "tickets" || screen === "receipts") && this.itemOrigin === "queues") crumbs.push({ label: "Queues", screen: "queues" });
-    else crumbs.push({ label: this.initiative()?.title ?? "Initiative", screen: "initiatives" });
+    else if (this.initiative()) crumbs.push({ label: this.initiative()!.title, screen: "initiatives" });
     if (screen === "tickets" || screen === "receipts") crumbs.push({ label: this.ticketId ?? "Item", screen: "tickets" });
     if (screen === "receipts") crumbs.push({ label: "Events", screen: "receipts" });
     if (screen === "receipts" && this.eventDetail) {
@@ -593,7 +662,10 @@ export class GraphExplorer {
         this.screen = "tickets";
         focus = this.lastWidth < 70 || this.options.height() < 16 ? "detail" : "list";
       }
-      else if (this.screen === "tickets") this.screen = this.itemOrigin;
+      else if (this.screen === "tickets") {
+        if (!this.initiative() && this.itemOrigin === "initiatives") this.returnHome();
+        else this.screen = this.itemOrigin;
+      }
       else if (this.screen === "initiatives" || this.screen === "queues") this.returnHome();
       else { if (matchesKey(data, "escape") && this.options.projects) this.options.projects(); else this.options.done(undefined); return; }
       this.focus = focus;
@@ -602,8 +674,27 @@ export class GraphExplorer {
       return;
     }
     if (this.loading || this.error || !this.snapshot) return;
+    if (data === "C" || matchesKey(data, "shift+c")) {
+      cycleCopyMode();
+      this.notice = `Copy mode: ${copyMode() === "reference" ? "Reference" : copyMode()} · c selected record · i initiative`;
+      this.options.requestRender();
+      return;
+    }
+    if (matchesKey(data, "i") && !this.reader && this.screen !== "actions") {
+      const selected = this.screen === "home" ? this.target() : undefined;
+      const initiative = this.screen === "home" ? selected?.kind === "initiative" ? selected.initiative : undefined
+        : this.screen !== "queues" && this.itemOrigin === "initiatives" ? this.initiative() : undefined;
+      if (initiative && !initiative.group) void this.copyRecord({ kind: "initiative", initiative });
+      return;
+    }
+    if (matchesKey(data, "v") && this.screen === "initiatives" && !this.reader && this.initiativeId) {
+      this.initiativeTabs.set(this.initiativeId, this.initiativeTab() === "detail" ? "dag" : "detail");
+      this.focus = "list";
+      this.options.requestRender();
+      return;
+    }
     if (matchesKey(data, "c") && !this.reader && this.screen !== "actions") {
-      void this.copyPath();
+      void this.copyRecord(this.copyTarget());
       return;
     }
     if (this.screen === "home" || this.screen === "queues") {
@@ -652,7 +743,7 @@ export class GraphExplorer {
     }
     if (matchesKey(data, "up") || matchesKey(data, "down")) {
       const delta = matchesKey(data, "up") ? -1 : 1;
-      if (this.focus === "detail") {
+      if (this.focus === "detail" || this.screen === "initiatives" && this.initiativeTab() === "dag" || this.screen === "tickets" && this.standaloneRef) {
         const pane = this.focusedPane(this.panes());
         if (pane) this.offsets.set(pane.id, Math.max(0, (this.offsets.get(pane.id) ?? 0) + delta));
       } else if (this.screen === "actions") {
@@ -698,6 +789,7 @@ export class GraphExplorer {
       } else if (this.screen === "home") {
         const target = this.homeRows()[this.homeIndex]?.target;
         if (target?.kind === "initiative") {
+          this.standaloneRef = undefined;
           this.initiativeId = target.initiative.id;
           const saved = this.childSelections.get(this.initiativeId);
           this.itemOrigin = "initiatives";
@@ -705,16 +797,25 @@ export class GraphExplorer {
           this.screen = "initiatives";
           focus = "list";
         }
+        else if (target?.kind === "ticket") {
+          this.ticketId = target.ticket.id;
+          this.standaloneRef = target.ticket.documentType?.toLowerCase() === "adr" ? target.ticket.ref : undefined;
+          this.initiativeId = undefined;
+          this.itemOrigin = "initiatives";
+          this.screen = "tickets";
+          focus = compact ? "detail" : "list";
+        }
       } else if (this.screen === "queues") {
         const target = this.queueRows()[this.queueIndex]?.target;
         if (target?.kind === "ticket") {
+          this.standaloneRef = undefined;
           this.ticketId = target.ticket.id;
           this.itemOrigin = "queues";
           this.initiativeId = this.snapshot.initiatives.find(initiative => initiative.ticketIds.includes(target.ticket.id))?.id;
           this.screen = "tickets";
           focus = compact ? "detail" : "list";
         }
-      } else if (this.screen === "initiatives" && this.ticket()) {
+      } else if (this.screen === "initiatives" && this.initiativeTab() === "detail" && this.ticket()) {
         this.itemOrigin = "initiatives";
         this.screen = "tickets";
         focus = compact ? "detail" : "list";
@@ -779,9 +880,14 @@ export class GraphExplorer {
         : "No checkout: context is readable; actions are disabled."
       : "";
     const summary = this.screen === "initiatives" ? this.initiative()?.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line)) : undefined;
-    const status = this.error || this.refreshError || this.notice || this.workflow()?.error || (this.loading ? "Loading tracker…" : checks) || unavailable || (summary ? `Summary: ${summary}` : target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
-    const copyHint = this.screen !== "actions" && this.copyTarget() ? "c copy path · " : "";
-    const keys = copyHint + (compact ? "Esc back  Enter open  Tab focus  R reload" : this.screen === "home" || this.screen === "queues" ? "5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back" : "Esc back · Enter drill · ↑↓ move · Tab/Shift+Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh");
+    const detailStatus = this.error || this.refreshError || this.notice || this.workflow()?.error || (this.loading ? "Loading tracker…" : checks) || unavailable || (summary ? `Summary: ${summary}` : target?.kind === "ticket" ? `${target.ticket.ref} · ${this.ticketState(target.ticket)}` : target?.kind === "initiative" ? target.initiative.ref : "No selection");
+    const freshness = this.snapshotUnverified ? this.checkingGraph ? "Cached · unverified · checking" : "Cached · unverified"
+      : this.checkingGraph ? "Checking records" : this.validatedAt ? `Last validated ${new Date(this.validatedAt).toISOString().slice(11, 19)} UTC` : "";
+    const status = freshness ? `${freshness} · ${detailStatus}` : detailStatus;
+    const copyTarget = this.copyTarget();
+    const fileBacked = copyTarget?.kind === "ticket" ? copyTarget.ticket.backend === "local-markdown" : copyTarget?.kind === "initiative" && (!/^[A-Za-z][A-Za-z0-9+.-]*:/.test(copyTarget.initiative.ref) || copyTarget.initiative.ref.startsWith("shared://"));
+    const copyHint = this.screen !== "actions" ? `${copyTarget ? `c ${copyMode() === "reference" ? "Reference" : copyMode()} ${copyMode() === "path" && !fileBacked ? "unavailable" : this.screen === "initiatives" && this.initiativeTab() === "detail" ? "child" : "record"} · ` : ""}C mode · ${this.screen === "initiatives" && !this.initiative()?.group ? "i initiative · " : ""}` : "";
+    const keys = copyHint + (compact ? "Esc back · Enter open · Tab focus · R reload" : this.screen === "home" || this.screen === "queues" ? "5 Ready 6 Review 7 Blocked 8 All queues · Enter open · a actions · R refresh · Esc back" : "Esc back · Enter drill · ↑↓ move · Tab focus · PgUp/Dn scroll · a actions · h initiatives · R refresh");
     if (compact) {
       if (control) this.controlHits.push({ x: 0, y: 1, width: visibleWidth(control), action: "description" });
       return [breadcrumb, ...(control ? [control] : []), ...eventSummary, join(headers), ...body, th.fg(this.error || this.refreshError ? "error" : "muted", truncateToWidth(this.clean(status), width)), th.fg("muted", truncateToWidth(keys, width))].map(line => truncateToWidth(line, width));
@@ -804,7 +910,7 @@ export class GraphExplorer {
     if (!this.reader) return;
     return this.reader.kind === "initiative"
       ? this.snapshot?.initiatives.find(item => item.ref === this.reader!.ref)
-      : this.snapshot?.tickets.find(item => item.ref === this.reader!.ref);
+      : [...(this.snapshot?.tickets ?? []), ...(this.snapshot?.adrs ?? [])].find(item => item.ref === this.reader!.ref);
   }
 
   private descriptionControl(width: number): string {
@@ -870,7 +976,7 @@ export class GraphExplorer {
       th.fg("accent", truncateToWidth(this.clean(`${this.active && this.focus === "detail" ? ">" : " "} ${record?.title ?? "Record"} · Description`), inner)),
       ...lines,
       th.fg("accent", truncateToWidth(controls, inner)),
-      th.fg(this.refreshError ? "error" : "muted", truncateToWidth(this.refreshError ? "Description unreadable · last readable body" : "↑↓ scroll · PgUp/Dn page · Esc return", inner)),
+      th.fg(this.refreshError ? "error" : this.snapshotUnverified || this.checkingGraph ? "warning" : "muted", truncateToWidth(this.refreshError ? "Description unreadable · last readable body" : this.snapshotUnverified ? "Cached description · unverified · checking" : this.checkingGraph ? "Checking records · last validated description" : "↑↓ scroll · PgUp/Dn page · Esc return", inner)),
     ].map(line => th.fg("border", "│") + this.pad(line, inner) + th.fg("border", "│"));
   }
 
@@ -903,8 +1009,8 @@ export class GraphExplorer {
     }
     if (this.screen === "home") return [{ id: "home", title: "Initiatives · title / phase / Items", rows: this.homeRows().map((row, index) => ({ ...row, selected: index === this.homeIndex })) }];
     if (this.screen === "queues") return [{ id: `queue:${this.queue}`, title: `Ticket queues · ${this.queue}`, rows: this.queueRows().map((row, index) => ({ ...row, selected: index === this.queueIndex })) }];
-    if (this.screen === "initiatives") return [this.graphPane()];
-    if (this.screen === "tickets") return [this.graphPane(), { id: `ticket:${this.ticketId}`, title: this.ticket() && recordKind(this.ticket()!) !== "ticket" ? `${this.ticketType(this.ticket()!)} / recorded details` : "Ticket / dependencies / receipts", rows: this.ticketRows() }];
+    if (this.screen === "initiatives") return [this.initiativeTab() === "dag" ? this.dagPane() : this.graphPane()];
+    if (this.screen === "tickets") return [...(this.initiative() || this.ticket() && recordKind(this.ticket()!) === "ticket" ? [this.graphPane()] : []), { id: `ticket:${this.standaloneRef ?? this.ticketId}`, title: this.ticket() && recordKind(this.ticket()!) !== "ticket" ? `${this.ticketType(this.ticket()!)} / recorded details` : "Ticket / dependencies / receipts", rows: this.ticketRows() }];
     if (this.eventDetail) return [{ id: `receipt:${this.ticketId}:${this.selectedEvent()?.id ?? "none"}`, title: "Event detail · outcome / body / exact evidence", rows: this.eventRows() }];
     const workflow = this.workflow();
     const events = this.history();
@@ -978,10 +1084,14 @@ export class GraphExplorer {
 
   private homeRows(): Row[] {
     if (!this.snapshot) return [];
-    return this.snapshot.initiatives.map(initiative => ({
-      text: "", target: { kind: "initiative", initiative },
-      fields: { title: initiative.title, identity: initiative.group ? "Collection" : initiative.id, state: initiative.phase ?? "unavailable", count: initiative.ticketIds.length, supporting: `Progress: ${this.initiativeProgress(initiative)}` },
-    }));
+    return [
+      ...this.snapshot.initiatives.map(initiative => ({
+        text: "", target: { kind: "initiative" as const, initiative },
+        fields: { title: initiative.title, identity: initiative.group ? "Collection" : initiative.id, state: initiative.phase ?? "unavailable", count: initiative.ticketIds.length, supporting: `Progress: ${this.initiativeProgress(initiative)}` },
+      })),
+      ...this.snapshot.tickets.filter(ticket => recordKind(ticket) !== "ticket" && !this.snapshot!.initiatives.some(initiative => initiative.ticketIds.includes(ticket.id))).map(ticket => this.childRow(ticket, false)),
+      ...(this.snapshot.adrs ?? []).map(ticket => this.childRow(ticket, false)),
+    ];
   }
 
   private initiativeProgress(initiative: ExplorerInitiative): string {
@@ -994,21 +1104,17 @@ export class GraphExplorer {
 
   private copyTarget(): ExplorerTarget | undefined {
     const target = this.target();
-    if (target?.kind === "initiative") return this.snapshot?.backend === "local-markdown" && !target.initiative.group ? target : undefined;
-    return target?.ticket.backend === "local-markdown" ? target : undefined;
+    if (target?.kind === "initiative" && target.initiative.group) return;
+    return target;
   }
 
-  private async copyPath(): Promise<void> {
-    const target = this.copyTarget();
+  private async copyRecord(target: ExplorerTarget | undefined): Promise<void> {
     if (!target) return;
+    const mode = copyMode();
     try {
-      const record = await resolveContextRecord(this.options.context, target.kind === "initiative"
-        ? { kind: "initiative", id: target.initiative.id }
-        : { kind: "ticket", id: target.ticket.id });
-      if (!record.path || record.store === "repository" && this.options.context.checkoutAvailable === false) throw new Error("No usable checkout for this path.");
-      const path = target.kind === "initiative" ? join(record.path, "index.md") : record.path;
-      await copyToClipboard(path);
-      this.notice = `Copied path: ${path}`;
+      const value = await formatExplorerReference(this.options.context, target, mode);
+      await (this.options.copy ?? copyToClipboard)(value);
+      this.notice = `Copied ${mode === "reference" ? "Reference" : mode}: ${value}`;
     } catch (error) {
       this.notice = `Copy failed: ${error instanceof Error ? error.message : String(error)}`;
     }
@@ -1028,7 +1134,7 @@ export class GraphExplorer {
         const row = this.childRow(ticket, false);
         const workflow = this.workflows.get(ticket.id);
         const choices = actionChoices({ kind: "ticket", ticket }, this.snapshot, workflow, this.options.commands());
-        const reason = this.options.context.checkoutAvailable === false ? "No usable checkout." : this.refreshError || (this.refreshing || this.pendingRoutes || this.pendingGraph || this.pendingIds.size ? "Refreshing workflow state." : "");
+        const reason = this.options.context.checkoutAvailable === false ? "No usable checkout." : this.refreshError || (this.snapshotUnverified || this.checkingGraph || this.pendingRoutes || this.pendingGraph || this.inspectingIds.has(ticket.id) || this.pendingIds.has(ticket.id) ? "Refreshing workflow state." : "");
         const decision = recoveryDecision(ticket, this.snapshot, workflow);
         const next = choices.find(choice => choice.action === decision.action);
         row.fields!.next = reason ? `Unavailable: ${reason}` : next?.disabledReason ? `Unavailable: ${next.disabledReason}` : decision.label;
@@ -1047,8 +1153,36 @@ export class GraphExplorer {
       text: "", selected, target: { kind: "ticket", ticket },
       fields: {
         title: ticket.title, identity: ticket.id, type: this.ticketType(ticket), state: ticket.status || "unavailable",
-        supporting: recordKind(ticket) === "ticket" && blockers.length ? `Waiting for ${blockers.join(", ")}` : this.workflows.get(ticket.id)?.error ? "Workflow warning · Enter to inspect details" : ticket.ref
+        supporting: recordKind(ticket) === "ticket" && blockers.length ? `Waiting for ${blockers.join(", ")}` : recordKind(ticket) === "ticket" && this.workflows.get(ticket.id)?.error ? "Workflow warning · Enter to inspect details" : ticket.ref
       },
+    };
+  }
+
+  private initiativeTab(): "detail" | "dag" {
+    return this.initiativeTabs.get(this.initiativeId ?? "") ?? "detail";
+  }
+
+  private dagPane(): Pane {
+    const initiative = this.initiative();
+    const key = `${this.graphRevision}:${initiative?.id}`;
+    const result = this.dagResults.get(key);
+    if (initiative && this.snapshot && !result && !this.dagPending.has(key)) {
+      this.dagPending.add(key);
+      void initiativeDag(initiative, this.snapshot).then(result => {
+        this.dagResults.set(key, result);
+      }, error => {
+        this.dagResults.set(key, { text: "", error: error instanceof Error ? error.message : String(error) });
+      }).finally(() => {
+        this.dagPending.delete(key);
+        if (!this.disposed) this.options.requestRender();
+      });
+    }
+    return {
+      id: `${result ? "dag" : "dag-loading"}:${initiative?.id}`, title: "[v] Detail / >DAG<",
+      rows: [
+        ...(result?.error ? [{ text: result.error, tone: "error" as const }] : []),
+        ...(result ? result.text.split("\n").map(text => ({ text })) : [{ text: "Building dependency DAG…", tone: "muted" as const }]),
+      ],
     };
   }
 
@@ -1063,7 +1197,7 @@ export class GraphExplorer {
       const summary = initiative.body.split(/\r?\n/).map(line => line.trim()).find(line => line && !/^#|^\s*[-*]\s*\[/.test(line));
       rows.unshift({ text: `${initiative.id} · Phase: ${initiative.phase ?? "unavailable"}`, tone: "accent" }, { text: `Summary: ${summary ?? "No recorded summary."}`, tone: "muted" });
     }
-    return { id: `${this.screen === "initiatives" ? "children" : "graph"}:${this.initiativeId}`, title: `${initiative?.id ?? "Ungrouped"} · Items ${initiative?.ticketIds.length ?? 0}`, rows };
+    return { id: `${this.screen === "initiatives" ? "children" : "graph"}:${this.initiativeId}`, title: `${this.screen === "initiatives" ? "[v] >Detail< / DAG · " : ""}${initiative?.id ?? "Ungrouped"} · Items ${initiative?.ticketIds.length ?? 0}`, rows };
   }
 
   private ticketRows(): Row[] {
@@ -1121,8 +1255,14 @@ export class GraphExplorer {
     const target = this.target();
     if (target?.kind === "initiative" && target.initiative.group) return [];
     const choices = target && this.snapshot ? actionChoices(target, this.snapshot, target.kind === "ticket" ? this.workflows.get(target.ticket.id) : undefined, this.options.commands()) : [];
-    const reason = this.options.context.checkoutAvailable === false ? "No usable checkout. Open this project from a checkout to run actions." : this.refreshError || (this.refreshing || this.pendingRoutes || this.pendingGraph || this.pendingIds.size ? "Refreshing workflow state; wait before a worktree transition." : "");
-    return reason ? choices.map(choice => this.options.context.checkoutAvailable !== false && choice.action === "ask-matt" ? choice : { ...choice, disabledReason: reason }) : choices;
+    const checkout = this.options.context.checkoutAvailable === false ? "No usable checkout. Open this project from a checkout to run actions." : "";
+    const selectedPending = target?.kind === "ticket" && (this.inspectingIds.has(target.ticket.id) || this.pendingIds.has(target.ticket.id));
+    const reason = this.refreshError || (this.snapshotUnverified || this.checkingGraph || this.pendingRoutes || this.pendingGraph || selectedPending ? "Refreshing workflow state; wait before a worktree transition." : "");
+    return choices.map(choice => {
+      const planning = ["ask-matt", "to-tickets", "grill", "prototype"].includes(choice.action);
+      return choice.disabledReason ? choice : checkout ? { ...choice, disabledReason: checkout }
+        : !planning && reason ? { ...choice, disabledReason: reason } : choice;
+    });
   }
 
   private chooseAction(choice: ExplorerActionChoice | undefined): void {
@@ -1154,6 +1294,10 @@ export class GraphExplorer {
   private target(): ExplorerTarget | undefined {
     if (this.screen === "home" || this.screen === "actions" && this.returnScreen === "home") return this.homeRows()[this.homeIndex]?.target;
     if (this.screen === "queues" || this.screen === "actions" && this.returnScreen === "queues") return this.queueRows()[this.queueIndex]?.target;
+    if ((this.screen === "initiatives" || this.screen === "actions" && this.returnScreen === "initiatives") && this.initiativeTab() === "dag") {
+      const initiative = this.initiative();
+      return initiative ? { kind: "initiative", initiative } : undefined;
+    }
     const ticket = this.ticket();
     return ticket ? { kind: "ticket", ticket } : undefined;
   }
@@ -1163,6 +1307,7 @@ export class GraphExplorer {
   }
 
   private ticket(): ExplorerTicket | undefined {
+    if (this.standaloneRef) return this.snapshot?.adrs?.find(ticket => ticket.ref === this.standaloneRef);
     return this.ticketId ? this.tickets.get(this.ticketId) : undefined;
   }
 
@@ -1177,7 +1322,7 @@ export class GraphExplorer {
   }
 
   private navigation(): ExplorerNavigation {
-    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, receiptId: this.receiptId, eventDetail: this.eventDetail, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader, queueSelections: [...this.queueSelections], initiativeMemory: this.initiativeMemory, childSelections: [...this.childSelections] };
+    return { screen: this.screen === "actions" ? this.returnScreen : this.screen, initiativeId: this.initiativeId, ticketId: this.ticketId, standaloneRef: this.standaloneRef, receiptId: this.receiptId, eventDetail: this.eventDetail, queue: this.queue, focus: this.screen === "actions" ? this.returnFocus : this.focus, offsets: [...this.offsets], homeIndex: this.homeIndex, queueIndex: this.queueIndex, itemOrigin: this.itemOrigin, reader: this.reader, queueSelections: [...this.queueSelections], initiativeMemory: this.initiativeMemory, childSelections: [...this.childSelections], initiativeTabs: [...this.initiativeTabs] };
   }
 
   private focusedPane(panes: Pane[]): Pane | undefined {
@@ -1188,7 +1333,7 @@ export class GraphExplorer {
     const expanded = pane.rows.flatMap(row => {
       const lines = row.event ? this.eventLines(row.event, Math.max(1, width - 1))
         : row.fields ? this.fieldLines(row.fields, Math.max(1, width - 1))
-        : wrapTextWithAnsi(this.clean(row.text), Math.max(1, width - 1));
+          : wrapTextWithAnsi(this.clean(row.text), Math.max(1, width - 1));
       const expanded = lines.map((text, index) => ({ ...row, text, styled: !!(row.event || row.fields), first: index === 0 }));
       const spaced = row.fields || row.event || row.selected || pane.id.startsWith("ticket:") || pane.id.startsWith("receipt:");
       return spaced ? [...expanded, { text: "", styled: false, first: false }] : expanded;
@@ -1274,7 +1419,7 @@ export class GraphExplorer {
 
 export function focusedTicketIds(snapshot: ExplorerSnapshot | undefined, target: ExplorerTarget | undefined): Set<string> {
   const included = new Set<string>();
-  if (!snapshot || !target) return included;
+  if (!snapshot || !target || target.kind === "ticket" && recordKind(target.ticket) !== "ticket") return included;
   const tickets = new Map(snapshot.tickets.filter(ticket => recordKind(ticket) === "ticket").map(ticket => [ticket.id, ticket]));
   if (target.kind === "initiative") {
     const visit = (id: string) => {

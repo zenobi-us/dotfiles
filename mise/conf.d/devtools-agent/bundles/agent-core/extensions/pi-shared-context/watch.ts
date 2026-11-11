@@ -18,7 +18,7 @@ export class DirectoryMonitor {
   private timer?: NodeJS.Timeout;
   private interval: NodeJS.Timeout;
   private firstEvent = 0;
-  private running = false;
+  private reconciling?: Promise<void>;
   private pending = false;
   private disposed = false;
   private revision = 0;
@@ -41,6 +41,12 @@ export class DirectoryMonitor {
     this.schedule();
   }
 
+  /** Installs subscriptions and awaits their initial refresh before the caller loads again. */
+  start(): Promise<void> {
+    clearTimeout(this.timer);
+    return this.reconcile();
+  }
+
   dispose(): void {
     this.disposed = true;
     clearInterval(this.interval);
@@ -58,11 +64,15 @@ export class DirectoryMonitor {
     this.timer.unref();
   }
 
-  private async reconcile(): Promise<void> {
+  private reconcile(): Promise<void> {
+    if (this.disposed) return Promise.resolve();
+    if (this.reconciling) { this.pending = true; return this.reconciling; }
+    this.reconciling = this.readChanges().finally(() => { this.reconciling = undefined; });
+    return this.reconciling;
+  }
+
+  private async readChanges(): Promise<void> {
     this.firstEvent = 0;
-    if (this.disposed) return;
-    if (this.running) { this.pending = true; return; }
-    this.running = true;
     try {
       do {
         this.pending = false;
@@ -117,8 +127,6 @@ export class DirectoryMonitor {
       } while (this.pending && !this.disposed);
     } catch (error) {
       if (!this.disposed) this.failed(error);
-    } finally {
-      this.running = false;
     }
   }
 }
@@ -136,7 +144,7 @@ function relevant(target: WatchTarget, path: string): boolean {
 }
 
 async function existingDirectory(path: string): Promise<string> {
-  for (;;) {
+  for (; ;) {
     try {
       if ((await stat(path)).isDirectory()) return path;
     } catch (error) {

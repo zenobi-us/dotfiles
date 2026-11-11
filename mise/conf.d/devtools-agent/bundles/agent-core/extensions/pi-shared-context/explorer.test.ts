@@ -416,8 +416,10 @@ test("hosted initiatives do not offer a fabricated local canonical path", async 
   const f = await fixture(data);
   try {
     const before = f.view();
-    expect(before).not.toContain("c copy path");
+    expect(before).toContain("path unavailable");
     await f.modal.handleInput("c");
-    expect(f.view()).toBe(before);
+    await Promise.resolve();
+    expect(f.view()).toContain("no local path");
+    expect(f.view()).not.toContain("/fixture/project/tracker/initiatives");
   } finally { f.component.dispose(); }
 });
