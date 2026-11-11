@@ -150,6 +150,7 @@ const contractsCmd = app
             (agent === "unknown-agent" && !flags.agent),
         },
         null,
+        null,
         2,
       ),
     );
