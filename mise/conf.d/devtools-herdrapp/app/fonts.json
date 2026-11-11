@@ -1,0 +1,17 @@
+[
+  {
+    "file": "RobotoMono.ttf",
+    "url": "https://raw.githubusercontent.com/google/fonts/aa24661a5ba24c8f8a550a16fb13198719fc2c23/ofl/robotomono/RobotoMono%5Bwght%5D.ttf",
+    "sha256": "66a80e79d17e4c7cabd162e2916578a4cc08fd19eef6e2a643305eae9c567b2b"
+  },
+  {
+    "file": "RobotoMono-Italic.ttf",
+    "url": "https://raw.githubusercontent.com/google/fonts/aa24661a5ba24c8f8a550a16fb13198719fc2c23/ofl/robotomono/RobotoMono-Italic%5Bwght%5D.ttf",
+    "sha256": "49ac343bb7b070071e53f0a8a501d68d140ed98ebd0a43b6b8fb96cf22f09ff7"
+  },
+  {
+    "file": "RobotoMono-OFL.txt",
+    "url": "https://raw.githubusercontent.com/google/fonts/aa24661a5ba24c8f8a550a16fb13198719fc2c23/ofl/robotomono/OFL.txt",
+    "sha256": "50ab8dd54680d3473f649c9db86fece88434d097c7834475c1c72d2f8c429215"
+  }
+]
