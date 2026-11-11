@@ -1,0 +1,53 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "c2135fa5e78208c39e18e49eaa95ba0128f936e7",
+  "source_tree": "b52dae2fbcb6198342f30cc361b974d605e83b56",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "receipt_id": "finish-approval-0011",
+  "created_at": "2026-11-11T20:40:28.253407+00:00",
+  "session_id": "hc:t5k",
+  "pane_id": null,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-approval-0011.json"
+    }
+  ],
+  "phase": "finish",
+  "event": "operator-approval",
+  "status": "approved",
+  "attempt": 0,
+  "parent_receipt": "finish-0010",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-0010.yaml"
+    }
+  ],
+  "recovery_mode": "reconcile",
+  "ownership_approval": "User selected Reconcile and resolve conflicts: verify prior integration and ownership; resolve source conflicts, obtain fresh independent review, then finish.",
+  "reconciliation": {
+    "prior_owner": "hc get t4d: exit_code 129, finished_ms 1794384578688; t46 not found; live inventory has no source-worktree agent",
+    "integration": "master and remote master at 2abfeffa812b63f1e0a3ff2ee523cbed40cde3e9; no history for skill-contracts/scripts/contracts.ts on master; prior attempt stopped at prepare with null merged_commit",
+    "reservations": "workflow collection has only goal-pi-shared-context-tui-ux-spec, unrelated initiative; no goal for this ticket",
+    "source": "unchanged clean c2135fa5e78208c39e18e49eaa95ba0128f936e7"
+  }
+}

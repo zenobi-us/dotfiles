@@ -1,0 +1,57 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "c2135fa5e78208c39e18e49eaa95ba0128f936e7",
+  "source_tree": "b52dae2fbcb6198342f30cc361b974d605e83b56",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "receipt_id": "start-reconcile-0012",
+  "created_at": "2026-11-11T20:41:28.847686+00:00",
+  "session_id": "hc:t5k",
+  "pane_id": null,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/start-reconcile-0012.json"
+    }
+  ],
+  "phase": "start",
+  "event": "phase-start",
+  "status": "started",
+  "attempt": 3,
+  "parent_receipt": "finish-approval-0011",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/finish-approval-0011.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/implementation-0005.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-0008.yaml"
+    }
+  ],
+  "recovery_mode": "takeover",
+  "recovery_reason": "Explicit user approval authorizes source conflict reconciliation followed by fresh independent review and finish. Prior finish stopped before merge; source unchanged; prior owner exited; no live source owner.",
+  "ownership_approval": "User selected Reconcile and resolve conflicts: verify prior integration and ownership; resolve source conflicts, obtain fresh independent review, then finish.",
+  "base_before": "2abfeffa812b63f1e0a3ff2ee523cbed40cde3e9"
+}
