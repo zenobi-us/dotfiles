@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, realpathSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { homedir, tmpdir } from "node:os";
 import { dirname, isAbsolute, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -59,7 +59,10 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
   let directory: string | undefined;
   try {
     const stateRoot = process.env.XDG_STATE_HOME || join(homedir(), ".local", "state");
-    const deliveryDirectory = resolve(stateRoot, "result-delivery", "runs", run.runId);
+    const allocatedDirectory = resolve(stateRoot, "result-delivery", "runs", run.runId);
+    mkdirSync(allocatedDirectory, { recursive: true, mode: 0o700 });
+    // Canonicalize our spool before assignment; delivery rejects symlinked parents.
+    const deliveryDirectory = realpathSync(allocatedDirectory);
     const operationId = options.operationId ?? run.runId;
     const resultPath = options.resultTarget ?? join(deliveryDirectory, "result.json");
     const deliveryContext = parseDeliveryContext({
@@ -76,7 +79,6 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
       },
     });
     const contextFile = join(deliveryDirectory, "context.json");
-    mkdirSync(deliveryDirectory, { recursive: true, mode: 0o700 });
     writeFileSync(contextFile, `${JSON.stringify(deliveryContext)}\n`, { mode: 0o600, flag: "wx" });
     const environment: Record<string, string> = {
       RESULT_DELIVERY_CONTEXT: contextFile,

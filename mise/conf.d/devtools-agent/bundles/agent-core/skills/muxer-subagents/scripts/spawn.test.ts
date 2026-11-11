@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createServer } from "node:net";
@@ -313,6 +313,23 @@ if (args[0] === "ls") {
     await removeRun(spawned.runId);
     expect(existsSync(spawned.contextFile)).toBe(true);
     expect((await readDeliveredResult(spawned.deliveryContext)).result).toEqual(result);
+  });
+
+  test("default handoffs remain deliverable through a symlinked state directory", async () => {
+    const actual = join(root, "actual-state");
+    mkdirSync(actual);
+    const alias = join(root, "state-alias");
+    symlinkSync(actual, alias);
+    process.env.XDG_STATE_HOME = alias;
+    prepareFakeAgent();
+    const spawned = await spawnAgent({
+      muxer: "herdr", agent: "claude", prompt: "produce result", cwd: root, depth: 1,
+      resultSchema: "test-result/v1",
+    });
+    expect((await readDeliveredResult(spawned.deliveryContext)).result).toEqual({
+      schema: "test-result/v1", status: "failed", checks: ["domain failure"],
+    });
+    await removeRun(spawned.runId);
   });
 
   test("requires a schema and paired custom target and reference before launching", async () => {

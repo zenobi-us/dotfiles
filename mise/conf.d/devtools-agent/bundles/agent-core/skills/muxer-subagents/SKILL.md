@@ -78,7 +78,7 @@ The command prints a JSON record with `runId`, muxer, agent, target identifier, 
 
 - `--result-schema` is required for the formal typed handoff. Use the domain operation's existing result schema.
 - `--result-target` and `--result-ref` must be supplied together. The target must be absolute and its parent directory must already exist.
-- Without a custom target, the router allocates `$XDG_STATE_HOME/result-delivery/runs/<runId>/result.json`, with a file URI reference. The fallback state root is `~/.local/state`.
+- Without a custom target, the router allocates `$XDG_STATE_HOME/result-delivery/runs/<runId>/result.json`, with a file URI reference. The fallback state root is `~/.local/state`. The router resolves its own spool directory to its real path before assigning the context and default target. This supports symlinked home or state directories without relaxing delivery’s no-symlink checks. Caller-assigned target paths and references remain unchanged.
 - `--operation-id` defaults to the child run ID.
 - Before launch, the router writes an artifact-reference context and passes `RESULT_DELIVERY_CONTEXT`, `MUXER_SUBAGENT_RUN_ID`, and the explicit child role through every muxer path. It also passes `MUXER_SUBAGENT_PARENT_RUN_ID` when the incoming run identity is known. Herdr TUI receives these values through tab `--env` flags. The desktop route passes them as `env` arguments in a new tab.
 - The child uses its existing operation CLI or the shared result-delivery library. Do not add a second reporting CLI. Read the `result-delivery` skill for the delivery protocol.
