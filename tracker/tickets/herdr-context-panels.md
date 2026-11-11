@@ -74,3 +74,7 @@ The actual bundle manifests and marketplace entries match. `agent-core` is `0.1.
 
 Other work remains outside these commits. The ticket remains claimed until merge and push succeed.
 
+
+### Independent review — review-0008
+
+Verdict: FAILURE. Reviewed commit: `fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c`. Timestamp: `2026-11-11T22:14:38.698Z`. [Immutable review](../../workflows/herdr-context-panels/artifacts/reviews/review-review-0008.md). The ticket remains claimed. Current implementation path: `mise/conf.d/devtools-herdrapp/app/`.
