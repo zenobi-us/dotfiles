@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "skill-contract-manifest/v1",
+  "title": "Skill contract manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "produces", "accepts", "contracts", "upgrades"],
+  "properties": {
+    "schemaVersion": { "const": "skill-contract-manifest/v1" },
+    "sourceRepository": { "type": "string", "minLength": 1 },
+    "produces": { "$ref": "#/definitions/identifiers" },
+    "accepts": { "$ref": "#/definitions/identifiers" },
+    "contracts": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/definitions/identifier" },
+      "additionalProperties": { "$ref": "#/definitions/reference" }
+    },
+    "upgrades": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from", "to", "procedure"],
+        "properties": {
+          "from": { "$ref": "#/definitions/identifier" },
+          "to": { "$ref": "#/definitions/identifier" },
+          "procedure": { "$ref": "#/definitions/reference" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "identifier": { "type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*/v[1-9][0-9]*(?![\\s\\S])" },
+    "identifiers": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/definitions/identifier" } },
+    "reference": { "type": "string", "minLength": 1 }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": [
+    "example-record/v2"
+  ],
+  "accepts": [
+    "example-record/v1"
+  ],
+  "contracts": {
+    "example-record/v1": "file:record-v1.schema.json",
+    "example-record/v2": "file:record-v2.schema.json"
+  },
+  "upgrades": [
+    {
+      "from": "example-record/v1",
+      "to": "example-record/v2",
+      "procedure": "file:upgrade.txt"
+    }
+  ]
+}

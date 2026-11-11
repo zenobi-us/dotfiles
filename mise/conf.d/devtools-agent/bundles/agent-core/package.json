@@ -11,6 +11,7 @@
     "@crustjs/plugins": "^0.1.2",
     "@earendil-works/pi-coding-agent": ">=1.1.0",
     "@earendil-works/pi-tui": ">=1.1.0",
+    "ajv": "^8.17.1",
     "turndown": "^7.2.4",
     "turndown-plugin-gfm": "^1.0.2"
   },

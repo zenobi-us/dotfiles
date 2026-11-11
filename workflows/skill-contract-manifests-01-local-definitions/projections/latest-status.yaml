@@ -1,9 +1,14 @@
 schema: worktree-latest-status/v1
 workflow_id: skill-contract-manifests-01-local-definitions
 ticket: tracker/tickets/skill-contract-manifests-01-local-definitions.md
-state: REVIEW_PASSED
-latest_receipt: review-complete-0009
-latest_source_commit: c2135fa5e78208c39e18e49eaa95ba0128f936e7
-latest_source_tree: b52dae2fbcb6198342f30cc361b974d605e83b56
-latest_review_verdict: SUCCESS
+state: IMPLEMENTED
+latest_receipt: implementation-reconcile-0013
+latest_source_commit: 53738d03eeb52cbc8ec43756a977856ed0cffb48
+latest_source_tree: 909fc113968162686b123e73b8d7bd573feda494
+source_identity_note: Reconciliation merge before projection publication; implementation-reconcile-0013 records exact final HEAD and tree.
+latest_review_verdict: null
+prior_review_receipt: review-0008
+prior_review_verdict: SUCCESS
+prior_review_current: false
+review_required: true
 open_findings: []

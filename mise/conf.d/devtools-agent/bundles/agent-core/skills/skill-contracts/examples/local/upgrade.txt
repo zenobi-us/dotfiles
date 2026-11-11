@@ -1,0 +1,2 @@
+Illustrative owner procedure; inspection does not execute it.
+Validate the source with record-v1.schema.json. Preserve text exactly as content, set schemaVersion to example-record/v2, and validate with record-v2.schema.json. Conversion must preserve all authored content and leave the source unchanged if validation fails.

@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": [],
+  "accepts": [],
+  "contracts": {},
+  "upgrades": []
+}

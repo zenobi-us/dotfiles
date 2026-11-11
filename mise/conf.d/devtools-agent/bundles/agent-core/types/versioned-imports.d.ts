@@ -16,6 +16,10 @@ declare module "@crustjs/plugins@^0.1.2" {
   export * from "@crustjs/plugins";
 }
 
+declare module "ajv@^8.17.1" {
+  export { default } from "ajv";
+}
+
 declare module "turndown@^7.2.4" {
   export * from "turndown";
   export { default } from "turndown";

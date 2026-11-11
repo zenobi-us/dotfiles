@@ -31,3 +31,6 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 
 
 - 2026-11-11T06:40:51.855528+00:00 — SUCCESS. Reviewed commit `c2135fa5e78208c39e18e49eaa95ba0128f936e7`, tree `b52dae2fbcb6198342f30cc361b974d605e83b56`. [Independent review](../../workflows/skill-contract-manifests-01-local-definitions/artifacts/reviews/review-review-0008.md).
+
+- 2026-11-11T20:54:42.022Z — SUCCESS. Reviewed commit `7ff2f96ebf1c2eae3b795af011e197dae0314911`, tree `3a838d99e033537106c4cd9a7584b4d78a66d468`. [Independent reconciled-source review](../../workflows/skill-contract-manifests-01-local-definitions/artifacts/reviews/review-review-reconcile-0016.md). Historical verdict; source synchronization requires a fresh review.
+
