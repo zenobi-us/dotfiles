@@ -9,21 +9,6 @@
   "overrides": {
     "@types/node": "25.6.0"
   },
-  "overrides": {
-    "@types/node": "25.6.0"
-  },
-  "overrides": {
-    "@types/node": "25.6.0"
-  },
-  "overrides": {
-    "@types/node": "25.6.0"
-  },
-  "overrides": {
-    "@types/node": "25.6.0"
-  },
-  "overrides": {
-    "@types/node": "25.6.0"
-  },
   "dependencies": {
     "@types/nconf": "^0.10.7",
     "nconf": "^0.13.0"
