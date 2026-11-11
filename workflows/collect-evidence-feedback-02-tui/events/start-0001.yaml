@@ -1,0 +1,59 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0001",
+  "workflow_id": "collect-evidence-feedback-02-tui",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": null,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "source_branch": "feature/collect-evidence-feedback-02-tui",
+  "base_branch": "master",
+  "source_commit": "46743c7d04c87594eea92bc6847b6973218263fa",
+  "source_tree": "8c9dfc0995774e1abe75da7c6ac2882073ccd13c",
+  "created_at": "2026-11-11T10:18:50.721220+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "01a1ca17-b70b-73ce-9ed8-d1c7f5e39c2f",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-02-tui",
+    "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-02-tui.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-02-tui"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/start-0001.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery_mode": "takeover",
+  "recovery_reason": "Inspector matched unrelated workflow recovery commit 2e7974f; source inventory has no ticket workspace or implementation receipts. Existing master changes preserved.",
+  "ownership_approval": "User selected Approve scoped start in this session. Applies only to this ticket; preserve work and do not duplicate live owners.",
+  "ownership_evidence": "hc ls and herdr-app ls: no ticket implementation terminal; t4t is this parent; t4p is unrelated herdr-app review. Inspector has no workflow events or goal reservations. Direct prerequisite 01-web is completed.",
+  "validation": [
+    {
+      "command": "records.ts check --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --ticket collect-evidence-feedback-02-tui",
+      "result": "passed; normal graph and tracker explorer readers"
+    },
+    {
+      "command": "assertRecord via mq frontmatter",
+      "result": "passed; claimed tracker-ticket/v1"
+    }
+  ]
+}
