@@ -1,0 +1,66 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "fix-0016",
+  "workflow_id": "collect-evidence-feedback-02-tui",
+  "phase": "fix",
+  "event": "phase-start",
+  "attempt": 4,
+  "parent_receipt": "review-0014",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "source_branch": "feature/collect-evidence-feedback-02-tui",
+  "base_branch": "master",
+  "source_commit": "acca2d29294e8c60bf8a97d0b98dbdbb4bb095aa",
+  "source_tree": "1c5b4864e098d70b53519051d2df6d05184f5729",
+  "created_at": "2026-11-11T20:39:57.401Z",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t5j",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-02-tui",
+    "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-02-tui.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-02-tui"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0014.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0015.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0014.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/fix-0016.yaml"
+    }
+  ],
+  "status": "started",
+  "approval": "User selected Approve fix takeover in this session. Fresh fixer for recorded blocking findings only; preserve work and existing terminals. No merge or push.",
+  "ownership_observation": "Fresh inspector ownership unknown, clean unique source matching review. hc get t5c foreground cwd is /var/home/zenobius/Notes; preserve unrelated Notes terminal. No goal dispatch context.",
+  "recovery_mode": "begin",
+  "recovery_reason": "The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs.",
+  "compiler_check": "Not run; prior TypeScript prerequisite unavailable. No compiler success claimed.",
+  "source_preserved": true,
+  "consumed_review_receipts": [
+    "review-0014"
+  ]
+}
