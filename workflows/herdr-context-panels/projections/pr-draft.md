@@ -1,64 +1,59 @@
 ---
-title: Herdr Context and Tracker current PR draft
+title: Herdr Context and Tracker reviewed closeout
 type: Report
 ---
 
-# Herdr Context and Tracker — published-work verification
+# Herdr Context and Tracker closeout
 
 ## Ticket summary
 
-Verify [herdr-context-panels](../../../tracker/tickets/herdr-context-panels.md) against its nine native-panel acceptance criteria. The parent owns independent review and tracker completion.
+[herdr-context-panels](../../../tracker/tickets/herdr-context-panels.md) adds native Context and Tracker panels beside Files and Changes. Current source lives in `mise/conf.d/devtools-herdrapp/app/`.
 
 ## Problem statement
 
-The implementation was already published, but no valid implementation/review receipt established acceptance. The old ticket path is stale. Current code resides in `mise/conf.d/devtools-herdrapp/app`. This phase supplies current evidence without repeating integration or inventing a historical review.
+The original implementation was published without workflow receipts. Approved recovery supplied present-day verification. Independent review then found four original-criteria gaps; the scoped corrections are now reviewed, integrated and pushed. No historical review is asserted and the original implementation was not merged again.
 
 ## Implementation summary
 
-All nine criteria passed source inspection and native checks. Context onboarding created only isolated fixture context files. Canonical collections, Markdown preview, initiative membership, directed dependency/shared-prerequisite graphs, queues, record details and workflow-event errors rendered natively. C drawer controls, Escape collapse/close, native motion, C2 columns and narrow fallback worked. Better Config saved layout and motion preferences. Per-repository selection survived switches and mod reloads. Launch preparation rejected a deleted record. A real explicit Ask Matt launch created an independent OMP session with the canonical prompt and returned `NATIVE-LAUNCH-ONLY`, with zero tool calls. No claim or implementation action ran.
+Restore expanded Context descendants during refresh and settings reload. Restore dependency nesting and shared prerequisite navigation in the common C/C2 tree. Bind pending action results and file previews to current request generations. Preserve canonical APIs, graphs, queues, explicit actions, settings and repository selection.
 
 ## Changed files
 
-None. Source remains `fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c`, tree `67b6bdd4a5722a71d6c9c3a2306628b8d412d90c`, branch `closeout/herdr-context-panels`, base `master`. Only uncommitted workflow/evidence artifacts were created. The parent will preserve authoritative copies outside the frozen review worktree.
+The correction changed `README.md`, `action-menu.js`, `action.js`, `main.js`, `tree.js`, `tests/tree.test.ts`, `tests/panel-state.fixture.mjs` and `tests/panel-state.test.ts` under the existing app where applicable.
 
 ## Validation results
 
-- Native feature checks: `herdr-app check` passed for `shared-context` and `shared-context-tabs`.
-- Scoped tests plus canonical preparation tests: 33 passed, zero failed, 106 assertions.
-- `bun x --package typescript tsc --noEmit --project tsconfig.json`: passed.
-- Exact managed CLI loaded privately with Files and Changes still usable. Private and live app status had no mod errors.
-- Seventeen JavaScript runtime copies and the managed layout match source hashes.
-- Private app, core and display stopped. The live layout stayed `cli`; no live settings were edited.
+Integrated Bun suite: 35 passed, 0 failed, 114 assertions; includes 15 deterministic native-boundary ordering cases. Integrated TypeScript passed. The real request command reported ready repository context and all four collections. Private native checks exercised C/C2 references, nested refresh/restoration, stale launch success/error, fresh session launch, and preview A-B/A-B-A orderings.
 
 ## Review history
 
-No independent review has run in this phase. No historical review is asserted.
+- [review-0008](../artifacts/reviews/review-review-0008.md): FAILURE on `fa5a5e22`; S-001, P-001, P-002, P-003.
+- [fix-0011](../events/fix-0011.yaml): four findings resolved; final source `6fac3b638ca19c670ce9df7f4d1ee20b0414d40c`.
+- [review-0015](../artifacts/reviews/review-review-0015.md): SUCCESS on exact source/tree; Standards and Spec each found no remaining issue.
 
 ## Resolved findings
 
-No source gap found. Parent corrected its malformed approval envelope under explicit approval and recorded the repair separately. This child consumed that audit; it did not edit older events.
+S-001, P-001, P-002 and P-003.
 
 ## Remaining findings
 
-None from implementation verification. Headless rendering, harmless-action scope and environmental startup warnings are documented evidence limits, not hidden passes.
+None. Native evidence uses owned headless rendering. Native qualifier entry lost spaces; its fresh session returned read-only advice, not the requested marker. Fixture ticket hashes stayed unchanged. No claim or implementation action ran.
 
 ## Latest reviewer verdict
 
-None. Independent review is pending against the frozen exact source.
+SUCCESS. Reviewed source `6fac3b638ca19c670ce9df7f4d1ee20b0414d40c`, tree `c813ac0a32a4ef7103a424b7c5395a2192f39b84`.
 
 ## Merge status
 
-Already-published source is identified in the parent approval. This phase made no commit, merge, push, PR or tracker-state change. Do not repeat integration.
+Worktrunk squash integration `f3142189bc4a1a61bb7860eb3a0a7733e577a9c5` has sole parent `358da5adabbc33bb14c42646fb5b82cad8f3a7f2` and the exact prepared/reviewed tree. Non-force push to `origin/master` succeeded. Ticket publication and source-worktree cleanup are the remaining closeout operations.
 
 ## Supporting records
 
-- [Implementation result](../events/implementation-0003.yaml)
-- [Approval](../events/approval-0001.json)
-- [Phase start](../events/start-0002.json)
-- [Authorized envelope-repair audit](../events/repair-0004.json)
-- [Native acceptance and limits](../artifacts/evidence/implementation-0003-native-t62/acceptance.md)
-- [Automated validation output](../artifacts/evidence/implementation-0003-native-t62/validation.json)
-- [Fresh session and no-tool transcript](../artifacts/evidence/implementation-0003-native-t62/fresh-session.json)
-
-- [Versioned draft snapshot](../artifacts/snapshots/pr-draft-implementation-0003.md)
+- [Implementation](../events/implementation-0003.yaml)
+- [Fix native evidence](../artifacts/evidence/fix-0011-native/acceptance.json)
+- [Successful review receipt](../events/review-0015.yaml)
+- [Prepared mapping](../events/finish-prepared-0018.json)
+- [Verified integration](../events/finish-merged-0019.json)
+- [Integrated checks](../artifacts/evidence/finish-0020-integrated/validation.json)
+- [Source publication](../events/finish-pushed-0021.json)
 

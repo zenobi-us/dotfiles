@@ -1,0 +1,57 @@
+{
+  "address": "t3",
+  "argv": [
+    "/home/zenobius/.local/share/mise/installs/github-can1357-oh-my-pi/latest/omp",
+    "--cwd",
+    "/tmp/herdr-fix-0011-356682a2/fixture-A",
+    "--session-dir",
+    "/tmp/herdr-fix-0011-356682a2/app/data/shared-context-sessions/1794436371476-eacc0cbd3877a",
+    "/skill:ask-matt \"tracker/tickets/alpha.md\"\n\nUser request: \"What should I do next on this record, and why?\\n\\nDonotloadskillsorusetools.Thisisaharmlessinterfacesmokecheck.ReplyonlyNATIVE-FIX-0011.\""
+  ],
+  "cols": 14,
+  "created_ms": 1794436371480,
+  "cwd": "/tmp/herdr-fix-0011-356682a2/fixture-A",
+  "die_with_parent": false,
+  "exit_code": null,
+  "finished_ms": null,
+  "foreground": {
+    "argv": [
+      "/home/zenobius/.local/share/mise/installs/github-can1357-oh-my-pi/latest/omp",
+      "--cwd",
+      "/tmp/herdr-fix-0011-356682a2/fixture-A",
+      "--session-dir",
+      "/tmp/herdr-fix-0011-356682a2/app/data/shared-context-sessions/1794436371476-eacc0cbd3877a",
+      "/skill:ask-matt \"tracker/tickets/alpha.md\"\n\nUser request: \"What should I do next on this record, and why?\\n\\nDonotloadskillsorusetools.Thisisaharmlessinterfacesmokecheck.ReplyonlyNATIVE-FIX-0011.\""
+    ],
+    "cwd": "/tmp/herdr-fix-0011-356682a2/fixture-A",
+    "name": "omp",
+    "pid": 3246536
+  },
+  "identity": "ghostty",
+  "keep": true,
+  "labels": {
+    "herdr.seen": "0",
+    "herdr.space": "spbcb6aba21d96ce7f9d8c262c8459497c",
+    "herdr.tab": "tb77afa0bcb080f3867652243dc6d9bf10",
+    "where": "Fix fixture A / 1"
+  },
+  "name": null,
+  "notify": true,
+  "parent": null,
+  "pid": 3246536,
+  "reason": null,
+  "reported": true,
+  "rm": false,
+  "rows": 31,
+  "screen": "exact",
+  "signal": null,
+  "state": "live",
+  "status": {
+    "app": "omp",
+    "state": "done"
+  },
+  "status_ms": 1794436398706,
+  "template": null,
+  "title": "\u03c0 > \ud83d\udccb RECORD: Identify next record action",
+  "turn": 1
+}

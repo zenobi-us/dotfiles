@@ -1,0 +1,10 @@
+{
+  "markdown_documents": [
+    "workflows/herdr-context-panels/artifacts/snapshots/pr-draft-fix-0011.md",
+    "workflows/herdr-context-panels/projections/pr-draft.md",
+    "workflows/herdr-context-panels/projections/implementation-log.md"
+  ],
+  "okf_errors": [],
+  "yaml_projections_parsed": true,
+  "bundle_check": "Not applicable: these are individual workflow documents, not an OKF bundle."
+}

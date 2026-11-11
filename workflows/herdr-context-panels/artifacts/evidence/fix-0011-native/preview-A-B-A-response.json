@@ -1,0 +1,13 @@
+{
+  "request": {
+    "collection": "alignment",
+    "path": "nested/deep/race-A.txt",
+    "operation": "file",
+    "cwd": "/tmp/herdr-fix-0011-356682a2/fixture-A"
+  },
+  "code": 1,
+  "stdout": "{\"error\":\"This file is binary. No text preview is available.\"}\n",
+  "stderr": "",
+  "captured_at": 1794436273.438321,
+  "released_at": 1794436285.982294
+}

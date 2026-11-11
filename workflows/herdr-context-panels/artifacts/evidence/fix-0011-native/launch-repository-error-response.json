@@ -1,0 +1,15 @@
+{
+  "request": {
+    "id": "beta",
+    "kind": "ticket",
+    "action": "ask-matt",
+    "prompt": "What should I do next on this record, and why?",
+    "operation": "prepare",
+    "cwd": "/tmp/herdr-fix-0011-356682a2/fixture-A"
+  },
+  "code": 1,
+  "stdout": "{\"error\":\"ENOENT: no such file or directory, lstat '/tmp/herdr-fix-0011-356682a2/fixture-A/tracker/tickets/beta.md'\"}\n",
+  "stderr": "",
+  "captured_at": 1794436179.1442063,
+  "released_at": 1794436187.3411906
+}

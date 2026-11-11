@@ -1,0 +1,66 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "herdr-context-panels",
+  "phase": "review",
+  "attempt": 2,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "source_branch": "closeout/herdr-context-panels",
+  "base_branch": "master",
+  "source_commit": "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c",
+  "source_tree": "c813ac0a32a4ef7103a424b7c5395a2192f39b84",
+  "created_at": "2026-11-11T22:57:04.308043+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t60-herdr-context-panels",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "herdr-context-panels",
+    "ref": "tracker/tickets/herdr-context-panels.md"
+  },
+  "ticket_ref": "tracker/tickets/herdr-context-panels.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/herdr-context-panels"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/fix-complete-0013.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/fix-0011.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/herdr-context-panels/artifacts/reviews/review-review-0008.md"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/herdr-context-panels/artifacts/snapshots/pr-draft-fix-0011.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/herdr-context-panels/artifacts/evidence/fix-0011-native"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/review-start-0014.json"
+    }
+  ],
+  "receipt_id": "review-start-0014",
+  "event": "phase-start",
+  "parent_receipt": "fix-complete-0013",
+  "status": "started",
+  "base_before": "358da5adabbc33bb14c42646fb5b82cad8f3a7f2",
+  "review_fixed_point": "358da5adabbc33bb14c42646fb5b82cad8f3a7f2",
+  "recovery_mode": "retry",
+  "authorization": "Approved scoped recovery and finish, plus user-released publication window. Fresh review of the fixed current source; no reuse of prior review.",
+  "ownership_evidence": "Fixer t6c stopped and removed; all owned native resources stopped; source clean and frozen."
+}

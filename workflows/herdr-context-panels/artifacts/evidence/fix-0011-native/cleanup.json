@@ -1,0 +1,20 @@
+{
+  "private_fixture_root": "/tmp/herdr-fix-0011-356682a2",
+  "private_fixtures_removed": true,
+  "delay_injection_removed": true,
+  "injection_source_retained_as_evidence_only": true,
+  "private_app_pid": 3216739,
+  "private_app_stopped": true,
+  "private_compositor_pid": 3215918,
+  "private_compositor_stopped": true,
+  "private_core_session": "herdr-fix-0011-356682a2",
+  "private_core_stopped": true,
+  "real_window_untouched": true,
+  "check_display_pid": 3275352,
+  "check_display_stopped": true,
+  "final_check_display_pid": 3289594,
+  "final_check_display_stopped": true,
+  "final_private_core_stop": {
+    "stopped": false
+  }
+}

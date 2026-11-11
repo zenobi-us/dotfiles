@@ -1,0 +1,76 @@
+[
+  {
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "tests",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/preparation.test.ts"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app",
+    "exit_code": 0,
+    "stdout": "bun test v1.4.3 (c6da4a4d3)\n",
+    "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n\ntests/request.test.ts:\n(pass) returns a large preview intact through JSON arguments with quoted paths [32.39ms]\n(pass) returns a failing JSON response when a preview leaves its collection [26.88ms]\n(pass) malformed input exits with a JSON error instead of a stack trace [20.32ms]\n\ntests/action.test.ts:\n(pass) action preset with optional detail > retains both the selected preset and the user's qualifier [0.07ms]\n(pass) action preset with optional detail > does not add instructions or separators for a blank workflow request [0.04ms]\n(pass) action preset with optional detail > allows a custom request without a preset instruction [0.02ms]\n(pass) action preset with optional detail > keeps the chosen question when additional detail is blank [0.02ms]\n\ntests/tree.test.ts:\n(pass) grouped tracker tree > nests dependency paths and keeps shared prerequisites as navigable references [0.56ms]\n(pass) grouped tracker tree > references reveal the canonical prerequisite beneath collapsed ancestors [0.27ms]\n(pass) grouped tracker tree > keeps prerequisite context in filtered queues without hiding planning initiatives [0.16ms]\n(pass) grouped tracker tree > does not present synthetic collections as initiatives [0.13ms]\n(pass) grouped tracker tree > reports cycles and missing records even below collapsed paths [0.16ms]\n(pass) dependency graph > keeps the transitive blocking lineage and excludes unrelated records [0.22ms]\n(pass) dependency graph > deduplicates shared prerequisites and retains every dependency edge [0.07ms]\n(pass) dependency graph > reports cycles and missing prerequisites instead of drawing an incomplete graph [0.07ms]\n\ntests/panel-state.test.ts:\n(pass) native panel response ordering and retained directory behavior [132.43ms]\n\ntests/progress.test.ts:\n(pass) initiative status composition > deduplicates expanded membership, excludes planning and dependency-only tickets, and counts shared membership independently [0.35ms]\n(pass) initiative status composition > does not call recommended reviews or fixes active, or implemented tracker statuses complete [0.06ms]\n(pass) initiative status composition > missing members and unreadable or unfamiliar states suppress completion estimates [0.11ms]\n(pass) initiative status composition > distinguishes empty, not started and fully complete initiatives [0.07ms]\n(pass) initiative status composition > never rounds unfinished work up to 100 percent and recomputes changed observations [0.67ms]\n\ntests/header.test.ts:\n(pass) header workflow badge > does not describe a recommended fix or review as active work [0.09ms]\n(pass) header workflow badge > distinguishes readiness from a next action [0.03ms]\n(pass) header workflow badge > shows current only for a validated active phase bound to the inspected source [0.03ms]\n(pass) header workflow badge > does not infer a phase from ownership alone, invalid history, a different source or a completed result [0.05ms]\n(pass) header workflow badge > does not treat planning-record status text as a workflow recommendation [0.02ms]\n(pass) same-hue badge tones > changes lightness, not hue, on dark and light surfaces [0.32ms]\n(pass) same-hue badge tones > keeps neutral shorthand and alpha-bearing theme tokens neutral [0.06ms]\n\n../../devtools-agent/bundles/agent-core/extensions/pi-shared-context/preparation.test.ts:\n(pass) changed acceptance criteria require a new confirmation even when prompt summaries are unchanged [1.05ms]\n(pass) cancelling the changed handoff never returns an approved request [0.30ms]\n(pass) unrelated record edits do not interrupt confirmation [0.29ms]\n(pass) changes while waiting for idle invalidate approval before dispatch [0.29ms]\n(pass) review artifact changes, source changes and route changes all invalidate workflow approval [0.93ms]\n(pass) failed revalidation cannot return an approved request [0.17ms]\n(pass) planning reads current canonical records without inspecting unrelated workflows [64.62ms]\n\n 35 pass\n 0 fail\n 114 expect() calls\nRan 35 tests across 7 files. [300.00ms]\n"
+  },
+  {
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "x",
+      "--package",
+      "typescript",
+      "tsc",
+      "--noEmit",
+      "--project",
+      "tsconfig.json"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+  },
+  {
+    "command": [
+      "herdr-app",
+      "check",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app/mods/shared-context"
+    ],
+    "exit_code": 101,
+    "stdout": "",
+    "stderr": "\nthread 'main' (3275170) panicked at vendor/gpui-pre-linux/src/linux/platform.rs:371:45:\nfailed to connect to X server \":147\": Unknown connection error\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n"
+  },
+  {
+    "command": [
+      "herdr-app",
+      "check",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app/mods/shared-context-tabs"
+    ],
+    "exit_code": 101,
+    "stdout": "",
+    "stderr": "\nthread 'main' (3275195) panicked at vendor/gpui-pre-linux/src/linux/platform.rs:371:45:\nfailed to connect to X server \":147\": Unknown connection error\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n"
+  },
+  {
+    "command": [
+      "herdr-app",
+      "check",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app/mods/shared-context"
+    ],
+    "exit_code": 0,
+    "stdout": "check passed: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app/mods/shared-context\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "herdr-app",
+      "check",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app/mods/shared-context-tabs"
+    ],
+    "exit_code": 0,
+    "stdout": "check passed: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app/mods/shared-context-tabs\n",
+    "stderr": ""
+  }
+]

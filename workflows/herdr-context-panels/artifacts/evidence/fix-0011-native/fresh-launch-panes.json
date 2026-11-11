@@ -1,0 +1,120 @@
+{
+  "before": {
+    "spaces": [
+      {
+        "id": "spbcb6aba21d96ce7f9d8c262c8459497c",
+        "name": "Fix fixture A",
+        "folder": "/tmp/herdr-fix-0011-356682a2/fixture-A",
+        "machine": null,
+        "active": true,
+        "tabs": [
+          {
+            "id": "tb77afa0bcb080f3867652243dc6d9bf10",
+            "name": "1",
+            "active": true,
+            "settled": false,
+            "terminals": [
+              {
+                "terminal": "t1",
+                "pane": "pdf6266f69569c3c67294daada2e974ca",
+                "status": null,
+                "app": null,
+                "name": null,
+                "sub_agents": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sp93933f2ffe9de4988c3a6b08a459c877",
+        "name": "Fix fixture B",
+        "folder": "/tmp/herdr-fix-0011-356682a2/fixture-B",
+        "machine": null,
+        "active": false,
+        "tabs": [
+          {
+            "id": "tbc8fc762143ff42cd69d042d5d65d39c0",
+            "name": "1",
+            "active": true,
+            "settled": false,
+            "terminals": [
+              {
+                "terminal": "t2",
+                "pane": "p328e57c73cab5d002a2c6110b8be3c38",
+                "status": null,
+                "app": null,
+                "name": null,
+                "sub_agents": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "recent": []
+  },
+  "after": {
+    "spaces": [
+      {
+        "id": "spbcb6aba21d96ce7f9d8c262c8459497c",
+        "name": "Fix fixture A",
+        "folder": "/tmp/herdr-fix-0011-356682a2/fixture-A",
+        "machine": null,
+        "active": true,
+        "tabs": [
+          {
+            "id": "tb77afa0bcb080f3867652243dc6d9bf10",
+            "name": "1",
+            "active": true,
+            "settled": false,
+            "terminals": [
+              {
+                "terminal": "t1",
+                "pane": "pdf6266f69569c3c67294daada2e974ca",
+                "status": null,
+                "app": null,
+                "name": null,
+                "sub_agents": []
+              },
+              {
+                "terminal": "t3",
+                "pane": "pb9cff55ff6b924514a8e3175993036c9",
+                "status": "done",
+                "app": "omp",
+                "name": null,
+                "sub_agents": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sp93933f2ffe9de4988c3a6b08a459c877",
+        "name": "Fix fixture B",
+        "folder": "/tmp/herdr-fix-0011-356682a2/fixture-B",
+        "machine": null,
+        "active": false,
+        "tabs": [
+          {
+            "id": "tbc8fc762143ff42cd69d042d5d65d39c0",
+            "name": "1",
+            "active": true,
+            "settled": false,
+            "terminals": [
+              {
+                "terminal": "t2",
+                "pane": "p328e57c73cab5d002a2c6110b8be3c38",
+                "status": null,
+                "app": null,
+                "name": null,
+                "sub_agents": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "recent": []
+  }
+}

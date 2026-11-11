@@ -1,0 +1,24 @@
+{
+  "source_commit": "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c",
+  "source_tree": "c813ac0a32a4ef7103a424b7c5395a2192f39b84",
+  "base_before": "358da5adabbc33bb14c42646fb5b82cad8f3a7f2",
+  "base_at_start": "fe759f72c0fe01e1a037ec1a7d5f03b710725141",
+  "reviewed_commit": "fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c",
+  "source_commits": [
+    "66754765bfc98baa79181e80e4b64c70c54e3ca8",
+    "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c"
+  ],
+  "source_clean": true,
+  "native_js_modules_match_final_source": 15,
+  "terminal": {
+    "space": "spca4cd47b710a5081b1e147bf736ae931",
+    "tab": "tb25f313625eb767422eadd2a0fcbf4e75",
+    "terminal": "t6c",
+    "pane": "pbde26baa90a0aa79b6036c6876774d8c",
+    "status": "working",
+    "app": "omp",
+    "name": null,
+    "sub_agents": []
+  },
+  "run_id": "356682a2-3c81-4f5c-9ecd-46b64720388e"
+}

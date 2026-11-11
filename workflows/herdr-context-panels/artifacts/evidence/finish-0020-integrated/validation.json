@@ -1,0 +1,34 @@
+{
+  "source_commit": "f3142189bc4a1a61bb7860eb3a0a7733e577a9c5",
+  "source_tree": "c813ac0a32a4ef7103a424b7c5395a2192f39b84",
+  "checks": [
+    {
+      "command": "mise exec -- bun test tests /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/preparation.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-herdrapp/app",
+      "exit_code": 0,
+      "result": "35 pass, 0 fail, 114 assertions; seven files; includes 15 controlled native-boundary orderings"
+    },
+    {
+      "command": "mise exec -- bun x --package typescript tsc --noEmit --project tsconfig.json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-herdrapp/app",
+      "exit_code": 0,
+      "result": "No TypeScript diagnostics"
+    },
+    {
+      "command": "mise exec -- bun mise/conf.d/devtools-herdrapp/app/mods/shared-context/request.ts <context JSON>",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "result": {
+        "ready": true,
+        "mode": "repository",
+        "collections": [
+          "alignment",
+          "tickets",
+          "initiatives",
+          "sources"
+        ]
+      }
+    }
+  ],
+  "native_evidence_binding": "Integrated tree equals reviewed tree; native correction evidence and independent review remain exact."
+}

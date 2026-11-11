@@ -1,0 +1,74 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "herdr-context-panels",
+  "phase": "fix",
+  "attempt": 1,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "source_branch": "closeout/herdr-context-panels",
+  "base_branch": "master",
+  "source_commit": "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c",
+  "source_tree": "c813ac0a32a4ef7103a424b7c5395a2192f39b84",
+  "created_at": "2026-11-11T22:56:46.552473+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t60-herdr-context-panels",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "herdr-context-panels",
+    "ref": "tracker/tickets/herdr-context-panels.md"
+  },
+  "ticket_ref": "tracker/tickets/herdr-context-panels.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/herdr-context-panels"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/fix-0011.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/herdr-context-panels/artifacts/snapshots/pr-draft-fix-0011.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/herdr-context-panels/artifacts/evidence/fix-0011-native"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/fix-complete-0013.json"
+    }
+  ],
+  "receipt_id": "fix-complete-0013",
+  "event": "phase-complete",
+  "parent_receipt": "fix-0011",
+  "status": "completed",
+  "base_before": "358da5adabbc33bb14c42646fb5b82cad8f3a7f2",
+  "resolved_findings": [
+    "S-001",
+    "P-001",
+    "P-002",
+    "P-003"
+  ],
+  "unresolved_findings": [],
+  "validation_results": {
+    "authoritative_receipt": "matched exact current source commit/tree and parent",
+    "native_acceptance": "structured cases and actual dependency hierarchy capture inspected",
+    "automated": "35 tests, 114 assertions plus 15 ordering cases; TypeScript passed before rebase; source hashes and real API/native checks passed after rebase",
+    "source_clean": true,
+    "transport_sha256": "2c7eba92aa06c53d325cb37dddf8a665bbefcc6674b360d49e8803f795cf48f4"
+  },
+  "child_shutdown": {
+    "terminal": "t6c",
+    "stopped": true,
+    "removed": true
+  },
+  "recovery_mode": "reconcile"
+}

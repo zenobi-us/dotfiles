@@ -1,0 +1,52 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "herdr-context-panels",
+  "phase": "fix",
+  "attempt": 0,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "source_branch": "closeout/herdr-context-panels",
+  "base_branch": "master",
+  "source_commit": "fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c",
+  "source_tree": "67b6bdd4a5722a71d6c9c3a2306628b8d412d90c",
+  "created_at": "2026-11-11T22:51:07.440465+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "pane_id": "t60",
+  "agent": "omp",
+  "session_id": "hc-t60-herdr-context-panels",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "herdr-context-panels",
+    "ref": "tracker/tickets/herdr-context-panels.md"
+  },
+  "ticket_ref": "tracker/tickets/herdr-context-panels.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/herdr-context-panels"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/fix-start-0010.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/window-approval-0012.json"
+    }
+  ],
+  "receipt_id": "window-approval-0012",
+  "event": "operator-approval",
+  "parent_receipt": "fix-start-0010",
+  "status": "approved",
+  "approval": "User selected Release for this closeout. Releases t69 master publication reservation while their orphan-process cleanup dialog remains pending. Authorizes herdr-context-panels final synchronization/review/publication; do not touch their processes or dialog.",
+  "observations": {
+    "t69_status": "blocked on independent orphan-cleanup permission",
+    "local_master": "358da5adabbc33bb14c42646fb5b82cad8f3a7f2",
+    "remote_master": "358da5adabbc33bb14c42646fb5b82cad8f3a7f2"
+  },
+  "ownership": "t60 owns the next master publication window for herdr-context-panels; no force send or process shutdown authorized."
+}

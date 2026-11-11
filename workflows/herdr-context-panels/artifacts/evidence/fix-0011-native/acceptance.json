@@ -1,0 +1,99 @@
+{
+  "schema": "herdr-context-panels-fix-evidence/v1",
+  "run_id": "356682a2-3c81-4f5c-9ecd-46b64720388e",
+  "findings": {
+    "S-001": {
+      "result": "passed",
+      "scenario": "Expanded alignment/nested/deep; created after.txt on disk; clicked Refresh; both children rendered. Better Config changed C2 to C; layout round-trip reloaded mod; all expanded descendants repopulated.",
+      "media": [
+        "nested-refreshed.png",
+        "nested-settings-restored-settled.png"
+      ]
+    },
+    "P-001": {
+      "result": "passed",
+      "scenario": "Alpha and beta both blocked by base. C and C2 show indented prerequisite paths and one shared reference. Collapsed alpha; clicked beta/base reference; alpha reopened and canonical base details were selected. Graph remains unchanged.",
+      "media": [
+        "tree-c2.png",
+        "c2-canonical-collapsed.png",
+        "c2-reference-navigated.png",
+        "c-canonical-collapsed.png",
+        "c-reference-navigated.png"
+      ]
+    },
+    "P-002": {
+      "result": "passed",
+      "scenario": "Held real canonical alpha prepare success; selected beta; released success; pane inventory unchanged and beta remained current. Held real beta preparation ENOENT failure; switched to repository B; released error; no extra pane or stale error. An unchanged real alpha preparation opened exactly one actual OMP pane with a unique session directory.",
+      "records": [
+        "launch-record-response.json",
+        "launch-record-pane-observation.json",
+        "launch-repository-error-response.json",
+        "launch-repository-pane-observation.json",
+        "launch-fresh-response.json",
+        "fresh-launch-panes.json",
+        "fresh-session-summary.json"
+      ],
+      "media": [
+        "stale-record-no-pane.png",
+        "stale-repository-error-discarded.png",
+        "fresh-session-output.png"
+      ]
+    },
+    "P-003": {
+      "result": "passed",
+      "scenario": "Held real binary preview A failure; returned to files, selected readable B, observed B, released A; B stayed visible without binary error. Repeated with A-B-A after replacing A with readable text; latest A remained visible after old A failed.",
+      "records": [
+        "preview-A-B-response.json",
+        "preview-A-B-A-response.json"
+      ],
+      "media": [
+        "preview-B-before-release.png",
+        "preview-B-after-release.png",
+        "preview-fresh-A-before-release.png",
+        "preview-fresh-A-after-release.png"
+      ]
+    }
+  },
+  "delay_injection": {
+    "method": "Only the private app runtime.binary points to delay-runtime.py. It runs the unchanged canonical request.ts with real Bun, captures the real result, then waits for a test-owned release file. No delayed or synthetic response code is shipped.",
+    "source": "delay-runtime.py"
+  },
+  "limits": [
+    "Private headless cage/Xwayland and software rendering, not physical display.",
+    "Native input dropped spaces in the smoke qualifier. The canonical Ask Matt request still ran read-only; the real agent made 13 read-only tool calls and returned advice instead of the requested marker. All three fixture ticket hashes stayed unchanged. No claim, implementation, merge or push action ran.",
+    "Deterministic native-boundary regressions cover old launch success/error, input changes, close, newer busy-state preservation, preview success/error A-B-A, and repository guards.",
+    "Initial native checker calls after the private display was stopped failed to connect to X; checks passed after an owned headless display was available. The source did not change."
+  ],
+  "cleanup": {
+    "private_app_pid": 3216739,
+    "private_app_stopped": true,
+    "private_compositor_pid": 3215918,
+    "private_compositor_stopped": true,
+    "private_core_session": "herdr-fix-0011-356682a2",
+    "private_core_stopped": true,
+    "real_window_untouched": true,
+    "check_display_pid": 3275352,
+    "check_display_stopped": true,
+    "final_check_display_pid": 3289594,
+    "final_check_display_stopped": true,
+    "final_private_core_stop": {
+      "stopped": false
+    }
+  },
+  "source_commit": "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c",
+  "source_tree": "c813ac0a32a4ef7103a424b7c5395a2192f39b84",
+  "base_before": "358da5adabbc33bb14c42646fb5b82cad8f3a7f2",
+  "validation": {
+    "bun_tests": 35,
+    "bun_assertions": 114,
+    "embedded_node_behavior_cases": 15,
+    "typecheck": "passed",
+    "post_rebase_native_checks": "passed",
+    "post_rebase_real_api_smoke": [
+      "context",
+      "directory",
+      "file",
+      "prepare"
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "herdr-context-panels",
+  "phase": "review",
+  "attempt": 2,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "source_branch": "closeout/herdr-context-panels",
+  "base_branch": "master",
+  "source_commit": "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c",
+  "source_tree": "c813ac0a32a4ef7103a424b7c5395a2192f39b84",
+  "created_at": "2026-11-11T23:03:46.847018+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t60-herdr-context-panels",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "herdr-context-panels",
+    "ref": "tracker/tickets/herdr-context-panels.md"
+  },
+  "ticket_ref": "tracker/tickets/herdr-context-panels.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/herdr-context-panels"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/review-0015.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/herdr-context-panels/artifacts/reviews/review-review-0015.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/herdr-context-panels/events/review-complete-0016.json"
+    }
+  ],
+  "receipt_id": "review-complete-0016",
+  "event": "phase-complete",
+  "parent_receipt": "review-0015",
+  "status": "completed",
+  "validation_results": {
+    "parent_command": "mise exec -- bun test tests/tree.test.ts tests/panel-state.test.ts",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app",
+    "exit_code": 0,
+    "result": "9 pass, 0 fail, 24 assertions; includes 15 behavioral ordering scenarios via fixture",
+    "authoritative_source_and_parent": "matched frozen source and review-start-0014",
+    "findings": [],
+    "transport_sha256": "5ed1f668d2690d77176f0f0ab41d8a86cd105f1a00ac03cd80d4609f3471851f"
+  },
+  "child_shutdown": {
+    "terminal": "t6m",
+    "stopped": true,
+    "removed": true,
+    "axes": [
+      "t6n",
+      "t6p"
+    ],
+    "axes_stopped_removed": true
+  }
+}

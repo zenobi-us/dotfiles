@@ -1,0 +1,15 @@
+{
+  "request": {
+    "id": "alpha",
+    "kind": "ticket",
+    "action": "ask-matt",
+    "prompt": "What should I do next on this record, and why?\n\nDonotloadskillsorusetools.Thisisaharmlessinterfacesmokecheck.ReplyonlyNATIVE-FIX-0011.",
+    "operation": "prepare",
+    "cwd": "/tmp/herdr-fix-0011-356682a2/fixture-A"
+  },
+  "code": 0,
+  "stdout": "{\"data\":{\"binary\":\"/home/zenobius/.local/share/mise/installs/github-can1357-oh-my-pi/latest/omp\",\"prompt\":\"/skill:ask-matt \\\"tracker/tickets/alpha.md\\\"\\n\\nUser request: \\\"What should I do next on this record, and why?\\\\n\\\\nDonotloadskillsorusetools.Thisisaharmlessinterfacesmokecheck.ReplyonlyNATIVE-FIX-0011.\\\"\",\"repository\":\"/tmp/herdr-fix-0011-356682a2/fixture-A\"}}\n",
+  "stderr": "",
+  "captured_at": 1794436358.7683876,
+  "released_at": 1794436371.4625037
+}

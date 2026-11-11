@@ -1,1 +1,38 @@
-{schema: worktree-latest-status/v1,workflow_id: herdr-context-panels,ticket: tracker/tickets/herdr-context-panels.md,state: IMPLEMENTED,latest_receipt: implementation-0003,latest_source_commit: fa5a5e221fa8a31c3cae3be355f426aabf9e5e1c,latest_source_tree: 67b6bdd4a5722a71d6c9c3a2306628b8d412d90c,latest_review_verdict: null,open_findings: []}
+schema: worktree-latest-status/v1
+workflow_id: herdr-context-panels
+ticket: tracker/tickets/herdr-context-panels.md
+state: FINISHING
+latest_receipt: finish-pushed-0021
+latest_source_commit: f3142189bc4a1a61bb7860eb3a0a7733e577a9c5
+latest_source_tree: c813ac0a32a4ef7103a424b7c5395a2192f39b84
+base_before: 358da5adabbc33bb14c42646fb5b82cad8f3a7f2
+latest_review_verdict: SUCCESS
+latest_review_receipt: review-0015
+latest_review_source_commit: 6fac3b638ca19c670ce9df7f4d1ee20b0414d40c
+open_findings: []
+resolved_findings: [S-001, P-001, P-002, P-003]
+review_required: false
+supporting_receipts:
+  - events/implementation-0003.yaml
+  - events/implementation-complete-0005.json
+  - events/implementation-reconciled-0006.json
+  - events/review-start-0007.json
+  - events/review-0008.yaml
+  - events/review-complete-0009.json
+  - events/fix-start-0010.json
+  - events/window-approval-0012.json
+  - events/fix-0011.yaml
+  - events/fix-complete-0013.json
+  - events/review-start-0014.json
+  - events/review-0015.yaml
+  - events/review-complete-0016.json
+  - events/finish-start-0017.json
+  - events/finish-prepared-0018.json
+  - events/finish-merged-0019.json
+  - events/finish-validated-0020.json
+  - events/finish-pushed-0021.json
+review_artifacts:
+  - artifacts/reviews/review-review-0008.md
+  - artifacts/reviews/review-review-0015.md
+draft_snapshot: artifacts/snapshots/pr-draft-fix-0011.md
+evidence: artifacts/evidence/fix-0011-native

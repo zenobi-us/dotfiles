@@ -1,0 +1,144 @@
+[
+  {
+    "command": [
+      "herdr-app",
+      "check",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app/mods/shared-context"
+    ],
+    "source_commit": "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c",
+    "exit_code": 0,
+    "stdout": "check passed: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app/mods/shared-context\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "herdr-app",
+      "check",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app/mods/shared-context-tabs"
+    ],
+    "source_commit": "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c",
+    "exit_code": 0,
+    "stdout": "check passed: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-herdr-context-panels/mise/conf.d/devtools-herdrapp/app/mods/shared-context-tabs\n",
+    "stderr": ""
+  },
+  {
+    "operation": "context",
+    "source_commit": "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c",
+    "exit_code": 0,
+    "result": {
+      "data": {
+        "identity": "github-com-example-herdr-closeout-t62-a--1b0e83df",
+        "repository": "/tmp/herdr-fix-0011-356682a2/fixture-A",
+        "root": "/tmp/herdr-fix-0011-356682a2/fixture-A",
+        "routeSource": "/tmp/herdr-fix-0011-356682a2/fixture-A/.context-routes.toml",
+        "storage": "repository",
+        "mode": "repository",
+        "ready": true,
+        "missing": [],
+        "collections": [
+          {
+            "kind": "alignment",
+            "adapter": "markdown",
+            "store": "repository",
+            "root": "/tmp/herdr-fix-0011-356682a2/fixture-A",
+            "path": "/tmp/herdr-fix-0011-356682a2/fixture-A",
+            "ref": ".",
+            "publication": "repository",
+            "id": "alignment",
+            "label": "Alignment"
+          },
+          {
+            "kind": "tickets",
+            "adapter": "local-markdown",
+            "store": "repository",
+            "root": "/tmp/herdr-fix-0011-356682a2/fixture-A",
+            "path": "/tmp/herdr-fix-0011-356682a2/fixture-A/tracker/tickets",
+            "ref": "tracker/tickets",
+            "publication": "repository",
+            "id": "tickets",
+            "label": "Tickets"
+          },
+          {
+            "kind": "initiatives",
+            "adapter": "markdown",
+            "store": "repository",
+            "root": "/tmp/herdr-fix-0011-356682a2/fixture-A",
+            "path": "/tmp/herdr-fix-0011-356682a2/fixture-A/tracker/initiatives",
+            "ref": "tracker/initiatives",
+            "publication": "repository",
+            "id": "initiatives",
+            "label": "Initiatives"
+          },
+          {
+            "kind": "sources",
+            "adapter": "files",
+            "store": "repository",
+            "root": "/tmp/herdr-fix-0011-356682a2/fixture-A",
+            "path": "/tmp/herdr-fix-0011-356682a2/fixture-A/sources",
+            "ref": "sources",
+            "publication": "repository",
+            "id": "sources",
+            "label": "Sources"
+          }
+        ]
+      }
+    },
+    "stderr": ""
+  },
+  {
+    "operation": "directory",
+    "source_commit": "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c",
+    "exit_code": 0,
+    "result": {
+      "data": [
+        {
+          "name": "after.txt",
+          "directory": false,
+          "path": "nested/deep/after.txt"
+        },
+        {
+          "name": "before.txt",
+          "directory": false,
+          "path": "nested/deep/before.txt"
+        },
+        {
+          "name": "race-A.txt",
+          "directory": false,
+          "path": "nested/deep/race-A.txt"
+        },
+        {
+          "name": "race-B.txt",
+          "directory": false,
+          "path": "nested/deep/race-B.txt"
+        }
+      ]
+    },
+    "stderr": ""
+  },
+  {
+    "operation": "file",
+    "source_commit": "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c",
+    "exit_code": 0,
+    "result": {
+      "data": {
+        "body": "Fresh A after A-B-A. Old binary failure must not appear.\n",
+        "ref": "./nested/deep/race-A.txt",
+        "path": "/tmp/herdr-fix-0011-356682a2/fixture-A/nested/deep/race-A.txt"
+      }
+    },
+    "stderr": ""
+  },
+  {
+    "operation": "prepare",
+    "source_commit": "6fac3b638ca19c670ce9df7f4d1ee20b0414d40c",
+    "exit_code": 0,
+    "result": {
+      "data": {
+        "binary": "/home/zenobius/.local/share/mise/installs/github-can1357-oh-my-pi/latest/omp",
+        "prompt": "/skill:ask-matt \"tracker/tickets/alpha.md\"\n\nUser request: \"Read-only native post-rebase check; do not launch.\"",
+        "repository": "/tmp/herdr-fix-0011-356682a2/fixture-A"
+      }
+    },
+    "stderr": ""
+  }
+]

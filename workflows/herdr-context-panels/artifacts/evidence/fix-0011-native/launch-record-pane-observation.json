@@ -1,0 +1,63 @@
+{
+  "before": {
+    "spaces": [
+      {
+        "id": "spbcb6aba21d96ce7f9d8c262c8459497c",
+        "name": "Fix fixture A",
+        "folder": "/tmp/herdr-fix-0011-356682a2/fixture-A",
+        "machine": null,
+        "active": true,
+        "tabs": [
+          {
+            "id": "tb77afa0bcb080f3867652243dc6d9bf10",
+            "name": "1",
+            "active": true,
+            "settled": false,
+            "terminals": [
+              {
+                "terminal": "t1",
+                "pane": "pdf6266f69569c3c67294daada2e974ca",
+                "status": null,
+                "app": null,
+                "name": null,
+                "sub_agents": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "recent": []
+  },
+  "after": {
+    "spaces": [
+      {
+        "id": "spbcb6aba21d96ce7f9d8c262c8459497c",
+        "name": "Fix fixture A",
+        "folder": "/tmp/herdr-fix-0011-356682a2/fixture-A",
+        "machine": null,
+        "active": true,
+        "tabs": [
+          {
+            "id": "tb77afa0bcb080f3867652243dc6d9bf10",
+            "name": "1",
+            "active": true,
+            "settled": false,
+            "terminals": [
+              {
+                "terminal": "t1",
+                "pane": "pdf6266f69569c3c67294daada2e974ca",
+                "status": null,
+                "app": null,
+                "name": null,
+                "sub_agents": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "recent": []
+  },
+  "equal": true
+}
