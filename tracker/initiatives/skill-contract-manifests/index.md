@@ -125,7 +125,24 @@ Git history availability does not prove that a definition or upgrade is safe. Th
 
 ## Tickets
 
-No child tickets have been created.
+- [Validate manifests and resolve local definitions](../../tickets/skill-contract-manifests-01-local-definitions.md)
+- [Resolve pinned historical definitions](../../tickets/skill-contract-manifests-02-historical-definitions.md)
+- [Perform safe contract upgrades](../../tickets/skill-contract-manifests-03-safe-upgrades.md)
+- [Adopt contracts in tracker operations](../../tickets/skill-contract-manifests-04-tracker.md)
+- [Adopt contracts in result delivery](../../tickets/skill-contract-manifests-05-result-delivery.md)
+- [Adopt contracts in muxer handoffs](../../tickets/skill-contract-manifests-06-muxer-handoffs.md)
+- [Adopt contracts in shared-context operations](../../tickets/skill-contract-manifests-07-shared-context.md)
+- [Adopt contracts in worktree operations](../../tickets/skill-contract-manifests-08-worktree.md)
+- [Adopt contracts in evidence operations](../../tickets/skill-contract-manifests-09-evidence.md)
+- [Update skill-authoring rules](../../tickets/skill-contract-manifests-10-authoring.md)
+- [Adopt contracts in artifact sharing](../../tickets/skill-contract-manifests-11-artifact-sharing.md)
+- [Adopt contracts in backlog grooming](../../tickets/skill-contract-manifests-12-backlog-grooming.md)
+- [Adopt contracts in TWG benchmark runs](../../tickets/skill-contract-manifests-13-twg-benchmark.md)
+- [Adopt contracts in Home Assistant bulk operations](../../tickets/skill-contract-manifests-14-homeassistant.md)
+- [Adopt contracts in plain-language assessments](../../tickets/skill-contract-manifests-15-plain-language.md)
+- [Adopt contracts in web-design source metadata](../../tickets/skill-contract-manifests-16-web-design-metadata.md)
+- [Adopt contracts in report generation](../../tickets/skill-contract-manifests-17-report-generation.md)
+- [Complete manifest coverage for other maintained skills](../../tickets/skill-contract-manifests-18-manifest-coverage.md)
 
 ## Comments
 
