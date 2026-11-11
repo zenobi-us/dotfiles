@@ -8,7 +8,7 @@ sequence: 2
 title: Collect accurate native TUI evidence
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 # Collect accurate native TUI evidence
