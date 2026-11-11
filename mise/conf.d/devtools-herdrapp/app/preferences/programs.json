@@ -1,0 +1,12 @@
+{
+  "programs": {
+    "omp": {
+      "name": "OMP",
+      "run": [
+        "omp"
+      ],
+      "tile": "#334155",
+      "color": "#ffffff"
+    }
+  }
+}

@@ -596,19 +596,32 @@ Production work in tickets 02–10 is not part of the ticket 01 prototype gate.
 
 ## Herdr-app CLI, Context, and Tracker
 
+For mod creation and edits, use [creating-herdr-app-mods](mise/conf.d/devtools-agent/bundles/developer/skills/shells/creating-herdr-app-mods/SKILL.md).
+
 The native panels add **Context** and **Tracker** beside **Files** and **Changes**.
 
-Run `mise run herdrapp.install` from the repository root. To also install Better Config, run:
+Use `mise bootstrap --yes` for the full setup. To reapply declared dotfiles and prepare this app's fonts and runtime, run:
 
 ```sh
-bun mise/conf.d/devtools-herdrapp/app/install.ts --better-config
+mise dot apply
+mise run herdrapp.bootstrap
 ```
 
-The installer copies the 13 `cli-*` mods, CLI layout and preview, and CLI theme. It downloads Roboto Mono and its licence from a pinned revision and checks SHA-256 hashes. Departure Mono is not managed.
+The declarations in `mise/conf.d/devtools-herdrapp/mise.unix.toml` copy frontend code and assets, link the CLI layout/preview/theme, and link the Bun request entrypoint and data module to this checkout. Frontend imports must stay inside one canonical mod directory: individual file symlinks fail Herdr's import checks. Copies keep each writable `mod.json` and generated editor file local. Copy deployment is additive; removing a source file does not delete its old installed copy.
 
-The installer merges only the JSON keys in `mise/conf.d/devtools-herdrapp/app/preferences.json`. These keys cover global and terminal bindings, selected app settings, OMP registration, diff and file-tree preferences, and the Shared Context C2 layout. Other keys, zoom, workspace data, sessions, and generated editor files stay local. Cockpit and Departures bindings are not imported.
+Mise merges the managed JSON keys from `app/preferences/` and each source mod manifest. It preserves unrelated settings, mod settings, zoom, workspace data, sessions, and generated editor files. The managed Shared Context layout remains C2. For an existing copy-based installation, back up the managed files before the first apply; `--force` is needed when replacing regular layout/theme files with links. Do not force deployment over an unreviewed mod-directory symlink.
 
-Installation preserves the selected layout. After installation, keep Herdr-app open and run `mise run herdrapp.activate` to select `cli`. Activation does not reinstall files. Existing `shared-context` layouts stay unchanged. Existing CLI mods are adopted only when their tracked files match dotfiles. Save any local changes before installation. Better Config remains optional; an existing installation stays unchanged.
+`herdrapp.bootstrap` downloads Roboto Mono and its licence from pinned URLs, verifies SHA-256 hashes, and writes `data/shared-context-runtime.json` inside the app home. Runtime metadata stays outside the mod source. Departure Mono is not managed. Scoped tasks honour `HERDR_APP_HOME`; native declarations target `~/.config/herdr-app`, so custom homes need matching target declarations.
+
+Better Config is optional. Install its pinned revision separately:
+
+```sh
+mise run herdrapp.better-config
+```
+
+An existing Better Config installation stays unchanged. Each backend request starts a fresh Bun process, so backend edits need no service restart.
+
+Deployment preserves the selected layout. `mise run herdrapp.activate` selects `cli` without redeploying files. After frontend edits, apply the dotfiles, switch to another existing layout and back, then inspect `herdr-app status` and a screenshot. Other personal layouts stay unchanged.
 
 Open the panel settings button. In Better Config, select **Shared Context → Tracker layout**:
 
@@ -637,8 +650,8 @@ Initiative members stay one level deep; shared membership links to one canonical
 
 Each available Tracker and graph action opens a dropdown. Select a preset, add an optional instruction in the final inline input, then select **Open new pane**. Selecting a preset does not start an agent. Workflow actions offer **No extra instructions**; Ask Matt offers questions such as **What next?** and **Why is this blocked?**. Submit includes **Capture evidence + attach to ticket**. Preset and detail drafts stay separate for each repository, record, and action while the panel is open. Dismissal and preparation errors keep the draft. Escape dismisses the dropdown; arrow keys select a preset, and Enter in the input launches.
 
-Before launch, the service re-reads canonical workflow availability and prepares the skill command with the combined instructions. It starts a fresh OMP session in a new pane to the right. Each launch uses an isolated session directory and leaves existing chats unchanged. Prompts do not bypass workflow checks. Preparation errors appear in the dropdown. Description, Blocking lineage, and Activity remain available. No prompt-preview dialog is required.
+Before launch, the backend re-reads canonical workflow availability and prepares the skill command with the combined instructions. It starts a fresh OMP session in a new pane to the right. Each launch uses an isolated session directory and leaves existing chats unchanged. Prompts do not bypass workflow checks. Preparation errors appear in the dropdown. Description, Blocking lineage, and Activity remain available. No prompt-preview dialog is required.
 
-The GPUI mods use a local Bun service. The service imports the existing shared-context and tracker TypeScript APIs. Those APIs use `mq` with `okf.mq` to parse Markdown. The mods do not execute the shared-context or tracker CLIs.
+The GPUI mods call Herdr's `exec()` API once per request. A short-lived Bun process imports the existing shared-context and tracker TypeScript APIs, reads JSON arguments, and returns JSON on stdout. Errors return a JSON error and a failing exit code. Those APIs use `mq` with `okf.mq` to parse Markdown. There is no HTTP listener, connection token, or background Context service. Herdr limits exec output to 8 MiB; each request has a ten-minute deadline. Process startup cost repeats per request.
 
-The panels operate on local repositories. The backend imports modules from this checkout, so keep it available. If you update Bun or `mq`, run the installer again.
+The panels operate on local repositories. The backend imports modules from this checkout, so keep it available. If you update Bun or `mq`, run `mise run herdrapp.runtime`; the next request uses those paths.

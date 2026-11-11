@@ -10,5 +10,5 @@
     "noEmit": true,
     "skipLibCheck": true
   },
-  "include": ["install.ts", "configuration.ts", "mods/**/*.ts", "tests/**/*.ts"]
+  "include": ["tasks/**/*.ts", "mods/**/*.ts", "tests/**/*.ts"]
 }

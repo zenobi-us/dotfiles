@@ -1,7 +1,52 @@
-[tasks."herdrapp.install"]
-description = "Install the CLI interface and preferences without switching layouts"
+[dotfiles]
+"~/.config/herdr-app/mods/*" = { source = "./app/mods/*", mode = "copy", exclude = ["mod.json", "*.ts", "jsconfig.json"] }
+"~/.config/herdr-app/mods/shared-context/request.ts" = { source = "./app/mods/shared-context/request.ts", mode = "symlink", depends = ["~/.config/herdr-app/mods/shared-context"] }
+"~/.config/herdr-app/mods/shared-context/bridge.ts" = { mode = "absent" }
+"~/.config/herdr-app/mods/shared-context/data.ts" = { source = "./app/mods/shared-context/data.ts", mode = "symlink", depends = ["~/.config/herdr-app/mods/shared-context"] }
+"~/.config/herdr-app/layouts/cli.json" = { source = "./app/files/layouts/cli.json", mode = "symlink" }
+"~/.config/herdr-app/layouts/cli.svg" = { source = "./app/files/layouts/cli.svg", mode = "symlink" }
+"~/.config/herdr-app/themes/cli.json" = { source = "./app/files/themes/cli.json", mode = "symlink" }
+
+"~/.config/herdr-app/keys.json/dotfiles" = { source = "./app/preferences/keys.json", merge = true }
+"~/.config/herdr-app/settings.json/dotfiles" = { source = "./app/preferences/settings.json", merge = true }
+"~/.config/herdr-app/programs.json/dotfiles" = { source = "./app/preferences/programs.json", merge = true }
+"~/.config/herdr-app/shared.json/dotfiles" = { source = "./app/preferences/shared.json", merge = true }
+"~/.config/herdr-app/mods/shared-context/mod.json/preferences" = { source = "./app/preferences/shared-context.json", merge = true }
+
+"~/.config/herdr-app/mods/cli-agents/mod.json/manifest" = { source = "./app/mods/cli-agents/mod.json", merge = true }
+"~/.config/herdr-app/mods/cli-changes/mod.json/manifest" = { source = "./app/mods/cli-changes/mod.json", merge = true }
+"~/.config/herdr-app/mods/cli-confirm/mod.json/manifest" = { source = "./app/mods/cli-confirm/mod.json", merge = true }
+"~/.config/herdr-app/mods/cli-files/mod.json/manifest" = { source = "./app/mods/cli-files/mod.json", merge = true }
+"~/.config/herdr-app/mods/cli-menu/mod.json/manifest" = { source = "./app/mods/cli-menu/mod.json", merge = true }
+"~/.config/herdr-app/mods/cli-new-menu/mod.json/manifest" = { source = "./app/mods/cli-new-menu/mod.json", merge = true }
+"~/.config/herdr-app/mods/cli-pane/mod.json/manifest" = { source = "./app/mods/cli-pane/mod.json", merge = true }
+"~/.config/herdr-app/mods/cli-picker/mod.json/manifest" = { source = "./app/mods/cli-picker/mod.json", merge = true }
+"~/.config/herdr-app/mods/cli-prompt/mod.json/manifest" = { source = "./app/mods/cli-prompt/mod.json", merge = true }
+"~/.config/herdr-app/mods/cli-spaces/mod.json/manifest" = { source = "./app/mods/cli-spaces/mod.json", merge = true }
+"~/.config/herdr-app/mods/cli-tabs/mod.json/manifest" = { source = "./app/mods/cli-tabs/mod.json", merge = true }
+"~/.config/herdr-app/mods/cli-toast/mod.json/manifest" = { source = "./app/mods/cli-toast/mod.json", merge = true }
+"~/.config/herdr-app/mods/cli-workspace-chrome/mod.json/manifest" = { source = "./app/mods/cli-workspace-chrome/mod.json", merge = true }
+"~/.config/herdr-app/mods/shared-context/mod.json/manifest" = { source = "./app/mods/shared-context/mod.json", merge = true }
+"~/.config/herdr-app/mods/shared-context-tabs/mod.json/manifest" = { source = "./app/mods/shared-context-tabs/mod.json", merge = true }
+
+[tasks."herdrapp.bootstrap"]
+description = "Prepare fonts and the panel runtime after mise deploys dotfiles"
+depends = ["herdrapp.fonts", "herdrapp.runtime"]
+
+[tasks."herdrapp.fonts"]
+description = "Download and verify the managed Herdr-app fonts"
 dir = "{{ config_root }}/app"
-run = "bun install.ts"
+run = "bun tasks/fonts.ts"
+
+[tasks."herdrapp.better-config"]
+description = "Install the optional pinned Better Config mod"
+dir = "{{ config_root }}/app"
+run = "bun tasks/better-config.ts"
+
+[tasks."herdrapp.runtime"]
+description = "Record Bun and mq locations for one-shot panel requests"
+dir = "{{ config_root }}/app"
+run = "bun tasks/runtime.ts"
 
 [tasks."herdrapp.activate"]
 description = "Activate the managed CLI layout (keep Herdr-app open)"

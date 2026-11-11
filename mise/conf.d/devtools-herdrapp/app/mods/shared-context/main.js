@@ -82,7 +82,7 @@ export default class SharedContext extends View {
     this.actionOpen = null; this.actionError = "";
     this.openSelect = null; this.selectKeyHandlers = null; this.graphInitiative = null; this.graphViews = new Map();
     this.revision++; this.detailRevision++; this.loading = false; this.error = "";
-    if (next.machine) { this.error = "The selected repository is remote. Its Bun service must run on that machine. Local paths are not a remote fallback."; return; }
+    if (next.machine) { this.error = "The selected repository is remote. Context requests currently execute locally. Select a local repository."; return; }
     if (!next.cwd) { this.error = "Select a repository folder."; return; }
     this.refresh(cx);
   }

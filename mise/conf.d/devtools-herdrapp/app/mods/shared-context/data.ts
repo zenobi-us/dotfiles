@@ -156,8 +156,9 @@ export async function prepare(cwd: string, id: string, kind: "ticket" | "initiat
   const prepared = await prepareSessionRequest(context, exec, request);
   const choice = actionChoices(prepared.request.target, prepared.request.snapshot, prepared.request.workflow, await commands()).find(item => item.action === action);
   if (!choice || choice.disabledReason) throw new Error(choice?.disabledReason ?? "This action is unavailable.");
-  const binary = Bun.which("omp");
-  if (!binary) throw new Error("OMP is unavailable. Install OMP and run the panel installer again.");
+  // Bun's default lookup keeps the process-start PATH, before request.ts restores it.
+  const binary = Bun.which("omp", { PATH: process.env.PATH });
+  if (!binary) throw new Error("OMP is unavailable. Install OMP and run mise run herdrapp.runtime.");
   return { binary, prompt: buildSessionPrompt(prepared.request), repository: context.repositoryRoot };
 }
 
