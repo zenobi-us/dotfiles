@@ -23,7 +23,6 @@ zi light junegunn/fzf
 zinit_load_local_module "git__aliases.zsh"
 zinit_load_local_module "granted__aliases.zsh"
 zinit_load_local_module "moonrepo__completions.zsh"
-zinit_load_local_module "homeassistant__env.zsh"
 zinit_load_local_module "homeassistant__aliases.zsh"
 
 zinit ice as"command" from"gh-r" \
