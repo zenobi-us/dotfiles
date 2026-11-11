@@ -1,12 +1,12 @@
 // Use expanded initiative membership, not dependency edges or the visible queue.
-import { itemType } from "./tree.js";
+import { itemType, ticketDisplayState } from "./tree.js";
 
 const CATEGORIES = new Map([
   ["DONE", "done"], ["ACTIVE", "active"], ["BLOCKED", "blocked"],
   ["READY", "ready"], ["REVIEW", "ready"], ["FIX", "ready"], ["FINISH", "ready"], ["SUBMIT", "ready"],
 ]);
 
-/** Compute once per tracker snapshot. Recommendations are actionable, not evidence of active work or completion. */
+/** Count recorded completion before workflow recommendations; missing finish history does not reopen a ticket. */
 export function initiativeProgress(snapshot) {
   const tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
   const results = new Map();
@@ -17,7 +17,7 @@ export function initiativeProgress(snapshot) {
       const ticket = tickets.get(id);
       if (ticket && itemType(ticket) !== "ticket") continue;
       progress.total++;
-      const category = ticket && CATEGORIES.get(snapshot.states?.[id]?.state);
+      const category = ticket && CATEGORIES.get(ticketDisplayState(ticket, snapshot.states?.[id]));
       if (category) progress[category]++;
       else progress.unavailable++;
     }

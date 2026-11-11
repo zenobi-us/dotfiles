@@ -6,6 +6,7 @@ import { request } from "./client.js";
 import { dependencyGraph } from "./graph.js";
 import { button, note } from "./ui.js";
 import { initActionMenus, actionDropdown } from "./action-menu.js";
+import { ticketDisplayState } from "./tree.js";
 
 export function graphView(view, key, roots, focusId) {
   const t = theme();
@@ -37,7 +38,7 @@ export function graphView(view, key, roots, focusId) {
     .on_scroll_wheel((event, cx) => { state.x -= event.delta.x; state.y -= event.delta.y; cx.stop_propagation(); cx.notify(); })
     .children(edgeElements)
     .children(graph.nodes.map(node => {
-      const record = node.record, p = point(node), status = view.snapshot.states?.[record.id]?.state ?? record.status;
+      const record = node.record, p = point(node), status = ticketDisplayState(record, view.snapshot.states?.[record.id]);
       return button(`graph-node:${key}:${record.id}`, "", (_event, cx) => { state.selected = record.id; cx.notify(); }, { label: `${record.title}. ${record.id}. ${status}. Shift F10 opens actions.`, height: 88 * z })
         .absolute().left(p.x).top(p.y).w(230 * z).px(10 * z).rounded(6).border_1().border_color(record.id === focusId ? t.accent : record.id === state.selected ? t.ansi4 : t.border).bg(record.id === focusId ? t.selected : t.raised).text_color(t.foreground)
         .tooltip(`${record.title}\n${record.id} · ${status}\nRight-click for canonical actions`)

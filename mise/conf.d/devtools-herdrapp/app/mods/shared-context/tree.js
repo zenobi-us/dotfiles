@@ -5,7 +5,7 @@ export function dependencyRows(snapshot, queue, collapsed) {
   const rows = [], canonical = new Map(), assigned = new Set();
   const add = (record, parent, depth, visible) => {
     const path = `${parent}/${record.id}`, reference = canonical.get(record.id);
-    if (visible) rows.push({ type: "ticket", record, itemType: itemType(record), path, depth, reference, expanded: false, children: 0, state: snapshot.states[record.id]?.state ?? record.status });
+    if (visible) rows.push({ type: "ticket", record, itemType: itemType(record), path, depth, reference, expanded: false, children: 0, state: ticketDisplayState(record, snapshot.states?.[record.id]) });
     if (!reference) canonical.set(record.id, path);
   };
   const section = (id, title) => rows.push({ type: "section", record: { id, title }, path: `section:${id}`, depth: 0, expanded: true, children: 0 });
@@ -36,6 +36,12 @@ export function dependencyRows(snapshot, queue, collapsed) {
     for (const member of members) add(member, `section:${type}`, 0, true);
   }
   return { rows, canonical };
+}
+
+// Missing finish receipts require recovery, but do not reopen a completed tracker record.
+export function ticketDisplayState(ticket, workflowState) {
+  const status = ticket.status?.trim().toLowerCase();
+  return ["completed", "done", "closed", "resolved", "complete"].includes(status) ? "DONE" : workflowState?.state ?? ticket.status;
 }
 
 export function itemType(ticket) {

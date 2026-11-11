@@ -29,3 +29,4 @@ export function dependencyRows<Ticket extends DependencyTicket, Initiative exten
 ): { rows: DependencyRow<Ticket, Initiative>[]; canonical: Map<string, string> };
 export function revealPath(collapsed: Set<string>, path: string): void;
 export function itemType(ticket: { documentType?: string }): "ticket" | "prototype" | "research" | "planning" | "record";
+export function ticketDisplayState(ticket: { status: string }, workflowState?: { state: string }): string;
