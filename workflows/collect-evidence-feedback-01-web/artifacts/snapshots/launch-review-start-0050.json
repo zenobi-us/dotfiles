@@ -1,0 +1,12 @@
+{
+  "runId": "3d68cafd-49be-4924-9715-b83f0c1f275e",
+  "target": "t3b",
+  "operationId": "collect-evidence-feedback-01-web-review-0051",
+  "contextFile": "/home/zenobius/.local/state/result-delivery/runs/3d68cafd-49be-4924-9715-b83f0c1f275e/context.json",
+  "approvedCanonicalContext": "/var/home/zenobius/.local/state/result-delivery/runs/3d68cafd-49be-4924-9715-b83f0c1f275e/context-canonical.json",
+  "approvedCanonicalTarget": {
+    "path": "/var/home/zenobius/.local/state/result-delivery/runs/3d68cafd-49be-4924-9715-b83f0c1f275e/result.json",
+    "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/3d68cafd-49be-4924-9715-b83f0c1f275e/result.json",
+    "schema": "worktree-receipt/v1"
+  }
+}
