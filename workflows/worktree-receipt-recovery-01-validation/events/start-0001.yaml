@@ -1,0 +1,55 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0001",
+  "workflow_id": "worktree-receipt-recovery-01-validation",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": null,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+  "source_branch": "feature/worktree-receipt-recovery-01-validation",
+  "base_branch": "master",
+  "source_commit": "7c676a2971ee58d193323b59df1512bd054b0f82",
+  "source_tree": "4beaba24148e7150eb033f9b01b36ed9bed24c7d",
+  "created_at": "2026-11-11T06:22:07.651978+00:00",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "herdr-app:t3x",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "worktree-receipt-recovery-01-validation",
+    "ref": "tracker/tickets/worktree-receipt-recovery-01-validation.md"
+  },
+  "ticket_ref": "tracker/tickets/worktree-receipt-recovery-01-validation.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/worktree-receipt-recovery-01-validation"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/worktree-receipt-recovery-01-validation.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/worktree-receipt-recovery-01-validation/events/start-0001.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery_mode": "takeover",
+  "recovery_reason": "Inspector found tracker-only history and unknown ownership; no prior implementation receipt or source checkout existed.",
+  "ownership_approval": "User selected Approve scoped takeover in this session.",
+  "ownership_observations": "Ticket was unclaimed. No workflow receipts or matching goal reservations. Existing live terminals concern other workflows. Source worktree created by this parent through Worktrunk after approval.",
+  "validation": [
+    {
+      "command": "records.ts check --ticket worktree-receipt-recovery-01-validation",
+      "result": "passed"
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0003",
+  "workflow_id": "worktree-receipt-recovery-01-validation",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "implementation-0002",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+  "source_branch": "feature/worktree-receipt-recovery-01-validation",
+  "base_branch": "master",
+  "source_commit": "b2764c46af75893c000cae3d2ea62b26062b7848",
+  "source_tree": "9322e9541dfcdfb3a158665d368ce74d9cd80202",
+  "created_at": "2026-11-11T06:38:10.993470+00:00",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "herdr-app:t3x",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "worktree-receipt-recovery-01-validation",
+    "ref": "tracker/tickets/worktree-receipt-recovery-01-validation.md"
+  },
+  "ticket_ref": "tracker/tickets/worktree-receipt-recovery-01-validation.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/worktree-receipt-recovery-01-validation"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/worktree-receipt-recovery-01-validation/events/start-0001.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/worktree-receipt-recovery-01-validation/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/worktree-receipt-recovery-01-validation/artifacts/snapshots/pr-draft-implementation-0002.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/worktree-receipt-recovery-01-validation/events/start-0003.yaml"
+    }
+  ],
+  "status": "completed",
+  "recovery_mode": "takeover",
+  "recovery_reason": "Inspector found tracker-only history and unknown ownership; no prior implementation receipt or source checkout existed.",
+  "ownership_approval": "User selected Approve scoped takeover in this session.",
+  "ownership_observations": "Ticket was unclaimed. No workflow receipts or matching goal reservations. Existing live terminals concern other workflows. Source worktree created by this parent through Worktrunk after approval.",
+  "validation": [
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts --test-name-pattern 'writer and inspector reject'",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+      "result": "failed (expected before fix)",
+      "details": "Mismatch and nested-directory cases published with exit 0. The relative-path case rejected with the old diagnostic."
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+      "result": "passed",
+      "details": "14 tests passed; actual writer/inspector paths and missing transport results covered."
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+      "result": "passed",
+      "details": "Final run: 53 tests, 278 assertions, zero failures across four files."
+    },
+    {
+      "command": "mise exec -- bun /tmp/worktree-validation-smoke.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+      "result": "passed",
+      "details": "Disposable smoke exercised actual source-checkout CLIs. Mismatch, relative and nested paths rejected; prior event bytes preserved; valid event and result identical; actual inspector accepted. Script removed after execution."
+    },
+    {
+      "command": "mise exec -- bunx tsc --noEmit -p mise/conf.d/devtools-agent/bundles/developer/tsconfig.json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+      "result": "failed",
+      "details": "Project dependency environment lacks Bun type definitions."
+    },
+    {
+      "command": "mise exec -- bun /tmp/receipt-validation-typecheck/node_modules/typescript/bin/tsc --noEmit -p mise/conf.d/devtools-agent/bundles/developer/tsconfig.json --typeRoots /tmp/receipt-validation-typecheck/node_modules/@types",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+      "result": "failed",
+      "details": "Isolated Bun definitions resolved the first failure. Project check reports versioned Crust/helpPlugin export and resulting implicit-parameter errors, including existing writer/router imports. No clean project-wide typecheck is claimed."
+    },
+    {
+      "command": "mise exec -- bun /tmp/receipt-validation-typecheck/node_modules/typescript/bin/tsc --noEmit -p /tmp/receipt-validation-typecheck/tsconfig.json",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+      "result": "passed",
+      "details": "Focused strict check of the new shared validator and its transitive imports. Temporary configuration and dependencies removed after checking."
+    },
+    {
+      "command": "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.ts check --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation --ticket worktree-receipt-recovery-01-validation",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+      "result": "passed",
+      "details": "Canonical ticket schema, normal tracker discovery and dependency graph passed; ticket remains claimed."
+    },
+    {
+      "command": "mise exec -- git commit",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+      "result": "passed",
+      "details": "Pre-commit bundle-version check passed. No hooks changed or stashes applied."
+    },
+    {
+      "command": "result-delivery read and exact authoritative-event comparison",
+      "result": "passed"
+    },
+    {
+      "command": "source-checkout inspect.ts against copied base-store records",
+      "result": "passed; historyValid true, reconcile start"
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}; source working-tree check",
+      "result": "passed; exact implementation identity and clean source after record relocation"
+    }
+  ],
+  "implementation_summary": "Share receipt envelope validation between publication and inspection. Require identical absolute source paths and verify available paths against the real Git worktree root before publication or result delivery. Preserve immutable prior events. Keep historical removed-worktree inspection and sibling-ticket behavior unchanged.",
+  "child_run_id": "05cadc46-2759-456f-8106-081606fedffb",
+  "child_pane_id": "t44",
+  "child_shutdown": {
+    "state": "completed",
+    "completion_sequence": 2,
+    "terminal_removed": true,
+    "workspace": "Desktop removed empty source space automatically; source worktree retained"
+  },
+  "record_relocation": [
+    {
+      "ref": "workflows/worktree-receipt-recovery-01-validation/artifacts/snapshots/pr-draft-implementation-0002.md",
+      "source_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation/workflows/worktree-receipt-recovery-01-validation/artifacts/snapshots/pr-draft-implementation-0002.md",
+      "sha256": "1c139d5eaf8661fde5b2ef1677af3efeba3c5f072f4e297fc61815576edf9865"
+    },
+    {
+      "ref": "workflows/worktree-receipt-recovery-01-validation/events/implementation-0002.yaml",
+      "source_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation/workflows/worktree-receipt-recovery-01-validation/events/implementation-0002.yaml",
+      "sha256": "7e96f4dff1b81f67e8877cca11161d943d3a337a19b5d914bdb661d86d558ec6"
+    },
+    {
+      "ref": "workflows/worktree-receipt-recovery-01-validation/events/start-0001.yaml",
+      "source_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation/workflows/worktree-receipt-recovery-01-validation/events/start-0001.yaml",
+      "sha256": "4c5664b52e150d856f05686c71e9870687de22d8d74d6e20128c7a50bc212b8c"
+    },
+    {
+      "ref": "workflows/worktree-receipt-recovery-01-validation/manifest.yaml",
+      "source_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation/workflows/worktree-receipt-recovery-01-validation/manifest.yaml",
+      "sha256": "792779a23d4bdaa51d31c488d50501d836ec196d71fe6729c620e4eb03d195c0"
+    },
+    {
+      "ref": "workflows/worktree-receipt-recovery-01-validation/projections/implementation-log.md",
+      "source_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation/workflows/worktree-receipt-recovery-01-validation/projections/implementation-log.md",
+      "sha256": "fd2b68654c73b5a07a6a27ea47cb461c53675f827d09853a37405fdc0924ffef"
+    },
+    {
+      "ref": "workflows/worktree-receipt-recovery-01-validation/projections/latest-status.yaml",
+      "source_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation/workflows/worktree-receipt-recovery-01-validation/projections/latest-status.yaml",
+      "sha256": "d361debb58ff213d089be3021a73007abafb51284b3932ba72ba1a8e6a9e6af2"
+    },
+    {
+      "ref": "workflows/worktree-receipt-recovery-01-validation/projections/pr-draft.md",
+      "source_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation/workflows/worktree-receipt-recovery-01-validation/projections/pr-draft.md",
+      "sha256": "19ecf1542069b42ac4ab7c22271efe359f4f1ee21256d6f2ff631a91affa83a1"
+    }
+  ],
+  "publication": {
+    "source_committed": true,
+    "workflow_records_committed": false,
+    "pushed": false,
+    "merged": false,
+    "ticket_completed": false
+  }
+}

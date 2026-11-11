@@ -1,0 +1,13 @@
+{
+  "schema": "worktree-workflow/v2",
+  "workflow_id": "worktree-receipt-recovery-01-validation",
+  "ticket_ref": "tracker/tickets/worktree-receipt-recovery-01-validation.md",
+  "initiative": "worktree-receipt-recovery",
+  "event_root": "events",
+  "artifact_root": "artifacts",
+  "projection_root": "projections",
+  "latest_receipt": "start-0003",
+  "latest_receipt_ref": "workflows/worktree-receipt-recovery-01-validation/events/start-0003.yaml",
+  "state": "IMPLEMENTED",
+  "parent_completion": "completed"
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-latest-status/v1",
+  "workflow_id": "worktree-receipt-recovery-01-validation",
+  "ticket": "tracker/tickets/worktree-receipt-recovery-01-validation.md",
+  "state": "IMPLEMENTED",
+  "latest_receipt": "start-0003",
+  "latest_receipt_ref": "workflows/worktree-receipt-recovery-01-validation/events/start-0003.yaml",
+  "latest_source_commit": "b2764c46af75893c000cae3d2ea62b26062b7848",
+  "latest_source_tree": "9322e9541dfcdfb3a158665d368ce74d9cd80202",
+  "latest_review_verdict": null,
+  "open_findings": [],
+  "parent_completion": "completed",
+  "supporting_receipts": [
+    "workflows/worktree-receipt-recovery-01-validation/events/start-0001.yaml",
+    "workflows/worktree-receipt-recovery-01-validation/events/implementation-0002.yaml",
+    "workflows/worktree-receipt-recovery-01-validation/events/start-0003.yaml"
+  ]
+}
