@@ -1,0 +1,156 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-publication-0004",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "start-complete-0003",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "35bcd03f3be95396a7e7893801a9d50631e35e86",
+  "source_tree": "89f7993fa8a5085bd43d46db72a9a6401151f939",
+  "created_at": "2026-11-09T06:45:02.163Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-complete-0003.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/implementation-0002.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-publication-0004.json"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "takeover",
+    "reason": "Fresh inspector requires recovery approval; no source candidates or prior phase receipts exist.",
+    "prior_attempt": null,
+    "inspected_inputs": [
+      "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+    ],
+    "prior_source": {
+      "commit": null,
+      "tree": null
+    },
+    "approval": {
+      "scope": "pi-ink-bridge-03-pair-device only; reconcile existing work or establish verified base and create fresh implementation session when no source exists",
+      "user_selection": "Authorize scoped recovery",
+      "session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl"
+    },
+    "ownership": "unknown; scoped recovery authorized",
+    "liveness": "Herdr inventory inspected: current parent w64:pY; no separate pairing implementation agent identified. No session terminated or reused.",
+    "reservations": "No matching ticket reference in coordinator YAML/JSON events in repository workflow collection; no pairing goal workflow directory exists.",
+    "source_resolution": "No matching existing local or remote source branch. Created new branch from verified master after explicit approval.",
+    "preservation": "All pre-existing uncommitted files and unrelated agent sessions left untouched.",
+    "base_before_claim": "b3f3c80d2ef9d6502cfc653c61aa2d3786c82d4f",
+    "claim_commit": "bd57e469df34f3cf1fe5b71f014625a3579aeb3b",
+    "source_prerequisite": "16d1122ae182d38630af5126dcf00a0aa7e8b626 is an ancestor of master",
+    "reconciled_result": "implementation-0002",
+    "launch_failure": "Initial muxer router failed with worktree_not_found before agent launch. Explicit Herdr worktree open with canonical repository --cwd resolved workspace; no agent terminated or duplicated.",
+    "transport_recovery": "Assigned /home target traverses a symlink; verified canonical /var/home parent alias resolves same directory. Preserved original run, operation, ref, unchanged receipt and hash.",
+    "actual_outcome": "Host implementation passed; native hardware acceptance blocked. Ticket remains claimed; no review, merge, push or hardware access."
+  },
+  "validation": [
+    {
+      "command": "result-delivery read through verified canonical /var/home directory alias",
+      "result": "Schema, run, operation, hash and authoritative YAML exact equality verified; parent and all 18 child output references verified; generated ZIP SHA-256 matches."
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}; git status --porcelain=v1 --untracked-files=all",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+      "result": "HEAD 35bcd03f3be95396a7e7893801a9d50631e35e86 / tree 89f7993fa8a5085bd43d46db72a9a6401151f939 match; only immutable implementation result receipt untracked."
+    },
+    {
+      "command": "mise exec -- go test -race -run TestProductionAppLoadPairing -v",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device/mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client",
+      "result": "PASS, protected PNG SHA-256 8fc5a10f2a577810e1552a07c378954d6be3a11b20d33b669d70c2e96963aeaa"
+    },
+    {
+      "command": "mq read snapshot and implementation log; read QML approved image and desktop revoked screenshots",
+      "result": "Host evidence and honest native acceptance limits verified."
+    },
+    {
+      "command": "git hash-object --no-filters --stdin-paths and snapshot ls-tree identity comparison",
+      "result": "606 restored missing untracked files match original blobs; tracked user files unchanged from pre-hook snapshot."
+    }
+  ],
+  "implementation_summary": "Implemented all reachable host service and production AppLoad pairing behavior: installed-trust manual address/fingerprint verification, verified HTTPS, bounded onboarding, matching code and explicit desktop approval, protected PNG access checks, persistent hashed/revocable credentials, active WebSocket revocation, protocol negotiation, and loopback management protections. Built ARM64 release 0.5.0. Actual Connections.qml and compiled production backend passed host-emulated AppLoad transport plus real HTTPS/WSS and browser-form smoke. Native Paper Pro acceptance is not complete and no completion is claimed.",
+  "open_questions": [
+    "No Paper Pro access, SSH, installation, restart, hardware mutation, or old experiment cleanup was performed.",
+    "Owner must approve a scoped repair/upgrade plan from the installed release to 0.5.0. The existing installer intentionally rejects a different release at occupied launcher links.",
+    "After approved installation and any separately approved restart, observe the actual Paper Pro screen, matching-code approval, restart persistence, protected image download, and active/subsequent rejection after revocation on the real LAN.",
+    "No independent review, merge, push, ticket completion, mDNS, image dispatch, inbox, or drawing acceptance is claimed.",
+    "Workflow outcome metadata commit blocked by hk stash/permission failure. No hook bypass, stash drop, old stash apply, or unrelated file cleanup performed."
+  ],
+  "hardware_acceptance": {
+    "status": "not-run",
+    "reason": "No current owner authorization for tablet access, installation, repair/upgrade, restart, or hardware mutations. Earlier approvals were not reused.",
+    "required_owner_actions": [
+      "Approve scoped repair/upgrade from existing installed release to verified 0.5.0 while preserving pairing, drafts, unrelated files, and old experiments.",
+      "Approve cable-connected preflight and exact-payload installation. The unchanged installer rejects different-release occupied launcher links, so approve an explicit repair plan before changing them.",
+      "After saving documents, approve any required Xochitl restart.",
+      "Observe native AppLoad manual address/fingerprint flow, matching code and approval, restart persistence, real-LAN protected PNG download, and revocation of active/subsequent access."
+    ]
+  },
+  "child_run": {
+    "run_id": "60143494-8a67-4228-b24b-2a2bae2972eb",
+    "operation_id": "pi-ink-bridge-03-implementation-0001",
+    "pane_id": "w60:p2",
+    "session_id": "01a1beec-c1a8-72c1-8f47-c3144d67b20b",
+    "signal": {
+      "sequence": 2,
+      "state": "completed",
+      "source": "agent",
+      "timestamp": "2026-11-09T06:39:49.635Z"
+    },
+    "transport_sha256": "8527b0f776ec5760c38ea7b5d2ddc27a5073712ba793de5816bd31e6afd0bd63",
+    "close": {
+      "command": "herdr pane close w60:p2",
+      "result": "ok"
+    },
+    "workspace_preserved": true
+  },
+  "publication": {
+    "status": "blocked",
+    "attempted_commit": "chore(workflow): record pi-ink-bridge-03-pair-device outcome",
+    "failure": "hk pre-commit tried to stash unrelated untracked files and failed on permission-denied paths. No workflow outcome commit was created.",
+    "source_committed": true,
+    "source_commit": "35bcd03f3be95396a7e7893801a9d50631e35e86",
+    "source_push": false,
+    "workflow_records": "preserved locally in base and source worktrees; not committed or pushed by parent",
+    "hook_snapshots": [
+      "975df803d5f94f675a06485d8812fdc1c2b3e397",
+      "d00bf751404e19c80acd82718543bacb73a58afc"
+    ],
+    "recovery": {
+      "restored_missing_files": 606,
+      "existing_files": "not overwritten",
+      "integrity": "All restored hashes match original snapshot blobs; tracked user files match hook snapshot; old journal and all snapshots retained."
+    }
+  }
+}

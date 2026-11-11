@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-workflow/v2",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "initiative": "pi-ink-bridge",
+  "event_root": "events",
+  "artifact_root": "artifacts",
+  "projection_root": "projections",
+  "latest_receipt": "start-boot-reconciliation-proposal-0031",
+  "state": "IMPLEMENTING",
+  "phase_status": "blocked",
+  "history_valid": true,
+  "reason": "Portable staging completed once with immutable release verification; desktop stayed ready without refresh. Cutover SSH closed before completion. Pinned recovery refused boot_changed before mutation; no new or old UI start ran. Link, backup and UI persistence remain unknown. All old device generation mutation pins are invalid. Only one bounded read-only new-boot reconciliation awaits approval; no stop or cutover retry."
+}

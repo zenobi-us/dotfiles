@@ -1,0 +1,124 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-preflight-proposal-0011",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-preflight-0010",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T10:39:01.221Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-preflight-0010.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0010/findings.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/snapshots/offline-upgrade-implementation-0008.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-preflight-proposal-0011.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/proposal.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/verification.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/reader.go"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/metadata-reader-arm64"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/stage-run-reader.sh"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/known_hosts"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "parent-preflight-proposal",
+    "approval": {
+      "user_selection": "Closed; prepare next preflight",
+      "scope": "Local reader/proposal preparation only. No SSH retry, upload, installation or restart."
+    },
+    "actual_outcome": "Pinned next-preflight proposal ready for owner approval; zero additional device operations."
+  },
+  "validation": [
+    {
+      "command": "PI_INK_READER_FIXTURE=1 mise exec -- go run reader.go fixture.go",
+      "result": "PASS seven boundary checks and preservation; identical reader source SHA-256 2967d6cbf8eba6faa5ff28765f96bc8754bcd54370a00ddd989d53735fdef732. Temporary host smoke workspace removed."
+    },
+    {
+      "command": "GOOS=linux GOARCH=arm64 CGO_ENABLED=0 mise exec -- go build -trimpath -ldflags=-s -w",
+      "result": "Built ELF64 AArch64 reader, 2162872 bytes, SHA-256 0fe207302d7feb59fe6ff9a6beb407950d9fce9386522b533ad0868514d9e7ed."
+    },
+    {
+      "command": "sh -n stage-run-reader.sh; proposal input verification",
+      "result": "Passed; exact script command, pinned binary/source/script/known-host inputs verified. No device operation or upload."
+    }
+  ],
+  "implementation_summary": "Prepared fixed-scope metadata-only reader and exact two-operation next-preflight proposal locally. No product source changed and no device operation performed.",
+  "open_questions": [
+    "Owner reports Pi Annotations closed; live process state has not been rechecked.",
+    "Await exact next-preflight approval for one new bounded check and, only on success, the pinned temporary reader upload/run/identity-checked owned cleanup.",
+    "No client upgrade, trust replacement, application/service restart, old experiment cleanup or hook bypass is authorized."
+  ],
+  "hardware_acceptance": {
+    "status": "awaiting-next-preflight-approval",
+    "owner_report": "Closed; prepare next preflight",
+    "closure_observed_by_agent": false,
+    "helper_executed": false,
+    "upgrade_authorized": false,
+    "restart_authorized": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "next-preflight-proposal-ready",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011"
+  }
+}

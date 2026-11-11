@@ -1,0 +1,88 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0001",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": null,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "bd57e469df34f3cf1fe5b71f014625a3579aeb3b",
+  "source_tree": "b5c19e8096673355e4ea562b66a00380cd8c0c02",
+  "created_at": "2026-11-09T06:07:07.232Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-02-install-client.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/pi-ink-bridge/index.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-0001.json"
+    }
+  ],
+  "status": "started",
+  "recovery": {
+    "mode": "takeover",
+    "reason": "Fresh inspector requires recovery approval; no source candidates or prior phase receipts exist.",
+    "prior_attempt": null,
+    "inspected_inputs": [
+      "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+    ],
+    "prior_source": {
+      "commit": null,
+      "tree": null
+    },
+    "approval": {
+      "scope": "pi-ink-bridge-03-pair-device only; reconcile existing work or establish verified base and create fresh implementation session when no source exists",
+      "user_selection": "Authorize scoped recovery",
+      "session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl"
+    },
+    "ownership": "unknown; scoped recovery authorized",
+    "liveness": "Herdr inventory inspected: current parent w64:pY; no separate pairing implementation agent identified. No session terminated or reused.",
+    "reservations": "No matching ticket reference in coordinator YAML/JSON events in repository workflow collection; no pairing goal workflow directory exists.",
+    "source_resolution": "No matching existing local or remote source branch. Created new branch from verified master after explicit approval.",
+    "preservation": "All pre-existing uncommitted files and unrelated agent sessions left untouched.",
+    "base_before_claim": "b3f3c80d2ef9d6502cfc653c61aa2d3786c82d4f",
+    "claim_commit": "bd57e469df34f3cf1fe5b71f014625a3579aeb3b",
+    "source_prerequisite": "16d1122ae182d38630af5126dcf00a0aa7e8b626 is an ancestor of master"
+  },
+  "validation": [
+    {
+      "command": "records.ts check --ticket pi-ink-bridge-03-pair-device",
+      "result": "passed before and after claim"
+    },
+    {
+      "command": "git merge-base --is-ancestor 16d1122ae182d38630af5126dcf00a0aa7e8b626 master",
+      "result": "passed"
+    }
+  ]
+}

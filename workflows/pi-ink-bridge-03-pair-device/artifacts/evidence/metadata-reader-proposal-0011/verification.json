@@ -1,0 +1,34 @@
+{
+  "schema": "pi-ink-metadata-reader-host-verification/v1",
+  "created_at": "2026-11-09T10:37:28.059Z",
+  "host_smoke": {
+    "command": "PI_INK_READER_FIXTURE=1 mise exec -- go run reader.go fixture.go",
+    "cwd": "/tmp/pi-ink-reader-smoke-7WRAuK",
+    "result": "PASS: seven metadata-reader boundary checks; fixture config/CA/state preserved; no private values in report",
+    "checks": [
+      "fixed paths with absent state",
+      "secret/device-ID redaction",
+      "existing state digest and file preservation",
+      "changed config digest rejection",
+      "foreign state path rejection",
+      "unsafe private-file permissions rejection",
+      "symlinked state rejection"
+    ]
+  },
+  "source_sha256": "2967d6cbf8eba6faa5ff28765f96bc8754bcd54370a00ddd989d53735fdef732",
+  "smoke_source_sha256": "2967d6cbf8eba6faa5ff28765f96bc8754bcd54370a00ddd989d53735fdef732",
+  "build": {
+    "command": "GOOS=linux GOARCH=arm64 CGO_ENABLED=0 mise exec -- go build -trimpath -ldflags=-s -w -o metadata-reader-arm64 reader.go",
+    "toolchain": "go1.25.0 linux/amd64",
+    "result": "success",
+    "architecture": "ELF64 little-endian AArch64, e_machine 183",
+    "binary_sha256": "0fe207302d7feb59fe6ff9a6beb407950d9fce9386522b533ad0868514d9e7ed",
+    "binary_size": 2162872
+  },
+  "script": {
+    "syntax": "sh -n passed",
+    "sha256": "ab4054f23421abfe5796f440dc5fac702690050f8954c4765ab7f5d80f58fc9e"
+  },
+  "device_operations": 0,
+  "scope": "Host-only preparation, no upload/execution approved yet."
+}

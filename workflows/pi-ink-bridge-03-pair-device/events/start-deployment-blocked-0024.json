@@ -1,0 +1,112 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-deployment-blocked-0024",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-deployment-0023",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T22:43:18.738Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": "w64:pY",
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-deployment-0023.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/proposal.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/deployment-0023/execution-intent.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-deployment-blocked-0024.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/deployment-0023/desktop-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/deployment-0023/tablet-stage-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/deployment-0023/outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/deployment-0023/findings.json"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "same-owner-explicit-deployment-stopped-at-unknown-transport-boundary",
+    "actual_outcome": "Completed desktop result retained; no further device action after stage failure. Prior full-cycle/conditional rollback approval is not an automatic staging retry permission."
+  },
+  "validation": [
+    {
+      "command": "Exact approved desktop runtime deployment",
+      "result": "Exit 0. Build2fa9ad053469efb6f844dc89087e85d7bf1393527ffb3bbd9cb502a98c880e12 ready at PID2512709; identity/private files and old runtime preserved; verified TLS protocol1."
+    },
+    {
+      "command": "Exact approved tablet immutable-release stage",
+      "result": "SSH exit255; connection reset by peer, stdout empty. Persistent stage/release state unknown; no completion marker. No retry, cutover, UI stop/start or rollback requested."
+    }
+  ],
+  "implementation_summary": "Desktop deployment succeeded. Tablet staging transport failed with unknown mutation boundary; normal sequence halted. Preserve/reconcile partial state before repetition. No new implementation/reviewer/fixer agent launched.",
+  "open_questions": [
+    "Authorize bounded read-only reconciliation of exact stage/release/links/unit state before any further device mutation.",
+    "If provably untouched, separately authorize a short-exec framed-input transport of the identical pinned staging code. Reconcile a complete valid stage instead of repeating it. Partial/foreign state blocks.",
+    "Native 0.5 acceptance remains incomplete."
+  ],
+  "hardware_acceptance": {
+    "status": "desktop-ready-tablet-stage-outcome-unknown",
+    "desktop_build": "2fa9ad053469efb6f844dc89087e85d7bf1393527ffb3bbd9cb502a98c880e12",
+    "tablet_stage_complete": false,
+    "tablet_persistent_state": "unknown",
+    "UI_stop_requested": false,
+    "cutover_requested": false,
+    "UI_start_requested": false,
+    "native_0_5_acceptance": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "desktop-refreshed-tablet-stage-transport-outcome-unknown",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/deployment-0023"
+  },
+  "result_missing": true,
+  "failure_reason": "Tablet staging has no completion proof after SSH connection reset. This parent-owned deployment checkpoint dispatched no new implementation child; it does not invent a child result or infer a successful device mutation."
+}

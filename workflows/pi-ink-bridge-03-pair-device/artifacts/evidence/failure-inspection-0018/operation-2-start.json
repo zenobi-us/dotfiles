@@ -1,0 +1,6 @@
+{
+  "started_at": "2026-11-09T12:34:08.137Z",
+  "operation": 2,
+  "condition": "Operation 1 exit 0, target PID absent, owned failed helper removed.",
+  "script_sha256": "fd67715bb8f7b2753716bb47b966fd25bb53b51aebf8636672c1f6464b902739"
+}

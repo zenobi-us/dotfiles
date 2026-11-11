@@ -1,0 +1,90 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-boot-reconciliation-proposal-0031",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-portable-stage-blocked-0030",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-10T02:31:21.804Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": "w64:pY",
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-portable-stage-blocked-0030.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-0029/outcome.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/boot-reconciliation-proposal-0031/proposal.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-boot-reconciliation-proposal-0031.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/boot-reconciliation-proposal-0031/proposal.json"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "await-new-boot-read-only-scope",
+    "actual_outcome": "All old boot generation mutation pins remain invalid; no stop/cutover/UI request will repeat automatically."
+  },
+  "validation": [
+    {
+      "command": "Canonical inspector after receipt0030",
+      "result": "History valid; source unchanged. No further device connection."
+    },
+    {
+      "command": "Vendor lifecycle documentation",
+      "result": "Documents stop/start; does not establish cause of observed boot change."
+    }
+  ],
+  "implementation_summary": "Preserve verified staged release and partial transaction after disconnect/boot change. Freeze only a one-connection read-only new-boot/cutover reconciliation proposal; no new device operation performed.",
+  "open_questions": [
+    "Observe the actual boundary and liveness. Only safe classifications can authorize the preselected continuation."
+  ],
+  "hardware_acceptance": {
+    "status": "staged-but-cutover-unknown-after-boot-change",
+    "native_0_5_acceptance": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "new-boot-read-only-scope-awaits-approval",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/boot-reconciliation-proposal-0031"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "pi-ink-portable-stage-outcome/v1",
+  "created_at": "2026-11-10T02:27:47.710Z",
+  "approved_proposal": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-proposal-0028/proposal.json",
+  "desktop": {
+    "ready": true,
+    "unchanged_generation": true,
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-0029/desktop-readiness.json"
+  },
+  "read_only_gate": {
+    "complete": true,
+    "boundary": "untouched",
+    "portable_capable": true
+  },
+  "stage": {
+    "complete": true,
+    "attempts": 1,
+    "marker": "IMMUTABLE_RELEASE_STAGED_NO_CUTOVER"
+  },
+  "cutover": {
+    "exit_code": 255,
+    "completion_marker": false,
+    "transport": "Connection closed by remote host",
+    "persistence": "unknown; do not infer link/backup/UI state from disconnect"
+  },
+  "guarded_prelaunch_recovery": {
+    "exit_code": 41,
+    "refusal": "STOP=boot_changed",
+    "completed": false
+  },
+  "boot": {
+    "changed": true,
+    "cause": "not established; no intentional reboot requested"
+  },
+  "UI_requests": {
+    "stop_executor_entered": true,
+    "new_start_attempted": false,
+    "old_start_attempted": false,
+    "rollback_completed": false
+  },
+  "next": "No more device calls under the old boot pins. Preserve staged release and transaction. Prepare only a separately approved read-only reboot/cutover reconciliation; never repeat stop or assume old/new link state.",
+  "native_acceptance": "not run",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5"
+}

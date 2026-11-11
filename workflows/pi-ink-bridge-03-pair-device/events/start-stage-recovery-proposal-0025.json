@@ -1,0 +1,109 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-stage-recovery-proposal-0025",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-deployment-blocked-0024",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T22:56:09.113Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-deployment-blocked-0024.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/deployment-0023/findings.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/proposal.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-stage-recovery-proposal-0025.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stage-recovery-proposal-0025/proposal.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stage-recovery-proposal-0025/inspect.sh"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stage-recovery-proposal-0025/bootstrap.sh"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stage-recovery-proposal-0025/framing-smoke.json"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "preserve-completed-desktop-and-unknown-device-boundary",
+    "actual_outcome": "Only local framing proof and read-only probe preparation since failure. Reconcile complete valid state first; never infer absence from missing output or status."
+  },
+  "validation": [
+    {
+      "command": "sh -n read-only probe and compact bootstrap",
+      "result": "Passed; no remote execution."
+    },
+    {
+      "command": "Owned local framed-input smoke",
+      "result": "Four cases passed. Original staging program SHA-256 unchanged; compact exec request506 bytes instead of prior42230. No staging or service retry performed."
+    }
+  ],
+  "implementation_summary": "Prepared read-only ownership/liveness/state reconciliation and an explicitly gated compact transport for the identical staging code. Completed desktop deployment is preserved and must not be repeated. Unknown/active/partial device state never authorizes retry.",
+  "open_questions": [
+    "Choose read-only inspection or explicit conditional reconciliation/framed-stage/approved-cycle continuation.",
+    "Continuation re-affirms saved/closed documents; it is not takeover or active-process termination permission.",
+    "No further device connection is authorized until this new scope is chosen."
+  ],
+  "hardware_acceptance": {
+    "status": "desktop-ready-awaiting-unknown-stage-reconciliation-scope",
+    "desktop_build": "2fa9ad053469efb6f844dc89087e85d7bf1393527ffb3bbd9cb502a98c880e12",
+    "tablet_persistent_state": "unknown",
+    "UI_stop_requested": false,
+    "cutover_requested": false,
+    "UI_start_requested": false,
+    "native_0_5_acceptance": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "unknown-stage-read-only-reconciliation-and-unchanged-code-framing-proposal-ready",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stage-recovery-proposal-0025"
+  }
+}

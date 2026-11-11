@@ -1,0 +1,13 @@
+{
+  "schema": "pi-ink-bounded-operation-result/v1",
+  "sequence": 1,
+  "kind": "temporary-pidfd-stop-helper",
+  "started_at": "2026-11-09T11:29:46.315Z",
+  "completed_at": "2026-11-09T11:29:46.800Z",
+  "exit_code": 41,
+  "signal": null,
+  "error": null,
+  "stdout": "/home/root/.local/share/pi-ink-bridge/.preflight-stop-0015/stop: OK\nSTOP_HELPER_DIRECTORY_IDENTITY=65026:1476:0:0:700\nSTOP_HELPER_FILE_IDENTITY=65026:1482:0:0:700:2162872\n{\"schema\":\"pi-ink-pidfd-stop/v1\",\"pid\":41472,\"sigterm_sent\":false,\"exit_observed\":false}\n",
+  "stderr": "STOP=pidfd_open_unavailable\n",
+  "retry_performed": false
+}

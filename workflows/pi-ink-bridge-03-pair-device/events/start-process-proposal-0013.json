@@ -1,0 +1,93 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-process-proposal-0013",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-preflight-0012",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T11:02:19.786Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-preflight-0012.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0012/findings.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-process-proposal-0013.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/process-inspection-proposal-0013/proposal.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/process-inspection-proposal-0013/inspect-process.sh"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "parent-next-diagnostic-proposal",
+    "actual_outcome": "Stopped previous approved operation and prepared narrow next diagnostic without executing it."
+  },
+  "validation": [
+    {
+      "command": "sh -n inspect-process.sh; SHA-256 verification",
+      "result": "Passed; 168bdcb98bb9fa324b32a20f31700f6246c1d5daac303b7004a161e7b8508ae5. No device execution."
+    }
+  ],
+  "implementation_summary": "Prepared only a bounded read-only PID 41472 identity inspection proposal. No process stop, upgrade, helper upload, restart or further SSH performed.",
+  "open_questions": [
+    "Await explicit approval for one PID 41472 read-only identity inspection.",
+    "No process termination is authorized; match may belong to an old experiment.",
+    "Exact upgrade manifest remains blocked by incomplete preflight/private path validation."
+  ],
+  "hardware_acceptance": {
+    "status": "preflight-stopped-on-process",
+    "owner_UI_closed": true,
+    "process_identity_confirmed": false,
+    "helper_uploaded": false,
+    "helper_executed": false,
+    "upgrade_authorized": false,
+    "restart_authorized": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "process-inspection-proposal-ready",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/process-inspection-proposal-0013"
+  }
+}

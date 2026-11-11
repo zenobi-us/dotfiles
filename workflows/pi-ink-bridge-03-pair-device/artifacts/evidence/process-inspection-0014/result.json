@@ -1,0 +1,12 @@
+{
+  "schema": "pi-ink-process-inspection-result/v1",
+  "started_at": "2026-11-09T11:11:00.516Z",
+  "completed_at": "2026-11-09T11:11:00.957Z",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "PID=41472\nSTART_TICKS=3578271\nPROC_IDENTITY=21:205121:0:0\nEXE=/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/pi-ink-client\nEXE_IDENTITY=65026:1446:0:0:700:7405752\nSTATUS|Name:\tpi-ink-client\nSTATUS|State:\tS (sleeping)\nSTATUS|PPid:\t7146\nSTATUS|Uid:\t0\t0\t0\t0\nSTATUS|Gid:\t0\t0\t0\t0\n433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051  /proc/41472/exe\nREAD_ONLY_PROCESS_INSPECTION_COMPLETE\n",
+  "stderr": "",
+  "retry_performed": false,
+  "mutations": 0
+}

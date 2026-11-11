@@ -1,0 +1,110 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-failure-inspection-0018",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-failure-proposal-0017",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T12:39:21.851Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-proposal-0017/proposal.json"
+    },
+    {
+      "kind": "approval",
+      "description": "User selected Continue only if PID is absent."
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-failure-inspection-0018.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018/execution-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018/operation-1-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018/operation-2-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018/outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018/findings.json"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "parent-approved-failure-inspection-and-cleanup",
+    "actual_outcome": "Owned new stop helper removed after exact checks; subsequent preflight stopped at a different client PID. No further device action."
+  },
+  "validation": [
+    {
+      "command": "Approved failure diagnosis / exact owned-helper cleanup",
+      "result": "Exit 0; PID 41472 absent; kernel 6.12.49+git-imx8mm-ferrari-g2418a6dae57b; exact new failed stop helper removed."
+    },
+    {
+      "command": "Conditionally approved bounded read-only preflight",
+      "result": "Exit 41; STOP=client_active at new PID 60008. No metadata-reader upload or further device action."
+    }
+  ],
+  "implementation_summary": "Executed only the approved diagnosis, exact newly created helper cleanup and conditional read-only preflight. A different active client now blocks the preflight; its identity is unknown.",
+  "open_questions": [
+    "Read-only process/layout/capability inspection needs a new scope; do not infer that the new process is the earlier backend.",
+    "No approval exists to signal the new process, retry the failed helper, upgrade the client, replace trust or restart Xochitl."
+  ],
+  "hardware_acceptance": {
+    "status": "read-only-preflight-blocked-by-new-client-60008",
+    "old_PID_41472_absent": true,
+    "new_client_PID": 60008,
+    "new_client_identity": "uninspected",
+    "failed_stop_helper_retained": false,
+    "metadata_reader_uploaded": false,
+    "signals_sent": 0,
+    "upgrade_authorized": false,
+    "restart_authorized": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "approved-failure-inspection-and-owned-cleanup-complete-following-preflight-blocked",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-input-ref-repair-0019",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-failure-inspection-0018",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T13:00:25.088Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-failure-inspection-0018.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018/execution-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018/history-envelope-incident.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/input-ref-repair-0019/repair-intent.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-input-ref-repair-0019.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/input-ref-repair-0019/before-inspection.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/input-ref-repair-0019/repair-intent.json"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "authorized-append-only-envelope-repair",
+    "actual_outcome": "Only the absent inputs[1].ref is supplied in the effective view from the existing workflow execution-intent artifact; original raw event preserved."
+  },
+  "validation": [
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.test.ts",
+      "result": "10 pass, 0 fail, 105 expectations. Includes immutable raw/effective input views and rejection of checksum, index, replacement, duplicate, undeclared, outside/symlink, missing/directory and field-change attempts."
+    }
+  ],
+  "implementation_summary": "Added narrow host-only missing-input-ref supplementation and appended this checksum-bound repair holder. No receipt bytes, parent/source/status/verdict fields, feature worktree source, or device state changed. The hardware preflight remains blocked by the different uninspected client PID 60008.",
+  "open_questions": [
+    "Verify the real inspector accepts the supplemented history; then update the receipt contract documentation.",
+    "Native acceptance remains blocked. Any further device inspection, metadata-reader upload, installation, signal or restart requires separately approved scope."
+  ],
+  "hardware_acceptance": {
+    "status": "read-only-preflight-blocked-by-new-client-60008",
+    "old_PID_41472_absent": true,
+    "new_client_PID": 60008,
+    "new_client_identity": "uninspected",
+    "failed_stop_helper_retained": false,
+    "metadata_reader_uploaded": false,
+    "signals_sent": 0,
+    "upgrade_authorized": false,
+    "restart_authorized": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "authorized-append-only-input-ref-supplement-recorded",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/input-ref-repair-0019"
+  },
+  "history_repair_reason": "The assistant-created approval input at index 1 omitted its required ref. The actual prior execution-intent artifact already exists and records the bounded approved operation.",
+  "history_repair_authorization": "User selected Repair append-only validation support. Host tooling validation/tests/receipt documentation and append-only supplement only; no device connection or feature-source change.",
+  "history_supplements": [
+    {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-failure-inspection-0018.json",
+      "sha256": "53bb41c10048c58b3ecbd864c34d3a0f6db6939b02a4040ec7d842fd7dcb3408",
+      "input_refs": [
+        {
+          "index": 1,
+          "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018/execution-intent.json"
+        }
+      ]
+    }
+  ]
+}

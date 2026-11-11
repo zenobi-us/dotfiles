@@ -1,0 +1,113 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-stop-preflight-0016",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-stop-proposal-0015",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T11:37:02.209Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-stop-proposal-0015.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-proposal-0015/proposal.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-stop-preflight-0016.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-0016/execution-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-0016/operation-1-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-0016/operation-1-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-0016/outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-0016/findings.json"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "approved-stop-and-preflight-operation",
+    "approval": {
+      "user_selection": "Approve stop and preflight",
+      "proposal": "stop-and-preflight-proposal-0015"
+    },
+    "actual_outcome": "Operation 1 failed at pidfd_open. Preserved newly created helper, did not retry or broaden scope."
+  },
+  "validation": [
+    {
+      "command": "Approved operation 1, pinned stop-helper lifecycle",
+      "result": "Binary hash/size/type verified and helper executed. pidfd_open failed; helper report says no SIGTERM and no observed exit. exit 41. Conditional cleanup did not run; new helper retained."
+    },
+    {
+      "command": "Conditional-operation guard",
+      "result": "No operation 2 or 3, retries, raw-PID fallback, escalation, upgrade or restart."
+    }
+  ],
+  "implementation_summary": "Executed only approved stop-helper operation; it failed closed before signalling. New helper retained according to approved failure policy.",
+  "open_questions": [
+    "Cause of pidfd_open failure and current target process state are unknown.",
+    "Need newly approved kernel/PID inspection and exact retained-helper cleanup; no process termination or restart authorized by that diagnosis."
+  ],
+  "hardware_acceptance": {
+    "status": "stop-helper-failed-closed",
+    "SIGTERM_sent": 0,
+    "exit_observed": false,
+    "current_target_state": "unknown",
+    "new_helper_retained": true,
+    "metadata_reader_executed": false,
+    "upgrade_authorized": false,
+    "restart_authorized": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "pidfd-open-failed-closed",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-0016"
+  }
+}

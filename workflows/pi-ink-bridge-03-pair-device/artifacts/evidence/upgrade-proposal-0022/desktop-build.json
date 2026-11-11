@@ -1,0 +1,35 @@
+{
+  "schema": "pi-ink-host-runtime-build/v1",
+  "created_at": "2026-11-09T21:49:26.923Z",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "code_commit": "c8684bc956cc99896884fe1c05dcb97f4ba7f97e",
+  "recipe_argv": [
+    "mise",
+    "exec",
+    "bun@1.4.3",
+    "--",
+    "bun",
+    "-e",
+    "const built=await Bun.build({entrypoints:[\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device/mise/conf.d/devtools-omp/extensions/image-annotator/installation-service.ts\"],target:\"bun\",minify:false});if(!built.success||built.outputs.length!==1)throw new Error(\"Service bundle build failed\");await Bun.write(\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/service.js\",await built.outputs[0].arrayBuffer());console.log(\"SERVICE_BUNDLE_PREPARED_ONLY\");"
+  ],
+  "new_build": "2fa9ad053469efb6f844dc89087e85d7bf1393527ffb3bbd9cb502a98c880e12",
+  "new_runtime": "/home/zenobius/.local/share/pi-ink-bridge/runtimes/2fa9ad053469efb6f844dc89087e85d7bf1393527ffb3bbd9cb502a98c880e12",
+  "files": {
+    "service.js": {
+      "size": 28017,
+      "sha256": "ade22fd9cf706e30bacfce15315a2df82af193a166b5f81e16278333c03d2767"
+    },
+    "build-id": {
+      "text": "2fa9ad053469efb6f844dc89087e85d7bf1393527ffb3bbd9cb502a98c880e12"
+    },
+    "tablet-client/dist/client.zip": {
+      "size": 3006550,
+      "sha256": "8468df658f658820bbf6f31e6b8c0d683a67109a5998a86467c959ca803d8962"
+    },
+    "tablet-client/production-install.sh": {
+      "size": 3370,
+      "sha256": "b5baa9d881b6693496cb622c29c96e0408c878b27a5197c04ac8882956686eae"
+    }
+  },
+  "deployed": false
+}

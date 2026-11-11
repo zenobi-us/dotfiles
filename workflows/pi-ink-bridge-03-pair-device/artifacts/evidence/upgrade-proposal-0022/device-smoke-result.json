@@ -1,0 +1,67 @@
+{
+  "schema": "pi-ink-device-executor-host-smoke/v1",
+  "checks": [
+    {
+      "name": "valid pinned payload and private backup",
+      "exit_code": 0
+    },
+    {
+      "name": "same-size payload corruption rejected",
+      "exit_code": 1,
+      "note": "Observed sha256sum refusal; harness wrongly expected fixed 41. Executor unchanged; assertion corrected to require any positive exit. Case not repeated."
+    },
+    {
+      "name": "foreign payload entry rejected",
+      "exit_code": 41
+    },
+    {
+      "name": "changed old link inode rejected",
+      "exit_code": 41
+    },
+    {
+      "name": "first link cutover with second untouched",
+      "exit_code": 0
+    },
+    {
+      "name": "missing second staged link stops without replacing second launcher",
+      "exit_code": 41
+    },
+    {
+      "name": "partial-cutover rollback restores only changed owned link",
+      "exit_code": 0
+    },
+    {
+      "name": "complete two-link swap",
+      "exit_code": 0
+    },
+    {
+      "name": "rollback after any launch request rejected",
+      "exit_code": 41
+    },
+    {
+      "name": "launch refusal preserves both new launcher identities",
+      "exit_code": 0
+    },
+    {
+      "name": "new state is never restored or discarded by rollback",
+      "exit_code": 41
+    },
+    {
+      "name": "complete prelaunch rollback restores both owned launchers",
+      "exit_code": 0
+    },
+    {
+      "name": "first link cutover before foreign target test",
+      "exit_code": 0
+    },
+    {
+      "name": "rollback never clobbers a foreign second launcher",
+      "exit_code": 41
+    }
+  ],
+  "private_source_identity_preserved": true,
+  "private_backups_exact": true,
+  "old_release_and_draft_preserved": true,
+  "scope": "Real host filesystem, actual core guards and rollback function; no mocked command echoes.",
+  "limits": "No real device mutation, Xochitl service stop/start or native launch performed. Those remain owner-gated. Target BusyBox no-clobber rename is self-proved on new stage-owned files before release publish."
+}

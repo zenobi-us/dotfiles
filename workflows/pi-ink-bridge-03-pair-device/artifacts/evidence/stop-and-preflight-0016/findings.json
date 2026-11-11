@@ -1,0 +1,44 @@
+{
+  "schema": "pi-ink-failed-stop-findings/v1",
+  "created_at": "2026-11-09T11:37:02.208Z",
+  "status": "failed-closed",
+  "operation_count": {
+    "device_connections": 1,
+    "helper_uploads": 1,
+    "helper_executions": 1,
+    "SIGTERM_sent": 0,
+    "SIGKILL_sent": 0,
+    "following_preflight_attempts": 0,
+    "metadata_reader_attempts": 0,
+    "retries": 0
+  },
+  "helper_report": {
+    "schema": "pi-ink-pidfd-stop/v1",
+    "pid": 41472,
+    "sigterm_sent": false,
+    "exit_observed": false
+  },
+  "error": "STOP=pidfd_open_unavailable",
+  "cause": "Not established: helper did not emit errno. Unsupported syscall and target disappearance are not distinguished.",
+  "current_target_process_state": "Not observed by failed helper; prior PID identity remains historical evidence only.",
+  "retained_new_artifacts": [
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/.preflight-stop-0015",
+      "identity": "65026:1476:0:0:700"
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/.preflight-stop-0015/stop",
+      "identity": "65026:1482:0:0:700:2162872",
+      "sha256": "7d73d400086aef839109386ec581228df1eb40682aac435d12e60ffe346f3a22"
+    }
+  ],
+  "mutations_excluded": [
+    "No target process signal",
+    "No raw-PID fallback",
+    "No client upgrade or trust change",
+    "No Xochitl/application/service restart",
+    "No old-file cleanup",
+    "No conditional metadata-reader upload"
+  ],
+  "next_scope_required": "Separately approve narrow kernel/PID inspection and removal of only this new helper after exact identity/hash and liveness checks. No process stop is included."
+}

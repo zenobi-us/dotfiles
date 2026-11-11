@@ -1,0 +1,163 @@
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/references/muxers/herdr.md b/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/references/muxers/herdr.md
+index bfe258ed..ad2a3f9b 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/references/muxers/herdr.md
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/references/muxers/herdr.md
+@@ -33,6 +33,10 @@ herdr agent wait <agent-name> --until done --until blocked --timeout <ms>
+ 
+ Only `done` means completed. On `blocked`, resume the agent and wait again. A timeout, an idle pane, or output that looks finished is not proof of completion. Read output after completion or when diagnosing a blocked/failed run; do not use pane text as the completion signal.
+ 
++## Fresh-shell startup
++
++The spawn router waits through an explicit `agent_pane_busy` rejection only while process inspection proves that the pane foreground contains solely its shell. This bounded wait handles new tabs whose shell prompt is not ready yet. Other failures stop launch. If the expected agent already started despite a readiness timeout, the router retains that session instead of dispatching it again.
++
+ ## Opening a pane for an agent
+ 
+ 1. If the current Herdr space is not the target worktree space, run `herdr worktree open --path <worktree-path> --cwd <repository-root>`. Start the agent in the returned worktree space and root pane.
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/spawn.test.ts b/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/spawn.test.ts
+index 0085cca0..259781b9 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/spawn.test.ts
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/spawn.test.ts
+@@ -11,7 +11,7 @@ import { waitForAgent } from "./wait.ts";
+ // A fake herdr CLI answers the calls spawnHerdr makes and records the
+ // `agent start` arguments, so the test can find the prompt file it was given.
+ const fakeHerdr = `#!/usr/bin/env bun
+-import { appendFileSync, readFileSync } from "node:fs";
++import { appendFileSync, existsSync, readFileSync, writeFileSync } from "node:fs";
+ import { spawnSync } from "node:child_process";
+ const args = process.argv.slice(2);
+ const log = process.env.FAKE_HERDR_LOG;
+@@ -32,6 +32,11 @@ if (args[0] === "worktree" && args[1] === "list") {
+   appendFileSync(log + ".environment", JSON.stringify(environment));
+   console.log(JSON.stringify({ result: { pane_id: "w1:p1" } }));
+ } else if (args[0] === "agent" && args[1] === "start") {
++  if (process.env.FAKE_HERDR_STARTUP && !existsSync(log + ".busy")) {
++    writeFileSync(log + ".busy", "rejected before dispatch");
++    console.error(JSON.stringify({ error: { code: "agent_pane_busy" } }));
++    process.exit(1);
++  }
+   if (process.env.FAKE_AGENT_CAPTURE) {
+     const environment = JSON.parse(readFileSync(log + ".environment", "utf8"));
+     const child = spawnSync(process.execPath, [process.env.FAKE_AGENT_EXECUTABLE, "--", args.at(-1)], {
+@@ -43,6 +48,11 @@ if (args[0] === "worktree" && args[1] === "list") {
+     }
+   }
+   console.log("{}");
++} else if (args[0] === "agent" && args[1] === "get") {
++  process.exit(1);
++} else if (args[0] === "pane" && args[1] === "process-info") {
++  const foreground = process.env.FAKE_HERDR_STARTUP === "other-process" ? 200 : 100;
++  console.log(JSON.stringify({ result: { process_info: { shell_pid: 100, foreground_processes: [{ pid: foreground }] } } }));
+ } else {
+   process.exit(1);
+ }
+@@ -67,13 +77,14 @@ describe("muxer spawn", () => {
+     delete process.env.MUXER_SUBAGENT_PARENT_RUN_ID;
+     delete process.env.FAKE_AGENT_CAPTURE;
+     delete process.env.FAKE_AGENT_EXECUTABLE;
++    delete process.env.FAKE_HERDR_STARTUP;
+   });
+ 
+   afterEach(() => {
+     process.env.PATH = saved.PATH;
+     process.env.XDG_STATE_HOME = saved.XDG_STATE_HOME;
+     delete process.env.FAKE_HERDR_LOG;
+-    for (const key of ["RESULT_DELIVERY_CONTEXT", "MUXER_SUBAGENT_RUN_ID", "MUXER_SUBAGENT_PARENT_RUN_ID", "XDG_CONFIG_HOME", "FAKE_AGENT_CAPTURE", "FAKE_AGENT_EXECUTABLE"]) {
++    for (const key of ["RESULT_DELIVERY_CONTEXT", "MUXER_SUBAGENT_RUN_ID", "MUXER_SUBAGENT_PARENT_RUN_ID", "XDG_CONFIG_HOME", "FAKE_AGENT_CAPTURE", "FAKE_AGENT_EXECUTABLE", "FAKE_HERDR_STARTUP"]) {
+       if (saved[key] === undefined) delete process.env[key];
+       else process.env[key] = saved[key];
+     }
+@@ -117,6 +128,29 @@ await deliverResult({ schema: context.target.schema, status: "failed", checks: [
+     return capture;
+   }
+ 
++  test("launches once the fresh shell becomes available after an explicit rejection", async () => {
++    process.env.FAKE_HERDR_STARTUP = "shell";
++    prepareFakeAgent();
++    const spawned = await spawnAgent({
++      muxer: "herdr", agent: "claude", prompt: "produce result", cwd: root, depth: 1,
++      resultSchema: "test-result/v1",
++    });
++    expect((await readDeliveredResult(spawned.deliveryContext)).result).toEqual({
++      schema: "test-result/v1", status: "failed", checks: ["domain failure"],
++    });
++    await removeRun(spawned.runId);
++  });
++
++  test("does not retry a busy pane with another foreground process", async () => {
++    process.env.FAKE_HERDR_STARTUP = "other-process";
++    const capture = prepareFakeAgent();
++    await expect(spawnAgent({
++      muxer: "herdr", agent: "claude", prompt: "produce result", cwd: root, depth: 1,
++      resultSchema: "test-result/v1",
++    })).rejects.toThrow("agent_pane_busy");
++    expect(existsSync(capture)).toBe(false);
++  });
++
+   test("keeps the prompt file after spawnAgent returns", async () => {
+     const { runId } = await spawnAgent({ muxer: "herdr", agent: "claude", prompt: "do the task", cwd: root, depth: 1, resultSchema: "test-result/v1" });
+     const promptFile = startedPromptFile();
+diff --git a/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/spawn.ts b/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/spawn.ts
+index 05435cfd..1262cb71 100644
+--- a/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/spawn.ts
++++ b/mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/spawn.ts
+@@ -155,7 +155,21 @@ function herdrAgentInPane(paneId: string, agent: SpawnAgent): boolean {
+   }
+ }
+ 
+-function spawnHerdr(agent: SpawnAgent, cwd: string, handoffFile: string, depth: number, environment: Record<string, string>): { target: string; agentName: string } {
++function herdrRejectedBusyShell(error: unknown, paneId: string): boolean {
++  try {
++    if (!(error instanceof Error) || JSON.parse(error.message)?.error?.code !== "agent_pane_busy") return false;
++    const result = spawnSync("herdr", ["pane", "process-info", "--pane", paneId], { encoding: "utf8" });
++    if (result.status !== 0) return false;
++    const info = nestedRecord(resultValue(result.stdout), "process_info");
++    const processes = info?.foreground_processes;
++    return typeof info?.shell_pid === "number" && Array.isArray(processes)
++      && processes.length === 1 && processes[0]?.pid === info.shell_pid;
++  } catch {
++    return false;
++  }
++}
++
++async function spawnHerdr(agent: SpawnAgent, cwd: string, handoffFile: string, depth: number, environment: Record<string, string>): Promise<{ target: string; agentName: string }> {
+   if (agent === "zot") throw new Error("Herdr agent start does not support zot.");
+   const workspace = herdrWorktreeWorkspace(cwd);
+   const agentName = `agent-${Date.now()}`;
+@@ -166,14 +180,20 @@ function spawnHerdr(agent: SpawnAgent, cwd: string, handoffFile: string, depth:
+   ]));
+   const paneId = tab.pane_id ?? tab.root_pane_id ?? nestedRecord(tab, "root_pane")?.pane_id ?? nestedRecord(tab, "pane")?.id;
+   if (paneId === undefined) throw new Error("Herdr did not report the new tab's root pane id");
+-  try {
+-    run("herdr", [
+-      "agent", "start", agentName, "--kind", agent, "--pane", String(paneId), "--", `@${handoffFile}`,
+-    ]);
+-  } catch (error) {
+-    // The name may not be applied after a failed start; the pane ID is a valid wait target.
+-    if (herdrAgentInPane(String(paneId), agent)) return { target: String(paneId), agentName: String(paneId) };
+-    throw error;
++  const deadline = Date.now() + 30_000;
++  for (; ;) {
++    try {
++      run("herdr", [
++        "agent", "start", agentName, "--kind", agent, "--pane", String(paneId), "--", `@${handoffFile}`,
++      ]);
++      break;
++    } catch (error) {
++      // A readiness timeout can follow a successful launch; never dispatch it twice.
++      if (herdrAgentInPane(String(paneId), agent)) return { target: String(paneId), agentName: String(paneId) };
++      // New tabs can precede their shell prompt. Retry only a proven pre-launch rejection.
++      if (Date.now() >= deadline || !herdrRejectedBusyShell(error, String(paneId))) throw error;
++      await Bun.sleep(100);
++    }
+   }
+   return { target: String(paneId), agentName };
+ }
+@@ -333,7 +353,7 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
+     let target: string;
+     let agentName: string | undefined;
+     if (options.muxer === "herdr") {
+-      const herdrTarget = spawnHerdr(options.agent, options.cwd, handoffFile, options.depth, environment);
++      const herdrTarget = await spawnHerdr(options.agent, options.cwd, handoffFile, options.depth, environment);
+       target = herdrTarget.target;
+       agentName = herdrTarget.agentName;
+       await writeRunSignal(run.runId, "running", "launcher");

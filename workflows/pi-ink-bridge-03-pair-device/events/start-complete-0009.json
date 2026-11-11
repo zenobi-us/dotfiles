@@ -1,0 +1,177 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0009",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "implementation-0008",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T07:44:00.137Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-0007.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/implementation-0008.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/snapshots/offline-upgrade-implementation-0008.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/snapshots/pr-draft-implementation-0008.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/manifest.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/launcher-readiness-0007/verification.json"
+    },
+    {
+      "kind": "patch",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/launcher-readiness-0007/launcher-readiness.patch"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-complete-0009.json"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "takeover",
+    "reason": "Resume only authorized host recovery of blocked implementation; reconcile metadata and prepare exact offline hardware upgrade/acceptance plan, without repeating successful host implementation.",
+    "prior_attempt": "start-complete-0006",
+    "source_preserved": true,
+    "approval": {
+      "selection": "Authorize host-only recovery",
+      "scope": "Fresh session; preserve existing implementation; safely reconcile metadata publication and prepare exact tablet upgrade and acceptance plan. No tablet access, installation, restart or hook bypass.",
+      "session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+      "additional_selection": "Fix launcher and retry",
+      "additional_scope": "Bounded fresh-pane readiness fix followed by same approved host-only recovery. No hook bypass or tablet access."
+    },
+    "ownership": "Prior implementation child completed; pane w60:p2 closed. Fresh Herdr inventory contains no pairing child.",
+    "reservations": "No matching ticket in goal coordinator event YAML/JSON.",
+    "constraints": [
+      "Do not retry failed metadata commit in dirty base checkout.",
+      "Never reuse previous implementer, reviewer or fixer session.",
+      "Never terminate an active or unknown agent.",
+      "Do not perform tablet actions or bypass hooks."
+    ],
+    "launcher_fix": {
+      "summary": "Bounded same-pane retry only after explicit native agent_pane_busy rejection and proof that sole foreground process is that pane shell; existing started-agent timeout detection retained.",
+      "regression": "New delayed-shell case failed before fix; all 11 spawn tests passed after fix."
+    },
+    "actual_outcome": "Host-only scope complete: safe metadata commit and pinned offline upgrade/acceptance proposal. Ticket remains blocked by native owner-only acceptance.",
+    "canonical_history": {
+      "history_valid": true,
+      "inspection_repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "note": "Source-worktree inspector rejected historical base-store envelopes; surviving-base canonical inspection validates graph without rewriting receipts or fabricating repair."
+    },
+    "launcher_fix_evidence": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/launcher-readiness-0007/verification.json"
+  },
+  "validation": [
+    {
+      "command": "result-delivery read using verified canonical /var/home parent alias",
+      "result": "Schema/run/operation/hash verified; exact equality with authoritative implementation-0008 YAML; all 7 output refs exist."
+    },
+    {
+      "command": "Historical event SHA-256 and pinned local payload comparison",
+      "result": "All 7 historical events unchanged; ZIP and installer pins match offline proposal."
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+      "result": "257d121e8eb08d917d6d3c43f2a325ced3cabb40 / db08f0d9b8f1eb55c71992f50f22888f466a41f5 match delivered result."
+    },
+    {
+      "command": "Installed worktree inspector from surviving base checkout",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "result": "historyValid true, historyError null, reconcile start; no receipt rewritten or supplemented."
+    },
+    {
+      "command": "bun test muxer-subagents/scripts/spawn.test.ts",
+      "result": "11 passed, 0 failed, 47 expect calls. Delayed-shell regression failed before fix."
+    },
+    {
+      "command": "Actual fixed-router fresh child launch",
+      "result": "Fresh w72:p4 launched successfully; completed signal sequence 2 at 2026-11-09T07:41:37.385Z."
+    }
+  ],
+  "implementation_summary": "Preserved code-bearing implementation c8684bc956cc99896884fe1c05dcb97f4ba7f97e. Verified unchanged 0.5.0 payload pins; prepared owner-gated offline manual upgrade and acceptance proposal. No product code, tablet operation, old experiment cleanup, base checkout mutation, review, merge, push or completion.",
+  "open_questions": [
+    "Native Paper Pro acceptance remains unverified. Owner approval is required for bounded read-only preflight, then exact live-bound upgrade/rollback manifest, separately approved restart and native pairing checks.",
+    "Launcher fix is applied and tested in base checkout but uncommitted; known unsafe dirty-base hk commit was not retried or bypassed.",
+    "New parent result receipts remain local and uncommitted. No remote push, review, merge or ticket completion."
+  ],
+  "hardware_acceptance": {
+    "status": "not-run",
+    "approval": "No tablet access, SSH, installation, restart, cleanup, privilege change or prior approval reuse.",
+    "proposal_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/snapshots/offline-upgrade-implementation-0008.json"
+  },
+  "child_run": {
+    "run_id": "b4d536a3-f4a9-4ded-ae1d-7e095c425f31",
+    "operation_id": "pi-ink-bridge-03-host-recovery-0007",
+    "pane_id": "w72:p4",
+    "session_id": "01a1bf39-e896-72e4-9188-e31e3b1f44d1",
+    "signal": {
+      "sequence": 2,
+      "state": "completed",
+      "timestamp": "2026-11-09T07:41:37.385Z"
+    },
+    "transport_sha256": "2ba2b3b988ea7724bced11ef99bf6e3db8865e327b42ac0268231cb092b347d9",
+    "close": {
+      "command": "herdr pane close w72:p4",
+      "result": "ok"
+    },
+    "workspace_preserved": true
+  },
+  "publication": {
+    "child_metadata_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "normal_hooks": true,
+    "child_metadata_committed": true,
+    "parent_receipt": "local-only-uncommitted",
+    "launcher_fix": "applied-tested-uncommitted-in-base",
+    "remote_push": false
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-11-09T12:42:47.207Z",
+  "device_execution": false,
+  "checks": [
+    {
+      "case": "Owned live host child snapshot",
+      "passed": true,
+      "PID": 4191696,
+      "expected_parent": 3349253,
+      "stdout": "PID=4191696\nSTART_TICKS=22804140\nPROC_IDENTITY=24:173663036:1000:1000\nEXE=/usr/bin/sleep\nEXE_IDENTITY=40:9640:0:0:755:36608\nSTATUS|Name:\tsleep\nSTATUS|State:\tS (sleeping)\nSTATUS|PPid:\t3349253\nSTATUS|Uid:\t1000\t1000\t1000\t1000\nSTATUS|Gid:\t1000\t1000\t1000\t1000\n651468d5d1adbd00e0cf39813d90dc2c0deeb57c99ef06227f13d4407797e14b  /proc/4191696/exe\nPROCESS_SNAPSHOT_COMPLETE=4191696\n"
+    },
+    {
+      "case": "Absent process emits absence instead of partial identity",
+      "passed": true,
+      "stdout": "PROCESS_ABSENT=999999999\n"
+    }
+  ],
+  "reader_payload": "Unchanged pinned 0011 reader, SHA-256 0fe207302d7feb59fe6ff9a6beb407950d9fce9386522b533ad0868514d9e7ed; its prior seven boundary smoke checks are retained in proposal 0011. No reader rebuild or target rerun.",
+  "limit": "No new device execution. Shell syntax checks cover both scripts; target service properties/tool availability remain unobserved until approval."
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "pi-ink-new-boot-read-only-proposal/v1",
+  "created_at": "2026-11-10T02:31:21.804Z",
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "consumed_receipt": "workflows/pi-ink-bridge-03-pair-device/events/start-portable-stage-blocked-0030.json",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "proved": {
+    "desktop_ready_unchanged": true,
+    "portable_staging_complete": true,
+    "cutover_completion": false,
+    "recovery_refused": "STOP=boot_changed",
+    "new_UI_start_attempted": false,
+    "old_UI_start_attempted": false,
+    "link_backup_UI_persistence": "unknown",
+    "reboot_cause": "unknown"
+  },
+  "scope": {
+    "endpoint": "root@10.11.99.1",
+    "existing_pinned_host_key_only": true,
+    "transport": "Short sh -s command, script stdin, no upload",
+    "read_only": [
+      "Current boot/uptime and bounded Xochitl unit status, generation, restart/watchdog/failure/stop policy metadata",
+      "Fixed bridge paths: owners/modes/identities, original/new release hashes, both exact launcher targets and IDs, owned stage/transaction record identities and allowlisted journal phases",
+      "Private config/CA/state metadata and SHA-256 only, no contents, IDs, tokens or credentials",
+      "Bounded current SSH ancestry: executable identity and cgroup only, never argv or environment",
+      "If journalctl exists: categorized flags/counts from at most 128 previous-boot UI and 128 kernel journal rows, with no raw log messages returned"
+    ],
+    "forbidden": [
+      "No stop/start/restart/reboot, cutover retry, rollback or native binary execution",
+      "No upload, file write/delete, cleanup, firmware/trust/credential changes or pairing-window action",
+      "No resumed/synthetic completion across boot change; no desktop refresh",
+      "No retry if SSH/read-only guards fail"
+    ]
+  },
+  "limits": {
+    "SSH_connections": 1,
+    "timeout_seconds": 90,
+    "stdout_limit_bytes": 262144,
+    "private_state_hash_max_bytes": 2097152,
+    "journal_rows_per_selector": 128,
+    "SSH_ancestry_max_processes": 8
+  },
+  "next": "Read-only snapshot only. Inspect actual persistence and failure policy; any changed-boot mutation requires a separate reconciled plan and scoped approval.",
+  "vendor_context": {
+    "xochitl": "https://developer.remarkable.com/documentation/xochitl",
+    "qt_example": "https://developer.remarkable.com/documentation/qt_epaper",
+    "finding": "Vendor documents systemctl stop/start, including encrypted Paper Pro startup requirements; does not establish why this device boot changed."
+  }
+}

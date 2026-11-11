@@ -1,0 +1,68 @@
+{
+  "schema": "pi-ink-host-deployment-observation/v1",
+  "created_at": "2026-11-09T21:48:46.834Z",
+  "PID": 2532009,
+  "bun": "/home/zenobius/.local/share/mise/installs/bun/1.4.3/bin/bun",
+  "service": "/home/zenobius/.local/share/pi-ink-bridge/runtimes/c5df23c290a5c31886c86d4e1af9a226e7d147007fd5843972919ecaa6d1e356/service.js",
+  "directory": "/home/zenobius/.local/share/pi-ink-bridge",
+  "http_port": 58840,
+  "tls_port": 58841,
+  "start_ticks": "18037566",
+  "health": {
+    "service": "pi-ink-bridge",
+    "protocol": 2,
+    "id": "256377c7f22604161e086b332a63e19b",
+    "fingerprint": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+    "build": "c5df23c290a5c31886c86d4e1af9a226e7d147007fd5843972919ecaa6d1e356",
+    "status": "ready"
+  },
+  "files": {
+    "coordinator-id": {
+      "exists": true,
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "600",
+      "size": 33,
+      "device": 35,
+      "inode": 39511964,
+      "sha256": "e6f86d8b6d8a1ff45ec30c1d6552cff5e3882ef9b11a38fe4f46e3e0e8c89045"
+    },
+    "certificate.pem": {
+      "exists": true,
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "600",
+      "size": 717,
+      "device": 35,
+      "inode": 39511966,
+      "sha256": "8e5b94fe2995e86baf3ee80a788caeb740efee2983942e4499b026ebaec1f7d9"
+    },
+    "key.pem": {
+      "exists": true,
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "600",
+      "size": 241,
+      "device": 35,
+      "inode": 39511965,
+      "sha256": "4d428d3629dcc1680847c0a2e8605a05444c63807c2822da27bc5b537d804c31"
+    },
+    "devices.json": {
+      "exists": false
+    },
+    "startup.lock": {
+      "exists": false
+    }
+  },
+  "new_paths": {
+    "backup": "/home/zenobius/.local/share/pi-ink-bridge/.backup-pairing-0022",
+    "staging": "/home/zenobius/.local/share/pi-ink-bridge/runtimes/.stage-pairing-0022"
+  },
+  "certificate": {
+    "DER_sha256": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+    "valid_from": "Nov  8 01:31:17 2026 GMT",
+    "valid_to": "Nov  5 01:31:17 2036 GMT",
+    "LAN_SAN_verified": true,
+    "loopback_SAN_verified": true
+  }
+}

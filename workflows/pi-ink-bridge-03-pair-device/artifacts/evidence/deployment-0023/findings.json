@@ -1,0 +1,44 @@
+{
+  "schema": "pi-ink-guarded-deployment-outcome/v1",
+  "created_at": "2026-11-09T22:43:18.738Z",
+  "desktop": {
+    "status": "ready",
+    "build": "2fa9ad053469efb6f844dc89087e85d7bf1393527ffb3bbd9cb502a98c880e12",
+    "PID": 2512709,
+    "start_ticks": "26354974",
+    "server_identity_preserved": true,
+    "private_files_preserved": true,
+    "protocol": 1,
+    "rollback_performed": false,
+    "backup": "/home/zenobius/.local/share/pi-ink-bridge/.backup-pairing-0022",
+    "old_runtime_preserved": true
+  },
+  "tablet": {
+    "stage_attempts": 1,
+    "stage_exit": 255,
+    "stage_completion_observed": false,
+    "stage_or_release_persistence": "unknown",
+    "stderr": "Read from remote host 10.11.99.1: Connection reset by peer\r\nclient_loop: send disconnect: Broken pipe\r\n",
+    "UI_stop_requested": false,
+    "launcher_cutover_requested": false,
+    "UI_start_requested": false,
+    "prelaunch_rollback_attempted": false
+  },
+  "retries": 0,
+  "further_device_connections": 0,
+  "pairing_or_credential_actions": 0,
+  "next": "Require explicitly scoped read-only reconciliation before any staging repetition or continuation. Preserve any partial stage/release.",
+  "transport_observation": {
+    "remote_exec_argument_bytes": 42230,
+    "staging_program_bytes": 40188,
+    "stdout_bytes": 0,
+    "diagnosis": "Cause unverified. Large remote exec request is a candidate; no server software/version or packet limit was observed. No diagnostic retry has run."
+  },
+  "constraints": [
+    "Do not infer no mutation from empty stdout.",
+    "Do not repeat the completed desktop refresh.",
+    "Do not run cutover or start without a validated/reconciled staging completion.",
+    "Do not remove partial stages or overwrite an occupied target.",
+    "No raw-PID signals, trust changes, source changes or new/reused coding session."
+  ]
+}

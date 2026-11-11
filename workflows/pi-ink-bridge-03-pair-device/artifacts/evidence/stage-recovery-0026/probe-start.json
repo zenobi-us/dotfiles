@@ -1,0 +1,5 @@
+{
+  "started_at": "2026-11-09T23:17:02.501Z",
+  "stdin_sha256": "b4abb3a14ba0b38a3888b626b0d022bb92463e5a2f74b633b1d43ec398d11bd6",
+  "operation": "Read-only sh -s; sanitize verbose transport output."
+}

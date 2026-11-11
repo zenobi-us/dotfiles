@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-11-09T22:13:23.816Z",
+  "real_service_PID": 2532009,
+  "real_service_build_unchanged": "c5df23c290a5c31886c86d4e1af9a226e7d147007fd5843972919ecaa6d1e356",
+  "identity_unchanged": true,
+  "stop_policy_in_actual_deployment_cwd": "5s",
+  "owned_smoke_daemon_removed": true,
+  "device_connections_during_executor_preparation": 0
+}

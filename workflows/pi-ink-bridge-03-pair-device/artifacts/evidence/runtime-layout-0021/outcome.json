@@ -1,0 +1,71 @@
+{
+  "schema": "pi-ink-runtime-layout-outcome/v1",
+  "created_at": "2026-11-09T21:39:36.621Z",
+  "operations_attempted": 2,
+  "runtime_complete": true,
+  "private_layout_verified": true,
+  "reader_cleanup_observed": true,
+  "production_client": {
+    "pid": 64136,
+    "start_ticks": 8458686,
+    "parent_pid": 7146,
+    "exe": "/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/pi-ink-client",
+    "sha256": "433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051",
+    "observed_state": "sleeping",
+    "uid": 0,
+    "gid": 0
+  },
+  "service": {
+    "main_pid": 7146,
+    "active": "active",
+    "substate": "running",
+    "kill_mode": "control-group",
+    "kill_signal": 15,
+    "send_SIGKILL": true,
+    "stop_timeout": "1min 30s",
+    "control_group": "/system.slice/xochitl.service"
+  },
+  "available_home_KiB": 47607124,
+  "rename_interface": "BusyBox v1.36.1 mv [-finT] SOURCE DEST",
+  "proposed_release_stage_backup_absent": true,
+  "metadata": {
+    "schema": "pi-ink-private-metadata/v1",
+    "config": {
+      "exists": true,
+      "sha256": "83a3766298e1e0f5344d5d18bb95b43f38fe38349427191a845bc4fa30bba8c9",
+      "mode": "0600",
+      "uid": 0,
+      "gid": 0,
+      "size": 350,
+      "device": 65026,
+      "inode": 1154
+    },
+    "ca": {
+      "exists": true,
+      "sha256": "8e5b94fe2995e86baf3ee80a788caeb740efee2983942e4499b026ebaec1f7d9",
+      "mode": "0600",
+      "uid": 0,
+      "gid": 0,
+      "size": 717,
+      "device": 65026,
+      "inode": 1153
+    },
+    "state": {
+      "exists": false,
+      "uid": 0,
+      "gid": 0,
+      "size": 0,
+      "device": 0,
+      "inode": 0
+    },
+    "device_id_sha256": "12b98e3c5ba332bd955d1b3a5f1a26ca9fa44fcd3e6bf1344275bf1704c3b03f",
+    "fixed_paths_verified": true,
+    "server_identity_verified": true
+  },
+  "no_quiescence_attestation": true,
+  "process_signals_sent": 0,
+  "service_changes": 0,
+  "client_upgrade": false,
+  "trust_changed": false,
+  "retries": 0
+}

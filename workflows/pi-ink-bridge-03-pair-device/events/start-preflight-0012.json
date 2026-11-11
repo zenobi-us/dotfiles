@@ -1,0 +1,112 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-preflight-0012",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-preflight-proposal-0011",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T11:00:37.345Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-preflight-proposal-0011.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/proposal.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-preflight-0012.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0012/execution-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0012/operation-1-start.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0012/operation-1-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0012/outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0012/findings.json"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "approved-bounded-preflight",
+    "approval": {
+      "user_selection": "Approve pinned preflight",
+      "proposal": "metadata-reader-proposal-0011"
+    },
+    "actual_outcome": "Stopped at active executable-name match, without conditional helper operation or retries."
+  },
+  "validation": [
+    {
+      "command": "Frozen proposal/input/script/known-host hash verification and cable route check",
+      "result": "Passed before SSH."
+    },
+    {
+      "command": "Approved operation 1: one bounded SSH read-only preflight",
+      "result": "exit 41 STOP=client_active, PID 41472. No retry. Conditional helper operation was not attempted."
+    }
+  ],
+  "implementation_summary": "Executed approved proposal operation 1 only. Accepted owner UI-close report; process match remains unclassified. No source or device-file change, helper upload, kill, upgrade, trust mutation, restart or cleanup.",
+  "open_questions": [
+    "Exact process ownership/source is unknown. Need bounded PID 41472 metadata inspection before proposing any graceful stop or revised handling.",
+    "Private JSON layout and remaining preflight checks remain incomplete; exact upgrade plan cannot be frozen."
+  ],
+  "hardware_acceptance": {
+    "status": "preflight-stopped-on-process",
+    "owner_UI_closed": true,
+    "process_identity_confirmed": false,
+    "helper_uploaded": false,
+    "helper_executed": false,
+    "upgrade_authorized": false,
+    "restart_authorized": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "approved-preflight-stopped",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0012"
+  }
+}

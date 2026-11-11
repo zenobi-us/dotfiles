@@ -1,0 +1,31 @@
+{
+  "schema": "pi-ink-stage-recovery-intent/v1",
+  "created_at": "2026-11-09T23:17:02.499Z",
+  "proposal_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stage-recovery-proposal-0025/proposal.json",
+  "proposal_sha256": "fe365fe4c9cf146c98144f963e817b19f57f988455e3e97f3679d590d9b8bc29",
+  "approval": "User selected Inspect and resume only if safe; documents remain saved/closed; same previously approved UI-cycle and guarded prelaunch recovery caps.",
+  "owner": {
+    "session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+    "pane": "w64:pY",
+    "status": "working",
+    "source_agents": 0,
+    "matching_goal_reservations": 0
+  },
+  "completed_desktop": "Retain deployed build2fa/PID2512709; no host deployment repetition.",
+  "first_action": "One read-only reconciliation probe; no writes until a safe boundary is proved and desktop readiness revalidated.",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "limits": {
+    "probe_connections": 1,
+    "new_framed_stage_attempts_max": 1,
+    "recovery_connections_max_including_probe_and_all_optional_prelaunch_paths": 6,
+    "total_connections_max_including_original_failed_stage": 7,
+    "explicit_UI_stop_requests_total_max": 1,
+    "explicit_UI_start_requests_total_max": 1,
+    "additional_desktop_mutations": 0,
+    "automatic_retries": 0,
+    "active_process_termination": false,
+    "partial_stage_cleanup": false,
+    "pairing_or_credential_actions": false
+  }
+}

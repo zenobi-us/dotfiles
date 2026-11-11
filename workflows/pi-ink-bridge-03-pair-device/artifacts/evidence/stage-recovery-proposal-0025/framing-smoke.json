@@ -1,0 +1,52 @@
+{
+  "schema": "pi-ink-framed-transport-smoke/v1",
+  "created_at": "2026-11-09T22:51:49.306Z",
+  "original_staging_script_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-stage-v2.sh",
+  "original_staging_script_sha256": "4f65412401b95f2ae09aeea3c58cf9faa814fcb9ebe457c1044527e090d468ae",
+  "original_staging_script_unchanged": true,
+  "old_remote_exec_request_bytes": 42230,
+  "new_remote_exec_request_bytes": 506,
+  "script_prefix_base64_characters": 53584,
+  "payload_bytes": 3010260,
+  "input_framing": "One newline-terminated base64(script) line followed immediately by unchanged raw transport.zip bytes. Two stream writes; no large ZIP concatenation or all-payload base64. Exact decoded script hash checked before local sh -c exec; trailing newlines retained by sentinel.",
+  "checks": [
+    {
+      "name": "40KB script plus complete raw ZIP arrives intact",
+      "exit_code": 0,
+      "signal": null,
+      "error": null,
+      "stdin_error": null,
+      "stdout": "FRAMED_PAYLOAD_COMPLETE\n",
+      "stderr": ""
+    },
+    {
+      "name": "Changed script refused before execution",
+      "exit_code": 41,
+      "signal": null,
+      "error": null,
+      "stdin_error": "Error: EPIPE: broken pipe, write",
+      "stdout": "",
+      "stderr": "STOP=frame_script_hash\n"
+    },
+    {
+      "name": "Truncated payload refused",
+      "exit_code": 1,
+      "signal": null,
+      "error": null,
+      "stdin_error": null,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "Actual pinned root staging program decodes exactly and refuses non-root host before any device path",
+      "exit_code": 41,
+      "signal": null,
+      "error": null,
+      "stdin_error": "Error: EPIPE: broken pipe, write",
+      "stdout": "",
+      "stderr": "STOP=account\n"
+    }
+  ],
+  "scope": "Owned local shell processes only; no further SSH connection or device mutation.",
+  "cause": "Original reset cause remains unverified; no server banner or packet cap has yet been observed."
+}

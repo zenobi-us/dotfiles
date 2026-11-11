@@ -1,0 +1,64 @@
+{
+  "schema": "pi-ink-portable-framing-smoke/v1",
+  "created_at": "2026-11-09T23:25:20.657Z",
+  "unchanged_script_sha256": "4f65412401b95f2ae09aeea3c58cf9faa814fcb9ebe457c1044527e090d468ae",
+  "raw_payload_sha256": "8a66c81661bad23a51e6b6459c5aa7b337b9e035d3479bf8dc6be401a1ec1d40",
+  "portable_remote_command_bytes": 690,
+  "encoded_line_lengths": [
+    61440,
+    61440,
+    61440,
+    16620
+  ],
+  "dependencies": "POSIX sh, read, printf %b and sha256sum only; no base64, Python, package install or privilege change.",
+  "encoding": "Each source byte becomes backslash-zero-three-octal-digits. At most12288 source bytes per newline-terminated frame. Decode each bounded frame with printf %b; sentinel retains trailing newlines. Hash reconstructed unchanged source before exec; remaining stdin is raw ZIP. Write buffers separately without copying the whole ZIP.",
+  "checks": [
+    {
+      "name": "large source plus raw ZIP intact",
+      "exit_code": 0,
+      "signal": null,
+      "error": null,
+      "stdin_error": null,
+      "stdout": "FRAMED_PAYLOAD_COMPLETE\n",
+      "stderr": ""
+    },
+    {
+      "name": "changed source rejected before exec",
+      "exit_code": 41,
+      "signal": null,
+      "error": null,
+      "stdin_error": "Error: EPIPE: broken pipe, write",
+      "stdout": "",
+      "stderr": "STOP=frame_script_hash\n"
+    },
+    {
+      "name": "short frame rejected before exec",
+      "exit_code": 41,
+      "signal": null,
+      "error": null,
+      "stdin_error": "Error: EPIPE: broken pipe, write",
+      "stdout": "",
+      "stderr": "STOP=frame_length\n"
+    },
+    {
+      "name": "truncated ZIP rejected",
+      "exit_code": 1,
+      "signal": null,
+      "error": null,
+      "stdin_error": null,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "actual unchanged staging program reaches non-root account guard",
+      "exit_code": 41,
+      "signal": null,
+      "error": null,
+      "stdin_error": "Error: EPIPE: broken pipe, write",
+      "stdout": "",
+      "stderr": "STOP=account\n"
+    }
+  ],
+  "target_execution": false,
+  "limits": "Target printf/long-line capability still requires the newly approved read-only probe before any staging attempt."
+}

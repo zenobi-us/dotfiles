@@ -1,0 +1,20 @@
+{
+  "schema": "pi-ink-input-ref-repair-verification/v1",
+  "created_at": "2026-11-09T13:05:15.254Z",
+  "history_valid": true,
+  "validated_by": "Actual installed inspect.ts CLI from surviving base checkout.",
+  "latest_valid_receipt": "workflows/pi-ink-bridge-03-pair-device/events/start-input-ref-repair-0019.json",
+  "original_receipt_ref": "workflows/pi-ink-bridge-03-pair-device/events/start-failure-inspection-0018.json",
+  "original_sha256": "53bb41c10048c58b3ecbd864c34d3a0f6db6939b02a4040ec7d842fd7dcb3408",
+  "original_raw_ref_still_absent": true,
+  "effective_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018/execution-intent.json",
+  "regression": {
+    "passed": 10,
+    "failed": 0,
+    "expectations": 105
+  },
+  "documentation_updated_via": "mq with okf.mq; explicit raw input/output.",
+  "feature_source_changed": false,
+  "device_connections_during_repair": 0,
+  "tooling_changes_committed": false
+}

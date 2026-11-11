@@ -1,0 +1,49 @@
+{
+  "schema": "pi-ink-guarded-deployment-intent/v1",
+  "created_at": "2026-11-09T22:34:35.367Z",
+  "proposal_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/proposal.json",
+  "proposal_sha256": "181e5798d14e66cdccb554a6ba97451ade05e9688e0af228c4ea02e745ff62a2",
+  "approval": {
+    "desktop": "Approve desktop refresh",
+    "tablet": "Upgrade and one UI cycle",
+    "documents_saved_and_closed": true,
+    "prelaunch_recovery": "Allow guarded prelaunch recovery"
+  },
+  "owner": {
+    "session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+    "pane": "w64:pY",
+    "liveness": "working",
+    "source_worktree_agents": 0,
+    "coordinator_reservations": "No matching ticket entries in current goal event JSON/YAML; no coordinator dispatch or child launch."
+  },
+  "source": {
+    "commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+    "preserved_dirty_state": "Only untracked workflow metadata."
+  },
+  "ordering": [
+    "Refresh the exact named desktop daemon first.",
+    "Require expected new build/identity and verified-TLS protocol 1 before any tablet mutation.",
+    "Stage exact immutable bytes; do not proceed after any failure.",
+    "Cut over with one unit stop and private backup; if successful request one new-UI start.",
+    "Only on a prelaunch failure: the separately approved exact rollback may validate/recover known links, followed by one old-UI start if safe. Never repeat failed main operations or restore private state."
+  ],
+  "limits": {
+    "tablet_connections_normal": 3,
+    "tablet_connections_stage_only": 1,
+    "tablet_connections_max_with_approved_prelaunch_recovery": 5,
+    "explicit_UI_stop_requests_max": 1,
+    "explicit_UI_start_requests_max": 1,
+    "desktop_stop_requests_max": 1,
+    "desktop_start_requests_max": 1,
+    "retries": 0,
+    "raw_PID_signals": 0,
+    "old_experiment_cleanup": false,
+    "firmware_or_privilege_change": false,
+    "trust_or_certificate_rotation": false,
+    "firewall_change": false,
+    "pairing_window_or_credential_actions": false
+  },
+  "route": "10.11.99.1 dev enp2s0f0u4c2 src 10.11.99.10 uid 1000 \n    cache",
+  "pairing_credential_actions_authorized": false
+}

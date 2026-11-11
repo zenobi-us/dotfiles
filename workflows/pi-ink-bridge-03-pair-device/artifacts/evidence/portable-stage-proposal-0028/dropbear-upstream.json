@@ -1,0 +1,21 @@
+{
+  "observed_banner": "debug1: Remote protocol version 2.0, remote software version dropbear_2025.88",
+  "primary_sources": [
+    {
+      "url": "https://github.com/mkj/dropbear/blob/DROPBEAR_2025.88/src/sysoptions.h#L84",
+      "quote": "#define MAX_CMD_LEN 9000 /* max length of a command */"
+    },
+    {
+      "url": "https://github.com/mkj/dropbear/blob/DROPBEAR_2025.88/src/sysoptions.h#L243",
+      "quote": "#define RECV_MAX_PACKET_LEN (MAX(35000, ((RECV_MAX_PAYLOAD_LEN)+100)))"
+    },
+    {
+      "url": "https://github.com/mkj/dropbear/blob/DROPBEAR_2025.88/src/svr-chansession.c#L672-L678",
+      "quote": "buf_getstring(... &cmdlen); if (cmdlen > MAX_CMD_LEN) ... return DROPBEAR_FAILURE;"
+    }
+  ],
+  "failed_remote_command_bytes": 42230,
+  "conclusion": "The failed command exceeds the upstream command limit for the observed version. This is consistent with the reset before execution; the vendor binary compiled limits were not inspected.",
+  "portable_remote_command_bytes": 690,
+  "changes": "Transport only; no base64 command, package installation, trust change or staging-code change."
+}

@@ -1,0 +1,77 @@
+{
+  "desktop-run-checked.ts": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-run-checked.ts",
+    "size": 4387,
+    "sha256": "887a49c814cb782aa772985e46456e23129a08f78cd2d5a2879d7a21b464c22c"
+  },
+  "desktop-deploy.ts": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-deploy.ts",
+    "size": 11687,
+    "sha256": "3c851316e513fcb3025e0419c6c0be798eec0c050cae0e0abca2a8268cd442f7"
+  },
+  "device-stage-v2.sh": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-stage-v2.sh",
+    "size": 40188,
+    "sha256": "4f65412401b95f2ae09aeea3c58cf9faa814fcb9ebe457c1044527e090d468ae"
+  },
+  "device-cutover-v2.sh": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-cutover-v2.sh",
+    "size": 39552,
+    "sha256": "305ecb245b655e686a11af2aab2c6e6abede204f3438bb024dfc97937ef397e3"
+  },
+  "device-rollback-v2.sh": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-rollback-v2.sh",
+    "size": 38615,
+    "sha256": "0fc0846646f2ff34d9a02d9cedb38f0ad5cac79d0dd1df06812998351168eead"
+  },
+  "device-start-v3.sh": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-start-v3.sh",
+    "size": 38952,
+    "sha256": "bb8408161b5ec2f005436fbd6aeab22f131b058a1c747789b39b884623f7ea7c"
+  },
+  "transport.zip": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/transport.zip",
+    "size": 3010260,
+    "sha256": "8a66c81661bad23a51e6b6459c5aa7b337b9e035d3479bf8dc6be401a1ec1d40"
+  },
+  "client.zip": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/client.zip",
+    "size": 3006550,
+    "sha256": "8468df658f658820bbf6f31e6b8c0d683a67109a5998a86467c959ca803d8962"
+  },
+  "production-install.sh": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/production-install.sh",
+    "size": 3370,
+    "sha256": "b5baa9d881b6693496cb622c29c96e0408c878b27a5197c04ac8882956686eae"
+  },
+  "service.js": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/service.js",
+    "size": 28017,
+    "sha256": "ade22fd9cf706e30bacfce15315a2df82af193a166b5f81e16278333c03d2767"
+  },
+  "desktop-spec.json": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-spec.json",
+    "size": 4029,
+    "sha256": "ee82b5296b32a548f0928a3584fc10888fb8dc9e805203da00e93ac69bc87002"
+  },
+  "desktop-observation.json": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-observation.json",
+    "size": 2114,
+    "sha256": "698cccb74b1bddd5f7ae4b53a14e4aecab6ee0e6286dd4590bc3593a1e5f1fd8"
+  },
+  "desktop-build.json": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-build.json",
+    "size": 1719,
+    "sha256": "ddea7a380a57ca758391b6448620442089af8405df3ec0e6b3d5e1a088ff7003"
+  },
+  "desktop-old-runtime.json": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-old-runtime.json",
+    "size": 911,
+    "sha256": "6f2cddb9765787c1425ff1612838067081a79057ba6564ce2a6e39b617b48262"
+  },
+  "public-metadata.json": {
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/public-metadata.json",
+    "size": 4819,
+    "sha256": "21ea4f1aad8bb3ccaecb273e29e0e74426424d4f610a700db91aca283a599b3e"
+  }
+}

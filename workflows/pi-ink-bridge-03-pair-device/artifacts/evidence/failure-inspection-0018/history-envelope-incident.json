@@ -1,0 +1,19 @@
+{
+  "schema": "pi-ink-workflow-envelope-incident/v1",
+  "created_at": "2026-11-09T12:47:44.325Z",
+  "receipt_ref": "workflows/pi-ink-bridge-03-pair-device/events/start-failure-inspection-0018.json",
+  "original_sha256": "53bb41c10048c58b3ecbd864c34d3a0f6db6939b02a4040ec7d842fd7dcb3408",
+  "inspection_error": "workflows/pi-ink-bridge-03-pair-device/events/start-failure-inspection-0018.json: receipt inputs ref must be a string.",
+  "cause": "Assistant-created inputs[1] contains kind approval and description but lacks required ref.",
+  "missing_ref_actual_durable_record": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018/execution-intent.json",
+  "source_changes": false,
+  "device_actions_since_preflight_stop": 0,
+  "original_receipt_preserved": true,
+  "matching_source_worktree_copy": true,
+  "existing_supported_supplements": [
+    "evidence",
+    "normalize_workflow_root"
+  ],
+  "requested_repair_scope": "Add narrowly constrained append-only missing-input-ref supplementation with original-byte SHA-256 and existing-object validation. Never replace existing refs or alter source identities, status, verdict, ticket or parent links. Add rejection/behavior tests and document the envelope-only extension. Append a validated supplement receipt only after explicit approval; preserve original bytes.",
+  "new_runtime_proposal_state": "Host-only draft scripts and smoke verification exist; not executed or authorized. History repair must complete before any further phase/device action."
+}

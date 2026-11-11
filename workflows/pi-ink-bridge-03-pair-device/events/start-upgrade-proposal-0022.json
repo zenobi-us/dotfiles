@@ -1,0 +1,120 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-upgrade-proposal-0022",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-runtime-layout-0021",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T22:24:54.234Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-runtime-layout-0021.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/runtime-layout-0021/findings.json"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/snapshots/offline-upgrade-implementation-0008.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-upgrade-proposal-0022.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/proposal.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/verification.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/executor-sha256.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-smoke-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-smoke-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/preserved-source-status.json"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "parent-host-only-executor-preparation-after-approved-observation",
+    "actual_outcome": "Prepared and smoke-checked artifacts only. Current owned implementation and source preserved; no new implementation/reviewer/fixer session or duplicate agent."
+  },
+  "validation": [
+    {
+      "command": "Owned real Pitchfork deployment smoke",
+      "result": "Exit 0; three refusal boundaries and full isolated service replacement/TLS protocol preservation succeeded. Owned daemon removed; real daemon PID2532009/buildc5df unchanged."
+    },
+    {
+      "command": "Real host filesystem device guard/rollback smoke",
+      "result": "14 checks passed; new state and foreign launcher retained; no private restoration. Additional public metadata match/mismatch smoke passed."
+    },
+    {
+      "command": "sh -n final four device programs; Bun build checked host runner without executing it",
+      "result": "Passed. No real device or service mutation; source tracked code unchanged."
+    }
+  ],
+  "implementation_summary": "Frozen exact hash-pinned host refresh and manual immutable tablet release/link-cutover/start/guarded-prelaunch-rollback operations. Preserves private identity/trust/data and all old releases. Prepared only; awaits three explicit owner scope decisions.",
+  "open_questions": [
+    "Approve or decline the exact named desktop service refresh; its configured stop may escalate after 5s.",
+    "Choose full tablet upgrade plus one explicit UI stop/start with documents saved/closed, stage-only, or no device mutation. Xochitl stop may escalate after 90s.",
+    "Separately approve or decline bounded prelaunch rollback and old-UI start on failure. No recovery after any launch request; no private credential/state restore."
+  ],
+  "hardware_acceptance": {
+    "status": "exact-upgrade-proposal-ready-awaiting-owner-approval",
+    "deployment_executed": false,
+    "native_0_5_acceptance": false,
+    "metadata_helper_retained": false,
+    "real_service_changes": 0,
+    "device_signals": 0
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "frozen-guarded-desktop-refresh-and-tablet-upgrade-proposal-ready",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "schema": "pi-ink-pairing-host-evidence/v1",
+  "created_at": "2026-11-09T06:35:26.546Z",
+  "implementation_source_commit": "c8684bc956cc99896884fe1c05dcb97f4ba7f97e",
+  "implementation_source_tree": "8898c39e90234d5b3134f32b8fb41e9198ab9c10",
+  "status": "host-passed-native-blocked",
+  "validation": [
+    {
+      "command": "mise exec -- bun test",
+      "cwd": "mise/conf.d/devtools-omp/extensions/image-annotator",
+      "result": "passed: 34 tests, 284 assertions, zero failures"
+    },
+    {
+      "command": "mise exec -- go test -race ./...",
+      "cwd": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client",
+      "result": "passed; production AppLoad backend exercised against real Bun service, HTTPS and WebSockets"
+    },
+    {
+      "command": "mise exec -- bun run typecheck",
+      "cwd": "mise/conf.d/devtools-omp/extensions/image-annotator",
+      "result": "passed"
+    },
+    {
+      "command": "mise exec -- bun run build",
+      "cwd": "mise/conf.d/devtools-omp/extensions/image-annotator",
+      "result": "passed; ARM64 client ZIP and browser bundle built; existing dependency directive/chunk warnings remain"
+    },
+    {
+      "command": "mise exec -- go test -race -run TestProductionAppLoadPairing -v",
+      "cwd": "mise/conf.d/devtools-omp/extensions/image-annotator/tablet-client",
+      "result": "passed; protected PNG SHA-256 8fc5a10f2a577810e1552a07c378954d6be3a11b20d33b669d70c2e96963aeaa"
+    },
+    {
+      "command": "host compiled pi-ink-client appload + Qt 6.8.3 Connections.qml + browser management forms",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+      "result": "passed: manual fingerprint/address verification; matching code 219590; approval; real PNG display; active WebSocket revocation observed; native AppLoad transport host-emulated only"
+    }
+  ],
+  "payload": {
+    "version": "0.5.0",
+    "client_zip_sha256": "8468df658f658820bbf6f31e6b8c0d683a67109a5998a86467c959ca803d8962",
+    "installer_sha256": "b5baa9d881b6693496cb622c29c96e0408c878b27a5197c04ac8882956686eae"
+  },
+  "acceptance": [
+    {
+      "criterion": 1,
+      "host": "Verified CA/hostname, manual entered fingerprint; wrong fingerprint preserves config and cannot create credentials.",
+      "native": "unverified"
+    },
+    {
+      "criterion": 2,
+      "host": "Two-minute window, matching desktop/QML code, explicit desktop approval before credential.",
+      "native": "unverified"
+    },
+    {
+      "criterion": 3,
+      "host": "Actual PNG downloads denied for unpaired/pending/denied/expired/wrong-server; ten-attempt bound and repeated-open rejection.",
+      "native": "unverified"
+    },
+    {
+      "criterion": 4,
+      "host": "Stable server identity/certificate and device identity; 0600 atomic credential writes; service and actual backend restart persistence.",
+      "native": "unverified"
+    },
+    {
+      "criterion": 5,
+      "host": "Real browser revoke disconnected QML WebSocket; regression proves subsequent HTTPS/WS rejection and persistent revocation.",
+      "native": "unverified"
+    },
+    {
+      "criterion": 6,
+      "host": "Role-specific tablet/extension negotiation selects supported version; incompatible requests preserve image access credential and saved state.",
+      "native": "unverified"
+    },
+    {
+      "criterion": 7,
+      "host": "LAN management rejected; unexpected Host/Origin/cross-site/CSRF mutations rejected; real same-origin browser forms work.",
+      "native": "unverified"
+    },
+    {
+      "criterion": 8,
+      "host": "Actual production backend and Connections.qml used real verified HTTPS and outbound WSS; checkerboard PNG downloaded, decoded, saved and displayed.",
+      "native": "Host-emulated AppLoad transport is not native Paper Pro acceptance."
+    }
+  ],
+  "initial_failures_corrected": [
+    "Bun WebSocket tests needed the existing tls.ca compatibility pattern; corrected without disabling TLS verification.",
+    "Go temporary service directory needed explicit 0700; fixture corrected.",
+    "Initial embedded diagnostic PNG failed full decode checksum; replaced with valid 64x64 checkerboard and full client decode.",
+    "Initial QML viewport clipped controls and long text; constrained scroll content width and confirmed corrected screenshot. Initial screenshots are retained."
+  ],
+  "limits": [
+    "No Paper Pro access, SSH, installation, restart, hardware mutation, or old experiment cleanup was performed.",
+    "Owner must approve a scoped repair/upgrade plan from the installed release to 0.5.0. The existing installer intentionally rejects a different release at occupied launcher links.",
+    "After approved installation and any separately approved restart, observe the actual Paper Pro screen, matching-code approval, restart persistence, protected image download, and active/subsequent rejection after revocation on the real LAN.",
+    "No independent review, merge, push, ticket completion, mDNS, image dispatch, inbox, or drawing acceptance is claimed."
+  ],
+  "cleanup": "Owned browser tab closed; corrected QML smoke exited zero and removed its runtime; initial QML smoke and isolated service stopped; owned temporary scripts, host binary and runtime data removed. No tablet operations."
+}

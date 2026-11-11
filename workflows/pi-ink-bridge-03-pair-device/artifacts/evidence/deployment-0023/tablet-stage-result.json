@@ -1,0 +1,9 @@
+{
+  "started_at": "2026-11-09T22:36:11.887Z",
+  "finished_at": "2026-11-09T22:36:12.108Z",
+  "exit_code": 255,
+  "signal": null,
+  "error": null,
+  "stdout": "",
+  "stderr": "Read from remote host 10.11.99.1: Connection reset by peer\r\nclient_loop: send disconnect: Broken pipe\r\n"
+}

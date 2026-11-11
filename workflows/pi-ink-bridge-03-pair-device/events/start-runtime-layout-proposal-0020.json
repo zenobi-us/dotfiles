@@ -1,0 +1,118 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-runtime-layout-proposal-0020",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-input-ref-repair-0019",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T13:05:15.262Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-input-ref-repair-0019.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/input-ref-repair-0019/verification.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018/findings.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/verification.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-runtime-layout-proposal-0020.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/runtime-layout-proposal-0019/proposal.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/runtime-layout-proposal-0019/host-verification.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/runtime-layout-proposal-0019/inspect-runtime.sh"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/runtime-layout-proposal-0019/stage-run-reader.sh"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "host-only-history-repair-verified-next-observation-proposal",
+    "actual_outcome": "History restored by new supplement only; source and original receipt bytes preserved. New device proposal remains unexecuted."
+  },
+  "validation": [
+    {
+      "command": "Actual inspect.ts after authorized immutable input-ref supplementation",
+      "result": "History valid; effective input ref observed; original receipt SHA-256 53bb41c10048c58b3ecbd864c34d3a0f6db6939b02a4040ec7d842fd7dcb3408 unchanged."
+    },
+    {
+      "command": "mise exec -- bun test .../worktree/scripts/inspect.test.ts",
+      "result": "10 pass, 0 fail, 105 expectations."
+    },
+    {
+      "command": "sh -n both proposed scripts; owned-host-child process snapshot and absent-process smoke",
+      "result": "Passed. No new target execution."
+    }
+  ],
+  "implementation_summary": "Host-only narrow envelope repair verified and documented. Prepared a bounded observation-only runtime/capability snapshot and optional unchanged metadata-reader lifecycle, explicitly permitting active clients only for observation. Installation remains blocked pending separately approved quiescent cutover.",
+  "open_questions": [
+    "Await explicit owner scope for runtime-only inspection or runtime plus observation-only metadata reader. No additional device connection is authorized yet.",
+    "Last approved preflight observed a different client PID 60008; identity/parent unknown. No source, process signal, trust or upgrade mutation has been authorized by this proposal."
+  ],
+  "hardware_acceptance": {
+    "status": "read-only-preflight-blocked-by-new-client-60008",
+    "old_PID_41472_absent": true,
+    "new_client_PID": 60008,
+    "new_client_identity": "uninspected",
+    "failed_stop_helper_retained": false,
+    "metadata_reader_uploaded": false,
+    "signals_sent": 0,
+    "upgrade_authorized": false,
+    "restart_authorized": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "history-repair-verified-observation-only-runtime-layout-proposal-ready",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/runtime-layout-proposal-0019"
+  }
+}

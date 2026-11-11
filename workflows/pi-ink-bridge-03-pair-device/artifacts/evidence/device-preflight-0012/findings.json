@@ -1,0 +1,25 @@
+{
+  "schema": "pi-ink-device-preflight-findings/v1",
+  "created_at": "2026-11-09T11:00:37.329Z",
+  "status": "stopped-no-helper-upload",
+  "proposal_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/proposal.json",
+  "authorization": "User selected Approve pinned preflight; exactly two conditional operations, no retries.",
+  "owner_observation": "Owner reports visible Pi Annotations UI closed; accepted as reported.",
+  "observed_process": "Preflight still detected a matching executable name at PID 41472. Exact executable path/start identity were not collected by this script, so production-vs-old-experiment ownership is not established.",
+  "result_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0012/operation-1-result.json",
+  "operation_count": {
+    "ssh_connections": 1,
+    "operation_1_exit": 41,
+    "operation_2_attempted": false,
+    "helper_uploads": 0,
+    "helper_executions": 0,
+    "retries": 0,
+    "process_stops": 0,
+    "client_upgrades": 0,
+    "restarts": 0,
+    "remote_cleanup": 0
+  },
+  "stop_reason": "STOP=client_active",
+  "next_required": "A separately approved read-only inspection limited to /proc/41472 process/executable metadata and code hash. Do not kill, reopen, restart or assume ownership of an older experiment.",
+  "upgrade_manifest_ready": false
+}

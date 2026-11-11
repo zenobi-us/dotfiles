@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-11-10T02:22:27.361Z",
+  "PID": 2512709,
+  "start_ticks": "26354974",
+  "build": "2fa9ad053469efb6f844dc89087e85d7bf1393527ffb3bbd9cb502a98c880e12",
+  "serverId": "256377c7f22604161e086b332a63e19b",
+  "fingerprint": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+  "protocol": {
+    "status": 200,
+    "serverId": "256377c7f22604161e086b332a63e19b",
+    "protocol": 1,
+    "TLS_verified": true
+  },
+  "mutations": 0
+}

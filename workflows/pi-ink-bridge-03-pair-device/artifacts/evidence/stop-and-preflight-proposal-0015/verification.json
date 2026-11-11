@@ -1,0 +1,37 @@
+{
+  "schema": "pi-ink-pidfd-stop-host-verification/v1",
+  "created_at": "2026-11-09T11:23:08.450Z",
+  "smoke": {
+    "command": "PI_INK_STOP_FIXTURE=1 mise exec -- go run stop.go fixture.go",
+    "cwd": "/tmp/pi-ink-stop-smoke-9EK70L",
+    "result": "PASS: wrong start/hash/executable rejected without signalling; one pidfd SIGTERM observed; owned child exited by SIGTERM; exited PID rejected without signalling",
+    "device_signals": 0,
+    "scope": "Only a newly spawned owned host sleep child was signalled."
+  },
+  "source_sha256": "79c27a877debe4f73e135d51df407b543c24ff6322a1a6ed52f3ba88f485d5d2",
+  "build": {
+    "command": "GOOS=linux GOARCH=arm64 CGO_ENABLED=0 mise exec -- go build -trimpath -ldflags=-s -w -o stop-arm64 stop.go",
+    "toolchain": "go1.25.0 linux/amd64",
+    "binary_sha256": "7d73d400086aef839109386ec581228df1eb40682aac435d12e60ffe346f3a22",
+    "binary_size": 2162872,
+    "elf": "ELF64 little-endian AArch64, e_machine 183"
+  },
+  "linux_abi": {
+    "pidfd_open": 434,
+    "pidfd_send_signal": 424,
+    "source": "/usr/include/asm-generic/unistd.h declarations verified",
+    "device_support": "Not yet probed; unsupported pidfd/select fails closed with no raw-PID fallback."
+  },
+  "script": {
+    "syntax": "sh -n passed",
+    "sha256": "eac8ecc8ac007f6aff2f8216a49bc89236f3ad0cab9899d18fdfb6bff6dcd354"
+  },
+  "signals_allowed": {
+    "maximum_SIGTERM": 1,
+    "SIGKILL": 0,
+    "escalation": false,
+    "raw_PID_fallback": false
+  },
+  "private_data_reads": "None in stop helper; only process/executable metadata and code hash.",
+  "device_execution": false
+}

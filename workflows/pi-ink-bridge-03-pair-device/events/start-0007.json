@@ -1,0 +1,104 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0007",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 3,
+  "parent_receipt": "start-complete-0006",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "35bcd03f3be95396a7e7893801a9d50631e35e86",
+  "source_tree": "89f7993fa8a5085bd43d46db72a9a6401151f939",
+  "created_at": "2026-11-09T07:33:14.907Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-publication-0004.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-complete-0003.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/snapshots/pr-draft-implementation-0002.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/host-pairing-0002/verification.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-complete-0006.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-0007.json"
+    }
+  ],
+  "status": "started",
+  "recovery": {
+    "mode": "takeover",
+    "reason": "Resume only authorized host recovery of blocked implementation; reconcile metadata and prepare exact offline hardware upgrade/acceptance plan, without repeating successful host implementation.",
+    "prior_attempt": "start-complete-0006",
+    "source_preserved": true,
+    "approval": {
+      "selection": "Authorize host-only recovery",
+      "scope": "Fresh session; preserve existing implementation; safely reconcile metadata publication and prepare exact tablet upgrade and acceptance plan. No tablet access, installation, restart or hook bypass.",
+      "session": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+      "additional_selection": "Fix launcher and retry",
+      "additional_scope": "Bounded fresh-pane readiness fix followed by same approved host-only recovery. No hook bypass or tablet access."
+    },
+    "ownership": "Prior implementation child completed; pane w60:p2 closed. Fresh Herdr inventory contains no pairing child.",
+    "reservations": "No matching ticket in goal coordinator event YAML/JSON.",
+    "constraints": [
+      "Do not retry failed metadata commit in dirty base checkout.",
+      "Never reuse previous implementer, reviewer or fixer session.",
+      "Never terminate an active or unknown agent.",
+      "Do not perform tablet actions or bypass hooks."
+    ],
+    "launcher_fix": {
+      "summary": "Bounded same-pane retry only after explicit native agent_pane_busy rejection and proof that sole foreground process is that pane shell; existing started-agent timeout detection retained.",
+      "regression": "New delayed-shell case failed before fix; all 11 spawn tests passed after fix."
+    }
+  },
+  "validation": [
+    {
+      "command": "Fresh worktree inspector",
+      "result": "Valid history; exact preserved source 35bcd03f / 89f7993f; takeover selected."
+    },
+    {
+      "command": "herdr agent list; goal event reservation search",
+      "result": "No live pairing child or matching goal reservation."
+    }
+  ]
+}

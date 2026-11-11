@@ -1,0 +1,8 @@
+{
+  "started_for": "Owned isolated Pitchfork service only; real global/pi-ink-bridge is excluded.",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "{\"schema\":\"pi-ink-desktop-executor-smoke/v1\",\"checks\":[\"old_process_changed\",\"file_policy\",\"payload_hash_changed\",\"real_pitchfork_stop_start_verified_TLS_protocol_identity_and_backup_preserved\"],\"owned_daemon\":\"global/pi-ink-upgrade-smoke-a107cb9fe76b465094fba67f469cd926\",\"result\":{\"status\":\"ready\",\"build\":\"2fa9ad053469efb6f844dc89087e85d7bf1393527ffb3bbd9cb502a98c880e12\",\"PID\":1566004,\"start_ticks\":\"26187948\",\"server_identity_preserved\":true,\"private_files_preserved\":true,\"protocol\":1,\"rollback_performed\":false},\"real_pi_ink_daemon_mutated\":false}\n",
+  "stderr": ""
+}

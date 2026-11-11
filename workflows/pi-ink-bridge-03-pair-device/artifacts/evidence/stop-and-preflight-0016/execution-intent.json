@@ -1,0 +1,31 @@
+{
+  "schema": "pi-ink-approved-stop-and-preflight-execution/v1",
+  "created_at": "2026-11-09T11:29:46.315Z",
+  "approval": "Approve stop and preflight",
+  "proposal_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-proposal-0015/proposal.json",
+  "proposal_sha256": "8103cf12b5b9e7bc2c6411c486c45637bbd6ecdc6d664fc4a603fff7ac2d41ba",
+  "target": {
+    "pid": 41472,
+    "start_ticks": "3578271",
+    "process_identity": "21:205121:0:0",
+    "executable": "/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/pi-ink-client",
+    "executable_identity": "65026:1446:0:0:700:7405752",
+    "parent_pid": 7146,
+    "state": "S (sleeping)",
+    "sha256": "433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051"
+  },
+  "scope": "Up to one PID-bound SIGTERM to the frozen production backend, then one new bounded preflight and conditional metadata-reader operation. No client upgrade, trust replacement, Xochitl/AppLoad/service restart, old-file cleanup, retries or SIGKILL.",
+  "limits": {
+    "max_device_connections": 3,
+    "retries": 0,
+    "max_SIGTERM": 1,
+    "SIGKILL": 0,
+    "client_upgrade": false,
+    "trust_change": false,
+    "Xochitl_restart": false,
+    "service_restart": false,
+    "old_experiment_cleanup": false
+  },
+  "cable_route": "10.11.99.1 dev enp2s0f0u4c2 src 10.11.99.10 uid 1000 \n    cache",
+  "inputs_verified": true
+}

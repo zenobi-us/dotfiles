@@ -1,0 +1,505 @@
+{
+  "schema": "pi-ink-guarded-upgrade-proposal/v1",
+  "proposal_id": "upgrade-proposal-0022",
+  "created_at": "2026-11-09T22:24:54.234Z",
+  "status": "frozen-awaiting-scoped-owner-approval",
+  "execution_authorized": false,
+  "parent_receipt": "workflows/pi-ink-bridge-03-pair-device/events/start-runtime-layout-0021.json",
+  "source": {
+    "commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+    "code_commit": "c8684bc956cc99896884fe1c05dcb97f4ba7f97e",
+    "tracked_changes": 0,
+    "untracked_changes": "Only workflow records; all preserved."
+  },
+  "approval_dimensions": {
+    "desktop_refresh": "Separate explicit approval to replace only the identified global/pi-ink-bridge daemon with the prepared 0.5-compatible runtime, preserving existing data/identity/TLS and ports. No device action is implied.",
+    "tablet": "Choose stage_and_one_service_cycle, stage_only, or none. Full cycle affirms all tablet documents saved and closed and exclusive owner operation. A stage-only choice never changes launchers/data or services.",
+    "prelaunch_recovery": "Separate explicit approval, conditional on a failed prelaunch cutover/start precheck, for one identity-checked link rollback and old-UI start. No recovery after LAUNCH_REQUESTED; no private state restoration."
+  },
+  "frozen_pins": {
+    "desktop-run-checked.ts": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-run-checked.ts",
+      "size": 4387,
+      "sha256": "887a49c814cb782aa772985e46456e23129a08f78cd2d5a2879d7a21b464c22c"
+    },
+    "desktop-deploy.ts": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-deploy.ts",
+      "size": 11687,
+      "sha256": "3c851316e513fcb3025e0419c6c0be798eec0c050cae0e0abca2a8268cd442f7"
+    },
+    "device-stage-v2.sh": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-stage-v2.sh",
+      "size": 40188,
+      "sha256": "4f65412401b95f2ae09aeea3c58cf9faa814fcb9ebe457c1044527e090d468ae"
+    },
+    "device-cutover-v2.sh": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-cutover-v2.sh",
+      "size": 39552,
+      "sha256": "305ecb245b655e686a11af2aab2c6e6abede204f3438bb024dfc97937ef397e3"
+    },
+    "device-rollback-v2.sh": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-rollback-v2.sh",
+      "size": 38615,
+      "sha256": "0fc0846646f2ff34d9a02d9cedb38f0ad5cac79d0dd1df06812998351168eead"
+    },
+    "device-start-v3.sh": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-start-v3.sh",
+      "size": 38952,
+      "sha256": "bb8408161b5ec2f005436fbd6aeab22f131b058a1c747789b39b884623f7ea7c"
+    },
+    "transport.zip": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/transport.zip",
+      "size": 3010260,
+      "sha256": "8a66c81661bad23a51e6b6459c5aa7b337b9e035d3479bf8dc6be401a1ec1d40"
+    },
+    "client.zip": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/client.zip",
+      "size": 3006550,
+      "sha256": "8468df658f658820bbf6f31e6b8c0d683a67109a5998a86467c959ca803d8962"
+    },
+    "production-install.sh": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/production-install.sh",
+      "size": 3370,
+      "sha256": "b5baa9d881b6693496cb622c29c96e0408c878b27a5197c04ac8882956686eae"
+    },
+    "service.js": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/service.js",
+      "size": 28017,
+      "sha256": "ade22fd9cf706e30bacfce15315a2df82af193a166b5f81e16278333c03d2767"
+    },
+    "desktop-spec.json": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-spec.json",
+      "size": 4029,
+      "sha256": "ee82b5296b32a548f0928a3584fc10888fb8dc9e805203da00e93ac69bc87002"
+    },
+    "desktop-observation.json": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-observation.json",
+      "size": 2114,
+      "sha256": "698cccb74b1bddd5f7ae4b53a14e4aecab6ee0e6286dd4590bc3593a1e5f1fd8"
+    },
+    "desktop-build.json": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-build.json",
+      "size": 1719,
+      "sha256": "ddea7a380a57ca758391b6448620442089af8405df3ec0e6b3d5e1a088ff7003"
+    },
+    "desktop-old-runtime.json": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-old-runtime.json",
+      "size": 911,
+      "sha256": "6f2cddb9765787c1425ff1612838067081a79057ba6564ce2a6e39b617b48262"
+    },
+    "public-metadata.json": {
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/public-metadata.json",
+      "size": 4819,
+      "sha256": "21ea4f1aad8bb3ccaecb273e29e0e74426424d4f610a700db91aca283a599b3e"
+    }
+  },
+  "transport": {
+    "endpoint": "root@10.11.99.1",
+    "trusted_ED25519_fingerprint": "SHA256:LqHDwMgOSBFgdmP2V6XXqrc57lwlYT9y9YMhf0cPTQ8",
+    "known_hosts_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/known_hosts",
+    "known_hosts_sha256": "d3fb662c991abe9331cc1efb7de08341eb22cb6b3b044f1ffdfe33ccf9206d3c",
+    "route_device": "enp2s0f0u4c2",
+    "route_source": "10.11.99.10"
+  },
+  "desktop": {
+    "current_PID": 2532009,
+    "current_start_ticks": "18037566",
+    "old_build": "c5df23c290a5c31886c86d4e1af9a226e7d147007fd5843972919ecaa6d1e356",
+    "new_build": "2fa9ad053469efb6f844dc89087e85d7bf1393527ffb3bbd9cb502a98c880e12",
+    "coordinator_id": "256377c7f22604161e086b332a63e19b",
+    "certificate_DER_sha256": "03fee0acc6c98861805f154244d33dbad2bdbea7087f7d61135a9e47e6a4a3d1",
+    "origin": "https://192.168.86.35:58841",
+    "management": "http://127.0.0.1:58840/manage",
+    "data_directory": "/home/zenobius/.local/share/pi-ink-bridge",
+    "private_backup": "/home/zenobius/.local/share/pi-ink-bridge/.backup-pairing-0022",
+    "temporary_staging": "/home/zenobius/.local/share/pi-ink-bridge/runtimes/.stage-pairing-0022",
+    "new_runtime": "/home/zenobius/.local/share/pi-ink-bridge/runtimes/2fa9ad053469efb6f844dc89087e85d7bf1393527ffb3bbd9cb502a98c880e12",
+    "operation": {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/bun/1.4.3/bin/bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-run-checked.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device/mise/conf.d/devtools-omp/extensions/image-annotator",
+      "timeout_seconds": 180,
+      "retries": 0
+    },
+    "writes": [
+      "Exclusively create the identified startup.lock, private backup, and new immutable runtime; never overwrite an occupied path.",
+      "Backup only coordinator-id, certificate.pem and key.pem; require devices.json absent as observed. Every private source retains its exact pinned hash/identity/0600 mode.",
+      "Verify old daemon PID/start/argv and trusted health immediately before its sole explicit Pitchfork stop. Require stopped, then start the new runtime without --force, --bump or retries. Preserve ports 58840/58841.",
+      "Verify new build/identity, certificate-verified HTTPS extension protocol 1, private files and old runtime bytes; remove only the exact newly owned empty startup.lock on success."
+    ],
+    "stop_policy": "Pinned Pitchfork 2.30.1 and effective supervisor.stop_timeout=5s. Graceful process-group stop may escalate to SIGKILL. Only the named known daemon is targeted.",
+    "failure_policy": "Stop; preserve the new lock, backups, both runtimes and all data. The service can remain stopped on failure. No automatic desktop rollback, key rotation, database restoration or credential issuance."
+  },
+  "tablet": {
+    "model": "reMarkable Ferrari",
+    "architecture": "aarch64",
+    "firmware": "3.28.0.172",
+    "boot_id": "8e816d98-6bf4-4f9e-9abe-891fbf83d06f",
+    "base_identity": "65026:1150:0:0:700",
+    "old_release": "/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33",
+    "target_release": "/home/root/.local/share/pi-ink-bridge/releases/8468df658f658820bbf6f31e6b8c0d683a67109a5998a86467c959ca803d8962",
+    "stage": "/home/root/.local/share/pi-ink-bridge/.upgrade-0010",
+    "backup": "/home/root/.local/share/pi-ink-bridge/.backup-0010",
+    "owned_links": [
+      {
+        "path": "/home/root/xovi/exthome/appload/pi-annotations",
+        "old_identity": "65026:1472:0:0:777",
+        "old_suffix": "app",
+        "new_suffix": "app"
+      },
+      {
+        "path": "/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd",
+        "old_identity": "65026:1474:0:0:777",
+        "old_suffix": "sidebar.qmd",
+        "new_suffix": "sidebar.qmd"
+      }
+    ],
+    "private_pins": {
+      "schema": "pi-ink-private-metadata/v1",
+      "config": {
+        "exists": true,
+        "sha256": "83a3766298e1e0f5344d5d18bb95b43f38fe38349427191a845bc4fa30bba8c9",
+        "mode": "0600",
+        "uid": 0,
+        "gid": 0,
+        "size": 350,
+        "device": 65026,
+        "inode": 1154
+      },
+      "ca": {
+        "exists": true,
+        "sha256": "8e5b94fe2995e86baf3ee80a788caeb740efee2983942e4499b026ebaec1f7d9",
+        "mode": "0600",
+        "uid": 0,
+        "gid": 0,
+        "size": 717,
+        "device": 65026,
+        "inode": 1153
+      },
+      "state": {
+        "exists": false,
+        "uid": 0,
+        "gid": 0,
+        "size": 0,
+        "device": 0,
+        "inode": 0
+      },
+      "device_id_sha256": "12b98e3c5ba332bd955d1b3a5f1a26ca9fa44fcd3e6bf1344275bf1704c3b03f",
+      "fixed_paths_verified": true,
+      "server_identity_verified": true
+    },
+    "preserved_public_metadata_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/public-metadata.json",
+    "UI_unit": {
+      "name": "xochitl.service",
+      "current_main_PID": 7146,
+      "start_monotonic": "5286136652",
+      "kill_mode": "control-group",
+      "kill_signal": 15,
+      "send_SIGKILL": true,
+      "stop_timeout": "1min 30s",
+      "scope": "All UI unit descendants, including AppLoad backends; not an individual PID kill. No stop/start until documents-saved approval."
+    },
+    "operations": {
+      "stage": {
+        "argv": [
+          "ssh",
+          "-T",
+          "-o",
+          "BatchMode=yes",
+          "-o",
+          "StrictHostKeyChecking=yes",
+          "-o",
+          "UserKnownHostsFile=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/known_hosts",
+          "-o",
+          "GlobalKnownHostsFile=/dev/null",
+          "-o",
+          "HostKeyAlgorithms=ssh-ed25519",
+          "-o",
+          "ConnectionAttempts=1",
+          "-o",
+          "ConnectTimeout=10",
+          "-o",
+          "ServerAliveInterval=10",
+          "-o",
+          "ServerAliveCountMax=1",
+          "-o",
+          "ForwardAgent=no",
+          "-o",
+          "ForwardX11=no",
+          "-o",
+          "ClearAllForwardings=yes",
+          "-o",
+          "ControlMaster=no",
+          "-o",
+          "ControlPath=none",
+          "-o",
+          "ControlPersist=no",
+          "-o",
+          "UpdateHostKeys=no",
+          "-o",
+          "PermitLocalCommand=no",
+          "root@10.11.99.1",
+          "sh -c 'set -eu\numask 077\nfail() { printf '\\''STOP=%s\\n'\\'' \"$1\" >&2; exit 41; }\nowner=0\nbase='\\''/home/root/.local/share/pi-ink-bridge'\\''\nstage=\"$base/.upgrade-0010\"\nbackup=\"$base/.backup-0010\"\nold=\"$base/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33\"\ntarget=\"$base/releases/8468df658f658820bbf6f31e6b8c0d683a67109a5998a86467c959ca803d8962\"\nlink1='\\''/home/root/xovi/exthome/appload/pi-annotations'\\''\nlink2='\\''/home/root/xovi/exthome/qt-resource-rebuilder/pi-annotations.qmd'\\''\nold1='\\''65026:1472:0:0:777'\\''\nold2='\\''65026:1474:0:0:777'\\''\nconfig_identity='\\''65026:1154:0:0:600:350'\\''\nca_identity='\\''65026:1153:0:0:600:717'\\''\nconfig_hash='\\''83a3766298e1e0f5344d5d18bb95b43f38fe38349427191a845bc4fa30bba8c9'\\''\nca_hash='\\''8e5b94fe2995e86baf3ee80a788caeb740efee2983942e4499b026ebaec1f7d9'\\''\nmembers='\\''700|7536824|f704373442fa036ed461befa9abdf77249168e1d3518afeab18905381336423e|pi-ink-client\n600|6|a0ad50640139a524f86591157145bf1d4674ea9c065bfea21558f0f7b04430c8|VERSION\n600|949|33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be|sidebar.qmd\n600|213|265d2ea700c8b20a49d6e9f67489b9431adacbd4f6a588bee23505affe393aad|app/manifest.json\n700|194|0c983d6d4593556720704fdccd2c08733853eb3982cb03359fdeaa68d0dd6efb|app/backend/entry\n600|4986|b98c6eaeacee54da975b633b2b34cf05ab9909c60ee7644ae8f1973c5538b7bc|app/resources.rcc'\\''\nidentity() { stat -c '\\''%d:%i:%u:%g:%a'\\'' \"$1\"; }\nhash_file() { printf '\\''%s  %s\\n'\\'' \"$2\" \"$1\" | sha256sum -c -; }\nabsent() { [ ! -e \"$1\" ] && [ ! -L \"$1\" ] || fail occupied_path; }\nprivate_file() {\n [ -f \"$1\" ] && [ ! -L \"$1\" ] || fail private_type\n [ \"$(stat -c '\\''%d:%i:%u:%g:%a:%s'\\'' \"$1\")\" = \"$2\" ] || fail private_identity\n hash_file \"$1\" \"$3\"\n}\nverify_identity_files() {\n private_file \"$base/config.json\" \"$config_identity\" \"$config_hash\"\n private_file \"$base/server-ca.pem\" \"$ca_identity\" \"$ca_hash\"\n}\nverify_private() { verify_identity_files; absent \"$base/state.json\"; }\nguard_link() {\n [ -L \"$1\" ] && [ \"$(readlink \"$1\")\" = \"$2\" ] && [ \"$(identity \"$1\")\" = \"$3\" ] || fail launcher_identity\n}\nguard_old_links() { guard_link \"$link1\" \"$old/app\" \"$old1\"; guard_link \"$link2\" \"$old/sidebar.qmd\" \"$old2\"; }\nsave_record() { (set -C; printf '\\''%s\\n'\\'' \"$2\" > \"$stage/$1\"); }\nrecord() {\n [ -f \"$stage/$1\" ] && [ ! -L \"$stage/$1\" ] || fail record_type\n [ \"$(stat -c '\\''%u:%a'\\'' \"$stage/$1\")\" = \"$owner:600\" ] || fail record_owner\n [ \"$(stat -c %s \"$stage/$1\")\" -le 256 ] || fail record_size\n IFS= read -r value < \"$stage/$1\" || fail record_read\n printf '\\''%s'\\'' \"$value\"\n}\nguard_stage() {\n [ -d \"$stage\" ] && [ ! -L \"$stage\" ] || fail stage_type\n [ \"$(stat -c '\\''%u:%g:%a'\\'' \"$stage\")\" = \"$owner:$owner:700\" ] || fail stage_owner\n [ \"$(identity \"$stage\")\" = \"$(record stage.id)\" ] || fail stage_replaced\n [ \"$(record transaction)\" = '\\''pi-ink-bridge-03-upgrade-0022-8468df658f658820'\\'' ] || fail transaction_owner\n}\njournal() {\n [ -f \"$stage/journal\" ] && [ ! -L \"$stage/journal\" ] || fail journal_type\n [ \"$(stat -c '\\''%u:%a'\\'' \"$stage/journal\")\" = \"$owner:600\" ] || fail journal_owner\n [ \"$(stat -c %s \"$stage/journal\")\" -le 4096 ] || fail journal_size\n if [ \"$1\" = append ]; then printf '\\''%s\\n'\\'' \"$2\" >> \"$stage/journal\"; sync; return; fi\n found=0\n while IFS= read -r entry; do [ \"$entry\" != \"$2\" ] || found=1; done < \"$stage/journal\"\n if [ \"$1\" = require ]; then [ \"$found\" = 1 ] || fail missing_phase; else [ \"$found\" = 0 ] || fail launch_already_requested; fi\n}\nguard_environment() {\n [ \"$(id -u)\" = 0 ] || fail account\n [ \"$(cat /proc/sys/kernel/random/boot_id)\" = '\\''8e816d98-6bf4-4f9e-9abe-891fbf83d06f'\\'' ] || fail boot_changed\n [ -d \"$base\" ] && [ ! -L \"$base\" ] || fail base_type\n [ \"$(identity \"$base\")\" = '\\''65026:1150:0:0:700'\\'' ] || fail base_replaced\n while IFS='\\''|'\\'' read -r parent expected; do\n  [ -d \"$parent\" ] && [ ! -L \"$parent\" ] && [ \"$(identity \"$parent\")\" = \"$expected\" ] || fail parent_replaced\n done <<'\\''PARENTS'\\''\n/home/root/.local/share/pi-ink-bridge/releases|65026:1155:0:0:700\n/home/root/xovi|65026:668:0:0:755\n/home/root/xovi/extensions.d|65026:674:0:0:755\n/home/root/xovi/exthome|65026:675:0:0:755\n/home/root/xovi/exthome/appload|65026:706:0:0:755\n/home/root/xovi/exthome/qt-resource-rebuilder|65026:692:0:0:755\nPARENTS\n verify_baseline\n}\nno_clients() {\n for proc in /proc/[0-9]*; do\n  exe=$(readlink \"$proc/exe\" 2>/dev/null || true)\n  case \"$exe\" in *pi-ink-client*|*pi-annotations*) fail client_still_active;; esac\n done\n}\nguard_stopped() {\n [ \"$(systemctl show xochitl.service -p ActiveState --value)\" = inactive ] || fail UI_not_inactive\n [ \"$(systemctl show xochitl.service -p SubState --value)\" = dead ] || fail UI_not_dead\n [ \"$(systemctl show xochitl.service -p MainPID --value)\" = 0 ] || fail UI_PID_present\n no_clients\n}\nverify_payload() {\n payload=$1\n for dir in \"$payload\" \"$payload/app\" \"$payload/app/backend\"; do\n  [ -d \"$dir\" ] && [ ! -L \"$dir\" ] || fail payload_directory\n  [ \"$(stat -c '\\''%u:%g:%a'\\'' \"$dir\")\" = \"$owner:$owner:700\" ] || fail payload_directory_owner\n done\n while IFS='\\''|'\\'' read -r mode size digest name; do\n  path=\"$payload/$name\"\n  [ -f \"$path\" ] && [ ! -L \"$path\" ] || fail payload_type\n  [ \"$(stat -c '\\''%u:%g:%a:%s'\\'' \"$path\")\" = \"$owner:$owner:$mode:$size\" ] || fail payload_metadata\n  hash_file \"$path\" \"$digest\"\n done <<EOF\n$members\nEOF\n for item in \"$payload\"/* \"$payload\"/.[!.]* \"$payload\"/..?* \"$payload/app\"/* \"$payload/app\"/.[!.]* \"$payload/app\"/..?* \"$payload/app/backend\"/* \"$payload/app/backend\"/.[!.]* \"$payload/app/backend\"/..?*; do\n  if [ ! -e \"$item\" ] && [ ! -L \"$item\" ]; then continue; fi\n  case \"${item#\"$payload/\"}\" in pi-ink-client|VERSION|sidebar.qmd|app|app/manifest.json|app/resources.rcc|app/backend|app/backend/entry) ;; *) fail foreign_payload_entry;; esac\n done\n}\nverify_backup() {\n [ -d \"$backup\" ] && [ ! -L \"$backup\" ] && [ \"$(identity \"$backup\")\" = \"$(record backup.id)\" ] || fail backup_identity\n for name in config.json server-ca.pem; do\n  [ -f \"$backup/$name\" ] && [ ! -L \"$backup/$name\" ] || fail backup_type\n  [ \"$(stat -c '\\''%u:%g:%a'\\'' \"$backup/$name\")\" = \"$owner:$owner:600\" ] || fail backup_permissions\n  cmp \"$base/$name\" \"$backup/$name\" || fail backup_changed\n done\n}\nguard_new_links() {\n guard_link \"$link1\" \"$target/app\" \"$(record new1.id)\"\n guard_link \"$link2\" \"$target/sidebar.qmd\" \"$(record new2.id)\"\n}\nguard_restored_links() {\n first=$(identity \"$link1\"); second=$(identity \"$link2\")\n case \"$first\" in \"$old1\"|\"$(record rollback1.id)\") ;; *) fail restored_link_1_unknown;; esac\n case \"$second\" in \"$old2\"|\"$(record rollback2.id)\") ;; *) fail restored_link_2_unknown;; esac\n guard_link \"$link1\" \"$old/app\" \"$first\"\n guard_link \"$link2\" \"$old/sidebar.qmd\" \"$second\"\n}\nguard_release() {\n [ \"$(identity \"$target\")\" = \"$(record release.id)\" ] || fail release_replaced\n verify_payload \"$target\"\n}\nguard_owned_clients() {\n count=0\n for proc in /proc/[0-9]*; do\n  exe=$(readlink \"$proc/exe\" 2>/dev/null || true)\n  case \"$exe\" in\n   *pi-ink-client*|*pi-annotations*)\n    [ \"$exe\" = \"$old/pi-ink-client\" ] || fail foreign_client\n    count=$((count + 1)); [ \"$count\" -le 4 ] || fail too_many_clients\n    parent='\\'''\\''; credentials='\\'''\\''\n    while IFS= read -r line; do\n     case \"$line\" in\n      PPid:*) set -- $line; parent=$2;;\n      Uid:*) set -- $line; credentials=\"$2:$3:$4:$5\";;\n     esac\n    done < \"$proc/status\"\n    [ \"$parent\" = 7146 ] && [ \"$credentials\" = 0:0:0:0 ] || fail foreign_client_owner\n    hash_file \"$proc/exe\" '\\''433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051'\\''\n    ;;\n  esac\n done\n}\n\nverify_baseline() (\nset -eu\nfail() { printf '\\''STOP=%s\n'\\'' \"$1\" >&2; exit 41; }\n[ \"$(id -u)\" = 0 ] || fail account\nmodel=$(tr -d '\\''\\000\\n'\\'' < /sys/firmware/devicetree/base/model)\n[ \"$model\" = '\\''reMarkable Ferrari'\\'' ] || fail model\n[ \"$(uname -m)\" = aarch64 ] || fail architecture\n. /etc/os-release\n[ \"$IMG_VERSION\" = 3.28.0.172 ] || fail firmware\nprintf '\\''MODEL=%s\nARCH=aarch64\nFIRMWARE=%s\n'\\'' \"$model\" \"$IMG_VERSION\"\nprintf '\\''BOOT_ID=%s\n'\\'' \"$(cat /proc/sys/kernel/random/boot_id)\"\n[ -d '\\''/'\\'' ] && [ ! -L '\\''/'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/'\\''\n[ -d '\\''/home'\\'' ] && [ ! -L '\\''/home'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home'\\''\n[ -d '\\''/home/root'\\'' ] && [ ! -L '\\''/home/root'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root'\\''\n[ -d '\\''/home/root/.local'\\'' ] && [ ! -L '\\''/home/root/.local'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/.local'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/.local'\\''\n[ -d '\\''/home/root/.local/share'\\'' ] && [ ! -L '\\''/home/root/.local/share'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/.local/share'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/.local/share'\\''\n[ -d '\\''/home/root/.local/share/pi-ink-bridge'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge'\\''\n[ -d '\\''/home/root/.local/share/pi-ink-bridge/releases'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases'\\''\n[ -d '\\''/home/root/xovi'\\'' ] && [ ! -L '\\''/home/root/xovi'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/xovi'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/xovi'\\''\n[ -d '\\''/home/root/xovi/extensions.d'\\'' ] && [ ! -L '\\''/home/root/xovi/extensions.d'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/xovi/extensions.d'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/xovi/extensions.d'\\''\n[ -d '\\''/home/root/xovi/exthome'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/xovi/exthome'\\''\n[ -d '\\''/home/root/xovi/exthome/appload'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/appload'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/appload'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/xovi/exthome/appload'\\''\n[ -d '\\''/home/root/xovi/exthome/qt-resource-rebuilder'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/qt-resource-rebuilder'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/qt-resource-rebuilder'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/xovi/exthome/qt-resource-rebuilder'\\''\n[ -d '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629'\\''\n[ -d '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app'\\''\n[ -d '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend'\\''\n[ -d '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33'\\''\n[ -d '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app'\\''\n[ -d '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/backend'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/backend'\\'' ] || fail directory_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/backend'\\'')\" = 0 ] || fail directory_owner\nstat -c '\\''DIR|%n|%F|%u|%g|%a|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/backend'\\''\n[ -f '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/pi-ink-client'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/pi-ink-client'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/pi-ink-client'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''c91ad5234805b443d381e123f3c533d23d2c5e9fc817b964e4d405b808232a2d  /home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/pi-ink-client'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/pi-ink-client'\\''\n[ -f '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/VERSION'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/VERSION'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/VERSION'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''40b8eb4000a913a7791090535f291d3d369874162a89ef3c9e3d4e887a1b9e79  /home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/VERSION'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/VERSION'\\''\n[ -f '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/sidebar.qmd'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/sidebar.qmd'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/sidebar.qmd'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be  /home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/sidebar.qmd'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/sidebar.qmd'\\''\n[ -f '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/manifest.json'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/manifest.json'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/manifest.json'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''265d2ea700c8b20a49d6e9f67489b9431adacbd4f6a588bee23505affe393aad  /home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/manifest.json'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/manifest.json'\\''\n[ -f '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/resources.rcc'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/resources.rcc'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/resources.rcc'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''3efb98becd4878376d24c62725c34295975e036bd4488454963e52fa7ff49bf2  /home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/resources.rcc'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/resources.rcc'\\''\n[ -f '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend/entry'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend/entry'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend/entry'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''0c983d6d4593556720704fdccd2c08733853eb3982cb03359fdeaa68d0dd6efb  /home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend/entry'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend/entry'\\''\n[ -f '\\''/usr/bin/xochitl'\\'' ] && [ ! -L '\\''/usr/bin/xochitl'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/usr/bin/xochitl'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''b1816408cf90b19e448c70082625c4d6a36060368706eb7a9b35425428a9a021  /usr/bin/xochitl'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/usr/bin/xochitl'\\''\n[ -f '\\''/home/root/xovi/exthome/qt-resource-rebuilder/hashtab'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/qt-resource-rebuilder/hashtab'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/qt-resource-rebuilder/hashtab'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''9ff003d49c24b853aabe693ff13a4f30edf8b4966c6c3cb736d480999c143615  /home/root/xovi/exthome/qt-resource-rebuilder/hashtab'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/exthome/qt-resource-rebuilder/hashtab'\\''\n[ -f '\\''/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''5cfd75415efbf9a1ece4a0fe985ac1c3d6ecc73cab9ec89b34bf3e13cc71e2c2  /home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd'\\''\n[ -f '\\''/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''beb16e50f8dcd996bd11c56ad918121071580a31a2ede5e213ff11df3d05567d  /home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd'\\''\n[ -f '\\''/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''dc08c045cf9699516d42a6057b42b763adad6029f6ce4ee4906727fede329595  /home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd'\\''\n[ -f '\\''/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''f8be3b7a4e81525cebed3113e8472e78f6e70e307cbe056013294f291ea2ea43  /home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd'\\''\n[ -f '\\''/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''ebd8d87b5b32257d54b30342dc231249142b3c908037b9fb05a19ddf2808e023  /home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd'\\''\n[ -f '\\''/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''28beea93bc7dd9b7c9da27f450a7bf3ea4a260754d33b7fddbdc884a5880be43  /home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd'\\''\n[ -f '\\''/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''3a4fbbebbde114fd75eb525736111247af7d57e33cc67f87321c061ff16d5471  /home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd'\\''\n[ -f '\\''/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''c88ac812e2df0191d6d047235c225a960d1b997f149dcf6540e411cf6e660fbe  /home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd'\\''\n[ -f '\\''/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''2468ca2172c78fcc37bbc16bf61af7df09e70b8ec6916cbfae82e01aee5fa982  /home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd'\\''\n[ -f '\\''/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''36b48948c02b507fc1333fa42b86c8e8e7f74b66aa290cb52d186b3ba1889158  /home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd'\\''\n[ -f '\\''/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''4109e01de3af4dcd2598b222fee17018bc5af87f4b9d6426c013ba2b6a91bcfe  /home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd'\\''\n[ -f '\\''/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd'\\'' ] && [ ! -L '\\''/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''767390a47a005306b9b6a4a651e93bf6036069916e73f00ec91ceab372341a9e  /home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd'\\''\n[ -f '\\''/home/root/xovi/xovi.so'\\'' ] && [ ! -L '\\''/home/root/xovi/xovi.so'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/xovi.so'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''d4df820c25c634c511de11067279d8310fa4f656dc52bd4540db6beac4ffd446  /home/root/xovi/xovi.so'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/xovi.so'\\''\n[ -f '\\''/home/root/xovi/extensions.d/appload.so'\\'' ] && [ ! -L '\\''/home/root/xovi/extensions.d/appload.so'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/extensions.d/appload.so'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''5b2dd6c066da6932d88a1d62be1068ca5ba751f481636dd51f727221db62e3ad  /home/root/xovi/extensions.d/appload.so'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/extensions.d/appload.so'\\''\n[ -f '\\''/home/root/xovi/extensions.d/qt-resource-rebuilder.so'\\'' ] && [ ! -L '\\''/home/root/xovi/extensions.d/qt-resource-rebuilder.so'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/xovi/extensions.d/qt-resource-rebuilder.so'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''6726f561557406f36347e43fc2b44a88deef4fb273d2ece88f48f427dad8800f  /home/root/xovi/extensions.d/qt-resource-rebuilder.so'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/xovi/extensions.d/qt-resource-rebuilder.so'\\''\n[ -f '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/pi-ink-client'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/pi-ink-client'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/pi-ink-client'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''433d53403a9d3568a00458fe9a02af33813cbdce0489b0b8602693f0ff135051  /home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/pi-ink-client'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/pi-ink-client'\\''\n[ -f '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/VERSION'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/VERSION'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/VERSION'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''40b8eb4000a913a7791090535f291d3d369874162a89ef3c9e3d4e887a1b9e79  /home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/VERSION'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/VERSION'\\''\n[ -f '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/sidebar.qmd'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/sidebar.qmd'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/sidebar.qmd'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''33580da2dfe58623ff5b31d6c3a679dd4f678ab8a65d057c497f24078b2447be  /home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/sidebar.qmd'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/sidebar.qmd'\\''\n[ -f '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/manifest.json'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/manifest.json'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/manifest.json'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''265d2ea700c8b20a49d6e9f67489b9431adacbd4f6a588bee23505affe393aad  /home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/manifest.json'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/manifest.json'\\''\n[ -f '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/backend/entry'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/backend/entry'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/backend/entry'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''0c983d6d4593556720704fdccd2c08733853eb3982cb03359fdeaa68d0dd6efb  /home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/backend/entry'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/backend/entry'\\''\n[ -f '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/resources.rcc'\\'' ] && [ ! -L '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/resources.rcc'\\'' ] || fail public_file_type\n[ \"$(stat -c %u '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/resources.rcc'\\'')\" = 0 ] || fail public_file_owner\nprintf '\\''%s\\n'\\'' '\\''e2407b9544dbcf351c49ac330721c181fb4a9a86fe24da245ad4189d7a43c8c5  /home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/resources.rcc'\\'' | sha256sum -c -\nstat -c '\\''PUBLIC|%n|%F|%u|%g|%a|%s|%d|%i'\\'' '\\''/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/resources.rcc'\\''\nwhile IFS=\"|\" read -r preserved_path preserved_metadata; do\n [ \"$(stat -c '\\''%u:%g:%a:%s:%d:%i'\\'' \"$preserved_path\")\" = \"$preserved_metadata\" ] || fail public_metadata_changed\ndone <<'\\''PUBLIC_METADATA'\\''\n/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/pi-ink-client|0:0:700:7405752:65026:1157\n/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/VERSION|0:0:600:6:65026:1554\n/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/sidebar.qmd|0:0:600:949:65026:3562\n/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/manifest.json|0:0:600:213:65026:3574\n/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/resources.rcc|0:0:600:2796:65026:3677\n/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend/entry|0:0:700:194:65026:3681\n/usr/bin/xochitl|0:0:755:24705704:45826:1034\n/home/root/xovi/exthome/qt-resource-rebuilder/hashtab|0:0:644:674428:65026:650\n/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd|0:0:644:9249:65026:752\n/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd|0:0:644:157221:65026:748\n/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd|0:0:644:50534:65026:758\n/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd|0:0:644:10239:65026:1403\n/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd|0:0:644:79350:65026:1166\n/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd|0:0:644:76274:65026:770\n/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd|0:0:644:2230:65026:774\n/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd|0:0:644:8298:65026:3232\n/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd|0:0:644:5853:65026:839\n/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd|0:0:644:1077:65026:844\n/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd|0:0:644:2751:65026:867\n/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd|0:0:644:11832:65026:868\n/home/root/xovi/xovi.so|0:0:644:103008:65026:669\n/home/root/xovi/extensions.d/appload.so|0:0:644:4342120:65026:702\n/home/root/xovi/extensions.d/qt-resource-rebuilder.so|0:0:644:9496456:65026:672\n/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/pi-ink-client|0:0:700:7405752:65026:1446\n/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/VERSION|0:0:600:6:65026:1459\n/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/sidebar.qmd|0:0:600:949:65026:1460\n/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/manifest.json|0:0:600:213:65026:1464\n/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/backend/entry|0:0:700:194:65026:1465\n/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/resources.rcc|0:0:600:2796:65026:1470\nPUBLIC_METADATA\n)\ntransport_hash='\\''8a66c81661bad23a51e6b6459c5aa7b337b9e035d3479bf8dc6be401a1ec1d40'\\''\nguard_environment\nguard_old_links\nverify_private\nabsent \"$stage\"; absent \"$backup\"; absent \"$target\"\n[ \"$(stat -c %d \"$base/releases\")\" = 65026 ] || fail release_filesystem\n[ \"$(df -Pk /home/root | { read -r header; read -r filesystem total used available rest; printf '\\''%s'\\'' \"$available\"; })\" -ge 65536 ] || fail space\numask 077\nmkdir -m 700 \"$stage\"\nsave_record stage.id \"$(identity \"$stage\")\"\nsave_record transaction '\\''pi-ink-bridge-03-upgrade-0022-8468df658f658820'\\''\n(set -C; : > \"$stage/journal\")\njournal append STAGING_CREATED\n(set -C; cat > \"$stage/transport.zip\")\nhash_file \"$stage/transport.zip\" \"$transport_hash\"\n(set -C; unzip -p \"$stage/transport.zip\" client.zip > \"$stage/client.zip\")\n(set -C; unzip -p \"$stage/transport.zip\" production-install.sh > \"$stage/production-install.sh\")\nhash_file \"$stage/client.zip\" '\\''8468df658f658820bbf6f31e6b8c0d683a67109a5998a86467c959ca803d8962'\\''\nhash_file \"$stage/production-install.sh\" '\\''b5baa9d881b6693496cb622c29c96e0408c878b27a5197c04ac8882956686eae'\\''\n# The installer is provenance only. Never execute it against occupied launchers.\nmkdir -m 700 \"$stage/payload\" \"$stage/payload/app\" \"$stage/payload/app/backend\"\nwhile IFS='\\''|'\\'' read -r mode size digest name; do\n (set -C; unzip -p \"$stage/client.zip\" \"$name\" > \"$stage/payload/$name\")\n chmod \"$mode\" \"$stage/payload/$name\"\ndone <<EOF\n$members\nEOF\nverify_payload \"$stage/payload\"\n[ \"$(cat \"$stage/payload/VERSION\")\" = 0.5.0 ] || fail version\n# Prove no-clobber and same-filesystem rename only on these new owned files.\n(set -C; printf a > \"$stage/probe-a\"; printf b > \"$stage/probe-b\")\nprobe_a=$(identity \"$stage/probe-a\"); probe_b=$(identity \"$stage/probe-b\")\nmv -T -n \"$stage/probe-a\" \"$stage/probe-b\"\n[ \"$(identity \"$stage/probe-a\")\" = \"$probe_a\" ] && [ \"$(identity \"$stage/probe-b\")\" = \"$probe_b\" ] || fail rename_clobbered\n[ \"$(cat \"$stage/probe-b\")\" = b ] || fail rename_content\nmv -T -n \"$stage/probe-a\" \"$stage/probe-c\"\n[ \"$(identity \"$stage/probe-c\")\" = \"$probe_a\" ] || fail rename_inode\nabsent \"$stage/probe-a\"\n[ \"$(stat -c %d \"$stage/payload\")\" = 65026 ] || fail payload_filesystem\npayload_identity=$(identity \"$stage/payload\")\nabsent \"$target\"\nmv -T -n \"$stage/payload\" \"$target\"\n[ \"$(identity \"$target\")\" = \"$payload_identity\" ] || fail publish_identity\nabsent \"$stage/payload\"\nsave_record release.id \"$payload_identity\"\nfor pair in 1 2; do\n case \"$pair\" in 1) suffix=app;; 2) suffix=sidebar.qmd;; esac\n ln -s \"$target/$suffix\" \"$stage/new-$pair\"\n ln -s \"$old/$suffix\" \"$stage/rollback-$pair\"\n save_record \"new$pair.id\" \"$(identity \"$stage/new-$pair\")\"\n save_record \"rollback$pair.id\" \"$(identity \"$stage/rollback-$pair\")\"\ndone\nguard_stage; guard_release; guard_old_links; verify_private\njournal append STAGING_COMPLETE\nprintf '\\''IMMUTABLE_RELEASE_STAGED_NO_CUTOVER\\n'\\''\n'"
+        ],
+        "script_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-stage-v2.sh",
+        "script_sha256": "4f65412401b95f2ae09aeea3c58cf9faa814fcb9ebe457c1044527e090d468ae",
+        "stdin_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/transport.zip",
+        "stdin_sha256": "8a66c81661bad23a51e6b6459c5aa7b337b9e035d3479bf8dc6be401a1ec1d40",
+        "stdin_size": 3010260,
+        "timeout_seconds": 180,
+        "retries": 0,
+        "success_marker": "IMMUTABLE_RELEASE_STAGED_NO_CUTOVER"
+      },
+      "cutover": {
+        "argv": [
+          "ssh",
+          "-T",
+          "-o",
+          "BatchMode=yes",
+          "-o",
+          "StrictHostKeyChecking=yes",
+          "-o",
+          "UserKnownHostsFile=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/known_hosts",
+          "-o",
+          "GlobalKnownHostsFile=/dev/null",
+          "-o",
+          "HostKeyAlgorithms=ssh-ed25519",
+          "-o",
+          "ConnectionAttempts=1",
+          "-o",
+          "ConnectTimeout=10",
+          "-o",
+          "ServerAliveInterval=10",
+          "-o",
+          "ServerAliveCountMax=1",
+          "-o",
+          "ForwardAgent=no",
+          "-o",
+          "ForwardX11=no",
+          "-o",
+          "ClearAllForwardings=yes",
+          "-o",
+          "ControlMaster=no",
+          "-o",
+          "ControlPath=none",
+          "-o",
+          "ControlPersist=no",
+          "-o",
+          "UpdateHostKeys=no",
+          "-o",
+          "PermitLocalCommand=no",
+          "root@10.11.99.1",
+          "sh -s"
+        ],
+        "stdin_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-cutover-v2.sh",
+        "stdin_sha256": "305ecb245b655e686a11af2aab2c6e6abede204f3438bb024dfc97937ef397e3",
+        "timeout_seconds": 180,
+        "retries": 0,
+        "success_marker": "QUIESCENT_CUTOVER_COMPLETE_UI_REMAINS_STOPPED"
+      },
+      "start_new": {
+        "argv": [
+          "ssh",
+          "-T",
+          "-o",
+          "BatchMode=yes",
+          "-o",
+          "StrictHostKeyChecking=yes",
+          "-o",
+          "UserKnownHostsFile=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/known_hosts",
+          "-o",
+          "GlobalKnownHostsFile=/dev/null",
+          "-o",
+          "HostKeyAlgorithms=ssh-ed25519",
+          "-o",
+          "ConnectionAttempts=1",
+          "-o",
+          "ConnectTimeout=10",
+          "-o",
+          "ServerAliveInterval=10",
+          "-o",
+          "ServerAliveCountMax=1",
+          "-o",
+          "ForwardAgent=no",
+          "-o",
+          "ForwardX11=no",
+          "-o",
+          "ClearAllForwardings=yes",
+          "-o",
+          "ControlMaster=no",
+          "-o",
+          "ControlPath=none",
+          "-o",
+          "ControlPersist=no",
+          "-o",
+          "UpdateHostKeys=no",
+          "-o",
+          "PermitLocalCommand=no",
+          "root@10.11.99.1",
+          "sh -s -- new"
+        ],
+        "stdin_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-start-v3.sh",
+        "stdin_sha256": "bb8408161b5ec2f005436fbd6aeab22f131b058a1c747789b39b884623f7ea7c",
+        "timeout_seconds": 180,
+        "retries": 0,
+        "requires": "Cutover succeeded and its journal/pins remain valid. This is the only explicit new-UI start.",
+        "success_marker": "UI_START_COMPLETE|mode=new|"
+      },
+      "prelaunch_rollback": {
+        "argv": [
+          "ssh",
+          "-T",
+          "-o",
+          "BatchMode=yes",
+          "-o",
+          "StrictHostKeyChecking=yes",
+          "-o",
+          "UserKnownHostsFile=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/known_hosts",
+          "-o",
+          "GlobalKnownHostsFile=/dev/null",
+          "-o",
+          "HostKeyAlgorithms=ssh-ed25519",
+          "-o",
+          "ConnectionAttempts=1",
+          "-o",
+          "ConnectTimeout=10",
+          "-o",
+          "ServerAliveInterval=10",
+          "-o",
+          "ServerAliveCountMax=1",
+          "-o",
+          "ForwardAgent=no",
+          "-o",
+          "ForwardX11=no",
+          "-o",
+          "ClearAllForwardings=yes",
+          "-o",
+          "ControlMaster=no",
+          "-o",
+          "ControlPath=none",
+          "-o",
+          "ControlPersist=no",
+          "-o",
+          "UpdateHostKeys=no",
+          "-o",
+          "PermitLocalCommand=no",
+          "root@10.11.99.1",
+          "sh -s"
+        ],
+        "stdin_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-rollback-v2.sh",
+        "stdin_sha256": "0fc0846646f2ff34d9a02d9cedb38f0ad5cac79d0dd1df06812998351168eead",
+        "timeout_seconds": 180,
+        "retries": 0,
+        "requires": "Explicit separate recovery approval; only after a failed prelaunch operation. Must prove stopped unit, no clients, exact own stage/journal, unchanged private data, no LAUNCH_REQUESTED and known old/new launcher identities.",
+        "success_marker": "PRELAUNCH_LINK_ROLLBACK_COMPLETE_UI_REMAINS_STOPPED"
+      },
+      "start_old": {
+        "argv": [
+          "ssh",
+          "-T",
+          "-o",
+          "BatchMode=yes",
+          "-o",
+          "StrictHostKeyChecking=yes",
+          "-o",
+          "UserKnownHostsFile=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/known_hosts",
+          "-o",
+          "GlobalKnownHostsFile=/dev/null",
+          "-o",
+          "HostKeyAlgorithms=ssh-ed25519",
+          "-o",
+          "ConnectionAttempts=1",
+          "-o",
+          "ConnectTimeout=10",
+          "-o",
+          "ServerAliveInterval=10",
+          "-o",
+          "ServerAliveCountMax=1",
+          "-o",
+          "ForwardAgent=no",
+          "-o",
+          "ForwardX11=no",
+          "-o",
+          "ClearAllForwardings=yes",
+          "-o",
+          "ControlMaster=no",
+          "-o",
+          "ControlPath=none",
+          "-o",
+          "ControlPersist=no",
+          "-o",
+          "UpdateHostKeys=no",
+          "-o",
+          "PermitLocalCommand=no",
+          "root@10.11.99.1",
+          "sh -s -- old"
+        ],
+        "stdin_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-start-v3.sh",
+        "stdin_sha256": "bb8408161b5ec2f005436fbd6aeab22f131b058a1c747789b39b884623f7ea7c",
+        "timeout_seconds": 180,
+        "retries": 0,
+        "requires": "Only successful approved prelaunch rollback. No earlier launch request may exist.",
+        "success_marker": "UI_START_COMPLETE|mode=old|"
+      }
+    },
+    "stage_semantics": [
+      "Recheck boot/model/firmware, directory and old launcher identities, 29 public file hashes/metadata, pinned private identity files and absent state before writing.",
+      "Exclusively create only the private stage; upload the fixed two-member transport, verify all hashes, and extract exactly six pinned client files with fixed modes. Installer retained only; never executed.",
+      "Prove BusyBox no-clobber/same-filesystem rename on new stage-owned probe files, then publish the complete immutable release without overwriting.",
+      "Create exactly two new and two rollback symlinks outside discovery; record their newly owned identities and append a durable private device journal. UI and live launchers remain untouched in stage-only mode."
+    ],
+    "cutover_semantics": [
+      "Revalidate all original pins and service generation/policy. Permit matching clients only when their executable/hash/UID and direct Xochitl parent match the known production backend; reject foreign clients.",
+      "Append STOP_REQUESTED, stop only xochitl.service once, require inactive/dead/MainPID0 and no matching clients. No raw-PID signal or unrelated process stop.",
+      "Create the private backup exclusively and copy only pinned config/CA with 0600 permissions; keep absent state absent. Verify exact copies without printing values.",
+      "Check each exact old link immediately before its own atomic rename. The pair is not atomic; do not launch between switches.",
+      "Verify both new link identities and every target file, old public inventory and unchanged private source/backup. Leave UI stopped until the separately included guarded start operation."
+    ],
+    "rollback_semantics": [
+      "Before any launch request only: restore only links that still match this transaction's exact new target/inode; leave untouched original/known-restored links alone. Never clobber a foreign change.",
+      "Require unchanged private source, absent state, preserved old payload and exact backup whenever a changed link is restored. Never copy a state file, database, token or credential back.",
+      "Keep both releases, the stage, backup and journal. Start the old UI only if all rollback guards succeed and that recovery scope was separately approved."
+    ],
+    "failure_policy": "No automatic retry, ordinary installer, broader cleanup or reboot. On a failure preserve partial state and halt the normal sequence. Only separately approved bounded prelaunch recovery may run; otherwise the UI can remain stopped/mixed until operator recovery. After LAUNCH_REQUESTED, rollback is prohibited even if start reports failure."
+  },
+  "limits": {
+    "tablet_connections_normal": 3,
+    "tablet_connections_stage_only": 1,
+    "tablet_connections_max_with_approved_prelaunch_recovery": 5,
+    "explicit_UI_stop_requests_max": 1,
+    "explicit_UI_start_requests_max": 1,
+    "desktop_stop_requests_max": 1,
+    "desktop_start_requests_max": 1,
+    "retries": 0,
+    "raw_PID_signals": 0,
+    "old_experiment_cleanup": false,
+    "firmware_or_privilege_change": false,
+    "trust_or_certificate_rotation": false,
+    "firewall_change": false,
+    "pairing_window_or_credential_actions": false
+  },
+  "normal_runtime_side_effects": "Approved service starts may update their normal logs/cache/runtime state. No executor restores credentials, deletes personal data, removes experiments or resets databases.",
+  "validation": {
+    "desktop": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-smoke-result.json",
+    "desktop_detail": "Three refusal boundaries plus a real isolated Pitchfork stop/start and verified-TLS protocol negotiation passed; identity/private backups and old runtime bytes preserved. Owned test daemon and fixtures removed. Real daemon still the original PID/build.",
+    "filesystem": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/device-smoke-result.json",
+    "filesystem_detail": "Fourteen real-filesystem guard/cutover/rollback checks passed, including hash corruption, foreign entries, changed link identity, partial swap, prelaunch rollback, post-launch refusal and new-state preservation. The corruption fixture was already refused with exit 1; its harness assertion was corrected from fixed 41 to nonzero without altering/repeating that executor case.",
+    "metadata": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/public-metadata-smoke.json",
+    "syntax": "All final POSIX shell executors passed sh -n; checked desktop entrypoint bundled successfully without execution.",
+    "source": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/preserved-source-status.json",
+    "limits": "No real desktop deployment, tablet staging/cutover, Xochitl stop/start or native 0.5 acceptance has run. Host filesystem/owned-daemon proof is not hardware acceptance."
+  },
+  "superseded_unexecuted": [
+    "desktop-run.ts",
+    "device-stage.sh",
+    "device-cutover.sh",
+    "device-rollback.sh",
+    "device-start.sh",
+    "device-start-v2.sh"
+  ],
+  "publication": "Local workflow artifacts and host tooling changes remain uncommitted. No base commit/hook retry or hook bypass attempted. Source implementation commits remain preserved.",
+  "next_after_deployment": "Separate owner-assisted native fingerprint/code comparison, desktop approval, protected HTTPS image/WSS checks, restart persistence and revocation acceptance. No later-ticket work."
+}

@@ -1,0 +1,9 @@
+{
+  "started_at": "2026-11-10T02:25:30.126Z",
+  "finished_at": "2026-11-10T02:25:30.483Z",
+  "exit_code": 41,
+  "signal": null,
+  "error": null,
+  "stdout": "",
+  "stderr": "STOP=boot_changed\n"
+}

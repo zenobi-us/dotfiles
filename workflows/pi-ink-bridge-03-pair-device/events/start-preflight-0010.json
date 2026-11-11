@@ -1,0 +1,109 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-preflight-0010",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-complete-0009",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T08:51:02.271Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-complete-0009.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/snapshots/offline-upgrade-implementation-0008.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-preflight-0010.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0010/execution-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0010/preflight.sh"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0010/result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0010/findings.json"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "parent-preflight-prerequisite",
+    "approval": {
+      "user_statement": "approved",
+      "scope": "Bounded device read-only preflight only, following parent next-gate statement."
+    },
+    "consumed_parent": "start-complete-0009",
+    "actual_outcome": "Stopped on active client, no automatic retry or broader operation."
+  },
+  "validation": [
+    {
+      "command": "sh -n workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0010/preflight.sh",
+      "result": "passed; script SHA-256 fd67715bb8f7b2753716bb47b966fd25bb53b51aebf8636672c1f6464b902739"
+    },
+    {
+      "command": "One strict-host-key SSH root@10.11.99.1 sh -s with pinned preflight bytes",
+      "result": "exit 41 STOP=client_active; PID 41472. No retries, upload, kill, install, link change or restart."
+    }
+  ],
+  "implementation_summary": "No source implementation changed. Executed only newly approved bounded read-only device preflight; stopped at live production client.",
+  "open_questions": [
+    "Owner closes Pi Annotations through its normal UI. No agent kill, service restart or client stop is authorized.",
+    "A new explicitly approved bounded read-only preflight is needed after the owner closes the client; no automatic retry.",
+    "Device lacks jq, so this no-upload preflight could not verify configured statePath/CA path or stable device identity from private JSON. Prepare and approve a separately hash-pinned metadata-only reader before any helper upload/execution, unless an existing safe device JSON reader is established.",
+    "Free-space, command availability, proposed backup/stage/target-path absence and final QMD inventory checks were not reached after the stop.",
+    "Exact mutation/rollback manifest and executor remain unapproved and cannot be frozen from incomplete preflight."
+  ],
+  "hardware_acceptance": {
+    "status": "preflight-incomplete",
+    "result": "Client active; private JSON layout unverified without device JSON reader; remaining checks not reached.",
+    "upgrade_authorized": false,
+    "restart_authorized": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "device-preflight-stopped",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/device-preflight-0010"
+  }
+}

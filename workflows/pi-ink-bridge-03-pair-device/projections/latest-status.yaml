@@ -1,0 +1,31 @@
+{
+  "schema": "worktree-latest-status/v1",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "ticket": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "state": "IMPLEMENTING",
+  "phase_status": "blocked",
+  "latest_receipt": "start-boot-reconciliation-proposal-0031",
+  "latest_source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "latest_source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "source_identity_scope": "preserved tracked source unchanged; dirty state contains only untracked workflow records",
+  "latest_review_verdict": null,
+  "open_findings": [],
+  "acceptance_limits": [
+    "Append-only input-ref repair is verified by the actual inspector. Receipt 0018 original bytes are unchanged; ten regression tests passed. Host tooling changes remain local and uncommitted.",
+    "Approved runtime observation 0021 verified the production backend under Xochitl, fixed private paths/server identity, unchanged root-0600 config/CA, absent state, sufficient space and rename interface. Its exact temporary reader was removed.",
+    "Portable staging completed exactly once and release hashes verified; desktop generation remained ready without refresh. Cutover SSH closed before completion. Pinned prelaunch recovery refused boot_changed before mutation; no new or old UI start was attempted. Link/backup/UI persistence and boot-change cause remain unknown. No stop/cutover retry or further device call ran. Only bounded read-only new-boot reconciliation awaits approval."
+  ],
+  "proposal_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/boot-reconciliation-proposal-0031/proposal.json",
+  "prior_recovery_proposal_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-proposal-0028/proposal.json",
+  "upgrade_proposal_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/proposal.json",
+  "initial_offline_upgrade_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/snapshots/offline-upgrade-implementation-0008.json",
+  "preflight_proposal_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/proposal.json",
+  "process_inspection_proposal_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/process-inspection-proposal-0013/proposal.json",
+  "stop_preflight_proposal_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-proposal-0015/proposal.json",
+  "failure_inspection_proposal_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-proposal-0017/proposal.json",
+  "history_valid": true,
+  "history_repair_receipt_ref": "workflows/pi-ink-bridge-03-pair-device/events/start-input-ref-repair-0019.json",
+  "runtime_layout_proposal_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/runtime-layout-proposal-0019/proposal.json",
+  "execution_evidence_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-0029/outcome.json",
+  "history_incident_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018/history-envelope-incident.json"
+}

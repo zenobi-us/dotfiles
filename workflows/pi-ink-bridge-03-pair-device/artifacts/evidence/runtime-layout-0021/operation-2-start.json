@@ -1,0 +1,8 @@
+{
+  "started_at": "2026-11-09T21:35:40.019Z",
+  "operation": 2,
+  "condition": "Explicit runtime-and-metadata approval; operation 1 exit 0 and complete marker.",
+  "script_sha256": "869a089037734b60a4150a77733e598d645be3257411f57285ae791b8ccc98b3",
+  "payload_sha256": "0fe207302d7feb59fe6ff9a6beb407950d9fce9386522b533ad0868514d9e7ed",
+  "payload_size": 2162872
+}

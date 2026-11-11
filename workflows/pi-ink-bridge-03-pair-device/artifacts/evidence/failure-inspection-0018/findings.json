@@ -1,0 +1,30 @@
+{
+  "schema": "pi-ink-failure-inspection-outcome/v1",
+  "created_at": "2026-11-09T12:39:21.850Z",
+  "operations_attempted": 2,
+  "failed_new_stop_helper_removed": true,
+  "old_PID_41472_absent": true,
+  "kernel_release": "6.12.49+git-imx8mm-ferrari-g2418a6dae57b",
+  "preflight_complete": false,
+  "preflight_stop": "client_active",
+  "new_active_PID": 60008,
+  "new_active_PID_identity": "Not inspected or attributed.",
+  "metadata_reader_attempted": false,
+  "signals_sent": 0,
+  "upgrade_attempted": false,
+  "retries": 0,
+  "remaining_new_stop_helper": false,
+  "trust_changed": false,
+  "UI_restarted": false,
+  "findings": [
+    "PID 41472 was absent at the approved diagnostic snapshot. The stop helper from attempt 0015 and its exact new directory were identity/hash checked and removed.",
+    "The subsequent conditionally authorized preflight verified the same boot, public payload/mod hashes, production links, configuration and CA metadata/hashes, absent fixed state path, and mapped Xochitl dependencies.",
+    "It then stopped at a different matching client PID 60008. Its exact executable identity, parent and mode have not been inspected; do not attribute it to the earlier process or infer its owner.",
+    "No third connection, metadata-reader upload, process signal, retry, upgrade, trust change or UI restart occurred.",
+    "The actual pidfd_open failure errno remains unobserved. The kernel version alone does not establish that the syscall is unsupported."
+  ],
+  "next_requirements": [
+    "Finish read-only runtime/layout/capability inspection under an explicitly approved scope. Do not repeat process-stop attempts or assume that closing the visible UI guarantees backend quiescence.",
+    "Any installation still requires a separately approved guarded upgrade operation with UI/backend quiescence and preserved private configuration, trust and data."
+  ]
+}

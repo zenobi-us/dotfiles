@@ -1,0 +1,10 @@
+{
+  "operation": 1,
+  "started_at": "2026-11-09T12:33:30.343Z",
+  "finished_at": "2026-11-09T12:33:31.404Z",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "KERNEL_RELEASE=6.12.49+git-imx8mm-ferrari-g2418a6dae57b\nPROCESS_ABSENT=41472\n/home/root/.local/share/pi-ink-bridge/.preflight-stop-0015/stop: OK\nOWNED_FAILED_STOP_HELPER_REMOVED\n",
+  "stderr": ""
+}

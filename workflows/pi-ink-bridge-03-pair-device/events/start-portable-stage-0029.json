@@ -1,0 +1,90 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-portable-stage-0029",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 3,
+  "parent_receipt": "start-portable-stage-proposal-0028",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-10T02:20:57.234Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": "w64:pY",
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-portable-stage-proposal-0028.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-proposal-0028/proposal.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-0029/execution-intent.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-portable-stage-0029.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-0029/execution-intent.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-0029/before-inspection.json"
+    }
+  ],
+  "status": "started",
+  "recovery": {
+    "mode": "explicit-portable-only-safe-continuation",
+    "actual_outcome": "No external decoder/package or product-source change. No device mutation before fresh boundary/capability and desktop readiness proof."
+  },
+  "validation": [
+    {
+      "command": "Fresh canonical history, ownership/reservations, source status and frozen route/byte checks",
+      "result": "Passed; source tracked code unchanged, no source agent or goal reservation, exact portable inputs and SSH identity unchanged."
+    }
+  ],
+  "implementation_summary": "Same live parent begins only the selected portable capability/reconciliation gate and safe continuation; original staging code and completed desktop result remain preserved.",
+  "open_questions": [
+    "Observe the actual boundary and liveness. Only safe classifications can authorize the preselected continuation."
+  ],
+  "hardware_acceptance": {
+    "status": "portable-read-only-gate-started",
+    "native_0_5_acceptance": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "explicitly-approved-portable-capability-gate-begin",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-0029"
+  }
+}

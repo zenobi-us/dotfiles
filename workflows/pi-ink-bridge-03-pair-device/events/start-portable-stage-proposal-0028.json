@@ -1,0 +1,113 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-portable-stage-proposal-0028",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-stage-recovery-blocked-0027",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T23:27:37.992Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-stage-recovery-blocked-0027.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stage-recovery-0026/outcome.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/proposal.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-portable-stage-proposal-0028.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-proposal-0028/proposal.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-proposal-0028/bootstrap.sh"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-proposal-0028/inspect-v2.sh"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-proposal-0028/framing-smoke.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-proposal-0028/dropbear-upstream.json"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "preserve-untouched-boundary-and-remove-decoder-dependency",
+    "actual_outcome": "Local proof only. No new SSH connection or device mutation since the successful read-only probe."
+  },
+  "validation": [
+    {
+      "command": "Local real-shell POSIX-only framed stream smoke",
+      "result": "5 cases passed; original staging source SHAunchanged; no external decoder dependency and no remote attempt."
+    },
+    {
+      "command": "sh -n portable bootstrap/final capability probe",
+      "result": "Passed. Source and private state preserved."
+    }
+  ],
+  "implementation_summary": "Prepared a POSIX printf-only framing successor after actual read-only proof that base64 is unavailable. Staging code/payload and existing cutover/start/recovery programs remain unchanged. Desktop success retained; no unapproved fallback ran.",
+  "open_questions": [
+    "Approve the fresh portable read-only gate and optional safe continuation, or inspection only.",
+    "No staging/cutover/UI command runs until the new framing scope is explicitly selected; documents must remain saved/closed."
+  ],
+  "hardware_acceptance": {
+    "status": "last-observed-tablet-untouched-portable-framing-awaiting-scope",
+    "desktop_build": "2fa9ad053469efb6f844dc89087e85d7bf1393527ffb3bbd9cb502a98c880e12",
+    "tablet_stage_last_observed": "absent",
+    "target_release_last_observed": "absent",
+    "base64_available": false,
+    "UI_stop_requested": false,
+    "UI_start_requested": false,
+    "native_0_5_acceptance": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "unchanged-code-posix-only-transport-proposal-ready",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/portable-stage-proposal-0028"
+  }
+}

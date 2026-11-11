@@ -1,0 +1,12 @@
+{
+  "started_at": "2026-11-09T22:34:35.369Z",
+  "operation": {
+    "argv": [
+      "/home/zenobius/.local/share/mise/installs/bun/1.4.3/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/upgrade-proposal-0022/desktop-run-checked.ts"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device/mise/conf.d/devtools-omp/extensions/image-annotator",
+    "timeout_seconds": 180,
+    "retries": 0
+  }
+}

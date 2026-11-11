@@ -1,0 +1,91 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-failure-proposal-0017",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-stop-preflight-0016",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T11:40:04.700Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-stop-preflight-0016.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-0016/findings.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-failure-proposal-0017.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-proposal-0017/proposal.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-proposal-0017/inspect-and-clean.sh"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "parent-failure-proposal",
+    "actual_outcome": "No extra device action after failed stop. Frozen diagnostic/cleanup proposal prepared locally."
+  },
+  "validation": [
+    {
+      "command": "sh -n inspect-and-clean.sh; input hash verification",
+      "result": "Passed; script SHA-256 84a343c9358f38e480fa431a6906fe0d8863115274bc608cd64c0e7abbba5b0e; no new device action."
+    }
+  ],
+  "implementation_summary": "Prepared only a narrow failure-inspection and exact retained-new-helper cleanup proposal. Optional continuation requires PID absence and separate explicit scope selection. No raw-PID signal or failed-helper retry.",
+  "open_questions": [
+    "Await scoped owner approval for kernel/PID read and identity-checked cleanup of the newly created stop helper.",
+    "Optional preflight/metadata continuation can be approved only after actual PID absence and prior operation success; no process stop is included."
+  ],
+  "hardware_acceptance": {
+    "status": "awaiting-failure-inspection-and-owned-cleanup-approval",
+    "SIGTERM_sent": 0,
+    "failed_stop_helper_retained": true,
+    "current_PID_state": "unknown",
+    "upgrade_authorized": false,
+    "restart_authorized": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "failure-inspection-and-new-helper-cleanup-proposal-ready",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-proposal-0017"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-runtime-layout-0021",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-runtime-layout-proposal-0020",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T21:39:36.621Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/runtime-layout-proposal-0019/proposal.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/runtime-layout-0021/execution-intent.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-runtime-layout-0021.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/runtime-layout-0021/operation-1-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/runtime-layout-0021/operation-2-result.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/runtime-layout-0021/outcome.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/runtime-layout-0021/findings.json"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "parent-explicitly-approved-runtime-and-metadata-observation",
+    "actual_outcome": "Both approved operations succeeded; helper fully cleaned by exact identity/hash checks. Observations do not authorize cutover or attest quiescence."
+  },
+  "validation": [
+    {
+      "command": "Approved bounded runtime / remaining-prerequisite snapshot",
+      "result": "Exit 0; one stable production backend identity, service policy, tool/rename interface, free space, exact target-path absence and QMD names observed."
+    },
+    {
+      "command": "Approved fixed private-file metadata reader lifecycle",
+      "result": "Exit 0; fixed paths and intended server verified; config/CA root 0600 and hashes unchanged, state absent; exact new helper and empty directory removed."
+    }
+  ],
+  "implementation_summary": "Completed only the two explicitly approved observation connections. No process signal, service stop/start, installation, trust change or retry. Source and all prior receipt bytes preserved.",
+  "open_questions": [
+    "Prepare and smoke-check an exact separately approved immutable-release/link-cutover/rollback executor with UI/backend quiescence.",
+    "Resolve host desktop deployed service refresh/preservation before native 0.5 acceptance.",
+    "Owner must separately approve any device write/cutover and Xochitl service stop/start; default unit stop can escalate after 90s."
+  ],
+  "hardware_acceptance": {
+    "status": "observation-complete-upgrade-and-service-cycle-not-authorized",
+    "last_observed_client_PID": 64136,
+    "production_identity_verified": true,
+    "private_layout_verified": true,
+    "metadata_helper_retained": false,
+    "signals_sent": 0,
+    "service_changes": 0,
+    "upgrade_authorized": false,
+    "restart_authorized": false,
+    "native_0_5_acceptance": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "approved-runtime-and-private-layout-observation-complete",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/runtime-layout-0021"
+  }
+}

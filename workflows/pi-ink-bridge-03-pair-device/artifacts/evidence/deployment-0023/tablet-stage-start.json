@@ -1,0 +1,15 @@
+{
+  "started_at": "2026-11-09T22:36:11.887Z",
+  "script_sha256": "4f65412401b95f2ae09aeea3c58cf9faa814fcb9ebe457c1044527e090d468ae",
+  "stdin_sha256": "8a66c81661bad23a51e6b6459c5aa7b337b9e035d3479bf8dc6be401a1ec1d40",
+  "desktop_prerequisite": {
+    "status": "ready",
+    "build": "2fa9ad053469efb6f844dc89087e85d7bf1393527ffb3bbd9cb502a98c880e12",
+    "PID": 2512709,
+    "start_ticks": "26354974",
+    "server_identity_preserved": true,
+    "private_files_preserved": true,
+    "protocol": 1,
+    "rollback_performed": false
+  }
+}

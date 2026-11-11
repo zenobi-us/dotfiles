@@ -1,0 +1,22 @@
+{
+  "schema": "pi-ink-input-ref-envelope-repair/v1",
+  "created_at": "2026-11-09T13:00:25.087Z",
+  "authorization": "User selected Repair append-only validation support. Host tooling validation/tests/receipt documentation and append-only supplement only; no device connection or feature-source change.",
+  "target_ref": "workflows/pi-ink-bridge-03-pair-device/events/start-failure-inspection-0018.json",
+  "target_original_sha256": "53bb41c10048c58b3ecbd864c34d3a0f6db6939b02a4040ec7d842fd7dcb3408",
+  "input_index": 1,
+  "missing_ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018/execution-intent.json",
+  "original_bytes_preserved": true,
+  "other_fields_change": false,
+  "validation": {
+    "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.test.ts",
+    "passed": 10,
+    "failed": 0,
+    "expectations": 105
+  },
+  "tool_changes": [
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/workflow.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.test.ts"
+  ],
+  "publication": "Local uncommitted host tooling changes; no base commit attempted because prior hk preservation failure forbids a repeat."
+}

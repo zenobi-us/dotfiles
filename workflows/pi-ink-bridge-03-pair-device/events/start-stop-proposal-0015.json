@@ -1,0 +1,118 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-stop-proposal-0015",
+  "workflow_id": "pi-ink-bridge-03-pair-device",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 3,
+  "parent_receipt": "start-process-inspection-0014",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "source_branch": "feature/pi-ink-bridge-03-pair-device",
+  "base_branch": "master",
+  "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+  "source_tree": "db08f0d9b8f1eb55c71992f50f22888f466a41f5",
+  "created_at": "2026-11-09T11:25:15.231Z",
+  "muxer": "herdr",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-03-pair-device",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "/home/zenobius/.omp/agent/sessions/--run-media-zenobius-Store-Projects-Mine-Github-Dotfiles--/2026-11-09T05-57-24-308Z_01a1bee1-fed4-76c0-bf08-1afc2b28c238.jsonl",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "pi-ink-bridge-03-pair-device",
+    "ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md"
+  },
+  "ticket_ref": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/pi-ink-bridge-03-pair-device"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-process-inspection-0014.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/process-inspection-0014/findings.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/metadata-reader-proposal-0011/proposal.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/events/start-stop-proposal-0015.json"
+    },
+    {
+      "kind": "proposal",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-proposal-0015/proposal.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-proposal-0015/verification.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-proposal-0015/stop.go"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-proposal-0015/stop-arm64"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-proposal-0015/stage-run-stop.sh"
+    }
+  ],
+  "status": "blocked",
+  "recovery": {
+    "mode": "parent-guarded-stop-proposal",
+    "consumed_process_finding": "process-inspection-0014",
+    "actual_outcome": "Host proposal prepared and smoke-checked; no further device action."
+  },
+  "validation": [
+    {
+      "command": "Owned host child PID-bound helper smoke",
+      "result": "Wrong start/hash/executable refused without signalling; one pidfd SIGTERM and SIGTERM exit observed; exited PID refused. No device signal."
+    },
+    {
+      "command": "ARM64 cross-build and ELF/source/input SHA-256 checks",
+      "result": "Passed; stop binary 7d73d400086aef839109386ec581228df1eb40682aac435d12e60ffe346f3a22; code 79c27a877debe4f73e135d51df407b543c24ff6322a1a6ed52f3ba88f485d5d2."
+    },
+    {
+      "command": "sh -n stage-run-stop.sh; frozen three-operation input verification",
+      "result": "Passed; script eac8ecc8ac007f6aff2f8216a49bc89236f3ad0cab9899d18fdfb6bff6dcd354. Original preflight and metadata-reader pins unchanged."
+    }
+  ],
+  "implementation_summary": "Prepared guarded PID-bound production-backend stop and conditional preflight proposal locally. No device upload, signal, restart, upgrade or additional SSH occurred.",
+  "open_questions": [
+    "Await exact stop-and-preflight proposal 0015 approval, including at most one pidfd SIGTERM and two bounded temporary-helper lifecycles.",
+    "No stop, upgrade, trust change, service restart, old-file cleanup or retry authority has been inferred from prior read-only approvals."
+  ],
+  "hardware_acceptance": {
+    "status": "awaiting-guarded-stop-and-preflight-approval",
+    "production_process_identity_confirmed": true,
+    "target_PID": 41472,
+    "stop_helper_executed": false,
+    "metadata_reader_executed": false,
+    "device_signals_sent": 0,
+    "upgrade_authorized": false,
+    "restart_authorized": false
+  },
+  "publication": {
+    "status": "local-only",
+    "source_commit": "257d121e8eb08d917d6d3c43f2a325ced3cabb40",
+    "metadata_commit": "No parent commit attempted through known unsafe dirty-base hook.",
+    "remote_push": false
+  },
+  "checkpoint": "guarded-stop-and-preflight-proposal-ready",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/stop-and-preflight-proposal-0015"
+  }
+}

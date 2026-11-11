@@ -1,0 +1,19 @@
+{
+  "schema": "pi-ink-stop-and-preflight-outcome/v1",
+  "created_at": "2026-11-09T11:29:46.800Z",
+  "status": "stopped",
+  "stop_reason": "Operation 1 failed; no following operation or retry.",
+  "operations_attempted": 1,
+  "stop_report": null,
+  "metadata_report": null,
+  "retries": 0,
+  "raw_PID_signal_fallback": false,
+  "SIGKILL": 0,
+  "stop_helper_cleanup_observed": false,
+  "reader_cleanup_observed": false,
+  "client_upgrade_performed": false,
+  "trust_changed": false,
+  "Xochitl_restarted": false,
+  "service_restarted": false,
+  "old_file_cleanup_performed": false
+}

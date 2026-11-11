@@ -1,0 +1,121 @@
+{
+  "source": "workflows/pi-ink-bridge-03-pair-device/artifacts/evidence/failure-inspection-0018/operation-2-result.json",
+  "rows": [
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/pi-ink-client",
+      "expected": "0:0:700:7405752:65026:1157"
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/VERSION",
+      "expected": "0:0:600:6:65026:1554"
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/sidebar.qmd",
+      "expected": "0:0:600:949:65026:3562"
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/manifest.json",
+      "expected": "0:0:600:213:65026:3574"
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/resources.rcc",
+      "expected": "0:0:600:2796:65026:3677"
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/03803b9f78398117cf3ca3ed6adcc5719a67d5acb71e75fafbfd818d01685629/app/backend/entry",
+      "expected": "0:0:700:194:65026:3681"
+    },
+    {
+      "path": "/usr/bin/xochitl",
+      "expected": "0:0:755:24705704:45826:1034"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/hashtab",
+      "expected": "0:0:644:674428:65026:650"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/betterTocCollapse.qmd",
+      "expected": "0:0:644:9249:65026:752"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/betterToc.qmd",
+      "expected": "0:0:644:157221:65026:748"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/bluetoothSettings.qmd",
+      "expected": "0:0:644:50534:65026:758"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/computed-widgets-01-live-document-probe.qmd",
+      "expected": "0:0:644:10239:65026:1403"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/floating.qmd",
+      "expected": "0:0:644:79350:65026:1166"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/linkFromSelection.qmd",
+      "expected": "0:0:644:76274:65026:770"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/link-touch-targets.qmd",
+      "expected": "0:0:644:2230:65026:774"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/pi-ink-bridge-0049.qmd",
+      "expected": "0:0:644:8298:65026:3232"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/quickSettingsBluetooth.qmd",
+      "expected": "0:0:644:5853:65026:839"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/randomSleepScreen.qmd",
+      "expected": "0:0:644:1077:65026:844"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/retaskableJump.qmd",
+      "expected": "0:0:644:2751:65026:867"
+    },
+    {
+      "path": "/home/root/xovi/exthome/qt-resource-rebuilder/retaskableSend.qmd",
+      "expected": "0:0:644:11832:65026:868"
+    },
+    {
+      "path": "/home/root/xovi/xovi.so",
+      "expected": "0:0:644:103008:65026:669"
+    },
+    {
+      "path": "/home/root/xovi/extensions.d/appload.so",
+      "expected": "0:0:644:4342120:65026:702"
+    },
+    {
+      "path": "/home/root/xovi/extensions.d/qt-resource-rebuilder.so",
+      "expected": "0:0:644:9496456:65026:672"
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/pi-ink-client",
+      "expected": "0:0:700:7405752:65026:1446"
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/VERSION",
+      "expected": "0:0:600:6:65026:1459"
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/sidebar.qmd",
+      "expected": "0:0:600:949:65026:1460"
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/manifest.json",
+      "expected": "0:0:600:213:65026:1464"
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/backend/entry",
+      "expected": "0:0:700:194:65026:1465"
+    },
+    {
+      "path": "/home/root/.local/share/pi-ink-bridge/releases/ba36897369a1c89f3299ca87e5b8a4fd9db919116580315095133ac2ffa3cb33/app/resources.rcc",
+      "expected": "0:0:600:2796:65026:1470"
+    }
+  ]
+}

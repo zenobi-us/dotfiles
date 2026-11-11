@@ -1,0 +1,7 @@
+{
+  "started_at": "2026-11-10T02:25:30.126Z",
+  "executor_sha256": "0fc0846646f2ff34d9a02d9cedb38f0ad5cac79d0dd1df06812998351168eead",
+  "new_UI_start_attempted": false,
+  "cutover_connection_closed": true,
+  "scope": "Only pinned prelaunch guards may restore exact owned links; if guard or connection fails, stop without retry or UI request."
+}

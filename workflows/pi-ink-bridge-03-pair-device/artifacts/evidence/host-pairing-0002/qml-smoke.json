@@ -1,0 +1,44 @@
+{
+  "surface": "actual Connections.qml with compiled production backend and real HTTPS/WSS service",
+  "limit": "AppLoad Unix transport is host-emulated; no tablet access or installation",
+  "events": [
+    {
+      "kind": 1,
+      "connection": "available \u2014 not paired",
+      "code": null,
+      "detail": "Server identity and TLS verified. Pairing requires explicit desktop approval."
+    },
+    {
+      "kind": 3,
+      "connection": "available \u2014 not paired",
+      "code": null,
+      "detail": "Address saved. Installed identity, certificate, and protocol verified."
+    },
+    {
+      "kind": 4,
+      "connection": "approval pending",
+      "code": "255368",
+      "detail": "Compare the code on the local desktop management page, then approve there."
+    },
+    {
+      "kind": 1,
+      "connection": "approval pending",
+      "code": "255368",
+      "detail": "Compare the code on the local desktop management page, then approve there."
+    },
+    {
+      "kind": 1,
+      "connection": "paired and connected",
+      "code": null,
+      "detail": "Compare the code on the local desktop management page, then approve there."
+    },
+    {
+      "kind": 5,
+      "connection": "paired and connected",
+      "code": null,
+      "detail": "Protected PNG downloaded and saved privately. SHA-256: 8fc5a10f2a577810e1552a07c378954d6be3a11b20d33b669d70c2e96963aeaa"
+    }
+  ],
+  "pngSha256": "8fc5a10f2a577810e1552a07c378954d6be3a11b20d33b669d70c2e96963aeaa",
+  "credentialMode": "0o600"
+}

@@ -1,0 +1,10 @@
+{
+  "operation": 2,
+  "started_at": "2026-11-09T21:35:40.019Z",
+  "finished_at": "2026-11-09T21:35:40.607Z",
+  "exit_code": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "OBSERVATION_ONLY_NO_QUIESCENCE_ATTESTATION\n/home/root/.local/share/pi-ink-bridge/.preflight-reader-0019/metadata-reader: OK\nREADER_DIRECTORY_IDENTITY=65026:145:0:0:700\nREADER_FILE_IDENTITY=65026:1229:0:0:700:2162872\n{\"schema\":\"pi-ink-private-metadata/v1\",\"config\":{\"exists\":true,\"sha256\":\"83a3766298e1e0f5344d5d18bb95b43f38fe38349427191a845bc4fa30bba8c9\",\"mode\":\"0600\",\"uid\":0,\"gid\":0,\"size\":350,\"device\":65026,\"inode\":1154},\"ca\":{\"exists\":true,\"sha256\":\"8e5b94fe2995e86baf3ee80a788caeb740efee2983942e4499b026ebaec1f7d9\",\"mode\":\"0600\",\"uid\":0,\"gid\":0,\"size\":717,\"device\":65026,\"inode\":1153},\"state\":{\"exists\":false,\"uid\":0,\"gid\":0,\"size\":0,\"device\":0,\"inode\":0},\"device_id_sha256\":\"12b98e3c5ba332bd955d1b3a5f1a26ca9fa44fcd3e6bf1344275bf1704c3b03f\",\"fixed_paths_verified\":true,\"server_identity_verified\":true}\n/home/root/.local/share/pi-ink-bridge/.preflight-reader-0019/metadata-reader: OK\nOWNED_READER_REMOVED\n",
+  "stderr": ""
+}
