@@ -8,7 +8,7 @@ symbolPreset: unicode
 theme:
   dark: dark-rose-pine
   light: dark-rose-pine
-setupVersion: 2
+setupVersion: 3
 extensions:
   - ~/.omp/agent/hooks/pre
 task:
@@ -70,3 +70,5 @@ skills:
 codexResets:
   autoRedeem: "no"
 hideThinkingBlock: true
+update:
+  auto: false
