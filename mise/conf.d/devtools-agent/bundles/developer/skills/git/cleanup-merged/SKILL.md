@@ -17,6 +17,8 @@ Remove finished local work. Worktrunk decides what is integrated. This skill add
 "$CLEANUP_MERGED_SKILL_ROOT/scripts/cleanup-merged.ts" remove <branch>...
 ```
 
+The CLI accepts both `--min-age <age>` and `--min-age=<age>`. Both forms apply the same age and busy-worktree guards. The CLI regression verifies both forms and removal of only the named young integrated branch.
+
 ## Rules
 
 - You MUST NOT use `git branch --merged`. It does not detect squash merges.

@@ -47,6 +47,21 @@ test("removes only branches that are still candidates", async () => {
   expect(await branches(repo)).toEqual(["feat/fresh", "feat/merged-dirty", "feat/squash-done", "feat/unmerged", "main"]);
 });
 
+test("CLI age overrides remove only the named young integrated branch", async () => {
+  const { repo } = await makeFixture(await scratch());
+  const script = join(import.meta.dir, "cleanup-merged.ts");
+  const preview = Bun.spawn([process.execPath, script, "list", "--json", "--min-age", "0s"], { cwd: repo, stdout: "pipe", stderr: "pipe" });
+  const [previewOut, previewErr, previewCode] = await Promise.all([new Response(preview.stdout).text(), new Response(preview.stderr).text(), preview.exited]);
+  expect(previewCode, previewErr).toBe(0);
+  expect(JSON.parse(previewOut).removable.map((item: { branch: string }) => item.branch)).toContain("feat/fresh");
+
+  const removal = Bun.spawn([process.execPath, script, "remove", "feat/fresh", "--min-age=0s"], { cwd: repo, stdout: "pipe", stderr: "pipe" });
+  const [out, err, code] = await Promise.all([new Response(removal.stdout).text(), new Response(removal.stderr).text(), removal.exited]);
+  expect(code, err).toBe(0);
+  expect(JSON.parse(out)).toEqual({ removed: ["feat/fresh"], refused: [] });
+  expect(await branches(repo)).toEqual(["feat/branch-only", "feat/merged-dirty", "feat/squash-done", "feat/unmerged", "main"]);
+});
+
 test("session start asks once per 24 hours and stays silent for child agents", async () => {
   const { repo } = await makeFixture(await scratch());
   const stateDir = await scratch();
