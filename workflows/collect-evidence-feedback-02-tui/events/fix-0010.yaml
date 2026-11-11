@@ -1,0 +1,70 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "fix-0010",
+  "workflow_id": "collect-evidence-feedback-02-tui",
+  "phase": "fix",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": "review-0009",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "source_branch": "feature/collect-evidence-feedback-02-tui",
+  "base_branch": "master",
+  "source_commit": "68acd4074c636933fdf5e8645a09d1acf6abdf67",
+  "source_tree": "68589997ea8dafb4a336777829a0105806fa44d2",
+  "created_at": "2026-11-11T11:41:19.036Z",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t55",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-02-tui",
+    "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-02-tui.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-02-tui"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0009.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0008.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0008.md"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/fix-0010.yaml"
+    }
+  ],
+  "status": "started",
+  "approval": "User selected Approve fix takeover. Scope: fresh fixer in existing source worktree, recorded findings and verification only; no merge or push.",
+  "ownership_observation": "Inspector ownership unknown; hc ls found no live terminal in exact source worktree; completed prior review. No goal run or dispatch in current context.",
+  "recovery_mode": "begin",
+  "recovery_reason": "Current clean source matches usable FAILURE review.",
+  "consumed_review_receipts": [
+    "review-0008"
+  ],
+  "finding_ids": [
+    "STD-01",
+    "STD-02",
+    "SPEC-1",
+    "SPEC-2"
+  ]
+}
