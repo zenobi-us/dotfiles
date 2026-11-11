@@ -6,7 +6,6 @@
 "~/.pi/agent/bundles/platform" = { source = "../devtools-agent/bundles/platform", mode = "symlink" }
 "~/.pi/agent/bundles/researcher" = { source = "../devtools-agent/bundles/researcher", mode = "symlink" }
 "~/.pi/agent/bundles/writing" = { source = "../devtools-agent/bundles/writing", mode = "symlink" }
-"~/.pi/agent/extensions/*" = { source = "./agent/extensions/*", mode = "symlink" }
 "~/.pi/agent/package.json" = { source = "./agent/package.json", mode = "symlink" }
 "~/.pi/agent/settings.json" = { source = "./agent/settings.json", mode = "symlink" }
 "~/.pi/agent/keybindings.json" = { source = "./agent/keybindings.json", mode = "symlink" }
