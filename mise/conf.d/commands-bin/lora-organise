@@ -30,7 +30,7 @@ type Move = { source: string; destination: string; fingerprint: Fingerprint };
 type Patch = { source: string; destination: string; changes: { field: string; before: string; after: string }[] };
 type Entry = { source: string; destination: string | null; status: "MOVE" | "UNCHANGED" | "BLOCKED" | "IGNORED"; fields: Json; provenance: Json; blockers: Blocker[]; proposals: Proposal[]; recoveryNotes: string[]; recovery: Recovery; warnings: string[]; moves: Move[]; patches: Patch[] };
 type Plan = { version: number; readOnly: true; root: string; template: string; createdAt: string; rules: Rules; warnings: string[]; summary: Record<Entry["status"], number>; entries: Entry[] };
-type Row = { key: string; name: string; model?: Model; directory?: boolean; depth: number; parent?: string; proposalIndex?: number; tone?: TreeTone; badge?: string; badgeTone?: TreeTone };
+type Row = { key: string; name: string; model?: Model; directory?: boolean; depth: number; parent?: string; tone?: TreeTone; badge?: string; badgeTone?: TreeTone };
 
 const DEFAULT_TEMPLATE = "{{ basemodel | slug }}/{{ topic | slug }}/{{ file }}";
 
@@ -76,7 +76,7 @@ async function main() {
   let plan = buildPlan(root, models, occupied, warnings, rules, values.template!);
   if (values.fields) { console.log(JSON.stringify(fields, null, 2)); return; }
   if (interactive) {
-    await showUI(root, models, occupied, warnings, rules, values.template!, values.view === "plan", !!values["no-color"], autoScope, !!values["accept-suggestions"]);
+    await showUI(root, models, occupied, warnings, rules, values.template!, values.view === "plan", !!values["no-color"], autoScope, !!values["accept-suggestions"], !!values.headers);
     return;
   }
   if (autoScope) await suggestCollection(root, models, rules, autoScope === "blocked" ? blockedSources(plan) : undefined);
@@ -134,30 +134,61 @@ OPTIONS
   --version               Print version
   -h, --help              Show this help
 
+WORKSPACE
+  1 Browse / 2 Needs attention / 3 Move preview / 4 Apply monitor
+  At 96 columns or wider, collection and issue-first details appear together.
+  Narrow terminals show one pane at a time; Tab switches panes.
+  Model rows show concise status and suggestion counts. Companions stay
+  collapsed until expanded; suggestions appear only in the review pane.
+  Background lookup activity is separate from decision feedback.
+  Search and filters affect visible rows only, never collection-wide actions.
+  Exports always cover the complete root, including blocked and ignored models.
+  q and Ctrl-C warn when proposals, rules or grouping changed since export.
+  Export the plan, Escape to return, or q again to explicitly discard and quit.
+
+APPLY MONITOR (view 4)
+  Opening this view does not move files. d or Enter validates configured moves;
+  a opens confirmation. Type APPLY exactly and press Enter to authorise moves.
+  PgUp/PgDn scroll the confirmation details, including on narrow terminals.
+  Blocked, ignored and unchanged bundles stay in place. Search and filters do
+  not limit execution. Finish or cancel metadata lookup before starting.
+  Every run writes a private, durable plan snapshot and JSONL action receipt
+  under <root>/.lora-organise-receipts/monitor-<timestamp>-<uuid>.*.
+  Dry-run creates only those audit files, not model moves or metadata patches.
+  The monitor runs the existing --apply engine in a worker process and shows
+  its phases, current model, counts, recent bundle results and failure reasons.
+  Plan edits and navigation are locked while it runs. Escape, Ctrl-C or q
+  requests a stop after the current bundle, not an immediate hard kill.
+  After real execution, the workspace rescans paths and rekeys successful
+  decisions. Pending suggestions are retained. Export a fresh plan for reuse.
+  r rescans manually while idle. Fatal receipt/rollback errors lock further
+  execution; inspect the durable receipt and recover before restarting.
+  Snapshots and receipts are retained, private (0600) and never overwritten.
+
 KEYS
-  1/2 views    arrows navigate/expand    Tab switch panes    / search
-  t template   f available fields        r raw metadata      s status filter
-  o override selected model             e export plan       q quit
-  i propose ignore / restore selected model bundle
-  p local proposals    c retrieve Civitai    a accept one or multiple proposals
-  P (Shift+p) auto-suggest blocked models; A (Shift+a) accept unambiguous values
-  m enter a manual proposal as field=value
-  x reject/revoke numbered proposal         b return from proposal review
-  Escape cancels the background suggestion queue when no editor is open.
-  Enter submits an edit; Escape cancels; Tab completes a template field.
+  1/2/3/4 views   arrows navigate/expand   Tab pane   / search   ? commands
+  Enter opens the selected model's next action; folder Enter expands it.
+  t grouping presets: Standard, Compact (compact_slug), or Custom Liquid
+  f available fields   r raw metadata   b overview   s status filter
+  o override selected model   e review/export complete plan   q quit
+  i ignore / restore bundle   p local proposals   c retrieve Civitai
+  m manual field=value proposal   v expand highlighted value's evidence
+  In proposal review: Up/Down highlight; Space selects; Enter/a accepts.
+  x rejects/revokes the highlighted grouped value and its agreeing sources.
+  P suggests for ALL blocked models; A accepts unambiguous values across ALL
+  models. Both actions ignore search and status filters.
+  In Apply monitor: d validates; a requests typed confirmation; r rescans.
+  Escape cancels the editor or review first; from overview it cancels lookup.
+  Enter submits edits; Escape cancels; Tab completes a custom template field.
   Override format: base model | topic (blank keeps the existing override).
-  Empty search restores the full tree. Filters include each status, missing
-  data, corrupted data, duplicate destinations, missing metadata, and conflicts.
-  Expand a model to see companion files.
-  Search and filters change only the visible tree. Counts and exports always
-  cover the complete model root, including blocked entries.
+  Empty search restores all matches. Filters include statuses and blockers.
 
 MOUSE
-  Click a file row to select it and show its metadata.
-  Click a folder or a model's disclosure arrow to expand/collapse it.
-  Use the wheel or scrollbar to scroll the file tree.
-  Click the template line to edit it; Enter saves and Escape cancels.
-  Click Propose ignore / Restore item in the detail pane to toggle the decision.
+  Click a navigation tab to change views; click a file row to select it.
+  Click a folder or model disclosure to expand/collapse companions.
+  Use the wheel or scrollbar to scroll collection and details.
+  Click the grouping line to open presets, or the detail action to open
+  the selected model's next action. Proposal values use keyboard selection.
 
 TEMPLATES (LiquidJS 10.30.0)
   Default: {{ basemodel | slug }}/{{ topic | slug }}/{{ file }}
@@ -179,6 +210,12 @@ TEMPLATES (LiquidJS 10.30.0)
   arrays and objects can be inputs to filters and loops, not direct outputs.
   slug lowercases values, replaces whitespace with hyphens, and cleans unsafe
   path characters. Without slug, rendered directory casing/spaces are retained.
+  compact_slug applies Unicode compatibility decomposition, removes combining
+  marks, lowercases, and keeps only Unicode letters and numbers. For example,
+  Krea 2, krea-2, and krea2 all become krea2; Café becomes cafe.
+  Empty results are blocked. This aggressive filter can merge distinct names;
+  use it for grouping directories, not filenames. Collisions remain blocked.
+  Example: {{ basemodel | compact_slug }}/{{ topic | slug }}/{{ file }}
   Metadata values cannot introduce path separators. All changed values are
   reported in the plan. {{ file }} preserves the original filename except
   unsafe characters; the destination must retain the original model extension.
@@ -190,7 +227,7 @@ TEMPLATES (LiquidJS 10.30.0)
   validated and executed without rendering their saved template again.
 
 BLOCKED AND IGNORED ITEMS
-  Both views show categorized blockers before the selected model's metadata.
+  The detail pane shows categorized blockers before the selected model's metadata.
   missing-data: an undefined variable or an empty required template output.
   corrupted-data: malformed JSON, empty models, or invalid inspected headers.
   duplicate-destination: an existing path or multiple planned files collide.
@@ -207,25 +244,24 @@ BLOCKED AND IGNORED ITEMS
   summary.IGNORED, and rules.ignored. The previous reasons field is removed.
 
 MISSING DATA RECOVERY
-  Select a model and press p, or click Local in the detail pane.
+  Select a blocked model and press Enter, or press p for local proposals.
   --auto-propose starts a background local + Civitai queue for non-ignored
   models with missing supported fields. --propose-blocked restricts it to
   models blocked under the active template. The TUI opens before fetching.
-  The left tree updates automatically: model rows show retrieval status,
-  and child rows show suggested field values without needing p/a per model.
-  Cyan = recorded/retrieved suggestion; yellow = heuristic or conflict;
-  green = accepted; red = blocked/missing/error; grey = rejected/queued.
-  Labels remain visible with --no-color. Identical values are grouped with
-  their source count. Competing values remain separately marked conflict.
-  Press A or click Accept unambiguous for all for one collection-wide pass.
+  The collection updates retrieval status and concise suggestion counts.
+  Review suggestions in the detail pane instead of expanding them in the tree.
+  Status, evidence and conflict labels remain visible with --no-color.
+  Identical values share one row with a source count; v expands all sources.
+  Competing values remain marked CONFLICT and require a choice.
+  Press A for one collection-wide unambiguous acceptance pass.
   Only fields with one distinct pending value are accepted, including
   heuristics. Agreeing sources prefer manual, retrieved, then recorded data.
   Competing values stay pending. Existing and ignored values are preserved.
   --accept-suggestions performs that pass automatically after generation.
   Add --plan or --output for headless export. Choose only one of --propose,
   --auto-propose, or --propose-blocked; --propose remains local/export-only.
-  Press P or click Auto-suggest blocked to queue all blocked models,
-  regardless of search/filter. Escape cancels the queue without exiting.
+  Press P to queue all blocked models, regardless of search/filter.
+  Return from the editor/review, then Escape cancels the queue without exiting.
   Export and collection acceptance wait for completion or cancellation.
   Completed/no-match lookups are not repeated during the same session;
   c retries one selected model, and P retries errored/cancelled blocked items.
@@ -235,35 +271,35 @@ MISSING DATA RECOVERY
   all candidate values are proposed; agreement can be accepted, conflicts
   require review. A failed page does not discard other pages. HTTP 429 stops
   the remaining queue instead of repeatedly hitting a rate limit.
-  Review numbered values with their source, evidence level, and review status.
-  Press a and enter numbers (1,3), ranges (2-4), a mixture (1,3-5), or all.
-  Spaces may also separate numbers. Repeated numbers are accepted once.
-  all selects only pending proposals, excluding accepted/rejected proposals.
-  The whole selection is validated before any acceptance. Invalid numbers,
-  populated fields, or competing proposals for one field reject the entire
-  selection without changing any decisions. Choose one proposal per field.
-  x still rejects or revokes one numbered proposal at a time.
+  Review grouped values with their source, evidence level, and review status.
+  Up/Down highlights a value; Space selects or deselects it.
+  Enter or a accepts the selected values together; no numbers need to be typed.
+  The whole selection is validated before any acceptance. Populated fields
+  or competing values for one field reject the entire selection unchanged.
+  Choose one value per field. Agreeing sources prefer manual, retrieved,
+  then recorded evidence; original sources remain in the exported proposals.
+  x rejects or revokes the highlighted value and all its agreeing sources.
   Accepted values recompute the move preview. Existing populated fields are
   not replaced; revoke a prior acceptance first. Manual overrides take priority.
   Recovery supports basemodel, topic, model.name, model.version, model.creator.
-  Press m or click Manual to enter field=value, for example:
+  Press m to enter field=value, for example:
     basemodel=SDXL 1.0
     topic=style
     model.creator=artist-name
-  The editor lists missing supported fields. Enter adds a pending proposal;
-  Escape cancels. Then press a and enter its number to accept it.
+  Enter adds a pending proposal and highlights its grouped value;
+  Escape cancels. Then press Space and Enter to accept it.
   Manual proposals have evidence "manual" and source "user input"; they are
   not verified metadata. Empty values and already-populated fields are rejected.
-  Values may contain '='. Re-entering the same manual proposal reuses its number.
+  Values may contain '='. Re-entering the same manual proposal reuses its row.
   Export preserves pending proposals; approved values also persist in
   rules.accepted and can be reloaded through --rules.
   Headers and recorded tags supply local evidence. Explicit filename/folder
   clues are labelled heuristic; tags and names do not prove a model's purpose.
   Arbitrary raw.* fields cannot be invented and still require source metadata.
-  Press c, or click Civitai, to query its public hash and model endpoints.
+  Press c to query Civitai's public hash and model endpoints.
   This sends a SHA256 hash, not the model file. A consistent recorded SHA256
   is reused and labelled unverified; otherwise the selected file is streamed
-  through SHA256. Hashing a large model can take time. Ctrl-C cancels retrieval.
+  through SHA256. Hashing can take time. Return to overview, then Escape cancels.
   A returned file must confirm the hash before remote values are proposed.
   Each request has a 20-second timeout. Missing/private models, API failures,
   and header inspection errors are shown; local proposals remain available.
@@ -343,7 +379,8 @@ APPLY AND ACTION RECEIPTS
 SAFETY
   Symlinks are skipped and reported. Known same-stem sidecars move as a bundle.
   Plans include fingerprints and recognised absolute-path metadata patches.
-  No overwrites. Execution requires --apply; inspection and planning never move.
+  No overwrites. Moves require --apply or typed APPLY in view 4.
+  Browsing, planning and opening the monitor never move model files.
   Auto-suggest flags, P, c, and --retrieve make remote requests;
   p and --propose remain local-only. Applying a saved plan makes no API requests.
   Tensor data is never parsed; explicit retrieval may stream bytes for SHA256.
@@ -717,24 +754,9 @@ async function suggestCollection(root: string, models: Model[], rules: Rules, so
       model.recovery.state = "cancelled"; model.recovery.message = "Retrieval cancelled; existing suggestions retained";
     }
   }
-  progress(`Auto-suggest complete: ${targets.length} models processed. Suggestions are in the tree; A accepts unambiguous values.`);
+  progress(`Auto-suggest complete: ${targets.length} models processed. Press p to review; A accepts unambiguous values across the collection.`);
 }
-function acceptProposals(model: Model, selection: string, rules: Rules): number {
-  const input = selection.trim();
-  const indices = new Set<number>();
-  if (input.toLowerCase() === "all") {
-    model.proposals.forEach((proposal, index) => { if (proposal.status === "pending") indices.add(index); });
-  } else {
-    if (!input) throw new Error("Enter proposal numbers (1,3), ranges (2-4), or all.");
-    for (const token of input.split(/[,\s]+/)) {
-      const match = token.match(/^([1-9]\d*)(?:-([1-9]\d*))?$/);
-      if (!match) throw new Error("Use proposal numbers (1,3), ranges (2-4), or all.");
-      const start = Number(match[1]), end = Number(match[2] ?? match[1]);
-      if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start > end || end > model.proposals.length) throw new Error("Selection contains an invalid proposal number or range.");
-      for (let number = start; number <= end; number++) indices.add(number - 1);
-    }
-  }
-  const proposals = [...indices].map(index => model.proposals[index]);
+function acceptProposals(model: Model, proposals: Proposal[], rules: Rules): number {
   if (!proposals.length) throw new Error("No pending proposals to accept.");
   const fields = new Set<RecoveryField>();
   for (const proposal of proposals) {
@@ -754,18 +776,17 @@ function acceptCollection(models: Model[], rules: Rules) {
   const rank: Record<Proposal["evidence"], number> = { manual: 4, retrieved: 3, recorded: 2, heuristic: 1 };
   for (const model of models) {
     if (rules.ignored.includes(model.source)) continue;
-    const selection: number[] = [];
+    const selection: Proposal[] = [];
     for (const field of RECOVERY_FIELDS) {
       if (get(model.context, field)) continue;
-      const candidates = model.proposals.map((proposal, index) => ({ proposal, index }))
-        .filter(item => item.proposal.field === field && item.proposal.status === "pending");
-      if (new Set(candidates.map(item => item.proposal.value)).size > 1) { conflicts++; continue; }
+      const candidates = model.proposals.filter(proposal => proposal.field === field && proposal.status === "pending");
+      if (new Set(candidates.map(proposal => proposal.value)).size > 1) { conflicts++; continue; }
       if (candidates.length) {
-        candidates.sort((a, b) => rank[b.proposal.evidence] - rank[a.proposal.evidence]);
-        selection.push(candidates[0].index + 1);
+        candidates.sort((a, b) => rank[b.evidence] - rank[a.evidence]);
+        selection.push(candidates[0]);
       }
     }
-    if (selection.length) { fields += acceptProposals(model, selection.join(","), rules); changedModels++; }
+    if (selection.length) { fields += acceptProposals(model, selection, rules); changedModels++; }
   }
   return { fields, changedModels, conflicts };
 }
@@ -797,6 +818,7 @@ const liquid = new Liquid({
   },
 });
 liquid.registerFilter("slug", function (value: unknown) { return templateSegment(value, true, this.context); });
+liquid.registerFilter("compact_slug", function (value: unknown) { return templateSegment(value, false, this.context, true); });
 for (const tag of ["include", "render", "layout"]) delete liquid.tags[tag];
 let compiledTemplate: PathTemplate | undefined;
 
@@ -807,12 +829,15 @@ function compileTemplate(source: string): PathTemplate {
   compiledTemplate = { source, nodes, fields: liquid.globalFullVariablesSync(nodes, { partials: false }) };
   return compiledTemplate;
 }
-function templateSegment(value: unknown, directory: boolean, context: Context): string {
+function templateSegment(value: unknown, directory: boolean, context: Context, compact = false): string {
   if (value === null || value === undefined || value === "") throw new PlanningError("missing-data", "Template output is empty. Supply the missing metadata, a default filter, or an if branch.");
   if (!["string", "number", "boolean"].includes(typeof value)) throw new PlanningError("invalid-template", "Template output must be scalar. Use a property, join, or a loop for arrays and objects.");
   const text = String(value);
   let result: string;
-  try { result = safeSegment(text, directory); }
+  try {
+    result = compact ? text.normalize("NFKD").replace(/\p{M}/gu, "").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "").normalize("NFC") : text;
+    result = safeSegment(result, directory);
+  }
   catch (error) { throw new PlanningError("unsafe-path", error instanceof Error ? error.message : String(error)); }
   if (result !== text) (context.getRegister("loraWarnings") as string[]).push(`Template value: ${JSON.stringify(text)} → ${JSON.stringify(result)}`);
   return result;
@@ -1354,414 +1379,793 @@ function blockerDetails(entry: Entry): string {
   return `${heading}\n${entry.blockers.map(blocker => `[${blocker.category}] ${blocker.message}`).join("\n")}${entry.status === "IGNORED" ? "\nNo moves or metadata patches will be exported for this bundle." : ""}`;
 }
 
-async function showUI(root: string, models: Model[], occupied: Map<string, string>, warnings: string[], rules: Rules, template: string, initialPlan: boolean, monochrome: boolean, autoScope: "all" | "blocked" | null, autoAccept: boolean) {
-  const renderer = await createCliRenderer({ exitOnCtrlC: true, useMouse: true });
-  const mono = monochrome || process.env.NO_COLOR !== undefined;
-  const accent = mono ? "white" : "#7dd3fc";
+type ProposalGroup = { key: string; proposal: Proposal; sources: Proposal[] };
+function proposalGroups(model: Model): ProposalGroup[] {
+  const groups = new Map<string, ProposalGroup>();
+  const statusRank = { accepted: 3, pending: 2, rejected: 1 };
+  const evidenceRank = { manual: 4, retrieved: 3, recorded: 2, heuristic: 1 };
+  model.proposals.forEach(proposal => {
+    const key = JSON.stringify([proposal.field, proposal.value]), group = groups.get(key);
+    if (!group) groups.set(key, { key, proposal, sources: [proposal] });
+    else {
+      group.sources.push(proposal);
+      if (statusRank[proposal.status] > statusRank[group.proposal.status] || (proposal.status === group.proposal.status && evidenceRank[proposal.evidence] > evidenceRank[group.proposal.evidence])) {
+        group.proposal = proposal;
+      }
+    }
+  });
+  return [...groups.values()];
+}
+function fitDisplay(value: string, width: number): string {
+  const text = cleanDisplay(value).replace(/[\t\r\n]/g, " ");
+  if (Bun.stringWidth(text) <= width) return text;
+  let result = "", used = 0;
+  for (const char of text) {
+    const size = Bun.stringWidth(char);
+    if (used + size > Math.max(0, width - 1)) break;
+    result += char; used += size;
+  }
+  return width > 0 ? result + "…" : "";
+}
+function shellQuote(value: string): string { return "'" + value.replace(/'/g, "'\\''") + "'"; }
+
+type ApplyMonitor = {
+  dryRun: boolean; running: boolean; stopRequested: boolean; snapshot: string; receipt: string;
+  progress: string; current: string; total: number; outcome: string; error: string; exitCode: number | null; safeToReuse: boolean;
+  counts: { applied: number; validated: number; skipped: number; failed: number; notAttempted: number; movedFiles: number; patchedFiles: number };
+  events: string[]; failures: string[]; relocated: Map<string, string>;
+};
+async function runMonitoredApply(plan: Plan, dryRun: boolean, signal: AbortSignal, update: (state: ApplyMonitor) => void): Promise<ApplyMonitor> {
+  const name = `monitor-${new Date().toISOString().replace(/[:.]/g, "-")}-${crypto.randomUUID()}`;
+  const snapshot = join(plan.root, ".lora-organise-receipts", `${name}.plan.json`);
+  const state: ApplyMonitor = {
+    dryRun, running: true, stopRequested: false, snapshot, receipt: snapshot.replace(/\.plan\.json$/, ".jsonl"),
+    progress: "Preparing a private plan snapshot", current: "", total: plan.entries.length, outcome: "starting", error: "", exitCode: null, safeToReuse: false,
+    counts: { applied: 0, validated: 0, skipped: 0, failed: 0, notAttempted: 0, movedFiles: 0, patchedFiles: 0 },
+    events: [], failures: [], relocated: new Map(),
+  };
+  update(state);
+  ensureApplyParents(plan.root, relative(plan.root, snapshot), []);
+  writeFileSync(snapshot, JSON.stringify(plan, null, 2) + "\n", { flag: "wx", mode: 0o600 });
+  syncFile(snapshot); syncDirectory(dirname(snapshot));
+  signal.throwIfAborted();
+  // The apply engine uses synchronous durable I/O. A child keeps the TUI responsive during large copies.
+  const child = Bun.spawn({
+    cmd: [process.execPath, "--install=fallback", import.meta.path, "--apply", snapshot, "--receipt", state.receipt, dryRun ? "--dry-run" : "--yes"],
+    stdin: "ignore", stdout: "pipe", stderr: "pipe", env: { ...process.env, TERM: "dumb", NO_COLOR: "1" },
+  });
+  const destinations = new Map(plan.entries.map(entry => [entry.source, entry.destination]));
+  let receiptFd: number | undefined, position = 0, pending = "", receiptError = "";
+  const buffer = Buffer.allocUnsafe(64 * 1024), decoder = new TextDecoder();
+  const appendEvent = (text: string) => {
+    state.events.push(text);
+    if (state.events.length > 12) state.events.shift();
+  };
+  const appendFailure = (text: string) => {
+    state.failures.push(text);
+    if (state.failures.length > 3) state.failures.shift();
+  };
+  const stop = () => {
+    if (state.stopRequested) return;
+    state.stopRequested = true;
+    state.progress = "Stop requested; finishing the current bundle and its receipt.";
+    if (state.exitCode === null) child.kill(signal.reason === "SIGTERM" ? "SIGTERM" : "SIGINT");
+    update(state);
+  };
+  signal.addEventListener("abort", stop, { once: true });
+  if (signal.aborted) stop();
+  function record(event: Json) {
+    const source = typeof event.source === "string" ? event.source : "";
+    const reasons = Array.isArray(event.reasons) ? event.reasons.join("; ") : String(event.message ?? "");
+    switch (event.event) {
+      case "run-start": state.outcome = "running"; break;
+      case "bundle-start": state.current = source; break;
+      case "entry-skipped": state.current = source; state.counts.skipped++; appendEvent(`SKIP ${source} (${event.status})`); break;
+      case "would-apply": state.current = source; state.counts.validated++; appendEvent(`READY ${source}`); break;
+      case "entry-failed": state.current = source; state.counts.failed++; appendFailure(`FAILED ${source}: ${reasons}`); break;
+      case "bundle-failed": state.counts.failed++; appendFailure(`FAILED ${source}: ${reasons}; rollback ${event.rollback}`); break;
+      case "bundle-applied": {
+        state.counts.applied++;
+        state.counts.movedFiles += Number(event.movedFiles) || 0;
+        state.counts.patchedFiles += Number(event.patchedFiles) || 0;
+        const destination = destinations.get(source);
+        if (destination) state.relocated.set(source, destination);
+        appendEvent(`MOVED ${source} → ${destination ?? "see receipt"}`);
+        break;
+      }
+      case "entry-not-attempted": state.counts.notAttempted++; break;
+      case "rules-after-apply": state.safeToReuse = event.safeToReuse === true; break;
+    }
+  }
+  function readReceipt(drain = false) {
+    if (receiptFd === undefined) {
+      try { receiptFd = openSync(state.receipt, constants.O_RDONLY | constants.O_NOFOLLOW); }
+      catch (error) { if (errorCode(error) === "ENOENT") return; throw error; }
+    }
+    for (let chunk = 0; drain || chunk < 16; chunk++) {
+      const count = readSync(receiptFd, buffer, 0, buffer.length, position);
+      if (!count) break;
+      position += count;
+      pending += decoder.decode(buffer.subarray(0, count), { stream: true });
+      let newline: number;
+      while ((newline = pending.indexOf("\n")) >= 0) {
+        const line = pending.slice(0, newline); pending = pending.slice(newline + 1);
+        if (line) {
+          const event = object(JSON.parse(line));
+          if (!event) throw new Error("Action receipt contains a non-object record.");
+          record(event);
+        }
+      }
+    }
+  }
+  const timer = setInterval(() => {
+    try { readReceipt(); update(state); }
+    catch (error) {
+      receiptError = `Cannot monitor the action receipt: ${error instanceof Error ? error.message : String(error)}`;
+      stop();
+    }
+  }, 100);
+  const stdout = new Response(child.stdout).text();
+  const stderr = (async () => {
+    const text = new TextDecoder();
+    let partial = "";
+    for await (const chunk of child.stderr) {
+      partial += text.decode(chunk, { stream: true });
+      let newline: number;
+      while ((newline = partial.indexOf("\n")) >= 0) {
+        const line = partial.slice(0, newline).trim(); partial = partial.slice(newline + 1);
+        if (line && !state.stopRequested) { state.progress = line; update(state); }
+      }
+    }
+    if (partial.trim() && !state.stopRequested) state.progress = partial.trim();
+  })();
+  try {
+    const [exitCode, output] = await Promise.all([child.exited, stdout, stderr]);
+    state.exitCode = exitCode;
+    try { readReceipt(true); }
+    catch (error) { receiptError = `Cannot read the action receipt: ${error instanceof Error ? error.message : String(error)}`; }
+    let result: Json | null = null;
+    try { result = object(JSON.parse(output)); } catch {}
+    if (!result || typeof result.status !== "string" || !object(result.summary)) {
+      state.outcome = state.stopRequested ? "interrupted" : "failed";
+      state.error = `Apply process exited ${state.exitCode} without a final summary. ${state.progress}`;
+    } else {
+      state.outcome = result.status;
+      const summary = result.summary as Json;
+      for (const [key, field] of Object.entries({ applied: "appliedBundles", validated: "wouldApplyBundles", skipped: "skippedBundles", failed: "failedBundles", notAttempted: "notAttemptedBundles", movedFiles: "movedFiles", patchedFiles: "patchedFiles" })) {
+        if (typeof summary[field] === "number") state.counts[key as keyof ApplyMonitor["counts"]] = summary[field];
+      }
+      if (typeof result.error === "string") state.error = result.error;
+    }
+    if (receiptError) state.error = receiptError + (state.error ? `\n${state.error}` : "");
+    if (pending) state.error = "Action receipt ends with an incomplete record." + (state.error ? `\n${state.error}` : "");
+    if (state.error || pending) state.safeToReuse = false;
+    return state;
+  } finally {
+    clearInterval(timer); signal.removeEventListener("abort", stop);
+    if (state.exitCode === null) { stop(); state.exitCode = await child.exited; }
+    if (receiptFd !== undefined) closeSync(receiptFd);
+    state.running = false; update(state);
+  }
+}
+
+async function showUI(root: string, models: Model[], occupied: Map<string, string>, warnings: string[], rules: Rules, template: string, initialPlan: boolean, monochrome: boolean, autoScope: "all" | "blocked" | null, autoAccept: boolean, headers: boolean) {
+  // Keep signal-driven teardown behind the worker's durable bundle boundary.
+  const renderer = await createCliRenderer({
+    exitOnCtrlC: false, useMouse: true,
+    exitSignals: ["SIGQUIT", "SIGABRT", "SIGHUP", "SIGPIPE", "SIGBREAK", "SIGBUS"],
+  });
+  const mono = monochrome || process.env.NO_COLOR !== undefined, accent = mono ? "white" : "#7dd3fc";
   const app = new BoxRenderable(renderer, { width: "100%", height: "100%", flexDirection: "column" });
   const title = new TextRenderable(renderer, { height: 1, fg: accent });
+  const navigation = new BoxRenderable(renderer, { height: 1, flexDirection: "row", flexShrink: 0 });
+  const viewNames = ["Browse", "Needs attention", "Move preview", "Apply monitor"];
+  const viewTabs = viewNames.map((name, index) => new TextRenderable(renderer, { width: name.length + 6, height: 1, selectable: false, content: `${index + 1} ${name}` }));
+  for (const tab of viewTabs) navigation.add(tab);
+  const summary = new TextRenderable(renderer, { height: 1 });
   const templateLine = new TextRenderable(renderer, { height: 1, selectable: false });
   const editLabel = new TextRenderable(renderer, { height: 1, visible: false, fg: accent });
   const input = new InputRenderable(renderer, { visible: false });
   const panes = new BoxRenderable(renderer, { flexDirection: "row", flexGrow: 1, minHeight: 0 });
-  const left = new BoxRenderable(renderer, { width: "60%", flexShrink: 0, border: true, title: "Models and suggested data", flexDirection: "column" });
+  const left = new BoxRenderable(renderer, { width: "48%", flexShrink: 0, minWidth: 0, border: true, title: "Collection", flexDirection: "column" });
   const tree = new ScrollBoxRenderable(renderer, { flexGrow: 1, minHeight: 0, scrollY: true, scrollX: true });
   const treeText = new TextRenderable(renderer, { width: "100%", flexShrink: 0, wrapMode: "none", selectable: false });
-  tree.add(treeText);
-  const right = new ScrollBoxRenderable(renderer, { width: "40%", flexShrink: 0, minWidth: 0, border: true, title: "Metadata", scrollX: false, scrollY: true });
-  const detail = new TextRenderable(renderer, { content: "", width: "100%", wrapMode: "word" });
-  const ignoreAction = new TextRenderable(renderer, { height: 1, fg: accent, selectable: false });
-  const recoveryAction = new TextRenderable(renderer, { height: 1, fg: accent, selectable: false });
-  const reviewAction = new TextRenderable(renderer, { height: 1, fg: accent, selectable: false });
-  const blockedAction = new TextRenderable(renderer, { height: 1, fg: accent, selectable: false, content: "Auto-suggest blocked [P]" });
-  const acceptAction = new TextRenderable(renderer, { height: 1, fg: accent, selectable: false, content: "Accept unambiguous for all [A]" });
-  const footer = new TextRenderable(renderer, { height: 4 });
+  tree.add(treeText); left.add(tree);
+  const rightPanel = new BoxRenderable(renderer, { width: "52%", flexShrink: 0, minWidth: 0, border: true, title: "Selected model", flexDirection: "column" });
+  const primaryAction = new TextRenderable(renderer, { height: 1, fg: accent, selectable: false });
+  const right = new ScrollBoxRenderable(renderer, { flexGrow: 1, minHeight: 0, scrollX: false, scrollY: true });
+  const detail = new TextRenderable(renderer, { width: "100%", wrapMode: "word", selectable: false });
+  right.add(detail); rightPanel.add(primaryAction); rightPanel.add(right);
+  const activity = new TextRenderable(renderer, { height: 1, fg: accent });
+  const footer = new TextRenderable(renderer, { height: 2 });
   const status = new TextRenderable(renderer, { height: 1, fg: accent });
   renderer.root.add(app);
-  for (const item of [title, templateLine, editLabel, input, panes, footer, status]) app.add(item);
-  panes.add(left); left.add(tree); panes.add(right); right.add(ignoreAction); right.add(recoveryAction); right.add(reviewAction); right.add(blockedAction); right.add(acceptAction); right.add(detail);
-  let planView = initialPlan, raw = false, fieldView = false, proposalView = false, search = "", filter = 0, focusRight = false;
-  let editing: "template" | "search" | "override" | "export" | "manual" | "accept" | "reject" | null = null;
-  let retrieving = false, bulkProposing = false, closed = false;
+  for (const item of [title, navigation, summary, templateLine, editLabel, input, panes, activity, footer, status]) app.add(item);
+  panes.add(left); panes.add(rightPanel);
+  type Panel = "overview" | "proposals" | "raw" | "fields" | "commands" | "presets" | "export" | "quit" | "apply";
+  let view = initialPlan ? 2 : 0, panel: Panel = "overview", search = "", filter = 0, focusRight = false;
+  let editing: "template" | "search" | "override" | "export" | "manual" | "apply" | null = null;
+  let closed = false;
   let suggestionController: AbortController | null = null;
-  const retrievalController = new AbortController();
-  renderer.once("destroy", () => { closed = true; retrievalController.abort(); suggestionController?.abort(); });
-  let rows: Row[] = [], selectedSource = "", selectedIndex = 0;
+  let applyController: AbortController | null = null, monitor: ApplyMonitor | null = null;
+  let executionLocked = false, collectionChanged = false, exitAfterApply = false;
+  const lifetime = new AbortController();
+  let rows: Row[] = [], selectedSource = "", selectedIndex = 0, proposalIndex = 0;
+  let revision = 0, savedRevision = 0, savedPath = "", notice = "Select a model; Enter opens its next action.", activityText = "Metadata lookup idle. No remote requests unless requested.";
+  let evidenceExpanded = false, presetIndex = 0;
+  const checked = new Set<string>();
   let plan = buildPlan(root, models, occupied, warnings, rules, template);
   let entries = new Map(plan.entries.map(entry => [entry.source, entry]));
-  const collapsed = new Set<string>();
-  const expandedModels = new Set<string>();
+  const collapsed = new Set<string>(), expandedModels = new Set<string>();
   const filters = ["all", "MOVE", "UNCHANGED", "BLOCKED", "IGNORED", "missing-data", "corrupted-data", "duplicate-destination", "missing metadata", "conflicts"];
-
+  const presets = [
+    { name: "Standard grouping", template: DEFAULT_TEMPLATE },
+    { name: "Compact base-model grouping", template: "{{ basemodel | compact_slug }}/{{ topic | slug }}/{{ file }}" },
+    { name: "Custom Liquid template", template: "" },
+  ];
   function selectedModel(): Model | undefined { return rows[selectedIndex]?.model; }
-  function acceptAllSuggestions() {
-    if (editing) return;
-    if (bulkProposing || retrieving) { status.content = "Wait for retrieval to finish, or Escape to cancel the queue before accepting."; return; }
-    const result = acceptCollection(models, rules);
-    refresh(true);
-    status.content = `Accepted ${result.fields} values across ${result.changedModels} models; ${result.conflicts} conflicting fields left for review. No files changed.`;
+  function groups(): ProposalGroup[] { const model = selectedModel(); return model ? proposalGroups(model) : []; }
+  function tell(message: string) { notice = message; status.content = fitDisplay(message, renderer.width); }
+  function changed() { revision++; savedPath = ""; }
+  function errorMessage(error: unknown): string { return error instanceof Error ? error.message : String(error); }
+  function isBusy() { return suggestionController !== null; }
+  function setFocus(details: boolean) {
+    focusRight = details; updateLayout();
+    (focusRight ? right : tree).focus(); updateChrome();
   }
-  acceptAction.onMouseDown = event => {
-    if (event.button !== 0) return;
-    event.preventDefault(); event.stopPropagation();
-    acceptAllSuggestions();
-  };
-  async function runAutoSuggestions(scope: "all" | "blocked", acceptAfter = false) {
-    if (editing || bulkProposing || retrieving) return;
-    bulkProposing = true;
-    const controller = new AbortController();
-    suggestionController = controller;
-    const signal = AbortSignal.any([controller.signal, retrievalController.signal]);
-    let lastRender = 0;
-    try {
-      await suggestCollection(root, models, rules, scope === "blocked" ? blockedSources(plan) : undefined, signal, message => {
-        if (closed) return;
-        status.content = cleanDisplay(message);
-        if (Date.now() - lastRender > 80) {
-          const scroll = right.scrollTop;
-          refresh();
-          right.scrollTo(scroll);
-          lastRender = Date.now();
-        }
-      });
-      if (!closed && acceptAfter && !signal.aborted) {
-        const result = acceptCollection(models, rules);
-        status.content = `Accepted ${result.fields} suggested values; ${result.conflicts} conflicts remain. No files changed.`;
-      }
-    } catch (error) {
-      if (!closed) status.content = signal.aborted ? "Auto-suggest cancelled; retrieved suggestions retained in the tree." : cleanDisplay(error instanceof Error ? error.message : String(error));
-    } finally {
-      bulkProposing = false;
-      suggestionController = null;
-      if (!closed) refresh(true);
-    }
+  function updateLayout() {
+    const narrow = renderer.width < 96, takeover = ["commands", "presets", "export", "quit", "apply"].includes(panel) || !!editing;
+    left.visible = !takeover && (!narrow || !focusRight);
+    rightPanel.visible = takeover || !narrow || focusRight;
+    left.width = narrow ? "100%" : "48%";
+    rightPanel.width = takeover || narrow ? "100%" : "52%";
+    footer.height = renderer.height < 20 ? 1 : 2;
+    left.title = `${focusRight ? "" : "> "}${viewNames[view]}${search ? " / search" : ""}`;
+    rightPanel.title = `${focusRight ? "> " : ""}${panel === "apply" ? "Apply monitor" : panel === "proposals" ? "Resolve missing data" : panel === "overview" ? "Selected model" : panel}`;
   }
-  blockedAction.onMouseDown = event => {
-    if (event.button !== 0) return;
-    event.preventDefault(); event.stopPropagation();
-    void runAutoSuggestions("blocked");
-  };
-  function showProposals() {
-    const model = selectedModel();
-    if (!model || editing) { status.content = "Select a model to propose missing data."; return; }
-    proposeLocal(root, model, rules);
-    proposalView = true; raw = fieldView = false;
-    refresh(true);
-    status.content = "Review evidence. Accept with a; reject or revoke with x. No files changed.";
+  function updateChrome() {
+    title.content = fitDisplay(`LoRA Organise | ${applyController ? monitor?.dryRun ? "VALIDATING" : "APPLYING" : "explicit apply only"} | ${root}`, renderer.width);
+    viewTabs.forEach((tab, index) => {
+      const label = renderer.width < 80 ? ["Browse", "Issues", "Moves", "Apply"][index] : viewNames[index];
+      tab.content = `${index === view ? ">" : " "} ${index + 1} ${label}`; tab.width = label.length + 6; tab.fg = index === view ? accent : "white";
+    });
+    summary.content = fitDisplay(`${plan.summary.MOVE} move / ${plan.summary.BLOCKED} blocked / ${plan.summary.IGNORED} ignored / ${plan.summary.UNCHANGED} unchanged | ${applyController ? monitor?.dryRun ? "Validating plan snapshot" : "Applying plan snapshot" : collectionChanged ? "Rescanned after apply" : "No model files changed"}`, renderer.width);
+    templateLine.content = fitDisplay(`Grouping [t]: ${template}`, renderer.width);
+    activity.content = fitDisplay(applyController ? `${monitor?.dryRun ? "Validation" : "Move execution"} active. Editing locked; Escape stops safely.` : activityText, renderer.width);
+    const context = editing === "apply" ? "Type APPLY, Enter confirms, Esc cancels | PgUp/PgDn review details" : editing ? "Enter Save  Esc Cancel" : panel === "apply" ? applyController ? "Esc / Ctrl-C Stop after current bundle | PgUp/PgDn Scroll" : "d / Enter Dry-run  a Apply (confirmation)  r Rescan  e Export  ? Help" : panel === "proposals" ? "Up/Down Value  Space Select  Enter Accept  v Evidence  x Reject  b Back" : panel === "presets" ? "Up/Down Preset  Enter Choose  Esc Cancel" : panel === "export" ? "Enter Export path  Esc Back" : panel === "quit" ? "e Export  q Discard and quit  Esc Back" : panel === "commands" ? "Esc Back | Use any listed shortcut" : "Enter Open  Tab Pane  / Search  t Grouping  e Export  ? Commands";
+    const compactContext = editing === "apply" ? "PgDn Details | Type APPLY | Enter Confirm | Esc" : editing ? "Enter Save  Esc Cancel" : panel === "apply" ? applyController ? "Esc Stop after bundle  PgUp/PgDn Scroll" : "d Dry-run  a Apply  r Rescan  ? Help  q Quit" : panel === "proposals" ? "↑↓ Value  Space Select  Enter Accept  Esc Back" : panel === "presets" ? "↑↓ Preset  Enter Choose  Esc Cancel" : panel === "quit" ? "e Export  q Discard  Esc Back" : panel === "export" ? "Enter Export path  Esc Back" : "Enter Open  Tab Pane  ? Help  q Quit";
+    footer.content = fitDisplay(renderer.width < 80 ? compactContext : context, renderer.width) + (footer.height === 2 ? "\n" + fitDisplay(`1 Browse  2 Issues  3 Moves  4 Apply | ${revision !== savedRevision ? "Unsaved decisions" : savedPath ? `Saved: ${savedPath}` : "Inspecting"} | q Quit`, renderer.width) : "");
+    status.content = fitDisplay(notice, renderer.width);
   }
-  async function retrieveSelected() {
-    const model = selectedModel();
-    if (!model || editing || retrieving || bulkProposing) { status.content = "Select a model; wait for any current retrieval to finish."; return; }
-    retrieving = true;
-    proposalView = true; raw = fieldView = false;
-    status.content = "Retrieving Civitai metadata; computing SHA256 if no consistent recorded hash exists…";
-    proposeLocal(root, model, rules);
-    refresh(true);
-    try {
-      await retrieveMetadata(root, model, rules, retrievalController.signal);
-      if (!closed) status.content = cleanDisplay(`Retrieved proposals for ${model.file}. Review and accept individually with a.`);
-    } catch (error) {
-      model.recoveryNotes.push(error instanceof Error ? error.message : String(error));
-      if (model.recovery.state !== "not-found") model.recovery.state = "error";
-      model.recovery.message = model.recoveryNotes.at(-1)!;
-      if (!closed) status.content = cleanDisplay(model.recoveryNotes.at(-1)!);
-    } finally {
-      retrieving = false;
-      if (!closed) refresh(true);
-    }
-  }
-  recoveryAction.onMouseDown = event => {
-    if (event.button !== 0 || editing) return;
-    event.preventDefault(); event.stopPropagation();
-    const column = event.x - recoveryAction.screenX;
-    if (column < 12) showProposals();
-    else if (column < 26) void retrieveSelected();
-    else startEdit("manual");
-  };
-  reviewAction.onMouseDown = event => {
-    if (event.button !== 0 || editing) return;
-    event.preventDefault(); event.stopPropagation();
-    const column = event.x - reviewAction.screenX;
-    if (column < 11) startEdit("accept");
-    else if (column < 24) startEdit("reject");
-    else { proposalView = false; updateDetail(); }
-  };
   function renderTree() {
-    const palette: Record<TreeTone, string> = { normal: "#e2e8f0", error: "#f87171", warning: "#fbbf24", suggested: "#67e8f9", accepted: "#86efac", muted: "#94a3b8" };
     const chunks: ReturnType<ReturnType<typeof fg>>[] = [];
     treeText.height = Math.max(1, rows.length);
-    rows.forEach((row, index) => {
-      const prefix = `${index === selectedIndex ? "▶ " : "  "}${"  ".repeat(row.depth)}${row.directory ? collapsed.has(`${planView}:${row.key}`) ? "▸ " : "▾ " : row.key.startsWith("model:") ? expandedModels.has(row.model!.source) ? "▾ " : "▸ " : "  "}`;
-      chunks.push(fg(mono ? "white" : palette[row.tone ?? "normal"])(cleanDisplay(prefix + row.name).replace(/[\t\r\n]/g, " ")));
-      if (row.badge) chunks.push(fg(mono ? "white" : palette[row.badgeTone ?? "suggested"])(` ${row.badge}`));
+    for (const [index, row] of rows.entries()) {
+      const prefix = `${index === selectedIndex ? "> " : "  "}${"  ".repeat(row.depth)}${row.directory ? collapsed.has(`${view}:${row.key}`) ? "+ " : "- " : row.key.startsWith("model:") ? expandedModels.has(row.model!.source) ? "- " : "+ " : "  "}`;
+      const color = mono ? "white" : row.tone === "error" ? "#f87171" : row.tone === "muted" ? "#94a3b8" : "#e2e8f0";
+      chunks.push(fg(color)(cleanDisplay(prefix + row.name).replace(/[\t\r\n]/g, " ")));
+      if (row.badge) chunks.push(fg(mono ? "white" : row.badgeTone === "error" ? "#f87171" : accent)(` ${row.badge}`));
       if (index + 1 < rows.length) chunks.push(fg("white")("\n"));
-    });
+    }
     treeText.content = new StyledText(chunks);
   }
-  function selectRow(index: number, reveal = true) {
-    if (index < 0 || index >= rows.length) return;
-    selectedIndex = index;
-    if (rows[index].proposalIndex !== undefined) { proposalView = true; raw = fieldView = false; }
-    renderTree();
-    if (reveal) {
-      if (index < tree.scrollTop) tree.scrollTo(index);
-      else if (index >= tree.scrollTop + tree.viewport.height) tree.scrollTo(index - tree.viewport.height + 1);
-    }
-    updateDetail();
-  }
-  function updateDetail() {
-    const model = selectedModel();
-    if (model) selectedSource = model.source;
-    ignoreAction.visible = !!model && !fieldView && !raw && !proposalView;
-    ignoreAction.content = model && entries.get(model.source)?.status === "IGNORED" ? "Restore item [i] — click" : "Propose ignore [i] — click";
-    recoveryAction.visible = !!model && !fieldView && !raw;
-    recoveryAction.content = "Local [p] | Civitai [c] | Manual [m]";
-    reviewAction.visible = !!model && proposalView;
-    reviewAction.content = "Accept [a] | Reject [x] | Back [b]";
-    if (proposalView && model) {
-      detail.content = cleanDisplay(`MISSING DATA PROPOSALS\n${model.file}\n\n${model.proposals.length ? model.proposals.map((proposal, index) => `${index + 1}. [${proposal.status}] ${proposal.field} = ${JSON.stringify(proposal.value)}\n   Evidence: ${proposal.evidence}\n   Source: ${proposal.source}`).join("\n\n") : "No proposals yet. Use p for local clues, c for Civitai, or m to enter field=value."}\n\nNOTES\n${model.recoveryNotes.join("\n")}\n\nLocal guesses and manual entries are not verified metadata. Nothing changes until accepted. Only supported normalized fields can be proposed; arbitrary raw.* fields require source metadata.`);
-    } else if (fieldView) {
-      detail.content = cleanDisplay("AVAILABLE TEMPLATE FIELDS\n(populated / total; sample)\n\n" + discoverFields(models).map(field => `${field.field}\n  ${field.populated}/${models.length} ${field.type} ${JSON.stringify(field.samples)}`).join("\n"));
-    } else if (!model) {
-      detail.content = cleanDisplay(`${rows[selectedIndex]?.name ?? "No matching models"}\n\n${models.length} models indexed.\n${warnings.join("\n")}\n\nSelect a model for metadata. Click a folder or disclosure arrow to expand.`);
-    } else if (raw) detail.content = cleanDisplay(JSON.stringify(model.raw, null, 2));
-    else if (planView) {
-      const entry = entries.get(model.source)!;
-      detail.content = cleanDisplay(`${blockerDetails(entry)}\n\n${entry.source}\n→ ${entry.destination ?? (entry.status === "IGNORED" ? "leave in place" : "unresolved")}\n\nBUNDLE MOVES\n${entry.moves.map(move => `${move.source}\n→ ${move.destination}`).join("\n\n")}\n\nMETADATA PATCHES\n${JSON.stringify(entry.patches, null, 2)}\n\nRESOLVED FIELDS\n${JSON.stringify(entry.fields, null, 2)}\n\nPROVENANCE\n${JSON.stringify(entry.provenance, null, 2)}\n\nSANITISATION\n${entry.warnings.join("\n")}`);
+  function updateDetail(resetScroll = false) {
+    const scroll = resetScroll ? 0 : right.scrollTop, model = selectedModel(), entry = model ? entries.get(model.source)! : null;
+    let text = "";
+    primaryAction.visible = !editing; primaryAction.content = "";
+    if (panel === "apply") {
+      primaryAction.content = applyController ? "Escape — stop safely after the current bundle" : executionLocked ? "Execution locked — inspect the last receipt" : "Enter / d — dry-run configured moves; a — apply";
+      text = "APPLY MONITOR\n";
+      if (executionLocked) text += "EXECUTION LOCKED: inspect the last receipt before recovery.\n";
+      if (editing === "apply") {
+        text += `\nCONFIRM REAL FILE MOVES\n${plan.summary.MOVE} eligible model bundles under:\n${root}\n\n${plan.summary.BLOCKED} blocked / ${plan.summary.IGNORED} ignored / ${plan.summary.UNCHANGED} unchanged bundles stay in place.\nPause downloads and other collection writers first.\nType APPLY above, then Enter. Escape makes no changes.\n\n`;
+      }
+      text += `CURRENT CONFIGURATION\n${plan.summary.MOVE} eligible / ${plan.summary.BLOCKED} blocked / ${plan.summary.IGNORED} ignored / ${plan.summary.UNCHANGED} unchanged\n`;
+      if (monitor) {
+        const counts = monitor.counts;
+        const processed = counts.applied + counts.validated + counts.skipped + counts.failed + counts.notAttempted;
+        const filled = monitor.total ? Math.min(10, Math.floor(10 * processed / monitor.total)) : 10;
+        const progress = monitor.running && processed > 0 && !monitor.stopRequested ? `${monitor.dryRun ? "Dry run" : "Apply"} [${"#".repeat(filled)}${"-".repeat(10 - filled)}] ${processed}/${monitor.total} entries` : monitor.progress;
+        text += `\n${monitor.dryRun ? "DRY RUN" : "APPLY"}: ${monitor.outcome}\n${progress}\n${counts.applied} applied / ${counts.validated} validated / ${counts.skipped} skipped\n${counts.failed} failed / ${counts.notAttempted} not attempted\n${counts.movedFiles} files moved / ${counts.patchedFiles} metadata patches\n`;
+        if (monitor.current) text += `CURRENT / LAST MODEL\n${monitor.current}\n`;
+        if (monitor.error) text += `\nERROR\n${monitor.error}\n`;
+        if (monitor.failures.length) text += `\nRECENT FAILURES\n${monitor.failures.join("\n")}\n`;
+        text += `\nRECENT BUNDLE RESULTS\n${monitor.events.join("\n") || "Waiting for receipt records."}\n\nPLAN SNAPSHOT\n${monitor.snapshot}\n\nACTION RECEIPT\n${monitor.receipt}\n`;
+      }
+      text += "\nACTIONS\nd / Enter: dry-run the complete configured plan\na: confirm and apply eligible moves\nr: rescan collection; e: export current plan\n\nEach run saves a private plan snapshot and durable JSONL receipt\nunder .lora-organise-receipts. Search and filters do not limit it.\nDry-run does not change model files. Real apply needs typed APPLY.\nDuring execution, editing is locked; Escape stops after a safe bundle\nboundary. No overwrites, automatic undo or crash resume.\nAfter real execution, collection paths and rules are refreshed.";
+    } else if (panel === "commands") {
+      primaryAction.content = "Commands — Escape returns";
+      text = `COLLECTION\n1 Browse / 2 Needs attention / 3 Move preview\n4 Apply monitor (never starts execution on entry)\n/ Search names, tags and paths\ns Cycle status filter; empty search restores all\nTab Switch collection / details\nLeft/Right Collapse / expand folder or companions\nEnter Open selected model's next action\n\nSELECTED MODEL\np Local proposals (no API request)\nc Retrieve Civitai metadata (sends SHA256)\nm Manual field=value proposal\no Override base model | topic\ni Ignore / restore bundle (never deletes)\nr Raw metadata / b Overview\nf Available template fields\n\nPROPOSAL REVIEW\nUp/Down Choose a value; Space select it\nEnter or a Accept selected values atomically\nx Reject / revoke highlighted value\nv Expand all evidence for highlighted value\nb or Escape Return without accepting\n\nCOLLECTION-WIDE ACTIONS\nP Suggest for ALL blocked models, not just visible\nA Accept unambiguous suggestions across ALL models\nThese actions ignore search and status filters.\nReturn from an editor/review, then Escape cancels lookup.\n\nGROUPING AND EXPORT\nt Presets; choose Custom for full Liquid editing\nTemplate editor: Tab completes a field\nStandard slug keeps separators; compact_slug removes them.\ne Review full collection counts, then select export path\nq Quit; unsaved decisions require export or explicit discard\nCtrl-C uses the same quit guard when not applying.\n\nAPPLY MONITOR (4)\nd / Enter Dry-run configured moves\na Type APPLY to authorise eligible model moves\nr Rescan paths; e Export the current plan\nEach run retains a private snapshot and durable receipt.\nDuring execution: Escape, Ctrl-C or q stops after a bundle.\nPlan edits and navigation stay locked until execution ends.\nAfter execution: paths and successful decisions are refreshed.\nFatal receipt or rollback failures lock further execution.\n\nSearch and filters never limit exports or applying moves.\nStandalone --apply remains available outside the workspace.`;
+    } else if (panel === "presets") {
+      primaryAction.content = "Choose grouping — Enter selects";
+      const example = model ?? models[0];
+      text = "GROUPING PRESETS\n\n" + presets.map((preset, index) => `${index === presetIndex ? "> " : "  "}${index + 1}. ${preset.name}`).join("\n") + "\n\n";
+      if (presetIndex === 2) text += "Edit the current Liquid template.\nTab completes fields; Enter validates before saving.";
+      else {
+        const preset = presets[presetIndex], changedValues: string[] = [];
+        text += preset.template + "\n\n";
+        if (example) {
+          text += `SELECTED MODEL\n${example.source}\n\nPROPOSED DESTINATION\n`;
+          try { text += destinationFor(example, compileTemplate(preset.template), changedValues); }
+          catch (error) { text += `BLOCKED: ${errorMessage(error)}`; }
+          if (changedValues.length) text += "\n\n" + changedValues.join("\n");
+        }
+        text += "\n\nCompact grouping can merge distinct names.\nDestination collisions remain blocked.\nEnter uses this template; Escape keeps the current one.";
+      }
+    } else if (panel === "export") {
+      primaryAction.content = isBusy() ? "Wait for lookup completion or cancel it first" : "Enter — choose a new plan file";
+      text = `REVIEW BEFORE EXPORT\n\nComplete collection: ${models.length} models\n${plan.summary.MOVE} MOVE\n${plan.summary.BLOCKED} BLOCKED — not eligible to move\n${plan.summary.IGNORED} IGNORED — leave in place\n${plan.summary.UNCHANGED} UNCHANGED\n\nGrouping:\n${template}\n\nExport includes all models, rules and proposals,\nregardless of search or status filter.\nIt creates a new file and never moves collection files.\n\n${savedPath ? `SAVED PLAN\n${savedPath}\n\nVALIDATE BEFORE APPLYING\nlora-organise --apply ${shellQuote(savedPath)} --dry-run\n\nDry-run writes an action receipt, not model files.` : "Enter selects the output path. Existing files are refused."}`;
+    } else if (panel === "quit") {
+      primaryAction.content = "Unsaved decisions — export or discard explicitly";
+      text = "UNSAVED DECISIONS\n\nYour grouping, proposals or rules changed since export.\n\n[e] Review and export the complete plan\n[q] Discard these session changes and quit\n[Escape] Return to the workspace\n\nQuitting does not undo any moves already applied.";
+    } else if (panel === "fields") {
+      primaryAction.content = "Available fields — b returns";
+      text = discoverFields(models).map(field => `${field.field}\n  ${field.populated}/${models.length} ${field.type}\n  ${JSON.stringify(field.samples)}`).join("\n\n");
+    } else if (!model || !entry) {
+      primaryAction.content = "Select a model in the collection";
+      text = `${rows[selectedIndex]?.name ?? "No matching models"}\n\n${models.length} models indexed.\n${warnings.join("\n")}\n\nEnter expands a folder.\nUse / to change the search, or s to change the filter.\n1 restores Browse; 2 shows blocked models.`;
+    } else if (panel === "raw") {
+      primaryAction.content = "Raw metadata — b returns";
+      text = JSON.stringify(model.raw, null, 2);
+    } else if (panel === "proposals") {
+      const values = groups();
+      proposalIndex = Math.max(0, Math.min(proposalIndex, values.length - 1));
+      primaryAction.content = checked.size ? `Enter — accept ${checked.size} selected value(s)` : "Space selects a value; Enter accepts";
+      const reviewWidth = Math.max(1, right.viewport.width || Math.floor(renderer.width * (renderer.width < 96 ? 1 : 0.52)) - 2);
+      text = `${fitDisplay(model.file, reviewWidth)}\n${fitDisplay(entry.status === "IGNORED" ? "IGNORED — restore with i before accepting." : "Choose values; evidence stays attached.", reviewWidth)}\n\n`;
+      text += values.length ? values.map((group, index) => {
+        const proposal = group.proposal;
+        const conflict = proposal.status === "pending" && values.some(other => other.key !== group.key && other.proposal.field === proposal.field && other.proposal.status === "pending");
+        return fitDisplay(`${index === proposalIndex ? "> " : "  "}[${checked.has(group.key) ? "x" : " "}] ${proposal.field} = ${JSON.stringify(proposal.value)}`, reviewWidth) + "\n" + fitDisplay(`    ${conflict ? "CONFLICT / " : ""}${proposal.status} / ${proposal.evidence === "heuristic" ? "filename/folder guess" : proposal.evidence} / ${group.sources.length} source(s)`, reviewWidth);
+      }).join("\n") : "No proposals yet. p checks local evidence; c queries Civitai;\nm adds a manual proposal. Arbitrary raw.* fields need metadata.";
+      const selected = values[proposalIndex];
+      if (selected) {
+        const sources = evidenceExpanded ? selected.sources : [selected.proposal];
+        text += `\n\nHIGHLIGHTED VALUE\n${selected.proposal.field} = ${JSON.stringify(selected.proposal.value)}\n\nEVIDENCE ${evidenceExpanded ? "(all sources)" : "(preferred source; v expands)"}\n` + sources.map(proposal => `${proposal.evidence}: ${proposal.source} [${proposal.status}]`).join("\n");
+      }
+      text += `\n\n${model.recovery.state}: ${model.recovery.message}\n${model.recoveryNotes.join("\n")}\n\nSpace selects; Enter accepts selected fields atomically.\nCompeting values for one field cannot be accepted together.\nLocal guesses and manual entries are not verified metadata.`;
     } else {
-      detail.content = cleanDisplay(`${blockerDetails(entries.get(model.source)!)}\n\n${model.file}\n${model.source}\n\n${JSON.stringify({ ...model.context, raw: undefined }, null, 2)}\n\nTRIGGER WORDS\n${JSON.stringify(model.raw.cmInfo?.TrainedWords ?? get(model.raw.metadata, "civitai.trainedWords") ?? model.raw.header?.ss_tag_frequency ?? [], null, 2)}\n\nSIZE / HASHES\n${model.companions[0].fingerprint.size} bytes\n${JSON.stringify(model.raw.cmInfo?.Hashes ?? { sha256: model.raw.metadata?.sha256 }, null, 2)}\n\nCOMPANIONS\n${model.companions.map(item => item.path).join("\n")}\n\nPROVENANCE\n${JSON.stringify(model.provenance, null, 2)}`);
+      const recoverable = entry.blockers.some(blocker => blocker.category === "missing-data" || blocker.category === "conflicting-data");
+      primaryAction.content = entry.status === "IGNORED" ? "Enter — restore this bundle" : entry.status === "BLOCKED" ? recoverable ? "Enter — resolve selected model" : "Enter — inspect blockers" : "Enter — inspect bundle moves";
+      text = `${model.file}\n${blockerDetails(entry)}\n\nBASE MODEL  ${get(model.context, "basemodel") ?? "missing"}\nTOPIC       ${get(model.context, "topic") ?? "missing"}\n\nSOURCE\n${model.source}\n\nDESTINATION\n${entry.destination ?? (entry.status === "IGNORED" ? "Leave in place" : "Unresolved")}\n\n`;
+      if (entry.status === "BLOCKED") text += `NEXT ACTION\n${entry.blockers.some(blocker => blocker.category === "missing-data" || blocker.category === "conflicting-data") ? "Enter reviews local proposals. Use o for an override,\nc for a public hash lookup, or m for manual field=value." : "Inspect the blockers above. Use r for raw metadata,\nt to change grouping, or i to leave this bundle in place."}\n\n`;
+      if (view === 2 || focusRight) text += "BUNDLE MOVES\n" + entry.moves.map(move => `${move.source}\n→ ${move.destination}`).join("\n\n") + "\n\nMETADATA PATCHES\n" + JSON.stringify(entry.patches, null, 2) + "\n\n";
+      text += `MODEL\n${JSON.stringify(model.context.model, null, 2)}\n\nTRIGGER WORDS\n${JSON.stringify(model.raw.cmInfo?.TrainedWords ?? get(model.raw.metadata, "civitai.trainedWords") ?? model.raw.header?.ss_tag_frequency ?? [], null, 2)}\n\nSIZE / HASHES\n${model.companions[0].fingerprint.size} bytes\n${JSON.stringify(model.raw.cmInfo?.Hashes ?? { sha256: model.raw.metadata?.sha256 }, null, 2)}\n\nCOMPANIONS (${model.companions.length})\n${model.companions.map(item => item.path).join("\n")}\n\nPROVENANCE\n${JSON.stringify(entry.provenance, null, 2)}\n\nSANITISATION\n${entry.warnings.join("\n")}\n\nr Raw metadata / f Template fields / ? Commands`;
     }
-    right.scrollTo(0);
+    detail.content = cleanDisplay(text); right.scrollTo(scroll);
+    updateLayout(); updateChrome();
   }
-  function toggleIgnore() {
-    const model = selectedModel();
-    if (!model || editing) { status.content = "Select a model before proposing an ignore."; return; }
-    const ignored = rules.ignored.includes(model.source);
-    rules.ignored = ignored ? rules.ignored.filter(source => source !== model.source) : [...rules.ignored, model.source];
-    raw = fieldView = proposalView = false;
-    refresh(true);
-    status.content = cleanDisplay(`${ignored ? "Restored" : "Proposed ignore for"} ${model.source}. No files changed.`);
-  }
-  ignoreAction.onMouseDown = event => {
-    if (event.button !== 0) return;
-    event.preventDefault();
-    event.stopPropagation();
-    toggleIgnore();
-  };
   function refresh(recompute = false) {
     if (recompute) {
       for (const model of models) classify(model, rules);
       plan = buildPlan(root, models, occupied, warnings, rules, template);
       entries = new Map(plan.entries.map(entry => [entry.source, entry]));
     }
-    const previousKey = rows[selectedIndex]?.key;
-    const candidates = models.filter(model => {
-      const entry = entries.get(model.source)!;
-      const selectedFilter = filters[filter];
-      const matchesStatus = selectedFilter === "all" || entry.status === selectedFilter || entry.blockers.some(blocker => blocker.category === selectedFilter) || (selectedFilter === "missing metadata" && !model.raw.metadata && !model.raw.cmInfo) || (selectedFilter === "conflicts" && !!model.conflicts.length);
-      return matchesStatus && (!search || `${model.source} ${JSON.stringify({ ...model.context, raw: undefined })}`.toLowerCase().includes(search.toLowerCase()));
-    });
-    const directories = new Map<string, Row>();
-    const children = new Map<string, Row[]>();
-    function add(parent: string, row: Row) { children.set(parent, [...(children.get(parent) ?? []), row]); }
-    for (const model of candidates) {
-      const entry = entries.get(model.source)!;
-      const destination = planView ? entry.status === "IGNORED" ? join("[ignored]", model.source) : entry.destination ?? join("[unresolved]", model.file) : model.source;
+    const previousKey = rows[selectedIndex]?.key, scroll = tree.scrollTop;
+    const directories = new Set<string>(), children = new Map<string, Row[]>();
+    const add = (parent: string, row: Row) => { const list = children.get(parent); if (list) list.push(row); else children.set(parent, [row]); };
+    for (const model of models) {
+      const entry = entries.get(model.source)!, selectedFilter = filters[filter];
+      if (view === 1 && entry.status !== "BLOCKED") continue;
+      if (!(selectedFilter === "all" || entry.status === selectedFilter || entry.blockers.some(blocker => blocker.category === selectedFilter) || (selectedFilter === "missing metadata" && !model.raw.metadata && !model.raw.cmInfo) || (selectedFilter === "conflicts" && !!model.conflicts.length))) continue;
+      if (search && !`${model.source} ${JSON.stringify({ ...model.context, raw: undefined })}`.toLowerCase().includes(search.toLowerCase())) continue;
+      const destination = view === 2 ? entry.status === "IGNORED" ? join("[ignored]", model.source) : entry.destination ?? join("[unresolved]", model.file) : model.source;
       const parts = destination.split(sep);
       let parent = "";
       for (let i = 0; i < parts.length - 1; i++) {
         const key = parts.slice(0, i + 1).join(sep);
-        if (!directories.has(key)) {
-          const row = { key: `dir:${key}`, name: parts[i], directory: true, depth: i, parent };
-          directories.set(key, row); add(parent, row);
-        }
+        if (!directories.has(key)) { directories.add(key); add(parent, { key: `dir:${key}`, name: parts[i], directory: true, depth: i, parent }); }
         parent = key;
       }
-      const label = entry.status === "BLOCKED" ? `BLOCKED: ${[...new Set(entry.blockers.map(blocker => blocker.category))].join(", ")}` : entry.status;
-      const pending = model.proposals.filter(proposal => proposal.status === "pending").length;
+      const pending = proposalGroups(model).filter(group => group.proposal.status === "pending").length;
       const transient = ["queued", "hashing", "fetching", "error", "not-found", "cancelled"].includes(model.recovery.state);
-      const accepted = model.proposals.some(proposal => proposal.status === "accepted");
-      const badge = `[${transient ? model.recovery.state : pending ? "suggested" : accepted ? "accepted" : model.recovery.state === "idle" ? "local" : model.recovery.state}${pending ? `: ${pending}` : ""}]`;
-      add(parent, { key: `model:${model.source}`, name: `${planView || entry.status === "BLOCKED" || entry.status === "IGNORED" ? `[${label}] ` : ""}${parts.at(-1)}`, model, depth: parts.length - 1, parent, tone: entry.status === "BLOCKED" ? "error" : entry.status === "IGNORED" ? "muted" : "normal", badge, badgeTone: recoveryTone(model) });
+      add(parent, { key: `model:${model.source}`, name: `[${entry.status}] ${parts.at(-1)}`, model, depth: parts.length - 1, parent, tone: entry.status === "BLOCKED" ? "error" : entry.status === "IGNORED" ? "muted" : "normal", badge: transient ? `[${model.recovery.state}]` : pending ? `[${pending} suggestions]` : undefined, badgeTone: recoveryTone(model) });
     }
     rows = [];
     function flatten(parent: string) {
-      const sorted = (children.get(parent) ?? []).sort((a, b) => Number(!!b.directory) - Number(!!a.directory) || (a.model?.file ?? a.name).localeCompare(b.model?.file ?? b.name));
-      for (const row of sorted) {
+      for (const row of (children.get(parent) ?? []).sort((a, b) => Number(!!b.directory) - Number(!!a.directory) || (a.model?.file ?? a.name).localeCompare(b.model?.file ?? b.name))) {
         rows.push(row);
-        if (row.model) {
-          const model = row.model;
-          const conflicts = new Set(RECOVERY_FIELDS.filter(field => new Set(model.proposals.filter(proposal => proposal.status === "pending" && proposal.field === field).map(proposal => proposal.value)).size > 1));
-          const displayed = new Map<string, { proposal: Proposal; index: number; sources: number }>();
-          const reviewRank = { accepted: 3, pending: 2, rejected: 1 };
-          model.proposals.forEach((proposal, index) => {
-            const key = JSON.stringify([proposal.field, proposal.value]), previous = displayed.get(key);
-            if (!previous) displayed.set(key, { proposal, index, sources: 1 });
-            else {
-              previous.sources++;
-              if (reviewRank[proposal.status] > reviewRank[previous.proposal.status]) { previous.proposal = proposal; previous.index = index; }
-            }
-          });
-          for (const { proposal, index, sources } of displayed.values()) {
-            const state = proposal.status === "pending" ? conflicts.has(proposal.field) ? "conflict" : "suggested" : proposal.status;
-            const tone: TreeTone = proposal.status === "accepted" ? "accepted" : proposal.status === "rejected" ? "muted" : state === "conflict" || proposal.evidence === "heuristic" ? "warning" : "suggested";
-            rows.push({ key: `suggestion:${model.source}:${proposal.field}:${proposal.value}`, name: `[${state}] ${proposal.field}: ${proposal.value} (${proposal.evidence}${sources > 1 ? `; ${sources} sources` : ""})`, model, proposalIndex: index, depth: row.depth + 1, parent: row.key, tone });
-          }
-          if (entries.get(model.source)!.blockers.some(blocker => blocker.category === "missing-data")) for (const field of compileTemplate(template).fields) {
-            let value: unknown;
-            try { value = liquid.evalValueSync(field, model.context); }
-            catch (error) { if (!(error instanceof UndefinedVariableError)) throw error; }
-            if ((value === null || value === undefined || value === "") && !model.proposals.some(proposal => proposal.field === field && proposal.status !== "rejected")) rows.push({ key: `missing:${model.source}:${field}`, name: `[missing] ${field}: no suggestion`, model, depth: row.depth + 1, parent: row.key, tone: "error" });
-          }
-          if (["error", "not-found", "cancelled"].includes(model.recovery.state)) rows.push({ key: `recovery:${model.source}`, name: `[${model.recovery.state}] ${model.recovery.message}`, model, depth: row.depth + 1, parent: row.key, tone: recoveryTone(model) });
-        }
-        if (row.directory && !collapsed.has(`${planView}:${row.key}`)) flatten(row.key.slice(4));
+        if (row.directory && !collapsed.has(`${view}:${row.key}`)) flatten(row.key.slice(4));
         if (row.model && expandedModels.has(row.model.source)) for (const companion of row.model.companions.slice(1)) rows.push({ key: `companion:${companion.path}`, name: basename(companion.path), model: row.model, depth: row.depth + 1, parent: row.key });
       }
     }
     flatten("");
     let index = rows.findIndex(row => row.key === previousKey);
-    if (index < 0) index = rows.findIndex(row => row.key === `model:${selectedSource}`);
+    if (index < 0 && selectedSource) index = rows.findIndex(row => row.key === `model:${selectedSource}`);
+    if (index < 0) index = rows.findIndex(row => row.model);
     selectedIndex = Math.max(0, index);
-    renderTree();
-    title.content = `LoRA Organise — ${planView ? "2 Reorganise" : "1 Explorer"} — ${models.length} models — read-only`;
-    templateLine.content = cleanDisplay(`Template [click]: ${template} | ${plan.summary.MOVE} move / ${plan.summary.BLOCKED} blocked / ${plan.summary.IGNORED} ignored`);
-    footer.content = `1/2 views  ←/→ expand  Tab pane  / search  q quit\nP auto-suggest blocked  A accept unambiguous  Escape cancel queue\np local  c Civitai  m manual  a accept  x reject  i ignore  e export\ns filter: ${filters[filter]} | search: ${cleanDisplay(search) || "none"} | ${focusRight ? "details" : "tree"}`;
-    updateDetail();
+    const source = selectedModel()?.source ?? "";
+    if (source !== selectedSource) { checked.clear(); proposalIndex = 0; evidenceExpanded = false; }
+    selectedSource = source;
+    renderTree(); tree.scrollTo(scroll); updateDetail();
+  }
+  function selectRow(index: number, reveal = true) {
+    if (!rows[index]) return;
+    const source = rows[index].model?.source ?? "";
+    if (source !== selectedSource) { checked.clear(); proposalIndex = 0; evidenceExpanded = false; panel = "overview"; }
+    selectedIndex = index; selectedSource = source; renderTree();
+    if (reveal) {
+      if (index < tree.scrollTop) tree.scrollTo(index);
+      else if (index >= tree.scrollTop + tree.viewport.height) tree.scrollTo(index - tree.viewport.height + 1);
+    }
+    updateDetail(true);
+  }
+  function homePanel(): Panel { return view === 3 ? "apply" : "overview"; }
+  function openPanel(next: Panel) { panel = next; setFocus(true); updateDetail(true); }
+  function returnToOverview() { panel = homePanel(); checked.clear(); setFocus(view === 3); updateDetail(true); }
+  function switchView(next: number) {
+    if (applyController) { tell("Wait for apply to finish, or Escape to stop after the current bundle."); return; }
+    view = next; panel = homePanel(); filter = 0; checked.clear(); rows = [];
+    refresh(); setFocus(view === 3);
+  }
+  function rescanCollection(relocated = new Map<string, string>()) {
+    const previous = new Map(models.map(model => [relocated.get(model.source) ?? model.source, model]));
+    const scanned = scan(root, headers);
+    rules = rulesAfterApply(rules, relocated) as Rules;
+    models = scanned.models; warnings = scanned.warnings;
+    occupied.clear();
+    for (const [path, kind] of scanned.occupied) occupied.set(path, kind);
+    for (const model of models) {
+      const old = previous.get(model.source);
+      if (old) { model.proposals = old.proposals; model.recoveryNotes = old.recoveryNotes; model.recovery = old.recovery; }
+    }
+    selectedSource = relocated.get(selectedSource) ?? selectedSource;
+    checked.clear(); rows = []; collapsed.clear(); expandedModels.clear();
+    changed(); refresh(true);
+  }
+  function stopApply(reason?: "SIGTERM") {
+    applyController?.abort(reason);
+    tell("Stop requested. The current bundle finishes or rolls back before the worker stops.");
+  }
+  async function startApply(dryRun: boolean) {
+    if (applyController) return;
+    if (isBusy()) { tell("Finish or cancel metadata lookup before validating or applying moves."); return; }
+    if (executionLocked) { tell("Execution is locked. Inspect the last receipt and restart after recovery."); return; }
+    if (!dryRun && !plan.summary.MOVE) { tell("There are no eligible MOVE bundles."); return; }
+    const controller = new AbortController();
+    applyController = controller;
+    view = 3; panel = "apply"; setFocus(true); right.scrollTo(0);
+    const snapshotPlan = plan, snapshotRevision = revision;
+    let rescanAttempted = false;
+    try {
+      monitor = await runMonitoredApply(snapshotPlan, dryRun, controller.signal, state => {
+        monitor = state;
+        if (!closed) updateDetail();
+      });
+      process.exitCode = monitor.exitCode ?? 3;
+      if (!closed) {
+        if (!dryRun) {
+          collectionChanged ||= monitor.counts.applied > 0;
+          executionLocked = !monitor.safeToReuse;
+          rescanAttempted = true; rescanCollection(monitor.relocated);
+        } else {
+          savedPath = monitor.snapshot; savedRevision = snapshotRevision;
+        }
+        tell(`${dryRun ? "Dry run" : "Apply"} ${monitor.outcome}. ${executionLocked ? "Inspect the receipt before any further execution." : dryRun ? "No model files changed." : "Collection rescanned; export a fresh plan before external reuse."}`);
+      }
+    } catch (error) {
+      if (monitor) { monitor.running = false; monitor.outcome = "failed"; monitor.error = errorMessage(error); }
+      if (!dryRun) {
+        executionLocked = true;
+        if (!closed && !rescanAttempted) {
+          try { rescanCollection(monitor?.relocated); }
+          catch (rescanError) { if (monitor) monitor.error += `\nCannot rescan: ${errorMessage(rescanError)}`; }
+        }
+      }
+      process.exitCode = 3;
+      if (!closed) tell(`Cannot finish ${dryRun ? "validation" : "apply"}: ${errorMessage(error)}`);
+    } finally {
+      applyController = null;
+      if (!closed) { updateDetail(); if (exitAfterApply) renderer.destroy(); }
+    }
+  }
+
+  function showProposals() {
+    const model = selectedModel();
+    if (!model) { tell("Select a model before reviewing proposals."); return; }
+    const before = model.proposals.length, notesBefore = model.recoveryNotes.length;
+    proposeLocal(root, model, rules);
+    if (model.proposals.length !== before || model.recoveryNotes.length !== notesBefore) changed();
+    checked.clear(); proposalIndex = 0; evidenceExpanded = false;
+    panel = "proposals"; refresh(true); setFocus(true); updateDetail(true);
+    tell("Choose values with Up/Down and Space. Enter accepts; Escape returns.");
+  }
+  function acceptSelected() {
+    const model = selectedModel();
+    if (!model) return;
+    if (isBusy()) { tell("Wait for lookup completion, or Escape to cancel before accepting."); return; }
+    if (rules.ignored.includes(model.source)) { tell("Restore this ignored bundle with i before accepting."); return; }
+    try {
+      const selection = groups().filter(group => checked.has(group.key)).map(group => group.proposal);
+      if (!selection.length) throw new Error("Select at least one value with Space before accepting.");
+      const count = acceptProposals(model, selection, rules);
+      checked.clear(); changed(); refresh(true);
+      tell(`Accepted ${count} value(s). The move preview is updated; no files changed.`);
+    } catch (error) { tell(errorMessage(error)); }
+  }
+  function rejectSelected() {
+    const model = selectedModel(), group = groups()[proposalIndex];
+    if (!model || !group) { tell("Select a proposed value first."); return; }
+    for (const proposal of group.sources) proposal.status = "rejected";
+    rules.accepted[model.source] = (rules.accepted[model.source] ?? []).filter(proposal => proposal.field !== group.proposal.field || proposal.value !== group.proposal.value);
+    checked.delete(group.key); changed(); refresh(true);
+    tell("Rejected or revoked the highlighted value. Other fields stay unchanged.");
+  }
+  function acceptAllSuggestions() {
+    if (isBusy()) { tell("Wait for lookup completion, or Escape to cancel before accepting."); return; }
+    const result = acceptCollection(models, rules);
+    if (result.fields) changed();
+    checked.clear(); refresh(true);
+    tell(`Collection-wide: accepted ${result.fields} values in ${result.changedModels} models; ${result.conflicts} conflicting fields remain.`);
+  }
+  async function runSuggestions(scope: "all" | "blocked", acceptAfter = false, one?: Model) {
+    if (isBusy()) { tell("A metadata lookup is already running."); return; }
+    const controller = new AbortController();
+    suggestionController = controller;
+    const signal = AbortSignal.any([controller.signal, lifetime.signal]);
+    if (one) one.recovery.state = "idle";
+    changed();
+    let lastRender = 0;
+    try {
+      await suggestCollection(root, one ? [one] : models, rules, one || scope === "all" ? undefined : blockedSources(plan), signal, message => {
+        activityText = message;
+        if (closed) return;
+        activity.content = fitDisplay(message, renderer.width);
+        if (Date.now() - lastRender > 80) { refresh(); lastRender = Date.now(); }
+      });
+      if (!closed && acceptAfter && !signal.aborted) {
+        const result = acceptCollection(models, rules);
+        if (result.fields) changed();
+        tell(`Collection-wide: accepted ${result.fields} values; ${result.conflicts} conflicts remain.`);
+      }
+      const failed = (one ? [one] : models).filter(model => model.recovery.state === "error").length;
+      activityText = signal.aborted ? "Lookup cancelled; completed proposals retained." : failed ? `Lookup finished with ${failed} error(s). Inspect the model status; c retries the selected model.` : "Lookup complete. Review values with p; A accepts unambiguous values across the collection.";
+    } catch (error) {
+      activityText = signal.aborted ? "Lookup cancelled; completed proposals retained." : `Lookup failed: ${errorMessage(error)}`;
+    } finally {
+      suggestionController = null;
+      if (!closed) refresh(true);
+    }
+  }
+  function retrieveSelected() {
+    const model = selectedModel();
+    if (!model) { tell("Select a model before querying Civitai."); return; }
+    if (rules.ignored.includes(model.source)) { tell("Restore the ignored bundle before retrieving metadata."); return; }
+    panel = "proposals"; setFocus(true); updateDetail(true);
+    tell("Civitai receives a SHA256 hash, not the model file. Escape cancels the lookup.");
+    void runSuggestions("all", false, model);
+  }
+  function toggleIgnore() {
+    const model = selectedModel();
+    if (!model) { tell("Select a model before changing its ignore decision."); return; }
+    const ignored = rules.ignored.includes(model.source);
+    rules.ignored = ignored ? rules.ignored.filter(source => source !== model.source) : [...rules.ignored, model.source];
+    checked.clear(); changed(); refresh(true);
+    tell(`${ignored ? "Restored" : "Ignored"} ${model.source}. No files changed.`);
+  }
+  function requestQuit() {
+    if (applyController) { stopApply(); return; }
+    if (revision !== savedRevision && panel !== "quit") { openPanel("quit"); return; }
+    renderer.destroy();
+  }
+  function startExport() {
+    if (isBusy()) { tell("Wait for lookup completion, or Escape to cancel before exporting."); return; }
+    openPanel("export");
+  }
+  function choosePreset() {
+    if (presetIndex === 2) { startEdit("template"); return; }
+    const next = presets[presetIndex].template;
+    if (template !== next) { template = next; changed(); }
+    panel = homePanel(); refresh(true); setFocus(view === 3);
+    tell("Grouping updated. Review destinations in 3 Move preview.");
+  }
+  function openSelected() {
+    if (panel === "apply") { if (applyController) stopApply(); else void startApply(true); return; }
+    if (panel === "quit") return;
+    if (panel === "presets") { choosePreset(); return; }
+    if (panel === "export") { if (!isBusy()) startEdit("export"); return; }
+    if (panel === "proposals") { acceptSelected(); return; }
+    const row = rows[selectedIndex], model = selectedModel();
+    if (row?.directory) { toggle(); return; }
+    if (!model) return;
+    const entry = entries.get(model.source)!;
+    if (entry.status === "IGNORED") { toggleIgnore(); return; }
+    if (entry.status === "BLOCKED" && entry.blockers.some(blocker => blocker.category === "missing-data" || blocker.category === "conflicting-data")) showProposals();
+    else { panel = homePanel(); setFocus(true); updateDetail(true); }
   }
   function startEdit(mode: NonNullable<typeof editing>) {
-    if (mode === "export" && (bulkProposing || retrieving)) { status.content = "Wait for retrieval to finish, or cancel the queue before exporting."; return; }
-    if (["override", "manual", "accept", "reject"].includes(mode) && !selectedModel()) { status.content = "Select a model before editing its data."; return; }
-    if (mode === "manual") { proposalView = true; raw = fieldView = false; updateDetail(); }
-    editing = mode;
-    editLabel.visible = input.visible = true;
-    editLabel.content = mode === "manual" ? `Manual field=value; missing: ${RECOVERY_FIELDS.filter(field => !get(selectedModel()!.context, field)).join(", ") || "none"}` : mode === "accept" ? "Accept proposals: 1,3 or 2-4 or all — Enter saves; Escape cancels" : mode === "reject" ? "Reject/revoke proposal number — Enter saves; Escape cancels" : mode === "template" ? "Template — Tab completes fields; Enter saves; Escape cancels" : mode === "override" ? "Override: base model | topic — blank keeps existing override" : mode === "export" ? "Export new JSON plan file (existing files are never replaced)" : "Search filename / name / tags";
-    input.value = mode === "manual" ? `${RECOVERY_FIELDS.find(field => !get(selectedModel()!.context, field)) ?? "topic"}=` : mode === "accept" || mode === "reject" ? "" : mode === "template" ? template : mode === "search" ? search : mode === "override" ? `${rules.overrides[selectedModel()!.source]?.basemodel ?? ""} | ${rules.overrides[selectedModel()!.source]?.topic ?? ""}` : join(process.env.TMPDIR ?? "/tmp", `lora-plan-${Date.now()}.json`);
-    input.focus();
+    if (applyController) return;
+    if (mode === "apply") {
+      if (isBusy()) { tell("Finish or cancel metadata lookup before applying moves."); return; }
+      if (executionLocked) { tell("Inspect the last receipt and restart after recovery before applying."); return; }
+      if (!plan.summary.MOVE) { tell("There are no eligible MOVE bundles."); return; }
+    }
+    if (mode === "export" && isBusy()) { tell("Wait for lookup completion before exporting."); return; }
+    if (["override", "manual"].includes(mode) && !selectedModel()) { tell("Select a model before editing its data."); return; }
+    if (mode === "manual") panel = "proposals";
+    editing = mode; editLabel.visible = input.visible = true;
+    editLabel.content = mode === "manual" ? "Manual field=value — Enter adds; Escape cancels" : mode === "template" ? "Custom Liquid — Enter validates; Tab completes; Escape cancels" : mode === "override" ? "Override: base model | topic — blank keeps existing value" : mode === "export" ? "New JSON plan path — existing files are refused" : "Search names, tags and paths — blank restores all";
+    input.value = mode === "manual" ? `${RECOVERY_FIELDS.find(field => !get(selectedModel()!.context, field)) ?? "topic"}=` : mode === "template" ? template : mode === "search" ? search : mode === "override" ? `${rules.overrides[selectedModel()!.source]?.basemodel ?? ""} | ${rules.overrides[selectedModel()!.source]?.topic ?? ""}` : join(process.env.TMPDIR ?? "/tmp", `lora-plan-${Date.now()}.json`);
+    if (mode === "apply") { editLabel.content = "Type APPLY to authorise the configured moves; Escape cancels"; input.value = ""; }
+    updateDetail(mode === "apply"); input.focus();
   }
-  function finishEdit() { editing = null; input.visible = editLabel.visible = false; focusRight = false; tree.focus(); refresh(); }
+  function finishEdit() {
+    const resetScroll = editing === "apply";
+    editing = null; input.visible = editLabel.visible = false;
+    refresh(); setFocus(panel !== "overview");
+    if (resetScroll) updateDetail(true);
+  }
   input.on("enter", () => {
+    if (!editing) return;
+    if (editing === "apply") {
+      if (input.value.trim() !== "APPLY") { tell("Type APPLY exactly, or Escape to cancel. No moves started."); return; }
+      editing = null; input.visible = editLabel.visible = false;
+      void startApply(false);
+      return;
+    }
     try {
-      if (editing === "template") { compileTemplate(input.value); template = input.value; refresh(true); }
-      else if (editing === "search") search = input.value;
+      if (editing === "template") {
+        compileTemplate(input.value);
+        if (template !== input.value) { template = input.value; changed(); }
+        panel = homePanel(); refresh(true);
+        tell("Custom grouping saved. Blocked destinations remain visible in the plan.");
+      } else if (editing === "search") { search = input.value; panel = homePanel(); }
       else if (editing === "manual") {
         const number = addManualProposal(selectedModel()!, input.value);
-        status.content = `Manual proposal ${number} added. Press a and enter ${number} to accept; no files changed.`;
-        refresh(true);
-      }
-      else if (editing === "accept" || editing === "reject") {
-        const model = selectedModel()!;
-        if (editing === "accept") {
-          const count = acceptProposals(model, input.value, rules);
-          status.content = `Accepted ${count} proposal${count === 1 ? "" : "s"}. No files changed.`;
-        } else {
-          if (!/^[1-9]\d*$/.test(input.value.trim())) throw new Error("Enter a proposal number from the displayed list.");
-          const proposal = model.proposals[Number(input.value.trim()) - 1];
-          if (!proposal) throw new Error("No proposal has that number.");
-          proposal.status = "rejected";
-          rules.accepted[model.source] = (rules.accepted[model.source] ?? []).filter(item => item.field !== proposal.field || item.value !== proposal.value || item.source !== proposal.source);
-        }
-        refresh(true);
-      }
-      else if (editing === "override") {
+        changed(); refresh(true);
+        proposalIndex = Math.max(0, groups().findIndex(group => group.sources.includes(selectedModel()!.proposals[number - 1])));
+        tell("Manual proposal added. Select it with Space, then Enter to accept.");
+      } else if (editing === "override") {
         const parts = input.value.split("|");
         if (parts.length !== 2) throw new Error("Use base model | topic; leave either side blank to keep it.");
         const model = selectedModel()!, override = { ...rules.overrides[model.source] };
         if (parts[0].trim()) override.basemodel = parts[0].trim();
         if (parts[1].trim()) override.topic = parts[1].trim();
-        rules.overrides[model.source] = override; refresh(true);
-      } else if (editing === "export") {
-        exportPlan(input.value, JSON.stringify(plan, null, 2) + "\n", root, occupied);
-        status.content = cleanDisplay(`Exported ${input.value}. No model files changed.`);
+        rules.overrides[model.source] = override; changed(); refresh(true);
+        tell("Override saved in this session. Export to retain the decision.");
+      } else {
+        const path = resolve(input.value);
+        exportPlan(path, JSON.stringify(plan, null, 2) + "\n", root, occupied);
+        savedPath = path; savedRevision = revision; panel = "export";
+        tell(`Exported ${path}. The dry-run command is in the export panel.`);
       }
       finishEdit();
-    } catch (error) { status.content = cleanDisplay(error instanceof Error ? error.message : String(error)); }
+    } catch (error) { tell(errorMessage(error)); }
   });
-  templateLine.onMouseDown = event => {
-    if (event.button !== 0 || editing) return;
-    event.preventDefault();
-    startEdit("template");
-  };
-  treeText.onMouseDown = event => {
-    if (event.button !== 0) return;
-    event.preventDefault();
-    event.stopPropagation();
-    if (editing) { input.focus(); return; }
-    const index = Math.floor(event.y - tree.viewport.screenY + tree.scrollTop);
-    const row = rows[index];
-    if (!row) return;
-    focusRight = false;
-    tree.focus();
-    selectRow(index, false);
-    const column = event.x - tree.viewport.screenX + tree.scrollLeft;
-    const disclosure = 2 + row.depth * 2;
-    if (row.directory || (row.key.startsWith("model:") && column >= disclosure && column < disclosure + 2)) toggle();
-    else refresh();
-  };
   function toggle(expand?: boolean) {
     const row = rows[selectedIndex]; if (!row) return;
-    if (row.directory) {
-      const key = `${planView}:${row.key}`;
-      if (expand === true) collapsed.delete(key); else if (expand === false) collapsed.add(key); else if (collapsed.has(key)) collapsed.delete(key); else collapsed.add(key);
-    } else if (row.model && row.key.startsWith("model:")) {
-      if (expand === true) expandedModels.add(row.model.source); else if (expand === false) expandedModels.delete(row.model.source); else if (expandedModels.has(row.model.source)) expandedModels.delete(row.model.source); else expandedModels.add(row.model.source);
-    }
+    const set = row.directory ? collapsed : expandedModels;
+    const key = row.directory ? `${view}:${row.key}` : row.model?.source;
+    if (!key || (!row.directory && !row.key.startsWith("model:"))) return;
+    const shouldContain = row.directory ? expand === undefined ? !set.has(key) : !expand : expand === undefined ? !set.has(key) : expand;
+    if (shouldContain) set.add(key); else set.delete(key);
     refresh();
   }
+  viewTabs.forEach((tab, index) => { tab.onMouseDown = event => {
+    if (event.button !== 0 || editing || applyController) return;
+    event.preventDefault(); event.stopPropagation(); switchView(index);
+  }; });
+  templateLine.onMouseDown = event => {
+    if (event.button !== 0 || editing || applyController) return;
+    event.preventDefault(); openPanel("presets");
+  };
+  primaryAction.onMouseDown = event => {
+    if (event.button !== 0 || editing) return;
+    event.preventDefault(); event.stopPropagation(); openSelected();
+  };
+  treeText.onMouseDown = event => {
+    if (event.button !== 0 || applyController) return;
+    event.preventDefault(); event.stopPropagation();
+    if (editing) { input.focus(); return; }
+    const index = Math.floor(event.y - tree.viewport.screenY + tree.scrollTop), row = rows[index];
+    if (!row) return;
+    setFocus(false); selectRow(index, false);
+    const column = event.x - tree.viewport.screenX + tree.scrollLeft, disclosure = 2 + row.depth * 2;
+    if (row.directory || (row.key.startsWith("model:") && column >= disclosure && column < disclosure + 2)) toggle();
+  };
   renderer.keyInput.on("keypress", key => {
+    if (applyController) {
+      if (key.name === "escape" || key.name === "q" || (key.ctrl && key.name === "c")) { key.preventDefault(); stopApply(); }
+      return;
+    }
     if (editing) {
       if (key.name === "escape") { key.preventDefault(); finishEdit(); }
+      else if (editing === "apply" && ["pageup", "pagedown"].includes(key.name)) {
+        key.preventDefault();
+        right.scrollTo(Math.max(0, right.scrollTop + (key.name === "pageup" ? -1 : 1) * Math.max(1, right.viewport.height - 1)));
+      }
       else if (key.name === "tab" && editing === "template") {
         key.preventDefault();
         const match = input.value.match(/(\{\{-?\s*)([\w.-]*)$/);
         if (match) {
           const matches = discoverFields(models).filter(field => field.field.startsWith(match[2]));
           if (matches.length === 1) input.value = input.value.slice(0, -match[0].length) + `${match[1]}${matches[0].field} }}`;
-          else status.content = matches.map(field => field.field).join("  ") || "No matching fields.";
+          else tell(matches.map(field => field.field).join("  ") || "No matching fields.");
         }
       }
       return;
     }
+    if (key.ctrl && key.name === "c") { key.preventDefault(); requestQuit(); return; }
     if (key.ctrl || key.meta) return;
-    if (key.name === "q") { renderer.destroy(); return; }
-    if (key.name === "escape" && bulkProposing) { key.preventDefault(); suggestionController?.abort(); return; }
-    if (key.name === "A" || (key.name === "a" && key.shift)) { key.preventDefault(); acceptAllSuggestions(); return; }
-    if (key.name === "1" || key.name === "2") { planView = key.name === "2"; fieldView = raw = proposalView = false; rows = []; refresh(); }
-    else if (key.name === "tab") { key.preventDefault(); focusRight = !focusRight; (focusRight ? right : tree).focus(); refresh(); }
-    else if (key.name === "left" && !focusRight) { key.preventDefault(); toggle(false); }
-    else if (key.name === "right" && !focusRight) { key.preventDefault(); toggle(true); }
-    else if (["up", "down", "pageup", "pagedown", "home", "end", "return"].includes(key.name) && !focusRight) {
+    if (key.name === "q") { requestQuit(); return; }
+    if (key.name === "escape") {
       key.preventDefault();
-      if (key.name === "return") toggle();
-      else {
-        const page = Math.max(1, tree.viewport.height - 1);
-        const index = key.name === "home" ? 0 : key.name === "end" ? rows.length - 1 : selectedIndex + (key.name === "up" ? -1 : key.name === "down" ? 1 : key.name === "pageup" ? -page : page);
-        selectRow(Math.max(0, Math.min(rows.length - 1, index)));
+      if (panel !== "overview" && panel !== "apply") returnToOverview();
+      else if (isBusy()) { suggestionController?.abort(); tell("Cancelling metadata lookup; completed proposals stay available."); }
+      else { setFocus(view === 3); updateDetail(true); }
+      return;
+    }
+    if (panel === "apply") {
+      if (key.name === "tab") { key.preventDefault(); setFocus(true); return; }
+      if (key.name === "d" || key.name === "return") { key.preventDefault(); void startApply(true); return; }
+      if (key.name === "a" && !key.shift) { key.preventDefault(); startEdit("apply"); return; }
+      if (key.name === "r") {
+        try { rescanCollection(); tell("Collection rescanned. Review the configured moves before applying."); }
+        catch (error) { executionLocked = true; tell(`Cannot rescan: ${errorMessage(error)}`); }
+        return;
       }
     }
-    else if (key.name === "t") { key.preventDefault(); startEdit("template"); }
+    if (panel === "quit") { if (key.name === "e") startExport(); return; }
+    if (panel === "presets") {
+      key.preventDefault();
+      if (["1", "2", "3"].includes(key.name)) presetIndex = Number(key.name) - 1;
+      else if (key.name === "up" || key.name === "down") presetIndex = (presetIndex + (key.name === "up" ? -1 : 1) + presets.length) % presets.length;
+      else if (key.name === "return") { choosePreset(); return; }
+      updateDetail(true); return;
+    }
+    if (panel === "export") { if (key.name === "return") { key.preventDefault(); openSelected(); } return; }
+    if (key.name === "?" || key.sequence === "?") { key.preventDefault(); if (panel === "commands") returnToOverview(); else openPanel("commands"); return; }
+    if (key.name === "A" || (key.name === "a" && key.shift)) { key.preventDefault(); acceptAllSuggestions(); return; }
+    if (key.name === "P" || (key.name === "p" && key.shift)) { key.preventDefault(); void runSuggestions("blocked"); return; }
+    if (panel === "proposals" && ["up", "down", "home", "end", "space", "return", "a", "x", "v"].includes(key.name)) {
+      key.preventDefault();
+      const values = groups();
+      if (key.name === "return" || key.name === "a") { acceptSelected(); return; }
+      if (key.name === "x") { rejectSelected(); return; }
+      if (key.name === "v") evidenceExpanded = !evidenceExpanded;
+      else if (key.name === "space") {
+        const group = values[proposalIndex];
+        if (group && group.proposal.status !== "accepted") { if (checked.has(group.key)) checked.delete(group.key); else checked.add(group.key); }
+      } else proposalIndex = Math.max(0, Math.min(values.length - 1, key.name === "home" ? 0 : key.name === "end" ? values.length - 1 : proposalIndex + (key.name === "up" ? -1 : 1)));
+      updateDetail();
+      if (["up", "down", "home", "end"].includes(key.name)) right.scrollTo(Math.max(0, proposalIndex * 2 + 3 - Math.floor(right.viewport.height / 2)));
+      return;
+    }
+    if (["1", "2", "3", "4"].includes(key.name)) { switchView(Number(key.name) - 1); return; }
+    if (key.name === "tab") { key.preventDefault(); setFocus(!focusRight); updateDetail(); return; }
+    if (key.name === "b") { returnToOverview(); return; }
+    if (key.name === "return") { key.preventDefault(); openSelected(); return; }
+    if (key.name === "left" && !focusRight) { key.preventDefault(); toggle(false); return; }
+    if (key.name === "right" && !focusRight) { key.preventDefault(); toggle(true); return; }
+    if (["up", "down", "pageup", "pagedown", "home", "end"].includes(key.name) && !focusRight) {
+      key.preventDefault();
+      const page = Math.max(1, tree.viewport.height - 1);
+      const index = key.name === "home" ? 0 : key.name === "end" ? rows.length - 1 : selectedIndex + (key.name === "up" ? -1 : key.name === "down" ? 1 : key.name === "pageup" ? -page : page);
+      selectRow(Math.max(0, Math.min(rows.length - 1, index))); return;
+    }
+    if (key.name === "t") { key.preventDefault(); presetIndex = 0; openPanel("presets"); }
     else if (key.name === "/" || key.sequence === "/") { key.preventDefault(); startEdit("search"); }
     else if (key.name === "o") { key.preventDefault(); startEdit("override"); }
     else if (key.name === "i") { key.preventDefault(); toggleIgnore(); }
-    else if (key.name === "P" || (key.name === "p" && key.shift)) { key.preventDefault(); void runAutoSuggestions("blocked"); }
     else if (key.name === "p") { key.preventDefault(); showProposals(); }
     else if (key.name === "m") { key.preventDefault(); startEdit("manual"); }
-    else if (key.name === "c") { key.preventDefault(); void retrieveSelected(); }
-    else if (key.name === "a" && proposalView) { key.preventDefault(); startEdit("accept"); }
-    else if (key.name === "x" && proposalView) { key.preventDefault(); startEdit("reject"); }
-    else if (key.name === "b" && proposalView) { key.preventDefault(); proposalView = false; updateDetail(); }
-    else if (key.name === "e") { key.preventDefault(); startEdit("export"); }
-    else if (key.name === "r") { raw = !raw; fieldView = proposalView = false; updateDetail(); }
-    else if (key.name === "f") { fieldView = !fieldView; raw = proposalView = false; updateDetail(); }
-    else if (key.name === "s") { filter = (filter + 1) % filters.length; refresh(); }
+    else if (key.name === "c") { key.preventDefault(); retrieveSelected(); }
+    else if (key.name === "e") { key.preventDefault(); startExport(); }
+    else if (key.name === "r") { if (panel === "raw") returnToOverview(); else openPanel("raw"); }
+    else if (key.name === "f") { if (panel === "fields") returnToOverview(); else openPanel("fields"); }
+    else if (key.name === "s") { filter = (filter + 1) % filters.length; panel = homePanel(); refresh(); }
   });
-  const terminate = () => renderer.destroy();
-  process.once("SIGTERM", terminate);
-  renderer.on("destroy", () => process.removeListener("SIGTERM", terminate));
-  const pending = models.reduce((count, model) => count + model.proposals.filter(proposal => proposal.status === "pending").length, 0);
-  status.content = warnings.length ? `${warnings.length} scan warnings; select a directory to inspect.` : pending ? `${pending} pending proposals available. Press p to review; no values accepted.` : "No files will be moved. Export a plan with e.";
-  refresh(); tree.focus();
-  if (autoScope) setTimeout(() => { if (!closed) void runAutoSuggestions(autoScope, autoAccept); }, 0);
+  const terminate = () => { if (applyController) { exitAfterApply = true; stopApply("SIGTERM"); } else renderer.destroy(); };
+  const interrupt = () => { if (applyController) { exitAfterApply = true; stopApply(); } else requestQuit(); };
+  const resize = () => { if (!closed) { updateLayout(); updateDetail(); } };
+  process.on("SIGTERM", terminate); process.on("SIGINT", interrupt); renderer.on("resize", resize);
+  renderer.once("destroy", () => {
+    closed = true; lifetime.abort(); suggestionController?.abort(); applyController?.abort();
+    process.removeListener("SIGTERM", terminate); process.removeListener("SIGINT", interrupt); renderer.removeListener("resize", resize);
+  });
+  refresh(); setFocus(false);
+  if (warnings.length) tell(`${warnings.length} scan warnings. Select a directory to inspect them.`);
+  if (autoScope) setTimeout(() => { if (!closed) void runSuggestions(autoScope, autoAccept); }, 0);
   else if (autoAccept) acceptAllSuggestions();
 }
 
