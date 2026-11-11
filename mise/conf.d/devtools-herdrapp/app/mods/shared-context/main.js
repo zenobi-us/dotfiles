@@ -1,14 +1,17 @@
 // Native Context and Tracker panels. The settings select C or C2 without changing data APIs.
 import { View, div } from "gpui-kit";
 import { h_flex, v_flex, TextView, Scrollbar, h_resizable, resizable_panel } from "gpui-base";
-import { spaces, panes, focused, props, theme, run, openOverlay, nextCommand } from "herdr";
+import { spaces, panes, focused, props, theme, run, nextCommand } from "herdr";
 import { request } from "./client.js";
 import { loadPreferences, DEFAULTS } from "./preferences.js";
 import { dependencyRows, revealPath, itemType } from "./tree.js";
 import { button, icon, note, select, typeColor, typeIcon } from "./ui.js";
-import { initAction, renderAction } from "./action.js";
 import { graphView, initGraphMenu, renderGraphMenu } from "./graph-view.js";
 import { compactHeader } from "./header.js";
+import { initiativeProgress } from "./progress-model.js";
+import { initiativeProgressRow } from "./progress.js";
+import { workflowActivity } from "./activity-model.js";
+import { initActionMenus } from "./action-menu.js";
 
 function location() {
   const given = props() ?? {}, space = spaces().find(item => item.active), focus = focused();
@@ -21,11 +24,12 @@ function stateIcon(state) { return state === "READY" ? "▷" : state === "DONE" 
 export default class SharedContext extends View {
   init(_given, cx) {
     this.mode = props()?.mode ?? "tracker";
-    if (this.mode === "action") { initAction(this, cx); return; }
     if (this.mode === "graph-actions") { initGraphMenu(this, cx); return; }
     this.focus = cx.focus_handle();
     this.selectFocus = { "context-store": cx.focus_handle(), "context-preset": cx.focus_handle() };
     this.recordTab = "description"; this.detailError = "";
+    this.activity = workflowActivity(); this.activityFilter = "all";
+    if (this.mode === "tracker") initActionMenus(this, cx);
     this.recordTabFocus = { description: cx.focus_handle(), activity: cx.focus_handle(), lineage: cx.focus_handle() };
     this.graphInitiative = null;
     this.preferences = DEFAULTS; this.preferencesReady = false;
@@ -34,6 +38,7 @@ export default class SharedContext extends View {
     // Settings reload the mod. Keep view state, but revalidate record IDs against the next snapshot.
     this.saved = new Map(JSON.parse(localStorage.getItem(this.viewStorageKey) ?? "[]").map(([key, value]) => [key, { ...value, collapsed: new Set(value.collapsed), fileFolders: new Set(value.fileFolders) }]));
     this.collapsed = new Set(); this.queue = "initiatives"; this.selected = null; this.drawer = "peek";
+    this.progress = new Map();
     this.fileFolders = new Set(); this.fileEntries = new Map(); this.filePending = new Set(); this.fileSelection = null;
     this.error = ""; this.loading = false; this.store = "repository"; this.preset = ""; this.bodySize = { width: 408, height: 500 };
     cx.spawn(async cx => {
@@ -54,8 +59,9 @@ export default class SharedContext extends View {
   }
 
   close() {
-    if (this.mode === "action") this.input.release();
+    this.actionInput?.release();
   }
+
 
   remember() {
     if (!this.viewKey) return;
@@ -70,7 +76,10 @@ export default class SharedContext extends View {
     if (key === this.key) return;
     this.remember(); this.key = key; this.where = next;
     this.context = null; this.snapshot = null; this.detail = null; this.filePreview = null; this.viewKey = null;
+    this.progress = new Map();
     this.recordTab = "description"; this.detailError = "";
+    this.activity = workflowActivity(); this.activityFilter = "all";
+    this.actionOpen = null; this.actionError = "";
     this.openSelect = null; this.selectKeyHandlers = null; this.graphInitiative = null; this.graphViews = new Map();
     this.revision++; this.detailRevision++; this.loading = false; this.error = "";
     if (next.machine) { this.error = "The selected repository is remote. Its Bun service must run on that machine. Local paths are not a remote fallback."; return; }
@@ -105,6 +114,7 @@ export default class SharedContext extends View {
           const snapshot = await request("tracker", cwd);
           if (revision !== this.revision) return;
           this.snapshot = snapshot;
+          this.progress = initiativeProgress(snapshot);
           if (this.selected) {
             const records = this.selected.kind === "initiative" ? snapshot.initiatives : snapshot.tickets;
             const record = records.find(item => item.id === this.selected.id);
@@ -118,7 +128,10 @@ export default class SharedContext extends View {
 
   choose(record, kind, cx, reveal = true) {
     if (this.drawer === "expanded" && this.selected?.id === record.id && reveal) return;
-    if (this.selected?.id !== record.id || this.selected.kind !== kind) this.recordTab = "description";
+    if (this.selected?.id !== record.id || this.selected.kind !== kind) {
+      this.recordTab = "description"; this.activityFilter = "all";
+      this.actionOpen = null; this.actionError = "";
+    }
     this.selected = { id: record.id, kind, ref: record.ref };
     if (reveal && this.drawer === "closed") this.drawer = "peek";
     if (kind === "ticket" && this.snapshot) {
@@ -127,10 +140,14 @@ export default class SharedContext extends View {
     }
     const serial = ++this.detailRevision, revision = this.revision;
     this.detail = null; this.detailLoading = true; this.detailError = ""; this.event = null;
+    this.activity = workflowActivity();
     cx.spawn(async cx => {
       try {
         const detail = await request("detail", this.where.cwd, { id: record.id, kind });
-        if (serial === this.detailRevision && revision === this.revision) this.detail = detail;
+        if (serial === this.detailRevision && revision === this.revision) {
+          this.detail = detail;
+          this.activity = workflowActivity(detail.workflow);
+        }
       } catch (error) { if (serial === this.detailRevision && revision === this.revision) this.detailError = String(error.message ?? error); }
       finally { if (serial === this.detailRevision && revision === this.revision) { this.detailLoading = false; cx.notify(); } }
     });
@@ -231,25 +248,27 @@ export default class SharedContext extends View {
         if (row.reference) revealPath(this.collapsed, row.reference);
         this.choose(row.record, group ? "initiative" : "ticket", cx);
       };
-      return h_flex().id(`tracker-row:${row.path}`).h(60).flex_none().pl(8 + row.depth * 18).pr(6).gap(6).items_center().rounded(6).bg(selected ? t.selected : t.background).hover(el => el.bg(selected ? t.selected : t.hover))
+      return h_flex().id(`tracker-row:${row.path}`).h(group ? 80 : 60).flex_none().pl(8 + row.depth * 18).pr(6).gap(6).items_center().rounded(6).bg(selected ? t.selected : t.background).hover(el => el.bg(selected ? t.selected : t.hover))
         .child(row.children ? button(`toggle:${row.path}`, "", (_event, cx) => { cx.stop_propagation(); if (disabled) return; if (this.collapsed.has(row.path)) this.collapsed.delete(row.path); else this.collapsed.add(row.path); this.remember(); cx.notify(); }, { label: `${row.expanded ? "Collapse" : "Expand"} ${row.record.title}`, disabled }).w(24).px(0).bg("#00000000").child(icon(row.expanded ? "down" : "right", 12)) : div().w(24).flex_none())
-        .child(button(`select:${row.path}`, "", action, { label: `${type}: ${row.record.title}. ${row.record.id}. ${row.state ?? `${row.children} tickets`}${row.reference ? ". Shared membership." : ""}`, disabled, height: 56 }).flex_1().min_w(0).px(0).bg("#00000000").hover(el => el.bg("#00000000")).text_color(t.foreground).tooltip(`${row.record.title}\n${row.record.id} · ${type}${row.state ? ` · ${row.state}` : ""}`)
+        .child(button(`select:${row.path}`, "", action, { label: `${type}: ${row.record.title}. ${row.record.id}. ${row.state ?? `${row.children} tickets`}${row.reference ? ". Shared membership." : ""}`, disabled, height: group ? 76 : 56 }).flex_1().min_w(0).px(0).bg("#00000000").hover(el => el.bg("#00000000")).text_color(t.foreground).tooltip(`${row.record.title}\n${row.record.id} · ${type}${row.state ? ` · ${row.state}` : ""}`)
           .child(v_flex().flex_1().min_w(0).gap(5)
             .child(h_flex().gap(7).items_center().min_w(0).child(div().w(16).text_size(16).text_color(typeColor(type, t)).child(typeIcon(type))).child(div().flex_1().min_w(0).truncate().text_size(13).child(row.record.title)))
             .child(h_flex().pl(23).gap(7).items_center().min_w(0).child(div().flex_1().min_w(0).truncate().text_size(10).text_color(t.muted).child(row.record.id))
-              .child(div().flex_none().text_size(10).text_color(row.state ? statusColor(row.state, t) : t.dim).child(row.state ? `${stateIcon(row.state)} ${row.state}` : `${row.children} tickets`))
-              .when(Boolean(row.reference), el => el.child(div().text_color(t.accent).child("↗"))))))
+              .when(!group, el => el.child(div().flex_none().text_size(10).text_color(row.state ? statusColor(row.state, t) : t.dim).child(row.state ? `${stateIcon(row.state)} ${row.state}` : `${row.children} tickets`)))
+              .when(Boolean(row.reference), el => el.child(div().text_color(t.accent).child("↗"))))
+            .when(group, el => el.child(v_flex().w_full().min_w(0).pl(23).child(initiativeProgressRow(this.progress.get(row.record.id), t))))))
         .when(group, el => el.child(button(`initiative-graph:${row.record.id}`, "⑂", (_event, cx) => { cx.stop_propagation(); this.openInitiativeGraph(row.record, cx); }, { label: `Open dependency graph for ${row.record.title}`, disabled }).w(28).px(0).text_color(typeColor("initiative", t)).tooltip("Initiative dependency graph")));
     });
-    return v_flex().id("tracker-tree-frame").min_w(0).min_h(0).h(height ?? "100%").bg(t.background)
+    // Resizable panels do not stretch their child to the dragged width.
+    return v_flex().id("tracker-tree-frame").w_full().min_w(0).min_h(0).h(height ?? "100%").bg(t.background)
       .child(v_flex().id("tracker-tree").flex_1().min_w(0).min_h(0).overflow_y_scrollbar().p(6).children(rows.length ? rows : [note(this.loading ? "Read tracker records…" : "No records match this queue.")]))
       .child(this.treeFilters());
   }
 
   treeFilters() {
     const t = theme();
-    return h_flex().id("tracker-tree-footer").role("toolbar").accessibility_label("Tracker filters").flex_none().flex_wrap().min_h(36).p(6).gap(3).items_center().border_t(1).border_color(t.border)
-      .children(["initiatives", "ready", "review", "blocked", "all"].map(queue => button(`queue:${queue}`, queue[0].toUpperCase() + queue.slice(1), (_event, cx) => { this.queue = queue; this.selected = null; this.detail = null; this.detailRevision++; this.remember(); cx.notify(); }).text_size(10).px(5).bg(this.queue === queue ? t.selected : t.background)));
+    return h_flex().id("tracker-tree-footer").role("toolbar").accessibility_label("Tracker filters").flex_none().h(36).p(0).gap(0).items_stretch().border_t(1).border_color(t.border)
+      .children(["initiatives", "ready", "review", "blocked", "all"].map((queue, index) => button(`queue:${queue}`, queue[0].toUpperCase() + queue.slice(1), (_event, cx) => { this.queue = queue; this.selected = null; this.detail = null; this.detailRevision++; this.remember(); cx.notify(); }).h_full().flex_1().min_w(0).rounded(0).text_size(10).px(4).border_l(index ? 1 : 0).border_color(t.border).bg(this.queue === queue ? t.selected : t.background)));
   }
 
   openInitiativeGraph(initiative, cx) {
@@ -268,6 +287,18 @@ export default class SharedContext extends View {
   selectRecordTab(tab, cx) {
     this.recordTab = tab;
     this.recordTabFocus[tab].focus();
+    cx.notify();
+  }
+
+  inspectActivity(cx) {
+    this.activityFilter = this.activity.invalidEvents.length ? "invalid" : "all";
+    this.event = null;
+    this.selectRecordTab("activity", cx);
+  }
+
+  filterActivity(filter, cx) {
+    this.activityFilter = filter;
+    this.event = null;
     cx.notify();
   }
 
@@ -304,22 +335,35 @@ export default class SharedContext extends View {
     return v_flex().min_w(0).child(TextView.markdown(`record-body:${record.ref}`, record.body ?? "").scrollable(false));
   }
 
-  recordActivity(events, workflow) {
-    const t = theme();
-    return v_flex().gap(12)
-      .when(Boolean(workflow?.error), el => el.child(note(workflow.error, true)))
-      .when(events.length === 0 && !workflow?.error, el => el.child(v_flex().py(32).gap(8).items_center()
-        .child(div().text_size(15).child("No workflow events"))
-        .child(div().text_size(12).text_color(t.muted).child("No canonical events or receipts are available for this record."))))
-      .children(events.map(event => {
-        const label = `${event.fields?.kind ?? event.phase ?? "Event"} · ${event.id}`;
+  recordActivity() {
+    const t = theme(), { events, invalidEvents, groups, error } = this.activity;
+    const filtered = this.activityFilter === "invalid" ? invalidEvents : events;
+    return v_flex().gap(12).min_w(0)
+      .child(h_flex().flex_wrap().gap(8).items_center()
+        .child(button("activity-all", `All events · ${events.length}`, (_event, cx) => this.filterActivity("all", cx))
+          .tab_stop(this.recordTab === "activity").bg(this.activityFilter === "all" ? t.selected : t.raised))
+        .child(button("activity-invalid", `Invalid receipts · ${invalidEvents.length}`, (_event, cx) => this.filterActivity("invalid", cx))
+          .tab_stop(this.recordTab === "activity").bg(this.activityFilter === "invalid" ? t.selected : t.raised)))
+      .children(groups.map(group => v_flex().gap(4).min_w(0)
+        .child(div().text_size(12).text_color(t.blocked).child(`${group.events.length} ${group.events.length === 1 ? "receipt" : "receipts"} · shared validation error`))
+        .child(div().text_size(12).whitespace_normal().text_color(t.foreground).child(group.message))))
+      .when(Boolean(error), el => el.child(note(error, true)))
+      .child(div().text_size(11).text_color(t.muted).child(`${filtered.length} of ${events.length} events shown`))
+      .when(filtered.length === 0, el => el.child(note(this.activityFilter === "invalid" ? "No receipt validation errors are available in this view." : "No canonical events or receipts are available for this record.")))
+      .children(filtered.map(event => {
+        const phase = event.fields?.phase ?? event.phase ?? event.fields?.kind ?? "Event";
+        const name = event.fields?.receipt_id ?? event.ref?.split("/").pop() ?? event.id;
+        const label = `${phase} · ${name}`, expanded = this.event === event.id;
         return v_flex().gap(5).min_w(0)
-          .child(button(`event:${event.id}`, "", (_event, cx) => { this.event = this.event === event.id ? null : event.id; cx.notify(); }, { label })
+          .child(button(`event:${event.id}`, "", (_event, cx) => { this.event = expanded ? null : event.id; cx.notify(); }, { label: `${expanded ? "Collapse" : "Expand"} ${label}${event.error ? ". Invalid receipt." : ""}` })
             .tab_stop(this.recordTab === "activity").min_w(0).w_full().tooltip(label)
-            .child(div().flex_1().min_w(0).truncate().child(label)))
-          .when(this.event === event.id, el => el.child(div().text_size(11).text_color(t.muted).child(event.ref))
+            .child(div().flex_1().min_w(0).truncate().child(`${expanded ? "▾" : "▸"} ${label}`))
+            .when(Boolean(event.error), el => el.child(div().flex_none().text_size(10).text_color(t.blocked).child("Invalid receipt"))))
+          .when(expanded, el => el
+            .child(div().text_size(11).whitespace_normal().text_color(t.muted).child(event.ref))
+            .when(Boolean(event.error), el => el.child(note(event.error, true)))
             .child(TextView.markdown(`event-body:${event.id}`, event.body ?? "").scrollable(false))
-            .child(div().text_size(11).text_color(t.muted).child(JSON.stringify(event.fields ?? event, null, 2))));
+            .child(div().text_size(11).whitespace_normal().text_color(t.muted).child(JSON.stringify(event.fields ?? event, null, 2))));
       }));
   }
 
@@ -341,14 +385,14 @@ export default class SharedContext extends View {
     return reader.child(this.recordTabs(events))
       .child(div().relative().flex_1().min_h(0).overflow_hidden()
         .children(["description", "lineage", "activity"].map(tab => {
-          const panelId = `record-panel:${this.viewKey}:${record.ref}:${tab}`, active = this.recordTab === tab;
+          const panelId = `record-panel:${this.viewKey}:${record.ref}:${tab}${tab === "activity" ? `:${this.activityFilter}` : ""}`, active = this.recordTab === tab;
           if (tab === "lineage") return div().absolute().top(0).left(active ? 0 : "100%").size_full().when(!active, el => el.invisible())
             .child(v_flex().id(panelId).size_full().min_h(0).p(12).when(active, el => el.role("tab_panel").accessibility_label(`Blocking lineage for ${record.title}`)
               .child(graphView(this, `lineage:${this.selected.kind}:${record.id}`, this.selected.kind === "initiative" ? record.rootTicketIds ?? record.ticketIds : [record.id], this.selected.kind === "ticket" ? record.id : undefined))));
           return div().absolute().top(0).left(active ? 0 : "100%").size_full().when(!active, el => el.invisible())
             .child(v_flex().id(panelId).when(active, el => el.role("tab_panel").accessibility_label(`${tab} for ${record.title}`))
               .tab_index(0).tab_stop(active).size_full().overflow_y_scroll().p(20)
-              .child(tab === "description" ? this.recordDescription(record) : this.recordActivity(events, this.detail.workflow)))
+              .child(tab === "description" ? this.recordDescription(record) : this.recordActivity()))
             .child(Scrollbar.vertical(panelId).absolute().inset_0());
         })));
   }
@@ -374,7 +418,6 @@ export default class SharedContext extends View {
   }
 
   render(cx) {
-    if (this.mode === "action") return renderAction(this);
     if (this.mode === "graph-actions") return renderGraphMenu(this);
     this.follow(cx);
     const t = theme(), title = this.mode === "context" ? "Context" : "Tracker";
@@ -388,6 +431,6 @@ export default class SharedContext extends View {
       .when(this.preferencesReady && !this.context && this.loading && !this.error, el => el.child(note("Read repository context…")))
       .when(Boolean(this.context) && !this.context.ready, el => el.child(this.onboarding()))
       .when(Boolean(this.context?.ready), el => el.child(this.mode === "context" ? this.filesView() : this.snapshot ? this.trackerView() : note(this.error ? "The tracker is unavailable. Correct the error, then select Refresh." : "Read tracker records and workflow state…")))
-      .when(Boolean(this.context?.ready), el => el.child(h_flex().h(25).flex_none().px(10).gap(8).items_center().border_t(1).border_color(t.border).text_size(10).text_color(t.dim).child(this.loading ? "Refresh records…" : `Canonical records · ${this.context.mode}`).when(this.mode === "tracker", el => el.child("Grouped by type · ⑂ initiative graph · ↗ shared membership"))));
+      .when(Boolean(this.context?.ready) && this.mode === "context", el => el.child(h_flex().h(25).flex_none().px(10).gap(8).items_center().border_t(1).border_color(t.border).text_size(10).text_color(t.dim).child(this.loading ? "Refresh records…" : `Canonical records · ${this.context.mode}`)));
   }
 }

@@ -1,16 +1,21 @@
 // The compact header owns record metadata; document tabs keep their reading space.
 import { div } from "gpui-kit";
 import { h_flex, v_flex } from "gpui-base";
-import { theme, openOverlay } from "herdr";
+import { theme } from "herdr";
 import { button, typeColor, typeIcon } from "./ui.js";
 import { itemType } from "./tree.js";
 import { workflowBadge, badgePalette } from "./header-model.js";
+import { initiativeProgressHeader } from "./progress.js";
+import { actionDropdown } from "./action-menu.js";
 
 export function compactHeader(view, record) {
   const t = theme(), kind = view.selected.kind;
   const type = kind === "initiative" ? "initiative" : itemType(record);
   const state = kind === "ticket" ? view.snapshot.states?.[record.id] : null;
-  const badge = workflowBadge(state, view.detail?.workflow, type === "ticket");
+  const recommendation = workflowBadge(state, view.detail?.workflow, type === "ticket");
+  const recordedStatus = type === "ticket" && record.status ? record.status.trim().toLowerCase() : null;
+  const badge = recordedStatus ? { label: "recorded", value: recordedStatus, tone: ["completed", "done", "closed", "resolved", "complete"].includes(recordedStatus) ? "complete" : "neutral" } : recommendation;
+  const activity = view.activity;
   const collection = view.context.collections.find(item => item.id === (kind === "ticket" ? "tickets" : "initiatives"));
   const store = collection?.store ?? collection?.adapter ?? view.context.mode;
   const copied = view.copiedReference === record.ref;
@@ -24,17 +29,22 @@ export function compactHeader(view, record) {
     .child(h_flex().flex_wrap().gap(8).items_center().min_w(0)
       .child(div().flex_none().text_size(11).text_color(typeColor(type, t)).child(`${typeIcon(type)} ${type}`))
       .child(div().flex_1().min_w(120).whitespace_normal().text_size(10).text_color(t.muted).tooltip(record.id).child(record.id))
-      .when(Boolean(badge), el => el.child(segmentedBadge(`record-workflow:${record.ref}`, `${badge.label}:`, badge.value, workflowPalette).flex_none())))
+      .when(Boolean(badge), el => el.child(segmentedBadge(`record-workflow:${record.ref}`, `${badge.label}:`, badge.value, workflowPalette).flex_none()))
+      .when(Boolean(recordedStatus && recommendation && recommendation.label !== "status" && !activity?.needsReview), el => el.child(segmentedBadge(`record-recommendation:${record.ref}`, `${recommendation.label}:`, recommendation.value, metadataPalette).flex_none())))
     .child(div().text_size(18).font_semibold().whitespace_normal().child(record.title))
+    .when(kind === "initiative", el => el.child(initiativeProgressHeader(view.progress.get(record.id), t)))
     .child(h_flex().flex_wrap().gap(6).items_center()
-      .children((view.detail?.actions ?? []).map(choice => button(`action:${choice.action}`, choice.label, () => openOverlay({ mod: "shared-context", kind: "dialog", width: 760, height: 600, props: { mode: "action", cwd: view.context.repository, space: view.where.space, id: record.id, kind, action: choice.action } }), { disabled: Boolean(choice.disabledReason) }).tooltip(choice.disabledReason ?? `Prepare ${choice.label}`)))
+      .children((view.detail?.actions ?? []).map(choice => actionDropdown(view, choice, { cwd: view.context.repository, space: view.where.space, id: record.id, kind })))
       .child(div().flex_1())
       .child(button("copy-record-ref", copied ? "Copied reference" : "Copy reference", (_event, cx) => copyRecordReference(view, record, cx)).bg("#00000000")))
     .child(h_flex().flex_wrap().gap(8).min_w(0).pt(10).border_t(1).border_color(t.border)
       .child(segmentedBadge(`record-store:${record.ref}`, "store", store, metadataPalette).flex_none())
       .child(segmentedBadge(`record-reference:${record.ref}`, copied ? "copied" : "reference", record.ref, metadataPalette, (_event, cx) => copyRecordReference(view, record, cx), copied ? `Reference copied: ${record.ref}. Activate to copy again.` : `Copy reference: ${record.ref}`)
         .flex_1().flex_basis(280).min_w(0).tooltip("Copy the full canonical reference")))
-    .when(Boolean(state?.reason), el => el.child(h_flex().flex_wrap().gap(8).p(10).border_l(2).border_color(workflowPalette.border).bg(workflowPalette.label)
+    .when(Boolean(activity?.needsReview), el => el.child(h_flex().flex_wrap().gap(8).p(10).border_l(2).border_color(t.blocked)
+      .child(div().flex_1().min_w(160).whitespace_normal().text_size(12).text_color(t.blocked).child(activity.summary))
+      .child(button("inspect-workflow-activity", "View in Activity", (_event, cx) => view.inspectActivity(cx)))))
+    .when(Boolean(state?.reason && !activity?.needsReview), el => el.child(h_flex().flex_wrap().gap(8).p(10).border_l(2).border_color(workflowPalette.border).bg(workflowPalette.label)
       .child(div().text_size(10).text_color(workflowPalette.labelText).child("Reason"))
       .child(div().flex_1().min_w(160).whitespace_normal().text_size(11).text_color(t.foreground).child(state.reason))))
     .when(Boolean(record.blockedBy?.length), el => el.child(h_flex().flex_wrap().gap(6).items_center()

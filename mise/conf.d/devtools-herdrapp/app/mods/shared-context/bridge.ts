@@ -24,7 +24,7 @@ export async function request(input: Record<string, unknown>) {
     case "detail": case "prepare": {
       if (typeof input.id !== "string" || !input.id) throw new Error("Select a tracker record.");
       if (input.kind !== "ticket" && input.kind !== "initiative") throw new Error("Select a ticket or initiative.");
-      return input.operation === "detail" ? detail(cwd, input.id, input.kind) : prepare(cwd, input.id, input.kind, String(input.action) as ExplorerAction, String(input.prompt ?? ""), typeof input.key === "string" ? input.key : undefined);
+      return input.operation === "detail" ? detail(cwd, input.id, input.kind) : prepare(cwd, input.id, input.kind, String(input.action) as ExplorerAction, typeof input.prompt === "string" ? input.prompt : "");
     }
     default: throw new Error("Unknown shared-context operation.");
   }

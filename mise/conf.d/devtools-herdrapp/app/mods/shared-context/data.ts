@@ -145,7 +145,7 @@ export async function detail(cwd: string, id: string, kind: "ticket" | "initiati
   return { record, kind, workflow, actions: actionChoices(target, snapshot, workflow, await commands()), repository: context.repositoryRoot };
 }
 
-export async function prepare(cwd: string, id: string, kind: "ticket" | "initiative", action: ExplorerAction, prompt: string, expectedKey?: string) {
+export async function prepare(cwd: string, id: string, kind: "ticket" | "initiative", action: ExplorerAction, prompt: string) {
   const context = await project(cwd), exec = executor(cwd), snapshot = await loadExplorerSnapshot(context, exec);
   const target = kind === "initiative"
     ? { kind: "initiative" as const, initiative: snapshot.initiatives.find(item => item.id === id)! }
@@ -156,8 +156,9 @@ export async function prepare(cwd: string, id: string, kind: "ticket" | "initiat
   const prepared = await prepareSessionRequest(context, exec, request);
   const choice = actionChoices(prepared.request.target, prepared.request.snapshot, prepared.request.workflow, await commands()).find(item => item.action === action);
   if (!choice || choice.disabledReason) throw new Error(choice?.disabledReason ?? "This action is unavailable.");
-  if (expectedKey && expectedKey !== prepared.key) throw new Error("Action inputs changed. Prepare and inspect the prompt again.");
-  return { key: prepared.key, prompt: buildSessionPrompt(prepared.request), repository: context.repositoryRoot };
+  const binary = Bun.which("omp");
+  if (!binary) throw new Error("OMP is unavailable. Install OMP and run the panel installer again.");
+  return { binary, prompt: buildSessionPrompt(prepared.request), repository: context.repositoryRoot };
 }
 
 export function message(error: unknown): string { return error instanceof Error ? error.message : String(error); }

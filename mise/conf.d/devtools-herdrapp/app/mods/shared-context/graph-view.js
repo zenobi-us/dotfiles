@@ -1,10 +1,11 @@
-// Native graph surfaces share canonical records and the existing confirmed action handoff.
+// Native graph surfaces share canonical records and direct action launches.
 import { div } from "gpui-kit";
 import { h_flex, v_flex } from "gpui-base";
 import { theme, openOverlay, closeOverlay, props } from "herdr";
 import { request } from "./client.js";
 import { dependencyGraph } from "./graph.js";
 import { button, note } from "./ui.js";
+import { initActionMenus, actionDropdown } from "./action-menu.js";
 
 export function graphView(view, key, roots, focusId) {
   const t = theme();
@@ -62,6 +63,7 @@ export function graphView(view, key, roots, focusId) {
 
 export function initGraphMenu(view, cx) {
   view.menuProps = props(); view.menuLoading = true; view.menuError = "";
+  initActionMenus(view, cx);
   cx.spawn(async cx => {
     try { view.menuDetail = await request("detail", view.menuProps.cwd, { id: view.menuProps.id, kind: "ticket" }); }
     catch (error) { view.menuError = String(error.message ?? error); }
@@ -76,9 +78,6 @@ export function renderGraphMenu(view) {
     .child(div().text_size(10).text_color(t.muted).child(p.id))
     .when(view.menuLoading, el => el.child(note("Inspect canonical actions…")))
     .when(Boolean(view.menuError), el => el.child(note(view.menuError, true)))
-    .children((view.menuDetail?.actions ?? []).map(choice => button(`graph-action:${choice.action}`, choice.label, () => {
-      openOverlay({ mod: "shared-context", kind: "dialog", width: 760, height: 600, props: { mode: "action", cwd: p.cwd, space: p.space, id: p.id, kind: "ticket", action: choice.action } });
-      closeOverlay(p.overlay);
-    }, { disabled: Boolean(choice.disabledReason) }).tooltip(choice.disabledReason ?? `Prepare ${choice.label}`)))
-    .child(button("close-graph-menu", "Close", () => closeOverlay(p.overlay)));
+    .children((view.menuDetail?.actions ?? []).map(choice => actionDropdown(view, choice, { ...p, kind: "ticket" })))
+    .child(button("close-graph-menu", "Close", () => closeOverlay(p.overlay), { disabled: view.actionBusy }));
 }
