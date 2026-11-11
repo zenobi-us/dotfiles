@@ -1,6 +1,6 @@
 // Uses disposable Git repositories; inspection itself must not write workflow or source state.
 import { afterEach, expect, test } from "bun:test";
-import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
@@ -76,16 +76,20 @@ test("active receipts retain their base-checkout identity when inspected from a 
   expect(await readFile(path, "utf8")).toBe(original);
 
   const completionPath = join(source, "workflows/T-1/events/complete.json");
-  const completion = { ...event, receipt_id: "complete-2", parent_receipt: "start-1", event: "phase-complete",
-    status: "blocked", pane_id: null, created_at: "2026-10-02T00:00:00Z" };
+  const completion = {
+    ...event, receipt_id: "complete-2", parent_receipt: "start-1", event: "phase-complete",
+    status: "blocked", pane_id: null, created_at: "2026-10-02T00:00:00Z"
+  };
   await put(completionPath, JSON.stringify(completion));
   workflow = await loadTicketWorkflow(linked, ticket, inventory);
   expect(workflow.receipts.map(item => item.id)).toContain("complete-2");
   await put(completionPath, JSON.stringify({ ...completion, session_id: null }));
   workflow = await loadTicketWorkflow(linked, ticket, inventory);
   expect(workflow.events?.find(item => item.ref.endsWith("/complete.json"))?.error).toContain("pane_id");
-  await put(completionPath, JSON.stringify({ ...completion, phase: "implementation", event: "phase-result",
-    evidence: { store: "repository", ref: "workflows/T-1/artifacts/evidence/run" } }));
+  await put(completionPath, JSON.stringify({
+    ...completion, phase: "implementation", event: "phase-result",
+    evidence: { store: "repository", ref: "workflows/T-1/artifacts/evidence/run" }
+  }));
   workflow = await loadTicketWorkflow(linked, ticket, inventory);
   expect(workflow.events?.find(item => item.ref.endsWith("/complete.json"))?.error).toContain("pane_id");
   await rm(completionPath);
@@ -135,14 +139,16 @@ test("jira inspection reads one ticket and its blockers through the configured c
   await put(join(context.repositoryRoot, "docs/agents/issue-tracker.md"), "---\nbackend: jira\nsite: https://example.atlassian.net\ncli: jira-fixture --flag\n---\n");
   const jira = "https://example.atlassian.net/browse/ABC-7";
   const calls: string[][] = [];
-  const issue = (blockerCategory: string) => JSON.stringify({ key: "ABC-7", fields: {
-    summary: "Fix lodgement", status: { name: "To Do", statusCategory: { key: "new" } }, issuetype: { name: "Dev bug" }, description: "Body",
-    issuelinks: [
-      { type: { inward: "is blocked by" }, inwardIssue: { key: "ABC-3", fields: { status: { name: "Code Review", statusCategory: { key: blockerCategory } } } } },
-      { type: { inward: "is blocked by" }, outwardIssue: { key: "ABC-9", fields: { status: { name: "To Do", statusCategory: { key: "new" } } } } },
-      { type: { inward: "relates to" }, inwardIssue: { key: "ABC-5", fields: { status: { name: "To Do", statusCategory: { key: "new" } } } } },
-    ],
-  } });
+  const issue = (blockerCategory: string) => JSON.stringify({
+    key: "ABC-7", fields: {
+      summary: "Fix lodgement", status: { name: "To Do", statusCategory: { key: "new" } }, issuetype: { name: "Dev bug" }, description: "Body",
+      issuelinks: [
+        { type: { inward: "is blocked by" }, inwardIssue: { key: "ABC-3", fields: { status: { name: "Code Review", statusCategory: { key: blockerCategory } } } } },
+        { type: { inward: "is blocked by" }, outwardIssue: { key: "ABC-9", fields: { status: { name: "To Do", statusCategory: { key: "new" } } } } },
+        { type: { inward: "relates to" }, inwardIssue: { key: "ABC-5", fields: { status: { name: "To Do", statusCategory: { key: "new" } } } } },
+      ],
+    }
+  });
   let blockerCategory = "indeterminate";
   const execute: Exec = async (command, args, cwd) => {
     if (command === "jira-fixture") { calls.push([...args, cwd ?? ""]); return { code: 0, stdout: issue(blockerCategory) }; }
@@ -354,4 +360,75 @@ test("checksum-bound history supplements repair envelopes without rewriting rece
   workflow = await loadTicketWorkflow(context, ticket, readOnly);
   expect(workflow.inspection?.historyValid).toBe(false);
   expect(workflow.error).toContain("Missing receipt parent");
+});
+
+test("missing input refs can be supplemented without changing original bytes or existing provenance", async () => {
+  const { context, ticket } = await fixture();
+  const root = context.repositoryRoot;
+  await put(join(root, ".git/info/exclude"), "/workflows/\n");
+  const commit = await run("git", ["-C", root, "rev-parse", "HEAD"]);
+  const tree = await run("git", ["-C", root, "rev-parse", "HEAD^{tree}"]);
+  const workflowRoot = "workflows/T-1";
+  const artifact = `${workflowRoot}/artifacts/evidence/intent.json`;
+  await put(join(root, artifact), '{"scope":"read-only"}\n');
+  await put(join(root, "outside.json"), '{"outside":true}\n');
+  const escaped = `${workflowRoot}/artifacts/evidence/escape.json`;
+  await symlink(join(root, "outside.json"), join(root, escaped));
+  const common = {
+    schema: "worktree-receipt/v1", workflow_id: ticket.id, attempt: 1, repository: root, worktree: root, workspace_path: root,
+    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "hrdx", pane_id: "1", agent: "pi", session_id: null,
+    ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
+    workflow: { root, store: "repository", ref: workflowRoot }, outputs: [],
+  };
+  const originalInputs = [{ kind: "approval", description: "Explicit read-only scope." }, { kind: "evidence", ref: artifact }];
+  const original = JSON.stringify({
+    ...common, receipt_id: "start-1", parent_receipt: null, phase: "start", event: "phase-complete", status: "blocked",
+    created_at: "2026-10-01T00:00:00Z", inputs: originalInputs,
+  });
+  const target = `${workflowRoot}/events/start-1.json`;
+  await put(join(root, target), original);
+  const readOnly: Exec = async (command, args, cwd) => command === "wt" ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "main", worktree: { path: root } }] }) } : exec(command, args, cwd);
+  expect((await loadTicketWorkflow(context, ticket, readOnly)).error).toContain("receipt inputs ref must be a string");
+  const supplement = { ref: target, sha256: createHash("sha256").update(original).digest("hex"), input_refs: [{ index: 0, ref: artifact }] };
+  const repair = {
+    ...common, receipt_id: "repair-2", parent_receipt: "start-1", phase: "start", event: "history-reconciled", status: "blocked",
+    created_at: "2026-10-02T00:00:00Z", inputs: [{ kind: "receipt", ref: target }, { kind: "evidence", ref: artifact }],
+    history_supplements: [supplement], history_repair_reason: "Supply the absent approval artifact reference.",
+    history_repair_authorization: "Explicit fixture envelope-only repair request.",
+  };
+  const repairPath = join(root, workflowRoot, "events/repair-2.json");
+  await put(repairPath, JSON.stringify(repair));
+  let workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(workflow.inspection?.historyValid).toBe(true);
+  expect(workflow.receipts.find(receipt => receipt.fields.receipt_id === "start-1")?.fields.inputs).toEqual([
+    { ...originalInputs[0], ref: artifact }, originalInputs[1],
+  ]);
+  expect(workflow.events?.find(event => event.ref === target)?.fields?.inputs).toEqual(originalInputs);
+  expect(await readFile(join(root, target), "utf8")).toBe(original);
+  for (const invalid of [
+    { ...supplement, sha256: "0".repeat(64) },
+    { ...supplement, input_refs: [] },
+    { ...supplement, input_refs: [{ index: -1, ref: artifact }] },
+    { ...supplement, input_refs: [{ index: 0.5, ref: artifact }] },
+    { ...supplement, input_refs: [{ index: 2, ref: artifact }] },
+    { ...supplement, input_refs: [{ index: 1, ref: artifact }] },
+    { ...supplement, input_refs: [{ index: 0, ref: artifact }, { index: 0, ref: artifact }] },
+    { ...supplement, input_refs: [{ index: 0, ref: artifact, status: "completed" }] },
+    { ...supplement, input_refs: [{ index: 0, ref: join(root, artifact) }] },
+    { ...supplement, input_refs: [{ index: 0, ref: "outside.json" }] },
+    { ...supplement, input_refs: [{ index: 0, ref: escaped }] },
+    { ...supplement, input_refs: [{ index: 0, ref: target }] },
+    { ...supplement, input_refs: [{ index: 0, ref: `${workflowRoot}/artifacts/evidence/missing.json` }] },
+    { ...supplement, input_refs: [{ index: 0, ref: `${workflowRoot}/artifacts/evidence` }] },
+    { ...supplement, inputs: [{ kind: "approval", ref: artifact }] },
+  ]) {
+    const supplied = invalid.input_refs?.map(value => ({ kind: "evidence", ref: value.ref })) ?? [];
+    await put(repairPath, JSON.stringify({ ...repair, inputs: [...repair.inputs, ...supplied], history_supplements: [invalid] }));
+    workflow = await loadTicketWorkflow(context, ticket, readOnly);
+    expect(workflow.inspection?.historyValid).toBe(false);
+    expect(recoveryDecision(ticket, { tickets: [ticket] }, workflow).mode).toBe("blocked");
+  }
+  await put(repairPath, JSON.stringify({ ...repair, inputs: [{ kind: "receipt", ref: target }] }));
+  expect((await loadTicketWorkflow(context, ticket, readOnly)).error).toContain("listed in the repair inputs");
+  expect(await readFile(join(root, target), "utf8")).toBe(original);
 });

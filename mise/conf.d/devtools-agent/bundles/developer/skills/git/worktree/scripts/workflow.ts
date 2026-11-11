@@ -289,7 +289,7 @@ async function historySupplements(
   const inputs = references(doc.fields.inputs, "history repair inputs");
   for (const value of list(doc.fields.history_supplements, "history supplements")) {
    const supplement = object(value, "history supplement");
-   if (Object.keys(supplement).some(key => !["ref", "sha256", "evidence", "normalize_workflow_root"].includes(key))) throw new Error("History supplements may only supply missing evidence or normalize a historical workflow root.");
+   if (Object.keys(supplement).some(key => !["ref", "sha256", "evidence", "normalize_workflow_root", "input_refs"].includes(key))) throw new Error("History supplements may only repair missing evidence, workflow roots or absent input refs.");
    const ref = text(supplement.ref, "history supplement ref");
    const file = join(record.root, ref);
    const original = documents.get(file);
@@ -313,7 +313,27 @@ async function historySupplements(
     if (workflow.store !== "repository" || workflow.ref !== record.ref || workflow.root !== fields.worktree || workflow.root === record.root || fields.repository !== context.repositoryRoot) throw new Error("Only a historical repository-worktree workflow root can be normalized.");
     fields.workflow = { ...workflow, root: record.root };
    }
-   if (supplement.evidence == null && supplement.normalize_workflow_root == null) throw new Error("History supplement has no envelope repair.");
+   if (supplement.input_refs != null) {
+    const repairs = list(supplement.input_refs, "supplement input refs");
+    if (!repairs.length) throw new Error("Supplement input refs must not be empty.");
+    const patched = list(fields.inputs, "historical inputs").map(value => ({ ...object(value, "historical input") }));
+    for (const value of repairs) {
+     const repair = object(value, "supplement input ref");
+     if (Object.keys(repair).some(key => !["index", "ref"].includes(key))) throw new Error("Input ref supplements may only supply an index and ref.");
+     const index = repair.index;
+     if (typeof index !== "number" || !Number.isSafeInteger(index) || index < 0 || index >= patched.length) throw new Error("Supplement input index is out of range.");
+     const input = patched[index]!;
+     if ("ref" in input) throw new Error("Input ref supplements cannot replace an existing ref.");
+     text(input.kind, "historical input kind");
+     const inputRef = text(repair.ref, "supplement input ref");
+     if (isAbsolute(inputRef) || !inputs.includes(inputRef)) throw new Error("Supplement input refs must be relative artifacts listed in the repair inputs.");
+     const artifact = await contained(join(record.root, record.ref, "artifacts"), join(record.root, inputRef));
+     if (!(await stat(artifact)).isFile()) throw new Error("Supplement input ref must identify an existing workflow artifact file.");
+     input.ref = inputRef;
+    }
+    fields.inputs = patched;
+   }
+   if (supplement.evidence == null && supplement.normalize_workflow_root == null && supplement.input_refs == null) throw new Error("History supplement has no envelope repair.");
    effective.set(file, fields);
   }
  }

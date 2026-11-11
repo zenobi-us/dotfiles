@@ -81,10 +81,12 @@ For every recovery attempt append provenance to new receipts: consumed receipts 
 
 An explicitly authorized history repair may restore missing receipts from retained source-worktree or Git records. Create byte-identical copies with exclusive writes; record their source and SHA-256. Preserve every original receipt and parent link.
 
-To supplement a malformed historical envelope, append a normal `worktree-receipt/v1` receipt with a valid parent and current source identity. Record `history_repair_reason`, `history_repair_authorization`, and `history_supplements`. List each target in `inputs`. Each supplement contains its root-relative event `ref`, exact original-byte `sha256`, and either or both of:
+To supplement a malformed historical envelope, append a normal `worktree-receipt/v1` receipt with a valid parent and current source identity. Record `history_repair_reason`, `history_repair_authorization`, and `history_supplements`. List each target in `inputs`. Each supplement contains its root-relative event `ref`, exact original-byte `sha256`, and one or more of:
 
 - `evidence`: the missing `{store, ref}` envelope. It must identify an existing object in the independently resolved evidence store under this workflow. Preserve the recorded evidence; do not invent an execution.
 - `normalize_workflow_root: true`: normalize a historical repository-worktree store root to the current workflow store root. The original root must equal the recorded worktree; repository, store and workflow reference must already match.
+
+- `input_refs`: a non-empty list of `{index, ref}` entries. `index` is the zero-based position of an existing input whose `ref` property is absent. Supply only that property; preserve its kind and other metadata. Each `ref` MUST name an existing file inside this workflow's `artifacts/` directory and MUST also appear in the repair receipt's `inputs`. Absolute paths, escaping symlinks, directories, duplicate indices, existing refs (including empty ones), and other entry fields are rejected. This supplies provenance only; it does not establish operator approval or change execution authority.
 
 The inspector validates supplements before constructing the parent graph. Targets must be older event files in this collection. Duplicate targets, changed checksums, missing evidence objects, replacements of existing evidence and other field changes block inspection. Source commit/tree, verdict, status, ticket identity and parent links cannot be supplemented. Raw event fields remain available beside the validated effective receipt view. The supplement holder must itself pass normal receipt validation. A repair is not a new implementation, review verdict, or authorization to take over a live session.
 
