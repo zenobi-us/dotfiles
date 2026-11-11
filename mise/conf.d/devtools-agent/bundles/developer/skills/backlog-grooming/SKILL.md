@@ -36,6 +36,8 @@ ticket list  reports/   index.html   chosen actions
 
 The report file contract is in [Report contract](references/report-contract.md). Read it before you write or check a report.
 
+The steps a person sees are in [Groom backlog tickets](how-to-groom-backlog.md). Read it when the user asks how the skill works or what a summary line means.
+
 ## On a partial request
 
 - If the request names only a run directory, start at **Collate**.

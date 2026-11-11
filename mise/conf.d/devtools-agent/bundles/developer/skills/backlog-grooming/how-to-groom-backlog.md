@@ -11,6 +11,6 @@ The `backlog-grooming` skill researches each ticket in a separate subagent, publ
    - `[ABC-15]: questions - 2` means two questions block sizing.
    - `[ABC-18]: cancel - Fixed in a1b2c3d` means the ticket no longer applies.
    - `[ABC-21]: split - Two separate changes` means another step must come first.
-4. Choose the actions. For each ticket with proposed actions, the skill shows a checklist, such as posting the questions as a comment or setting the story points. It changes only the tickets and actions you select.
+4. Choose the actions. For each ticket with proposed actions, the skill shows a checklist, such as posting the questions as a comment. For story points, choose to set them on the ticket, or to propose them in a comment with the reason so the team can decide. It changes only the tickets and actions you select.
 
 The subagents never change code, tickets or branches. The skill reads and writes tickets through the `reading-and-writing-tickets` skill, so it works with any tracker that skill supports.

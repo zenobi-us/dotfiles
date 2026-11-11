@@ -69,7 +69,7 @@ You MAY start whatever the repository documents to capture evidence: a build, a 
 
 ## 6. Size the work
 
-Use story points from 1, 2, 3, 5, 8, 13. Base them on the files and components you found, the tests to change, and the unknowns. If the size is above 13, use the `action` verdict with `action: split`. Give the reason for the size in one sentence.
+Use story points from 1, 2, 3, 5, 8, 13. Base them on the files and components you found, the tests to change, and the unknowns. If the size is above 13, use the `action` verdict with `action: split`. Give the reason for the size in one to three sentences. Name the files, tests, and unknowns that set the size. The parent can post this reason as a proposal comment on the ticket, so write it for the team, not for the parent.
 
 ## 7. Propose ticket actions
 
