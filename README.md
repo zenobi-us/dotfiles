@@ -111,6 +111,8 @@ mise bootstrap --yes
 
 The pre-commit hook checks staged bundle changes without stashing unstaged or untracked files. Stashes from earlier interrupted hook runs remain untouched.
 
+If hk reports an interrupted stash recovery, compare each unresolved file with the preserved stash before you restore it. Do not apply the whole stash after hk has restored other files. Archive `.git/hk-pending-stash` only after you verify recovery. When replacing Lefthook with hk, remove obsolete Lefthook hooks from `.git/hooks/` as well.
+
 Apply the full machine setup:
 
 ```bash
