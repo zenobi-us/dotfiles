@@ -8,7 +8,7 @@ sequence: 2
 title: Collect accurate native TUI evidence
 triage: ready-for-agent
 type: enhancement
-work_status: claimed
+work_status: completed
 ---
 
 # Collect accurate native TUI evidence
@@ -57,3 +57,15 @@ Verdict: FAILURE. Reviewed commit: a50eb7b56c79151c48abe4e5595b8da2b63eec98. Rev
 ### Review — 2026-11-11T22:06:50.866Z
 
 Verdict: SUCCESS. Reviewed commit: 3d05a5611dae33c992d8bbd81ed265a27d23892c. Reviewed tree: e758e20e8bc45d732d01028960802390d347d11b. [Independent review](../../workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0026.md).
+
+### Review — 2026-11-11T22:23:09.012Z
+
+Verdict: SUCCESS. Reviewed commit: de8615f5eb03069289e7d594872e5dc3dff5c325. [Independent review](../../workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0031.md).
+
+### Review — 2026-11-11T22:30:25.934Z
+
+Verdict: SUCCESS. Reviewed commit: e9d1a62de21fc2b8ccff7940fa333f42a87e5e3d. Reviewed tree: d879ba9c67b26a573e1b5eebb1d5741e734c15c7. [Independent review](../../workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0034.md).
+
+### Completion — 2026-11-11T22:35:02.957006+00:00
+
+Merged and pushed commit 50872fcdb85a85ef14256ae56c0c169a1f14aefe to origin/master after exact-source SUCCESS review. Integrated public CLI verification passed all 13 scenarios: native transition PASS; twelve credential cases BLOCKED without input. Source suites: 99 common tests and 28 native tests passed. [Published integration checkpoint](../../workflows/collect-evidence-feedback-02-tui/events/finish-0038.yaml); [integrated evidence](../../workflows/collect-evidence-feedback-02-tui/artifacts/evidence/finish-0038-integrated/validation.json). Two historical Low nonblocking findings remain recorded in the review.
