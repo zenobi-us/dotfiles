@@ -1,0 +1,150 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "a_b",
+  "runId": "controlled",
+  "order": 8,
+  "purpose": "Preserve identity a_b",
+  "preconditions": [],
+  "expected": {
+    "pass": "The matching page is observed",
+    "fail": "Another case replaces the observation"
+  },
+  "steps": [
+    {
+      "id": "a_b.1",
+      "order": 1,
+      "purpose": "Open the case-specific page without a screenshot",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the case-specific page without a screenshot",
+        "to": "/?case=a_b",
+        "shot": ""
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "a_b.2",
+      "order": 2,
+      "purpose": "Check the case-specific URL",
+      "actions": {
+        "do": "expect",
+        "says": "Check the case-specific URL",
+        "url": "case=a_b$",
+        "shot": "case-identity"
+      },
+      "expected": {
+        "text": null,
+        "visible": null,
+        "url": "case=a_b$"
+      },
+      "observed": [
+        "Captured before expect.",
+        "URL matched: http://127.0.0.1:39939/?case=a_b"
+      ],
+      "assertionResult": "passed"
+    },
+    {
+      "id": "a_b.3",
+      "order": 3,
+      "purpose": "Capture the case-specific heading",
+      "actions": {
+        "do": "capture",
+        "says": "Capture the case-specific heading",
+        "locator": "h1",
+        "as": "identity",
+        "shot": "identity-capture"
+      },
+      "expected": null,
+      "observed": [
+        "Read: Owned evidence test"
+      ],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/a_b/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "a_b.2.capture-001",
+      "caseId": "a_b",
+      "stepId": "a_b.2",
+      "path": "cases/a_b/media/step-002-step-a-b-002-case-identity--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "6687f726e4c259df7a36efd2cc79d6926412f1259e32894608047cef1d5ee3c0",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-11T04:09:41.151Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:39939/?case=a_b"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "a_b.2.capture-002",
+      "caseId": "a_b",
+      "stepId": "a_b.2",
+      "path": "cases/a_b/media/step-002-step-a-b-002-case-identity--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "6687f726e4c259df7a36efd2cc79d6926412f1259e32894608047cef1d5ee3c0",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-11T04:09:41.183Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:39939/?case=a_b"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "a_b.3.capture-001",
+      "caseId": "a_b",
+      "stepId": "a_b.3",
+      "path": "cases/a_b/media/step-003-step-a-b-003-identity-capture--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "6687f726e4c259df7a36efd2cc79d6926412f1259e32894608047cef1d5ee3c0",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-11T04:09:41.217Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:39939/?case=a_b"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded"
+}

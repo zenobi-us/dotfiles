@@ -1,0 +1,276 @@
+{
+  "acceptance_evidence": {
+    "borrowed_control_survived": true,
+    "borrowed_surf_tab": 498730810,
+    "borrowed_surf_window": 498730809,
+    "failing_before": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/prerequisite-before-lifecycle.json",
+    "images_inspected": true,
+    "independent_smoke": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/standalone-smoke.json",
+    "passing_after": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/prerequisite-after-final.json",
+    "playwright": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/playwright-after.json",
+    "real_browser": true,
+    "summary": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/validation-final.json",
+    "surf": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/surf-after.json"
+  },
+  "agent": "omp",
+  "approval": {
+    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/launch-fix-start-0053.json",
+    "scope": "SPEC-R8-001 only; controlled local real Playwright and Surf acceptance; canonical /var/home result target explicitly approved",
+    "source": "user via parent t30"
+  },
+  "attempt": 7,
+  "base_branch": "master",
+  "base_committed": false,
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/web.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts"
+  ],
+  "child_pane_closed": true,
+  "consumed_review_receipt_ids": [
+    "review-0051"
+  ],
+  "consumed_review_receipts": [
+    "workflows/collect-evidence-feedback-01-web/events/review-0051.yaml"
+  ],
+  "created_at": "2026-11-11T04:24:34.647Z",
+  "delivery_context": "/var/home/zenobius/.local/state/result-delivery/runs/0efa38d2-aa4d-46b3-a268-effd49f80d49/context-canonical.json",
+  "draft_snapshot": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0054.md",
+  "event": "phase-complete",
+  "evidence": {
+    "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054",
+    "store": "repository"
+  },
+  "fix_status": "completed",
+  "implementation_summary": "Cover standalone doctor and run prerequisites with one command-scoped cancellation state. Finish browser acquisition and owned cleanup before reporting interruption. Stop subsequent capture work, retain normal safety and sealing, and protect cleanup from repeated signals. Add deterministic real public process-level regression and update the existing web reference.",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/collect-evidence-feedback/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-start-0053.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-0051.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/review-complete-0052.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-0048.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/reviews/review-review-0051.md"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0048.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048"
+    },
+    {
+      "kind": "approval",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/launch-fix-start-0053.json"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-0054.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/pr-draft-fix-0054.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054"
+    },
+    {
+      "kind": "validation",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/snapshots/parent-validation-fix-0054.json"
+    }
+  ],
+  "limits": [
+    "Failing-before proof covers standalone doctor SIGINT; passing-after covers doctor and run prerequisites with both SIGINT and SIGTERM.",
+    "First regression fixture setup attempts and first strict typecheck errors were corrected and retained as historical observations in this evidence run.",
+    "LSP initialization was unavailable; strict tsc with existing BASE dependencies passed without installation.",
+    "P3 advisories remain unchanged. No new ADR. No user or borrowed browser resources were closed.",
+    "No installation, credentials, remote Git, rebase, merge, push, browser/service restart, pending stash journal mutation or recovery stash operation.",
+    "Source commit used HK=0 only after hk run pre-commit --staged passed; workflow artifacts remain local for parent publication."
+  ],
+  "merged": false,
+  "muxer": "herdr-app",
+  "new_source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
+  "new_source_tree": "5385016678fec6057d508c1c5bb9561180afb9cc",
+  "operation_id": "collect-evidence-feedback-01-web-fix-0054",
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-01-web/events/fix-complete-0055.yaml"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/collect-evidence-feedback-01-web/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-01-web/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-01-web/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-01-web/projections/implementation-log.md"
+    }
+  ],
+  "ownership_provenance": {
+    "child": "herdr-app:t3j",
+    "fresh_session": true,
+    "parent": "herdr-app:t30",
+    "parent_completion_owner": "t30",
+    "run": "0efa38d2-aa4d-46b3-a268-effd49f80d49",
+    "source_initial_commit": "4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23",
+    "source_initial_tree": "97fa1a4794c2ab10d4676993de8414890c525134"
+  },
+  "pane_id": null,
+  "parent_completion_pending": false,
+  "parent_receipt": "fix-0054",
+  "phase": "fix",
+  "preserve_prior_evidence": true,
+  "preserved_unselected_finding_ids": [
+    "STD-R6-002",
+    "STD-R6-003",
+    "STD-AXIS-001",
+    "STD-R3-001"
+  ],
+  "projection_owner": "fresh fixer t3j; parent owns final reconciliation and publication",
+  "projection_paths": [
+    "workflows/collect-evidence-feedback-01-web/manifest.yaml",
+    "workflows/collect-evidence-feedback-01-web/projections/latest-status.yaml",
+    "workflows/collect-evidence-feedback-01-web/projections/pr-draft.md",
+    "workflows/collect-evidence-feedback-01-web/projections/implementation-log.md"
+  ],
+  "projections_updated": true,
+  "pushed": false,
+  "receipt_id": "fix-complete-0055",
+  "recovery_mode": "reconcile",
+  "recovery_reason": "Read the child result and artifacts, verify the frozen source and outcome, then append the parent completion. Do not repeat the child work.",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "resolved_finding_ids": [
+    "SPEC-R8-001"
+  ],
+  "run_id": "0efa38d2-aa4d-46b3-a268-effd49f80d49",
+  "schema": "worktree-receipt/v1",
+  "selected_finding_ids": [
+    "SPEC-R8-001"
+  ],
+  "session_id": "herdr-app:t30",
+  "source_branch": "feature/collect-evidence-feedback-01-web",
+  "source_clean": true,
+  "source_clean_observation": "git rev-parse HEAD HEAD^{tree} && git status --porcelain returned the recorded commit/tree and no status output after commit.",
+  "source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
+  "source_commits": [
+    {
+      "commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
+      "subject": "fix: clean sessions collect-evidence-feedback-01-web",
+      "tree": "5385016678fec6057d508c1c5bb9561180afb9cc"
+    }
+  ],
+  "source_tree": "5385016678fec6057d508c1c5bb9561180afb9cc",
+  "status": "completed",
+  "temporary_scaffolds_removed": true,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-01-web",
+    "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+  },
+  "ticket_completed": false,
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-01-web.md",
+  "ticket_status": "implemented",
+  "unresolved_finding_ids": [],
+  "validation_results": [
+    {
+      "assertions": 871,
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/playwright-driver.test.ts",
+      "output": "bun test v1.4.3 (c6da4a4d3)\n95 pass\n0 fail\n871 expect() calls\nRan 95 tests across 3 files. [52.65s]",
+      "status": "passed",
+      "tests": 95
+    },
+    {
+      "assertions": 64,
+      "command": "COLLECT_EVIDENCE_REAL_DRIVERS=1 PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts --test-name-pattern \"playwright:\"",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/playwright-after.json",
+      "status": "passed",
+      "tests": 2
+    },
+    {
+      "assertions": 86,
+      "command": "COLLECT_EVIDENCE_REAL_DRIVERS=1 mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts --test-name-pattern \"surf:\"",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/surf-after.json",
+      "status": "passed",
+      "tests": 1
+    },
+    {
+      "assertions": 36,
+      "command": "COLLECT_EVIDENCE_REAL_DRIVERS=1 PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts --test-name-pattern \"playwright: prerequisite\"",
+      "note": "Final fixture types and automatic temporary workspace cleanup verified.",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/prerequisite-after-final.json",
+      "status": "passed",
+      "tests": 1
+    },
+    {
+      "command": "mise exec -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc --noEmit -p /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/tsconfig.json",
+      "cwd": "/tmp",
+      "note": "Existing retained config read only; includes current SOURCE. Initial new fixture type errors are retained separately.",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/strict-typecheck-final.json",
+      "status": "passed"
+    },
+    {
+      "command": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts doctor --driver <playwright|surf> --json",
+      "cwd": "/tmp",
+      "note": "Both installed executable commands returned 0. Playwright list before/after had no browsers. Borrowed Surf tab 498730810 and window 498730809 retained chrome://newtab/.",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/standalone-smoke.json",
+      "status": "passed"
+    },
+    {
+      "command": "hk run pre-commit --staged",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/pre-commit.json",
+      "status": "passed"
+    }
+  ],
+  "validation_status": "passed",
+  "workflow": {
+    "ref": "workflows/collect-evidence-feedback-01-web",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "store": "repository"
+  },
+  "workflow_id": "collect-evidence-feedback-01-web",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "workspace_preserved": true,
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web",
+  "worktree_preserved": true,
+  "delivery_acknowledged": true,
+  "delivery_sha256": "cb0f5dcaaaeb5549044ad11d897e0bcc0aeedeef7bf7dbd970d447f4cc52280f",
+  "parent_validation": [
+    "Transport schema, identity and hash verified; authoritative receipt deep-equal",
+    "Clean source branch/commit/tree match result",
+    "Read failing-before and passing-after process evidence; both-driver current evidence verified",
+    "Both sealed runs passed public CLI validate from unrelated /tmp",
+    "Both actual selected-project screenshots inspected",
+    "Native done then owned terminal killed/removed; source workspace retained"
+  ],
+  "ticket_unchanged_reason": "Fix phase preserves implemented status; fresh independent review required before completion."
+}

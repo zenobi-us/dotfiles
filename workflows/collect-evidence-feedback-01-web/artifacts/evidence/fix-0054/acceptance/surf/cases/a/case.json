@@ -1,0 +1,151 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "a",
+  "runId": "controlled",
+  "order": 9,
+  "purpose": "Preserve identity a",
+  "preconditions": [],
+  "expected": {
+    "pass": "The matching page is observed",
+    "fail": "Another case replaces the observation"
+  },
+  "steps": [
+    {
+      "id": "a.1",
+      "order": 1,
+      "purpose": "Open the case-specific page without a screenshot",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the case-specific page without a screenshot",
+        "to": "/?case=a",
+        "shot": ""
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "a.2",
+      "order": 2,
+      "purpose": "Check the case-specific URL",
+      "actions": {
+        "do": "expect",
+        "says": "Check the case-specific URL",
+        "url": "case=a$",
+        "shot": "case-identity"
+      },
+      "expected": {
+        "text": null,
+        "visible": null,
+        "url": "case=a$"
+      },
+      "observed": [
+        "Captured before expect.",
+        "URL matched: http://127.0.0.1:46463/?case=a"
+      ],
+      "assertionResult": "passed"
+    },
+    {
+      "id": "a.3",
+      "order": 3,
+      "purpose": "Capture the case-specific heading",
+      "actions": {
+        "do": "capture",
+        "says": "Capture the case-specific heading",
+        "locator": "h1",
+        "as": "identity",
+        "shot": "identity-capture"
+      },
+      "expected": null,
+      "observed": [
+        "Read: Owned evidence test"
+      ],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/a/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "a.2.capture-001",
+      "caseId": "a",
+      "stepId": "a.2",
+      "path": "cases/a/media/step-002-step-a-002-case-identity--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "93823085a87d7fd78e8f04a59663791fc3e94353e2aa1e5e1950616aec62b1f1",
+      "mediaType": "image/png",
+      "width": 1185,
+      "height": 1047,
+      "capturedAt": "2026-11-11T04:10:45.591Z",
+      "viewport": {
+        "width": 1185,
+        "height": 1047,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "surf",
+      "driverVersion": "surf version 2.22.0",
+      "captureMethod": "surf-screenshot",
+      "url": "http://127.0.0.1:46463/?case=a"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "a.2.capture-002",
+      "caseId": "a",
+      "stepId": "a.2",
+      "path": "cases/a/media/step-002-step-a-002-case-identity--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "93823085a87d7fd78e8f04a59663791fc3e94353e2aa1e5e1950616aec62b1f1",
+      "mediaType": "image/png",
+      "width": 1185,
+      "height": 1047,
+      "capturedAt": "2026-11-11T04:10:45.991Z",
+      "viewport": {
+        "width": 1185,
+        "height": 1047,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "surf",
+      "driverVersion": "surf version 2.22.0",
+      "captureMethod": "surf-screenshot",
+      "url": "http://127.0.0.1:46463/?case=a"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "a.3.capture-001",
+      "caseId": "a",
+      "stepId": "a.3",
+      "path": "cases/a/media/step-003-step-a-003-identity-capture--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "93823085a87d7fd78e8f04a59663791fc3e94353e2aa1e5e1950616aec62b1f1",
+      "mediaType": "image/png",
+      "width": 1185,
+      "height": 1047,
+      "capturedAt": "2026-11-11T04:10:46.596Z",
+      "viewport": {
+        "width": 1185,
+        "height": 1047,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "surf",
+      "driverVersion": "surf version 2.22.0",
+      "captureMethod": "surf-screenshot",
+      "url": "http://127.0.0.1:46463/?case=a"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion.",
+    "Video is unavailable with the Surf driver. Image captures remain valid."
+  ],
+  "sideEffects": "not-recorded"
+}

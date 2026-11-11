@@ -1,0 +1,246 @@
+{
+  "text": "../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts(74,57): …[+159]\n../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts(77,37): …[+163]\n  Type 'number' is not assignable to type 'BodyInit | null | undefined'.\n../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts(78,37): …[+163]\n  Type 'number' is not assignable to type 'BodyInit | null | undefined'.\n[raw output: artifact://52]\n\n\nCommand exited with code 2",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 120,
+    "wallTimeMs": 957.0800520000048,
+    "exitCode": 2,
+    "trace": {
+      "v": 1,
+      "seq": 9,
+      "status": 2,
+      "rootVpid": 1073741824,
+      "t_ns": 955438840,
+      "script": "mise exec -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc --noEmit -p /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/tsconfig.json",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 302,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 302,
+              "state": "fail"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 302,
+              "p": 0,
+              "state": "fail"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 302,
+              "p": 1,
+              "state": "fail",
+              "runs": 1,
+              "st": 2,
+              "fails": 1,
+              "ns": 955380922,
+              "at": 41548,
+              "argv": [
+                "mise",
+                "exec",
+                "--",
+                "bun",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc",
+                "--noEmit",
+                "-p",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/tsconfig.json"
+              ],
+              "res": "external",
+              "pid": 1241641,
+              "end_ns": 955422470,
+              "end_seq": 8
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 4,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 5,
+              "hi": 9,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 10,
+              "hi": 12,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 13,
+              "hi": 16,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 17,
+              "hi": 149,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 150,
+              "hi": 158,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 159,
+              "hi": 161,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 162,
+              "hi": 302,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAK4CAQCuAgAAAQIArgIAAAgDAAQBAARtaXNlBAUJAQAEZXhlYwUKDAEAAi0tBg0QAQADYnVuBxGVAQEAhAEvcnVuL21lZGlhL3plbm9iaXVzL1N0b3JlL1Byb2plY3RzL01pbmUvR2l0aHViL0RvdGZpbGVzL21pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvZGV2ZWxvcGVyL25vZGVfbW9kdWxlcy90eXBlc2NyaXB0L2Jpbi90c2MIlgGeAQEACC0tbm9FbWl0CZ8BoQEBAAItcAqiAa4CAQCMAS9ydW4vbWVkaWEvemVub2JpdXMvU3RvcmUvUHJvamVjdHMvTWluZS9HaXRodWIvRG90ZmlsZXMvd29ya2Zsb3dzL2NvbGxlY3QtZXZpZGVuY2UtZmVlZGJhY2stMDEtd2ViL2FydGlmYWN0cy9ldmlkZW5jZS9maXgtMDA0OC90c2NvbmZpZy5qc29uAAAAAAI="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 159,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 41548,
+          "event_seq": 161,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 23,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 58971,
+          "event_seq": 162,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 23,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc",
+            "--noEmit",
+            "-p",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/tsconfig.json"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 475641,
+          "event_seq": 163,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 23,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1241641,
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc",
+            "--noEmit",
+            "-p",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/tsconfig.json"
+          ]
+        },
+        {
+          "seq": 7,
+          "t_ns": 930886130,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 23,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts(74,57): error TS2339: Property 'PATH' does not exist on type '{ TMPDIR: string; NO_UPDATE_NOTIFIER: string; NODE_ENV?: string | undefined; TZ?: string | undefined; }'.\n../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts(77,37): error TS2345: Argument of type 'number | ReadableStream<Uint8Array<ArrayBuffer>> | undefined' is not assignable to parameter of type 'BodyInit | null | undefined'.\n  Type 'number' is not assignable to type 'BodyInit | null | undefined'.\n../run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts(78,37): error TS2345: Argument of type 'number | ReadableStream<Uint8Array<ArrayBuffer>> | undefined' is not assignable to parameter of type 'BodyInit | null | undefined'.\n  Type 'number' is not assignable to type 'BodyInit | null | undefined'.\n",
+          "fd": 1
+        },
+        {
+          "seq": 8,
+          "t_ns": 955422470,
+          "event_seq": 164,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 23,
+            "vpid": 1073741824,
+            "seq": 23
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 2,
+          "dur_ns": 955380922,
+          "pipestatus": []
+        },
+        {
+          "seq": 9,
+          "t_ns": 955438840,
+          "event_seq": 165,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 2
+        }
+      ]
+    },
+    "meta": {
+      "minimized": {
+        "filter": "pipeline",
+        "inputBytes": 1384,
+        "outputBytes": 926,
+        "artifactId": "52"
+      }
+    }
+  },
+  "hasError": true
+}

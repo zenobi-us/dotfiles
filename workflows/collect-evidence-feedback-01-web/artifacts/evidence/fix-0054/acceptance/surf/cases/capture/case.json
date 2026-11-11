@@ -1,0 +1,65 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "capture",
+  "runId": "controlled",
+  "order": 11,
+  "purpose": "Keep a capture separate from an assertion",
+  "preconditions": [],
+  "expected": {
+    "pass": "A screenshot alone remains partial",
+    "fail": "The screenshot is called passing"
+  },
+  "steps": [
+    {
+      "id": "capture.1",
+      "order": 1,
+      "purpose": "Capture the owned page without an assertion",
+      "actions": {
+        "do": "navigate",
+        "says": "Capture the owned page without an assertion",
+        "to": "/",
+        "shot": "page-without-assertion"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/capture/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "capture.1.capture-001",
+      "caseId": "capture",
+      "stepId": "capture.1",
+      "path": "cases/capture/media/step-001-step-capture-001-page-without-assertion--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "93823085a87d7fd78e8f04a59663791fc3e94353e2aa1e5e1950616aec62b1f1",
+      "mediaType": "image/png",
+      "width": 1185,
+      "height": 1047,
+      "capturedAt": "2026-11-11T04:10:52.286Z",
+      "viewport": {
+        "width": 1185,
+        "height": 1047,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "surf",
+      "driverVersion": "surf version 2.22.0",
+      "captureMethod": "surf-screenshot",
+      "url": "http://127.0.0.1:46463/"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion.",
+    "Video is unavailable with the Surf driver. Image captures remain valid."
+  ],
+  "sideEffects": "not-recorded"
+}

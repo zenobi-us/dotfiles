@@ -1,0 +1,55 @@
+{
+  "status": "failed",
+  "completedSteps": 5,
+  "totalSteps": 10,
+  "results": [
+    {
+      "step": 1,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 2,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 3,
+      "cmd": "navigate",
+      "status": "ok",
+      "ms": 632
+    },
+    {
+      "step": 4,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 5,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 6,
+      "cmd": "js",
+      "status": "error",
+      "error": "Error: SAFETY STOP blocked.1: credential prompt or uninspectable frame; human handling required\n    at <anonymous>:15:32\n    at <anonymous>:20:5\n    at <anonymous>:21:6",
+      "ms": 4
+    }
+  ],
+  "error": "Error: SAFETY STOP blocked.1: credential prompt or uninspectable frame; human handling required\n    at <anonymous>:15:32\n    at <anonymous>:20:5\n    at <anonymous>:21:6",
+  "totalMs": 1052,
+  "vars": {
+    "base": "http://127.0.0.1:46463",
+    "shots": "/tmp/ce-surf-public-wnncDK/collect-evidence-O1hLcT/report/shots",
+    "dialog_626c6f636b65642e31": {
+      "id": 990,
+      "hasDialog": false
+    },
+    "url_626c6f636b65642e31": "http://127.0.0.1:46463/credential"
+  }
+}

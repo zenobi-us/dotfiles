@@ -1,0 +1,7 @@
+{
+  "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/playwright-driver.test.ts",
+  "status": "passed",
+  "tests": 95,
+  "assertions": 871,
+  "output": "bun test v1.4.3 (c6da4a4d3)\n95 pass\n0 fail\n871 expect() calls\nRan 95 tests across 3 files. [52.65s]"
+}

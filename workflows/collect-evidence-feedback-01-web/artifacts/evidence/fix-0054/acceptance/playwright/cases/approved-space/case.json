@@ -1,0 +1,124 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "approved-space",
+  "runId": "controlled",
+  "order": 5,
+  "purpose": "Permit approved keyboard confirmation",
+  "preconditions": [],
+  "expected": {
+    "pass": "The operation is submitted once",
+    "fail": "The operation is blocked"
+  },
+  "steps": [
+    {
+      "id": "approved-space.1",
+      "order": 1,
+      "purpose": "Open the confirmation page",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the confirmation page",
+        "to": "/confirmation"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "approved-space.2",
+      "order": 2,
+      "purpose": "Activate the approved confirmation",
+      "actions": {
+        "do": "press",
+        "says": "Activate the approved confirmation",
+        "key": "Space"
+      },
+      "expected": null,
+      "observed": [
+        "Pressed Space."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "approved-space.3",
+      "order": 3,
+      "purpose": "Check submission",
+      "actions": {
+        "do": "expect",
+        "says": "Check submission",
+        "locator": "p",
+        "text": "Submitted",
+        "shot": "keyboard-submitted"
+      },
+      "expected": {
+        "text": "Submitted",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "Found text: Submitted"
+      ],
+      "assertionResult": "passed"
+    }
+  ],
+  "events": "cases/approved-space/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "approved-space.3.capture-001",
+      "caseId": "approved-space",
+      "stepId": "approved-space.3",
+      "path": "cases/approved-space/media/step-003-step-approved-space-003-keyboard-submitted--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "029ceae1c832fc0249d5c1ecbf47d14ed0f4a760d39ff7d843fe855c775b2287",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-11T04:09:38.517Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:39939/confirmation"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "approved-space.3.capture-002",
+      "caseId": "approved-space",
+      "stepId": "approved-space.3",
+      "path": "cases/approved-space/media/step-003-step-approved-space-003-keyboard-submitted--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "029ceae1c832fc0249d5c1ecbf47d14ed0f4a760d39ff7d843fe855c775b2287",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-11T04:09:38.548Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:39939/confirmation"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded"
+}

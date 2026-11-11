@@ -1,0 +1,30 @@
+{
+  "source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
+  "source_tree": "5385016678fec6057d508c1c5bb9561180afb9cc",
+  "source_clean": true,
+  "transport_sha256": "cb0f5dcaaaeb5549044ad11d897e0bcc0aeedeef7bf7dbd970d447f4cc52280f",
+  "authoritative_payload_matches": true,
+  "regression_evidence": {
+    "before": "fix-0054/prerequisite-before-lifecycle.json: standalone doctor SIGINT exited 130 and owned browser remained open",
+    "after": "fix-0054/playwright-after.json: doctor and run SIGINT/SIGTERM exit 1; all four scenarios pass; owned sessions removed and borrowed session survives"
+  },
+  "public_validation": {
+    "cwd": "/tmp",
+    "commands": [
+      "collect-evidence.ts validate <fix-0054/acceptance/playwright> --json",
+      "collect-evidence.ts validate <fix-0054/acceptance/surf> --json"
+    ],
+    "exit_codes": [
+      0,
+      0
+    ],
+    "success": true
+  },
+  "image_inspection": "Both selected-project actual PNGs show Owned evidence test, Select project and Project selected: Aurora",
+  "native_completion": {
+    "terminal": "t3j",
+    "status": "done",
+    "turn": 1
+  },
+  "closure": "hc kill and hc rm succeeded; herdr-app ls has no t3j"
+}

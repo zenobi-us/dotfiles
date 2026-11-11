@@ -2,9 +2,17 @@
 schema: worktree-projection/v1
 title: Collect-evidence web implementation log
 type: Projection
-latest_receipt: fix-0048
+latest_receipt: fix-complete-0055
 ---
-# Current review: review-0051
+# Current fix: fix-0054
+
+SPEC-R8-001 is resolved at fc122615ba485d1059313b5b6ed54d3a459a0704, tree 5385016678fec6057d508c1c5bb9561180afb9cc. Parent completion is recorded in fix-complete-0055. Fresh independent review is required. Review-0051 remains FAILURE for its older source.
+
+The real prerequisite regression passes for doctor and run with SIGINT and SIGTERM. Owned sessions close before exit 1; the borrowed control survives; no later run session opens or run is sealed. Both real driver workflows, actual image inspection, 95 scoped tests, strict TypeScript and independent installed doctor smokes passed.
+
+[Fix receipt](../events/fix-0054.yaml), [immutable draft](../artifacts/snapshots/pr-draft-fix-0054.md), [validation](../artifacts/evidence/fix-0054/validation-final.json). Parent owns acknowledgement, phase-complete, workflow-artifact publication and pane closure. No merge or push. Unselected advisories are unchanged.
+
+## Historical review: review-0051
 
 FAILURE: SPEC-R8-001 P2 remains blocking. See the current review section below.
 
@@ -667,4 +675,12 @@ FAILURE for `4c0b7737acddf17e3a44b865fddb1fd0e0b2fc23`, tree `97fa1a4794c2ab10d4
 [Immutable review](../artifacts/reviews/review-review-0051.md), [review receipt](../events/review-0051.yaml), [parent completion](../events/review-complete-0052.yaml), [validation](../artifacts/evidence/review-0051/scoped-suite.json). Previous review/fix history remains intact. 95 scoped tests and 871 assertions passed; both retained sealed runs validated. Parent validation also passed from /tmp.
 
 Delivery acknowledged; reviewer t3b and its axes closed. Worktree preserved. Ticket remains implemented. Next: fix current SPEC-R8-001 in a fresh session. No merge or push.
+
+
+
+## Parent completion: fix-complete-0055
+
+[Completion receipt](../events/fix-complete-0055.yaml). Parent verified the exact clean source commit `fc122615ba485d1059313b5b6ed54d3a459a0704` and tree, the immutable fix receipt and transport payload hash, the real failing-before/passing-after interruption records, and both actual selected-project PNGs. Both current sealed runs passed public validate from /tmp.
+
+Delivery acknowledged. Only fixer t3j closed and removed; worktree and workspace preserved. Canonical ticket remains implemented. Next: fresh independent review because source changed after review-0051. No merge or push.
 

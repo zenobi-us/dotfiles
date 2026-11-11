@@ -1,0 +1,25 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "driver-map",
+  "entries": [
+    {
+      "step": "space.1",
+      "kind": "navigate",
+      "target": "/confirmation",
+      "from": 0,
+      "count": 6,
+      "shot": "",
+      "dialog": "dialog_73706163652e31",
+      "url": "url_73706163652e31"
+    },
+    {
+      "step": "space.2",
+      "kind": "press",
+      "target": "Space",
+      "from": 6,
+      "count": 3,
+      "shot": "",
+      "dialog": "dialog_73706163652e32"
+    }
+  ]
+}

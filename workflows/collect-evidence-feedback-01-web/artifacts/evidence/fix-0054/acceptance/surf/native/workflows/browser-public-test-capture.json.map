@@ -1,0 +1,24 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "driver-map",
+  "entries": [
+    {
+      "step": "capture.1",
+      "kind": "navigate",
+      "target": "/",
+      "from": 0,
+      "count": 8,
+      "shot": "shots/step-capture-001-page-without-assertion--capture-001.png",
+      "dialog": "dialog_636170747572652e31",
+      "url": "url_636170747572652e31",
+      "captures": [
+        {
+          "shot": "shots/step-capture-001-page-without-assertion--capture-001.png",
+          "metadata": "capture_1_636170747572652e31",
+          "index": 6,
+          "sequence": 1
+        }
+      ]
+    }
+  ]
+}

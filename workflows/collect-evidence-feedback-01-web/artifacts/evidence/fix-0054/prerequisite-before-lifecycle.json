@@ -1,0 +1,329 @@
+{
+  "text": "bun test v1.4.3 (c6da4a4d3)\nmise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts:\n{\"command\":\"doctor\",\"signal\":\"SIGINT\",\"code\":130,\"out\":\"\",\"err\":\"\",\"owned\":\"ce-doctor-eba1d994-ddd1-4640-b21f-8f488c08ef9c\",\"before\":\"### Browsers\\n- ce-borrowed-a18dde74-f8b1-41a4-8b91-12649159ae9e:\\n  - status: open\\n  - browser-type: chrome\\n  - u…[+658]\n94 |         const out = await output;\n95 |         const err = await errors;\n96 |         const after = await native([\"list\"]);\n97 |         const log = (await readFile(commands, \"utf8\")).trim().split(\"\\n\").map(line => JSON.parse(line));\n98 |         console.error(JSON.stringify({ command, signal, code, out, err, owned, before, after, commands: log }));\n99 |         expect(after).not.toContain(`- ${owned}:`);\n                               ^\nerror: expect(received).not.toContain(expected)\nExpected to not contain: \"- ce-doctor-eba1d994-ddd1-4640-b21f-8f488c08ef9c:\"\nReceived: \"### Browsers\\n- ce-borrowed-a18dde74-f8b1-41a4-8b91-12649159ae9e:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n- ce-doctor-eba1d994-ddd1-4640-b21f-8f488c08ef9c:\\n  - status: open\\n  - brow…[+70]\n      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workf…[+18]\n(fail) real public browser workflows > playwright: prerequisite interruption cleans owned sessions and preserves borrowed sessions [3803.27ms]\n 0 pass\n 2 filtered out\n 1 fail\n 3 expect() calls\nRan 1 test across 1 file. [3.83s]\n[raw output: artifact://25]\n\n\nWall time: 4.18 seconds\n\nCommand exited with code 1",
+  "details": {
+    "wallTimeNoticeEmitted": true,
+    "timeoutSeconds": 240,
+    "wallTimeMs": 4175.386426000012,
+    "exitCode": 1,
+    "trace": {
+      "v": 1,
+      "seq": 12,
+      "status": 1,
+      "rootVpid": 1073741824,
+      "t_ns": 4173846333,
+      "script": "COLLECT_EVIDENCE_REAL_DRIVERS=1 PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts --test-name-pattern \"playwright: prerequisite\"",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 336,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 336,
+              "state": "fail"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 336,
+              "p": 0,
+              "state": "fail"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 336,
+              "p": 1,
+              "state": "fail",
+              "runs": 1,
+              "st": 1,
+              "fails": 1,
+              "ns": 4173775560,
+              "at": 50114,
+              "argv": [
+                "mise",
+                "exec",
+                "--",
+                "bun",
+                "test",
+                "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+                "--test-name-pattern",
+                "playwright: prerequisite"
+              ],
+              "env": [
+                [
+                  "COLLECT_EVIDENCE_REAL_DRIVERS",
+                  "1"
+                ],
+                [
+                  "PLAYWRIGHT_MCP_EXECUTABLE_PATH",
+                  "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+                ]
+              ],
+              "res": "external",
+              "pid": 1202379,
+              "end_ns": 4173825674,
+              "end_seq": 11
+            },
+            {
+              "k": "assign",
+              "lo": 0,
+              "hi": 31,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 30,
+              "hi": 31,
+              "p": 3,
+              "state": "skipped"
+            },
+            {
+              "k": "assign",
+              "lo": 32,
+              "hi": 134,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 63,
+              "hi": 134,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 135,
+              "hi": 139,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 140,
+              "hi": 144,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 145,
+              "hi": 147,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 148,
+              "hi": 151,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 152,
+              "hi": 156,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 157,
+              "hi": 289,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 290,
+              "hi": 309,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 310,
+              "hi": 336,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAANACAQDQAgAAAQIA0AIAAgMAHx1DT0xMRUNUX0VWSURFTkNFX1JFQUxfRFJJVkVSUwAAAAQeHwEAATEFIIYBHlBMQVlXUklHSFRfTUNQX0VYRUNVVEFCTEVfUEFUSAAAAAY/hgEBAEcvaG9tZS96ZW5vYml1cy8uY2FjaGUvbXMtcGxheXdyaWdodC9jaHJvbWl1bS0xMjQzL2Nocm9tZS1saW51eDY0L2Nocm9tZQgHhwGLAQEABG1pc2UIjAGQAQEABGV4ZWMJkQGTAQEAAi0tCpQBlwEBAANidW4LmAGcAQEABHRlc3QMnQGhAgEAhAFtaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2RldmVsb3Blci9za2lsbHMvYnJvd3NlcnMvY29sbGVjdC1ldmlkZW5jZS9zY3JpcHRzL2Jyb3dzZXItZXZpZGVuY2UvdGVzdC9icm93c2VyLXdvcmtmbG93LnRlc3QudHMNogK1AgEAEy0tdGVzdC1uYW1lLXBhdHRlcm4OtgLQAgEDAQAYcGxheXdyaWdodDogcHJlcmVxdWlzaXRlAAAAAAI="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 74,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 50114,
+          "event_seq": 76,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 12,
+            "vpid": 1073741824,
+            "seq": 12
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 65513,
+          "event_seq": 77,
+          "u": 0,
+          "n": 3,
+          "command": {
+            "run": 12,
+            "vpid": 1073741824,
+            "seq": 12
+          },
+          "vpid": 1073741824,
+          "kind": "Assign",
+          "name": "COLLECT_EVIDENCE_REAL_DRIVERS",
+          "value": "1",
+          "full_len": 1,
+          "scope": "env"
+        },
+        {
+          "seq": 5,
+          "t_ns": 67116,
+          "event_seq": 78,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 12,
+            "vpid": 1073741824,
+            "seq": 12
+          },
+          "vpid": 1073741824,
+          "kind": "Assign",
+          "name": "PLAYWRIGHT_MCP_EXECUTABLE_PATH",
+          "value": "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome",
+          "full_len": 71,
+          "scope": "env"
+        },
+        {
+          "seq": 6,
+          "t_ns": 74420,
+          "event_seq": 79,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 12,
+            "vpid": 1073741824,
+            "seq": 12
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+            "--test-name-pattern",
+            "playwright: prerequisite"
+          ],
+          "assigns": [
+            [
+              "COLLECT_EVIDENCE_REAL_DRIVERS",
+              "1"
+            ],
+            [
+              "PLAYWRIGHT_MCP_EXECUTABLE_PATH",
+              "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+            ]
+          ],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 7,
+          "t_ns": 456505,
+          "event_seq": 80,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 12,
+            "vpid": 1073741824,
+            "seq": 12
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1202379,
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+            "--test-name-pattern",
+            "playwright: prerequisite"
+          ]
+        },
+        {
+          "seq": 10,
+          "t_ns": 347564099,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 12,
+            "vpid": 1073741824,
+            "seq": 12
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "bun test v1.4.3 (c6da4a4d3)\n\nmise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts:\n{\"command\":\"doctor\",\"signal\":\"SIGINT\",\"code\":130,\"out\":\"\",\"err\":\"\",\"owned\":\"ce-doctor-eba1d994-ddd1-4640-b21f-8f488c08ef9c\",\"before\":\"### Browsers\\n- ce-borrowed-a18dde74-f8b1-41a4-8b91-12649159ae9e:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n- ce-doctor-eba1d994-ddd1-4640-b21f-8f488c08ef9c:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n\",\"after\":\"### Browsers\\n- ce-borrowed-a18dde74-f8b1-41a4-8b91-12649159ae9e:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n- ce-doctor-eba1d994-ddd1-4640-b21f-8f488c08ef9c:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n\",\"commands\":[{\"args\":[\"--version\"]},{\"args\":[\"list\"]},{\"args\":[\"open\",\"about:blank\"],\"session\":\"ce-doctor-eba1d994-ddd1-4640-b21f-8f488c08ef9c\"}]}\n94 |         const out = await output;\n95 |         const err = await errors;\n96 |         const after = await native([\"list\"]);\n97 |         const log = (await readFile(commands, \"utf8\")).trim().split(\"\\n\").map(line => JSON.parse(line));\n98 |         console.error(JSON.stringify({ command, signal, code, out, err, owned, before, after, commands: log }));\n99 |         expect(after).not.toContain(`- ${owned}:`);\n                               ^\nerror: expect(received).not.toContain(expected)\n\nExpected to not contain: \"- ce-doctor-eba1d994-ddd1-4640-b21f-8f488c08ef9c:\"\nReceived: \"### Browsers\\n- ce-borrowed-a18dde74-f8b1-41a4-8b91-12649159ae9e:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n- ce-doctor-eba1d994-ddd1-4640-b21f-8f488c08ef9c:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n\"\n\n      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts:99:27)\n(fail) real public browser workflows > playwright: prerequisite interruption cleans owned sessions and preserves borrowed sessions [3803.27ms]\n\n 0 pass\n 2 filtered out\n 1 fail\n 3 expect() calls\nRan 1 test across 1 file. [3.83s]\n",
+          "fd": 1
+        },
+        {
+          "seq": 11,
+          "t_ns": 4173825674,
+          "event_seq": 81,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 12,
+            "vpid": 1073741824,
+            "seq": 12
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 1,
+          "dur_ns": 4173775560,
+          "pipestatus": []
+        },
+        {
+          "seq": 12,
+          "t_ns": 4173846333,
+          "event_seq": 82,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 1
+        }
+      ]
+    },
+    "meta": {
+      "minimized": {
+        "filter": "pipeline",
+        "inputBytes": 2464,
+        "outputBytes": 1739,
+        "artifactId": "25"
+      }
+    }
+  },
+  "hasError": true
+}

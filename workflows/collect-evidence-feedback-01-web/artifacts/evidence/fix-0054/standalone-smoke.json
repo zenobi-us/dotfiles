@@ -1,0 +1,266 @@
+{
+  "text": "{\n  \"cwd\": \"/tmp\",\n  \"before\": {\n    \"command\": [\n      \"playwright-cli\",\n      \"list\"\n    ],\n    \"code\": 0,\n    \"out\": \"  (no browsers)\\n\",\n    \"err\": \"\"\n  },\n  \"doctors\": [\n    {\n      \"command\": [\n        \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts\",\n        \"doctor\",\n        \"--driver\",\n        \"playwright\",\n        \"--json\"\n      ],\n      \"code\": 0,\n      \"out\": \"{\\\"schema\\\":\\\"collect-evidence/v1\\\",\\\"kind\\\":\\\"event\\\",\\\"command\\\":\\\"doctor\\\",\\\"success\\\":true,\\\"driver\\\":\\\"playwright\\\",\\\"available\\\":true,\\\"attended\\\":false,\\\"diagnostic\\\":\\\"0.1.22\\\",\\\"video\\\":\\\"supported by playwright-cli\\\"}\\n\",\n      \"err\": \"\"\n    },\n    {\n      \"command\": [\n        \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts\",\n        \"doctor\",\n        \"--driver\",\n        \"surf\",\n        \"--json\"\n      ],\n      \"code\": 0,\n      \"out\": \"{\\\"schema\\\":\\\"collect-evidence/v1\\\",\\\"kind\\\":\\\"event\\\",\\\"command\\\":\\\"doctor\\\",\\\"success\\\":true,\\\"driver\\\":\\\"surf\\\",\\\"available\\\":true,\\\"attended\\\":true,\\\"diagnostic\\\":\\\"{\\\\n  \\\\\\\"ok\\\\\\\": true,\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": …[+7066]\n      \"err\": \"\"\n    }\n  ],\n  \"after\": {\n    \"command\": [\n      \"playwright-cli\",\n      \"list\"\n    ],\n    \"code\": 0,\n    \"out\": \"  (no browsers)\\n\",\n    \"err\": \"\"\n  },\n  \"tabs\": {\n    \"command\": [\n      \"surf\",\n      \"tab.list\",\n      \"--json\"\n    ],\n    \"code\": 0,\n    \"out\": \"[\\n  {\\n    \\\"id\\\": 498730810,\\n    \\\"title\\\": \\\"New Tab\\\",\\n    \\\"url\\\": \\\"chrome://newtab/\\\",\\n    \\\"active\\\": true,\\n    \\\"windowId\\\": 498730809\\n  }\\n]\\n\",\n    \"err\": \"\"\n  },\n  \"ownedResourcesUnchanged\": true\n}\n[raw output: artifact://46]\n\n\nWall time: 2.58 seconds",
+  "details": {
+    "wallTimeNoticeEmitted": true,
+    "timeoutSeconds": 60,
+    "wallTimeMs": 2584.131058000028,
+    "trace": {
+      "v": 1,
+      "seq": 9,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 2582438399,
+      "script": "PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome mise exec -- bun -e \"const cli=\\\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts\\\"; async function call(cmd){const p=Bun.spawn(cmd,{cwd:'/tmp',env:process.env,stdout:'pipe',stderr:'pipe'});const [out,err]=await Promise.all([new Response(p.stdout).text(),new Response(p.stderr).text()]);return {command:cmd,code:await p.exited,out,err};} const before=await call(['playwright-cli','list']); const doctors=[];for(const driver of ['playwright','surf']) doctors.push(await call([cli,'doctor','--driver',driver,'--json']));const after=await call(['playwright-cli','list']);const tabs=await call(['surf','tab.list','--json']);console.log(JSON.stringify({cwd:process.cwd(),before,doctors,after,tabs,ownedResourcesUnchanged:before.out===after.out},null,2));if(doctors.some(x=>x.code!==0)||before.out!==after.out)process.exitCode=1;\"",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 1091,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 1091,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 1091,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 1091,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 2582372066,
+              "at": 49362,
+              "argv": [
+                "mise",
+                "exec",
+                "--",
+                "bun",
+                "-e",
+                "const cli=\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts\"; async function call(cmd){const"
+              ],
+              "env": [
+                [
+                  "PLAYWRIGHT_MCP_EXECUTABLE_PATH",
+                  "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+                ]
+              ],
+              "res": "external",
+              "pid": 1240357,
+              "end_ns": 2582421428,
+              "end_seq": 8
+            },
+            {
+              "k": "assign",
+              "lo": 0,
+              "hi": 102,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 31,
+              "hi": 102,
+              "p": 3,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 103,
+              "hi": 107,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 108,
+              "hi": 112,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 113,
+              "hi": 115,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 116,
+              "hi": 119,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 120,
+              "hi": 122,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 123,
+              "hi": 1091,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAMMIAQDDCAAAAQIAwwgAAQMAZh5QTEFZV1JJR0hUX01DUF9FWEVDVVRBQkxFX1BBVEgAAAAEH2YBAEcvaG9tZS96ZW5vYml1cy8uY2FjaGUvbXMtcGxheXdyaWdodC9jaHJvbWl1bS0xMjQzL2Nocm9tZS1saW51eDY0L2Nocm9tZQYFZ2sBAARtaXNlBmxwAQAEZXhlYwdxcwEAAi0tCHR3AQADYnVuCXh6AQACLWUKe8MIAQMFAApjb25zdCBjbGk9AQEiANQBL3J1bi9tZWRpYS96ZW5vYml1cy9TdG9yZS9Qcm9qZWN0cy9NaW5lL0dpdGh1Yi9Eb3RmaWxlcy53b3JrdHJlZXMvZmVhdHVyZS1jb2xsZWN0LWV2aWRlbmNlLWZlZWRiYWNrLTAxLXdlYi9taXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2RldmVsb3Blci9za2lsbHMvYnJvd3NlcnMvY29sbGVjdC1ldmlkZW5jZS9zY3JpcHRzL2NvbGxlY3QtZXZpZGVuY2UudHMBASIA5AU7IGFzeW5jIGZ1bmN0aW9uIGNhbGwoY21kKXtjb25zdCBwPUJ1bi5zcGF3bihjbWQse2N3ZDonL3RtcCcsZW52OnByb2Nlc3MuZW52LHN0ZG91dDoncGlwZScsc3RkZXJyOidwaXBlJ30pO2NvbnN0IFtvdXQsZXJyXT1hd2FpdCBQcm9taXNlLmFsbChbbmV3IFJlc3BvbnNlKHAuc3Rkb3V0KS50ZXh0KCksbmV3IFJlc3BvbnNlKHAuc3RkZXJyKS50ZXh0KCldKTtyZXR1cm4ge2NvbW1hbmQ6Y21kLGNvZGU6YXdhaXQgcC5leGl0ZWQsb3V0LGVycn07fSBjb25zdCBiZWZvcmU9YXdhaXQgY2FsbChbJ3BsYXl3cmlnaHQtY2xpJywnbGlzdCddKTsgY29uc3QgZG9jdG9ycz1bXTtmb3IoY29uc3QgZHJpdmVyIG9mIFsncGxheXdyaWdodCcsJ3N1cmYnXSkgZG9jdG9ycy5wdXNoKGF3YWl0IGNhbGwoW2NsaSwnZG9jdG9yJywnLS1kcml2ZXInLGRyaXZlciwnLS1qc29uJ10pKTtjb25zdCBhZnRlcj1hd2FpdCBjYWxsKFsncGxheXdyaWdodC1jbGknLCdsaXN0J10pO2NvbnN0IHRhYnM9YXdhaXQgY2FsbChbJ3N1cmYnLCd0YWIubGlzdCcsJy0tanNvbiddKTtjb25zb2xlLmxvZyhKU09OLnN0cmluZ2lmeSh7Y3dkOnByb2Nlc3MuY3dkKCksYmVmb3JlLGRvY3RvcnMsYWZ0ZXIsdGFicyxvd25lZFJlc291cmNlc1VuY2hhbmdlZDpiZWZvcmUub3V0PT09YWZ0ZXIub3V0fSxudWxsLDIpKTtpZihkb2N0b3JzLnNvbWUoeD0+eC5jb2RlIT09MCl8fGJlZm9yZS5vdXQhPT1hZnRlci5vdXQpcHJvY2Vzcy5leGl0Q29kZT0xOwAAAAAC"
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 137,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 49362,
+          "event_seq": 139,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 20
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 66204,
+          "event_seq": 140,
+          "u": 0,
+          "n": 3,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 20
+          },
+          "vpid": 1073741824,
+          "kind": "Assign",
+          "name": "PLAYWRIGHT_MCP_EXECUTABLE_PATH",
+          "value": "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome",
+          "full_len": 71,
+          "scope": "env"
+        },
+        {
+          "seq": 5,
+          "t_ns": 74138,
+          "event_seq": 141,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 20
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "-e",
+            "const cli=\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts\"; async function call(cmd){const"
+          ],
+          "assigns": [
+            [
+              "PLAYWRIGHT_MCP_EXECUTABLE_PATH",
+              "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+            ]
+          ],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 6,
+          "t_ns": 460171,
+          "event_seq": 142,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 20
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1240357,
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "-e",
+            "const cli=\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts\"; async function call(cmd){const"
+          ]
+        },
+        {
+          "seq": 7,
+          "t_ns": 2581230438,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 20
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "{\n  \"cwd\": \"/tmp\",\n  \"before\": {\n    \"command\": [\n      \"playwright-cli\",\n      \"list\"\n    ],\n    \"code\": 0,\n    \"out\": \"  (no browsers)\\n\",\n    \"err\": \"\"\n  },\n  \"doctors\": [\n    {\n      \"command\": [\n        \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts\",\n        \"doctor\",\n        \"--driver\",\n        \"playwright\",\n        \"--json\"\n      ],\n      \"code\": 0,\n      \"out\": \"{\\\"schema\\\":\\\"collect-evidence/v1\\\",\\\"kind\\\":\\\"event\\\",\\\"command\\\":\\\"doctor\\\",\\\"success\\\":true,\\\"driver\\\":\\\"playwright\\\",\\\"available\\\":true,\\\"attended\\\":false,\\\"diagnostic\\\":\\\"0.1.22\\\",\\\"video\\\":\\\"supported by playwright-cli\\\"}\\n\",\n      \"err\": \"\"\n    },\n    {\n      \"command\": [\n        \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts\",\n        \"doctor\",\n        \"--driver\",\n        \"surf\",\n        \"--json\"\n      ],\n      \"code\": 0,\n      \"out\": \"{\\\"schema\\\":\\\"collect-evidence/v1\\\",\\\"kind\\\":\\\"event\\\",\\\"command\\\":\\\"doctor\\\",\\\"success\\\":true,\\\"driver\\\":\\\"surf\\\",\\\"available\\\":true,\\\"attended\\\":true,\\\"diagnostic\\\":\\\"{\\\\n  \\\\\\\"ok\\\\\\\": true,\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"pass\\\\\\\": 10,\\\\n    \\\\\\\"warn\\\\\\\": 0,\\\\n    \\\\\\\"fail\\\\\\\": 0\\\\n  },\\\\n  \\\\\\\"environment\\\\\\\": {\\\\n    \\\\\\\"platform\\\\\\\": \\\\\\\"linux\\\\\\\",\\\\n    \\\\\\\"runningInWsl\\\\\\\": false,\\\\n    \\\\\\\"effectiveTarget\\\\\\\": \\\\\\\"linux\\\\\\\",\\\\n    \\\\\\\"socketPath\\\\\\\": \\\\\\\"/tmp/surf.sock\\\\\\\",\\\\n    \\\\\\\"surfSocketSet\\\\\\\": true,\\\\n    \\\\\\\"socketOverrideSet\\\\\\\": false,\\\\n    \\\\\\\"browsers\\\\\\\": [\\\\n      \\\\\\\"chrome\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"manifests\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\",\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"Google Chrome\\\\\\\",\\\\n      \\\\\\\"path\\\\\\\": \\\\\\\"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\\\\\\\",\\\\n      \\\\\\\"supported\\\\\\\": true,\\\\n      \\\\\\\"manifest\\\\\\\": {\\\\n        \\\\\\\"name\\\\\\\": \\\\\\\"surf.browser.host\\\\\\\",\\\\n        \\\\\\\"description\\\\\\\": \\\\\\\"Surf CLI Native Host\\\\\\\",\\\\n        \\\\\\\"path\\\\\\\": \\\\\\\"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\\\\\\\",\\\\n        \\\\\\\"type\\\\\\\": \\\\\\\"stdio\\\\\\\",\\\\n        \\\\\\\"allowed_origins\\\\\\\": [\\\\n          \\\\\\\"chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/\\\\\\\",\\\\n          \\\\\\\"chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/\\\\\\\",\\\\n          \\\\\\\"chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/\\\\\\\"\\\\n        ]\\\\n      },\\\\n      \\\\\\\"checks\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"id\\\\\\\": \\\\\\\"manifest-file\\\\\\\",\\\\n          \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n          \\\\\\\"message\\\\\\\": \\\\\\\"Manifest found: /home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\\\\\\\",\\\\n          \\\\\\\"path\\\\\\\": \\\\\\\"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\\\\\\\",\\\\n          \\\\\\\"fsPath\\\\\\\": \\\\\\\"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\\\\\\\",\\\\n          \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"id\\\\\\\": \\\\\\\"manifest-json\\\\\\\",\\\\n          \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n          \\\\\\\"message\\\\\\\": \\\\\\\"Manifest JSON is valid\\\\\\\",\\\\n          \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"id\\\\\\\": \\\\\\\"manifest-name\\\\\\\",\\\\n          \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n          \\\\\\\"message\\\\\\\": \\\\\\\"Manifest name is surf.browser.host\\\\\\\",\\\\n          \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"id\\\\\\\": \\\\\\\"manifest-type\\\\\\\",\\\\n          \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n          \\\\\\\"message\\\\\\\": \\\\\\\"Manifest type is stdio\\\\\\\",\\\\n          \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"id\\\\\\\": \\\\\\\"manifest-origins\\\\\\\",\\\\n          \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n          \\\\\\\"message\\\\\\\": \\\\\\\"Manifest has 3 Chrome extension origins\\\\\\\",\\\\n          \\\\\\\"origins\\\\\\\": [\\\\n            \\\\\\\"chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/\\\\\\\",\\\\n            \\\\\\\"chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/\\\\\\\",\\\\n            \\\\\\\"chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/\\\\\\\"\\\\n          ],\\\\n          \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"id\\\\\\\": \\\\\\\"manifest-path\\\\\\\",\\\\n          \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n          \\\\\\\"message\\\\\\\": \\\\\\\"Manifest path exists: /home/zenobius/.local/share/surf-cli/host-wrapper.sh\\\\\\\",\\\\n          \\\\\\\"path\\\\\\\": \\\\\\\"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\\\\\\\",\\\\n          \\\\\\\"fsPath\\\\\\\": \\\\\\\"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\\\\\\\",\\\\n          \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"id\\\\\\\": \\\\\\\"manifest-path-executable\\\\\\\",\\\\n          \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n          \\\\\\\"message\\\\\\\": \\\\\\\"Manifest wrapper is executable\\\\\\\",\\\\n          \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\"\\\\n        }\\\\n      ]\\\\n    }\\\\n  ],\\\\n  \\\\\\\"checks\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"socket-file\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n      \\\\\\\"message\\\\\\\": \\\\\\\"Socket path exists: /tmp/surf.sock\\\\\\\",\\\\n      \\\\\\\"path\\\\\\\": \\\\\\\"/tmp/surf.sock\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"socket-type\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n      \\\\\\\"message\\\\\\\": \\\\\\\"Socket path is a Unix socket\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"socket-connect\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n      \\\\\\\"message\\\\\\\": \\\\\\\"Connected to native host socket\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"manifest-file\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n      \\\\\\\"message\\\\\\\": \\\\\\\"Manifest found: /home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\\\\\\\",\\\\n      \\\\\\\"path\\\\\\\": \\\\\\\"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\\\\\\\",\\\\n      \\\\\\\"fsPath\\\\\\\": \\\\\\\"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\\\\\\\",\\\\n      \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"manifest-json\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n      \\\\\\\"message\\\\\\\": \\\\\\\"Manifest JSON is valid\\\\\\\",\\\\n      \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"manifest-name\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n      \\\\\\\"message\\\\\\\": \\\\\\\"Manifest name is surf.browser.host\\\\\\\",\\\\n      \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"manifest-type\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n      \\\\\\\"message\\\\\\\": \\\\\\\"Manifest type is stdio\\\\\\\",\\\\n      \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"manifest-origins\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n      \\\\\\\"message\\\\\\\": \\\\\\\"Manifest has 3 Chrome extension origins\\\\\\\",\\\\n      \\\\\\\"origins\\\\\\\": [\\\\n        \\\\\\\"chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/\\\\\\\",\\\\n        \\\\\\\"chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/\\\\\\\",\\\\n        \\\\\\\"chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"manifest-path\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n      \\\\\\\"message\\\\\\\": \\\\\\\"Manifest path exists: /home/zenobius/.local/share/surf-cli/host-wrapper.sh\\\\\\\",\\\\n      \\\\\\\"path\\\\\\\": \\\\\\\"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\\\\\\\",\\\\n      \\\\\\\"fsPath\\\\\\\": \\\\\\\"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\\\\\\\",\\\\n      \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"manifest-path-executable\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n      \\\\\\\"message\\\\\\\": \\\\\\\"Manifest wrapper is executable\\\\\\\",\\\\n      \\\\\\\"browser\\\\\\\": \\\\\\\"chrome\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"platform\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"info\\\\\\\",\\\\n      \\\\\\\"message\\\\\\\": \\\\\\\"Platform: linux\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"target\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"info\\\\\\\",\\\\n      \\\\\\\"message\\\\\\\": \\\\\\\"Install target: linux\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"socket-path\\\\\\\",\\\\n      \\\\\\\"status\\\\\\\": \\\\\\\"info\\\\\\\",\\\\n      \\\\\\\"message\\\\\\\": \\\\\\\"Socket path: /tmp/surf.sock\\\\\\\",\\\\n      \\\\\\\"path\\\\\\\": \\\\\\\"/tmp/surf.sock\\\\\\\"\\\\n    }\\\\n  ],\\\\n  \\\\\\\"recommendations\\\\\\\": [\\\\n    \\\\\\\"SURF_SOCKET is set; make sure Chrome launches the native host with the same socket value.\\\\\\\"\\\\n  ]\\\\n}\\\",\\\"video\\\":\\\"unavailable\\\"}\\n\",\n      \"err\": \"\"\n    }\n  ],\n  \"after\": {\n    \"command\": [\n      \"playwright-cli\",\n      \"list\"\n    ],\n    \"code\": 0,\n    \"out\": \"  (no browsers)\\n\",\n    \"err\": \"\"\n  },\n  \"tabs\": {\n    \"command\": [\n      \"surf\",\n      \"tab.list\",\n      \"--json\"\n    ],\n    \"code\": 0,\n    \"out\": \"[\\n  {\\n    \\\"id\\\": 498730810,\\n    \\\"title\\\": \\\"New Tab\\\",\\n    \\\"url\\\": \\\"chrome://newtab/\\\",\\n    \\\"active\\\": true,\\n    \\\"windowId\\\": 498730809\\n  }\\n]\\n\",\n    \"err\": \"\"\n  },\n  \"ownedResourcesUnchanged\": true\n}\n",
+          "fd": 1
+        },
+        {
+          "seq": 8,
+          "t_ns": 2582421428,
+          "event_seq": 143,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 20,
+            "vpid": 1073741824,
+            "seq": 20
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 2582372066,
+          "pipestatus": []
+        },
+        {
+          "seq": 9,
+          "t_ns": 2582438399,
+          "event_seq": 144,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    },
+    "meta": {
+      "minimized": {
+        "filter": "pipeline",
+        "inputBytes": 8951,
+        "outputBytes": 1895,
+        "artifactId": "46"
+      }
+    }
+  }
+}

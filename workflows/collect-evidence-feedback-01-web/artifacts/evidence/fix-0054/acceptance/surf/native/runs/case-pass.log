@@ -1,0 +1,193 @@
+{
+  "status": "completed",
+  "completedSteps": 26,
+  "totalSteps": 26,
+  "results": [
+    {
+      "step": 1,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 2,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 3,
+      "cmd": "navigate",
+      "status": "ok",
+      "ms": 640
+    },
+    {
+      "step": 4,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 5,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 6,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 7,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 8,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 9,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 220
+    },
+    {
+      "step": 10,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 11,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 12,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 193
+    },
+    {
+      "step": 13,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 14,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 15,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 16,
+      "cmd": "click",
+      "status": "ok",
+      "ms": 372
+    },
+    {
+      "step": 17,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 18,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 19,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 20,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 21,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 22,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 195
+    },
+    {
+      "step": 23,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 24,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 25,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 195
+    },
+    {
+      "step": 26,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    }
+  ],
+  "failed": 0,
+  "totalMs": 3883,
+  "vars": {
+    "base": "http://127.0.0.1:46463",
+    "shots": "/tmp/ce-surf-public-wnncDK/collect-evidence-O1hLcT/report/shots",
+    "dialog_706173732e31": {
+      "id": 542,
+      "hasDialog": false
+    },
+    "url_706173732e31": "http://127.0.0.1:46463/",
+    "dialog_706173732e32": {
+      "id": 556,
+      "hasDialog": false
+    },
+    "capture_1_706173732e32": "{\"capturedAt\":\"2026-11-11T04:10:20.514Z\",\"url\":\"http://127.0.0.1:46463/\",\"viewport\":{\"width\":1185,\"height\":1047,\"deviceScaleFactor\":1}}",
+    "assert_706173732e32": "Owned evidence test",
+    "capture_2_706173732e32": "{\"capturedAt\":\"2026-11-11T04:10:20.914Z\",\"url\":\"http://127.0.0.1:46463/\",\"viewport\":{\"width\":1185,\"height\":1047,\"deviceScaleFactor\":1}}",
+    "dialog_706173732e33": {
+      "id": 570,
+      "hasDialog": false
+    },
+    "url_706173732e33": "http://127.0.0.1:46463/",
+    "dialog_706173732e34": {
+      "id": 584,
+      "hasDialog": false
+    },
+    "capture_1_706173732e34": "{\"capturedAt\":\"2026-11-11T04:10:22.305Z\",\"url\":\"http://127.0.0.1:46463/\",\"viewport\":{\"width\":1185,\"height\":1047,\"deviceScaleFactor\":1}}",
+    "assert_706173732e34": "Project selected: Aurora",
+    "capture_2_706173732e34": "{\"capturedAt\":\"2026-11-11T04:10:22.708Z\",\"url\":\"http://127.0.0.1:46463/\",\"viewport\":{\"width\":1185,\"height\":1047,\"deviceScaleFactor\":1}}"
+  }
+}

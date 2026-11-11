@@ -1,0 +1,220 @@
+{
+  "text": "(no output, exit code 0)",
+  "details": {
+    "wallTimeNoticeEmitted": false,
+    "timeoutSeconds": 120,
+    "wallTimeMs": 981.2850799999433,
+    "trace": {
+      "v": 1,
+      "seq": 7,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 980100794,
+      "script": "mise exec -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc --noEmit -p /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/tsconfig.json",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 302,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 302,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 302,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 302,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 980044548,
+              "at": 38673,
+              "argv": [
+                "mise",
+                "exec",
+                "--",
+                "bun",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc",
+                "--noEmit",
+                "-p",
+                "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/tsconfig.json"
+              ],
+              "res": "external",
+              "pid": 1242220,
+              "end_ns": 980083221,
+              "end_seq": 6
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 4,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 5,
+              "hi": 9,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 10,
+              "hi": 12,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 13,
+              "hi": 16,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 17,
+              "hi": 149,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 150,
+              "hi": 158,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 159,
+              "hi": 161,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 162,
+              "hi": 302,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAK4CAQCuAgAAAQIArgIAAAgDAAQBAARtaXNlBAUJAQAEZXhlYwUKDAEAAi0tBg0QAQADYnVuBxGVAQEAhAEvcnVuL21lZGlhL3plbm9iaXVzL1N0b3JlL1Byb2plY3RzL01pbmUvR2l0aHViL0RvdGZpbGVzL21pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvZGV2ZWxvcGVyL25vZGVfbW9kdWxlcy90eXBlc2NyaXB0L2Jpbi90c2MIlgGeAQEACC0tbm9FbWl0CZ8BoQEBAAItcAqiAa4CAQCMAS9ydW4vbWVkaWEvemVub2JpdXMvU3RvcmUvUHJvamVjdHMvTWluZS9HaXRodWIvRG90ZmlsZXMvd29ya2Zsb3dzL2NvbGxlY3QtZXZpZGVuY2UtZmVlZGJhY2stMDEtd2ViL2FydGlmYWN0cy9ldmlkZW5jZS9maXgtMDA0OC90c2NvbmZpZy5qc29uAAAAAAI="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 173,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 38673,
+          "event_seq": 175,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 25,
+            "vpid": 1073741824,
+            "seq": 25
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 54242,
+          "event_seq": 176,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 25,
+            "vpid": 1073741824,
+            "seq": 25
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc",
+            "--noEmit",
+            "-p",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/tsconfig.json"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 460021,
+          "event_seq": 177,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 25,
+            "vpid": 1073741824,
+            "seq": 25
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1242220,
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc",
+            "--noEmit",
+            "-p",
+            "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/tsconfig.json"
+          ]
+        },
+        {
+          "seq": 6,
+          "t_ns": 980083221,
+          "event_seq": 178,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 25,
+            "vpid": 1073741824,
+            "seq": 25
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 980044548,
+          "pipestatus": []
+        },
+        {
+          "seq": 7,
+          "t_ns": 980100794,
+          "event_seq": 179,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,318 @@
+{
+  "text": "bun test v1.4.3 (c6da4a4d3)\n\n 1 pass\n 2 filtered out\n 0 fail\n 86 expect() calls\nRan 1 test across 1 file. [46.86s]\n\n\nWall time: 47.21 seconds",
+  "details": {
+    "wallTimeNoticeEmitted": true,
+    "timeoutSeconds": 300,
+    "wallTimeMs": 47210.97727099998,
+    "trace": {
+      "v": 1,
+      "seq": 11,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 47209659575,
+      "script": "COLLECT_EVIDENCE_REAL_DRIVERS=1 COLLECT_EVIDENCE_ACCEPTANCE_OUTPUT=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/acceptance mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts --test-name-pattern \"surf:\"",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 387,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 387,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 387,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 387,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 47209591817,
+              "at": 46798,
+              "argv": [
+                "mise",
+                "exec",
+                "--",
+                "bun",
+                "test",
+                "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+                "--test-name-pattern",
+                "surf:"
+              ],
+              "env": [
+                [
+                  "COLLECT_EVIDENCE_REAL_DRIVERS",
+                  "1"
+                ],
+                [
+                  "COLLECT_EVIDENCE_ACCEPTANCE_OUTPUT",
+                  "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/acceptance"
+                ]
+              ],
+              "res": "external",
+              "pid": 1210367,
+              "end_ns": 47209638615,
+              "end_seq": 10
+            },
+            {
+              "k": "assign",
+              "lo": 0,
+              "hi": 31,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 30,
+              "hi": 31,
+              "p": 3,
+              "state": "skipped"
+            },
+            {
+              "k": "assign",
+              "lo": 32,
+              "hi": 204,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 67,
+              "hi": 204,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 205,
+              "hi": 209,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 210,
+              "hi": 214,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 215,
+              "hi": 217,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 218,
+              "hi": 221,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 222,
+              "hi": 226,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 227,
+              "hi": 359,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 360,
+              "hi": 379,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 380,
+              "hi": 387,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAIMDAQCDAwAAAQIAgwMAAgMAHx1DT0xMRUNUX0VWSURFTkNFX1JFQUxfRFJJVkVSUwAAAAQeHwEAATEFIMwBIkNPTExFQ1RfRVZJREVOQ0VfQUNDRVBUQU5DRV9PVVRQVVQAAAAGQ8wBAQCJAS9ydW4vbWVkaWEvemVub2JpdXMvU3RvcmUvUHJvamVjdHMvTWluZS9HaXRodWIvRG90ZmlsZXMvd29ya2Zsb3dzL2NvbGxlY3QtZXZpZGVuY2UtZmVlZGJhY2stMDEtd2ViL2FydGlmYWN0cy9ldmlkZW5jZS9maXgtMDA1NC9hY2NlcHRhbmNlCAfNAdEBAQAEbWlzZQjSAdYBAQAEZXhlYwnXAdkBAQACLS0K2gHdAQEAA2J1bgveAeIBAQAEdGVzdAzjAecCAQCEAW1pc2UvY29uZi5kL2RldnRvb2xzLWFnZW50L2J1bmRsZXMvZGV2ZWxvcGVyL3NraWxscy9icm93c2Vycy9jb2xsZWN0LWV2aWRlbmNlL3NjcmlwdHMvYnJvd3Nlci1ldmlkZW5jZS90ZXN0L2Jyb3dzZXItd29ya2Zsb3cudGVzdC50cw3oAvsCAQATLS10ZXN0LW5hbWUtcGF0dGVybg78AoMDAQMBAAVzdXJmOgAAAAAC"
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 107,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 46798,
+          "event_seq": 109,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 16,
+            "vpid": 1073741824,
+            "seq": 16
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 62146,
+          "event_seq": 110,
+          "u": 0,
+          "n": 3,
+          "command": {
+            "run": 16,
+            "vpid": 1073741824,
+            "seq": 16
+          },
+          "vpid": 1073741824,
+          "kind": "Assign",
+          "name": "COLLECT_EVIDENCE_REAL_DRIVERS",
+          "value": "1",
+          "full_len": 1,
+          "scope": "env"
+        },
+        {
+          "seq": 5,
+          "t_ns": 64080,
+          "event_seq": 111,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 16,
+            "vpid": 1073741824,
+            "seq": 16
+          },
+          "vpid": 1073741824,
+          "kind": "Assign",
+          "name": "COLLECT_EVIDENCE_ACCEPTANCE_OUTPUT",
+          "value": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/acceptance",
+          "full_len": 137,
+          "scope": "env"
+        },
+        {
+          "seq": 6,
+          "t_ns": 71764,
+          "event_seq": 112,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 16,
+            "vpid": 1073741824,
+            "seq": 16
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+            "--test-name-pattern",
+            "surf:"
+          ],
+          "assigns": [
+            [
+              "COLLECT_EVIDENCE_REAL_DRIVERS",
+              "1"
+            ],
+            [
+              "COLLECT_EVIDENCE_ACCEPTANCE_OUTPUT",
+              "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/acceptance"
+            ]
+          ],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 7,
+          "t_ns": 424595,
+          "event_seq": 113,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 16,
+            "vpid": 1073741824,
+            "seq": 16
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1210367,
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+            "--test-name-pattern",
+            "surf:"
+          ]
+        },
+        {
+          "seq": 9,
+          "t_ns": 345745354,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 16,
+            "vpid": 1073741824,
+            "seq": 16
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "bun test v1.4.3 (c6da4a4d3)\n\n 1 pass\n 2 filtered out\n 0 fail\n 86 expect() calls\nRan 1 test across 1 file. [46.86s]\n",
+          "fd": 1
+        },
+        {
+          "seq": 10,
+          "t_ns": 47209638615,
+          "event_seq": 114,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 16,
+            "vpid": 1073741824,
+            "seq": 16
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 47209591817,
+          "pipestatus": []
+        },
+        {
+          "seq": 11,
+          "t_ns": 47209659575,
+          "event_seq": 115,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "event",
+  "source_commit": "fc122615ba485d1059313b5b6ed54d3a459a0704",
+  "source_tree": "5385016678fec6057d508c1c5bb9561180afb9cc",
+  "source_clean": true,
+  "resolved": [
+    "SPEC-R8-001"
+  ],
+  "unresolved": [],
+  "validation": [
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/playwright-driver.test.ts",
+      "status": "passed",
+      "tests": 95,
+      "assertions": 871,
+      "output": "bun test v1.4.3 (c6da4a4d3)\n95 pass\n0 fail\n871 expect() calls\nRan 95 tests across 3 files. [52.65s]"
+    },
+    {
+      "command": "COLLECT_EVIDENCE_REAL_DRIVERS=1 PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts --test-name-pattern \"playwright:\"",
+      "status": "passed",
+      "tests": 2,
+      "assertions": 64,
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/playwright-after.json"
+    },
+    {
+      "command": "COLLECT_EVIDENCE_REAL_DRIVERS=1 mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts --test-name-pattern \"surf:\"",
+      "status": "passed",
+      "tests": 1,
+      "assertions": 86,
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/surf-after.json"
+    },
+    {
+      "command": "COLLECT_EVIDENCE_REAL_DRIVERS=1 PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts --test-name-pattern \"playwright: prerequisite\"",
+      "status": "passed",
+      "tests": 1,
+      "assertions": 36,
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/prerequisite-after-final.json",
+      "note": "Final fixture types and automatic temporary workspace cleanup verified."
+    },
+    {
+      "command": "mise exec -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/node_modules/typescript/bin/tsc --noEmit -p /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0048/tsconfig.json",
+      "cwd": "/tmp",
+      "status": "passed",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/strict-typecheck-final.json",
+      "note": "Existing retained config read only; includes current SOURCE. Initial new fixture type errors are retained separately."
+    },
+    {
+      "command": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts doctor --driver <playwright|surf> --json",
+      "cwd": "/tmp",
+      "status": "passed",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/standalone-smoke.json",
+      "note": "Both installed executable commands returned 0. Playwright list before/after had no browsers. Borrowed Surf tab 498730810 and window 498730809 retained chrome://newtab/."
+    },
+    {
+      "command": "hk run pre-commit --staged",
+      "status": "passed",
+      "ref": "workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/pre-commit.json"
+    }
+  ],
+  "regression": {
+    "before": "Standalone doctor SIGINT: exit 130, empty output, real owned session remained open; fixture recovered only its own sessions.",
+    "after": "Standalone doctor and run prerequisite, SIGINT and SIGTERM: exit 1 with error record; owned session absent before exit observation; borrowed control present; exactly one open and one close; no later run browser; no sealed run.",
+    "barrier": "A PATH wrapper executes the installed real Playwright command, records its actual successful open, then waits for explicit filesystem release. No fake browser or mock output."
+  },
+  "visuals": [
+    {
+      "driver": "playwright",
+      "asset": "acceptance/playwright/cases/pass/media/step-004-step-pass-004-selected-project--capture-002--capture-002.png",
+      "width": 1280,
+      "height": 720,
+      "observed": "Project selected: Aurora"
+    },
+    {
+      "driver": "surf",
+      "asset": "acceptance/surf/cases/pass/media/step-004-step-pass-004-selected-project--capture-002--capture-002.png",
+      "width": 1185,
+      "height": 1047,
+      "observed": "Project selected: Aurora"
+    }
+  ],
+  "limitations": [
+    "Failing-before browser proof covers standalone doctor SIGINT. The four after scenarios cover both command paths and both signals.",
+    "Initial fixture configuration errors and the initial strict type errors are retained, not reported as product failures.",
+    "LSP initialization failed because workspace TypeScript was unavailable. Existing BASE TypeScript passed without installation.",
+    "Unselected advisories remain unchanged. No new ADR. No remote Git, merge, rebase, push, installation, credentials, service restart or borrowed-resource closure.",
+    "Parent owns phase-complete, acknowledgement, pane closure and workflow-artifact publication."
+  ]
+}

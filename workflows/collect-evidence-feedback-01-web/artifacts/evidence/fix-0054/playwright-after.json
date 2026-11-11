@@ -1,0 +1,366 @@
+{
+  "text": "bun test v1.4.3 (c6da4a4d3)\nmise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts:\n{\"command\":\"doctor\",\"signal\":\"SIGINT\",\"code\":1,\"out\":\"{\\\"schema\\\":\\\"collect-evidence/v1\\\",\\\"kind\\\":\\\"error\\\",\\\"command\\\":\\\"doctor\\\",\\\"success\\\":false,\\\"code\\\":1,\\\"message\\\":\\\"Collection interrupted; the command did not complete\\\"}\\n\",\"err\":\"Collectio…[+820]\n{\"command\":\"doctor\",\"signal\":\"SIGTERM\",\"code\":1,\"out\":\"{\\\"schema\\\":\\\"collect-evidence/v1\\\",\\\"kind\\\":\\\"error\\\",\\\"command\\\":\\\"doctor\\\",\\\"success\\\":false,\\\"code\\\":1,\\\"message\\\":\\\"Collection interrupted; the command did not complete\\\"}\\n\",\"err\":\"Collecti…[+821]\n{\"command\":\"run\",\"signal\":\"SIGINT\",\"code\":1,\"out\":\"{\\\"schema\\\":\\\"collect-evidence/v1\\\",\\\"kind\\\":\\\"error\\\",\\\"command\\\":\\\"run\\\",\\\"success\\\":false,\\\"code\\\":1,\\\"message\\\":\\\"Collection interrupted; the command did not complete\\\"}\\n\",\"err\":\"Collection inte…[+814]\n{\"command\":\"run\",\"signal\":\"SIGTERM\",\"code\":1,\"out\":\"{\\\"schema\\\":\\\"collect-evidence/v1\\\",\\\"kind\\\":\\\"error\\\",\\\"command\\\":\\\"run\\\",\\\"success\\\":false,\\\"code\\\":1,\\\"message\\\":\\\"Collection interrupted; the command did not complete\\\"}\\n\",\"err\":\"Collection int…[+815]\n 2 pass\n 1 filtered out\n 0 fail\n 64 expect() calls\nRan 2 tests across 1 file. [33.78s]\n[raw output: artifact://30]\n\n\nWall time: 34.14 seconds",
+  "details": {
+    "wallTimeNoticeEmitted": true,
+    "timeoutSeconds": 300,
+    "wallTimeMs": 34140.441830999975,
+    "trace": {
+      "v": 1,
+      "seq": 16,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 34138693608,
+      "script": "COLLECT_EVIDENCE_REAL_DRIVERS=1 PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome COLLECT_EVIDENCE_ACCEPTANCE_OUTPUT=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/acceptance mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts --test-name-pattern \"playwright:\"",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 496,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 496,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 496,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 496,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 34138623947,
+              "at": 43983,
+              "argv": [
+                "mise",
+                "exec",
+                "--",
+                "bun",
+                "test",
+                "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+                "--test-name-pattern",
+                "playwright:"
+              ],
+              "env": [
+                [
+                  "COLLECT_EVIDENCE_REAL_DRIVERS",
+                  "1"
+                ],
+                [
+                  "PLAYWRIGHT_MCP_EXECUTABLE_PATH",
+                  "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+                ],
+                [
+                  "COLLECT_EVIDENCE_ACCEPTANCE_OUTPUT",
+                  "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/acceptance"
+                ]
+              ],
+              "res": "external",
+              "pid": 1204905,
+              "end_ns": 34138667930,
+              "end_seq": 15
+            },
+            {
+              "k": "assign",
+              "lo": 0,
+              "hi": 31,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 30,
+              "hi": 31,
+              "p": 3,
+              "state": "skipped"
+            },
+            {
+              "k": "assign",
+              "lo": 32,
+              "hi": 134,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 63,
+              "hi": 134,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "assign",
+              "lo": 135,
+              "hi": 307,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 170,
+              "hi": 307,
+              "p": 7,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 308,
+              "hi": 312,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 313,
+              "hi": 317,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 318,
+              "hi": 320,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 321,
+              "hi": 324,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 325,
+              "hi": 329,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 330,
+              "hi": 462,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 463,
+              "hi": 482,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 483,
+              "hi": 496,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAAPADAQDwAwAAAQIA8AMAAwMAHx1DT0xMRUNUX0VWSURFTkNFX1JFQUxfRFJJVkVSUwAAAAQeHwEAATEFIIYBHlBMQVlXUklHSFRfTUNQX0VYRUNVVEFCTEVfUEFUSAAAAAY/hgEBAEcvaG9tZS96ZW5vYml1cy8uY2FjaGUvbXMtcGxheXdyaWdodC9jaHJvbWl1bS0xMjQzL2Nocm9tZS1saW51eDY0L2Nocm9tZQeHAbMCIkNPTExFQ1RfRVZJREVOQ0VfQUNDRVBUQU5DRV9PVVRQVVQAAAAIqgGzAgEAiQEvcnVuL21lZGlhL3plbm9iaXVzL1N0b3JlL1Byb2plY3RzL01pbmUvR2l0aHViL0RvdGZpbGVzL3dvcmtmbG93cy9jb2xsZWN0LWV2aWRlbmNlLWZlZWRiYWNrLTAxLXdlYi9hcnRpZmFjdHMvZXZpZGVuY2UvZml4LTAwNTQvYWNjZXB0YW5jZQgJtAK4AgEABG1pc2UKuQK9AgEABGV4ZWMLvgLAAgEAAi0tDMECxAIBAANidW4NxQLJAgEABHRlc3QOygLOAwEAhAFtaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2RldmVsb3Blci9za2lsbHMvYnJvd3NlcnMvY29sbGVjdC1ldmlkZW5jZS9zY3JpcHRzL2Jyb3dzZXItZXZpZGVuY2UvdGVzdC9icm93c2VyLXdvcmtmbG93LnRlc3QudHMPzwPiAwEAEy0tdGVzdC1uYW1lLXBhdHRlcm4Q4wPwAwEDAQALcGxheXdyaWdodDoAAAAAAg=="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 90,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 43983,
+          "event_seq": 92,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 14,
+            "vpid": 1073741824,
+            "seq": 14
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 60213,
+          "event_seq": 93,
+          "u": 0,
+          "n": 3,
+          "command": {
+            "run": 14,
+            "vpid": 1073741824,
+            "seq": 14
+          },
+          "vpid": 1073741824,
+          "kind": "Assign",
+          "name": "COLLECT_EVIDENCE_REAL_DRIVERS",
+          "value": "1",
+          "full_len": 1,
+          "scope": "env"
+        },
+        {
+          "seq": 5,
+          "t_ns": 61706,
+          "event_seq": 94,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 14,
+            "vpid": 1073741824,
+            "seq": 14
+          },
+          "vpid": 1073741824,
+          "kind": "Assign",
+          "name": "PLAYWRIGHT_MCP_EXECUTABLE_PATH",
+          "value": "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome",
+          "full_len": 71,
+          "scope": "env"
+        },
+        {
+          "seq": 6,
+          "t_ns": 62928,
+          "event_seq": 95,
+          "u": 0,
+          "n": 7,
+          "command": {
+            "run": 14,
+            "vpid": 1073741824,
+            "seq": 14
+          },
+          "vpid": 1073741824,
+          "kind": "Assign",
+          "name": "COLLECT_EVIDENCE_ACCEPTANCE_OUTPUT",
+          "value": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/acceptance",
+          "full_len": 137,
+          "scope": "env"
+        },
+        {
+          "seq": 7,
+          "t_ns": 70532,
+          "event_seq": 96,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 14,
+            "vpid": 1073741824,
+            "seq": 14
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+            "--test-name-pattern",
+            "playwright:"
+          ],
+          "assigns": [
+            [
+              "COLLECT_EVIDENCE_REAL_DRIVERS",
+              "1"
+            ],
+            [
+              "PLAYWRIGHT_MCP_EXECUTABLE_PATH",
+              "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+            ],
+            [
+              "COLLECT_EVIDENCE_ACCEPTANCE_OUTPUT",
+              "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-01-web/artifacts/evidence/fix-0054/acceptance"
+            ]
+          ],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 8,
+          "t_ns": 496550,
+          "event_seq": 97,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 14,
+            "vpid": 1073741824,
+            "seq": 14
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1204905,
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+            "--test-name-pattern",
+            "playwright:"
+          ]
+        },
+        {
+          "seq": 14,
+          "t_ns": 352771377,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 14,
+            "vpid": 1073741824,
+            "seq": 14
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "bun test v1.4.3 (c6da4a4d3)\n\nmise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts:\n{\"command\":\"doctor\",\"signal\":\"SIGINT\",\"code\":1,\"out\":\"{\\\"schema\\\":\\\"collect-evidence/v1\\\",\\\"kind\\\":\\\"error\\\",\\\"command\\\":\\\"doctor\\\",\\\"success\\\":false,\\\"code\\\":1,\\\"message\\\":\\\"Collection interrupted; the command did not complete\\\"}\\n\",\"err\":\"Collection interrupted; the command did not complete\\n\",\"owned\":\"ce-doctor-82448c00-d627-4364-9c31-9bc34e825de8\",\"before\":\"### Browsers\\n- ce-borrowed-d7a30b0e-d3c9-4610-b91f-b18f9c5d746a:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n- ce-doctor-82448c00-d627-4364-9c31-9bc34e825de8:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n\",\"after\":\"### Browsers\\n- ce-borrowed-d7a30b0e-d3c9-4610-b91f-b18f9c5d746a:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n\",\"commands\":[{\"args\":[\"--version\"]},{\"args\":[\"list\"]},{\"args\":[\"open\",\"about:blank\"],\"session\":\"ce-doctor-82448c00-d627-4364-9c31-9bc34e825de8\"},{\"args\":[\"close\"],\"session\":\"ce-doctor-82448c00-d627-4364-9c31-9bc34e825de8\"}]}\n{\"command\":\"doctor\",\"signal\":\"SIGTERM\",\"code\":1,\"out\":\"{\\\"schema\\\":\\\"collect-evidence/v1\\\",\\\"kind\\\":\\\"error\\\",\\\"command\\\":\\\"doctor\\\",\\\"success\\\":false,\\\"code\\\":1,\\\"message\\\":\\\"Collection interrupted; the command did not complete\\\"}\\n\",\"err\":\"Collection interrupted; the command did not complete\\n\",\"owned\":\"ce-doctor-57f1d014-2161-400c-942c-078290b9ad44\",\"before\":\"### Browsers\\n- ce-borrowed-d7a30b0e-d3c9-4610-b91f-b18f9c5d746a:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n- ce-doctor-57f1d014-2161-400c-942c-078290b9ad44:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n\",\"after\":\"### Browsers\\n- ce-borrowed-d7a30b0e-d3c9-4610-b91f-b18f9c5d746a:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n\",\"commands\":[{\"args\":[\"--version\"]},{\"args\":[\"list\"]},{\"args\":[\"open\",\"about:blank\"],\"session\":\"ce-doctor-57f1d014-2161-400c-942c-078290b9ad44\"},{\"args\":[\"close\"],\"session\":\"ce-doctor-57f1d014-2161-400c-942c-078290b9ad44\"}]}\n{\"command\":\"run\",\"signal\":\"SIGINT\",\"code\":1,\"out\":\"{\\\"schema\\\":\\\"collect-evidence/v1\\\",\\\"kind\\\":\\\"error\\\",\\\"command\\\":\\\"run\\\",\\\"success\\\":false,\\\"code\\\":1,\\\"message\\\":\\\"Collection interrupted; the command did not complete\\\"}\\n\",\"err\":\"Collection interrupted; the command did not complete\\n\",\"owned\":\"ce-doctor-d14d21b4-958c-4db4-bfe9-14aa476534eb\",\"before\":\"### Browsers\\n- ce-borrowed-d7a30b0e-d3c9-4610-b91f-b18f9c5d746a:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n- ce-doctor-d14d21b4-958c-4db4-bfe9-14aa476534eb:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n\",\"after\":\"### Browsers\\n- ce-borrowed-d7a30b0e-d3c9-4610-b91f-b18f9c5d746a:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n\",\"commands\":[{\"args\":[\"--version\"]},{\"args\":[\"list\"]},{\"args\":[\"open\",\"about:blank\"],\"session\":\"ce-doctor-d14d21b4-958c-4db4-bfe9-14aa476534eb\"},{\"args\":[\"close\"],\"session\":\"ce-doctor-d14d21b4-958c-4db4-bfe9-14aa476534eb\"}]}\n{\"command\":\"run\",\"signal\":\"SIGTERM\",\"code\":1,\"out\":\"{\\\"schema\\\":\\\"collect-evidence/v1\\\",\\\"kind\\\":\\\"error\\\",\\\"command\\\":\\\"run\\\",\\\"success\\\":false,\\\"code\\\":1,\\\"message\\\":\\\"Collection interrupted; the command did not complete\\\"}\\n\",\"err\":\"Collection interrupted; the command did not complete\\n\",\"owned\":\"ce-doctor-f2ea534f-b486-4894-aae1-9b05d20fedc7\",\"before\":\"### Browsers\\n- ce-borrowed-d7a30b0e-d3c9-4610-b91f-b18f9c5d746a:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n- ce-doctor-f2ea534f-b486-4894-aae1-9b05d20fedc7:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n\",\"after\":\"### Browsers\\n- ce-borrowed-d7a30b0e-d3c9-4610-b91f-b18f9c5d746a:\\n  - status: open\\n  - browser-type: chrome\\n  - user-data-dir: <in-memory>\\n  - headed: false\\n\",\"commands\":[{\"args\":[\"--version\"]},{\"args\":[\"list\"]},{\"args\":[\"open\",\"about:blank\"],\"session\":\"ce-doctor-f2ea534f-b486-4894-aae1-9b05d20fedc7\"},{\"args\":[\"close\"],\"session\":\"ce-doctor-f2ea534f-b486-4894-aae1-9b05d20fedc7\"}]}\n\n 2 pass\n 1 filtered out\n 0 fail\n 64 expect() calls\nRan 2 tests across 1 file. [33.78s]\n",
+          "fd": 1
+        },
+        {
+          "seq": 15,
+          "t_ns": 34138667930,
+          "event_seq": 98,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 14,
+            "vpid": 1073741824,
+            "seq": 14
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 34138623947,
+          "pipestatus": []
+        },
+        {
+          "seq": 16,
+          "t_ns": 34138693608,
+          "event_seq": 99,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    },
+    "meta": {
+      "minimized": {
+        "filter": "pipeline",
+        "inputBytes": 4525,
+        "outputBytes": 1289,
+        "artifactId": "30"
+      }
+    }
+  }
+}

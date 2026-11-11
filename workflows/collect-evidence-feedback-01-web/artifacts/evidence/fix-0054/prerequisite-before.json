@@ -1,0 +1,329 @@
+{
+  "text": "bun test v1.4.3 (c6da4a4d3)\nmise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts:\n24 |       return out;\n25 |     }\n26 |     async function invoke(args: string[]) {\n27 |       const p = Bun.spawn([cli, ...args, \"--json\"], { cwd: root, env, stdout: \"pipe\", stderr: \"pipe\" });\n28 |       const [out, err] = await Promise.all([new Response(p.stdout).text(), new Response(p.stderr).text()]);\n29 |       if (await p.exited !== 0) throw new Error(out + err);\n                                               ^\nerror: {\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"init\",\"success\":false,\"code\":3,\"message\":\"shared-context resolution failed: Error: .context-routes.toml must define records.sources.adapter\"}\nshared-context resolution failed: Error: .context-routes.toml must define records.sources.adapter\n      at invoke (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.t…[+13]\n      at async <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser…[+24]\n(fail) real public browser workflows > playwright: prerequisite interruption cleans owned sessions and preserves borrowed sessions [1358.99ms]\n 0 pass\n 2 filtered out\n 1 fail\nRan 1 test across 1 file. [1381.00ms]\n[raw output: artifact://19]\n\n\nWall time: 1.74 seconds\n\nCommand exited with code 1",
+  "details": {
+    "wallTimeNoticeEmitted": true,
+    "timeoutSeconds": 240,
+    "wallTimeMs": 1741.5264600000228,
+    "exitCode": 1,
+    "trace": {
+      "v": 1,
+      "seq": 13,
+      "status": 1,
+      "rootVpid": 1073741824,
+      "t_ns": 1739883524,
+      "script": "COLLECT_EVIDENCE_REAL_DRIVERS=1 PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts --test-name-pattern \"playwright: prerequisite\"",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 336,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 336,
+              "state": "fail"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 336,
+              "p": 0,
+              "state": "fail"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 336,
+              "p": 1,
+              "state": "fail",
+              "runs": 1,
+              "st": 1,
+              "fails": 1,
+              "ns": 1739817842,
+              "at": 47248,
+              "argv": [
+                "mise",
+                "exec",
+                "--",
+                "bun",
+                "test",
+                "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+                "--test-name-pattern",
+                "playwright: prerequisite"
+              ],
+              "env": [
+                [
+                  "COLLECT_EVIDENCE_REAL_DRIVERS",
+                  "1"
+                ],
+                [
+                  "PLAYWRIGHT_MCP_EXECUTABLE_PATH",
+                  "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+                ]
+              ],
+              "res": "external",
+              "pid": 1201104,
+              "end_ns": 1739865090,
+              "end_seq": 12
+            },
+            {
+              "k": "assign",
+              "lo": 0,
+              "hi": 31,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 30,
+              "hi": 31,
+              "p": 3,
+              "state": "skipped"
+            },
+            {
+              "k": "assign",
+              "lo": 32,
+              "hi": 134,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 63,
+              "hi": 134,
+              "p": 5,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 135,
+              "hi": 139,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 140,
+              "hi": 144,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 145,
+              "hi": 147,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 148,
+              "hi": 151,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 152,
+              "hi": 156,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 157,
+              "hi": 289,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 290,
+              "hi": 309,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 310,
+              "hi": 336,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAANACAQDQAgAAAQIA0AIAAgMAHx1DT0xMRUNUX0VWSURFTkNFX1JFQUxfRFJJVkVSUwAAAAQeHwEAATEFIIYBHlBMQVlXUklHSFRfTUNQX0VYRUNVVEFCTEVfUEFUSAAAAAY/hgEBAEcvaG9tZS96ZW5vYml1cy8uY2FjaGUvbXMtcGxheXdyaWdodC9jaHJvbWl1bS0xMjQzL2Nocm9tZS1saW51eDY0L2Nocm9tZQgHhwGLAQEABG1pc2UIjAGQAQEABGV4ZWMJkQGTAQEAAi0tCpQBlwEBAANidW4LmAGcAQEABHRlc3QMnQGhAgEAhAFtaXNlL2NvbmYuZC9kZXZ0b29scy1hZ2VudC9idW5kbGVzL2RldmVsb3Blci9za2lsbHMvYnJvd3NlcnMvY29sbGVjdC1ldmlkZW5jZS9zY3JpcHRzL2Jyb3dzZXItZXZpZGVuY2UvdGVzdC9icm93c2VyLXdvcmtmbG93LnRlc3QudHMNogK1AgEAEy0tdGVzdC1uYW1lLXBhdHRlcm4OtgLQAgEDAQAYcGxheXdyaWdodDogcHJlcmVxdWlzaXRlAAAAAAI="
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 56,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 47248,
+          "event_seq": 58,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 10,
+            "vpid": 1073741824,
+            "seq": 10
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 67456,
+          "event_seq": 59,
+          "u": 0,
+          "n": 3,
+          "command": {
+            "run": 10,
+            "vpid": 1073741824,
+            "seq": 10
+          },
+          "vpid": 1073741824,
+          "kind": "Assign",
+          "name": "COLLECT_EVIDENCE_REAL_DRIVERS",
+          "value": "1",
+          "full_len": 1,
+          "scope": "env"
+        },
+        {
+          "seq": 5,
+          "t_ns": 69710,
+          "event_seq": 60,
+          "u": 0,
+          "n": 5,
+          "command": {
+            "run": 10,
+            "vpid": 1073741824,
+            "seq": 10
+          },
+          "vpid": 1073741824,
+          "kind": "Assign",
+          "name": "PLAYWRIGHT_MCP_EXECUTABLE_PATH",
+          "value": "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome",
+          "full_len": 71,
+          "scope": "env"
+        },
+        {
+          "seq": 6,
+          "t_ns": 76693,
+          "event_seq": 61,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 10,
+            "vpid": 1073741824,
+            "seq": 10
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+            "--test-name-pattern",
+            "playwright: prerequisite"
+          ],
+          "assigns": [
+            [
+              "COLLECT_EVIDENCE_REAL_DRIVERS",
+              "1"
+            ],
+            [
+              "PLAYWRIGHT_MCP_EXECUTABLE_PATH",
+              "/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+            ]
+          ],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 7,
+          "t_ns": 491389,
+          "event_seq": 62,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 10,
+            "vpid": 1073741824,
+            "seq": 10
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1201104,
+          "argv": [
+            "mise",
+            "exec",
+            "--",
+            "bun",
+            "test",
+            "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts",
+            "--test-name-pattern",
+            "playwright: prerequisite"
+          ]
+        },
+        {
+          "seq": 11,
+          "t_ns": 357194435,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 10,
+            "vpid": 1073741824,
+            "seq": 10
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "bun test v1.4.3 (c6da4a4d3)\n\nmise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts:\n24 |       return out;\n25 |     }\n26 |     async function invoke(args: string[]) {\n27 |       const p = Bun.spawn([cli, ...args, \"--json\"], { cwd: root, env, stdout: \"pipe\", stderr: \"pipe\" });\n28 |       const [out, err] = await Promise.all([new Response(p.stdout).text(), new Response(p.stderr).text()]);\n29 |       if (await p.exited !== 0) throw new Error(out + err);\n                                               ^\nerror: {\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"init\",\"success\":false,\"code\":3,\"message\":\"shared-context resolution failed: Error: .context-routes.toml must define records.sources.adapter\"}\nshared-context resolution failed: Error: .context-routes.toml must define records.sources.adapter\n\n      at invoke (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts:29:43)\n      at async <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts:66:35)\n(fail) real public browser workflows > playwright: prerequisite interruption cleans owned sessions and preserves borrowed sessions [1358.99ms]\n\n 0 pass\n 2 filtered out\n 1 fail\nRan 1 test across 1 file. [1381.00ms]\n",
+          "fd": 1
+        },
+        {
+          "seq": 12,
+          "t_ns": 1739865090,
+          "event_seq": 63,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 10,
+            "vpid": 1073741824,
+            "seq": 10
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 1,
+          "dur_ns": 1739817842,
+          "pipestatus": []
+        },
+        {
+          "seq": 13,
+          "t_ns": 1739883524,
+          "event_seq": 64,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 1
+        }
+      ]
+    },
+    "meta": {
+      "minimized": {
+        "filter": "pipeline",
+        "inputBytes": 1642,
+        "outputBytes": 1618,
+        "artifactId": "19"
+      }
+    }
+  },
+  "hasError": true
+}

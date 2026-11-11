@@ -1,0 +1,195 @@
+{
+  "text": "  files - Fetching git status\n  files - Fetching staged files\n  files - Fetching staged files (3 files)\n✔ files - Fetching staged files (3 files)\n❯ bundle-versions\n  bundle-versions – 3 files –  – mise run checks:agent-bundle-versions -- check --staged\n  bundle-versions – [checks:agent-bundle-versions] $ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/tasks/checks/agent-bundle-versions.ts check --staged\n✔ bundle-versions\n\n\nWall time: 1.46 seconds",
+  "details": {
+    "wallTimeNoticeEmitted": true,
+    "timeoutSeconds": 180,
+    "wallTimeMs": 1457.4131919998908,
+    "trace": {
+      "v": 1,
+      "seq": 14,
+      "status": 0,
+      "rootVpid": 1073741824,
+      "t_ns": 1456412549,
+      "script": "hk run pre-commit --staged",
+      "units": [
+        {
+          "at": 0,
+          "line": 1,
+          "bytes": 26,
+          "nodes": [
+            {
+              "k": "and_or",
+              "lo": 0,
+              "hi": 26,
+              "state": "ok"
+            },
+            {
+              "k": "pipeline",
+              "lo": 0,
+              "hi": 26,
+              "p": 0,
+              "state": "ok"
+            },
+            {
+              "k": "simple",
+              "lo": 0,
+              "hi": 26,
+              "p": 1,
+              "state": "ok",
+              "runs": 1,
+              "st": 0,
+              "ns": 1456363677,
+              "at": 33934,
+              "argv": [
+                "hk",
+                "run",
+                "pre-commit",
+                "--staged"
+              ],
+              "res": "external",
+              "pid": 1245295,
+              "end_ns": 1456397611,
+              "end_seq": 13
+            },
+            {
+              "k": "word",
+              "lo": 0,
+              "hi": 2,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 3,
+              "hi": 6,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 7,
+              "hi": 17,
+              "p": 2,
+              "state": "skipped"
+            },
+            {
+              "k": "word",
+              "lo": 18,
+              "hi": 26,
+              "p": 2,
+              "state": "skipped"
+            }
+          ],
+          "syntax": "AQAAAAAAAAEAABoBABoAAAECABoAAAQDAAIBAAJoawQDBgEAA3J1bgUHEQEACnByZS1jb21taXQGEhoBAAgtLXN0YWdlZAAAAAAC"
+        }
+      ],
+      "history": [
+        {
+          "seq": 1,
+          "t_ns": 0,
+          "event_seq": 242,
+          "vpid": 1073741824,
+          "kind": "RunStart"
+        },
+        {
+          "seq": 3,
+          "t_ns": 33934,
+          "event_seq": 244,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 32,
+            "vpid": 1073741824,
+            "seq": 35
+          },
+          "vpid": 1073741824,
+          "kind": "CmdStart"
+        },
+        {
+          "seq": 4,
+          "t_ns": 460953,
+          "event_seq": 245,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 32,
+            "vpid": 1073741824,
+            "seq": 35
+          },
+          "vpid": 1073741824,
+          "kind": "CmdExpanded",
+          "argv": [
+            "hk",
+            "run",
+            "pre-commit",
+            "--staged"
+          ],
+          "assigns": [],
+          "resolved": "external",
+          "redirs": []
+        },
+        {
+          "seq": 5,
+          "t_ns": 837638,
+          "event_seq": 246,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 32,
+            "vpid": 1073741824,
+            "seq": 35
+          },
+          "vpid": 1073741824,
+          "kind": "Spawn",
+          "pid": 1245295,
+          "argv": [
+            "hk",
+            "run",
+            "pre-commit",
+            "--staged"
+          ]
+        },
+        {
+          "seq": 12,
+          "t_ns": 7122192,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 32,
+            "vpid": 1073741824,
+            "seq": 35
+          },
+          "vpid": 1073741824,
+          "kind": "Output",
+          "text": "  files - Fetching git status\n  files - Fetching staged files\n  files - Fetching staged files (3 files)\n✔ files - Fetching staged files (3 files)\n❯ bundle-versions\n  bundle-versions – 3 files –  – mise run checks:agent-bundle-versions -- check --staged\n  bundle-versions – [checks:agent-bundle-versions] $ /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-01-web/mise/tasks/checks/agent-bundle-versions.ts check --staged\n✔ bundle-versions\n",
+          "fd": 1
+        },
+        {
+          "seq": 13,
+          "t_ns": 1456397611,
+          "event_seq": 247,
+          "u": 0,
+          "n": 2,
+          "command": {
+            "run": 32,
+            "vpid": 1073741824,
+            "seq": 35
+          },
+          "vpid": 1073741824,
+          "kind": "CmdEnd",
+          "status": 0,
+          "dur_ns": 1456363677,
+          "pipestatus": []
+        },
+        {
+          "seq": 14,
+          "t_ns": 1456412549,
+          "event_seq": 248,
+          "vpid": 1073741824,
+          "kind": "RunEnd",
+          "status": 0
+        }
+      ]
+    }
+  }
+}

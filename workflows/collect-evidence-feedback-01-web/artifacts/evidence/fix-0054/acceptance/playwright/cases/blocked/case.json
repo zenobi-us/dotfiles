@@ -1,0 +1,62 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "blocked",
+  "runId": "controlled",
+  "order": 12,
+  "purpose": "Stop at a credential prompt",
+  "preconditions": [],
+  "expected": {
+    "pass": "No credential is entered",
+    "fail": "The collector types a credential"
+  },
+  "steps": [
+    {
+      "id": "blocked.1",
+      "order": 1,
+      "purpose": "Open the controlled credential page",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the controlled credential page",
+        "to": "/credential"
+      },
+      "expected": null,
+      "observed": [
+        "page.evaluate: Error: SAFETY STOP blocked.1: credential prompt or uninspectable frame; human handling required\n    at eval (eval at evaluate (:368:30), <anonymous>:14:32)\n    at eval (eval at evaluate (:368:30), <anonymous>:19:5)\n    at UtilityScript.evaluate (<anonymous>:370:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "blocked.2",
+      "order": 2,
+      "purpose": "Attempt the prohibited field",
+      "actions": {
+        "do": "fill",
+        "says": "Attempt the prohibited field",
+        "locator": "#secret",
+        "text": "must-not-be-entered"
+      },
+      "expected": null,
+      "observed": [],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/blocked/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "blocked.error-001",
+      "caseId": "blocked",
+      "stepId": "blocked.1",
+      "category": "blocked",
+      "message": "page.evaluate: Error: SAFETY STOP blocked.1: credential prompt or uninspectable frame; human handling required\n    at eval (eval at evaluate (:368:30), <anonymous>:14:32)\n    at eval (eval at evaluate (:368:30), <anonymous>:19:5)\n    at UtilityScript.evaluate (<anonymous>:370:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    }
+  ],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded"
+}
