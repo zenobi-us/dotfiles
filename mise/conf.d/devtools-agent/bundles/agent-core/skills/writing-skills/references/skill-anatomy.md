@@ -10,10 +10,12 @@ Do not create a skill for a one-off solution, a standard practice that is alread
 
 ## Frontmatter
 
-Use only these YAML fields:
+Require `name` and `description`. Also permit `schema` for a skill that owns versioned records and boolean `user-invocable` for explicit invocation.
 
 - `name`
 - `description`
+- `schema` (optional versioned record family)
+- `user-invocable` (optional boolean)
 
 The `name` MUST use letters, numbers, and hyphens. It MUST match the skill directory name.
 

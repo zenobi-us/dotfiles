@@ -5,6 +5,11 @@ description: Writes a self-contained HTML evidence report with screenshots, capt
 
 # writing-reports
 
+## Common evidence records
+
+Use `collect-evidence` for capture. This skill is a read-only consumer of `collect-evidence/v1` runs. Before presentation, run its absolute installed `scripts/collect-evidence.ts validate <run>` command. Use `report <run>` for a self-contained HTML export or consume the validated case and asset records with this skill's existing templates. Keep the same asset IDs, hashes, capture times, case order and assertion outcomes. Record capture status separately. Do not drive another capture workflow, infer passing assertions from images, create another authoritative result model, or write into a sealed run. Keep exports outside the run. Publication remains separate and explicit.
+
+
 A report is evidence. It states what was checked, shows the screenshot that
 proves each result, and names what was **not** covered.
 
@@ -18,7 +23,7 @@ survives being moved or zipped, and can be attached to a ticket.
 - You finished manual testing and the result must outlive the chat session.
 - An audit, migration, or reproduction needs a durable record.
 - Another skill hands you evidence and a destination. The
-  `browser-acceptance-evidence` skill does exactly this.
+  `collect-evidence` skill does exactly this.
 
 Do not use for a running commentary, a plan, or a design document. A report
 records what happened, in the past tense, with proof.

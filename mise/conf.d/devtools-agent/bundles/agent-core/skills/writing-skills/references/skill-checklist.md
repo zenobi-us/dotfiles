@@ -11,7 +11,7 @@
 ## GREEN Phase - Write Minimal Skill
 
 - [ ] Name uses only letters, numbers, hyphens (no parentheses/special chars)
-- [ ] YAML frontmatter with only name and description (max 1024 chars)
+- [ ] YAML frontmatter requires name and description; schema and boolean user-invocable are permitted (max 1024 chars)
 - [ ] Description states what the skill does, when to use it, and the result it produces
 - [ ] Description written in third person
 - [ ] Keywords throughout for search (errors, symptoms, tools)
