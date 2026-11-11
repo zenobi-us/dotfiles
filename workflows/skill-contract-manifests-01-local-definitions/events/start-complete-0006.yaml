@@ -1,0 +1,106 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "c2135fa5e78208c39e18e49eaa95ba0128f936e7",
+  "source_tree": "b52dae2fbcb6198342f30cc361b974d605e83b56",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "receipt_id": "start-complete-0006",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 2,
+  "parent_receipt": "implementation-0005",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "created_at": "2026-11-11T06:30:26.877881+00:00",
+  "pane_id": null,
+  "session_id": "hc:t3h",
+  "status": "completed",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/start-0004.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/implementation-0005.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/artifacts/snapshots/pr-draft-implementation-0005.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/projections/latest-status.yaml"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/artifacts/evidence/implementation-0005/checks.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/start-complete-0006.yaml"
+    }
+  ],
+  "validation": [
+    {
+      "command": "result-delivery read and authoritative YAML payload equality",
+      "result": "passed; schema, run, operation, hash and parent verified; delivery acknowledged",
+      "sha256": "36ee3dcee4a2db941d29f52608b93cb3751c17ec65961ddad3af80390ba1a27c"
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}",
+      "result": "matches implementation receipt exactly: c2135fa5e78208c39e18e49eaa95ba0128f936e7 b52dae2fbcb6198342f30cc361b974d605e83b56"
+    },
+    {
+      "command": "public skill-contracts validate local example from /tmp",
+      "result": "passed; produces v2 and accepts v1 resolved under installed skill, with owner procedure text"
+    },
+    {
+      "command": "public skill-contracts validate empty example and resolve manifest contract from /tmp",
+      "result": "passed; empty collections valid and builtin manifest definition returned"
+    },
+    {
+      "command": "child persisted evidence checks.json",
+      "result": "104 tests, bundle typecheck, installed-copy valid/empty/malformed/unresolved CLI smoke passed; reviewed evidence and snapshot/projections"
+    }
+  ],
+  "transport": {
+    "acknowledged": true,
+    "run_id": "73776089-906a-4922-8726-a56cd094cb5e",
+    "operation_id": "skill-contract-manifests-01-start-2",
+    "sha256": "36ee3dcee4a2db941d29f52608b93cb3751c17ec65961ddad3af80390ba1a27c"
+  },
+  "workspace_cleanup": {
+    "child_terminal": "t41",
+    "closed": true,
+    "worktree_preserved": true,
+    "source_frozen": true,
+    "note": "Final result retained byte-identically in resolved base workflow store; generated latest-status retained there. Source-only uncommitted copies removed/restored without source commit changes."
+  },
+  "summary": "Implementation complete. Ticket implemented on source branch; no formal review, merge, push or ticket completion. Tooling blockers repaired and verified. All earlier receipts preserved."
+}

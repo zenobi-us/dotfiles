@@ -1,0 +1,74 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0004",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 2,
+  "parent_receipt": "start-complete-0003",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "2542bd82f6153138055c30f707b22dc7905464e2",
+  "source_tree": "8f4dae30e5fd6a41dfc96610dab0cbb52f5bad24",
+  "created_at": "2026-11-11T06:10:50.743860+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc:t3h",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/start-0001.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/start-complete-0003.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/start-0004.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery_mode": "takeover",
+  "recovery_reason": "User approved tooling repair and retry. Original child t3v was removed. Active t3w is hook repair and t3x is another ticket; no live owner or goal reservation for this ticket.",
+  "ownership_approval": "User approved after blocked start report; retain existing claim and source branch. Fresh independent implementation session authorized.",
+  "validation": [
+    {
+      "command": "focused Bun repair suites",
+      "result": "81 passed, 0 failed; root and symlink regressions failed before fixes"
+    },
+    {
+      "command": "actual inspect.ts from retained source worktree",
+      "result": "historyValid true; start takeover selected"
+    },
+    {
+      "command": "source spool regression after cherry-pick conflict resolution",
+      "result": "1 passed, 0 failed"
+    }
+  ]
+}

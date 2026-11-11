@@ -1,0 +1,9 @@
+schema: worktree-workflow/v2
+workflow_id: skill-contract-manifests-01-local-definitions
+ticket_ref: tracker/tickets/skill-contract-manifests-01-local-definitions.md
+initiative: skill-contract-manifests
+event_root: events
+artifact_root: artifacts
+projection_root: projections
+latest_receipt: implementation-0005
+state: IMPLEMENTED
