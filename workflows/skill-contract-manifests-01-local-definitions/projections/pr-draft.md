@@ -55,10 +55,10 @@ Added the skill-contracts public validate and resolve commands and importing API
 
 ## Review history
 
-Implementation self-check only; no formal worktree review phase started.
+Implementation self-check preceded the independent formal review below.
 - Standards axis: one identifier end-anchor finding. The shared schema now rejects trailing line terminators. Two endpoint-position regressions passed.
 - Spec axis: no findings across the four ticket acceptance criteria.
-- Latest formal reviewer verdict: none.
+- Latest formal reviewer verdict: SUCCESS for c2135fa5e78208c39e18e49eaa95ba0128f936e7.
 
 ## Resolved findings
 
@@ -84,3 +84,13 @@ Not merged, not pushed, not submitted. The ticket is implemented, not completed.
 
 User approval in start-0004 authorises this fresh takeover after tooling repair. The old t3v session was removed. At recovery, hc ls showed t41 as the only live terminal in this worktree. No goal dispatch exists for this ticket. All prior events remain unchanged.
 
+
+## Formal review review-0008
+
+2026-11-11T06:40:51.855528+00:00: SUCCESS for commit c2135fa5e78208c39e18e49eaa95ba0128f936e7, tree b52dae2fbcb6198342f30cc361b974d605e83b56. Standards and Spec reported no findings. Source remains clean and unchanged. No merge or push.
+
+- [Immutable review](../artifacts/reviews/review-review-0008.md)
+- [Review result](../events/review-0008.yaml)
+- [Parent completion](../events/review-complete-0009.yaml)
+
+Parent validation: 35 contract tests passed; public empty-manifest command passed from /tmp. Next phase requires its own authorization.

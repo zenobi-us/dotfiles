@@ -1,0 +1,114 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "c2135fa5e78208c39e18e49eaa95ba0128f936e7",
+  "source_tree": "b52dae2fbcb6198342f30cc361b974d605e83b56",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "ref": "workflows/skill-contract-manifests-01-local-definitions",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "store": "repository"
+  },
+  "receipt_id": "review-complete-0009",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "review-0008",
+  "status": "completed",
+  "created_at": "2026-11-11T06:43:32.324364+00:00",
+  "pane_id": null,
+  "session_id": "hc:t3h",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-start-0007.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-0008.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/artifacts/reviews/review-review-0008.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-complete-0009.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/projections/latest-status.yaml"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/manifest.yaml"
+    }
+  ],
+  "validation": [
+    {
+      "command": "result-delivery read plus authoritative YAML equality",
+      "result": "passed; schema, run, operation, source identity, parent and payload hash verified; acknowledged",
+      "sha256": "08581a614ee8d2faf99178487e9904b0f6838912cef2b60953d090ef924bdfa0"
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree} && git status --short (source worktree after review)",
+      "result": "exact frozen c2135fa5e78208c39e18e49eaa95ba0128f936e7 / b52dae2fbcb6198342f30cc361b974d605e83b56; clean"
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/contracts.test.ts",
+      "result": "passed: 35 tests, 125 assertions, 0 failures"
+    },
+    {
+      "command": "public router validate empty example from /tmp",
+      "result": "passed; empty collections and empty resolved outputs returned"
+    },
+    {
+      "command": "records.ts check --ticket skill-contract-manifests-01-local-definitions (base checkout before comment)",
+      "result": "passed; version, membership, dependency graph and normal tracker discovery"
+    }
+  ],
+  "review_artifact": "workflows/skill-contract-manifests-01-local-definitions/artifacts/reviews/review-review-0008.md",
+  "transport": {
+    "acknowledged": true,
+    "run_id": "24babebd-5d43-485c-a8ad-8569ad500092",
+    "operation_id": "skill-contract-manifests-01-review-1",
+    "sha256": "08581a614ee8d2faf99178487e9904b0f6838912cef2b60953d090ef924bdfa0"
+  },
+  "workspace_cleanup": {
+    "reviewer_terminal": "t46",
+    "closed": true,
+    "axis_terminals_closed": [
+      "t47",
+      "t48"
+    ],
+    "source_worktree_preserved": true,
+    "source_unchanged": true
+  },
+  "summary": "Validated independent SUCCESS verdict and immutable review artifact for frozen source. No findings. Appended only verdict, commit/tree, timestamp and artifact link to base ticket; source tracker and source tree unchanged. No merge, push or completion."
+}

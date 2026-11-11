@@ -1,0 +1,59 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "skill-contract-manifests-01-local-definitions",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "source_branch": "feature/skill-contract-manifests-01-local-definitions",
+  "base_branch": "master",
+  "source_commit": "c2135fa5e78208c39e18e49eaa95ba0128f936e7",
+  "source_tree": "b52dae2fbcb6198342f30cc361b974d605e83b56",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-01-local-definitions",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-01-local-definitions",
+    "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+  },
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/skill-contract-manifests-01-local-definitions"
+  },
+  "receipt_id": "review-start-0007",
+  "phase": "review",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": "start-complete-0006",
+  "created_at": "2026-11-11T06:34:32.848272+00:00",
+  "status": "started",
+  "pane_id": null,
+  "session_id": "hc:t3h",
+  "base_commit": "3165f5006667ea1fa73b6bbe44a8636d8a44c4b2",
+  "authorization": "User requested review skill-contract-manifests-01-local-definitions. New independent reviewer; prior implementer t41 removed. No active terminal in retained source worktree.",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/skill-contract-manifests-01-local-definitions.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/start-complete-0006.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/implementation-0005.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/artifacts/snapshots/pr-draft-implementation-0005.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/skill-contract-manifests-01-local-definitions/events/review-start-0007.yaml"
+    }
+  ]
+}
