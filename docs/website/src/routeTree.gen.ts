@@ -13,7 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as R404RouteImport } from './routes/404'
 import { Route as BundlesIndexRouteImport } from './routes/bundles/index'
 import { Route as BundlesBundleIndexRouteImport } from './routes/bundles/$bundle/index'
-import { Route as BundlesBundleSkillSkillRouteImport } from './routes/bundles/$bundle/skill/$skill'
+import { Route as BundlesBundleSkillSkillIndexRouteImport } from './routes/bundles/$bundle/skill/$skill/index'
+import { Route as BundlesBundleSkillSkillHowToRouteImport } from './routes/bundles/$bundle/skill/$skill/how-to'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -35,25 +36,34 @@ const BundlesBundleIndexRoute = BundlesBundleIndexRouteImport.update({
   path: '/bundles/$bundle/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BundlesBundleSkillSkillRoute = BundlesBundleSkillSkillRouteImport.update({
-  id: '/bundles/$bundle/skill/$skill',
-  path: '/bundles/$bundle/skill/$skill',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const BundlesBundleSkillSkillIndexRoute =
+  BundlesBundleSkillSkillIndexRouteImport.update({
+    id: '/bundles/$bundle/skill/$skill/',
+    path: '/bundles/$bundle/skill/$skill/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BundlesBundleSkillSkillHowToRoute =
+  BundlesBundleSkillSkillHowToRouteImport.update({
+    id: '/bundles/$bundle/skill/$skill/how-to',
+    path: '/bundles/$bundle/skill/$skill/how-to',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/bundles/': typeof BundlesIndexRoute
   '/bundles/$bundle/': typeof BundlesBundleIndexRoute
-  '/bundles/$bundle/skill/$skill': typeof BundlesBundleSkillSkillRoute
+  '/bundles/$bundle/skill/$skill/how-to': typeof BundlesBundleSkillSkillHowToRoute
+  '/bundles/$bundle/skill/$skill/': typeof BundlesBundleSkillSkillIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/bundles': typeof BundlesIndexRoute
   '/bundles/$bundle': typeof BundlesBundleIndexRoute
-  '/bundles/$bundle/skill/$skill': typeof BundlesBundleSkillSkillRoute
+  '/bundles/$bundle/skill/$skill/how-to': typeof BundlesBundleSkillSkillHowToRoute
+  '/bundles/$bundle/skill/$skill': typeof BundlesBundleSkillSkillIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,7 +71,8 @@ export interface FileRoutesById {
   '/404': typeof R404Route
   '/bundles/': typeof BundlesIndexRoute
   '/bundles/$bundle/': typeof BundlesBundleIndexRoute
-  '/bundles/$bundle/skill/$skill': typeof BundlesBundleSkillSkillRoute
+  '/bundles/$bundle/skill/$skill/how-to': typeof BundlesBundleSkillSkillHowToRoute
+  '/bundles/$bundle/skill/$skill/': typeof BundlesBundleSkillSkillIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -70,13 +81,15 @@ export interface FileRouteTypes {
     | '/404'
     | '/bundles/'
     | '/bundles/$bundle/'
-    | '/bundles/$bundle/skill/$skill'
+    | '/bundles/$bundle/skill/$skill/how-to'
+    | '/bundles/$bundle/skill/$skill/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/404'
     | '/bundles'
     | '/bundles/$bundle'
+    | '/bundles/$bundle/skill/$skill/how-to'
     | '/bundles/$bundle/skill/$skill'
   id:
     | '__root__'
@@ -84,7 +97,8 @@ export interface FileRouteTypes {
     | '/404'
     | '/bundles/'
     | '/bundles/$bundle/'
-    | '/bundles/$bundle/skill/$skill'
+    | '/bundles/$bundle/skill/$skill/how-to'
+    | '/bundles/$bundle/skill/$skill/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -92,7 +106,8 @@ export interface RootRouteChildren {
   R404Route: typeof R404Route
   BundlesIndexRoute: typeof BundlesIndexRoute
   BundlesBundleIndexRoute: typeof BundlesBundleIndexRoute
-  BundlesBundleSkillSkillRoute: typeof BundlesBundleSkillSkillRoute
+  BundlesBundleSkillSkillHowToRoute: typeof BundlesBundleSkillSkillHowToRoute
+  BundlesBundleSkillSkillIndexRoute: typeof BundlesBundleSkillSkillIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -125,11 +140,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BundlesBundleIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/bundles/$bundle/skill/$skill': {
-      id: '/bundles/$bundle/skill/$skill'
+    '/bundles/$bundle/skill/$skill/': {
+      id: '/bundles/$bundle/skill/$skill/'
       path: '/bundles/$bundle/skill/$skill'
-      fullPath: '/bundles/$bundle/skill/$skill'
-      preLoaderRoute: typeof BundlesBundleSkillSkillRouteImport
+      fullPath: '/bundles/$bundle/skill/$skill/'
+      preLoaderRoute: typeof BundlesBundleSkillSkillIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bundles/$bundle/skill/$skill/how-to': {
+      id: '/bundles/$bundle/skill/$skill/how-to'
+      path: '/bundles/$bundle/skill/$skill/how-to'
+      fullPath: '/bundles/$bundle/skill/$skill/how-to'
+      preLoaderRoute: typeof BundlesBundleSkillSkillHowToRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -140,7 +162,8 @@ const rootRouteChildren: RootRouteChildren = {
   R404Route: R404Route,
   BundlesIndexRoute: BundlesIndexRoute,
   BundlesBundleIndexRoute: BundlesBundleIndexRoute,
-  BundlesBundleSkillSkillRoute: BundlesBundleSkillSkillRoute,
+  BundlesBundleSkillSkillHowToRoute: BundlesBundleSkillSkillHowToRoute,
+  BundlesBundleSkillSkillIndexRoute: BundlesBundleSkillSkillIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

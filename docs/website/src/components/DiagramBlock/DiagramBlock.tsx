@@ -1,6 +1,7 @@
 import { type ReactNode, useRef } from "react";
 import { Prose } from "../Prose";
 import { useOverflowHint } from "./useOverflowHint";
+import { Heading } from "../Heading";
 
 function Root(props: { id: string; children: ReactNode }) {
   return (
@@ -26,9 +27,7 @@ function Title(props: { id: string; number: string; children: string }) {
   return (
     <div className="flex flex-wrap items-baseline gap-4 narrow:gap-2">
       <span className="text-[11px] text-primary">{props.number}</span>
-      <h2 id={`title-${props.id}`} className="m-0 text-[14px]">
-        {props.children}
-      </h2>
+      <Heading as="h2" id={`title-${props.id}`} title={props.children} className="m-0 text-[14px]" />
     </div>
   );
 }

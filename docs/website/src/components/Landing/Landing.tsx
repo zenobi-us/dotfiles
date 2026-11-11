@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { cx } from "../../lib/cx";
 import { Glyph } from "../Glyph";
+import { Heading } from "../Heading";
 
 const eyebrow = "text-[10px] uppercase tracking-[.1em] text-muted";
 
@@ -48,9 +49,12 @@ function Eyebrow(props: { children: string }) {
 
 function Title(props: { id: string; children: string }) {
   return (
-    <h1 id={props.id} className="my-5 text-[clamp(28px,4vw,48px)] leading-[1.2] tracking-[-.04em]">
-      {props.children}
-    </h1>
+    <Heading
+      as="h1"
+      id={props.id}
+      title={props.children}
+      className="my-5 text-[clamp(28px,4vw,48px)] leading-[1.2] tracking-[-.04em]"
+    />
   );
 }
 

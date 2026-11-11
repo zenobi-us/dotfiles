@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
+import { skillFiles } from "./src/lib/skill-files.ts";
 
 // GitHub Pages serves the site from https://zenobi-us.github.io/dotfiles/.
 const base = "/dotfiles/";
@@ -21,14 +22,12 @@ const bundleNames = readdirSync(bundlesDirectory).filter((name) =>
   existsSync(join(bundlesDirectory, name, ".claude-plugin/plugin.json")),
 );
 
-// One page for each skill with a `content/bundles/<bundle>/skills/<skill>/page.md`.
-const skillPages = bundleNames.flatMap((bundle) => {
-  const skills = join(import.meta.dirname, "content/bundles", bundle, "skills");
-  if (!existsSync(skills)) return [];
-  return readdirSync(skills)
-    .filter((skill) => existsSync(join(skills, skill, "page.md")))
-    .map((skill) => asFolder(`/bundles/${bundle}/skill/${skill}`));
-});
+const skillPages = bundleNames.flatMap((bundle) =>
+  skillFiles(join(bundlesDirectory, bundle, "skills")).flatMap((skill) => {
+    const path = `/bundles/${bundle}/skill/${skill.name}`;
+    return skill.hasHowTos ? [asFolder(path), asFolder(`${path}/how-to`)] : [asFolder(path)];
+  }),
+);
 
 export default defineConfig({
   base,

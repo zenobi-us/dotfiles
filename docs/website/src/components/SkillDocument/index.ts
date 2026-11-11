@@ -1,0 +1,1 @@
+export { SkillDocument } from "./SkillDocument";

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { cx } from "../../lib/cx";
 import { Prose } from "../Prose";
+import { Heading } from "../Heading";
 
 const widths = {
   /** Centred column, as on the landing page. */
@@ -31,7 +32,14 @@ function Eyebrow(props: { children: string }) {
 }
 
 function Title(props: { children: string }) {
-  return <h1 className="my-3 text-[24px] leading-[1.2] tracking-[-.02em]">{props.children}</h1>;
+  return (
+    <Heading
+      as="h1"
+      id="page-title"
+      title={props.children}
+      className="my-3 text-[24px] leading-[1.2] tracking-[-.02em]"
+    />
+  );
 }
 
 function Description(props: { html: string }) {

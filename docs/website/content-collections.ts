@@ -1,7 +1,10 @@
 import { existsSync } from "node:fs";
+import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { defineCollection, defineConfig, defineSingleton } from "@content-collections/core";
-import { compileMarkdown } from "@content-collections/markdown";
+import { compileDocument } from "./src/lib/markdown";
+import type { SkillDocumentContent } from "./src/lib/skill-document";
+import { skillMetadata, skillSource } from "./src/lib/skill-metadata";
 import { z } from "zod";
 
 /** The agent bundles. The bundle pages read their skills, agents, hooks and manifests from here at build time. */
@@ -56,7 +59,7 @@ const landing = defineSingleton({
   }),
   transform: async (document, context) => ({
     ...document,
-    html: await compileMarkdown(context, document),
+    html: await compileDocument(context, document),
   }),
 });
 
@@ -88,7 +91,7 @@ const entries = defineCollection({
   }),
   transform: async (document, context) => ({
     ...document,
-    html: await compileMarkdown(context, document),
+    html: await compileDocument(context, document),
   }),
 });
 
@@ -153,7 +156,7 @@ const bundlesHub = defineSingleton({
   }),
   transform: async (document, context) => ({
     ...document,
-    html: await compileMarkdown(context, document),
+    html: await compileDocument(context, document),
   }),
 });
 
@@ -170,7 +173,7 @@ const bundleDocs = defineCollection({
   transform: async (document, context) => ({
     ...document,
     bundle: document._meta.directory,
-    html: await compileMarkdown(context, document),
+    html: await compileDocument(context, document),
   }),
 });
 
@@ -187,17 +190,35 @@ const bundleSkills = defineCollection({
   directory: bundlesDirectory,
   include: "*/skills/**/SKILL.md",
   exclude: "**/node_modules/**",
-  parser: "frontmatter-only",
   schema: z.object({
     name: z.string(),
     description: z.string(),
+    content: z.string(),
+    version: z.union([z.string(), z.number()]).optional(),
+    "schema-version": z.union([z.string(), z.number()]).optional(),
+    metadata: z
+      .looseObject({
+        version: z.union([z.string(), z.number()]).optional(),
+        "schema-version": z.union([z.string(), z.number()]).optional(),
+      })
+      .optional(),
     "user-invocable": z.boolean().optional(),
     "model-invocable": z.boolean().optional(),
     "disable-model-invocation": z.boolean().optional(),
   }),
-  transform: (document) => {
+  transform: async (document, context) => {
     // `<bundle>/skills/<category>/<skill>`, or `<bundle>/skills/<skill>` for a skill with no category.
     const parts = document._meta.directory.split("/");
+    const rendered: SkillDocumentContent = {
+      html: await compileDocument(context, document, `${skillSource(document._meta.directory)}/`),
+      source: skillSource(`${document._meta.directory}/SKILL.md`),
+      schemaVersion: document["schema-version"] ?? document.metadata?.["schema-version"] ?? null,
+      version: document.version ?? document.metadata?.version ?? null,
+      ...skillMetadata(document.content, document._meta.directory, bundlesDirectory),
+    };
+    const output = join(".content-collections/skill-documents", parts[0] ?? "");
+    await mkdir(output, { recursive: true });
+    await writeFile(join(output, `${document.name}.json`), JSON.stringify(rendered));
     return {
       name: document.name,
       description: document.description,
@@ -225,7 +246,7 @@ const skillHowTos = defineCollection({
     bundle: document._meta.directory.split("/")[0] ?? "",
     // Matches `path` of the skill in the same folder. A guide in a skill's subfolder matches no skill and is not shown.
     skillPath: document._meta.directory,
-    html: await compileMarkdown(context, document),
+    html: await compileDocument(context, document, `${skillSource(document._meta.directory)}/`),
   }),
 });
 
@@ -287,7 +308,7 @@ const skillPages = defineCollection({
   transform: async (document, context) => ({
     ...document,
     ...skillOf(document._meta.directory),
-    html: await compileMarkdown(context, document),
+    html: await compileDocument(context, document),
   }),
 });
 
@@ -299,7 +320,7 @@ const skillSourceNotes = defineCollection({
   transform: async (document, context) => ({
     ...document,
     ...skillOf(document._meta.directory),
-    html: await compileMarkdown(context, document),
+    html: await compileDocument(context, document),
   }),
 });
 
@@ -320,7 +341,7 @@ const skillDiagrams = defineCollection({
   transform: async (document, context) => ({
     ...document,
     ...skillOf(document._meta.directory),
-    html: await compileMarkdown(context, document),
+    html: await compileDocument(context, document),
   }),
 });
 

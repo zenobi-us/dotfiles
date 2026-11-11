@@ -1,5 +1,5 @@
-// The only module that reads generated content. Other modules import from here,
-// so the path to content-collections output appears once and needs no tsconfig alias.
+// Shared summaries and authored site content live here. Full skill documents load
+// separately, so the index does not bundle every skill's instructions.
 import {
   allBundleAgents,
   allBundleDocs,
@@ -21,6 +21,7 @@ import {
   type BundleSkill,
   type Section,
 } from "../.content-collections/generated";
+import { loadSkillDocument } from "./skill-documents";
 
 export type {
   BundleDoc,
@@ -71,16 +72,6 @@ export function bundleOf(name: string) {
 
 export type Bundle = NonNullable<ReturnType<typeof bundleOf>>;
 
-/** The how-to guides next to each skill's SKILL.md, by skill name, then file name. */
-export function howTosOf(bundle: Bundle) {
-  return bundle.skills.flatMap((skill) =>
-    allSkillHowTos
-      .filter((howTo) => howTo.skillPath === skill.path)
-      .toSorted(byFilePath)
-      .map((howTo) => ({ howTo, skill })),
-  );
-}
-
 /** The docs of one Diátaxis kind for a bundle, in file-name order. */
 export function docsOfKind(bundle: Bundle, kind: BundleDoc["kind"]) {
   return bundle.docs.filter((doc) => doc.kind === kind);
@@ -103,18 +94,23 @@ export function invocationOf(skill: BundleSkill) {
   return "agent only";
 }
 
-/** Skills that have a dedicated page, as `<bundle>/<skill>`, for links from the bundle reference. */
-export const skillsWithPages = new Set(allSkillPages.map((page) => `${page.bundle}/${page.skill}`));
+/** All guides next to one installed skill, in file-name order. */
+export function howTosOfSkill(skill: BundleSkill) {
+  return allSkillHowTos.filter((guide) => guide.skillPath === skill.path).toSorted(byFilePath);
+}
 
-/** The page, diagrams and source note of one skill. Returns undefined when the skill has no page. */
-export function skillPageOf(bundle: string, skill: string) {
-  const page = allSkillPages.find((candidate) => candidate.bundle === bundle && candidate.skill === skill);
-  if (!page) return undefined;
+/** Every installed skill has a page. Hand-written diagrams and notes remain supplementary. */
+export async function skillPageOf(bundle: string, name: string) {
+  const skill = allBundleSkills.find((candidate) => candidate.bundle === bundle && candidate.name === name);
+  if (!skill) return undefined;
+  const document = await loadSkillDocument(bundle, name);
   return {
-    page,
+    skill: { ...skill, ...document },
+    page: allSkillPages.find((candidate) => candidate.bundle === bundle && candidate.skill === name),
+    howTos: howTosOfSkill(skill),
     diagrams: allSkillDiagrams
-      .filter((diagram) => diagram.bundle === bundle && diagram.skill === skill)
+      .filter((diagram) => diagram.bundle === bundle && diagram.skill === name)
       .toSorted(byFilePath),
-    sourceNote: allSkillSourceNotes.find((note) => note.bundle === bundle && note.skill === skill),
+    sourceNote: allSkillSourceNotes.find((note) => note.bundle === bundle && note.skill === name),
   };
 }

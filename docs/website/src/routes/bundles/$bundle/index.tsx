@@ -15,11 +15,10 @@ import {
   type BundleDoc,
   docsOfKind,
   harnessSupport,
-  howTosOf,
+  howTosOfSkill,
   invocationOf,
   navigation,
   partsOf,
-  skillsWithPages,
 } from "../../../content";
 import { siteHref } from "../../../lib/siteHref";
 
@@ -173,19 +172,19 @@ function Articles(props: { docs: BundleDoc[] }) {
   ));
 }
 
-/** The `how-to-*.md` guides next to each skill's SKILL.md, each linked to its skill in the reference. */
+/** Guides leave the bundle page; links open each skill's dedicated how-to page. */
 function HowTos(props: { bundle: Bundle }) {
-  return howTosOf(props.bundle).map((entry) => (
-    <DocSection.Article key={entry.howTo._meta.path} title={entry.howTo.title}>
-      <p className="mb-3 text-[11px] text-muted">
-        Skill: <a href={`#${entry.skill.anchor}`}>{entry.skill.name}</a>
-      </p>
-      <Prose
-        html={entry.howTo.html}
-        className="[&_li+li]:mt-1 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:max-w-[90ch] [&_p+p]:mt-3 [&_ul]:list-disc [&_ul]:pl-5"
-      />
-    </DocSection.Article>
-  ));
+  return (
+    <ul className="mb-6 space-y-3">
+      {props.bundle.skills
+        .filter((skill) => howTosOfSkill(skill).length > 0)
+        .map((skill) => (
+          <li key={skill.path}>
+            <a href={siteHref(`/bundles/${skill.bundle}/skill/${skill.name}/how-to/`)}>{skill.name}: how-to guides →</a>
+          </li>
+        ))}
+    </ul>
+  );
 }
 
 function Reference(props: { bundle: Bundle }) {
@@ -219,20 +218,23 @@ function Reference(props: { bundle: Bundle }) {
             <SkillIndex.Groups categories={props.bundle.categories}>
               {(category, skills) => (
                 <DataTable label={`${category} skills`}>
-                  <DataTable.Head columns={["Skill", "Invoked by", "Scripts", "Description"]} />
+                  <DataTable.Head columns={["Skill", "Invoked by", "Scripts", "Description", "Guide"]} />
                   <DataTable.Body>
                     {skills.map((skill) => (
                       <DataTable.Row key={skill.path} id={skill.anchor}>
                         <DataTable.Cell code>
-                          {skillsWithPages.has(`${name}/${skill.name}`) ? (
-                            <a href={siteHref(`/bundles/${name}/skill/${skill.name}/`)}>{skill.name} ↗</a>
-                          ) : (
-                            skill.name
-                          )}
+                          <a href={siteHref(`/bundles/${name}/skill/${skill.name}/`)}>{skill.name} →</a>
                         </DataTable.Cell>
                         <DataTable.Cell muted>{invocationOf(skill)}</DataTable.Cell>
                         <DataTable.Cell muted>{skill.hasScripts ? "yes" : "—"}</DataTable.Cell>
                         <DataTable.Cell muted>{skill.description}</DataTable.Cell>
+                        <DataTable.Cell>
+                          {howTosOfSkill(skill).length > 0 ? (
+                            <a href={siteHref(`/bundles/${name}/skill/${skill.name}/how-to/`)}>How-to →</a>
+                          ) : (
+                            <span className="text-muted">—</span>
+                          )}
+                        </DataTable.Cell>
                       </DataTable.Row>
                     ))}
                   </DataTable.Body>
