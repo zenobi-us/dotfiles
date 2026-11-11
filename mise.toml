@@ -127,6 +127,7 @@ fnox = { version = "1.44.0", workflow = "release.yml" }
 "github:asciimoo/hister" = "latest"
 "npm:@deepseek-ai/dsh" = "0.2.2-rc.1"
 "github:civitai/cli" = "latest"
+"github:quaresc/cockpit" = "latest"
 
 [tool_alias]
 pi = "github:earendil-works/pi"
