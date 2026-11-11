@@ -1,0 +1,103 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "finish-0028",
+  "workflow_id": "collect-evidence-feedback-02-tui",
+  "phase": "finish",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "review-0027",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "source_branch": "feature/collect-evidence-feedback-02-tui",
+  "base_branch": "master",
+  "source_commit": "3d05a5611dae33c992d8bbd81ed265a27d23892c",
+  "source_tree": "e758e20e8bc45d732d01028960802390d347d11b",
+  "created_at": "2026-11-11T22:12:48.027969+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-02-tui",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc-t69",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-02-tui",
+    "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-02-tui.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-02-tui"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-02-tui.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0027.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/review-0026.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-02-tui/artifacts/reviews/review-review-0026.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-02-tui/events/finish-0028.yaml"
+    }
+  ],
+  "status": "FINISH_FAILED",
+  "failure_step": "prepare",
+  "failure_reason": "Read-only git merge-tree --write-tree master feature/collect-evidence-feedback-02-tui exited 1 with seven conflicts. No unambiguous clean squash integration tree exists; playbook requires operator recovery instructions. No merge, push, completion or cleanup performed.",
+  "base_before": "38326504e48e347f99b9205b6ec937187c2545ff",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_observed_commit": "f9274afe29f29f9eb00ce4469a3463b7c15c2869",
+  "review_receipt": "workflows/collect-evidence-feedback-02-tui/events/review-0026.yaml",
+  "reviewed_source_commit": "3d05a5611dae33c992d8bbd81ed265a27d23892c",
+  "reviewed_source_tree": "e758e20e8bc45d732d01028960802390d347d11b",
+  "merged_commit": null,
+  "pushed": false,
+  "ticket_completed": false,
+  "worktree_removed": false,
+  "workspace_closed": true,
+  "worktree_preserved": true,
+  "workspace_preserved": true,
+  "recovery_mode": "begin",
+  "approval": "User explicitly requested worktree finish for this ticket; no conflict-resolution or source-change authorization inferred.",
+  "ownership_observation": "hc ls returned no terminal with the source worktree cwd. Prior review parent confirms child terminals removed. No terminal killed or removed in this finish attempt.",
+  "validation": [
+    {
+      "command": "worktree/scripts/inspect.ts tracker/tickets/collect-evidence-feedback-02-tui.md --json",
+      "result": "finish/begin; successful review matches current clean source"
+    },
+    {
+      "command": "git fetch origin master",
+      "result": "success; remote master f9274afe29f29f9eb00ce4469a3463b7c15c2869"
+    },
+    {
+      "command": "git merge-tree --write-tree master feature/collect-evidence-feedback-02-tui",
+      "result": "exit 1; conflicts in marketplace.json, developer/plugin.json, native-fixture-implementation-0005.py executable mode, manifest.yaml and three workflow projections; working trees unchanged"
+    },
+    {
+      "command": "mise exec -- hc ls",
+      "result": "no source-worktree terminal; source workspace absent"
+    }
+  ],
+  "conflicts": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json",
+    "workflows/collect-evidence-feedback-02-tui/artifacts/snapshots/native-fixture-implementation-0005.py",
+    "workflows/collect-evidence-feedback-02-tui/manifest.yaml",
+    "workflows/collect-evidence-feedback-02-tui/projections/implementation-log.md",
+    "workflows/collect-evidence-feedback-02-tui/projections/latest-status.yaml",
+    "workflows/collect-evidence-feedback-02-tui/projections/pr-draft.md"
+  ]
+}
