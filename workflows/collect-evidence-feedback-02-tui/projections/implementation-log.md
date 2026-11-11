@@ -58,3 +58,7 @@ Separate provisioning resolved the attempt 1 missing-tools block. The native acc
 ## Parent acceptance implementation-0006
 
 [Parent receipt](../events/implementation-0006.yaml) verifies the result, original PNG hashes and visible transition, public validate/verdicts, and owned-resource cleanup. Terminal t4z is closed. Clean review target: 68acd4074c636933fdf5e8645a09d1acf6abdf67, tree 68589997ea8dafb4a336777829a0105806fa44d2. Only the immutable result receipt changed after the validated child source; application code is unchanged. Independent review remains required.
+
+## Review attempt 1 — FAILURE
+
+[Result review-0008](../events/review-0008.yaml), [sole review](../artifacts/reviews/review-review-0008.md), [parent review-0009](../events/review-0009.yaml). Reviewed commit 68acd4074c636933fdf5e8645a09d1acf6abdf67, tree 68589997ea8dafb4a336777829a0105806fa44d2. No source changes or fixes. Findings remain open: STD-01, STD-02, SPEC-1, SPEC-2. Standards and Spec retain separate reports; three distinct defects block completion. Parent native regression: 1 pass, 0 fail, 11 assertions. Parent validated retained native records and inspected both original images and matching SHA-256 hashes.

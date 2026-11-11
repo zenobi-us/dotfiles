@@ -6,7 +6,7 @@ kind: pr-draft
 
 ## Status
 
-Implementation acceptance passed in attempt 2. Parent completion passed. Independent review is pending. No merge, push, publication or ticket completion occurred.
+Implementation acceptance and parent completion passed. Independent review returned FAILURE for commit 68acd4074c636933fdf5e8645a09d1acf6abdf67. Fixes and a fresh review are required. No merge, push or ticket completion occurred.
 
 ## Ticket summary and problem
 
@@ -42,7 +42,7 @@ The commit hook updated the developer bundle version to 0.2.15 in both metadata 
 
 ## Review history and findings
 
-No review or fix phase ran. No reviewer verdict exists. Resolved runtime defect: native sparse OCR. No native acceptance blocker remains. Private headless capture, host-specific font metrics and unavailable native video remain explicit limits. The original tmux border and unused-area dots remain in the pixels; no cropping or reconstruction occurred.
+Review attempt 1 returned FAILURE. [Sole immutable review](../artifacts/reviews/review-review-0008.md), [result receipt](../events/review-0008.yaml), and [parent completion](../events/review-0009.yaml) retain both review axes. Standards: 2 findings, worst P2. Spec: 2 findings, worst P1. STD-01 and SPEC-2 refer to one defect. Open finding IDs: STD-01, STD-02, SPEC-1, SPEC-2. No finding has been fixed. Merge status: not merged. Resolved runtime defect: native sparse OCR. Native implementation acceptance passed; independent review identified three blocking defects. Private headless capture, host-specific font metrics and unavailable native video remain explicit limits. The original tmux border and unused-area dots remain in the pixels; no cropping or reconstruction occurred.
 
 ## Recovery and prior history
 
