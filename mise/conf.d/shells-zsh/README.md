@@ -96,7 +96,6 @@ zinit_load_local_module() {
 | Plugin | Purpose |
 |--------|---------|
 | `junegunn/fzf` | Fuzzy finder (installed from gh-r) |
-| `starship/starship` | Prompt (compiled init at clone time) |
 | `Aloxaf/fzf-tab` | Tab completion via fzf |
 | `loiccoyle/zsh-github-copilot` | Copilot suggestions |
 

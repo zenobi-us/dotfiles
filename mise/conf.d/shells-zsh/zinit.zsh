@@ -26,11 +26,6 @@ zinit_load_local_module "granted__aliases.zsh"
 zinit_load_local_module "moonrepo__completions.zsh"
 zinit_load_local_module "homeassistant__aliases.zsh"
 
-zinit ice as"command" from"gh-r" \
-	atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-	atpull"%atclone" src"init.zsh"
-zinit light starship/starship
-
 zinit light Aloxaf/fzf-tab
 
 # env phase (explicit order) - constrained to config.d/enabled
@@ -63,6 +58,8 @@ zinit_load_interactive_modules() {
 	zinit_load_local_module "hrdx__config.zsh"
 	zinit_load_local_module "mcfly__config.zsh"
 	zinit_load_local_module "mise__config.zsh"
+	# Starship comes from mise; init each shell so the prompt follows upgrades and prunes.
+	zinit_load_local_module "starship__config.zsh"
 	zinit_load_local_module "dotfiles__aliases.zsh"
 	zinit_load_local_module "clipboard__aliases.zsh"
 	zinit_load_local_module "shellfont__aliases.zsh"
