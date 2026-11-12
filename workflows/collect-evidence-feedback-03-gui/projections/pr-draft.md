@@ -113,3 +113,14 @@ The prepared fix-0013-named validation/draft snapshots predate the receipt alloc
 [Verified completion](../events/fix-0015.yaml) links to [fix-0014](../events/fix-0014.yaml). Parent verified authoritative receipt equality, exact clean source identity, all output paths and successful unchanged-example public init/compile evidence. Delivery hash `3079c967c349bbb91020ab5ab115f2972f9aa066da908bcdb258b99fb8990803` acknowledged. Fresh fixer `omp` terminal `t70` emitted completed sequence 2 and was closed and removed. Source workspace retained; empty app space was removed automatically.
 
 CEGUI-R1 is resolved as already satisfied. No source edits or source commit; no new review verdict, merge, push or ticket completion. Historical FAILURE and recorded Surf/prerequisite gaps remain. Next action is fresh independent review of the unchanged clean source.
+
+
+## Current review — review-0017
+
+Latest verdict: SUCCESS for unchanged commit `4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71`, tree `36f17fc4bb60031eedb54d69a88b2a1c3ef93d74`. Zero blocking findings; optional CEGUI-N1 (P3) remains. CEGUI-R1 is not present in this frozen source. Historical sections above remain history, not the current verdict.
+
+[Immutable review](../artifacts/reviews/review-review-0017.md) · [Review result](../events/review-0017.yaml) · [Parent completion](../events/review-0018.yaml).
+
+Fresh owned-fixture native GUI check: 1 pass, 49 assertions. Full published example init/compile/dry-run passed. Parent independently validated retained native and denied-permission archives and inspected the retained native PNG. Source files changed: none. Review terminals closed; source worktree retained.
+
+Surf approved-space.3 still fails (expected Submitted, observed Not submitted); not rerun or accepted as passing. Fresh Playwright/TUI/typecheck coverage remains unavailable in the recorded setup. No merge, push or ticket completion.

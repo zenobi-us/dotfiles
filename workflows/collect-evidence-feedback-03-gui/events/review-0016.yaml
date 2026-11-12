@@ -1,0 +1,51 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: 4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71
+source_tree: 36f17fc4bb60031eedb54d69a88b2a1c3ef93d74
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: review-0016
+phase: review
+event: phase-start
+attempt: 4
+parent_receipt: fix-0015
+created_at: '2026-11-12T01:40:39.998001+00:00'
+status: started
+session_id: herdr-app:t6z
+pane_id: null
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/fix-0015.yaml
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/fix-0014.yaml
+- kind: snapshot
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/pr-draft-fix-0014.md
+- kind: ticket
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0016.yaml
+ownership:
+  owner: herdr-app:t6z
+  approval: User explicitly requested review collect-evidence-feedback-03-gui in same
+    parent session as fix-0015
+  liveness: hc ls shows no terminal in source workspace; current parent t6z matches
+    fix-0015 owner
+  takeover: false
+  reservations: Standalone phase; no goal dispatch in consumed receipts
+recovery_mode: begin
+recovery_reason: Canonical inspector selects review/begin of clean unchanged source

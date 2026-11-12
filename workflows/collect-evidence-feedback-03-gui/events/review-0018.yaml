@@ -1,0 +1,87 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: 4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71
+source_tree: 36f17fc4bb60031eedb54d69a88b2a1c3ef93d74
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: review-0018
+phase: review
+event: phase-complete
+attempt: 4
+parent_receipt: review-0017
+created_at: '2026-11-12T01:49:42.316155+00:00'
+status: completed
+session_id: herdr-app:t6z
+pane_id: null
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0017.yaml
+- kind: review
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/reviews/review-review-0017.md
+- kind: ticket
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0018.yaml
+- kind: tracker
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+- kind: projection
+  ref: workflows/collect-evidence-feedback-03-gui/manifest.yaml
+- kind: projection
+  ref: workflows/collect-evidence-feedback-03-gui/projections/latest-status.yaml
+- kind: projection
+  ref: workflows/collect-evidence-feedback-03-gui/projections/pr-draft.md
+- kind: projection
+  ref: workflows/collect-evidence-feedback-03-gui/projections/implementation-log.md
+parent_validation:
+  authoritative_event_matches_transport: true
+  source_commit_tree_match: true
+  source_clean: true
+  review_artifact_frozen_source_matches: true
+  delivery_sha256: be29f9dd068e002fdab58cb6a1fbb4a3142963e6b160dbef292788dad6c8d415
+  acknowledged: true
+  child_completion_signal: sequence 3 completed agent 2026-11-12T01:48:47.138Z
+  child_terminal: t72 killed and removed after completion
+  review_verdict_observed: SUCCESS
+  scope: GUI slice; not a passing cross-driver baseline
+validation_results:
+- command: Absolute frozen source collect-evidence.ts validate <base>/workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001
+    --json
+  status: passed
+  exit_code: 0
+- command: Absolute frozen source collect-evidence.ts validate <base>/workflows/collect-evidence-feedback-03-gui/artifacts/evidence/permission-0001
+    --json
+  status: passed
+  exit_code: 0
+- command: Inspect retained native PNG
+  status: passed
+  observed: 480x260 fixture label and purple/cyan panels; no unrelated desktop
+- command: Ticket schema API assertRecord on mq extracted frontmatter
+  status: passed
+- command: records.ts check --ticket collect-evidence-feedback-03-gui
+  status: failed
+  observed: Timed out after 30s; direct authoritative assertRecord used instead
+publication:
+  committed: false
+  pushed: false
+  merged: false
+  ticket_completed: false
+remaining_limits:
+- 'Retained Surf approved-space.3 FAIL: expected Submitted, observed Not submitted;
+  not rerun'
+- Fresh Playwright/TUI/typecheck unavailable in recorded host setup
+- CEGUI-N1 optional P3 only

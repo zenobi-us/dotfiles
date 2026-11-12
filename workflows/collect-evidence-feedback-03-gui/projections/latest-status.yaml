@@ -1,24 +1,16 @@
-{
-  "schema": "worktree-latest-status/v1",
-  "workflow_id": "collect-evidence-feedback-03-gui",
-  "ticket": "tracker/tickets/collect-evidence-feedback-03-gui.md",
-  "state": "FIXED",
-  "latest_receipt": "fix-0015",
-  "latest_source_commit": "4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71",
-  "latest_source_tree": "36f17fc4bb60031eedb54d69a88b2a1c3ef93d74",
-  "latest_review_verdict": "FAILURE",
-  "open_findings": [],
-  "resolved_findings": [
-    "CEGUI-R1"
-  ],
-  "optional_findings": [
-    "CEGUI-N1"
-  ],
-  "resolution": "Already satisfied at exact reviewed source; no source change or new commit needed. Historical FAILURE unchanged; fresh review not performed.",
-  "validation_blockers": [
-    "Surf expected Submitted, observed Not submitted (not rerun)",
-    "Fresh Playwright/TUI capture prerequisites unavailable (not rerun)",
-    "TypeScript/LSP prerequisites unavailable (not rerun)"
-  ],
-  "parent_completion_pending": false
-}
+schema: worktree-latest-status/v1
+workflow_id: collect-evidence-feedback-03-gui
+ticket: tracker/tickets/collect-evidence-feedback-03-gui.md
+state: REVIEW_PASSED
+latest_receipt: review-0018
+latest_source_commit: 4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71
+latest_source_tree: 36f17fc4bb60031eedb54d69a88b2a1c3ef93d74
+latest_review_verdict: SUCCESS
+open_findings: []
+optional_findings:
+- CEGUI-N1
+remaining_limits:
+- 'Retained Surf approved-space.3 FAIL: expected Submitted, observed Not submitted;
+  not rerun'
+- Fresh Playwright/TUI/typecheck unavailable in recorded host setup
+- CEGUI-N1 optional P3 only
