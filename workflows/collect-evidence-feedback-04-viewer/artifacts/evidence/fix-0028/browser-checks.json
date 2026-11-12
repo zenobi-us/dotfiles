@@ -1,0 +1,26 @@
+{
+  "desktop": {
+    "viewport": "1440x900",
+    "sizes": [
+      "13px",
+      "13px"
+    ],
+    "focus": {
+      "origin": "Assets",
+      "outline": "3px"
+    }
+  },
+  "narrow": {
+    "sizes": [
+      "13px",
+      "13px"
+    ],
+    "focus": "Assets",
+    "caseLeft": 0,
+    "scroll": 390
+  },
+  "sourceSession": "workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session",
+  "copiedSession": "/tmp/feedback-fix-0028-5b28e5fc",
+  "url": "http://127.0.0.1:18828",
+  "scope": "Actual rebuilt distributed viewer; existing immutable evidence reused without alteration"
+}

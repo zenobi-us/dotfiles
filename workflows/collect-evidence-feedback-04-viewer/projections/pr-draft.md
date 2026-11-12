@@ -6,6 +6,36 @@ type: Concept
 
 # Evidence viewer fix
 
+## Fix attempt 3 — fix-0028 (current)
+
+STANDARDS-01 is resolved. Remove the Back-button font-size override so Session and Cases inherit the shared 13px control rule. The distributed HTML was rebuilt (318122 bytes); its only generated content difference removes ;font-size:10.
+
+Source: 86535914fad9d152835049a5374284a772449281; tree: ce207d4d61add19ebb49181932bfa769a184672a. Branch: feature/collect-evidence-feedback-04-viewer; base: master. Source clean after commit. Commit hooks updated matching bundle registrations.
+
+### Changed files in this fix
+
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/index.html
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/styles.css
+
+### Verification and limits
+
+Build passed. Existing public workflow regression passed once: 1 test, 58 assertions, 0 failures. Actual served distributed viewer returned ["13px", "13px"] at 1440x900 and 390x844. Desktop Back and narrow ArrowLeft restored asset focus; the narrow case column remained revealed (left=0, scrollLeft=390).
+
+The public serve command ran from /tmp on an owned copy of the immutable smoke session, port 18828. Owned browser tab and server were closed; the disposable copy was removed. Forced service stop retained its lock before copy removal; this smoke does not claim graceful shutdown validation. Original evidence remained untouched. These are browser smoke artifacts, not a new sealed collector run.
+
+[Browser checks](../artifacts/evidence/fix-0028/browser-checks.json), [validation](../artifacts/evidence/fix-0028/validation.json), [desktop](../artifacts/evidence/fix-0028/desktop.webp), [narrow focus](../artifacts/evidence/fix-0028/narrow-focus.webp), [narrow inspector](../artifacts/evidence/fix-0028/narrow-inspector.webp).
+
+### Findings, authorization and next phase
+
+Consumed [review-0021](../events/review-0021.yaml) and its [immutable finding](../artifacts/reviews/review-review-0021.md). Resolved: STANDARDS-01. Unresolved findings: none. Latest reviewer verdict remains historical FAILURE for the previous source; this fix requires fresh independent review. No review, merge, push or ticket mutation performed.
+
+[Approval](../events/fix-approval-0024.yaml), [exact authorized approval repair](../artifacts/snapshots/fix-approval-0024-repair.json), [phase start](../events/fix-start-0025.yaml), [launch identity](../events/fix-launch-0027.yaml), [fix result](../events/fix-0028.yaml). Parent owns phase completion and workflow commit. No open questions.
+
+## Retained historical record (superseded by fix-0028)
+
 ## Ticket and problem
 
 [collect-evidence-feedback-04-viewer](../../../tracker/tickets/collect-evidence-feedback-04-viewer.md) provides the read-only local evidence inspector. Review found lost originating-asset focus and ignored plain CLI output.
@@ -75,3 +105,19 @@ None. No merge authorized.
 Public regression passed: 1 test, 58 assertions. Real browser, image-byte identity, CLI formats, unsafe-request refusal, changed/symlinked asset rejection, port conflict, second-writer rejection and owned cleanup passed. Parent plain/JSON/quiet validation passed from `/tmp`. Screenshots were temporary, not retained evidence.
 
 [Parent completion](../events/review-complete-0023.yaml) verifies the exact clean source, receipt/artifact and transport hash. Reviewer terminals are closed. Source is unchanged. No fixes, merge, push or ticket completion were authorized or performed. Next phase: fix in a fresh session if requested.
+
+
+
+## Parent completion — fix-complete-0029
+
+[Parent completion](../events/fix-complete-0029.yaml) validates fix-0028 against the exact clean source 86535914fad9d152835049a5374284a772449281 and tree ce207d4d61add19ebb49181932bfa769a184672a. The delivered envelope matches the authoritative receipt and all outputs exist. Desktop and narrow screenshots and computed 13px controls were inspected. Delivery acknowledged; native completion sequence 2 confirmed; only fixer terminal t8g was closed. Source worktree remains available.
+
+Fresh independent review is required because source changed. No merge or push occurred. Workflow artifacts remain local and uncommitted.
+
+## Review attempt 5 — current outcome
+
+[Independent review](../events/review-0032.yaml) returned **FAILURE** for source `86535914fad9d152835049a5374284a772449281`, tree `ce207d4d61add19ebb49181932bfa769a184672a`. Standards: one P2 blocking finding, STD-001. Spec: no findings. [Immutable review](../artifacts/reviews/review-review-0032.md) holds the finding and required change. Earlier verdicts remain historical.
+
+Public regression passed: 1 test, 58 assertions. Real viewer, image identity, focus, typography, unsafe-request refusal and server lifecycle passed. Fresh public import reproduced STD-001. Parent public validation and tracker schema check passed.
+
+[Parent completion](../events/review-complete-0033.yaml) verifies delivery, exact frozen source and artifact. Owned review terminals and resources are closed. Source is unchanged. No fixes, merge, push or ticket completion occurred. Next phase: fix STD-001 in a fresh session.

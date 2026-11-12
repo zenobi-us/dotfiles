@@ -1,0 +1,114 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "86535914fad9d152835049a5374284a772449281",
+  "source_tree": "ce207d4d61add19ebb49181932bfa769a184672a",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": "t8h",
+  "session_id": "hc:t8h",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "phase": "review",
+  "created_at": "2026-11-12T09:57:43.813230+00:00",
+  "ownership": {
+    "owner": "hc:t8h",
+    "previous_owner": "unknown",
+    "liveness": "hc ls --json: prior owner t8f absent; no live terminal in source worktree",
+    "active_goal_reservations": "standalone review; no active source-worktree owner observed",
+    "direct_blockers": "collect-evidence-feedback-01-web completed per inspector history"
+  },
+  "recovery_mode": "retry",
+  "recovery_reason": "Source changed after historical review; user approved scoped review takeover in this session.",
+  "receipt_id": "review-complete-0033",
+  "event": "phase-complete",
+  "status": "completed",
+  "attempt": 5,
+  "parent_receipt": "review-0032",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-0032.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0032.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-start-0031.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-complete-0033.yaml"
+    }
+  ],
+  "review_receipt": "review-0032",
+  "review_artifact": "workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0032.md",
+  "findings": [
+    {
+      "adr": "NO ADR",
+      "description": "The Markdown writer uses raw input with text output. The retained session/index.md and cases/case-1/notes.md each contain only one byte, and reading both through mq returns no content. Thus session imports discard the supplied headings, notes and collect-feedback/v1 frontmatter. This breaches tracker/initiatives/collect-evidence-feedback/index.md, Implementation Decisions 20 (owned Markdown records must carry the feedback schema) and 22 (human-readable case notes). The current validator still accepts these sessions because it checks JSON and media only.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/records.ts",
+      "id": "STD-001",
+      "line": 152,
+      "required_change": "Preserve raw Markdown bytes when generating session/index.md and case notes, including schema frontmatter and supplied content. Add a public init regression that checks the generated human-readable records. Preserve existing immutable proof artifacts; capture new proof after the fix.",
+      "severity": "P2",
+      "validation_command": "Run the installed collect-feedback init command against a sealed run and a new temporary resolved session. Read the returned session/index.md and cases/<id>/notes.md using mise exec -- mq --allow-http-import --lockfile /tmp/review-axis-mq.lock -I raw -F raw 'import \"github.com/harehare/okf.mq\" | .' <paths>. Confirm schema: collect-feedback/v1, headings and notes are present. Then run mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts."
+    }
+  ],
+  "validation_results": [
+    {
+      "command": "result-delivery read; compare authoritative YAML and transport; worktree inspect",
+      "result": "passed",
+      "observed": "Matching schema, source identity, parent chain, artifact and normalized payload; inspector selects review/reconcile."
+    },
+    {
+      "command": "mise exec -- bun <source>/collect-feedback.ts validate <retained-session> --json --quiet; same command --json",
+      "cwd": "/tmp",
+      "result": "passed",
+      "observed": "Both exit 0; quiet empty, JSON success and valid true."
+    },
+    {
+      "command": "records.ts check --repository <base> --ticket collect-evidence-feedback-04-viewer",
+      "result": "passed",
+      "observed": "tracker-ticket/v1; schema, graph and normal discovery valid."
+    }
+  ],
+  "child_completion": {
+    "run_id": "e4e2356c-a704-4b0b-a865-29d153ff5bee",
+    "sequence": 2,
+    "state": "completed",
+    "transport_ack_sha256": "05579c5c83b7d505cd4be898062eb3280c813c2506f57b62246d96915e0de6cb"
+  },
+  "pane_close": {
+    "terminal": "t8j",
+    "removed": true,
+    "workspace_preserved": true,
+    "observation": "herdr-app ls confirms child absent; source directory retained in recent spaces"
+  },
+  "source_unchanged": true,
+  "publication": {
+    "source_modified": false,
+    "merged": false,
+    "pushed": false,
+    "ticket_completed": false
+  },
+  "next_action": "fix current blocking finding STD-001; no fix authorized by review command"
+}

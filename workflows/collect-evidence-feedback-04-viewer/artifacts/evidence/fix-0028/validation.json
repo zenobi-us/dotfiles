@@ -1,0 +1,41 @@
+{
+  "build": {
+    "command": "mise exec -- bun run build",
+    "result": "passed",
+    "bytes": 318122
+  },
+  "regression": {
+    "command": "mise exec -- env PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts",
+    "result": "passed",
+    "tests": 1,
+    "assertions": 58
+  },
+  "browser": {
+    "desktop": {
+      "viewport": "1440x900",
+      "sizes": [
+        "13px",
+        "13px"
+      ],
+      "focus": {
+        "origin": "Assets",
+        "outline": "3px"
+      }
+    },
+    "narrow": {
+      "sizes": [
+        "13px",
+        "13px"
+      ],
+      "focus": "Assets",
+      "caseLeft": 0,
+      "scroll": 390
+    }
+  },
+  "cleanup": {
+    "ownedTabClosed": true,
+    "ownedServiceStopped": true,
+    "copiedSessionRemoved": true,
+    "note": "Forced service stop retained writer lock in disposable copy; removed copy after granting owner write permission. Immutable source untouched."
+  }
+}

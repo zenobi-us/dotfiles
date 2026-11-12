@@ -1,0 +1,145 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-04-viewer
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer
+source_branch: feature/collect-evidence-feedback-04-viewer
+base_branch: master
+source_commit: 86535914fad9d152835049a5374284a772449281
+source_tree: ce207d4d61add19ebb49181932bfa769a184672a
+muxer: herdr-app
+agent: omp
+pane_id: null
+session_id: hc:t8f
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-04-viewer
+  ref: tracker/tickets/collect-evidence-feedback-04-viewer.md
+ticket_ref: tracker/tickets/collect-evidence-feedback-04-viewer.md
+workflow:
+  store: repository
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  ref: workflows/collect-evidence-feedback-04-viewer
+phase: fix
+receipt_id: fix-complete-0029
+event: phase-complete
+status: completed
+attempt: 3
+parent_receipt: fix-0028
+created_at: '2026-11-12T09:45:48.471125+00:00'
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-04-viewer/events/fix-0028.yaml
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-04-viewer/events/fix-launch-0027.yaml
+- kind: repair
+  ref: workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/fix-approval-0024-repair.json
+- kind: draft
+  ref: workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/pr-draft-fix-0028.md
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-04-viewer/events/fix-complete-0029.yaml
+ownership:
+  owner: hc:t8f
+  previous_owner: unknown
+  liveness: hc ls shows no prior viewer owner/reviewer terminals; source space only
+    recent; no live matching cwd
+  active_goal_reservations: No matching ticket in workflows/goal-*/events/*.yaml
+  direct_blockers: collect-evidence-feedback-01-web completed
+recovery_mode: reconcile
+recovery_reason: Validated completed fresh fixer, exact clean source and durable artifacts;
+  no repeated child work.
+consumed_review_receipts:
+- review-0021
+selected_findings:
+- STANDARDS-01
+child_run_id: 5b28e5fc-5398-4fb1-9024-192e2cad5f66
+operation_id: fix-0025
+evidence:
+  store: repository
+  ref: workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/fix-0028
+resolved_findings:
+- STANDARDS-01
+unresolved_findings: []
+changed_files:
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/index.html
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/styles.css
+validation_results:
+- command: mise exec -- bun run build
+  cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer
+  result: passed
+  exit_code: 0
+  observed: Built 318122 bytes; generated change only removes ;font-size:10
+- command: mise exec -- env PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome
+    bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts
+  cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer
+  result: passed
+  exit_code: 0
+  observed: 1 pass, 0 fail, 58 assertions
+- command: Public collect-feedback.ts serve /tmp/feedback-fix-0028-5b28e5fc --port
+    18828 --json; actual Chromium control size/focus checks
+  cwd: /tmp
+  result: passed
+  observed:
+    desktop:
+      viewport: 1440x900
+      sizes:
+      - 13px
+      - 13px
+      focus:
+        origin: Assets
+        outline: 3px
+    narrow:
+      sizes:
+      - 13px
+      - 13px
+      focus: Assets
+      caseLeft: 0
+      scroll: 390
+  evidence_ref: workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/fix-0028/browser-checks.json
+- command: Close owned browser tab; stop owned server; remove disposable session copy
+  result: passed
+  observed:
+    ownedTabClosed: true
+    ownedServiceStopped: true
+    copiedSessionRemoved: true
+    note: Forced service stop retained writer lock in disposable copy; removed copy
+      after granting owner write permission. Immutable source untouched.
+- command: result-delivery read; compare authoritative YAML; worktree inspect; inspect
+    desktop/narrow screenshots
+  result: passed
+  observed: Matching schema/run/operation/hash and event; all outputs exist; valid
+    history; clean exact commit/tree; screenshots and computed 13px evidence inspected.
+implementation_summary: Removed Back control 10px override; inherited shared 13px
+  control size. Rebuilt distributed HTML and updated changelog. Commit hooks updated
+  matching plugin registrations.
+open_questions: []
+draft_snapshot: workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/pr-draft-fix-0028.md
+projection_paths:
+- workflows/collect-evidence-feedback-04-viewer/projections/pr-draft.md
+- workflows/collect-evidence-feedback-04-viewer/projections/implementation-log.md
+- workflows/collect-evidence-feedback-04-viewer/projections/latest-status.yaml
+manifest_path: workflows/collect-evidence-feedback-04-viewer/manifest.yaml
+history_repair_ref: workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/fix-approval-0024-repair.json
+publication:
+  source_committed: true
+  workflow_committed: false
+  merged: false
+  pushed: false
+  ticket_completed: false
+next_action: fresh independent review after parent validates result and records phase
+  completion
+child_completion:
+  run_id: 5b28e5fc-5398-4fb1-9024-192e2cad5f66
+  sequence: 2
+  state: completed
+  transport_ack_sha256: d43d0dccb2f5dfee0b40baff9687d2014dd6ca167d7a394d2ff86664f267e626
+pane_close:
+  terminal: t8g
+  removed: true
+  workspace_preserved: true
+  observation: 'herdr-app ls: child absent; source workspace retained under recent;
+    directory remains available'
