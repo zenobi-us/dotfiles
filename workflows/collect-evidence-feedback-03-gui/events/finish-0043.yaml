@@ -1,0 +1,62 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: d70fe7e463638f134d6226397ca38724492deca4
+source_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: finish-0043
+phase: finish
+event: phase-checkpoint
+status: FINISHING
+attempt: 3
+parent_receipt: finish-0042
+created_at: '2026-11-12T04:57:46.359139+00:00'
+session_id: herdr-app:t6z
+pane_id: null
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0042.yaml
+- kind: evidence
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/evidence/integrated-native-0042
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0043.yaml
+checkpoint: pushed
+review_receipt: workflows/collect-evidence-feedback-03-gui/events/review-0037.yaml
+reviewed_source_commit: d70fe7e463638f134d6226397ca38724492deca4
+reviewed_source_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+base_before: d22002f5ed1e2b1cae731171a81207ed95d0ca3b
+remote: origin
+remote_ref: refs/heads/master
+expected_merge_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+merged_commit: 4441b5c0aacecbb6620b1696a5b3c483e5733fb7
+merged_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+merged_parents:
+- d22002f5ed1e2b1cae731171a81207ed95d0ca3b
+publication_base_commit: 11a3cf835e66934ffa9104ec971140f7004428cb
+publication_base_tree: c1fb373f50d5752bc037f166947e011c4a581967
+remote_observed_commit: aa49cf43a254a091b85506eab3e8378bfc841414
+integration_reachable: true
+pushed: true
+workflow_artifact_commit: aa49cf43a254a091b85506eab3e8378bfc841414
+evidence:
+  store: repository
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/evidence/integrated-native-0042
+next_step: Complete and publish canonical Local Markdown ticket; cleanup only after
+  verification.
+remote_notice: GitHub reports3 default-branch vulnerabilities:1 high,2 moderate. Not
+  investigated or remediated in this ticket.

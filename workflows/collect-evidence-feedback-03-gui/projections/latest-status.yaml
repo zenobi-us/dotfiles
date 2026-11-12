@@ -1,8 +1,8 @@
 schema: worktree-latest-status/v1
 workflow_id: collect-evidence-feedback-03-gui
 ticket: tracker/tickets/collect-evidence-feedback-03-gui.md
-state: FINISHING
-latest_receipt: finish-0042
+state: FINISH_FAILED
+latest_receipt: finish-0046
 latest_source_commit: d70fe7e463638f134d6226397ca38724492deca4
 latest_source_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
 latest_review_verdict: SUCCESS
@@ -23,3 +23,8 @@ draft_snapshot: artifacts/snapshots/pr-draft-fix-0027.md
 validation_snapshot: artifacts/snapshots/validation-fix-0027.json
 merged_commit: 4441b5c0aacecbb6620b1696a5b3c483e5733fb7
 integrated_validation: passed
+ticket_completed: true
+pushed: true
+worktree_removed: false
+workspace_closed: true
+cleanup_blocker: Process uses source worktree; scoped cleanup refused; preserved.

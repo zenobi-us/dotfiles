@@ -189,7 +189,7 @@ Earlier sections below/above retain historical dispositions, not current integra
 
 
 
-# Current finish — verified integration
+# Historical finish checkpoint — verified integration
 
 The latest review is SUCCESS: [review-0037](../artifacts/reviews/review-review-0037.md), frozen source `d70fe7e463638f134d6226397ca38724492deca4`, tree `1cfddc006ae099564cbef521b2cea8384c8c461d`. CEGUI-R2 is resolved; no blocking findings. Optional CEGUI-N1 and CEGUI-N2 remain. Historical sections above retain prior verdicts and are not current status.
 
@@ -198,3 +198,12 @@ GUI squash integration `4441b5c0aacecbb6620b1696a5b3c483e5733fb7` has sole paren
 Integrated native public CLI: 1 pass, 60 assertions. Supporting verdict/workflow checks: 99 pass, 892 assertions. The first integrated invocation correctly failed because the owned resizable fixture was851x463 instead of480x260; the failure and original PNG remain [sealed](../artifacts/evidence/integrated-fixture-size-0041/run.json). Only fixture sizing changed. The corrected full workflow passed; [all five sealed scenarios](../artifacts/evidence/integrated-native-0042/) validate. The original480x260 native PNG was visually inspected.
 
 Known Surf failure and unavailable Playwright/TUI/typecheck remain. No generalized dialog-detection or occlusion-isolation proof is claimed. Merge verified; remote publication, ticket completion and worktree cleanup are pending.
+
+
+# Current outcome — ticket completed; cleanup blocked
+
+GUI integration `4441b5c0aacecbb6620b1696a5b3c483e5733fb7` and canonical ticket completion are published on origin/master. Last observed remote `445f458480358d980089e8d614d7353750fe2275` contains both. Ticket state is completed. [Publication](../events/finish-0043.yaml) · [Published completion](../events/finish-0045.yaml). Review-0037 SUCCESS covers the frozen source and preserved integration mapping. Integrated native60 assertions and99 supporting tests passed; prior fixture-sizing failure remains immutable.
+
+Finish is FINISH_FAILED only at worktree cleanup. [Failure receipt](../events/finish-0046.yaml): scoped cleanup refused `feature/collect-evidence-feedback-03-gui` because a process uses its source directory. Worktree and branch retained; no force removal or unidentified process shutdown. Reviewer/fixer panes and owned fixtures are closed; no source app workspace remains. Unrelated cleanup candidates were left untouched.
+
+Release the process using the source worktree, then rerun finish to reconcile cleanup without repeating merge, push or ticket completion. Remaining historical Surf/typecheck/platform coverage limits and optional findings stay recorded above.

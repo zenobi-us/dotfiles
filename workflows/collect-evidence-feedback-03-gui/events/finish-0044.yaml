@@ -1,0 +1,68 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: d70fe7e463638f134d6226397ca38724492deca4
+source_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: finish-0044
+phase: finish
+event: phase-result
+status: FINISH_FAILED
+attempt: 3
+parent_receipt: finish-0043
+created_at: '2026-11-12T04:59:16.888422+00:00'
+session_id: herdr-app:t6z
+pane_id: null
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0043.yaml
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0034.yaml
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0044.yaml
+failure_step: ticket_completion_publication
+failure_reason: 'Non-force push of local ticket completion rejected: remote master
+  advanced independently with two zsh commits. GUI integration already published.
+  Preserve both histories under existing finish-0034 approval before retry.'
+last_verified_boundary: integration_pushed
+review_receipt: workflows/collect-evidence-feedback-03-gui/events/review-0037.yaml
+reviewed_source_commit: d70fe7e463638f134d6226397ca38724492deca4
+reviewed_source_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+base_before: d22002f5ed1e2b1cae731171a81207ed95d0ca3b
+remote: origin
+remote_ref: refs/heads/master
+expected_merge_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+merged_commit: 4441b5c0aacecbb6620b1696a5b3c483e5733fb7
+merged_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+merged_parents:
+- d22002f5ed1e2b1cae731171a81207ed95d0ca3b
+remote_observed_commit: 3e58c17c
+pushed: true
+ticket_completed: false
+ticket_local_state: completed
+ticket_commit: a8f8758b
+worktree_removed: false
+workspace_closed: true
+worktree_preserved: true
+workspace_preserved: true
+remote_changed_paths:
+- mise/conf.d/shells-zsh/README.md
+- mise/conf.d/shells-zsh/zinit.zsh
+expected_history_sync_tree: 879332d20c7ba5a810a00bde993e7772767214e3
+next_step: Reconcile remote-only shell commits with no rewrite; publish ticket; preserve
+  resources until successful.
