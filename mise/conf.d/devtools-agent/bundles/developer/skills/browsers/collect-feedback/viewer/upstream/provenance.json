@@ -1,0 +1,31 @@
+{
+  "style": "base-nova",
+  "retrievedAt": "2026-11-12T05:34:39.653Z",
+  "license": "MIT",
+  "components": [
+    {
+      "name": "button",
+      "url": "https://ui.shadcn.com/r/styles/base-nova/button.json",
+      "sha256": "9ba7e870178813f0552b818a913a2792fb500c779e36395740b4973e3025d427",
+      "adaptations": [
+        "cn import points to local shared utility; component implementation unchanged"
+      ]
+    },
+    {
+      "name": "badge",
+      "url": "https://ui.shadcn.com/r/styles/base-nova/badge.json",
+      "sha256": "ccc20021cdcbf0fb23c0d4d28f1da4adde8e51ba59f4b11dd2722ed97a5ee3a4",
+      "adaptations": [
+        "cn import points to local shared utility; component implementation unchanged"
+      ]
+    },
+    {
+      "name": "separator",
+      "url": "https://ui.shadcn.com/r/styles/base-nova/separator.json",
+      "sha256": "3ad65962485f464592201cb90017b3d52a5c9fe272ce41ee049485b4c42e0d76",
+      "adaptations": [
+        "cn import points to local shared utility; component implementation unchanged"
+      ]
+    }
+  ]
+}
