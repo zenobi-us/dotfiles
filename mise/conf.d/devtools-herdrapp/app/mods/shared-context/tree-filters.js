@@ -64,7 +64,7 @@ export function treeFilters(view) {
           .child(div().size(16).border_1().border_color(checked ? t.accent : t.border).text_color(t.accent).text_size(13).child(checked ? "✓" : key === "all" && !all && restrictions < FILTER_KEYS.length ? "−" : ""))
           .child(div().child(label)));
     }))
-    .child(div().pt(8).border_t(1).border_color(t.border).text_color(t.muted).whitespace_normal().child("Statuses combine with OR. All includes completed and other records. Prerequisites remain visible for context."));
+    .child(div().pt(8).border_t(1).border_color(t.border).text_color(t.muted).whitespace_normal().child("Statuses combine with OR. All includes completed and other records. Dependency edges stay in the DAG views."));
   return h_flex().id("tracker-tree-header").h(48).flex_none().px(12).items_center().justify_between().border_b(1).border_color(t.border)
     .child(div().text_size(10).font_weight(500).text_color(t.muted).child("TRACKER"))
     .child(Popover.new("tracker-filters-popover").open(view.filtersOpen).anchor("top_right").track_focus(view.filterChoicesFocus[0])

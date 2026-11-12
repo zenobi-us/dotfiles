@@ -13,36 +13,34 @@ function diamond() {
 }
 
 describe("grouped tracker tree", () => {
-  test("nests dependency paths and keeps shared prerequisites as navigable references", () => {
+  test("shows each initiative member once as a leaf regardless of dependency edges", () => {
     const { rows, canonical } = dependencyRows(diamond(), DEFAULT_FILTERS, new Set());
     const tickets = rows.filter(row => row.type === "ticket");
-    expect(tickets.map(row => [row.record.id, row.depth, row.children])).toEqual([
-      ["top", 1, 2], ["left", 2, 1], ["base", 3, 0], ["right", 2, 1], ["base", 3, 0], ["prototype", 0, 0],
+    expect(tickets.map(row => [row.record.id, row.depth, row.children, row.expanded])).toEqual([
+      ["top", 1, 0, false], ["left", 1, 0, false], ["right", 1, 0, false], ["base", 1, 0, false], ["prototype", 0, 0, false],
     ]);
-    expect(tickets[4]!.reference).toBe("initiative:release/top/left/base");
-    expect(canonical.get("base")).toBe(tickets[2]!.path);
-    expect(rows.filter(row => row.type === "section").map(row => row.record.id)).toEqual(["initiatives", "prototype"]);
-    expect(tickets[5]!.path).toBe("section:prototype/prototype");
+    expect(canonical.get("base")).toBe("initiative:release/base");
   });
 
-  test("references reveal the canonical prerequisite beneath collapsed ancestors", () => {
-    const collapsed = new Set(["initiative:release/top/left"]);
-    const forest = dependencyRows(diamond(), DEFAULT_FILTERS, collapsed);
+  test("shared initiative membership reveals the canonical initiative, not a dependency chain", () => {
+    const snapshot = diamond();
+    snapshot.initiatives.push({ id: "second", title: "Second", ticketIds: ["base"], rootTicketIds: ["base"] });
+    const collapsed = new Set(["initiative:release"]);
+    const forest = dependencyRows(snapshot, DEFAULT_FILTERS, collapsed);
     const reference = forest.rows.find(row => row.type === "ticket" && row.record.id === "base")!;
-    expect(reference.reference).toBe("initiative:release/top/left/base");
+    expect(reference.reference).toBe("initiative:release/base");
     revealPath(collapsed, reference.reference!);
-    const visible = dependencyRows(diamond(), DEFAULT_FILTERS, collapsed).rows.filter(row => row.type === "ticket" && row.record.id === "base");
+    const visible = dependencyRows(snapshot, DEFAULT_FILTERS, collapsed).rows.filter(row => row.type === "ticket" && row.record.id === "base");
     expect(visible.map(row => [row.path, Boolean(row.reference)])).toEqual([
-      ["initiative:release/top/left/base", false], ["initiative:release/top/right/base", true],
+      ["initiative:release/base", false], ["initiative:second/base", true],
     ]);
   });
 
-  test("keeps prerequisite context in filtered queues without hiding planning initiatives", () => {
+  test("filters tickets without injecting prerequisites or hiding empty initiatives", () => {
     const snapshot = diamond();
     snapshot.initiatives.push({ id: "planning", title: "Planning", ticketIds: [], rootTicketIds: [] });
     const rows = dependencyRows(snapshot, { ...DEFAULT_FILTERS, ready: false, review: false }, new Set()).rows;
-    expect(rows.filter(row => row.type === "ticket" && !row.context).map(row => row.record.id)).toEqual(["top"]);
-    expect(rows.filter(row => row.type === "ticket" && row.context).map(row => row.record.id)).toEqual(["left", "base", "right", "base"]);
+    expect(rows.filter(row => row.type === "ticket").map(row => row.record.id)).toEqual(["top"]);
     expect(rows.some(row => row.type === "initiative" && row.record.id === "planning")).toBe(true);
   });
 
@@ -50,27 +48,21 @@ describe("grouped tracker tree", () => {
     const snapshot = { ...diamond(), initiatives: [{ id: "ungrouped", title: "Ungrouped", ticketIds: ["top"], group: true as const }] };
     const rows = dependencyRows(snapshot, DEFAULT_FILTERS, new Set()).rows;
     expect(rows.some(row => row.type === "initiative")).toBe(false);
-    expect(rows.filter(row => row.type === "ticket").map(row => [row.record.id, row.depth])).toEqual([["top", 0], ["left", 1], ["base", 2], ["right", 1], ["base", 2], ["prototype", 0]]);
+    expect(rows.filter(row => row.type === "ticket").map(row => [row.record.id, row.depth])).toEqual([["top", 0], ["left", 0], ["right", 0], ["base", 0], ["prototype", 0]]);
   });
 
-  test("reports cycles and missing records even below collapsed paths", () => {
-    const cycle = diamond();
-    cycle.tickets[3]!.blockedBy = ["top"];
-    expect(() => dependencyRows(cycle, DEFAULT_FILTERS, new Set(["initiative:release"]))).toThrow("Dependency cycle");
-    const missing = diamond();
-    missing.tickets[3]!.blockedBy = ["absent"];
-    expect(() => dependencyRows(missing, DEFAULT_FILTERS, new Set(["initiative:release"]))).toThrow("Missing prerequisite absent");
+  test("reports missing initiative members even when their initiative is collapsed", () => {
     const missingMember = diamond();
     missingMember.initiatives[0]!.ticketIds.push("absent");
-    expect(() => dependencyRows(missingMember, DEFAULT_FILTERS, new Set())).toThrow("Missing initiative member absent");
+    expect(() => dependencyRows(missingMember, DEFAULT_FILTERS, new Set(["initiative:release"]))).toThrow("Missing initiative member absent");
   });
 
-  test("combines statuses with OR and retains prerequisite context", () => {
+  test("combines statuses with OR without duplicating dependency paths", () => {
     const snapshot = diamond();
     snapshot.states.left.state = "REVIEW";
     const filters = { ...DEFAULT_FILTERS, initiatives: false, blocked: false };
     const rows = dependencyRows(snapshot, filters, new Set()).rows;
-    expect(rows.filter(row => row.type === "ticket" && !row.context).map(row => row.record.id)).toEqual(["left", "base", "right", "base"]);
+    expect(rows.filter(row => row.type === "ticket").map(row => row.record.id)).toEqual(["left", "right", "base"]);
     expect(rows.some(row => row.record.id === "top")).toBe(false);
     expect(rows.some(row => row.type === "initiative")).toBe(false);
     expect(filterRestrictions(filters)).toBe(2);

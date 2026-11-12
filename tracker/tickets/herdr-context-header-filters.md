@@ -47,3 +47,11 @@ Verdict: SUCCESS for the reviewed implementation and observed local verification
 
 Source commit: 4ed542f8 (feat(herdr): add herdr-context-header-filters).
 
+
+### Correction: retain the flat membership tree
+
+The user reported that dependency nesting returned after deployment. The repository tree.js still expanded blockedBy recursively, unlike the previously installed flat version. Deploying that source restored an unrelated behavior. Removed recursive dependency expansion from the file tree. Tickets are leaves beneath their initiative or record-type group; shared initiative membership still links to a canonical membership row. Status filtering no longer injects prerequisite records. Dependency edges, cycle checks, and transitive lineage remain in the unchanged DAG model and DAG views. Updated regression cases and operating guidance.
+
+
+Correction verification: all 30 scoped tests pass with 95 assertions, including flat leaf rows, shared membership, filtering, and unchanged DAG edges/cycle errors. Typechecking and the installed native mod check pass. The running native tree visibly shows member tickets at one depth with no ticket expanders. The CLI layout reports no errors.
+

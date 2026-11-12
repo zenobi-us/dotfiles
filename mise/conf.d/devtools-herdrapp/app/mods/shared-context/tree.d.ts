@@ -18,7 +18,6 @@ export type DependencyRow<Ticket, Initiative> = {
   expanded: boolean;
   children: number;
   reference?: string;
-  context?: boolean;
   state?: string;
   itemType?: string;
 } & ({ type: "ticket"; record: Ticket } | { type: "initiative"; record: Initiative } | { type: "section"; record: { id: string; title: string } });
