@@ -1,0 +1,28 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "verification",
+  "success": true,
+  "source": {
+    "width": 1001,
+    "height": 701,
+    "sha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf"
+  },
+  "checks": [
+    "Pointer reverse box saved with P2 default and durable acknowledgement",
+    "Keyboard Point movement and Escape cancellation",
+    "Keyboard Box Shift-resize, ArrowLeft movement, P1 and Ctrl+Enter save",
+    "Pointer point with P3 and Meta+Enter save",
+    "Forward edge box source-change rejection, retained memory note, stable-ID retry",
+    "400% zoom and 390px viewport preserve selected pin and clamp editor",
+    "Browser reload and server restart preserve identity/hash/geometry/timestamps",
+    "Final rebuilt pointer completion preserves immediate full comment typing",
+    "Eight queued saves return 201 and durable files before SIGTERM exit; lock removed",
+    "Installed CLI export succeeds offline and preserves all original annotations"
+  ],
+  "annotations": 13,
+  "temporarySession": "/tmp/pins-smoke-lLMMHZ/repository/workflows/public/artifacts/evidence/review",
+  "limits": [
+    "Editing, deletion and persisted unfinished drafts belong to later tickets.",
+    "An initial pointer focus race truncated a smoke comment; fixed in final bundle and re-exercised with immediate full-comment typing. Earlier observation remains in export and screenshot."
+  ]
+}

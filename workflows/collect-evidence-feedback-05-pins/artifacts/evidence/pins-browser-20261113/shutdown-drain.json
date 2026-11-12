@@ -1,0 +1,57 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "verification",
+  "success": true,
+  "requests": [
+    {
+      "status": 201,
+      "id": "d773801b-c427-4edd-b32d-a57247f498b0",
+      "revision": 1
+    },
+    {
+      "status": 201,
+      "id": "c4ca1fd5-bd25-4afb-88ee-d15418cd465f",
+      "revision": 1
+    },
+    {
+      "status": 201,
+      "id": "8b828e4f-cd42-4f2c-abd9-1e15a7d20944",
+      "revision": 1
+    },
+    {
+      "status": 201,
+      "id": "0cf93cf1-718e-4b9c-ba72-53dd86c247e6",
+      "revision": 1
+    },
+    {
+      "status": 201,
+      "id": "1f8151d5-c622-42e1-9ceb-fa161bcbc1c1",
+      "revision": 1
+    },
+    {
+      "status": 201,
+      "id": "9fdaba1d-8e32-4d0b-8a95-fbf212a619ac",
+      "revision": 1
+    },
+    {
+      "status": 201,
+      "id": "94654c51-cee0-4916-9396-7f16706a17c4",
+      "revision": 1
+    },
+    {
+      "status": 201,
+      "id": "05d986ba-53f1-4eba-8d68-e16276f6759b",
+      "revision": 1
+    }
+  ],
+  "storedRecords": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ]
+}
