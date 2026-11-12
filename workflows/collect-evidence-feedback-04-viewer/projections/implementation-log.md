@@ -141,3 +141,11 @@ Re-ran only the changed workflow regression after the parent request: 1 pass, 0 
 [Parent completion](../events/fix-complete-0039.yaml) verifies [fix-0038](../events/fix-0038.yaml), final source 2f0018b9a37eb6ea2c6795d6779213bdbbdb95f3 and tree a0ceb121c1e9d04d3e18709c62d3260d075ece18, clean source, immutable draft and proof, and matching typed delivery. Public init preserved schema, headings and notes; final workflow regression passed with 66 assertions. STD-001 resolved; no unresolved findings. Delivery acknowledged; native completion sequence 2 confirmed; only child terminal t8p removed. Source worktree retained.
 
 Fresh independent review is required because source changed. No merge, push or ticket completion occurred. Receipt repair was explicitly authorized; original approval bytes and checksum remain preserved.
+
+## Review attempt 6 — current outcome
+
+[Independent review](../events/review-0042.yaml) returned **SUCCESS** for commit `2f0018b9a37eb6ea2c6795d6779213bdbbdb95f3`, tree `a0ceb121c1e9d04d3e18709c62d3260d075ece18`. Standards: 0 findings. Spec: 0 findings. [Sole review artifact](../artifacts/reviews/review-review-0042.md).
+
+Public regression passed: 1 test, 66 assertions. Fresh init/validate, generated Markdown, 24 copied assets, served original image bytes and desktop/narrow viewer focus passed. Parent public validate passed JSON, plain and quiet. Tracker schema check passed.
+
+[Parent completion](../events/review-complete-0043.yaml) verifies matching transport and authoritative event, frozen clean source, and native reviewer completion. Owned review pane closed; no explicit workspace close. No source fixes, merge, push or ticket completion occurred. Next phase: finish or submit, subject to fresh inspection.

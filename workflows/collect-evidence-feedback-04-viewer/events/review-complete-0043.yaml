@@ -1,0 +1,124 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "2f0018b9a37eb6ea2c6795d6779213bdbbdb95f3",
+  "source_tree": "a0ceb121c1e9d04d3e18709c62d3260d075ece18",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": null,
+  "session_id": "hc:t8q",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "phase": "review",
+  "created_at": "2026-11-12T11:03:25.514Z",
+  "ownership": {
+    "owner": "hc:t8q",
+    "previous_owner": "hc:t8n",
+    "liveness": "hc ls reports no terminals in source worktree; prior owner absent",
+    "active_goal_reservations": "grep over workflows/goal-*/events/*.yaml: no matching ticket",
+    "direct_blockers": "Completed web prerequisite per valid retained workflow"
+  },
+  "recovery_mode": "retry",
+  "recovery_reason": "Changed source invalidates old verdict. User explicitly authorized review takeover in this session.",
+  "receipt_id": "review-complete-0043",
+  "event": "phase-complete",
+  "status": "completed",
+  "attempt": 6,
+  "parent_receipt": "review-0042",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-0042.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0042.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-approval-0040.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-complete-0043.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/projections/latest-status.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+    }
+  ],
+  "validation_results": [
+    {
+      "command": "mise exec -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts validate /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session --json",
+      "cwd": "/tmp",
+      "result": "passed",
+      "observed": "Public command returned success:true, valid:true, collect-feedback/v1 session and original sealed source identity."
+    },
+    {
+      "command": "Same public validate with --plain and --quiet",
+      "cwd": "/tmp",
+      "result": "passed",
+      "observed": "Plain dotted paths; quiet produced no output; both exited 0."
+    },
+    {
+      "command": "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.ts check --repository /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles --ticket collect-evidence-feedback-04-viewer",
+      "result": "passed",
+      "observed": "ok:true; tracker-ticket/v1; normal dependency graph and explorer discovery."
+    }
+  ],
+  "child_completion": {
+    "run_id": "1093555e-e4d1-43b5-8b6d-b985a7609757",
+    "sequence": 2,
+    "state": "completed",
+    "transport_ack_sha256": "b69afe1282f90df9f775ca1a89507ecb61be21928a1ebca5a0ec39477877eb5d"
+  },
+  "source_committed_clean": true,
+  "review_receipt": "review-0042",
+  "review_artifact": "workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0042.md",
+  "pane_close": {
+    "terminal": "t8s",
+    "removed": true,
+    "workspace_preserved": true,
+    "observation": "hc rm confirmed removal. herdr-app ls has no child; source workspace retained in recent; no workspace-close command."
+  },
+  "publication": {
+    "source_modified": false,
+    "merged": false,
+    "pushed": false,
+    "ticket_completed": false,
+    "tracker_comment_appended": true
+  },
+  "next_action": "Fresh inspection; current clean SUCCESS permits finish or submit."
+}

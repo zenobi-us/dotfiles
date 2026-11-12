@@ -1,0 +1,66 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "2f0018b9a37eb6ea2c6795d6779213bdbbdb95f3",
+  "source_tree": "a0ceb121c1e9d04d3e18709c62d3260d075ece18",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": "t8q",
+  "session_id": "hc:t8q",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "phase": "review",
+  "created_at": "2026-11-12T10:53:28.447Z",
+  "ownership": {
+    "owner": "hc:t8q",
+    "previous_owner": "hc:t8n",
+    "liveness": "hc ls reports no terminals in source worktree; prior owner absent",
+    "active_goal_reservations": "Standalone review; inspect goal reservations before dispatch",
+    "direct_blockers": "Completed web prerequisite per valid retained workflow"
+  },
+  "recovery_mode": "retry",
+  "recovery_reason": "Changed source invalidates old verdict. User explicitly authorized review takeover in this session.",
+  "receipt_id": "review-start-0041",
+  "event": "phase-start",
+  "status": "started",
+  "attempt": 6,
+  "parent_receipt": "review-approval-0040",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-approval-0040.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/fix-0038.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/pr-draft-fix-0038-final.md"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-start-0041.yaml"
+    }
+  ]
+}

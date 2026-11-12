@@ -1,12 +1,12 @@
 schema: worktree-latest-status/v1
 workflow_id: collect-evidence-feedback-04-viewer
 ticket: tracker/tickets/collect-evidence-feedback-04-viewer.md
-state: FIXED
-latest_receipt: fix-complete-0039
+state: REVIEW_PASSED
+latest_receipt: review-complete-0043
 latest_source_commit: 2f0018b9a37eb6ea2c6795d6779213bdbbdb95f3
 latest_source_tree: a0ceb121c1e9d04d3e18709c62d3260d075ece18
-latest_review_verdict: FAILURE
+latest_review_verdict: SUCCESS
 open_findings: []
 resolved_findings: [STD-01, SPEC-01, STANDARDS-01, STD-001]
-review_receipt: review-0032
-review_artifact: workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0032.md
+review_receipt: review-0042
+review_artifact: workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0042.md
