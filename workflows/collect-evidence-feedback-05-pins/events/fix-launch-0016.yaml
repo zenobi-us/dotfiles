@@ -1,0 +1,69 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "fix-launch-0016",
+  "workflow_id": "collect-evidence-feedback-05-pins",
+  "phase": "fix",
+  "event": "phase-checkpoint",
+  "attempt": 2,
+  "parent_receipt": "fix-start-0014",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-05-pins",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-05-pins",
+  "source_branch": "feature/collect-evidence-feedback-05-pins",
+  "base_branch": "master",
+  "source_commit": "10f8f120cd4b796354984a9c561117ad4701dfb5",
+  "source_tree": "32b3e835e04439239c5afae56d664b72ec44e8ff",
+  "created_at": "2026-11-12T23:20:24.672Z",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": "t9p",
+  "session_id": "hc:t9k",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-05-pins",
+    "ref": "tracker/tickets/collect-evidence-feedback-05-pins.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-05-pins.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-05-pins"
+  },
+  "status": "started",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-05-pins/events/fix-start-0014.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-05-pins/events/fix-launch-0016.yaml"
+    }
+  ],
+  "ownership": {
+    "owner": "hc:t9k",
+    "prior_owner": "hc:t9f",
+    "prior_owner_exit_code": 0,
+    "approval": "User selected Retry fresh fixer after exit 1. Recover interrupted attempt in fresh session; only STD-01 and SPEC-01, no merge or push.",
+    "goal_reservations": "No matching goal event records",
+    "failed_child_exit_code": 1
+  },
+  "recovery_mode": "takeover",
+  "recovery_reason": "The findings and fix handoff identify the same source. Preserve dirty work and obtain scoped takeover approval before continuing.",
+  "consumed_review_receipts": [
+    "review-0007"
+  ],
+  "selected_findings": [
+    "STD-01",
+    "SPEC-01"
+  ],
+  "child": {
+    "run_id": "d4870289-ea13-4679-90b5-8080c88a88ab",
+    "terminal": "t9p",
+    "operation_id": "pins-fix-0015",
+    "delivery_context": "/var/home/zenobius/.local/state/result-delivery/runs/d4870289-ea13-4679-90b5-8080c88a88ab/context.json",
+    "result_target": "/var/home/zenobius/.local/state/result-delivery/runs/d4870289-ea13-4679-90b5-8080c88a88ab/result.json"
+  }
+}
