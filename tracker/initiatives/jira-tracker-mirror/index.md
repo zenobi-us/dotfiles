@@ -103,6 +103,13 @@ Checked 2026-11-12 against live `twg` in `reckonone-monorepo`, read-only.
 
 ## Tickets
 
+- [Share one twg Jira parser and fix the Jira dependency graph](../../tickets/jira-tracker-mirror-01-twg-parser.md)
+- [Sync configured Jira queries into mirror files](../../tickets/jira-tracker-mirror-02-sync-query.md)
+- [Show Jira epics, tickets, and blockers in the Tracker pane](../../tickets/jira-tracker-mirror-03-snapshot-from-mirror.md)
+- [Add epic children, outside blockers, and incremental sync](../../tickets/jira-tracker-mirror-04-closure-incremental.md)
+- [Start a Jira sync from the Herdr-app Tracker pane](../../tickets/jira-tracker-mirror-05-mod-sync-button.md)
+- [Remove the Jira get-issue adapter and document the mirror](../../tickets/jira-tracker-mirror-06-retire-cli-adapter.md)
+
 ## Comments
 
 - 2026-11-12: Q decided: mirror files are committed; queries include closed epics; publish as an initiative.
