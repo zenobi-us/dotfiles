@@ -1,0 +1,88 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "9f9834003647d29efbc0ac19b49fd310ae1a1758",
+  "source_tree": "431e49b346e6db78658a5a74cd85a76c2a77234f",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "receipt_id": "review-complete-0019",
+  "created_at": "2026-11-12T09:06:45.063290+00:00",
+  "pane_id": null,
+  "session_id": "hc:t88",
+  "phase": "review",
+  "attempt": 3,
+  "event": "phase-complete",
+  "status": "blocked",
+  "parent_receipt": "review-0018",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-0018.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0018.md"
+    },
+    {
+      "kind": "repair",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/review-approval-0016-repair.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-complete-0019.yaml"
+    }
+  ],
+  "failure_reason": "Required workflow inspector blocks: Missing receipt parent: review-approval-0016. Existing operator-approval envelope has pane_id:null, which the validator rejects. Independent axes and smoke checks did not run.",
+  "validation_results": [
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "validate",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "result": "passed",
+      "exit_code": 0,
+      "observed": "versioned JSON, success=true, valid=true"
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "validate",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session",
+        "--quiet"
+      ],
+      "cwd": "/tmp",
+      "result": "passed",
+      "exit_code": 0,
+      "observed": "stdout empty"
+    }
+  ],
+  "child_completion": {
+    "run_id": "72e99f44-5aee-477c-a154-50acc2598872",
+    "sequence": 2,
+    "state": "completed",
+    "pane_removed": true
+  },
+  "recovery_mode": "reconcile",
+  "outcome": "No verdict. Parent repaired approval with explicit user authorization. Fresh retry required."
+}

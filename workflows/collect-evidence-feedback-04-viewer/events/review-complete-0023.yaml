@@ -1,0 +1,142 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "9f9834003647d29efbc0ac19b49fd310ae1a1758",
+  "source_tree": "431e49b346e6db78658a5a74cd85a76c2a77234f",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "receipt_id": "review-complete-0023",
+  "created_at": "2026-11-12T09:17:21.176443+00:00",
+  "pane_id": null,
+  "session_id": "hc:t88",
+  "phase": "review",
+  "attempt": 4,
+  "event": "phase-complete",
+  "status": "completed",
+  "parent_receipt": "review-0021",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-0021.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0021.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-launch-0022.yaml"
+    },
+    {
+      "kind": "repair",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/review-approval-0016-repair.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-complete-0023.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/projections/implementation-log.md"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/manifest.yaml"
+    }
+  ],
+  "validation_results": [
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "validate",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "result": "passed",
+      "exit_code": 0,
+      "observed": "versioned JSON, success=true, valid=true"
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "validate",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session",
+        "--quiet"
+      ],
+      "cwd": "/tmp",
+      "result": "passed",
+      "exit_code": 0,
+      "observed": "stdout empty"
+    },
+    {
+      "command": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "validate",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session",
+        "--plain"
+      ],
+      "cwd": "/tmp",
+      "result": "passed",
+      "exit_code": 0,
+      "observed": "Dotted field text; success:true valid:true and hashes."
+    },
+    {
+      "command": "result-delivery read; compare canonical event; worktree inspect",
+      "result": "passed",
+      "observed": "Schema/run/operation/hash verified; canonical YAML matches normalized timestamp; outputs exist; valid parent graph; exact source commit/tree unchanged and clean."
+    }
+  ],
+  "child_completion": {
+    "run_id": "3ee58e88-8ec8-422c-a290-4c260166a776",
+    "sequence": 2,
+    "state": "completed",
+    "transport_ack_sha256": "c485f0ebe80b9f0700f8785664d7965b906d6e82d6b23635e006c1d46923509a"
+  },
+  "pane_close": {
+    "terminal": "t8b",
+    "removed": true,
+    "workspace_preserved": true,
+    "observation": "herdr-app ls: source space retained in recent; child absent"
+  },
+  "open_findings": [
+    "STANDARDS-01"
+  ],
+  "publication": {
+    "merged": false,
+    "pushed": false,
+    "ticket_completed": false,
+    "workflow_committed": false
+  },
+  "history_repair_ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/review-approval-0016-repair.json"
+}

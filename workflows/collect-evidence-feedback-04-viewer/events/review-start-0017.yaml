@@ -1,0 +1,60 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "9f9834003647d29efbc0ac19b49fd310ae1a1758",
+  "source_tree": "431e49b346e6db78658a5a74cd85a76c2a77234f",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "receipt_id": "review-start-0017",
+  "created_at": "2026-11-12T08:59:19.401011+00:00",
+  "pane_id": null,
+  "session_id": "hc:t88",
+  "phase": "review",
+  "attempt": 3,
+  "event": "phase-start",
+  "status": "started",
+  "parent_receipt": "review-approval-0016",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-approval-0016.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/fix-0014.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/pr-draft-fix-0014.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-start-0017.yaml"
+    }
+  ],
+  "recovery_mode": "retry",
+  "recovery_reason": "The source changed after the recorded review, including any failed verdict. Review the current clean source before fixing or finishing.",
+  "approval_ref": "workflows/collect-evidence-feedback-04-viewer/events/review-approval-0016.yaml"
+}

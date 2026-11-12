@@ -1,89 +1,77 @@
 ---
 schema: worktree-artifact/v1
-type: Concept
 title: Viewer PR draft
+type: Concept
 ---
-# Read-only evidence viewer
+
+# Evidence viewer fix
 
 ## Ticket and problem
 
-[collect-evidence-feedback-04-viewer](../../../tracker/tickets/collect-evidence-feedback-04-viewer.md) lets reviewers inspect original evidence locally, without modifying captures or exposing an arbitrary file server. [The initiative](../../../tracker/initiatives/collect-evidence-feedback/index.md) owns the complete specification.
+[collect-evidence-feedback-04-viewer](../../../tracker/tickets/collect-evidence-feedback-04-viewer.md) provides the read-only local evidence inspector. Review found lost originating-asset focus and ignored plain CLI output.
 
 ## Implementation summary
 
-The collect-feedback skill adds public init, validate and serve commands, collect-feedback/v1 records, immutable source/media copies, a bounded loopback read API and one shared direct/subcommand server. The prebuilt Base Nova interface embeds React, styles and JetBrains Mono. Session, case and asset columns scroll independently and retain horizontal narrow-screen drill-down. Images remain original. No annotation controls, mutations, export or unfinished handlers were added.
+Retain the asset selection button and restore focus for Back and ArrowLeft without losing horizontal case-column reveal. Format --plain as dotted field-path text; retain versioned --json and --quiet suppression. Rebuild distributed HTML and retain public CLI regression coverage. Existing import, registered-asset read API and read-only capability remain unchanged.
 
-Source commit: 035fdd61b454eb9b9aa8b0f20fdd3b2ee33ab476. Source tree: ae1abc62d14257777bb22a4b737add38a0903c71. Branch: feature/collect-evidence-feedback-04-viewer. Base: master. Worktree clean.
+Branch: feature/collect-evidence-feedback-04-viewer. Base: master. Source commit: 9f9834003647d29efbc0ac19b49fd310ae1a1758. Tree: 431e49b346e6db78658a5a74cd85a76c2a77234f. Source clean at handoff. Commits: 4242a96d (STD-01), 9f983400 (SPEC-01). Commit hooks updated the matching bundle registrations.
 
 ## Changed files
-
-[The exact 208-file inventory](../artifacts/snapshots/changed-files-implementation-0003.json) contains 31 product files plus retained evidence and original parent provenance. Product files:
 
 - mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
 - mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
 - mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/SKILL.md
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/how-to-browse-evidence.md
 - mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/viewer-contract.md
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts
 - mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/commands.ts
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/records.ts
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/serve.ts
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/server.ts
 - mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/.gitignore
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/build.ts
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/bun.lock
 - mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/index.html
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/package.json
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/components/ui/badge.tsx
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/components/ui/button.tsx
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/components/ui/separator.tsx
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/lib/utils.ts
 - mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/main.tsx
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/styles.css
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/types.ts
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/tsconfig.json
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/upstream/LICENSE-JetBrains-Mono.txt
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/upstream/LICENSE-shadcn.txt
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/upstream/badge.json
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/upstream/button.json
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/upstream/provenance.json
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/upstream/separator.json
+
+The original implementation inventory remains in [implementation draft](../artifacts/snapshots/pr-draft-implementation-0003.md).
 
 ## Validation results
 
-The final affected suite passed 102 tests, skipped 32 existing opt-in cases and failed none. It made 940 assertions across 134 tests and 7 files. Frontend typecheck/build passed; HTML is 317992 bytes. Real public collection created 12 cases. Actual browser checks proved original 1280×720 media, byte equality, independent column scrolling, 390px horizontal drill-down, repeated keyboard selection and exact focus styling. Requests used no CDN.
+- **Build and types:** Passed; distributed HTML 318137 bytes.
+- **Public regression:** 1 pass, 0 fail, 58 assertions.
+- **Browser focus:** Back and ArrowLeft separately passed at 1440x900 and 390x844 for the second asset. Narrow case column remained horizontally revealed.
+- **CLI formats:** Real init/validate imports and both live serve entrypoints passed plain, JSON and quiet checks. Six live serve checks released their locks and exited 0 on SIGTERM.
+- **React diagnostics:** 71/100 both before and after; same three existing warnings.
 
-Public command regressions exercised invalid/missing/changed assets, unsupported schemas, Host/Origin/Fetch Metadata, unsafe paths, body bounds, busy ports, second writers, signals, locks and same-port restart. [Commands and limits](../artifacts/evidence/viewer-smoke-20261112-6f1739/validation.json) preserve actual outcomes. [Visual proof](../artifacts/evidence/viewer-smoke-20261112-6f1739/index.md) is separate from test output. The default Chrome path was unavailable; an existing Chromium binary completed real collection. LSP setup failed; explicit frontend tsc passed.
+[Exact validation and limits](../artifacts/evidence/fix-0014/validation.json); [focus observations](../artifacts/evidence/fix-0014/focus-checks.json); [desktop focus screenshot](../artifacts/evidence/fix-0014/desktop-focus.webp); [narrow focus screenshot](../artifacts/evidence/fix-0014/narrow-focus.webp); [init/validate output](../artifacts/evidence/fix-0014/cli-init-validate.json); [serve output](../artifacts/evidence/fix-0014/cli-serve.json). Initial sequential smoke readiness failed while the browser service still held the session. After stopping it, all sequential checks passed. No additional collector, native-platform or annotation capability is claimed.
 
 ## Review history
 
-Separate Standards and Spec implementation readers reported concrete findings. [Their reports and resolutions](../artifacts/evidence/viewer-smoke-20261112-6f1739/implementation-review.json) remain available. Resolved: dangling events reference, repeated-key focus loss, duplicated concurrent validation and incorrect focus styling. Remaining findings: none identified. Latest formal reviewer verdict: none. Parent formal review is required.
+Attempt 1 produced an unusable empty review artifact; [failed parent completion](../events/review-complete-0008.yaml) preserves that attempt. Its SUCCESS claim is not valid. Attempt 2 returned FAILURE for 035fdd61b454eb9b9aa8b0f20fdd3b2ee33ab476: [immutable review](../artifacts/reviews/review-review-0010.md), [review result](../events/review-0010.yaml), [parent completion](../events/review-complete-0011.yaml).
+
+Latest reviewer verdict: FAILURE on 9f9834003647d29efbc0ac19b49fd310ae1a1758 in review-0021. Resolved findings: STD-01 and SPEC-01. Current open finding: STANDARDS-01. See the current outcome below.
 
 ## Merge status
 
-Not merged, pushed or submitted. Ticket remains claimed. Parent owns phase completion and later review/integration. Source feature and evidence commits are c4b48e60 and 035fdd61. Parent will commit the authoritative base-store workflow artifacts.
+Not merged, pushed, submitted or ticket-completed. Parent owns phase completion and subsequent review. Source changes committed; new workflow records remain in the authoritative parent store, outside source.
 
 ## Supporting receipts and artifacts
 
-- [Start receipt](../events/start-0001.yaml)
-- [Launch provenance](../events/launch-0002.yaml)
-- [Implementation result](../events/implementation-0003.yaml)
-- [Immutable draft snapshot](../artifacts/snapshots/pr-draft-implementation-0003.md)
-- [Complete changed files](../artifacts/snapshots/changed-files-implementation-0003.json)
-- [Evidence copy checksums](../artifacts/snapshots/evidence-copy-implementation-0003.json)
-- [Retained session](../artifacts/evidence/viewer-smoke-20261112-6f1739/session/session.json)
+- **Implementation:** [implementation-0003](../events/implementation-0003.yaml) and [original draft](../artifacts/snapshots/pr-draft-implementation-0003.md).
+- **Authorization:** [fix approval](../events/fix-approval-0012.yaml), [retained original approval](../artifacts/snapshots/fix-approval-0012-original.yaml) and [authorized repair record](../artifacts/snapshots/fix-approval-0012-repair.json).
+- **Fix:** [phase start](../events/fix-start-0013.yaml) and [fix-0014 result](../events/fix-0014.yaml).
+- **Prior repair:** [review approval repair](../artifacts/snapshots/review-approval-0005-repair.json).
 
-Open questions: none. Native/GUI capture and new recording were not verified by this viewer slice. Annotation editing, drafts, export and historical labels remain outside scope.
+## Open questions
+
+None. No merge authorized.
 
 
-## Formal review outcome
 
-Attempt 1 produced an unusable empty artifact. [Failed parent completion](../events/review-complete-0008.yaml) preserves that attempt; its SUCCESS claim is not valid.
+## Parent fix completion
 
-Attempt 2: **FAILURE** for commit `035fdd61b454eb9b9aa8b0f20fdd3b2ee33ab476`, tree `ae1abc62d14257777bb22a4b737add38a0903c71`. [Review artifact](../artifacts/reviews/review-review-0010.md), [review result](../events/review-0010.yaml), and [parent completion](../events/review-complete-0011.yaml) record the independent axes and fresh public verification. The scoped regression passed (1 test, 46 assertions); actual browser and byte-identity checks passed. Both P2 findings were reproduced.
+[fix-complete-0015](../events/fix-complete-0015.yaml) validates the immutable fix result and exact clean source. Parent public validate checks passed for plain, JSON and quiet from /tmp. Delivery acknowledged; native completion sequence 2 confirmed; owned fixer terminal t87 removed. Source workspace remains available. No merge, push or ticket completion. Next action: fresh independent review.
 
-Resolved findings: none. Open findings: STD-01 and SPEC-01. See the immutable artifact for required changes. Next phase: fix in a fresh session. No source edits, merge, push or ticket completion occurred. Review terminals and owned services were released; the source workspace remains intact.
+## Review attempt 4 — current outcome
 
-[Authorized approval-envelope repair](../artifacts/snapshots/review-approval-0005-repair.json) retains the original bytes and checksums. The user authorized only the pane_id correction.
+[Attempt 3](../events/review-0018.yaml) stopped before source assessment because the approval envelope had a null pane identity. [Blocked completion](../events/review-complete-0019.yaml) preserves it. The user authorized a narrow [pane identity repair](../artifacts/snapshots/review-approval-0016-repair.json); original bytes remain retained.
+
+[Fresh review](../events/review-0021.yaml) returned **FAILURE** for commit `9f9834003647d29efbc0ac19b49fd310ae1a1758`, tree `431e49b346e6db78658a5a74cd85a76c2a77234f`. Standards: one low-severity blocking acceptance finding, STANDARDS-01. Spec: none. The [immutable review artifact](../artifacts/reviews/review-review-0021.md) owns the finding and required change. Earlier STD-01 and SPEC-01 are resolved.
+
+Public regression passed: 1 test, 58 assertions. Real browser, image-byte identity, CLI formats, unsafe-request refusal, changed/symlinked asset rejection, port conflict, second-writer rejection and owned cleanup passed. Parent plain/JSON/quiet validation passed from `/tmp`. Screenshots were temporary, not retained evidence.
+
+[Parent completion](../events/review-complete-0023.yaml) verifies the exact clean source, receipt/artifact and transport hash. Reviewer terminals are closed. Source is unchanged. No fixes, merge, push or ticket completion were authorized or performed. Next phase: fix in a fresh session if requested.
