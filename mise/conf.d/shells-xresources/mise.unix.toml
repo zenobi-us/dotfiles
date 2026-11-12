@@ -4,7 +4,7 @@
 
 [tasks."xresources.bootstrap"]
 run = """
-if command -v xrdb >/dev/null && [ -f "$HOME/.Xresources" ]; then
+if [ -n "${DISPLAY:-}" ] && command -v xrdb >/dev/null && [ -f "$HOME/.Xresources" ]; then
 	xrdb -merge "$HOME/.Xresources"
 fi
 """
