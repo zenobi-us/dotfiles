@@ -34,7 +34,7 @@ export function compactHeader(view, record) {
     .child(div().text_size(18).font_semibold().whitespace_normal().child(record.title))
     .when(kind === "initiative", el => el.child(initiativeProgressHeader(view.progress.get(record.id), t)))
     .child(h_flex().flex_wrap().gap(6).items_center()
-      .children((view.detail?.actions ?? []).map(choice => actionDropdown(view, choice, { cwd: view.context.repository, space: view.where.space, id: record.id, kind })))
+      .children((view.detail?.actions ?? []).map(choice => actionDropdown(view, choice, { cwd: view.context.repository, machine: view.where.machine, space: view.where.space, id: record.id, kind })))
       .child(div().flex_1())
       .child(button("copy-record-ref", copied ? "Copied reference" : "Copy reference", (_event, cx) => copyRecordReference(view, record, cx)).bg("#00000000")))
     .child(h_flex().flex_wrap().gap(8).min_w(0).pt(10).border_t(1).border_color(t.border)

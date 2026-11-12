@@ -6,7 +6,7 @@ import path from "node:path";
 import { contextData, setup, directory, file, tracker, detail, prepare, message, type CollectionKind } from "./data";
 import type { ExplorerAction } from "../../../../devtools-agent/bundles/agent-core/extensions/pi-shared-context/model";
 
-export async function request(input: Record<string, unknown>) {
+export async function request(input: Record<string, unknown>, home: string) {
   if (typeof input.cwd !== "string" || !path.isAbsolute(input.cwd)) throw new Error("Select an absolute repository folder.");
   const cwd = input.cwd;
   switch (input.operation) {
@@ -24,7 +24,10 @@ export async function request(input: Record<string, unknown>) {
     case "detail": case "prepare": {
       if (typeof input.id !== "string" || !input.id) throw new Error("Select a tracker record.");
       if (input.kind !== "ticket" && input.kind !== "initiative") throw new Error("Select a ticket or initiative.");
-      return input.operation === "detail" ? detail(cwd, input.id, input.kind) : prepare(cwd, input.id, input.kind, String(input.action) as ExplorerAction, typeof input.prompt === "string" ? input.prompt : "");
+      if (input.operation === "detail") return detail(cwd, input.id, input.kind);
+      const prepared = await prepare(cwd, input.id, input.kind, String(input.action) as ExplorerAction, typeof input.prompt === "string" ? input.prompt : "");
+      // A separate session directory prevents auto-resume into an earlier chat. It lives on the machine that runs the pane.
+      return { ...prepared, session: path.join(home, "data/shared-context-sessions", `${Date.now()}-${Math.random().toString(16).slice(2)}`) };
     }
     default: throw new Error("Unknown shared-context operation.");
   }
@@ -36,7 +39,7 @@ export async function main(argv = process.argv.slice(2)): Promise<void> {
     if (!encoded) throw new Error("Pass a JSON request and, optionally, the app home.");
     const runtime = JSON.parse(await fs.readFile(path.join(home, "data/shared-context-runtime.json"), "utf8"));
     if (typeof runtime.path === "string" && runtime.path) process.env.PATH = runtime.path;
-    console.log(JSON.stringify({ data: await request(JSON.parse(encoded)) }));
+    console.log(JSON.stringify({ data: await request(JSON.parse(encoded), home) }));
   } catch (error) {
     console.log(JSON.stringify({ error: message(error) }));
     process.exitCode = 1;

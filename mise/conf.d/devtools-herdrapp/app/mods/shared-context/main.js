@@ -17,7 +17,7 @@ import { invalidateAction } from "./action.js";
 function location() {
   const given = props() ?? {}, space = spaces().find(item => item.active), focus = focused();
   const pane = panes().find(item => item.pane === focus?.pane);
-  return { cwd: given.cwd ?? pane?.cwd ?? focus?.cwd ?? space?.folder, machine: given.cwd ? null : space?.machine, space: given.space ?? space?.id };
+  return { cwd: given.cwd ?? pane?.cwd ?? focus?.cwd ?? space?.folder, machine: given.cwd ? given.machine ?? null : space?.machine ?? null, space: given.space ?? space?.id };
 }
 function statusColor(value, t) { return value === "READY" || value === "DONE" ? t.ansi2 : ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(value) ? t.ansi3 : ["ERROR", "BLOCKED", "UNKNOWN"].includes(value) ? t.blocked : t.dim; }
 function stateIcon(state) { return state === "READY" ? "▷" : state === "DONE" ? "✓" : ["BLOCKED", "ERROR", "UNKNOWN"].includes(state) ? "⊘" : "◉"; }
@@ -86,20 +86,19 @@ export default class SharedContext extends View {
     this.actionOpen = null; this.actionError = "";
     this.openSelect = null; this.selectKeyHandlers = null; this.graphInitiative = null; this.graphViews = new Map();
     this.revision++; this.detailRevision++; this.fileRevision++; this.loading = false; this.error = "";
-    if (next.machine) { this.error = "The selected repository is remote. Context requests currently execute locally. Select a local repository."; return; }
     if (!next.cwd) { this.error = "Select a repository folder."; return; }
     this.refresh(cx);
   }
 
   refresh(cx) {
-    if (!this.where?.cwd || this.where.machine || this.loading) return;
-    const revision = this.revision, cwd = this.where.cwd;
+    if (!this.where?.cwd || this.loading) return;
+    const revision = this.revision, where = this.where;
     this.loading = true; this.error = "";
     cx.spawn(async cx => {
       try {
-        const context = await request("context", cwd);
+        const context = await request("context", where);
         if (revision !== this.revision) return;
-        const viewKey = `${context.identity}:${context.repository}`;
+        const viewKey = `${where.machine ? `${where.machine}:` : ""}${context.identity}:${context.repository}`;
         if (viewKey !== this.viewKey) {
           const saved = this.saved.get(viewKey);
           this.viewKey = viewKey;
@@ -119,7 +118,7 @@ export default class SharedContext extends View {
           }
           if (this.fileSelection) this.openFile(this.fileSelection.collection, this.fileSelection.path, cx);
         } else {
-          const snapshot = await request("tracker", cwd);
+          const snapshot = await request("tracker", where);
           if (revision !== this.revision) return;
           this.snapshot = snapshot;
           this.progress = initiativeProgress(snapshot);
@@ -152,7 +151,7 @@ export default class SharedContext extends View {
     this.activity = workflowActivity();
     cx.spawn(async cx => {
       try {
-        const detail = await request("detail", this.where.cwd, { id: record.id, kind });
+        const detail = await request("detail", this.where, { id: record.id, kind });
         if (serial === this.detailRevision && revision === this.revision) {
           this.detail = detail;
           this.activity = workflowActivity(detail.workflow);
@@ -170,7 +169,7 @@ export default class SharedContext extends View {
     const revision = this.revision;
     cx.spawn(async cx => {
       try {
-        const entries = await request("directory", this.where.cwd, { collection, path });
+        const entries = await request("directory", this.where, { collection, path });
         if (revision === this.revision) this.fileEntries.set(key, entries);
       } catch (error) { if (revision === this.revision) this.error = String(error.message ?? error); }
       finally { if (revision === this.revision) { this.filePending.delete(key); cx.notify(); } }
@@ -189,7 +188,7 @@ export default class SharedContext extends View {
     const revision = this.revision, serial = ++this.fileRevision;
     cx.spawn(async cx => {
       try {
-        const preview = await request("file", this.where.cwd, { collection, path });
+        const preview = await request("file", this.where, { collection, path });
         if (revision === this.revision && serial === this.fileRevision) this.filePreview = preview;
       } catch (error) { if (revision === this.revision && serial === this.fileRevision) this.error = String(error.message ?? error); }
       if (revision === this.revision && serial === this.fileRevision) cx.notify();
@@ -202,7 +201,7 @@ export default class SharedContext extends View {
     this.loading = true; const revision = this.revision;
     cx.spawn(async cx => {
       try {
-        const context = await request("setup", this.where.cwd, { store: this.store, preset: this.preset });
+        const context = await request("setup", this.where, { store: this.store, preset: this.preset });
         if (revision === this.revision) this.context = context;
       } catch (error) { if (revision === this.revision) this.error = String(error.message ?? error); }
       finally { if (revision === this.revision) { this.loading = false; this.refresh(cx); cx.notify(); } }

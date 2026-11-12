@@ -9,7 +9,7 @@ async function harness() {
   let cwd = "/A";
   const context = createContext({ console, localStorage: { getItem: key => storage.get(key) ?? null, setItem: (key, value) => storage.set(key, value) } });
   const cx = { notify() { }, spawn(fn) { const job = fn(cx); jobs.push(job); return job; }, focus_handle() { return { focus() { } }; } };
-  const request = (operation, repository, fields) => new Promise((resolve, reject) => pending.push({ operation, repository, fields, resolve, reject }));
+  const request = (operation, where, fields) => new Promise((resolve, reject) => pending.push({ operation, where, fields, resolve, reject }));
   class NativeInput {
     handlers = new Map();
     text = "";
@@ -58,7 +58,7 @@ async function harness() {
 
 const readyContext = { identity: "fixture", repository: "/A", ready: true, collections: [{ id: "alignment", path: "/A/docs" }] };
 const launch = h => h.action.launchAction(h.view, { cwd: "/A", space: "space", id: "alpha", kind: "ticket", action: "ask-matt", prompt: "Harmless question" }, h.cx, () => { h.view.actionOpen = null; });
-const prepared = { binary: "omp", repository: "/A", prompt: "Harmless question" };
+const prepared = { binary: "omp", repository: "/A", prompt: "Harmless question", session: "/machine-home/data/shared-context-sessions/1-a" };
 
 test("refresh reloads retained descendants and settings restoration repopulates them", async () => {
   const h = await harness();
@@ -129,8 +129,16 @@ test("an unchanged launch opens exactly one fresh session and releases busy stat
   assert.equal(h.launches[0].args.pane, "pane");
   const argv = h.launches[0].args.argv;
   assert.deepEqual(Array.from(argv).slice(0, 4), ["omp", "--cwd", "/A", "--session-dir"]);
-  assert.match(argv[4], /^\/private-home\/data\/shared-context-sessions\//);
+  assert.equal(argv[4], prepared.session);
   assert.equal(h.view.actionBusy, false); assert.equal(h.view.actionOpen, null);
+});
+
+test("a remote launch prepares the session on the space's machine", async () => {
+  const h = await harness();
+  h.action.launchAction(h.view, { cwd: "/A", machine: "wsl-docker", space: "space", id: "alpha", kind: "ticket", action: "ask-matt", prompt: "Harmless question" }, h.cx, () => { });
+  const request = h.take("prepare");
+  assert.equal(request.where.machine, "wsl-docker");
+  assert.equal(request.where.cwd, "/A");
 });
 
 test("obsolete completion cannot clear a newer launch's busy state", async () => {

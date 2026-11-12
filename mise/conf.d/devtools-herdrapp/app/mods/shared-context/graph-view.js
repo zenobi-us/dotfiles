@@ -20,7 +20,7 @@ export function graphView(view, key, roots, focusId) {
   const point = node => ({ x: node.x * z + state.x, y: node.y * z + state.y });
   const nodes = new Map(graph.nodes.map(node => [node.record.id, node]));
   const fit = cx => { state.zoom = Math.max(.15, Math.min(1, (state.width - 24) / graph.width, (state.height - 24) / graph.height)); state.x = 8; state.y = 8; cx.notify(); };
-  const menu = record => openOverlay({ mod: "shared-context", kind: "popup", width: 360, height: 440, props: { mode: "graph-actions", cwd: view.context.repository, space: view.where.space, id: record.id, kind: "ticket" } });
+  const menu = record => openOverlay({ mod: "shared-context", kind: "popup", width: 360, height: 440, props: { mode: "graph-actions", cwd: view.context.repository, machine: view.where.machine, space: view.where.space, id: record.id, kind: "ticket" } });
   const edgeElements = [];
   for (const edge of graph.edges) {
     const from = point(nodes.get(edge.from)), to = point(nodes.get(edge.to));
@@ -66,7 +66,7 @@ export function initGraphMenu(view, cx) {
   view.menuProps = props(); view.menuLoading = true; view.menuError = "";
   initActionMenus(view, cx);
   cx.spawn(async cx => {
-    try { view.menuDetail = await request("detail", view.menuProps.cwd, { id: view.menuProps.id, kind: "ticket" }); }
+    try { view.menuDetail = await request("detail", view.menuProps, { id: view.menuProps.id, kind: "ticket" }); }
     catch (error) { view.menuError = String(error.message ?? error); }
     finally { view.menuLoading = false; cx.notify(); }
   });
