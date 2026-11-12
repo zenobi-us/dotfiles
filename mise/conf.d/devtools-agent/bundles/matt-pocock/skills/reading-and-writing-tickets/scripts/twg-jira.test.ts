@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { parseWorkitemGet, queryJiraIssues, type RunTwg } from "./twg-jira.ts";
+import { parseWorkitemGet, parseWorkitemQueryPage, queryJiraIssues, type RunTwg } from "./twg-jira.ts";
 
 // Fixtures are trimmed from real `twg` output recorded on 2026-11-12. Personal data is removed.
 function recorded(name: string): unknown {
@@ -18,6 +18,7 @@ describe("parseWorkitemGet", () => {
       statusCategory: "new",
       blockerKeys: ["RWR-20902"],
       description: "Found while verifying RWR-20174 (PR #759) on the local Payroll E2E container stack, 2026-10-15.",
+      descriptionMarkdown: "Found while verifying RWR-20174 (PR #759) on the local Payroll E2E container stack, 2026-10-15.",
     });
   });
 });
@@ -64,7 +65,7 @@ describe("queryJiraIssues", () => {
     expect(issues.map((issue) => issue.key)).toEqual(["RWR-20174", "RWR-20902", "RWR-20903"]);
     expect(issues[2].blockerKeys).toEqual(["RWR-20902"]);
     expect(twg.calls).toEqual([["jira", "workitem", "query", "--jql", "parent = RWR-18175",
-      "--fields", "summary,status,issuetype,parent,issuelinks,description", "--limit", "100"]]);
+      "--fields", "summary,status,issuetype,parent,issuelinks,description,updated", "--limit", "100"]]);
   });
 
   test("treats a response with no pageInfo as the last page", async () => {
@@ -97,5 +98,19 @@ describe("queryJiraIssues", () => {
 
   test("fails on the old data.data.issues shape instead of returning no issues", async () => {
     await expect(queryJiraIssues("x", fakeTwg([{ data: { data: { issues: [] } } }]).runTwg)).rejects.toThrow("twg query page 1 has no data.issues array");
+  });
+});
+
+describe("parseWorkitemQueryPage mirror fields", () => {
+  test("reads updated and the description as Markdown", () => {
+    const { issues } = parseWorkitemQueryPage(recorded("query-mirror-epics.json"));
+    const epic = issues.find((issue) => issue.key === "RWR-12937")!;
+    expect(epic.updated).toBe("2026-09-11T15:14:37.861+1000");
+    expect(epic.descriptionMarkdown).toContain("Designer - @Example Person - <https://www.figma.com/design/");
+    expect(issues.find((issue) => issue.key === "RWR-14798")!.descriptionMarkdown).toBe("");
+  });
+
+  test("leaves updated out when twg does not return it", () => {
+    expect(parseWorkitemGet(recorded("get-inward-blocked-by.json"), "RWR-20903").updated).toBeUndefined();
   });
 });

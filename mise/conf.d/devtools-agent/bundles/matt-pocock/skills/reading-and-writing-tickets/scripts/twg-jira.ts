@@ -1,6 +1,7 @@
 import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { adfToMarkdown } from "./adf-markdown.ts";
 import { nonEmptyString, parseJson, record, run } from "./dep-tree-shared.ts";
 
 // Reads `twg` Jira output into issue records. The shapes below were checked against live `twg` on 2026-11-12;
@@ -16,13 +17,17 @@ export interface JiraIssueRecord {
   blockerKeys: string[];
   /** Plain text converted from the Atlassian Document Format description. Empty when the issue has no description. */
   description: string;
+  /** The description converted to Markdown. Empty when the issue has no description. */
+  descriptionMarkdown: string;
+  /** Jira `updated` timestamp, as `twg` returns it. */
+  updated?: string;
 }
 
 /** Runs `twg` with the given arguments and returns the parsed JSON output. */
 export type RunTwg = (args: string[]) => Promise<unknown>;
 
 /** Every parser field. The `twg` default field set leaves out parent, issuelinks, and description, so always pass this. */
-export const JIRA_ISSUE_FIELDS = "summary,status,issuetype,parent,issuelinks,description";
+export const JIRA_ISSUE_FIELDS = "summary,status,issuetype,parent,issuelinks,description,updated";
 
 const QUERY_PAGE_SIZE = "100";
 
@@ -96,6 +101,8 @@ export function parseJiraIssue(value: unknown, label: string): JiraIssueRecord {
     ...(parent ? { parentKey: nonEmptyString(parent.key, `${at} parent.key`) } : {}),
     blockerKeys: blockerKeys(issue.issuelinks, at),
     description: descriptionText(issue.description, at),
+    descriptionMarkdown: adfToMarkdown(issue.description, `${at} description`),
+    ...(issue.updated === undefined || issue.updated === null ? {} : { updated: nonEmptyString(issue.updated, `${at} updated`) }),
   };
 }
 

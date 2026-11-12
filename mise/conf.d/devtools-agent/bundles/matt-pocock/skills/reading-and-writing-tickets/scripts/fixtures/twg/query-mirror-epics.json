@@ -1,0 +1,1057 @@
+{
+  "apiVersion": "v2",
+  "command": "jira.workitem.query",
+  "request": {
+    "jql": "project = RWR AND issuetype = Epic AND cf[12059] = Payroll",
+    "site": "reckon.atlassian.net",
+    "maxResults": 100,
+    "fields": [
+      "summary",
+      "status",
+      "issuetype",
+      "parent",
+      "issuelinks",
+      "description",
+      "updated"
+    ]
+  },
+  "data": {
+    "issues": [
+      {
+        "id": "215013",
+        "key": "RWR-16547",
+        "summary": "Enhance SuperStream page - Payday super",
+        "issuetype": {
+          "id": "10000",
+          "description": "A collection of related bugs, stories, and tasks.",
+          "name": "Epic",
+          "subtask": false,
+          "hierarchyLevel": 1
+        },
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "RWR-12925",
+                  "marks": [
+                    {
+                      "type": "link",
+                      "attrs": {
+                        "href": "https://reckon.atlassian.net/browse/RWR-12925?utm_source=chatgpt.com"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": " introduced the ability for users to create and lodge a SuperStream batch directly from the pay run, streamlining the Payday Super process and creating a more seamless user experience."
+                }
+              ],
+              "attrs": {
+                "localId": "30eaf6e97a87"
+              }
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "As part of the original enhancement, the following additional functionality was also identified:"
+                }
+              ],
+              "attrs": {
+                "localId": "3cb1b761961f"
+              }
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "attrs": {
+                    "localId": "f91bdf533024"
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Print the batch summary =  "
+                        },
+                        {
+                          "type": "text",
+                          "text": "superstream_report",
+                          "marks": [
+                            {
+                              "type": "code"
+                            }
+                          ]
+                        }
+                      ],
+                      "attrs": {
+                        "localId": "b9fa684e1aca"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "attrs": {
+                    "localId": "f9e59a06aa7c"
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Display batch totals on the SuperStream page = "
+                        },
+                        {
+                          "type": "text",
+                          "text": "superstream_totals",
+                          "marks": [
+                            {
+                              "type": "code"
+                            }
+                          ]
+                        }
+                      ],
+                      "attrs": {
+                        "localId": "fcfcdb765a24"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "attrs": {
+                "localId": "f43b2ec4d6c6"
+              }
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Develop the above under 2 separate and new feature flags"
+                }
+              ],
+              "attrs": {
+                "localId": "b6d02fc381ec"
+              }
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "This epic has been created as Phase 2 to ensure these additional enhancements do not delay the release of 12925."
+                }
+              ],
+              "attrs": {
+                "localId": "e16ffc30c13b"
+              }
+            }
+          ]
+        },
+        "issuelinks": [
+          {
+            "id": "166259",
+            "type": {
+              "id": "10401",
+              "name": "Polaris work item link",
+              "inward": "is implemented by",
+              "outward": "implements"
+            },
+            "outwardIssue": {
+              "id": "204979",
+              "key": "DPM-51",
+              "fields": {
+                "summary": "Superstream batch creation from pay run - Payday Super",
+                "status": {
+                  "description": "",
+                  "name": "DONE:",
+                  "id": "12558",
+                  "statusCategory": {
+                    "id": 3,
+                    "key": "done",
+                    "colorName": "green",
+                    "name": "Done"
+                  }
+                },
+                "priority": {
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "id": "11160",
+                  "description": "Discovery idea",
+                  "name": "Idea",
+                  "subtask": false,
+                  "avatarId": 14448,
+                  "entityId": "54561f72-618c-4aa3-a0b8-dc38fa782a30",
+                  "hierarchyLevel": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "166260",
+            "type": {
+              "id": "10300",
+              "name": "Work item split",
+              "inward": "split from",
+              "outward": "split to"
+            },
+            "inwardIssue": {
+              "id": "191375",
+              "key": "RWR-12925",
+              "fields": {
+                "summary": "Allow SuperStream batch creation directly from the pay run - Payday Super",
+                "status": {
+                  "description": "",
+                  "name": "Done",
+                  "id": "10006",
+                  "statusCategory": {
+                    "id": 3,
+                    "key": "done",
+                    "colorName": "green",
+                    "name": "Done"
+                  }
+                },
+                "priority": {
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "id": "10000",
+                  "description": "A collection of related bugs, stories, and tasks.",
+                  "name": "Epic",
+                  "subtask": false,
+                  "hierarchyLevel": 1
+                }
+              }
+            }
+          }
+        ],
+        "updated": "2026-09-21T17:25:28.061+1000",
+        "status": {
+          "description": "",
+          "name": "Done",
+          "id": "10006",
+          "statusCategory": {
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "url": "https://reckon.atlassian.net/browse/RWR-16547"
+      },
+      {
+        "id": "209030",
+        "key": "RWR-14798",
+        "summary": "Pay slip update / enhancement to display employee Bank account",
+        "issuetype": {
+          "id": "10000",
+          "description": "A collection of related bugs, stories, and tasks.",
+          "name": "Epic",
+          "subtask": false,
+          "hierarchyLevel": 1
+        },
+        "parent": {
+          "id": "210434",
+          "key": "RWR-15115",
+          "fields": {
+            "summary": "Pay slip update / enhancement to display employee Bank account ",
+            "status": {
+              "description": "",
+              "name": "Done",
+              "id": "10006",
+              "statusCategory": {
+                "id": 3,
+                "key": "done",
+                "colorName": "green",
+                "name": "Done"
+              }
+            },
+            "priority": {
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "id": "11094",
+              "description": "Top Level Project (Container for Epics)",
+              "name": "Project",
+              "subtask": false,
+              "avatarId": 14358,
+              "hierarchyLevel": 2
+            }
+          }
+        },
+        "description": null,
+        "issuelinks": [
+          {
+            "id": "163945",
+            "type": {
+              "id": "10000",
+              "name": "Blocks",
+              "inward": "is blocked by",
+              "outward": "blocks"
+            },
+            "inwardIssue": {
+              "id": "209035",
+              "key": "RWR-14800",
+              "fields": {
+                "summary": "As a Reckon Payroll user, when I update the Pay slip email settings, I want to see them displayed on the pay slip",
+                "status": {
+                  "description": "",
+                  "name": "Done",
+                  "id": "10006",
+                  "statusCategory": {
+                    "id": 3,
+                    "key": "done",
+                    "colorName": "green",
+                    "name": "Done"
+                  }
+                },
+                "priority": {
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "id": "10001",
+                  "description": "Created by Jira Agile - do not edit or delete. Issue type for a user story.",
+                  "name": "Story",
+                  "subtask": false,
+                  "avatarId": 10315,
+                  "hierarchyLevel": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "164234",
+            "type": {
+              "id": "10401",
+              "name": "Polaris work item link",
+              "inward": "is implemented by",
+              "outward": "implements"
+            },
+            "outwardIssue": {
+              "id": "204991",
+              "key": "DPM-62",
+              "fields": {
+                "summary": "Pay slip update / enhancement to display employee Bank account",
+                "status": {
+                  "description": "",
+                  "name": "DONE:",
+                  "id": "12558",
+                  "statusCategory": {
+                    "id": 3,
+                    "key": "done",
+                    "colorName": "green",
+                    "name": "Done"
+                  }
+                },
+                "priority": {
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "id": "11160",
+                  "description": "Discovery idea",
+                  "name": "Idea",
+                  "subtask": false,
+                  "avatarId": 14448,
+                  "entityId": "54561f72-618c-4aa3-a0b8-dc38fa782a30",
+                  "hierarchyLevel": 0
+                }
+              }
+            }
+          }
+        ],
+        "updated": "2026-09-29T08:26:56.742+1000",
+        "status": {
+          "description": "",
+          "name": "Done",
+          "id": "10006",
+          "statusCategory": {
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "url": "https://reckon.atlassian.net/browse/RWR-14798"
+      },
+      {
+        "id": "191397",
+        "key": "RWR-12937",
+        "summary": "Update PayEvent with QE - Payday Super",
+        "issuetype": {
+          "id": "10000",
+          "description": "A collection of related bugs, stories, and tasks.",
+          "name": "Epic",
+          "subtask": false,
+          "hierarchyLevel": 1
+        },
+        "parent": {
+          "id": "209089",
+          "key": "RWR-14821",
+          "fields": {
+            "summary": "Update Pay Event with Qualified Earnings - Payday Super ",
+            "status": {
+              "description": "",
+              "name": "Done",
+              "id": "10006",
+              "statusCategory": {
+                "id": 3,
+                "key": "done",
+                "colorName": "green",
+                "name": "Done"
+              }
+            },
+            "priority": {
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "id": "11094",
+              "description": "Top Level Project (Container for Epics)",
+              "name": "Project",
+              "subtask": false,
+              "avatarId": 14358,
+              "hierarchyLevel": 2
+            }
+          }
+        },
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Enable users to choose which pay items are classified as Qualified Earnings and automatically include this information in each pay run as part of the STP pay event."
+                }
+              ],
+              "attrs": {
+                "localId": "ed3db55e16d6"
+              }
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Backend - "
+                },
+                {
+                  "type": "mention",
+                  "attrs": {
+                    "id": "000000:example-person",
+                    "text": "@Example Person",
+                    "accessLevel": "",
+                    "localId": "f65ca8ca-0465-4b69-ba12-7e2da9ac6fd5"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": " & "
+                },
+                {
+                  "type": "mention",
+                  "attrs": {
+                    "id": "000000:example-person",
+                    "text": "@Example Person",
+                    "accessLevel": "",
+                    "localId": "fb1e6b3a-8c18-47f3-bb9d-d689bac69cd9"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": " "
+                }
+              ],
+              "attrs": {
+                "localId": "3e9eed1422b9"
+              }
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Front end - "
+                },
+                {
+                  "type": "mention",
+                  "attrs": {
+                    "id": "000000:example-person",
+                    "text": "@Example Person",
+                    "accessLevel": "",
+                    "localId": "ddfba7c2-7f6c-460d-b0d5-3c1e35435fce"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": " "
+                }
+              ],
+              "attrs": {
+                "localId": "852303048657"
+              }
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Designer - "
+                },
+                {
+                  "type": "mention",
+                  "attrs": {
+                    "id": "000000:example-person",
+                    "text": "@Example Person",
+                    "accessLevel": "",
+                    "localId": "54256774-1492-441f-95f3-fafffde45b84"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": " - "
+                },
+                {
+                  "type": "inlineCard",
+                  "attrs": {
+                    "url": "https://www.figma.com/design/KltpzGaNBpeeHWhy0PVZvv/0126-Qualifying-earnings--RWR-12937-?node-id=0-1",
+                    "localId": "0ed30fdb76df"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": " "
+                }
+              ],
+              "attrs": {
+                "localId": "978ff8fe7645"
+              }
+            }
+          ]
+        },
+        "issuelinks": [
+          {
+            "id": "158671",
+            "type": {
+              "id": "10003",
+              "name": "Relates",
+              "inward": "relates to",
+              "outward": "relates to"
+            },
+            "outwardIssue": {
+              "id": "191374",
+              "key": "RWR-12924",
+              "fields": {
+                "summary": "Automatically create Super payments - Payday Super",
+                "status": {
+                  "description": "",
+                  "name": "Done",
+                  "id": "10006",
+                  "statusCategory": {
+                    "id": 3,
+                    "key": "done",
+                    "colorName": "green",
+                    "name": "Done"
+                  }
+                },
+                "priority": {
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "id": "10000",
+                  "description": "A collection of related bugs, stories, and tasks.",
+                  "name": "Epic",
+                  "subtask": false,
+                  "hierarchyLevel": 1
+                }
+              }
+            }
+          },
+          {
+            "id": "158678",
+            "type": {
+              "id": "10003",
+              "name": "Relates",
+              "inward": "relates to",
+              "outward": "relates to"
+            },
+            "outwardIssue": {
+              "id": "191375",
+              "key": "RWR-12925",
+              "fields": {
+                "summary": "Allow SuperStream batch creation directly from the pay run - Payday Super",
+                "status": {
+                  "description": "",
+                  "name": "Done",
+                  "id": "10006",
+                  "statusCategory": {
+                    "id": 3,
+                    "key": "done",
+                    "colorName": "green",
+                    "name": "Done"
+                  }
+                },
+                "priority": {
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "id": "10000",
+                  "description": "A collection of related bugs, stories, and tasks.",
+                  "name": "Epic",
+                  "subtask": false,
+                  "hierarchyLevel": 1
+                }
+              }
+            }
+          },
+          {
+            "id": "158681",
+            "type": {
+              "id": "10003",
+              "name": "Relates",
+              "inward": "relates to",
+              "outward": "relates to"
+            },
+            "inwardIssue": {
+              "id": "192861",
+              "key": "RWR-13175",
+              "fields": {
+                "summary": "Add SuperStream lodgements to the Dashboard - Payday Super",
+                "status": {
+                  "description": "",
+                  "name": "Done",
+                  "id": "10006",
+                  "statusCategory": {
+                    "id": 3,
+                    "key": "done",
+                    "colorName": "green",
+                    "name": "Done"
+                  }
+                },
+                "priority": {
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "id": "10000",
+                  "description": "A collection of related bugs, stories, and tasks.",
+                  "name": "Epic",
+                  "subtask": false,
+                  "hierarchyLevel": 1
+                }
+              }
+            }
+          },
+          {
+            "id": "158682",
+            "type": {
+              "id": "10003",
+              "name": "Relates",
+              "inward": "relates to",
+              "outward": "relates to"
+            },
+            "inwardIssue": {
+              "id": "191419",
+              "key": "RWR-12949",
+              "fields": {
+                "summary": "MVR Fund validation - Payday Super",
+                "status": {
+                  "description": "",
+                  "name": "Done",
+                  "id": "10006",
+                  "statusCategory": {
+                    "id": 3,
+                    "key": "done",
+                    "colorName": "green",
+                    "name": "Done"
+                  }
+                },
+                "priority": {
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "id": "10000",
+                  "description": "A collection of related bugs, stories, and tasks.",
+                  "name": "Epic",
+                  "subtask": false,
+                  "hierarchyLevel": 1
+                }
+              }
+            }
+          },
+          {
+            "id": "162229",
+            "type": {
+              "id": "10000",
+              "name": "Blocks",
+              "inward": "is blocked by",
+              "outward": "blocks"
+            },
+            "outwardIssue": {
+              "id": "203262",
+              "key": "RM-3652",
+              "fields": {
+                "summary": "[Payroll app] Qualified Earnings for PayDay Super",
+                "status": {
+                  "description": "",
+                  "name": "Done",
+                  "id": "10006",
+                  "statusCategory": {
+                    "id": 3,
+                    "key": "done",
+                    "colorName": "green",
+                    "name": "Done"
+                  }
+                },
+                "priority": {
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "id": "10000",
+                  "description": "A collection of related bugs, stories, and tasks.",
+                  "name": "Epic",
+                  "subtask": false,
+                  "hierarchyLevel": 1
+                }
+              }
+            }
+          },
+          {
+            "id": "163030",
+            "type": {
+              "id": "10401",
+              "name": "Polaris work item link",
+              "inward": "is implemented by",
+              "outward": "implements"
+            },
+            "outwardIssue": {
+              "id": "204980",
+              "key": "DPM-52",
+              "fields": {
+                "summary": "Update Pay Event with Qualified Earnings - Payday Super",
+                "status": {
+                  "description": "",
+                  "name": "DONE:",
+                  "id": "12558",
+                  "statusCategory": {
+                    "id": 3,
+                    "key": "done",
+                    "colorName": "green",
+                    "name": "Done"
+                  }
+                },
+                "priority": {
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "id": "11160",
+                  "description": "Discovery idea",
+                  "name": "Idea",
+                  "subtask": false,
+                  "avatarId": 14448,
+                  "entityId": "54561f72-618c-4aa3-a0b8-dc38fa782a30",
+                  "hierarchyLevel": 0
+                }
+              }
+            }
+          }
+        ],
+        "updated": "2026-09-11T15:14:37.861+1000",
+        "status": {
+          "description": "",
+          "name": "Done",
+          "id": "10006",
+          "statusCategory": {
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "url": "https://reckon.atlassian.net/browse/RWR-12937"
+      },
+      {
+        "id": "156033",
+        "key": "RWR-6974",
+        "summary": "[VOC] [Payroll web] Ability to search for an employee",
+        "issuetype": {
+          "id": "10000",
+          "description": "A collection of related bugs, stories, and tasks.",
+          "name": "Epic",
+          "subtask": false,
+          "hierarchyLevel": 1
+        },
+        "description": {
+          "type": "doc",
+          "version": 1,
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Users want the ability to search for employees by their:"
+                }
+              ]
+            },
+            {
+              "type": "orderedList",
+              "attrs": {
+                "order": 1
+              },
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "First name"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Last name"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Email address"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "Employee number"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Aha idea",
+                  "marks": [
+                    {
+                      "type": "strong"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "text": ": "
+                },
+                {
+                  "type": "inlineCard",
+                  "attrs": {
+                    "url": "https://reckon.aha.io/ideas/ideas/RKNWEB-I-43"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Designs:",
+                  "marks": [
+                    {
+                      "type": "strong"
+                    }
+                  ]
+                },
+                {
+                  "type": "hardBreak"
+                },
+                {
+                  "type": "text",
+                  "text": "Search employees here:"
+                },
+                {
+                  "type": "inlineCard",
+                  "attrs": {
+                    "url": "https://www.figma.com/file/oalf9pmJERJI3ZGCoAfmdB/%5BPayroll-Web%5D-Employees?type=design&node-id=808-20099&mode=design"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "paragraph"
+            },
+            {
+              "type": "panel",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "This epic was created from Discovery VOC Q4 2023"
+                    }
+                  ]
+                }
+              ],
+              "attrs": {
+                "panelType": "info"
+              }
+            }
+          ]
+        },
+        "issuelinks": [
+          {
+            "id": "133384",
+            "type": {
+              "id": "10300",
+              "name": "Work item split",
+              "inward": "split from",
+              "outward": "split to"
+            },
+            "inwardIssue": {
+              "id": "140825",
+              "key": "DES1-718",
+              "fields": {
+                "summary": "Ability to search for an employee (Payroll Web)",
+                "status": {
+                  "description": "",
+                  "name": "Done / Handed Over",
+                  "id": "12221",
+                  "statusCategory": {
+                    "id": 3,
+                    "key": "done",
+                    "colorName": "green",
+                    "name": "Done"
+                  }
+                },
+                "priority": {
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "id": "10949",
+                  "description": "UX/UI Designs",
+                  "name": "Design",
+                  "subtask": false,
+                  "avatarId": 14120,
+                  "hierarchyLevel": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "133387",
+            "type": {
+              "id": "10000",
+              "name": "Blocks",
+              "inward": "is blocked by",
+              "outward": "blocks"
+            },
+            "outwardIssue": {
+              "id": "156035",
+              "key": "RM-2398",
+              "fields": {
+                "summary": "[Payroll VOC] Ability to search for an employee",
+                "status": {
+                  "description": "",
+                  "name": "To Do",
+                  "id": "10005",
+                  "statusCategory": {
+                    "id": 2,
+                    "key": "new",
+                    "colorName": "blue-gray",
+                    "name": "To Do"
+                  }
+                },
+                "priority": {
+                  "name": "Medium",
+                  "id": "3"
+                },
+                "issuetype": {
+                  "id": "10000",
+                  "description": "A collection of related bugs, stories, and tasks.",
+                  "name": "Epic",
+                  "subtask": false,
+                  "hierarchyLevel": 1
+                }
+              }
+            }
+          }
+        ],
+        "updated": "2025-12-04T10:09:12.965+1100",
+        "status": {
+          "description": "Not doing this one",
+          "name": "Cancelled",
+          "id": "10802",
+          "statusCategory": {
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "url": "https://reckon.atlassian.net/browse/RWR-6974"
+      }
+    ]
+  },
+  "pageInfo": {
+    "hasNextPage": false
+  }
+}
