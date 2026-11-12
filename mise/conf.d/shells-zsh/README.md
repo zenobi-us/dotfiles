@@ -78,8 +78,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 ```zsh
 zinit_load_local_module() {
-  local module_path="$DOTFILE_ROOT/modules/$1"
-  [[ -f "$module_path" ]] && zinit snippet "$module_path"
+  local module_file="$DOTFILE_ROOT/modules/$1"
+  [[ -f "$module_file" ]] && zinit snippet "$module_file"
 }
 ```
 

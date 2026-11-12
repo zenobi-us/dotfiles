@@ -11,9 +11,10 @@ autoload -Uz _zinit
 
 # local module helper
 zinit_load_local_module() {
-	local module_path="$DOTFILE_ROOT/modules/$1"
-	if [[ -f "$module_path" ]]; then
-		source "$module_path"
+	# Not module_path: zsh uses that array to find zmodload modules.
+	local module_file="$DOTFILE_ROOT/modules/$1"
+	if [[ -f "$module_file" ]]; then
+		source "$module_file"
 	fi
 }
 
