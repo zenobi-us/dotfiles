@@ -1,0 +1,607 @@
+{
+  "schema": "collect-feedback-fix-verification/v1",
+  "receipt": "fix-0015",
+  "createdAt": "2026-11-12T23:26:51.198Z",
+  "source": {
+    "width": 1001,
+    "height": 701,
+    "sha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf",
+    "temporaryMediaRestored": true
+  },
+  "scope": [
+    "STD-01",
+    "SPEC-01"
+  ],
+  "wide": [
+    {
+      "label": "wide real wheel horizontal",
+      "pin": {
+        "x": 874.59375,
+        "y": 862.125,
+        "width": 28,
+        "height": 28,
+        "top": 862.125,
+        "right": 902.59375,
+        "bottom": 890.125,
+        "left": 874.59375
+      },
+      "clip": {
+        "left": 657,
+        "top": 242,
+        "right": 1553,
+        "bottom": 890
+      },
+      "editor": {
+        "x": 914.59375,
+        "y": 822.828125,
+        "width": 320,
+        "height": 169.171875,
+        "top": 822.828125,
+        "right": 1234.59375,
+        "bottom": 992,
+        "left": 914.59375
+      },
+      "imageScroll": [
+        1160,
+        347
+      ],
+      "ancestorScroll": 0,
+      "visible": true,
+      "clamped": true,
+      "hit": {
+        "tag": "IMG",
+        "insideImage": true,
+        "insideColumn": true
+      }
+    },
+    {
+      "label": "wide real wheel vertical",
+      "pin": {
+        "x": 874.59375,
+        "y": 242.125,
+        "width": 28,
+        "height": 28,
+        "top": 242.125,
+        "right": 902.59375,
+        "bottom": 270.125,
+        "left": 874.59375
+      },
+      "clip": {
+        "left": 657,
+        "top": 242,
+        "right": 1553,
+        "bottom": 890
+      },
+      "editor": {
+        "x": 914.59375,
+        "y": 242.125,
+        "width": 320,
+        "height": 169.171875,
+        "top": 242.125,
+        "right": 1234.59375,
+        "bottom": 411.296875,
+        "left": 914.59375
+      },
+      "imageScroll": [
+        1160,
+        967
+      ],
+      "ancestorScroll": 0,
+      "visible": true,
+      "clamped": true,
+      "hit": {
+        "tag": "IMG",
+        "insideImage": true,
+        "insideColumn": true
+      }
+    },
+    {
+      "label": "wide real wheel reverse",
+      "pin": {
+        "x": 1524.59375,
+        "y": 862.125,
+        "width": 28,
+        "height": 28,
+        "top": 862.125,
+        "right": 1552.59375,
+        "bottom": 890.125,
+        "left": 1524.59375
+      },
+      "clip": {
+        "left": 657,
+        "top": 242,
+        "right": 1553,
+        "bottom": 890
+      },
+      "editor": {
+        "x": 1192.59375,
+        "y": 822.828125,
+        "width": 320,
+        "height": 169.171875,
+        "top": 822.828125,
+        "right": 1512.59375,
+        "bottom": 992,
+        "left": 1192.59375
+      },
+      "imageScroll": [
+        510,
+        347
+      ],
+      "ancestorScroll": 0,
+      "visible": true,
+      "clamped": true,
+      "hit": {
+        "tag": "IMG",
+        "insideImage": true,
+        "insideColumn": true
+      }
+    },
+    {
+      "label": "wide real wheel ancestor",
+      "pin": {
+        "x": 1524.59375,
+        "y": 100.125,
+        "width": 28,
+        "height": 28,
+        "top": 100.125,
+        "right": 1552.59375,
+        "bottom": 128.125,
+        "left": 1524.59375
+      },
+      "clip": {
+        "left": 657,
+        "top": 100,
+        "right": 1553,
+        "bottom": 128
+      },
+      "editor": {
+        "x": 1192.59375,
+        "y": 100.125,
+        "width": 320,
+        "height": 169.171875,
+        "top": 100.125,
+        "right": 1512.59375,
+        "bottom": 269.296875,
+        "left": 1192.59375
+      },
+      "imageScroll": [
+        510,
+        347
+      ],
+      "ancestorScroll": 762,
+      "visible": true,
+      "clamped": true,
+      "hit": {
+        "tag": "DIV",
+        "insideImage": false,
+        "insideColumn": true
+      }
+    }
+  ],
+  "narrow": [
+    {
+      "label": "narrow 390x701 resize at 400%",
+      "pin": {
+        "x": 16.59375,
+        "y": 311.953125,
+        "width": 28,
+        "height": 28,
+        "top": 311.953125,
+        "right": 44.59375,
+        "bottom": 339.953125,
+        "left": 16.59375
+      },
+      "clip": {
+        "left": 17,
+        "top": 311.5,
+        "right": 343,
+        "bottom": 701
+      },
+      "editor": {
+        "x": 56.59375,
+        "y": 311.953125,
+        "width": 320,
+        "height": 169.171875,
+        "top": 311.953125,
+        "right": 376.59375,
+        "bottom": 481.125,
+        "left": 56.59375
+      },
+      "visible": true,
+      "clamped": true,
+      "imageScroll": [
+        466,
+        328
+      ],
+      "ancestorScroll": 0,
+      "finderScroll": 780
+    },
+    {
+      "label": "narrow real horizontal wheel +800",
+      "pin": {
+        "x": 16.59375,
+        "y": 311.953125,
+        "width": 28,
+        "height": 28,
+        "top": 311.953125,
+        "right": 44.59375,
+        "bottom": 339.953125,
+        "left": 16.59375
+      },
+      "clip": {
+        "left": 17,
+        "top": 311.5,
+        "right": 343,
+        "bottom": 701
+      },
+      "editor": {
+        "x": 56.59375,
+        "y": 311.953125,
+        "width": 320,
+        "height": 169.171875,
+        "top": 311.953125,
+        "right": 376.59375,
+        "bottom": 481.125,
+        "left": 56.59375
+      },
+      "visible": true,
+      "clamped": true,
+      "imageScroll": [
+        466,
+        328
+      ],
+      "ancestorScroll": 0,
+      "finderScroll": 780
+    },
+    {
+      "label": "narrow real vertical wheel +800",
+      "pin": {
+        "x": 16.59375,
+        "y": 311.953125,
+        "width": 28,
+        "height": 28,
+        "top": 311.953125,
+        "right": 44.59375,
+        "bottom": 339.953125,
+        "left": 16.59375
+      },
+      "clip": {
+        "left": 17,
+        "top": 311.5,
+        "right": 343,
+        "bottom": 701
+      },
+      "editor": {
+        "x": 56.59375,
+        "y": 311.953125,
+        "width": 320,
+        "height": 169.171875,
+        "top": 311.953125,
+        "right": 376.59375,
+        "bottom": 481.125,
+        "left": 56.59375
+      },
+      "visible": true,
+      "clamped": true,
+      "imageScroll": [
+        466,
+        328
+      ],
+      "ancestorScroll": 0,
+      "finderScroll": 780
+    },
+    {
+      "label": "narrow real reverse wheel both axes",
+      "pin": {
+        "x": 16.59375,
+        "y": 311.953125,
+        "width": 28,
+        "height": 28,
+        "top": 311.953125,
+        "right": 44.59375,
+        "bottom": 339.953125,
+        "left": 16.59375
+      },
+      "clip": {
+        "left": 17,
+        "top": 311.5,
+        "right": 343,
+        "bottom": 701
+      },
+      "editor": {
+        "x": 56.59375,
+        "y": 311.953125,
+        "width": 320,
+        "height": 169.171875,
+        "top": 311.953125,
+        "right": 376.59375,
+        "bottom": 481.125,
+        "left": 56.59375
+      },
+      "visible": true,
+      "clamped": true,
+      "imageScroll": [
+        466,
+        328
+      ],
+      "ancestorScroll": 0,
+      "finderScroll": 780
+    },
+    {
+      "label": "narrow real ancestor column wheel +800",
+      "pin": {
+        "x": 16.59375,
+        "y": 311.953125,
+        "width": 28,
+        "height": 28,
+        "top": 311.953125,
+        "right": 44.59375,
+        "bottom": 339.953125,
+        "left": 16.59375
+      },
+      "clip": {
+        "left": 17,
+        "top": 311.5,
+        "right": 343,
+        "bottom": 701
+      },
+      "editor": {
+        "x": 56.59375,
+        "y": 311.953125,
+        "width": 320,
+        "height": 169.171875,
+        "top": 311.953125,
+        "right": 376.59375,
+        "bottom": 481.125,
+        "left": 56.59375
+      },
+      "visible": true,
+      "clamped": true,
+      "imageScroll": [
+        466,
+        328
+      ],
+      "ancestorScroll": 0,
+      "finderScroll": 780
+    },
+    {
+      "label": "narrow explicit ancestor horizontal scroll",
+      "pin": {
+        "x": 16.59375,
+        "y": 311.953125,
+        "width": 28,
+        "height": 28,
+        "top": 311.953125,
+        "right": 44.59375,
+        "bottom": 339.953125,
+        "left": 16.59375
+      },
+      "clip": {
+        "left": 17,
+        "top": 311.5,
+        "right": 343,
+        "bottom": 701
+      },
+      "editor": {
+        "x": 56.59375,
+        "y": 311.953125,
+        "width": 320,
+        "height": 169.171875,
+        "top": 311.953125,
+        "right": 376.59375,
+        "bottom": 481.125,
+        "left": 56.59375
+      },
+      "visible": true,
+      "clamped": true,
+      "imageScroll": [
+        466,
+        328
+      ],
+      "ancestorScroll": 0,
+      "finderScroll": 780
+    },
+    {
+      "label": "narrow explicit ancestor vertical scroll",
+      "pin": {
+        "x": 16.59375,
+        "y": 110.953125,
+        "width": 28,
+        "height": 28,
+        "top": 110.953125,
+        "right": 44.59375,
+        "bottom": 138.953125,
+        "left": 16.59375
+      },
+      "clip": {
+        "left": 17,
+        "top": 111,
+        "right": 343,
+        "bottom": 564.5
+      },
+      "editor": {
+        "x": 56.59375,
+        "y": 110.953125,
+        "width": 320,
+        "height": 169.171875,
+        "top": 110.953125,
+        "right": 376.59375,
+        "bottom": 280.125,
+        "left": 56.59375
+      },
+      "visible": true,
+      "clamped": true,
+      "imageScroll": [
+        466,
+        328
+      ],
+      "ancestorScroll": 201,
+      "finderScroll": 780
+    }
+  ],
+  "narrowRealImageWheels": [
+    {
+      "label": "narrow actual image horizontal",
+      "pin": {
+        "x": 16.59375,
+        "y": 110.953125,
+        "width": 28,
+        "height": 28,
+        "top": 110.953125,
+        "right": 44.59375,
+        "bottom": 138.953125,
+        "left": 16.59375
+      },
+      "scroll": [
+        466,
+        328
+      ],
+      "visible": true,
+      "hit": ""
+    },
+    {
+      "label": "narrow actual image vertical",
+      "pin": {
+        "x": 16.59375,
+        "y": 110.953125,
+        "width": 28,
+        "height": 28,
+        "top": 110.953125,
+        "right": 44.59375,
+        "bottom": 138.953125,
+        "left": 16.59375
+      },
+      "scroll": [
+        466,
+        328
+      ],
+      "visible": true,
+      "hit": ""
+    },
+    {
+      "label": "narrow actual image reverse",
+      "pin": {
+        "x": 314.59375,
+        "y": 438.953125,
+        "width": 28,
+        "height": 28,
+        "top": 438.953125,
+        "right": 342.59375,
+        "bottom": 466.953125,
+        "left": 314.59375
+      },
+      "scroll": [
+        168,
+        0
+      ],
+      "visible": true,
+      "hit": ""
+    }
+  ],
+  "sourceRejection": {
+    "alert": "Registered source image changed or is unsafe; import a new session Draft kept in memory. Retry sends the same note and ID.",
+    "comment": "Keep actionable source-change reason and stable retry ID",
+    "posts": [
+      {
+        "schema": "collect-feedback/v1",
+        "kind": "annotation",
+        "id": "2944bc96-9189-4ce9-bb5b-3fcc44b20124",
+        "sessionId": "review",
+        "caseId": "original",
+        "assetId": "original.2.capture-001",
+        "sourceSha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf",
+        "originalWidth": 1001,
+        "originalHeight": 701,
+        "geometry": {
+          "x": 0.5,
+          "y": 0.5,
+          "width": 0,
+          "height": 0
+        },
+        "priority": "P2",
+        "comment": "Keep actionable source-change reason and stable retry ID"
+      },
+      {
+        "schema": "collect-feedback/v1",
+        "kind": "annotation",
+        "id": "2944bc96-9189-4ce9-bb5b-3fcc44b20124",
+        "sessionId": "review",
+        "caseId": "original",
+        "assetId": "original.2.capture-001",
+        "sourceSha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf",
+        "originalWidth": 1001,
+        "originalHeight": 701,
+        "geometry": {
+          "x": 0.5,
+          "y": 0.5,
+          "width": 0,
+          "height": 0
+        },
+        "priority": "P2",
+        "comment": "Keep actionable source-change reason and stable retry ID"
+      }
+    ],
+    "stableRetry": true
+  },
+  "malformedResponseInjection": {
+    "injected": true,
+    "responseBodies": [
+      "non-JSON HTML",
+      "JSON null"
+    ],
+    "status": 502,
+    "results": [
+      "Save failed: HTTP 502 Draft kept in memory. Retry sends the same note and ID.",
+      "Save failed: HTTP 502 Draft kept in memory. Retry sends the same note and ID."
+    ]
+  },
+  "stored": [
+    {
+      "id": "1af173ef-e2e5-40ca-b0bb-7c61d55206d1",
+      "geometry": {
+        "x": 0.4,
+        "y": 0.4,
+        "width": 0.2,
+        "height": 0.2
+      },
+      "pixelGeometry": {
+        "x": 400,
+        "y": 280,
+        "width": 201,
+        "height": 141
+      },
+      "sha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf"
+    },
+    {
+      "id": "2944bc96-9189-4ce9-bb5b-3fcc44b20124",
+      "geometry": {
+        "x": 0.5,
+        "y": 0.5,
+        "width": 0,
+        "height": 0
+      },
+      "pixelGeometry": {
+        "x": 501,
+        "y": 351,
+        "width": 0,
+        "height": 0
+      },
+      "sha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf"
+    }
+  ],
+  "shutdown": {
+    "browserTabClosed": true,
+    "serviceStopped": true,
+    "serviceExit": 143,
+    "writerLockRetainedAfterToolStop": true,
+    "temporarySessionRemoved": true
+  },
+  "notes": [
+    "Review reproduction accepted as ground truth; no baseline rerun.",
+    "First narrow verification exposed column snapping. Revealing the inspector before the pin fixed it in the final bundle.",
+    "Initial note entry raced keyboard focus and retained only Kee. Cancelled that draft and verified the full comment after focus settled.",
+    "Malformed 502 bodies were injected in browser interception; source rejection used the real server and changed only temporary registered media.",
+    "Saved box normalized geometry remained x=.4,y=.4,width=.2,height=.2; original-pixel bounds remained 400,280,201,141.",
+    "Tool service stop exited 143 and retained a temporary writer lock. The stopped process was absent. Entire owned temporary session, including lock, was removed. Existing workflow test separately passed graceful shutdown checks."
+  ]
+}

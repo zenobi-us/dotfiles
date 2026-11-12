@@ -1,0 +1,315 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "export",
+  "success": true,
+  "session": {
+    "schema": "collect-feedback/v1",
+    "kind": "session",
+    "id": "review",
+    "createdAt": "2026-11-12T23:22:13.391Z",
+    "source": {
+      "schema": "collect-evidence/v1",
+      "kind": "run",
+      "id": "source",
+      "status": "sealed",
+      "startedAt": "2026-11-12T21:21:57.997Z",
+      "finishedAt": "2026-11-12T21:22:00.296Z",
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "plan": "plan.json",
+      "cases": [
+        {
+          "id": "original",
+          "path": "cases/original/case.json"
+        }
+      ],
+      "files": [
+        {
+          "path": "cases/original/case.json",
+          "sha256": "e8123fbb808bb6eb6a70a58c4b4f8b18aa571b1b3acba57e4bf3661955b73be5"
+        },
+        {
+          "path": "cases/original/events.jsonl",
+          "sha256": "b4745c1236e461498e81463b610e753f8f5dac5fb68e9e18ce6db587e13df1fb"
+        },
+        {
+          "path": "cases/original/index.md",
+          "sha256": "a3e1ad1bb6eddcbd8defd19535f23dc2158240325e6c80b7a83316a309542226"
+        },
+        {
+          "path": "cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png",
+          "sha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf"
+        },
+        {
+          "path": "cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png",
+          "sha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf"
+        },
+        {
+          "path": "index.md",
+          "sha256": "1b0318ccd45af90f1dc3f4645747e5dafcaf5a4a46a9189ed43153e910da1349"
+        },
+        {
+          "path": "native/plan.ts",
+          "sha256": "8a7599a2ad85cd44fe713c911380b35ae2773eb4e1c8d2601d2c8b7dfc450f67"
+        },
+        {
+          "path": "native/report/shots/step-original-002-original--capture-001.png",
+          "sha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf"
+        },
+        {
+          "path": "native/report/shots/step-original-002-original--capture-002.png",
+          "sha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf"
+        },
+        {
+          "path": "native/runs/case-original.log",
+          "sha256": "04b385ff407b00c4fb9de46bf45bbaef15f797766c825f13db5b5432190844c5"
+        },
+        {
+          "path": "native/workflows/public-test-original.js",
+          "sha256": "056766b71cd30f85e46416dc7a8f8fae59749ad9892b89cf058780f766f542a8"
+        },
+        {
+          "path": "plan.json",
+          "sha256": "0b028c8345efe0e4447a9916112715427a45a6b351741849487fc8d1680e5bab"
+        },
+        {
+          "path": "plan.ts",
+          "sha256": "8a7599a2ad85cd44fe713c911380b35ae2773eb4e1c8d2601d2c8b7dfc450f67"
+        }
+      ],
+      "runId": "source",
+      "manifestSha256": "7b8d9caa5c56294d4b16f1ac2b5d3d12c682637dc6e53f0132633c21c74447bd"
+    },
+    "cases": [
+      {
+        "id": "original",
+        "path": "cases/original/case.json"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "kind": "case",
+      "id": "original",
+      "order": 1,
+      "purpose": "Inspect original pixels",
+      "preconditions": [],
+      "expected": {
+        "pass": "Heading is present",
+        "fail": "Heading is absent"
+      },
+      "steps": [
+        {
+          "id": "original.1",
+          "order": 1,
+          "purpose": "Open owned page",
+          "actions": {
+            "do": "navigate",
+            "says": "Open owned page",
+            "to": "/",
+            "shot": ""
+          },
+          "expected": null,
+          "observed": [
+            "Page loaded."
+          ],
+          "assertionResult": "not-applicable"
+        },
+        {
+          "id": "original.2",
+          "order": 2,
+          "purpose": "Read heading",
+          "actions": {
+            "do": "expect",
+            "says": "Read heading",
+            "locator": "h1",
+            "text": "Original evidence",
+            "shot": "original"
+          },
+          "expected": {
+            "text": "Original evidence",
+            "visible": null,
+            "url": null
+          },
+          "observed": [
+            "Captured before expect.",
+            "Found text: Original evidence"
+          ],
+          "assertionResult": "passed"
+        }
+      ],
+      "events": "source/cases/original/events.jsonl",
+      "assets": [
+        {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "original.2.capture-001",
+          "caseId": "original",
+          "stepId": "original.2",
+          "path": "cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf",
+          "mediaType": "image/png",
+          "width": 1001,
+          "height": 701,
+          "capturedAt": "2026-11-12T21:21:59.422Z",
+          "viewport": {
+            "width": 1001,
+            "height": 701,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-screenshot",
+          "url": "http://127.0.0.1:40619/"
+        },
+        {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "original.2.capture-002",
+          "caseId": "original",
+          "stepId": "original.2",
+          "path": "cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png",
+          "captureSequence": 2,
+          "sha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf",
+          "mediaType": "image/png",
+          "width": 1001,
+          "height": 701,
+          "capturedAt": "2026-11-12T21:21:59.471Z",
+          "viewport": {
+            "width": 1001,
+            "height": 701,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-screenshot",
+          "url": "http://127.0.0.1:40619/"
+        }
+      ],
+      "errors": [],
+      "limits": [
+        "Capture time and viewport are unknown when the driver did not record them.",
+        "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+      ],
+      "sideEffects": "not-recorded",
+      "schema": "collect-feedback/v1",
+      "sessionId": "review",
+      "source": {
+        "runId": "source",
+        "caseId": "original"
+      }
+    }
+  ],
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "original.2.capture-001",
+      "caseId": "original",
+      "stepId": "original.2",
+      "path": "cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf",
+      "mediaType": "image/png",
+      "width": 1001,
+      "height": 701,
+      "capturedAt": "2026-11-12T21:21:59.422Z",
+      "viewport": {
+        "width": 1001,
+        "height": 701,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:40619/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "original.2.capture-002",
+      "caseId": "original",
+      "stepId": "original.2",
+      "path": "cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf",
+      "mediaType": "image/png",
+      "width": 1001,
+      "height": 701,
+      "capturedAt": "2026-11-12T21:21:59.471Z",
+      "viewport": {
+        "width": 1001,
+        "height": 701,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:40619/"
+    }
+  ],
+  "annotations": [
+    {
+      "schema": "collect-feedback/v1",
+      "kind": "annotation",
+      "id": "1af173ef-e2e5-40ca-b0bb-7c61d55206d1",
+      "sessionId": "review",
+      "caseId": "original",
+      "assetId": "original.2.capture-001",
+      "sourceSha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf",
+      "originalWidth": 1001,
+      "originalHeight": 701,
+      "geometry": {
+        "x": 0.4,
+        "y": 0.4,
+        "width": 0.2,
+        "height": 0.2
+      },
+      "priority": "P2",
+      "comment": "Selected pin remains visible after real wheel pan",
+      "revision": 1,
+      "createdAt": "2026-11-12T23:22:33.613Z",
+      "updatedAt": "2026-11-12T23:22:33.613Z",
+      "pixelGeometry": {
+        "x": 400,
+        "y": 280,
+        "width": 201,
+        "height": 141
+      }
+    },
+    {
+      "schema": "collect-feedback/v1",
+      "kind": "annotation",
+      "id": "2944bc96-9189-4ce9-bb5b-3fcc44b20124",
+      "sessionId": "review",
+      "caseId": "original",
+      "assetId": "original.2.capture-001",
+      "sourceSha256": "362d02d21634ea2535310823a0ce303404dc8c1d71e50afb92da2c0fc33950cf",
+      "originalWidth": 1001,
+      "originalHeight": 701,
+      "geometry": {
+        "x": 0.5,
+        "y": 0.5,
+        "width": 0,
+        "height": 0
+      },
+      "priority": "P2",
+      "comment": "Keep actionable source-change reason and stable retry ID",
+      "revision": 1,
+      "createdAt": "2026-11-12T23:25:48.933Z",
+      "updatedAt": "2026-11-12T23:25:48.933Z",
+      "pixelGeometry": {
+        "x": 501,
+        "y": 351,
+        "width": 0,
+        "height": 0
+      }
+    }
+  ]
+}

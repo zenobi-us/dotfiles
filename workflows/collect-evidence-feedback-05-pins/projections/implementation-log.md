@@ -46,3 +46,44 @@ None. No independent review or integration ran.
 - **Receipt:** [implementation-0003](../events/implementation-0003.yaml).
 - **Snapshot:** [PR draft](../artifacts/snapshots/pr-draft-implementation-0003.md).
 - **Browser evidence:** [verification](../artifacts/evidence/pins-browser-20261113/verification.json).
+
+## fix-0015
+
+Source fix commit: e7f45cabcd07ad71627b22aa4245f4c4af168983. Tree: a2c224d5a63f12c5c6d6eb95e8bab0912220b0e6.
+
+STD-01 now displays the server message with an HTTP fallback. SPEC-01 reveals the selected pin during image and ancestor scroll, and reveals the inspector first to avoid narrow-screen column snapping. The commit hook also updated the developer plugin and marketplace versions.
+
+### Changed files
+
+- **File:** `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
+- **File:** `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
+- **File:** `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md`
+- **File:** `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/index.html`
+- **File:** `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/components/annotation-image.tsx`
+
+### Validation
+
+Typecheck and final build passed (332924-byte bundled HTML). Public workflow.test.ts passed: 1 test, 84 assertions. Actual bundled Chromium checks passed source-change/new-import message, stable full-comment retry, durable save after restoring temporary media, HTTP 502 fallback for injected non-JSON and null bodies, 400% real wheel pan on both axes, ancestor scroll and 390×701 resize. Stored geometry and original 1001×701 source SHA-256 remained unchanged.
+
+No new permanent test was added. The existing public regression covers server behavior; the changed scroll and message display paths were exercised in the actual bundled browser.
+
+### Recovery and review history
+
+[review-0007](../events/review-0007.yaml) reported FAILURE with STD-01 and SPEC-01. [Review artifact](../artifacts/reviews/review-review-0007.md) and [review completion](../events/review-complete-0009.yaml) remain unchanged in the base workflow store. [fix-complete-0013](../events/fix-complete-0013.yaml) records the failed launch with no source changes. [fix-start-0014](../events/fix-start-0014.yaml) authorizes this fresh retry. Both findings are resolved by this fix; a fresh review is required.
+
+### Unresolved questions
+
+None in the authorized scope. No merge or push. Parent owns event reconciliation, final completion and review dispatch.
+
+### Evidence and shutdown
+
+[Browser verification](../artifacts/evidence/fix-0015-browser/verification.json), [export](../artifacts/evidence/fix-0015-browser/export.json), [narrow wheel screenshot](../artifacts/evidence/fix-0015-browser/narrow-400-wheel.png), [wide wheel screenshot](../artifacts/evidence/fix-0015-browser/wide-400-wheel.png), [source diagnostic](../artifacts/evidence/fix-0015-browser/source-change-message.png). Browser tab closed. Tool service stop exited 143 and retained a temporary writer lock; its process was absent. Removed the entire owned temporary session and lock. Existing workflow.test.ts separately passed graceful-shutdown checks.
+
+[Fix result](../events/fix-0015.yaml), [snapshot](../artifacts/snapshots/pr-draft-fix-0015.md).
+
+
+## Parent fix completion
+
+[fix-complete-0017](../events/fix-complete-0017.yaml) validates [fix-0015](../events/fix-0015.yaml) and its immutable [snapshot](../artifacts/snapshots/pr-draft-fix-0015.md). Final clean review target: `0fcfd5dd0c3f03d7ed65dffd3127aa3883da6de2`, tree `3f4145d7c9d7da7239f02a61a9d0a73b57aee5a8`.
+
+Both findings resolved. Parent verified the delivered payload against the authoritative event, source identity, screenshots, browser measurements and two exported geometries. Delivery acknowledged. Fresh fixer terminal `t9p` removed; worktree retained. The app automatically removed its empty source space. No merge or push. Fresh review required.
