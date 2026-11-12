@@ -1,0 +1,109 @@
+{
+  "schema": "worktree-fix-validation/v1",
+  "receipt_id": "fix-0013",
+  "source_commit": "4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71",
+  "source_tree": "36f17fc4bb60031eedb54d69a88b2a1c3ef93d74",
+  "source_document": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/gui.md",
+  "tracked_git_blob": "58ebd084ae99f91255bec613d86e2f36d38c54b3",
+  "working_git_blob": "58ebd084ae99f91255bec613d86e2f36d38c54b3",
+  "source_document_sha256": "b40f5ccdc07e7ef823fa5099754df9195ce95ed66b6e7b6c6dcf38882377d2e0",
+  "source_clean_observed": true,
+  "extraction": {
+    "args": [
+      "mise",
+      "exec",
+      "--",
+      "mq",
+      "--allow-http-import",
+      "-I",
+      "markdown",
+      "-F",
+      "json",
+      "import \"github.com/harehare/okf.mq\" | .code(\"ts\").value",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/gui.md"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "[\n  {\n    \"type\": \"Text\",\n    \"value\": \"export const plan = {\\n  schema: \\\"collect-evidence/v1\\\", kind: \\\"plan\\\", workId: \\\"gui-review\\\",\\n  driver: \\\"gui\\\", base: \\\"gui://local\\\",\\n  gui: { display: \\\":0\\\", window: \\\"0x123456\\\", title: \\\"Approved application\\\" },\\n  approval: { origins: [], gui: { display: \\\":0\\\", window: \\\"0x123456\\\", title: \\\"Approved application\\\" } },\\n  tests: [{\\n    id: \\\"ready\\\", claim: \\\"Inspect the approved application\\\",\\n    pass: \\\"The native scene matches\\\", fail: \\\"The native scene differs\\\",\\n    steps: [{\\n      do: \\\"expect\\\", says: \\\"Inspect the selected window.\\\",\\n      locator: \\\"screen\\\", visible: true, shot: \\\"application-scene\\\",\\n      image: { width: 480, height: 260,\\n        pixels: [{ x: 40, y: 110, rgb: [201, 166, 255] }], lines: [] },\\n    }],\\n  }],\\n};\"\n  }\n]\n",
+    "stderr": ""
+  },
+  "example": "export const plan = {\n  schema: \"collect-evidence/v1\", kind: \"plan\", workId: \"gui-review\",\n  driver: \"gui\", base: \"gui://local\",\n  gui: { display: \":0\", window: \"0x123456\", title: \"Approved application\" },\n  approval: { origins: [], gui: { display: \":0\", window: \"0x123456\", title: \"Approved application\" } },\n  tests: [{\n    id: \"ready\", claim: \"Inspect the approved application\",\n    pass: \"The native scene matches\", fail: \"The native scene differs\",\n    steps: [{\n      do: \"expect\", says: \"Inspect the selected window.\",\n      locator: \"screen\", visible: true, shot: \"application-scene\",\n      image: { width: 480, height: 260,\n        pixels: [{ x: 40, y: 110, rgb: [201, 166, 255] }], lines: [] },\n    }],\n  }],\n};",
+  "substitutions": [],
+  "matches_prior_proof": true,
+  "prior_proof": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/validation-fix-0009.json",
+  "prior_proof_sha256": "a4110aba44b3fa072ba8a7ba5a07a5a4d6331437c52d2ddf5d71dda3c0c7821f",
+  "initial_init_without_origin": {
+    "args": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/gui-fix-0013-_3hmsgxg/workspace",
+      "--repository",
+      "/tmp/gui-fix-0013-_3hmsgxg/repository",
+      "--workflow",
+      "gui-review",
+      "--run",
+      "fix-0013",
+      "--driver",
+      "gui",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 3,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"init\",\"success\":false,\"code\":3,\"message\":\"shared-context resolution failed: No git repository with an origin remote found\"}\n",
+    "stderr": "shared-context resolution failed: No git repository with an origin remote found\n"
+  },
+  "setup_correction": "Added local origin configuration in owned temporary repository; no fetch, push, dependency install or GUI action.",
+  "init": {
+    "args": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/gui-fix-0013-_3hmsgxg/workspace",
+      "--repository",
+      "/tmp/gui-fix-0013-_3hmsgxg/repository",
+      "--workflow",
+      "gui-review",
+      "--run",
+      "fix-0013",
+      "--driver",
+      "gui",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/gui-fix-0013-_3hmsgxg/workspace\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/gui-fix-0013-_3hmsgxg/repository\",\"path\":\"/tmp/gui-fix-0013-_3hmsgxg/repository/workflows/gui-review/artifacts/evidence/fix-0013\",\"ref\":\"workflows/gui-review/artifacts/evidence/fix-0013\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "stderr": ""
+  },
+  "compile": {
+    "args": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/gui-fix-0013-_3hmsgxg/workspace",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/gui-fix-0013-_3hmsgxg/workspace\",\"driver\":\"gui\",\"tests\":1}\n",
+    "stderr": ""
+  },
+  "finding_disposition": {
+    "id": "CEGUI-R1",
+    "resolution": "already-satisfied",
+    "reason": "Exact reviewed source already contains image.lines: []; full unchanged documented plan compiles from unrelated /tmp. No source change or new source commit is necessary."
+  },
+  "source_changed_files": [],
+  "new_source_commit_created": false,
+  "recovery": {
+    "approval": "fix-0011",
+    "phase_start": "fix-0012",
+    "parent": "herdr-app:t6z",
+    "child": "herdr-app:t70",
+    "run_id": "ef381299-cc9a-4e6b-8a3d-907b5e5da615",
+    "operation_id": "collect-evidence-feedback-03-gui-fix-0012"
+  },
+  "retained_gaps": [
+    "Surf expected Submitted, observed Not submitted (not rerun)",
+    "Fresh Playwright/TUI capture prerequisites unavailable (not rerun)",
+    "TypeScript/LSP prerequisites unavailable (not rerun)"
+  ],
+  "review_verdict_issued": false
+}

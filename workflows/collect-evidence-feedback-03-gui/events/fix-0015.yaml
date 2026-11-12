@@ -1,0 +1,116 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-03-gui",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "source_branch": "feature/collect-evidence-feedback-03-gui",
+  "base_branch": "master",
+  "source_commit": "4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71",
+  "source_tree": "36f17fc4bb60031eedb54d69a88b2a1c3ef93d74",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-03-gui",
+    "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+  },
+  "workflow": {
+    "ref": "workflows/collect-evidence-feedback-03-gui",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "store": "repository"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-03-gui.md",
+  "session_id": "herdr-app:t6z",
+  "pane_id": null,
+  "phase": "fix",
+  "created_at": "2026-11-12T01:29:36.123313+00:00",
+  "receipt_id": "fix-0015",
+  "event": "phase-complete",
+  "status": "completed",
+  "parent_receipt": "fix-0014",
+  "attempt": 4,
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/fix-0014.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/fix-0015.yaml"
+    }
+  ],
+  "consumed_review_receipt_ids": [
+    "review-0006",
+    "review-0007"
+  ],
+  "resolved_finding_ids": [
+    "CEGUI-R1"
+  ],
+  "unresolved_finding_ids": [],
+  "changed_files": [],
+  "source_clean": true,
+  "source_commit_created": false,
+  "source_change_needed": false,
+  "summary": "CEGUI-R1 already satisfied at the exact reviewed commit/tree. Tracked example includes image.lines: []; full unchanged example passes public init/compile from /tmp. No source change or new commit needed. Historical FAILURE and prior blocked fix remain immutable; no review verdict issued.",
+  "validation_results": [
+    {
+      "command": "Exact source identity, clean source and tracked/working GUI playbook blob comparison",
+      "status": "passed",
+      "observed": "Frozen commit/tree match; porcelain empty; tracked/working blob both 58ebd084ae99f91255bec613d86e2f36d38c54b3."
+    },
+    {
+      "command": "mq-extracted complete documented plan; public absolute init and compile from unrelated /tmp",
+      "status": "passed",
+      "observed": "Same complete example as fix-0009; no substitutions. Both exit 0 success:true; one GUI case compiled. No GUI run.",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/validation-fix-0014.json"
+    },
+    {
+      "command": "mq OKF snapshot validation",
+      "status": "passed",
+      "observed": "Empty validation error array."
+    },
+    {
+      "command": "Retained Surf failure (not rerun)",
+      "status": "failed",
+      "observed": "Expected Submitted, observed Not submitted; runtime cause unresolved."
+    },
+    {
+      "command": "Fresh Playwright/TUI/typecheck (not rerun)",
+      "status": "blocked",
+      "observed": "Missing Chrome, foot/grim/tesseract, TypeScript/LSP prerequisites remain recorded."
+    },
+    {
+      "command": "Canonical workflow inspector after authorized envelope repair",
+      "status": "passed",
+      "observed": "Exit 0; repaired chain accepted; next decision review/begin. No review launched."
+    }
+  ],
+  "parent_validation": {
+    "authoritative_event_matches_transport": true,
+    "source_commit_tree_match": true,
+    "source_clean": true,
+    "outputs_exist": true,
+    "compile_exit_code": 0,
+    "init_exit_code": 0,
+    "plan_substitutions": [],
+    "delivery_sha256": "3079c967c349bbb91020ab5ab115f2972f9aa066da908bcdb258b99fb8990803",
+    "acknowledged": true,
+    "child_completion_signal": "sequence 2 completed agent 2026-11-12T01:28:39.393Z",
+    "child_terminal": "t70 killed and removed; app ls no longer lists terminal",
+    "workspace": "App removed empty child space; source directory retained; future launch recreates space",
+    "approval_repair": "fix-0013; user explicitly authorized; original bytes preserved"
+  },
+  "publication": {
+    "workflow_committed": false,
+    "pushed": false,
+    "merged": false,
+    "ticket_completed": false
+  }
+}

@@ -2,6 +2,11 @@
 schema: worktree-implementation-log/v1
 kind: projection
 ---
+
+# Current fix disposition
+
+Fix fix-0014 completed: CEGUI-R1 resolved as already satisfied at unchanged source `4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71` / `36f17fc4bb60031eedb54d69a88b2a1c3ef93d74`. No source change or new commit needed. Latest historical review verdict remains FAILURE; a fresh review is separate and was not launched. No merge or integration approval.
+
 # GUI implementation history
 
 ## implementation-0002 — attempt 1
@@ -69,3 +74,27 @@ Verdict: FAILURE. Reviewed commit: `4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71`. S
 - [Parent completion](../events/review-0007.yaml)
 
 Parent public native archive validation returned exit 0 from `/tmp`. The review confirmed that the published GUI example fails compile; its temporary correction passes. Surf failure and host coverage limits remain recorded. No merge, push or ticket completion occurred.
+
+## fix-0014 — authorized finding reconciliation
+
+CEGUI-R1 (P2, NO ADR) is resolved as already satisfied, not by a source edit. The frozen source commit `4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71` and tree `36f17fc4bb60031eedb54d69a88b2a1c3ef93d74` already contain `image.lines: []`. Tracked and working GUI playbook blob: `58ebd084ae99f91255bec613d86e2f36d38c54b3`. The full mq-extracted TypeScript example equals the unchanged example preserved in fix-0009.
+
+Fresh public absolute `collect-evidence.ts init` and `compile` ran from unrelated `/tmp` with an owned temporary repository. Both returned exit 0 and `success: true`; compile reported one GUI test. No substitutions, GUI capture, source changes, new source commit, hooks or bundle-version changes occurred. The initial init probe lacked a temporary origin and returned exit 3; adding local origin configuration allowed the real check. This was setup only; no remote operation occurred.
+
+Recovery consumes [takeover approval](../events/fix-0011.yaml), [phase start](../events/fix-0012.yaml), both historical review receipts, and prior fix-0009/fix-0010 proof. Parent t6z repaired only the approval pane identity with explicit user authorization. [Repair provenance](../events/fix-0013.yaml) preserves the original approval bytes and SHA-256. Child t70 verified the original hash and successful history inspection. Parent owns publication and phase completion.
+
+[Fix result](../events/fix-0014.yaml) · [Current exact-example proof](../artifacts/snapshots/validation-fix-0014.json) · [Earlier proof](../artifacts/snapshots/validation-fix-0009.json).
+
+Changed source files: none. No new source commit is needed. Historical review-0006/0007 FAILURE and prior blocked fix-0009/0010 remain unchanged. This fix issues no review verdict. CEGUI-N1 remains optional and untouched. The earlier sections are retained history, not the current finding disposition.
+
+Remaining verification gaps: Surf expected `Submitted`, observed `Not submitted`; unavailable Chrome, foot/grim/tesseract and TypeScript/LSP prerequisites. None were rerun or dismissed. No merge, push, tracker status mutation or integration approval occurred.
+
+The prepared fix-0013-named validation/draft snapshots predate the receipt allocation correction. They remain immutable preparation artifacts, not phase-result receipts. Result fix-0014 consumes repair receipt fix-0013 and keeps phase-start fix-0012 as parent.
+
+
+
+## Parent completion fix-0015
+
+[Verified completion](../events/fix-0015.yaml) links to [fix-0014](../events/fix-0014.yaml). Parent verified authoritative receipt equality, exact clean source identity, all output paths and successful unchanged-example public init/compile evidence. Delivery hash `3079c967c349bbb91020ab5ab115f2972f9aa066da908bcdb258b99fb8990803` acknowledged. Fresh fixer `omp` terminal `t70` emitted completed sequence 2 and was closed and removed. Source workspace retained; empty app space was removed automatically.
+
+CEGUI-R1 is resolved as already satisfied. No source edits or source commit; no new review verdict, merge, push or ticket completion. Historical FAILURE and recorded Surf/prerequisite gaps remain. Next action is fresh independent review of the unchanged clean source.

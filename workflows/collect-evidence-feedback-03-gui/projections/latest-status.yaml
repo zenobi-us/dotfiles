@@ -2,19 +2,23 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "collect-evidence-feedback-03-gui",
   "ticket": "tracker/tickets/collect-evidence-feedback-03-gui.md",
-  "state": "BLOCKED",
-  "latest_receipt": "fix-0010",
+  "state": "FIXED",
+  "latest_receipt": "fix-0015",
   "latest_source_commit": "4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71",
   "latest_source_tree": "36f17fc4bb60031eedb54d69a88b2a1c3ef93d74",
   "latest_review_verdict": "FAILURE",
-  "open_findings": ["CEGUI-R1"],
-  "disputed_findings": ["CEGUI-R1"],
-  "reconciliation_reason": "The pinned source already includes lines: []; unchanged documented plan compiles successfully. Historical review contradicts source. No source fix was made.",
+  "open_findings": [],
+  "resolved_findings": [
+    "CEGUI-R1"
+  ],
+  "optional_findings": [
+    "CEGUI-N1"
+  ],
+  "resolution": "Already satisfied at exact reviewed source; no source change or new commit needed. Historical FAILURE unchanged; fresh review not performed.",
   "validation_blockers": [
-    "approved-space.3 expected Submitted, got Not submitted",
-    "Chrome distribution absent at /opt/google/chrome/chrome; no installation attempted",
-    "foot, grim and tesseract absent; no installation attempted",
-    "LSP initialization failed: no workspace TypeScript installation. No tsc binary or local TypeScript dependency found. No typecheck claimed."
+    "Surf expected Submitted, observed Not submitted (not rerun)",
+    "Fresh Playwright/TUI capture prerequisites unavailable (not rerun)",
+    "TypeScript/LSP prerequisites unavailable (not rerun)"
   ],
   "parent_completion_pending": false
 }
