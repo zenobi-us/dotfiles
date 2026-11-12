@@ -1,7 +1,8 @@
 // Native graph surfaces share canonical records and direct action launches.
 import { div } from "gpui-kit";
 import { h_flex, v_flex } from "gpui-base";
-import { theme, openOverlay, closeOverlay, props } from "herdr";
+import { openOverlay, closeOverlay, props } from "herdr";
+import { theme } from "./design.js";
 import { request } from "./client.js";
 import { dependencyGraph } from "./graph.js";
 import { button, note } from "./ui.js";
@@ -40,7 +41,7 @@ export function graphView(view, key, roots, focusId) {
     .children(graph.nodes.map(node => {
       const record = node.record, p = point(node), status = ticketDisplayState(record, view.snapshot.states?.[record.id]);
       return button(`graph-node:${key}:${record.id}`, "", (_event, cx) => { state.selected = record.id; cx.notify(); }, { label: `${record.title}. ${record.id}. ${status}. Shift F10 opens actions.`, height: 88 * z })
-        .absolute().left(p.x).top(p.y).w(230 * z).px(10 * z).rounded(6).border_1().border_color(record.id === focusId ? t.accent : record.id === state.selected ? t.ansi4 : t.border).bg(record.id === focusId ? t.selected : t.raised).text_color(t.foreground)
+        .absolute().left(p.x).top(p.y).w(230 * z).px(12 * z).rounded(0).border_1().border_color(record.id === focusId ? t.accent : record.id === state.selected ? t.ansi4 : t.border).bg(record.id === focusId ? t.selected : t.raised).text_color(t.foreground)
         .tooltip(`${record.title}\n${record.id} · ${status}\nRight-click for canonical actions`)
         .on_mouse_down("left", (_event, cx) => cx.stop_propagation())
         .on_mouse_down("right", (_event, cx) => { cx.stop_propagation(); menu(record); })
@@ -74,7 +75,7 @@ export function initGraphMenu(view, cx) {
 
 export function renderGraphMenu(view) {
   const t = theme(), p = view.menuProps;
-  return v_flex().size_full().p(12).gap(8).bg(t.popover).text_color(t.foreground).text_size(12)
+  return v_flex().size_full().p(12).gap(8).bg(t.popover).text_color(t.foreground).text_size(13).font_family("JetBrains Mono")
     .child(div().font_semibold().child(view.menuDetail?.record.title ?? p.id))
     .child(div().text_size(10).text_color(t.muted).child(p.id))
     .when(view.menuLoading, el => el.child(note("Inspect canonical actions…")))

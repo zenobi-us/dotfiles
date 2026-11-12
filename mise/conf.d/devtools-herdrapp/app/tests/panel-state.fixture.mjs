@@ -20,7 +20,7 @@ async function harness() {
   }
   const mocks = {
     "gpui-kit": { View: class { }, div() { } },
-    "gpui-base": { h_flex() { }, v_flex() { }, TextView: {}, Scrollbar: {}, h_resizable() { }, resizable_panel() { }, Popup: {}, Input: {}, InputState: { new: () => new NativeInput() } },
+    "gpui-base": { h_flex() { }, v_flex() { }, TextView: {}, Scrollbar: {}, h_resizable() { }, resizable_panel() { }, Popup: {}, Popover: {}, Checkbox: {}, Input: {}, InputState: { new: () => new NativeInput() } },
     herdr: { spaces: () => [{ active: true, folder: cwd, id: "space" }], panes: () => [{ pane: "pane", cwd }], focused: () => ({ pane: "pane", space: "space" }), props: () => ({}), theme() { }, run: (name, args) => launches.push({ name, args }), nextCommand() { }, appHome: () => "/private-home", closeOverlay() { } },
     "./client.js": { request },
     "./preferences.js": { loadPreferences() { }, DEFAULTS: {} },

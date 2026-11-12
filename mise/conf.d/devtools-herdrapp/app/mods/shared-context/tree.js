@@ -1,7 +1,9 @@
 // Repeated dependency paths point to one canonical record, including beneath collapsed rows.
-export function dependencyRows(snapshot, queue, collapsed) {
+import { matchesFilters } from "./filter-model.js";
+
+export function dependencyRows(snapshot, filters, collapsed) {
   const tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
-  const eligible = ticket => queue === "initiatives" || queue === "all" || (queue === "ready" ? snapshot.states[ticket.id]?.state === "READY" : queue === "review" ? ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(snapshot.states[ticket.id]?.state) : ["BLOCKED", "ERROR", "UNKNOWN"].includes(snapshot.states[ticket.id]?.state));
+  const eligible = ticket => matchesFilters(snapshot.states?.[ticket.id]?.state, filters);
   const rows = [], canonical = new Map(), assigned = new Set();
   const requiredBy = members => {
     const required = new Set(), visited = new Set(), chain = new Set();
@@ -25,7 +27,7 @@ export function dependencyRows(snapshot, queue, collapsed) {
     for (const blocker of record.blockedBy) add(tickets.get(blocker), path, depth + 1, visible && expanded);
   };
   const section = (id, title) => rows.push({ type: "section", record: { id, title }, path: `section:${id}`, depth: 0, expanded: true, children: 0 });
-  const initiatives = snapshot.initiatives.filter(item => !item.group);
+  const initiatives = filters.initiatives ? snapshot.initiatives.filter(item => !item.group) : [];
   if (initiatives.length) section("initiatives", "Initiatives");
   for (const initiative of initiatives) {
     const members = [...new Set(initiative.ticketIds)].map(id => {

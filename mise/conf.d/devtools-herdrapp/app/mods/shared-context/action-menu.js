@@ -1,7 +1,7 @@
 // Anchored action menus keep one selected preset and an optional detail draft per record.
 import { div } from "gpui-kit";
 import { h_flex, v_flex, Popup, Input, InputState } from "gpui-base";
-import { theme } from "herdr";
+import { theme } from "./design.js";
 import { button, note } from "./ui.js";
 import { ACTION_PRESETS, actionPrompt } from "./action-model.js";
 import { launchAction, invalidateAction } from "./action.js";
@@ -83,7 +83,7 @@ function actionMenuContent(view) {
       .when(selected, el => el.aria_active_descendant()).child(row);
   });
   return v_flex().id("action-prompt-menu").role("dialog").accessibility_label(`${open.choice.label}: preset and additional instruction`)
-    .w(360).max_w("100%").max_h(500).overflow_y_scrollbar().rounded(6).border_1().border_color(t.border).bg(t.popover).text_color(t.foreground).text_size(12)
+    .w(360).max_w("100%").max_h(500).overflow_y_scrollbar().rounded(0).border_1().border_color(t.border).bg(t.popover).text_color(t.foreground).text_size(13).font_family("JetBrains Mono")
     .on_mouse_down_out((_event, cx) => closeActionMenu(view, cx, false))
     .on_key_down((event, cx) => actionMenuKey(view, event, cx))
     .child(v_flex().p(12).gap(5)
@@ -92,7 +92,7 @@ function actionMenuContent(view) {
     .child(v_flex().role("list_box").accessibility_label(`${open.choice.label} presets`).track_focus(view.actionFocus).tab_index(0).px(6).pb(8).gap(2).children(rows))
     .child(v_flex().p(12).gap(8).border_t(1).border_color(t.border)
       .child(div().text_size(11).text_color(t.muted).child("Additional instruction · optional"))
-      .child(Input.new(view.actionInput).h(34).disabled(view.actionBusy).accessibility_label("Additional instruction, optional").bg(t.input).border_1().border_color(t.border).rounded(4))
+      .child(Input.new(view.actionInput).h(32).disabled(view.actionBusy).accessibility_label("Additional instruction, optional").bg(t.input).border_1().border_color(t.border).rounded(0))
       .when(Boolean(view.actionError), el => el.child(note(view.actionError, true)))
       .child(h_flex().gap(8).justify_between()
         .child(button("cancel-action-prompt", "Cancel", (_event, cx) => closeActionMenu(view, cx), { disabled: view.actionBusy }).track_focus(view.actionCancelFocus).tab_index(0))

@@ -1,5 +1,4 @@
-// CLI tab chrome keeps Context and Tracker available independently of the shared
-// Files/Changes preference; all four use cli.json's per-space panel stack.
+// Shared context has its own Files/Tracker navigation inside the panel.
 import { View, div, svg, image } from "gpui-kit";
 import { h_flex } from "gpui-base";
 import { spaces, panes, run, openOverlay, theme, window, shared, layout, settings } from "herdr";
@@ -17,6 +16,7 @@ export default class Tabs extends View {
   init() {
     this.pressed = null;
     this.panels = JSON.parse(localStorage.getItem("panels") ?? "{}");
+    this.contextPanels = JSON.parse(localStorage.getItem("context-panels") ?? "{}");
   }
 
   // The side panel is remembered per space: switching shows that space's choice
@@ -41,6 +41,10 @@ export default class Tabs extends View {
     if (this.pending) {
       if (this.pending.want !== now && Date.now() < this.pending.until) return;
       this.pending = null;
+    }
+    if (["context", "tracker"].includes(now) && this.contextPanels[space.id] !== now) {
+      this.contextPanels[space.id] = now;
+      localStorage.setItem("context-panels", JSON.stringify(this.contextPanels));
     }
     if (this.panels[space.id] === now) return;
     this.panels[space.id] = now;
@@ -82,13 +86,13 @@ export default class Tabs extends View {
     const enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "context", "tracker"])];
     this.syncPanel(space, panel, body, enabled);
     const panelButton = (id, label, icon) => {
-      const on = panel && !panel.hidden && body?.active === id;
+      const on = panel && !panel.hidden && (id === "context" ? ["context", "tracker"].includes(body?.active) : body?.active === id);
       return h_flex().id(`panel-${id}`).h_full().px(10).gap(5).flex_none().items_center()
         .text_size(12).bg(on ? t.selected : t.chrome).text_color(on ? t.foreground : t.muted)
         .hover(s => s.bg(t.hover)).on_mouse_down("left", stop)
         .on_click(() => {
           if (on) run("layout.hide", { id: "panel" });
-          else { run("layout.select", { stack: "panel-body", child: id }); run("layout.show", { id: "panel" }); }
+          else { run("layout.select", { stack: "panel-body", child: id === "context" ? this.contextPanels[space.id] ?? "tracker" : id }); run("layout.show", { id: "panel" }); }
         }).child(svg(icon).size(14)).child(label);
     };
     return h_flex().size_full().min_w(0).pl(lightsPadding > 10 ? lightsPadding : 0).gap(0).items_center().bg(t.chrome).border_b(1).border_color("#1f2530")
@@ -98,8 +102,7 @@ export default class Tabs extends View {
       .child(button("tab-new", "+", () => openOverlay({ mod: "cli-new-menu", kind: "popup", width: 250, height: 512 })))
       .when(enabled.includes("files"), el => el.child(panelButton("files", "Files", "mods/files/file.svg")))
       .when(enabled.includes("changes"), el => el.child(panelButton("changes", "Changes", "mods/changes/changes.svg")))
-      .child(panelButton("context", "Context", "mods/shared-context/icons/context.svg"))
-      .child(panelButton("tracker", "Tracker", "mods/shared-context/icons/tracker.svg"))
+      .child(panelButton("context", "Shared context", "mods/shared-context/icons/context.svg"))
       .when(w?.buttons, el => el.child(button("minimize", w.platform === "windows" ? svg("mods/cli-tabs/win-min.svg").size(16) : "−", () => run("window.minimize")))
         .child(button("maximize", w.platform === "windows" ? svg(`mods/cli-tabs/${w.maximized ? "win-restore" : "win-max"}.svg`).size(16) : "□", () => run("window.maximize")))
         .child(button("close-window", w.platform === "windows" ? svg("mods/cli-tabs/win-close.svg").size(16) : svg("mods/pane/close.svg").size(13), () => run("window.close"))));

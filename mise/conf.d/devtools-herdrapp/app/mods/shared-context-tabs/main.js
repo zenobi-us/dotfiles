@@ -1,10 +1,10 @@
-// A personal copy of Herdr's tab bar adds Context and Tracker to its panel stack.
+// Shared context has its own Files/Tracker navigation inside the panel.
 import { View, div, svg, image } from "gpui-kit";
 import { h_flex } from "gpui-base";
 import { spaces, panes, run, openOverlay, theme, window, shared, layout, settings } from "herdr";
 function find(node, id) { if (node?.id === id) return node; for (const child of node?.children ?? []) { const found = find(child, id); if (found) return found; } return null; }
 export default class ContextTabs extends View {
-  init() { this.pressed = null; this.panels = JSON.parse(localStorage.getItem("panels") ?? "{}"); }
+  init() { this.pressed = null; this.panels = JSON.parse(localStorage.getItem("panels") ?? "{}"); this.contextPanels = JSON.parse(localStorage.getItem("context-panels") ?? "{}"); }
   syncPanel(space, panel, body, enabled) {
     if (!space || !panel) return;
     const now = panel.hidden ? null : body?.active ?? null;
@@ -21,6 +21,10 @@ export default class ContextTabs extends View {
       }
     }
     if (this.pending) { if (this.pending.want !== now && Date.now() < this.pending.until) return; this.pending = null; }
+    if (["context", "tracker"].includes(now) && this.contextPanels[space.id] !== now) {
+      this.contextPanels[space.id] = now;
+      localStorage.setItem("context-panels", JSON.stringify(this.contextPanels));
+    }
     if (this.panels[space.id] === now) return;
     this.panels[space.id] = now; localStorage.setItem("panels", JSON.stringify(this.panels));
   }
@@ -46,10 +50,10 @@ export default class ContextTabs extends View {
     const panel = find(root, "panel"), body = find(root, "panel-body"), enabled = [...new Set([...(shared("workspace.panels") ?? ["files", "changes"]), "context", "tracker"])];
     this.syncPanel(space, panel, body, enabled);
     const panelButton = (id, label, icon) => {
-      const active = panel && !panel.hidden && body?.active === id;
+      const active = panel && !panel.hidden && (id === "context" ? ["context", "tracker"].includes(body?.active) : body?.active === id);
       return h_flex().id(`panel-${id}`).h(28).px(8).gap(5).flex_none().items_center().rounded(6).text_size(12).bg(active ? t.selected : t.chrome).text_color(active ? t.foreground : t.muted).hover(el => el.bg(t.hover)).on_mouse_down("left", stop).on_click(() => {
         if (active) run("layout.hide", { id: "panel" });
-        else { run("layout.select", { stack: "panel-body", child: id }); run("layout.show", { id: "panel" }); }
+        else { run("layout.select", { stack: "panel-body", child: id === "context" ? this.contextPanels[space.id] ?? "tracker" : id }); run("layout.show", { id: "panel" }); }
       }).child(svg(icon).size(14)).child(label);
     };
     return h_flex().size_full().min_w(0).px(10).pl(padding).gap(3).items_center().bg(t.chrome).border_b(1).border_color(t.border).on_mouse_up("left", () => { this.pressed = null; })
@@ -57,8 +61,7 @@ export default class ContextTabs extends View {
       .child(button("tab-new", "+", () => openOverlay({ mod: "new-menu", kind: "popup", width: 250, height: 512 })))
       .when(enabled.includes("files"), el => el.child(panelButton("files", "Files", "mods/files/file.svg")))
       .when(enabled.includes("changes"), el => el.child(panelButton("changes", "Changes", "mods/changes/changes.svg")))
-      .child(panelButton("context", "Context", "mods/shared-context/icons/context.svg"))
-      .child(panelButton("tracker", "Tracker", "mods/shared-context/icons/tracker.svg"))
+      .child(panelButton("context", "Shared context", "mods/shared-context/icons/context.svg"))
       .when(w?.buttons, el => el.child(button("minimize", "−", () => run("window.minimize"))).child(button("maximize", "□", () => run("window.maximize"))).child(button("close-window", "×", () => run("window.close"))));
   }
 }

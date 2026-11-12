@@ -24,7 +24,7 @@ export type DependencyRow<Ticket, Initiative> = {
 } & ({ type: "ticket"; record: Ticket } | { type: "initiative"; record: Initiative } | { type: "section"; record: { id: string; title: string } });
 export function dependencyRows<Ticket extends DependencyTicket, Initiative extends DependencyInitiative>(
   snapshot: { tickets: Ticket[]; initiatives: Initiative[]; states: Record<string, { state: string }> },
-  queue: "initiatives" | "all" | "ready" | "review" | "blocked",
+  filters: { initiatives: boolean; ready: boolean; review: boolean; blocked: boolean },
   collapsed: ReadonlySet<string>,
 ): { rows: DependencyRow<Ticket, Initiative>[]; canonical: Map<string, string> };
 export function revealPath(collapsed: Set<string>, path: string): void;

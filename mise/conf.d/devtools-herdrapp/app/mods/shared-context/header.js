@@ -1,7 +1,7 @@
 // The compact header owns record metadata; document tabs keep their reading space.
 import { div } from "gpui-kit";
 import { h_flex, v_flex } from "gpui-base";
-import { theme } from "herdr";
+import { theme } from "./design.js";
 import { button, typeColor, typeIcon } from "./ui.js";
 import { itemType } from "./tree.js";
 import { workflowBadge, badgePalette } from "./header-model.js";
@@ -31,7 +31,7 @@ export function compactHeader(view, record) {
       .child(div().flex_1().min_w(120).whitespace_normal().text_size(10).text_color(t.muted).tooltip(record.id).child(record.id))
       .when(Boolean(badge), el => el.child(segmentedBadge(`record-workflow:${record.ref}`, `${badge.label}:`, badge.value, workflowPalette).flex_none()))
       .when(Boolean(recordedStatus && recommendation && recommendation.label !== "status" && !activity?.needsReview), el => el.child(segmentedBadge(`record-recommendation:${record.ref}`, `${recommendation.label}:`, recommendation.value, metadataPalette).flex_none())))
-    .child(div().text_size(18).font_semibold().whitespace_normal().child(record.title))
+    .child(div().text_size(13).font_weight(500).whitespace_normal().child(record.title))
     .when(kind === "initiative", el => el.child(initiativeProgressHeader(view.progress.get(record.id), t)))
     .child(h_flex().flex_wrap().gap(6).items_center()
       .children((view.detail?.actions ?? []).map(choice => actionDropdown(view, choice, { cwd: view.context.repository, space: view.where.space, id: record.id, kind })))
@@ -71,7 +71,7 @@ export function copyRecordReference(view, record, cx) {
 
 function segmentedBadge(id, label, value, palette, action, accessibleLabel) {
   const badge = action ? button(id, "", action, { label: accessibleLabel }).h("auto").px(0).py(0) : h_flex().id(id).role("label").accessibility_label(`${label} ${value}`);
-  return badge.min_w(0).max_w("100%").rounded(4).overflow_hidden().border_1().border_color(palette.border).bg(palette.value)
+  return badge.min_w(0).max_w("100%").rounded(0).overflow_hidden().border_1().border_color(palette.border).bg(palette.value)
     .child(h_flex().min_w(0).flex_1()
       .child(div().flex_none().px(8).py(4).bg(palette.label).border_r(1).border_color(palette.border).text_color(palette.labelText).text_size(10).child(label))
       .child(div().flex_1().min_w(0).px(8).py(4).whitespace_normal().bg(palette.value).text_color(palette.valueText).text_size(10).child(value)));

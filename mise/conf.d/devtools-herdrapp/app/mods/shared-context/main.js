@@ -1,7 +1,8 @@
 // Native Context and Tracker panels. The settings select C or C2 without changing data APIs.
 import { View, div } from "gpui-kit";
 import { h_flex, v_flex, TextView, Scrollbar, h_resizable, resizable_panel } from "gpui-base";
-import { spaces, panes, focused, props, theme, run, nextCommand } from "herdr";
+import { spaces, panes, focused, props, run, nextCommand } from "herdr";
+import { theme } from "./design.js";
 import { request } from "./client.js";
 import { loadPreferences, DEFAULTS } from "./preferences.js";
 import { dependencyRows, revealPath, itemType } from "./tree.js";
@@ -13,6 +14,8 @@ import { initiativeProgressRow } from "./progress.js";
 import { workflowActivity } from "./activity-model.js";
 import { initActionMenus } from "./action-menu.js";
 import { invalidateAction } from "./action.js";
+import { DEFAULT_FILTERS } from "./filter-model.js";
+import { initTreeFilters, treeFilters, closeTreeFilters } from "./tree-filters.js";
 
 function location() {
   const given = props() ?? {}, space = spaces().find(item => item.active), focus = focused();
@@ -28,6 +31,7 @@ export default class SharedContext extends View {
     if (this.mode === "graph-actions") { initGraphMenu(this, cx); return; }
     this.focus = cx.focus_handle();
     this.selectFocus = { "context-store": cx.focus_handle(), "context-preset": cx.focus_handle() };
+    initTreeFilters(this, cx);
     this.recordTab = "description"; this.detailError = "";
     this.activity = workflowActivity(); this.activityFilter = "all";
     if (this.mode === "tracker") initActionMenus(this, cx);
@@ -38,7 +42,7 @@ export default class SharedContext extends View {
     this.viewStorageKey = `shared-context:${this.mode}:views:v1`;
     // Settings reload the mod. Keep view state, but revalidate record IDs against the next snapshot.
     this.saved = new Map(JSON.parse(localStorage.getItem(this.viewStorageKey) ?? "[]").map(([key, value]) => [key, { ...value, collapsed: new Set(value.collapsed), fileFolders: new Set(value.fileFolders) }]));
-    this.collapsed = new Set(); this.queue = "initiatives"; this.selected = null; this.drawer = "peek";
+    this.collapsed = new Set(); this.filters = { ...DEFAULT_FILTERS }; this.selected = null; this.drawer = "peek";
     this.progress = new Map();
     this.fileFolders = new Set(); this.fileEntries = new Map(); this.filePending = new Set(); this.fileSelection = null;
     this.error = ""; this.loading = false; this.store = "repository"; this.preset = ""; this.bodySize = { width: 408, height: 500 };
@@ -68,7 +72,7 @@ export default class SharedContext extends View {
 
   remember() {
     if (!this.viewKey) return;
-    this.saved.set(this.viewKey, { selected: this.selected, queue: this.queue, collapsed: new Set(this.collapsed), drawer: this.drawer, fileSelection: this.fileSelection, fileFolders: new Set(this.fileFolders) });
+    this.saved.set(this.viewKey, { selected: this.selected, filters: { ...this.filters }, collapsed: new Set(this.collapsed), drawer: this.drawer, fileSelection: this.fileSelection, fileFolders: new Set(this.fileFolders) });
     if (this.saved.size > 16) this.saved.delete(this.saved.keys().next().value);
     localStorage.setItem(this.viewStorageKey, JSON.stringify([...this.saved].map(([key, value]) => [key, { ...value, collapsed: [...value.collapsed], fileFolders: [...value.fileFolders] }])));
   }
@@ -84,7 +88,7 @@ export default class SharedContext extends View {
     this.recordTab = "description"; this.detailError = "";
     this.activity = workflowActivity(); this.activityFilter = "all";
     this.actionOpen = null; this.actionError = "";
-    this.openSelect = null; this.selectKeyHandlers = null; this.graphInitiative = null; this.graphViews = new Map();
+    this.openSelect = null; this.selectKeyHandlers = null; this.filtersOpen = false; this.graphInitiative = null; this.graphViews = new Map();
     this.revision++; this.detailRevision++; this.fileRevision++; this.loading = false; this.error = "";
     if (next.machine) { this.error = "The selected repository is remote. Context requests currently execute locally. Select a local repository."; return; }
     if (!next.cwd) { this.error = "Select a repository folder."; return; }
@@ -103,7 +107,7 @@ export default class SharedContext extends View {
         if (viewKey !== this.viewKey) {
           const saved = this.saved.get(viewKey);
           this.viewKey = viewKey;
-          this.selected = saved?.selected ?? null; this.queue = saved?.queue ?? "initiatives"; this.drawer = saved?.drawer ?? "peek";
+          this.selected = saved?.selected ?? null; this.filters = { ...DEFAULT_FILTERS, ...saved?.filters }; this.drawer = saved?.drawer ?? "peek";
           this.collapsed = new Set(saved?.collapsed); this.fileFolders = new Set(saved?.fileFolders); this.fileSelection = saved?.fileSelection ?? null;
           this.fileEntries = new Map(); this.filePending = new Set();
         }
@@ -144,7 +148,7 @@ export default class SharedContext extends View {
     this.selected = { id: record.id, kind, ref: record.ref };
     if (reveal && this.drawer === "closed") this.drawer = "peek";
     if (kind === "ticket" && this.snapshot) {
-      const path = dependencyRows(this.snapshot, this.queue, this.collapsed).canonical.get(record.id);
+      const path = dependencyRows(this.snapshot, this.filters, this.collapsed).canonical.get(record.id);
       if (path) revealPath(this.collapsed, path);
     }
     const serial = ++this.detailRevision, revision = this.revision;
@@ -231,13 +235,13 @@ export default class SharedContext extends View {
     const folderRows = (collection, path, depth) => {
       for (const entry of this.fileEntries.get(`${collection}:${path}`) ?? []) {
         const open = this.fileFolders.has(`${collection}:${entry.path}`);
-        rows.push(button(`context-file:${collection}:${entry.path}`, "", (_event, cx) => entry.directory ? this.toggleFolder(collection, entry.path, cx) : this.openFile(collection, entry.path, cx), { label: entry.name }).w_full().pl(8 + depth * 18).pr(8).rounded(7).bg(t.background).text_color(t.foreground).text_size(13).hover(el => el.bg(t.hover)).child(h_flex().w_full().gap(7).items_center().child(entry.directory ? icon(open ? "down" : "right", 12) : div().w(12)).child(icon(entry.directory ? "folder" : "file")).child(div().flex_1().min_w(0).truncate().child(entry.name))));
+        rows.push(button(`context-file:${collection}:${entry.path}`, "", (_event, cx) => entry.directory ? this.toggleFolder(collection, entry.path, cx) : this.openFile(collection, entry.path, cx), { label: entry.name }).w_full().pl(8 + depth * 18).pr(8).rounded(0).bg(t.background).text_color(t.foreground).text_size(13).hover(el => el.bg(t.hover)).child(h_flex().w_full().gap(8).items_center().child(entry.directory ? icon(open ? "down" : "right", 12) : div().w(12)).child(icon(entry.directory ? "folder" : "file")).child(div().flex_1().min_w(0).truncate().child(entry.name))));
         if (entry.directory && open) folderRows(collection, entry.path, depth + 1);
       }
     };
     for (const collection of this.context.collections) {
       const open = this.fileFolders.has(`${collection.id}:`);
-      rows.push(button(`context-collection:${collection.id}`, "", (_event, cx) => { if (collection.path) this.toggleFolder(collection.id, "", cx); else { run("layout.select", { stack: "panel-body", child: "tracker" }); run("layout.show", { id: "panel" }); } }, { label: `${collection.label}: ${collection.store ?? collection.adapter}` }).w_full().px(8).rounded(7).bg(t.background).text_color(t.foreground).text_size(13).hover(el => el.bg(t.hover)).child(h_flex().w_full().gap(7).items_center().child(collection.path ? icon(open ? "down" : "right", 12) : div().w(12)).child(icon(collection.path ? "folder" : "tracker")).child(div().flex_1().child(collection.label)).child(div().text_size(10).text_color(t.dim).child(collection.store ?? collection.adapter))));
+      rows.push(button(`context-collection:${collection.id}`, "", (_event, cx) => { if (collection.path) this.toggleFolder(collection.id, "", cx); else { run("layout.select", { stack: "panel-body", child: "tracker" }); run("layout.show", { id: "panel" }); } }, { label: `${collection.label}: ${collection.store ?? collection.adapter}` }).w_full().px(8).rounded(0).bg(t.background).text_color(t.foreground).text_size(13).hover(el => el.bg(t.hover)).child(h_flex().w_full().gap(8).items_center().child(collection.path ? icon(open ? "down" : "right", 12) : div().w(12)).child(icon(collection.path ? "folder" : "tracker")).child(div().flex_1().child(collection.label)).child(div().text_size(10).text_color(t.dim).child(collection.store ?? collection.adapter))));
       if (open && collection.path) folderRows(collection.id, "", 1);
     }
     return v_flex().id("context-files-tree").flex_1().min_h(0).overflow_y_scrollbar().p(6).children(rows);
@@ -246,7 +250,7 @@ export default class SharedContext extends View {
   treeView(height) {
     const t = theme(), disabled = !(this.preferences.layout === "C2" && this.bodySize.width >= 600) && this.drawer === "expanded" && Boolean(this.selected);
     let forest;
-    try { forest = dependencyRows(this.snapshot, this.queue, this.collapsed); }
+    try { forest = dependencyRows(this.snapshot, this.filters, this.collapsed); }
     catch (error) { return note(String(error.message ?? error), true); }
     const rows = forest.rows.map(row => {
       if (row.type === "section") return div().px(10).pt(16).pb(6).text_size(10).text_color(t.muted).child(row.record.title.toUpperCase());
@@ -257,7 +261,7 @@ export default class SharedContext extends View {
         if (row.reference) revealPath(this.collapsed, row.reference);
         this.choose(row.record, group ? "initiative" : "ticket", cx);
       };
-      return h_flex().id(`tracker-row:${row.path}`).h(group ? 80 : 60).flex_none().pl(8 + row.depth * 18).pr(6).gap(6).items_center().rounded(6).bg(selected ? t.selected : t.background).hover(el => el.bg(selected ? t.selected : t.hover))
+      return h_flex().id(`tracker-row:${row.path}`).h(group ? 80 : 60).flex_none().pl(8 + row.depth * 18).pr(8).gap(8).items_center().rounded(0).bg(selected ? t.selected : t.background).hover(el => el.bg(selected ? t.selected : t.hover))
         .child(row.children ? button(`toggle:${row.path}`, "", (_event, cx) => { cx.stop_propagation(); if (disabled) return; if (this.collapsed.has(row.path)) this.collapsed.delete(row.path); else this.collapsed.add(row.path); this.remember(); cx.notify(); }, { label: `${row.expanded ? "Collapse" : "Expand"} ${row.record.title}`, disabled }).w(24).px(0).bg("#00000000").child(icon(row.expanded ? "down" : "right", 12)) : div().w(24).flex_none())
         .child(button(`select:${row.path}`, "", action, { label: `${type}: ${row.record.title}. ${row.record.id}. ${row.state ?? `${row.children} tickets`}${row.reference ? ". Shared prerequisite. Open canonical path." : ""}`, disabled, height: group ? 76 : 56 }).flex_1().min_w(0).px(0).bg("#00000000").hover(el => el.bg("#00000000")).text_color(t.foreground).tooltip(`${row.record.title}\n${row.record.id} · ${type}${row.state ? ` · ${row.state}` : ""}`)
           .child(v_flex().flex_1().min_w(0).gap(5)
@@ -270,14 +274,17 @@ export default class SharedContext extends View {
     });
     // Resizable panels do not stretch their child to the dragged width.
     return v_flex().id("tracker-tree-frame").w_full().min_w(0).min_h(0).h(height ?? "100%").bg(t.background)
-      .child(v_flex().id("tracker-tree").flex_1().min_w(0).min_h(0).overflow_y_scrollbar().p(6).children(rows.length ? rows : [note(this.loading ? "Read tracker records…" : "No records match this queue.")]))
-      .child(this.treeFilters());
+      .child(treeFilters(this))
+      .child(v_flex().id("tracker-tree").flex_1().min_w(0).min_h(0).overflow_y_scrollbar().p(8).children(rows.length ? rows : [
+        note(this.loading ? "Read tracker records…" : "No records match these filters."),
+        button("tracker-empty-reset", "Reset filters", (_event, cx) => this.setFilters({ ...DEFAULT_FILTERS }, cx)),
+      ]));
   }
 
-  treeFilters() {
-    const t = theme();
-    return h_flex().id("tracker-tree-footer").role("toolbar").accessibility_label("Tracker filters").flex_none().h(36).p(0).gap(0).items_stretch().border_t(1).border_color(t.border)
-      .children(["initiatives", "ready", "review", "blocked", "all"].map((queue, index) => button(`queue:${queue}`, queue[0].toUpperCase() + queue.slice(1), (_event, cx) => { this.queue = queue; this.selected = null; this.detail = null; this.detailRevision++; this.remember(); cx.notify(); }).h_full().flex_1().min_w(0).rounded(0).text_size(10).px(4).border_l(index ? 1 : 0).border_color(t.border).bg(this.queue === queue ? t.selected : t.background)));
+  setFilters(filters, cx) {
+    this.filters = filters;
+    this.remember();
+    cx.notify();
   }
 
   openInitiativeGraph(initiative, cx) {
@@ -429,12 +436,17 @@ export default class SharedContext extends View {
   render(cx) {
     if (this.mode === "graph-actions") return renderGraphMenu(this);
     this.follow(cx);
-    const t = theme(), title = this.mode === "context" ? "Context" : "Tracker";
-    return v_flex().id(`shared-context:${this.mode}`).track_focus(this.focus).size_full().min_h(0).rounded(10).overflow_hidden().bg(t.background).border_1().border_color(t.border).text_color(t.foreground).text_size(13)
-      .on_key_down((event, cx) => { if (this.selectKeyHandlers) for (const id in this.selectKeyHandlers) if (this.selectKeyHandlers[id](event, cx)) return; if (event.key === "escape" && this.graphInitiative) { this.graphInitiative = null; this.focus.focus(); cx.stop_propagation(); cx.notify(); return; } if (event.key !== "escape" || this.mode !== "tracker" || (this.preferences.layout === "C2" && this.bodySize.width >= 600) || !this.selected || this.drawer === "closed") return; this.drawer = this.drawer === "expanded" ? "peek" : "closed"; this.focus.focus(); this.remember(); cx.stop_propagation(); cx.notify(); })
-      .child(h_flex().h(42).flex_none().px(14).gap(7).items_center().border_b(1).border_color(t.border).child(icon(this.mode === "context" ? "context" : "tracker")).child(div().font_semibold().child(title)).child(div().flex_1().min_w(0).truncate().text_right().text_size(10).text_color(t.dim).child(this.context?.identity ?? ""))
-        .child(button("context-settings", "⚙", () => run("mod.open", { name: "better-config" }), { label: "Open mod settings" }))
-        .child(button("context-refresh", "↻", (_event, cx) => this.refresh(cx), { label: "Refresh shared context", disabled: this.loading })))
+    const t = theme();
+    return v_flex().id(`shared-context:${this.mode}`).track_focus(this.focus).size_full().min_h(0).rounded(0).overflow_hidden().bg(t.background).border_1().border_color(t.border).text_color(t.foreground).text_size(13).font_family("JetBrains Mono")
+      .on_key_down((event, cx) => { if (this.selectKeyHandlers) for (const id in this.selectKeyHandlers) if (this.selectKeyHandlers[id](event, cx)) return; if (event.key === "escape" && this.filtersOpen) { closeTreeFilters(this, cx); cx.stop_propagation(); return; } if (event.key === "escape" && this.graphInitiative) { this.graphInitiative = null; this.focus.focus(); cx.stop_propagation(); cx.notify(); return; } if (event.key !== "escape" || this.mode !== "tracker" || (this.preferences.layout === "C2" && this.bodySize.width >= 600) || !this.selected || this.drawer === "closed") return; this.drawer = this.drawer === "expanded" ? "peek" : "closed"; this.focus.focus(); this.remember(); cx.stop_propagation(); cx.notify(); })
+      .child(h_flex().id("shared-context-titlebar").h(48).flex_none().gap(0).items_stretch().border_b(1).border_color(t.border).bg(t.chrome)
+        .child(div().w(48).flex_none().flex().items_center().justify_center().border_r(1).border_color(t.border).child(icon("context", 16).text_color(t.accent)))
+        .children([["context", "Files"], ["tracker", "Tracker"]].map(([mode, label]) => button(`shared-context-nav:${mode}`, label, () => { run("layout.select", { stack: "panel-body", child: mode }); run("layout.show", { id: "panel" }); }, { label: `${label} view`, height: 48 })
+          .rounded(0).px(16).border_r(1).border_color(t.border).bg(this.mode === mode ? t.selected : t.chrome).text_color(this.mode === mode ? t.accent : t.muted)))
+        .child(div().flex_1().min_w(0))
+        .child(div().max_w("45%").min_w(0).px(16).flex().items_center().text_size(13).text_color(t.muted).tooltip(this.context?.identity ?? "").child(div().whitespace_normal().child(this.context?.identity ?? "")))
+        .child(button("context-settings", "⚙", () => run("mod.open", { name: "better-config" }), { label: "Open mod settings", height: 48 }).w(40).rounded(0).border_l(1).border_color(t.border).bg(t.chrome))
+        .child(button("context-refresh", "↻", (_event, cx) => this.refresh(cx), { label: "Refresh shared context", disabled: this.loading, height: 48 }).w(40).rounded(0).border_l(1).border_color(t.border).bg(t.chrome)))
       .when(Boolean(this.error), el => el.child(note(this.error, true)))
       .when(!this.preferencesReady && !this.error, el => el.child(note("Read panel settings…")))
       .when(this.preferencesReady && !this.context && this.loading && !this.error, el => el.child(note("Read repository context…")))
