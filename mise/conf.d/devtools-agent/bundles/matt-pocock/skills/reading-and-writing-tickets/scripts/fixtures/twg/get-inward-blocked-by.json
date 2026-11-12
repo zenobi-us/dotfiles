@@ -1,0 +1,127 @@
+{
+  "apiVersion": "v2",
+  "command": "jira.workitem.get",
+  "request": {
+    "issueIdOrKey": "RWR-20903",
+    "site": "reckon.atlassian.net",
+    "fields": [
+      "summary",
+      "status",
+      "issuetype",
+      "parent",
+      "issuelinks",
+      "description"
+    ]
+  },
+  "data": [
+    {
+      "id": "224616",
+      "key": "RWR-20903",
+      "summary": "E2E stack: pass AWS credentials to the backend containers so contact creates do not stall",
+      "issuetype": {
+        "id": "10008",
+        "name": "Bug",
+        "subtask": false,
+        "hierarchyLevel": 0
+      },
+      "status": {
+        "name": "To Do",
+        "id": "10005",
+        "statusCategory": {
+          "id": 2,
+          "key": "new",
+          "name": "To Do"
+        }
+      },
+      "issuelinks": [
+        {
+          "id": "170700",
+          "type": {
+            "id": "10003",
+            "name": "Relates",
+            "inward": "relates to",
+            "outward": "relates to"
+          },
+          "inwardIssue": {
+            "id": "222947",
+            "key": "RWR-20174",
+            "fields": {
+              "summary": "[UI] - Show awaiting-payment instructions on the SuperStream batch Detail tab",
+              "status": {
+                "name": "Done",
+                "id": "10006",
+                "statusCategory": {
+                  "id": 3,
+                  "key": "done",
+                  "name": "Done"
+                }
+              },
+              "issuetype": {
+                "id": "10006",
+                "name": "Task"
+              }
+            }
+          }
+        },
+        {
+          "id": "170702",
+          "type": {
+            "id": "10000",
+            "name": "Blocks",
+            "inward": "is blocked by",
+            "outward": "blocks"
+          },
+          "inwardIssue": {
+            "id": "224615",
+            "key": "RWR-20902",
+            "fields": {
+              "summary": "E2E: lodge seeded SuperStream batches without the Kendo menu when superstream_migration_react is on",
+              "status": {
+                "name": "Done",
+                "id": "10006",
+                "statusCategory": {
+                  "id": 3,
+                  "key": "done",
+                  "name": "Done"
+                }
+              },
+              "issuetype": {
+                "id": "10008",
+                "name": "Bug"
+              }
+            }
+          }
+        }
+      ],
+      "description": {
+        "type": "doc",
+        "version": 1,
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Found while verifying RWR-20174 (PR #759) on the local Payroll E2E container stack, 2026-10-15."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "meta": {
+    "resourceClass": "entity",
+    "sourceMode": "native",
+    "resourceType": "jira.workitem",
+    "backend": "agg",
+    "acquisition": {
+      "requested": 1,
+      "returned": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "omitted": 0,
+      "truncated": 0
+    }
+  }
+}
