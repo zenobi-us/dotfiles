@@ -30,3 +30,8 @@ The issue tracker uses Local Markdown. Read the [tracker index](tracker/index.md
 | `sources/` | Shared-context skill | External and local source copies |
 | `domains/` | Domain skill | Stable domain vocabulary and rules |
 
+
+## Domain language
+
+- [Engineering glossary](CONTEXT.md) defines ideas, concepts, and conversion into planned work.
+
