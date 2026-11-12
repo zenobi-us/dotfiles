@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-history-repair/v1",
+  "created_at": "2026-11-12T08:17:55.436019+00:00",
+  "authorization": "User selected Correct with retained original; correct pane_id only to t86",
+  "event_ref": "workflows/collect-evidence-feedback-04-viewer/events/fix-approval-0012.yaml",
+  "original_ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/fix-approval-0012-original.yaml",
+  "original_sha256": "00675aea495a57112f6424f77f4c14a1ed5682a4b5a0db9521ae208fbf793620",
+  "repaired_sha256": "0dcf19187b57e91578fa0bacee8706994ed5c0401c5a0405092e1749dcd0463e",
+  "changes": [
+    {
+      "field": "pane_id",
+      "before": null,
+      "after": "t86"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "width": 1440,
+    "action": "Back",
+    "active": "case-1.2.capture-002image/png · 2026-11-12T05:39:10.295Z›",
+    "origin": true,
+    "caseLeft": 260,
+    "finderScroll": 0,
+    "bodyWidth": 1440
+  },
+  {
+    "width": 1440,
+    "action": "ArrowLeft",
+    "active": "case-1.2.capture-002image/png · 2026-11-12T05:39:10.295Z›",
+    "origin": true,
+    "caseLeft": 260,
+    "finderScroll": 0,
+    "bodyWidth": 1440
+  },
+  {
+    "width": 390,
+    "action": "Back",
+    "active": "case-1.2.capture-002image/png · 2026-11-12T05:39:10.295Z›",
+    "origin": true,
+    "caseLeft": 0,
+    "finderScroll": 390,
+    "bodyWidth": 390
+  },
+  {
+    "width": 390,
+    "action": "ArrowLeft",
+    "active": "case-1.2.capture-002image/png · 2026-11-12T05:39:10.295Z›",
+    "origin": true,
+    "caseLeft": 0,
+    "finderScroll": 390,
+    "bodyWidth": 390
+  }
+]

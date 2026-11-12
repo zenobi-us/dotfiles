@@ -1,0 +1,67 @@
+{
+  "sourceCommit": "9f9834003647d29efbc0ac19b49fd310ae1a1758",
+  "sourceTree": "431e49b346e6db78658a5a74cd85a76c2a77234f",
+  "validationResults": [
+    {
+      "command": "mise exec -- bun run typecheck && mise exec -- bun run build",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer",
+      "result": "passed",
+      "exit_code": 0,
+      "observed": "TypeScript passed; built 318137-byte distributed HTML with bundled scripts, CSS and fonts."
+    },
+    {
+      "command": "mise exec -- env PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome bun test /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts",
+      "cwd": "/tmp",
+      "result": "passed",
+      "exit_code": 0,
+      "observed": "1 pass, 0 fail; 58 assertions; 10.10 seconds."
+    },
+    {
+      "command": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts serve /tmp/feedback-fix0014-30SiWg/session --port 18814 --plain; BrowserTab keyboard actions at 1440x900 and 390x844",
+      "cwd": "/tmp",
+      "result": "passed",
+      "observed": "Non-first asset selected with ArrowDown and Enter. Back and ArrowLeft independently returned focus to case-1.2.capture-002 in four scenarios. Narrow caseLeft=0, finderScroll=390, bodyWidth=390. No browser errors. Owned tab closed and service stopped.",
+      "output_ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/fix-0014/focus-checks.json"
+    },
+    {
+      "command": "Installed init and validate with --plain, --json and --quiet; validate --plain --json",
+      "cwd": "/tmp/feedback-fix0014-30SiWg",
+      "result": "passed",
+      "observed": "Three real imports into temporary resolved repository evidence stores. Plain field paths and original asset hashes present; versioned JSON preserved; quiet stdout empty; JSON takes precedence.",
+      "output_ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/fix-0014/cli-init-validate.json"
+    },
+    {
+      "command": "Installed serve subcommand and direct serve.ts with --plain, --json and --quiet on port 18815",
+      "cwd": "/tmp/feedback-fix0014-30SiWg",
+      "result": "passed",
+      "observed": "Six live HTTP session reads passed; each SIGTERM exit 0, writer lock released; plain URL and session identity present, versioned JSON preserved, quiet stdout empty.",
+      "output_ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/fix-0014/cli-serve.json"
+    },
+    {
+      "command": "npx react-doctor@latest --verbose --scope changed; npx react-doctor@latest --verbose in isolated frozen-source baseline",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer",
+      "result": "passed",
+      "exit_code": 0,
+      "observed": "Both scores 71/100, same three existing warnings: build loop await, effect fetching, effect async state. No diagnostic regression; no unrelated changes made."
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}; git status --porcelain",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+      "result": "passed",
+      "exit_code": 0,
+      "observed": "Source clean; exact committed identity recorded."
+    },
+    {
+      "command": "mise exec -- mq --allow-http-import -I raw -F json <okf_parse | okf_validate> <immutable draft and two Markdown projections>",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "result": "passed",
+      "exit_code": 0,
+      "observed": "Three empty validation error arrays; full bundle validation not applicable: these are standalone workflow artifacts, not an OKF bundle."
+    }
+  ],
+  "limits": [
+    "Existing React warnings unchanged at 71/100; no unrelated fixes.",
+    "Initial sequential serve smoke readiness failed while browser service held the session; service stopped, six sequential checks then passed.",
+    "Fresh review required; no merge, push or ticket completion."
+  ]
+}

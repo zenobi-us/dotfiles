@@ -1,0 +1,103 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-04-viewer
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer
+source_branch: feature/collect-evidence-feedback-04-viewer
+base_branch: master
+source_commit: 9f9834003647d29efbc0ac19b49fd310ae1a1758
+source_tree: 431e49b346e6db78658a5a74cd85a76c2a77234f
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-04-viewer
+  ref: tracker/tickets/collect-evidence-feedback-04-viewer.md
+workflow:
+  store: repository
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  ref: workflows/collect-evidence-feedback-04-viewer
+ticket_ref: tracker/tickets/collect-evidence-feedback-04-viewer.md
+phase: fix
+attempt: 1
+pane_id: null
+session_id: hc:t86
+receipt_id: fix-complete-0015
+parent_receipt: fix-0014
+event: phase-complete
+status: completed
+created_at: '2026-11-12T08:28:10.524015+00:00'
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-04-viewer/events/fix-0014.yaml
+- kind: snapshot
+  ref: workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/pr-draft-fix-0014.md
+- kind: repair
+  ref: workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/fix-approval-0012-repair.json
+- kind: evidence
+  ref: workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/fix-0014
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-04-viewer/events/fix-complete-0015.yaml
+consumed_review_receipts:
+- review-0010
+resolved_findings:
+- STD-01
+- SPEC-01
+unresolved_findings: []
+validation_results:
+- command: result-delivery read; compare canonical event; worktree inspect
+  result: passed
+  observed: Transport schema/run/operation/hash verified; receipt equals YAML (normalized
+    timestamp); all output refs exist; valid parent graph, exact source commit/tree,
+    clean source.
+- command: inspect desktop/narrow screenshots and focus-checks.json
+  result: passed
+  observed: Non-first asset focus retained for Back and ArrowLeft at 1440 and 390
+    widths.
+- command:
+  - /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts
+  - validate
+  - /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session
+  - --plain
+  cwd: /tmp
+  result: passed
+  exit_code: 0
+- command:
+  - /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts
+  - validate
+  - /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session
+  - --json
+  cwd: /tmp
+  result: passed
+  exit_code: 0
+- command:
+  - /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts
+  - validate
+  - /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session
+  - --quiet
+  cwd: /tmp
+  result: passed
+  exit_code: 0
+child_completion:
+  run_id: 763fb834-52b7-4251-9efb-7de8eaf5cf75
+  target: t87
+  sequence: 2
+  state: completed
+  transport_ack_sha256: 88dad24b2fc764bfb443cb833efaea39dfe7c4a1f0378ab90d400af37e99ea09
+pane_close:
+  terminal: t87
+  removed: true
+  workspace_preserved: true
+  observation: 'herdr-app ls: owned terminal absent; source space retained in recent'
+publication:
+  merged: false
+  pushed: false
+  source_committed: true
+  ticket_completed: false
+  workflow_committed: false
+snapshot_ref: workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/pr-draft-fix-0014.md
+projection_refs:
+- workflows/collect-evidence-feedback-04-viewer/projections/pr-draft.md
+- workflows/collect-evidence-feedback-04-viewer/projections/implementation-log.md
+- workflows/collect-evidence-feedback-04-viewer/projections/latest-status.yaml

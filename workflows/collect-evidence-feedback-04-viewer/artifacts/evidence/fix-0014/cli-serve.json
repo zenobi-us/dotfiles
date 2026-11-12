@@ -1,0 +1,89 @@
+[
+  {
+    "cmd": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "serve",
+      "/tmp/feedback-fix0014-30SiWg/session",
+      "--port",
+      "18815",
+      "--plain"
+    ],
+    "code": 0,
+    "out": "schema: collect-feedback/v1\nkind: event\ncommand: serve\nsuccess: true\nurl: http://127.0.0.1:18815\nport: 18815\nsessionId: review-verified\nreadOnly: true\n",
+    "err": "",
+    "httpSession": "review-verified",
+    "lockReleased": true
+  },
+  {
+    "cmd": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "serve",
+      "/tmp/feedback-fix0014-30SiWg/session",
+      "--port",
+      "18815",
+      "--json"
+    ],
+    "code": 0,
+    "out": "{\"schema\":\"collect-feedback/v1\",\"kind\":\"event\",\"command\":\"serve\",\"success\":true,\"url\":\"http://127.0.0.1:18815\",\"port\":18815,\"sessionId\":\"review-verified\",\"readOnly\":true}\n",
+    "err": "",
+    "httpSession": "review-verified",
+    "lockReleased": true
+  },
+  {
+    "cmd": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "serve",
+      "/tmp/feedback-fix0014-30SiWg/session",
+      "--port",
+      "18815",
+      "--quiet"
+    ],
+    "code": 0,
+    "out": "",
+    "err": "",
+    "httpSession": "review-verified",
+    "lockReleased": true
+  },
+  {
+    "cmd": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/serve.ts",
+      "/tmp/feedback-fix0014-30SiWg/session",
+      "--port",
+      "18815",
+      "--plain"
+    ],
+    "code": 0,
+    "out": "schema: collect-feedback/v1\nkind: event\ncommand: serve\nsuccess: true\nurl: http://127.0.0.1:18815\nport: 18815\nsessionId: review-verified\nreadOnly: true\n",
+    "err": "",
+    "httpSession": "review-verified",
+    "lockReleased": true
+  },
+  {
+    "cmd": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/serve.ts",
+      "/tmp/feedback-fix0014-30SiWg/session",
+      "--port",
+      "18815",
+      "--json"
+    ],
+    "code": 0,
+    "out": "{\"schema\":\"collect-feedback/v1\",\"kind\":\"event\",\"command\":\"serve\",\"success\":true,\"url\":\"http://127.0.0.1:18815\",\"port\":18815,\"sessionId\":\"review-verified\",\"readOnly\":true}\n",
+    "err": "",
+    "httpSession": "review-verified",
+    "lockReleased": true
+  },
+  {
+    "cmd": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/serve.ts",
+      "/tmp/feedback-fix0014-30SiWg/session",
+      "--port",
+      "18815",
+      "--quiet"
+    ],
+    "code": 0,
+    "out": "",
+    "err": "",
+    "httpSession": "review-verified",
+    "lockReleased": true
+  }
+]
