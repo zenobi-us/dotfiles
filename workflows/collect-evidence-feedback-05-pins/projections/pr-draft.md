@@ -47,7 +47,7 @@ The full combined run skipped three opt-in collector-driver tests. This ticket e
 
 ## Review history
 
-No review ran. The parent owns the independent review phase.
+Review review-0007: FAILURE at commit 10f8f120cd4b796354984a9c561117ad4701dfb5. [Immutable review](../artifacts/reviews/review-review-0007.md), [result](../events/review-0007.yaml), [parent completion](../events/review-complete-0009.yaml).
 
 ## Resolved findings
 
@@ -55,11 +55,11 @@ No formal review findings exist. Integration fixed button ref typing, pointer-co
 
 ## Remaining findings and questions
 
-No known implementation blocker. Editing, deletion and persisted unfinished drafts remain outside this ticket.
+Open findings: STD-01 and SPEC-01. See the immutable review for required changes and validation. Editing, deletion and persisted unfinished drafts remain outside this ticket.
 
 ## Latest reviewer verdict
 
-None.
+FAILURE for commit 10f8f120cd4b796354984a9c561117ad4701dfb5 and tree 32b3e835e04439239c5afae56d664b72ec44e8ff.
 
 ## Merge status
 
@@ -78,6 +78,6 @@ Not merged or pushed. Ticket remains claimed.
 
 ## Parent validation
 
-The parent verified the delivered receipt, source hash and all 13 exported annotation geometries. The installed export matched the retained export exactly. Terminal t99 is closed. The source worktree remains clean. No review, merge or push ran.
+The parent verified the delivered receipt, source hash and all 13 exported annotation geometries. The installed export matched the retained export exactly. Terminal t99 is closed. The source worktree remains clean. At implementation completion no review, merge or push had run. Independent review now reports FAILURE; no merge or push ran.
 
 [Parent implementation completion](../events/implementation-complete-0005.yaml) records clean review target 10f8f120cd4b796354984a9c561117ad4701dfb5.

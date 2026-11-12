@@ -1,0 +1,63 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-start-0006",
+  "workflow_id": "collect-evidence-feedback-05-pins",
+  "phase": "review",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": "implementation-complete-0005",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-05-pins",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-05-pins",
+  "source_branch": "feature/collect-evidence-feedback-05-pins",
+  "base_branch": "master",
+  "source_commit": "10f8f120cd4b796354984a9c561117ad4701dfb5",
+  "source_tree": "32b3e835e04439239c5afae56d664b72ec44e8ff",
+  "created_at": "2026-11-12T22:25:41.480669+00:00",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": null,
+  "session_id": "hc:t9f",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-05-pins",
+    "ref": "tracker/tickets/collect-evidence-feedback-05-pins.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-05-pins.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-05-pins"
+  },
+  "status": "started",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-05-pins.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-05-pins/events/implementation-complete-0005.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-05-pins/artifacts/snapshots/pr-draft-implementation-0003.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-05-pins/events/review-start-0006.yaml"
+    }
+  ],
+  "ownership": {
+    "owner": "hc:t9f",
+    "prior_owner": "hc:t98",
+    "prior_owner_exit_code": 0,
+    "implementation_child": "t99 absent (hc not_found)",
+    "goal_reservations": "No matching goal event records",
+    "approval": "User selected Authorize review: preserve source and history; independent review only, no fixes, merge or push."
+  },
+  "recovery_mode": "begin",
+  "recovery_reason": "Inspector selects review of current clean source. User approved scoped review ownership."
+}

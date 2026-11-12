@@ -1,0 +1,123 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-complete-0009",
+  "workflow_id": "collect-evidence-feedback-05-pins",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "review-0007",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-05-pins",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-05-pins",
+  "source_branch": "feature/collect-evidence-feedback-05-pins",
+  "base_branch": "master",
+  "source_commit": "10f8f120cd4b796354984a9c561117ad4701dfb5",
+  "source_tree": "32b3e835e04439239c5afae56d664b72ec44e8ff",
+  "created_at": "2026-11-12T22:35:51.783042+00:00",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": null,
+  "session_id": "hc:t9f",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-05-pins",
+    "ref": "tracker/tickets/collect-evidence-feedback-05-pins.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-05-pins.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-05-pins"
+  },
+  "status": "completed",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-05-pins/events/review-0007.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-05-pins/events/review-start-0006.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-05-pins/events/review-launch-0008.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-05-pins/artifacts/reviews/review-review-0007.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-05-pins/events/review-complete-0009.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-05-pins.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-05-pins/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-05-pins/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-05-pins/projections/pr-draft.md"
+    }
+  ],
+  "ownership": {
+    "owner": "hc:t9f",
+    "prior_owner": "hc:t98",
+    "prior_owner_exit_code": 0,
+    "implementation_child": "t99 absent (hc not_found)",
+    "goal_reservations": "No matching goal event records",
+    "approval": "User selected Authorize review: preserve source and history; independent review only, no fixes, merge or push."
+  },
+  "recovery_mode": "begin",
+  "recovery_reason": "Inspector selects review of current clean source. User approved scoped review ownership.",
+  "validation_results": [
+    {
+      "command": "result-delivery read; authoritative YAML event comparison",
+      "result": "passed",
+      "observed": "Matching schema, run, operation, verified payload hash and event contents (YAML timestamp normalized); parent chain and exact source identity verified."
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}; git status --porcelain in source workspace",
+      "result": "passed",
+      "observed": "Frozen commit and tree unchanged. Only reviewer artifact and event untracked."
+    },
+    {
+      "command": "Reviewed public collect-feedback.ts export retained temporary session --json from /tmp",
+      "result": "passed",
+      "observed": "13 annotations exactly match retained export, source SHA-256 and rounded original-pixel edges."
+    }
+  ],
+  "shutdown": {
+    "pane_closed": true,
+    "terminal": "t9g",
+    "worktree_preserved": true,
+    "workspace": "App automatically removed empty source space; no unrelated terminals closed."
+  },
+  "delivery": {
+    "sha256": "7081e34618970626b7e7e79d6849168d195b0303cd4df804f85782c9503278e4",
+    "acknowledged": true,
+    "run_id": "0f67c207-a376-4c32-b354-18078b4564c7",
+    "operation_id": "pins-review-0007"
+  },
+  "review_outcome": {
+    "result_receipt": "review-0007",
+    "blocking_findings": [
+      "STD-01",
+      "SPEC-01"
+    ]
+  },
+  "artifact_transfer": {
+    "reason": "Moved the sole immutable review artifact from source workspace to resolved base workflow store for publication; no duplicate body retained. Preserved result event byte-identically.",
+    "event_sha256": "475671416f1664a4e4fe4cec87cedde34ed07d6da7dbd2350b16329b98fd6eb3"
+  }
+}
