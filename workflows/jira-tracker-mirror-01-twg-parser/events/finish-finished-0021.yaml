@@ -1,0 +1,85 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-01-twg-parser",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "source_branch": "fix/jira-tracker-mirror-01-twg-parser",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-01-twg-parser",
+    "ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-01-twg-parser"
+  },
+  "created_at": "2026-11-12T10:35:23.908Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "receipt_id": "finish-finished-0021",
+  "phase": "finish",
+  "event": "phase-complete",
+  "attempt": 2,
+  "parent_receipt": "finish-finished-0020",
+  "status": "FINISHED",
+  "source_commit": "b0e993bd0fb7d93bcbda133334a7ea42299a0533",
+  "source_tree": "dc31b14ce89441f60e87599e0d557fc952b30dba",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/finish-finished-0020.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/review-0012.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/artifacts/reviews/review-review-0012.md"
+    }
+  ],
+  "review_receipt": "workflows/jira-tracker-mirror-01-twg-parser/events/review-0012.yaml",
+  "reviewed_source_commit": "b0e993bd0fb7d93bcbda133334a7ea42299a0533",
+  "reviewed_source_tree": "dc31b14ce89441f60e87599e0d557fc952b30dba",
+  "base_before": "a2f48b62212901119877bd54c1fd237ff1465923",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "dc31b14ce89441f60e87599e0d557fc952b30dba",
+  "merged_commit": "b0e993bd0fb7d93bcbda133334a7ea42299a0533",
+  "merged_tree": "dc31b14ce89441f60e87599e0d557fc952b30dba",
+  "merged_parents": [
+    "a2f48b62212901119877bd54c1fd237ff1465923"
+  ],
+  "remote_observed_commit": "b0e993bd0fb7d93bcbda133334a7ea42299a0533",
+  "merged_commit_reachable": true,
+  "ticket_completion": {
+    "ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md",
+    "observed_state": "completed",
+    "commit": "517bb19d"
+  },
+  "worktree_removed": true,
+  "publication": {
+    "source_committed": true,
+    "workflow_records_committed": true,
+    "pushed": true,
+    "merged": true,
+    "ticket_completed": true
+  },
+  "pushed": true,
+  "ticket_completed": true,
+  "workspace_closed": true,
+  "supersedes": "finish-finished-0020",
+  "supersede_reason": "finish-finished-0020 recorded pushed and ticket_completed under publication and had no workspace_closed. The inspector reads these as top-level fields. Facts unchanged.",
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/finish-finished-0021.yaml"
+    }
+  ]
+}

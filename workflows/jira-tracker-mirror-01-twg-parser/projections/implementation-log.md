@@ -58,3 +58,7 @@ Same as implementation-0002 (`58c0b8a4` against `master`).
 ## Review
 
 - review-0008: SUCCESS for 58c0b8a4e4c608991076afe5a5d7da3f0e703f07. No source change.
+
+## Finish
+
+- Rebased to b0e993bd; review-0012 SUCCESS; merged and pushed; FINISHED (finish-finished-0021, superseding 0020).

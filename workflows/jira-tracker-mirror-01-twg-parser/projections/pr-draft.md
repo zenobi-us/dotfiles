@@ -94,3 +94,15 @@ None.
 ## Merge status
 
 Not merged. Latest verdict SUCCESS for 58c0b8a4e4c608991076afe5a5d7da3f0e703f07.
+
+## Finish history
+
+- finish-0010 (attempt 1): FINISH_FAILED at prepare. Master had moved past the branch base, so `wt merge --no-rebase` could not fast-forward.
+- Branch rebased with `wt step rebase` onto `a2f48b62`: `58c0b8a4` became `b0e993bd`; range-diff unchanged; source diff identical.
+- review-0012 (attempt 2), reviewed `b0e993bd`: **SUCCESS**, no blocking findings. Artifact: [review-review-0012.md](../artifacts/reviews/review-review-0012.md). Receipts: [review-start-0011](../events/review-start-0011.yaml), [review-0012](../events/review-0012.yaml), [review-complete-0013](../events/review-complete-0013.yaml).
+- Merged by fast-forward: `master` = `b0e993bd`, tree `dc31b14c`, parent `a2f48b62`. Pushed to `origin/master`. Ticket completed in `517bb19d`. Branch and worktree removed.
+- Receipts: [finish-prepared-0014](../events/finish-prepared-0014.yaml), [finish-merged-0015](../events/finish-merged-0015.yaml), [finish-validated-0016](../events/finish-validated-0016.yaml), [finish-pushed-0017](../events/finish-pushed-0017.yaml), [finish-ticket-completed-0018](../events/finish-ticket-completed-0018.yaml), [finish-worktree-removed-0019](../events/finish-worktree-removed-0019.yaml), [finish-finished-0020](../events/finish-finished-0020.yaml), [finish-finished-0021](../events/finish-finished-0021.yaml) (terminal; adds the top-level completion fields).
+
+## Merge status
+
+Merged and pushed. Latest verdict SUCCESS for `b0e993bd`.

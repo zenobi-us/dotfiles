@@ -1,0 +1,79 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-01-twg-parser",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "source_branch": "fix/jira-tracker-mirror-01-twg-parser",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-01-twg-parser",
+    "ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-01-twg-parser"
+  },
+  "source_commit": "b0e993bd0fb7d93bcbda133334a7ea42299a0533",
+  "source_tree": "dc31b14ce89441f60e87599e0d557fc952b30dba",
+  "created_at": "2026-11-12T10:31:28.882Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "receipt_id": "finish-prepared-0014",
+  "phase": "finish",
+  "event": "phase-checkpoint",
+  "attempt": 2,
+  "parent_receipt": "review-complete-0013",
+  "status": "FINISHING",
+  "checkpoint": "prepared",
+  "next_step": "merge",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/review-complete-0013.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/review-0012.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/artifacts/reviews/review-review-0012.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/finish-0010.yaml"
+    }
+  ],
+  "review_receipt": "workflows/jira-tracker-mirror-01-twg-parser/events/review-0012.yaml",
+  "reviewed_source_commit": "b0e993bd0fb7d93bcbda133334a7ea42299a0533",
+  "reviewed_source_tree": "dc31b14ce89441f60e87599e0d557fc952b30dba",
+  "base_before": "a2f48b62212901119877bd54c1fd237ff1465923",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "dc31b14ce89441f60e87599e0d557fc952b30dba",
+  "proposed_merge_message": "fix(tickets): share one twg Jira parser for jira-tracker-mirror-01-twg-parser\n\ndep-tree-cli.ts jira read data.data.issues and issue.fields. twg\nreturns neither, so the command failed on every run. twg-jira.ts\nreads the real query and get shapes, follows pageInfo.nextCursor with\n--after, always passes --fields, and fails on an unexpected shape.\nOnly an 'is blocked by' link with inwardIssue counts as a blocker.",
+  "validation": [
+    {
+      "command": "mise x -- bun test (reading-and-writing-tickets, worktree)",
+      "result": "passed",
+      "details": "48 pass, 0 fail, after review-0012."
+    },
+    {
+      "command": "git merge-tree --write-tree master fix/jira-tracker-mirror-01-twg-parser",
+      "result": "passed",
+      "details": "Clean; tree equals the reviewed source tree."
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/finish-prepared-0014.yaml"
+    }
+  ]
+}
