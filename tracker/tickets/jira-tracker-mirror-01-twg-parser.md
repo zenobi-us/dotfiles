@@ -4,7 +4,7 @@ id: "jira-tracker-mirror-01-twg-parser"
 title: "Share one twg Jira parser and fix the Jira dependency graph"
 type: "bug"
 triage: "ready-for-agent"
-work_status: "claimed"
+work_status: "completed"
 parent: "jira-tracker-mirror"
 sequence: 1
 blocked_by: []
@@ -35,3 +35,4 @@ Verified `twg` output (2026-11-12, see the initiative):
 ## Comments
 
 - 2026-11-12T10:05Z, S: Review verdict **SUCCESS** for commit `58c0b8a4e4c608991076afe5a5d7da3f0e703f07`. Artifact: `workflows/jira-tracker-mirror-01-twg-parser/artifacts/reviews/review-review-0008.md`.
+- 2026-11-12T10:34Z, S: Completed. Reviewed source `b0e993bd` (review-0012 SUCCESS, artifact `workflows/jira-tracker-mirror-01-twg-parser/artifacts/reviews/review-review-0012.md`) fast-forwarded onto `master` and pushed to `origin/master`. Integrated validation passed. Earlier review-0008 covered `58c0b8a4` before the rebase.
