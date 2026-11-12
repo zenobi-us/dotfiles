@@ -1,0 +1,56 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "b1afc2020aa293f242aab79e2d10434a24e93a87",
+  "source_tree": "5a72d914baa4c687af82e846efb5dc0ca55d33d1",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "receipt_id": "finish-approval-0057",
+  "parent_receipt": "finish-failed-0056",
+  "phase": "finish",
+  "event": "operator-approval",
+  "status": "approved",
+  "attempt": 3,
+  "created_at": "2026-11-12T11:56:21.873138+00:00",
+  "session_id": "hc:t90",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/finish-failed-0056.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/finish-approval-0057.yaml"
+    }
+  ],
+  "recovery_mode": "reconcile",
+  "recovery_reason": "User authorized cleanup-only recovery; integration and tracker publication verified; no source workspace or terminal remains in desktop/core inventory.",
+  "approval": {
+    "answer": "Resume cleanup",
+    "scope": "Check ownership and process liveness; remove only recorded branch/worktree when safe; publish final receipt. Do not kill active processes."
+  },
+  "ownership": {
+    "owner": "hc:t90",
+    "previous_owner": "hc:unknown",
+    "liveness": "hc ls --all shows no terminals in source worktree; herdr-app ls shows source only in recent shortcuts; unrelated sessions preserved."
+  }
+}
