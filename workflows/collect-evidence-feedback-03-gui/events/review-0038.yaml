@@ -1,0 +1,58 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: d70fe7e463638f134d6226397ca38724492deca4
+source_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: review-0038
+phase: review
+event: phase-complete
+status: completed
+attempt: 7
+parent_receipt: review-0037
+created_at: '2026-11-12T04:50:44.697771+00:00'
+session_id: herdr-app:t6z
+pane_id: null
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0037.yaml
+- kind: review
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/reviews/review-review-0037.md
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0035.yaml
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0038.yaml
+parent_validation:
+  authoritative_event_matches_transport: true
+  frozen_source_unchanged: true
+  source_clean: true
+  review_artifact_source_matches: true
+  review_verdict_observed: SUCCESS
+  acknowledged: true
+  delivery_sha256: 6ca81464d01b7c742767c65fb11656f6ab0a62abe1a0e7c399160b09142cf931
+  child_completion_signal: sequence3 completed 2026-11-12T04:49:31.349Z
+  reviewer_terminal: t7k stopped/removed
+validation_results:
+- command: RUN_GUI_EVIDENCE_TESTS=1 GUI_EVIDENCE_SCOPE=<parent-owned :0/0x2a00003>
+    GUI_EVIDENCE_IMAGE=<480x260 RGB102/51/153> mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/gui-workflow.test.ts
+  cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+  status: passed
+  exit_code: 0
+  assertions: 60
+tracker_publication: Review links published in immediate postmerge tracker transaction;
+  defer overlapping ticket edit until Worktrunk fast-forward preserves reviewed tree.

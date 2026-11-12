@@ -1,0 +1,64 @@
+{
+  "schema": "worktree-fix-validation/v1",
+  "receipt_id": "fix-0027",
+  "source_commit": "4a938e995dd0802734a90cc52d58d53fe9d4da71",
+  "source_tree": "24e210d91d87828411ef0d0146d938f6934e66b7",
+  "consumed_review_receipt_ids": [
+    "review-0024",
+    "review-0025"
+  ],
+  "resolved_finding_ids": [
+    "CEGUI-R2"
+  ],
+  "unresolved_finding_ids": [
+    "CEGUI-N1"
+  ],
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/gui.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/gui-driver.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/gui-workflow.test.ts"
+  ],
+  "validations": [
+    {
+      "command": "mise exec -- wt step rebase b29b5387973467d8e21266fc9989127b4bdf3c92",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+      "result": "passed; authorized pinned-base synchronization; no manual conflicts"
+    },
+    {
+      "command": "mise exec -- env RUN_GUI_EVIDENCE_TESTS=1 GUI_EVIDENCE_SCOPE='{\"display\":\":0\",\"window\":\"0x2a0000a\",\"title\":\"CEGUI-R2 owned fixture\"}' GUI_EVIDENCE_IMAGE='{\"width\":480,\"height\":260,\"pixels\":[{\"x\":40,\"y\":110,\"rgb\":[102,51,153]}],\"lines\":[]}' bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/gui-workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+      "result": "before fix: failed at capture-failure event; expected failed, observed not-requested; BLOCKED, no asset, assertion not-run"
+    },
+    {
+      "command": "mise exec -- env RUN_GUI_EVIDENCE_TESTS=1 GUI_EVIDENCE_SCOPE='{\"display\":\":0\",\"window\":\"0x2a0000a\",\"title\":\"CEGUI-R2 owned fixture\"}' GUI_EVIDENCE_IMAGE='{\"width\":480,\"height\":260,\"pixels\":[{\"x\":40,\"y\":110,\"rgb\":[102,51,153]}],\"lines\":[]}' bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/gui-workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+      "result": "after fix: 1 pass, 0 fail, 60 assertions; installed-copy public CLI; native PNG policy denial after identity; BLOCKED, captureStatus failed, assertionResult not-run, assetId null, no assets; prerequisite permission and identity cases not-requested"
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+      "result": "99 pass, 0 fail, 892 assertions"
+    },
+    {
+      "command": "xd://lsp references guiDriver",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+      "result": "unavailable: initialize failed; no valid workspace TypeScript installation; no typecheck claimed"
+    },
+    {
+      "command": "mise exec -- git commit",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+      "result": "passed; hk bundle-versions updated developer to 0.2.21 and staged two manifests"
+    }
+  ],
+  "gaps": [
+    "Known Surf approved-space.3 failure: expected Submitted, observed Not submitted; not rerun or passed.",
+    "Fresh Playwright/TUI/typecheck coverage not established; prior host prerequisite limits retained.",
+    "CEGUI-N1 optional P3 unchanged.",
+    "Two P1 Spec proposals remain UNVERIFIED concerns; no prompt-dialog or occlusion experiment performed.",
+    "No durable independently resolved evidence run created; evidence null. Native test temporary stores and policy removed.",
+    "Independent review required for new source; no merge, push, removal or tracker completion."
+  ],
+  "cleanup": "Owned Tk X11 fixture service cegui-r2-fixture stopped; /tmp/cegui-r2-fixture.py removed; regression finally removed temporary installed copies, stores and policy."
+}

@@ -1,0 +1,52 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: 4a938e995dd0802734a90cc52d58d53fe9d4da71
+source_tree: 24e210d91d87828411ef0d0146d938f6934e66b7
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: review-0029
+phase: review
+event: phase-start
+status: started
+attempt: 6
+parent_receipt: fix-0028
+created_at: '2026-11-12T04:32:00.366982+00:00'
+session_id: herdr-app:t6z
+pane_id: null
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/fix-0028.yaml
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/fix-0027.yaml
+- kind: snapshot
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/pr-draft-fix-0027.md
+- kind: review
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/reviews/review-review-0024.md
+- kind: ticket
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0029.yaml
+recovery_mode: retry
+recovery_reason: Inspector selects review/retry for changed source after usable current
+  fix. User approved fresh independent review and finish after SUCCESS.
+ownership:
+  owner: herdr-app:t6z
+  takeover: false
+  liveness: Fixer t7d completed then stopped/removed; source clean; no source agent
+    remains
+  approval: User selected Fix and continue

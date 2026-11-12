@@ -1,0 +1,50 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: d70fe7e463638f134d6226397ca38724492deca4
+source_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: review-0036
+phase: review
+event: phase-start
+status: started
+attempt: 7
+parent_receipt: finish-0035
+created_at: '2026-11-12T04:43:16.649309+00:00'
+session_id: herdr-app:t6z
+pane_id: null
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0034.yaml
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0035.yaml
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0030.yaml
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/fix-0027.yaml
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0036.yaml
+recovery_mode: reconcile
+recovery_reason: Finish inspector requested human recovery instructions; user explicitly
+  approved base history merge, source update and fresh independent review. Mapping
+  finish-0035 establishes clean new target.
+ownership:
+  owner: herdr-app:t6z
+  takeover: false
+  liveness: Prior reviewer t7f removed; no source agent remains
+  approval: User selected Merge histories and continue

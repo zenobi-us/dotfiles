@@ -1,0 +1,91 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "case",
+  "runId": "capture-failure",
+  "order": 1,
+  "purpose": "Inspect selected native GUI surface",
+  "preconditions": [],
+  "expected": {
+    "pass": "Selected native pixels match",
+    "fail": "Selected native pixels differ"
+  },
+  "steps": [
+    {
+      "id": "case.1",
+      "order": 1,
+      "purpose": "Inspect the selected native window.",
+      "actions": {
+        "do": "expect",
+        "says": "Inspect the selected native window.",
+        "locator": "screen",
+        "visible": true,
+        "shot": "native-scene",
+        "timeoutMs": 500,
+        "image": {
+          "width": 480,
+          "height": 260,
+          "pixels": [
+            {
+              "x": 40,
+              "y": 110,
+              "rgb": [
+                102,
+                51,
+                153
+              ]
+            }
+          ],
+          "lines": []
+        }
+      },
+      "expected": {
+        "text": null,
+        "visible": true,
+        "url": null,
+        "image": {
+          "width": 480,
+          "height": 260,
+          "pixels": [
+            {
+              "x": 40,
+              "y": 110,
+              "rgb": [
+                102,
+                51,
+                153
+              ]
+            }
+          ],
+          "lines": []
+        }
+      },
+      "observed": [
+        "Native GUI display/capture access failed; check installed tools, X11 authorization and selected window permissions separately"
+      ],
+      "assertionResult": "not-run"
+    }
+  ],
+  "events": "cases/case/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "case.error-001",
+      "caseId": "case",
+      "stepId": "case.1",
+      "category": "blocked",
+      "message": "Native GUI display/capture access failed; check installed tools, X11 authorization and selected window permissions separately"
+    }
+  ],
+  "limits": [
+    "Native video and automated GUI input are unavailable.",
+    "Only Linux X11 is supported. Wayland portals, macOS and Windows are not implemented.",
+    "Pixel probes and stable frames do not prove usability or absence of private content. Inspect every original PNG.",
+    "Keep the selected window unobscured; X11 capture can include occlusion. Display root captures include the whole approved display."
+  ],
+  "sideEffects": [
+    "Read-only capture; no application input, launch, focus or shutdown operations performed. Borrowed windows and displays preserved."
+  ]
+}

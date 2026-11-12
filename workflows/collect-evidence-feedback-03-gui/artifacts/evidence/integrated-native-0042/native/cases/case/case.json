@@ -1,0 +1,109 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "case",
+  "runId": "native",
+  "order": 1,
+  "purpose": "Inspect selected native GUI surface",
+  "preconditions": [],
+  "expected": {
+    "pass": "Selected native pixels match",
+    "fail": "Selected native pixels differ"
+  },
+  "steps": [
+    {
+      "id": "case.1",
+      "order": 1,
+      "purpose": "Inspect the selected native window.",
+      "actions": {
+        "do": "expect",
+        "says": "Inspect the selected native window.",
+        "locator": "screen",
+        "visible": true,
+        "shot": "native-scene",
+        "timeoutMs": 500,
+        "image": {
+          "width": 480,
+          "height": 260,
+          "pixels": [
+            {
+              "x": 40,
+              "y": 110,
+              "rgb": [
+                102,
+                51,
+                153
+              ]
+            }
+          ],
+          "lines": []
+        }
+      },
+      "expected": {
+        "text": null,
+        "visible": true,
+        "url": null,
+        "image": {
+          "width": 480,
+          "height": 260,
+          "pixels": [
+            {
+              "x": 40,
+              "y": 110,
+              "rgb": [
+                102,
+                51,
+                153
+              ]
+            }
+          ],
+          "lines": []
+        }
+      },
+      "observed": [
+        "Exact selected surface title, stable native frame, dimensions and RGB probes match"
+      ],
+      "assertionResult": "passed"
+    }
+  ],
+  "events": "cases/case/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "case.1.capture-001",
+      "caseId": "case",
+      "stepId": "case.1",
+      "path": "cases/case/media/step-001-step-case-001-native-scene--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "ded7cd8ceb51c7b544fb5b23a5922afd625d04e0b49e5dfaeb7013371ff963e9",
+      "mediaType": "image/png",
+      "width": 480,
+      "height": 260,
+      "capturedAt": "2026-11-12T04:54:54.629Z",
+      "viewport": null,
+      "surface": "gui",
+      "driver": "gui",
+      "driverVersion": "Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org",
+      "captureMethod": "x11-imagemagick-import",
+      "url": "x11://:0/0x2a00003",
+      "gui": {
+        "display": ":0",
+        "window": "0x2a00003",
+        "title": "Collector owned integrated GUI check",
+        "ownership": "borrowed",
+        "cleanup": "preserved"
+      }
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Native video and automated GUI input are unavailable.",
+    "Only Linux X11 is supported. Wayland portals, macOS and Windows are not implemented.",
+    "Pixel probes and stable frames do not prove usability or absence of private content. Inspect every original PNG.",
+    "Keep the selected window unobscured; X11 capture can include occlusion. Display root captures include the whole approved display."
+  ],
+  "sideEffects": [
+    "Read-only capture; no application input, launch, focus or shutdown operations performed. Borrowed windows and displays preserved."
+  ]
+}

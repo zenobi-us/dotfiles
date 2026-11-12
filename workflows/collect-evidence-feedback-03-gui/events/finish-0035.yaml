@@ -1,0 +1,54 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: d70fe7e463638f134d6226397ca38724492deca4
+source_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: finish-0035
+phase: finish
+event: phase-checkpoint
+status: started
+attempt: 2
+parent_receipt: finish-0034
+created_at: '2026-11-12T04:42:56.213909+00:00'
+session_id: herdr-app:t6z
+pane_id: null
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0034.yaml
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0030.yaml
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0035.yaml
+checkpoint: base_synchronized_source_rebased_requires_review
+base_sync_commit: d22002f5ed1e2b1cae731171a81207ed95d0ca3b
+base_sync_tree: 72e2601e7a33e14d6aca95fdbf0b318c5b853667
+base_sync_parents:
+- 14f0f571cf00ffa85b78353bab22583c84c5da15
+- 8faf41f406918f3ccf1cc9f7dc10fec49b4a7a15
+old_source_commit: 4a938e995dd0802734a90cc52d58d53fe9d4da71
+old_source_tree: 24e210d91d87828411ef0d0146d938f6934e66b7
+source_clean: true
+conflict_resolution: 'Pipeline prerequisite conflict: keep GUI in driver allowlist
+  and retain upstream mq-only prerequisite, removing obsolete GNU mv probe. Preserve
+  upstream portable mkdir+rename publication. No unrelated edits.'
+previous_review_invalidated: true
+setup_side_effect: mise exec auto-installed prebuilt font-install1.5.0 and rustledger0.21.0
+  due updated upstream mise config before rebase; no collection was active. No sudo
+  or manual tool installation command.
+next_step: Fresh independent review against synchronized base, then finish on SUCCESS.

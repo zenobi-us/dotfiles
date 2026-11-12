@@ -1,17 +1,25 @@
 schema: worktree-latest-status/v1
 workflow_id: collect-evidence-feedback-03-gui
 ticket: tracker/tickets/collect-evidence-feedback-03-gui.md
-state: REVIEW_FAILED
-latest_receipt: review-0025
-latest_source_commit: c224ea08907df7d2dc2a12d297bbd107fb1597af
-latest_source_tree: 2f409d6d19cfc5bcd56cd824f74410b58aa2ed1c
-latest_review_verdict: FAILURE
-open_findings:
+state: FINISHING
+latest_receipt: finish-0042
+latest_source_commit: d70fe7e463638f134d6226397ca38724492deca4
+latest_source_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+latest_review_verdict: SUCCESS
+open_findings: []
+resolved_findings:
 - CEGUI-R2
 optional_findings:
 - CEGUI-N1
+- CEGUI-N2
 remaining_limits:
 - 'Retained Surf approved-space.3 FAIL: expected Submitted, observed Not submitted;
   not rerun'
 - Fresh Playwright/TUI/typecheck unavailable in recorded host setup
 - CEGUI-N1 optional P3 only
+- Two P1 Spec proposals remain unverified; not exercised or fixed
+next_step: Independent review of the new source commit
+draft_snapshot: artifacts/snapshots/pr-draft-fix-0027.md
+validation_snapshot: artifacts/snapshots/validation-fix-0027.json
+merged_commit: 4441b5c0aacecbb6620b1696a5b3c483e5733fb7
+integrated_validation: passed

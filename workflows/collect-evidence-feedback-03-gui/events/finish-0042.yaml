@@ -1,0 +1,106 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: d70fe7e463638f134d6226397ca38724492deca4
+source_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: finish-0042
+phase: finish
+event: phase-checkpoint
+status: FINISHING
+attempt: 3
+parent_receipt: finish-0041
+created_at: '2026-11-12T04:55:52.424719+00:00'
+session_id: herdr-app:t6z
+pane_id: null
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0041.yaml
+- kind: evidence
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/evidence/integrated-native-0042
+- kind: evidence
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/evidence/integrated-fixture-size-0041
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0042.yaml
+- kind: evidence
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/evidence/integrated-native-0042
+checkpoint: merged
+review_receipt: workflows/collect-evidence-feedback-03-gui/events/review-0037.yaml
+reviewed_source_commit: d70fe7e463638f134d6226397ca38724492deca4
+reviewed_source_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+base_before: d22002f5ed1e2b1cae731171a81207ed95d0ca3b
+remote: origin
+remote_ref: refs/heads/master
+expected_merge_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+merged_commit: 4441b5c0aacecbb6620b1696a5b3c483e5733fb7
+merged_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+merged_parents:
+- d22002f5ed1e2b1cae731171a81207ed95d0ca3b
+publication_base_commit: 11a3cf835e66934ffa9104ec971140f7004428cb
+publication_base_tree: c1fb373f50d5752bc037f166947e011c4a581967
+publication_base_parents:
+- 4441b5c0aacecbb6620b1696a5b3c483e5733fb7
+- e532691790728224ab47d1a36523dc86e5c08d06
+evidence:
+  store: repository
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/evidence/integrated-native-0042
+validation_results:
+- command: mise exec -- env RUN_GUI_EVIDENCE_TESTS=1 KEEP_GUI_EVIDENCE=1 GUI_EVIDENCE_SCOPE='{"display":":0","window":"0x2a00003","title":"Collector
+    owned integrated GUI check"}' GUI_EVIDENCE_IMAGE='{"width":480,"height":260,"pixels":[{"x":40,"y":110,"rgb":[102,51,153]}],"lines":[]}'
+    bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/gui-workflow.test.ts
+  cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  status: passed
+  exit_code: 0
+  tests: 1
+  assertions: 60
+  observed: Corrected only owned fixture sizing (fixed480x260). Full public native
+    normal/failure/blocked workflow passed. Prior failed fixture run retained unchanged.
+- command: mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts
+    mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts
+  cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  status: passed
+  exit_code: 0
+  tests: 99
+  assertions: 892
+- command: Absolute integrated CLI validate each copied sealed integration run from
+    /tmp
+  cwd: /tmp
+  status: passed
+  observed:
+  - run: native
+    exit_code: 0
+  - run: pixels
+    exit_code: 0
+  - run: permission
+    exit_code: 0
+  - run: identity
+    exit_code: 0
+  - run: capture-failure
+    exit_code: 0
+- command: Inspect original integrated native PNG
+  status: passed
+  observed: 480x260 owned purple fixture with collector-owned integration label only
+  sha256: ded7cd8ceb51c7b544fb5b23a5922afd625d04e0b49e5dfaeb7013371ff963e9
+cleanup: Parent owned fixture stopped. No borrowed window or agent touched.
+remaining_limits:
+- Known Surf approved-space.3 failure retained; not rerun or represented as passing
+- Fresh Playwright/TUI/typecheck unavailable in recorded environment
+- Visible-dialog and occlusion scenarios unverified; optional CEGUI-N1 and obsolete
+  GNU-mv documentation note CEGUI-N2 remain
+next_step: Commit workflow evidence and projections; safe non-force push of verified
+  base before ticket completion.

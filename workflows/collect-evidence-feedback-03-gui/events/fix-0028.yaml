@@ -1,0 +1,98 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: 4a938e995dd0802734a90cc52d58d53fe9d4da71
+source_tree: 24e210d91d87828411ef0d0146d938f6934e66b7
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: fix-0028
+phase: fix
+event: phase-complete
+status: completed
+attempt: 5
+parent_receipt: fix-0027
+created_at: '2026-11-12T04:31:35.854509+00:00'
+session_id: herdr-app:t6z
+pane_id: null
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/fix-0027.yaml
+- kind: snapshot
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/pr-draft-fix-0027.md
+- kind: validation
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/validation-fix-0027.json
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/fix-0028.yaml
+consumed_review_receipt_ids:
+- review-0024
+- review-0025
+resolved_finding_ids:
+- CEGUI-R2
+unresolved_finding_ids: []
+optional_findings_unchanged:
+- CEGUI-N1
+changed_files:
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/gui.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/gui-driver.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/gui-workflow.test.ts
+validation_results:
+- command: mise exec -- wt step rebase b29b5387973467d8e21266fc9989127b4bdf3c92
+  cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+  result: passed; authorized pinned-base synchronization; no manual conflicts
+- command: mise exec -- env RUN_GUI_EVIDENCE_TESTS=1 GUI_EVIDENCE_SCOPE='{"display":":0","window":"0x2a0000a","title":"CEGUI-R2
+    owned fixture"}' GUI_EVIDENCE_IMAGE='{"width":480,"height":260,"pixels":[{"x":40,"y":110,"rgb":[102,51,153]}],"lines":[]}'
+    bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/gui-workflow.test.ts
+  cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+  result: 'before fix: failed at capture-failure event; expected failed, observed
+    not-requested; BLOCKED, no asset, assertion not-run'
+- command: mise exec -- env RUN_GUI_EVIDENCE_TESTS=1 GUI_EVIDENCE_SCOPE='{"display":":0","window":"0x2a0000a","title":"CEGUI-R2
+    owned fixture"}' GUI_EVIDENCE_IMAGE='{"width":480,"height":260,"pixels":[{"x":40,"y":110,"rgb":[102,51,153]}],"lines":[]}'
+    bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/gui-workflow.test.ts
+  cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+  result: 'after fix: 1 pass, 0 fail, 60 assertions; installed-copy public CLI; native
+    PNG policy denial after identity; BLOCKED, captureStatus failed, assertionResult
+    not-run, assetId null, no assets; prerequisite permission and identity cases not-requested'
+- command: mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts
+    mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts
+  cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+  result: 99 pass, 0 fail, 892 assertions
+- command: xd://lsp references guiDriver
+  cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+  result: 'unavailable: initialize failed; no valid workspace TypeScript installation;
+    no typecheck claimed'
+- command: mise exec -- git commit
+  cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+  result: passed; hk bundle-versions updated developer to 0.2.21 and staged two manifests
+parent_validation:
+  authoritative_event_matches_transport: true
+  source_commit_tree_match: true
+  source_clean: true
+  outputs_exist: true
+  acknowledged: true
+  delivery_sha256: 7bb7f12b0f0181c6ea3b1d68cd345a2d29e21e5dd74cd5d89a659b538f8105d4
+  child_completion_signal: sequence 3 completed 2026-11-12T04:30:44.260Z
+  child_terminal: t7d stopped and removed after verified result
+  runtime_proof: Failing-before captureStatus not-requested; passing-after failed;
+    60 native assertions. 99 supporting tests passed.
+publication:
+  source_committed: true
+  merged: false
+  pushed: false
+  ticket_completed: false
+next_step: Fresh independent review of repaired clean source.
