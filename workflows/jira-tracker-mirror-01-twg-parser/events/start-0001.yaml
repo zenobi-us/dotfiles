@@ -1,0 +1,54 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0001",
+  "workflow_id": "jira-tracker-mirror-01-twg-parser",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": null,
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "source_branch": "fix/jira-tracker-mirror-01-twg-parser",
+  "base_branch": "master",
+  "source_commit": "03d0039562798216fb9f44f6cb02720b1f6f4070",
+  "source_tree": "7b2af586ece7e02e7e8061975e338ccd43eb81db",
+  "created_at": "2026-11-12T09:38:12.744Z",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "claude",
+  "session_id": "herdr-app:t8",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-01-twg-parser",
+    "ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-01-twg-parser"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/start-0001.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery_mode": "begin",
+  "recovery_reason": "Inspector: no implementation receipts, source commits, or source workspace.",
+  "ownership_observations": "Ticket was unclaimed; this session claimed it in 03d00395. No workflow receipts or goal reservations. Source worktree created by this parent through Worktrunk.",
+  "validation": [
+    {
+      "command": "records.ts check --ticket jira-tracker-mirror-01-twg-parser",
+      "result": "passed"
+    }
+  ]
+}

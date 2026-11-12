@@ -1,0 +1,97 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-01-twg-parser",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "source_branch": "fix/jira-tracker-mirror-01-twg-parser",
+  "base_branch": "master",
+  "source_commit": "58c0b8a4e4c608991076afe5a5d7da3f0e703f07",
+  "source_tree": "62dfc338d2e15dfbd225978ddbb76f3e1416e7e8",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-01-twg-parser",
+    "ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-01-twg-parser"
+  },
+  "receipt_id": "start-0003",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "implementation-0002",
+  "created_at": "2026-11-12T09:49:19.595Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/start-0001.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/artifacts/snapshots/pr-draft-implementation-0002.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/start-0003.yaml"
+    }
+  ],
+  "status": "completed",
+  "validation": [
+    {
+      "command": "result-delivery read",
+      "result": "passed",
+      "details": "Schema, run, operation and sha256 verified; canonical JSON identical to implementation-0002.yaml."
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}; git status --porcelain",
+      "result": "passed",
+      "details": "Worktree HEAD and tree equal the recorded source; no uncommitted changes."
+    },
+    {
+      "command": "mise x -- bun test (reading-and-writing-tickets)",
+      "result": "passed",
+      "details": "Parent rerun: 48 pass, 0 fail."
+    },
+    {
+      "command": "dep-tree-cli.ts jira --epic RWR-19529 (from reckonone-monorepo)",
+      "result": "passed",
+      "details": "Parent rerun: DAG printed from the worktree build. Read-only."
+    },
+    {
+      "command": "inspect.ts",
+      "result": "passed",
+      "details": "historyValid true; decision start/reconcile with parent implementation-0002."
+    }
+  ],
+  "implementation_summary": "Added scripts/twg-jira.ts, one parser for twg Jira query and get output. It returns key, title, type, status name, status category, parent key, blocker keys, and plain-text description. queryJiraIssues follows pageInfo.nextCursor with --after; a missing pageInfo is the last page. Every call passes --fields. Unexpected shapes throw errors that name the path. Only an 'is blocked by' link with inwardIssue counts as a blocker. dep-tree-cli.ts jira now uses the module. Fixtures are trimmed real twg output from 2026-11-12, with personal data removed.",
+  "phase_note": "The handoff set phase: start on the phase-result; earlier workflows use phase: implementation. The inspector accepted the result. The receipt is immutable and stays as written.",
+  "child_run_id": "b161f4e7-b0f5-48c6-856a-abbaba410e70",
+  "child_pane_id": "t1d",
+  "child_shutdown": {
+    "state": "completed",
+    "completion_sequence": 2,
+    "terminal_removed": true,
+    "workspace": "App removed the empty source space; source worktree retained."
+  },
+  "publication": {
+    "source_committed": true,
+    "workflow_records_committed": false,
+    "pushed": false,
+    "merged": false,
+    "ticket_completed": false
+  }
+}
