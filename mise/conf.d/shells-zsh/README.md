@@ -78,8 +78,8 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 ```zsh
 zinit_load_local_module() {
-  local module_path="$DOTFILE_ROOT/modules/$1"
-  [[ -f "$module_path" ]] && zinit snippet "$module_path"
+  local module_file="$DOTFILE_ROOT/modules/$1"
+  [[ -f "$module_file" ]] && zinit snippet "$module_file"
 }
 ```
 
@@ -96,7 +96,6 @@ zinit_load_local_module() {
 | Plugin | Purpose |
 |--------|---------|
 | `junegunn/fzf` | Fuzzy finder (installed from gh-r) |
-| `starship/starship` | Prompt (compiled init at clone time) |
 | `Aloxaf/fzf-tab` | Tab completion via fzf |
 | `loiccoyle/zsh-github-copilot` | Copilot suggestions |
 
