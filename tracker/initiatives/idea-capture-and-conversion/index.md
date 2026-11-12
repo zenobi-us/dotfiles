@@ -225,7 +225,13 @@ This operation creates the initiative only. Ticket decomposition remains a separ
 
 ## Tickets
 
-No child tickets exist yet.
+- [Capture and reopen an idea](../../tickets/idea-capture-and-conversion-01-capture.md)
+- [Browse, ask about, and archive ideas in Herdr](../../tickets/idea-capture-and-conversion-02-herdr.md)
+- [Research ideas and attach concept evidence](../../tickets/idea-capture-and-conversion-03-research.md)
+- [Grill concepts and resolve clarifications](../../tickets/idea-capture-and-conversion-04-grilling.md)
+- [Convert an idea into an initiative](../../tickets/idea-capture-and-conversion-05-to-spec.md)
+- [Convert an idea directly into tickets](../../tickets/idea-capture-and-conversion-06-to-tickets.md)
+- [Correct converted ideas without losing valid coverage](../../tickets/idea-capture-and-conversion-07-corrections.md)
 
 ## Comments
 
