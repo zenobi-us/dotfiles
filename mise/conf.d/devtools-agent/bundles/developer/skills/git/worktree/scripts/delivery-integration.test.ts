@@ -49,7 +49,7 @@ async function fixture() {
     await writeFile(file, JSON.stringify({ schema: "result-delivery/v1", kind: "context", audience: "agent", mode: "artifact-reference", runId: "integration-run", operationId, target: { path: target, ref: pathToFileURL(target).href, schema } }));
     return { file, target };
   }
-  const receipt: Record<string, unknown> = { schema: "worktree-receipt/v1", event: "phase-result", receipt_id: "implementation-0002", workflow_id: "TASK-1", phase: "implementation", attempt: 1, parent_receipt: "start-0001", repository, worktree: repository, source_branch: "main", base_branch: "main", source_commit: commit, source_tree: tree, created_at: "2026-01-01T00:00:00Z", muxer: "tmux", workspace_path: repository, pane_id: "test-pane", agent: "omp", session_id: "test-session", ticket: { backend: "local-markdown", id: "TASK-1", ref: "tracker/tickets/TASK-1.md" }, workflow: { store: workflow.store, root: workflow.root, ref: workflow.ref }, ticket_ref: "tracker/tickets/TASK-1.md", inputs: [{ kind: "receipt", ref: "start-0001" }], outputs: [{ kind: "receipt", ref: "implementation-0002" }], status: "completed", changed_files: [], validation: [{ command: "smoke", result: "passed" }], summary: "Checked the delivery workflow", open_questions: [] };
+  const receipt: Record<string, unknown> = { schema: "worktree-receipt/v1", event: "phase-result", receipt_id: "implementation-0002", workflow_id: "TASK-1", phase: "implementation", attempt: 1, parent_receipt: "start-0001", repository, worktree: repository, source_branch: "main", base_branch: "main", source_commit: commit, source_tree: tree, created_at: new Date().toISOString(), muxer: "tmux", workspace_path: repository, pane_id: "test-pane", agent: "omp", session_id: "test-session", ticket: { backend: "local-markdown", id: "TASK-1", ref: "tracker/tickets/TASK-1.md" }, workflow: { store: workflow.store, root: workflow.root, ref: workflow.ref }, ticket_ref: "tracker/tickets/TASK-1.md", inputs: [{ kind: "receipt", ref: "start-0001" }], outputs: [{ kind: "receipt", ref: "implementation-0002" }], status: "completed", changed_files: [], validation: [{ command: "smoke", result: "passed" }], summary: "Checked the delivery workflow", open_questions: [] };
   return { directory, repository, workflow, receipt, context };
 }
 
@@ -125,6 +125,37 @@ test.each([
   expect(rejected.code).not.toBe(0);
   expect(await Bun.file(join(f.workflow.path, "events/invalid-review.yaml")).exists()).toBe(false);
   expect(await Bun.file(context.target).exists()).toBe(false);
+}, 120_000);
+
+test("phase writer records the current time when the result omits created_at", async () => {
+  const f = await fixture();
+  const { created_at: _omitted, ...receipt } = f.receipt;
+  const input = join(f.directory, "receipt.json");
+  await writeFile(input, JSON.stringify(receipt));
+  const before = Date.now();
+  const published = await run(writer, ["--repository", f.repository, "--input", input]);
+  const after = Date.now();
+  expect(published.code).toBe(0);
+  const event = Bun.YAML.parse(await readFile(join(f.workflow.path, "events/implementation-0002.yaml"), "utf8")) as Record<string, unknown>;
+  const recorded = Date.parse(String(event.created_at));
+  expect(recorded).toBeGreaterThanOrEqual(before);
+  expect(recorded).toBeLessThanOrEqual(after);
+}, 120_000);
+
+test.each([
+  { name: "a start phase", change: { phase: "start" }, message: "implementation, review or fix" },
+  { name: "a finish phase", change: { phase: "finish" }, message: "implementation, review or fix" },
+  { name: "a created_at one hour ahead", change: { created_at: new Date(Date.now() + 3_600_000).toISOString() }, message: "created_at" },
+  { name: "a created_at one hour behind", change: { created_at: new Date(Date.now() - 3_600_000).toISOString() }, message: "created_at" },
+  { name: "a created_at that is not a timestamp", change: { created_at: "today" }, message: "created_at" },
+])("phase writer rejects $name before publication", async ({ change, message }) => {
+  const f = await fixture();
+  const input = join(f.directory, "receipt.json");
+  await writeFile(input, JSON.stringify({ ...f.receipt, ...change }));
+  const rejected = await run(writer, ["--repository", f.repository, "--input", input]);
+  expect(rejected.code).not.toBe(0);
+  expect(rejected.stderr).toContain(message);
+  expect(await Bun.file(join(f.workflow.path, "events/implementation-0002.yaml")).exists()).toBe(false);
 }, 120_000);
 
 test("phase writer rejects a changed source or target schema before creating an event", async () => {

@@ -25,6 +25,7 @@ const app = new Crust("write-worktree-result").meta({ description: "Write one im
     if (context.mode !== "artifact-reference" && flags.format) context = { ...context, mode: flags.format, audience: flags.format === "human" ? "human" : "machine" };
     const text = flags.input ? await Bun.file(flags.input).text() : await Bun.stdin.text();
     receipt = object(JSON.parse(text));
+    receipt.created_at ??= new Date().toISOString();
     validateReceipt(receipt);
     const resolution = Bun.spawnSync([sharedContextCli, "resolve", "workflow", "--id", String(receipt.workflow_id), "--json"], { cwd: flags.repository, stdout: "pipe", stderr: "pipe" });
     if (resolution.exitCode !== 0) throw new Error("Shared-context could not resolve the workflow. No receipt was written.");
@@ -67,8 +68,14 @@ async function gitCommonDirectory(repository: string): Promise<string> {
   return realpath(new TextDecoder().decode(result.stdout).trim());
 }
 
+// The inspector orders receipts by created_at, so a typed or stale time reorders the workflow history.
+const createdAtTolerance = 10 * 60_000;
+
 function validateReceipt(receipt: Record<string, unknown>): void {
   if (receipt.schema !== "worktree-receipt/v1" || receipt.event !== "phase-result") throw new Error("Expected a worktree-receipt/v1 phase-result");
+  if (!["implementation", "review", "fix"].includes(String(receipt.phase))) throw new Error("A child phase-result phase must be implementation, review or fix; the parent records start and finish");
+  const createdAt = Date.parse(String(receipt.created_at));
+  if (Number.isNaN(createdAt) || Math.abs(createdAt - Date.now()) > createdAtTolerance) throw new Error("created_at must be the current UTC time; omit it and the writer records the time");
   for (const key of ["receipt_id", "workflow_id", "phase", "parent_receipt", "repository", "worktree", "source_branch", "base_branch", "source_commit", "source_tree", "created_at", "muxer", "workspace_path", "agent", "session_id", "ticket_ref"]) {
     if (typeof receipt[key] !== "string" || !(receipt[key] as string).trim()) throw new Error("The receipt requires a non-empty " + key);
   }
