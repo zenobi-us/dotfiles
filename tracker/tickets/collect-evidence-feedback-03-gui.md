@@ -8,7 +8,7 @@ sequence: 3
 title: Collect scoped native GUI evidence
 triage: ready-for-agent
 type: enhancement
-work_status: claimed
+work_status: completed
 ---
 
 # Collect scoped native GUI evidence
@@ -64,3 +64,28 @@ This slice covers initiative user stories 3, 11, 19, 21. Keep the initiative as 
 - Reviewed tree: `2f409d6d19cfc5bcd56cd824f74410b58aa2ed1c`.
 - Timestamp: `2026-11-12T02:54:06.991951+00:00`.
 - Artifact: [Immutable review](../../workflows/collect-evidence-feedback-03-gui/artifacts/reviews/review-review-0024.md).
+
+
+### Independent review review-0030
+
+- Verdict: SUCCESS.
+- Reviewed commit: `4a938e995dd0802734a90cc52d58d53fe9d4da71`.
+- Reviewed tree: `24e210d91d87828411ef0d0146d938f6934e66b7`.
+- Timestamp: `2026-11-12T04:37:54.436Z`.
+- Artifact: [Immutable review](../../workflows/collect-evidence-feedback-03-gui/artifacts/reviews/review-review-0030.md).
+
+
+### Independent review review-0037
+
+- Verdict: SUCCESS.
+- Reviewed commit: `d70fe7e463638f134d6226397ca38724492deca4`.
+- Reviewed tree: `1cfddc006ae099564cbef521b2cea8384c8c461d`.
+- Timestamp: `2026-11-12T04:48:49.502322+00:00`.
+- Artifact: [Immutable review](../../workflows/collect-evidence-feedback-03-gui/artifacts/reviews/review-review-0037.md).
+
+
+### Verified completion
+
+Merged as `4441b5c0aacecbb6620b1696a5b3c483e5733fb7` and published on `origin/master`; remote observed `aa49cf43a254a091b85506eab3e8378bfc841414`. Current SUCCESS review and exact integration mapping: [finish-0043](../../workflows/collect-evidence-feedback-03-gui/events/finish-0043.yaml). Integrated public native workflow passed60 assertions; verdict/workflow checks passed99 tests and892 assertions. [Successful sealed runs](../../workflows/collect-evidence-feedback-03-gui/artifacts/evidence/integrated-native-0042/native/run.json) and [retained fixture-size failure](../../workflows/collect-evidence-feedback-03-gui/artifacts/evidence/integrated-fixture-size-0041/run.json) remain immutable.
+
+Known Surf failure and unavailable Playwright/TUI/typecheck remain documented. No passing cross-driver baseline, generalized dialog detection or occlusion isolation is claimed.
