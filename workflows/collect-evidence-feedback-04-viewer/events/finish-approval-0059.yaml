@@ -1,0 +1,56 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "b1afc2020aa293f242aab79e2d10434a24e93a87",
+  "source_tree": "5a72d914baa4c687af82e846efb5dc0ca55d33d1",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "session_id": "hc:t90",
+  "receipt_id": "finish-approval-0059",
+  "parent_receipt": "finish-failed-0058",
+  "phase": "finish",
+  "attempt": 4,
+  "created_at": "2026-11-12T12:17:29.813301+00:00",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/finish-failed-0058.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/finish-approval-0059.yaml"
+    }
+  ],
+  "event": "operator-approval",
+  "status": "approved",
+  "recovery_mode": "reconcile",
+  "recovery_reason": "Published integration and completed ticket; cleanup-only recovery authorized.",
+  "approval": {
+    "answer": "Move shell and finish",
+    "scope": "Move t92 shell to base without killing it; remove recorded source worktree; publish final receipt."
+  },
+  "ownership": {
+    "owner": "hc:t90",
+    "previous_owner": "hc:t90",
+    "liveness": "Current parent is t90. t92 foreground is zsh, not an agent; user approved moving its cwd."
+  }
+}
