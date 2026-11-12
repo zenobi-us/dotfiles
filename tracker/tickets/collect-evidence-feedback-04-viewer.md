@@ -8,7 +8,7 @@ sequence: 4
 title: Browse immutable evidence in a local feedback session
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 # Browse immutable evidence in a local feedback session
