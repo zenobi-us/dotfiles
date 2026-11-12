@@ -29,15 +29,25 @@ Use the absolute installed router path:
   --prompt-file /absolute/handoff.txt
 ```
 
-The caller supplies an existing directory through `--cwd`. The router first verifies that the parent terminal appears in an open local space. It then matches the normalized absolute target directory against local spaces’ `folder` values. The parent space and focused space do not determine placement.
+The caller supplies an existing directory through `--cwd`. The router first finds the space that contains the parent terminal. The router runs in the parent terminal, so the parent's machine is the router's machine. The app names a terminal on another machine with a prefix, such as `wsl-docker/t8`; the router matches `HC_TERMINAL_ID` with that prefix. If the address appears on more than one machine, the router fails. It then matches the normalized absolute target directory against the `folder` values of spaces on the parent's machine. The parent space and focused space do not determine placement.
 
-If one local space matches, the router opens a fresh tab there with `herdr-app do tab.new`, its explicit space ID, a unique name, `folder`, and an argv array. If none matches, it calls `herdr-app do space.new` with that folder and argv for the first tab. It explicitly sets `machine: ""` for a local space. If multiple local spaces match, it reports their IDs and fails before opening a terminal. Remote spaces with the same folder do not match.
+If one space matches, the router opens a fresh tab there with `herdr-app do tab.new`, its explicit space ID, a unique name, `folder`, and an argv array. If none matches, it calls `herdr-app do space.new` with that folder and argv for the first tab. It sets `machine` to the parent's machine, or `""` for the app's own machine. If multiple spaces match, it reports their IDs and fails before opening a terminal. Spaces on other machines with the same folder do not match. The router removes the machine prefix from the returned terminal address, because the local `hc` knows the terminal without it.
 
 Every launch creates a fresh terminal. Review and fix sessions reuse the target worktree space, not the orchestrator’s space. New spaces and tabs can change what the user sees; use this route only when the caller requests a child pane. Ordinary hidden workers belong in `hc run --bg` instead.
 
 The argv array uses `env` to pass depth, run identity, child role, and result context, then starts the interactive agent with its handoff file. Codex also receives `--no-daemon`, as required by the core manual. The target returned by the router is a terminal address, not a pane or tab ID.
 
-This router launch path supports local spaces. It rejects a remote space because the prompt and result context are local files. For remote orchestration, use `hc run --on <machine>` and `hc file` with a delivery context accessible on that machine. Do not pass local file paths to a remote terminal.
+This router launch path places the child on the parent's machine only. The prompt and result context are files on that machine. For remote orchestration, use `hc run --on <machine>` and `hc file` with a delivery context accessible on that machine. Do not pass local file paths to a remote terminal.
+
+## WSL with the Windows app
+
+When the app runs on Windows and the parent runs in WSL, the app reports the WSL session as a machine, such as `wsl-docker`. The `herdr-app` command is not on the WSL `PATH`. The router looks for the app command in this order: `HERDR_APP_BIN`, `herdr-app` on `PATH`, then `herdr-app.exe` on `PATH`. If none exists, it fails before it opens a terminal and names `HERDR_APP_BIN`. Set it to the Windows executable through WSL interop, for example:
+
+```sh
+export HERDR_APP_BIN=/mnt/c/Users/<user>/AppData/Local/Programs/herdr-app/herdr-app.exe
+```
+
+Use the WSL path for `--cwd`. The app accepts it for spaces on the WSL machine.
 
 ## Wait, read, and resume
 
@@ -80,4 +90,6 @@ Checked 2026-11-10 against the installed CLIs and these first-party sources:
 Checked 2026-11-11. Before the placement fix, regression cases selected the parent space instead of the target worktree space. New-space creation and ambiguous-space rejection also failed. After the fix, all 33 tests passed across the muxer skill’s three test files. Coverage includes cross-space placement, normalized folder matching, remote exclusion, target-space creation and reuse, ambiguous matches, and parent-window prerequisites.
 
 Real desktop smoke programs passed three placement checks: a fresh tab in an existing feature-worktree space, creation of a missing local space, and a second fresh terminal in that same new space. Each check verified the containing app space and the terminal’s working directory through `herdr-app ls` and `hc get`. The existing-space launch also produced a desktop screenshot. Only smoke terminals and the temporary smoke space were removed; the previous space selection was restored. These checks prove muxer placement, not an AI agent’s domain result.
+
+Checked 2026-11-12 from WSL with the Windows app. Before the fix, the spawn failed with `Executable not found in $PATH: "herdr-app"`. After the fix, 39 tests passed. A real spawn with `HERDR_APP_BIN` set to the Windows `herdr-app.exe` opened a fresh tab in the existing `wsl-docker` space for the target folder. `hc get` confirmed the working directory, `router.ts wait` returned `completed`, and the child replied. The smoke terminal was removed.
 

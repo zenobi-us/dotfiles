@@ -1,0 +1,76 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-01-twg-parser",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "source_branch": "fix/jira-tracker-mirror-01-twg-parser",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-01-twg-parser",
+    "ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-01-twg-parser"
+  },
+  "source_commit": "58c0b8a4e4c608991076afe5a5d7da3f0e703f07",
+  "source_tree": "62dfc338d2e15dfbd225978ddbb76f3e1416e7e8",
+  "created_at": "2026-11-12T10:22:36.310Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "receipt_id": "finish-0010",
+  "phase": "finish",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "review-complete-0009",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/review-complete-0009.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/review-0008.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/artifacts/reviews/review-review-0008.md"
+    }
+  ],
+  "status": "FINISH_FAILED",
+  "failure_step": "prepare",
+  "failure_reason": "wt merge --no-rebase requires master to fast-forward to the squashed tip. Branch base is 03d00395; master is at 10def1c1 after 4 workflow and tracker record commits for this ticket. A rebase changes the reviewed source commit and tree.",
+  "review_receipt": "workflows/jira-tracker-mirror-01-twg-parser/events/review-0008.yaml",
+  "reviewed_source_commit": "58c0b8a4e4c608991076afe5a5d7da3f0e703f07",
+  "reviewed_source_tree": "62dfc338d2e15dfbd225978ddbb76f3e1416e7e8",
+  "base_before": "10def1c10891fc923f501f4fa6a3350e5e997ef8",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "a7085503eda4491ec45aa2ef9ad9ebb9513377f0",
+  "last_verified_boundary": null,
+  "resources_preserved": [
+    "source worktree",
+    "source branch",
+    "all receipts"
+  ],
+  "operator_decision": "User chose: rebase the branch onto master with Worktrunk, run a fresh review of the new commit, then finish.",
+  "merged_commit": null,
+  "pushed": null,
+  "ticket_completed": null,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/finish-0010.yaml"
+    }
+  ]
+}

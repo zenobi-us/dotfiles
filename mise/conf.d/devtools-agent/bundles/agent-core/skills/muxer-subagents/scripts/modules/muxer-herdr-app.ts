@@ -18,6 +18,15 @@ export const muxer = {
   wait: ({ manifest, timeoutMs }) => waitForHerdrApp(manifest.runId, manifest.target, timeoutMs),
 } satisfies MuxerModule;
 
+// WSL reaches the Windows app through interop; its Programs folder is not on the WSL PATH.
+function appCommand(): string {
+  // Bun's default lookup keeps the process-start PATH.
+  const PATH = process.env.PATH;
+  const command = process.env.HERDR_APP_BIN || Bun.which("herdr-app", { PATH }) || Bun.which("herdr-app.exe", { PATH });
+  if (!command) throw new Error("herdr-app is not on PATH. Set HERDR_APP_BIN to the app executable, for example the Windows herdr-app.exe when the parent runs in WSL.");
+  return command;
+}
+
 function call(command: string, args: string[]): Record<string, unknown> {
   const result = spawnSync(command, args, { encoding: "utf8" });
   if (result.error) throw result.error;
@@ -34,19 +43,24 @@ function spawnHerdrApp(
 ): string {
   const parent = process.env.HC_TERMINAL_ID;
   if (!parent) throw new Error("herdr-app requires HC_TERMINAL_ID to locate the parent space.");
-  const listing = call("herdr-app", ["ls"]);
+  const app = appCommand();
+  const listing = call(app, ["ls"]);
   const spaces = listing.spaces as Array<{
     id: string;
     folder?: string | null;
     machine?: string | null;
     tabs: Array<{ terminals: Array<{ terminal: string }> }>;
   }>;
-  const parentSpace = spaces.find((entry) => entry.tabs.some((tab) => tab.terminals.some((terminal) => terminal.terminal === parent)));
-  if (!parentSpace) throw new Error(`herdr-app did not report a space containing ${parent}.`);
-  if (parentSpace.machine) throw new Error("herdr-app router requires a local space: delivery files are local.");
+  // The app prefixes a terminal on another machine with that machine's name, such as "wsl/t7".
+  const parentSpaces = spaces.filter((entry) => entry.tabs.some((tab) => tab.terminals.some((terminal) =>
+    terminal.terminal === (entry.machine ? `${entry.machine}/${parent}` : parent))));
+  if (parentSpaces.length === 0) throw new Error(`herdr-app did not report a space containing ${parent}.`);
+  if (parentSpaces.length > 1) throw new Error(`herdr-app reported ${parent} on more than one machine: ${parentSpaces.map((entry) => entry.id).join(", ")}.`);
+  // This router runs in the parent terminal, so delivery files are local to the parent's machine.
+  const machine = parentSpaces[0]!.machine || null;
   const folder = resolve(cwd);
   const matches = spaces.filter((entry) =>
-    !entry.machine && typeof entry.folder === "string" && isAbsolute(entry.folder) && resolve(entry.folder) === folder);
+    (entry.machine || null) === machine && typeof entry.folder === "string" && isAbsolute(entry.folder) && resolve(entry.folder) === folder);
   if (matches.length > 1) {
     throw new Error(`herdr-app reported multiple local spaces for the target directory: ${matches.map((entry) => entry.id).join(", ")}. Keep one target space before launching.`);
   }
@@ -58,12 +72,13 @@ function spawnHerdrApp(
   const space = matches[0];
   const name = `agent-${runId.slice(0, 8)}`;
   const opened = space
-    ? call("herdr-app", ["do", "tab.new", JSON.stringify({ space: space.id, name, folder, argv })])
-    : call("herdr-app", ["do", "space.new", JSON.stringify({
-      name: basename(folder), tab: name, folder, argv, machine: "",
+    ? call(app, ["do", "tab.new", JSON.stringify({ space: space.id, name, folder, argv })])
+    : call(app, ["do", "space.new", JSON.stringify({
+      name: basename(folder), tab: name, folder, argv, machine: machine ?? "",
     })]);
   if (typeof opened.terminal !== "string") throw new Error("herdr-app did not return the created terminal address.");
-  return opened.terminal;
+  // hc on the parent's machine knows the terminal by its local address.
+  return machine && opened.terminal.startsWith(`${machine}/`) ? opened.terminal.slice(machine.length + 1) : opened.terminal;
 }
 
 async function waitForHerdrApp(runId: string, target: string, timeoutMs?: number): Promise<RunSignal | null> {

@@ -78,13 +78,14 @@ describe("muxer spawn", () => {
     delete process.env.FAKE_AGENT_CAPTURE;
     delete process.env.FAKE_AGENT_EXECUTABLE;
     delete process.env.FAKE_HERDR_STARTUP;
+    delete process.env.HERDR_APP_BIN;
   });
 
   afterEach(() => {
     process.env.PATH = saved.PATH;
     process.env.XDG_STATE_HOME = saved.XDG_STATE_HOME;
     delete process.env.FAKE_HERDR_LOG;
-    for (const key of ["RESULT_DELIVERY_CONTEXT", "MUXER_SUBAGENT_RUN_ID", "MUXER_SUBAGENT_PARENT_RUN_ID", "XDG_CONFIG_HOME", "HC_TERMINAL_ID", "FAKE_AGENT_CAPTURE", "FAKE_AGENT_EXECUTABLE", "FAKE_HERDR_STARTUP"]) {
+    for (const key of ["RESULT_DELIVERY_CONTEXT", "MUXER_SUBAGENT_RUN_ID", "MUXER_SUBAGENT_PARENT_RUN_ID", "XDG_CONFIG_HOME", "HC_TERMINAL_ID", "FAKE_AGENT_CAPTURE", "FAKE_AGENT_EXECUTABLE", "FAKE_HERDR_STARTUP", "HERDR_APP_BIN"]) {
       if (saved[key] === undefined) delete process.env[key];
       else process.env[key] = saved[key];
     }
@@ -138,11 +139,11 @@ await deliverResult({ schema: context.target.schema, status: "failed", checks: [
     expect(existsSync(join(root, "state", "muxer-subagents", "runs"))).toBe(false);
   });
 
-  function prepareDesktop(spaces: Array<Record<string, unknown>>): () => Array<{ command: string; request: Record<string, unknown> }> {
+  function prepareDesktop(spaces: Array<Record<string, unknown>>, binary = "herdr-app"): () => Array<{ command: string; request: Record<string, unknown> }> {
     process.env.HC_TERMINAL_ID = "t7";
     const state = join(root, "desktop.json");
     writeFileSync(state, JSON.stringify({ spaces, calls: [] }));
-    const desktop = join(root, "herdr-app");
+    const desktop = join(root, binary);
     writeFileSync(desktop, `#!${process.execPath}
 import { readFileSync, writeFileSync } from "node:fs";
 const file = ${JSON.stringify(state)};
@@ -153,9 +154,11 @@ if (args[0] === "ls") {
 } else if (args[0] === "do") {
   const request = JSON.parse(args[2]);
   state.calls.push({ command: args[1], request });
-  const terminal = "child-" + state.calls.length;
+  // The app prefixes addresses on another machine with that machine's name.
+  const machine = request.machine || (String(request.space ?? "").includes("/") ? String(request.space).split("/")[0] : "");
+  const terminal = (machine ? machine + "/" : "") + "child-" + state.calls.length;
   if (args[1] === "space.new") {
-    state.spaces.push({ id: "created", folder: request.folder, machine: request.machine, tabs: [{ terminals: [{ terminal }] }] });
+    state.spaces.push({ id: (machine ? machine + "/" : "") + "created", folder: request.folder, machine: request.machine, tabs: [{ terminals: [{ terminal }] }] });
   }
   writeFileSync(file, JSON.stringify(state));
   console.log(JSON.stringify({ terminal }));
@@ -225,11 +228,67 @@ if (args[0] === "ls") {
     expect(calls()).toEqual([]);
   });
 
-  test("rejects a remote parent without opening a local target terminal", async () => {
+  test("opens a tab on the parent's machine when the app sees the parent as remote (WSL)", async () => {
+    const calls = prepareDesktop([
+      { id: "wsl/parent", folder: join(root, "orchestrator"), machine: "wsl", tabs: [{ terminals: [{ terminal: "wsl/t7" }] }] },
+      { id: "windows-space", folder: root, machine: null, tabs: [] },
+      { id: "wsl/worktree", folder: root, machine: "wsl", tabs: [] },
+    ], "herdr-app.exe");
+    const spawned = await spawnAgent({
+      muxer: "herdr-app", agent: "omp", prompt: "review", cwd: root, depth: 1, resultSchema: "test-result/v1",
+    });
+    expect(calls()).toMatchObject([{ command: "tab.new", request: { space: "wsl/worktree", folder: root } }]);
+    expect(spawned.target).toBe("child-1");
+    await removeRun(spawned.runId);
+  });
+
+  test("creates a missing target space on the parent's machine", async () => {
+    const calls = prepareDesktop([
+      { id: "wsl/parent", folder: join(root, "orchestrator"), machine: "wsl", tabs: [{ terminals: [{ terminal: "wsl/t7" }] }] },
+    ], "herdr-app.exe");
+    const spawned = await spawnAgent({
+      muxer: "herdr-app", agent: "omp", prompt: "review", cwd: root, depth: 1, resultSchema: "test-result/v1",
+    });
+    expect(calls()).toMatchObject([{ command: "space.new", request: { folder: root, machine: "wsl" } }]);
+    expect(spawned.target).toBe("child-1");
+    await removeRun(spawned.runId);
+  });
+
+  test("uses HERDR_APP_BIN when the app command is not on PATH", async () => {
+    const calls = prepareDesktop([parentSpace(), { id: "worktree", folder: root, machine: null, tabs: [] }], "custom-app");
+    process.env.HERDR_APP_BIN = join(root, "custom-app");
+    const spawned = await spawnAgent({
+      muxer: "herdr-app", agent: "omp", prompt: "review", cwd: root, depth: 1, resultSchema: "test-result/v1",
+    });
+    expect(calls()).toMatchObject([{ command: "tab.new", request: { space: "worktree" } }]);
+    await removeRun(spawned.runId);
+  });
+
+  test("names the fix when no app command is available", async () => {
+    const calls = prepareDesktop([parentSpace()], "not-the-app");
+    process.env.PATH = root;
+    await expect(spawnAgent({
+      muxer: "herdr-app", agent: "omp", prompt: "review", cwd: root, depth: 1, resultSchema: "test-result/v1",
+    })).rejects.toThrow("HERDR_APP_BIN");
+    expect(calls()).toEqual([]);
+  });
+
+  test("ignores an unprefixed address in another machine's space", async () => {
     const calls = prepareDesktop([{ ...parentSpace(), machine: "remote-host" }]);
     await expect(spawnAgent({
       muxer: "herdr-app", agent: "omp", prompt: "review", cwd: root, depth: 1, resultSchema: "test-result/v1",
-    })).rejects.toThrow("requires a local space");
+    })).rejects.toThrow("did not report a space containing t7");
+    expect(calls()).toEqual([]);
+  });
+
+  test("rejects a parent address reported on more than one machine", async () => {
+    const calls = prepareDesktop([
+      parentSpace(),
+      { id: "wsl/parent", folder: root, machine: "wsl", tabs: [{ terminals: [{ terminal: "wsl/t7" }] }] },
+    ]);
+    await expect(spawnAgent({
+      muxer: "herdr-app", agent: "omp", prompt: "review", cwd: root, depth: 1, resultSchema: "test-result/v1",
+    })).rejects.toThrow("on more than one machine");
     expect(calls()).toEqual([]);
   });
 

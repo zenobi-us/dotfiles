@@ -1,0 +1,84 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-01-twg-parser",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "source_branch": "fix/jira-tracker-mirror-01-twg-parser",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-01-twg-parser",
+    "ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-01-twg-parser"
+  },
+  "source_commit": "b0e993bd0fb7d93bcbda133334a7ea42299a0533",
+  "source_tree": "dc31b14ce89441f60e87599e0d557fc952b30dba",
+  "created_at": "2026-11-12T10:31:12.843Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "receipt_id": "review-complete-0013",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 2,
+  "parent_receipt": "review-0012",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/review-start-0011.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/review-0012.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/artifacts/reviews/review-review-0012.md"
+    }
+  ],
+  "status": "completed",
+  "validation": [
+    {
+      "command": "result-delivery read",
+      "result": "passed",
+      "details": "Schema, run, operation and sha256 verified; canonical JSON identical to review-0012.yaml."
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}; git status --porcelain",
+      "result": "passed",
+      "details": "Reviewer left the source unchanged: b0e993bd / dc31b14c, clean."
+    },
+    {
+      "command": "mise x -- bun test (reading-and-writing-tickets, worktree)",
+      "result": "passed",
+      "details": "Parent run after review: 48 pass, 0 fail."
+    }
+  ],
+  "child_run_id": "b5ef5244-6d79-4e12-b271-9e57d13ee794",
+  "child_pane_id": "t1j",
+  "child_shutdown": {
+    "state": "completed",
+    "completion_sequence": 2,
+    "terminal_removed": true
+  },
+  "publication": {
+    "source_committed": true,
+    "workflow_records_committed": false,
+    "pushed": false,
+    "merged": false,
+    "ticket_completed": false
+  },
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/review-complete-0013.yaml"
+    }
+  ]
+}

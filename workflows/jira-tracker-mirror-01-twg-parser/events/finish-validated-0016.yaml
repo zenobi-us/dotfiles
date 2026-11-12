@@ -1,0 +1,79 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-01-twg-parser",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "source_branch": "fix/jira-tracker-mirror-01-twg-parser",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-01-twg-parser",
+    "ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-01-twg-parser"
+  },
+  "source_commit": "b0e993bd0fb7d93bcbda133334a7ea42299a0533",
+  "source_tree": "dc31b14ce89441f60e87599e0d557fc952b30dba",
+  "created_at": "2026-11-12T10:33:47.859Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "receipt_id": "finish-validated-0016",
+  "phase": "finish",
+  "event": "phase-checkpoint",
+  "attempt": 2,
+  "parent_receipt": "finish-merged-0015",
+  "status": "FINISHING",
+  "checkpoint": "merged",
+  "next_step": "push",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/finish-merged-0015.yaml"
+    }
+  ],
+  "review_receipt": "workflows/jira-tracker-mirror-01-twg-parser/events/review-0012.yaml",
+  "reviewed_source_commit": "b0e993bd0fb7d93bcbda133334a7ea42299a0533",
+  "reviewed_source_tree": "dc31b14ce89441f60e87599e0d557fc952b30dba",
+  "base_before": "a2f48b62212901119877bd54c1fd237ff1465923",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "dc31b14ce89441f60e87599e0d557fc952b30dba",
+  "merged_commit": "b0e993bd0fb7d93bcbda133334a7ea42299a0533",
+  "merged_tree": "dc31b14ce89441f60e87599e0d557fc952b30dba",
+  "merged_parents": [
+    "a2f48b62212901119877bd54c1fd237ff1465923"
+  ],
+  "integrated_validation": [
+    {
+      "command": "mise x -- bun test",
+      "cwd": "/home/zenobius/Projects/dotfiles/mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets",
+      "result": "passed",
+      "details": "48 pass, 0 fail"
+    },
+    {
+      "command": "bun run typecheck",
+      "cwd": "/home/zenobius/Projects/dotfiles/mise/conf.d/devtools-agent/bundles/matt-pocock",
+      "result": "passed",
+      "details": "exit 0"
+    },
+    {
+      "command": "mise x -- <base>/.../dep-tree-cli.ts jira --epic RWR-19529",
+      "cwd": "/home/zenobius/Projects/reckonone-monorepo",
+      "result": "passed",
+      "details": "18 lines of DAG. Read-only."
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/finish-validated-0016.yaml"
+    }
+  ]
+}
