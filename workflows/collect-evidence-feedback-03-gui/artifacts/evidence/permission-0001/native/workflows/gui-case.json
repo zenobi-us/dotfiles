@@ -1,0 +1,59 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "plan",
+  "gui": {
+    "display": ":0",
+    "window": "0x1e00003",
+    "title": "Collector GUI fixture"
+  },
+  "test": {
+    "id": "case",
+    "claim": "Inspect selected native GUI surface",
+    "pass": "Selected native pixels match",
+    "fail": "Selected native pixels differ",
+    "steps": [
+      {
+        "do": "expect",
+        "says": "Inspect the selected native window.",
+        "locator": "screen",
+        "visible": true,
+        "shot": "native-scene",
+        "timeoutMs": 500,
+        "image": {
+          "width": 480,
+          "height": 260,
+          "pixels": [
+            {
+              "x": 40,
+              "y": 110,
+              "rgb": [
+                201,
+                166,
+                255
+              ]
+            },
+            {
+              "x": 260,
+              "y": 110,
+              "rgb": [
+                156,
+                207,
+                216
+              ]
+            },
+            {
+              "x": 10,
+              "y": 10,
+              "rgb": [
+                25,
+                21,
+                33
+              ]
+            }
+          ],
+          "lines": []
+        }
+      }
+    ]
+  }
+}

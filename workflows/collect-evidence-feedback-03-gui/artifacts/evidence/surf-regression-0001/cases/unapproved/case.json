@@ -1,0 +1,65 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "unapproved",
+  "runId": "controlled",
+  "order": 3,
+  "purpose": "Stop before an unapproved confirmation",
+  "preconditions": [],
+  "expected": {
+    "pass": "The button is not clicked",
+    "fail": "The collector clicks without approval"
+  },
+  "steps": [
+    {
+      "id": "unapproved.1",
+      "order": 1,
+      "purpose": "Open the owned page",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the owned page",
+        "to": "/"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "unapproved.2",
+      "order": 2,
+      "purpose": "Attempt Select project without approval",
+      "actions": {
+        "do": "click",
+        "says": "Attempt Select project without approval",
+        "locator": "#select"
+      },
+      "expected": null,
+      "observed": [
+        "Error: SAFETY STOP unapproved.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6",
+        "Error: SAFETY STOP unapproved.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6"
+      ],
+      "assertionResult": "not-applicable"
+    }
+  ],
+  "events": "cases/unapproved/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "unapproved.error-001",
+      "caseId": "unapproved",
+      "stepId": "unapproved.2",
+      "category": "blocked",
+      "message": "Error: SAFETY STOP unapproved.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6"
+    }
+  ],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion.",
+    "Video is unavailable with the Surf driver. Image captures remain valid."
+  ],
+  "sideEffects": "not-recorded"
+}

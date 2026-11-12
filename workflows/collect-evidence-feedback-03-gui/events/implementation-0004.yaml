@@ -1,0 +1,276 @@
+{
+  "agent": "omp",
+  "attempt": 1,
+  "base_branch": "master",
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/evidence-schema.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/gui.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/driver.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/gui-driver.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/gui-plan.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/load-plan.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/plan.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/render-plan.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/gui-workflow.test.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts"
+  ],
+  "created_at": "2026-11-12T00:08:47.350300+00:00",
+  "event": "phase-complete",
+  "evidence": {
+    "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001",
+    "store": "repository"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/start-0001.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/pr-draft-implementation-0002.md"
+    },
+    {
+      "kind": "validation",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/validation-implementation-0002.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/permission-0001"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/identity-blocked-0001"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-03-gui/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-03-gui/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-03-gui/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-03-gui/projections/latest-status.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/start-0003.yaml"
+    }
+  ],
+  "muxer": "herdr-app",
+  "open_questions": [
+    "The additional live Surf regression failed at approved-space.3 (expected Submitted, observed Not submitted). Independent review must assess this before integration; no Surf input handling changed.",
+    "Fresh Playwright and TUI capture coverage is blocked by host prerequisites. The retained TUI transition archive validates.",
+    "Native Wayland, macOS, Windows, GUI video, OCR and automated GUI input are explicit unsupported capabilities."
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/implementation-0004.yaml"
+    }
+  ],
+  "pane_id": null,
+  "parent_receipt": "implementation-0002",
+  "phase": "implementation",
+  "publication": {
+    "independent_review": "not performed",
+    "merged": false,
+    "pushed": false,
+    "source_identity_policy": "Source committed before workflow-only artifacts; recorded source commit/tree remains the implementation target.",
+    "ticket_completed": false
+  },
+  "receipt_id": "implementation-0004",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "schema": "worktree-receipt/v1",
+  "session_id": "herdr-app:t6q",
+  "source_branch": "feature/collect-evidence-feedback-03-gui",
+  "source_commit": "9f7d0ce84309e10d048ad849d40eabab180588bc",
+  "source_tree": "e77259fc500186e3be7061aeec58d24a520a3e21",
+  "status": "completed",
+  "summary": "Implemented read-only Linux X11 GUI window/display capture, exact scope approval, real selected-surface doctor checks, stable-frame RGB assertions, native provenance, immutable common records and GUI playbook. Existing web and TUI drivers remain in place.",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-03-gui",
+    "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-03-gui.md",
+  "validation_results": [
+    {
+      "assertions": 943,
+      "command": "RUN_GUI_EVIDENCE_TESTS=1 KEEP_GUI_EVIDENCE=1 GUI_EVIDENCE_SCOPE=<approved-fixture> GUI_EVIDENCE_IMAGE=<480x260-rgb-probes> mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test",
+      "duration_seconds": 62.98,
+      "exit_code": 0,
+      "failed": 0,
+      "passed": 102,
+      "scope": "Installed temporary copy from unrelated cwd with temporary resolved evidence store; actual GTK X11 fixture",
+      "skipped": 31,
+      "status": "passed"
+    },
+    {
+      "command": "Native image inspection",
+      "dimensions": {
+        "height": 260,
+        "width": 480
+      },
+      "observed": "Expected heading, purple and cyan panels, fixture notice; no unrelated desktop content",
+      "sha256": "2baf864452cc75f47db3e8cc9876d3af5e7f7765321f4ae5a2defc7b718076ff",
+      "status": "passed"
+    },
+    {
+      "command": "GUI doctor and run with XAUTHORITY=/dev/null",
+      "expected_exit_code": 3,
+      "observed_exit_code": 3,
+      "outcome": "Sealed BLOCKED; no assets; assertion not-run",
+      "status": "passed"
+    },
+    {
+      "command": "GUI failed dimension assertion, title mismatch, scope mismatch, credential fill and Enter confirmation",
+      "outcomes": {
+        "confirmation": "invalid plan, exit 2",
+        "credential-input": "invalid plan, exit 2",
+        "identity": "BLOCKED, exit 3",
+        "pixels": "FAIL, exit 1",
+        "scope": "invalid plan, exit 2"
+      },
+      "status": "passed"
+    },
+    {
+      "command": "Current public validate against retained TUI transition copy and four durable GUI runs",
+      "details": [
+        {
+          "code": 0,
+          "kind": "event",
+          "message": null,
+          "path": "/tmp/collect-evidence-gui-retained-tui",
+          "valid": null
+        },
+        {
+          "code": 0,
+          "kind": "event",
+          "message": null,
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001",
+          "valid": null
+        },
+        {
+          "code": 0,
+          "kind": "event",
+          "message": null,
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/workflows/collect-evidence-feedback-03-gui/artifacts/evidence/permission-0001",
+          "valid": null
+        },
+        {
+          "code": 0,
+          "kind": "event",
+          "message": null,
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001",
+          "valid": null
+        },
+        {
+          "code": 0,
+          "kind": "event",
+          "message": null,
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/workflows/collect-evidence-feedback-03-gui/artifacts/evidence/identity-blocked-0001",
+          "valid": null
+        }
+      ],
+      "exit_code": 0,
+      "status": "passed"
+    },
+    {
+      "command": "mise exec -- env COLLECT_EVIDENCE_REAL_DRIVERS=1 bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts -t \"surf: capture\"",
+      "duration_seconds": 50.84,
+      "evidence": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001",
+      "exit_code": 1,
+      "failed": 1,
+      "observed": "approved-space.3 expected Submitted, got Not submitted",
+      "passed": 0,
+      "status": "failed"
+    },
+    {
+      "command": "Public doctor --driver playwright",
+      "exit_code": 3,
+      "observed": "Chrome distribution absent at /opt/google/chrome/chrome; no installation attempted",
+      "status": "blocked"
+    },
+    {
+      "command": "Public doctor --driver tui",
+      "exit_code": 3,
+      "observed": "foot, grim and tesseract absent; no installation attempted",
+      "status": "blocked"
+    },
+    {
+      "command": "TypeScript language server / compiler availability",
+      "observed": "LSP initialization failed: no workspace TypeScript installation. No tsc binary or local TypeScript dependency found. No typecheck claimed.",
+      "status": "unavailable"
+    },
+    {
+      "command": "Borrowed GUI cleanup inspection",
+      "observed": "xwininfo found the fixture window after each public case. Only its owning smoke harness later stopped its service. No borrowed resource shutdown occurred.",
+      "status": "passed"
+    }
+  ],
+  "workflow": {
+    "ref": "workflows/collect-evidence-feedback-03-gui",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+    "store": "repository"
+  },
+  "workflow_id": "collect-evidence-feedback-03-gui",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "parent_validation": {
+    "authoritative_result_matches_transport": true,
+    "delivery_sha256": "9c2fa5c24ca98ff00a2647b888e41c7912cdb85a35bfa34e6f25d8b2dee49f1f",
+    "source_identity_verified": true,
+    "post_source_changes": "workflow-only artifact commit fc564640",
+    "output_paths_verified": 12,
+    "native_image_inspected": "480x260 heading, purple/cyan panels and collector-owned notice; actual source hash verified",
+    "public_validate_native": 0,
+    "public_validate_permission": 0,
+    "child_completed_signal": {
+      "run_id": "bbd906b2-8f40-492c-a6fd-9acd5e958a78",
+      "sequence": 2,
+      "state": "completed"
+    },
+    "child_terminal_closed": "hc kill t6r; hc rm t6r; herdr-app ls confirms absent",
+    "known_validation_failure": "Live Surf approved-space.3: expected Submitted, observed Not submitted; retained, not rerun; requires review",
+    "takeover": false,
+    "owner_evidence": "Original parent session herdr-app:t6q validating its own start-0001 dispatch, not transferring ownership"
+  },
+  "reconciliation": {
+    "mode": "reconcile",
+    "reason": "Start lifecycle completion alone does not prove implementation. Inspect the child outcome and actual source before recording a product result.",
+    "original_implementation_commit": "0e23bc5a95e72e69cdb4b5117b979cdd391fd510",
+    "original_implementation_tree": "fcc897b3612aaf5ebe7faad12d773c2f7e55132f",
+    "observed_current_commit": "9f7d0ce84309e10d048ad849d40eabab180588bc",
+    "observed_current_tree": "e77259fc500186e3be7061aeec58d24a520a3e21",
+    "source_equivalence": "Inspector identifies workflow-only commits; exact original product source verified against current HEAD. No child work repeated. Original result and lifecycle completion preserved.",
+    "owner": "herdr-app:t6q, original dispatch parent; no ownership transfer",
+    "validation": "Public validate accepted native and denied-permission runs; original native PNG inspected and SHA-256 verified; Surf failure remains open"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "run",
+  "id": "pixels",
+  "status": "sealed",
+  "startedAt": "2026-11-11T23:57:49.169Z",
+  "finishedAt": "2026-11-11T23:57:49.761Z",
+  "surface": "gui",
+  "driver": "gui",
+  "driverVersion": "Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org\nCopyright: (C) 1999 ImageMagick Studio LLC\nLicense: https://imagemagick.org/license/\nFeatures: Cipher DPC HDRI Modules OpenMP \nDelegates (built-in): bzlib cairo djvu fftw fontconfig freetype gslib gvc heic jbig jng jp2 jpeg jxl lcms lqr ltdl lzma openexr pangocairo png ps raqm raw rsvg tiff uhdr webp wmf x xml zip zlib zstd\nCompiler: gcc (16.2)",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "case",
+      "path": "cases/case/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/case/case.json",
+      "sha256": "fd55027e30bdb9399a59195b4201976e959f700f086a63b1147fe73691c5d6b2"
+    },
+    {
+      "path": "cases/case/events.jsonl",
+      "sha256": "acb7e6353a6041d8bc49a32ce78a58b6874285590ede745b0f4545b974dc2766"
+    },
+    {
+      "path": "cases/case/index.md",
+      "sha256": "6b29efefb8f9241f2bb21bd9f91c8f5e80a2f0972743b865b20ac33c52e209cc"
+    },
+    {
+      "path": "cases/case/media/step-001-step-case-001-native-scene--capture-001--capture-001.png",
+      "sha256": "2baf864452cc75f47db3e8cc9876d3af5e7f7765321f4ae5a2defc7b718076ff"
+    },
+    {
+      "path": "index.md",
+      "sha256": "817af69a226c97e8d7bb02da39050d8654c190d3ac7569623a3e9bc2cb43974f"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "d8be3b4c6879b31ae1475e23cfa085fb3e59c9c97ab1739df1bfe52cabc21f4c"
+    },
+    {
+      "path": "native/report/shots/step-case-001-native-scene--capture-001.png",
+      "sha256": "2baf864452cc75f47db3e8cc9876d3af5e7f7765321f4ae5a2defc7b718076ff"
+    },
+    {
+      "path": "native/runs/case-case.log",
+      "sha256": "261e00fff081e3f50e265f82c19d55359d1e2a51e7579e79a8fef9b7d6abcd60"
+    },
+    {
+      "path": "native/workflows/gui-case.json",
+      "sha256": "3f2f29c5eddda68d5328ef237590c373f4f8a0149ecc2655cc3b9f4eed51b308"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "06ff00cce809a007302d60016bc82bf945f5636397f3dd5a5ad19a78f60a8678"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "d8be3b4c6879b31ae1475e23cfa085fb3e59c9c97ab1739df1bfe52cabc21f4c"
+    }
+  ]
+}

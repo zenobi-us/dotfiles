@@ -1,0 +1,777 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-0005",
+  "workflow_id": "collect-evidence-feedback-03-gui",
+  "phase": "review",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": "implementation-0004",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "source_branch": "feature/collect-evidence-feedback-03-gui",
+  "base_branch": "master",
+  "source_commit": "4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71",
+  "source_tree": "36f17fc4bb60031eedb54d69a88b2a1c3ef93d74",
+  "created_at": "2026-11-12T00:21:14.485141+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "herdr-app:t6q",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-03-gui",
+    "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-03-gui"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-03-gui.md",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/collect-evidence-feedback/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/implementation-0004.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/pr-draft-implementation-0002.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/review-0005.yaml"
+    }
+  ],
+  "status": "started",
+  "ownership": {
+    "owner": "herdr-app:t6q",
+    "approval": "User explicitly requested review collect-evidence-feedback-03-gui in original parent session",
+    "prior_implementation_terminal": "t6r removed after completed signal and validation",
+    "liveness": "hc ls shows no agent in source worktree",
+    "reservations": "No active goal reservation identified in prior start; standalone workflow continues with same parent",
+    "takeover": false
+  },
+  "workflow_history_copy": {
+    "source_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/workflows/collect-evidence-feedback-03-gui",
+    "destination_root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-03-gui",
+    "reason": "Keep exact source commit/tree frozen while review records and tracker comments are persisted in base checkout",
+    "same_git_common_directory": true,
+    "files": [
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/identity-blocked-0001/cases/case/case.json",
+        "sha256": "fde3e289c35e3fcacdd004b19037f74943bc3e5f4b8907ed957de7fe106ae62b"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/identity-blocked-0001/cases/case/events.jsonl",
+        "sha256": "5d1e988b45b783288137314de30dfa68eac186987870d0255ba1a30d2de5d58b"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/identity-blocked-0001/cases/case/index.md",
+        "sha256": "6453dec4d2c1a956f4f599ebb042323c0f6233f3607abb7bfeef77b497d124cb"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/identity-blocked-0001/index.md",
+        "sha256": "8717d4a123a00022b14f88fb62756eb2a4b781af01b483eb88c59c80d43013d7"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/identity-blocked-0001/native/plan.ts",
+        "sha256": "852659fd07e8fd2cc8022d7da7fe5cc3d81757dbdcb33e8bc24a9900aaf78c5d"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/identity-blocked-0001/native/runs/case-case.log",
+        "sha256": "261e00fff081e3f50e265f82c19d55359d1e2a51e7579e79a8fef9b7d6abcd60"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/identity-blocked-0001/native/workflows/gui-case.json",
+        "sha256": "f38ab637fd9352c6d60d93e8570c6ffe82885971acf09ea7d6f10b7385cbe5fa"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/identity-blocked-0001/plan.json",
+        "sha256": "8cb7851f0a82d7fa072c2713073834e43dfd950a9c6cff3fdde30e8f0f72a556"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/identity-blocked-0001/plan.ts",
+        "sha256": "852659fd07e8fd2cc8022d7da7fe5cc3d81757dbdcb33e8bc24a9900aaf78c5d"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/identity-blocked-0001/run.json",
+        "sha256": "624601d00ed56069c7215f3de54eb25ca579654e640f402e6aa70327f45cf575"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001/cases/case/case.json",
+        "sha256": "02ed6f8bb0a77e17bec92197a27f9d4757a0e76fab8f98d39d38db9ffa958c75"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001/cases/case/events.jsonl",
+        "sha256": "22e7d164e337abc87b900587d4f5e20da8061e1b1c1382fa8a426528c0dea425"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001/cases/case/index.md",
+        "sha256": "4420ed10dbf9478ad01726240af78bbc56ad9f59b07761f2aedf8a39bc27b528"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001/cases/case/media/step-001-step-case-001-native-scene--capture-001--capture-001.png",
+        "sha256": "2baf864452cc75f47db3e8cc9876d3af5e7f7765321f4ae5a2defc7b718076ff"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001/index.md",
+        "sha256": "975446e5766888af48a65500c4b67641cf7eb2d3d5b8c0afa44c7f6272860eb0"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001/native/plan.ts",
+        "sha256": "b99b34e8c29bb5c3d0f55c52506a1ef40620ef967276a21f81dfb8a600be7741"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001/native/report/shots/step-case-001-native-scene--capture-001.png",
+        "sha256": "2baf864452cc75f47db3e8cc9876d3af5e7f7765321f4ae5a2defc7b718076ff"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001/native/runs/case-case.log",
+        "sha256": "8f18ddc5a66abb31f20a5048b10e81523d02062d0edad29167cf651c97c9f384"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001/native/workflows/gui-case.json",
+        "sha256": "bd7f24b6b5a345e6c176f51ed4b35b865a184fb0f84cd66fcda9572eea39b389"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001/plan.json",
+        "sha256": "110c1a161d63a17474642753bb22dd21dfa7ed3afccb3f98eb99df222ad6bfb8"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001/plan.ts",
+        "sha256": "b99b34e8c29bb5c3d0f55c52506a1ef40620ef967276a21f81dfb8a600be7741"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001/run.json",
+        "sha256": "58f33387881d9e8540672c796235aae1f99171786c8dce809553b678d6e2f9fa"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/permission-0001/cases/case/case.json",
+        "sha256": "163eaf12eba482a4df3e29a2b9626ea175381855e0f1cf75bbb12ecac3111712"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/permission-0001/cases/case/events.jsonl",
+        "sha256": "54f6f0bc5cd8b2480c4b8e0dcce5e26546a79e3621584c1d55f48cf1963abc46"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/permission-0001/cases/case/index.md",
+        "sha256": "ecd9793336624418e922c191dfde3b65e01f294daaf67b6b3497eaad146a9b73"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/permission-0001/index.md",
+        "sha256": "a4ef591e57acd176910c883974cefb496a0ace611791848206436491017b1f01"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/permission-0001/native/plan.ts",
+        "sha256": "b99b34e8c29bb5c3d0f55c52506a1ef40620ef967276a21f81dfb8a600be7741"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/permission-0001/native/runs/case-case.log",
+        "sha256": "261e00fff081e3f50e265f82c19d55359d1e2a51e7579e79a8fef9b7d6abcd60"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/permission-0001/native/workflows/gui-case.json",
+        "sha256": "bd7f24b6b5a345e6c176f51ed4b35b865a184fb0f84cd66fcda9572eea39b389"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/permission-0001/plan.json",
+        "sha256": "110c1a161d63a17474642753bb22dd21dfa7ed3afccb3f98eb99df222ad6bfb8"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/permission-0001/plan.ts",
+        "sha256": "b99b34e8c29bb5c3d0f55c52506a1ef40620ef967276a21f81dfb8a600be7741"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/permission-0001/run.json",
+        "sha256": "5991812783af856509d18a371cee5ad2c3d61c55a45b091153dbe7bcb05b43b7"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001/cases/case/case.json",
+        "sha256": "fd55027e30bdb9399a59195b4201976e959f700f086a63b1147fe73691c5d6b2"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001/cases/case/events.jsonl",
+        "sha256": "acb7e6353a6041d8bc49a32ce78a58b6874285590ede745b0f4545b974dc2766"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001/cases/case/index.md",
+        "sha256": "6b29efefb8f9241f2bb21bd9f91c8f5e80a2f0972743b865b20ac33c52e209cc"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001/cases/case/media/step-001-step-case-001-native-scene--capture-001--capture-001.png",
+        "sha256": "2baf864452cc75f47db3e8cc9876d3af5e7f7765321f4ae5a2defc7b718076ff"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001/index.md",
+        "sha256": "817af69a226c97e8d7bb02da39050d8654c190d3ac7569623a3e9bc2cb43974f"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001/native/plan.ts",
+        "sha256": "d8be3b4c6879b31ae1475e23cfa085fb3e59c9c97ab1739df1bfe52cabc21f4c"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001/native/report/shots/step-case-001-native-scene--capture-001.png",
+        "sha256": "2baf864452cc75f47db3e8cc9876d3af5e7f7765321f4ae5a2defc7b718076ff"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001/native/runs/case-case.log",
+        "sha256": "261e00fff081e3f50e265f82c19d55359d1e2a51e7579e79a8fef9b7d6abcd60"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001/native/workflows/gui-case.json",
+        "sha256": "3f2f29c5eddda68d5328ef237590c373f4f8a0149ecc2655cc3b9f4eed51b308"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001/plan.json",
+        "sha256": "06ff00cce809a007302d60016bc82bf945f5636397f3dd5a5ad19a78f60a8678"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001/plan.ts",
+        "sha256": "d8be3b4c6879b31ae1475e23cfa085fb3e59c9c97ab1739df1bfe52cabc21f4c"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001/run.json",
+        "sha256": "d1c963d2a01ee4db6dd0708d32252ffb3b1af45729ea886d8bf6076f05ef47a8"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a/case.json",
+        "sha256": "b51f1732b283629e0b7540c6b5f36499a58d760d2fa5cbf090a8d7e8dba65894"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a/events.jsonl",
+        "sha256": "eaef61348a289767048132477eccef576138d40f92a8130452d8ca9aabd96909"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a/index.md",
+        "sha256": "edd9760617f82de4bb7fd151bb6d547a0edb467517d8c4e977f66fa190443e69"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a/media/step-002-step-a-002-case-identity--capture-001--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a/media/step-002-step-a-002-case-identity--capture-002--capture-002.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a/media/step-003-step-a-003-identity-capture--capture-001--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a-b/case.json",
+        "sha256": "a24390f5f7e0788f09f55d060688263cb5addc83a95a873426c50e723516dd2d"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a-b/events.jsonl",
+        "sha256": "3ae6a2935f0ce662f390fcf18bd90ae02cf324221c57feb934d7ce010429f8c0"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a-b/index.md",
+        "sha256": "6e8bc2d5c5b9258c975b390da2c072d43d7f065c581db84a2814435be0ff4252"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a-b/media/step-002-step-a-b-002-case-identity--capture-001--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a-b/media/step-002-step-a-b-002-case-identity--capture-002--capture-002.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a-b/media/step-003-step-a-b-003-identity-capture--capture-001--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a.b/case.json",
+        "sha256": "4cd067cdfa3f7318c9736f227b1353e957560f2cb2287ffaaec5e894578e7fb4"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a.b/events.jsonl",
+        "sha256": "be0ecdc3477bc1cd6eb201c07df09d2ea50107030223acdd4177f81e0d04f182"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a.b/index.md",
+        "sha256": "eb3e90d99e7479710621337dd7fd89082268e32aeb91c403e1173ba1e1abbcd4"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a.b/media/step-002-step-a-b-002-case-identity--capture-001--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a.b/media/step-002-step-a-b-002-case-identity--capture-002--capture-002.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a.b/media/step-003-step-a-b-003-identity-capture--capture-001--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a.map/case.json",
+        "sha256": "0ee798fc7b1787d52733b52462ed58fc050bc2908c8e5cb08ff41f4ff0295e5c"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a.map/events.jsonl",
+        "sha256": "965444491964129f5d5a713d4eae0b36c903ae983253d2437b9014782adffd69"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a.map/index.md",
+        "sha256": "ad5f09082c9a1555256d5ec94542e508d965eb2ce46f25304f2ad3a52d0bc43d"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a.map/media/step-002-step-a-map-002-case-identity--capture-001--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a.map/media/step-002-step-a-map-002-case-identity--capture-002--capture-002.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a.map/media/step-003-step-a-map-003-identity-capture--capture-001--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a_b/case.json",
+        "sha256": "8390b7bb6bb0616fa3aedab0ca30ad198d262a066fa4c4ddf7365f27ac515953"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a_b/events.jsonl",
+        "sha256": "ee5a54f9213828747f82fdc732c29dcc4579410ab42db2896b8475770e89bc6c"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a_b/index.md",
+        "sha256": "a09027172474b2fa122118042c3f88919f46bfd4b31d34c2024f158e471492d4"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a_b/media/step-002-step-a-b-002-case-identity--capture-001--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a_b/media/step-002-step-a-b-002-case-identity--capture-002--capture-002.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/a_b/media/step-003-step-a-b-003-identity-capture--capture-001--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/approved-space/case.json",
+        "sha256": "82f57837d8f65838adc291c46ba8851df0bdde355519b971043a75fe63d4011d"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/approved-space/events.jsonl",
+        "sha256": "9d3b940ddfbfbfa522351eae7d4a0fd8b46cf7cbf9747ad0003823d2d97490ac"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/approved-space/index.md",
+        "sha256": "759d7bb0a4ca254772b89812e542c0ff99f0438d6e8d80701e4159dabbdc801c"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/approved-space/media/step-003-step-approved-space-003-keyboard-submitted--capture-001--capture-001.png",
+        "sha256": "7e539166edd28c47922a2f1edd852b92d8d8d884c67e0e2eaef7b7d06452c29f"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/blocked/case.json",
+        "sha256": "c2efefe667cb78c44d3942beb99ff4993ca302a8bef2ad657c78990a3efd180c"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/blocked/events.jsonl",
+        "sha256": "c24e961bf3b1b055fcc5823471cfc0f582a32575bcfa63ac5b20de0cca79f04a"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/blocked/index.md",
+        "sha256": "b7ad829cc085a4cef1977a0a3b33419a8a581f6992cbff1a6ef0db962986cad8"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/capture/case.json",
+        "sha256": "9cf55ad5c06acd237de4b642b98a5aac0374d0c35e1d3bf7ddf7d9336bd56dbf"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/capture/events.jsonl",
+        "sha256": "3d2b18d9b18ee61ec694f65402edc80e7485322f124395df5df53b66bb7cf666"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/capture/index.md",
+        "sha256": "004d3e6fc993baf25ad1d82319167472eed7ae9054c4300e28d13f840609da04"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/capture/media/step-001-step-capture-001-page-without-assertion--capture-001--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/failure/case.json",
+        "sha256": "21adae6d71341c040a4c57a21e5d1a20d8d6f98f9a9460bebd3855f68a82adf8"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/failure/events.jsonl",
+        "sha256": "63d17d27e3fe88a3e8f8fe229bb272d83373f098d238fe24d4a3a3efae8a0218"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/failure/index.md",
+        "sha256": "08500a55c9635736d7a5e8a9d497e579358831cae8853410a74496049e59af82"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/failure/media/step-002-step-failure-002-unselected-project--capture-001--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/pass/case.json",
+        "sha256": "6b1dd4b1e18cdbf43539522a4a572ba6c2602aa735c735dde16a7ab4b43d9e29"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/pass/events.jsonl",
+        "sha256": "d81063cdd4f5f5271cd54eb95d12adcb85848699648d6c2ec1ea0961c1f77783"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/pass/index.md",
+        "sha256": "488f37adc5e9bbfc7201eb666b7ec87a4dbcf5c2017e2b5f21b805d72b8e2c66"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/pass/media/step-002-step-pass-002-heading--capture-001--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/pass/media/step-002-step-pass-002-heading--capture-002--capture-002.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/pass/media/step-004-step-pass-004-selected-project--capture-001--capture-001.png",
+        "sha256": "e6e9e9859edbcd5f833235a1261479243ce0370e353dc2d4032db0d97fbdc443"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/pass/media/step-004-step-pass-004-selected-project--capture-002--capture-002.png",
+        "sha256": "e6e9e9859edbcd5f833235a1261479243ce0370e353dc2d4032db0d97fbdc443"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/space/case.json",
+        "sha256": "c374b08bfcc22d8a3ba2b25e7b68d91c5f9256954b538398073e7bf7eacfa06f"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/space/events.jsonl",
+        "sha256": "4767fb7fa66104080780968af339d8daae4a7a068ac6a55b7098d6b719c037b2"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/space/index.md",
+        "sha256": "99433e13149335465e087f07e81f14d4b1495d3a2ff51576ec86968cae6f3fe2"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/unapproved/case.json",
+        "sha256": "d319ea9b2634fc09e4bafd0e0a4b6b3d1c2288c288613c60bbcec04b51138bec"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/unapproved/events.jsonl",
+        "sha256": "7d9b98329dcf363c5a8d9ae11082a9419d935de9ae9cb8ff6634dbd45aacd16f"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/unapproved/index.md",
+        "sha256": "c477e3b697781c19725bc18ca0ae3398055290c8cb45a43cf388589528bbb495"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/index.md",
+        "sha256": "fef4abce6c474a9b60f0b934661ceffb7939ec3fef995829f9b4f634a80dbf8c"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/plan.ts",
+        "sha256": "8747ac3483edbeba93148b8eccfdc4ce75e8418857e93b21eb1f5bd32930fe6f"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a-002-case-identity--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a-002-case-identity--capture-002.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a-003-identity-capture--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a-b-002-case-identity--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a-b-002-case-identity--capture-002.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a-b-003-identity-capture--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a.b-002-case-identity--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a.b-002-case-identity--capture-002.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a.b-003-identity-capture--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a.map-002-case-identity--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a.map-002-case-identity--capture-002.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a.map-003-identity-capture--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a_b-002-case-identity--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a_b-002-case-identity--capture-002.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-a_b-003-identity-capture--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-approved-space-003-keyboard-submitted--capture-001.png",
+        "sha256": "7e539166edd28c47922a2f1edd852b92d8d8d884c67e0e2eaef7b7d06452c29f"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-capture-001-page-without-assertion--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-failure-002-unselected-project--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-pass-002-heading--capture-001.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-pass-002-heading--capture-002.png",
+        "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-pass-004-selected-project--capture-001.png",
+        "sha256": "e6e9e9859edbcd5f833235a1261479243ce0370e353dc2d4032db0d97fbdc443"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/report/shots/step-pass-004-selected-project--capture-002.png",
+        "sha256": "e6e9e9859edbcd5f833235a1261479243ce0370e353dc2d4032db0d97fbdc443"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/runs/case-a-b.log",
+        "sha256": "8a6cf856f9b938b620e5c9c3f42297211e3e94f3fca29dd0edebaa5a3efa0115"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/runs/case-a.b.log",
+        "sha256": "d7778171f9297af106ec0374d6b99174374955958ce45f8426bc8ee8034c3f92"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/runs/case-a.log",
+        "sha256": "65fefedc427271d4f212296c61ae3e4d8cfed95b06c5893792e17f7f669076be"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/runs/case-a.map.log",
+        "sha256": "eb8acd79e5f0860cec9c715166b8dc3bfbcfd6f64b3a67b83a4b1a3e8faafb78"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/runs/case-a_b.log",
+        "sha256": "7a6b57427fec989a40c42c7927106b0625d65e52ccda023e75b837bf055f1ab5"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/runs/case-approved-space.log",
+        "sha256": "c0bf81e011690df94984c8935b757a22bc64c01f78da09b421a8948ab0f454ad"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/runs/case-blocked.log",
+        "sha256": "92e45040c2156fbc6d44ba8a6505d089dd2ccbc6f5109b8281ffc1cc7910c866"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/runs/case-capture.log",
+        "sha256": "516bb022dd71d769c9e17323728934d614c9f327242c631aa8f4a77f4e1e2e0b"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/runs/case-failure.log",
+        "sha256": "5a0d8ff13d70b9cb273f69d264bbbfad7f60fde5bdcdfb8dfd6a278a33a98cc5"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/runs/case-pass.log",
+        "sha256": "a9535bf24215e9dc4888cdc0788b53b755d9999f527fc7e514677fe39d81d054"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/runs/case-space.log",
+        "sha256": "35d0154677e184ed248ffab0fe1d79682dbcd366976584af4543ce0753576a49"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/runs/case-unapproved.log",
+        "sha256": "d542885354e6d5932abf9ed90a5c9b48bf2e72df8732f3618d3c049786cc4b21"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-a-b.json",
+        "sha256": "23654a6ba46b0872c06fb1538b56ae4e3e6757e02b2fd5458639cab0f8bb9243"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-a-b.json.map",
+        "sha256": "04b6fd8aef6af681aa0cf263d18fc650665691f15fe7c5d1fa98decb79605a58"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-a.b.json",
+        "sha256": "dc423a95a9b169d53a04e750387e538371cfd0e287e0de3e3731944bb7973225"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-a.b.json.map",
+        "sha256": "c42032b26b1ed7348dd591e4c2a0b523d6d74df2c02fb577e741d7082945441b"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-a.json",
+        "sha256": "34ca4451cbd7339097671caa9b9e754b36197db8fc01d16ef1b4371d44835a1e"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-a.json.map",
+        "sha256": "18258e496f00d048fc31e54fb4b0411437593397ac0351a157d404efbc3b8864"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-a.map.json",
+        "sha256": "12c1661dff36f07c0e6dff39dfaa61b01db2676fd6a500957dbdac172e844ef3"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-a.map.json.map",
+        "sha256": "6908ed2acbe97bb011a1caa77d8333e7b40f6f5bbc1fc0653beab30acb2f1970"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-a_b.json",
+        "sha256": "3802dfa88542e1c626dfb80f0e2cab03e857472e2c5dcc2c4a400eecf0d91d0e"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-a_b.json.map",
+        "sha256": "53191e0eaaa1c870284d5014bcce931d7ff28f223e6493768f086664d89844c8"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-approved-space.json",
+        "sha256": "5eda4f8371ef708f83d2a36abce21d9d7fecc1793c8ac90c1e85b3253470d85f"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-approved-space.json.map",
+        "sha256": "3d58df4ebbaaf03743f5721d6087e6fbe1c3979714a6e0fce0f4d422c3acab16"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-blocked.json",
+        "sha256": "dac6ad602fb8607325c110a38cfc6eb2ee7146b50628b5b696f68453f3517ed3"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-blocked.json.map",
+        "sha256": "9a0e1e8f96c78ebb06563585aee28b0d8b4b17eb67139eca68125ad160082c75"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-capture.json",
+        "sha256": "23fd9b63a30e90dc9b5ef15b234a8c91aebf803ba023bdd9fda567cc553a0865"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-capture.json.map",
+        "sha256": "61c25f31df503b5856b6c9cb8d9b5ed366a4345423892d35ce08cbaa3c6c0998"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-failure.json",
+        "sha256": "4f70a465594df5322a32d1ed4015f040d92aa9a8089eb32d2bd890ebf1481e44"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-failure.json.map",
+        "sha256": "054e0a313afae3b550076a5e692c320f58873c0f8214caf61b10df2b8e2e01de"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-pass.json",
+        "sha256": "1545ef378370c0df9159e0b6acc09d20432b10a0058597a21c457b86aa45fb39"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-pass.json.map",
+        "sha256": "1cb0a7b4cf64c27eef33583a09021c960b1cdc814cd1a47c131a5fe47a2d6c91"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-space.json",
+        "sha256": "14e31b62af5196b895427a2bb474f02bb8c0f04f4a022b5b0e4123328d0e3edc"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-space.json.map",
+        "sha256": "d733d6b793093776115bd83183afdb482493ebe22d066de2f80d5fa7f3f0699a"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-unapproved.json",
+        "sha256": "4b87ed4129f37f77151bc5ab5cb3501d47fbb3c1f4d89f20b282c94277108bcc"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/native/workflows/browser-public-test-unapproved.json.map",
+        "sha256": "0e8442e4478b4acf734bf4bf338928192af049e889ef1220e8f841b9567bcfb2"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/plan.json",
+        "sha256": "33127a7aab18a05aaf35efa1d441328c2ba5f95fdbd2c31be1715daecb567b78"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/plan.ts",
+        "sha256": "8747ac3483edbeba93148b8eccfdc4ce75e8418857e93b21eb1f5bd32930fe6f"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/run.json",
+        "sha256": "80dc3a84da43826364c8a94a7c83ba5467d0dcaec91109f22ea3a7e44542ab1c"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/pr-draft-implementation-0002.md",
+        "sha256": "e099b282048edec37adf8c77c18871fcaa74dc6fe0b3b307d99b680a4523939e"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/validation-implementation-0002.json",
+        "sha256": "5cdf5b3c3a92a8fcab6a4122f32108bbe0b2aedef54359273859145d89940bfc"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/events/implementation-0002.yaml",
+        "sha256": "25fa26825d58eee233fa4ef81c5b965c098f27ca37b76272f73752881108e698"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/events/implementation-0004.yaml",
+        "sha256": "27fbc0ac0e0417f777b6f3b31c55347d9beb00f0c5158e58e56c3c9ff0004d18"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/events/start-0001.yaml",
+        "sha256": "6e2db3731401b317414c5b3baf414f195ec0a6430e0fd302395f1ef9bbaf1462"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/events/start-0003.yaml",
+        "sha256": "3da2939e3ad797770d7321d8ba5a3e48ecd06d94cd1836b359edace40ebb27f1"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/manifest.yaml",
+        "sha256": "099493a0dac9c1811f5585d266eecb2b563229c68cb6677b538fd773625879bd"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/projections/implementation-log.md",
+        "sha256": "76bd4eab5e3d47424e1b17da6f590b80162b2fce79a2a22efcf3b1668353479f"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/projections/latest-status.yaml",
+        "sha256": "9250622e1a5e561d9034a8d3b91394042dfcd7798824a6623e34a4ab3fb56897"
+      },
+      {
+        "ref": "workflows/collect-evidence-feedback-03-gui/projections/pr-draft.md",
+        "sha256": "4652600dded12bbfbb488cd47d622f240fcf92bcea6132492309ed09032fa0b4"
+      }
+    ]
+  }
+}

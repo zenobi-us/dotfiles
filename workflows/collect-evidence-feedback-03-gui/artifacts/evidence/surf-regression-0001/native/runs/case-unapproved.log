@@ -1,0 +1,71 @@
+{
+  "status": "failed",
+  "completedSteps": 7,
+  "totalSteps": 12,
+  "results": [
+    {
+      "step": 1,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 2,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 3,
+      "cmd": "navigate",
+      "status": "ok",
+      "ms": 629
+    },
+    {
+      "step": 4,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 5,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 6,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 7,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 8,
+      "cmd": "js",
+      "status": "error",
+      "error": "Error: SAFETY STOP unapproved.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6",
+      "ms": 4
+    }
+  ],
+  "error": "Error: SAFETY STOP unapproved.2: confirmation step is not explicitly approved\n    at <anonymous>:18:21\n    at <anonymous>:20:5\n    at <anonymous>:20:10\n    at <anonymous>:21:6",
+  "totalMs": 1252,
+  "vars": {
+    "base": "http://127.0.0.1:44339",
+    "shots": "/tmp/ce-surf-public-wZm7R1/collect-evidence-LuqjD6/report/shots",
+    "dialog_756e617070726f7665642e31": {
+      "id": 1639,
+      "hasDialog": false
+    },
+    "url_756e617070726f7665642e31": "http://127.0.0.1:44339/",
+    "dialog_756e617070726f7665642e32": {
+      "id": 1653,
+      "hasDialog": false
+    }
+  }
+}

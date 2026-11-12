@@ -1,0 +1,56 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0001",
+  "workflow_id": "collect-evidence-feedback-03-gui",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": null,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "source_branch": "feature/collect-evidence-feedback-03-gui",
+  "base_branch": "master",
+  "source_commit": "231bb9d3985de8fbbc368cbbb15503b698f71811",
+  "source_tree": "e9ccd1d355e16d27f199f0cba49e7bf430109cf9",
+  "created_at": "2026-11-11T23:48:29.305427+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "herdr-app:t6q",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-03-gui",
+    "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+    "ref": "workflows/collect-evidence-feedback-03-gui"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-03-gui.md",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/collect-evidence-feedback/index.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/start-0001.yaml"
+    }
+  ],
+  "status": "started",
+  "ownership": {
+    "owner": "herdr-app:t6q",
+    "prior_claim": "unclaimed",
+    "source_inspection": "no prior receipts, source commits or workspace",
+    "direct_blocker": "collect-evidence-feedback-01-web completed",
+    "reservations": "no goal event paths found; no live GUI implementation terminal found"
+  }
+}

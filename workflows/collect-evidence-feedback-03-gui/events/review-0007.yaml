@@ -1,0 +1,251 @@
+{
+  "agent": "omp",
+  "attempt": 1,
+  "axis_reviews": [
+    {
+      "axis": "Standards",
+      "closed": true,
+      "outcome": "No hard breaches; one nonblocking P3 heuristic",
+      "run_id": "63f23ccf-d0f5-4cc4-981e-dbc8d18e5c7a",
+      "terminal": "t6w",
+      "verified_payload_sha256": "7246c23d9eee11acb27d32b77aa6a3845ef5aec6c94b24e679b5646864c719fe"
+    },
+    {
+      "axis": "Spec",
+      "closed": true,
+      "outcome": "Proposed P1 overlap risk; parent reviewer did not confirm it on controlled Xwayland smoke; retained as cross-host uncertainty, not a confirmed blocker",
+      "run_id": "11d068f9-db04-4ca1-bc1c-34844a34c81d",
+      "terminal": "t6x",
+      "verified_payload_sha256": "efd6252d58f9485a9eafc78cc483312cb25909c32a7b53296b6f997cc894e2c3"
+    }
+  ],
+  "base_branch": "master",
+  "base_commit": "cbde74f5b6cad06c726f9db388416885815b701f",
+  "created_at": "2026-11-12T00:32:30.085426+00:00",
+  "event": "phase-complete",
+  "findings": [
+    {
+      "adr_reason": "Public playbook and plan validation contract mismatch; no relevant architecture decision.",
+      "adr_reference": "NO ADR",
+      "axis": "Spec",
+      "blocking": true,
+      "completion_blocker": "The ticket requires a usable GUI playbook. Its sole plan cannot reach collection.",
+      "description": "The only published GUI plan omits image.lines. Public compile returns exit 2: GUI expect requires RGB pixel probes; OCR line assertions are unsupported. Adding only lines: [] to the temporary plan returns exit 0.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/gui.md",
+      "id": "CEGUI-R1",
+      "line": 46,
+      "required_change": "Add lines: [] to the published image example. Verify that the documented plan compiles through the public CLI from an unrelated directory.",
+      "severity": "P2",
+      "validation_command": "COLLECT_EVIDENCE_CLI compile \"$EXTERNAL_WORKSPACE\" --json"
+    },
+    {
+      "adr_reason": "Optional smell heuristic, not an architectural requirement.",
+      "adr_reference": "NO ADR",
+      "axis": "Standards",
+      "blocking": false,
+      "classification": "heuristic",
+      "description": "Possible Repeated Switches: surface and capture-method cascades are repeated in record creation and validation.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts",
+      "id": "CEGUI-N1",
+      "line": 134,
+      "required_change": "Optional: consider a shared typed provenance mapping. No change is required for completion.",
+      "severity": "P3",
+      "validation_command": "RUN_GUI_EVIDENCE_TESTS=1 mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/gui-workflow.test.ts"
+    }
+  ],
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/collect-evidence-feedback/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/review-0005.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/implementation-0004.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/pr-draft-implementation-0002.md"
+    },
+    {
+      "kind": "validation",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/validation-implementation-0002.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001/run.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001/cases/approved-space/events.jsonl"
+    },
+    {
+      "kind": "standards",
+      "ref": "CONTEXT-MAP.md"
+    },
+    {
+      "kind": "adr",
+      "ref": "docs/adr/0001-pi-ink-cleanup-trust-boundary.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/review-0006.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/reviews/review-review-0006.md"
+    }
+  ],
+  "muxer": "herdr-app",
+  "muxer_run_id": "36fcf2d1-1339-419e-b5ed-c5a1fbc33ed1",
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/review-0007.yaml"
+    },
+    {
+      "kind": "ticket-comment",
+      "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-03-gui/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-03-gui/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-03-gui/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-03-gui/projections/implementation-log.md"
+    }
+  ],
+  "pane_id": null,
+  "parent_receipt": "review-0006",
+  "phase": "review",
+  "receipt_id": "review-0007",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "review_summary": "Usable independent review completed with FAILURE for confirmed P2 CEGUI-R1. No integration readiness. Parent owns tracker/publication/completion. Temporary overlap diagnostics are not a canonical evidence run for this workflow.",
+  "schema": "worktree-receipt/v1",
+  "session_id": "herdr-app:t6q",
+  "source_branch": "feature/collect-evidence-feedback-03-gui",
+  "source_clean": true,
+  "source_commit": "4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71",
+  "source_tree": "36f17fc4bb60031eedb54d69a88b2a1c3ef93d74",
+  "status": "completed",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-03-gui",
+    "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-03-gui.md",
+  "validation_results": [
+    {
+      "command": "Pinned base/source identity and clean-source checks",
+      "observed": "master cbde74f5b6cad06c726f9db388416885815b701f; frozen commit/tree match; source git status --porcelain empty",
+      "status": "passed"
+    },
+    {
+      "command": "Public native archive validate and report from /tmp",
+      "observed": "validate exit 0; report exit 0 with case PASS; original 480x260 image inspected",
+      "status": "passed"
+    },
+    {
+      "command": "Public validator with changed event/asset GUI title and refreshed inventory hashes",
+      "observed": "exit 2: Missing approved GUI identity or borrowed-resource preservation",
+      "status": "passed"
+    },
+    {
+      "command": "Public compile of exact published GUI example",
+      "observed": "exit 2 because image.lines is absent; confirmed CEGUI-R1",
+      "status": "failed"
+    },
+    {
+      "command": "Public compile after adding only lines: [] in temporary plan",
+      "observed": "exit 0 and success true; product source unchanged",
+      "status": "passed"
+    },
+    {
+      "command": "Public GUI doctor/run with two overlapping collector-owned GTK X11 windows",
+      "observed": "doctor exit 0; run exit 0/PASS; original image contains approved red only; overlapped-region sample srgba(204,25,51,1). Proposed scope leak not reproduced on host.",
+      "status": "passed"
+    },
+    {
+      "command": "Recorded implementation public suite (not repeated)",
+      "observed": "102 passed,31 skipped,943 assertions; native PASS, dimensions FAIL, permissions/title BLOCKED and invalid-input exits retained",
+      "status": "passed"
+    },
+    {
+      "command": "Recorded Surf approved-space.3 live regression (not rerun)",
+      "observed": "expected Submitted, observed Not submitted; no diff-caused Surf change identified; runtime cause unresolved",
+      "status": "failed"
+    },
+    {
+      "command": "Fresh Playwright and TUI capture",
+      "observed": "Recorded missing Chrome; missing foot/grim/tesseract. Retained TUI archive validated. No installs.",
+      "status": "blocked"
+    },
+    {
+      "command": "Typecheck",
+      "observed": "Recorded missing TypeScript/LSP prerequisites; no typecheck claimed",
+      "status": "blocked"
+    },
+    {
+      "command": "Review artifact mq OKF validation",
+      "observed": "empty validation errors array",
+      "status": "passed"
+    },
+    {
+      "command": "Axis result identity/hash verification, acknowledgement and terminal cleanup",
+      "observed": "Standards t6w and Spec t6x completed; verified/acknowledged; both terminals removed. Main t6v preserved.",
+      "status": "passed"
+    }
+  ],
+  "workflow": {
+    "ref": "workflows/collect-evidence-feedback-03-gui",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "store": "repository"
+  },
+  "workflow_id": "collect-evidence-feedback-03-gui",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "parent_validation": {
+    "schema_identity_hash_verified": true,
+    "delivery_sha256": "457439cc639092ba34b7c617bb206666085631116756aacdc2762c247fab00d0",
+    "source_commit_tree_unchanged": true,
+    "source_clean": true,
+    "review_artifact_verified": true,
+    "native_archive_validate": {
+      "cwd": "/tmp",
+      "command": "<frozen-source>/scripts/collect-evidence.ts validate <base-workflow>/artifacts/evidence/native-0001 --quiet",
+      "exit_code": 0
+    },
+    "blockers": [
+      "CEGUI-R1"
+    ],
+    "review_comment_recorded": true,
+    "main_reviewer_terminal": "t6v removed",
+    "axis_terminals": "t6w and t6x removed by reviewer",
+    "source_worktree_retained": true,
+    "prior_user_changes_preserved": [
+      "CONTEXT-MAP.md",
+      "CONTEXT.md"
+    ],
+    "publication": "Local workflow and tracker commits follow in base checkout; no remote Git or source merge authorized"
+  }
+}

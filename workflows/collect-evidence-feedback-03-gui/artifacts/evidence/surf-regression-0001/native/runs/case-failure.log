@@ -1,0 +1,90 @@
+{
+  "status": "failed",
+  "completedSteps": 10,
+  "totalSteps": 13,
+  "results": [
+    {
+      "step": 1,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 2,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 3,
+      "cmd": "navigate",
+      "status": "ok",
+      "ms": 634
+    },
+    {
+      "step": 4,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 5,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 6,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 7,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 102
+    },
+    {
+      "step": 8,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 9,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 226
+    },
+    {
+      "step": 10,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 103
+    },
+    {
+      "step": 11,
+      "cmd": "js",
+      "status": "error",
+      "error": "Error: ASSERT FAIL failure.2: expected This text is absent, got No project selected\n    at <anonymous>:2:261\n    at tick (<anonymous>:2:345)",
+      "ms": 232
+    }
+  ],
+  "error": "Error: ASSERT FAIL failure.2: expected This text is absent, got No project selected\n    at <anonymous>:2:261\n    at tick (<anonymous>:2:345)",
+  "totalMs": 1917,
+  "vars": {
+    "base": "http://127.0.0.1:44339",
+    "shots": "/tmp/ce-surf-public-wZm7R1/collect-evidence-LuqjD6/report/shots",
+    "dialog_6661696c7572652e31": {
+      "id": 1607,
+      "hasDialog": false
+    },
+    "url_6661696c7572652e31": "http://127.0.0.1:44339/",
+    "dialog_6661696c7572652e32": {
+      "id": 1621,
+      "hasDialog": false
+    },
+    "capture_1_6661696c7572652e32": "{\"capturedAt\":\"2026-11-12T00:00:50.754Z\",\"url\":\"http://127.0.0.1:44339/\",\"viewport\":{\"width\":1379,\"height\":1022,\"deviceScaleFactor\":1}}"
+  }
+}

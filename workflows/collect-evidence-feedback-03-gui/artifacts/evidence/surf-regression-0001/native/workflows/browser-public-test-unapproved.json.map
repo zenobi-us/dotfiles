@@ -1,0 +1,26 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "driver-map",
+  "entries": [
+    {
+      "step": "unapproved.1",
+      "kind": "navigate",
+      "target": "/",
+      "from": 0,
+      "count": 6,
+      "shot": "",
+      "dialog": "dialog_756e617070726f7665642e31",
+      "url": "url_756e617070726f7665642e31"
+    },
+    {
+      "step": "unapproved.2",
+      "kind": "click",
+      "target": "#select",
+      "from": 6,
+      "count": 6,
+      "shot": "",
+      "dialog": "dialog_756e617070726f7665642e32",
+      "url": "url_756e617070726f7665642e32"
+    }
+  ]
+}

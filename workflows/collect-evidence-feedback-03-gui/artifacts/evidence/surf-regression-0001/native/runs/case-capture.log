@@ -1,0 +1,67 @@
+{
+  "status": "completed",
+  "completedSteps": 8,
+  "totalSteps": 8,
+  "results": [
+    {
+      "step": 1,
+      "cmd": "dialog.info",
+      "status": "ok",
+      "ms": 106
+    },
+    {
+      "step": 2,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 107
+    },
+    {
+      "step": 3,
+      "cmd": "navigate",
+      "status": "ok",
+      "ms": 639
+    },
+    {
+      "step": 4,
+      "cmd": "wait.load",
+      "status": "ok",
+      "ms": 104
+    },
+    {
+      "step": 5,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 6,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 105
+    },
+    {
+      "step": 7,
+      "cmd": "screenshot",
+      "status": "ok",
+      "ms": 229
+    },
+    {
+      "step": 8,
+      "cmd": "js",
+      "status": "ok",
+      "ms": 104
+    }
+  ],
+  "failed": 0,
+  "totalMs": 1499,
+  "vars": {
+    "base": "http://127.0.0.1:44339",
+    "shots": "/tmp/ce-surf-public-wZm7R1/collect-evidence-LuqjD6/report/shots",
+    "dialog_636170747572652e31": {
+      "id": 1961,
+      "hasDialog": false
+    },
+    "url_636170747572652e31": "http://127.0.0.1:44339/",
+    "capture_1_636170747572652e31": "{\"capturedAt\":\"2026-11-12T00:01:23.671Z\",\"url\":\"http://127.0.0.1:44339/\",\"viewport\":{\"width\":1379,\"height\":1022,\"deviceScaleFactor\":1}}"
+  }
+}

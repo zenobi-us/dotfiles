@@ -1,0 +1,195 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "pass",
+  "runId": "controlled",
+  "order": 1,
+  "purpose": "Select the named project",
+  "preconditions": [],
+  "expected": {
+    "pass": "Aurora is selected",
+    "fail": "Aurora is not selected"
+  },
+  "steps": [
+    {
+      "id": "pass.1",
+      "order": 1,
+      "purpose": "Open the owned page",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the owned page",
+        "to": "/"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "pass.2",
+      "order": 2,
+      "purpose": "Check the heading",
+      "actions": {
+        "do": "expect",
+        "says": "Check the heading",
+        "locator": "h1",
+        "text": "Owned evidence test",
+        "shot": "heading"
+      },
+      "expected": {
+        "text": "Owned evidence test",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "Found text: Owned evidence test"
+      ],
+      "assertionResult": "passed"
+    },
+    {
+      "id": "pass.3",
+      "order": 3,
+      "purpose": "Select Select project",
+      "actions": {
+        "do": "click",
+        "says": "Select Select project",
+        "locator": "#select"
+      },
+      "expected": null,
+      "observed": [
+        "Clicked."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "pass.4",
+      "order": 4,
+      "purpose": "Check the selected project",
+      "actions": {
+        "do": "expect",
+        "says": "Check the selected project",
+        "locator": "#status",
+        "text": "Project selected: Aurora",
+        "shot": "selected-project"
+      },
+      "expected": {
+        "text": "Project selected: Aurora",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "Found text: Project selected: Aurora"
+      ],
+      "assertionResult": "passed"
+    }
+  ],
+  "events": "cases/pass/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "pass.2.capture-001",
+      "caseId": "pass",
+      "stepId": "pass.2",
+      "path": "cases/pass/media/step-002-step-pass-002-heading--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803",
+      "mediaType": "image/png",
+      "width": 1379,
+      "height": 1022,
+      "capturedAt": "2026-11-12T00:00:40.224Z",
+      "viewport": {
+        "width": 1379,
+        "height": 1022,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "surf",
+      "driverVersion": "surf version 2.22.0",
+      "captureMethod": "surf-screenshot",
+      "url": "http://127.0.0.1:44339/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "pass.2.capture-002",
+      "caseId": "pass",
+      "stepId": "pass.2",
+      "path": "cases/pass/media/step-002-step-pass-002-heading--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "f93119d5a2c5210502024c807f7d312576f8af0163ded9b405edb3d255377803",
+      "mediaType": "image/png",
+      "width": 1379,
+      "height": 1022,
+      "capturedAt": "2026-11-12T00:00:40.624Z",
+      "viewport": {
+        "width": 1379,
+        "height": 1022,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "surf",
+      "driverVersion": "surf version 2.22.0",
+      "captureMethod": "surf-screenshot",
+      "url": "http://127.0.0.1:44339/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "pass.4.capture-001",
+      "caseId": "pass",
+      "stepId": "pass.4",
+      "path": "cases/pass/media/step-004-step-pass-004-selected-project--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "e6e9e9859edbcd5f833235a1261479243ce0370e353dc2d4032db0d97fbdc443",
+      "mediaType": "image/png",
+      "width": 1379,
+      "height": 1022,
+      "capturedAt": "2026-11-12T00:00:47.908Z",
+      "viewport": {
+        "width": 1379,
+        "height": 1022,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "surf",
+      "driverVersion": "surf version 2.22.0",
+      "captureMethod": "surf-screenshot",
+      "url": "http://127.0.0.1:44339/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "pass.4.capture-002",
+      "caseId": "pass",
+      "stepId": "pass.4",
+      "path": "cases/pass/media/step-004-step-pass-004-selected-project--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "e6e9e9859edbcd5f833235a1261479243ce0370e353dc2d4032db0d97fbdc443",
+      "mediaType": "image/png",
+      "width": 1379,
+      "height": 1022,
+      "capturedAt": "2026-11-12T00:00:48.308Z",
+      "viewport": {
+        "width": 1379,
+        "height": 1022,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "surf",
+      "driverVersion": "surf version 2.22.0",
+      "captureMethod": "surf-screenshot",
+      "url": "http://127.0.0.1:44339/"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion.",
+    "Video is unavailable with the Surf driver. Image captures remain valid."
+  ],
+  "sideEffects": "not-recorded"
+}

@@ -1,0 +1,127 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "event",
+  "source_commit": "0e23bc5a95e72e69cdb4b5117b979cdd391fd510",
+  "source_tree": "fcc897b3612aaf5ebe7faad12d773c2f7e55132f",
+  "validation_results": [
+    {
+      "command": "RUN_GUI_EVIDENCE_TESTS=1 KEEP_GUI_EVIDENCE=1 GUI_EVIDENCE_SCOPE=<approved-fixture> GUI_EVIDENCE_IMAGE=<480x260-rgb-probes> mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test",
+      "status": "passed",
+      "exit_code": 0,
+      "passed": 102,
+      "skipped": 31,
+      "failed": 0,
+      "assertions": 943,
+      "duration_seconds": 62.98,
+      "scope": "Installed temporary copy from unrelated cwd with temporary resolved evidence store; actual GTK X11 fixture"
+    },
+    {
+      "command": "Native image inspection",
+      "status": "passed",
+      "dimensions": {
+        "width": 480,
+        "height": 260
+      },
+      "sha256": "2baf864452cc75f47db3e8cc9876d3af5e7f7765321f4ae5a2defc7b718076ff",
+      "observed": "Expected heading, purple and cyan panels, fixture notice; no unrelated desktop content"
+    },
+    {
+      "command": "GUI doctor and run with XAUTHORITY=/dev/null",
+      "status": "passed",
+      "expected_exit_code": 3,
+      "observed_exit_code": 3,
+      "outcome": "Sealed BLOCKED; no assets; assertion not-run"
+    },
+    {
+      "command": "GUI failed dimension assertion, title mismatch, scope mismatch, credential fill and Enter confirmation",
+      "status": "passed",
+      "outcomes": {
+        "pixels": "FAIL, exit 1",
+        "identity": "BLOCKED, exit 3",
+        "scope": "invalid plan, exit 2",
+        "credential-input": "invalid plan, exit 2",
+        "confirmation": "invalid plan, exit 2"
+      }
+    },
+    {
+      "command": "Current public validate against retained TUI transition copy and four durable GUI runs",
+      "status": "passed",
+      "exit_code": 0,
+      "details": [
+        {
+          "path": "/tmp/collect-evidence-gui-retained-tui",
+          "code": 0,
+          "valid": null,
+          "kind": "event",
+          "message": null
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/workflows/collect-evidence-feedback-03-gui/artifacts/evidence/native-0001",
+          "code": 0,
+          "valid": null,
+          "kind": "event",
+          "message": null
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/workflows/collect-evidence-feedback-03-gui/artifacts/evidence/permission-0001",
+          "code": 0,
+          "valid": null,
+          "kind": "event",
+          "message": null
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/workflows/collect-evidence-feedback-03-gui/artifacts/evidence/pixel-failure-0001",
+          "code": 0,
+          "valid": null,
+          "kind": "event",
+          "message": null
+        },
+        {
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/workflows/collect-evidence-feedback-03-gui/artifacts/evidence/identity-blocked-0001",
+          "code": 0,
+          "valid": null,
+          "kind": "event",
+          "message": null
+        }
+      ]
+    },
+    {
+      "command": "mise exec -- env COLLECT_EVIDENCE_REAL_DRIVERS=1 bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts -t \"surf: capture\"",
+      "status": "failed",
+      "exit_code": 1,
+      "passed": 0,
+      "failed": 1,
+      "duration_seconds": 50.84,
+      "observed": "approved-space.3 expected Submitted, got Not submitted",
+      "evidence": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/surf-regression-0001"
+    },
+    {
+      "command": "Public doctor --driver playwright",
+      "status": "blocked",
+      "exit_code": 3,
+      "observed": "Chrome distribution absent at /opt/google/chrome/chrome; no installation attempted"
+    },
+    {
+      "command": "Public doctor --driver tui",
+      "status": "blocked",
+      "exit_code": 3,
+      "observed": "foot, grim and tesseract absent; no installation attempted"
+    },
+    {
+      "command": "TypeScript language server / compiler availability",
+      "status": "unavailable",
+      "observed": "LSP initialization failed: no workspace TypeScript installation. No tsc binary or local TypeScript dependency found. No typecheck claimed."
+    },
+    {
+      "command": "Borrowed GUI cleanup inspection",
+      "status": "passed",
+      "observed": "xwininfo found the fixture window after each public case. Only its owning smoke harness later stopped its service. No borrowed resource shutdown occurred."
+    }
+  ],
+  "baseline": {
+    "command": "installed collect-evidence.ts doctor --driver gui --json",
+    "exit_code": 2,
+    "message": "--driver must be surf, playwright or tui"
+  },
+  "provenance": "Evidence copied byte-for-byte from temporary resolved stores. Original run IDs, capture times and native files remain unchanged."
+}
