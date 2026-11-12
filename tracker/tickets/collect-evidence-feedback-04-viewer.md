@@ -8,7 +8,7 @@ sequence: 4
 title: Browse immutable evidence in a local feedback session
 triage: ready-for-agent
 type: enhancement
-work_status: claimed
+work_status: completed
 ---
 
 # Browse immutable evidence in a local feedback session
@@ -50,3 +50,5 @@ Review 2026-11-12T09:56:22.748Z: **FAILURE**. Reviewed commit `86535914fad9d1528
 - **Review 2026-11-12T11:03:25.514Z: SUCCESS.** Commit `2f0018b9a37eb6ea2c6795d6779213bdbbdb95f3`; tree `a0ceb121c1e9d04d3e18709c62d3260d075ece18`. [Review artifact](../../workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0042.md).
 
 - **Review 2026-11-12T11:41:07.936006+00:00: SUCCESS.** Commit `b1afc2020aa293f242aab79e2d10434a24e93a87`; tree `5a72d914baa4c687af82e846efb5dc0ca55d33d1`. [Review artifact](../../workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0049.md).
+
+- **Completed:** Squash merge `2cd58b7edadb9358ce9eac91a0a3335c8a4d7d0e` published on `origin/master`. Fresh review SUCCESS; integrated public workflow passed 66 assertions; public session validation passed. [Finish validation](../../workflows/collect-evidence-feedback-04-viewer/events/finish-validated-0053.yaml).
