@@ -30,7 +30,7 @@ PASS requires completed steps, executed passing assertions and image evidence. F
 ## Validation and immutability
 A successful native screenshot result must retain its expected media reference. If that file is missing, collection stops before finalization with exit code 2. The incomplete staging directory and unchanged native run logs remain available for diagnosis. No sealed run is published.
 
-Finalization builds privately, validates records and source assets, seals files and publishes without replacing another identity. The required Linux primitive is GNU /usr/bin/mv with exclusive no-copy support. A missing prerequisite blocks collection; no racy overwrite fallback applies.
+Finalization builds privately, validates records and source assets, seals files and publishes without replacing another identity. Publication reserves the destination name with an exclusive mkdir, then renames the sealed tree from a staging folder in the same parent onto that empty reservation. An existing name stops publication; a rename never copies and never replaces a non-empty run.
 
 Consumers reject unsupported schemas, missing or changed media, invalid PNG or WebM data, bad references and order, symlinks, writable sealed files and incomplete finalization. A rejected run is not rewritten or resealed. Validation and reporting are read-only.
 

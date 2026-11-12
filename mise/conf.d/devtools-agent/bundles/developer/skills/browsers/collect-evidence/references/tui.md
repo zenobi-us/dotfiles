@@ -18,7 +18,7 @@ Host setup was separate from capture. On this workstation, prefix every native c
 
 ## Prerequisites
 
-Run doctor --driver tui --json. Required installed tools: termscope, tmux, foot, Cage, grim, wlr-randr, Tesseract with English language data, ImageMagick 7 (magick), mq and GNU /usr/bin/mv with exclusive no-copy publication support. When tools exist, doctor checks a private display launch, output access, actual PNG capture and OCR. Missing tools or permissions return exit 3. Complete setup separately. Do not install tools, request sudo, force graphics versions or substitute SVG, ANSI, browser or text reconstructions.
+Run doctor --driver tui --json. Required installed tools: termscope, tmux, foot, Cage, grim, wlr-randr, Tesseract with English language data, ImageMagick 7 (magick), and mq. When tools exist, doctor checks a private display launch, output access, actual PNG capture and OCR. Missing tools or permissions return exit 3. Complete setup separately. Do not install tools, request sudo, force graphics versions or substitute SVG, ANSI, browser or text reconstructions.
 
 The driver selects WLR_BACKENDS=headless, WLR_RENDERER=pixman and WLR_HEADLESS_OUTPUTS=1. These select the CPU path without forcing a graphics version. Inherited graphics-version/driver overrides block collection. A fresh mode-0700 XDG_RUNTIME_DIR prevents attachment to borrowed Wayland sockets. The driver never attaches to inherited TMUX sessions.
 

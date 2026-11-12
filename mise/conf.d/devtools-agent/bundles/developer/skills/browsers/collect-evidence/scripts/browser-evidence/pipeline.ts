@@ -90,12 +90,7 @@ async function checkPrerequisites(options: Options, state: Cancellation): Promis
   checkCancellation(state);
   const driver = options.driver ?? "playwright";
   if (!["surf", "playwright", "tui"].includes(driver)) invalid("--driver must be surf, playwright or tui");
-  if (!Bun.which("mq") || !Bun.which("/usr/bin/mv")) throw new CliError("Collection requires installed mq and GNU /usr/bin/mv; complete setup separately", 3);
-  const publication = await sh(["/usr/bin/mv", "--help"]);
-  checkCancellation(state);
-  if (publication.code !== 0 || !publication.out.includes("--no-copy") || !publication.out.includes("none-fail")) {
-    throw new CliError("GNU /usr/bin/mv lacks exclusive no-copy publication support", 3);
-  }
+  if (!Bun.which("mq")) throw new CliError("Collection requires installed mq; complete setup separately", 3);
   if (driver === "tui") return doctorTui();
   if (!Bun.which(driver === "surf" ? "surf" : "playwright-cli")) throw new CliError(`${driver} CLI is unavailable; install it separately before capture`, 3);
   const r = await sh(driver === "surf" ? ["surf", "doctor", "--json"] : ["playwright-cli", "--version"]);

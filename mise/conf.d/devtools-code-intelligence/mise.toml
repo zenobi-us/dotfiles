@@ -1,5 +1,5 @@
 [tools]
-"cargo:p1rallels/codemapper" = "latest"
+"cargo:p1rallels/codemapper" = { version = "latest", os = ["linux", "macos"] }
 "github:Feel-ix-343/markdown-oxide" = "latest"
 ast-grep = "latest"
 "npm:typescript-language-server" = "latest"

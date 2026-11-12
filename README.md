@@ -607,7 +607,7 @@ mise dot apply
 mise run herdrapp.bootstrap
 ```
 
-The declarations in `mise/conf.d/devtools-herdrapp/mise.unix.toml` copy frontend code and assets, link the CLI layout/preview/theme, and link the Bun request entrypoint and data module to this checkout. Frontend imports must stay inside one canonical mod directory: individual file symlinks fail Herdr's import checks. Copies keep each writable `mod.json` and generated editor file local. Copy deployment is additive; removing a source file does not delete its old installed copy.
+The declarations in `mise/conf.d/devtools-herdrapp/mise.toml` (Linux, macOS and Windows) copy frontend code and assets, link the CLI layout/preview/theme, and link the Bun request entrypoint and data module to this checkout. Frontend imports must stay inside one canonical mod directory: individual file symlinks fail Herdr's import checks. Copies keep each writable `mod.json` and generated editor file local. Copy deployment is additive; removing a source file does not delete its old installed copy.
 
 Mise merges the managed JSON keys from `app/preferences/` and each source mod manifest. It preserves unrelated settings, mod settings, zoom, workspace data, sessions, and generated editor files. The managed Shared Context layout remains C2. For an existing copy-based installation, back up the managed files before the first apply; `--force` is needed when replacing regular layout/theme files with links. Do not force deployment over an unreviewed mod-directory symlink.
 

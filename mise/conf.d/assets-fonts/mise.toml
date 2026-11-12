@@ -13,4 +13,4 @@ description = "Install configured fonts"
 run = "font-install -fromFile fonts.txt"
 
 [tools]
-"go:github.com/Crosse/font-install" = "latest"
+"github:Crosse/font-install" = "latest"
