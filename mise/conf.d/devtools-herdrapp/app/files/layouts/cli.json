@@ -96,22 +96,21 @@
               "content": {
                 "tab": "active",
                 "pane": {
-                  "gap": 0,
-                  "radius": 0,
-                  "background": "background",
-                  "lone": false,
-                  "focus": {
-                    "width": 1,
-                    "color": "accent"
-                  },
                   "header": {
                     "content": {
                       "mod": "cli-pane"
                     },
+                    "reveal": "hover",
                     "height": 22,
-                    "position": "top",
-                    "reveal": "hover"
-                  }
+                    "position": "top"
+                  },
+                  "background": "background",
+                  "focus": {
+                    "width": 1,
+                    "color": "accent"
+                  },
+                  "radius": 0,
+                  "gap": 0
                 }
               }
             },
@@ -187,6 +186,10 @@
     }
   ],
   "background": "canvas",
+  "theme": "cli",
+  "font": "Roboto Mono",
+  "font_size": 16,
+  "ui_font": "Roboto Mono",
   "terminal_padding": [
     2,
     8
@@ -200,9 +203,5 @@
     12,
     16
   ],
-  "theme": "cli",
-  "font": "Roboto Mono",
-  "font_size": 16,
-  "ui_font": "Roboto Mono",
   "preview": "layouts/cli.svg"
 }
