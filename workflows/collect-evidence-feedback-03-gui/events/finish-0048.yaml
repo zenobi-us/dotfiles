@@ -1,0 +1,128 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: d70fe7e463638f134d6226397ca38724492deca4
+source_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: finish-0048
+phase: finish
+event: phase-result
+status: FINISH_FAILED
+attempt: 4
+parent_receipt: finish-0047
+created_at: '2026-11-12T12:24:49.958872+00:00'
+session_id: herdr-app:t93
+pane_id: null
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0047.yaml
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0048.yaml
+review_receipt: workflows/collect-evidence-feedback-03-gui/events/review-0037.yaml
+reviewed_source_commit: d70fe7e463638f134d6226397ca38724492deca4
+reviewed_source_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+base_before: d22002f5ed1e2b1cae731171a81207ed95d0ca3b
+remote: origin
+remote_ref: refs/heads/master
+expected_merge_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+merged_commit: 4441b5c0aacecbb6620b1696a5b3c483e5733fb7
+merged_tree: 1cfddc006ae099564cbef521b2cea8384c8c461d
+merged_parents:
+- d22002f5ed1e2b1cae731171a81207ed95d0ca3b
+ticket_completion_commit: a8f8758beb01cc0246d5a7260ba74d8968393879
+ticket_publication_commit: 445f458480358d980089e8d614d7353750fe2275
+evidence:
+  store: repository
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/evidence/integrated-native-0042
+validation_results:
+- command: mise exec -- env RUN_GUI_EVIDENCE_TESTS=1 KEEP_GUI_EVIDENCE=1 GUI_EVIDENCE_SCOPE='{"display":":0","window":"0x2a00003","title":"Collector
+    owned integrated GUI check"}' GUI_EVIDENCE_IMAGE='{"width":480,"height":260,"pixels":[{"x":40,"y":110,"rgb":[102,51,153]}],"lines":[]}'
+    bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/gui-workflow.test.ts
+  cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  status: passed
+  exit_code: 0
+  tests: 1
+  assertions: 60
+  observed: Corrected only owned fixture sizing (fixed480x260). Full public native
+    normal/failure/blocked workflow passed. Prior failed fixture run retained unchanged.
+- command: mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts
+    mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts
+  cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  status: passed
+  exit_code: 0
+  tests: 99
+  assertions: 892
+- command: Absolute integrated CLI validate each copied sealed integration run from
+    /tmp
+  cwd: /tmp
+  status: passed
+  observed:
+  - run: native
+    exit_code: 0
+  - run: pixels
+    exit_code: 0
+  - run: permission
+    exit_code: 0
+  - run: identity
+    exit_code: 0
+  - run: capture-failure
+    exit_code: 0
+- command: Inspect original integrated native PNG
+  status: passed
+  observed: 480x260 owned purple fixture with collector-owned integration label only
+  sha256: ded7cd8ceb51c7b544fb5b23a5922afd625d04e0b49e5dfaeb7013371ff963e9
+recovery_mode: reconcile
+recovery_reason: Approved takeover verified integration parent/tree and remote reachability;
+  cleanup guard still refuses busy source worktree.
+last_verified_boundary: ticket_completed_and_published
+remote_observed_commit: 4f8f6ed72e3d63a416d58e9888be548fbe423915
+integration_reachable: true
+pushed: true
+ticket_completed: true
+ticket_state: completed
+worktree_removed: false
+workspace_closed: true
+worktree_preserved: true
+workspace_preserved: false
+failure_step: worktree_cleanup
+failure_reason: 'Scoped cleanup script refused: a process (for example an agent or
+  shell) runs in the worktree. No force deletion or process shutdown attempted.'
+cleanup_result:
+  command: /home/zenobius/.omp/agent/bundles/developer/skills/git/cleanup-merged/scripts/cleanup-merged.ts
+    remove feature/collect-evidence-feedback-03-gui --min-age=0s
+  exit_code: 1
+  removed: []
+  refused:
+  - branch: feature/collect-evidence-feedback-03-gui
+    path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+    reason: a process (for example an agent or shell) runs in the worktree
+next_step: Release the process using the source worktree, then rerun finish; do not
+  repeat merge or ticket completion.
+workspace_observation: herdr-app ls has no active source workspace. Prior owner t6z
+  exited 0; unrelated sessions preserved.
+verification_observations:
+- 'git ls-remote origin refs/heads/master: 4f8f6ed72e3d63a416d58e9888be548fbe423915'
+- git show -s verified merged parent d22002f5ed1e2b1cae731171a81207ed95d0ca3b and
+  tree 1cfddc006ae099564cbef521b2cea8384c8c461d
+- git merge-base --is-ancestor succeeded for integration and ticket completion commits
+  against observed remote commit
+- 'wt list: source worktree clean at integration commit; master clean and synchronized
+  before receipt writes'
+- 'Ticket mq read: work_status completed'
+validation_provenance: Validation results above retained from finish-0042/0046, not
+  rerun during cleanup-only recovery.

@@ -192,3 +192,8 @@ GUI integration `4441b5c0aacecbb6620b1696a5b3c483e5733fb7` and canonical ticket 
 Finish is FINISH_FAILED only at worktree cleanup. [Failure receipt](../events/finish-0046.yaml): scoped cleanup refused `feature/collect-evidence-feedback-03-gui` because a process uses its source directory. Worktree and branch retained; no force removal or unidentified process shutdown. Reviewer/fixer panes and owned fixtures are closed; no source app workspace remains. Unrelated cleanup candidates were left untouched.
 
 Release the process using the source worktree, then rerun finish to reconcile cleanup without repeating merge, push or ticket completion. Remaining historical Surf/typecheck/platform coverage limits and optional findings stay recorded above.
+
+
+## Finish recovery finish-0048
+
+[Approved takeover](../events/finish-0047.yaml) and [result](../events/finish-0048.yaml). Published merge and completed ticket independently reconciled. Source product files changed: none. Product validation not rerun. Cleanup script refused the busy source worktree; no forced deletion or process shutdown. Release the process and rerun finish without repeating integration or ticket completion.

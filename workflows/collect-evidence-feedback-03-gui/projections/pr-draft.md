@@ -207,3 +207,10 @@ GUI integration `4441b5c0aacecbb6620b1696a5b3c483e5733fb7` and canonical ticket 
 Finish is FINISH_FAILED only at worktree cleanup. [Failure receipt](../events/finish-0046.yaml): scoped cleanup refused `feature/collect-evidence-feedback-03-gui` because a process uses its source directory. Worktree and branch retained; no force removal or unidentified process shutdown. Reviewer/fixer panes and owned fixtures are closed; no source app workspace remains. Unrelated cleanup candidates were left untouched.
 
 Release the process using the source worktree, then rerun finish to reconcile cleanup without repeating merge, push or ticket completion. Remaining historical Surf/typecheck/platform coverage limits and optional findings stay recorded above.
+
+
+## Finish recovery finish-0048
+
+Approved takeover: [finish-0047](../events/finish-0047.yaml). [Finish result](../events/finish-0048.yaml): FINISH_FAILED at worktree cleanup. Integration `4441b5c0aacecbb6620b1696a5b3c483e5733fb7` and ticket completion `a8f8758beb01cc0246d5a7260ba74d8968393879` are reachable from observed remote master `4f8f6ed72e3d63a416d58e9888be548fbe423915`. Ticket remains completed. No merge, product change, ticket completion, or product validation was repeated. Existing validation remains recorded in finish-0042.
+
+The prior parent t6z exited 0. No active source workspace appears in herdr-app. Scoped cleanup refused because a process runs in the source worktree. The branch and worktree remain; unrelated resources remain unchanged. Release that process, then rerun finish. No FINISHED receipt is claimed.
