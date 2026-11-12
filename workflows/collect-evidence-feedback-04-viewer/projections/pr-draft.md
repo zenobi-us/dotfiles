@@ -121,3 +121,48 @@ Fresh independent review is required because source changed. No merge or push oc
 Public regression passed: 1 test, 58 assertions. Real viewer, image identity, focus, typography, unsafe-request refusal and server lifecycle passed. Fresh public import reproduced STD-001. Parent public validation and tracker schema check passed.
 
 [Parent completion](../events/review-complete-0033.yaml) verifies delivery, exact frozen source and artifact. Owned review terminals and resources are closed. Source is unchanged. No fixes, merge, push or ticket completion occurred. Next phase: fix STD-001 in a fresh session.
+
+## Fix attempt 4 — fix-0038 (latest)
+
+STD-001 is resolved. Write Markdown into Bun's stdin sink before closing it; use raw mq output to preserve frontmatter, headings, notes and trailing newline. Keep the public init regression for both human-readable records. No validator or UI expansion.
+
+Source: `14fbd057508ddb47540215fe9e8a0c43c6be574b`; tree: `c15cd53b5ff4fd386bb5760878a2dd137808d4f2`. Source committed clean. Branch: feature/collect-evidence-feedback-04-viewer; base: master. Commit hooks updated matching bundle registration versions.
+
+### Changed files
+
+- `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
+- `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/records.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts`
+
+### Validation
+
+Fresh public init and validate ran from an unrelated temporary directory against the retained sealed capture and a new resolved temporary repository session. The generated index and case-1 notes exactly matched the complete expected raw Markdown through mq. The first raw-output-only smoke exposed an additional cause: FileSink.end(input) did not write stdin. The final correction explicitly writes and awaits end; a separate fresh session passed.
+
+Existing workflow.test.ts ran once after final code changes: 1 pass, 0 fail, 60 assertions. No build or formatter ran. The temporary fixture was removed. Retained old proof was not modified.
+
+### Review, findings and merge status
+
+Consumed [review-0032](../events/review-0032.yaml), [review artifact](../artifacts/reviews/review-review-0032.md), [fix start](../events/fix-start-0035.yaml), [approval](../events/fix-approval-0034.yaml), [authorized repair](../events/fix-approval-repair-0036.yaml) and [live input-ready](../events/fix-input-ready-0037.yaml). Resolved: STD-001. Remaining findings: none. Latest reviewer verdict is historical FAILURE for the previous source; fresh review is required for this new commit.
+
+[Fix result](../events/fix-0038.yaml), [exact command proof](../artifacts/evidence/fix-0038/public-init.json), [validation](../artifacts/evidence/fix-0038/validation.json), [generated index](../artifacts/evidence/fix-0038/index.md) and [case notes](../artifacts/evidence/fix-0038/notes.md).
+
+Not merged, pushed or ticket-completed. Parent owns phase completion and later publication. Unresolved questions: none.
+
+## Final handoff — fix-0038
+
+This section supersedes the provisional fix-0038 source identity above. Parent requested contract-focused regression assertions instead of whole stock-prose equality. Required schema, kind, heading and notes content remain covered; exact-byte equality stays in the disposable public-init smoke proof.
+
+Final source: `2f0018b9a37eb6ea2c6795d6779213bdbbdb95f3`; tree: `a0ceb121c1e9d04d3e18709c62d3260d075ece18`. The same scoped commit was amended; runtime writer is unchanged from the successful fresh public-init smoke. Source committed clean.
+
+Re-ran only the changed workflow regression after the parent request: 1 pass, 0 fail, 66 assertions, 9.79s. The earlier single run passed 60 assertions before the assertion-only revision. No other tests, builds or formatters ran.
+
+[Final validation](../artifacts/evidence/fix-0038/final-validation.json) and [fix result](../events/fix-0038.yaml) bind this final identity. Resolved STD-001; no unresolved findings or questions. Latest historical reviewer verdict remains FAILURE; a fresh independent review must cover the new source. Not merged, pushed or ticket-completed.
+
+
+## Parent completion — fix-complete-0039
+
+[Parent completion](../events/fix-complete-0039.yaml) verifies [fix-0038](../events/fix-0038.yaml), final source 2f0018b9a37eb6ea2c6795d6779213bdbbdb95f3 and tree a0ceb121c1e9d04d3e18709c62d3260d075ece18, clean source, immutable draft and proof, and matching typed delivery. Public init preserved schema, headings and notes; final workflow regression passed with 66 assertions. STD-001 resolved; no unresolved findings. Delivery acknowledged; native completion sequence 2 confirmed; only child terminal t8p removed. Source worktree retained.
+
+Fresh independent review is required because source changed. No merge, push or ticket completion occurred. Receipt repair was explicitly authorized; original approval bytes and checksum remain preserved.

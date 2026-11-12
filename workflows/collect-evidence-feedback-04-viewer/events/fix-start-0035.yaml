@@ -1,0 +1,85 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "86535914fad9d152835049a5374284a772449281",
+  "source_tree": "ce207d4d61add19ebb49181932bfa769a184672a",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "pane_id": null,
+  "session_id": "hc:t8n",
+  "phase": "fix",
+  "ownership": {
+    "owner": "hc:t8n",
+    "previous_owner": "unknown (last recorded hc:t8h)",
+    "liveness": "hc ls --json: hc:t8h absent; no terminal in source worktree",
+    "active_goal_reservations": "No matching goal collection; standalone fix",
+    "direct_blockers": "collect-evidence-feedback-01-web completed per retained workflow inspection"
+  },
+  "recovery_mode": "begin",
+  "recovery_reason": "The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs.",
+  "receipt_id": "fix-start-0035",
+  "event": "phase-start",
+  "status": "started",
+  "attempt": 4,
+  "parent_receipt": "review-0032",
+  "created_at": "2026-11-12T10:14:13.701Z",
+  "consumed_review_receipts": [
+    "review-0032"
+  ],
+  "selected_findings": [
+    {
+      "adr": "NO ADR",
+      "description": "The Markdown writer uses raw input with text output. The retained session/index.md and cases/case-1/notes.md each contain only one byte, and reading both through mq returns no content. Thus session imports discard the supplied headings, notes and collect-feedback/v1 frontmatter. This breaches tracker/initiatives/collect-evidence-feedback/index.md, Implementation Decisions 20 (owned Markdown records must carry the feedback schema) and 22 (human-readable case notes). The current validator still accepts these sessions because it checks JSON and media only.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/records.ts",
+      "id": "STD-001",
+      "line": 152,
+      "required_change": "Preserve raw Markdown bytes when generating session/index.md and case notes, including schema frontmatter and supplied content. Add a public init regression that checks the generated human-readable records. Preserve existing immutable proof artifacts; capture new proof after the fix.",
+      "severity": "P2",
+      "validation_command": "Run the installed collect-feedback init command against a sealed run and a new temporary resolved session. Read the returned session/index.md and cases/<id>/notes.md using mise exec -- mq --allow-http-import --lockfile /tmp/review-axis-mq.lock -I raw -F raw 'import \"github.com/harehare/okf.mq\" | .' <paths>. Confirm schema: collect-feedback/v1, headings and notes are present. Then run mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts."
+    }
+  ],
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-0032.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-complete-0033.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/fix-approval-0034.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0032.md"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/fix-start-0035.yaml"
+    }
+  ]
+}

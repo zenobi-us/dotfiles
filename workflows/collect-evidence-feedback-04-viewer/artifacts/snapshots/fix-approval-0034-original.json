@@ -1,0 +1,55 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "86535914fad9d152835049a5374284a772449281",
+  "source_tree": "ce207d4d61add19ebb49181932bfa769a184672a",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "pane_id": null,
+  "session_id": "hc:t8n",
+  "phase": "fix",
+  "ownership": {
+    "owner": "hc:t8n",
+    "previous_owner": "unknown (last recorded hc:t8h)",
+    "liveness": "hc ls --json: hc:t8h absent; no terminal in source worktree",
+    "active_goal_reservations": "No matching goal collection; standalone fix",
+    "direct_blockers": "collect-evidence-feedback-01-web completed per retained workflow inspection"
+  },
+  "recovery_mode": "begin",
+  "recovery_reason": "The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs.",
+  "receipt_id": "fix-approval-0034",
+  "event": "operator-approval",
+  "status": "approved",
+  "attempt": 0,
+  "parent_receipt": "review-complete-0033",
+  "created_at": "2026-11-12T10:14:13.701Z",
+  "approval": "User selected Authorize fix takeover: fix STD-001 in existing worktree, preserve source and evidence; no merge or push.",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-complete-0033.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/fix-approval-0034.yaml"
+    }
+  ]
+}

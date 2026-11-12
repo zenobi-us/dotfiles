@@ -1,0 +1,48 @@
+{
+  "source_commit": "14fbd057508ddb47540215fe9e8a0c43c6be574b",
+  "source_tree": "c15cd53b5ff4fd386bb5760878a2dd137808d4f2",
+  "validation_results": [
+    {
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "init",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session/source",
+        "--repository",
+        "/tmp/viewer-fix-0038-936jzukm/repository",
+        "--workflow",
+        "public",
+        "--session",
+        "fix-0038-verified",
+        "--json"
+      ],
+      "cwd": "/tmp/viewer-fix-0038-936jzukm",
+      "result": "passed",
+      "observed": "Final verified init command is recorded with complete output in public-init.json; first raw-only smoke exposed an unwritten Bun stdin and was corrected before final verification."
+    },
+    {
+      "command": "mise exec -- mq --allow-http-import --lockfile /tmp/viewer-fix-0035-mq.lock -I raw -F raw 'import \"github.com/harehare/okf.mq\" | .' <generated index.md and notes.md>",
+      "cwd": "/tmp/viewer-fix-0038-936jzukm",
+      "result": "passed",
+      "observed": "Final fresh session index and case-1 notes exactly equal complete expected schema, kind, headings, body and trailing newline; copied through mq into this proof run."
+    },
+    {
+      "command": "mise exec -- env PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+      "result": "passed",
+      "observed": "Run once after final code changes: 1 pass, 0 fail, 60 expect() calls; 9.87s."
+    }
+  ],
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/records.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts"
+  ],
+  "source_committed_clean": true,
+  "runtime_limit": "No UI change; public CLI exercised from unrelated temporary directory. Old proof unchanged."
+}

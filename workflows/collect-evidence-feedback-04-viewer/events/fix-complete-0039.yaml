@@ -1,0 +1,157 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "2f0018b9a37eb6ea2c6795d6779213bdbbdb95f3",
+  "source_tree": "a0ceb121c1e9d04d3e18709c62d3260d075ece18",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "pane_id": null,
+  "session_id": "hc:t8n",
+  "phase": "fix",
+  "ownership": {
+    "owner": "hc:t8n",
+    "previous_owner": "unknown (last recorded hc:t8h)",
+    "liveness": "hc ls --json: hc:t8h absent; no terminal in source worktree",
+    "active_goal_reservations": "No matching goal collection; standalone fix",
+    "direct_blockers": "collect-evidence-feedback-01-web completed per retained workflow inspection"
+  },
+  "recovery_mode": "begin",
+  "recovery_reason": "The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs.",
+  "receipt_id": "fix-complete-0039",
+  "event": "phase-complete",
+  "status": "completed",
+  "attempt": 4,
+  "parent_receipt": "fix-0038",
+  "created_at": "2026-11-12T10:30:38.073Z",
+  "consumed_review_receipts": [
+    "review-0032"
+  ],
+  "resolved_findings": [
+    "STD-001"
+  ],
+  "unresolved_findings": [],
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/records.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts"
+  ],
+  "validation_results": [
+    {
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "init",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session/source",
+        "--repository",
+        "/tmp/viewer-fix-0038-936jzukm/repository",
+        "--workflow",
+        "public",
+        "--session",
+        "fix-0038-verified",
+        "--json"
+      ],
+      "cwd": "/tmp/viewer-fix-0038-936jzukm",
+      "result": "passed",
+      "observed": "Final verified init command is recorded with complete output in public-init.json; first raw-only smoke exposed an unwritten Bun stdin and was corrected before final verification."
+    },
+    {
+      "command": "mise exec -- mq --allow-http-import --lockfile /tmp/viewer-fix-0035-mq.lock -I raw -F raw 'import \"github.com/harehare/okf.mq\" | .' <generated index.md and notes.md>",
+      "cwd": "/tmp/viewer-fix-0038-936jzukm",
+      "result": "passed",
+      "observed": "Final fresh session index and case-1 notes exactly equal complete expected schema, kind, headings, body and trailing newline; copied through mq into this proof run."
+    },
+    {
+      "command": "mise exec -- env PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+      "result": "passed",
+      "observed": "Initial final-writer run: 1 pass, 0 fail, 60 assertions, 9.87s. Parent then requested behavior-focused assertions; changed regression re-run: 1 pass, 0 fail, 66 assertions, 9.79s."
+    },
+    {
+      "command": "result-delivery read; compare authoritative receipt and transport; worktree inspect; mq raw inspection of new evidence records",
+      "result": "passed",
+      "observed": "Matching schema/run/operation/hash/payload; valid history; exact clean source commit/tree; generated schema/headings/notes visible; final immutable draft and validation present."
+    }
+  ],
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/fix-0038.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/pr-draft-fix-0038-final.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/fix-0038"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/fix-approval-repair-0036.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/fix-complete-0039.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/projections/latest-status.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/projections/implementation-log.md"
+    }
+  ],
+  "child_completion": {
+    "run_id": "f39205b8-3718-4bc6-9f0b-7a0f669c8094",
+    "sequence": 2,
+    "state": "completed",
+    "transport_ack_sha256": "e35d3346fdcc5dadd02869707bc76ca07de3c9f6c2786eb76b12c5c65cf4003a"
+  },
+  "pane_close": {
+    "terminal": "t8p",
+    "removed": true,
+    "workspace_preserved": true,
+    "observation": "herdr-app ls: child absent; target worktree retained in recent spaces. No explicit workspace close."
+  },
+  "source_committed_clean": true,
+  "draft_snapshot": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/pr-draft-fix-0038-final.md",
+  "publication": {
+    "source_committed": true,
+    "merged": false,
+    "pushed": false,
+    "ticket_completed": false
+  },
+  "next_action": "Fresh independent review required for changed source; no merge authorized."
+}

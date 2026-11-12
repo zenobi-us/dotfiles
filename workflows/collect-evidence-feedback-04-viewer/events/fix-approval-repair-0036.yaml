@@ -1,0 +1,74 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "86535914fad9d152835049a5374284a772449281",
+  "source_tree": "ce207d4d61add19ebb49181932bfa769a184672a",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "pane_id": "t8n",
+  "session_id": "hc:t8n",
+  "phase": "fix",
+  "ownership": {
+    "owner": "hc:t8n",
+    "previous_owner": "unknown (last recorded hc:t8h)",
+    "liveness": "hc ls --json: hc:t8h absent; no terminal in source worktree",
+    "active_goal_reservations": "No matching goal collection; standalone fix",
+    "direct_blockers": "collect-evidence-feedback-01-web completed per retained workflow inspection"
+  },
+  "recovery_mode": "begin",
+  "recovery_reason": "The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs.",
+  "receipt_id": "fix-approval-repair-0036",
+  "event": "operator-approval",
+  "status": "approved",
+  "attempt": 0,
+  "parent_receipt": "fix-start-0035",
+  "created_at": "2026-11-12T10:22:41.034Z",
+  "history_repair_reason": "Parent authored a null pane_id on approval event, which requires terminal identity; no source mutation occurred.",
+  "history_repair_authorization": "User selected Repair receipt and continue, explicitly permitting one-field in-place repair while preserving original bytes and checksum.",
+  "repair": {
+    "target": "workflows/collect-evidence-feedback-04-viewer/events/fix-approval-0034.yaml",
+    "field": "pane_id",
+    "before": null,
+    "after": "t8n",
+    "original_ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/fix-approval-0034-original.json",
+    "original_sha256": "14cb25826f9e794e37b805e8fb8c17a6e57546d9ba36a07ee4841dc6e544ef9e",
+    "repaired_sha256": "1f1698503771fc2b98c7543170555ff871475c6c8b83f9eae74227b8e1728bbd"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/fix-start-0035.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/fix-approval-0034.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/fix-approval-0034-original.json",
+      "sha256": "14cb25826f9e794e37b805e8fb8c17a6e57546d9ba36a07ee4841dc6e544ef9e"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/fix-approval-repair-0036.yaml"
+    }
+  ]
+}

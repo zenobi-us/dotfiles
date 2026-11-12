@@ -1,0 +1,48 @@
+{
+  "source_commit": "2f0018b9a37eb6ea2c6795d6779213bdbbdb95f3",
+  "source_tree": "a0ceb121c1e9d04d3e18709c62d3260d075ece18",
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/records.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts"
+  ],
+  "source_committed_clean": true,
+  "validation_results": [
+    {
+      "command": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "init",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session/source",
+        "--repository",
+        "/tmp/viewer-fix-0038-936jzukm/repository",
+        "--workflow",
+        "public",
+        "--session",
+        "fix-0038-verified",
+        "--json"
+      ],
+      "cwd": "/tmp/viewer-fix-0038-936jzukm",
+      "result": "passed",
+      "observed": "Final verified init command is recorded with complete output in public-init.json; first raw-only smoke exposed an unwritten Bun stdin and was corrected before final verification."
+    },
+    {
+      "command": "mise exec -- mq --allow-http-import --lockfile /tmp/viewer-fix-0035-mq.lock -I raw -F raw 'import \"github.com/harehare/okf.mq\" | .' <generated index.md and notes.md>",
+      "cwd": "/tmp/viewer-fix-0038-936jzukm",
+      "result": "passed",
+      "observed": "Final fresh session index and case-1 notes exactly equal complete expected schema, kind, headings, body and trailing newline; copied through mq into this proof run."
+    },
+    {
+      "command": "mise exec -- env PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+      "result": "passed",
+      "observed": "Initial final-writer run: 1 pass, 0 fail, 60 assertions, 9.87s. Parent then requested behavior-focused assertions; changed regression re-run: 1 pass, 0 fail, 66 assertions, 9.79s."
+    }
+  ],
+  "proof_source_note": "Public init proof covers unchanged runtime writer before assertion-only amendment. Old evidence preserved; temporary fixture removed."
+}
