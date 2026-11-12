@@ -214,3 +214,15 @@ Release the process using the source worktree, then rerun finish to reconcile cl
 Approved takeover: [finish-0047](../events/finish-0047.yaml). [Finish result](../events/finish-0048.yaml): FINISH_FAILED at worktree cleanup. Integration `4441b5c0aacecbb6620b1696a5b3c483e5733fb7` and ticket completion `a8f8758beb01cc0246d5a7260ba74d8968393879` are reachable from observed remote master `4f8f6ed72e3d63a416d58e9888be548fbe423915`. Ticket remains completed. No merge, product change, ticket completion, or product validation was repeated. Existing validation remains recorded in finish-0042.
 
 The prior parent t6z exited 0. No active source workspace appears in herdr-app. Scoped cleanup refused because a process runs in the source worktree. The branch and worktree remain; unrelated resources remain unchanged. Release that process, then rerun finish. No FINISHED receipt is claimed.
+
+
+## Finish recovery — finish-0051
+
+Current state: FINISHED. [Approved takeover](../events/finish-0049.yaml) verified prior owner shutdown. [Cleanup checkpoint](../events/finish-0050.yaml) records successful scoped removal of `feature/collect-evidence-feedback-03-gui`; no processes were killed. The source workspace was already closed.
+
+[Terminal receipt](../events/finish-0051.yaml) retains reviewed source `d70fe7e463638f134d6226397ca38724492deca4` and merge `4441b5c0aacecbb6620b1696a5b3c483e5733fb7`. Integration and ticket completion are reachable from observed `origin/master` at `b6cccc3c781be4615cc55cddf40cc644f664b533`. Ticket remains completed. No merge, ticket mutation, or integrated validation was repeated. Earlier review history, validation limits, and cleanup failures remain historical records.
+
+
+## Approved history normalization — finish-0052
+
+[Final receipt and repair](../events/finish-0052.yaml) supplements only the historical start-0001 workflow root after source-worktree removal. Original bytes remain unchanged; the supplement records SHA-256 and explicit user approval. Inspector returns mode `complete`, with no workflow error.

@@ -1,0 +1,156 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-03-gui",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "source_branch": "feature/collect-evidence-feedback-03-gui",
+  "base_branch": "master",
+  "source_commit": "d70fe7e463638f134d6226397ca38724492deca4",
+  "source_tree": "1cfddc006ae099564cbef521b2cea8384c8c461d",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-03-gui",
+    "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+  },
+  "workflow": {
+    "ref": "workflows/collect-evidence-feedback-03-gui",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "store": "repository"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-03-gui.md",
+  "receipt_id": "finish-0052",
+  "phase": "finish",
+  "event": "phase-result",
+  "status": "FINISHED",
+  "attempt": 5,
+  "parent_receipt": "finish-0051",
+  "created_at": "2026-11-12T12:32:25.762890+00:00",
+  "session_id": "herdr-app:t95",
+  "pane_id": null,
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/finish-0051.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/start-0001.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/finish-0052.yaml"
+    }
+  ],
+  "review_receipt": "workflows/collect-evidence-feedback-03-gui/events/review-0037.yaml",
+  "reviewed_source_commit": "d70fe7e463638f134d6226397ca38724492deca4",
+  "reviewed_source_tree": "1cfddc006ae099564cbef521b2cea8384c8c461d",
+  "base_before": "d22002f5ed1e2b1cae731171a81207ed95d0ca3b",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "1cfddc006ae099564cbef521b2cea8384c8c461d",
+  "merged_commit": "4441b5c0aacecbb6620b1696a5b3c483e5733fb7",
+  "merged_tree": "1cfddc006ae099564cbef521b2cea8384c8c461d",
+  "merged_parents": [
+    "d22002f5ed1e2b1cae731171a81207ed95d0ca3b"
+  ],
+  "ticket_completion_commit": "a8f8758beb01cc0246d5a7260ba74d8968393879",
+  "ticket_publication_commit": "445f458480358d980089e8d614d7353750fe2275",
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/evidence/integrated-native-0042"
+  },
+  "validation_results": [
+    {
+      "command": "mise exec -- env RUN_GUI_EVIDENCE_TESTS=1 KEEP_GUI_EVIDENCE=1 GUI_EVIDENCE_SCOPE='{\"display\":\":0\",\"window\":\"0x2a00003\",\"title\":\"Collector owned integrated GUI check\"}' GUI_EVIDENCE_IMAGE='{\"width\":480,\"height\":260,\"pixels\":[{\"x\":40,\"y\":110,\"rgb\":[102,51,153]}],\"lines\":[]}' bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/gui-workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "status": "passed",
+      "exit_code": 0,
+      "tests": 1,
+      "assertions": 60,
+      "observed": "Corrected only owned fixture sizing (fixed480x260). Full public native normal/failure/blocked workflow passed. Prior failed fixture run retained unchanged."
+    },
+    {
+      "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "status": "passed",
+      "exit_code": 0,
+      "tests": 99,
+      "assertions": 892
+    },
+    {
+      "command": "Absolute integrated CLI validate each copied sealed integration run from /tmp",
+      "cwd": "/tmp",
+      "status": "passed",
+      "observed": [
+        {
+          "run": "native",
+          "exit_code": 0
+        },
+        {
+          "run": "pixels",
+          "exit_code": 0
+        },
+        {
+          "run": "permission",
+          "exit_code": 0
+        },
+        {
+          "run": "identity",
+          "exit_code": 0
+        },
+        {
+          "run": "capture-failure",
+          "exit_code": 0
+        }
+      ]
+    },
+    {
+      "command": "Inspect original integrated native PNG",
+      "status": "passed",
+      "observed": "480x260 owned purple fixture with collector-owned integration label only",
+      "sha256": "ded7cd8ceb51c7b544fb5b23a5922afd625d04e0b49e5dfaeb7013371ff963e9"
+    }
+  ],
+  "recovery_mode": "reconcile",
+  "recovery_reason": "Approved cleanup-only recovery; busy guard now passes.",
+  "last_verified_boundary": "ticket_completed_and_published",
+  "remote_observed_commit": "b6cccc3c781be4615cc55cddf40cc644f664b533",
+  "integration_reachable": true,
+  "pushed": true,
+  "ticket_completed": true,
+  "ticket_state": "completed",
+  "worktree_removed": true,
+  "workspace_closed": true,
+  "workspace_observation": "herdr-app ls has no active source workspace. Prior owner t6z exited 0; unrelated sessions preserved.",
+  "verification_observations": [
+    "Prior owner t93 exited 0; source workspace absent from herdr-app ls.",
+    "Integration commit parent/tree match recorded reviewed integration mapping.",
+    "Integration and ticket completion commits are ancestors of observed origin/master b6cccc3c781be4615cc55cddf40cc644f664b533.",
+    "Scoped cleanup script reports named source branch removed.",
+    "Ticket read reports work_status completed."
+  ],
+  "validation_provenance": "Retained integrated validation from finish-0042/0046/0048, not rerun during cleanup-only recovery.",
+  "checkpoint": "worktree_removed",
+  "cleanup_result": {
+    "command": "cleanup-merged.ts remove feature/collect-evidence-feedback-03-gui --min-age=0s",
+    "exit_code": 0,
+    "removed": [
+      "feature/collect-evidence-feedback-03-gui"
+    ],
+    "refused": []
+  },
+  "history_repair_reason": "Historical start receipt retained removed source-worktree store root; original receipt exists unchanged in surviving repository.",
+  "history_repair_authorization": "User selected Approve history repair: append-only root normalization; preserve bytes and record SHA-256.",
+  "history_supplements": [
+    {
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/start-0001.yaml",
+      "sha256": "6e2db3731401b317414c5b3baf414f195ec0a6430e0fd302395f1ef9bbaf1462",
+      "normalize_workflow_root": true
+    }
+  ]
+}

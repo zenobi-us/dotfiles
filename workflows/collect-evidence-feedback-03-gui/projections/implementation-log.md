@@ -197,3 +197,13 @@ Release the process using the source worktree, then rerun finish to reconcile cl
 ## Finish recovery finish-0048
 
 [Approved takeover](../events/finish-0047.yaml) and [result](../events/finish-0048.yaml). Published merge and completed ticket independently reconciled. Source product files changed: none. Product validation not rerun. Cleanup script refused the busy source worktree; no forced deletion or process shutdown. Release the process and rerun finish without repeating integration or ticket completion.
+
+
+## Finish recovery — finish-0051
+
+[Terminal receipt](../events/finish-0051.yaml): approved cleanup-only recovery completed. Scoped cleanup removed `feature/collect-evidence-feedback-03-gui`. Source workspace already closed; no process shutdown. Integration and completed ticket remain published. Prior integrated validation is retained, not rerun. No source files changed; historical limits remain unchanged.
+
+
+## Approved history normalization — finish-0052
+
+[Final receipt](../events/finish-0052.yaml) adds the user-approved, SHA-256-bound workflow-root supplement for start-0001. No original receipt changed. Inspector confirms mode `complete` and no error.
