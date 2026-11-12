@@ -49,9 +49,18 @@ Source commit: `0e23bc5a95e72e69cdb4b5117b979cdd391fd510`. Source tree: `fcc897b
 
 Latest reviewer verdict: FAILURE for `4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71`. Open blocking finding: CEGUI-R1 (P2). Standards: no hard breach; CEGUI-N1 is an optional P3 heuristic. Resolved findings: none. See the [immutable review](../artifacts/reviews/review-review-0006.md) and [result](../events/review-0006.yaml). The Surf failure remains unresolved; no diff-caused change was identified.
 
+## Fix attempt fix-0009
+
+Blocked: CEGUI-R1 conflicts with the exact reviewed source. The published plan already contains `lines: []`. Public init and compile of the unchanged mq-extracted example both returned exit 0 from `/tmp`, with no substitutions. No source edits or source commit were made. The historical review remains immutable; no replacement verdict is claimed.
+
+- [Fix result](../events/fix-0009.yaml)
+- [Compile proof](../artifacts/snapshots/validation-fix-0009.json)
+- [Fix snapshot](../artifacts/snapshots/pr-draft-fix-0009.md)
+- [Parent completion](../events/fix-0010.yaml)
+
 ## Merge status
 
-Not merged or pushed. Source ticket remains claimed. Source worktree is retained and unchanged. Reviewer terminals are closed. Parent completion: [review-0007](../events/review-0007.yaml). Next phase: fix CEGUI-R1, then obtain a fresh review.
+Not merged or pushed. Source ticket remains claimed. Source worktree is retained and unchanged. Reviewer terminals are closed. Parent completion: [review-0007](../events/review-0007.yaml). Next action: reconcile the inconsistent CEGUI-R1 finding with the pinned source and compile proof before another phase.
 
 ## Supporting receipts and artifacts
 

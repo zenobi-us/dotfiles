@@ -1,0 +1,58 @@
+{
+  "source_commit": "4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71",
+  "source_tree": "36f17fc4bb60031eedb54d69a88b2a1c3ef93d74",
+  "example": "export const plan = {\n  schema: \"collect-evidence/v1\", kind: \"plan\", workId: \"gui-review\",\n  driver: \"gui\", base: \"gui://local\",\n  gui: { display: \":0\", window: \"0x123456\", title: \"Approved application\" },\n  approval: { origins: [], gui: { display: \":0\", window: \"0x123456\", title: \"Approved application\" } },\n  tests: [{\n    id: \"ready\", claim: \"Inspect the approved application\",\n    pass: \"The native scene matches\", fail: \"The native scene differs\",\n    steps: [{\n      do: \"expect\", says: \"Inspect the selected window.\",\n      locator: \"screen\", visible: true, shot: \"application-scene\",\n      image: { width: 480, height: 260,\n        pixels: [{ x: 40, y: 110, rgb: [201, 166, 255] }], lines: [] },\n    }],\n  }],\n};",
+  "substitutions": [],
+  "extraction": {
+    "args": [
+      "mise",
+      "exec",
+      "--",
+      "mq",
+      "--allow-http-import",
+      "-I",
+      "markdown",
+      "-F",
+      "json",
+      "import \"github.com/harehare/okf.mq\" | .code(\"ts\").value",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/gui.md"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "[\n  {\n    \"type\": \"Text\",\n    \"value\": \"export const plan = {\\n  schema: \\\"collect-evidence/v1\\\", kind: \\\"plan\\\", workId: \\\"gui-review\\\",\\n  driver: \\\"gui\\\", base: \\\"gui://local\\\",\\n  gui: { display: \\\":0\\\", window: \\\"0x123456\\\", title: \\\"Approved application\\\" },\\n  approval: { origins: [], gui: { display: \\\":0\\\", window: \\\"0x123456\\\", title: \\\"Approved application\\\" } },\\n  tests: [{\\n    id: \\\"ready\\\", claim: \\\"Inspect the approved application\\\",\\n    pass: \\\"The native scene matches\\\", fail: \\\"The native scene differs\\\",\\n    steps: [{\\n      do: \\\"expect\\\", says: \\\"Inspect the selected window.\\\",\\n      locator: \\\"screen\\\", visible: true, shot: \\\"application-scene\\\",\\n      image: { width: 480, height: 260,\\n        pixels: [{ x: 40, y: 110, rgb: [201, 166, 255] }], lines: [] },\\n    }],\\n  }],\\n};\"\n  }\n]\n",
+    "stderr": ""
+  },
+  "init": {
+    "args": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/gui-fix-proof-AI0Gmr/workspace",
+      "--repository",
+      "/tmp/gui-fix-proof-AI0Gmr/repository",
+      "--workflow",
+      "gui-review",
+      "--run",
+      "fix-0009",
+      "--driver",
+      "gui",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/gui-fix-proof-AI0Gmr/workspace\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/gui-fix-proof-AI0Gmr/repository\",\"path\":\"/tmp/gui-fix-proof-AI0Gmr/repository/workflows/gui-review/artifacts/evidence/fix-0009\",\"ref\":\"workflows/gui-review/artifacts/evidence/fix-0009\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "stderr": ""
+  },
+  "compile": {
+    "args": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/gui-fix-proof-AI0Gmr/workspace",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "stdout": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/gui-fix-proof-AI0Gmr/workspace\",\"driver\":\"gui\",\"tests\":1}\n",
+    "stderr": ""
+  },
+  "observation": "The required initial commit already includes image.lines: []. No source edit or commit was made. The historical review failure remains unchanged; this run does not issue a review verdict."
+}

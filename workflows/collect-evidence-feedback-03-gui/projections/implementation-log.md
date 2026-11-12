@@ -51,6 +51,15 @@ Source commit: `0e23bc5a95e72e69cdb4b5117b979cdd391fd510`. Source tree: `fcc897b
 - Fresh Playwright and TUI capture coverage is blocked by host prerequisites. The retained TUI transition archive validates.
 - Native Wayland, macOS, Windows, GUI video, OCR and automated GUI input are explicit unsupported capabilities.
 
+## fix-0009 — attempt 1
+
+Blocked: requested `lines: []` already exists in reviewed commit `4e5def3a`. Changed files: none. Source remains clean and unchanged. Public init and compile of the exact documented example from `/tmp` passed with no substitutions. Historical review finding CEGUI-R1 requires reconciliation; no new review verdict is issued.
+
+- [Fix result](../events/fix-0009.yaml)
+- [Compile proof](../artifacts/snapshots/validation-fix-0009.json)
+- [Immutable fix snapshot](../artifacts/snapshots/pr-draft-fix-0009.md)
+- [Parent completion](../events/fix-0010.yaml)
+
 ## review-0006 — attempt 1
 
 Verdict: FAILURE. Reviewed commit: `4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71`. Source unchanged. No fix has run. Open blocking finding: CEGUI-R1.

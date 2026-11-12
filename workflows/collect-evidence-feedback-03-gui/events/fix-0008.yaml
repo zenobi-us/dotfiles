@@ -1,0 +1,93 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "fix-0008",
+  "workflow_id": "collect-evidence-feedback-03-gui",
+  "phase": "fix",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": "review-0007",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "source_branch": "feature/collect-evidence-feedback-03-gui",
+  "base_branch": "master",
+  "source_commit": "4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71",
+  "source_tree": "36f17fc4bb60031eedb54d69a88b2a1c3ef93d74",
+  "created_at": "2026-11-12T00:51:34.837453+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "herdr-app:t6q",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-03-gui",
+    "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-03-gui"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-03-gui.md",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/review-0006.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/review-0007.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/reviews/review-review-0006.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/pr-draft-implementation-0002.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/fix-0008.yaml"
+    }
+  ],
+  "status": "started",
+  "ownership": {
+    "owner": "herdr-app:t6q",
+    "approval": "User explicitly requested fix collect-evidence-feedback-03-gui in original parent session",
+    "liveness": "hc ls confirms no source-worktree terminal; prior reviewer terminals removed",
+    "reservations": "Standalone workflow, no goal reservation recorded",
+    "claim": "Existing source ticket claim retained; no ownership transfer",
+    "takeover": false
+  },
+  "consumed_review_receipts": [
+    "review-0006",
+    "review-0007"
+  ],
+  "selected_findings": [
+    {
+      "adr_reason": "Public playbook and plan validation contract mismatch; no relevant architecture decision.",
+      "adr_reference": "NO ADR",
+      "axis": "Spec",
+      "blocking": true,
+      "completion_blocker": "The ticket requires a usable GUI playbook. Its sole plan cannot reach collection.",
+      "description": "The only published GUI plan omits image.lines. Public compile returns exit 2: GUI expect requires RGB pixel probes; OCR line assertions are unsupported. Adding only lines: [] to the temporary plan returns exit 0.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/gui.md",
+      "id": "CEGUI-R1",
+      "line": 46,
+      "required_change": "Add lines: [] to the published image example. Verify that the documented plan compiles through the public CLI from an unrelated directory.",
+      "severity": "P2",
+      "validation_command": "COLLECT_EVIDENCE_CLI compile \"$EXTERNAL_WORKSPACE\" --json"
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "agent": "omp",
+  "attempt": 1,
+  "base_branch": "master",
+  "blockers": [
+    "CEGUI-R1 historical review/source mismatch: requested edit already present in required initial commit."
+  ],
+  "caller_run_id": "7b6169bf-baf1-47d4-afe1-a92874219a3a",
+  "changed_files": [],
+  "consumed_review_receipt_ids": [
+    "review-0006",
+    "review-0007"
+  ],
+  "created_at": "2026-11-12T00:58:48.554831+00:00",
+  "event": "phase-complete",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+    },
+    {
+      "kind": "initiative",
+      "ref": "tracker/initiatives/collect-evidence-feedback/index.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/fix-0008.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/review-0006.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/review-0007.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/reviews/review-review-0006.md"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/pr-draft-implementation-0002.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/fix-0009.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/pr-draft-fix-0009.md"
+    },
+    {
+      "kind": "validation",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/validation-fix-0009.json"
+    }
+  ],
+  "muxer": "herdr-app",
+  "muxer_run_id": "7b6169bf-baf1-47d4-afe1-a92874219a3a",
+  "operation_id": "collect-evidence-feedback-03-gui-fix-0008",
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/fix-0010.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-03-gui/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-03-gui/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-03-gui/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-03-gui/projections/latest-status.yaml"
+    }
+  ],
+  "pane_id": null,
+  "parent_receipt": "fix-0009",
+  "phase": "fix",
+  "projections_unchanged_reason": "Parent regenerated projections to reflect blocked reconciliation without modifying historical review or claiming a source fix.",
+  "publication": {
+    "base_committed": false,
+    "pushed": false,
+    "source_commit_created": false
+  },
+  "receipt_id": "fix-0010",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "resolved_finding_ids": [],
+  "schema": "worktree-receipt/v1",
+  "session_id": "herdr-app:t6q",
+  "source_branch": "feature/collect-evidence-feedback-03-gui",
+  "source_clean": true,
+  "source_commit": "4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71",
+  "source_tree": "36f17fc4bb60031eedb54d69a88b2a1c3ef93d74",
+  "status": "blocked",
+  "summary": "Blocked: pinned clean source already contains the exact requested lines: [] fix. Complete unchanged documented plan passes public init/compile from /tmp. No source edits, new commit, hooks or version changes. Historical review finding conflicts with pinned source; parent must reconcile before another phase. Optional CEGUI-N1 untouched. No review verdict issued.",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-03-gui",
+    "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-03-gui.md",
+  "unresolved_finding_ids": [
+    "CEGUI-R1"
+  ],
+  "validation_results": [
+    {
+      "command": "Public absolute collect-evidence.ts init and compile of mq-extracted complete documented example from /tmp",
+      "observed": "Both exit 0 and success:true. No plan substitutions. One GUI test compiled.",
+      "ref": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/validation-fix-0009.json",
+      "status": "passed"
+    },
+    {
+      "command": "Pinned source identity and clean-source checks",
+      "observed": "Required commit/tree match; git status --porcelain empty; tracked example already includes image.lines: [].",
+      "status": "passed"
+    },
+    {
+      "command": "Retained Surf regression (not rerun)",
+      "observed": "Expected Submitted; observed Not submitted. No runtime fixes attempted.",
+      "status": "failed"
+    },
+    {
+      "command": "Fresh Playwright/TUI/typecheck (not rerun)",
+      "observed": "Recorded missing Chrome; foot/grim/tesseract; TypeScript/LSP prerequisites remain.",
+      "status": "blocked"
+    }
+  ],
+  "workflow": {
+    "ref": "workflows/collect-evidence-feedback-03-gui",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "store": "repository"
+  },
+  "workflow_id": "collect-evidence-feedback-03-gui",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "parent_validation": {
+    "authoritative_event_matches_transport": true,
+    "delivery_sha256": "c371c1eabfdff86d5dc71f9315fa134140fdf4152f5aa29e367bec946994a5c9",
+    "source_commit_tree_unchanged": true,
+    "source_clean": true,
+    "current_mq_extracted_example_equals_compiled_proof": true,
+    "compile_exit_code": 0,
+    "init_exit_code": 0,
+    "plan_substitutions": [],
+    "acknowledgement": "verified immutable blocked-result delivery acknowledged",
+    "child_terminal": "t6y killed and removed after explicit completed signal",
+    "finding_disposition": "CEGUI-R1 contradicted by pinned source and exact-example compile proof; preserve historical FAILURE and blocked fix, do not invent a source commit or SUCCESS review",
+    "recovery_owner": "Original parent herdr-app:t6q; explicit user fix request, no ownership transfer"
+  }
+}
