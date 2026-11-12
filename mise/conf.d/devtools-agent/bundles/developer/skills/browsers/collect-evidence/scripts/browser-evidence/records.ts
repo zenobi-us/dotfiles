@@ -1,10 +1,9 @@
 // Common, sealed evidence records. Driver originals stay under native/ unchanged.
 // finalizeRun returns ValidatedRun { directory, run, plan, cases, records };
 // validateRun returns the same view and throws on invalid records or changed bytes.
-// Publication uses GNU mv's Linux renameat2 NOREPLACE path, not a racy exists/rename.
+// Publication reserves the destination with an exclusive mkdir, then renames the sealed tree onto it.
 import { createHash } from "node:crypto";
-import { access, chmod, copyFile, lstat, mkdir, mkdtemp, readFile, readdir, realpath, rm, writeFile } from "node:fs/promises";
-import { constants } from "node:fs";
+import { chmod, copyFile, lstat, mkdir, mkdtemp, readFile, readdir, realpath, rename, rm, rmdir, writeFile } from "node:fs/promises";
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { spawn } from "node:child_process";
 import { inflateSync } from "node:zlib";
@@ -89,11 +88,6 @@ export async function finalizeRun(options: FinalizeRunOptions): Promise<Validate
   for (const test of options.plan.tests) {
     videos.set(test.id, await readVideoAsset(staging, "", options.plan, test, options.driverVersion));
   }
-  try {
-    await access("/usr/bin/mv", constants.X_OK);
-  } catch {
-    throw new CliError("Finalization requires GNU /usr/bin/mv with --no-copy and --update=none-fail", 3);
-  }
   await rejectSymlinkComponents(dirname(destination), true);
   await mkdir(dirname(destination), { recursive: true });
   await rejectSymlinkComponents(dirname(destination));
@@ -164,8 +158,14 @@ export async function finalizeRun(options: FinalizeRunOptions): Promise<Validate
     await jsonFile(join(temporary, "run.json"), run);
     const validated = await inspectRun(temporary);
     await sealTree(temporary);
-    // GNU mv uses RENAME_NOREPLACE for this same-filesystem, exclusive move.
-    await command("/usr/bin/mv", ["--no-copy", "--update=none-fail", "-T", "--", temporary, destination]);
+    // mkdir without recursive fails on an existing name; rename(2) replaces only this empty reservation and never copies.
+    await mkdir(destination);
+    try {
+      await rename(temporary, destination);
+    } catch (error) {
+      await rmdir(destination).catch(() => { });
+      throw error;
+    }
     return { ...validated, directory: destination };
   } catch (error) {
     await unsealTree(temporary).catch(() => { });
