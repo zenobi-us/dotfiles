@@ -1,7 +1,7 @@
 # fix(tickets): share one twg Jira parser for jira-tracker-mirror-01-twg-parser
 
 Ticket: `tracker/tickets/jira-tracker-mirror-01-twg-parser.md`
-Receipt: `events/implementation-0002.yaml` (parent `start-0001`)
+Receipt: `events/implementation-0005.yaml` (parent `start-0004`, attempt 2). Earlier attempt: `events/implementation-0002.yaml`.
 Source: `fix/jira-tracker-mirror-01-twg-parser` at `58c0b8a4e4c608991076afe5a5d7da3f0e703f07` (tree `62dfc338d2e15dfbd225978ddbb76f3e1416e7e8`)
 
 ## Problem
@@ -26,6 +26,17 @@ Source: `fix/jira-tracker-mirror-01-twg-parser` at `58c0b8a4e4c608991076afe5a5d7
 
 ## Validation
 
+Attempt 2 (implementation-0005) reran the checks on the same source. No source change.
+
+| Command | Result |
+| --- | --- |
+| `mise exec -- bun test` in `reading-and-writing-tickets` | passed: 48 pass, 0 fail |
+| `bun run typecheck` in `bundles/matt-pocock` (base checkout `node_modules` linked, then removed) | passed: 0 errors |
+| `records.ts check --repository <worktree> --ticket jira-tracker-mirror-01-twg-parser` | passed |
+| `dep-tree-cli.ts jira --epic RWR-19529` (live, read-only) | passed: DAG printed, 18 lines |
+
+Attempt 1 (implementation-0002):
+
 | Command | Result |
 | --- | --- |
 | `mise exec -- bun test` in `reading-and-writing-tickets` | passed: 48 pass, 0 fail (11 new) |
@@ -46,7 +57,7 @@ None yet.
 ## Open questions
 
 - `description` is plain text converted from ADF. Later tickets may need Markdown.
-- The handoff asked for `phase: start` on this phase-result receipt. Earlier workflows use `phase: implementation`.
+- Attempt 1 recorded `phase: start` on its phase-result. Attempt 2 (`implementation-0005`) records `phase: implementation`.
 - RWR-18175 has a two-way blocker cycle in Jira. The graph command rejects it. The data needs a Jira fix, not a code fix.
 
 ## Merge status
@@ -67,6 +78,10 @@ None.
 
 ## Supporting records
 
-- `events/start-0001.yaml`
-- `events/implementation-0002.yaml`
+- `events/start-0001.yaml` (attempt 1 phase-start)
+- `events/implementation-0002.yaml` (attempt 1 phase-result, recorded `phase: start`)
+- `events/start-0003.yaml` (attempt 1 phase-complete)
+- `events/start-0004.yaml` (attempt 2 phase-start, retry)
+- `events/implementation-0005.yaml` (attempt 2 phase-result, `phase: implementation`)
 - `artifacts/snapshots/pr-draft-implementation-0002.md`
+- `artifacts/snapshots/pr-draft-implementation-0005.md`

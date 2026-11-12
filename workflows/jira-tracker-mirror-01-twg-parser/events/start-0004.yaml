@@ -1,0 +1,54 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0004",
+  "workflow_id": "jira-tracker-mirror-01-twg-parser",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 2,
+  "parent_receipt": "start-0003",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "source_branch": "fix/jira-tracker-mirror-01-twg-parser",
+  "base_branch": "master",
+  "source_commit": "58c0b8a4e4c608991076afe5a5d7da3f0e703f07",
+  "source_tree": "62dfc338d2e15dfbd225978ddbb76f3e1416e7e8",
+  "created_at": "2026-11-12T09:50:51.251Z",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "claude",
+  "session_id": "herdr-app:t8",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-01-twg-parser",
+    "ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-01-twg-parser"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/start-0004.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery_mode": "retry",
+  "recovery_reason": "implementation-0002 records phase: start (parent handoff error), so the inspector cannot select review. User chose a fresh attempt that verifies source 58c0b8a4 and records phase: implementation.",
+  "ownership_observations": "This session holds the claim (03d00395) and ran attempt 1; child t1d is removed. No other live owner or reservation.",
+  "validation": [
+    {
+      "command": "records.ts check --ticket jira-tracker-mirror-01-twg-parser",
+      "result": "passed"
+    }
+  ]
+}
