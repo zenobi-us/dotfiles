@@ -1,0 +1,59 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-03-gui",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "source_branch": "feature/collect-evidence-feedback-03-gui",
+  "base_branch": "master",
+  "source_commit": "4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71",
+  "source_tree": "36f17fc4bb60031eedb54d69a88b2a1c3ef93d74",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-03-gui",
+    "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+  },
+  "workflow": {
+    "ref": "workflows/collect-evidence-feedback-03-gui",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "store": "repository"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-03-gui.md",
+  "session_id": "herdr-app:t6z",
+  "pane_id": null,
+  "phase": "fix",
+  "created_at": "2026-11-12T01:21:56.162713+00:00",
+  "receipt_id": "fix-0012",
+  "event": "phase-start",
+  "status": "started",
+  "parent_receipt": "fix-0011",
+  "attempt": 4,
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/fix-0011.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/fix-0012.yaml"
+    }
+  ],
+  "recovery_mode": "takeover",
+  "recovery_reason": "The findings and fix handoff identify the same source. Preserve dirty work and obtain scoped takeover approval before continuing.",
+  "consumed_review_receipt_ids": [
+    "review-0006",
+    "review-0007"
+  ],
+  "approval_receipt": "fix-0011",
+  "source_clean": true,
+  "ownership_evidence": "User approved scoped takeover; prior parent exited 0; hc ls has no live target-worktree session; direct blocker 01-web completed.",
+  "selected_engineering_skill": "collect-evidence"
+}

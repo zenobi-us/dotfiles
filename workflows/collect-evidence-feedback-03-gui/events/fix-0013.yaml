@@ -1,0 +1,61 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-03-gui",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "source_branch": "feature/collect-evidence-feedback-03-gui",
+  "base_branch": "master",
+  "source_commit": "4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71",
+  "source_tree": "36f17fc4bb60031eedb54d69a88b2a1c3ef93d74",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui",
+  "agent": "omp",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-03-gui",
+    "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+  },
+  "workflow": {
+    "ref": "workflows/collect-evidence-feedback-03-gui",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "store": "repository"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-03-gui.md",
+  "session_id": "herdr-app:t6z",
+  "pane_id": "t6z",
+  "phase": "fix",
+  "created_at": "2026-11-12T01:27:12.792317+00:00",
+  "receipt_id": "fix-0013",
+  "event": "operator-approval",
+  "status": "approved",
+  "parent_receipt": "fix-0012",
+  "attempt": 0,
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/fix-0012.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-03-gui.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-03-gui/events/fix-0013.yaml"
+    }
+  ],
+  "history_repair_authorization": "User selected Correct receipt: archive original bytes and checksum; change only pane_id to t6z; append repair provenance.",
+  "history_repair_reason": "Parent wrote operator-approval with null pane_id; parser requires pane identity for operator events.",
+  "repair": {
+    "target": "workflows/collect-evidence-feedback-03-gui/events/fix-0011.yaml",
+    "field": "pane_id",
+    "before": null,
+    "after": "t6z",
+    "original_ref": "workflows/collect-evidence-feedback-03-gui/artifacts/snapshots/fix-0011-original.json",
+    "original_sha256": "0c1ad157255f0dd40adddd2d237a5736f12f4f7d543835b68efedff6329078c1",
+    "corrected_sha256": "2956b086cd9fe68b1b18cd5ef8a178aa076f7dee02bda2ffe8b9337f6c0419f8"
+  },
+  "recovery_mode": "takeover"
+}
