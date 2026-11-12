@@ -1,0 +1,124 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "b1afc2020aa293f242aab79e2d10434a24e93a87",
+  "source_tree": "5a72d914baa4c687af82e846efb5dc0ca55d33d1",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "session_id": "hc:t90",
+  "receipt_id": "finish-0063",
+  "parent_receipt": "finish-worktree-removed-0062",
+  "phase": "finish",
+  "attempt": 4,
+  "created_at": "2026-11-12T12:20:31.039081+00:00",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/finish-worktree-removed-0062.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/finish-failed-0060.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-0049.yaml"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/finish-0063.yaml"
+    }
+  ],
+  "review_receipt": "workflows/collect-evidence-feedback-04-viewer/events/review-0049.yaml",
+  "reviewed_source_commit": "b1afc2020aa293f242aab79e2d10434a24e93a87",
+  "reviewed_source_tree": "5a72d914baa4c687af82e846efb5dc0ca55d33d1",
+  "base_before": "a1fc0684eb22e32eefb557eab7423092b87f284f",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "5a72d914baa4c687af82e846efb5dc0ca55d33d1",
+  "proposed_merge_message": "feat: collect-evidence-feedback-04-viewer add viewer\n\nReview: workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0049.md",
+  "merged_commit": "2cd58b7edadb9358ce9eac91a0a3335c8a4d7d0e",
+  "merged_tree": "5a72d914baa4c687af82e846efb5dc0ca55d33d1",
+  "merged_parents": [
+    "a1fc0684eb22e32eefb557eab7423092b87f284f"
+  ],
+  "validation_results": [
+    {
+      "command": "mise exec -- env PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "result": "passed",
+      "observed": "1 pass, 0 fail, 66 assertions; 9.73s"
+    },
+    {
+      "command": "mise exec -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts validate /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session --json",
+      "cwd": "/tmp",
+      "result": "passed",
+      "observed": "success:true, valid:true, collect-feedback/v1, session review-verified"
+    }
+  ],
+  "event": "phase-result",
+  "status": "FINISHED",
+  "pushed": true,
+  "ticket_completed": true,
+  "worktree_removed": true,
+  "workspace_closed": true,
+  "remote_observed_commit": "d4492eddc768f61d46426050dd06332e3eb36cab",
+  "cleanup": {
+    "command": "cleanup-merged.ts remove feature/collect-evidence-feedback-04-viewer --min-age=0s",
+    "removed": [
+      "feature/collect-evidence-feedback-04-viewer"
+    ],
+    "refused": [],
+    "terminated_pids": [
+      55976,
+      61751,
+      87654,
+      227150,
+      227154,
+      229313,
+      350060,
+      365352,
+      478006,
+      478007,
+      3998408,
+      4009177,
+      4013074,
+      4013080,
+      4013081,
+      4017335,
+      4024686,
+      4024785,
+      4028078,
+      4028225
+    ],
+    "remaining_identified_processes": [],
+    "worktree_exists": false,
+    "workspace_observation": "Source workspace absent from herdr-app ls after parking t92; t92 stays live at base cwd."
+  },
+  "recovery_mode": "reconcile",
+  "recovery_reason": "Cleanup-only recovery completed without repeating integration, source validation or tracker completion.",
+  "publication_observation": "Integration and completed tracker already published; prior receipt publication verified on origin/master at d4492eddc768f61d46426050dd06332e3eb36cab."
+}

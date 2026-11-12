@@ -1,8 +1,8 @@
 schema: worktree-latest-status/v1
 workflow_id: collect-evidence-feedback-04-viewer
 ticket: tracker/tickets/collect-evidence-feedback-04-viewer.md
-state: FINISH_FAILED
-latest_receipt: finish-failed-0060
+state: FINISHED
+latest_receipt: finish-0063
 latest_source_commit: b1afc2020aa293f242aab79e2d10434a24e93a87
 latest_source_tree: 5a72d914baa4c687af82e846efb5dc0ca55d33d1
 latest_review_verdict: SUCCESS
@@ -13,7 +13,5 @@ review_artifact: workflows/collect-evidence-feedback-04-viewer/artifacts/reviews
 merged_commit: 2cd58b7edadb9358ce9eac91a0a3335c8a4d7d0e
 pushed: true
 ticket_completed: true
-worktree_removed: false
-workspace_closed: false
-failure_step: cleanup
-failure_reason: Cleanup refused a busy worktree after the approved t92 shell moved to base; no process killed
+worktree_removed: true
+workspace_closed: true

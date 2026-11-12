@@ -188,3 +188,12 @@ Integrated public workflow passed: 1 test, 66 assertions, 0 failures. Public ses
 Cleanup refused the named branch because a process runs in the source worktree. The worktree and branch remain intact. Owned review terminals were removed; source workspace is absent from open app spaces. No unknown process was killed. Next action: close or hand off the process, then rerun finish for cleanup only. Do not repeat merge, push or ticket completion.
 
 [Prepared](../events/finish-prepared-0051.yaml), [merged](../events/finish-merged-0052.yaml), [integrated validation](../events/finish-validated-0053.yaml), [published](../events/finish-pushed-0054.yaml), [ticket completed](../events/finish-ticket-completed-0055.yaml), [cleanup failure](../events/finish-failed-0056.yaml).
+
+
+## Finish recovery — current outcome
+
+FINISHED. Review SUCCESS covers source b1afc2020aa293f242aab79e2d10434a24e93a87. Squash merge 2cd58b7edadb9358ce9eac91a0a3335c8a4d7d0e and ticket completion are published on origin/master. Prior integrated checks passed 66 assertions and public session validation. No open findings.
+
+Explicit user approval authorized termination of ten retained stopped OMP agents and their helpers. All identified processes exited. Worktrunk removed only feature/collect-evidence-feedback-04-viewer. Source workspace closed by parking t92; its shell remains alive in the base repository.
+
+[Approval](../events/finish-approval-0061.yaml), [cleanup checkpoint](../events/finish-worktree-removed-0062.yaml), [terminal receipt](../events/finish-0063.yaml). Earlier history remains unchanged.
