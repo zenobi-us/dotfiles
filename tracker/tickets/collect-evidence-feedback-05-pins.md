@@ -8,7 +8,7 @@ sequence: 5
 title: Create and save screenshot feedback pins
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 # Create and save screenshot feedback pins
