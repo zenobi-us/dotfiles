@@ -1,2 +1,2 @@
 [tools]
-"cargo:rustledger" = "0.21.0"
+"github:rustledger/rustledger" = "0.21.0"
