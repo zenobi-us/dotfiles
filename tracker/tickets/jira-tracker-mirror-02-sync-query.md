@@ -4,7 +4,7 @@ id: "jira-tracker-mirror-02-sync-query"
 title: "Sync configured Jira queries into mirror files"
 type: "enhancement"
 triage: "ready-for-agent"
-work_status: "unclaimed"
+work_status: "claimed"
 parent: "jira-tracker-mirror"
 sequence: 2
 blocked_by: ["jira-tracker-mirror-01-twg-parser"]
