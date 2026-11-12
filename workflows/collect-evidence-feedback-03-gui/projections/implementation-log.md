@@ -109,3 +109,10 @@ Latest verdict: SUCCESS for unchanged commit `4e5def3a26cf0ac700ee29b3c1f92e8a77
 Fresh owned-fixture native GUI check: 1 pass, 49 assertions. Full published example init/compile/dry-run passed. Parent independently validated retained native and denied-permission archives and inspected the retained native PNG. Source files changed: none. Review terminals closed; source worktree retained.
 
 Surf approved-space.3 still fails (expected Submitted, observed Not submitted); not rerun or accepted as passing. Fresh Playwright/TUI/typecheck coverage remains unavailable in the recorded setup. No merge, push or ticket completion.
+
+
+## Finish attempt finish-0020 — blocked
+
+No merge occurred. Read-only integration calculation found add/add conflicts in manifest.yaml and all three workflow projections. The expected clean merge tree could not be established. [Failure receipt](../events/finish-0020.yaml) records all four paths and unchanged source identity.
+
+Source remains at reviewed commit `4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71`. Ticket remains incomplete; no push or cleanup occurred. Unrelated dirty base changes were preserved. Resolve the integration strategy before retrying; source changes require a fresh review.

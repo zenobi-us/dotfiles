@@ -1,8 +1,8 @@
 schema: worktree-latest-status/v1
 workflow_id: collect-evidence-feedback-03-gui
 ticket: tracker/tickets/collect-evidence-feedback-03-gui.md
-state: REVIEW_PASSED
-latest_receipt: review-0018
+state: FINISH_FAILED
+latest_receipt: finish-0020
 latest_source_commit: 4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71
 latest_source_tree: 36f17fc4bb60031eedb54d69a88b2a1c3ef93d74
 latest_review_verdict: SUCCESS

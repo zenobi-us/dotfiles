@@ -1,0 +1,89 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: 4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71
+source_tree: 36f17fc4bb60031eedb54d69a88b2a1c3ef93d74
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: finish-0020
+phase: finish
+event: phase-result
+status: FINISH_FAILED
+attempt: 1
+parent_receipt: finish-0019
+created_at: '2026-11-12T01:58:25.088529+00:00'
+session_id: herdr-app:t6z
+pane_id: null
+inputs:
+- kind: ticket
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0018.yaml
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0017.yaml
+- kind: review
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/reviews/review-review-0017.md
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0019.yaml
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0020.yaml
+failure_step: prepare_clean_integration_tree
+failure_reason: Read-only git merge-tree --write-tree master feature/collect-evidence-feedback-03-gui
+  returned exit 1 with four add/add conflicts. Receipt contract prohibits merge when
+  expected integration is ambiguous or conflicting. No merge attempted.
+last_verified_boundary: reviewed_source_available
+review_receipt: workflows/collect-evidence-feedback-03-gui/events/review-0017.yaml
+reviewed_source_commit: 4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71
+reviewed_source_tree: 36f17fc4bb60031eedb54d69a88b2a1c3ef93d74
+base_before: 4fd951f83aca6c359a2aeddd2979d28f5bcfae9d
+remote: origin
+remote_ref: refs/heads/master
+remote_observed_commit: cbde74f5b6cad06c726f9db388416885815b701f
+expected_merge_tree: null
+conflicted_paths:
+- workflows/collect-evidence-feedback-03-gui/manifest.yaml
+- workflows/collect-evidence-feedback-03-gui/projections/implementation-log.md
+- workflows/collect-evidence-feedback-03-gui/projections/latest-status.yaml
+- workflows/collect-evidence-feedback-03-gui/projections/pr-draft.md
+validation_results:
+- command: git merge-tree --write-tree master feature/collect-evidence-feedback-03-gui
+  exit_code: 1
+  status: failed
+  observed: Four workflow-projection add/add conflicts. Working trees and index unchanged
+    by read-only calculation.
+- command: git ls-remote origin refs/heads/master
+  exit_code: 0
+  status: passed
+  observed: cbde74f5b6cad06c726f9db388416885815b701f
+- command: Canonical worktree inspector
+  exit_code: 0
+  status: passed
+  observed: Valid SUCCESS matches current clean frozen source.
+merged_commit: null
+pushed: false
+ticket_completed: false
+worktree_removed: false
+workspace_closed: true
+worktree_preserved: true
+workspace_preserved: true
+resource_observation: No source app space or agent remains after review cleanup; source
+  directory and branch retained. No app workspace closed in this finish attempt.
+source_mutated: false
+base_product_mutated: false
+unrelated_changes_preserved: true
+next_step: Resolve integration strategy before another merge. Changing the reviewed
+  source requires fresh review.
