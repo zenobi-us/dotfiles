@@ -1,0 +1,146 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "implementation-complete-0005",
+  "workflow_id": "collect-evidence-feedback-05-pins",
+  "phase": "implementation",
+  "attempt": 1,
+  "parent_receipt": "implementation-0003",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-05-pins",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-05-pins",
+  "source_branch": "feature/collect-evidence-feedback-05-pins",
+  "base_branch": "master",
+  "source_commit": "10f8f120cd4b796354984a9c561117ad4701dfb5",
+  "source_tree": "32b3e835e04439239c5afae56d664b72ec44e8ff",
+  "created_at": "2026-11-12T21:36:07.310Z",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": null,
+  "session_id": "hc:t98",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-05-pins",
+    "ref": "tracker/tickets/collect-evidence-feedback-05-pins.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-05-pins.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-05-pins"
+  },
+  "event": "phase-complete",
+  "status": "completed",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-05-pins/events/implementation-0003.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-05-pins/artifacts/snapshots/pr-draft-implementation-0003.md"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-05-pins/artifacts/evidence/pins-browser-20261113/verification.json"
+    },
+    {
+      "kind": "export",
+      "ref": "workflows/collect-evidence-feedback-05-pins/artifacts/evidence/pins-browser-20261113/export.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-05-pins/artifacts/evidence/pins-browser-20261113/shutdown-drain.json"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-05-pins/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-05-pins/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-05-pins/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-05-pins/projections/latest-status.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-05-pins/events/start-complete-0004.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-05-pins/events/implementation-complete-0005.yaml"
+    }
+  ],
+  "ownership": {
+    "owner": "hc:t98",
+    "parent_session_matches_phase_start": true,
+    "child_session": "hc:t99",
+    "child_run": "ab793609-148a-435b-9772-9ef4f239304a",
+    "claim_retained": true
+  },
+  "implementation_source_commit": "f634dccda509f084959a364258bcaa7c602e4492",
+  "implementation_source_tree": "f134852d15e9fe3a458ba30e7dedbcdb44338912",
+  "source_validation": "HEAD adds workflow artifacts only to the exact implementation commit; inspector observed clean source.",
+  "validation_results": [
+    {
+      "command": "Installed collect-feedback.ts export <temporary-session> --json from /tmp",
+      "result": "passed",
+      "observed": "13 annotations; exact match with retained export, verified original SHA-256 and rounded-edge geometry."
+    },
+    {
+      "command": "result-delivery read and authoritative receipt comparison",
+      "result": "passed",
+      "observed": "Verified schema/run/operation/hash, identical domain payload and YAML event; all outputs exist."
+    },
+    {
+      "command": "Native muxer wait",
+      "result": "passed",
+      "observed": "sequence 2 completed, source agent"
+    },
+    {
+      "command": "hc kill t99 && hc rm t99; herdr-app ls",
+      "result": "passed",
+      "observed": "Only completed implementation terminal removed; source worktree remains. App automatically removed its empty space."
+    }
+  ],
+  "shutdown": {
+    "pane_closed": true,
+    "terminal": "t99",
+    "worktree_preserved": true,
+    "workspace": "Empty app space automatically removed; recreate for review."
+  },
+  "delivery": {
+    "sha256": "37556056a83257fa201771409d54ea7a6ae12705f3824d2ddc0deb0ed706c160",
+    "acknowledged": true
+  },
+  "recovery_mode": "reconcile",
+  "recovery_reason": "Inspector requires a product completion matching current clean source. Current HEAD differs from child frozen source only by its committed workflow evidence. Parent verified that boundary and the actual installed export; this implementation completion records the clean review target without repeating child work.",
+  "implementation_summary": "Implemented screenshot point and box annotations, near-pin priority/comment editor, keyboard adjustment, zoom attachment, durable retry-safe JSON storage, protected create/list API, read-only CLI/API export, and graceful pending-save shutdown. Rebuilt the distributed viewer and updated skill docs.",
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/how-to-browse-evidence.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/viewer-contract.md",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/annotations.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/commands.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/records.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/server.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/index.html",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/components/annotation-image.tsx",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/components/ui/button.tsx",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/main.tsx",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/styles.css",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/types.ts"
+  ],
+  "open_questions": []
+}

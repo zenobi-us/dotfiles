@@ -75,3 +75,9 @@ Not merged or pushed. Ticket remains claimed.
 - **Shutdown:** [shutdown-drain.json](../artifacts/evidence/pins-browser-20261113/shutdown-drain.json).
 - **Final browser:** [forward box saved](../artifacts/evidence/pins-browser-20261113/final-forward-box-saved.png).
 - **Narrow viewport:** [selected edge pin at 400% zoom](../artifacts/evidence/pins-browser-20261113/narrow-zoom-edge.png).
+
+## Parent validation
+
+The parent verified the delivered receipt, source hash and all 13 exported annotation geometries. The installed export matched the retained export exactly. Terminal t99 is closed. The source worktree remains clean. No review, merge or push ran.
+
+[Parent implementation completion](../events/implementation-complete-0005.yaml) records clean review target 10f8f120cd4b796354984a9c561117ad4701dfb5.
