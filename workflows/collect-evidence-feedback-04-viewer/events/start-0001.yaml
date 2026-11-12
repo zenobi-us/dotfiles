@@ -1,0 +1,56 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0001",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": null,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "1557f0e6dd56fae90e0637367626b0eff5d8c7b4",
+  "source_tree": "9a7d30aac9d090419a46b3fa6944ff16d8a5865c",
+  "created_at": "2026-11-12T05:31:35.320193+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc:t7r",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-01-web.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/start-0001.yaml"
+    }
+  ],
+  "status": "started",
+  "ownership": {
+    "owner": "hc:t7r",
+    "claim_commit": "1557f0e6dd56fae90e0637367626b0eff5d8c7b4",
+    "active_goal_reservations": "none found",
+    "direct_blockers": "completed"
+  },
+  "recovery_mode": "begin"
+}

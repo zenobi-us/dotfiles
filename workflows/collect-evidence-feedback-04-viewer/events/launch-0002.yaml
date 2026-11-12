@@ -1,0 +1,55 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "launch-0002",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "phase": "start",
+  "event": "phase-input-ready",
+  "attempt": 1,
+  "parent_receipt": "start-0001",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "1557f0e6dd56fae90e0637367626b0eff5d8c7b4",
+  "source_tree": "9a7d30aac9d090419a46b3fa6944ff16d8a5865c",
+  "created_at": "2026-11-12T05:32:22.942250+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "pane_id": "t7s",
+  "agent": "omp",
+  "session_id": "6f1739e6-93e8-4461-a61c-f7583f37b452",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/start-0001.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/launch-0002.yaml"
+    }
+  ],
+  "status": "started",
+  "ownership": {
+    "owner": "hc:t7r",
+    "claim_commit": "1557f0e6dd56fae90e0637367626b0eff5d8c7b4",
+    "active_goal_reservations": "none found",
+    "direct_blockers": "completed"
+  },
+  "recovery_mode": "begin",
+  "run_id": "6f1739e6-93e8-4461-a61c-f7583f37b452",
+  "delivery_context": "/var/home/zenobius/.local/state/result-delivery/runs/6f1739e6-93e8-4461-a61c-f7583f37b452/context.json",
+  "result_target": "/var/home/zenobius/.local/state/result-delivery/runs/6f1739e6-93e8-4461-a61c-f7583f37b452/result.json"
+}
