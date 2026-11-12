@@ -50,4 +50,4 @@ run = "bun tasks/runtime.ts"
 
 [tasks."herdrapp.activate"]
 description = "Activate the managed CLI layout (keep Herdr-app open)"
-run = "herdr-app do layout.switch '{\"name\":\"cli\"}'"
+run = 'herdr-app do layout.switch "{\"name\":\"cli\"}"'
