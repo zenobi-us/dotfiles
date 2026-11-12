@@ -19,6 +19,27 @@ Use Jira-native relationship data for blockers. For a dependency DAG, run `./scr
 
 If TWG does not expose the requested operation or relationship, stop and report the exact gap. Do not substitute a guessed JQL field or a different relationship type.
 
+## Mirror sync
+
+The mirror is a read-only copy of Jira issues in the shared-context store. Jira stays the source of truth.
+
+1. Add a `mirror` block to the frontmatter of `docs/agents/issue-tracker.md`. `root` is relative to the alignment store. `queries` maps a name to a JQL string. The sync adds no status filter, so closed issues stay in the mirror.
+
+   ```yaml
+   mirror:
+     root: tracker/jira
+     queries:
+       payroll-epics: 'project = RWR AND issuetype = Epic AND cf[12059] = Payroll'
+   ```
+
+2. Run the sync from a directory where `twg` is available:
+
+   ```sh
+   mise x -- <skill-dir>/scripts/jira-mirror.ts sync --repository <absolute-repository-path>
+   ```
+
+The command writes `<root>/<KEY>.md` for each issue, with `schema: tracker-mirror/v1` frontmatter and the description as Markdown. It commits only the mirror root, as one tracker commit. Other staged changes stay staged. A run with no Jira changes writes nothing and makes no commit.
+
 ## Result identity
 
 Return the Jira key as a string and the canonical Jira URL as `ref`. Return blocker keys as strings. Report TWG errors and coverage limits.
