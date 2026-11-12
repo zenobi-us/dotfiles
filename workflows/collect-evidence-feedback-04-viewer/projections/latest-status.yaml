@@ -1,0 +1,9 @@
+schema: worktree-latest-status/v1
+workflow_id: collect-evidence-feedback-04-viewer
+ticket: tracker/tickets/collect-evidence-feedback-04-viewer.md
+state: IMPLEMENTED
+latest_receipt: start-complete-0004
+latest_source_commit: 035fdd61b454eb9b9aa8b0f20fdd3b2ee33ab476
+latest_source_tree: ae1abc62d14257777bb22a4b737add38a0903c71
+latest_review_verdict: null
+open_findings: []

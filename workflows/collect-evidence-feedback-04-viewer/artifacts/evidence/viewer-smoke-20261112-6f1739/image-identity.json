@@ -1,0 +1,31 @@
+{
+  "asset": {
+    "schema": "collect-evidence/v1",
+    "kind": "asset",
+    "id": "case-1.2.capture-001",
+    "caseId": "case-1",
+    "stepId": "case-1.2",
+    "path": "cases/case-1/media/step-002-step-case-1-002-original-page--capture-001--capture-001.png",
+    "captureSequence": 1,
+    "sha256": "9c3004a6ec3b9f0f72f4055016202e553c17d69ea5a60cbec6e0876839811449",
+    "mediaType": "image/png",
+    "width": 1280,
+    "height": 720,
+    "capturedAt": "2026-11-12T05:39:10.251Z",
+    "viewport": {
+      "width": 1280,
+      "height": 720,
+      "deviceScaleFactor": 1
+    },
+    "surface": "web",
+    "driver": "playwright",
+    "driverVersion": "0.1.22",
+    "captureMethod": "playwright-screenshot",
+    "url": "http://127.0.0.1:38867/"
+  },
+  "sourceRun": "/tmp/feedback-viewer-smoke-VzWPoO/repository/workflows/viewer-smoke/artifacts/evidence/capture",
+  "session": "/tmp/feedback-viewer-smoke-VzWPoO/repository/workflows/viewer-smoke/artifacts/evidence/review",
+  "httpBytes": 25111,
+  "sourceBytes": 25111,
+  "exactBytesEqual": true
+}

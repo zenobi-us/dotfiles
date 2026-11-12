@@ -1,0 +1,63 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "implementation-review",
+  "scope": "implementation self-review, not formal workflow approval",
+  "spec": {
+    "axis": "spec",
+    "findings": [
+      {
+        "description": "feedbackCase retains the source events path (cases/<id>/events.jsonl), but importSession creates only case.json, notes.md and media in that feedback case. The event file exists only under source/cases/<id>/events.jsonl. Thus validate reports success and GET /api/v1/cases publishes a dangling canonical event reference. Initiative decision 22 requires each case to retain ordered events and media.",
+        "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/records.ts",
+        "fix": "Make the feedback case event reference resolve to its preserved source snapshot, or create the corresponding feedback event file during import. Validate the referenced file before reporting a valid session.",
+        "line": 140,
+        "severity": "P2"
+      }
+    ],
+    "notes": [
+      "Read-only spec review of new source against baseline 1557f0e6dd56fae90e0637367626b0eff5d8c7b4. No tests, builds, lint or formatters were run. Existing public regression and browser results were supplied by the parent, not independently exercised. Annotation APIs, editing and export remain outside this viewer slice."
+    ],
+    "schema": "review-slice/v1"
+  },
+  "standards": {
+    "axis": "standards",
+    "findings": [
+      {
+        "description": "Correctness judgment: listKeys focuses and clicks the next asset, but this click handler immediately moves focus to assetColumn. After one ArrowDown/ArrowUp, subsequent arrow events no longer reach the asset list. Keyboard users cannot move continuously through assets as they can through cases.",
+        "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/main.tsx",
+        "fix": "Keep focus on the asset button during arrow-key selection. Move focus to the inspector only on explicit activation, such as Enter/Space or a separate inspect action.",
+        "line": 127,
+        "severity": "medium"
+      },
+      {
+        "description": "Performance judgment: each session/cases GET independently runs validateSession. The viewer requests both concurrently. Each validation inventories and hashes the complete source tree, rereads original media, then hashes every imported asset. One initial page load therefore duplicates the entire validation workload; concurrent loads multiply full-media allocations and disk reads.",
+        "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/server.ts",
+        "fix": "Share one in-flight validation promise between concurrent metadata requests, clearing it after settlement so later requests still revalidate changed records. Keep per-response asset byte/hash validation.",
+        "line": 54,
+        "severity": "medium"
+      }
+    ],
+    "notes": [
+      "Read-only implementation self-review against baseline 1557f0e6dd56fae90e0637367626b0eff5d8c7b4, including untracked source. Findings are engineering judgments, not hard documented-standard violations.",
+      "No tests, build, lint, formatter, or runtime checks were run, as requested. No repository files were edited."
+    ],
+    "schema": "review-slice/v1"
+  },
+  "resolutions": [
+    {
+      "finding": "Dangling source events reference",
+      "resolution": "Feedback cases now refer to source/<original-events-path>; public workflow checks the real final event."
+    },
+    {
+      "finding": "Asset arrow navigation loses focus",
+      "resolution": "Arrow selection restores focus to its asset row; repeated Down/Up/Down exercised in real browser."
+    },
+    {
+      "finding": "Repeated concurrent metadata validation",
+      "resolution": "Concurrent reads share one in-flight validation; later requests revalidate."
+    },
+    {
+      "finding": "Focus style differs from DESIGN",
+      "resolution": "Base Nova focus override now yields exact primary 2px outline with 3px offset in final browser evidence."
+    }
+  ]
+}

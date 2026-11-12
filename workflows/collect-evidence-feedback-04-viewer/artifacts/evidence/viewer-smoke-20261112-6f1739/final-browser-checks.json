@@ -1,0 +1,112 @@
+{
+  "finalKeyboard": {
+    "selected": [
+      "case-1.2.capture-002image/png · 2026-11-12T05:39:10.295Z›"
+    ],
+    "focus": "case-1.2.capture-002image/png · 2026-11-12T05:39:10.295Z›",
+    "focusInAssets": true,
+    "outline": "rgb(201, 166, 255) solid 2px",
+    "outlineOffset": "3px"
+  },
+  "finalLayout": {
+    "width": 390,
+    "assetLeft": 0,
+    "scrollLeft": 780,
+    "bodyOverflow": false,
+    "imageNaturalWidth": 1280,
+    "fonts": [
+      {
+        "family": "JetBrains Mono",
+        "weight": "500",
+        "status": "loaded"
+      },
+      {
+        "family": "JetBrains Mono",
+        "weight": "400",
+        "status": "loaded"
+      }
+    ]
+  },
+  "requests": [
+    {
+      "url": "http://127.0.0.1:18764/",
+      "status": 200,
+      "type": "document"
+    },
+    {
+      "url": "data:font",
+      "status": 200,
+      "type": "font"
+    },
+    {
+      "url": "data:font",
+      "status": 200,
+      "type": "font"
+    },
+    {
+      "url": "http://127.0.0.1:18764/api/v1/session",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:18764/api/v1/cases",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:18764/favicon.ico",
+      "status": 404,
+      "type": "other"
+    },
+    {
+      "url": "http://127.0.0.1:18764/api/v1/assets/case-1.2.capture-001",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:18764/",
+      "status": 200,
+      "type": "document"
+    },
+    {
+      "url": "data:font",
+      "status": 200,
+      "type": "font"
+    },
+    {
+      "url": "data:font",
+      "status": 200,
+      "type": "font"
+    },
+    {
+      "url": "http://127.0.0.1:18764/api/v1/session",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:18764/api/v1/cases",
+      "status": 200,
+      "type": "fetch"
+    },
+    {
+      "url": "http://127.0.0.1:18764/api/v1/assets/case-1.2.capture-002",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:18764/api/v1/assets/case-1.2.capture-001",
+      "status": 200,
+      "type": "image"
+    },
+    {
+      "url": "http://127.0.0.1:18764/api/v1/assets/case-1.2.capture-001",
+      "status": 200,
+      "type": "image"
+    }
+  ],
+  "errors": {
+    "entries": [],
+    "nextSeq": 0,
+    "dropped": 0
+  }
+}

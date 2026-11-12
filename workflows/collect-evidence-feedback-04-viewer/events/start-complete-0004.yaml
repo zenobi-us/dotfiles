@@ -1,0 +1,136 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-complete-0004",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "implementation-0003",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "035fdd61b454eb9b9aa8b0f20fdd3b2ee33ab476",
+  "source_tree": "ae1abc62d14257777bb22a4b737add38a0903c71",
+  "created_at": "2026-11-12T06:00:37.619451+00:00",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc:t7r",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/implementation-0003.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/launch-0002.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/pr-draft-implementation-0003.md"
+    },
+    {
+      "kind": "changed-files",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/changed-files-implementation-0003.json"
+    },
+    {
+      "kind": "evidence-copy",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/evidence-copy-implementation-0003.json"
+    },
+    {
+      "kind": "evidence",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739"
+    },
+    {
+      "kind": "manifest",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/manifest.yaml"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/projections/pr-draft.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/projections/implementation-log.md"
+    },
+    {
+      "kind": "projection",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/projections/latest-status.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/start-complete-0004.yaml"
+    }
+  ],
+  "status": "completed",
+  "validation_results": [
+    {
+      "command": "result-delivery read --context <assigned-context>",
+      "result": "passed",
+      "observed": "run/operation/schema/hash verified; authoritative YAML equivalent after timestamp normalization"
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}; git status --porcelain",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+      "result": "passed",
+      "observed": "exact implementation commit/tree, clean source"
+    },
+    {
+      "command": "compare retained evidence bytes",
+      "result": "passed",
+      "observed": "no byte mismatches between original source worktree and authoritative base store; all declared outputs exist"
+    },
+    {
+      "command": "collect-feedback.ts validate <retained-session> --json --quiet",
+      "cwd": "/tmp",
+      "result": "passed",
+      "exit_code": 0
+    },
+    {
+      "command": "inspect retained desktop and 390px screenshots",
+      "result": "passed",
+      "observed": "original images and inspector columns visible; narrow asset drilldown retained"
+    }
+  ],
+  "child_completion": {
+    "run_id": "6f1739e6-93e8-4461-a61c-f7583f37b452",
+    "signal": "completed",
+    "sequence": 2,
+    "target": "t7s",
+    "transport_ack_sha256": "633562bab7c1cf4e4319e98bc9a63ccc2fe81c0b50928df2fc70411b128a4525"
+  },
+  "pane_close": {
+    "terminal": "t7s",
+    "kill": "completed after native completed signal and validated receipt",
+    "remove": "removed",
+    "app_observation": "t7s absent; source space moved to recent automatically; no unrelated panes closed"
+  },
+  "evidence": {
+    "store": "repository",
+    "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739"
+  },
+  "publication": {
+    "source_committed": true,
+    "workflow_committed": false,
+    "pushed": false,
+    "merged": false,
+    "ticket_completed": false
+  },
+  "implementation_summary": "Implemented the complete read-only collect-feedback viewer slice: versioned init/validate/serve and shared direct serve command; existing evidence routing; sealed offline source snapshot and immutable media with original identities/times/hashes; bounded registered loopback read API with Host/Origin/Fetch-Metadata, path/symlink and request enforcement; explicit ports and exclusive writer cleanup; actual shadcn Base Nova React source, bundled JetBrains Mono and one prebuilt self-contained HTML; independent Finder columns and narrow horizontal drill-down; original image display; public workflow regression and real-browser proof. Fixed all self-review findings. Updated skill, manual guide, service/record contract and changelog. Source feature and evidence commits are c4b48e60 and 035fdd61. The commit hook bumped developer bundle metadata to 0.2.22. No annotation controls or fake handlers, remote Git, merge, push or ticket completion.",
+  "open_questions": []
+}

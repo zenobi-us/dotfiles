@@ -1,0 +1,79 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "validation",
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "checks": [
+    {
+      "command": "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.ts check --repository <worktree> --ticket collect-evidence-feedback-04-viewer",
+      "result": "passed; tracker-ticket/v1, claimed; normal graph and explorer discovery; 56.09s"
+    },
+    {
+      "command": "mise exec -- bun /tmp/feedback-setup.ts",
+      "cwd": "/tmp",
+      "result": "blocked before capture: playwright-cli default Chrome missing at /opt/google/chrome/chrome; exit 3 from collector. No passing capture claimed."
+    },
+    {
+      "command": "mise exec -- env PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome bun /tmp/feedback-setup.ts",
+      "cwd": "/tmp",
+      "result": "passed; real owned loopback page, 12 cases, real screenshots, sealed run, public feedback import; 18.06s"
+    },
+    {
+      "command": "mise exec -- env PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts",
+      "result": "focused pre-review run: 1 pass, 0 fail, 38 assertions; 8.10s"
+    },
+    {
+      "command": "mise exec -- env PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test",
+      "result": "final affected suite: 102 pass, 32 skip, 0 fail, 940 assertions; 134 tests across 7 files; 62.80s",
+      "skips": "Existing opt-in native/GUI/real-browser collector cases were not enabled. The new feedback public test still captured real Playwright images."
+    },
+    {
+      "command": "mise exec -- bun run typecheck && mise exec -- bun run build",
+      "cwd": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer",
+      "result": "passed after review fixes; built 317992-byte self-contained HTML; no runtime build"
+    },
+    {
+      "command": "collect-feedback.ts init <sealed-run> --repository <temporary-repository> --workflow viewer-smoke --session review-verified --json --quiet",
+      "cwd": "/tmp",
+      "result": "passed; new immutable session; old pre-review session left unchanged"
+    },
+    {
+      "command": "collect-feedback/serve.ts <session> --port 18764 --json",
+      "cwd": "/tmp",
+      "result": "passed with real bundled browser; exact source PNG bytes match HTTP and copied media; original 1280x720, 25111 bytes, SHA-256 9c3004a6ec3b9f0f72f4055016202e553c17d69ea5a60cbec6e0876839811449"
+    },
+    {
+      "command": "BrowserTab real Chromium inspection",
+      "result": "passed: independent scroll positions [100,0,0], [0,100,0], [0,0,100]; 390px viewport drilldown at assetLeft=0 and scrollLeft=780; body no overflow; repeated asset arrows retain focus; exact 2px #c9a6ff outline and 3px offset; embedded 400/500 fonts loaded; no external network or JS errors"
+    },
+    {
+      "command": "collect-feedback.ts validate <retained-evidence-session> --json --quiet",
+      "cwd": "/tmp",
+      "result": "passed; retained final session/source snapshot validates offline"
+    },
+    {
+      "command": "collect-feedback.ts --version --json; collect-feedback/serve.ts --help",
+      "cwd": "/tmp",
+      "result": "passed; versioned success and shared direct serve command discovery"
+    },
+    {
+      "command": "SIGTERM to owned smoke servers; BrowserTab.close()",
+      "result": "passed: both smoke service exit codes 0; owned browser tab released; public regression covers SIGTERM and SIGINT, lock cleanup and same-port restart"
+    }
+  ],
+  "httpCoverage": [
+    "wrong Host/Origin/Fetch-Metadata rejected",
+    "non-GET rejected",
+    "oversized body rejected",
+    "encoded/unregistered/static-source paths refused",
+    "changed/missing/symlink assets rejected",
+    "unsupported evidence/session/case schemas rejected",
+    "busy port no fallback",
+    "second writer refused",
+    "lock released after failed startup and signals"
+  ],
+  "limitations": [
+    "LSP unavailable: configured TypeScript server failed initialization because it could not find workspace TypeScript; frontend explicit tsc passed.",
+    "Native TUI/GUI capture and new video recording were outside this viewer slice and not visually verified.",
+    "Annotation mutations, draft recovery, export and historical labels are not implemented or claimed."
+  ]
+}

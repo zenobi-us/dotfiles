@@ -1,0 +1,114 @@
+{
+  "kind": "case",
+  "id": "case-7",
+  "order": 7,
+  "purpose": "Inspect original evidence 7",
+  "preconditions": [],
+  "expected": {
+    "pass": "The original page heading is visible",
+    "fail": "The page heading is missing"
+  },
+  "steps": [
+    {
+      "id": "case-7.1",
+      "order": 1,
+      "purpose": "Open the owned page",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the owned page",
+        "to": "/",
+        "shot": ""
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "case-7.2",
+      "order": 2,
+      "purpose": "Read the original heading",
+      "actions": {
+        "do": "expect",
+        "says": "Read the original heading",
+        "locator": "h1",
+        "text": "Original browser capture",
+        "shot": "original-page"
+      },
+      "expected": {
+        "text": "Original browser capture",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "Found text: Original browser capture"
+      ],
+      "assertionResult": "passed"
+    }
+  ],
+  "events": "source/cases/case-7/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "case-7.2.capture-001",
+      "caseId": "case-7",
+      "stepId": "case-7.2",
+      "path": "cases/case-7/media/step-002-step-case-7-002-original-page--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "9c3004a6ec3b9f0f72f4055016202e553c17d69ea5a60cbec6e0876839811449",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-12T05:39:15.496Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:38867/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "case-7.2.capture-002",
+      "caseId": "case-7",
+      "stepId": "case-7.2",
+      "path": "cases/case-7/media/step-002-step-case-7-002-original-page--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "9c3004a6ec3b9f0f72f4055016202e553c17d69ea5a60cbec6e0876839811449",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-12T05:39:15.530Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:38867/"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded",
+  "schema": "collect-feedback/v1",
+  "sessionId": "review-verified",
+  "source": {
+    "runId": "capture",
+    "caseId": "case-7"
+  }
+}

@@ -1,0 +1,271 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "plan",
+  "data": {
+    "schema": "collect-evidence/v1",
+    "kind": "plan",
+    "workId": "viewer-smoke",
+    "driver": "playwright",
+    "base": "http://127.0.0.1:38867",
+    "approval": {
+      "origins": [
+        "http://127.0.0.1:38867"
+      ],
+      "confirmations": []
+    },
+    "tests": [
+      {
+        "id": "case-1",
+        "claim": "Inspect original evidence 1",
+        "pass": "The original page heading is visible",
+        "fail": "The page heading is missing",
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the owned page",
+            "to": "/",
+            "shot": ""
+          },
+          {
+            "do": "expect",
+            "says": "Read the original heading",
+            "locator": "h1",
+            "text": "Original browser capture",
+            "shot": "original-page"
+          }
+        ]
+      },
+      {
+        "id": "case-2",
+        "claim": "Inspect original evidence 2",
+        "pass": "The original page heading is visible",
+        "fail": "The page heading is missing",
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the owned page",
+            "to": "/",
+            "shot": ""
+          },
+          {
+            "do": "expect",
+            "says": "Read the original heading",
+            "locator": "h1",
+            "text": "Original browser capture",
+            "shot": "original-page"
+          }
+        ]
+      },
+      {
+        "id": "case-3",
+        "claim": "Inspect original evidence 3",
+        "pass": "The original page heading is visible",
+        "fail": "The page heading is missing",
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the owned page",
+            "to": "/",
+            "shot": ""
+          },
+          {
+            "do": "expect",
+            "says": "Read the original heading",
+            "locator": "h1",
+            "text": "Original browser capture",
+            "shot": "original-page"
+          }
+        ]
+      },
+      {
+        "id": "case-4",
+        "claim": "Inspect original evidence 4",
+        "pass": "The original page heading is visible",
+        "fail": "The page heading is missing",
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the owned page",
+            "to": "/",
+            "shot": ""
+          },
+          {
+            "do": "expect",
+            "says": "Read the original heading",
+            "locator": "h1",
+            "text": "Original browser capture",
+            "shot": "original-page"
+          }
+        ]
+      },
+      {
+        "id": "case-5",
+        "claim": "Inspect original evidence 5",
+        "pass": "The original page heading is visible",
+        "fail": "The page heading is missing",
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the owned page",
+            "to": "/",
+            "shot": ""
+          },
+          {
+            "do": "expect",
+            "says": "Read the original heading",
+            "locator": "h1",
+            "text": "Original browser capture",
+            "shot": "original-page"
+          }
+        ]
+      },
+      {
+        "id": "case-6",
+        "claim": "Inspect original evidence 6",
+        "pass": "The original page heading is visible",
+        "fail": "The page heading is missing",
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the owned page",
+            "to": "/",
+            "shot": ""
+          },
+          {
+            "do": "expect",
+            "says": "Read the original heading",
+            "locator": "h1",
+            "text": "Original browser capture",
+            "shot": "original-page"
+          }
+        ]
+      },
+      {
+        "id": "case-7",
+        "claim": "Inspect original evidence 7",
+        "pass": "The original page heading is visible",
+        "fail": "The page heading is missing",
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the owned page",
+            "to": "/",
+            "shot": ""
+          },
+          {
+            "do": "expect",
+            "says": "Read the original heading",
+            "locator": "h1",
+            "text": "Original browser capture",
+            "shot": "original-page"
+          }
+        ]
+      },
+      {
+        "id": "case-8",
+        "claim": "Inspect original evidence 8",
+        "pass": "The original page heading is visible",
+        "fail": "The page heading is missing",
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the owned page",
+            "to": "/",
+            "shot": ""
+          },
+          {
+            "do": "expect",
+            "says": "Read the original heading",
+            "locator": "h1",
+            "text": "Original browser capture",
+            "shot": "original-page"
+          }
+        ]
+      },
+      {
+        "id": "case-9",
+        "claim": "Inspect original evidence 9",
+        "pass": "The original page heading is visible",
+        "fail": "The page heading is missing",
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the owned page",
+            "to": "/",
+            "shot": ""
+          },
+          {
+            "do": "expect",
+            "says": "Read the original heading",
+            "locator": "h1",
+            "text": "Original browser capture",
+            "shot": "original-page"
+          }
+        ]
+      },
+      {
+        "id": "case-10",
+        "claim": "Inspect original evidence 10",
+        "pass": "The original page heading is visible",
+        "fail": "The page heading is missing",
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the owned page",
+            "to": "/",
+            "shot": ""
+          },
+          {
+            "do": "expect",
+            "says": "Read the original heading",
+            "locator": "h1",
+            "text": "Original browser capture",
+            "shot": "original-page"
+          }
+        ]
+      },
+      {
+        "id": "case-11",
+        "claim": "Inspect original evidence 11",
+        "pass": "The original page heading is visible",
+        "fail": "The page heading is missing",
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the owned page",
+            "to": "/",
+            "shot": ""
+          },
+          {
+            "do": "expect",
+            "says": "Read the original heading",
+            "locator": "h1",
+            "text": "Original browser capture",
+            "shot": "original-page"
+          }
+        ]
+      },
+      {
+        "id": "case-12",
+        "claim": "Inspect original evidence 12",
+        "pass": "The original page heading is visible",
+        "fail": "The page heading is missing",
+        "steps": [
+          {
+            "do": "navigate",
+            "says": "Open the owned page",
+            "to": "/",
+            "shot": ""
+          },
+          {
+            "do": "expect",
+            "says": "Read the original heading",
+            "locator": "h1",
+            "text": "Original browser capture",
+            "shot": "original-page"
+          }
+        ]
+      }
+    ]
+  }
+}

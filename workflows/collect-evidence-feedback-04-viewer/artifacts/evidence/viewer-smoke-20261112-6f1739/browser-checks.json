@@ -1,0 +1,80 @@
+{
+  "desktop": {
+    "image": {
+      "src": "/api/v1/assets/case-1.2.capture-001",
+      "width": 1280,
+      "height": 720,
+      "filter": "none",
+      "objectFit": "contain"
+    },
+    "fonts": [
+      {
+        "family": "JetBrains Mono",
+        "weight": "500",
+        "status": "loaded"
+      },
+      {
+        "family": "JetBrains Mono",
+        "weight": "400",
+        "status": "loaded"
+      }
+    ],
+    "background": "rgb(25, 21, 33)",
+    "fontSize": "13px",
+    "columns": [
+      {
+        "height": 800,
+        "scrollHeight": 800,
+        "overflow": "auto"
+      },
+      {
+        "height": 800,
+        "scrollHeight": 2641,
+        "overflow": "auto"
+      },
+      {
+        "height": 800,
+        "scrollHeight": 1418,
+        "overflow": "auto"
+      }
+    ]
+  },
+  "scrolling": [
+    [
+      100,
+      0,
+      0
+    ],
+    [
+      0,
+      100,
+      0
+    ],
+    [
+      0,
+      0,
+      100
+    ]
+  ],
+  "narrow": {
+    "width": 390,
+    "finderScrollLeft": 780,
+    "assetLeft": 0,
+    "bodyOverflow": false,
+    "imageWidth": 1280
+  },
+  "keyboard": {
+    "selected": [
+      "case-2Inspect original evidence 2›"
+    ],
+    "focus": "case-2Inspect original evidence 2›",
+    "outline": "rgb(210, 183, 251) solid 2px",
+    "outlineOffset": "1px",
+    "caseLeft": 0
+  },
+  "errors": {
+    "entries": [],
+    "nextSeq": 0,
+    "dropped": 0
+  }
+}

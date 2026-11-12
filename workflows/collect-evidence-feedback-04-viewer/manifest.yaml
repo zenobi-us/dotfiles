@@ -1,0 +1,9 @@
+schema: worktree-workflow/v2
+workflow_id: collect-evidence-feedback-04-viewer
+ticket_ref: tracker/tickets/collect-evidence-feedback-04-viewer.md
+initiative: collect-evidence-feedback
+event_root: events
+artifact_root: artifacts
+projection_root: projections
+latest_receipt: start-complete-0004
+state: IMPLEMENTED
