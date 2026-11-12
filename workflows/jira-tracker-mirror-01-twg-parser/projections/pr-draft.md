@@ -85,3 +85,12 @@ None.
 - `events/implementation-0005.yaml` (attempt 2 phase-result, `phase: implementation`)
 - `artifacts/snapshots/pr-draft-implementation-0002.md`
 - `artifacts/snapshots/pr-draft-implementation-0005.md`
+
+## Review history
+
+- review-0008 (attempt 1), reviewed 58c0b8a4e4c608991076afe5a5d7da3f0e703f07: **SUCCESS**, no blocking findings. Artifact: [review-review-0008.md](../artifacts/reviews/review-review-0008.md). Receipts: [review-start-0007](../events/review-start-0007.yaml), [review-0008](../events/review-0008.yaml), [review-complete-0009](../events/review-complete-0009.yaml).
+- Non-blocking notes: fixture provenance comment in twg-jira.test.ts:6; ADF to text drops inline nodes; strict parsing fails the whole graph on one odd issue; worktree typecheck needs node_modules.
+
+## Merge status
+
+Not merged. Latest verdict SUCCESS for 58c0b8a4e4c608991076afe5a5d7da3f0e703f07.

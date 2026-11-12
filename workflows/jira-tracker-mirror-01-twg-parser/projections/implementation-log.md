@@ -54,3 +54,7 @@ Same as implementation-0002 (`58c0b8a4` against `master`).
 - The worktree has no `node_modules`, so `bun run typecheck` needs the base checkout `node_modules`.
 - `write-result.ts --repository <worktree>` resolves the workflow root to the worktree. The writer ran with `--repository /home/zenobius/Projects/dotfiles`, the store root in all receipts.
 - `start-0004.yaml`, `implementation-0005.yaml`, and the 0005 snapshot are not committed yet.
+
+## Review
+
+- review-0008: SUCCESS for 58c0b8a4e4c608991076afe5a5d7da3f0e703f07. No source change.

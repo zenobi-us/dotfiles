@@ -1,9 +1,9 @@
 schema: worktree-latest-status/v1
 workflow_id: jira-tracker-mirror-01-twg-parser
 ticket: tracker/tickets/jira-tracker-mirror-01-twg-parser.md
-state: IMPLEMENTED
-latest_receipt: implementation-0005
+state: REVIEW_PASSED
+latest_receipt: review-complete-0009
 latest_source_commit: 58c0b8a4e4c608991076afe5a5d7da3f0e703f07
 latest_source_tree: 62dfc338d2e15dfbd225978ddbb76f3e1416e7e8
-latest_review_verdict: null
+latest_review_verdict: SUCCESS
 open_findings: []

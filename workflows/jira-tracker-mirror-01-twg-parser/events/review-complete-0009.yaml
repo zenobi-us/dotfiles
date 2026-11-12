@@ -1,0 +1,84 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-01-twg-parser",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/fix-jira-tracker-mirror-01-twg-parser",
+  "source_branch": "fix/jira-tracker-mirror-01-twg-parser",
+  "base_branch": "master",
+  "source_commit": "58c0b8a4e4c608991076afe5a5d7da3f0e703f07",
+  "source_tree": "62dfc338d2e15dfbd225978ddbb76f3e1416e7e8",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-01-twg-parser",
+    "ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-01-twg-parser.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-01-twg-parser"
+  },
+  "receipt_id": "review-complete-0009",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "review-0008",
+  "created_at": "2026-11-12T10:05:47.040Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/review-start-0007.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/review-0008.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/artifacts/reviews/review-review-0008.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-01-twg-parser/events/review-complete-0009.yaml"
+    }
+  ],
+  "status": "completed",
+  "validation": [
+    {
+      "command": "result-delivery read",
+      "result": "passed",
+      "details": "Schema, run, operation and sha256 verified; canonical JSON identical to review-0008.yaml."
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}; git status --porcelain",
+      "result": "passed",
+      "details": "Reviewer left the source unchanged: 58c0b8a4 / 62dfc338, clean."
+    },
+    {
+      "command": "mise x -- bun test (reading-and-writing-tickets, worktree)",
+      "result": "passed",
+      "details": "Parent run after review: 48 pass, 0 fail."
+    }
+  ],
+  "child_run_id": "a1313f43-3963-4601-9f7d-fa7bf82ea176",
+  "child_pane_id": "t1g",
+  "child_shutdown": {
+    "state": "completed",
+    "completion_sequence": 2,
+    "terminal_removed": true
+  },
+  "publication": {
+    "source_committed": true,
+    "workflow_records_committed": false,
+    "pushed": false,
+    "merged": false,
+    "ticket_completed": false
+  }
+}
