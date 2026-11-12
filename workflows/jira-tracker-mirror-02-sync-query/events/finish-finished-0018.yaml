@@ -1,0 +1,87 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-02-sync-query",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "source_branch": "feat/jira-tracker-mirror-02-sync-query",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-02-sync-query",
+    "ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-02-sync-query"
+  },
+  "created_at": "2026-11-12T23:13:00.388Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "phase": "finish",
+  "attempt": 2,
+  "status": "FINISHED",
+  "review_receipt": "workflows/jira-tracker-mirror-02-sync-query/events/review-0010.yaml",
+  "reviewed_source_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "reviewed_source_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "base_before": "d7890dbe0cdecce99c3a8f1e7ba5095a0f237a82",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "merged_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "merged_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "merged_parents": [
+    "86bdf478"
+  ],
+  "merged_range": [
+    "86bdf478",
+    "b918ef94"
+  ],
+  "receipt_id": "finish-finished-0018",
+  "event": "phase-complete",
+  "parent_receipt": "finish-worktree-removed-0017",
+  "source_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "source_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/finish-worktree-removed-0017.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/review-0010.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/artifacts/reviews/review-review-0010.md"
+    }
+  ],
+  "remote_observed_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "merged_commit_reachable": true,
+  "ticket_completion": {
+    "ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md",
+    "observed_state": "completed",
+    "commit": "008ab869"
+  },
+  "pushed": true,
+  "ticket_completed": true,
+  "worktree_removed": true,
+  "workspace_closed": true,
+  "publication": {
+    "source_committed": true,
+    "workflow_records_committed": true,
+    "pushed": true,
+    "merged": true,
+    "ticket_completed": true
+  },
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/finish-finished-0018.yaml"
+    }
+  ]
+}

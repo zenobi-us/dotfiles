@@ -1,0 +1,66 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-02-sync-query",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "source_branch": "feat/jira-tracker-mirror-02-sync-query",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-02-sync-query",
+    "ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-02-sync-query"
+  },
+  "created_at": "2026-11-12T22:44:23.733Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "receipt_id": "review-start-0009",
+  "phase": "review",
+  "event": "phase-start",
+  "attempt": 2,
+  "parent_receipt": "finish-0008",
+  "source_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "source_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/finish-0008.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/artifacts/reviews/review-review-0005.md"
+    }
+  ],
+  "status": "started",
+  "recovery_mode": "begin",
+  "recovery_reason": "finish-0008 stopped at prepare. The branch was rebased with wt step rebase onto master d7890dbe; review-0005 covers 5c9c2859 only. Fresh review of the rebased source.",
+  "rebase": {
+    "from_commit": "5c9c2859ed8371a06dff37e159b899a8b7a82b1f",
+    "from_tree": "ba4e4fa1e0f24825edd8f29cb9cea35f2af6c4e3",
+    "onto": "d7890dbe",
+    "range_diff": "4a87c315 = 86bdf478; 5c9c2859 = b918ef94",
+    "source_diff_identical": true
+  },
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/review-start-0009.yaml"
+    }
+  ]
+}

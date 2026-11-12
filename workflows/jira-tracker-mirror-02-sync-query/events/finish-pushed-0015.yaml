@@ -1,0 +1,70 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-02-sync-query",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "source_branch": "feat/jira-tracker-mirror-02-sync-query",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-02-sync-query",
+    "ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-02-sync-query"
+  },
+  "source_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "source_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "created_at": "2026-11-12T22:57:34.672Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "phase": "finish",
+  "attempt": 2,
+  "status": "FINISHING",
+  "review_receipt": "workflows/jira-tracker-mirror-02-sync-query/events/review-0010.yaml",
+  "reviewed_source_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "reviewed_source_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "base_before": "d7890dbe0cdecce99c3a8f1e7ba5095a0f237a82",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "merged_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "merged_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "merged_parents": [
+    "86bdf478"
+  ],
+  "merged_range": [
+    "86bdf478",
+    "b918ef94"
+  ],
+  "receipt_id": "finish-pushed-0015",
+  "event": "phase-checkpoint",
+  "parent_receipt": "finish-validated-0014",
+  "checkpoint": "pushed",
+  "next_step": "ticket_completion",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/finish-validated-0014.yaml"
+    }
+  ],
+  "push": {
+    "command": "git push origin master",
+    "previous_remote": "7270619d1800d8eb8758310e602c80cfe3b9be7e",
+    "force": false
+  },
+  "remote_observed_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "merged_commit_reachable": true,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/finish-pushed-0015.yaml"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0001",
+  "workflow_id": "jira-tracker-mirror-02-sync-query",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": null,
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "source_branch": "feat/jira-tracker-mirror-02-sync-query",
+  "base_branch": "master",
+  "source_commit": "0d8054348a2ea89fd10f53353669d2fee083ccf1",
+  "source_tree": "74e0661ef87687eee5421cad725f2b1c9198c07e",
+  "created_at": "2026-11-12T11:09:42.423Z",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "claude",
+  "session_id": "herdr-app:t8",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-02-sync-query",
+    "ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-02-sync-query"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/start-0001.yaml"
+    }
+  ],
+  "status": "started",
+  "provenance_note": "Replaces an uncommitted start-0001 (sha256 91a94c7309580c003481d980f7331a3f8cdb4be4f11f178347f2c52229872801) written seconds earlier with parent_receipt \"\", which the inspector rejected. No child had started and no record consumed it.",
+  "recovery_mode": "begin",
+  "recovery_reason": "Inspector: start/begin. No receipts, source commits, or workspace. Blocker jira-tracker-mirror-01-twg-parser is completed.",
+  "ownership_observations": "Ticket was unclaimed; this session claimed it in 0d805434. No receipts or goal reservations. Worktree created by this parent through Worktrunk.",
+  "validation": [
+    {
+      "command": "records.ts check --ticket jira-tracker-mirror-02-sync-query",
+      "result": "passed"
+    }
+  ]
+}

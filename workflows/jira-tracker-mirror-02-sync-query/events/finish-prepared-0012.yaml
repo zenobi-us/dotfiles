@@ -1,0 +1,79 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-02-sync-query",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "source_branch": "feat/jira-tracker-mirror-02-sync-query",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-02-sync-query",
+    "ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-02-sync-query"
+  },
+  "source_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "source_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "created_at": "2026-11-12T22:55:36.010Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "phase": "finish",
+  "attempt": 2,
+  "status": "FINISHING",
+  "review_receipt": "workflows/jira-tracker-mirror-02-sync-query/events/review-0010.yaml",
+  "reviewed_source_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "reviewed_source_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "base_before": "d7890dbe0cdecce99c3a8f1e7ba5095a0f237a82",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "receipt_id": "finish-prepared-0012",
+  "event": "phase-checkpoint",
+  "parent_receipt": "review-complete-0011",
+  "checkpoint": "prepared",
+  "next_step": "merge",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/review-complete-0011.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/review-0010.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/artifacts/reviews/review-review-0010.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/finish-0008.yaml"
+    }
+  ],
+  "proposed_merge_message": "feat(tickets): sync Jira queries into mirror files for jira-tracker-mirror-02-sync-query",
+  "validation": [
+    {
+      "command": "mise x -- bun test (reading-and-writing-tickets, worktree)",
+      "result": "passed",
+      "details": "67 pass, 0 fail, after review-0010."
+    },
+    {
+      "command": "git merge-base --is-ancestor master feat/jira-tracker-mirror-02-sync-query",
+      "result": "passed",
+      "details": "Fast-forward possible; origin/master 7270619d is an ancestor of master d7890dbe."
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/finish-prepared-0012.yaml"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-02-sync-query",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "source_branch": "feat/jira-tracker-mirror-02-sync-query",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-02-sync-query",
+    "ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-02-sync-query"
+  },
+  "created_at": "2026-11-12T23:13:00.122Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "phase": "finish",
+  "attempt": 2,
+  "status": "FINISHING",
+  "review_receipt": "workflows/jira-tracker-mirror-02-sync-query/events/review-0010.yaml",
+  "reviewed_source_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "reviewed_source_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "base_before": "d7890dbe0cdecce99c3a8f1e7ba5095a0f237a82",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "merged_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "merged_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "merged_parents": [
+    "86bdf478"
+  ],
+  "merged_range": [
+    "86bdf478",
+    "b918ef94"
+  ],
+  "receipt_id": "finish-worktree-removed-0017",
+  "event": "phase-checkpoint",
+  "parent_receipt": "finish-ticket-completed-0016",
+  "checkpoint": "worktree_removed",
+  "next_step": "finalize",
+  "source_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "source_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/finish-ticket-completed-0016.yaml"
+    }
+  ],
+  "cleanup": {
+    "command": "cleanup-merged.ts remove feat/jira-tracker-mirror-02-sync-query --min-age=0s",
+    "attempts": [
+      {
+        "removed": [],
+        "refused": [
+          {
+            "branch": "feat/jira-tracker-mirror-02-sync-query",
+            "reason": "a process (for example an agent or shell) runs in the worktree"
+          }
+        ]
+      },
+      {
+        "removed": [
+          "feat/jira-tracker-mirror-02-sync-query"
+        ],
+        "refused": []
+      }
+    ],
+    "worktree_path_exists": false,
+    "blocking_process": {
+      "pid": 1734112,
+      "command": "claude (review run 36035545)",
+      "state": "stopped (T), orphaned after hc removed t1p",
+      "action": "User approved termination; SIGTERM then SIGCONT; process exited."
+    },
+    "workspace": "No herdr-app space for the worktree folder remained."
+  },
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/finish-worktree-removed-0017.yaml"
+    }
+  ]
+}

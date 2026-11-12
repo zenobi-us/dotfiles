@@ -1,0 +1,9 @@
+schema: worktree-latest-status/v1
+workflow_id: jira-tracker-mirror-02-sync-query
+ticket: tracker/tickets/jira-tracker-mirror-02-sync-query.md
+state: FINISHED
+latest_receipt: finish-finished-0018
+latest_source_commit: b918ef940649f41b1bc586e68e4a4395cd124696
+latest_source_tree: da2ec59d2c877de29694405f02b979568cae2b53
+latest_review_verdict: SUCCESS
+open_findings: []

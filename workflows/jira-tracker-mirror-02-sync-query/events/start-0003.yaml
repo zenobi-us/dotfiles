@@ -1,0 +1,101 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-02-sync-query",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "source_branch": "feat/jira-tracker-mirror-02-sync-query",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-02-sync-query",
+    "ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-02-sync-query"
+  },
+  "source_commit": "5c9c2859ed8371a06dff37e159b899a8b7a82b1f",
+  "source_tree": "ba4e4fa1e0f24825edd8f29cb9cea35f2af6c4e3",
+  "created_at": "2026-11-12T11:24:02.910Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "receipt_id": "start-0003",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "implementation-0002",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/start-0001.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/artifacts/snapshots/pr-draft-implementation-0002.md"
+    }
+  ],
+  "status": "completed",
+  "validation": [
+    {
+      "command": "result-delivery read",
+      "result": "passed",
+      "details": "Schema, run, operation and sha256 verified; canonical JSON identical to implementation-0002.yaml."
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}; git status --porcelain",
+      "result": "passed",
+      "details": "Worktree at 5c9c2859 / ba4e4fa1, clean."
+    },
+    {
+      "command": "mise x -- bun test (reading-and-writing-tickets, worktree)",
+      "result": "passed",
+      "details": "Parent run: 67 pass, 0 fail."
+    },
+    {
+      "command": "git -C /home/zenobius/Projects/zeno log/diff 0a38a828..9eb5476; git diff --cached --name-status before/after",
+      "result": "passed",
+      "details": "Two local commits (31cef2f, 9eb5476): tracker definition, 219 mirror files, and context.json rebuilt by the repository pre-commit hook. Earlier staged entries unchanged. Not pushed."
+    }
+  ],
+  "external_commits": [
+    {
+      "repository": "/home/zenobius/Projects/zeno",
+      "commits": [
+        "31cef2f",
+        "9eb5476"
+      ],
+      "pushed": false,
+      "note": "hk pre-commit hook adds rebuilt context.json to each commit."
+    }
+  ],
+  "implementation_summary": "jira-mirror.ts sync writes tracker-mirror/v1 files from configured JQL queries through the shared twg parser; adf-markdown.ts converts descriptions to Markdown.",
+  "child_run_id": "63be4e48-3fb0-46fb-9d29-2df4dc712aa8",
+  "child_pane_id": "t1m",
+  "child_shutdown": {
+    "state": "completed",
+    "completion_sequence": 2,
+    "terminal_removed": true
+  },
+  "publication": {
+    "source_committed": true,
+    "workflow_records_committed": false,
+    "pushed": false,
+    "merged": false,
+    "ticket_completed": false
+  },
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/start-0003.yaml"
+    }
+  ]
+}

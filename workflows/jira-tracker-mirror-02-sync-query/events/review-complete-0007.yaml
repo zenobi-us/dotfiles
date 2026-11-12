@@ -1,0 +1,87 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-02-sync-query",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "source_branch": "feat/jira-tracker-mirror-02-sync-query",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-02-sync-query",
+    "ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-02-sync-query"
+  },
+  "source_commit": "5c9c2859ed8371a06dff37e159b899a8b7a82b1f",
+  "source_tree": "ba4e4fa1e0f24825edd8f29cb9cea35f2af6c4e3",
+  "created_at": "2026-11-12T22:24:41.127Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "receipt_id": "review-complete-0007",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "review-0005",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/review-start-0004.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/review-0005.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/artifacts/reviews/review-review-0005.md"
+    }
+  ],
+  "status": "completed",
+  "validation": [
+    {
+      "command": "result-delivery read",
+      "result": "passed",
+      "details": "Schema, run, operation and sha256 verified; canonical JSON identical to review-0005.yaml."
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}; git status --porcelain",
+      "result": "passed",
+      "details": "Reviewer left the source unchanged: 5c9c2859 / ba4e4fa1, clean. zeno HEAD unchanged at 9eb5476."
+    },
+    {
+      "command": "mise x -- bun test (reading-and-writing-tickets, worktree)",
+      "result": "passed",
+      "details": "Parent run after review: 67 pass, 0 fail."
+    }
+  ],
+  "tracker_comment_deferred": "The verdict comment is added to the ticket with the completion commit after the merge, so master does not move before the fast-forward.",
+  "child_run_id": "8eaf2e37-a0e7-4d66-9f9f-e3fb010b3117",
+  "child_pane_id": "t1n",
+  "child_shutdown": {
+    "state": "completed",
+    "completion_sequence": 2,
+    "terminal_removed": true
+  },
+  "publication": {
+    "source_committed": true,
+    "workflow_records_committed": false,
+    "pushed": false,
+    "merged": false,
+    "ticket_completed": false
+  },
+  "supersedes": "review-complete-0006",
+  "supersede_reason": "review-0005 records created_at 2026-11-12T12:30:00.000Z, a future time written by the reviewer (real time about 11:39Z). The inspector orders receipts by created_at, so it ordered review-0005 after review-complete-0006 and reported review/reconcile. This receipt has a later created_at. Content is otherwise identical to review-complete-0006.",
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/review-complete-0007.yaml"
+    }
+  ]
+}

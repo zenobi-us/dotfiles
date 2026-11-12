@@ -1,0 +1,76 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-02-sync-query",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "source_branch": "feat/jira-tracker-mirror-02-sync-query",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-02-sync-query",
+    "ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-02-sync-query"
+  },
+  "source_commit": "5c9c2859ed8371a06dff37e159b899a8b7a82b1f",
+  "source_tree": "ba4e4fa1e0f24825edd8f29cb9cea35f2af6c4e3",
+  "created_at": "2026-11-12T22:44:06.103Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "receipt_id": "finish-0008",
+  "phase": "finish",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "review-complete-0007",
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/review-complete-0007.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/review-0005.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/artifacts/reviews/review-review-0005.md"
+    }
+  ],
+  "status": "FINISH_FAILED",
+  "failure_step": "prepare",
+  "failure_reason": "origin/master had 16 commits that local master did not have (herdr-app mod and collect-evidence-feedback work). The unpublished claim commit 0d805434 was rebased onto origin/master as d7890dbe. The branch base is 0d805434, so wt merge --no-rebase cannot fast-forward. A rebase changes the reviewed source commit and tree. No changed file overlaps the branch; git merge-tree is clean.",
+  "review_receipt": "workflows/jira-tracker-mirror-02-sync-query/events/review-0005.yaml",
+  "reviewed_source_commit": "5c9c2859ed8371a06dff37e159b899a8b7a82b1f",
+  "reviewed_source_tree": "ba4e4fa1e0f24825edd8f29cb9cea35f2af6c4e3",
+  "base_before": "d7890dbe0cdecce99c3a8f1e7ba5095a0f237a82",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "last_verified_boundary": null,
+  "resources_preserved": [
+    "source worktree",
+    "source branch",
+    "all receipts"
+  ],
+  "operator_decision": "User chose: rebase the branch onto master with Worktrunk, run a fresh review of the new commit, then finish.",
+  "merged_commit": null,
+  "pushed": null,
+  "ticket_completed": null,
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/finish-0008.yaml"
+    }
+  ]
+}

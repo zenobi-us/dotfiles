@@ -1,0 +1,90 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-02-sync-query",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-02-sync-query",
+  "source_branch": "feat/jira-tracker-mirror-02-sync-query",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-02-sync-query",
+    "ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-02-sync-query.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-02-sync-query"
+  },
+  "source_commit": "b918ef940649f41b1bc586e68e4a4395cd124696",
+  "source_tree": "da2ec59d2c877de29694405f02b979568cae2b53",
+  "created_at": "2026-11-12T22:53:48.160Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "receipt_id": "review-complete-0011",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 2,
+  "parent_receipt": "review-0010",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/review-start-0009.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/review-0010.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/artifacts/reviews/review-review-0010.md"
+    }
+  ],
+  "status": "completed",
+  "validation": [
+    {
+      "command": "result-delivery read",
+      "result": "passed",
+      "details": "Schema, run, operation and sha256 verified; content identical to review-0010.yaml."
+    },
+    {
+      "command": "result-delivery ack",
+      "result": "passed",
+      "details": "sha256 6faacf90470b8737faa34318c7aa07e5accf7e85d0ad72228c924d1fd426af94"
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}; git status --porcelain",
+      "result": "passed",
+      "details": "b918ef94 / da2ec59d, clean."
+    }
+  ],
+  "operator_decisions": [
+    {
+      "note": "N1",
+      "decision": "User chose to merge the fixture query-mirror-epics.json as it is, with real epic content, into the public repository."
+    }
+  ],
+  "child_run_id": "36035545-bb37-4e8f-b598-acb679cadffb",
+  "child_pane_id": "t1p",
+  "child_shutdown": {
+    "state": "completed",
+    "completion_sequence": 2,
+    "terminal_removed": true
+  },
+  "publication": {
+    "source_committed": true,
+    "workflow_records_committed": false,
+    "pushed": false,
+    "merged": false,
+    "ticket_completed": false
+  },
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-02-sync-query/events/review-complete-0011.yaml"
+    }
+  ]
+}
