@@ -4,7 +4,7 @@ id: "jira-tracker-mirror-01-twg-parser"
 title: "Share one twg Jira parser and fix the Jira dependency graph"
 type: "bug"
 triage: "ready-for-agent"
-work_status: "unclaimed"
+work_status: "claimed"
 parent: "jira-tracker-mirror"
 sequence: 1
 blocked_by: []
