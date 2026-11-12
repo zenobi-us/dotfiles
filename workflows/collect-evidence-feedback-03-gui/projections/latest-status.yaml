@@ -1,12 +1,13 @@
 schema: worktree-latest-status/v1
 workflow_id: collect-evidence-feedback-03-gui
 ticket: tracker/tickets/collect-evidence-feedback-03-gui.md
-state: FINISH_FAILED
-latest_receipt: finish-0020
-latest_source_commit: 4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71
-latest_source_tree: 36f17fc4bb60031eedb54d69a88b2a1c3ef93d74
-latest_review_verdict: SUCCESS
-open_findings: []
+state: REVIEW_FAILED
+latest_receipt: review-0025
+latest_source_commit: c224ea08907df7d2dc2a12d297bbd107fb1597af
+latest_source_tree: 2f409d6d19cfc5bcd56cd824f74410b58aa2ed1c
+latest_review_verdict: FAILURE
+open_findings:
+- CEGUI-R2
 optional_findings:
 - CEGUI-N1
 remaining_limits:

@@ -1,0 +1,47 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: 4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71
+source_tree: 36f17fc4bb60031eedb54d69a88b2a1c3ef93d74
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: finish-0021
+phase: finish
+event: operator-approval
+status: approved
+attempt: 0
+parent_receipt: finish-0020
+created_at: '2026-11-12T02:01:58.816030+00:00'
+session_id: herdr-app:t6z
+pane_id: null
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0020.yaml
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0017.yaml
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0021.yaml
+approval: 'User selected Update source and review again: integrate current master
+  into source, preserve authoritative receipts, regenerate projections, then fresh
+  independent review before retrying finish.'
+scope: Rebase existing source through Worktrunk onto pinned current master; resolve
+  generated projection conflicts by preserving authoritative current history. No product
+  behavior changes or unrelated dirty base edits.
+base_before: af750e0e
+review_invalidated_on_source_change: true
+next_step: Worktrunk source rebase, bounded conflict resolution and public CLI smoke;
+  then fresh review.

@@ -131,3 +131,16 @@ Surf approved-space.3 still fails (expected Submitted, observed Not submitted); 
 No merge occurred. Read-only integration calculation found add/add conflicts in manifest.yaml and all three workflow projections. The expected clean merge tree could not be established. [Failure receipt](../events/finish-0020.yaml) records all four paths and unchanged source identity.
 
 Source remains at reviewed commit `4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71`. Ticket remains incomplete; no push or cleanup occurred. Unrelated dirty base changes were preserved. Resolve the integration strategy before retrying; source changes require a fresh review.
+
+
+## Current review — review-0024
+
+Latest verdict: FAILURE for `c224ea08907df7d2dc2a12d297bbd107fb1597af`, tree `2f409d6d19cfc5bcd56cd824f74410b58aa2ed1c`. Blocking finding CEGUI-R2 (P2): native capture-stage errors lack captureFailed and can record captureStatus not-requested instead of failed. Required change: preserve capture-stage failure classification without changing prerequisite-before-capture classification. Exact runtime failure scenario remains unexercised.
+
+[Immutable review](../artifacts/reviews/review-review-0024.md) · [Review result](../events/review-0024.yaml) · [Parent reconciliation](../events/review-0025.yaml). Prior SUCCESS covers a stale source identity and is not integration approval.
+
+Updated source rebase completed under [operator approval](../events/finish-0021.yaml) and [mapping](../events/finish-0022.yaml). Four projection conflicts resolved by preserving current base history. Product paths are unchanged from the previous reviewed slice.
+
+Fresh public GUI regression passed 49 assertions. Full example init/render/compile/dry-run and retained record consumers passed. Known Surf failure and unavailable Playwright/TUI/typecheck remain. Two P1 Spec proposals are unverified concerns, not reproduced safety failures.
+
+Recovered usable result after native wait timeouts; no duplicate reviewer was launched. Reviewer t79 and owned fixtures/axis terminals are closed. Source worktree retained; no merge, push or ticket completion. Next action: approved fresh fixer for CEGUI-R2, then another independent review.

@@ -1,0 +1,61 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: c224ea08907df7d2dc2a12d297bbd107fb1597af
+source_tree: 2f409d6d19cfc5bcd56cd824f74410b58aa2ed1c
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: finish-0022
+phase: finish
+event: phase-checkpoint
+status: started
+attempt: 1
+parent_receipt: finish-0021
+created_at: '2026-11-12T02:02:55.984895+00:00'
+session_id: herdr-app:t6z
+pane_id: null
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0021.yaml
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0020.yaml
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0017.yaml
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0022.yaml
+checkpoint: source_rebased_requires_review
+base_before: af750e0e
+old_source_commit: 4e5def3a26cf0ac700ee29b3c1f92e8a7704ca71
+old_source_tree: 36f17fc4bb60031eedb54d69a88b2a1c3ef93d74
+recovery_reason: Operator approved updating source and fresh review after pre-merge
+  projection conflicts. Worktrunk rebase onto af750e0e completed.
+conflict_resolution: Preserved exact af750e0e manifest and three projections; all
+  authoritative receipts and historical reviews retained. Workflow result commits
+  already present upstream dropped by rebase.
+validation_results:
+- command: mise exec -- wt step rebase af750e0e; resolve four projections from af750e0e;
+    GIT_EDITOR=true git rebase --continue
+  status: passed
+  observed: Clean source c224ea08907df7d2dc2a12d297bbd107fb1597af, tree 2f409d6d19cfc5bcd56cd824f74410b58aa2ed1c.
+    No unrelated dirty base changes touched.
+- command: Updated source absolute collect-evidence.ts validate native-0001 --json
+    from /tmp
+  status: passed
+  exit_code: 0
+previous_review_invalidated: true
+next_step: Fresh independent review of updated clean source; do not merge under old
+  verdict.

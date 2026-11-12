@@ -1,0 +1,73 @@
+schema: worktree-receipt/v1
+workflow_id: collect-evidence-feedback-03-gui
+repository: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+worktree: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+source_branch: feature/collect-evidence-feedback-03-gui
+base_branch: master
+source_commit: c224ea08907df7d2dc2a12d297bbd107fb1597af
+source_tree: 2f409d6d19cfc5bcd56cd824f74410b58aa2ed1c
+muxer: herdr-app
+workspace_path: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-03-gui
+agent: omp
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-03-gui
+  ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+workflow:
+  ref: workflows/collect-evidence-feedback-03-gui
+  root: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles
+  store: repository
+ticket_ref: tracker/tickets/collect-evidence-feedback-03-gui.md
+receipt_id: review-0025
+phase: review
+event: phase-complete
+status: completed
+attempt: 5
+parent_receipt: review-0024
+created_at: '2026-11-12T04:04:39.231120+00:00'
+session_id: herdr-app:t6z
+pane_id: null
+inputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0024.yaml
+- kind: review
+  ref: workflows/collect-evidence-feedback-03-gui/artifacts/reviews/review-review-0024.md
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0021.yaml
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/finish-0022.yaml
+outputs:
+- kind: receipt
+  ref: workflows/collect-evidence-feedback-03-gui/events/review-0025.yaml
+recovery_mode: reconcile
+recovery_reason: Inspector found valid completed child result despite native wait
+  timeouts and previously stale streaming screen. Reconcile existing result instead
+  of repeating child review.
+parent_validation:
+  authoritative_event_matches_transport: true
+  frozen_source_unchanged: true
+  source_clean: true
+  review_artifact_source_matches: true
+  review_verdict_observed: FAILURE
+  blocking_findings:
+  - CEGUI-R2
+  acknowledged: true
+  delivery_sha256: 3cd45f54eb090528a795a7a48f64404947906c20f65b50f3a8ab193880a9e85e
+  reviewer_shutdown: User authorized stop/retry. Existing valid result discovered
+    first; t79 stopped and removed only after result validation. No retry launched.
+  owned_fixture_process: Recorded PID 3666138 absent; child result records fixtures
+    and axis terminals already cleaned up.
+operator_approval: User selected Stop and retry review. Scope permits stopping t79
+  and proven-owned fixtures. Usable result recovered before launch, so no duplicate
+  review.
+remaining_limits:
+- 'CEGUI-R2 static P2: capture-stage failure lacks captureFailed classification; exact
+  runtime failure scenario not exercised'
+- Two P1 spec proposals remain unverified concerns, not confirmed safety failures
+- Retained Surf failure and unavailable Playwright/TUI/typecheck remain
+publication:
+  merged: false
+  pushed: false
+  ticket_completed: false
+next_step: Fix current blocking review finding before another independent review or
+  finish attempt.
