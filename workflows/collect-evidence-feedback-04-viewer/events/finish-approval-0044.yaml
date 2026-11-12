@@ -1,0 +1,57 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "2f0018b9a37eb6ea2c6795d6779213bdbbdb95f3",
+  "source_tree": "a0ceb121c1e9d04d3e18709c62d3260d075ece18",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": null,
+  "session_id": "hc:t8t",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "phase": "finish",
+  "attempt": 0,
+  "created_at": "2026-11-12T11:18:33.669Z",
+  "receipt_id": "finish-approval-0044",
+  "event": "operator-approval",
+  "status": "approved",
+  "parent_receipt": "review-complete-0043",
+  "ownership": {
+    "previous_owner": "hc:t8q",
+    "owner": "hc:t8t",
+    "liveness": "hc ls shows prior owner absent and no terminal in source worktree; herdr-app ls inspected",
+    "active_goal_reservations": "No matching ticket in workflows/goal-*/events/*.yaml",
+    "direct_blockers": "collect-evidence-feedback-01-web completed"
+  },
+  "approval": {
+    "question": "Authorize this session to take over finishing this ticket from the absent owner?",
+    "answer": "Authorize finish takeover",
+    "scope": "Finish only this ticket; preserve unrelated changes"
+  },
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-complete-0043.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/finish-approval-0044.yaml"
+    }
+  ]
+}
