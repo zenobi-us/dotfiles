@@ -44,7 +44,7 @@ export function renderPlan(plan: Plan): string {
   const env = plan.environment ?? {};
   const envLines = [
     `- Surface: \`${plan.base}\``,
-    plan.driver === "tui" ? `- Command: \`${JSON.stringify(plan.terminal?.command)}\`` : `- Account: ${env.account ?? "the signed-in test account"}`,
+    plan.driver === "gui" ? `- Approved X11 scope: ${JSON.stringify(plan.approval.gui)}; read-only; borrowed resources preserved` : plan.driver === "tui" ? `- Command: \`${JSON.stringify(plan.terminal?.command)}\`` : `- Account: ${env.account ?? "the signed-in test account"}`,
     plan.driver === "tui" ? `- Working directory: \`${plan.terminal?.cwd}\`` : "",
     plan.driver === "tui" ? `- Terminal: ${plan.terminal?.columns} × ${plan.terminal?.rows}; ${plan.terminal?.font}; line height ${plan.terminal?.lineHeight}px` : "",
     plan.driver === "tui" ? `- Approved input steps: ${plan.approval.confirmations?.join(", ") || "None"}` : "",
@@ -55,7 +55,7 @@ export function renderPlan(plan: Plan): string {
   return [
     `# Manual test plan — ${plan.workId}`,
     "",
-    `Steps for a person to follow in ${plan.driver === "tui" ? "the approved private terminal" : "a browser"}. Written before collection,`,
+    `Steps for a person to follow in ${plan.driver === "gui" ? "the approved GUI window or display" : plan.driver === "tui" ? "the approved private terminal" : "a browser"}. Written before collection,`,
     "and generated from `plan.ts`; edit the plan, not this file. The same steps were",
     `driven with \`${plan.driver}\`, which is how the evidence was captured.`,
     "",

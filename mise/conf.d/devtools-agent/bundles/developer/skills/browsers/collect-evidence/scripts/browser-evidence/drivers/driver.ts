@@ -10,6 +10,7 @@ import type { DriverRun } from "../verdict.ts";
 import { playwrightDriver } from "./playwright-driver.ts";
 import { surfDriver } from "./surf-driver.ts";
 import { tuiDriver } from "./tui-driver.ts";
+import { guiDriver } from "./gui-driver.ts";
 
 export type DriverName = Plan["driver"];
 
@@ -50,6 +51,7 @@ const DRIVERS: Record<DriverName, Driver> = {
   playwright: playwrightDriver,
   surf: surfDriver,
   tui: tuiDriver,
+  gui: guiDriver,
 };
 
 export function getDriver(name: DriverName): Driver {

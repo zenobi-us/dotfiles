@@ -15,11 +15,12 @@ import { planJson, renderComment } from "./results.ts";
 import { CliError, sh, cancelDriverCommands } from "./sh.ts";
 import { finalizeRun, validateRun } from "./records.ts";
 import { doctorTui } from "./drivers/tui-driver.ts";
+import { doctorGui } from "./drivers/gui-driver.ts";
 
 export const schema = "collect-evidence/v1";
 export type Options = {
   repository?: string; workflow?: string; run?: string; driver?: string;
-  dryRun?: boolean; force?: boolean; test?: string; url?: string; title?: string;
+  dryRun?: boolean; force?: boolean; test?: string; url?: string; title?: string; display?: string; window?: string;
 };
 const contextCli = resolve(import.meta.dir, "../../../../../../agent-core/skills/shared-context/scripts/shared-context/cli.ts");
 const json = (kind: string, fields: object) => JSON.stringify({ schema, kind, ...fields }, null, 2) + "\n";
@@ -89,9 +90,10 @@ export async function doctor(options: Options): Promise<object> {
 async function checkPrerequisites(options: Options, state: Cancellation): Promise<object> {
   checkCancellation(state);
   const driver = options.driver ?? "playwright";
-  if (!["surf", "playwright", "tui"].includes(driver)) invalid("--driver must be surf, playwright or tui");
+  if (!["surf", "playwright", "tui", "gui"].includes(driver)) invalid("--driver must be surf, playwright, tui or gui");
   if (!Bun.which("mq")) throw new CliError("Collection requires installed mq; complete setup separately", 3);
   if (driver === "tui") return doctorTui();
+  if (driver === "gui") return doctorGui(options.display && options.window ? { display: options.display, window: options.window, title: options.title ?? "" } : undefined);
   if (!Bun.which(driver === "surf" ? "surf" : "playwright-cli")) throw new CliError(`${driver} CLI is unavailable; install it separately before capture`, 3);
   const r = await sh(driver === "surf" ? ["surf", "doctor", "--json"] : ["playwright-cli", "--version"]);
   checkCancellation(state);
@@ -115,7 +117,7 @@ async function checkPrerequisites(options: Options, state: Cancellation): Promis
 export async function initWorkspace(dir: string, options: Options): Promise<object> {
   const destination = await route(options);
   const driver = options.driver ?? "playwright";
-  if (!["playwright", "surf", "tui"].includes(driver)) invalid("--driver must be surf, playwright or tui");
+  if (!["playwright", "surf", "tui", "gui"].includes(driver)) invalid("--driver must be surf, playwright, tui or gui");
   await outsideSource(dir, options.repository!);
   if (existsSync(dir)) invalid(`Working directory already exists: ${dir}`);
   if (options.dryRun) return { dryRun: true, directory: dir, destination };
@@ -123,6 +125,7 @@ export async function initWorkspace(dir: string, options: Options): Promise<obje
   const planModule = join(import.meta.dir, "plan.ts");
   const scope = driver === "tui"
     ? `base: "terminal://private",\n  terminal: { command: [], cwd: ${JSON.stringify(resolve(options.repository!))}, columns: 80, rows: 24, font: "monospace:size=12", lineHeight: 20 },\n  approval: { origins: [], confirmations: [] },`
+    : driver === "gui" ? `base: "gui://local",\n  gui: { display: "", window: "", title: "" },\n  approval: { origins: [], confirmations: [] },`
     : `base: "http://127.0.0.1:8090",\n  approval: { origins: ["http://127.0.0.1:8090"], confirmations: [] },`;
   await writeFile(join(dir, "plan.ts"), `import type { Plan } from ${JSON.stringify(planModule)};\n\nexport const plan: Plan = {\n  schema: "collect-evidence/v1", kind: "plan",\n  workId: ${JSON.stringify(options.workflow)}, driver: ${JSON.stringify(driver)},\n  ${scope}\n  tests: [],\n};\n`, { flag: "wx" });
   await writeFile(join(dir, "workspace.json"), json("event", { repository: resolve(options.repository!), workflow: options.workflow, runId: options.run, destination }));
@@ -183,9 +186,12 @@ async function collectWithCancellation(dir: string, options: Options, state: Can
   const tests = options.test ? plan.tests.filter(t => t.id === options.test) : plan.tests;
   if (!tests.length) invalid("No selected cases");
   if (options.dryRun) return { dryRun: true, destination, driver: plan.driver, tests: tests.map(t => t.id) };
-  const capability = await checkPrerequisites({ driver: plan.driver }, state);
+  // GUI access failures become sealed blocked cases, with no substitute surface.
+  const capability = plan.driver === "gui" ? { driver: "gui", checks: "Selected native permissions are checked per case", video: "unavailable" } : await checkPrerequisites({ driver: plan.driver }, state);
   checkCancellation(state);
-  const version = await sh([plan.driver === "tui" ? "termscope" : plan.driver === "surf" ? "surf" : "playwright-cli", "--version"]);
+  const version = plan.driver === "gui"
+    ? { out: Bun.which("import") ? (await sh(["import", "-version"])).out.trim() || "unavailable" : "unavailable" }
+    : await sh([plan.driver === "tui" ? "termscope" : plan.driver === "surf" ? "surf" : "playwright-cli", "--version"]);
   checkCancellation(state);
   const staging = await mkdtemp(join(tmpdir(), "collect-evidence-"));
   await outsideSource(staging, workspace.repository);

@@ -141,13 +141,17 @@ export type Test = {
  steps: Step[];
 };
 
+/** GUI surfaces are borrowed and read-only. Display capture requires root approval. */
+export type GuiScope = { display: string; window: string; title: string };
+
 export type Plan = {
  schema: "collect-evidence/v1";
  kind: "plan";
  /** Origins and stable step IDs approved before collection starts. */
- approval: { origins: string[]; confirmations?: string[]; terminal?: { command: string[]; cwd: string } };
+ approval: { origins: string[]; confirmations?: string[]; terminal?: { command: string[]; cwd: string }; gui?: GuiScope };
  workId: string;
- driver: "playwright" | "surf" | "tui";
+ driver: "playwright" | "surf" | "tui" | "gui";
+ gui?: GuiScope;
  terminal?: { command: string[]; cwd: string; columns: number; rows: number; font: string; lineHeight: number };
  /** Base URL. Every relative `navigate` hangs off this. */
  base: string;
@@ -214,6 +218,7 @@ export type Evidence = {
  captureSequence?: number;
  captureStatus?: "captured" | "failed" | "not-requested";
  toolVersion?: string;
+ gui?: GuiScope & { ownership: "borrowed"; cleanup: "preserved" };
  terminal?: {
   session: string; socket: string; pane: string; tty: string;
   display: string; runtime: string; cagePid: number; footPid: number;

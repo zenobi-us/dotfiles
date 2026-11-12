@@ -6,7 +6,7 @@ import { resolve } from "node:path";
 import { CliError } from "./browser-evidence/sh.ts";
 import { schema, doctor, initWorkspace, renderWorkspace, compileWorkspace, collect, validate, reportRun, generatedComment, type Options } from "./browser-evidence/pipeline.ts";
 
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 const flags = {
   json: { type: "boolean", description: "Emit versioned JSON on stdout" },
   plain: { type: "boolean", description: "Emit uncoloured text" },
@@ -18,10 +18,12 @@ const flags = {
   repository: { type: "string", description: "Repository whose shared-context evidence route applies" },
   workflow: { type: "string", description: "Workflow ID" },
   run: { type: "string", description: "New immutable run ID" },
-  driver: { type: "string", description: "surf, playwright or tui (native Linux terminal)" },
+  driver: { type: "string", description: "surf, playwright, tui or gui (native Linux X11)" },
+  display: { type: "string", description: "Approved local X11 display for GUI doctor" },
+  window: { type: "string", description: "Approved X11 window ID or root for GUI doctor" },
   test: { type: "string", description: "Collect only this case ID" },
   url: { type: "string", description: "Explicit published evidence URL for a generated comment" },
-  title: { type: "string", description: "Generated comment heading (default: Manual test steps)" },
+  title: { type: "string", description: "Exact approved GUI window title for doctor, or generated comment heading" },
 } as const;
 
 type Output = { verdicts?: Array<{ verdict: string }>; html?: string; markdown?: string; dryRun?: boolean; driver?: string };
@@ -32,6 +34,7 @@ async function execute(command: string, dir: string | undefined, raw: Record<str
     run: raw.run as string | undefined,
     driver: typeof raw.driver === "string" ? raw.driver : process.env.COLLECT_EVIDENCE_DRIVER,
     test: raw.test as string | undefined, url: raw.url as string | undefined, title: raw.title as string | undefined,
+    display: raw.display as string | undefined, window: raw.window as string | undefined,
     dryRun: Boolean(raw["dry-run"]), force: Boolean(raw.force),
   };
   try {
@@ -76,7 +79,7 @@ async function execute(command: string, dir: string | undefined, raw: Record<str
 if (process.argv.includes("--version") && !process.argv.some(arg => arg === "--help" || arg === "-h")) {
   console.log(process.argv.includes("--json") ? JSON.stringify({ schema, kind: "event", version: VERSION }) : VERSION);
 } else {
-  let cli = new Crust("collect-evidence").meta({ description: "Collect immutable, versioned web and native terminal evidence" })
+  let cli = new Crust("collect-evidence").meta({ description: "Collect immutable, versioned web, terminal and GUI evidence" })
     .use({
       name: "versioned-errors", middleware: async (_context, next) => {
         try { await next(); }

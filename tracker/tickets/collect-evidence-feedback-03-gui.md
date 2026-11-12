@@ -8,7 +8,7 @@ sequence: 3
 title: Collect scoped native GUI evidence
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 # Collect scoped native GUI evidence

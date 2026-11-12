@@ -1,7 +1,7 @@
 ---
 schema: collect-evidence/v1
 name: collect-evidence
-description: Collects real browser and native terminal images, checked assertions and immutable evidence through Surf, Playwright or the Linux TUI driver. Use for QA, acceptance checks, visual proof and screenshot handoffs. Produces versioned runs, case notes, verified media, reports and manual-step comments.
+description: Collects real browser and native terminal images, checked assertions and immutable evidence through Surf, Playwright, the Linux TUI driver or scoped Linux X11 GUI capture. Use for QA, acceptance checks, visual proof and screenshot handoffs. Produces versioned runs, case notes, verified media, reports and manual-step comments.
 user-invocable: true
 ---
 
@@ -11,12 +11,12 @@ Use one typed `Plan` and the existing `Driver` boundary. Capture completion and 
 
 ## Procedure
 
-1. Read the ticket, changed source and approved scope. For Surf or Playwright, read `references/web.md`. For the native Linux TUI driver, read `references/tui.md`, including its host limits.
+1. Read the ticket, changed source and approved scope. For Surf or Playwright, read `references/web.md`. For the native Linux TUI driver, read `references/tui.md`, including its host limits. For GUI collection, read `references/gui.md`.
 2. Resolve the installed directory containing this `SKILL.md`. Script paths are relative to that directory, not the repository. Use its absolute `scripts/collect-evidence.ts` entrypoint from any working directory.
-3. Complete dependency setup separately. Run `doctor --driver surf`, `doctor --driver playwright` or `doctor --driver tui`. Doctor checks installed capabilities. Never install a browser or tool during collection.
+3. Complete dependency setup separately. Run `doctor --driver surf`, `doctor --driver playwright` or `doctor --driver tui`. For GUI, run `doctor --driver gui --display <approved-display> --window <approved-id-or-root> --title <exact-title>`. Doctor checks installed capabilities and native capture access on that exact approved surface. Never install a browser or tool during collection.
 4. Run `init <external-working-directory> --repository <repository-in-scope> --workflow <workflow-id> --run <new-run-id> --driver <driver>`. The CLI resolves the evidence destination through shared-context. The working directory must be outside the watched repository.
 5. Author only `plan.ts`. Give cases stable IDs, purposes, preconditions, actions and executable assertions. Give captures scene names, not success claims. Read `scripts/browser-evidence/plan.ts` for the typed contract.
-6. Run `render <working-directory>`. Show the generated procedure to the user. Confirm the origins, actions, attended operation and optional video. Put approved origins in `approval.origins`. Put approved click and Enter step IDs in `approval.confirmations`. For TUI collection, record the exact approved command and directory in `approval.terminal`, keep origins empty and approve every input step. These fields record approval; they do not grant it.
+6. Run `render <working-directory>`. Show the generated procedure to the user. Confirm the origins, actions, attended operation and optional video. Put approved origins in `approval.origins`. Put approved click and Enter step IDs in `approval.confirmations`. For TUI collection, record the exact approved command and directory in `approval.terminal`, keep origins empty and approve every input step. For GUI, match `approval.gui` to the exact `gui` display, window and title. GUI collection is read-only; all input and confirmation steps are rejected, even when listed as approved. These fields record approval; they do not grant it.
 7. Run `compile <working-directory>`. Use `run <working-directory> --dry-run` to inspect the selected destination without starting a driver or writing files.
 8. Run `run <working-directory>`. Temporary captures stay outside the watched source tree. The CLI checks preconditions, runs the real driver, closes its owned session, validates the common records and finalizes a new sealed run into the selected evidence store.
 9. Inspect actual images and visible screen state. Check assertion outcomes and cleanup. Read every limitation. A missing required driver blocks that case. Never replace it with a fake capture, reconstructed terminal image or another capture API.
@@ -24,7 +24,7 @@ Use one typed `Plan` and the existing `Driver` boundary. Capture completion and 
 
 ## Safety
 
-- **Inspect before acting.** Before Enter or a confirmation, check the live screen and approved step. The drivers stop at credential prompts, unapproved origins and unapproved confirmation actions. Never fill a GitHub prompt or another credential prompt.
+- **Inspect before acting.** Before Enter or a confirmation, check the live screen and approved step. Web and TUI drivers stop at credential prompts, unapproved origins and unapproved confirmation actions. GUI collection sends no input and cannot enter credentials or confirm operations. Never fill a GitHub prompt or another credential prompt.
 - **Keep capture local.** During capture, perform no remote Git command, commit, push, tool installation or credential entry. Publication needs a separate access-boundary check and explicit approval.
 - **Own cleanup resources.** Use fresh collector sessions. Close only resources created by the collector. Keep user Chrome, existing tabs and borrowed sessions open.
 - **Keep evidence immutable.** A retry needs a new run identity. Captures within a step have increasing sequences. Never overwrite a sealed asset, change historical evidence or rewrite a third-party original.
@@ -60,4 +60,4 @@ Use `writing-reports` only to present validated common records. Do not create an
 
 ## Surface limits
 
-Surf and Playwright remain the web drivers. The `tui` driver implements the private Linux foot/Cage/wlroots/grim path in `references/tui.md`. A prepared Fedora 45 host passed the real delayed-transition workflow, native RGB and 20 px line-spacing checks, credential and unapproved-input stops, and interrupted owned cleanup. See the TUI playbook for evidence and host limits. GUI collection remains a separate ticket. Browser screenshots do not prove native terminal or desktop behaviour.
+Surf and Playwright remain the web drivers. The `tui` driver implements the private Linux foot/Cage/wlroots/grim path in `references/tui.md`. A prepared Fedora 45 host passed the real delayed-transition workflow, native RGB and 20 px line-spacing checks, credential and unapproved-input stops, and interrupted owned cleanup. See the TUI playbook for evidence and host limits. The `gui` driver captures approved Linux X11 windows or displays with ImageMagick import. Read `references/gui.md` for exact scope approval, pixel assertions and platform limits. It never changes focus, enters credentials, confirms operations or closes borrowed windows. Browser screenshots do not prove native terminal or desktop behaviour.

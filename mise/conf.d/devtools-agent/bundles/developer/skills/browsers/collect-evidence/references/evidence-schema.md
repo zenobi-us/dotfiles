@@ -38,8 +38,12 @@ Retries use new run IDs. Captures within a step increase their sequence without 
 
 ## Native terminal surface
 
-The common run surface is web for Surf/Playwright and tui for the Linux native driver. Native assets use driver tui and captureMethod grim-native. Terminal metadata binds session, socket, pane, PTY, runtime directory, Wayland display, Cage PID, foot PID, columns, rows, font, lineHeight and released owned cleanup to the captured PNG. Event and asset metadata must agree. Image dimensions and SHA-256 come from actual media bytes, not the character grid.
+The common run surface is web for Surf/Playwright, tui for the Linux native terminal driver, and gui for Linux X11 capture. Native assets use driver tui and captureMethod grim-native. Terminal metadata binds session, socket, pane, PTY, runtime directory, Wayland display, Cage PID, foot PID, columns, rows, font, lineHeight and released owned cleanup to the captured PNG. Event and asset metadata must agree. Image dimensions and SHA-256 come from actual media bytes, not the character grid.
 
 The same Plan/Test/Step model records the approved terminal command and directory. approval.terminal must match that scope exactly. Every input requires expected current screen content and an approved stable step ID. Native expect steps check image dimensions, RGB probes and at least two distinct text line positions. A matching buffer alone cannot prove the visible frame. Read tui.md for the playbook and current native verification blocker.
 
 Case notes and reports retain native limitations and application-side-effect warnings. Native video is explicitly unavailable. Preserve native termscope JSONL, stderr and frame images without schema injection or reconstruction.
+
+## Native GUI surface
+
+GUI assets use captureMethod x11-imagemagick-import. Their gui identity records the approved local X11 display, exact window ID or root, title, borrowed ownership and preserved cleanup. Both plan.gui and approval.gui must match. GUI collection rejects all automated input. Image expectations contain actual dimensions and RGB probes. GUI permission failures seal blocked cases without media. Native video is unavailable. See [the GUI playbook](gui.md).

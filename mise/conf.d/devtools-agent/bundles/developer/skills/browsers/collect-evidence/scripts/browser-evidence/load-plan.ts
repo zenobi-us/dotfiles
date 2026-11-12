@@ -16,10 +16,10 @@ export async function loadPlan(dir: string): Promise<Plan> {
   if (plan.schema !== "collect-evidence/v1" || plan.kind !== "plan") {
     die(`${file} requires schema: "collect-evidence/v1" and kind: "plan"`, 2);
   }
-  if (!/^[A-Za-z0-9._-]+$/.test(plan.workId) || !["surf", "playwright", "tui"].includes(plan.driver)) {
+  if (!/^[A-Za-z0-9._-]+$/.test(plan.workId) || !["surf", "playwright", "tui", "gui"].includes(plan.driver)) {
     die(`${file} has an invalid workId or driver`, 2);
   }
-  if (plan.driver !== "tui") {
+  if (plan.driver !== "tui" && plan.driver !== "gui") {
     if (!Array.isArray(plan.tests) || !plan.tests.length || !plan.approval ||
         !Array.isArray(plan.approval.origins) || !plan.approval.origins.length ||
         (plan.approval.confirmations !== undefined && !Array.isArray(plan.approval.confirmations))) {
