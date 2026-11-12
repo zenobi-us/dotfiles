@@ -289,6 +289,8 @@ async function discover(env: Environment): Promise<Document[]> {
     for (const row of rows) {
       if (row.path.split(/[\\/]/).some((segment) => Object.hasOwn(excludedSegments, segment))) continue;
       const filename = path.resolve(root, row.path);
+      // The tracker root contains the ticket and initiative roots. Inspect each file once.
+      if (documents.has(filename)) continue;
       await validateStorePath(target.root!, path.relative(target.root!, filename));
       const metadata = inspect(row.text);
       if (metadata.fields.schema !== undefined) {
@@ -302,13 +304,16 @@ async function discover(env: Environment): Promise<Document[]> {
   return [...documents.values()].sort((a, b) => a.path.localeCompare(b.path));
 }
 
+// `mise x` costs about 0.3 s per start. Resolve the pinned mq binary once; discovery calls mq once per record.
+let mqBinary: string | undefined;
 function mq<T>(query: string, input: string, args: Record<string, unknown> = {}, readRoot?: string, useHelper = true): T {
-  const flags = ["x", "--", "mq", "--allow-http-import", "--no-lockfile", "-I", useHelper ? "raw" : "null", "-F", "json"];
+  mqBinary ??= execFileSync("mise", ["which", "mq"], { encoding: "utf8" }).trim();
+  const flags = ["--allow-http-import", "--no-lockfile", "-I", useHelper ? "raw" : "null", "-F", "json"];
   if (readRoot) flags.push(`--allow-read=${readRoot}`);
   for (const [name, value] of Object.entries(args)) flags.push("--argjson", name, JSON.stringify(value));
   if (useHelper) flags.push("--from-file", helper);
   else flags.push(`import "github.com/harehare/okf.mq" | ${query}`);
-  return JSON.parse(execFileSync("mise", flags, { input, encoding: "utf8", maxBuffer: 64 * 1024 * 1024 }));
+  return JSON.parse(execFileSync(mqBinary, flags, { input, encoding: "utf8", maxBuffer: 64 * 1024 * 1024 }));
 }
 
 function inspect(text: string): { fields: Record<string, unknown>; links: Link[] } { return mq("", text, { operation: "inspect" }); }
