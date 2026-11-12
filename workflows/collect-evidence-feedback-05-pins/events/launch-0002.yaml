@@ -1,0 +1,56 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "launch-0002",
+  "workflow_id": "collect-evidence-feedback-05-pins",
+  "phase": "start",
+  "attempt": 1,
+  "parent_receipt": "start-0001",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-05-pins",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-05-pins",
+  "source_branch": "feature/collect-evidence-feedback-05-pins",
+  "base_branch": "master",
+  "source_commit": "c7bb6a3c7b8921708a9897c51c4c8451031a3b5f",
+  "source_tree": "ec63052fc1a9e94518c5bc9c04daf8f72f070178",
+  "created_at": "2026-11-12T21:15:32.671Z",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": "t99",
+  "session_id": "hc:t98",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-05-pins",
+    "ref": "tracker/tickets/collect-evidence-feedback-05-pins.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-05-pins.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-05-pins"
+  },
+  "event": "phase-checkpoint",
+  "status": "started",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-05-pins/events/start-0001.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-05-pins/events/launch-0002.yaml"
+    }
+  ],
+  "ownership": {
+    "owner": "hc:t98",
+    "claim_commit": "c7bb6a3c7b8921708a9897c51c4c8451031a3b5f",
+    "prior_workflow": "No receipts or source found before claim; no matching goal reservations."
+  },
+  "child": {
+    "run_id": "ab793609-148a-435b-9772-9ef4f239304a",
+    "terminal": "t99",
+    "delivery_context": "/var/home/zenobius/.local/state/result-delivery/runs/ab793609-148a-435b-9772-9ef4f239304a/context.json",
+    "result_target": "/var/home/zenobius/.local/state/result-delivery/runs/ab793609-148a-435b-9772-9ef4f239304a/result.json"
+  }
+}
