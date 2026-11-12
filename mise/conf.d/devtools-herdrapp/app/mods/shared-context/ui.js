@@ -1,7 +1,7 @@
-// Native controls share Herdr's file-tree spacing and theme colors.
+// Read Herdr's theme during rendering so controls follow the user's theme and colour overrides.
 import { div, svg } from "gpui-kit";
 import { Button, h_flex, v_flex, Popup } from "gpui-base";
-import { theme } from "./design.js";
+import { theme } from "herdr";
 export function icon(name, size = 14) { return svg(`mods/shared-context/icons/${name}.svg`).size(size).flex_none(); }
 export function typeColor(type, t) { return ({ initiative: t.ansi5, ticket: t.ansi4, prototype: t.ansi3, research: t.ansi6, planning: t.ansi13, record: t.ansi14 })[type] ?? t.muted; }
 export function typeIcon(type) { return ({ initiative: "◇", ticket: "▤", prototype: "△", research: "⌕", planning: "▱", record: "▧" })[type] ?? "▧"; }

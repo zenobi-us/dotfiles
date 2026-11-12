@@ -1,7 +1,7 @@
 import { div } from "gpui-kit";
 import { h_flex, v_flex, Popover, Checkbox } from "gpui-base";
 import { button } from "./ui.js";
-import { theme } from "./design.js";
+import { theme } from "herdr";
 import { DEFAULT_FILTERS, FILTER_KEYS, filterRestrictions } from "./filter-model.js";
 
 const choices = [["all", "All"], ["initiatives", "Initiatives"], ["ready", "Ready"], ["review", "Review"], ["blocked", "Blocked"]];

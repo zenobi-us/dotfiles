@@ -1,7 +1,7 @@
 // The compact header owns record metadata; document tabs keep their reading space.
 import { div } from "gpui-kit";
 import { h_flex, v_flex } from "gpui-base";
-import { theme } from "./design.js";
+import { theme } from "herdr";
 import { button, typeColor, typeIcon } from "./ui.js";
 import { itemType } from "./tree.js";
 import { workflowBadge, badgePalette } from "./header-model.js";

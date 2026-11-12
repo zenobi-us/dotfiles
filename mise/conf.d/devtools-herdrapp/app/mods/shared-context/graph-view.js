@@ -1,8 +1,7 @@
 // Native graph surfaces share canonical records and direct action launches.
 import { div } from "gpui-kit";
 import { h_flex, v_flex } from "gpui-base";
-import { openOverlay, closeOverlay, props } from "herdr";
-import { theme } from "./design.js";
+import { openOverlay, closeOverlay, props, theme } from "herdr";
 import { request } from "./client.js";
 import { dependencyGraph } from "./graph.js";
 import { button, note } from "./ui.js";

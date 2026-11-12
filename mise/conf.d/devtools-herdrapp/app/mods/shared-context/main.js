@@ -1,8 +1,7 @@
 // Native Context and Tracker panels. The settings select C or C2 without changing data APIs.
 import { View, div } from "gpui-kit";
 import { h_flex, v_flex, TextView, Scrollbar, h_resizable, resizable_panel } from "gpui-base";
-import { spaces, panes, focused, props, run, nextCommand } from "herdr";
-import { theme } from "./design.js";
+import { spaces, panes, focused, props, run, nextCommand, theme } from "herdr";
 import { request } from "./client.js";
 import { loadPreferences, DEFAULTS } from "./preferences.js";
 import { dependencyRows, revealPath, itemType } from "./tree.js";

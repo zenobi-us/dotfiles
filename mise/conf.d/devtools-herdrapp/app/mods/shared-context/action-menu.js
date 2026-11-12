@@ -1,7 +1,7 @@
 // Anchored action menus keep one selected preset and an optional detail draft per record.
 import { div } from "gpui-kit";
 import { h_flex, v_flex, Popup, Input, InputState } from "gpui-base";
-import { theme } from "./design.js";
+import { theme } from "herdr";
 import { button, note } from "./ui.js";
 import { ACTION_PRESETS, actionPrompt } from "./action-model.js";
 import { launchAction, invalidateAction } from "./action.js";
