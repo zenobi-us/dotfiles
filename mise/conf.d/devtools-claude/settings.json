@@ -39,14 +39,6 @@
     "lua-lsp@claude-plugins-official": true,
     "figma@claude-plugins-official": true
   },
-  "extraKnownMarketplaces": {
-    "zenobius-agent-bundles": {
-      "source": {
-        "source": "directory",
-        "path": "/home/zenobius/Projects/dotfiles/mise/conf.d/devtools-agent/bundles"
-      }
-    }
-  },
   "outputStyle": "iso-24495",
   "feedbackDrafts": "off",
   "spinnerTipsEnabled": false,
