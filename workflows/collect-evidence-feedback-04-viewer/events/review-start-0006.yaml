@@ -1,0 +1,59 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "phase": "review",
+  "attempt": 1,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "035fdd61b454eb9b9aa8b0f20fdd3b2ee33ab476",
+  "source_tree": "ae1abc62d14257777bb22a4b737add38a0903c71",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc:t7z",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "receipt_id": "review-start-0006",
+  "event": "phase-start",
+  "status": "started",
+  "parent_receipt": "review-approval-0005",
+  "created_at": "2026-11-12T07:33:55.688Z",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-approval-0005.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/implementation-0003.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/pr-draft-implementation-0003.md"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-start-0006.yaml"
+    }
+  ],
+  "recovery_mode": "begin",
+  "ownership_approval": "workflows/collect-evidence-feedback-04-viewer/events/review-approval-0005.yaml"
+}

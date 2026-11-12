@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-history-repair/v1",
+  "created_at": "2026-11-12T07:45:58.532Z",
+  "authorization": "User selected Correct with retained original; correct pane_id only to t7z",
+  "event_ref": "workflows/collect-evidence-feedback-04-viewer/events/review-approval-0005.yaml",
+  "original_ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/review-approval-0005-original.json",
+  "original_sha256": "e8239729f38b07aa115e3937b8dccb886e4c59a11649748799a13497b6c6bc32",
+  "repaired_sha256": "8d6f2cd5cb7f9b447e97aa595cfd07901065ad05e445047497c7cbdc98e04ea4",
+  "changes": [
+    {
+      "field": "pane_id",
+      "before": null,
+      "after": "t7z"
+    }
+  ]
+}

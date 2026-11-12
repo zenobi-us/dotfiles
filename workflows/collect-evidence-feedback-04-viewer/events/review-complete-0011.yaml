@@ -1,0 +1,100 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "phase": "review",
+  "attempt": 2,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "035fdd61b454eb9b9aa8b0f20fdd3b2ee33ab476",
+  "source_tree": "ae1abc62d14257777bb22a4b737add38a0903c71",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc:t7z",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "receipt_id": "review-complete-0011",
+  "parent_receipt": "review-0010",
+  "event": "phase-complete",
+  "status": "completed",
+  "created_at": "2026-11-12T07:54:36.075Z",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-0010.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0010.md"
+    },
+    {
+      "kind": "repair",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/review-approval-0005-repair.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-complete-0011.yaml"
+    }
+  ],
+  "validation_results": [
+    {
+      "command": "result-delivery read and canonical YAML comparison",
+      "result": "passed",
+      "observed": "schema/run/operation/hash verified; immutable result equals authoritative event; artifact readable and frozen-source-bound"
+    },
+    {
+      "command": "collect-feedback.ts validate <retained-session> --json --quiet",
+      "cwd": "/tmp",
+      "result": "passed",
+      "exit_code": 0
+    },
+    {
+      "command": "worktree inspect <ticket> --json",
+      "result": "passed",
+      "observed": "history valid; frozen source commit/tree unchanged and clean; review artifact matches source"
+    },
+    {
+      "command": "records.ts check --repository <base> --ticket collect-evidence-feedback-04-viewer",
+      "result": "passed",
+      "observed": "tracker-ticket/v1; graph and explorer discovery passed after 30-second timeout retried with 180-second deadline"
+    }
+  ],
+  "child_completion": {
+    "run_id": "3b944f35-43a1-4728-9c80-3d781534ccd5",
+    "state": "completed",
+    "sequence": 2,
+    "target": "t83",
+    "transport_ack_sha256": "6a929f2b18a481ed5a0d03bbca24eb3b8090a994c844c37234282099bb86d8a6"
+  },
+  "pane_close": {
+    "terminal": "t83",
+    "removed": true,
+    "workspace_preserved": true,
+    "observation": "source space moved to recent after owned terminal removal; unrelated panes retained"
+  },
+  "open_findings": [
+    "STD-01",
+    "SPEC-01"
+  ],
+  "publication": {
+    "workflow_committed": false,
+    "pushed": false,
+    "merged": false,
+    "ticket_completed": false
+  },
+  "history_repair_authorization": "User selected Correct with retained original; pane_id-only correction to t7z. Immutable original and checksums retained."
+}

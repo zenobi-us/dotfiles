@@ -1,0 +1,68 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "phase": "review",
+  "attempt": 2,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "035fdd61b454eb9b9aa8b0f20fdd3b2ee33ab476",
+  "source_tree": "ae1abc62d14257777bb22a4b737add38a0903c71",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc:t7z",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "receipt_id": "review-start-0009",
+  "event": "phase-start",
+  "status": "started",
+  "parent_receipt": "review-complete-0008",
+  "created_at": "2026-11-12T07:47:05.874Z",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-approval-0005.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/implementation-0003.yaml"
+    },
+    {
+      "kind": "draft",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/pr-draft-implementation-0003.md"
+    },
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-complete-0008.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-0007.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-start-0009.yaml"
+    }
+  ],
+  "recovery_mode": "retry",
+  "ownership_approval": "workflows/collect-evidence-feedback-04-viewer/events/review-approval-0005.yaml",
+  "recovery_reason": "Prior immutable artifact was empty; fresh session required. Prior terminal and axis children closed."
+}

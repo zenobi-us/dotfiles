@@ -1,0 +1,60 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "phase": "review",
+  "attempt": 1,
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "035fdd61b454eb9b9aa8b0f20fdd3b2ee33ab476",
+  "source_tree": "ae1abc62d14257777bb22a4b737add38a0903c71",
+  "muxer": "herdr-app",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "pane_id": null,
+  "agent": "omp",
+  "session_id": "hc:t7z",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "receipt_id": "review-complete-0008",
+  "event": "phase-complete",
+  "status": "failed",
+  "parent_receipt": "review-0007",
+  "created_at": "2026-11-12T07:46:41.234Z",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-0007.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0007.md"
+    },
+    {
+      "kind": "repair",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/review-approval-0005-repair.json"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-complete-0008.yaml"
+    }
+  ],
+  "failure_reason": "Delivered result claims SUCCESS, but immutable review artifact contains only frontmatter and no source identity, findings, validation or review body. Inspector rejects artifact as not source-bound. Fresh review required.",
+  "child_completion": {
+    "run_id": "852b7bdc-860b-4541-8ae4-31d7d055ed00",
+    "sequence": 2,
+    "state": "completed"
+  },
+  "history_repair_authorization": "User authorized pane_id-only correction; original retained with checksum in repair snapshot"
+}

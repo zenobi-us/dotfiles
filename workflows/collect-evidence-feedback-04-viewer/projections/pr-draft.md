@@ -77,3 +77,13 @@ Not merged, pushed or submitted. Ticket remains claimed. Parent owns phase compl
 
 Open questions: none. Native/GUI capture and new recording were not verified by this viewer slice. Annotation editing, drafts, export and historical labels remain outside scope.
 
+
+## Formal review outcome
+
+Attempt 1 produced an unusable empty artifact. [Failed parent completion](../events/review-complete-0008.yaml) preserves that attempt; its SUCCESS claim is not valid.
+
+Attempt 2: **FAILURE** for commit `035fdd61b454eb9b9aa8b0f20fdd3b2ee33ab476`, tree `ae1abc62d14257777bb22a4b737add38a0903c71`. [Review artifact](../artifacts/reviews/review-review-0010.md), [review result](../events/review-0010.yaml), and [parent completion](../events/review-complete-0011.yaml) record the independent axes and fresh public verification. The scoped regression passed (1 test, 46 assertions); actual browser and byte-identity checks passed. Both P2 findings were reproduced.
+
+Resolved findings: none. Open findings: STD-01 and SPEC-01. See the immutable artifact for required changes. Next phase: fix in a fresh session. No source edits, merge, push or ticket completion occurred. Review terminals and owned services were released; the source workspace remains intact.
+
+[Authorized approval-envelope repair](../artifacts/snapshots/review-approval-0005-repair.json) retains the original bytes and checksums. The user authorized only the pane_id correction.
