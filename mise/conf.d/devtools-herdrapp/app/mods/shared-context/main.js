@@ -1,7 +1,7 @@
 // Native Context and Tracker panels. The settings select C or C2 without changing data APIs.
 import { View, div } from "gpui-kit";
 import { h_flex, v_flex, TextView, Scrollbar, h_resizable, resizable_panel } from "gpui-base";
-import { spaces, panes, focused, props, run, nextCommand, theme } from "herdr";
+import { spaces, panes, focused, props, run, nextCommand, theme, agents, terminals } from "herdr";
 import { request } from "./client.js";
 import { loadPreferences, DEFAULTS } from "./preferences.js";
 import { dependencyRows, revealPath, itemType } from "./tree.js";
@@ -15,7 +15,10 @@ import { initActionMenus } from "./action-menu.js";
 import { invalidateAction } from "./action.js";
 import { DEFAULT_FILTERS } from "./filter-model.js";
 import { initTreeFilters, treeFilters, closeTreeFilters } from "./tree-filters.js";
+import { recordAgentActivity, agentActivitySummary } from "./agent-model.js";
+import { agentDots } from "./agent-activity.js";
 
+import { openMetadata, initMetadata, renderMetadata } from "./metadata.js";
 function location() {
   const given = props() ?? {}, space = spaces().find(item => item.active), focus = focused();
   const pane = panes().find(item => item.pane === focus?.pane);
@@ -29,6 +32,7 @@ export default class SharedContext extends View {
     this.mode = props()?.mode ?? "tracker";
     if (this.mode === "graph-actions") { initGraphMenu(this, cx); return; }
     this.focus = cx.focus_handle();
+    initMetadata(this, cx);
     this.selectFocus = { "context-store": cx.focus_handle(), "context-preset": cx.focus_handle() };
     initTreeFilters(this, cx);
     this.recordTab = "description"; this.detailError = "";
@@ -54,10 +58,11 @@ export default class SharedContext extends View {
       for (; ;) {
         const command = await nextCommand();
         if (command === "refresh") this.refresh(cx);
+        if (command === "metadata") openMetadata(this, cx);
         if (command === "focus") this.focus.focus();
         if (command === "expand") { this.drawer = "expanded"; cx.notify(); }
         if (command === "collapse") { this.drawer = "peek"; cx.notify(); }
-        if (command === "close") { this.drawer = "closed"; cx.notify(); }
+        if (command === "close") { if (this.metadataOpen) { this.metadataOpen = false; this.focus.focus(); } else this.drawer = "closed"; cx.notify(); }
       }
     });
   }
@@ -83,10 +88,12 @@ export default class SharedContext extends View {
     this.remember(); this.key = key; this.where = next;
     invalidateAction(this);
     this.context = null; this.snapshot = null; this.detail = null; this.filePreview = null; this.viewKey = null;
+    this.metadataOpen = false;
+    this.agentRosterOpen = false;
     this.progress = new Map();
     this.recordTab = "description"; this.detailError = "";
     this.activity = workflowActivity(); this.activityFilter = "all";
-    this.actionOpen = null; this.actionError = "";
+    this.actionOpen = null; this.recordActionsOpen = null; this.actionError = "";
     this.openSelect = null; this.selectKeyHandlers = null; this.filtersOpen = false; this.graphInitiative = null; this.graphViews = new Map();
     this.revision++; this.detailRevision++; this.fileRevision++; this.loading = false; this.error = "";
     if (!next.cwd) { this.error = "Select a repository folder."; return; }
@@ -128,7 +135,7 @@ export default class SharedContext extends View {
           if (this.selected) {
             const records = this.selected.kind === "initiative" ? snapshot.initiatives : snapshot.tickets;
             const record = records.find(item => item.id === this.selected.id);
-            if (record) this.choose(record, this.selected.kind, cx, false); else { invalidateAction(this); this.actionOpen = null; this.selected = null; this.detail = null; }
+            if (record) this.choose(record, this.selected.kind, cx, false); else { invalidateAction(this); this.actionOpen = null; this.recordActionsOpen = null; this.selected = null; this.detail = null; }
           }
         }
       } catch (error) { if (revision === this.revision) this.error = String(error.message ?? error); }
@@ -140,8 +147,9 @@ export default class SharedContext extends View {
     if (this.drawer === "expanded" && this.selected?.id === record.id && reveal) return;
     if (this.selected?.id !== record.id || this.selected.kind !== kind) {
       invalidateAction(this);
+      this.agentRosterOpen = false;
       this.recordTab = "description"; this.activityFilter = "all";
-      this.actionOpen = null; this.actionError = "";
+      this.actionOpen = null; this.recordActionsOpen = null; this.actionError = "";
     }
     this.selected = { id: record.id, kind, ref: record.ref };
     if (reveal && this.drawer === "closed") this.drawer = "peek";
@@ -254,6 +262,7 @@ export default class SharedContext extends View {
       if (row.type === "section") return div().px(10).pt(16).pb(6).text_size(10).text_color(t.muted).child(row.record.title.toUpperCase());
       const group = row.type === "initiative", type = row.itemType ?? (group ? "initiative" : itemType(row.record));
       const selected = this.selected?.id === row.record.id && this.selected.kind === row.type;
+      const liveAgents = this.liveActivity?.get(row.record.ref) ?? [];
       const action = (_event, cx) => {
         if (disabled) return;
         if (row.reference) revealPath(this.collapsed, row.reference);
@@ -261,10 +270,11 @@ export default class SharedContext extends View {
       };
       return h_flex().id(`tracker-row:${row.path}`).h(group ? 80 : 60).flex_none().pl(8 + row.depth * 18).pr(8).gap(8).items_center().rounded(0).bg(selected ? t.selected : t.background).hover(el => el.bg(selected ? t.selected : t.hover))
         .child(row.children ? button(`toggle:${row.path}`, "", (_event, cx) => { cx.stop_propagation(); if (disabled) return; if (this.collapsed.has(row.path)) this.collapsed.delete(row.path); else this.collapsed.add(row.path); this.remember(); cx.notify(); }, { label: `${row.expanded ? "Collapse" : "Expand"} ${row.record.title}`, disabled }).w(24).px(0).bg("#00000000").child(icon(row.expanded ? "down" : "right", 12)) : div().w(24).flex_none())
-        .child(button(`select:${row.path}`, "", action, { label: `${type}: ${row.record.title}. ${row.record.id}. ${row.state ?? `${row.children} tickets`}${row.reference ? ". Shared initiative membership. Open canonical membership." : ""}`, disabled, height: group ? 76 : 56 }).flex_1().min_w(0).px(0).bg("#00000000").hover(el => el.bg("#00000000")).text_color(t.foreground).tooltip(`${row.record.title}\n${row.record.id} · ${type}${row.state ? ` · ${row.state}` : ""}`)
+        .child(button(`select:${row.path}`, "", action, { label: `${type}: ${row.record.title}. ${row.record.id}. ${row.state ?? `${row.children} tickets`}${row.reference ? ". Shared initiative membership. Open canonical membership." : ""}${liveAgents.length ? `. Live agents: ${agentActivitySummary(liveAgents)}.` : ""}`, disabled, height: group ? 76 : 56 }).flex_1().min_w(0).px(0).bg("#00000000").hover(el => el.bg("#00000000")).text_color(t.foreground).tooltip(`${row.record.title}\n${row.record.id} · ${type}${row.state ? ` · ${row.state}` : ""}${liveAgents.length ? `\nLive agents: ${agentActivitySummary(liveAgents)}` : ""}`)
           .child(v_flex().flex_1().min_w(0).gap(5)
             .child(h_flex().gap(7).items_center().min_w(0).child(div().w(16).text_size(16).text_color(typeColor(type, t)).child(typeIcon(type))).child(div().flex_1().min_w(0).truncate().text_size(13).child(row.record.title)))
             .child(h_flex().pl(23).gap(7).items_center().min_w(0).child(div().flex_1().min_w(0).truncate().text_size(10).text_color(t.muted).child(row.record.id))
+              .when(liveAgents.length > 0, el => el.child(agentDots(`tree-live-agents:${row.path}`, liveAgents, this.preferences.motion, t)))
               .when(!group, el => el.child(div().flex_none().text_size(10).text_color(row.state ? statusColor(row.state, t) : t.dim).child(row.state ? `${stateIcon(row.state)} ${row.state}` : `${row.children} tickets`)))
               .when(Boolean(row.reference), el => el.child(div().text_color(t.accent).child("↗"))))
             .when(group, el => el.child(v_flex().w_full().min_w(0).pl(23).child(initiativeProgressRow(this.progress.get(row.record.id), t))))))
@@ -434,15 +444,16 @@ export default class SharedContext extends View {
   render(cx) {
     if (this.mode === "graph-actions") return renderGraphMenu(this);
     this.follow(cx);
+    if (this.mode === "tracker" && this.snapshot && this.context) this.liveActivity = recordAgentActivity(this.snapshot, agents(), terminals(), this.context.repository, this.where.machine);
     const t = theme();
-    return v_flex().id(`shared-context:${this.mode}`).track_focus(this.focus).size_full().min_h(0).rounded(0).overflow_hidden().bg(t.background).border_1().border_color(t.border).text_color(t.foreground).text_size(13).font_family("JetBrains Mono")
+    return v_flex().id(`shared-context:${this.mode}`).relative().track_focus(this.focus).size_full().min_h(0).rounded(0).overflow_hidden().bg(t.background).border_1().border_color(t.border).text_color(t.foreground).text_size(13).font_family("JetBrains Mono")
       .on_key_down((event, cx) => { if (this.selectKeyHandlers) for (const id in this.selectKeyHandlers) if (this.selectKeyHandlers[id](event, cx)) return; if (event.key === "escape" && this.filtersOpen) { closeTreeFilters(this, cx); cx.stop_propagation(); return; } if (event.key === "escape" && this.graphInitiative) { this.graphInitiative = null; this.focus.focus(); cx.stop_propagation(); cx.notify(); return; } if (event.key !== "escape" || this.mode !== "tracker" || (this.preferences.layout === "C2" && this.bodySize.width >= 600) || !this.selected || this.drawer === "closed") return; this.drawer = this.drawer === "expanded" ? "peek" : "closed"; this.focus.focus(); this.remember(); cx.stop_propagation(); cx.notify(); })
       .child(h_flex().id("shared-context-titlebar").h(48).flex_none().gap(0).items_stretch().border_b(1).border_color(t.border).bg(t.chrome)
         .child(div().w(48).flex_none().flex().items_center().justify_center().border_r(1).border_color(t.border).child(icon("context", 16).text_color(t.accent)))
         .children([["context", "Files"], ["tracker", "Tracker"]].map(([mode, label]) => button(`shared-context-nav:${mode}`, label, () => { run("layout.select", { stack: "panel-body", child: mode }); run("layout.show", { id: "panel" }); }, { label: `${label} view`, height: 48 })
           .rounded(0).px(16).border_r(1).border_color(t.border).bg(this.mode === mode ? t.selected : t.chrome).text_color(this.mode === mode ? t.accent : t.muted)))
         .child(div().flex_1().min_w(0))
-        .child(div().max_w("45%").min_w(0).px(16).flex().items_center().text_size(13).text_color(t.muted).tooltip(this.context?.identity ?? "").child(div().whitespace_normal().child(this.context?.identity ?? "")))
+        .child(button("context-metadata", "", (_event, cx) => openMetadata(this, cx), { label: `Show agent context metadata for ${this.context?.identity ?? "repository"}`, disabled: !this.context?.metadata, height: 48 }).max_w("45%").min_w(0).px(16).bg(t.chrome).tooltip("Show resolved repository context").child(div().whitespace_normal().child(this.context?.identity ?? "")))
         .child(button("context-settings", "⚙", () => run("mod.open", { name: "better-config" }), { label: "Open mod settings", height: 48 }).w(40).rounded(0).border_l(1).border_color(t.border).bg(t.chrome))
         .child(button("context-refresh", "↻", (_event, cx) => this.refresh(cx), { label: "Refresh shared context", disabled: this.loading, height: 48 }).w(40).rounded(0).border_l(1).border_color(t.border).bg(t.chrome)))
       .when(Boolean(this.error), el => el.child(note(this.error, true)))
@@ -450,6 +461,7 @@ export default class SharedContext extends View {
       .when(this.preferencesReady && !this.context && this.loading && !this.error, el => el.child(note("Read repository context…")))
       .when(Boolean(this.context) && !this.context.ready, el => el.child(this.onboarding()))
       .when(Boolean(this.context?.ready), el => el.child(this.mode === "context" ? this.filesView() : this.snapshot ? this.trackerView() : note(this.error ? "The tracker is unavailable. Correct the error, then select Refresh." : "Read tracker records and workflow state…")))
-      .when(Boolean(this.context?.ready) && this.mode === "context", el => el.child(h_flex().h(25).flex_none().px(10).gap(8).items_center().border_t(1).border_color(t.border).text_size(10).text_color(t.dim).child(this.loading ? "Refresh records…" : `Canonical records · ${this.context.mode}`)));
+      .when(Boolean(this.context?.ready) && this.mode === "context", el => el.child(h_flex().h(25).flex_none().px(10).gap(8).items_center().border_t(1).border_color(t.border).text_size(10).text_color(t.dim).child(this.loading ? "Refresh records…" : `Canonical records · ${this.context.mode}`)))
+      .when(Boolean(this.metadataOpen && this.context?.metadata), el => el.child(renderMetadata(this)));
   }
 }

@@ -596,6 +596,14 @@ Production work in tickets 02–10 is not part of the ticket 01 prototype gate.
 
 ## Herdr-app CLI, Context, and Tracker
 
+Live agent activity stays separate from recorded status, dependency readiness, next actions, and receipt history. The tree adds three pulsing dots for working agents and three static squares for agents that need input. The detail header has an expandable **Live agents** roster with each agent’s identity, title, state, associated record, space, and tab. Idle, ended, missing, and unassociated agents add no activity UI or reserved space. **Drawer motion** also controls activity animation.
+
+Activity comes from Herdr’s live `agents()` API. Terminal launch arguments establish the exact canonical record and repository; child sessions inherit their parent association unless they name another target. Initiatives aggregate distinct agents from their member records. The UI does not infer associations from titles or shared folders, change ticket state, or add receipt fields. Sessions without an explicit target or a bound parent remain unassociated.
+
+The Tracker places recorded-status badges below the record title. A split button shows the canonical next action, with flush, full-height label and action segments. Its primary button opens the existing preset and instruction prompt; its dropdown contains all record actions and their unavailable-action reasons. If no next action exists, the primary button is disabled and the dropdown remains available. Activate the canonical reference badge to copy it.
+
+Click the repository ID in the Context or Tracker header to open the agent metadata modal at the top centre of that pane. Only the shared-context pane is modal; terminals and other panes remain interactive. It slides down and renders structured data from the shared-context resolver, without using the CLI or hook formatter. Labelled sections show repository details, context roots, storage routes and inheritance, collection paths, and agent instructions. Close it with Escape, the Close button, or a click outside the modal.
+
 For mod creation and edits, use [creating-herdr-app-mods](mise/conf.d/devtools-agent/bundles/developer/skills/shells/creating-herdr-app-mods/SKILL.md).
 
 The native panels add **Context** and **Tracker** beside **Files** and **Changes**.

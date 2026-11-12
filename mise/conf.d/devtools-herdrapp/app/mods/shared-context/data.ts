@@ -50,7 +50,7 @@ export async function contextData(cwd: string) {
     try { if (!(await fs.stat(collection.root)).isDirectory()) missing.add(collection.root); }
     catch (error) { if ((error as NodeJS.ErrnoException).code === "ENOENT") missing.add(collection.root); else throw error; }
   }
-  return { identity: context.slug, repository: context.repositoryRoot, root: context.root, routeSource: context.routeSource, storage: context.storage, mode: context.mode, ready: Boolean(context.routeSource) && missing.size === 0, missing: [...missing], collections };
+  return { identity: context.slug, repository: context.repositoryRoot, root: context.root, routeSource: context.routeSource, storage: context.storage, mode: context.mode, metadata: context, ready: Boolean(context.routeSource) && missing.size === 0, missing: [...missing], collections };
 }
 
 export async function setup(cwd: string, store: "repository" | "shared", preset?: string) {
@@ -142,7 +142,8 @@ export async function detail(cwd: string, id: string, kind: "ticket" | "initiati
   const ticket = kind === "ticket" ? snapshot.tickets.find(item => item.id === id)! : undefined;
   const target = ticket ? { kind: "ticket" as const, ticket } : { kind: "initiative" as const, initiative: snapshot.initiatives.find(item => item.id === id)! };
   const workflow = ticket && recordKind(ticket) === "ticket" ? await loadTicketWorkflow(context, ticket, exec) : undefined;
-  return { record, kind, workflow, actions: actionChoices(target, snapshot, workflow, await commands()), repository: context.repositoryRoot };
+  const nextAction = ticket && recordKind(ticket) === "ticket" ? recoveryDecision(ticket, snapshot, workflow).action ?? null : null;
+  return { record, kind, workflow, nextAction, actions: actionChoices(target, snapshot, workflow, await commands()), repository: context.repositoryRoot };
 }
 
 export async function prepare(cwd: string, id: string, kind: "ticket" | "initiative", action: ExplorerAction, prompt: string) {

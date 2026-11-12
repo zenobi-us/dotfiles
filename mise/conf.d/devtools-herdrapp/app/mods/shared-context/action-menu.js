@@ -8,6 +8,8 @@ import { launchAction, invalidateAction } from "./action.js";
 
 export function initActionMenus(view, cx) {
   invalidateAction(view); view.actionOpen = null;
+  view.recordActionsOpen = null;
+  view.recordActionsFocus = cx.focus_handle();
   view.actionDrafts = new Map();
   view.actionTriggerFocus = new Map(Object.keys(ACTION_PRESETS).map(action => [action, cx.focus_handle()]));
   view.actionFocus = cx.focus_handle();
@@ -44,12 +46,64 @@ export function actionDropdown(view, choice, given) {
     .when(shown, el => el.content(actionMenuContent(view)));
 }
 
-function openActionMenu(view, choice, given, cx) {
+export function recordActionControl(view, choices, primary, given, status, palette) {
+  const t = theme(), key = JSON.stringify([given.cwd, given.kind, given.id]);
+  const pickerShown = view.recordActionsOpen === key;
+  const promptShown = view.actionOpen?.given.id === given.id && view.actionOpen?.given.kind === given.kind;
+  const label = primary?.label ?? status?.value ?? "No next action";
+  const disabled = view.actionBusy || !primary || Boolean(primary.disabledReason);
+  const showPicker = cx => {
+    if (view.actionBusy) return;
+    if (pickerShown) { view.recordActionsOpen = null; view.recordActionsFocus.focus(); }
+    else {
+      if (view.actionOpen) closeActionMenu(view, cx, false);
+      view.recordActionsOpen = key;
+      view.recordActionIndex = Math.max(0, choices.findIndex(choice => !choice.disabledReason));
+      view.actionFocus.focus();
+    }
+    cx.notify();
+  };
+  const trigger = h_flex().min_w(0).max_w("100%").border_1().border_color(palette.border).bg(palette.value)
+    .child(button("record-next-action", "", (_event, cx) => openActionMenu(view, primary, given, cx, view.recordActionsFocus), {
+      disabled, label: primary ? `Next action: ${label}${primary.disabledReason ? `. ${primary.disabledReason}` : ". Open action prompt."}` : `No next action. ${label}`,
+    }).h("auto").min_h(30).min_w(0).px(0).py(0).items_stretch().bg(palette.value).text_color(palette.valueText)
+      .tooltip(primary?.disabledReason ?? (primary ? `Open ${label} prompt` : "No workflow action is recommended"))
+      .child(h_flex().min_w(0).min_h(30).items_stretch()
+        .child(div().flex_none().flex().items_center().px(8).py(5).bg(palette.label).text_color(palette.labelText).text_size(10).child(primary ? "next" : status?.label ?? "next"))
+        .child(div().min_w(0).flex().items_center().px(8).py(5).whitespace_normal().text_size(10).child(label))))
+    .child(button("record-other-actions", "▾", (_event, cx) => showPicker(cx), { disabled: view.actionBusy || !choices.length, label: "Other record actions" })
+      .track_focus(view.recordActionsFocus).tab_index(0).w(30).px(0).h("auto").min_h(30).border_l(1).border_color(palette.border).bg(palette.label).text_color(palette.labelText)
+      .on_key_down((event, cx) => { if (["enter", "space", "down", "up"].includes(event.key)) { cx.stop_propagation(); showPicker(cx); } }));
+  const picker = () => v_flex().id("record-actions-menu").w(320).max_w("100%").p(6).gap(2).border_1().border_color(t.border).bg(t.popover)
+    .track_focus(view.actionFocus).tab_index(0).accessibility_label("Record actions")
+    .on_mouse_down_out((_event, cx) => { view.recordActionsOpen = null; cx.notify(); })
+    .on_key_down((event, cx) => {
+      if (event.key === "escape" || event.key === "tab") { view.recordActionsOpen = null; view.recordActionsFocus.focus(); cx.stop_propagation(); cx.notify(); return; }
+      const enabled = choices.map((choice, index) => choice.disabledReason ? -1 : index).filter(index => index >= 0);
+      if (!enabled.length) return;
+      if (event.key === "enter" || event.key === "space") { cx.stop_propagation(); openActionMenu(view, choices[view.recordActionIndex], given, cx, view.recordActionsFocus); return; }
+      if (!["up", "down", "home", "end"].includes(event.key)) return;
+      cx.stop_propagation();
+      const position = enabled.indexOf(view.recordActionIndex);
+      view.recordActionIndex = enabled[event.key === "home" ? 0 : event.key === "end" ? enabled.length - 1 : (position + (event.key === "down" ? 1 : enabled.length - 1)) % enabled.length];
+      cx.notify();
+    })
+    .children(choices.map((choice, index) => button(`record-action:${choice.action}`, "", (_event, cx) => openActionMenu(view, choice, given, cx, view.recordActionsFocus), { disabled: view.actionBusy || Boolean(choice.disabledReason), label: `${choice.label}${choice.disabledReason ? `. ${choice.disabledReason}` : ""}`, height: "auto" })
+      .tab_stop(false).w_full().min_h(34).py(8).bg(index === view.recordActionIndex ? t.selected : t.popover).tooltip(choice.disabledReason ?? `Open ${choice.label} prompt`)
+      .child(v_flex().w_full().min_w(0).gap(4)
+        .child(div().whitespace_normal().child(`${choice.action === primary?.action ? "Next: " : ""}${choice.label}`))
+        .when(Boolean(choice.disabledReason), el => el.child(div().whitespace_normal().text_size(10).text_color(t.muted).child(choice.disabledReason))))));
+  return Popup.new("record-action-popup", trigger)
+    .when(pickerShown || promptShown, el => el.content(promptShown ? actionMenuContent(view) : picker()));
+}
+
+function openActionMenu(view, choice, given, cx, returnFocus) {
   if (view.actionBusy || choice.disabledReason) return;
+  view.recordActionsOpen = null;
   const key = JSON.stringify([given.cwd, given.kind, given.id, choice.action]);
   let draft = view.actionDrafts.get(key);
   if (!draft) { draft = { preset: 0, detail: "" }; view.actionDrafts.set(key, draft); }
-  view.actionOpen = { key, choice, given, draft };
+  view.actionOpen = { key, choice, given, draft, returnFocus };
   invalidateAction(view);
   view.actionError = ""; view.openSelect = null;
   view.actionInput.set_value(draft.detail);
@@ -58,10 +112,10 @@ function openActionMenu(view, choice, given, cx) {
 
 function closeActionMenu(view, cx, restoreFocus = true) {
   if (view.actionBusy || !view.actionOpen) return;
-  const action = view.actionOpen.choice.action;
+  const action = view.actionOpen.choice.action, returnFocus = view.actionOpen.returnFocus;
   invalidateAction(view);
   view.actionOpen = null; view.actionError = "";
-  if (restoreFocus) view.actionTriggerFocus.get(action).focus();
+  if (restoreFocus) (returnFocus ?? view.actionTriggerFocus.get(action)).focus();
   cx.notify();
 }
 
