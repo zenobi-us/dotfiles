@@ -7,6 +7,14 @@
       ],
       "tile": "#334155",
       "color": "#ffffff"
+    },
+    "lazygit": {
+      "name": "Lazygit",
+      "run": [
+        "lazygit"
+      ],
+      "tile": "#f05133",
+      "color": "#ffffff"
     }
   }
 }
