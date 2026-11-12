@@ -174,3 +174,17 @@ Fresh independent review is required because source changed. No merge, push or t
 Public regression passed: 1 test, 66 assertions. Fresh init/validate, generated Markdown, 24 copied assets, served original image bytes and desktop/narrow viewer focus passed. Parent public validate passed JSON, plain and quiet. Tracker schema check passed.
 
 [Parent completion](../events/review-complete-0043.yaml) verifies matching transport and authoritative event, frozen clean source, and native reviewer completion. Owned review pane closed; no explicit workspace close. No source fixes, merge, push or ticket completion occurred. Next phase: finish or submit, subject to fresh inspection.
+
+## Review attempt 7 — current outcome
+
+Fresh independent review returned SUCCESS for `b1afc2020aa293f242aab79e2d10434a24e93a87`, tree `5a72d914baa4c687af82e846efb5dc0ca55d33d1`. No blocking Standards or Spec findings. Public workflow: 1 pass, 0 fail, 66 assertions. Public validation passed from `/tmp`. No new manual browser check. [Review](../artifacts/reviews/review-review-0049.md); [result](../events/review-0049.yaml); [parent completion](../events/review-complete-0050.yaml). Source unchanged. Reviewer and both axis terminals removed.
+
+## Finish recovery — published; cleanup blocked
+
+Source branch: `feature/collect-evidence-feedback-04-viewer`. Base: `master`. Reviewed source: `b1afc2020aa293f242aab79e2d10434a24e93a87`; tree `5a72d914baa4c687af82e846efb5dc0ca55d33d1`. Squash merge `2cd58b7edadb9358ce9eac91a0a3335c8a4d7d0e` has the expected tree and sole prepared base parent. Published on `origin/master`; ticket completion published in `5659726e05f55c31119219824dca1420dce411cf`.
+
+Integrated public workflow passed: 1 test, 66 assertions, 0 failures. Public session validation from `/tmp` returned success and valid. Current review verdict: SUCCESS; no open findings. No new manual browser check.
+
+Cleanup refused the named branch because a process runs in the source worktree. The worktree and branch remain intact. Owned review terminals were removed; source workspace is absent from open app spaces. No unknown process was killed. Next action: close or hand off the process, then rerun finish for cleanup only. Do not repeat merge, push or ticket completion.
+
+[Prepared](../events/finish-prepared-0051.yaml), [merged](../events/finish-merged-0052.yaml), [integrated validation](../events/finish-validated-0053.yaml), [published](../events/finish-pushed-0054.yaml), [ticket completed](../events/finish-ticket-completed-0055.yaml), [cleanup failure](../events/finish-failed-0056.yaml).

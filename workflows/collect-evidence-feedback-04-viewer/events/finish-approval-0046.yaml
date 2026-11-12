@@ -1,0 +1,57 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "2f0018b9a37eb6ea2c6795d6779213bdbbdb95f3",
+  "source_tree": "a0ceb121c1e9d04d3e18709c62d3260d075ece18",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "session_id": "hc:unknown",
+  "receipt_id": "finish-approval-0046",
+  "parent_receipt": "finish-failed-0045",
+  "phase": "finish",
+  "event": "operator-approval",
+  "status": "approved",
+  "attempt": 0,
+  "created_at": "2026-11-12T11:35:26.387457+00:00",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/finish-failed-0045.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/finish-approval-0046.yaml"
+    }
+  ],
+  "approval": {
+    "answer": "Update, review, and finish",
+    "scope": "Take over this ticket finish recovery; update source onto current master; fresh independent review required before finish"
+  },
+  "ownership": {
+    "previous_owner": "hc:t8t",
+    "owner": "hc:unknown",
+    "liveness": "hc ls and herdr-app ls show no source worktree terminals; previous owner absent",
+    "base_changes": "Unrelated tracked and untracked user changes preserved"
+  },
+  "recovery_mode": "reconcile",
+  "recovery_reason": "User authorized source update and fresh review after divergence blocked prior finish"
+}

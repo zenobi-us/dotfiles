@@ -1,0 +1,77 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "b1afc2020aa293f242aab79e2d10434a24e93a87",
+  "source_tree": "5a72d914baa4c687af82e846efb5dc0ca55d33d1",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "session_id": "hc:unknown",
+  "receipt_id": "review-complete-0050",
+  "parent_receipt": "review-0049",
+  "phase": "review",
+  "event": "phase-complete",
+  "status": "completed",
+  "attempt": 7,
+  "created_at": "2026-11-12T11:42:58.241355+00:00",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-0049.yaml"
+    },
+    {
+      "kind": "review",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0049.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/finish-approval-0046.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-complete-0050.yaml"
+    }
+  ],
+  "validation_results": [
+    {
+      "command": "mise exec -- env PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+      "result": "passed",
+      "observed": "1 pass, 0 fail, 66 assertions; 9.83s"
+    },
+    {
+      "command": "Public collect-feedback validate --json from /tmp",
+      "result": "passed",
+      "observed": "success:true, valid:true; sealed session and copied media identity preserved"
+    }
+  ],
+  "review_receipt": "workflows/collect-evidence-feedback-04-viewer/events/review-0049.yaml",
+  "review_artifact": "workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0049.md",
+  "source_committed_clean": true,
+  "child_completion": {
+    "run_id": "777723d3-74bc-4b44-a1c2-272cf72e1b56",
+    "sequence": 2,
+    "state": "completed",
+    "ack_sha256": "73c6dafa694ce4d7cd358b3d897f90fb65d050b435615897fba8d60227fdc5bf",
+    "terminal_removed": "t8w",
+    "workspace": "source absent from open spaces; retained in recent only"
+  }
+}

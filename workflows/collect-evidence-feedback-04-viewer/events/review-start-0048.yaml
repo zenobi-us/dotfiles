@@ -1,0 +1,55 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "b1afc2020aa293f242aab79e2d10434a24e93a87",
+  "source_tree": "5a72d914baa4c687af82e846efb5dc0ca55d33d1",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "session_id": "hc:unknown",
+  "receipt_id": "review-start-0048",
+  "parent_receipt": "finish-source-updated-0047",
+  "phase": "review",
+  "event": "phase-start",
+  "status": "started",
+  "attempt": 7,
+  "created_at": "2026-11-12T11:36:33.370121+00:00",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/finish-source-updated-0047.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/fix-0038.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/artifacts/snapshots/pr-draft-fix-0038-final.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/review-start-0048.yaml"
+    }
+  ],
+  "recovery_mode": "retry",
+  "recovery_reason": "Explicit operator instructions authorize source update and independent fresh review before finish"
+}

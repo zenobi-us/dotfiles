@@ -1,0 +1,84 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "collect-evidence-feedback-04-viewer",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "workspace_path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-04-viewer",
+  "source_branch": "feature/collect-evidence-feedback-04-viewer",
+  "base_branch": "master",
+  "source_commit": "b1afc2020aa293f242aab79e2d10434a24e93a87",
+  "source_tree": "5a72d914baa4c687af82e846efb5dc0ca55d33d1",
+  "muxer": "herdr-app",
+  "agent": "omp",
+  "pane_id": null,
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "collect-evidence-feedback-04-viewer",
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md"
+  },
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/collect-evidence-feedback-04-viewer"
+  },
+  "session_id": "hc:unknown",
+  "receipt_id": "finish-ticket-completed-0055",
+  "parent_receipt": "finish-pushed-0054",
+  "phase": "finish",
+  "event": "phase-checkpoint",
+  "status": "FINISHING",
+  "attempt": 2,
+  "created_at": "2026-11-12T11:45:52.314130+00:00",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/finish-pushed-0054.yaml"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/collect-evidence-feedback-04-viewer/events/finish-ticket-completed-0055.yaml"
+    }
+  ],
+  "checkpoint": "ticket_completed",
+  "next_step": "cleanup",
+  "review_receipt": "workflows/collect-evidence-feedback-04-viewer/events/review-0049.yaml",
+  "reviewed_source_commit": "b1afc2020aa293f242aab79e2d10434a24e93a87",
+  "reviewed_source_tree": "5a72d914baa4c687af82e846efb5dc0ca55d33d1",
+  "base_before": "a1fc0684eb22e32eefb557eab7423092b87f284f",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "expected_merge_tree": "5a72d914baa4c687af82e846efb5dc0ca55d33d1",
+  "proposed_merge_message": "feat: collect-evidence-feedback-04-viewer add viewer\n\nReview: workflows/collect-evidence-feedback-04-viewer/artifacts/reviews/review-review-0049.md",
+  "merged_commit": "2cd58b7edadb9358ce9eac91a0a3335c8a4d7d0e",
+  "merged_tree": "5a72d914baa4c687af82e846efb5dc0ca55d33d1",
+  "merged_parents": [
+    "a1fc0684eb22e32eefb557eab7423092b87f284f"
+  ],
+  "remote_observed_commit": "5659726e05f55c31119219824dca1420dce411cf",
+  "pushed": true,
+  "ticket_completed": true,
+  "validation_results": [
+    {
+      "command": "mise exec -- env PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "result": "passed",
+      "observed": "1 pass, 0 fail, 66 assertions; 9.73s"
+    },
+    {
+      "command": "mise exec -- bun /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts validate /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-04-viewer/artifacts/evidence/viewer-smoke-20261112-6f1739/session --json",
+      "cwd": "/tmp",
+      "result": "passed",
+      "observed": "success:true, valid:true, collect-feedback/v1, session review-verified"
+    }
+  ],
+  "tracker": {
+    "ref": "tracker/tickets/collect-evidence-feedback-04-viewer.md",
+    "state": "completed",
+    "commit": "5659726e05f55c31119219824dca1420dce411cf",
+    "publication": "git push origin master succeeded; ls-remote matches; records.ts check ok:true"
+  },
+  "workspace_observation": "herdr-app ls has no open space for recorded source; only recent entry remains; owned reviewer and axis terminals removed"
+}
