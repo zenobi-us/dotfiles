@@ -82,10 +82,14 @@ async function linkedFixture() {
   directories.push(linked);
   await base.git("worktree", "add", "-b", "other-work", linked, "HEAD");
   const inventory: Exec = async (command, args, cwd) => command === "wt"
-    ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [
-      { branch: "feature/T-2", marker: "active", worktree: { path: base.context.repositoryRoot } },
-      { branch: "other-work", worktree: { path: linked } },
-    ] }) }
+    ? {
+      code: 0, stdout: JSON.stringify({
+        schema: 2, items: [
+          { branch: "feature/T-2", marker: "active", worktree: { path: base.context.repositoryRoot } },
+          { branch: "other-work", worktree: { path: linked } },
+        ]
+      })
+    }
     : base.inventory(command, args, cwd);
   return { ...base, linked, inventory };
 }
@@ -431,9 +435,11 @@ test("unpublished drift summaries preserve retrieval references and digests with
 
 test("valid-looking wrong-source envelopes cannot clear the proposed ticket's reconciled reservation", async () => {
   const { context, inventory, goalEvent, receipt } = await fixture();
-  const own = { ...receipt, workflow_id: "T-1", receipt_id: "own-start-1", source_tree: "f".repeat(40),
+  const own = {
+    ...receipt, workflow_id: "T-1", receipt_id: "own-start-1", source_tree: "f".repeat(40),
     ticket: { id: "T-1", backend: "local-markdown", ref: "tracker/tickets/T-1.md" }, ticket_ref: "tracker/tickets/T-1.md",
-    workflow: { store: "repository", root: context.repositoryRoot, ref: "workflows/T-1" } };
+    workflow: { store: "repository", root: context.repositoryRoot, ref: "workflows/T-1" }
+  };
   await put(join(context.repositoryRoot, "workflows/T-1/events/start.json"), JSON.stringify(own));
   await put(join(context.repositoryRoot, "workflows/T-1/events/result.json"), JSON.stringify({ ...own, receipt_id: "own-implementation-2", parent_receipt: own.receipt_id, phase: "implementation", event: "phase-result", status: "completed", created_at: "2026-11-02T00:00:00Z" }));
   const completeRef = "workflows/T-1/events/complete.json";
@@ -482,4 +488,20 @@ test("another stream's envelope-only reconciliation stays observable without tri
   expect(fullSourceChecks).toBe(0);
   expect(report.streams.find(stream => stream.ticket.id === "T-2")?.reservations).toHaveLength(1);
   expect(report.reservationObservations.find(reservation => reservation.ticketRef.endsWith("T-2.md"))?.reconciliationVerified).not.toBe(true);
+}, 60_000);
+
+test("noncanonical journal kinds remain visible and cannot reconcile reservations", async () => {
+  const { context, inventory, goalEvent } = await fixture();
+  const directory = join(context.repositoryRoot, "workflows/goal-two/events");
+  await put(join(directory, "reserved.json"), JSON.stringify(goalEvent));
+  await put(join(directory, "reconciled.json"), JSON.stringify({
+    ...goalEvent, event_id: "reconciled-2", parent_event: goalEvent.event_id, kind: "dispatch-reconciled",
+    dispatch_ref: "workflows/goal-two/events/reserved.json", complete_receipt_ref: "workflows/T-2/events/complete.json",
+  }));
+  const report = await loadCoordination(context, "tracker/tickets/T-1.md", ["src"], inventory);
+  expect(report.errors.some(error => error.includes("[noncanonical_goal_event_kind]"))).toBe(true);
+  expect(report.reservationObservations).toContainEqual(expect.objectContaining({
+    ref: "workflows/goal-two/events/reserved.json", ambiguous: true,
+  }));
+  expect(report.reservationObservations.find(item => item.ref.endsWith("/reserved.json"))?.reconciledReceipt).toBeUndefined();
 }, 60_000);
