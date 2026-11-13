@@ -8,6 +8,7 @@
     "checkJs": false,
     "strict": true,
     "noEmit": true,
+    "allowImportingTsExtensions": true,
     "skipLibCheck": true
   },
   "include": ["tasks/**/*.ts", "mods/**/*.ts", "tests/**/*.ts"],

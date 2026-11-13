@@ -11,6 +11,13 @@ import { recoveryDecision, recoveryState } from "../../../../devtools-agent/bund
 import { actionChoices, buildSessionPrompt } from "../../../../devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions";
 import { prepareSessionRequest } from "../../../../devtools-agent/bundles/agent-core/extensions/pi-shared-context/preparation";
 import { recordKind, type ExplorerAction, type ExplorerSessionRequest } from "../../../../devtools-agent/bundles/agent-core/extensions/pi-shared-context/model";
+import { agents } from "../../../../devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/modules/index";
+import type { AgentId } from "../../../../devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/modules/types";
+
+/** The agent-model.js launch parser reads this marker; the prompt itself is in a file. */
+export const TARGET_MARKER = "SHARED_CONTEXT_TARGET";
+// Only OMP needs a flag to start outside its earlier sessions.
+const harnessFlags: Partial<Record<AgentId, (session: string) => string[]>> = { omp: session => ["--session-dir", session] };
 
 export function executor(cwd: string): Exec {
   return async (command, args, directory = cwd) => {
@@ -146,7 +153,9 @@ export async function detail(cwd: string, id: string, kind: "ticket" | "initiati
   return { record, kind, workflow, nextAction, actions: actionChoices(target, snapshot, workflow, await commands()), repository: context.repositoryRoot };
 }
 
-export async function prepare(cwd: string, id: string, kind: "ticket" | "initiative", action: ExplorerAction, prompt: string) {
+export async function prepare(cwd: string, id: string, kind: "ticket" | "initiative", action: ExplorerAction, prompt: string, harness: string, session: string) {
+  if (!Object.hasOwn(agents, harness)) throw new Error(`Unknown agent harness: ${harness}. Select one of ${Object.keys(agents).join(", ")}.`);
+  const agent = agents[harness as AgentId];
   const context = await project(cwd), exec = executor(cwd), snapshot = await loadExplorerSnapshot(context, exec);
   const target = kind === "initiative"
     ? { kind: "initiative" as const, initiative: snapshot.initiatives.find(item => item.id === id)! }
@@ -157,10 +166,18 @@ export async function prepare(cwd: string, id: string, kind: "ticket" | "initiat
   const prepared = await prepareSessionRequest(context, exec, request);
   const choice = actionChoices(prepared.request.target, prepared.request.snapshot, prepared.request.workflow, await commands()).find(item => item.action === action);
   if (!choice || choice.disabledReason) throw new Error(choice?.disabledReason ?? "This action is unavailable.");
+  // The muxer-subagents agent module owns the launch command and prompt-file form.
+  const promptFile = path.join(session, "prompt.md");
+  const [command, ...args] = agent.command({ muxer: "herdr-app", promptFile });
   // Bun's default lookup keeps the process-start PATH, before request.ts restores it.
-  const binary = Bun.which("omp", { PATH: process.env.PATH });
-  if (!binary) throw new Error("OMP is unavailable. Install OMP and run mise run herdrapp.runtime.");
-  return { binary, prompt: buildSessionPrompt(prepared.request), repository: context.repositoryRoot };
+  const binary = Bun.which(command!, { PATH: process.env.PATH });
+  if (!binary) throw new Error(`${command} is unavailable. Install it or change the Shared Context agent harness, then run mise run herdrapp.runtime.`);
+  await fs.mkdir(session, { recursive: true });
+  // A file prompt is not a slash command, so harnesses without /skill: still get the skill name and arguments.
+  await fs.writeFile(promptFile, `Run this skill command. If this harness has no /skill: command, load the named skill and pass it the remaining arguments.\n\n${buildSessionPrompt(prepared.request)}\n`);
+  const record = prepared.request.target.kind === "ticket" ? prepared.request.target.ticket : prepared.request.target.initiative;
+  const argv = ["env", "-C", context.repositoryRoot, `${TARGET_MARKER}=${record.ref}`, binary, ...(harnessFlags[agent.id]?.(session) ?? []), ...args];
+  return { argv, repository: context.repositoryRoot };
 }
 
 export function message(error: unknown): string { return error instanceof Error ? error.message : String(error); }

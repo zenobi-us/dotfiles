@@ -50,7 +50,7 @@ async function harness() {
   const main = await load("./main.js");
   await main.evaluate();
   const view = new main.namespace.default();
-  Object.assign(view, { mode: "context", preferencesReady: true, revision: 0, detailRevision: 0, fileRevision: 0, actionGeneration: 0, where: { cwd, space: "space" }, context: { repository: cwd }, saved: new Map(), fileFolders: new Set(), fileEntries: new Map(), filePending: new Set(), collapsed: new Set(), selected: { id: "alpha", kind: "ticket" }, actionOpen: {}, error: "", loading: false });
+  Object.assign(view, { mode: "context", preferencesReady: true, preferences: { harness: "claude" }, revision: 0, detailRevision: 0, fileRevision: 0, actionGeneration: 0, where: { cwd, space: "space" }, context: { repository: cwd }, saved: new Map(), fileFolders: new Set(), fileEntries: new Map(), filePending: new Set(), collapsed: new Set(), selected: { id: "alpha", kind: "ticket" }, actionOpen: {}, error: "", loading: false });
   modules.get("./action-menu.js").namespace.initActionMenus(view, cx);
   view.actionOpen = { draft: { detail: "" } };
   const take = operation => { const index = pending.findIndex(item => item.operation === operation); assert.notEqual(index, -1, `Missing ${operation} request`); return pending.splice(index, 1)[0]; };
@@ -60,7 +60,7 @@ async function harness() {
 
 const readyContext = { identity: "fixture", repository: "/A", ready: true, collections: [{ id: "alignment", path: "/A/docs" }] };
 const launch = h => h.action.launchAction(h.view, { cwd: "/A", space: "space", id: "alpha", kind: "ticket", action: "ask-matt", prompt: "Harmless question" }, h.cx, () => { h.view.actionOpen = null; });
-const prepared = { binary: "omp", repository: "/A", prompt: "Harmless question", session: "/machine-home/data/shared-context-sessions/1-a" };
+const prepared = { repository: "/A", argv: ["env", "-C", "/A", "SHARED_CONTEXT_TARGET=tracker/tickets/alpha.md", "/usr/bin/omp", "--session-dir", "/machine-home/data/shared-context-sessions/1-a", "--", "@/machine-home/data/shared-context-sessions/1-a/prompt.md"] };
 
 test("refresh reloads retained descendants and settings restoration repopulates them", async () => {
   const h = await harness();
@@ -130,8 +130,7 @@ test("an unchanged launch opens exactly one fresh session and releases busy stat
   assert.equal(h.launches[0].name, "pane.split");
   assert.equal(h.launches[0].args.pane, "pane");
   const argv = h.launches[0].args.argv;
-  assert.deepEqual(Array.from(argv).slice(0, 4), ["omp", "--cwd", "/A", "--session-dir"]);
-  assert.equal(argv[4], prepared.session);
+  assert.deepEqual(Array.from(argv), prepared.argv);
   assert.equal(h.view.actionBusy, false); assert.equal(h.view.actionOpen, null);
 });
 
@@ -141,6 +140,7 @@ test("a remote launch prepares the session on the space's machine", async () => 
   const request = h.take("prepare");
   assert.equal(request.where.machine, "wsl-docker");
   assert.equal(request.where.cwd, "/A");
+  assert.equal(request.fields.harness, "claude");
 });
 
 test("obsolete completion cannot clear a newer launch's busy state", async () => {

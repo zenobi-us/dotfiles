@@ -25,9 +25,10 @@ export async function request(input: Record<string, unknown>, home: string) {
       if (typeof input.id !== "string" || !input.id) throw new Error("Select a tracker record.");
       if (input.kind !== "ticket" && input.kind !== "initiative") throw new Error("Select a ticket or initiative.");
       if (input.operation === "detail") return detail(cwd, input.id, input.kind);
-      const prepared = await prepare(cwd, input.id, input.kind, String(input.action) as ExplorerAction, typeof input.prompt === "string" ? input.prompt : "");
-      // A separate session directory prevents auto-resume into an earlier chat. It lives on the machine that runs the pane.
-      return { ...prepared, session: path.join(home, "data/shared-context-sessions", `${Date.now()}-${Math.random().toString(16).slice(2)}`) };
+      if (typeof input.harness !== "string" || !input.harness) throw new Error("Select an agent harness.");
+      // A separate session directory holds the prompt file and prevents auto-resume into an earlier chat. It lives on the machine that runs the pane.
+      const session = path.join(home, "data/shared-context-sessions", `${Date.now()}-${Math.random().toString(16).slice(2)}`);
+      return prepare(cwd, input.id, input.kind, String(input.action) as ExplorerAction, typeof input.prompt === "string" ? input.prompt : "", input.harness, session);
     }
     default: throw new Error("Unknown shared-context operation.");
   }

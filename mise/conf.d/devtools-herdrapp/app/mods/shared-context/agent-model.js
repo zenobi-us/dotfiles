@@ -44,7 +44,13 @@ function resolveTarget(address, terminals, records, repository, targets, resolvi
   return ref;
 }
 
+// Current launches: env -C <repository> SHARED_CONTEXT_TARGET=<ref> <agent argv>. See data.ts prepare().
+// Earlier OMP launches put --cwd and the /skill: prompt in argv; their terminals can still be live.
 function launchTarget(argv, repository) {
+  if (argv[0] === "env") {
+    const marker = argv.find(argument => typeof argument === "string" && argument.startsWith("SHARED_CONTEXT_TARGET="));
+    if (marker !== undefined) return argv[argv.indexOf("-C") + 1] === repository ? marker.slice("SHARED_CONTEXT_TARGET=".length) : null;
+  }
   const cwd = argv.indexOf("--cwd");
   for (const argument of argv) {
     if (typeof argument !== "string") continue;

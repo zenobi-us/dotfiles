@@ -69,4 +69,11 @@ describe("live agents associated with canonical records", () => {
     expect(addresses(result, research.ref)).toEqual(["research"]);
     expect(agentActivitySummary(result.get(research.ref)!)).toBe("1 needs input");
   });
+
+  test("associates harness-neutral launches by the target marker and repository folder", () => {
+    const launch = (address: string, folder: string, ref: string) => ({ address, state: "live", argv: ["env", "-C", folder, `SHARED_CONTEXT_TARGET=${ref}`, "/usr/bin/claude", "--", "@/home/q/prompt.md"] });
+    const result = recordAgentActivity(snapshot, [agent("here"), agent("there")], [launch("here", repository, ticket.ref), launch("there", "/work/other", research.ref)], repository);
+    expect(addresses(result, ticket.ref)).toEqual(["here"]);
+    expect(addresses(result, research.ref)).toEqual([]);
+  });
 });

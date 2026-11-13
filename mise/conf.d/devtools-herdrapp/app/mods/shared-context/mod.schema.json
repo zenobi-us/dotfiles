@@ -25,6 +25,14 @@
           "description": "Slide the drawer when it expands, collapses, or closes. Disable this setting to remove motion.",
           "type": "boolean",
           "default": true
+        },
+        "harness": {
+          "title": "Agent harness",
+          "description": "The agent CLI that tracker and graph actions start. The muxer-subagents skill supplies each launch command.",
+          "type": "string",
+          "enum": ["omp", "pi", "zot", "codex", "claude"],
+          "x-labels": { "omp": "OMP", "pi": "Pi", "zot": "Zot", "codex": "Codex", "claude": "Claude Code" },
+          "default": "omp"
         }
       }
     }

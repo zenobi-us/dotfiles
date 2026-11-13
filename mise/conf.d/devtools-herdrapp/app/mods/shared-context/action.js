@@ -1,4 +1,4 @@
-// Tracker and graph actions start isolated OMP sessions beside the selected pane.
+// Tracker and graph actions start isolated agent sessions beside the selected pane. The harness setting selects the agent.
 import { run, focused, panes, closeOverlay } from "herdr";
 import { request } from "./client.js";
 
@@ -8,7 +8,7 @@ export function invalidateAction(view) {
 }
 
 /**
- * @param {{ actionBusy: boolean, actionError: string, actionGeneration?: number, revision?: number, actionOpen?: object, context?: { repository: string }, selected?: { id: string, kind: string }, menuProps?: { cwd: string, id: string, kind: string } }} view
+ * @param {{ actionBusy: boolean, actionError: string, preferencesReady?: boolean, preferences: { harness: string }, actionGeneration?: number, revision?: number, actionOpen?: object, context?: { repository: string }, selected?: { id: string, kind: string }, menuProps?: { cwd: string, id: string, kind: string } }} view
  * @param {{ cwd: string, machine?: string | null, space: string, id: string, kind: "ticket" | "initiative", action: string, prompt: string, overlay?: string }} given
  * @param {import("gpui-kit").Context} cx
  * @param {() => void} opened
@@ -26,11 +26,12 @@ export function launchAction(view, given, cx, opened) {
   cx.spawn(async cx => {
     try {
       if (!target?.pane || target.space !== given.space) throw new Error("Select a pane in this repository's workspace before starting an action.");
-      const prepared = await request("prepare", given, { id: given.id, kind: given.kind, action: given.action, prompt: given.prompt });
+      if (!view.preferencesReady) throw new Error("Shared Context settings are not loaded. Fix the settings error or wait, then try again.");
+      const prepared = await request("prepare", given, { id: given.id, kind: given.kind, action: given.action, prompt: given.prompt, harness: view.preferences.harness });
       if (!current()) return;
       if (!panes().some(item => item.pane === target.pane)) throw new Error("The selected pane was closed. Select another pane and try again.");
       // The pane starts on the request's machine, so all argv paths come from that machine.
-      run("pane.split", { pane: target.pane, direction: "right", argv: [prepared.binary, "--cwd", prepared.repository, "--session-dir", prepared.session, prepared.prompt] });
+      run("pane.split", { pane: target.pane, direction: "right", argv: prepared.argv });
       view.actionBusy = false;
       opened();
       if (given.overlay) closeOverlay(given.overlay);
