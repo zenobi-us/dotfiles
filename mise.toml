@@ -119,7 +119,6 @@ fnox = { version = "1.44.0", workflow = "release.yml" }
 "github:sigoden/dufs" = "latest"
 "github:asciimoo/hister" = "latest"
 "github:civitai/cli" = "latest"
-"github:quaresc/cockpit" = "latest"
 
 [tool_alias]
 pi = "github:earendil-works/pi"
