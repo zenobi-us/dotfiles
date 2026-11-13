@@ -23,5 +23,8 @@ Extend the sync so that the mirror holds a complete graph and later syncs stay f
 - [ ] `--full` runs every query without the time filter. It marks each key that no query or closure returns with `mirror_status: stale`. It deletes no file.
 - [ ] `--key <KEY>` syncs one issue, for use after a write through `twg`.
 - [ ] Unit tests cover a blocker chain outside the queries, an epic with no children, and a stale key.
+- [ ] `collect-evidence` captures the Tracker pane for reckonone with epics and a blocker graph. Moved from ticket 03 on 2026-11-13.
 
 ## Comments
+
+- 2026-11-13T02:40Z, S: Q moved the Tracker pane capture criterion here from `jira-tracker-mirror-03-snapshot-from-mirror`. A real blocker graph needs the children and blocker closure that this ticket adds.
