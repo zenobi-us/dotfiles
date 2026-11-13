@@ -5,3 +5,6 @@
 run = """
 powershell.exe -NoProfile -Command "[Environment]::SetEnvironmentVariable('MISE_GLOBAL_CONFIG_ROOT', '{{ config_root }}', 'User')"
 """
+
+[bootstrap.packages]
+"winget:Amazon.AWSCLI" = "latest"
