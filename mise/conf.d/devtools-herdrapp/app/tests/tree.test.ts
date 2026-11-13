@@ -44,6 +44,14 @@ describe("grouped tracker tree", () => {
     expect(rows.some(row => row.type === "initiative" && row.record.id === "planning")).toBe(true);
   });
 
+  test("marks stale Jira mirror records and lists epics as planning records", () => {
+    const issue = (id: string, documentType: string, fields: Record<string, unknown> = {}) => ({ id, title: id, blockedBy: [], documentType, status: "todo", ref: `https://example.atlassian.net/browse/${id}`, fields });
+    const snapshot = { tickets: [issue("ABC-1", "epic"), issue("ABC-2", "issue", { stale: true }), issue("ABC-3", "issue")], initiatives: [{ id: "ABC-1", title: "Epic", ticketIds: ["ABC-2", "ABC-3"], rootTicketIds: ["ABC-2", "ABC-3"] }], states: {} };
+    const { rows } = dependencyRows(snapshot, DEFAULT_FILTERS, new Set());
+    expect(rows.filter(row => row.type === "ticket").map(row => [row.record.id, row.itemType, row.stale])).toEqual([["ABC-2", "ticket", true], ["ABC-3", "ticket", false], ["ABC-1", "planning", false]]);
+    expect(rows.find(row => row.path === "section:planning")?.record.title).toBe("Planning");
+  });
+
   test("does not present synthetic collections as initiatives", () => {
     const snapshot = { ...diamond(), initiatives: [{ id: "ungrouped", title: "Ungrouped", ticketIds: ["top"], group: true as const }] };
     const rows = dependencyRows(snapshot, DEFAULT_FILTERS, new Set()).rows;

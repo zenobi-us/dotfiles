@@ -7,7 +7,7 @@ export function dependencyRows(snapshot, filters, collapsed) {
   const rows = [], canonical = new Map(), assigned = new Set();
   const add = (record, parent, depth, visible) => {
     const path = `${parent}/${record.id}`, reference = canonical.get(record.id);
-    if (visible) rows.push({ type: "ticket", record, itemType: itemType(record), path, depth, reference, expanded: false, children: 0, state: ticketDisplayState(record, snapshot.states?.[record.id]) });
+    if (visible) rows.push({ type: "ticket", record, itemType: itemType(record), path, depth, reference, expanded: false, children: 0, state: ticketDisplayState(record, snapshot.states?.[record.id]), stale: record.fields?.stale === true });
     if (!reference) canonical.set(record.id, path);
   };
   const section = (id, title) => rows.push({ type: "section", record: { id, title }, path: `section:${id}`, depth: 0, expanded: true, children: 0 });
@@ -50,7 +50,7 @@ export function itemType(ticket) {
   const type = ticket.documentType?.trim().toLowerCase();
   if (!type || ["ticket", "issue", "task", "bug", "fix", "feature", "enhancement", "chore"].includes(type)) return "ticket";
   if (["prototype", "research"].includes(type)) return type;
-  if (["spec", "specification", "initiative", "plan"].includes(type)) return "planning";
+  if (["spec", "specification", "initiative", "plan", "epic"].includes(type)) return "planning";
   return "record";
 }
 

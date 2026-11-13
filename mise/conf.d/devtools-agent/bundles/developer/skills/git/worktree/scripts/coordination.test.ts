@@ -181,14 +181,23 @@ test("rejects traversal and glob scope rather than claiming compatibility", asyn
   for (const scope of ["../outside", "/absolute", "src/**", "src/../other", "."]) await expect(loadCoordination(context, "tracker/tickets/T-1.md", [scope], inventory)).rejects.toThrow("Scope must");
 }, 60_000);
 
-test("Jira's scoped-only adapter reports incomplete cross-initiative inventory", async () => {
+test("Jira's mirror gives complete cross-initiative inventory until a blocker is not in the mirror", async () => {
   const { context, inventory } = await fixture();
-  await put(join(context.repositoryRoot, "docs/agents/issue-tracker.md"), "---\nbackend: jira\nsite: https://example.atlassian.net\ncli: jira-fixture\n---\n");
-  const execute: Exec = async (command, args, cwd) => command === "jira-fixture" ? { code: 0, stdout: JSON.stringify({ key: "ABC-7", fields: { summary: "Work", status: { name: "To Do", statusCategory: { key: "new" } }, issuetype: { name: "Task" }, description: "Requirements", issuelinks: [] } }) } : inventory(command, args, cwd);
-  const report = await loadCoordination({ ...context, routes: { ...context.routes, tickets: { adapter: "jira" } } }, "https://example.atlassian.net/browse/ABC-7", ["src"], execute);
-  expect(report.inventoryComplete).toBe(false);
-  expect(report.errors.some(error => error.includes("Cross-initiative inventory unavailable"))).toBe(true);
-  expect(report.assessmentRequired).toBe(true);
+  const site = "https://example.atlassian.net";
+  await put(join(context.repositoryRoot, "docs/agents/issue-tracker.md"), `---\nbackend: jira\nsite: ${site}\nmirror:\n  root: tracker/jira\n  queries:\n    work: 'project = ABC'\n---\n`);
+  const issue = (id: string, blockedBy: string[]) => `---\nschema: "tracker-mirror/v1"\nid: "${id}"\ntitle: "Work ${id}"\ntype: "Task"\nstatus: "To Do"\nstatus_category: "new"\nparent: null\nblocked_by: ${JSON.stringify(blockedBy)}\nref: "${site}/browse/${id}"\n---\n`;
+  await put(join(context.repositoryRoot, "tracker/jira/ABC-7.md"), issue("ABC-7", []));
+  await put(join(context.repositoryRoot, "tracker/jira/ABC-8.md"), issue("ABC-8", []));
+  const jira: SharedAgentContext = { ...context, routes: { ...context.routes, tickets: { adapter: "jira" } } };
+  const complete = await loadCoordination(jira, `${site}/browse/ABC-7`, ["src"], inventory);
+  expect(complete.inventoryComplete).toBe(true);
+  expect(complete.streams.map(stream => stream.ticket.id)).not.toContain("ABC-7");
+  expect(complete.errors).toEqual([]);
+  await put(join(context.repositoryRoot, "tracker/jira/ABC-8.md"), issue("ABC-8", ["POR-1"]));
+  const partial = await loadCoordination(jira, `${site}/browse/ABC-7`, ["src"], inventory);
+  expect(partial.inventoryComplete).toBe(false);
+  expect(partial.errors).toEqual([expect.stringContaining("Blocker not in the mirror: POR-1.")]);
+  expect(partial.assessmentRequired).toBe(true);
 }, 60_000);
 
 test("observed Git paths never hide missing planned scope", async () => {

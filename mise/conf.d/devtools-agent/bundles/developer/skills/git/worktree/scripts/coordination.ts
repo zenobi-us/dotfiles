@@ -77,17 +77,10 @@ export async function loadCoordination(context: SharedAgentContext, ref: string,
     if (command === "wt" && args.includes("list")) return inventory ??= exec(command, args, cwd);
     return exec(command, args, cwd);
   };
-  let snapshot: ExplorerSnapshot;
   let inventoryComplete = true;
   const primaryDiagnostics: { ref: string; error: string }[] = [];
-  try { snapshot = await loadExplorerSnapshot(context, exec, undefined, primaryDiagnostics); }
-  catch (error) {
-    // The Jira adapter currently resolves one ticket and its direct blockers only.
-    if (context.routes.tickets.adapter !== "jira") throw error;
-    errors.push(`Cross-initiative inventory unavailable: ${message(error)}`);
-    inventoryComplete = false;
-    snapshot = await loadExplorerSnapshot(context, exec, { ref }, primaryDiagnostics);
-  }
+  // The Jira adapter reads the whole mirror. A blocker that is not in the mirror is a diagnostic.
+  let snapshot: ExplorerSnapshot = await loadExplorerSnapshot(context, exec, undefined, primaryDiagnostics);
   const workspaces: WorkspaceObservation[] = [];
   const contexts = await linkedContexts(context, inventoryExec, errors, workspaces);
   const inventoryError = errors.find(error => error.startsWith("Linked-checkout inventory unavailable:"));

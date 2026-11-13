@@ -138,43 +138,129 @@ test("canonical CLI inspection resolves the current adapter and prints real JSON
   }
 }, 60_000);
 
-test("jira inspection reads one ticket and its blockers through the configured cli", async () => {
+const JIRA_SITE = "https://example.atlassian.net";
+function mirrorIssue(id: string, fields: { type?: string; status?: string; category?: string | null; parent?: string | null; blockedBy?: string[]; mirrorStatus?: string; schema?: string; ref?: string; body?: string } = {}): string {
+  const lines = [
+    `schema: ${JSON.stringify(fields.schema ?? "tracker-mirror/v1")}`, `id: "${id}"`, `title: "Title ${id}"`, `type: "${fields.type ?? "Story"}"`,
+    `status: "${fields.status ?? "To Do"}"`, ...(fields.category === null ? [] : [`status_category: "${fields.category ?? "new"}"`]), `parent: ${JSON.stringify(fields.parent ?? null)}`,
+    `blocked_by: ${JSON.stringify(fields.blockedBy ?? [])}`, `queries: ["epics"]`, `jira_updated: "2026-09-21T17:25:25.526+1000"`, `synced_at: "2026-11-12T11:19:39.356Z"`,
+    `ref: "${fields.ref ?? `${JIRA_SITE}/browse/${id}`}"`, ...(fields.mirrorStatus ? [`mirror_status: ${JSON.stringify(fields.mirrorStatus)}`] : []),
+  ];
+  return `---\n${lines.join("\n")}\n---\n${fields.body ? `\n${fields.body}\n` : ""}`;
+}
+async function jiraFixture(issues: Record<string, string> | null, definition = `---\nbackend: jira\nsite: ${JIRA_SITE}\nmirror:\n  root: tracker/jira\n  queries:\n    epics: 'issuetype = Epic'\n---\n`) {
   const { context } = await fixture();
-  await put(join(context.repositoryRoot, "docs/agents/issue-tracker.md"), "---\nbackend: jira\nsite: https://example.atlassian.net\ncli: jira-fixture --flag\n---\n");
-  const jira = "https://example.atlassian.net/browse/ABC-7";
-  const calls: string[][] = [];
-  const issue = (blockerCategory: string) => JSON.stringify({
-    key: "ABC-7", fields: {
-      summary: "Fix lodgement", status: { name: "To Do", statusCategory: { key: "new" } }, issuetype: { name: "Dev bug" }, description: "Body",
-      issuelinks: [
-        { type: { inward: "is blocked by" }, inwardIssue: { key: "ABC-3", fields: { status: { name: "Code Review", statusCategory: { key: blockerCategory } } } } },
-        { type: { inward: "is blocked by" }, outwardIssue: { key: "ABC-9", fields: { status: { name: "To Do", statusCategory: { key: "new" } } } } },
-        { type: { inward: "relates to" }, inwardIssue: { key: "ABC-5", fields: { status: { name: "To Do", statusCategory: { key: "new" } } } } },
-      ],
-    }
-  });
-  let blockerCategory = "indeterminate";
+  await put(join(context.repositoryRoot, "docs/agents/issue-tracker.md"), definition);
+  if (issues) {
+    await mkdir(join(context.repositoryRoot, "tracker/jira"), { recursive: true });
+    for (const [id, content] of Object.entries(issues)) await put(join(context.repositoryRoot, "tracker/jira", `${id}.md`), content);
+  }
+  const jiraContext: SharedAgentContext = { ...context, routes: { ...context.routes, tickets: { adapter: "jira" } } };
   const execute: Exec = async (command, args, cwd) => {
-    if (command === "jira-fixture") { calls.push([...args, cwd ?? ""]); return { code: 0, stdout: issue(blockerCategory) }; }
     if (command === "wt") return { code: 0, stdout: JSON.stringify({ schema: 2, items: [] }) };
+    if (command === "twg") throw new Error("Unit tests must not call twg.");
     return exec(command, args, cwd);
   };
-  const jiraContext: SharedAgentContext = { ...context, routes: { ...context.routes, tickets: { adapter: "jira" } } };
-  await expect(loadExplorerSnapshot(jiraContext, execute)).rejects.toThrow("one ticket at a time");
-  await expect(loadExplorerSnapshot(jiraContext, execute, { ref: "https://other.atlassian.net/browse/ABC-7" })).rejects.toThrow("/browse/<KEY>");
+  return { context: jiraContext, execute };
+}
+
+test("jira snapshot reads every mirror file without a scope", async () => {
+  const { context, execute } = await jiraFixture({
+    "ABC-1": mirrorIssue("ABC-1", { type: "Epic", status: "In Progress", category: "indeterminate", body: "Epic body" }),
+    "ABC-2": mirrorIssue("ABC-2", { parent: "ABC-1", blockedBy: ["ABC-3"] }),
+    "ABC-3": mirrorIssue("ABC-3", { parent: "ABC-1", status: "Done", category: "done", mirrorStatus: "stale" }),
+    "ABC-4": mirrorIssue("ABC-4", { type: "Sub-task", parent: "ABC-2" }),
+    "ABC-5": mirrorIssue("ABC-5", { parent: "ABC-99" }),
+    "ABC-6": mirrorIssue("ABC-6"),
+  });
+  const snapshot = await loadExplorerSnapshot(context, execute);
+  expect(snapshot.backend).toBe("jira");
+  expect(snapshot.tickets.map(item => item.id).sort()).toEqual(["ABC-1", "ABC-2", "ABC-3", "ABC-4", "ABC-5", "ABC-6"]);
+  const epic = snapshot.initiatives.find(item => item.id === "ABC-1")!;
+  expect(epic).toMatchObject({ title: "Title ABC-1", ref: `${JIRA_SITE}/browse/ABC-1`, body: "Epic body", rootTicketIds: ["ABC-2", "ABC-3"] });
+  expect(epic.ticketIds.sort()).toEqual(["ABC-2", "ABC-3", "ABC-4"]);
+  const ungrouped = snapshot.initiatives.find(item => item.group)!;
+  expect(ungrouped).toMatchObject({ title: "Ungrouped", ref: `${JIRA_SITE}/issues` });
+  expect(ungrouped.ticketIds.sort()).toEqual(["ABC-5", "ABC-6"]);
+  expect(snapshot.tickets.find(item => item.id === "ABC-1")).toMatchObject({ documentType: "epic", status: "in_progress", backend: "jira" });
+  expect(snapshot.tickets.find(item => item.id === "ABC-2")).toMatchObject({ documentType: "issue", status: "todo", blockedBy: ["ABC-3"], fields: { issueType: "Story", status: "To Do", parent: "ABC-1" } });
+  expect(snapshot.tickets.find(item => item.id === "ABC-3")).toMatchObject({ status: "done", fields: { stale: true } });
+  expect(snapshot.tickets.find(item => item.id === "ABC-2")!.fields!.stale).toBeUndefined();
+}, 60_000);
+
+test("jira scoped load reads one ticket and its blockers from the mirror", async () => {
+  const issues = (category: string) => ({ "ABC-3": mirrorIssue("ABC-3", { status: "Code Review", category }), "ABC-7": mirrorIssue("ABC-7", { type: "Dev bug", blockedBy: ["ABC-3"], body: "Body" }), "ABC-8": mirrorIssue("ABC-8") });
+  const { context, execute } = await jiraFixture(issues("indeterminate"));
+  const jira = `${JIRA_SITE}/browse/ABC-7`;
   const decide = async () => {
-    const snapshot = await loadExplorerSnapshot(jiraContext, execute, { ref: jira });
+    const snapshot = await loadExplorerSnapshot(context, execute, { ref: jira });
+    expect(snapshot.tickets.map(item => item.id).sort()).toEqual(["ABC-3", "ABC-7"]);
     const ticket = snapshot.tickets.find(item => item.ref === jira)!;
-    return { ticket, decision: recoveryDecision(ticket, snapshot, await loadTicketWorkflow(jiraContext, ticket, execute)) };
+    return { ticket, decision: recoveryDecision(ticket, snapshot, await loadTicketWorkflow(context, ticket, execute)) };
   };
   const blocked = await decide();
-  expect(calls[0]).toEqual(["--flag", "get-issue", "ABC-7", "summary,status,issuetype,issuelinks,description", "0", context.repositoryRoot]);
   expect(blocked.ticket).toMatchObject({ id: "ABC-7", backend: "jira", status: "todo", fields: { issueType: "Dev bug", status: "To Do" }, documentType: "issue", blockedBy: ["ABC-3"], body: "Body" });
   expect(blocked.decision).toMatchObject({ mode: "blocked", reason: "Unresolved prerequisites: ABC-3." });
-  blockerCategory = "done";
+  await put(join(context.repositoryRoot, "tracker/jira/ABC-3.md"), issues("done")["ABC-3"]);
   expect((await decide()).decision).toMatchObject({ action: "start", mode: "begin" });
-  blockerCategory = "archived";
-  await expect(loadExplorerSnapshot(jiraContext, execute, { ref: jira })).rejects.toThrow("category archived");
+  await put(join(context.repositoryRoot, "tracker/jira/ABC-3.md"), issues("archived")["ABC-3"]);
+  await expect(loadExplorerSnapshot(context, execute, { ref: jira })).rejects.toThrow("category archived");
+}, 60_000);
+
+test("jira snapshot rejects blocker cycles", async () => {
+  const cycle = await jiraFixture({ "ABC-1": mirrorIssue("ABC-1", { blockedBy: ["ABC-2", "ABC-404"] }), "ABC-2": mirrorIssue("ABC-2", { blockedBy: ["ABC-1"] }) });
+  await expect(loadExplorerSnapshot(cycle.context, cycle.execute)).rejects.toThrow("Cycle in ticket blocker graph");
+  await expect(loadExplorerSnapshot(cycle.context, cycle.execute, undefined, [])).resolves.toBeDefined();
+  const diagnostics: { ref: string; error: string }[] = [];
+  await loadExplorerSnapshot(cycle.context, cycle.execute, undefined, diagnostics);
+  expect(diagnostics.some(item => item.error.includes("Cycle in ticket blocker graph"))).toBe(true);
+}, 60_000);
+
+test("jira snapshot warns about a blocker that is not in the mirror and keeps the ticket blocked", async () => {
+  const { context, execute } = await jiraFixture({ "ABC-1": mirrorIssue("ABC-1", { blockedBy: ["ABC-404", "ABC-2"] }), "ABC-2": mirrorIssue("ABC-2", { status: "Done", category: "done" }) });
+  const strict = await loadExplorerSnapshot(context, execute);
+  expect(strict.tickets.find(item => item.id === "ABC-1")!.blockedBy).toEqual(["ABC-404", "ABC-2"]);
+  const diagnostics: { ref: string; error: string }[] = [];
+  const snapshot = await loadExplorerSnapshot(context, execute, undefined, diagnostics);
+  expect(diagnostics).toEqual([{ ref: `${JIRA_SITE}/browse/ABC-1`, error: "Blocker not in the mirror: ABC-404. Jira issue ABC-1 is blocked by ABC-404. Add blockers to mirror.closure, then run jira-mirror.ts sync." }]);
+  const ticket = snapshot.tickets.find(item => item.id === "ABC-1")!;
+  expect(recoveryDecision(ticket, snapshot, await loadTicketWorkflow(context, ticket, execute))).toMatchObject({ mode: "blocked", reason: "Unresolved prerequisites: ABC-404." });
+}, 60_000);
+
+test("jira scoped load succeeds while another mirror file has a blocker that is not in the mirror", async () => {
+  const { context, execute } = await jiraFixture({ "ABC-1": mirrorIssue("ABC-1", { blockedBy: ["POR-6673"] }), "ABC-7": mirrorIssue("ABC-7") });
+  const jira = `${JIRA_SITE}/browse/ABC-7`;
+  expect((await loadExplorerSnapshot(context, execute, { ref: jira })).tickets.map(item => item.id)).toEqual(["ABC-7"]);
+  const diagnostics: { ref: string; error: string }[] = [];
+  expect((await loadExplorerSnapshot(context, execute, { ref: jira }, diagnostics)).tickets.map(item => item.id)).toEqual(["ABC-7"]);
+  expect(diagnostics).toEqual([]);
+  const blocked: { ref: string; error: string }[] = [];
+  await loadExplorerSnapshot(context, execute, { ref: `${JIRA_SITE}/browse/ABC-1` }, blocked);
+  expect(blocked.map(item => item.error)).toEqual([expect.stringContaining("Blocker not in the mirror: POR-6673.")]);
+}, 60_000);
+
+test("jira snapshot tells the user to sync when the mirror is missing or empty", async () => {
+  const missing = await jiraFixture(null);
+  await expect(loadExplorerSnapshot(missing.context, missing.execute)).rejects.toThrow(/Jira mirror .*tracker\/jira has no issue files\. Run jira-mirror\.ts sync/);
+  const empty = await jiraFixture({});
+  await expect(loadExplorerSnapshot(empty.context, empty.execute)).rejects.toThrow(/has no issue files\. Run jira-mirror\.ts sync/);
+  const unconfigured = await jiraFixture(null, `---\nbackend: jira\nsite: ${JIRA_SITE}\n---\n`);
+  await expect(loadExplorerSnapshot(unconfigured.context, unconfigured.execute)).rejects.toThrow("has no mirror block");
+}, 60_000);
+
+test("jira snapshot rejects mirror files that break the file contract", async () => {
+  const cases: [Record<string, string>, string][] = [
+    [{ "ABC-1": mirrorIssue("ABC-1", { schema: "tracker-mirror/v9" }) }, "schema tracker-mirror/v9 is not tracker-mirror/v1"],
+    [{ "ABC-1": mirrorIssue("ABC-2") }, "id ABC-2 does not match its file name ABC-1.md"],
+    [{ "ABC-1": mirrorIssue("ABC-1", { ref: "https://other.atlassian.net/browse/ABC-1" }) }, `ref must be ${JIRA_SITE}/browse/ABC-1`],
+    [{ "ABC-1": mirrorIssue("ABC-1", { parent: "ABC-2", type: "Epic" }), "ABC-2": mirrorIssue("ABC-2", { parent: "ABC-1", type: "Epic" }) }, "Cycle in Jira parent graph"],
+    [{ "ABC-1": mirrorIssue("ABC-1", { mirrorStatus: "gone" }) }, "mirror_status gone is not stale"],
+    [{ "ABC-1": mirrorIssue("ABC-1", { category: null }) }, "status_category"],
+  ];
+  for (const [issues, message] of cases) {
+    const { context, execute } = await jiraFixture(issues);
+    await expect(loadExplorerSnapshot(context, execute)).rejects.toThrow(message);
+  }
 }, 60_000);
 
 test("removed source permits finish recovery only after exact squash mapping and remote reachability", async () => {

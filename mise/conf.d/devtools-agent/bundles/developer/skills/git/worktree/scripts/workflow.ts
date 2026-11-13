@@ -3,8 +3,10 @@ import { lstat, realpath, stat } from "node:fs/promises";
 import { basename, dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolveContextRecord } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
+import { validateRelativePath } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/layout";
 import type { Exec, ExplorerEvent, ExplorerInitiative, ExplorerReceipt, ExplorerSnapshot, ExplorerTicket, SharedAgentContext, TicketWorkflow } from "../../../../../agent-core/extensions/pi-shared-context/model";
 import { assertRecord, INITIATIVE_SCHEMA, validateInitiativeMembership } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/record-schema";
+import { MIRROR_SCHEMA } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/jira-mirror";
 import { inspectWorkflow } from "./inspection";
 import { chronologicalReceipts, receiptEvent, receiptPhase } from "./recovery";
 import { DocumentReadSession } from "./document-cache";
@@ -17,6 +19,8 @@ type Document = ParsedDocument;
 /**
  * Strict by default. A diagnostic sink opts into partial record inventory for
  * coordination; configuration, backend, and read-race failures remain fatal.
+ * A Jira blocker that is not in the mirror is a warning in both modes: it goes
+ * to the sink when one is given, and the ticket keeps the blocker.
  */
 export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Exec, scope?: { ref: string; kind?: "ticket" | "initiative" }, diagnostics?: { ref: string; error: string }[]): Promise<ExplorerSnapshot> {
  if (context.error) throw new Error(context.error);
@@ -39,17 +43,21 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
  }
  const snapshot = backend === "local-markdown" ? await localSnapshot(context, session, localDefinition, diagnostics)
   : backend === "github" ? await githubSnapshot(context, exec, scope)
-   : backend === "jira" ? await jiraSnapshot(context, exec, config, scope)
+   : backend === "jira" ? await jiraSnapshot(context, session, config)
     : (() => { throw new Error(`Unsupported tracker backend: ${backend}`); })();
- if (!diagnostics) validateRelations(snapshot.tickets, "ticket blocker");
+ const known = new Set(snapshot.tickets.map(ticket => ticket.id));
+ const unmirrored = snapshot.backend === "jira" ? snapshot.tickets.flatMap(ticket => ticket.blockedBy.filter(id => !known.has(id)).map(blocker => ({ ticket, blocker }))) : [];
+ // Relations without unmirrored Jira blockers. Cycle detection still covers every mirrored edge.
+ const relations = unmirrored.length ? snapshot.tickets.map(ticket => ({ ...ticket, blockedBy: ticket.blockedBy.filter(id => known.has(id)) })) : snapshot.tickets;
+ if (!diagnostics) validateRelations(relations, "ticket blocker");
  else {
   const byId = new Map<string, ExplorerTicket[]>();
-  for (const ticket of snapshot.tickets) {
+  for (const ticket of relations) {
    const existing = byId.get(ticket.id);
    if (existing) existing.push(ticket);
    else byId.set(ticket.id, [ticket]);
   }
-  for (const ticket of snapshot.tickets) {
+  for (const ticket of relations) {
    const seen = new Set<string>();
    const pending = [ticket.id];
    const reachable: ExplorerTicket[] = [];
@@ -64,7 +72,8 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
   }
  }
  const assigned = new Set(snapshot.initiatives.flatMap(item => item.ticketIds));
- if (snapshot.backend === "github") for (const initiative of snapshot.initiatives) assigned.add(initiative.id);
+ // GitHub specs and Jira epics are also tracker records. Their initiative holds them.
+ if (snapshot.backend === "github" || snapshot.backend === "jira") for (const initiative of snapshot.initiatives) assigned.add(initiative.id);
  const unassigned = snapshot.tickets.filter(ticket => !assigned.has(ticket.id)).map(ticket => ticket.id);
  let groupId = "unassigned";
  while (snapshot.initiatives.some(item => item.id === groupId)) groupId = `_${groupId}`;
@@ -74,7 +83,12 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
    : `https://${context.canonicalOrigin.replace(/^https?:\/\//, "").replace(/\.git$/, "")}/issues`;
  snapshot.initiatives.push({ id: groupId, title: "Ungrouped", ref: collectionRef, ticketIds: unassigned, rootTicketIds: [...unassigned], body: "Records without an assigned initiative.", group: true });
  await session.validate();
- return scope && backend !== "jira" ? scopedSnapshot(snapshot, scope) : snapshot;
+ const result = scope ? scopedSnapshot(snapshot, scope) : snapshot;
+ for (const { ticket, blocker } of unmirrored) {
+  if (!result.tickets.includes(ticket)) continue;
+  diagnostics?.push({ ref: ticket.ref, error: `Blocker not in the mirror: ${blocker}. Jira issue ${ticket.id} is blocked by ${blocker}. Add blockers to mirror.closure, then run jira-mirror.ts sync.` });
+ }
+ return result;
 }
 
 /** Discover numbered ADRs in the resolved alignment store, not the ticket store. */
@@ -547,35 +561,55 @@ async function githubSnapshot(context: SharedAgentContext, exec: Exec, scope?: {
  return { backend: "github", tickets: [...tickets.values()], initiatives: [...initiatives.values()] };
 }
 
-async function jiraSnapshot(context: SharedAgentContext, exec: Exec, config: Fields, scope?: { ref: string }): Promise<ExplorerSnapshot> {
- if (!scope) throw new Error("Jira backend loads one ticket at a time. Pass the canonical ticket reference.");
+/**
+ * Read the Jira mirror that `jira-mirror.ts sync` writes: one `<KEY>.md` file for each issue.
+ * Epics become initiatives. `parent` gives membership, and `blocked_by` gives ticket edges.
+ */
+async function jiraSnapshot(context: SharedAgentContext, session: DocumentReadSession, config: Fields): Promise<ExplorerSnapshot> {
  const site = jiraSite(config);
- const cli = text(config.cli, "Jira tracker cli").split(/\s+/);
- const key = new RegExp(`^${site.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/browse/([A-Z][A-Z0-9_]*-[1-9]\\d*)$`).exec(scope.ref)?.[1];
- if (!key) throw new Error(`Jira ticket reference must be ${site}/browse/<KEY>.`);
- const result = await exec(cli[0]!, [...cli.slice(1), "get-issue", key, "summary,status,issuetype,issuelinks,description", "0"], context.repositoryRoot);
- if (result.code !== 0) throw new Error(`Jira cli failed (exit ${result.code}): ${result.stdout}`);
- const issue = object(JSON.parse(result.stdout), "Jira issue");
- if (issue.key !== key) throw new Error("Jira returned a different issue identity.");
- const fields = object(issue.fields, "Jira issue fields");
+ if (config.mirror == null) throw new Error("docs/agents/issue-tracker.md has no mirror block. Add mirror.root and mirror.queries, then run jira-mirror.ts sync.");
+ const alignment = await resolveContextRecord(context, { kind: "alignment" });
+ if (!alignment.root) throw new Error("Alignment has no file-backed store for the Jira mirror.");
+ const mirrorRoot = join(alignment.root, validateRelativePath(object(config.mirror, "Jira mirror").root, "mirror.root"));
+ const files = (await session.collect(mirrorRoot, /\.md$/, alignment.root)).filter(file => dirname(file) === mirrorRoot);
+ if (!files.length) throw new Error(`Jira mirror ${mirrorRoot} has no issue files. Run jira-mirror.ts sync --repository ${context.repositoryRoot} to fill it.`);
+ const { documents, errors } = await session.readAll(files.map(file => ({ file, root: alignment.root! })));
+ if (errors.size) throw errors.values().next().value;
  const tickets: ExplorerTicket[] = [];
- const blockedBy: string[] = [];
- for (const value of list(fields.issuelinks ?? [], "Jira issue links")) {
-  const link = object(value, "Jira issue link");
-  if (object(link.type, "Jira link type").inward !== "is blocked by" || link.inwardIssue == null) continue;
-  const blocker = object(link.inwardIssue, "Jira blocking issue");
-  const id = text(blocker.key, "Jira blocking issue key");
-  const status = jiraStatus(object(blocker.fields, "Jira blocking issue fields").status, "Jira blocking issue status");
-  blockedBy.push(id);
-  tickets.push({ id, title: id, ref: `${site}/browse/${id}`, backend: "jira", status: status.state, fields: { status: status.name }, blockedBy: [], body: "" });
+ const parents = new Map<string, string>();
+ const epics: ExplorerInitiative[] = [];
+ for (const file of files) {
+  const doc = documents.get(file)!;
+  const label = `Jira mirror file ${basename(file)}`;
+  if (doc.fields.schema !== MIRROR_SCHEMA) throw new Error(`${label} schema ${String(doc.fields.schema)} is not ${MIRROR_SCHEMA}. Run jira-mirror.ts sync with the same version of these scripts.`);
+  const id = text(doc.fields.id, `${label} id`);
+  if (`${id}.md` !== basename(file)) throw new Error(`${label} id ${id} does not match its file name ${basename(file)}.`);
+  const ref = `${site}/browse/${id}`;
+  if (doc.fields.ref !== ref) throw new Error(`${label} ref must be ${ref}.`);
+  const title = text(doc.fields.title, `${label} title`);
+  const issueType = text(doc.fields.type, `${label} type`);
+  const statusName = text(doc.fields.status, `${label} status`);
+  const status = jiraStatus({ name: statusName, statusCategory: { key: text(doc.fields.status_category, `${label} status_category`) } }, `${label} status`);
+  // `jira-mirror.ts sync --full` writes `mirror_status: stale` for a key that no query returns.
+  if (doc.fields.mirror_status != null && doc.fields.mirror_status !== "stale") throw new Error(`${label} mirror_status ${String(doc.fields.mirror_status)} is not stale. Remove the field or run jira-mirror.ts sync.`);
+  const parent = doc.fields.parent == null ? undefined : text(doc.fields.parent, `${label} parent`);
+  if (parent) parents.set(id, parent);
+  const epic = issueType.toLowerCase() === "epic";
+  tickets.push({
+   id, title, ref, backend: "jira", documentType: epic ? "epic" : "issue", status: status.state, body: doc.body,
+   blockedBy: list(doc.fields.blocked_by ?? [], `${label} blocked_by`).map(value => text(value, `${label} blocker`)),
+   fields: { issueType, status: statusName, ...(parent ? { parent } : {}), ...(doc.fields.mirror_status === "stale" ? { stale: true } : {}), ...(doc.fields.synced_at == null ? {} : { synced_at: doc.fields.synced_at }) },
+  });
+  if (epic) epics.push({ id, title, ref, ticketIds: [], rootTicketIds: [], body: doc.body });
  }
- const issueType = text(object(fields.issuetype, "Jira issue type").name, "Jira issue type name");
- const status = jiraStatus(fields.status, "Jira status");
- tickets.push({
-  id: key, title: text(fields.summary, "Jira summary"), documentType: issueType.toLowerCase() === "epic" ? "epic" : "issue", fields: { issueType, status: status.name },
-  ref: `${site}/browse/${key}`, backend: "jira", status: status.state, blockedBy, body: fields.description == null ? "" : string(fields.description, "Jira description"),
- });
- return { backend: "jira", tickets, initiatives: [] };
+ // A parent outside the mirror leaves its child in "Ungrouped".
+ validateRelations([...parents].map(([id, parent]) => ({ id, blockedBy: parents.has(parent) ? [parent] : [] })), "Jira parent");
+ const byId = new Map(epics.map(epic => [epic.id, epic]));
+ for (const ticket of tickets) {
+  byId.get(parents.get(ticket.id) ?? "")?.rootTicketIds!.push(ticket.id);
+  for (let current = parents.get(ticket.id); current; current = parents.get(current)) byId.get(current)?.ticketIds.push(ticket.id);
+ }
+ return { backend: "jira", tickets, initiatives: epics };
 }
 
 function jiraStatus(value: unknown, label: string): { name: string; state: string } {

@@ -103,7 +103,7 @@ export function recordKind(ticket: ExplorerTicket): "ticket" | "research" | "pla
   const type = ticket.documentType?.trim().toLowerCase();
   if (!type || ["ticket", "issue", "task", "bug", "fix", "feature", "enhancement", "chore"].includes(type)) return "ticket";
   if (type === "research") return "research";
-  if (["spec", "specification", "initiative", "plan"].includes(type)) return "planning";
+  if (["spec", "specification", "initiative", "plan", "epic"].includes(type)) return "planning";
   return "record";
 }
 
