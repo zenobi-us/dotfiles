@@ -1,0 +1,9 @@
+schema: worktree-workflow/v2
+workflow_id: jira-tracker-mirror-03-snapshot-from-mirror
+ticket_ref: tracker/tickets/jira-tracker-mirror-03-snapshot-from-mirror.md
+initiative: jira-tracker-mirror
+event_root: events
+artifact_root: artifacts
+projection_root: projections
+latest_receipt: finish-finished-0022
+state: FINISHED

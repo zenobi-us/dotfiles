@@ -1,0 +1,11 @@
+feat(worktree): load the Jira tracker snapshot from mirror files for jira-tracker-mirror-03-snapshot-from-mirror
+
+The Jira snapshot reads tracker-mirror/v1 files and needs no scope.
+Epics become initiatives, parent gives membership and blocked_by gives
+ticket edges. A blocker that is not in the mirror is a warning through
+the diagnostics output; the ticket stays blocked. mirror_status: stale
+marks a record as stale in the Herdr-app tree.
+
+Ticket: tracker/tickets/jira-tracker-mirror-03-snapshot-from-mirror.md
+Review: workflows/jira-tracker-mirror-03-snapshot-from-mirror/artifacts/reviews/review-review-0015.md (SUCCESS, 83add986)
+ADR: none applies

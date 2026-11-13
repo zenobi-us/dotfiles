@@ -1,0 +1,85 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-03-snapshot-from-mirror",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-03-snapshot-from-mirror",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-03-snapshot-from-mirror",
+  "source_branch": "feat/jira-tracker-mirror-03-snapshot-from-mirror",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-03-snapshot-from-mirror",
+    "ref": "tracker/tickets/jira-tracker-mirror-03-snapshot-from-mirror.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-03-snapshot-from-mirror.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror"
+  },
+  "source_commit": "498bed919039bcaf27df3e98be67e58f0ac530d4",
+  "source_tree": "edf3774fee84a03b479d3c916dba5c820bde69cb",
+  "created_at": "2026-11-13T02:22:47.257Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "receipt_id": "start-0003",
+  "phase": "start",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "implementation-0002",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror/events/start-0001.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror/artifacts/snapshots/pr-draft-implementation-0002.md"
+    }
+  ],
+  "status": "completed",
+  "validation": [
+    {
+      "command": "result-delivery read; ack",
+      "result": "passed",
+      "details": "Envelope sha256 c0e48595 acknowledged; canonical JSON identical to implementation-0002.yaml."
+    },
+    {
+      "command": "git rev-parse HEAD HEAD^{tree}; git status --porcelain",
+      "result": "passed",
+      "details": "Worktree at 498bed91 / edf3774f, clean. Commits 458559a9, 498bed91 on top of master 721046aa."
+    }
+  ],
+  "implementation_summary": "jiraSnapshot reads tracker-mirror/v1 files under mirror.root with no scope; epics become initiatives, parent gives membership, blocked_by gives edges; stale rows are marked in the Herdr-app tree.",
+  "known_limits": [
+    "Live reckonone snapshot fails: RWR-12833 is blocked by POR-6673, which the mirror lacks. Ticket 04 adds blocker closure.",
+    "Tracker pane evidence not captured; the installed mod runs from the base checkout.",
+    "Typecheck errors in bundles/developer tui-plan.ts(25,17) and bundles/agent-core muxer-subagents router.ts(154,9) are outside this change."
+  ],
+  "child_run_id": "d0815f96-62f6-485e-920d-efddedb0f19a",
+  "child_pane_id": "t1s",
+  "child_shutdown": {
+    "state": "completed",
+    "completion_sequence": 2,
+    "terminal_removed": true
+  },
+  "publication": {
+    "source_committed": true,
+    "workflow_records_committed": false,
+    "pushed": false,
+    "merged": false,
+    "ticket_completed": false
+  },
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror/events/start-0003.yaml"
+    }
+  ]
+}

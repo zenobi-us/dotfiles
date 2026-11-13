@@ -1,0 +1,97 @@
+{
+  "schema": "worktree-receipt/v1",
+  "workflow_id": "jira-tracker-mirror-03-snapshot-from-mirror",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-03-snapshot-from-mirror",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-03-snapshot-from-mirror",
+  "source_branch": "feat/jira-tracker-mirror-03-snapshot-from-mirror",
+  "base_branch": "master",
+  "muxer": "herdr-app",
+  "agent": "claude",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-03-snapshot-from-mirror",
+    "ref": "tracker/tickets/jira-tracker-mirror-03-snapshot-from-mirror.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-03-snapshot-from-mirror.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror"
+  },
+  "source_commit": "498bed919039bcaf27df3e98be67e58f0ac530d4",
+  "source_tree": "edf3774fee84a03b479d3c916dba5c820bde69cb",
+  "created_at": "2026-11-13T02:30:20.441Z",
+  "pane_id": null,
+  "session_id": "herdr-app:t8",
+  "receipt_id": "review-complete-0006",
+  "phase": "review",
+  "event": "phase-complete",
+  "attempt": 1,
+  "parent_receipt": "review-0005",
+  "inputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror/events/review-start-0004.yaml"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror/events/review-0005.yaml"
+    },
+    {
+      "kind": "review-artifact",
+      "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror/artifacts/reviews/review-review-0005.md"
+    }
+  ],
+  "status": "completed",
+  "verdict": "FAILURE",
+  "validation": [
+    {
+      "command": "result-delivery read",
+      "result": "passed",
+      "details": "Content identical to review-0005.yaml."
+    },
+    {
+      "command": "result-delivery ack",
+      "result": "passed",
+      "details": "sha256 2b54e0eaa6cfc8182d1ed58c0e43df6c0c20ae8728e258b56a5dda265e9ea8df"
+    },
+    {
+      "command": "git rev-parse HEAD; git status --porcelain",
+      "result": "passed",
+      "details": "498bed91, clean."
+    }
+  ],
+  "operator_decisions": [
+    {
+      "finding": "F2",
+      "decision": "User chose: a blocker that is not in the mirror is a warning, not an error, for scoped and unscoped loads."
+    }
+  ],
+  "parent_notes": [
+    {
+      "finding": "F1",
+      "note": "The parent handoff told the implementer to read stale: true. The initiative specifies mirror_status: stale. The handoff was wrong."
+    }
+  ],
+  "child_run_id": "061ccc7f-2905-4bfd-9e08-b04ad11aa747",
+  "child_pane_id": "t1w",
+  "child_shutdown": {
+    "state": "completed",
+    "completion_sequence": 2,
+    "terminal_removed": true
+  },
+  "publication": {
+    "source_committed": true,
+    "workflow_records_committed": false,
+    "pushed": false,
+    "merged": false,
+    "ticket_completed": false
+  },
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror/events/review-complete-0006.yaml"
+    }
+  ]
+}

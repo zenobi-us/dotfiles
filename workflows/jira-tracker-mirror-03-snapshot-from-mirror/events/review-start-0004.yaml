@@ -1,0 +1,62 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "review-start-0004",
+  "workflow_id": "jira-tracker-mirror-03-snapshot-from-mirror",
+  "phase": "review",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": "start-0003",
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-03-snapshot-from-mirror",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-03-snapshot-from-mirror",
+  "source_branch": "feat/jira-tracker-mirror-03-snapshot-from-mirror",
+  "base_branch": "master",
+  "source_commit": "498bed919039bcaf27df3e98be67e58f0ac530d4",
+  "source_tree": "edf3774fee84a03b479d3c916dba5c820bde69cb",
+  "created_at": "2026-11-13T02:25:52.938Z",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "claude",
+  "session_id": "herdr-app:t8",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-03-snapshot-from-mirror",
+    "ref": "tracker/tickets/jira-tracker-mirror-03-snapshot-from-mirror.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-03-snapshot-from-mirror.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/jira-tracker-mirror-03-snapshot-from-mirror.md"
+    },
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror/events/implementation-0002.yaml"
+    },
+    {
+      "kind": "snapshot",
+      "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror/artifacts/snapshots/pr-draft-implementation-0002.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror/events/review-start-0004.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery_mode": "begin",
+  "recovery_reason": "Inspector: review/begin after start-0003. User approved the review. Review target frozen to the clean source commit and tree.",
+  "ownership_observations": "This session holds the claim (721046aa). No active agent session for the worktree; implementation terminal t1s removed.",
+  "validation": [
+    {
+      "command": "records.ts check --ticket jira-tracker-mirror-03-snapshot-from-mirror",
+      "result": "passed"
+    }
+  ]
+}

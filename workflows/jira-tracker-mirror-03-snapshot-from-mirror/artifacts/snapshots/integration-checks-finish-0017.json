@@ -1,0 +1,5 @@
+[
+ {"argv": ["mise", "-C", "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree", "exec", "--", "bun", "test"]},
+ {"argv": ["mise", "-C", "mise/conf.d/devtools-agent/bundles/agent-core", "exec", "--", "bun", "install", "--no-save"]},
+ {"argv": ["mise", "-C", "mise/conf.d/devtools-agent/bundles/agent-core", "exec", "--", "bun", "run", "typecheck"]}
+]

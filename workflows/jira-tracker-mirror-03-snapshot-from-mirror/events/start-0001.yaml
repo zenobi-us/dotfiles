@@ -1,0 +1,54 @@
+{
+  "schema": "worktree-receipt/v1",
+  "receipt_id": "start-0001",
+  "workflow_id": "jira-tracker-mirror-03-snapshot-from-mirror",
+  "phase": "start",
+  "event": "phase-start",
+  "attempt": 1,
+  "parent_receipt": null,
+  "repository": "/home/zenobius/Projects/dotfiles",
+  "worktree": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-03-snapshot-from-mirror",
+  "workspace_path": "/home/zenobius/Projects/dotfiles.worktrees/feat-jira-tracker-mirror-03-snapshot-from-mirror",
+  "source_branch": "feat/jira-tracker-mirror-03-snapshot-from-mirror",
+  "base_branch": "master",
+  "source_commit": "721046aa551dbe01a8e3bd3f560c81177ce1224c",
+  "source_tree": "489d36c4ec6e9cad98b6279c0bcff285fa6e9f1f",
+  "created_at": "2026-11-13T02:13:40.789Z",
+  "muxer": "herdr-app",
+  "pane_id": null,
+  "agent": "claude",
+  "session_id": "herdr-app:t8",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "jira-tracker-mirror-03-snapshot-from-mirror",
+    "ref": "tracker/tickets/jira-tracker-mirror-03-snapshot-from-mirror.md"
+  },
+  "ticket_ref": "tracker/tickets/jira-tracker-mirror-03-snapshot-from-mirror.md",
+  "workflow": {
+    "store": "repository",
+    "root": "/home/zenobius/Projects/dotfiles",
+    "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror"
+  },
+  "inputs": [
+    {
+      "kind": "ticket",
+      "ref": "tracker/tickets/jira-tracker-mirror-03-snapshot-from-mirror.md"
+    }
+  ],
+  "outputs": [
+    {
+      "kind": "receipt",
+      "ref": "workflows/jira-tracker-mirror-03-snapshot-from-mirror/events/start-0001.yaml"
+    }
+  ],
+  "status": "started",
+  "recovery_mode": "begin",
+  "recovery_reason": "Inspector: start/begin. No receipts, source commits, or workspace. Blocker jira-tracker-mirror-02-sync-query is completed.",
+  "ownership_observations": "Ticket was unclaimed; this session claimed it in 721046aa. No receipts or goal reservations. Worktree created by this parent through Worktrunk.",
+  "validation": [
+    {
+      "command": "records.ts check --ticket jira-tracker-mirror-03-snapshot-from-mirror",
+      "result": "passed"
+    }
+  ]
+}

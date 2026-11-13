@@ -1,0 +1,15 @@
+schema: worktree-latest-status/v1
+workflow_id: jira-tracker-mirror-03-snapshot-from-mirror
+ticket: tracker/tickets/jira-tracker-mirror-03-snapshot-from-mirror.md
+state: FINISHED
+latest_receipt: finish-finished-0022
+reviewed_source_commit: 83add9860a00038b6af663c3d9c27272f3152b7c
+reviewed_source_tree: d4d6a5f81df222fbf786251629f4403617425169
+latest_review: review-0015
+latest_review_verdict: SUCCESS
+integration_method: squash
+merged_commit: 05611da9d54c9e719058aeecdccd28327824fe24
+remote_observed_commit: 6f3325ccb3a1660a9c72fe8330bfd8d520b0d149
+ticket_completed: true
+worktree_removed: true
+next: none
