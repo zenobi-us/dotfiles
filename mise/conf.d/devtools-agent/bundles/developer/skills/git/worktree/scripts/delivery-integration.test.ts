@@ -95,6 +95,46 @@ test("phase writer publishes authoritative YAML and a verifiable result in one o
   expect(await readFile(event, "utf8")).toBe(source);
 }, 120_000);
 
+test("v2 child delivery and parent checkpoints use separate immutable result boundaries", async () => {
+  const f = await fixture();
+  const context = await f.context("worktree-receipt/v2", "v2-result");
+  const input = join(f.directory, "v2.json");
+  const isolatedConfig = join(f.directory, "wt.toml");
+  await writeFile(isolatedConfig, "");
+  const created = await run("wt", ["--config", isolatedConfig, "-C", f.repository, "switch", "--create", "feature/TASK-1", "--base", "main", "--no-cd", "--no-hooks"]);
+  expect(created.code).toBe(0);
+  const listed = await run("wt", ["--config", isolatedConfig, "-C", f.repository, "list", "--format=json"]);
+  const inventory = JSON.parse(listed.stdout);
+  const row = (Array.isArray(inventory) ? inventory : inventory.items).find((item: { branch: string }) => item.branch === "feature/TASK-1");
+  const source = row.worktree?.path ?? row.path;
+  const child: Record<string, unknown> = { ...f.receipt, schema: "worktree-receipt/v2", worktree: source, workspace_path: source, source_branch: "feature/TASK-1" };
+  await writeFile(input, JSON.stringify({ ...child, worktree: f.repository, workspace_path: f.repository }));
+  const dirtying = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  expect(dirtying.code).not.toBe(0);
+  expect(dirtying.stderr).toContain("separate context checkout");
+  await writeFile(input, JSON.stringify({ ...child, source_branch: "feature/OTHER" }));
+  const wrongBranch = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  expect(wrongBranch.code).not.toBe(0);
+  expect(wrongBranch.stderr).toContain("current source branch");
+  await writeFile(input, JSON.stringify(child));
+  const result = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  expect(result.code).toBe(0);
+  expect((await run("git", ["-C", source, "status", "--porcelain=v1"])).stdout).toBe("");
+  const delivered = await readFile(context.target, "utf8");
+  const parent = { ...child, receipt_id: "parent-complete-0003", event: "phase-complete", parent_receipt: child.receipt_id, pane_id: null };
+  await writeFile(input, JSON.stringify(parent));
+  const completed = await run(writer, ["--parent-event", "--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  expect(completed.code).toBe(0);
+  expect(Bun.YAML.parse(await readFile(join(f.workflow.path, "events/parent-complete-0003.yaml"), "utf8"))).toEqual(parent);
+  expect(await readFile(context.target, "utf8")).toBe(delivered);
+  const duplicate = await run(writer, ["--parent-event", "--repository", f.repository, "--input", input]);
+  expect(duplicate.code).not.toBe(0);
+  await writeFile(input, JSON.stringify({ ...parent, receipt_id: "missing-parent", parent_receipt: "absent" }));
+  const missing = await run(writer, ["--parent-event", "--repository", f.repository, "--input", input]);
+  expect(missing.code).not.toBe(0);
+  expect(missing.stderr).toContain("parent event is missing");
+}, 120_000);
+
 test.each(["blocked", "failed"])("phase writer delivers a %s review without inventing a verdict", async (status) => {
   const f = await fixture();
   const context = await f.context("worktree-receipt/v1", "review-" + status);

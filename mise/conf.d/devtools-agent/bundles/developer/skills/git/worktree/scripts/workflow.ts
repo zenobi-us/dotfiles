@@ -9,11 +9,16 @@ import { inspectWorkflow } from "./inspection";
 import { chronologicalReceipts, receiptEvent, receiptPhase } from "./recovery";
 import { DocumentReadSession } from "./document-cache";
 import type { ParsedDocument } from "./document-cache";
+import { validateReceiptContract } from "./receipt-contract";
 
 type Fields = Record<string, unknown>;
 type Document = ParsedDocument;
 
-export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Exec, scope?: { ref: string; kind?: "ticket" | "initiative" }): Promise<ExplorerSnapshot> {
+/**
+ * Strict by default. A diagnostic sink opts into partial record inventory for
+ * coordination; configuration, backend, and read-race failures remain fatal.
+ */
+export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Exec, scope?: { ref: string; kind?: "ticket" | "initiative" }, diagnostics?: { ref: string; error: string }[]): Promise<ExplorerSnapshot> {
  if (context.error) throw new Error(context.error);
  const session = new DocumentReadSession(context, exec);
  let backend = context.routes.tickets.adapter;
@@ -32,11 +37,32 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
    if (backend !== context.routes.tickets.adapter) throw new Error("Tracker backend disagrees with the resolved tickets route. Update the tracker definition or route configuration.");
   }
  }
- const snapshot = backend === "local-markdown" ? await localSnapshot(context, session, localDefinition)
+ const snapshot = backend === "local-markdown" ? await localSnapshot(context, session, localDefinition, diagnostics)
   : backend === "github" ? await githubSnapshot(context, exec, scope)
    : backend === "jira" ? await jiraSnapshot(context, exec, config, scope)
     : (() => { throw new Error(`Unsupported tracker backend: ${backend}`); })();
- validateRelations(snapshot.tickets, "ticket blocker");
+ if (!diagnostics) validateRelations(snapshot.tickets, "ticket blocker");
+ else {
+  const byId = new Map<string, ExplorerTicket[]>();
+  for (const ticket of snapshot.tickets) {
+   const existing = byId.get(ticket.id);
+   if (existing) existing.push(ticket);
+   else byId.set(ticket.id, [ticket]);
+  }
+  for (const ticket of snapshot.tickets) {
+   const seen = new Set<string>();
+   const pending = [ticket.id];
+   const reachable: ExplorerTicket[] = [];
+   while (pending.length) {
+    const id = pending.pop()!;
+    if (seen.has(id)) continue;
+    seen.add(id);
+    for (const row of byId.get(id) ?? []) { reachable.push(row); pending.push(...row.blockedBy); }
+   }
+   try { validateRelations(reachable, "ticket blocker"); }
+   catch (error) { diagnostics.push({ ref: ticket.ref, error: error instanceof Error ? error.message : String(error) }); }
+  }
+ }
  const assigned = new Set(snapshot.initiatives.flatMap(item => item.ticketIds));
  if (snapshot.backend === "github") for (const initiative of snapshot.initiatives) assigned.add(initiative.id);
  const unassigned = snapshot.tickets.filter(ticket => !assigned.has(ticket.id)).map(ticket => ticket.id);
@@ -91,6 +117,16 @@ function scopedSnapshot(snapshot: ExplorerSnapshot, scope: { ref: string; kind?:
  };
 }
 
+export interface WorkflowReadResult extends TicketWorkflow {
+ inventory?: { envelopesValid: boolean };
+}
+
+/** Observation mode validates envelopes, never source objects, phase outcomes, or publication. */
+export interface WorkflowReadOptions {
+ mode: "coordination";
+ repositoryIdentities?: Map<string, Promise<string | undefined>>;
+}
+
 /**
  * Load immutable workflow history without changing receipt fields.
  * Closed tickets can retain historical repository-worktree roots, older envelopes
@@ -98,14 +134,16 @@ function scopedSnapshot(snapshot: ExplorerSnapshot, scope: { ref: string; kind?:
  * FINISHED receipt, recorded publication/completion, an integrated merge commit,
  * and matching source commit/tree pairs. It never reports current source freshness.
  * Active workflows still require the current routes and a usable source worktree.
+ * Coordination mode returns separate envelope observations and leaves
+ * inspection.historyValid false; those observations do not authorize a phase.
  */
-export async function loadTicketWorkflow(context: SharedAgentContext, ticket: ExplorerTicket, exec: Exec): Promise<TicketWorkflow> {
+export async function loadTicketWorkflow(context: SharedAgentContext, ticket: ExplorerTicket, exec: Exec, options?: WorkflowReadOptions): Promise<WorkflowReadResult> {
  const session = new DocumentReadSession(context, exec);
- const result = await loadWorkflowHistory(context, ticket, exec, session);
- result.inspection = await inspectWorkflow(context, ticket, result, exec);
+ const result = await loadWorkflowHistory(context, ticket, exec, session, options);
+ if (!options) result.inspection = await inspectWorkflow(context, ticket, result, exec);
  const archive = ["completed", "closed", "done", "resolved", "complete"].includes(ticket.status.trim().toLowerCase());
- if (!archive && result.inspection.historyValid && !result.error) {
-  const source = result.inspection.source;
+ if (!options && !archive && result.inspection!.historyValid && !result.error) {
+  const source = result.inspection!.source;
   if (source.state === "available") {
    result.sourceCommit = source.commit;
    result.sourceTree = source.tree;
@@ -116,8 +154,9 @@ export async function loadTicketWorkflow(context: SharedAgentContext, ticket: Ex
  try { await session.validate(); }
  catch (error) {
   result.error = error instanceof Error ? error.message : String(error);
-  result.inspection.historyValid = false;
-  result.inspection.historyError = result.error;
+  if (result.inventory) result.inventory.envelopesValid = false;
+  result.inspection!.historyValid = false;
+  result.inspection!.historyError = result.error;
   delete result.recordedAttempts;
   delete result.sourceCommit;
   delete result.sourceTree;
@@ -125,8 +164,8 @@ export async function loadTicketWorkflow(context: SharedAgentContext, ticket: Ex
  return result;
 }
 
-async function loadWorkflowHistory(context: SharedAgentContext, ticket: ExplorerTicket, exec: Exec, session: DocumentReadSession): Promise<TicketWorkflow> {
- const result: TicketWorkflow = {
+async function loadWorkflowHistory(context: SharedAgentContext, ticket: ExplorerTicket, exec: Exec, session: DocumentReadSession, options?: WorkflowReadOptions): Promise<WorkflowReadResult> {
+ const result: WorkflowReadResult = {
   ticketId: ticket.id, receipts: [], events: [], recordedAttempts: { review: 0, fix: 0 },
   inspection: { historyValid: false, source: { state: "unknown" }, ownership: "unknown", worktrees: [], commits: [], artifacts: [] },
  };
@@ -142,7 +181,7 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
   const events = join(record.path, "events");
   const eventFiles = await session.collect(events, /\.(md|yaml|yml|json)$/, record.root);
   const { documents, errors: readErrors } = await session.readAll(eventFiles.map(file => ({ file, root: record.root! })));
-  const repositoryIdentities = new Map<string, Promise<string | undefined>>();
+  const repositoryIdentities = options?.repositoryIdentities ?? new Map<string, Promise<string | undefined>>();
   const repositoryIdentity = (path: string): Promise<string | undefined> => {
    const key = resolve(path);
    let identity = repositoryIdentities.get(key);
@@ -167,7 +206,7 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     const fields = supplements.get(file) ?? doc.fields;
     event.fields = doc.fields;
     event.body = doc.body;
-    if (fields.schema !== "worktree-receipt/v1") throw new Error("Event must use schema worktree-receipt/v1.");
+    validateReceiptContract(fields);
     if (fields.workflow_id !== workflowId) throw new Error("Receipt workflow_id does not match the selected ticket.");
     const identity = object(fields.ticket, "receipt ticket");
     if (String(identity.id) !== ticket.id || identity.backend !== ticket.backend || identity.ref !== ticket.ref || fields.ticket_ref !== ticket.ref) throw new Error("Receipt ticket identity or ref does not match the selected ticket.");
@@ -254,6 +293,10 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
   if (errors.length) {
    result.error = errors.join("\n");
    result.inspection!.historyError = result.error;
+   return result;
+  }
+  if (options?.mode === "coordination") {
+   result.inventory = { envelopesValid: true };
    return result;
   }
   const newest = result.receipts[0];
@@ -346,58 +389,94 @@ async function historySupplements(
  return effective;
 }
 
-async function localSnapshot(context: SharedAgentContext, session: DocumentReadSession, definition?: { file: string; root: string }): Promise<ExplorerSnapshot> {
+async function localSnapshot(context: SharedAgentContext, session: DocumentReadSession, definition?: { file: string; root: string }, diagnostics?: { ref: string; error: string }[]): Promise<ExplorerSnapshot> {
  const ticketsRecord = await resolveContextRecord(context, { kind: "tickets" });
  const initiativesRecord = await resolveContextRecord(context, { kind: "initiatives" });
  if (!ticketsRecord.path || !ticketsRecord.root || !initiativesRecord.path || !initiativesRecord.root || !["markdown", "local-markdown"].includes(initiativesRecord.adapter)) throw new Error("Local Markdown requires file-backed ticket and initiative routes.");
  const ticketFiles = context.checkoutAvailable === false && ticketsRecord.store === "repository" ? [] : await session.collect(ticketsRecord.path, /\.md$/, ticketsRecord.root);
  const initiativeFiles = context.checkoutAvailable === false && initiativesRecord.store === "repository" ? [] : await session.collect(initiativesRecord.path, /\.md$/, initiativesRecord.root);
  const { documents, errors } = await session.readAll([...(definition ? [definition] : []), ...ticketFiles.map(file => ({ file, root: ticketsRecord.root! })), ...initiativeFiles.filter(file => relative(initiativesRecord.path!, file).split(/[\\/]/).length === 2 && file.endsWith("/index.md")).map(file => ({ file, root: initiativesRecord.root! }))]);
- if (errors.size) throw errors.values().next().value;
+ if (!diagnostics && errors.size) throw errors.values().next().value;
+ if (definition && errors.has(definition.file)) throw errors.get(definition.file);
  if (definition && text(documents.get(definition.file)!.fields.backend, "tracker backend") !== context.routes.tickets.adapter) throw new Error("Tracker backend disagrees with the resolved tickets route. Update the tracker definition or route configuration.");
  const tickets: ExplorerTicket[] = [];
  const paths = new Map<string, string>();
  const parents = new Map<string, string>();
  for (const file of ticketFiles) {
-  const doc = documents.get(file)!;
-  try { assertRecord(doc.fields, "ticket", { allowLegacy: true, expectedId: basename(file, ".md") }); }
-  catch (error) { throw new Error(`Unreadable record ${file}: ${error instanceof Error ? error.message : String(error)}`); }
-  const id = scalar(doc.fields.id, "ticket id");
-  const documentType = doc.fields.type == null ? undefined : text(doc.fields.type, "ticket type");
-  tickets.push({ id, title: text(doc.fields.title, "ticket title"), documentType, fields: doc.fields, ref: `${ticketsRecord.ref}/${relative(ticketsRecord.path, file).split("\\").join("/")}`, backend: "local-markdown", status: doc.fields.work_status == null ? doc.fields.status == null ? "unavailable" : text(doc.fields.status, "record status") : text(doc.fields.work_status, "ticket work_status"), blockedBy: list(doc.fields.blocked_by ?? [], "ticket blocked_by").map(value => scalar(value, "ticket blocker")), body: doc.body });
-  paths.set(session.actual(file), id);
-  if (doc.fields.parent != null) parents.set(id, scalar(doc.fields.parent, "ticket parent"));
+  const ref = `${ticketsRecord.ref}/${relative(ticketsRecord.path, file).split("\\").join("/")}`;
+  try {
+   if (errors.has(file)) throw errors.get(file);
+   const doc = documents.get(file)!;
+   assertRecord(doc.fields, "ticket", { allowLegacy: true, expectedId: basename(file, ".md") });
+   const id = scalar(doc.fields.id, "ticket id");
+   const documentType = doc.fields.type == null ? undefined : text(doc.fields.type, "ticket type");
+   const parent = doc.fields.parent == null ? undefined : scalar(doc.fields.parent, "ticket parent");
+   const ticket: ExplorerTicket = { id, title: text(doc.fields.title, "ticket title"), documentType, fields: doc.fields, ref, backend: "local-markdown", status: doc.fields.work_status == null ? doc.fields.status == null ? "unavailable" : text(doc.fields.status, "record status") : text(doc.fields.work_status, "ticket work_status"), blockedBy: list(doc.fields.blocked_by ?? [], "ticket blocked_by").map(value => scalar(value, "ticket blocker")), body: doc.body };
+   paths.set(session.actual(file), id);
+   if (parent) parents.set(id, parent);
+   tickets.push(ticket);
+  } catch (error) {
+   const message = `Unreadable record ${file}: ${error instanceof Error ? error.message : String(error)}`;
+   if (!diagnostics) throw new Error(message);
+   diagnostics.push({ ref, error: message });
+  }
  }
  const initiatives: ExplorerInitiative[] = [];
  for (const file of initiativeFiles) {
   if (relative(initiativesRecord.path, file).split(/[\\/]/).length !== 2 || !file.endsWith("/index.md")) continue;
-  const doc = documents.get(file)!;
   const id = dirname(relative(initiativesRecord.path, file));
-  assertRecord(doc.fields, "initiative", { allowLegacy: true, expectedId: id });
-  const ticketIds: string[] = [];
-  for (const rawLink of doc.links) {
-   const url = text(object(rawLink, "initiative link").url, "initiative link URL");
-   if (url.startsWith("#") || url.startsWith("//") || (/^[A-Za-z][A-Za-z0-9+.-]*:/.test(url) && !url.startsWith("file:"))) continue;
-   const target = url.startsWith("file:") ? fileURLToPath(new URL(url)) : resolve(dirname(file), decodeURIComponent(url.split(/[?#]/, 1)[0]!));
-   if (context.checkoutAvailable === false && ticketsRecord.store === "repository") continue;
-   if (!within(ticketsRecord.path, target) || !target.endsWith(".md")) continue;
-   await contained(ticketsRecord.path, target);
-   const linkedId = paths.get(await realpath(target));
-   if (!linkedId) throw new Error("Initiative links to a missing or unknown ticket.");
-   ticketIds.push(linkedId);
+  const ref = `${initiativesRecord.ref}/${id}/index.md`;
+  try {
+   if (errors.has(file)) throw errors.get(file);
+   const doc = documents.get(file)!;
+   assertRecord(doc.fields, "initiative", { allowLegacy: true, expectedId: id });
+   const ticketIds: string[] = [];
+   for (const rawLink of doc.links) {
+    const url = text(object(rawLink, "initiative link").url, "initiative link URL");
+    if (url.startsWith("#") || url.startsWith("//") || (/^[A-Za-z][A-Za-z0-9+.-]*:/.test(url) && !url.startsWith("file:"))) continue;
+    const target = url.startsWith("file:") ? fileURLToPath(new URL(url)) : resolve(dirname(file), decodeURIComponent(url.split(/[?#]/, 1)[0]!));
+    if (context.checkoutAvailable === false && ticketsRecord.store === "repository") continue;
+    if (!within(ticketsRecord.path, target) || !target.endsWith(".md")) continue;
+    try {
+     await contained(ticketsRecord.path, target);
+     const linkedId = paths.get(await realpath(target));
+     if (!linkedId) throw new Error("Initiative links to a missing or unknown ticket.");
+     ticketIds.push(linkedId);
+    } catch (error) {
+     if (!diagnostics) throw error;
+     diagnostics.push({ ref, error: `${target}: ${error instanceof Error ? error.message : String(error)}` });
+    }
+   }
+   if (doc.fields.schema === INITIATIVE_SCHEMA) {
+    const errors = validateInitiativeMembership(id, ticketIds, tickets.map(ticket => ({ id: ticket.id, parent: parents.get(ticket.id) })));
+    if (errors.length) {
+     if (!diagnostics) throw new Error(errors.join(" "));
+     diagnostics.push({ ref, error: errors.join(" ") });
+    }
+   }
+   initiatives.push({ id, title: doc.fields.title == null ? id : text(doc.fields.title, "initiative title"), ref, ticketIds: [...new Set(ticketIds)], rootTicketIds: [...new Set(ticketIds)], body: doc.body, ...(typeof doc.fields.phase === "string" && doc.fields.phase.trim() ? { phase: doc.fields.phase } : {}) });
+  } catch (error) {
+   if (!diagnostics) throw error;
+   diagnostics.push({ ref, error: error instanceof Error ? error.message : String(error) });
   }
-  if (doc.fields.schema === INITIATIVE_SCHEMA) {
-   const errors = validateInitiativeMembership(id, ticketIds, tickets.map(ticket => ({ id: ticket.id, parent: parents.get(ticket.id) })));
-   if (errors.length) throw new Error(errors.join(" "));
-  }
-  initiatives.push({ id, title: doc.fields.title == null ? id : text(doc.fields.title, "initiative title"), ref: `${initiativesRecord.ref}/${id}/index.md`, ticketIds: [...new Set(ticketIds)], rootTicketIds: [...new Set(ticketIds)], body: doc.body, ...(typeof doc.fields.phase === "string" && doc.fields.phase.trim() ? { phase: doc.fields.phase } : {}) });
  }
- validateRelations([...parents].map(([id, parent]) => ({ id, blockedBy: parents.has(parent) ? [parent] : [] })), "ticket hierarchy");
+ try { validateRelations([...parents].map(([id, parent]) => ({ id, blockedBy: parents.has(parent) ? [parent] : [] })), "ticket hierarchy"); }
+ catch (error) {
+  if (!diagnostics) throw error;
+  diagnostics.push({ ref: ticketsRecord.ref, error: error instanceof Error ? error.message : String(error) });
+ }
  for (const [id, parent] of parents) {
   if (context.checkoutAvailable === false && initiativesRecord.store === "repository" && !tickets.some(ticket => ticket.id === parent)) continue;
-  if (!tickets.some(ticket => ticket.id === parent) && !initiatives.some(item => item.id === parent)) throw new Error(`Record ${id} refers to missing parent ${parent}.`);
+  if (!tickets.some(ticket => ticket.id === parent) && !initiatives.some(item => item.id === parent)) {
+   const error = `Record ${id} refers to missing parent ${parent}.`;
+   if (!diagnostics) throw new Error(error);
+   diagnostics.push({ ref: tickets.find(ticket => ticket.id === id)!.ref, error });
+   continue;
+  }
   let current: string | undefined = parent;
-  while (current) {
+  const seen = new Set<string>();
+  while (current && !seen.has(current)) {
+   seen.add(current);
    for (const initiative of initiatives) if (initiative.id === current || initiative.ticketIds.includes(current)) initiative.ticketIds = [...new Set([...initiative.ticketIds, id])];
    current = parents.get(current);
   }

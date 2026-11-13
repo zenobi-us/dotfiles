@@ -53,6 +53,7 @@ export function recoveryDecision(ticket: Ticket, snapshot: { tickets: Ticket[] }
   if (workflow.ticketId !== ticket.id) return decision(undefined, "blocked", "Reload ticket workflow", "The workflow belongs to a different ticket. Reload its canonical history before choosing an action.");
   if (inspection?.historyValid === false || (!inspection && workflow.error)) return decision(undefined, "blocked", "Repair workflow history", inspection?.historyError ?? workflow.error ?? "Receipt history is invalid. Preserve the receipts and repair their identity or parent graph.");
   if (inspection?.finishVerified) return decision(undefined, "complete", "Finished", "Verified finish history records integration, publication, and ticket completion.");
+  if (inspection?.finishError?.startsWith("Remote verification unavailable:")) return decision(undefined, "blocked", "Fetch remote verification objects", inspection.finishError);
   if (inspection?.ownership === "active") return decision(undefined, "observe", "Observe active owner", "An agent may still own this workspace. Observe that session; do not restart or terminate it.");
   const unknownOwner = inspection?.ownership !== "inactive";
   const finishedTracker = completed(ticket);

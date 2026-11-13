@@ -21,8 +21,7 @@ Follow the shared decision and execution gates in `references/receipts.md` befor
   the workflow record.
 - Use Worktrunk, the `code-review` skill, and the `muxerContract` and
   `agentContract` resolved by the `muxer-subagents` skill.
-- Run the shared-context CLI from the repository. Record its route table and
-  alignment root.
+- Use the designated surviving context checkout, normally the base checkout, for repository-backed tracker and workflow publication. Run shared-context there and retain its absolute checkout path, route table, alignment root, workflow store, and reference. Verify that this checkout and the source worktree resolve to the same real Git common directory. Preserve shared-store routes; the source checkout is not the workflow publication root.
 - Follow `ALIGNMENT-ROOT.md`. Resolve the workflow root with
   `shared-context resolve workflow --id <ticket-id>`.
 - Store one review artifact at
@@ -44,21 +43,36 @@ Reject the request when any of these conditions is true:
 2. Read the latest implementation or fix receipt, the latest draft under
    `artifacts/snapshots/`, the ticket, context, ADRs, and agent instructions.
 3. Resolve the source branch, base branch, worktree path, and current source commit.
-4. Freeze the review target to the current source commit and tree. Record both in the review handoff.
+   Before freezing the target or launching the reviewer, recheck active streams across every initiative:
+
+   ```sh
+   "$WORKTREE_SKILL_ROOT/scripts/coordination.ts" <canonical-ticket-ref> --json \
+     --scope <reviewed-repository-relative-path>
+   ```
+
+   Repeat `--scope` for the actual reviewed files or directories. Apply [Concurrent work streams](../concurrency.md) and the CLI interpretation in [Cross-initiative coordination](start.md#cross-initiative-coordination). Include the assessment and authoritative input references in the review handoff.
+   Inspect the proposed ticket's owners, ownership, source observations, and receipt references, including linked-checkout owners without goal reservations. Reconcile liveness and uncertain ownership before a new review dispatch; empty reservations do not establish an unowned workspace.
+4. Freeze the review target to the current source commit and tree. Resolve the current base branch to its exact commit SHA as `review_base_commit`. Record these identities in the review handoff; later base movement does not change the frozen source.
 5. Create a new review phase-start receipt with a new attempt ID. Never overwrite an earlier receipt.
 6. Write a temporary review handoff containing:
    - ticket `ref` and backend;
    - source and base branches;
    - absolute worktree path;
    - frozen source commit and tree;
+   - `review_base_commit`: the exact observed base commit SHA;
+   - `changed_scope`: an array of reviewed repository-relative paths;
+   - `affected_contracts`: an array of interface, schema, dependency, generated-output, or resource contract names; use `[]` only when none apply;
+   - `integration_checks`: a non-empty array of `{argv: string[]}` commands selected from actual repository checks and ticket acceptance criteria;
    - implementation or fix receipt path;
    - draft PR snapshot path;
    - workflow store and reference;
+   - absolute designated context checkout path and its resolved context route table;
    - relevant ADRs and validation commands;
    - exact review artifact path;
    - review receipt path.
-7. Use the muxer spawn router in the existing worktree workspace with the review handoff and `--result-schema worktree-receipt/v1`. It opens the fresh session. Retain its delivery context and assigned result target. Do not send input to the previous session.
-8. Require the reviewer to write its phase-result through `scripts/write-result.ts`, following `references/receipts.md`. This writes the authoritative YAML event and delivers the same object without a second reporting call. Do not launch the agent a second time.
+7. Use the muxer spawn router in the existing worktree workspace with the review handoff and `--result-schema worktree-receipt/v2`. It opens the fresh session. Retain its delivery context and assigned result target. Do not send input to the previous session.
+8. Require the reviewer to write its phase-result with `"$WORKTREE_SKILL_ROOT/scripts/write-result.ts" --repository <absolute-designated-context-checkout> --input <prepared-result.json>`, following `references/receipts.md`. This writes authoritative YAML and delivers the parent result in one operation. Resolve publication through the supplied context checkout, not the review source cwd; keep all publication writes outside the frozen source. Do not launch the agent a second time.
+   Its v2 review result MUST record `review_base_commit`, `changed_scope`, `affected_contracts`, and `integration_checks` under those exact names. Require explicit changed paths; an empty `changed_scope` is appropriate only for a metadata-only source review. Require at least one real integration check with a non-empty executable/argument array. Keep source commit/tree exact and include the affected producer/consumer contracts in the review artifact.
 9. Wait through the muxer contract. Read the assigned transport result through result-delivery. Validate the authoritative receipt and artifact independently before acknowledgement. Do not extract JSON from pane output.
 10. Verify that the reviewer created one immutable phase-result receipt and one
     review artifact. The artifact MUST identify the frozen source commit.
@@ -73,7 +87,9 @@ Reject the request when any of these conditions is true:
 
 ## Review requirements
 
-Review the ticket requirements, repository standards, recorded validation, actual diff against the base branch, and every relevant ADR.
+Review the ticket requirements, repository standards, recorded validation, actual diff from `review_base_commit` to the frozen source, and every relevant ADR. Use the recorded commit identities, not a base branch name that can advance during review.
+
+Apply [Concurrent work streams](../concurrency.md) to the frozen source and record the observed review-base identity separately. Include cross-initiative interface/resource hazards and required integration checks in the review artifact. Base-only movement does not change the frozen source; source commit/tree changes require a fresh review.
 
 The reviewer MUST NOT modify source files, tests, configuration, generated files, or workflow state outside the review receipt and review artifact.
 

@@ -2,6 +2,10 @@
 
 Use receipts as the durable record for every worktree phase.
 
+New phase executions use `worktree-receipt/v2`. Retained `worktree-receipt/v1` events and explicitly authorized v1 envelope repairs keep their original semantics. Preserve original bytes. Mixed parent chains are valid. Read [Concurrent work streams](concurrency.md) before start, review, goal dispatch or finish. It owns cross-initiative coordination and the distinction between source review and integration validation.
+
+Use the absolute installed `scripts/write-result.ts` with `--parent-event --repository <absolute-repository> --input <event.json>` for parent records. Omit `--parent-event` for child results and use the assigned v2 delivery context. Parent writes do not consume child result slots. The writer validates store/source identity and refuses duplicate events.
+
 ## Workflow layout
 
 Resolve the absolute installed shared-context skill directory as `SHARED_CONTEXT_SKILL_ROOT`. Run its CLI from the target repository or surviving base worktree.
@@ -89,7 +93,7 @@ Graphs show `READY` only for `start` in `begin` mode. Start recovery and takeove
 
 An explicitly authorized history repair may restore missing receipts from retained source-worktree or Git records. Create byte-identical copies with exclusive writes; record their source and SHA-256. Preserve every original receipt and parent link.
 
-To supplement a malformed historical envelope, append a normal `worktree-receipt/v1` receipt with a valid parent and current source identity. Record `history_repair_reason`, `history_repair_authorization`, and `history_supplements`. List each target in `inputs`. Each supplement contains its root-relative event `ref`, exact original-byte `sha256`, and one or more of:
+To supplement a malformed historical envelope, append a normal receipt with a valid parent and current source identity. An authorized repair may retain the historical v1 envelope; do not invent v2 candidate evidence for an old integration. New phase executions use v2. Record `history_repair_reason`, `history_repair_authorization`, and `history_supplements`. List each target in `inputs`. Each supplement contains its root-relative event `ref`, exact original-byte `sha256`, and one or more of:
 
 - `evidence`: the missing `{store, ref}` envelope. It must identify an existing object in the independently resolved evidence store under this workflow. Preserve the recorded evidence; do not invent an execution.
 - `normalize_workflow_root: true`: normalize a historical repository-worktree store root to the current workflow store root. The original root must equal the recorded worktree; repository, store and workflow reference must already match.
@@ -112,7 +116,7 @@ For active workflows, `repository` MAY name another existing checkout of the sam
 Every ticket-phase receipt MUST include:
 
 ```yaml
-schema: worktree-receipt/v1
+schema: worktree-receipt/v2
 receipt_id: review-0003
 workflow_id: GH-42
 phase: review
@@ -182,13 +186,13 @@ Fix receipts MUST record the consumed review receipt IDs, resolved finding IDs, 
 
 ## Child result delivery
 
-Use the agent-core result-delivery skill for the transport, not for workflow authority. Before launch, the parent selects worktree-receipt/v1 as the result schema and retains the muxer router's delivery context and target. The context is independent of the phase-start receipt and its storage route.
+Use the agent-core result-delivery skill for transport, not workflow authority. Before launch, select worktree-receipt/v2 as the result schema and retain the muxer delivery context and target. Retained v1 handoffs must still receive v1 results; do not change a live handoff's schema.
 
-Launch the child through the muxer spawn router with --result-schema worktree-receipt/v1. That router opens the fresh pane, sets RESULT_DELIVERY_CONTEXT and binds the run identity. Do not open another pane or launch the child a second time through an agent contract. Include the phase-start reference and the result requirements in the handoff.
+Launch the child through the muxer spawn router with --result-schema worktree-receipt/v2. The router opens the fresh pane, sets RESULT_DELIVERY_CONTEXT and binds the run identity. Include the phase-start reference and result requirements. Do not launch the child twice.
 
 The child prepares its phase-result as one JSON object with the existing receipt fields. Resolve WORKTREE_SKILL_ROOT to this installed skill directory. From the source repository, invoke its absolute scripts/write-result.ts entrypoint with --repository, --input and the prepared JSON filename. Its mise shebang selects Bun. The command resolves the workflow through shared-context, checks the envelope and current source identities, writes an immutable YAML event and delivers the same object to the parent. It does not approve the phase, claim a ticket, merge, commit or push. Existing phase preconditions still apply.
 
-The writer accepts only phase-result events with phase `implementation`, `review` or `fix`. Parent phase-start and phase-complete events keep their existing protocol. Omit `created_at`; the writer records the current UTC time. It rejects a `created_at` more than 10 minutes from the current time. An existing event is never overwritten. If the event was written but transport failed, preserve its recovery JSON and use delivery recovery; do not repeat implementation, review or fix.
+Without `--parent-event`, the writer accepts only child phase-result events with phase `implementation`, `review` or `fix`. With `--parent-event`, it writes parent lifecycle and finish records without consuming the child handoff. Omit `created_at`; the writer records the current UTC time. It rejects a `created_at` more than 10 minutes from the current time. Existing events are never overwritten. If publication succeeded but transport failed, preserve recovery JSON and recover delivery; do not repeat implementation, review or fix.
 
 After the muxer reports completion, the parent reads the assigned result target through result-delivery. Validate its schema, run, operation and hash. Independently verify the authoritative YAML event, parent chain, source commit/tree, artifacts, validation, ownership and required publication. Acknowledge only after those checks. A blocked signal is not terminal completion. No pane marker is required.
 
@@ -271,9 +275,9 @@ workspace_preserved: true
 
 Use the ticket receipt envelope for append-only finish checkpoints. Set `phase: finish`, `status: FINISHING`, and `checkpoint` to the last verified boundary: `prepared`, `merged`, `pushed`, `ticket_completed`, or `worktree_removed`. Record `next_step`. Append `FINISH_FAILED` on failure; never erase earlier checkpoints.
 
-Before merge, record `review_receipt`, `reviewed_source_commit`, `reviewed_source_tree`, `base_before`, `base_branch`, `remote`, `remote_ref`, and `expected_merge_tree`. Compute the expected clean squash result from the reviewed source and recorded base without changing the working tree. If the merge is ambiguous or conflicts, stop. Record the proposed merge message and its ticket reference before invoking Worktrunk.
+Before integration, record `review_receipt`, `reviewed_source_commit`, `reviewed_source_tree`, `base_before`, `base_branch`, `remote`, `remote_ref`, `integration_method` and `expected_merge_tree`. Compute the expected clean result from the frozen reviewed source and current base. Follow `concurrency.md` for candidate creation, compatibility checks and product-code conflict resolution. Record the proposed commit message and ticket reference before Worktrunk advances the base.
 
-After merge, record `merged_commit`, `merged_tree`, and its actual parents. The merge must have the recorded base as its sole parent and the expected tree. A ticket reference or matching file names alone is not integration evidence. Record integrated validation commands, working directories, and results.
+After integration, record `merged_commit`, `merged_tree`, `merged_parents`, `candidate_branch` and `candidate_workspace`. V2 `merge` requires parents `[base_before, reviewed_source_commit]`; v2 `squash` requires `[base_before]`. Both require the computed expected tree. V1 retains its original single-base-parent squash rule. Record each check in `validation_results` with `argv`, absolute `cwd`, `exit_code`, `source_commit` equal to `merged_commit` and `source_tree` equal to `merged_tree`. Publication and completion require non-empty passing candidate-bound checks. `source_commit` and `source_tree` in the envelope continue to identify the reviewed source, not the integration candidate.
 
 After push, record `remote_observed_commit` and evidence that `merged_commit` is reachable from it on the named remote ref. Later legitimate commits on the base do not invalidate reachability. After ticket completion, record the canonical tracker reference, observed state, and publication evidence required by its backend. Record actual worktree/workspace identity and removal observations.
 

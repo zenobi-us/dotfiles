@@ -11,6 +11,7 @@ import { recoveryDecision } from "./recovery";
 import { inspectWorkflow } from "./inspection";
 import type { Exec, SharedAgentContext } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
 import type { ExplorerTicket, TicketWorkflow } from "../../../../../agent-core/extensions/pi-shared-context/model";
+import { prepareIntegration } from "./integration";
 
 const directories: string[] = [];
 afterEach(async () => { await Promise.all(directories.splice(0).map(path => rm(path, { recursive: true, force: true }))); });
@@ -235,6 +236,84 @@ test("removed source permits finish recovery only after exact squash mapping and
   expect(workflow.inspection?.finishError).toContain("base parent and expected merge tree");
   expect(recoveryDecision(ticket, { tickets: [ticket] }, workflow)).toMatchObject({ action: "finish", mode: "reconcile", requiredApproval: true });
 });
+
+test("v2 finish remains complete after independent remote advancement and reports missing verification objects without merging", async () => {
+  const { context, ticket, root } = await fixture();
+  const repo = context.repositoryRoot;
+  const git = (...args: string[]) => run("git", ["-C", repo, ...args]);
+  await git("switch", "-c", "feature/T-1");
+  await put(join(repo, "product.ts"), "export const product = 1;\n");
+  await git("add", "product.ts"); await git("commit", "-m", "T-1 source");
+  const sourceCommit = await git("rev-parse", "HEAD");
+  const sourceTree = await git("rev-parse", "HEAD^{tree}");
+  await git("switch", "main");
+  await put(join(repo, "other.ts"), "export const independent = 2;\n");
+  await git("add", "other.ts"); await git("commit", "-m", "Other initiative");
+  const plan = await prepareIntegration(repo, sourceCommit, "main", "merge", exec);
+  const merged = await git("commit-tree", plan.expected_merge_tree, "-p", plan.base_before, "-p", sourceCommit, "-m", "T-1 integration");
+  await git("merge", "--ff-only", merged);
+  const remote = join(root, "remote.git");
+  await run("git", ["init", "--bare", "--quiet", "-b", "main", remote]);
+  await git("remote", "add", "origin", remote); await git("push", "origin", "main");
+  ticket.status = "completed";
+  const common = {
+    schema: "worktree-receipt/v2", workflow_id: ticket.id, attempt: 1, repository: repo,
+    worktree: join(root, "removed-source"), workspace_path: join(root, "removed-source"),
+    source_commit: sourceCommit, source_tree: sourceTree, source_branch: "feature/T-1", base_branch: "main",
+    muxer: "hrdx", pane_id: null, agent: "omp", session_id: "parent",
+    ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
+    workflow: { root: repo, store: "repository", ref: "workflows/T-1" }, inputs: [], outputs: [],
+  };
+  await put(join(repo, "workflows/T-1/events/review.json"), JSON.stringify({
+    ...common, pane_id: "reviewer", receipt_id: "review-1", parent_receipt: null, phase: "review", status: "completed",
+    verdict: "SUCCESS", created_at: "2026-10-01T00:00:00Z",
+    review_base_commit: plan.base_before, changed_scope: ["product.ts"], affected_contracts: [],
+    integration_checks: [{ argv: ["bun", "test"] }],
+    outputs: [{ kind: "review-artifact", ref: "workflows/T-1/artifacts/reviews/review-1.md" }],
+  }));
+  await put(join(repo, "workflows/T-1/artifacts/reviews/review-1.md"), `# Review\nReviewed ${sourceCommit}. SUCCESS.\n`);
+  await put(join(repo, "workflows/T-1/events/failed-attempt.json"), JSON.stringify({
+    ...common, receipt_id: "finish-failed", parent_receipt: "review-1", phase: "finish", status: "FINISH_FAILED",
+    created_at: "2026-10-01T12:00:00Z", candidate_branch: "integration/failed", candidate_workspace: join(root, "earlier-candidate"),
+    failure_step: "validation", failure_reason: "Candidate check failed before integration.",
+  }));
+  await put(join(repo, "workflows/T-1/events/finish.json"), JSON.stringify({
+    ...common, ...plan, schema: "worktree-receipt/v2", receipt_id: "finish-2", parent_receipt: "finish-failed",
+    phase: "finish", status: "FINISHED", created_at: "2026-10-02T00:00:00Z", review_receipt: "review-1",
+    merged_commit: merged, merged_tree: plan.expected_merge_tree, merged_parents: [plan.base_before, sourceCommit],
+    candidate_branch: "integration/T-1", candidate_workspace: join(root, "removed-candidate"),
+    remote: "origin", remote_ref: "refs/heads/main", pushed: true, ticket_completed: true, worktree_removed: true, workspace_closed: true,
+    validation_results: [{ argv: ["bun", "test"], cwd: repo, exit_code: 0, source_commit: merged, source_tree: plan.expected_merge_tree }],
+  }));
+  const readOnly: Exec = async (command, args, cwd) => command === "wt"
+    ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "main", worktree: { path: repo } }] }) } : exec(command, args, cwd);
+  let workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(recoveryDecision(ticket, { tickets: [ticket] }, workflow).mode).toBe("complete");
+  await mkdir(join(root, "removed-candidate"));
+  workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(workflow.inspection?.finishVerified).toBe(false);
+  expect(workflow.inspection?.finishIntegrated).toBe(true);
+  await rm(join(root, "removed-candidate"), { recursive: true });
+  await mkdir(join(root, "earlier-candidate"));
+  workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(workflow.inspection?.finishVerified).toBe(false);
+  expect(workflow.inspection?.finishIntegrated).toBe(true);
+  await rm(join(root, "earlier-candidate"), { recursive: true });
+  const other = join(root, "remote-writer");
+  await run("git", ["clone", "--quiet", remote, other]);
+  await run("git", ["-C", other, "config", "user.name", "Other"]);
+  await run("git", ["-C", other, "config", "user.email", "other@example.invalid"]);
+  await put(join(other, "later.ts"), "export const later = 3;\n");
+  await run("git", ["-C", other, "add", "."]); await run("git", ["-C", other, "commit", "-m", "Later independent initiative"]);
+  await run("git", ["-C", other, "push", "origin", "main"]);
+  workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(recoveryDecision(ticket, { tickets: [ticket] }, workflow)).toMatchObject({ mode: "blocked", label: "Fetch remote verification objects" });
+  expect(workflow.inspection?.finishIntegrated).toBe(true);
+  await git("fetch", "origin", "refs/heads/main");
+  workflow = await loadTicketWorkflow(context, ticket, readOnly);
+  expect(recoveryDecision(ticket, { tickets: [ticket] }, workflow).mode).toBe("complete");
+  expect(await git("rev-parse", "main")).toBe(merged);
+}, 60_000);
 
 test("lifecycle statuses cannot replace review results or authorize a zero-attempt result", async () => {
   const { context, ticket } = await fixture();

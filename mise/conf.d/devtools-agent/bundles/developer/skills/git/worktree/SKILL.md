@@ -6,7 +6,7 @@ user-invocable: true
 
 Route `UserRequest` to the correct worktree workflow. This skill dispatches only. It does not resolve tickets, run validation, or launch agents itself. All of that lives in the playbook it points to.
 
-Use the agent-core `result-delivery` skill for operation output. Keep `worktree-receipt/v1` phase records and muxer process signals separate. Human sessions receive a short outcome, canonical references, checks, publication and blockers. Delegated phases use the caller's typed handoff; JSON or pane text is not authoritative workflow state.
+Use the agent-core `result-delivery` skill for operation output. Keep new `worktree-receipt/v2` phase records, retained v1 history and muxer process signals separate. Human sessions receive outcome, canonical references, checks, publication and blockers. Delegated phases use the caller's typed handoff; pane text is not workflow state.
 
 # Global workflow rules
 
@@ -35,6 +35,8 @@ Goal execution uses the separate coordinator journal contract in `references/rec
 `start`, `review`, and `fix` MUST use independent agent sessions. A review or fix MUST run in a fresh agent session in the existing worktree workspace. It MUST NOT send instructions to, resume, or reuse an earlier implementation, review, or fixer session. The `muxer-subagents` skill owns how that fresh session is opened.
 
 Review the exact source commit recorded in the review handoff. A verdict is valid only for that commit. Any later source commit or tree change invalidates either SUCCESS or FAILURE until a new review completes. Dirty source may be preserved for authorized start/fix takeover, never accepted for review or a new merge.
+
+Before start, review, goal dispatch or finish, read `references/concurrency.md`. Keep source review exact while allowing the integration base to advance. Inspect work streams across initiatives; block concrete dependencies or incompatible resources, not initiative membership. Coordinate integration per repository and target branch, not globally across implementation sessions.
 
 Use one immutable artifact under `artifacts/reviews/` for every review attempt.
 Never overwrite an earlier review or copy its body into the tracker. Store
@@ -76,7 +78,7 @@ Load the `muxer-subagents` skill before any playbook that opens a pane or launch
 
 Run the `muxer-subagents` skill’s `scripts/router.ts` script with the `contracts` argument.
 
-Take `muxer`, `agent`, `muxerContract`, `agentContract`, explicit session context and transport capabilities from its output. Pass them to the playbook as working context. Before a formal child launch, pass `--result-schema worktree-receipt/v1` to the muxer spawn router. Retain the returned delivery context and parent-assigned target. The parent validates the delivered receipt against the authoritative event record before acknowledgement. A result envelope does not authorize a phase or establish completion. If it reports `needsOperatorInput: true`, ask the user. Do not guess.
+Take `muxer`, `agent`, contracts, session context and transport capabilities from the output. Before a new formal child launch, pass `--result-schema worktree-receipt/v2`. Retain the delivery context and assigned target. Validate the delivered receipt against its authoritative event before acknowledgement. Retained live v1 handoffs keep v1. A transport envelope does not authorize a phase or prove completion. If `needsOperatorInput` is true, ask the user.
 
 `submit`, `tasks`, and goal preparation do not launch an agent. Skip launch setup for them. Goal preparation may resolve/read contracts for read-only liveness inspection. Authorized goal execution applies launch setup through each mutating phase playbook.
 
