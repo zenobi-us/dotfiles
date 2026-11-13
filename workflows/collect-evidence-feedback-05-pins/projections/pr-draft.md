@@ -1,3 +1,9 @@
+## Current outcome: FINISHED
+
+[finish-finished-0043](../events/finish-finished-0043.yaml) verifies published squash integration 32ceb6fdb6daee017802f6ddfe939b4df90bc37a, completed ticket, and removal of all recorded source/candidate branches and worktree paths. No active desktop workspace remains for those paths.
+
+The operator discarded the original branch. [finish-history-repair-0042](../events/finish-history-repair-0042.yaml) adds approved checksum-bound workflow-root corrections for three historical receipts without changing original bytes or review verdicts. Inspector decision: complete; no event errors. Historical cleanup-pending entries below are superseded. No product checks rerun for this metadata-only reconciliation.
+
 # Screenshot feedback pins
 
 ## Problem and implementation
