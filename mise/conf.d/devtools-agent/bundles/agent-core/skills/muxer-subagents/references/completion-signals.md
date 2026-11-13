@@ -45,7 +45,7 @@ For hrdx, tmux, and Zellij, a shell wrapper writes `running` before it starts th
 
 ## Waiting and resuming
 
-`wait <run-id>` blocks until it receives `blocked` or a terminal state. It prints the signal as JSON. A timeout returns exit code `124` and a record with `state: "running"` and `timedOut: true`.
+`wait <run-id>` blocks until it receives `blocked` or a terminal state. It prints the signal as JSON with a separate `resources` observation. A timeout returns exit code `124` and a record with `state: "running"` and `timedOut: true`.
 
 If a run is blocked, resume it through its muxer or agent. Then pass the blocked signal's sequence to the next wait:
 
@@ -53,11 +53,11 @@ If a run is blocked, resume it through its muxer or agent. Then pass the blocked
 scripts/router.ts wait <run-id> --after-sequence <sequence>
 ```
 
-A terminal wait removes the run record. A blocked wait keeps it for the next wait.
+Terminal and blocked waits retain the run record. After normal pane and service closure, run `scripts/router.ts resources <run-id>` to record shutdown. The observer reports `pending`, `confirmed`, or `unconfirmed`; an empty registry is unconfirmed. It never sends signals. Run and resource records remain available for recovery.
 
 ## Result delivery is separate
 
-`spawn --result-schema <domain-schema>` allocates a typed result context before launch. The output includes `contextFile`, `deliveryContext`, and `resultTarget`, plus the child `runId`, optional `parentRunId`, and `operationId`. Save these values before waiting. The contracts command reports the explicit session role and identities, the assigned context, and truthful transport capabilities. No muxer provides a native structured-result channel. Artifact-reference transport requires Linux with `/proc/self/fd` available. The contracts capability reports whether this backend is available.
+`spawn --result-schema <domain-schema>` allocates a typed result context before launch. The output includes `contextFile`, `deliveryContext`, and `resultTarget`, plus the child `runId`, optional `parentRunId`, and `operationId`. Save these values for the phase handoff before waiting. The contracts command reports the explicit session role and identities, the assigned context, and truthful transport capabilities. No muxer provides a native structured-result channel. Artifact-reference transport requires Linux with `/proc/self/fd` available. The contracts capability reports whether this backend is available.
 
 The child receives `RESULT_DELIVERY_CONTEXT`, `MUXER_SUBAGENT_RUN_ID`, and an explicit child role. When known, `MUXER_SUBAGENT_PARENT_RUN_ID` preserves the incoming run identity. Herdr receives the same context through tab `--env` flags; shell-launched muxers export it before starting the agent. The handoff tells the child to use the result-delivery skill through its operation CLI or shared library, not a second reporting CLI.
 
@@ -71,3 +71,11 @@ The router does not parse pane output. It does not ask the child agent to run a 
 
 If a process is killed in a way that prevents the wrapper from writing its final signal, the router cannot confirm completion. A timed-out wait reports that it has no terminal signal. It does not infer success or emit `lost`.
 
+
+## Resource ownership is separate
+
+The manifest preserves the operation identity, parent run identity, target directory, and muxer target. `resources.json` records owned PID, boot identity, start ticks, command name, working directory when readable, and shutdown observations. Immutable per-process records preserve discovered identities across concurrent observations. PID reuse does not transfer ownership. Permission failures for unrelated processes do not prevent confirmation that registered owners stopped. Unreadable registered identities or unreadable processes with run-ownership evidence keep shutdown unconfirmed.
+
+Observe owned services while they are live, before closing the pane, and after their normal shutdown. Preserve the assigned run identity in service environments. Unregistered resources and resources outside the process observer need separate ownership and shutdown evidence from their owning tools. Follow the owned-resource rules in `SKILL.md`.
+
+A completed signal does not confirm resource shutdown. Confirmed process shutdown does not establish domain success. Report published acceptance and pending cleanup as separate outcomes.

@@ -1,6 +1,7 @@
 // Shell muxers share quoting and process-exit signals, not terminal commands.
 import { spawnSync } from "node:child_process";
 import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import { runSignalPath } from "./signals.ts";
 import type { LaunchRequest } from "./modules/types.ts";
 
@@ -44,6 +45,7 @@ export function shellLaunch(request: LaunchRequest): string {
     "trap 'emit_signal cancelled 131; cleanup; exit 131' QUIT",
     `export MUXER_SUBAGENT_DEPTH=${depth}`,
     ...Object.entries(environment).map(([key, value]) => `export ${key}=${shellQuote(value)}`),
+    `${shellQuote(process.execPath)} ${shellQuote(fileURLToPath(new URL("./resources.ts", import.meta.url)))} "$run_id" "$$" || exit $?`,
     "emit_signal running",
     `${command}`,
     "status=$?",

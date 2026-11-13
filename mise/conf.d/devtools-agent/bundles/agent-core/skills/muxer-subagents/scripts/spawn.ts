@@ -9,10 +9,12 @@ import {
   removeRun,
   runPromptPath,
   updateRunTarget,
+  writeRunSignal,
 } from "./signals.ts";
 import { sessionMetadata } from "./session-context.ts";
 import { agents, muxers } from "./modules/index.ts";
 import type { AgentModule, MuxerModule } from "./modules/types.ts";
+import { observeResources } from "./resources.ts";
 
 export type SpawnMuxer = Exclude<Muxer, "unknown-muxer">;
 export type SpawnAgent = Exclude<Agent, "unknown-agent">;
@@ -55,8 +57,11 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
     throw new Error(`${muxer.id} does not support ${agent.id}.`);
   }
   const parentRunId = sessionMetadata().runId;
-  const run = await createRun(options.muxer, options.agent);
+  const run = await createRun(options.muxer, options.agent, {
+    cwd: resolve(options.cwd), operationId: options.operationId, parentRunId,
+  });
   let directory: string | undefined;
+  let launchAttempted = false;
   try {
     const stateRoot = process.env.XDG_STATE_HOME || join(homedir(), ".local", "state");
     const allocatedDirectory = resolve(stateRoot, "result-delivery", "runs", run.runId);
@@ -81,6 +86,7 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
     const contextFile = join(deliveryDirectory, "context.json");
     writeFileSync(contextFile, `${JSON.stringify(deliveryContext)}\n`, { mode: 0o600, flag: "wx" });
     const environment: Record<string, string> = {
+      XDG_STATE_HOME: resolve(stateRoot),
       RESULT_DELIVERY_CONTEXT: contextFile,
       MUXER_SUBAGENT_RUN_ID: run.runId,
       MUXER_SUBAGENT_ROLE: "child",
@@ -97,6 +103,7 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
     }
     const handoff = `${options.prompt}\n\nResult handoff: Read the result-delivery skill. Use the operation CLI or shared delivery library with RESULT_DELIVERY_CONTEXT=${JSON.stringify(contextFile)}. Deliver the required ${JSON.stringify(options.resultSchema)} domain result to ${JSON.stringify(resultPath)}. Do not replace artifact delivery with a chat summary. Completion signals remain separate from domain success.\n`;
     writeFileSync(handoffFile, handoff, { encoding: "utf8", mode: 0o600 });
+    launchAttempted = true;
     const { target, agentName } = await muxer.launch({
       runId: run.runId,
       cwd: options.cwd,
@@ -109,10 +116,18 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
       },
     });
     await updateRunTarget(run.runId, target, agentName);
+    await observeResources(run.runId);
     return { runId: run.runId, target, parentRunId, operationId, contextFile, deliveryContext, resultTarget: deliveryContext.target! };
   } catch (error) {
-    if (directory) rmSync(directory, { recursive: true, force: true });
-    await removeRun(run.runId);
-    throw error;
+    if (!launchAttempted) {
+      if (directory) rmSync(directory, { recursive: true, force: true });
+      await removeRun(run.runId);
+      throw error;
+    }
+    // A muxer can fail after opening a pane. Keep identities and prompts until
+    // the caller confirms closure instead of losing a possibly live child.
+    await writeRunSignal(run.runId, "failed", "launcher", { detail: "Launch did not confirm a target; resource cleanup is pending." });
+    await observeResources(run.runId);
+    throw new Error(`Child launch failed; retained run ${run.runId}: ${error instanceof Error ? error.message : String(error)}`);
   }
 }

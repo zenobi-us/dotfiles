@@ -16,7 +16,8 @@ import {
 } from "./session-context.ts";
 import { AGENTS, isAgent, isMuxer, MUXERS } from "./types.ts";
 import { spawnAgent } from "./spawn.ts";
-import { readRun, removeRun } from "./signals.ts";
+import { readRun } from "./signals.ts";
+import { observeResources } from "./resources.ts";
 import { waitForAgent } from "./wait.ts";
 import { agents, muxers } from "./modules/index.ts";
 
@@ -314,14 +315,28 @@ const waitCmd = app
         process.exitCode = 124;
         return;
       }
-      console.log(JSON.stringify(signal));
+      const resources = await observeResources(args.runId);
+      console.log(JSON.stringify({ ...signal, resources }));
       if (signal.state === "failed") process.exitCode = 1;
       if (signal.state === "cancelled") process.exitCode = 130;
-      if (signal.state === "completed" || signal.state === "failed" || signal.state === "cancelled") {
-        await removeRun(args.runId);
-      }
     } catch (error) {
       console.error(`Could not wait for child run: ${error instanceof Error ? error.message : String(error)}`);
+      process.exitCode = 1;
+    }
+  });
+
+const resourcesCmd = app
+  .sub("resources")
+  .meta({ description: "Record owned process identities and confirm shutdown after normal pane or service close. Never sends signals." })
+  .args([{ name: "runId", type: "string", required: true, description: "Run id returned by spawn." }])
+  .run(async ({ args }) => {
+    try {
+      const { manifest } = await readRun(args.runId);
+      const resources = await observeResources(args.runId);
+      console.log(JSON.stringify({ manifest, resources }));
+      if (resources.shutdown !== "confirmed") process.exitCode = 1;
+    } catch (error) {
+      console.error(`Could not observe owned resources: ${error instanceof Error ? error.message : String(error)}`);
       process.exitCode = 1;
     }
   });
@@ -335,4 +350,5 @@ app
   .command(doctorCmd)
   .command(spawnCmd)
   .command(waitCmd)
+  .command(resourcesCmd)
   .execute();

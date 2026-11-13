@@ -74,7 +74,7 @@ scripts/router.ts spawn --result-schema <domain-schema> [--prompt <text> | --pro
 - The router rejects invalid depth and depth at or above the configured maximum.
 - If muxer or agent detection is unknown, pass its explicit option.
 
-The command prints a JSON record with `runId`, muxer, agent, target identifier, child depth, `parentRunId` when known, `operationId`, `contextFile`, `deliveryContext`, and `resultTarget`. Save the delivery fields before waiting: terminal cleanup removes the muxer run record.
+The command prints a JSON record with `runId`, muxer, agent, target identifier, child depth, `parentRunId` when known, `operationId`, `contextFile`, `deliveryContext`, and `resultTarget`. Save the delivery fields before waiting. Run and resource records survive completion for the next phase.
 
 - `--result-schema` is required for the formal typed handoff. Use the domain operation's existing result schema.
 - `--result-target` and `--result-ref` must be supplied together. The target must be absolute and its parent directory must already exist.
@@ -111,7 +111,9 @@ A caller that requires an independent agent session MUST get a new pane or tab. 
 5. The router opens the pane and launches the child through the resolved contracts. For manual launches, apply the same assigned context and run identity to the child environment.
 6. MUST wait for completion through the muxer contract. Do not poll a status command in a loop where the contract offers a wait or an event stream.
 7. MUST read the child output through the muxer contract's read command.
-8. MUST close the pane through the muxer contract.
+8. MUST record owned resources with `scripts/router.ts resources <runId>` before closing the pane. Stop owned services through their normal shutdown commands.
+9. MUST close the pane through the muxer contract.
+10. MUST run `scripts/router.ts resources <runId>` again. Retain its shutdown observation in the phase handoff.
 
 # Parallel work
 
@@ -153,3 +155,14 @@ Register modules explicitly in `scripts/modules/index.ts`. Detection order is au
 
 Keep delivery context and run allocation in `spawn.ts`, shared completion handling in `wait.ts`, and lifecycle records in `signals.ts`. Use `shell-launch.ts` for shared shell quoting and process signals. A completed lifecycle signal does not establish domain-result success.
 
+
+# Owned resources at phase handoff
+
+The run manifest records the target, target directory, operation identity, and parent run identity when known. Process records use the assigned run identity, PID, boot identity, and process start ticks. The router registers shell launchers before agent execution. It discovers tagged processes and their live descendants at launch, wait, and explicit resource observations. These records survive terminal completion.
+
+- MUST preserve `MUXER_SUBAGENT_RUN_ID` in launched service environments. Run `resources <runId>` while each service is live to register its ownership before handoff. If a service clears that environment, observe it while its owned ancestor is still live.
+- MUST record non-process resources, such as external service handles, in the domain handoff. Stop and verify them through their owning tools. This process observer does not confirm their shutdown.
+- MUST stop and verify owned services before the next phase. `resources` never sends signals. Its `shutdown` value is `pending` for live owned processes, `confirmed` for observed identities that have stopped, or `unconfirmed` when evidence is insufficient. Its exit status is zero only for confirmed process shutdown. An empty registry is unconfirmed.
+- MUST preserve user and unrelated resources. A matching working directory is not proof of ownership. Normal owned child closure is permitted. Signals outside that closure require explicit approval for the named process identities and a fresh identity check. Never use broad process-name or process-group kills.
+- MUST keep domain acceptance and cleanup status separate. Published acceptance can remain valid while cleanup is pending. Pane closure, a completion signal, or a delivered result does not prove service shutdown. Unknown ownership or unconfirmed shutdown blocks cleanup, not publication of existing acceptance.
+- MUST retain lifecycle records and shutdown observations for recovery. A launch failure can occur after pane creation. The error supplies the retained run identity when launch was attempted. Inspect that run before retrying.

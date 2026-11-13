@@ -141,6 +141,9 @@ await deliverResult({ schema: context.target.schema, status: "failed", checks: [
 
   function prepareDesktop(spaces: Array<Record<string, unknown>>, binary = "herdr-app"): () => Array<{ command: string; request: Record<string, unknown> }> {
     process.env.HC_TERMINAL_ID = "t7";
+    // Machine-routing fixtures must not resolve an installed native app before
+    // their fake Windows executable. Each fake uses Bun's absolute shebang.
+    process.env.PATH = root;
     const state = join(root, "desktop.json");
     writeFileSync(state, JSON.stringify({ spaces, calls: [] }));
     const desktop = join(root, binary);

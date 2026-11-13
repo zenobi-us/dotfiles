@@ -21,6 +21,9 @@ export interface RunManifest {
   agent: Exclude<Agent, "unknown-agent">;
   target: string;
   agentName?: string;
+  cwd?: string;
+  operationId?: string;
+  parentRunId?: string;
   createdAt: string;
 }
 
@@ -73,7 +76,11 @@ async function readJson(path: string): Promise<Record<string, unknown>> {
   return parsed as Record<string, unknown>;
 }
 
-export async function createRun(muxer: RunManifest["muxer"], agent: RunManifest["agent"]): Promise<RunManifest> {
+export async function createRun(
+  muxer: RunManifest["muxer"],
+  agent: RunManifest["agent"],
+  ownership: Pick<RunManifest, "cwd" | "operationId" | "parentRunId"> = {},
+): Promise<RunManifest> {
   const runId = randomUUID();
   const directory = runDirectory(runId);
   await mkdir(directory, { recursive: true, mode: 0o700 });
@@ -83,6 +90,8 @@ export async function createRun(muxer: RunManifest["muxer"], agent: RunManifest[
     agent,
     target: "",
     createdAt: new Date().toISOString(),
+    ...ownership,
+    operationId: ownership.operationId ?? runId,
   };
   await writeFile(join(directory, "run.json"), `${JSON.stringify(manifest)}\n`, { mode: 0o600 });
   await writeRunSignal(runId, "starting", "launcher");
