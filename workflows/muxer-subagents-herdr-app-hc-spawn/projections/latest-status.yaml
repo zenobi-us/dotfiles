@@ -1,0 +1,16 @@
+schema: worktree-latest-status/v1
+workflow_id: muxer-subagents-herdr-app-hc-spawn
+ticket: tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md
+state: BLOCKED
+latest_receipt: start-complete-0003
+latest_source_commit: 01a87a4d8ee952666b29eaaa547fa4615ced783f
+latest_source_tree: e76c5a5b599650eec3de7f67856a011a11961637
+latest_review_verdict: null
+open_findings: []
+blockers:
+  - Real SSH fresh-tab acceptance remains unverified.
+  - Real WSL fresh-tab acceptance remains unverified.
+supporting_receipts:
+  - ../events/start-0001.yaml
+  - ../events/implementation-0002.yaml
+  - ../events/start-complete-0003.yaml
