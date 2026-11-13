@@ -30,6 +30,8 @@ export type MigrationPlan = {
 type State = { schema: "tracker-migration/v1"; migration: string; sequence: number; previousHash: string | null; state: "applying" | "applied" | "rolled-back" | "recovery-required"; planHash: string; at: string; error?: string; recovery?: string[] };
 type Environment = { context: SharedAgentContext; tickets: ResolvedRecord; initiatives: ResolvedRecord; tracker: ResolvedRecord };
 const helper = fileURLToPath(new URL("./record-markdown.mq", import.meta.url));
+// The skill's tracked lock pins the remote okf.mq module, wherever the caller runs.
+const lockfile = fileURLToPath(new URL("../mq.lock", import.meta.url));
 const excludedSegments: Record<string, true> = { events: true, reviews: true, artifacts: true, ".git": true };
 
 export async function planMigration(options: Options, selector: Selector): Promise<MigrationPlan> {
@@ -308,7 +310,7 @@ async function discover(env: Environment): Promise<Document[]> {
 let mqBinary: string | undefined;
 function mq<T>(query: string, input: string, args: Record<string, unknown> = {}, readRoot?: string, useHelper = true): T {
   mqBinary ??= execFileSync("mise", ["which", "mq"], { encoding: "utf8" }).trim();
-  const flags = ["--allow-http-import", "--no-lockfile", "-I", useHelper ? "raw" : "null", "-F", "json"];
+  const flags = ["--allow-http-import", "--lockfile", lockfile, "-I", useHelper ? "raw" : "null", "-F", "json"];
   if (readRoot) flags.push(`--allow-read=${readRoot}`);
   for (const [name, value] of Object.entries(args)) flags.push("--argjson", name, JSON.stringify(value));
   if (useHelper) flags.push("--from-file", helper);
