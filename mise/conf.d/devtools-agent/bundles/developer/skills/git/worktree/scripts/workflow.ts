@@ -352,7 +352,7 @@ async function historySupplements(
   const inputs = references(doc.fields.inputs, "history repair inputs");
   for (const value of list(doc.fields.history_supplements, "history supplements")) {
    const supplement = object(value, "history supplement");
-   if (Object.keys(supplement).some(key => !["ref", "sha256", "evidence", "normalize_workflow_root", "input_refs"].includes(key))) throw new Error("History supplements may only repair missing evidence, workflow roots or absent input refs.");
+   if (Object.keys(supplement).some(key => !["ref", "sha256", "evidence", "normalize_workflow_root", "normalize_finish_workspace", "input_refs"].includes(key))) throw new Error("History supplements may only repair missing evidence, workflow roots, historical finish workspaces or absent input refs.");
    const ref = text(supplement.ref, "history supplement ref");
    const file = join(record.root, ref);
    const original = documents.get(file);
@@ -376,6 +376,15 @@ async function historySupplements(
     if (workflow.store !== "repository" || workflow.ref !== record.ref || workflow.root !== fields.worktree || workflow.root === record.root || fields.repository !== context.repositoryRoot) throw new Error("Only a historical repository-worktree workflow root can be normalized.");
     fields.workflow = { ...workflow, root: record.root };
    }
+   if (supplement.normalize_finish_workspace != null) {
+    // Old parent-side finishes recorded their own checkout instead of the removed source workspace.
+    if (supplement.normalize_finish_workspace !== true || fields.schema !== "worktree-receipt/v1" || fields.phase !== "finish"
+      || !isAbsolute(String(fields.worktree)) || fields.worktree === fields.repository
+      || fields.workspace_path !== fields.repository || fields.source_workspace_path !== fields.worktree) {
+     throw new Error("Only a historical v1 finish with a recorded parent checkout and matching source_workspace_path can normalize its workspace.");
+    }
+    fields.workspace_path = fields.worktree;
+   }
    if (supplement.input_refs != null) {
     const repairs = list(supplement.input_refs, "supplement input refs");
     if (!repairs.length) throw new Error("Supplement input refs must not be empty.");
@@ -396,7 +405,7 @@ async function historySupplements(
     }
     fields.inputs = patched;
    }
-   if (supplement.evidence == null && supplement.normalize_workflow_root == null && supplement.input_refs == null) throw new Error("History supplement has no envelope repair.");
+   if (supplement.evidence == null && supplement.normalize_workflow_root == null && supplement.normalize_finish_workspace == null && supplement.input_refs == null) throw new Error("History supplement has no envelope repair.");
    effective.set(file, fields);
   }
  }

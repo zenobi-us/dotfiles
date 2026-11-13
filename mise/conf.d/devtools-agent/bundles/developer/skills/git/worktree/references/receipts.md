@@ -97,10 +97,13 @@ To supplement a malformed historical envelope, append a normal receipt with a va
 
 - `evidence`: the missing `{store, ref}` envelope. It must identify an existing object in the independently resolved evidence store under this workflow. Preserve the recorded evidence; do not invent an execution.
 - `normalize_workflow_root: true`: normalize a historical repository-worktree store root to the current workflow store root. The original root must equal the recorded worktree; repository, store and workflow reference must already match.
+- `normalize_finish_workspace: true`: normalize only a retained v1 finish whose `workspace_path` equals its parent `repository`, differs from its absolute `worktree`, and whose `source_workspace_path` equals that `worktree`. The effective `workspace_path` becomes `worktree`; original bytes, source identities, session identifiers, outcome and parent links remain unchanged. This does not apply to v2 or other phases.
 
 - `input_refs`: a non-empty list of `{index, ref}` entries. `index` is the zero-based position of an existing input whose `ref` property is absent. Supply only that property; preserve its kind and other metadata. Each `ref` MUST name an existing file inside this workflow's `artifacts/` directory and MUST also appear in the repair receipt's `inputs`. Absolute paths, escaping symlinks, directories, duplicate indices, existing refs (including empty ones), and other entry fields are rejected. This supplies provenance only; it does not establish operator approval or change execution authority.
 
 The inspector validates supplements before constructing the parent graph. Targets must be older event files in this collection. Duplicate targets, changed checksums, missing evidence objects, replacements of existing evidence and other field changes block inspection. Source commit/tree, verdict, status, ticket identity and parent links cannot be supplemented. Raw event fields remain available beside the validated effective receipt view. The supplement holder must itself pass normal receipt validation. A repair is not a new implementation, review verdict, or authorization to take over a live session.
+
+For a terminal v1 finish repair, retain the exact reviewed source commit/tree and source worktree in the appended finish envelope. Record the current repair checkout, commit/tree and session separately in recovery provenance. Reverify the integration mapping, remote reachability, tracker state and source removal before retaining `FINISHED`; do not claim that historical validation ran again. The repair records the current observation of an old integration, not a new finish execution.
 
 ## Receipt fields
 

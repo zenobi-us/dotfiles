@@ -650,3 +650,58 @@ test("missing input refs can be supplemented without changing original bytes or 
   expect((await loadTicketWorkflow(context, ticket, readOnly)).error).toContain("listed in the repair inputs");
   expect(await readFile(join(root, target), "utf8")).toBe(original);
 });
+
+test("historical v1 finish workspace repairs preserve source identity and reject unrelated envelopes", async () => {
+  const { context, ticket } = await fixture();
+  const root = context.repositoryRoot;
+  await put(join(root, ".git/info/exclude"), "/workflows/\n");
+  const commit = await run("git", ["-C", root, "rev-parse", "HEAD"]);
+  const tree = await run("git", ["-C", root, "rev-parse", "HEAD^{tree}"]);
+  const workflowRoot = "workflows/T-1";
+  const source = join(root, "removed-source");
+  const common = {
+    schema: "worktree-receipt/v1", workflow_id: ticket.id, attempt: 1, repository: root, worktree: root, workspace_path: root,
+    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "hrdx", pane_id: null, agent: "pi", session_id: "parent",
+    ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
+    workflow: { root, store: "repository", ref: workflowRoot }, inputs: [], outputs: [],
+  };
+  const historical = {
+    ...common, worktree: source, source_workspace_path: source, receipt_id: "finish-1", parent_receipt: null,
+    phase: "finish", event: "phase-complete", status: "FINISHED", pushed: true, ticket_completed: true,
+    merged_commit: commit, created_at: "2026-10-01T00:00:00Z",
+  };
+  const target = `${workflowRoot}/events/finish-1.json`;
+  const repairPath = join(root, workflowRoot, "events/repair-2.json");
+  const readOnly: Exec = async (command, args, cwd) => command === "wt" ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "main", worktree: { path: root } }] }) } : exec(command, args, cwd);
+  const original = JSON.stringify(historical);
+  await put(join(root, target), original);
+  expect((await loadTicketWorkflow(context, ticket, readOnly)).error).toContain("worktree and workspace_path");
+  const repair = {
+    ...common, receipt_id: "repair-2", parent_receipt: "finish-1", phase: "finish", event: "phase-complete", status: "FINISHED",
+    pushed: true, ticket_completed: true, merged_commit: commit, created_at: "2026-10-02T00:00:00Z",
+    inputs: [{ kind: "receipt", ref: target }], history_repair_reason: "Normalize the recorded parent checkout to the retained source identity.",
+    history_repair_authorization: "Explicit fixture history repair request.",
+  };
+  const supplement = { ref: target, sha256: createHash("sha256").update(original).digest("hex"), normalize_finish_workspace: true };
+  await put(repairPath, JSON.stringify({ ...repair, history_supplements: [supplement] }));
+  let workflow = await loadTicketWorkflow(context, { ...ticket, status: "completed" }, readOnly);
+  expect(workflow.inspection?.historyValid).toBe(true);
+  const effective = workflow.receipts.find(receipt => receipt.id === "finish-1")!;
+  expect(effective.fields.workspace_path).toBe(source);
+  expect(effective.sourceCommit).toBe(commit);
+  expect(effective.parentReceipt).toBeUndefined();
+  expect(workflow.events?.find(event => event.ref === target)?.fields?.workspace_path).toBe(root);
+  expect(await readFile(join(root, target), "utf8")).toBe(original);
+  for (const changes of [
+    { schema: "worktree-receipt/v2" }, { phase: "implementation" },
+    { workspace_path: source }, { workspace_path: join(root, "unrelated") },
+    { source_workspace_path: undefined }, { source_workspace_path: root },
+    { worktree: "relative", source_workspace_path: "relative" },
+  ]) {
+    const bytes = JSON.stringify({ ...historical, ...changes });
+    await put(join(root, target), bytes);
+    await put(repairPath, JSON.stringify({ ...repair, history_supplements: [{ ...supplement, sha256: createHash("sha256").update(bytes).digest("hex") }] }));
+    workflow = await loadTicketWorkflow(context, ticket, readOnly);
+    expect(workflow.inspection?.historyValid).toBe(false);
+  }
+});
