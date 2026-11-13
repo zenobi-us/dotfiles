@@ -2,7 +2,7 @@
 // Durable publication and retry preserve the original annotation identity.
 import { randomUUID } from "node:crypto";
 import { constants } from "node:fs";
-import { link, lstat, mkdir, open, readdir, realpath, unlink, type FileHandle } from "node:fs/promises";
+import { link, lstat, mkdir, open, readdir, realpath, rename, unlink, type FileHandle } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { isDeepStrictEqual } from "node:util";
 import { assetBytes, boundedFile, checkId, safeComponents, schema, validateSession, type FeedbackView } from "./records.ts";
@@ -15,19 +15,20 @@ interface AnnotationInput {
   priority: "P1" | "P2" | "P3"; comment: string;
 }
 export interface Annotation extends AnnotationInput {
-  revision: 1; createdAt: string; updatedAt: string; pixelGeometry: Geometry;
+  revision: number; createdAt: string; updatedAt: string; pixelGeometry: Geometry; deletedAt?: string | null;
 }
 export class AnnotationError extends Error {
   constructor(message: string, public readonly status = 400) { super(message); this.name = "AnnotationError"; }
 }
 
 export async function createAnnotation(view: FeedbackView, input: unknown): Promise<Annotation> {
+  view = await validateSession(view.directory);
   const annotation = validateInput(view, input);
   const asset = view.cases.find(record => record.id === annotation.caseId)!.assets.find(record => record.id === annotation.assetId)!;
   await verifySource(view.directory, asset);
   const existing = (await listAnnotations(view)).find(record => record.id === annotation.id);
   if (existing) {
-    const { revision: _revision, createdAt: _createdAt, updatedAt: _updatedAt, pixelGeometry: _pixels, ...original } = existing;
+    const { revision: _revision, createdAt: _createdAt, updatedAt: _updatedAt, pixelGeometry: _pixels, deletedAt: _deletedAt, ...original } = existing;
     requireAnnotation(isDeepStrictEqual(original, annotation), "Annotation ID already has different content", 409);
     await syncAnnotation(view, existing);
     return existing;
@@ -35,6 +36,33 @@ export async function createAnnotation(view: FeedbackView, input: unknown): Prom
   const timestamp = new Date().toISOString();
   const record: Annotation = { ...annotation, revision: 1, createdAt: timestamp, updatedAt: timestamp, pixelGeometry: pixels(annotation) };
   await publishAnnotation(view, record);
+  return record;
+}
+
+export async function mutateAnnotation(view: FeedbackView, id: string, input: unknown, ifMatch: string | null, method: "PATCH" | "DELETE"): Promise<Annotation> {
+  requireAnnotation(ifMatch !== null, "If-Match revision is required", 428);
+  // Revalidate the store before every mutation, not just at server startup.
+  const currentView = await validateSession(view.directory);
+  const existing = (await listAnnotations(currentView)).find(record => record.id === id);
+  requireAnnotation(existing, "Annotation not found", 404);
+  requireAnnotation(ifMatch === `"${existing.id}:${existing.revision}"`, "Annotation changed in another editor. Keep your draft and reload the saved note.", 412);
+  requireAnnotation(isObject(input), "Mutation must be an object");
+  requireAnnotation(input.schema === schema && input.kind === "annotation", "Unsupported annotation schema or kind");
+  const allowed = method === "DELETE" ? ["schema", "kind"] : ["schema", "kind", "comment", "priority", "geometry", "deletedAt"];
+  requireAnnotation(Object.keys(input).every(key => allowed.includes(key)), "Unsupported mutation fields");
+  if (method === "PATCH") {
+    requireAnnotation(Object.keys(input).length > 2, "PATCH requires a change");
+    requireAnnotation(!Object.hasOwn(input, "deletedAt") || (input.deletedAt === null && Object.keys(input).length === 3), "Undo must only restore the tombstone");
+    requireAnnotation(!existing.deletedAt || input.deletedAt === null, "Restore the deleted annotation before editing", 409);
+  }
+  const { revision, createdAt, updatedAt: _updatedAt, pixelGeometry: _pixels, deletedAt, ...original } = existing;
+  const { schema: _schema, kind: _kind, deletedAt: _restore, ...changes } = input;
+  const validated = validateInput(currentView, { ...original, ...changes });
+  const asset = currentView.cases.find(record => record.id === existing.caseId)!.assets.find(asset => asset.id === existing.assetId)!;
+  await verifySource(view.directory, asset);
+  const timestamp = new Date().toISOString();
+  const record: Annotation = { ...validated, revision: revision + 1, createdAt, updatedAt: timestamp, pixelGeometry: pixels(validated), deletedAt: method === "DELETE" ? deletedAt ?? timestamp : null };
+  await publishAnnotation(currentView, record, true);
   return record;
 }
 
@@ -102,11 +130,13 @@ function validateInput(view: FeedbackView, value: unknown): AnnotationInput {
 
 function validateStored(view: FeedbackView, value: unknown): Annotation {
   requireAnnotation(isObject(value), "Annotation record must be an object");
-  const { revision, createdAt, updatedAt, pixelGeometry, ...input } = value;
+  const { revision, createdAt, updatedAt, pixelGeometry, deletedAt, ...input } = value;
   const annotation = validateInput(view, input);
-  requireAnnotation(revision === 1 && typeof createdAt === "string" && Number.isFinite(Date.parse(createdAt)) && new Date(createdAt).toISOString() === createdAt && updatedAt === createdAt, "Invalid annotation revision or timestamps");
+  const timestamp = (value: unknown): value is string => typeof value === "string" && Number.isFinite(Date.parse(value)) && new Date(value).toISOString() === value;
+  requireAnnotation(Number.isSafeInteger(revision) && (revision as number) >= 1 && timestamp(createdAt) && timestamp(updatedAt) && updatedAt >= createdAt, "Invalid annotation revision or timestamps");
+  requireAnnotation(deletedAt === undefined || deletedAt === null || (timestamp(deletedAt) && deletedAt >= createdAt && deletedAt <= updatedAt), "Invalid annotation tombstone");
   requireAnnotation(isDeepStrictEqual(pixelGeometry, pixels(annotation)), "Annotation pixel geometry differs from its normalized geometry");
-  return { ...annotation, revision: 1, createdAt, updatedAt: createdAt, pixelGeometry: pixelGeometry as Geometry };
+  return { ...annotation, revision: revision as number, createdAt, updatedAt, pixelGeometry: pixelGeometry as Geometry, ...(deletedAt !== undefined ? { deletedAt: deletedAt as string | null } : {}) };
 }
 
 function pixels(annotation: AnnotationInput): Geometry {
@@ -116,7 +146,7 @@ function pixels(annotation: AnnotationInput): Geometry {
   return { x: left, y: top, width: right - left, height: bottom - top };
 }
 
-async function publishAnnotation(view: FeedbackView, annotation: Annotation): Promise<void> {
+async function publishAnnotation(view: FeedbackView, annotation: Annotation, replace = false): Promise<void> {
   const casePath = resolve(view.directory, "cases", annotation.caseId);
   const parent = await openDirectory(casePath);
   let directory: FileHandle | undefined;
@@ -133,10 +163,13 @@ async function publishAnnotation(view: FeedbackView, annotation: Annotation): Pr
     const file = await open(temporary, constants.O_WRONLY | constants.O_CREAT | constants.O_EXCL | constants.O_NOFOLLOW, 0o600);
     try { await file.writeFile(JSON.stringify(annotation, null, 2) + "\n"); await file.sync(); }
     finally { await file.close(); }
-    // Linking publishes the complete file atomically without replacing an existing ID.
-    try { await link(temporary, join(directoryAnchor, `${annotation.id}.json`)); }
-    catch (error) { if ((error as NodeJS.ErrnoException).code === "EEXIST") throw new AnnotationError("Annotation ID already exists", 409); throw error; }
-    await unlink(temporary); temporary = undefined;
+    // The service queue serializes revision checks and atomic replacement under one writer lock.
+    try {
+      if (replace) await rename(temporary, join(directoryAnchor, `${annotation.id}.json`));
+      else await link(temporary, join(directoryAnchor, `${annotation.id}.json`));
+    } catch (error) { if ((error as NodeJS.ErrnoException).code === "EEXIST") throw new AnnotationError("Annotation ID already exists", 409); throw error; }
+    if (!replace) await unlink(temporary);
+    temporary = undefined;
     await directory.sync();
   } finally {
     try { if (temporary) await unlink(temporary); }

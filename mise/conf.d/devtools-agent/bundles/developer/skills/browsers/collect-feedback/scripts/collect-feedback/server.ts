@@ -4,7 +4,7 @@ import { lstat, open, unlink } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { CliError } from "../../../collect-evidence/scripts/browser-evidence/sh.ts";
 import { assetBytes, boundedFile, requireValue, safeComponents, schema, validateSession, type FeedbackView } from "./records.ts";
-import { AnnotationError, createAnnotation, exportSession, listAnnotations } from "./annotations.ts";
+import { AnnotationError, createAnnotation, exportSession, listAnnotations, mutateAnnotation } from "./annotations.ts";
 
 export async function serveSession(directory: string, port: number, ready: (data: object) => void): Promise<void> {
   requireValue(Number.isInteger(port) && port >= 1 && port <= 65535, "--port must be an explicit integer from 1 to 65535");
@@ -47,7 +47,7 @@ export async function serveSession(directory: string, port: number, ready: (data
         if (request.headers.get("host") !== authority || (request.headers.has("origin") && request.headers.get("origin") !== origin)) return json("error", { message: "Host or Origin refused" }, 403);
         if (["cross-site", "same-site"].includes(request.headers.get("sec-fetch-site") ?? "")) return json("error", { message: "Cross-origin request refused" }, 403);
         if (request.url.length > 2048 || [...request.headers].reduce((n, [k, v]) => n + k.length + v.length, 0) > 8192 || request.headers.has("transfer-encoding") || Number(request.headers.get("content-length") ?? "0") > 65536) return json("error", { message: "Request exceeds limits" }, 413);
-        const mutation = request.method === "POST";
+        const mutation = ["POST", "PATCH", "DELETE"].includes(request.method);
         if (request.method !== "GET" && !mutation) return json("error", { message: "Method not allowed" }, 405);
         if (mutation && (request.headers.get("origin") !== origin || request.headers.get("x-write-token") !== writeToken)) return json("error", { message: "Write authorization refused" }, 403);
         if (mutation && request.headers.get("content-type")?.split(";")[0].trim() !== "application/json") return json("error", { message: "JSON payload required" }, 415);
@@ -57,17 +57,18 @@ export async function serveSession(directory: string, port: number, ready: (data
           const url = new URL(request.url);
           if (url.search || url.hash || /%|\\/.test(url.pathname)) return json("error", { message: "Unsafe path" }, 400);
           if (mutation) {
-            if (url.pathname !== "/api/v1/annotations") return json("error", { message: "Route not found" }, 404);
+            const target = /^\/api\/v1\/annotations\/([a-zA-Z0-9][a-zA-Z0-9._-]{0,255})$/.exec(url.pathname);
+            if (request.method === "POST" ? url.pathname !== "/api/v1/annotations" : !target) return json("error", { message: "Route not found" }, 404);
             const bytes = await request.arrayBuffer();
             if (bytes.byteLength > 65536) return json("error", { message: "Payload exceeds limit" }, 413);
             let input: unknown;
             try { input = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes)); }
             catch { return json("error", { message: "Malformed JSON payload" }, 400); }
             // The queue stays usable after a failed save. Each response awaits its durable write.
-            const saved = writes.then(() => createAnnotation(view, input));
+            const saved = writes.then(() => request.method === "POST" ? createAnnotation(view, input) : mutateAnnotation(view, target![1], input, request.headers.get("if-match"), request.method as "PATCH" | "DELETE"));
             writes = saved.catch(() => {});
             const annotation = await saved;
-            const response = json("annotation", { annotation }, 201);
+            const response = json("annotation", { annotation }, request.method === "POST" ? 201 : 200);
             response.headers.set("ETag", `"${annotation.id}:${annotation.revision}"`);
             return response;
           }
