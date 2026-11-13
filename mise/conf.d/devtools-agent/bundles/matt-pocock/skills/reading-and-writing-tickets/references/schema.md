@@ -18,6 +18,14 @@ Ticket status values are `unclaimed`, `claimed`, `implemented`, `merged`, and `c
 
 `scripts/record-migration.ts` validates plan identity, snapshot hashes, fresh routes, staged records, and append-only migration event chains. Results declare `tracker-result/v1`; that envelope does not upgrade the records it reports.
 
+## Cross-initiative dependencies
+
+`blocked_by` identifies real start-time prerequisites, not initiative membership. A ticket may depend on a ticket in another initiative. Resolve each blocker to its canonical ticket reference through the configured backend, then store the backend's required identifier. For Local Markdown, use the canonical ticket ID in `blocked_by`; retain canonical file references in reports.
+
+Validate dependencies across the complete relevant tracker graph. Reject missing or ambiguous records, self-links, and cycles that cross initiative boundaries. An unresolved outside prerequisite blocks the dependent ticket but does not add that prerequisite to an approved goal scope.
+
+Shared files alone do not require a dependency edge. Assess shared interfaces and coordinate concurrent work through the worktree workflow. Keep exclusive-resource reservations separate from `blocked_by`, ticket claims, and goal dispatch accounting. Do not add resource locks or initiative-wide serialization fields to the ticket schema.
+
 ## Example records
 
 ```yaml

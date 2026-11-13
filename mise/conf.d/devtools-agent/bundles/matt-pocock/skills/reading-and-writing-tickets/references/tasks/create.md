@@ -5,5 +5,5 @@ Select the record kind first. To publish a spec or create an initiative, follow 
 1. Check that the required title, intent, and acceptance criteria are present. Ask only for missing information that blocks creation.
 2. Create the ticket through the selected store.
 3. Resolve every requested blocker after the new ticket has an identifier.
-4. Before adding dependency edges, verify that each blocker resolves uniquely, is not the ticket itself, creates no cycle, represents a real start-time dependency, and does not need to remain open after completion.
+4. Before adding dependency edges, follow [Cross-initiative dependencies](../schema.md#cross-initiative-dependencies). Verify that each blocker resolves uniquely, including blockers in another initiative, is not the ticket itself, creates no cycle, represents a real start-time dependency, and does not need to remain open after completion. Keep resource reservations separate.
 5. Read the created ticket back. Return its identifier and canonical `ref`.
