@@ -4,7 +4,7 @@ id: "jira-tracker-mirror-04-closure-incremental"
 title: "Add epic children, outside blockers, and incremental sync"
 type: "enhancement"
 triage: "ready-for-agent"
-work_status: "unclaimed"
+work_status: "claimed"
 parent: "jira-tracker-mirror"
 sequence: 4
 blocked_by: ["jira-tracker-mirror-02-sync-query"]
