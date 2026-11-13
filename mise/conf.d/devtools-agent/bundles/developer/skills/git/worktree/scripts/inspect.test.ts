@@ -115,6 +115,41 @@ test("active receipts retain their base-checkout identity when inspected from a 
   expect(workflow.events?.find(item => item.ref.endsWith("/start.json"))?.error).toContain("workflow.root");
 });
 
+test("parent operator approvals without a child pane retain the review parent chain", async () => {
+  const { context, ticket } = await fixture();
+  const root = context.repositoryRoot;
+  const commit = await run("git", ["-C", root, "rev-parse", "HEAD"]);
+  const tree = await run("git", ["-C", root, "rev-parse", "HEAD^{tree}"]);
+  const approval = {
+    schema: "worktree-receipt/v2", workflow_id: ticket.id, receipt_id: "approval-1",
+    phase: "review", event: "operator-approval", status: "approved", attempt: 0, parent_receipt: null,
+    repository: root, worktree: root, workspace_path: root, source_branch: "main", base_branch: "main",
+    source_commit: commit, source_tree: tree, muxer: "herdr-app", pane_id: null, agent: "omp", session_id: "parent",
+    created_at: "2026-10-01T00:00:00Z", ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend },
+    ticket_ref: ticket.ref, workflow: { root, store: "repository", ref: "workflows/T-1" }, inputs: [], outputs: [],
+  };
+  const approvalPath = join(root, "workflows/T-1/events/approval.yaml");
+  const original = Bun.YAML.stringify(approval);
+  await put(approvalPath, original);
+  await put(join(root, "workflows/T-1/events/start.json"), JSON.stringify({
+    ...approval, receipt_id: "review-start-2", parent_receipt: "approval-1",
+    event: "phase-start", status: "started", attempt: 1, created_at: "2026-10-02T00:00:00Z",
+  }));
+  const inventory: Exec = async (command, args, cwd) => command === "wt"
+    ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "main", worktree: { path: root } }] }) }
+    : exec(command, args, cwd);
+  const workflow = await loadTicketWorkflow(context, ticket, inventory);
+  expect(workflow.error).toBeUndefined();
+  expect(workflow.inspection?.historyValid).toBe(true);
+  expect(workflow.receipts.find(item => item.id === "review-start-2")?.parentReceipt).toBe("approval-1");
+  expect(await readFile(approvalPath, "utf8")).toBe(original);
+
+  await put(approvalPath, Bun.YAML.stringify({ ...approval, session_id: null }));
+  const anonymous = await loadTicketWorkflow(context, ticket, inventory);
+  expect(anonymous.events?.find(item => item.ref.endsWith("/approval.yaml"))?.error).toContain("pane_id");
+  expect(anonymous.inspection?.historyValid).toBe(false);
+}, 60_000);
+
 test("canonical CLI inspection resolves the current adapter and prints real JSON without editing tracked state", async () => {
   const { context, root, ticket } = await fixture();
   await run("git", ["-C", context.repositoryRoot, "remote", "add", "origin", `https://github.com/example/${root.split("/").at(-1)}.git`]);

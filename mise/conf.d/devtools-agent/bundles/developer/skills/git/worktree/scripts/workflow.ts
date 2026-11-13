@@ -258,9 +258,9 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     if (!Number.isInteger(fields.attempt) || Number(fields.attempt) < (operatorEvent ? 0 : 1)) throw new Error(operatorEvent ? "Receipt attempt must be a non-negative integer for an operator decision." : "Receipt attempt must be a positive integer.");
     text(fields.muxer, "receipt muxer");
     text(fields.agent, "receipt agent");
-    // Starts precede pane creation; parent completions can outlive the child pane.
-    const parentCompletion = lifecycleEvent === "phase-complete" && typeof fields.session_id === "string" && fields.session_id.trim() !== "";
-    if (!((phase === "finish" || lifecycleEvent === "phase-start" || parentCompletion) && fields.pane_id === null) && typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string") throw new Error("Receipt pane_id is required.");
+    // Parent control records can precede child creation or outlive its pane.
+    const parentControl = (lifecycleEvent === "phase-complete" || operatorEvent) && typeof fields.session_id === "string" && fields.session_id.trim() !== "";
+    if (!((phase === "finish" || lifecycleEvent === "phase-start" || parentControl) && fields.pane_id === null) && typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string") throw new Error("Receipt pane_id is required.");
     // A phase with no evidence run records none; inventing one would be worse than its absence.
     if (fields.evidence != null) {
      const evidence = object(fields.evidence, "receipt evidence");
