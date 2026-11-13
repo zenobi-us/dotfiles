@@ -17,8 +17,14 @@ describe("header workflow badge", () => {
 
   test("distinguishes readiness from a next action", () => {
     expect(workflowBadge({ state: "BLOCKED" }, undefined)).toEqual({ label: "status", value: "blocked", tone: "blocked" });
-    expect(workflowBadge({ state: "READY" }, undefined)).toEqual({ label: "status", value: "ready", tone: "complete" });
     expect(workflowBadge(null, undefined)).toBeNull();
+  });
+
+  test("keeps available work distinct from completed work", () => {
+    const ready = workflowBadge({ state: "READY" }, undefined);
+    const done = workflowBadge({ state: "DONE" }, undefined);
+    expect(ready?.tone).toBe("ready");
+    expect(done?.tone).toBe("complete");
   });
 
   test("shows current only for a validated active phase bound to the inspected source", () => {

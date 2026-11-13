@@ -48,7 +48,7 @@ export function graphView(view, key, roots, focusId) {
         .on_mouse_down("left", (_event, cx) => cx.stop_propagation())
         .on_mouse_down("right", (_event, cx) => { cx.stop_propagation(); menu(record); })
         .on_key_down((event, cx) => { if (event.keystroke === "shift-f10" || event.key === "menu") { cx.stop_propagation(); menu(record); } })
-        .child(v_flex().w_full().min_w(0).gap(5 * z).child(div().text_size(Math.max(8, 12 * z)).truncate().child(record.title)).child(div().text_size(Math.max(7, 10 * z)).text_color(t.muted).truncate().child(record.id)).child(div().text_size(Math.max(7, 10 * z)).text_color(status === "READY" || status === "DONE" ? t.ansi2 : status === "BLOCKED" || status === "ERROR" ? t.blocked : t.ansi3).child(status)))
+        .child(v_flex().w_full().min_w(0).gap(5 * z).child(div().text_size(Math.max(8, 12 * z)).truncate().child(record.title)).child(div().text_size(Math.max(7, 10 * z)).text_color(t.muted).truncate().child(record.id)).child(div().text_size(Math.max(7, 10 * z)).text_color(status === "READY" ? t.ansi4 : status === "DONE" ? t.ansi2 : status === "BLOCKED" || status === "ERROR" ? t.blocked : t.ansi3).child(status)))
         .when(inputs.has(record.id), el => el.child(div().absolute().left(-portRadius).top(44 * z - portRadius).size(portRadius * 2).rounded_full().border_1().border_color(t.accent).bg(t.background)))
         .when(outputs.has(record.id), el => el.child(div().absolute().left(230 * z - portRadius).top(44 * z - portRadius).size(portRadius * 2).rounded_full().border_1().border_color(t.accent).bg(t.accent)));
     }));

@@ -13,7 +13,7 @@ export function workflowBadge(state, workflow, executable = true) {
     }
   }
   if (executable && NEXT_ACTIONS.includes(status)) return { label: "next", value: status.toLowerCase(), tone: "next" };
-  return { label: "status", value: state.state.toLowerCase(), tone: ["BLOCKED", "ERROR", "UNKNOWN"].includes(status) ? "blocked" : ["READY", "DONE"].includes(status) ? "complete" : "neutral" };
+  return { label: "status", value: state.state.toLowerCase(), tone: ["BLOCKED", "ERROR", "UNKNOWN"].includes(status) ? "blocked" : status === "READY" ? "ready" : status === "DONE" ? "complete" : "neutral" };
 }
 
 export function recordReferences(record, kind = "ticket") {

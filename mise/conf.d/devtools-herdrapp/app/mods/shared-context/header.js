@@ -19,8 +19,9 @@ export function compactHeader(view, record) {
   const choices = view.detail?.actions ?? [];
   const primary = choices.find(choice => choice.action === view.detail?.nextAction);
   const liveAgents = view.liveActivity?.get(record.ref) ?? [];
-  const tint = ({ next: t.ansi3, current: t.ansi4, blocked: t.blocked, complete: t.ansi2, neutral: t.muted })[primary ? "next" : recommendation?.tone] ?? t.muted;
-  const workflowPalette = badgePalette(tint, t.background);
+  // Availability and Start share blue; green remains reserved for completed work.
+  const tint = ({ ready: t.ansi4, next: t.ansi3, current: t.ansi4, blocked: t.blocked, complete: t.ansi2, neutral: t.muted })[recommendation?.tone] ?? t.muted;
+  const workflowPalette = badgePalette(primary?.action === "start" ? t.ansi4 : primary ? t.ansi3 : tint, t.background);
   const reason = [view.activity?.needsReview ? view.activity.summary : null, state?.reason].filter(Boolean).join("\n\n");
   const columns = view.preferences.layout === "C2" && view.bodySize.width >= 600;
   const availableHeight = view.readerHeight ?? (columns || view.drawer === "expanded" ? view.bodySize.height : Math.max(0, view.bodySize.height / 2 - 44));
