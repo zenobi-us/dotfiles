@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Button } from './components/ui/button';
 import { Badge } from './components/ui/badge';
 import { Separator } from './components/ui/separator';
+import { AnnotationImage } from './components/annotation-image';
 import type { Asset, Case, CasesResponse, Session, SessionResponse } from './types';
 
 function text(value: unknown): string {
@@ -39,13 +40,13 @@ function listKeys(event: KeyboardEvent<HTMLElement>) {
   buttons[next]?.click();
   buttons[next]?.focus();
 }
-function AssetInspector({ asset }: { asset: Asset }) {
+function AssetInspector({ asset, sessionId, writeToken }: { asset: Asset; sessionId: string; writeToken: string }) {
   const [failed, setFailed] = useState(false);
   const url = `/api/v1/assets/${encodeURIComponent(asset.id)}`;
   return <>
     <Section title="Original media">
       {failed && <p role="alert" className="error">Media could not be loaded. The asset may be missing, changed, or unavailable. Reload the session after checking the server.</p>}
-      {asset.mediaType.startsWith('image/') ? <img className="original" src={url} alt={`Original evidence ${asset.id}`} onError={() => setFailed(true)} />
+      {asset.mediaType.startsWith('image/') ? <AnnotationImage asset={asset} sessionId={sessionId} writeToken={writeToken} onError={() => setFailed(true)} />
         : asset.mediaType.startsWith('video/') ? <video className="original" src={url} controls preload="metadata" onError={() => setFailed(true)} aria-label={`Original recording ${asset.id}`} />
           : <p className="muted">Preview unavailable for {asset.mediaType}. This viewer displays images and video.</p>}
       <p className="muted">Original evidence · no image transformations</p>
@@ -60,7 +61,7 @@ function AssetInspector({ asset }: { asset: Asset }) {
   </>;
 }
 function App() {
-  const [data, setData] = useState<{ session: Session; cases: Case[] }>();
+  const [data, setData] = useState<{ session: Session; cases: Case[]; writeToken: string }>();
   const [error, setError] = useState<string>();
   const [reload, setReload] = useState(0);
   const [caseId, setCaseId] = useState<string>();
@@ -77,7 +78,7 @@ function App() {
       request<SessionResponse>('/api/v1/session', 'session', abort.signal),
       request<CasesResponse>('/api/v1/cases', 'cases', abort.signal),
     ]).then(([session, cases]) => {
-      setData({ session: session.session, cases: cases.cases });
+      setData({ session: session.session, cases: cases.cases, writeToken: session.writeToken });
       setCaseId(cases.cases[0]?.id);
       setAssetId(undefined);
     }).catch((cause: unknown) => {
@@ -101,7 +102,7 @@ function App() {
     else caseColumn.current?.focus({ preventScroll: true });
   }
   return <div className="app">
-    <header className="app-header"><h1>Collect feedback <span className="muted">/ evidence viewer</span></h1><Badge variant="outline">Read only</Badge></header>
+    <header className="app-header"><h1>Collect feedback <span className="muted">/ evidence viewer</span></h1><a href="/api/v1/export" target="_blank" rel="noreferrer">Export saved annotations ↗</a></header>
     {!data ? <main className="load-state" aria-live="polite">{error ? <><h2>Session unavailable</h2><p role="alert" className="error">{error}</p><Button variant="outline" onClick={() => setReload(value => value + 1)}>Reload session</Button></> : <p role="status">Loading session and cases…</p>}</main> : <main className="finder" aria-label="Evidence browser">
       <section className="column session-column" ref={sessionColumn} tabIndex={-1} aria-labelledby="session-title">
         <div className="column-heading"><h2 id="session-title">01 / Session</h2><Badge variant="outline">{data.cases.length} cases</Badge></div>
@@ -112,7 +113,7 @@ function App() {
           <Separator />
           <Section title="Browse evidence"><p className="muted">Select a case, then an asset. Arrow keys move through each list. Enter or Space selects.</p><Button variant="outline" onClick={() => reveal(caseColumn.current, true)}>Browse cases →</Button></Section>
           <Separator />
-          <Section title="Immutable source"><p>Inspect original captures and recorded results. Annotation tools are not part of this viewer.</p></Section>
+          <Section title="Immutable source"><p>Original captures stay unchanged. Select an image to draw a feedback pin and save a note.</p></Section>
         </div>
       </section>
       <section className="column case-column" ref={caseColumn} tabIndex={-1} aria-labelledby="case-title" onKeyDown={event => { if (event.key === 'ArrowLeft') { event.preventDefault(); reveal(sessionColumn.current, true); } }}>
@@ -135,9 +136,9 @@ function App() {
           </>}
         </div>
       </section>
-      <section className="column asset-column" ref={assetColumn} tabIndex={-1} aria-labelledby="asset-title" onKeyDown={event => { if (event.key === 'ArrowLeft') { event.preventDefault(); backToCases(); } }}>
+      <section className="column asset-column" ref={assetColumn} tabIndex={-1} aria-labelledby="asset-title" onKeyDown={event => { if (!event.defaultPrevented && event.key === 'ArrowLeft' && !(event.target as HTMLElement).closest('textarea, input, select, [contenteditable="true"], .annotation-workspace, .annotation-editor')) { event.preventDefault(); backToCases(); } }}>
         <div className="column-heading"><h2 id="asset-title">03 / Asset inspector</h2><Button variant="ghost" className="back" onClick={backToCases}>← Cases</Button></div>
-        <div className="column-body">{asset ? <AssetInspector key={`${caseId}/${asset.id}`} asset={asset} /> : <p className="empty">Select an asset from the case to inspect its original media and capture metadata.</p>}</div>
+        <div className="column-body">{asset ? <AssetInspector key={`${caseId}/${asset.id}`} asset={asset} sessionId={data.session.id} writeToken={data.writeToken} /> : <p className="empty">Select an asset from the case to inspect its original media and capture metadata.</p>}</div>
       </section>
     </main>}
   </div>;

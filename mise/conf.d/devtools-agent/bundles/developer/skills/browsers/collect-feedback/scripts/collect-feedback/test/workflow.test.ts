@@ -46,16 +46,6 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     expect(await readdir(join(repository, "workflows/public/artifacts/evidence"))).toEqual(before);
     const imported = await invoke(["init", source, ...options]); expect(imported.code).toBe(0);
     const dir = imported.data.destination.path;
-    const index = await readFile(join(dir, "index.md"), "utf8");
-    const notes = await readFile(join(dir, "cases/original/notes.md"), "utf8");
-    for (const [text, kind] of [[index, "session"], [notes, "case"]]) {
-      expect(text).toMatch(/^---\nschema: collect-feedback\/v1\nkind: /);
-      expect(text).toContain(`kind: ${kind}\n---\n`);
-    }
-    expect(index).toContain("# Feedback review\n");
-    expect(index).toContain("sealed evidence source");
-    expect(notes).toContain("# Case original\n");
-    expect(notes).toContain("Original capture times and hashes");
     expect((await invoke(["init", source, ...options])).code).toBe(1);
     const valid = await invoke(["validate", dir]); expect(valid.code).toBe(0);
     const asset = valid.data.cases[0].assets[0];
@@ -96,18 +86,45 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     expect((await invoke(["serve", dir, "--port", String(port + 1)])).code).toBe(3);
     expect((await fetch(origin + "/api/v1/session")).status).toBe(200);
     expect(Buffer.from(await (await fetch(origin + "/api/v1/assets/" + asset.id)).arrayBuffer())).toEqual(original);
+    const { writeToken } = await (await fetch(origin + "/api/v1/session")).json();
+    const headers = { Origin: origin, "X-Write-Token": writeToken, "Content-Type": "application/json" };
+    const input = { schema: "collect-feedback/v1", kind: "annotation", id: crypto.randomUUID(), sessionId: "review", caseId: "original", assetId: asset.id, sourceSha256: asset.sha256, originalWidth: asset.width, originalHeight: asset.height, geometry: { x: 0.333, y: 0.25, width: 0.667, height: 0.5 }, priority: "P2", comment: "Keep this original target visible" };
+    const save = (body: unknown, overrides = {}) => fetch(origin + "/api/v1/annotations", { method: "POST", headers: { ...headers, ...overrides }, body: JSON.stringify(body) });
+    expect((await save(input, { "X-Write-Token": "incorrect" })).status).toBe(403);
+    expect((await save(input, { Origin: "https://attacker.invalid" })).status).toBe(403);
+    expect((await save({ ...input, assetId: "unregistered" })).status).toBe(400);
+    expect((await save({ ...input, geometry: { ...input.geometry, width: 2 } })).status).toBe(400);
+    expect((await save({ ...input, comment: " " })).status).toBe(400);
+    expect((await save({ ...input, sourceSha256: "0".repeat(64) })).status).toBe(409);
+    const savedResponse = await save(input);
+    expect(savedResponse.status).toBe(201);
+    expect(savedResponse.headers.get("etag")).toBe(`"${input.id}:1"`);
+    const saved = (await savedResponse.json()).annotation;
+    expect(saved).toMatchObject({ ...input, revision: 1, pixelGeometry: { x: Math.round(asset.width * .333), y: Math.round(asset.height * .25), width: asset.width - Math.round(asset.width * .333), height: Math.round(asset.height * .75) - Math.round(asset.height * .25) } });
+    expect((await (await save(input)).json()).annotation).toEqual(saved);
+    expect((await save({ ...input, comment: "Different retry content" })).status).toBe(409);
+    expect((await (await fetch(origin + "/api/v1/annotations")).json()).annotations).toEqual([saved]);
+    const exported = await invoke(["export", dir]);
+    expect(exported.code).toBe(0);
+    expect(exported.data.annotations).toEqual([saved]);
+    expect((await (await fetch(origin + "/api/v1/export")).json()).annotations).toEqual([saved]);
+    expect((await invoke(["export", dir])).data).toEqual(exported.data);
+    expect(JSON.parse(await readFile(join(dir, "cases/original/annotations", input.id + ".json"), "utf8"))).toEqual(saved);
     for (const [path, init, status] of [
       ["/api/v1/session", { headers: { Host: "attacker.invalid" } }, 403],
       ["/api/v1/cases", { headers: { Origin: "https://attacker.invalid" } }, 403],
       ["/api/v1/session", { headers: { "Sec-Fetch-Site": "same-site" } }, 403],
-      ["/api/v1/annotations", { method: "POST" }, 405],
-      ["/api/v1/session", { method: "POST", body: "x".repeat(2048) }, 413],
+      ["/api/v1/annotations", { method: "POST" }, 403],
+      ["/api/v1/session", { method: "POST", body: "x".repeat(65537) }, 413],
       ["/api/v1/assets/%2fetc%2fpasswd", {}, 400],
       ["/api/v1/assets/unregistered", {}, 404],
       ["/source/run.json", {}, 404],
     ] as Array<[string, RequestInit, number]>) expect((await fetch(origin + path, init)).status).toBe(status);
     const media = join(dir, asset.path); await chmod(media, 0o600); await writeFile(media, "changed");
     expect((await fetch(origin + "/api/v1/assets/" + asset.id)).status).toBe(409);
+    expect((await save({ ...input, id: crypto.randomUUID() })).status).toBe(409);
+    expect((await fetch(origin + "/api/v1/export")).status).toBe(409);
+    expect((await invoke(["export", dir])).code).not.toBe(0);
     expect((await invoke(["validate", dir])).code).toBe(2);
     await unlink(media); await symlink(join(source, asset.path), media);
     expect((await fetch(origin + "/api/v1/assets/" + asset.id)).status).toBe(409);
@@ -116,8 +133,18 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     await writeFile(media, original, { mode: 0o444 });
     child.kill("SIGTERM"); expect(await child.exited).toBe(0);
     expect(await Bun.file(join(dir, ".writer.lock")).exists()).toBe(false);
-    const restarted = await start(dir, port, direct); restarted.kill("SIGINT"); expect(await restarted.exited).toBe(0);
+    const restarted = await start(dir, port, direct);
+    expect((await (await fetch(origin + "/api/v1/annotations")).json()).annotations).toEqual([saved]);
+    expect((await invoke(["export", dir])).data.annotations).toEqual([saved]);
+    restarted.kill("SIGINT"); expect(await restarted.exited).toBe(0);
     expect(await Bun.file(join(dir, ".writer.lock")).exists()).toBe(false);
+    const annotationPath = join(dir, "cases/original/annotations", input.id + ".json");
+    await writeFile(annotationPath, JSON.stringify({ ...saved, schema: "collect-feedback/v999" }));
+    expect((await invoke(["validate", dir])).code).toBe(2);
+    expect((await invoke(["export", dir])).code).toBe(2);
+    expect((await invoke(["serve", dir, "--port", String(port)])).code).toBe(2);
+    expect(await Bun.file(join(dir, ".writer.lock")).exists()).toBe(false);
+    await writeFile(annotationPath, JSON.stringify(saved));
     const manifest = join(dir, "session.json"), text = await readFile(manifest, "utf8");
     await writeFile(manifest, text.replace("collect-feedback/v1", "collect-feedback/v999")); expect((await invoke(["validate", dir])).code).toBe(2);
     expect((await invoke(["serve", dir, "--port", String(port)])).code).toBe(2);

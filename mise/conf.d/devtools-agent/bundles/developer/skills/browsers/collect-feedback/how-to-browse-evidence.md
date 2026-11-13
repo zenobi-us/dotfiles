@@ -9,7 +9,11 @@ title: Browse original evidence
 3. Open the returned `http://127.0.0.1:<port>` URL on the same machine.
 4. Select a case. Read its purpose, steps, recorded results and limits.
 5. Select an asset. Inspect the original image and its capture metadata. Use arrow keys to move through each list. On a narrow screen, move horizontally between the columns or use the column navigation buttons.
-6. Stop the owned server with Ctrl-C. Keep the session directory for later inspection. Start it again with the same session path and an explicit port.
+6. Click an image to place a point, or drag a box in either direction. Use Point or Box to start with the keyboard. Move with arrows and resize a box with Shift plus arrows.
+7. Enter a comment beside the pin. Select P1 Blocker, P2 Friction or P3 Polish. New notes start at P2. Save with the Save button or Ctrl or Meta plus Enter. Escape cancels.
+8. Wait for Saved. If saving fails, keep the page open and retry. Unfinished notes stay in memory only. Saved notes remain read-only.
+9. Run `export <session> --json` through the installed collect-feedback command to read saved notes and source references.
+10. Stop the owned server with Ctrl-C. Keep the session directory for later inspection. Start it again with the same session path and an explicit port.
 
-This viewer cannot create, save or export annotations. A screenshot proves a capture, not a passing assertion. If an asset is missing, changed or unsafe, import corrected evidence under a new identity.
+A screenshot proves a capture, not a passing assertion. If an asset is missing, changed or unsafe, import corrected evidence under a new identity.
 

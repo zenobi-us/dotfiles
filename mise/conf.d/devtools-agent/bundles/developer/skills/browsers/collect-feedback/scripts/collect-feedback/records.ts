@@ -49,10 +49,10 @@ export async function importSession(source: string, options: ImportOptions): Pro
         await writeFile(join(staging, asset.path), bytes, { flag: "wx", mode: 0o444 });
       }
       await jsonFile(join(directory, "case.json"), feedback);
-      await markdown(join(directory, "notes.md"), "case", `# Case ${record.id}\n\nRead-only imported evidence. Original capture times and hashes remain unchanged.\n`);
+      await markdown(join(directory, "notes.md"), "case", `# Case ${record.id}\n\nImported evidence remains immutable. Saved screenshot annotations are stored separately in annotations/. Original capture times and hashes remain unchanged.\n`);
     }
     await jsonFile(join(staging, "session.json"), session);
-    await markdown(join(staging, "index.md"), "session", `# Feedback ${session.id}\n\nRead-only viewer for sealed evidence ${snapshot.run.id}. Annotation editing and export are not supported.\n`);
+    await markdown(join(staging, "index.md"), "session", `# Feedback ${session.id}\n\nReview sealed evidence ${snapshot.run.id}, save screenshot annotations and export saved feedback with its source references. Original evidence remains unchanged.\n`);
     await validateSession(staging, true);
     await mkdir(target);
     try { await rename(staging, target); } catch (error) { await rmdir(target); throw error; }

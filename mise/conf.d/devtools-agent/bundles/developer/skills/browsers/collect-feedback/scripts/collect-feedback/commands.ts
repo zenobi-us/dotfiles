@@ -5,6 +5,7 @@ import { resolve } from "node:path";
 import { CliError } from "../../../collect-evidence/scripts/browser-evidence/sh.ts";
 import { importSession, requireValue, schema, validateSession } from "./records.ts";
 import { serveSession } from "./server.ts";
+import { AnnotationError, exportSession, listAnnotations } from "./annotations.ts";
 
 const flags = {
   json: { type: "boolean", description: "Emit versioned JSON" },
@@ -28,12 +29,12 @@ export async function runCli(directServe = false): Promise<void> {
     try { await next(); } catch (error) { failure(error, 2); }
   } };
   const root = directServe ? command("serve").use(errors).use(helpPlugin()) : new Crust("collect-feedback")
-    .meta({ description: "Import and browse immutable evidence; read-only viewer" }).use(errors).use(helpPlugin())
-    .command(command("init")).command(command("validate")).command(command("serve"));
+    .meta({ description: "Import, annotate and export immutable evidence" }).use(errors).use(helpPlugin())
+    .command(command("init")).command(command("validate")).command(command("serve")).command(command("export"));
   try { await root.execute(); } catch (error) { failure(error, 2); }
 }
 function command(name: string) {
-  return new Crust(name).meta({ description: name === "init" ? "Import a sealed run into a new resolved feedback session" : name === "serve" ? "Serve the bundled read-only viewer on loopback" : "Validate feedback and original media hashes" })
+  return new Crust(name).meta({ description: name === "init" ? "Import a sealed run into a new resolved feedback session" : name === "serve" ? "Serve the bundled annotation viewer on loopback" : name === "export" ? "Read saved annotations and verified source references" : "Validate feedback and original media hashes" })
     .flags(flags).args([{ name: "dir", type: "string", required: true, description: name === "init" ? "Sealed evidence run" : "Feedback session directory" }])
     .run(async ({ args, flags: options }) => {
       try {
@@ -51,7 +52,10 @@ function command(name: string) {
           emit(await importSession(directory, { repository, workflow: options.workflow, session: options.session, dryRun: options["dry-run"] }));
         } else if (name === "validate") {
           const view = await validateSession(directory);
-          emit({ valid: true, session: view.session, cases: view.cases });
+          emit({ valid: true, session: view.session, cases: view.cases, annotations: await listAnnotations(view) });
+        } else if (name === "export") {
+          const result = await exportSession(directory);
+          if (!options.quiet) console.log(options.plain && !options.json ? plainResult(result) : JSON.stringify(result, null, options.json ? undefined : 2));
         } else {
           requireValue(options.port !== undefined, "serve requires --port");
           if (options["dry-run"]) {
@@ -70,8 +74,8 @@ function plainResult(data: object, prefix = ""): string {
   }).filter(Boolean).join("\n");
 }
 function failure(error: unknown, fallback = 1): void {
-  const code = error instanceof CliError ? error.exitCode : error instanceof SyntaxError ? 2 : fallback;
-  const message = error instanceof CliError ? error.message : "Feedback operation failed; check input files, permissions and explicit port availability";
+  const code = error instanceof CliError ? error.exitCode : error instanceof SyntaxError || (error instanceof AnnotationError && error.status === 400) ? 2 : fallback;
+  const message = error instanceof CliError || error instanceof AnnotationError ? error.message : "Feedback operation failed; check input files, permissions and explicit port availability";
   if (process.argv.includes("--json")) console.log(JSON.stringify({ schema, kind: "error", success: false, code, message }));
   console.error(message); process.exitCode = code;
 }

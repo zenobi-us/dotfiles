@@ -82,3 +82,36 @@ dd { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
   .app-header { align-items: start; }
   .app-header h1 span { display: block; margin-top: 4px; }
 }
+
+.annotation-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.zoom-control { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.zoom-control select { background: var(--card); border: 1px solid var(--border); color: var(--foreground); font: inherit; padding: 8px; border-radius: 0; }
+.annotation-help { line-height: 1.5; margin-bottom: 12px; }
+.image-viewport { overflow: auto; max-height: 65vh; border: 1px solid var(--border); padding: 20px; margin-bottom: 12px; scrollbar-gutter: stable; }
+.image-stage { position: relative; touch-action: none; cursor: crosshair; }
+.image-stage > img { display: block; width: 100%; height: auto; max-width: none; user-select: none; }
+.annotation-region { position: absolute; border: 1px solid currentColor; pointer-events: none; min-width: 0; min-height: 0; }
+.annotation-region:has(.annotation-pin[aria-pressed="true"]) { border-width: 2px; }
+.priority-P1 { color: var(--destructive); }
+.priority-P2 { color: var(--primary); }
+.priority-P3 { color: var(--muted-foreground); }
+#root [data-slot="button"].annotation-pin { pointer-events: auto; position: absolute; top: 0; left: 0; transform: translate(-50%, -50%); width: 28px; height: 28px; padding: 0; min-width: 28px; background: var(--background); color: inherit; border-color: currentColor; }
+.annotation-pin[aria-pressed="true"] { outline: 2px solid var(--primary); outline-offset: 3px; }
+.annotation-editor { position: fixed; z-index: 20; width: min(320px, calc(100vw - 16px)); max-height: calc(100dvh - 16px); overflow: auto; padding: 12px; border: 1px solid var(--primary); background: var(--card); color: var(--foreground); font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; }
+.annotation-editor-heading { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 12px; }
+.annotation-editor-heading h3 { margin: 0; }
+.annotation-editor-heading [data-slot="button"] { width: 28px; height: 28px; padding: 0; }
+.priority-controls { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+.priority-controls [data-slot="button"] { padding: 4px; height: auto; color: inherit; }
+.priority-controls [aria-pressed="true"] { border-color: currentColor; background: var(--muted); }
+.priority-controls [data-slot="badge"] { border-color: currentColor; color: inherit; padding: 2px 4px; }
+.comment-label { display: block; margin-bottom: 4px; }
+.annotation-editor textarea { display: block; width: 100%; resize: vertical; min-height: 72px; max-height: 30vh; padding: 8px; border: 1px solid var(--border); border-radius: 0; background: var(--background); color: var(--foreground); font: inherit; line-height: 1.5; margin-bottom: 8px; }
+.annotation-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.annotation-editor .error { margin-top: 8px; }
+.saved-comment { white-space: pre-wrap; margin-block: 12px; }
+.save-ack { color: var(--success); margin-top: 8px; }
+.etag { display: block; overflow-wrap: anywhere; font-size: 10px; }
+.priority-controls [data-slot="button"].priority-P1 { color: var(--destructive); }
+.priority-controls [data-slot="button"].priority-P2 { color: var(--primary); }
+.priority-controls [data-slot="button"].priority-P3 { color: var(--muted-foreground); }

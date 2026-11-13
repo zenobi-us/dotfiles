@@ -1,1 +1,11 @@
-{schema: worktree-latest-status/v1,workflow_id: collect-evidence-feedback-05-pins,ticket: tracker/tickets/collect-evidence-feedback-05-pins.md,state: REVIEW_PASSED,latest_receipt: review-complete-0021,latest_source_commit: 0fcfd5dd0c3f03d7ed65dffd3127aa3883da6de2,latest_source_tree: 3f4145d7c9d7da7239f02a61a9d0a73b57aee5a8,latest_review_verdict: SUCCESS,latest_review_commit: 0fcfd5dd0c3f03d7ed65dffd3127aa3883da6de2,review_current: true,resolved_findings: [STD-01,SPEC-01],open_findings: []}
+schema: worktree-latest-status/v1
+workflow_id: collect-evidence-feedback-05-pins
+ticket: tracker/tickets/collect-evidence-feedback-05-pins.md
+state: REVIEWING
+latest_receipt: review-complete-0021
+latest_source_commit: 0fcfd5dd0c3f03d7ed65dffd3127aa3883da6de2
+latest_source_tree: 3f4145d7c9d7da7239f02a61a9d0a73b57aee5a8
+latest_review_verdict: SUCCESS
+review_current: false
+open_findings: []
+resolution_review_required: true
