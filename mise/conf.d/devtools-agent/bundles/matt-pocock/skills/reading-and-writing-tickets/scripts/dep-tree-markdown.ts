@@ -7,6 +7,9 @@ import { buildDependencyForest, parseJson, record, renderDependencyGraph, run } 
 import type { Ticket } from "./dep-tree-shared.ts";
 import { assertRecord, INITIATIVE_LINKS_QUERY, INITIATIVE_SCHEMA, validateInitiativeMembership } from "./record-schema.ts";
 
+// The skill's tracked lock pins the remote okf.mq module, wherever the caller runs.
+const MQ_LOCKFILE = fileURLToPath(new URL("../mq.lock", import.meta.url));
+
 type MarkdownTicket = { ticket: Ticket; blockedBy: string[]; parent?: string };
 interface MarkdownInitiative { id: string; ticketIds: string[] }
 
@@ -102,7 +105,7 @@ function markdownRows(root: string, pattern: string, fields: string): unknown[] 
     import "section" |
     map(walk_files(root, pattern), fn(file): let source = read_file(root + "/" + file) | let doc = okf::okf_parse(source) | { path: file, ${fields} };)
   `;
-  const parsed = parseJson(run("mq", ["--allow-http-import", `--allow-read=${root}`, "--args", "root", root, "--args", "pattern", pattern, "-I", "null", "-F", "json", query]), "mq");
+  const parsed = parseJson(run("mq", ["--allow-http-import", "--lockfile", MQ_LOCKFILE, `--allow-read=${root}`, "--args", "root", root, "--args", "pattern", pattern, "-I", "null", "-F", "json", query]), "mq");
   return Array.isArray(parsed) ? parsed : [parsed];
 }
 
