@@ -1,0 +1,14 @@
+{
+  "axis": "standards",
+  "findings": [
+    {
+      "description": "A stale edit cannot recover without discarding its draft. After another tab updates the note, PATCH returns 412, but submitted.current remains set and baseRevision remains stale. The editor becomes read-only and Retry save repeats the same rejected revision. Annotations reload only on mount or load failure, so closing and reopening the editor also retains the stale revision. Reloading the page loses the memory-only draft. A committed PATCH whose response is lost reaches the same dead end on retry.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/components/annotation-image.tsx",
+      "line": 211,
+      "requiredChange": "Handle 412 explicitly: fetch the current saved annotation while preserving the draft, show the conflict, and offer an explicit reapply action against the refreshed revision. Reconcile ambiguous successful writes before repeating them. Do not silently overwrite the competing edit.",
+      "severity": "P2"
+    }
+  ],
+  "schema": "code-review/v1",
+  "summary": "One actionable correctness issue. Reviewed unstaged and staged collect-feedback changes. No builds, tests, formatters, or source edits performed, as requested."
+}

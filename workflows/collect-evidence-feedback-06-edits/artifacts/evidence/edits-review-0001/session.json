@@ -1,0 +1,86 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "session",
+  "id": "review",
+  "createdAt": "2026-11-13T10:47:58.379Z",
+  "source": {
+    "schema": "collect-evidence/v1",
+    "kind": "run",
+    "id": "source",
+    "status": "sealed",
+    "startedAt": "2026-11-13T10:47:54.826Z",
+    "finishedAt": "2026-11-13T10:47:57.687Z",
+    "surface": "web",
+    "driver": "playwright",
+    "driverVersion": "0.1.22",
+    "plan": "plan.json",
+    "cases": [
+      {
+        "id": "original",
+        "path": "cases/original/case.json"
+      }
+    ],
+    "files": [
+      {
+        "path": "cases/original/case.json",
+        "sha256": "61d51f9de020b596ddcb848a6f8ce18ebbfb57e9878d916e5661d384b96a6399"
+      },
+      {
+        "path": "cases/original/events.jsonl",
+        "sha256": "f0a191a70d03a5b173cabf02451150c4a17e1f36484caf93775c7f3f9ab66519"
+      },
+      {
+        "path": "cases/original/index.md",
+        "sha256": "d44aa2276abf85dcd1246566ef07c7cf18bff1cbd51334a7b6060815e3a787c1"
+      },
+      {
+        "path": "cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png",
+        "sha256": "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+      },
+      {
+        "path": "cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png",
+        "sha256": "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+      },
+      {
+        "path": "index.md",
+        "sha256": "baf7d5fafb876b65881be8a7ff2d625cd33092de31011068380755d156917fd9"
+      },
+      {
+        "path": "native/plan.ts",
+        "sha256": "509c0bf4b44f459ccc0836284d61c05c99a4009d090cf6e982330210edff6866"
+      },
+      {
+        "path": "native/report/shots/step-original-002-original--capture-001.png",
+        "sha256": "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+      },
+      {
+        "path": "native/report/shots/step-original-002-original--capture-002.png",
+        "sha256": "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+      },
+      {
+        "path": "native/runs/case-original.log",
+        "sha256": "b9eb08902c6a3c970ce0e49915ce0d086923cd368769d4772b9ea0b105692ef4"
+      },
+      {
+        "path": "native/workflows/smoke-test-original.js",
+        "sha256": "012cfeb5f462c4064d78f5d5c2b97e44d1607a5b2b6e29da50148353399de04e"
+      },
+      {
+        "path": "plan.json",
+        "sha256": "6257f1fdb949c6d01cc3f46b4f504f18399d61b1bc3175cc60f80935b7c4c5d8"
+      },
+      {
+        "path": "plan.ts",
+        "sha256": "509c0bf4b44f459ccc0836284d61c05c99a4009d090cf6e982330210edff6866"
+      }
+    ],
+    "runId": "source",
+    "manifestSha256": "205c51c158cde6e3c72f3aaa51328ec490a395f7c0215f1537dea9f8b639d90e"
+  },
+  "cases": [
+    {
+      "id": "original",
+      "path": "cases/original/case.json"
+    }
+  ]
+}

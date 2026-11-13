@@ -1,0 +1,29 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "annotation",
+  "id": "9170d7da-9696-46bd-b795-5350cf15e8d6",
+  "sessionId": "review",
+  "caseId": "original",
+  "assetId": "original.2.capture-001",
+  "sourceSha256": "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f",
+  "originalWidth": 1280,
+  "originalHeight": 720,
+  "geometry": {
+    "x": 0.5,
+    "y": 0.5,
+    "width": 0,
+    "height": 0
+  },
+  "priority": "P1",
+  "comment": "First client corrected note",
+  "revision": 4,
+  "createdAt": "2026-11-13T10:48:27.364Z",
+  "updatedAt": "2026-11-13T10:49:03.211Z",
+  "pixelGeometry": {
+    "x": 640,
+    "y": 360,
+    "width": 0,
+    "height": 0
+  },
+  "deletedAt": null
+}
