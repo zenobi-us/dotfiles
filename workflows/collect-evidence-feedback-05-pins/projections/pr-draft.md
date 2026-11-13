@@ -2422,3 +2422,12 @@ Supporting artifacts:
 ## Safe cleanup recovery
 
 User approved takeover from the exited hc:t9t session to hc:t9z. Approval: workflows/collect-evidence-feedback-05-pins/events/finish-ownership-0038.yaml. Safe named cleanup retried with --min-age=0s; Worktrunk again refused the original feature branch as not a prune candidate. Preserved that worktree and every unrelated resource. Remote origin/master at fa84871e2f1b0e4231c90a5640502702e38a492a retains published integration and tracker completion. No merge, product checks or tracker completion repeated.
+
+
+## Safe cleanup retry 0041
+
+Current-session takeover approved in [finish-ownership-0040](../events/finish-ownership-0040.yaml). [finish-cleanup-pending-0041](../events/finish-cleanup-pending-0041.yaml) records FINISH_FAILED at cleanup.
+
+The named cleanup-merged retry refused feature/collect-evidence-feedback-05-pins as not a Worktrunk prune candidate. Preserved the original worktree and all unrelated resources. No forced deletion or repeated integration.
+
+Remote master observed at 2de161b17089658a9bd48b15f7a28436d6286f41 contains integration 32ceb6fdb6daee017802f6ddfe939b4df90bc37a and tracker completion ee758aaf1269f4c76d011b7bfd61a75fd19e4834. Prior candidate-bound checks remain unchanged; no product checks rerun for this cleanup-only attempt. Next action: operator resolves the preserved original source disposition.
