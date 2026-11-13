@@ -94,3 +94,15 @@ Fix phase completed in [fix-complete-0010](../events/fix-complete-0010.yaml). Ty
 [History-repair-0015](../events/history-repair-0015.yaml) corrects the diagnosis: YAML parsing worked. The reader rejected a parent operator approval with a null pane. Parent operator records now permit a null pane only with a non-empty session ID. Child result pane requirements remain unchanged. The 20-test inspection suite passes; canonical inspection reports valid history. All 14 prior receipt files retain their original SHA-256.
 
 Current source remains c5091d44e6120ffc3339c8e5b3f5904643fe9e27, tree 059e74eba64364ece42193c3962ea1cde944843e. Current review verdict: none. The old FAILURE remains historical and does not cover this source. Next action: fresh independent review, retry mode; the inspector requires scoped approval. No review dispatch, merge, push or tracker completion is authorized by this repair.
+
+## Review attempt 3: current outcome
+
+Latest formal reviewer verdict: SUCCESS for `c5091d44e6120ffc3339c8e5b3f5904643fe9e27`, tree `059e74eba64364ece42193c3962ea1cde944843e`. This supersedes the older blocked status without removing its history.
+
+- **Standards:** One low, non-blocking duplication advisory; no hard violations.
+- **Spec:** No findings. Prior SPEC-001 and STANDARDS-001 remain resolved.
+- **Checks:** Public workflow regression passed: 1 test, 116 assertions. Independent two-client HTTP and two-tab browser smoke verified editing, tombstones, conflict draft retention, explicit restore, reload, restart and export. Parent viewer typecheck passed.
+- **Review artifact:** [review-0018](../artifacts/reviews/review-review-0018.md).
+- **Authoritative result:** [review-0018 receipt](../events/review-0018.yaml); [parent completion](../events/review-complete-0019.yaml).
+- **Integration:** Not merged or pushed. Candidate-bound integration checks remain required.
+- **Cleanup:** Owned review tabs, feedback servers and reviewer terminal closed. Shared managed browser broker/sandbox processes remain running; aggregate shutdown is pending. Preserve this runtime without scoped authorization to terminate it.
