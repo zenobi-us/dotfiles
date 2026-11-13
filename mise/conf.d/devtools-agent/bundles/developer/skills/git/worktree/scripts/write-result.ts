@@ -7,6 +7,7 @@ import { dirname, isAbsolute, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { deliverResult, loadDeliveryContext, publishImmutableFile } from "../../../../../agent-core/skills/result-delivery/scripts/delivery.ts";
 import { validateReceiptContract } from "./receipt-contract";
+import { receiptParentIssues } from "./receipt-diagnostics";
 import { verifyIntegration } from "./integration";
 
 const sharedContextCli = fileURLToPath(new URL("../../../../../agent-core/skills/shared-context/scripts/shared-context/cli.ts", import.meta.url));
@@ -60,12 +61,17 @@ const app = new Crust("write-worktree-result").meta({ description: "Write one im
     }
     const destination = join(String(target.path), "events", String(receipt.receipt_id) + ".yaml");
     if (context?.target?.path === destination) throw new Error("The transport target must not replace the authoritative receipt");
-    if (flags["parent-event"] && receipt.schema === "worktree-receipt/v2" && receipt.parent_receipt !== null) {
-      if (typeof receipt.parent_receipt !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(receipt.parent_receipt)) throw new Error("Parent receipt must be an existing receipt ID");
-      const yaml = Bun.file(join(String(target.path), "events", receipt.parent_receipt + ".yaml"));
-      const json = Bun.file(join(String(target.path), "events", receipt.parent_receipt + ".json"));
-      const parent = await yaml.exists() ? Bun.YAML.parse(await yaml.text()) : await json.exists() ? await json.json() : undefined;
-      if (!parent || parent.receipt_id !== receipt.parent_receipt || parent.workflow_id !== receipt.workflow_id) throw new Error("The parent event is missing or belongs to another workflow");
+    if (receipt.schema === "worktree-receipt/v2") {
+      let parent: Record<string, unknown> | undefined;
+      if (receipt.parent_receipt != null) {
+        if (typeof receipt.parent_receipt !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(receipt.parent_receipt)) throw new Error("Parent receipt must be an existing receipt ID");
+        const yaml = Bun.file(join(String(target.path), "events", receipt.parent_receipt + ".yaml"));
+        const json = Bun.file(join(String(target.path), "events", receipt.parent_receipt + ".json"));
+        parent = await yaml.exists() ? object(Bun.YAML.parse(await yaml.text())) : await json.exists() ? object(await json.json()) : undefined;
+        if (parent) validateReceiptContract(parent);
+      }
+      const issues = receiptParentIssues(receipt, parent).filter(issue => issue.severity === "error");
+      if (issues.length) throw new Error(issues.map(issue => `[${issue.code}] ${issue.message}`).join("\n"));
     }
     await mkdir(dirname(destination), { recursive: true });
     publicationAttempted = true;

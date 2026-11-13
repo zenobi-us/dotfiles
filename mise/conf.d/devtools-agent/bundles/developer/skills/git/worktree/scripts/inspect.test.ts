@@ -740,3 +740,36 @@ test("historical v1 finish workspace repairs preserve source identity and reject
     expect(workflow.inspection?.historyValid).toBe(false);
   }
 });
+
+test("inspection reports independent root, source and chronology defects on the same receipt", async () => {
+  const { context, ticket } = await fixture();
+  const root = context.repositoryRoot;
+  const commit = await run("git", ["-C", root, "rev-parse", "HEAD"]);
+  const tree = await run("git", ["-C", root, "rev-parse", "HEAD^{tree}"]);
+  const start = {
+    schema: "worktree-receipt/v2", workflow_id: ticket.id, receipt_id: "start-1",
+    phase: "fix", event: "phase-start", status: "started", attempt: 1, parent_receipt: null,
+    repository: root, worktree: root, workspace_path: root, source_branch: "main", base_branch: "main",
+    source_commit: commit, source_tree: tree, muxer: "herdr", pane_id: null, agent: "omp", session_id: "parent",
+    created_at: "2026-11-01T00:00:00Z", ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend },
+    ticket_ref: ticket.ref, workflow: { root, store: "repository", ref: "workflows/T-1" }, inputs: [], outputs: [],
+  };
+  const result = { ...start, receipt_id: "result-2", event: "phase-result", status: "completed", parent_receipt: start.receipt_id, pane_id: "child", created_at: "2026-11-01T00:02:00Z" };
+  const completion = {
+    ...result, receipt_id: "complete-3", event: "phase-complete", parent_receipt: result.receipt_id,
+    source_commit: "f".repeat(40), created_at: "2026-11-01T00:01:00Z",
+    workflow: { ...start.workflow, root: join(root, "removed-checkout") },
+  };
+  await put(join(root, "workflows/T-1/events/start.json"), JSON.stringify(start));
+  await put(join(root, "workflows/T-1/events/result.json"), JSON.stringify(result));
+  const file = join(root, "workflows/T-1/events/complete.json");
+  const original = JSON.stringify(completion);
+  await put(file, original);
+  const inventory: Exec = (command, args, cwd) => command === "wt" ? Promise.resolve({ code: 0, stdout: JSON.stringify({ schema: 2, items: [] }) }) : exec(command, args, cwd);
+  const workflow = await loadTicketWorkflow(context, ticket, inventory);
+  const codes = workflow.diagnostics?.filter(issue => issue.ref.endsWith("/complete.json")).map(issue => issue.code);
+  expect(codes).toEqual(expect.arrayContaining(["historical_root_unavailable", "source_object_unavailable", "parent_after_child", "completion_source_mismatch"]));
+  expect(workflow.inspection?.historyValid).toBe(false);
+  expect(recoveryDecision(ticket, { tickets: [ticket] }, workflow).mode).toBe("blocked");
+  expect(await readFile(file, "utf8")).toBe(original);
+}, 60_000);

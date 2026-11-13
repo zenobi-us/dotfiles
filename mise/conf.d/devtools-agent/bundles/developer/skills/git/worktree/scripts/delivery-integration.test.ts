@@ -117,11 +117,31 @@ test("v2 child delivery and parent checkpoints use separate immutable result bou
   expect(wrongBranch.code).not.toBe(0);
   expect(wrongBranch.stderr).toContain("current source branch");
   await writeFile(input, JSON.stringify(child));
+  const orphan = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  expect(orphan.code).not.toBe(0);
+  expect(await Bun.file(context.target).exists()).toBe(false);
+  expect(await Bun.file(join(f.workflow.path, "events/implementation-0002.yaml")).exists()).toBe(false);
+  const start = { ...child, receipt_id: "start-0001", parent_receipt: null, phase: "start", event: "phase-start", status: "started", pane_id: null };
+  await writeFile(input, JSON.stringify(start));
+  expect((await run(writer, ["--parent-event", "--repository", f.repository, "--input", input])).code).toBe(0);
+  await writeFile(input, JSON.stringify(child));
   const result = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
   expect(result.code).toBe(0);
   expect((await run("git", ["-C", source, "status", "--porcelain=v1"])).stdout).toBe("");
   const delivered = await readFile(context.target, "utf8");
   const parent = { ...child, receipt_id: "parent-complete-0003", event: "phase-complete", parent_receipt: child.receipt_id, pane_id: null };
+  const alternate = await run("git", ["-C", f.repository, "-c", "user.name=Delivery Tests", "-c", "user.email=delivery@example.invalid", "commit-tree", String(child.source_tree), "-p", String(child.source_commit), "-m", "Alternate source"]);
+  expect(alternate.code).toBe(0);
+  for (const invalid of [
+    { ...parent, source_commit: alternate.stdout.trim() },
+    { ...parent, created_at: new Date(Date.parse(String(child.created_at)) - 1_000).toISOString() },
+    { ...parent, parent_receipt: start.receipt_id },
+  ]) {
+    await writeFile(input, JSON.stringify(invalid));
+    expect((await run(writer, ["--parent-event", "--repository", f.repository, "--input", input])).code).not.toBe(0);
+    expect(await Bun.file(join(f.workflow.path, "events/parent-complete-0003.yaml")).exists()).toBe(false);
+    expect(await readFile(context.target, "utf8")).toBe(delivered);
+  }
   await writeFile(input, JSON.stringify(parent));
   const completed = await run(writer, ["--parent-event", "--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
   expect(completed.code).toBe(0);
