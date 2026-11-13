@@ -85,3 +85,12 @@ Formal [review-0005](../events/review-0005.yaml) returned FAILURE for commit 250
 ## Parent completion
 
 Fix phase completed in [fix-complete-0010](../events/fix-complete-0010.yaml). Typed delivery acknowledged; fixer tab closed and all observed owned processes stopped. Source remains clean. Fresh formal review required; no merge or push.
+
+
+## Review attempt and history repair
+
+[Review-0013](../events/review-0013.yaml) stopped at a workflow precondition and produced [one blocked artifact](../artifacts/reviews/review-review-0013.md), not a verdict. [Review-complete-0014](../events/review-complete-0014.yaml) records acknowledged delivery and confirmed reviewer shutdown. No product review or browser checks ran in that attempt; the parent viewer typecheck passed.
+
+[History-repair-0015](../events/history-repair-0015.yaml) corrects the diagnosis: YAML parsing worked. The reader rejected a parent operator approval with a null pane. Parent operator records now permit a null pane only with a non-empty session ID. Child result pane requirements remain unchanged. The 20-test inspection suite passes; canonical inspection reports valid history. All 14 prior receipt files retain their original SHA-256.
+
+Current source remains c5091d44e6120ffc3339c8e5b3f5904643fe9e27, tree 059e74eba64364ece42193c3962ea1cde944843e. Current review verdict: none. The old FAILURE remains historical and does not cover this source. Next action: fresh independent review, retry mode; the inspector requires scoped approval. No review dispatch, merge, push or tracker completion is authorized by this repair.
