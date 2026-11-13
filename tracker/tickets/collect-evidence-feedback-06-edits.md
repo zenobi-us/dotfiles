@@ -8,7 +8,7 @@ sequence: 6
 title: Edit and undo feedback without lost changes
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 # Edit and undo feedback without lost changes
