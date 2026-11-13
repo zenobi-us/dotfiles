@@ -211,7 +211,7 @@
   "background": "canvas",
   "theme": "cli",
   "font": "Roboto Mono",
-  "font_size": 16,
+  "font_size": 13,
   "ui_font": "Roboto Mono",
   "terminal_padding": [
     2,
