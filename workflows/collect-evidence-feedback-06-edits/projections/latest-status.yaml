@@ -1,13 +1,13 @@
-schema: worktree-latest-status/v1
-workflow_id: collect-evidence-feedback-06-edits
-ticket: tracker/tickets/collect-evidence-feedback-06-edits.md
-state: FIXED
-latest_receipt: fix-0009
-latest_source_commit: c5091d44e6120ffc3339c8e5b3f5904643fe9e27
-latest_source_tree: 059e74eba64364ece42193c3962ea1cde944843e
-latest_review_verdict: FAILURE
+schema: "worktree-latest-status/v1"
+workflow_id: "collect-evidence-feedback-06-edits"
+ticket: "tracker/tickets/collect-evidence-feedback-06-edits.md"
+state: "FIXED"
+latest_receipt: "fix-complete-0010"
+latest_source_commit: "c5091d44e6120ffc3339c8e5b3f5904643fe9e27"
+latest_source_tree: "059e74eba64364ece42193c3962ea1cde944843e"
+latest_review_verdict: "FAILURE"
 open_findings: []
-resolved_findings: [SPEC-001, STANDARDS-001]
-latest_review_receipt: review-0005
+resolved_findings: ["SPEC-001","STANDARDS-001"]
+latest_review_receipt: "review-0005"
 review_valid_for_current_source: false
-next_action: review
+next_action: "review"

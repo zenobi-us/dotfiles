@@ -140,3 +140,7 @@ Formal [review-0005](../events/review-0005.yaml) returned FAILURE for commit 250
 - **Recovery screenshots:** [restored draft](../artifacts/snapshots/omp-sshots-15cc91b159ad3647.webp), [explicit saved note](../artifacts/snapshots/omp-sshots-15cc91b1a02d3648.webp).
 - **Export:** [final saved content](../artifacts/snapshots/export-fix-0009.json).
 - **Immutable draft:** [pr-draft-fix-0009](../artifacts/snapshots/pr-draft-fix-0009.md).
+
+## Parent completion
+
+Fix phase completed in [fix-complete-0010](../events/fix-complete-0010.yaml). Typed delivery acknowledged; fixer tab closed and all observed owned processes stopped. Source remains clean. Fresh formal review required; no merge or push.
