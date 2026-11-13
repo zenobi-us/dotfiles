@@ -28,3 +28,4 @@ The tracker snapshot for a Jira backend reads the mirror files. It does not need
 ## Comments
 
 - 2026-11-13T02:40Z, S: Review verdict **FAILURE** for commit `498bed919039bcaf27df3e98be67e58f0ac530d4` (F1 stale field, F2 unmirrored blocker breaks scoped loads, F3 no pane capture). Artifact: `workflows/jira-tracker-mirror-03-snapshot-from-mirror/artifacts/reviews/review-review-0005.md`. Q decided: an unmirrored blocker is a warning, shown in the Tracker pane header; the pane capture criterion moves to ticket 04, because the current queries mirror only epics.
+- 2026-11-13T03:05Z, S: Fix `fix-0012` (commit `83add986`) resolves F1 and F2 of `review-0009`. Q moved the header display of the unmirrored-blocker warnings to `jira-tracker-mirror-05-mod-sync-button`. This ticket reports them through the `diagnostics` output.
