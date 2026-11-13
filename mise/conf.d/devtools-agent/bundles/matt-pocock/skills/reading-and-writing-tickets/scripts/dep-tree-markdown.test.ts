@@ -56,7 +56,7 @@ async function fixture(options: { docs?: boolean; mixed?: boolean; customRoots?:
   return { repositoryRoot, sharedBase, ticketsRoot, initiativeRoot };
 }
 
-const expected = "- [task] T-1 - First task  WAITING · blocked by T-2\n  - [research] T-2 - Prerequisite  COMPLETED";
+const expected = "- [task] T-1 - First task  IN PROGRESS · blocked by T-2\n  - [research] T-2 - Prerequisite  COMPLETED";
 
 describe("Markdown dependency graphs", () => {
   test("retains default layout and ticket-to-initiative discovery", async () => {
@@ -78,6 +78,12 @@ describe("Markdown dependency graphs", () => {
     const { repositoryRoot, sharedBase, ticketsRoot } = await fixture({ docs: true });
     await fs.rm(path.join(ticketsRoot, "T-2.md"));
     await expect(markdownGraph(repositoryRoot, undefined, "release", sharedBase)).rejects.toThrow("references ticket T-2");
+  });
+
+  test("shows WAITING only while a blocker is not completed", async () => {
+    const { repositoryRoot, sharedBase, ticketsRoot } = await fixture();
+    await fs.writeFile(path.join(ticketsRoot, "T-2.md"), '---\nid: T-2\ntitle: Prerequisite\ntype: research\nwork_status: claimed\nblocked_by: []\n---\n');
+    expect(await markdownGraph(repositoryRoot, "T-1", undefined, sharedBase)).toBe("- [task] T-1 - First task  WAITING · blocked by T-2\n  - [research] T-2 - Prerequisite  IN PROGRESS");
   });
 
   test("rejects invalid layout rather than reading default collections", async () => {

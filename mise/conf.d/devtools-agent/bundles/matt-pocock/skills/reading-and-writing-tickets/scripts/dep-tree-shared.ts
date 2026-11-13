@@ -54,7 +54,8 @@ export function renderDependencyGraph(graph: DependencyGraph): string {
     const ticket = graph.tickets.get(id);
     if (!ticket) throw new Error(`internal graph error: ticket ${id} is missing`);
     const blockers = graph.blockedBy.get(id) ?? [];
-    const status = blockers.length > 0 ? "WAITING" : formatStatus(ticket.status);
+    const waiting = blockers.some((blocker) => formatStatus(graph.tickets.get(blocker)?.status) !== "COMPLETED");
+    const status = waiting ? "WAITING" : formatStatus(ticket.status);
     const blockerLabel = blockers.length > 0 ? ` · blocked by ${blockers.join(", ")}` : "";
     lines.push(`${"  ".repeat(depth)}- [${ticket.type}] ${ticket.id} - ${ticket.title}  ${status}${blockerLabel}`);
     if (emitted.has(id)) return;
