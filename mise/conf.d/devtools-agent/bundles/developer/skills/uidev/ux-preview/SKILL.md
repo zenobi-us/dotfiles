@@ -64,7 +64,7 @@ Expected behavior: render exactly four options, explain which states each option
 
 Produce a self-contained HTML report, either one file or a directory with locally bundled assets, that:
 
-- shows every requested option in one view or through obvious tabs
+- shows every requested option initially, in one view or through obvious tabs
 - labels options consistently and explains the meaningful difference
 - includes the assumptions, decision criteria, and recommendation status
 - exposes relevant states rather than showing only the happy path
@@ -75,6 +75,23 @@ Produce a self-contained HTML report, either one file or a directory with locall
 - gives the human a clear way to say which option to implement
 
 For a multistep scenario, include a clickable prototype with an explicit state model: entry, progression, back/cancel, validation, completion, and recovery. Put the flow map or state diagram in the report only when it clarifies the decision; use poster for a high-fidelity meaningful diagram when that improves comprehension.
+
+## Shortlist controls
+
+Every comparison report MUST support reversible hiding, including reports with static prototype content.
+
+- Put a checked native checkbox beside each option heading. Label it `Show option 01` with the option's stable number.
+- When the user clears the checkbox, hide the complete option panel from layout, keyboard navigation, and assistive technology.
+- Keep a `Show all` button outside the option panels. It restores every panel and checks every visibility checkbox.
+- Show a live count such as `12 of 20 visible`. Use a polite status region for count changes.
+- Keep the original option numbers and order. Hiding is separate from the preferred-option selection and prototype state.
+- When an option is hidden, remove its jump link or tab from navigation. Restore it with `Show all`.
+- When the focused panel becomes hidden, move focus to the next visible visibility checkbox. Use `Show all` if none remain.
+- When all options are hidden, show `No options visible. Use Show all to restore them.` Keep the restore button available.
+- Preserve visibility choices when other comparison controls change. `Show all` must preserve prototype state and preferred-option selection.
+
+Before delivery, exercise mouse and keyboard hiding, multiple hidden options, all-hidden recovery, navigation synchronization, and restoration without renumbering.
+
 
 ## Local serving rule
 
@@ -106,6 +123,7 @@ Before returning the URL, verify:
 - requested option count equals rendered option count
 - each variation parameter appears in at least one meaningful comparison or is called out as not applicable
 - all options are viewable from the served report
+- shortlist controls satisfy the Shortlist controls section, including all-hidden recovery
 - interactive controls work without browser console errors when interaction is part of the request
 - the report does not pretend that a static mock is a tested production flow
 - the recommendation is justified by the stated decision criteria

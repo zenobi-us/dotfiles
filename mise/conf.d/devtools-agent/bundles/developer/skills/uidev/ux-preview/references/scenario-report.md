@@ -3,7 +3,7 @@
 All scenario reports share the same shell:
 
 1. Decision header: context, decision question, exact option count, fidelity, assumptions.
-2. Comparison controls: grid or obvious tabs with every option reachable.
+2. Comparison controls: grid or obvious tabs, plus the shortlist controls defined in `../SKILL.md`.
 3. Option panels: primary difference, invariants, rendered UI, relevant states, trade-offs.
 4. Interaction area: controls that actually change the prototype.
 5. Coverage table: variation parameters mapped to options and decision criteria.
@@ -24,7 +24,7 @@ For TUI reports, use `tui-gridland.md`. Keep report navigation and evidence in s
 
 ## Verification
 
-1. Confirm rendered option count equals requested count.
+1. Confirm the initial option count equals the requested count. Exercise the shortlist controls and recovery defined in `../SKILL.md`.
 2. Confirm every requested parameter is represented or explicitly marked not applicable.
 3. Check semantic controls, labels, focus visibility, contrast, and responsive overflow.
 4. For TUI previews, check terminal sizes, keyboard-only paths, no-color mode, ASCII fallback, alignment, and explicit narrow-layout behavior.
