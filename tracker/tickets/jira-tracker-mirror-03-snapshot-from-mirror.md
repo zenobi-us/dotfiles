@@ -4,7 +4,7 @@ id: "jira-tracker-mirror-03-snapshot-from-mirror"
 title: "Show Jira epics, tickets, and blockers in the Tracker pane"
 type: "enhancement"
 triage: "ready-for-agent"
-work_status: "unclaimed"
+work_status: "claimed"
 parent: "jira-tracker-mirror"
 sequence: 3
 blocked_by: ["jira-tracker-mirror-02-sync-query"]
