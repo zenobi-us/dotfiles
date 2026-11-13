@@ -29,7 +29,7 @@
               "id": "spaces",
               "type": "block",
               "content": {
-                "mod": "cli-spaces"
+                "mod": "better-sidebar"
               },
               "size": {
                 "weight": 1
@@ -40,7 +40,10 @@
               "id": "agents",
               "type": "block",
               "content": {
-                "mod": "cli-agents"
+                "mod": "better-sidebar",
+                "props": {
+                  "view": "agents"
+                }
               },
               "size": {
                 "weight": 1
@@ -79,7 +82,20 @@
           "id": "tabs",
           "type": "block",
           "content": {
-            "mod": "cli-tabs"
+            "mod": "better-tabs",
+            "props": {
+              "rememberPanels": {
+                "container": "panel",
+                "stack": "panel-body"
+              },
+              "buttons": [
+                { "id": "files", "label": "Files", "icon": "file", "group": "panels", "action": { "type": "panel", "container": "panel", "stack": "panel-body", "target": "files" } },
+                { "id": "changes", "label": "Changes", "icon": "changes", "group": "panels", "action": { "type": "panel", "container": "panel", "stack": "panel-body", "target": "changes" } },
+                { "id": "graph", "label": "Git", "icon": "mods/git-graph/icons/graph.svg", "group": "panels", "action": { "type": "panel", "container": "panel", "stack": "panel-body", "target": "graph" } },
+                { "id": "context", "label": "Context", "icon": "mods/shared-context/icons/context.svg", "group": "context", "action": { "type": "panel", "container": "panel", "stack": "panel-body", "target": "context" } },
+                { "id": "tracker", "label": "Tracker", "icon": "mods/shared-context/icons/tracker.svg", "group": "context", "action": { "type": "panel", "container": "panel", "stack": "panel-body", "target": "tracker" } }
+              ]
+            }
           },
           "size": {
             "px": 32
@@ -154,6 +170,13 @@
                         "props": {
                           "mode": "tracker"
                         }
+                      }
+                    },
+                    {
+                      "id": "graph",
+                      "type": "block",
+                      "content": {
+                        "mod": "git-graph"
                       }
                     }
                   ],

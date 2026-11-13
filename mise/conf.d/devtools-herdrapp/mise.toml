@@ -30,18 +30,18 @@
 "~/.config/herdr-app/mods/shared-context-tabs/mod.json/manifest" = { source = "./app/mods/shared-context-tabs/mod.json", merge = true }
 
 [tasks."herdrapp.bootstrap"]
-description = "Prepare fonts, the panel runtime, and Better Config after mise deploys dotfiles"
-depends = ["herdrapp.fonts", "herdrapp.runtime", "herdrapp.better-config"]
+description = "Prepare fonts, the panel runtime, and the pinned third-party mods after mise deploys dotfiles"
+depends = ["herdrapp.fonts", "herdrapp.runtime", "herdrapp.mods"]
 
 [tasks."herdrapp.fonts"]
 description = "Download and verify the managed Herdr-app fonts"
 dir = "{{ config_root }}/app"
 run = "bun tasks/fonts.ts"
 
-[tasks."herdrapp.better-config"]
-description = "Install the pinned Better Config mod that edits mod settings"
+[tasks."herdrapp.mods"]
+description = "Install the pinned Better Config, Better Sidebar, Better Tabs, and Git Graph mods"
 dir = "{{ config_root }}/app"
-run = "bun tasks/better-config.ts"
+run = "bun tasks/mods.ts"
 
 [tasks."herdrapp.runtime"]
 description = "Record Bun and mq locations for one-shot panel requests"
