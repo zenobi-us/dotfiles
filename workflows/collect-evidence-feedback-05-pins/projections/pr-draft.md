@@ -16,7 +16,7 @@ Squash integration: 32ceb6fdb6daee017802f6ddfe939b4df90bc37a. Remote origin/mast
 
 Integration and resolution worktrees were removed through cleanup-merged. Worktrunk refused the clean original feature/collect-evidence-feedback-05-pins branch as a prune candidate and reports merge conflicts. Preserved original workspace: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-05-pins. No force removal or repeated integration. Unrelated resources remain unchanged.
 
-Finish is FINISH_FAILED at cleanup, not FINISHED. Accepted implementation and completed tracker remain published. Authoritative receipt: workflows/collect-evidence-feedback-05-pins/events/finish-cleanup-pending-0037.yaml. Next action: operator resolves retained original source disposition under Worktrunk policy.
+Finish is FINISH_FAILED at cleanup, not FINISHED. Accepted implementation and completed tracker remain published. Authoritative receipt: workflows/collect-evidence-feedback-05-pins/events/finish-cleanup-pending-0039.yaml. Next action: operator resolves retained original source disposition under Worktrunk policy.
 
 ## Review history
 
@@ -2418,3 +2418,7 @@ Supporting artifacts:
 
 - workflows/collect-evidence-feedback-05-pins/events/finish-cleanup-pending-0037.yaml
 
+
+## Safe cleanup recovery
+
+User approved takeover from the exited hc:t9t session to hc:t9z. Approval: workflows/collect-evidence-feedback-05-pins/events/finish-ownership-0038.yaml. Safe named cleanup retried with --min-age=0s; Worktrunk again refused the original feature branch as not a prune candidate. Preserved that worktree and every unrelated resource. Remote origin/master at fa84871e2f1b0e4231c90a5640502702e38a492a retains published integration and tracker completion. No merge, product checks or tracker completion repeated.

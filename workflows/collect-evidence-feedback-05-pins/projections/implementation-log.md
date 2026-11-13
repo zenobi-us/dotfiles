@@ -2401,3 +2401,7 @@ Supporting artifacts:
 
 - workflows/collect-evidence-feedback-05-pins/events/finish-cleanup-pending-0037.yaml
 
+
+## finish-cleanup-pending-0039
+
+Approved safe takeover: workflows/collect-evidence-feedback-05-pins/events/finish-ownership-0038.yaml. Receipt: workflows/collect-evidence-feedback-05-pins/events/finish-cleanup-pending-0039.yaml. Status: FINISH_FAILED at cleanup. Named safe cleanup retried with --min-age=0s and refused by Worktrunk. Original feature branch and workspace preserved; unrelated resources untouched. Existing published acceptance and completed tracker remain valid; no product source changed.
