@@ -184,7 +184,7 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
     setConflict(undefined);
     submitted.current = undefined;
   }
-  async function tombstone(note: Annotation, restore = false) {
+  async function tombstone(note: Annotation, restore = false, keepDraft = false) {
     if (inFlight.current) return;
     inFlight.current = true; setSaving(true); setSaveError('');
     try {
@@ -193,12 +193,26 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
         headers: { 'Content-Type': 'application/json', 'X-Write-Token': writeToken, 'If-Match': `"${note.id}:${note.revision}"` },
         body: JSON.stringify({ schema: 'collect-feedback/v1', kind: 'annotation', ...(restore ? { deletedAt: null } : {}) }),
       });
+      if (response.status === 412 && keepDraft) {
+        const latestResponse = await fetch('/api/v1/annotations', { credentials: 'same-origin' });
+        const latest: AnnotationsResponse = await latestResponse.json();
+        if (!latestResponse.ok || latest.schema !== 'collect-feedback/v1' || latest.kind !== 'annotations' || !latest.success) throw new Error('Could not read the current saved note. Retry restoration to check it again.');
+        setConflict(latest.annotations.find(item => item.id === note.id));
+        throw new Error('Annotation changed again. Review the saved version before restoring. Draft kept in memory.');
+      }
       const body = await response.json();
       if (!response.ok || body.schema !== 'collect-feedback/v1' || body.kind !== 'annotation' || !body.success) throw new Error(body.message ?? `Mutation failed: HTTP ${response.status}`);
+      if (keepDraft && (body.annotation.id !== note.id || !Number.isInteger(body.annotation.revision) || body.annotation.deletedAt !== null)) throw new Error('Restoration acknowledgement is incomplete. Draft kept in memory.');
       setAnnotations(current => current.map(item => item.id === note.id ? body.annotation : item));
-      setSelectedId(restore ? note.id : undefined);
-      setSavedId(restore ? note.id : undefined);
-      setEtag(response.headers.get('ETag') ?? '');
+      if (keepDraft) {
+        setBaseRevision(body.annotation.revision);
+        submitted.current = undefined;
+        setConflict(undefined);
+      } else {
+        setSelectedId(restore ? note.id : undefined);
+        setSavedId(restore ? note.id : undefined);
+        setEtag(response.headers.get('ETag') ?? '');
+      }
     } catch (cause) { setSaveError(cause instanceof Error ? cause.message : String(cause)); }
     finally { inFlight.current = false; setSaving(false); }
   }
@@ -301,7 +315,7 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
         <textarea id={`comment-${draft.id}`} required value={draft.comment} readOnly={locked} onChange={event => setDraft(current => current && { ...current, comment: event.target.value })} rows={3} />
         <p className="muted">Draft is memory-only until saved.</p>
         {saveError && <p className="error" role="alert">{saveError}</p>}
-        {conflict && <div role="group" aria-label="Saved version conflict"><p>Saved revision {conflict.revision} · {conflict.priority}{conflict.deletedAt ? ' · Deleted' : ''}</p><p className="saved-comment">{conflict.comment}</p><p className="muted">Saved geometry: {JSON.stringify(conflict.geometry)}</p>{!conflict.deletedAt && <Button type="button" variant="outline" disabled={saving} onClick={() => { setBaseRevision(conflict.revision); setAnnotations(current => [...current.filter(note => note.id !== conflict.id), conflict]); submitted.current = undefined; setConflict(undefined); setSaveError(''); }}>Use saved revision for next save</Button>}</div>}
+        {conflict && <div role="group" aria-label="Saved version conflict"><p>Saved revision {conflict.revision} · {conflict.priority}{conflict.deletedAt ? ' · Deleted' : ''}</p><p className="saved-comment">{conflict.comment}</p><p className="muted">Saved geometry: {JSON.stringify(conflict.geometry)}</p>{conflict.deletedAt ? <Button type="button" variant="outline" disabled={saving} onClick={() => void tombstone(conflict, true, true)}>Undo deletion and keep draft</Button> : <Button type="button" variant="outline" disabled={saving} onClick={() => { setBaseRevision(conflict.revision); setAnnotations(current => [...current.filter(note => note.id !== conflict.id), conflict]); submitted.current = undefined; setConflict(undefined); setSaveError(''); }}>Use saved revision for next save</Button>}</div>}
         <div className="annotation-actions"><Button type="button" variant="outline" disabled={saving} onClick={cancel}>Cancel</Button><Button type="submit" disabled={saving || !draft.comment.trim()}>{saving ? 'Saving…' : saveError ? 'Retry save' : 'Save note'}</Button></div>
       </form> : <><Badge variant="outline" className={`priority-${selected.priority}`}>{selected.priority} {priorities.find(([priority]) => priority === selected.priority)?.[1]}</Badge><p className="saved-comment">{selected.comment}</p><p className="muted">Revision {selectedRevision}</p><div className="annotation-actions"><Button variant="outline" disabled={saving} onClick={() => edit(selected as Annotation)}>Edit note</Button><Button variant="outline" disabled={saving} onClick={() => void tombstone(selected as Annotation)}>Delete note</Button></div>{savedId === selected.id && <p className="save-ack" role="status">Saved · revision {selectedRevision}<span className="etag">ETag {etag}</span></p>}</>}
     </div>, document.body)}

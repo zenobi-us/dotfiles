@@ -208,6 +208,47 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
           await second.getByRole('status').filter({ hasText: 'Saved · revision 8' }).waitFor();
           const final = await second.evaluate(async () => (await (await fetch('/api/v1/export')).json()).annotations[0]);
           if (final.id !== ${JSON.stringify(input.id)} || final.comment !== 'Preserved second-client draft' || final.sourceSha256 !== ${JSON.stringify(input.sourceSha256)}) throw Error('Explicit recovery changed identity or lost draft');
+          await second.getByRole('button', { name: 'Edit note', exact: true }).click();
+          await second.locator('textarea').fill('Draft survives deletion and stale restoration');
+          await second.getByRole('button', { name: 'P3 Polish', exact: true }).click();
+          await page.reload();
+          await page.locator('nav[aria-label="Assets"] button').first().click();
+          await page.locator('.annotation-pin').click();
+          await page.getByRole('button', { name: 'Delete note', exact: true }).click();
+          await page.getByRole('button', { name: 'Undo deletion', exact: true }).waitFor();
+          await second.getByRole('button', { name: 'Save note', exact: true }).click();
+          const conflict = second.getByRole('group', { name: 'Saved version conflict' });
+          await conflict.getByText('Saved revision 9 · ' + final.priority + ' · Deleted', { exact: true }).waitFor();
+          await page.getByRole('button', { name: 'Undo deletion', exact: true }).click();
+          await page.getByRole('status').filter({ hasText: 'Saved · revision 10' }).waitFor();
+          await page.getByRole('button', { name: 'Delete note', exact: true }).click();
+          await page.getByRole('button', { name: 'Undo deletion', exact: true }).waitFor();
+          const writes = [];
+          second.on('request', request => {
+            if (request.method() === 'PATCH') writes.push({ tag: request.headers()['if-match'], body: request.postDataJSON() });
+          });
+          const stale = second.waitForResponse(response => response.request().method() === 'PATCH' && response.status() === 412);
+          await second.getByRole('button', { name: 'Undo deletion and keep draft', exact: true }).click();
+          await stale;
+          await conflict.getByText('Saved revision 11 · ' + final.priority + ' · Deleted', { exact: true }).waitFor();
+          if (await second.locator('textarea').inputValue() !== 'Draft survives deletion and stale restoration' || !await second.locator('textarea').evaluate(node => node.readOnly)) throw Error('Stale restoration discarded or unlocked draft');
+          const restore = second.waitForResponse(response => response.request().method() === 'PATCH' && response.status() === 200);
+          await second.getByRole('button', { name: 'Undo deletion and keep draft', exact: true }).click();
+          await restore;
+          await conflict.waitFor({ state: 'hidden' });
+          if (await second.locator('textarea').inputValue() !== 'Draft survives deletion and stale restoration' || await second.locator('textarea').evaluate(node => node.readOnly)) throw Error('Restoration lost or locked draft');
+          if (await second.getByRole('button', { name: 'P3 Polish', exact: true }).getAttribute('aria-pressed') !== 'true') throw Error('Restoration lost draft priority');
+          const restored = await second.evaluate(async () => (await (await fetch('/api/v1/export')).json()).annotations[0]);
+          if (restored.revision !== 12 || restored.comment !== final.comment || restored.priority !== final.priority || restored.deletedAt !== null) throw Error('Restoration automatically saved draft');
+          if (JSON.stringify(writes) !== JSON.stringify([
+            { tag: '"' + final.id + ':9"', body: { schema: 'collect-feedback/v1', kind: 'annotation', deletedAt: null } },
+            { tag: '"' + final.id + ':11"', body: { schema: 'collect-feedback/v1', kind: 'annotation', deletedAt: null } },
+          ])) throw Error('Restoration did not use displayed tombstone revisions or saved automatically');
+          await second.getByRole('button', { name: 'Save note', exact: true }).click();
+          await second.getByRole('status').filter({ hasText: 'Saved · revision 13' }).waitFor();
+          const recovered = await second.evaluate(async () => (await (await fetch('/api/v1/export')).json()).annotations[0]);
+          if (recovered.id !== final.id || recovered.sourceSha256 !== final.sourceSha256 || recovered.assetId !== final.assetId || recovered.caseId !== final.caseId || recovered.sessionId !== final.sessionId || JSON.stringify(recovered.geometry) !== JSON.stringify(final.geometry) || JSON.stringify(recovered.pixelGeometry) !== JSON.stringify(final.pixelGeometry) || recovered.comment !== 'Draft survives deletion and stale restoration' || recovered.priority !== 'P3') throw Error('Recovered save changed identity, source, geometry or draft content');
+          if (writes[2].tag !== '"' + final.id + ':12"') throw Error('Explicit save did not use acknowledged restoration revision');
         } finally {
           await second.getByRole('button', { name: 'Cancel', exact: true }).click().catch(() => {});
           await second.close();
@@ -215,7 +256,7 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
       }`]);
     } finally { await browser(["close"]); }
     saved = (await (await fetch(origin + "/api/v1/export")).json()).annotations[0];
-    expect(saved).toMatchObject({ id: input.id, revision: 8, comment: "Preserved second-client draft", geometry: input.geometry, sourceSha256: input.sourceSha256 });
+    expect(saved).toMatchObject({ id: input.id, revision: 13, comment: "Draft survives deletion and stale restoration", priority: "P3", geometry: input.geometry, sourceSha256: input.sourceSha256 });
     for (const [path, init, status] of [
       ["/api/v1/session", { headers: { Host: "attacker.invalid" } }, 403],
       ["/api/v1/cases", { headers: { Origin: "https://attacker.invalid" } }, 403],

@@ -6,6 +6,8 @@ kind: changelog
 
 ## Unreleased
 
+- **Recover deleted-note conflicts:** Undo the displayed tombstone while keeping the draft and its identity. A stale undo refreshes the conflict without adopting its revision. Save the retained draft explicitly after restoration.
+
 - **Edit and undo notes:** Select saved pins without a draft. Edit comments, priorities and geometry. Delete with reversible tombstones and restore the same identity after reload or restart.
 - **Reject stale edits:** Require revision ETags for PATCH and DELETE. Return 428 for missing If-Match and 412 for stale revisions. Keep conflicting drafts in memory. Show the newer saved version and require explicit revision adoption before replacement. Recover a lost PATCH acknowledgement without changing note identity or geometry. Recheck source records, hashes and write authorization before mutations.
 
