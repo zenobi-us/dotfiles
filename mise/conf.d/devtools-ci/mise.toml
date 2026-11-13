@@ -1,7 +1,5 @@
 [tools]
 act = "latest"
-action-validator = "latest"
 actionlint = "latest"
 "npm:gh-actions-language-server" = "latest"
-semver = "latest"
 "npm:semver" = "latest"

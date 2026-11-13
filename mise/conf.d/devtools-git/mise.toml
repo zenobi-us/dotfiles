@@ -5,7 +5,6 @@
 [tools]
 github-cli = "latest"
 glab = "latest"
-"github:hmarr/codeowners" = "latest"
 "npm:release-please" = "latest"
 hk = "latest"
 worktrunk = { version = "latest", workflow = "release.yaml" }

@@ -1,0 +1,11 @@
+[tools]
+"action-validator" = "latest"
+"awscli" = { "version" = "latest", "symlink_bins" = "true" }
+"bats" = "latest"
+"github:NVIDIA/OpenShell" = "latest"
+"github:afshinm/zerobox" = "0.3.3"
+"github:hmarr/codeowners" = "latest"
+"github:margin-lab/evals" = "latest"
+"github:mwunsch/termscope" = "latest"
+"pipx" = "latest"
+"semver" = "latest"
