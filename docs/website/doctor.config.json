@@ -5,6 +5,10 @@
       {
         "files": ["src/components/Prose/Prose.tsx"],
         "rules": ["react-doctor/dangerous-html-sink"]
+      },
+      {
+        "files": [".content-collections/skill-documents/**"],
+        "rules": ["react-doctor/artifact-env-leak"]
       }
     ]
   }
