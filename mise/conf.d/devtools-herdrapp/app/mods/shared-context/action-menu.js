@@ -5,11 +5,13 @@ import { theme } from "herdr";
 import { button, note } from "./ui.js";
 import { ACTION_PRESETS, actionPrompt } from "./action-model.js";
 import { launchAction, invalidateAction } from "./action.js";
+import { recordReasonButton } from "./header-controls.js";
 
 export function initActionMenus(view, cx) {
   invalidateAction(view); view.actionOpen = null;
   view.recordActionsOpen = null;
   view.recordActionsFocus = cx.focus_handle();
+  view.recordPrimaryFocus = cx.focus_handle();
   view.actionDrafts = new Map();
   view.actionTriggerFocus = new Map(Object.keys(ACTION_PRESETS).map(action => [action, cx.focus_handle()]));
   view.actionFocus = cx.focus_handle();
@@ -46,60 +48,64 @@ export function actionDropdown(view, choice, given) {
     .when(shown, el => el.content(actionMenuContent(view)));
 }
 
-export function recordActionControl(view, choices, primary, given, status, palette) {
+export function recordActionControl(view, choices, primary, given, status, palette, reason) {
   const t = theme(), key = JSON.stringify([given.cwd, given.kind, given.id]);
+  const otherChoices = choices.filter(choice => choice.action !== primary?.action);
   const pickerShown = view.recordActionsOpen === key;
   const promptShown = view.actionOpen?.given.id === given.id && view.actionOpen?.given.kind === given.kind;
-  const label = primary?.label ?? status?.value ?? "No next action";
+  const label = primary?.label ?? view.snapshot?.states?.[given.id]?.next ?? status?.value ?? "No next action";
   const disabled = view.actionBusy || !primary || Boolean(primary.disabledReason);
   const showPicker = cx => {
     if (view.actionBusy) return;
+    view.referenceOpen = null;
     if (pickerShown) { view.recordActionsOpen = null; view.recordActionsFocus.focus(); }
     else {
       if (view.actionOpen) closeActionMenu(view, cx, false);
       view.recordActionsOpen = key;
-      view.recordActionIndex = Math.max(0, choices.findIndex(choice => !choice.disabledReason));
+      view.recordActionIndex = Math.max(0, otherChoices.findIndex(choice => !choice.disabledReason));
       view.actionFocus.focus();
     }
     cx.notify();
   };
   const trigger = h_flex().min_w(0).max_w("100%").border_1().border_color(palette.border).bg(palette.value)
-    .child(button("record-next-action", "", (_event, cx) => openActionMenu(view, primary, given, cx, view.recordActionsFocus), {
+    .child(recordReasonButton(view, reason, label, palette))
+    .child(button("record-next-action", "", (_event, cx) => openActionMenu(view, primary, given, cx, view.recordPrimaryFocus), {
       disabled, label: primary ? `Next action: ${label}${primary.disabledReason ? `. ${primary.disabledReason}` : ". Open action prompt."}` : `No next action. ${label}`,
-    }).h("auto").min_h(30).min_w(0).px(0).py(0).items_stretch().bg(palette.value).text_color(palette.valueText)
+    }).track_focus(view.recordPrimaryFocus).tab_index(0).h("auto").min_h(34).min_w(0).px(10).py(5).bg(palette.value).text_color(palette.valueText)
       .tooltip(primary?.disabledReason ?? (primary ? `Open ${label} prompt` : "No workflow action is recommended"))
-      .child(h_flex().min_w(0).min_h(30).items_stretch()
-        .child(div().flex_none().flex().items_center().px(8).py(5).bg(palette.label).text_color(palette.labelText).text_size(10).child(primary ? "next" : status?.label ?? "next"))
-        .child(div().min_w(0).flex().items_center().px(8).py(5).whitespace_normal().text_size(10).child(label))))
-    .child(button("record-other-actions", "▾", (_event, cx) => showPicker(cx), { disabled: view.actionBusy || !choices.length, label: "Other record actions" })
-      .track_focus(view.recordActionsFocus).tab_index(0).w(30).px(0).h("auto").min_h(30).border_l(1).border_color(palette.border).bg(palette.label).text_color(palette.labelText)
+      .child(v_flex().min_w(0).gap(2)
+        .child(div().text_size(9).text_color(palette.labelText).child(primary ? "Next action" : "No next action"))
+        .child(div().whitespace_normal().text_size(11).child(label))))
+    .child(button("record-other-actions", "▾", (_event, cx) => showPicker(cx), { disabled: view.actionBusy || !otherChoices.length, label: "Other record actions" })
+      .track_focus(view.recordActionsFocus).tab_index(0).w(30).px(0).h("auto").min_h(34).border_l(1).border_color(palette.border).bg(palette.label).text_color(palette.labelText)
       .on_key_down((event, cx) => { if (["enter", "space", "down", "up"].includes(event.key)) { cx.stop_propagation(); showPicker(cx); } }));
-  const picker = () => v_flex().id("record-actions-menu").w(320).max_w("100%").p(6).gap(2).border_1().border_color(t.border).bg(t.popover)
-    .track_focus(view.actionFocus).tab_index(0).accessibility_label("Record actions")
+  const picker = () => v_flex().id("record-actions-menu").role("menu").w(320).max_w("100%").max_h(480).overflow_y_scrollbar().p(6).gap(2).border_1().border_color(t.border).bg(t.popover)
+    .track_focus(view.actionFocus).tab_index(0).accessibility_label("Other record actions")
     .on_mouse_down_out((_event, cx) => { view.recordActionsOpen = null; cx.notify(); })
     .on_key_down((event, cx) => {
       if (event.key === "escape" || event.key === "tab") { view.recordActionsOpen = null; view.recordActionsFocus.focus(); cx.stop_propagation(); cx.notify(); return; }
-      const enabled = choices.map((choice, index) => choice.disabledReason ? -1 : index).filter(index => index >= 0);
+      const enabled = otherChoices.map((choice, index) => choice.disabledReason ? -1 : index).filter(index => index >= 0);
       if (!enabled.length) return;
-      if (event.key === "enter" || event.key === "space") { cx.stop_propagation(); openActionMenu(view, choices[view.recordActionIndex], given, cx, view.recordActionsFocus); return; }
+      if (event.key === "enter" || event.key === "space") { cx.stop_propagation(); openActionMenu(view, otherChoices[view.recordActionIndex], given, cx, view.recordActionsFocus); return; }
       if (!["up", "down", "home", "end"].includes(event.key)) return;
       cx.stop_propagation();
       const position = enabled.indexOf(view.recordActionIndex);
       view.recordActionIndex = enabled[event.key === "home" ? 0 : event.key === "end" ? enabled.length - 1 : (position + (event.key === "down" ? 1 : enabled.length - 1)) % enabled.length];
       cx.notify();
     })
-    .children(choices.map((choice, index) => button(`record-action:${choice.action}`, "", (_event, cx) => openActionMenu(view, choice, given, cx, view.recordActionsFocus), { disabled: view.actionBusy || Boolean(choice.disabledReason), label: `${choice.label}${choice.disabledReason ? `. ${choice.disabledReason}` : ""}`, height: "auto" })
-      .tab_stop(false).w_full().min_h(34).py(8).bg(index === view.recordActionIndex ? t.selected : t.popover).tooltip(choice.disabledReason ?? `Open ${choice.label} prompt`)
+    .children(otherChoices.map((choice, index) => button(`record-action:${choice.action}`, "", (_event, cx) => openActionMenu(view, choice, given, cx, view.recordActionsFocus), { disabled: view.actionBusy || Boolean(choice.disabledReason), label: `${choice.label}${choice.disabledReason ? `. ${choice.disabledReason}` : ""}`, height: "auto" })
+      .role("menu_item").tab_stop(false).w_full().min_h(34).py(8).bg(index === view.recordActionIndex ? t.selected : t.popover).tooltip(choice.disabledReason ?? `Open ${choice.label} prompt`)
       .child(v_flex().w_full().min_w(0).gap(4)
-        .child(div().whitespace_normal().child(`${choice.action === primary?.action ? "Next: " : ""}${choice.label}`))
+        .child(div().whitespace_normal().child(choice.label))
         .when(Boolean(choice.disabledReason), el => el.child(div().whitespace_normal().text_size(10).text_color(t.muted).child(choice.disabledReason))))));
   return Popup.new("record-action-popup", trigger)
     .when(pickerShown || promptShown, el => el.content(promptShown ? actionMenuContent(view) : picker()));
 }
 
 function openActionMenu(view, choice, given, cx, returnFocus) {
-  if (view.actionBusy || choice.disabledReason) return;
+  if (view.actionBusy || !choice || choice.disabledReason) return;
   view.recordActionsOpen = null;
+  view.referenceOpen = null;
   const key = JSON.stringify([given.cwd, given.kind, given.id, choice.action]);
   let draft = view.actionDrafts.get(key);
   if (!draft) { draft = { preset: 0, detail: "" }; view.actionDrafts.set(key, draft); }

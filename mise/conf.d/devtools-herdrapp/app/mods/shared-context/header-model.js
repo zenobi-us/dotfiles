@@ -16,6 +16,18 @@ export function workflowBadge(state, workflow, executable = true) {
   return { label: "status", value: state.state.toLowerCase(), tone: ["BLOCKED", "ERROR", "UNKNOWN"].includes(status) ? "blocked" : ["READY", "DONE"].includes(status) ? "complete" : "neutral" };
 }
 
+export function recordReferences(record, kind = "ticket") {
+  const ref = kind === "initiative" && !/^https?:\/\//i.test(record.ref) && !record.ref.endsWith(".md")
+    ? `${record.ref.replace(/\/$/, "")}/index.md` : record.ref;
+  const title = record.title.replace(/[\\[\]]/g, character => `\\${character}`);
+  const destination = ref.replace(/[\s()<>]/g, character => encodeURIComponent(character).replace(/[()]/g, value => value === "(" ? "%28" : "%29"));
+  return [
+    { id: "id", label: kind === "initiative" ? "Initiative ID" : "Ticket ID", value: record.id },
+    { id: "ref", label: "Canonical reference", value: ref },
+    { id: "markdown", label: "Markdown link", value: `[${title}](${destination})` },
+  ];
+}
+
 // Native colours accept hex only. Keep hue and saturation fixed while changing lightness.
 export function badgePalette(color, background, subdued = false) {
   const [red, green, blue] = hexRgb(color), bg = hexRgb(background);

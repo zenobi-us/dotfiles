@@ -8,6 +8,7 @@ import { dependencyRows, revealPath, itemType } from "./tree.js";
 import { button, icon, note, select, typeColor, typeIcon } from "./ui.js";
 import { graphView, initGraphMenu, renderGraphMenu } from "./graph-view.js";
 import { compactHeader } from "./header.js";
+import { initHeaderControls, clearHeaderControls, renderHeaderReason } from "./header-controls.js";
 import { initiativeProgress } from "./progress-model.js";
 import { initiativeProgressRow } from "./progress.js";
 import { workflowActivity } from "./activity-model.js";
@@ -33,6 +34,7 @@ export default class SharedContext extends View {
     if (this.mode === "graph-actions") { initGraphMenu(this, cx); return; }
     this.focus = cx.focus_handle();
     initMetadata(this, cx);
+    initHeaderControls(this, cx);
     this.selectFocus = { "context-store": cx.focus_handle(), "context-preset": cx.focus_handle() };
     initTreeFilters(this, cx);
     this.recordTab = "description"; this.detailError = "";
@@ -87,9 +89,9 @@ export default class SharedContext extends View {
     if (key === this.key) return;
     this.remember(); this.key = key; this.where = next;
     invalidateAction(this);
+    clearHeaderControls(this);
     this.context = null; this.snapshot = null; this.detail = null; this.filePreview = null; this.viewKey = null;
     this.metadataOpen = false;
-    this.agentRosterOpen = false;
     this.progress = new Map();
     this.recordTab = "description"; this.detailError = "";
     this.activity = workflowActivity(); this.activityFilter = "all";
@@ -147,7 +149,7 @@ export default class SharedContext extends View {
     if (this.drawer === "expanded" && this.selected?.id === record.id && reveal) return;
     if (this.selected?.id !== record.id || this.selected.kind !== kind) {
       invalidateAction(this);
-      this.agentRosterOpen = false;
+      clearHeaderControls(this);
       this.recordTab = "description"; this.activityFilter = "all";
       this.actionOpen = null; this.recordActionsOpen = null; this.actionError = "";
     }
@@ -462,6 +464,7 @@ export default class SharedContext extends View {
       .when(Boolean(this.context) && !this.context.ready, el => el.child(this.onboarding()))
       .when(Boolean(this.context?.ready), el => el.child(this.mode === "context" ? this.filesView() : this.snapshot ? this.trackerView() : note(this.error ? "The tracker is unavailable. Correct the error, then select Refresh." : "Read tracker records and workflow state…")))
       .when(Boolean(this.context?.ready) && this.mode === "context", el => el.child(h_flex().h(25).flex_none().px(10).gap(8).items_center().border_t(1).border_color(t.border).text_size(10).text_color(t.dim).child(this.loading ? "Refresh records…" : `Canonical records · ${this.context.mode}`)))
-      .when(Boolean(this.metadataOpen && this.context?.metadata), el => el.child(renderMetadata(this)));
+      .when(Boolean(this.metadataOpen && this.context?.metadata), el => el.child(renderMetadata(this)))
+      .when(Boolean(this.headerReason), el => el.child(renderHeaderReason(this)));
   }
 }

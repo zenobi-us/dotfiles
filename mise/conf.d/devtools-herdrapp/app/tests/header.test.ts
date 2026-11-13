@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { workflowBadge, badgePalette } from "../mods/shared-context/header-model.js";
+import { workflowBadge, badgePalette, recordReferences } from "../mods/shared-context/header-model.js";
 
 function activeWorkflow(phase = "fix") {
   return {
@@ -63,5 +63,30 @@ describe("same-hue badge tones", () => {
       expect(palette.value.slice(1, 3)).toBe(palette.value.slice(5, 7));
       expect(palette.label).not.toBe(palette.value);
     }
+  });
+});
+
+describe("canonical reference copy formats", () => {
+  test("keeps repository, shared-store and hosted references independent of machine paths", () => {
+    for (const ref of ["tracker/tickets/T-1.md", "SharedContext/tracker/tickets/T-1.md", "https://github.com/owner/repo/issues/42"]) {
+      const references = recordReferences({ id: "T-1", title: "Ticket", ref, path: "/private/machine/T-1.md" });
+      expect(references.map(reference => reference.value)).toEqual(["T-1", ref, `[Ticket](${ref})`]);
+    }
+  });
+
+  test("targets the initiative specification without appending index.md twice or changing hosted URLs", () => {
+    for (const ref of ["tracker/initiatives/navigation", "SharedContext/tracker/initiatives/navigation/"]) {
+      expect(recordReferences({ id: "navigation", title: "Navigation", ref }, "initiative")[1]!.value).toBe(`${ref.replace(/\/$/, "")}/index.md`);
+    }
+    for (const ref of ["tracker/initiatives/navigation/index.md", "https://github.com/owner/repo/issues/42"]) {
+      expect(recordReferences({ id: "navigation", title: "Navigation", ref }, "initiative")[1]!.value).toBe(ref);
+    }
+  });
+
+  test("escapes Markdown punctuation without changing the canonical reference", () => {
+    const ref = "SharedContext/tracker/tickets/a (draft).md";
+    const references = recordReferences({ id: "T-1", title: "Fix [pins] \\ path", ref });
+    expect(references[1]!.value).toBe(ref);
+    expect(references[2]!.value).toBe("[Fix \\[pins\\] \\\\ path](SharedContext/tracker/tickets/a%20%28draft%29.md)");
   });
 });
