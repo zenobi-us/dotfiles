@@ -8,10 +8,10 @@
 //   cleanup-merged.ts remove <branch>... [--min-age <age>]
 //   cleanup-merged.ts session-start          (hook: reads hook JSON on stdin)
 import { createHash } from "node:crypto";
-import { existsSync, readdirSync, readlinkSync } from "node:fs";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { existsSync, readdirSync, readFileSync, readlinkSync } from "node:fs";
+import { lstat, mkdir, readFile, writeFile } from "node:fs/promises";
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { isAbsolute, join } from "node:path";
 
 const THROTTLE_MS = 24 * 60 * 60 * 1000;
 // Set to true after the session-start hook is checked by hand in OMP. Until then, OMP agents get a reminder.
@@ -29,6 +29,7 @@ export interface Kept {
   branch: string;
   path: string | null;
   reason: string;
+  processes?: BusyProcess[];
 }
 
 export interface Candidates {
@@ -36,6 +37,14 @@ export interface Candidates {
   target: string | null;
   removable: Candidate[];
   kept: Kept[];
+}
+
+export interface BusyProcess {
+  pid: number;
+  command: string;
+  cwd: string;
+  bootId?: string;
+  startTicks?: string;
 }
 
 export interface Options {
@@ -48,19 +57,38 @@ async function run(command: string[], cwd?: string): Promise<{ stdout: string; s
   return { stdout, stderr, code };
 }
 
-// Returns the working directory of every process this user can read, or undefined when the platform gives no way to read them.
-async function processDirectories(): Promise<string[] | undefined> {
+// Keep identity evidence with a refusal. A cwd alone must never become authority
+// to signal a process; the caller still needs scoped approval and a fresh check.
+async function worktreeProcesses(): Promise<BusyProcess[] | undefined> {
   if (existsSync("/proc/self/cwd")) {
-    const directories: string[] = [];
-    for (const pid of readdirSync("/proc")) {
-      if (!/^\d+$/.test(pid)) continue;
-      try { directories.push(readlinkSync(`/proc/${pid}/cwd`)); } catch { /* process exited or belongs to another user */ }
+    const processes: BusyProcess[] = [];
+    const bootId = readFileSync("/proc/sys/kernel/random/boot_id", "utf8").trim();
+    for (const entry of readdirSync("/proc")) {
+      if (!/^\d+$/.test(entry)) continue;
+      try {
+        const cwd = readlinkSync(`/proc/${entry}/cwd`);
+        const stat = readFileSync(`/proc/${entry}/stat`, "utf8");
+        const end = stat.lastIndexOf(")");
+        const fields = stat.slice(end + 2).trim().split(/\s+/);
+        processes.push({
+          pid: Number(entry), command: stat.slice(stat.indexOf("(") + 1, end), cwd,
+          bootId, startTicks: fields[19],
+        });
+      } catch { /* process exited or belongs to another user */ }
     }
-    return directories;
+    return processes;
   }
-  const lsof = await run(["lsof", "-a", "-d", "cwd", "-F", "n"]).catch(() => undefined);
+  const lsof = await run(["lsof", "-a", "-d", "cwd", "-F", "pcn"]).catch(() => undefined);
   if (!lsof || lsof.code > 1) return undefined;
-  return lsof.stdout.split("\n").filter(line => line.startsWith("n")).map(line => line.slice(1));
+  const processes: BusyProcess[] = [];
+  let pid: number | undefined;
+  let command = "unknown";
+  for (const line of lsof.stdout.split("\n")) {
+    if (line.startsWith("p")) { pid = Number(line.slice(1)); command = "unknown"; }
+    else if (line.startsWith("c")) command = line.slice(1);
+    else if (line.startsWith("n") && pid !== undefined) processes.push({ pid, command, cwd: line.slice(1) });
+  }
+  return processes;
 }
 
 export async function findCandidates(repo: string, options: Options = {}): Promise<Candidates> {
@@ -70,36 +98,100 @@ export async function findCandidates(repo: string, options: Options = {}): Promi
   if (prune.code) throw new Error(`wt step prune --dry-run failed: ${prune.stderr.trim() || prune.stdout.trim()}`);
   const integrated = JSON.parse(prune.stdout || "[]") as Candidate[];
 
-  const directories = integrated.some(item => item.path) ? await processDirectories() : [];
+  const processes = integrated.some(item => item.path) ? await worktreeProcesses() : [];
   const removable: Candidate[] = [];
   const kept: Kept[] = [];
   for (const item of integrated) {
     if (!item.path) { removable.push(item); continue; }
-    if (!directories) { kept.push({ branch: item.branch, path: item.path, reason: "cannot check for a running process in the worktree" }); continue; }
-    const busy = directories.some(dir => dir === item.path || dir.startsWith(`${item.path}/`));
-    if (busy) kept.push({ branch: item.branch, path: item.path, reason: "a process (for example an agent or shell) runs in the worktree" });
+    if (!processes) { kept.push({ branch: item.branch, path: item.path, reason: "cannot check for a running process in the worktree" }); continue; }
+    const busy = processes.filter(process => process.cwd === item.path || process.cwd.startsWith(`${item.path}/`));
+    if (busy.length) kept.push({
+      branch: item.branch, path: item.path, processes: busy,
+      reason: `processes run in the worktree: ${busy.map(process => `PID ${process.pid} (${process.command})${process.startTicks ? ` start ${process.startTicks} boot ${process.bootId}` : ""} cwd ${process.cwd}`).join("; ")}`,
+    });
     else removable.push(item);
   }
   return { repo, target: integrated[0]?.target ?? null, removable, kept };
 }
 
 export async function removeBranches(repo: string, branches: string[], options: Options = {}): Promise<{ removed: string[]; refused: Kept[] }> {
-  // Check again right before removal: state can change between the question and the answer.
-  const current = await findCandidates(repo, options);
+  // Recheck each named branch immediately before removal, including after a
+  // previous branch's hooks have run.
   const removed: string[] = [];
   const refused: Kept[] = [];
   for (const branch of branches) {
+    const current = await findCandidates(repo, options);
     const item = current.removable.find(candidate => candidate.branch === branch);
     if (!item) {
       const kept = current.kept.find(candidate => candidate.branch === branch);
-      refused.push(kept ?? { branch, path: null, reason: "not integrated into the default branch, or younger than the age guard" });
+      refused.push(kept ?? { branch, path: null, reason: "not a Worktrunk prune candidate: unmerged, dirty, or younger than the age guard" });
       continue;
     }
-    const result = await run(["wt", "-C", repo, "remove", branch, "--foreground"]);
-    if (result.code) refused.push({ branch, path: item.path, reason: `wt remove failed: ${(result.stderr || result.stdout).trim()}` });
-    else removed.push(branch);
+    try {
+      const result = await run(["wt", "-C", repo, "remove", branch, "--foreground", "--format=json"]);
+      if (result.code) {
+        refused.push({ branch, path: item.path, reason: `wt remove failed: ${(result.stderr || result.stdout).trim()}` });
+        continue;
+      }
+      const outcomes: unknown = JSON.parse(result.stdout);
+      const matches = Array.isArray(outcomes) ? outcomes.filter((row: unknown): row is { branch: string; branch_outcome?: unknown } =>
+        row !== null && typeof row === "object" && !Array.isArray(row) && "branch" in row && row.branch === branch) : [];
+      const outcome = matches[0];
+      if (matches.length !== 1 || !outcome || typeof outcome.branch_outcome !== "string") {
+        refused.push({ branch, path: item.path, reason: "cleanup pending: wt remove returned an incomplete removal observation (missing or ambiguous branch match)" });
+        continue;
+      }
+      if (outcome.branch_outcome !== "deleted") {
+        refused.push({ branch, path: item.path, reason: `cleanup pending: wt branch_outcome=${outcome.branch_outcome}` });
+        continue;
+      }
+      const remaining = await remainingRemovalState(repo, branch, item.path);
+      if (remaining) refused.push({ branch, path: item.path, reason: `cleanup pending: ${remaining}` });
+      else removed.push(branch);
+    } catch (error) {
+      refused.push({ branch, path: item.path, reason: `cleanup pending: removal observation failed: ${error instanceof Error ? error.message : String(error)}` });
+    }
   }
   return { removed, refused };
+}
+
+// A successful removal command can still retain the branch. Confirm both the
+// exact ref and its workspace instead of treating exit zero as deletion proof.
+async function remainingRemovalState(repo: string, branch: string, path: string | null): Promise<string | undefined> {
+  const [worktrees, directory] = await Promise.all([
+    run(["wt", "-C", repo, "--config-set", "list.full=false", "--config-set", "list.summary=false", "list", "--format=json", "--branches"]),
+    path ? lstat(path).then(() => "present", error =>
+      error instanceof Error && "code" in error && error.code === "ENOENT" ? "absent" : "unconfirmed") : Promise.resolve("absent"),
+  ]);
+  if (worktrees.code !== 0) return "registered branches and workspaces could not be checked";
+  const inventory: unknown = JSON.parse(worktrees.stdout);
+  const schema2 = inventory !== null && typeof inventory === "object" && !Array.isArray(inventory) &&
+    "schema" in inventory && inventory.schema === 2;
+  const rows: unknown = Array.isArray(inventory) ? inventory : schema2 && "items" in inventory ? inventory.items : undefined;
+  if (!Array.isArray(rows) || rows.length === 0) return "the workspace listing was incomplete or unsupported";
+  const entries: Array<{ branch: string | null; path: string | null }> = [];
+  for (const row of rows) {
+    if (!row || typeof row !== "object" || Array.isArray(row) ||
+        !(typeof row.branch === "string" || row.branch === null)) return "the workspace listing was incomplete or unsupported";
+    let workspacePath: unknown;
+    if (schema2) {
+      if (row.worktree === undefined && typeof row.branch === "string") workspacePath = null;
+      else if (row.worktree && typeof row.worktree === "object" && !Array.isArray(row.worktree)) workspacePath = row.worktree.path;
+      else return "the workspace listing was incomplete or unsupported";
+    } else if (row.kind === "worktree") workspacePath = row.path;
+    else if (row.kind === "branch" && typeof row.branch === "string" && row.path == null) workspacePath = null;
+    else return "the workspace listing was incomplete or unsupported";
+    if (!(workspacePath === null || (typeof workspacePath === "string" && isAbsolute(workspacePath)))) {
+      return "the workspace listing was incomplete or unsupported";
+    }
+    entries.push({ branch: row.branch, path: workspacePath });
+  }
+  if (!entries.some(entry => entry.path !== null)) return "the workspace listing was incomplete";
+  if (entries.some(entry => entry.branch === branch)) return "the exact branch remains in Worktrunk inventory";
+  if (path !== null && entries.some(entry => entry.path === path)) return "the exact path remains registered as a workspace";
+  if (directory === "present") return "the workspace path still exists";
+  if (directory !== "absent") return "the workspace path could not be checked";
+  return undefined;
 }
 
 export interface HookOutput {

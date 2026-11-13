@@ -20,7 +20,7 @@
       "name": "developer",
       "source": "./developer",
       "description": "Code writing, git workflow, testing, and language/quality experts",
-      "version": "0.2.27"
+      "version": "0.2.28"
     },
     {
       "name": "matt-pocock",

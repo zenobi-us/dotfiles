@@ -35,7 +35,7 @@ The CLI accepts both `--min-age <age>` and `--min-age=<age>`. Both forms apply t
 3. Ask the user which branches to remove. Use your question tool (`AskUserQuestion` in Claude Code). Offer "all listed", "choose", and "skip".
    - Skip this question when the user accepted the `<cleanup-merged>` session-start question and `list` shows the same branches. That answer is the approval.
    - Skip this question when a calling playbook already holds the user's approval for the named branch.
-4. Run `remove` with only the approved branch names. The script checks each branch again before removal and refuses a branch that is no longer a candidate.
+4. Run `remove` with only the approved branch names. The script checks each named branch immediately before removal and refuses a branch that is no longer a candidate.
 5. Report each removed branch, each refused branch with its reason, and each kept branch with its reason.
 
 ## What the script keeps
@@ -61,3 +61,15 @@ cd "$CLEANUP_MERGED_SKILL_ROOT/scripts" && bun test
 ```
 
 `scripts/fixture.ts <dir>` builds the disposable repository that the tests and pressure scenarios use.
+
+## Owned resources and pending cleanup
+
+Before removal, stop and verify registered phase-owned services through their normal shutdown commands. Use the muxer-subagents resource observer before and after normal child pane closure. Preserve its run identity and shutdown observation in the calling workflow handoff. Pane closure alone does not prove that worker descendants stopped.
+
+A busy refusal includes exact process identities where the platform permits. Linux output includes PID, command name, boot identity, start ticks, and working directory. These fields explain the refusal; they do not authorize signals. A working-directory match does not establish ownership. Preserve user and unrelated processes. Signals outside normal owned child closure require explicit approval for the named identities and a fresh identity check. Never bypass the busy or dirty guard.
+
+Worktrunk remains the integration authority. Preserve its reason values, including `ancestor` and `merge_adds_nothing`; do not substitute an independent integration test. If a branch is absent from prune output, report it as not a prune candidate: it can be unmerged, dirty, or younger than the age guard. The named age override does not bypass busy or dirty checks.
+
+The script requests `wt remove --foreground --format=json`. The removal response is an array. The script requires exactly one outcome for the named branch with `branch_outcome` set to `deleted`. It then checks the exact branch and workspace against `wt --config-set list.full=false --config-set list.summary=false list --format=json --branches`, and checks that the workspace path is absent. Supported inventory formats are the schema-1 array and schema-2 envelope. Unknown schemas, incomplete rows, and missing or ambiguous removal matches keep cleanup pending. Retained outcomes, `not_attempted`, `deferred`, malformed output, or incomplete observations remain refused with cleanup pending. Exit zero alone does not prove removal.
+
+Report cleanup pending separately from published acceptance. A failed cleanup does not revoke published acceptance. Keep the exact refusal and owned-resource observations for recovery; do not claim that the branch or worktree was removed.
