@@ -4,7 +4,7 @@ id: "muxer-subagents-herdr-app-hc-spawn"
 title: "Spawn herdr-app child agents through hc, without the app command"
 type: "feature"
 triage: "ready-for-agent"
-work_status: "unclaimed"
+work_status: "claimed"
 blocked_by: []
 ---
 
