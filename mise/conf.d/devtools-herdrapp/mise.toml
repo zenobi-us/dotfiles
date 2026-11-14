@@ -1,8 +1,8 @@
 [dotfiles]
-"~/.config/herdr-app/mods" = { source = "./app/mods", mode = "symlink-each", exclude = [
-  "mod.json",
-  "*.ts",
-  "jsconfig.json",
-] }
+"~/.config/herdr-app/mods/shared-context" = { source = "./app/mods/shared-context/", mode = "symlink" }
+"~/.config/herdr-app/mods/shared-context-tabs" = { source = "./app/mods/shared-context-tabs/", mode = "symlink" }
 
-"~/.config/herdr-app" = { source = "./app/preferences", mode = "symlink-each" }
+"~/.config/herdr-app" = { source = "./app/preferences", mode = "symlink-each", exclude = [
+  "mods/shared-context",
+  "mods/shared-context-tabs",
+] }
