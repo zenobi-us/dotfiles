@@ -1,0 +1,13 @@
+{
+  "original_review": "workflows/collect-evidence-feedback-07-drafts/events/review-result-0006.yaml",
+  "original_source": "adc77612bfbb3b8229aefff665848a4f79d963a1",
+  "resolved_source_commit": "dbc3a9569818c70c2a682cfba829068203139dab",
+  "resolved_source_tree": "75c2c9dc30ad1c5221205618b979e1d805429f12",
+  "base": "44de2f9b4bf2faf21b3e0924af05991502a4fc12",
+  "conflicts": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json"
+  ],
+  "resolution": "Retain newer reviewed 0.2.38 in both generated manifests. Product source unchanged from original review. Current master merged without other conflicts.",
+  "original_source_preserved": true
+}

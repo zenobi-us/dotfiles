@@ -1,0 +1,5 @@
+feat(feedback): finish collect-evidence-feedback-07-drafts
+
+Integrate draft recovery and complete-export guard.
+Review: workflows/collect-evidence-feedback-07-drafts/events/review-result-0006.yaml
+Resolution review: workflows/collect-evidence-feedback-07-drafts/events/review-result-0013.yaml
