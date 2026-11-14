@@ -8,7 +8,7 @@ sequence: 7
 title: Recover drafts and prevent incomplete feedback exports
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 # Recover drafts and prevent incomplete feedback exports
@@ -39,4 +39,5 @@ This slice covers initiative user stories 32, 34, 37, 42. Keep the initiative as
 ## Comments
 
 No discussion has been recorded.
+
 
