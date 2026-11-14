@@ -11,6 +11,8 @@ import { INITIATIVE_LINKS_QUERY } from "../../../../../matt-pocock/skills/readin
 import { validateStorePath } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/layout";
 
 export type ParsedDocument = { fields: Record<string, unknown>; body: string; links: unknown[] };
+// Totals describe one phase, not every file a later workflow might discover.
+export type DocumentReadProgress = { phase: "discover" | "read" | "parse" | "records" | "validate"; completed: number; total: number | null; current?: string };
 type Capture = { file: string; root: string; actual: string; digest: string; bytes: Buffer; identity: string; key: string };
 type Collection = { root: string; storeRoot: string; pattern: RegExp; membership: string };
 type CacheEntry = { document: ParsedDocument; size: number };
@@ -28,11 +30,12 @@ export class DocumentReadSession {
  private readonly collections: Collection[] = [];
  private readonly contextKey: string;
 
- constructor(context: SharedAgentContext, private readonly exec: Exec) {
+ constructor(context: SharedAgentContext, private readonly exec: Exec, private readonly onProgress?: (progress: DocumentReadProgress) => void) {
   this.contextKey = JSON.stringify([context.canonicalOrigin, context.slug, context.repositoryRoot, context.candidateSharedRoot, context.alignmentRoot, context.root, context.layout, context.routes]);
  }
 
  async collect(root: string, pattern: RegExp, storeRoot = root): Promise<string[]> {
+  this.onProgress?.({ phase: "discover", completed: 0, total: null, current: root });
   const collection = await scanCollection(root, storeRoot, pattern);
   this.collections.push({ root, storeRoot, pattern, membership: collection.membership });
   return collection.files;
@@ -40,12 +43,15 @@ export class DocumentReadSession {
 
  async captureAll(requests: { file: string; root: string }[]): Promise<Map<string, unknown>> {
   const errors = new Map<string, unknown>();
+  let completed = 0;
+  this.onProgress?.({ phase: "read", completed, total: requests.length });
   for (const { file, root } of requests) {
    try {
     const capture = this.captures.get(file);
     if (!capture) this.captures.set(file, await captureFile(file, root, this.contextKey));
     else if (resolve(capture.root) !== resolve(root)) throw new Error("Document requested through different store roots.");
    } catch (error) { errors.set(file, error); }
+   this.onProgress?.({ phase: "read", completed: ++completed, total: requests.length, current: file });
   }
   return errors;
  }
@@ -53,6 +59,7 @@ export class DocumentReadSession {
  async readAll(requests: { file: string; root: string }[]): Promise<{ documents: Map<string, ParsedDocument>; errors: Map<string, unknown> }> {
   const documents = new Map<string, ParsedDocument>();
   const errors = await this.captureAll(requests);
+  this.onProgress?.({ phase: "parse", completed: 0, total: requests.length });
   const changed: Capture[] = [];
   const waiting: { capture: Capture; result: Promise<ParseResult> }[] = [];
   const owned = new Map<string, PendingParse>();
@@ -121,6 +128,7 @@ export class DocumentReadSession {
    if ("document" in parsed) documents.set(capture.file, structuredClone(parsed.document));
    else errors.set(capture.file, parsed.error);
   }
+  this.onProgress?.({ phase: "parse", completed: requests.length, total: requests.length });
   return { documents, errors };
  }
 
@@ -144,10 +152,13 @@ export class DocumentReadSession {
 
  async validate(): Promise<void> {
   try {
+   let completed = 0;
+   this.onProgress?.({ phase: "validate", completed, total: this.captures.size });
    await this.validateCollections();
    for (const capture of this.captures.values()) {
     const current = await captureFile(capture.file, capture.root, this.contextKey);
     if (current.digest !== capture.digest || current.actual !== capture.actual || current.identity !== capture.identity) throw changedDuringRead();
+    this.onProgress?.({ phase: "validate", completed: ++completed, total: this.captures.size, current: capture.file });
    }
    await this.validateCollections();
   } catch (error) {

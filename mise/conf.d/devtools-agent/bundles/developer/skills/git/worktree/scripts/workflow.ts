@@ -10,7 +10,7 @@ import { MIRROR_SCHEMA } from "../../../../../matt-pocock/skills/reading-and-wri
 import { inspectWorkflow } from "./inspection";
 import { chronologicalReceipts, receiptEvent, receiptPhase } from "./recovery";
 import { DocumentReadSession } from "./document-cache";
-import type { ParsedDocument } from "./document-cache";
+import type { ParsedDocument, DocumentReadProgress } from "./document-cache";
 import { validateReceiptContract } from "./receipt-contract";
 import { inspectReceiptDiagnostics } from "./receipt-diagnostics";
 import type { ReceiptDiagnostic } from "./receipt-diagnostics";
@@ -24,9 +24,9 @@ type Document = ParsedDocument;
  * A Jira blocker that is not in the mirror is a warning in both modes: it goes
  * to the sink when one is given, and the ticket keeps the blocker.
  */
-export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Exec, scope?: { ref: string; kind?: "ticket" | "initiative" }, diagnostics?: { ref: string; error: string }[]): Promise<ExplorerSnapshot> {
+export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Exec, scope?: { ref: string; kind?: "ticket" | "initiative" }, diagnostics?: { ref: string; error: string }[], onProgress?: (progress: DocumentReadProgress) => void): Promise<ExplorerSnapshot> {
  if (context.error) throw new Error(context.error);
- const session = new DocumentReadSession(context, exec);
+ const session = new DocumentReadSession(context, exec, onProgress);
  let backend = context.routes.tickets.adapter;
  let config: Fields = {};
  let localDefinition: { file: string; root: string } | undefined;
@@ -43,9 +43,10 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
    if (backend !== context.routes.tickets.adapter) throw new Error("Tracker backend disagrees with the resolved tickets route. Update the tracker definition or route configuration.");
   }
  }
- const snapshot = backend === "local-markdown" ? await localSnapshot(context, session, localDefinition, diagnostics)
+ onProgress?.({ phase: "discover", completed: 0, total: null });
+ const snapshot = backend === "local-markdown" ? await localSnapshot(context, session, localDefinition, diagnostics, onProgress)
   : backend === "github" ? await githubSnapshot(context, exec, scope)
-   : backend === "jira" ? await jiraSnapshot(context, session, config)
+   : backend === "jira" ? await jiraSnapshot(context, session, config, onProgress)
     : (() => { throw new Error(`Unsupported tracker backend: ${backend}`); })();
  const known = new Set(snapshot.tickets.map(ticket => ticket.id));
  const unmirrored = snapshot.backend === "jira" ? snapshot.tickets.flatMap(ticket => ticket.blockedBy.filter(id => !known.has(id)).map(blocker => ({ ticket, blocker }))) : [];
@@ -433,13 +434,14 @@ async function historySupplements(
  return effective;
 }
 
-async function localSnapshot(context: SharedAgentContext, session: DocumentReadSession, definition?: { file: string; root: string }, diagnostics?: { ref: string; error: string }[]): Promise<ExplorerSnapshot> {
+async function localSnapshot(context: SharedAgentContext, session: DocumentReadSession, definition?: { file: string; root: string }, diagnostics?: { ref: string; error: string }[], onProgress?: (progress: DocumentReadProgress) => void): Promise<ExplorerSnapshot> {
  const ticketsRecord = await resolveContextRecord(context, { kind: "tickets" });
  const initiativesRecord = await resolveContextRecord(context, { kind: "initiatives" });
  if (!ticketsRecord.path || !ticketsRecord.root || !initiativesRecord.path || !initiativesRecord.root || !["markdown", "local-markdown"].includes(initiativesRecord.adapter)) throw new Error("Local Markdown requires file-backed ticket and initiative routes.");
  const ticketFiles = context.checkoutAvailable === false && ticketsRecord.store === "repository" ? [] : await session.collect(ticketsRecord.path, /\.md$/, ticketsRecord.root);
  const initiativeFiles = context.checkoutAvailable === false && initiativesRecord.store === "repository" ? [] : await session.collect(initiativesRecord.path, /\.md$/, initiativesRecord.root);
  const { documents, errors } = await session.readAll([...(definition ? [definition] : []), ...ticketFiles.map(file => ({ file, root: ticketsRecord.root! })), ...initiativeFiles.filter(file => relative(initiativesRecord.path!, file).split(/[\\/]/).length === 2 && file.endsWith("/index.md")).map(file => ({ file, root: initiativesRecord.root! }))]);
+ onProgress?.({ phase: "records", completed: 0, total: null });
  if (!diagnostics && errors.size) throw errors.values().next().value;
  if (definition && errors.has(definition.file)) throw errors.get(definition.file);
  if (definition && text(documents.get(definition.file)!.fields.backend, "tracker backend") !== context.routes.tickets.adapter) throw new Error("Tracker backend disagrees with the resolved tickets route. Update the tracker definition or route configuration.");
@@ -595,7 +597,7 @@ async function githubSnapshot(context: SharedAgentContext, exec: Exec, scope?: {
  * Read the Jira mirror that `jira-mirror.ts sync` writes: one `<KEY>.md` file for each issue.
  * Epics become initiatives. `parent` gives membership, and `blocked_by` gives ticket edges.
  */
-async function jiraSnapshot(context: SharedAgentContext, session: DocumentReadSession, config: Fields): Promise<ExplorerSnapshot> {
+async function jiraSnapshot(context: SharedAgentContext, session: DocumentReadSession, config: Fields, onProgress?: (progress: DocumentReadProgress) => void): Promise<ExplorerSnapshot> {
  const site = jiraSite(config);
  if (config.mirror == null) throw new Error("docs/agents/issue-tracker.md has no mirror block. Add mirror.root and mirror.queries, then run jira-mirror.ts sync.");
  const alignment = await resolveContextRecord(context, { kind: "alignment" });
@@ -604,6 +606,7 @@ async function jiraSnapshot(context: SharedAgentContext, session: DocumentReadSe
  const files = (await session.collect(mirrorRoot, /\.md$/, alignment.root)).filter(file => dirname(file) === mirrorRoot);
  if (!files.length) throw new Error(`Jira mirror ${mirrorRoot} has no issue files. Run jira-mirror.ts sync --repository ${context.repositoryRoot} to fill it.`);
  const { documents, errors } = await session.readAll(files.map(file => ({ file, root: alignment.root! })));
+ onProgress?.({ phase: "records", completed: 0, total: null });
  if (errors.size) throw errors.values().next().value;
  const tickets: ExplorerTicket[] = [];
  const parents = new Map<string, string>();
