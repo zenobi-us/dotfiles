@@ -1,9 +1,9 @@
 schema: worktree-latest-status/v1
 workflow_id: collect-evidence-feedback-07-drafts
 ticket: tracker/tickets/collect-evidence-feedback-07-drafts.md
-state: IMPLEMENTED
-latest_receipt: start-complete-0003
+state: REVIEW_PASSED
+latest_receipt: review-complete-0007
 latest_source_commit: adc77612bfbb3b8229aefff665848a4f79d963a1
 latest_source_tree: d7498cc01ce684304b672b84cacd0c792d32edf2
-latest_review_verdict: null
+latest_review_verdict: SUCCESS
 open_findings: []
