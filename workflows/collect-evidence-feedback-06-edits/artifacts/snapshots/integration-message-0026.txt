@@ -1,0 +1,7 @@
+feat(feedback): collect-evidence-feedback-06-edits edit and undo
+
+Integrate isolated resolution candidate 2e203910 after independent review
+review-0024. Preserve revision preconditions, tombstones and conflict drafts.
+
+Ticket: tracker/tickets/collect-evidence-feedback-06-edits.md
+Review: workflows/collect-evidence-feedback-06-edits/events/review-0024.yaml

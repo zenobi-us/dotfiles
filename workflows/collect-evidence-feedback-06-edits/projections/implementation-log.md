@@ -106,3 +106,15 @@ Latest formal reviewer verdict: SUCCESS for `c5091d44e6120ffc3339c8e5b3f5904643f
 - **Authoritative result:** [review-0018 receipt](../events/review-0018.yaml); [parent completion](../events/review-complete-0019.yaml).
 - **Integration:** Not merged or pushed. Candidate-bound integration checks remain required.
 - **Cleanup:** Owned review tabs, feedback servers and reviewer terminal closed. Shared managed browser broker/sandbox processes remain running; aggregate shutdown is pending. Preserve this runtime without scoped authorization to terminate it.
+
+## Resolution candidate: 2e203910
+
+The user authorized an isolated resolution and fresh review. The merge combines original source `c5091d44` and accepted base `93ef4dc0`. Only the bundle manifest conflict decisions retain version `0.2.36`. Product edit/undo code is unchanged by resolution.
+
+[Resolution provenance](../events/resolution-approved-0022.yaml). [Independent SUCCESS review](../artifacts/reviews/review-review-0024.md). [Parent completion and public CLI/HTTP smoke](../events/review-complete-0025.yaml). Workflow: 1 pass, 116 assertions. Viewer typecheck: passed. Additional smoke: edit, stale rejection, delete, undo, export, clean shutdown passed. No unresolved implementation questions.
+
+## Finished integration
+
+Integrated as merge `8236e0133aec7d6dac6c1598a700ee97f9244962` and published to `origin/master`. All candidate-bound checks passed, including the public workflow, viewer typecheck and live CLI/HTTP edit, stale rejection, tombstone deletion, undo and export. [Validation outputs](../artifacts/snapshots/integration-result-0027.json).
+
+Ticket completion commit `56e2a50e` was published. All three recorded worktrees were removed, with no cleanup refusals. [Terminal receipt](../events/finish-0031.yaml). No unresolved implementation questions.

@@ -1,0 +1,48 @@
+[
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "install",
+      "--frozen-lockfile",
+      "--cwd",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer"
+    ]
+  },
+  {
+    "argv": [
+      "env",
+      "PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome",
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "run",
+      "--cwd",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer",
+      "typecheck"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "-e",
+      "import { cp,mkdtemp,rm,chmod,lstat,readdir } from 'node:fs/promises'; import {join,resolve} from 'node:path';\nconst root=await mkdtemp('/tmp/feedback-finish-smoke-'); const session=join(root,'session'); const cli=resolve('mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts');\nawait cp(resolve('workflows/collect-evidence-feedback-06-edits/artifacts/evidence/edits-recovery-0001'),session,{recursive:true});\nasync function permissions(path,sealed){const stat=await lstat(path);if(stat.isDirectory()){if(!sealed)await chmod(path,0o700);for(const name of await readdir(path))await permissions(join(path,name),sealed);if(sealed)await chmod(path,0o555);}else if(sealed)await chmod(path,0o444);} await permissions(join(session,'source'),true); for(const caseId of await readdir(join(session,'cases')))await permissions(join(session,'cases',caseId,'media'),true);\nconst reserved=Bun.serve({hostname:'127.0.0.1',port:0,fetch:()=>new Response()}); const port=reserved.port; await reserved.stop(true); let child;\ntry {child=Bun.spawn([cli,'serve',session,'--port',String(port),'--json'],{cwd:'/tmp',stdout:'pipe',stderr:'pipe'});const reader=child.stdout.getReader();let text='';while(!text.includes('\\n')){const chunk=await reader.read();if(chunk.done)throw Error('No readiness: '+text);text+=new TextDecoder().decode(chunk.value);} reader.releaseLock(); const ready=JSON.parse(text.trim());if(!ready.success)throw Error(text);\nconst origin='http://127.0.0.1:'+port; const auth=await(await fetch(origin+'/api/v1/session')).json(); const records=await(await fetch(origin+'/api/v1/annotations')).json();const note=records.annotations.find(a=>!a.deletedAt);if(!note)throw Error('Historical fixture has no live note');const envelope={schema:'collect-feedback/v1',kind:'annotation'};const endpoint=origin+'/api/v1/annotations/'+note.id;const headers={Origin:origin,'X-Write-Token':auth.writeToken,'Content-Type':'application/json'};\nconst mutate=async(method,revision,body)=>fetch(endpoint,{method,headers:{...headers,...(revision==null?{}:{'If-Match':'\"'+note.id+':'+revision+'\"'})},body:JSON.stringify(body)});\nconst absent=await mutate('PATCH',null,{...envelope,comment:'Missing precondition'});if(absent.status!==428)throw Error('Expected 428, got '+absent.status);\nconst edit=await mutate('PATCH',note.revision,{...envelope,comment:'Finish candidate smoke'});if(edit.status!==200)throw Error('Edit '+edit.status);const edited=(await edit.json()).annotation;\nconst stale=await mutate('PATCH',note.revision,{...envelope,comment:'Stale overwrite'});if(stale.status!==412)throw Error('Expected stale 412, got '+stale.status);\nconst deletion=await mutate('DELETE',edited.revision,envelope);if(deletion.status!==200)throw Error('Delete '+deletion.status);const deleted=(await deletion.json()).annotation;\nconst undo=await mutate('PATCH',deleted.revision,{...envelope,deletedAt:null});if(undo.status!==200)throw Error('Undo '+undo.status);const restored=(await undo.json()).annotation;if(restored.id!==note.id||restored.comment!=='Finish candidate smoke'||restored.deletedAt!==null||restored.revision!==note.revision+3)throw Error('Undo identity/content/revision mismatch');\nconst exported=await fetch(origin+'/api/v1/export');if(exported.status!==200)throw Error('Export '+exported.status);console.log(JSON.stringify({smoke:'public-cli-http',annotation:note.id,revision:restored.revision,missing:428,stale:412,edit:200,delete:200,undo:200,export:200}));\nchild.kill('SIGTERM');if(await child.exited!==0)throw Error('Serve shutdown failed');child=null;if(await Bun.file(join(session,'.writer.lock')).exists())throw Error('Writer lock remains');} finally {if(child){child.kill('SIGTERM');await child.exited;}await permissions(root,false);await rm(root,{recursive:true,force:true});}"
+    ]
+  }
+]

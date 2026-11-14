@@ -5,6 +5,13 @@ type: Concept
 
 # Edit and undo feedback without lost changes
 
+
+## Current outcome
+
+FINISHED. Merge commit `8236e0133aec7d6dac6c1598a700ee97f9244962` is published on `origin/master`. [Terminal receipt](../events/finish-0031.yaml). [Exact-source SUCCESS review](../artifacts/reviews/review-review-0024.md).
+
+Candidate-bound public workflow, viewer typecheck and live CLI/HTTP smoke passed. Ticket completion was committed and published as `56e2a50e`. Original, resolved-source and integration-candidate worktrees are removed. Reviewer process shutdown is confirmed. Unrelated changes and workspaces remain untouched.
+
 ## Ticket
 
 [collect-evidence-feedback-06-edits](../../../tracker/tickets/collect-evidence-feedback-06-edits.md). Parent initiative: collect-evidence-feedback.
@@ -62,7 +69,7 @@ Commits: 93d993e4 and 250dd929. No merge or push. Ticket remains claimed.
 
 Two independent implementation-time reviews ran against the worktree. Standards and specification each found one P2 retry-recovery gap. Both describe the same defect. The explicit conflict panel, conditional reconciliation and permanent browser regression resolve it.
 
-Latest formal reviewer verdict: FAILURE in review-0005, against the old source. Fix-0009 resolves both consumed findings; fresh review must cover the new source.
+Historical verdict: FAILURE in review-0005. Fix-0009 resolved its findings. Later exact-source SUCCESS reviews are retained below.
 
 ## Resolved findings
 
@@ -82,7 +89,7 @@ The first regression attempt lacked Chrome at the CLI default path. Setting the 
 
 ## Merge status
 
-Not merged or pushed. No tracker completion. No unrelated files changed. Workflow records and evidence are local to the designated context checkout.
+Merged and pushed as 8236e013. Ticket completed and published. All ticket-owned worktrees removed. See finish-0031 below.
 
 ## Supporting records
 
@@ -165,3 +172,23 @@ Latest formal reviewer verdict: SUCCESS for `c5091d44e6120ffc3339c8e5b3f5904643f
 - **Authoritative result:** [review-0018 receipt](../events/review-0018.yaml); [parent completion](../events/review-complete-0019.yaml).
 - **Integration:** Not merged or pushed. Candidate-bound integration checks remain required.
 - **Cleanup:** Owned review tabs, feedback servers and reviewer terminal closed. Shared managed browser broker/sandbox processes remain running; aggregate shutdown is pending. Preserve this runtime without scoped authorization to terminate it.
+
+## Resolved-source review: review-0024
+
+Current source: `2e2039100532af7837e7014a06d855142fcb1d77`; tree `74724d0faa70b2b2459dda2b9a6b547663646ed5`. Branch: `resolve/collect-evidence-feedback-06-edits`. The isolated merge retains accepted base version `0.2.36` in both bundle manifests. Original source `c5091d44` remains unchanged.
+
+Latest verdict: SUCCESS. Both independent Standards and Spec reviews report no findings. [Review](../artifacts/reviews/review-review-0024.md), [result](../events/review-0024.yaml), [parent completion](../events/review-complete-0025.yaml).
+
+Public workflow passed 116 assertions. Viewer typechecking passed. An additional live CLI/HTTP smoke verified 428, stale 412, edit, delete, undo, export and lock release. The initial archived-copy smoke correctly rejected missing read-only permission bits; the corrected private copy passed. Canonical evidence remained unchanged.
+
+All reviewer process shutdown is confirmed. The user authorized exact-identity TERM/CONT for two retained Standards processes after normal terminal closure failed. No unrelated process was signalled.
+
+The first finish attempt stopped at two version conflicts without modifying the base. [Failure](../events/finish-failed-0020.yaml), [scoped recovery approval](../events/finish-recovery-approval-0021.yaml), [resolution provenance](../events/resolution-approved-0022.yaml). Earlier review history above is retained.
+
+## Finish: finish-0031
+
+Merged `8236e0133aec7d6dac6c1598a700ee97f9244962` with exact reviewed source `2e203910` and base `93ef4dc0` as parents. Tree: `74724d0faa70b2b2459dda2b9a6b547663646ed5`. Integration checks and live smoke passed on this commit. Remote ancestry was verified after tracker publication.
+
+[Candidate checks and output](../artifacts/snapshots/integration-result-0027.json). [Merged boundary](../events/finish-merged-0027.yaml). [Published boundary](../events/finish-pushed-0028.yaml). [Completed ticket](../events/finish-ticket-completed-0029.yaml). [Cleanup boundary](../events/finish-worktrees-removed-0030.yaml). [Terminal receipt](../events/finish-0031.yaml).
+
+All three recorded branches and worktrees were removed through cleanup-merged with no refusals. No unrelated branches, files or processes were removed. Earlier review and failure history remains intact.
