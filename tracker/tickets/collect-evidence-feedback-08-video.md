@@ -10,7 +10,7 @@ sequence: 8
 title: Record supported video and attach timestamped feedback
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 # Record supported video and attach timestamped feedback
