@@ -13,7 +13,7 @@ export interface AnnotationInput {
   sourceSha256: string; originalWidth: number; originalHeight: number; geometry: Geometry; priority: Priority; comment: string;
 }
 export interface Annotation extends AnnotationInput {
-  revision: number; createdAt: string; updatedAt: string; pixelGeometry: Geometry;
+  revision: number; createdAt: string; updatedAt: string; pixelGeometry: Geometry; deletedAt?: string | null;
 }
 export interface AnnotationsResponse { schema: 'collect-feedback/v1'; kind: 'annotations'; success: true; annotations: Annotation[] }
 export interface AnnotationResponse { schema: 'collect-feedback/v1'; kind: 'annotation'; success: true; annotation: Annotation }

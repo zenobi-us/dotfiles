@@ -99,17 +99,164 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     const savedResponse = await save(input);
     expect(savedResponse.status).toBe(201);
     expect(savedResponse.headers.get("etag")).toBe(`"${input.id}:1"`);
-    const saved = (await savedResponse.json()).annotation;
+    let saved = (await savedResponse.json()).annotation;
     expect(saved).toMatchObject({ ...input, revision: 1, pixelGeometry: { x: Math.round(asset.width * .333), y: Math.round(asset.height * .25), width: asset.width - Math.round(asset.width * .333), height: Math.round(asset.height * .75) - Math.round(asset.height * .25) } });
     expect((await (await save(input)).json()).annotation).toEqual(saved);
     expect((await save({ ...input, comment: "Different retry content" })).status).toBe(409);
     expect((await (await fetch(origin + "/api/v1/annotations")).json()).annotations).toEqual([saved]);
+    const endpoint = origin + "/api/v1/annotations/" + input.id;
+    const clientTwo = await (await fetch(origin + "/api/v1/session")).json();
+    const update = (body: unknown, tag: string | null, method = "PATCH", token = writeToken) => fetch(endpoint, {
+      method, headers: { ...headers, "X-Write-Token": token, ...(tag === null ? {} : { "If-Match": tag }) }, body: JSON.stringify(body),
+    });
+    const envelope = { schema: "collect-feedback/v1", kind: "annotation" };
+    const tag = `"${input.id}:1"`;
+    const originalSaved = saved;
+    for (const method of ["PATCH", "DELETE"]) expect((await update(envelope, null, method)).status).toBe(428);
+    expect((await update({ ...envelope, comment: "unauthorized" }, tag, "PATCH", "wrong")).status).toBe(403);
+    expect((await update({ ...envelope, schema: "collect-feedback/v999", comment: "invalid" }, tag)).status).toBe(400);
+    expect((await update({ ...envelope, assetId: "different" }, tag)).status).toBe(400);
+    expect((await update({ ...envelope, geometry: { x: 1, y: 1, width: 1, height: 1 } }, tag)).status).toBe(400);
+    const competing = await Promise.all([
+      update({ ...envelope, comment: "First client correction", priority: "P1" }, tag),
+      update({ ...envelope, comment: "Second client correction" }, tag, "PATCH", clientTwo.writeToken),
+    ]);
+    expect(competing.map(result => result.status).sort()).toEqual([200, 412]);
+    const winner = competing.find(result => result.status === 200)!;
+    saved = (await winner.json()).annotation;
+    expect(saved).toEqual({ ...originalSaved, revision: 2, updatedAt: saved.updatedAt, deletedAt: null, ...(competing[0].status === 200 ? { comment: "First client correction", priority: "P1" } : { comment: "Second client correction" }) });
+    expect((await update({ ...envelope, comment: "Stale overwrite" }, tag)).status).toBe(412);
+    expect((await update(envelope, tag, "DELETE")).status).toBe(412);
+    const deletedResponse = await update(envelope, `"${input.id}:2"`, "DELETE");
+    expect(deletedResponse.status).toBe(200);
+    const deleted = (await deletedResponse.json()).annotation;
+    expect(deleted).toEqual({ ...saved, revision: 3, updatedAt: deleted.updatedAt, deletedAt: deleted.deletedAt });
+    expect(typeof deleted.deletedAt).toBe("string");
+    expect((await update({ ...envelope, deletedAt: null }, `"${input.id}:2"`)).status).toBe(412);
+    expect((await update({ ...envelope, deletedAt: null, comment: "not an undo" }, `"${input.id}:3"`)).status).toBe(400);
+    const restored = await update({ ...envelope, deletedAt: null }, `"${input.id}:3"`);
+    expect(restored.status).toBe(200);
+    const restoredNote = (await restored.json()).annotation;
+    expect(restoredNote).toEqual({ ...saved, revision: 4, updatedAt: restoredNote.updatedAt, deletedAt: null });
+    saved = restoredNote;
+    const recordPath = join(dir, "cases/original/annotations", input.id + ".json");
+    const storedBefore = await readFile(recordPath, "utf8");
+    for (const method of ["PATCH", "DELETE"]) {
+      expect((await update(envelope, `"${input.id}:4"`, method, "wrong")).status).toBe(403);
+      expect((await fetch(endpoint, { method, headers: { ...headers, Origin: "https://attacker.invalid", "If-Match": `"${input.id}:4"` }, body: JSON.stringify(envelope) })).status).toBe(403);
+      expect((await fetch(endpoint, { method, headers: { ...headers, "If-Match": `"${input.id}:4"` }, body: "{" })).status).toBe(400);
+      expect((await update({ ...envelope, schema: "collect-feedback/v999" }, `"${input.id}:4"`, method)).status).toBe(400);
+    }
+    const sessionManifest = join(dir, "session.json"), sessionText = await readFile(sessionManifest, "utf8");
+    await writeFile(sessionManifest, sessionText.replace("collect-feedback/v1", "collect-feedback/v999"));
+    expect((await update({ ...envelope, comment: "Unsupported store" }, `"${input.id}:4"`)).status).toBe(409);
+    expect((await update(envelope, `"${input.id}:4"`, "DELETE")).status).toBe(409);
+    await writeFile(sessionManifest, sessionText);
+    expect(await readFile(recordPath, "utf8")).toBe(storedBefore);
     const exported = await invoke(["export", dir]);
     expect(exported.code).toBe(0);
     expect(exported.data.annotations).toEqual([saved]);
     expect((await (await fetch(origin + "/api/v1/export")).json()).annotations).toEqual([saved]);
     expect((await invoke(["export", dir])).data).toEqual(exported.data);
     expect(JSON.parse(await readFile(join(dir, "cases/original/annotations", input.id + ".json"), "utf8"))).toEqual(saved);
+    const browserSession = `feedback-edits-${crypto.randomUUID()}`;
+    async function browser(args: string[]) {
+      const child = Bun.spawn(["playwright-cli", ...args], { cwd: root, env: { ...process.env, PLAYWRIGHT_CLI_SESSION: browserSession }, stdout: "pipe", stderr: "pipe" });
+      const [out, err] = await Promise.all([new Response(child.stdout).text(), new Response(child.stderr).text()]);
+      if (await child.exited !== 0 || /^### Error/m.test(out)) throw new Error(out + err);
+    }
+    try {
+      await browser(["open", origin]);
+      await browser(["--raw", "run-code", `async page => {
+        await page.locator('nav[aria-label="Assets"] button').first().click();
+        await page.locator('.annotation-pin').click();
+        if (await page.locator('textarea').count()) throw Error('Selection created a draft');
+        await page.getByRole('button', { name: 'Edit note', exact: true }).click();
+        await page.locator('textarea').fill('Retry after a lost acknowledgement');
+        let dropped = false;
+        await page.route('**/api/v1/annotations/*', async route => {
+          if (route.request().method() === 'PATCH' && !dropped) {
+            dropped = true;
+            await route.fetch();
+            await route.abort();
+          } else await route.continue();
+        });
+        await page.getByRole('button', { name: 'Save note', exact: true }).click();
+        await page.getByRole('alert').filter({ hasText: 'Draft kept in memory' }).waitFor();
+        if (await page.locator('textarea').inputValue() !== 'Retry after a lost acknowledgement') throw Error('Lost retry draft');
+        await page.getByRole('button', { name: 'Retry save', exact: true }).click();
+        await page.getByRole('status').filter({ hasText: 'Saved · revision 6' }).waitFor();
+        await page.unroute('**/api/v1/annotations/*');
+        const second = await page.context().newPage();
+        try {
+          await second.goto(${JSON.stringify(origin)});
+          await second.locator('nav[aria-label="Assets"] button').first().click();
+          await second.locator('.annotation-pin').click();
+          await second.getByRole('button', { name: 'Edit note', exact: true }).click();
+          await second.locator('textarea').fill('Preserved second-client draft');
+          await page.getByRole('button', { name: 'Edit note', exact: true }).click();
+          await page.locator('textarea').fill('New first-client revision');
+          await page.getByRole('button', { name: 'Save note', exact: true }).click();
+          await page.getByRole('status').filter({ hasText: 'Saved · revision 7' }).waitFor();
+          await second.getByRole('button', { name: 'Save note', exact: true }).click();
+          await second.getByRole('group', { name: 'Saved version conflict' }).waitFor();
+          if (await second.locator('textarea').inputValue() !== 'Preserved second-client draft') throw Error('Conflict lost draft');
+          const current = await page.evaluate(async () => (await (await fetch('/api/v1/export')).json()).annotations[0]);
+          if (current.revision !== 7 || current.comment !== 'New first-client revision') throw Error('Stale client overwrote saved note');
+          await second.getByRole('button', { name: 'Use saved revision for next save', exact: true }).click();
+          await second.getByRole('button', { name: 'Save note', exact: true }).click();
+          await second.getByRole('status').filter({ hasText: 'Saved · revision 8' }).waitFor();
+          const final = await second.evaluate(async () => (await (await fetch('/api/v1/export')).json()).annotations[0]);
+          if (final.id !== ${JSON.stringify(input.id)} || final.comment !== 'Preserved second-client draft' || final.sourceSha256 !== ${JSON.stringify(input.sourceSha256)}) throw Error('Explicit recovery changed identity or lost draft');
+          await second.getByRole('button', { name: 'Edit note', exact: true }).click();
+          await second.locator('textarea').fill('Draft survives deletion and stale restoration');
+          await second.getByRole('button', { name: 'P3 Polish', exact: true }).click();
+          await page.reload();
+          await page.locator('nav[aria-label="Assets"] button').first().click();
+          await page.locator('.annotation-pin').click();
+          await page.getByRole('button', { name: 'Delete note', exact: true }).click();
+          await page.getByRole('button', { name: 'Undo deletion', exact: true }).waitFor();
+          await second.getByRole('button', { name: 'Save note', exact: true }).click();
+          const conflict = second.getByRole('group', { name: 'Saved version conflict' });
+          await conflict.getByText('Saved revision 9 · ' + final.priority + ' · Deleted', { exact: true }).waitFor();
+          await page.getByRole('button', { name: 'Undo deletion', exact: true }).click();
+          await page.getByRole('status').filter({ hasText: 'Saved · revision 10' }).waitFor();
+          await page.getByRole('button', { name: 'Delete note', exact: true }).click();
+          await page.getByRole('button', { name: 'Undo deletion', exact: true }).waitFor();
+          const writes = [];
+          second.on('request', request => {
+            if (request.method() === 'PATCH') writes.push({ tag: request.headers()['if-match'], body: request.postDataJSON() });
+          });
+          const stale = second.waitForResponse(response => response.request().method() === 'PATCH' && response.status() === 412);
+          await second.getByRole('button', { name: 'Undo deletion and keep draft', exact: true }).click();
+          await stale;
+          await conflict.getByText('Saved revision 11 · ' + final.priority + ' · Deleted', { exact: true }).waitFor();
+          if (await second.locator('textarea').inputValue() !== 'Draft survives deletion and stale restoration' || !await second.locator('textarea').evaluate(node => node.readOnly)) throw Error('Stale restoration discarded or unlocked draft');
+          const restore = second.waitForResponse(response => response.request().method() === 'PATCH' && response.status() === 200);
+          await second.getByRole('button', { name: 'Undo deletion and keep draft', exact: true }).click();
+          await restore;
+          await conflict.waitFor({ state: 'hidden' });
+          if (await second.locator('textarea').inputValue() !== 'Draft survives deletion and stale restoration' || await second.locator('textarea').evaluate(node => node.readOnly)) throw Error('Restoration lost or locked draft');
+          if (await second.getByRole('button', { name: 'P3 Polish', exact: true }).getAttribute('aria-pressed') !== 'true') throw Error('Restoration lost draft priority');
+          const restored = await second.evaluate(async () => (await (await fetch('/api/v1/export')).json()).annotations[0]);
+          if (restored.revision !== 12 || restored.comment !== final.comment || restored.priority !== final.priority || restored.deletedAt !== null) throw Error('Restoration automatically saved draft');
+          if (JSON.stringify(writes) !== JSON.stringify([
+            { tag: '"' + final.id + ':9"', body: { schema: 'collect-feedback/v1', kind: 'annotation', deletedAt: null } },
+            { tag: '"' + final.id + ':11"', body: { schema: 'collect-feedback/v1', kind: 'annotation', deletedAt: null } },
+          ])) throw Error('Restoration did not use displayed tombstone revisions or saved automatically');
+          await second.getByRole('button', { name: 'Save note', exact: true }).click();
+          await second.getByRole('status').filter({ hasText: 'Saved · revision 13' }).waitFor();
+          const recovered = await second.evaluate(async () => (await (await fetch('/api/v1/export')).json()).annotations[0]);
+          if (recovered.id !== final.id || recovered.sourceSha256 !== final.sourceSha256 || recovered.assetId !== final.assetId || recovered.caseId !== final.caseId || recovered.sessionId !== final.sessionId || JSON.stringify(recovered.geometry) !== JSON.stringify(final.geometry) || JSON.stringify(recovered.pixelGeometry) !== JSON.stringify(final.pixelGeometry) || recovered.comment !== 'Draft survives deletion and stale restoration' || recovered.priority !== 'P3') throw Error('Recovered save changed identity, source, geometry or draft content');
+          if (writes[2].tag !== '"' + final.id + ':12"') throw Error('Explicit save did not use acknowledged restoration revision');
+        } finally {
+          await second.getByRole('button', { name: 'Cancel', exact: true }).click().catch(() => {});
+          await second.close();
+        }
+      }`]);
+    } finally { await browser(["close"]); }
+    saved = (await (await fetch(origin + "/api/v1/export")).json()).annotations[0];
+    expect(saved).toMatchObject({ id: input.id, revision: 13, comment: "Draft survives deletion and stale restoration", priority: "P3", geometry: input.geometry, sourceSha256: input.sourceSha256 });
     for (const [path, init, status] of [
       ["/api/v1/session", { headers: { Host: "attacker.invalid" } }, 403],
       ["/api/v1/cases", { headers: { Origin: "https://attacker.invalid" } }, 403],
@@ -123,6 +270,9 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     const media = join(dir, asset.path); await chmod(media, 0o600); await writeFile(media, "changed");
     expect((await fetch(origin + "/api/v1/assets/" + asset.id)).status).toBe(409);
     expect((await save({ ...input, id: crypto.randomUUID() })).status).toBe(409);
+    for (const [method, body] of [["PATCH", { ...envelope, comment: "changed source" }], ["DELETE", envelope], ["PATCH", { ...envelope, deletedAt: null }]] as const) {
+      expect((await update(body, `"${input.id}:${saved.revision}"`, method)).status).toBe(409);
+    }
     expect((await fetch(origin + "/api/v1/export")).status).toBe(409);
     expect((await invoke(["export", dir])).code).not.toBe(0);
     expect((await invoke(["validate", dir])).code).toBe(2);
