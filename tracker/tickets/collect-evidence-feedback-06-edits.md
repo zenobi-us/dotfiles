@@ -8,7 +8,7 @@ sequence: 6
 title: Edit and undo feedback without lost changes
 triage: ready-for-agent
 type: enhancement
-work_status: claimed
+work_status: completed
 ---
 
 # Edit and undo feedback without lost changes
@@ -42,3 +42,7 @@ This slice covers initiative user stories 35, 36, 37, 43. Keep the initiative as
 
 
 - **Review SUCCESS:** 2026-11-13T14:26:43.145Z. Commit `c5091d44e6120ffc3339c8e5b3f5904643fe9e27`; tree `059e74eba64364ece42193c3962ea1cde944843e`. [Independent review artifact](../../workflows/collect-evidence-feedback-06-edits/artifacts/reviews/review-review-0018.md).
+
+- **Review SUCCESS:** 2026-11-14T10:26:19.301Z. Resolved commit `2e2039100532af7837e7014a06d855142fcb1d77`; tree `74724d0faa70b2b2459dda2b9a6b547663646ed5`. [Independent resolved-source review](../../workflows/collect-evidence-feedback-06-edits/artifacts/reviews/review-review-0024.md).
+
+- **Completed:** Integrated by merge commit `8236e0133aec7d6dac6c1598a700ee97f9244962` and pushed to `origin/master`. Exact-source SUCCESS review: `review-0024`. Candidate-bound public workflow, viewer typecheck and live CLI/HTTP edit, stale rejection, delete, undo and export checks passed. [Publication receipt](../../workflows/collect-evidence-feedback-06-edits/events/finish-pushed-0028.yaml).
