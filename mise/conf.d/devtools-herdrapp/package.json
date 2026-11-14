@@ -1,0 +1,14 @@
+{
+  "name": "dotfiles-herdr-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bun build/build-helper.ts",
+    "test": "node --experimental-vm-modules --test tests/*.test.mjs && bun test build/backend.test.ts",
+    "test:core": "node --experimental-vm-modules --test tests/core.test.mjs",
+    "test:backend": "bun test build/backend.test.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.4"
+  }
+}

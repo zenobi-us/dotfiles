@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Shared Context",
+  "description": "Deploy herdr-context on each selected GNU/Linux Core machine. Canonical queries run there with Bun, Git and mq from PATH or trusted mise configuration; tools are never installed automatically. Build the helper with bun run build before applying dotfiles. Core carries complete JSON queries and bounded progress snapshots, without a separate network listener. Read cells separate machine, repository, operation and record or path. Local folders are watched. Shown remote panels, and local panels with missing watch folders, refresh periodically. Agent completion and reconnection also trigger refresh. Tracker workers have a three-minute deadline and responses have a 6 MiB limit. Phase counts report measured work, and failed refreshes retain the last successful snapshot.",
   "type": "object",
   "properties": {
     "$schema": { "type": "string" },
@@ -14,7 +15,7 @@
       "properties": {
         "layout": {
           "title": "Tracker layout",
-          "description": "C uses a bottom drawer. C2 places the same tree beside the record. Changes apply immediately.",
+          "description": "C uses a bottom drawer. C2 places the same tree beside the record.",
           "type": "string",
           "enum": ["C", "C2"],
           "x-labels": { "C": "C — Bottom drawer", "C2": "C2 — Two columns" },

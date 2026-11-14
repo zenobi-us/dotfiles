@@ -44,7 +44,7 @@ function resolveTarget(address, terminals, records, repository, targets, resolvi
   return ref;
 }
 
-// Current launches: env -C <repository> SHARED_CONTEXT_TARGET=<ref> <agent argv>. See data.ts prepare().
+// Core launches preserve env -C <repository> SHARED_CONTEXT_TARGET=<ref> <agent argv>.
 // Earlier OMP launches put --cwd and the /skill: prompt in argv; their terminals can still be live.
 function launchTarget(argv, repository) {
   if (argv[0] === "env") {

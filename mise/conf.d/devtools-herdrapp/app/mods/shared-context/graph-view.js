@@ -3,8 +3,7 @@
 // Only connected ports appear. Their centres and connector endpoints share the graph's zoom and pan.
 import { div } from "gpui-kit";
 import { h_flex, v_flex } from "gpui-base";
-import { openOverlay, closeOverlay, props, theme } from "herdr";
-import { request } from "./client.js";
+import { openOverlay, closeOverlay, theme } from "herdr";
 import { dependencyGraph } from "./graph.js";
 import { button, note } from "./ui.js";
 import { initActionMenus, actionDropdown } from "./action-menu.js";
@@ -68,12 +67,14 @@ export function graphView(view, key, roots, focusId) {
 }
 
 export function initGraphMenu(view, cx) {
-  view.menuProps = props(); view.menuLoading = true; view.menuError = "";
+  view.menuProps = view.given; view.menuLoading = true; view.menuError = "";
   initActionMenus(view, cx);
   cx.spawn(async cx => {
-    try { view.menuDetail = await request("detail", view.menuProps, { id: view.menuProps.id, kind: "ticket" }); }
-    catch (error) { view.menuError = String(error.message ?? error); }
-    finally { view.menuLoading = false; cx.notify(); }
+    try {
+      const detail = await view.client.query("detail", view.menuProps, { id: view.menuProps.id, kind: "ticket" });
+      if (!view.closed) view.menuDetail = detail;
+    } catch (error) { if (!view.closed) view.menuError = String(error.message ?? error); }
+    finally { if (!view.closed) { view.menuLoading = false; cx.notify(); } }
   });
 }
 

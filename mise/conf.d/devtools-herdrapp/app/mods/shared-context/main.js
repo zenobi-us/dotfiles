@@ -1,8 +1,12 @@
-// Native Context and Tracker panels. The settings select C or C2 without changing data APIs.
+// Core runs complete target-side queries; retained UI surfaces own their displayed state.
 import { View, div } from "gpui-kit";
 import { h_flex, v_flex, TextView, Scrollbar, h_resizable, resizable_panel } from "gpui-base";
-import { spaces, panes, focused, props, run, nextCommand, theme, agents, terminals } from "herdr";
-import { request } from "./client.js";
+import { props, run, nextCommand, theme } from "herdr";
+import { createQueryClient } from "./data.js";
+import { beginLoading, updateLoading, stopLoading } from "./loading.js";
+import { initRetainedViews, notifyQueryStatus, releaseRetainedViews } from "./retained-views.js";
+import { currentLocation, initObservation, scheduleObservation, startRefreshResources, stopRefreshResources, updateLocalWatches } from "./refresh.js";
+import { targetKey, RefreshQueue } from "./refresh-model.js";
 import { loadPreferences, DEFAULTS } from "./preferences.js";
 import { dependencyRows, revealPath, itemType } from "./tree.js";
 import { button, icon, note, select, typeColor, typeIcon } from "./ui.js";
@@ -14,23 +18,25 @@ import { initiativeProgressRow } from "./progress.js";
 import { workflowActivity } from "./activity-model.js";
 import { initActionMenus } from "./action-menu.js";
 import { invalidateAction } from "./action.js";
+import { observeAgentLaunch } from "./agents.js";
 import { DEFAULT_FILTERS } from "./filter-model.js";
 import { initTreeFilters, treeFilters, closeTreeFilters } from "./tree-filters.js";
-import { recordAgentActivity, agentActivitySummary } from "./agent-model.js";
 import { agentDots } from "./agent-activity.js";
+import { agentActivitySummary } from "./agent-model.js";
 
 import { openMetadata, initMetadata, renderMetadata } from "./metadata.js";
-function location() {
-  const given = props() ?? {}, space = spaces().find(item => item.active), focus = focused();
-  const pane = panes().find(item => item.pane === focus?.pane);
-  return { cwd: given.cwd ?? pane?.cwd ?? focus?.cwd ?? space?.folder, machine: given.cwd ? given.machine ?? null : space?.machine ?? null, space: given.space ?? space?.id };
-}
+import { openSettings, initSettings, renderSettings } from "./settings.js";
 function statusColor(value, t) { return value === "READY" ? t.ansi4 : value === "DONE" ? t.ansi2 : ["REVIEW", "FIX", "FINISH", "SUBMIT"].includes(value) ? t.ansi3 : ["ERROR", "BLOCKED", "UNKNOWN"].includes(value) ? t.blocked : t.dim; }
 function stateIcon(state) { return state === "READY" ? "▷" : state === "DONE" ? "✓" : ["BLOCKED", "ERROR", "UNKNOWN"].includes(state) ? "⊘" : "◉"; }
 
 export default class SharedContext extends View {
   init(_given, cx) {
-    this.mode = props()?.mode ?? "tracker";
+    this.closed = false;
+    this.revision = 0;
+    this.client = createQueryClient(cx);
+    this.given = { ...(_given ?? props() ?? {}) };
+    this.mode = this.given.mode ?? "tracker";
+    if (this.mode === "settings") { initSettings(this, cx); return; }
     if (this.mode === "graph-actions") { initGraphMenu(this, cx); return; }
     this.focus = cx.focus_handle();
     initMetadata(this, cx);
@@ -39,11 +45,12 @@ export default class SharedContext extends View {
     initTreeFilters(this, cx);
     this.recordTab = "description"; this.detailError = "";
     this.activity = workflowActivity(); this.activityFilter = "all";
-    if (this.mode === "tracker") initActionMenus(this, cx);
     this.recordTabFocus = { description: cx.focus_handle(), activity: cx.focus_handle(), lineage: cx.focus_handle() };
     this.graphInitiative = null;
     this.preferences = DEFAULTS; this.preferencesReady = false;
     this.key = ""; this.revision = 0; this.detailRevision = 0; this.fileRevision = 0;
+    this.refreshQueue = new RefreshQueue(); this.stale = false;
+    this.pendingQueries = new Set(); this.lastQuery = null;
     this.viewStorageKey = `shared-context:${this.mode}:views:v1`;
     // Settings reload the mod. Keep view state, but revalidate record IDs against the next snapshot.
     this.saved = new Map(JSON.parse(localStorage.getItem(this.viewStorageKey) ?? "[]").map(([key, value]) => [key, { ...value, collapsed: new Set(value.collapsed), fileFolders: new Set(value.fileFolders) }]));
@@ -51,28 +58,45 @@ export default class SharedContext extends View {
     this.progress = new Map();
     this.fileFolders = new Set(); this.fileEntries = new Map(); this.filePending = new Set(); this.fileSelection = null;
     this.error = ""; this.loading = false; this.store = "repository"; this.preset = ""; this.bodySize = { width: 408, height: 500 };
+    this.graphViews = new Map();
+    initRetainedViews(this, cx);
+    if (this.mode === "tracker") initActionMenus(this.retainedModel, cx);
+    initObservation(this, cx);
     cx.spawn(async cx => {
       try { this.preferences = await loadPreferences(); this.preferencesReady = true; this.follow(cx); }
       catch (error) { this.error = String(error.message ?? error); }
-      cx.notify();
+      this.changed(cx);
     });
     cx.spawn(async cx => {
-      for (; ;) {
+      while (!this.closed) {
         const command = await nextCommand();
+        if (this.closed) return;
         if (command === "refresh") this.refresh(cx);
         if (command === "metadata") openMetadata(this, cx);
         if (command === "focus") this.focus.focus();
-        if (command === "expand") { this.drawer = "expanded"; cx.notify(); }
-        if (command === "collapse") { this.drawer = "peek"; cx.notify(); }
-        if (command === "close") { if (this.metadataOpen) { this.metadataOpen = false; this.focus.focus(); } else this.drawer = "closed"; cx.notify(); }
+        if (command === "expand") { this.drawer = "expanded"; this.changed(cx); }
+        if (command === "collapse") { this.drawer = "peek"; this.changed(cx); }
+        if (command === "close") { if (this.metadataOpen) { this.metadataOpen = false; this.focus.focus(); } else this.drawer = "closed"; this.changed(cx); }
       }
     });
   }
 
-  close() {
+  async close(cx) {
+    this.closed = true;
+    stopRefreshResources(this);
     invalidateAction(this);
-    this.revision++; this.fileRevision++;
+    stopLoading(this);
+    this.revision++; this.detailRevision++; this.fileRevision++;
     this.actionInput?.release();
+    releaseRetainedViews(this);
+    await this.client?.release();
+  }
+
+  changed(_cx) {
+    this.requestRender?.();
+  }
+  current(revision) {
+    return !this.closed && revision === this.revision && targetKey(currentLocation(this.given)) === this.key;
   }
 
 
@@ -84,44 +108,91 @@ export default class SharedContext extends View {
   }
 
   follow(cx) {
-    if (!this.preferencesReady) return;
-    const next = location(), key = JSON.stringify([next.machine, next.cwd]);
-    if (key === this.key) return;
-    this.remember(); this.key = key; this.where = next;
+    if (!this.preferencesReady || this.closed) return;
+    const next = currentLocation(this.given), key = targetKey(next);
+    if (key === this.key) { this.where = next; return; }
+    const previous = this.where;
+    this.remember();
+    stopRefreshResources(this);
+    this.revision++; this.detailRevision++; this.fileRevision++;
+    if (previous) {
+      const cleanup = this.client.release(previous);
+      cx.spawn(async () => { await cleanup; });
+    }
+    this.key = key; this.where = next;
+    this.refreshQueue = new RefreshQueue();
     invalidateAction(this);
     clearHeaderControls(this);
     this.context = null; this.snapshot = null; this.detail = null; this.filePreview = null; this.viewKey = null;
-    this.metadataOpen = false;
+    this.fileEntries = new Map(); this.filePending = new Set();
+    this.pendingQueries.clear(); this.lastQuery = null;
+    this.metadataOpen = false; this.liveActivity = new Map();
     this.progress = new Map();
     this.recordTab = "description"; this.detailError = "";
     this.activity = workflowActivity(); this.activityFilter = "all";
     this.actionOpen = null; this.recordActionsOpen = null; this.actionError = "";
     this.openSelect = null; this.selectKeyHandlers = null; this.filtersOpen = false; this.graphInitiative = null; this.graphViews = new Map();
-    this.revision++; this.detailRevision++; this.fileRevision++; this.loading = false; this.error = "";
+    stopLoading(this);
+    this.loading = false; this.error = ""; this.stale = false;
+    this.changed(cx);
     if (!next.cwd) { this.error = "Select a repository folder."; return; }
-    this.refresh(cx);
+    startRefreshResources(this, cx);
+    this.targetDirty = true;
   }
 
-  refresh(cx) {
-    if (!this.where?.cwd || this.loading) return;
+  async query(operation, fields, cx, onProgress) {
     const revision = this.revision, where = this.where;
+    const request = { operation, target: fields.path ?? fields.id ?? "", startedAt: Date.now(), progress: null, error: "" };
+    this.pendingQueries.add(request);
+    notifyQueryStatus(this, cx);
+    try {
+      return await this.client.query(operation, where, fields, progress => {
+        if (!this.current(revision)) return;
+        request.progress = progress;
+        onProgress?.(progress);
+        notifyQueryStatus(this, cx);
+      });
+    } catch (error) {
+      request.error = String(error.message ?? error);
+      throw error;
+    } finally {
+      if (this.current(revision)) {
+        request.finishedAt = Date.now();
+        this.pendingQueries.delete(request);
+        this.lastQuery = request;
+        notifyQueryStatus(this, cx);
+      }
+    }
+  }
+
+  refresh(cx, automatic = false) {
+    if (!this.where?.cwd || this.closed) return;
+    if (this.loading && !this.refreshQueue.running) { this.refreshQueue.queued = true; return; }
+    if (!this.refreshQueue.request()) return;
+    const revision = this.revision, where = this.where, queue = this.refreshQueue;
+    this.client.invalidate(where);
     this.loading = true; this.error = "";
+    beginLoading(this, cx);
+    this.changed(cx);
     cx.spawn(async cx => {
       try {
-        const context = await request("context", where);
-        if (revision !== this.revision) return;
+        const context = await this.query("context", {}, cx);
+        if (!this.current(revision)) return;
         const viewKey = `${where.machine ? `${where.machine}:` : ""}${context.identity}:${context.repository}`;
         if (viewKey !== this.viewKey) {
           const saved = this.saved.get(viewKey);
           this.viewKey = viewKey;
+          this.detailRevision++; this.fileRevision++;
+          this.snapshot = null; this.detail = null; this.filePreview = null;
           this.selected = saved?.selected ?? null; this.filters = { ...DEFAULT_FILTERS, ...saved?.filters }; this.drawer = saved?.drawer ?? "peek";
           this.collapsed = new Set(saved?.collapsed); this.fileFolders = new Set(saved?.fileFolders); this.fileSelection = saved?.fileSelection ?? null;
           this.fileEntries = new Map(); this.filePending = new Set();
         }
         this.context = context;
+        updateLocalWatches(this, cx);
         if (context.ready) { this.openSelect = null; this.selectKeyHandlers = null; }
-        cx.notify();
-        if (!context.ready) return;
+        this.changed(cx);
+        if (!context.ready) { this.stale = false; return; }
         if (this.mode === "context") {
           for (const collection of context.collections) {
             if (!collection.path) continue;
@@ -130,24 +201,40 @@ export default class SharedContext extends View {
           }
           if (this.fileSelection) this.openFile(this.fileSelection.collection, this.fileSelection.path, cx);
         } else {
-          const snapshot = await request("tracker", where);
-          if (revision !== this.revision) return;
+          const snapshot = await this.query("tracker", {}, cx, progress => {
+            if (this.current(revision)) updateLoading(this, progress, cx);
+          });
+          if (!this.current(revision)) return;
           this.snapshot = snapshot;
           this.progress = initiativeProgress(snapshot);
           if (this.selected) {
             const records = this.selected.kind === "initiative" ? snapshot.initiatives : snapshot.tickets;
             const record = records.find(item => item.id === this.selected.id);
-            if (record) this.choose(record, this.selected.kind, cx, false); else { invalidateAction(this); this.actionOpen = null; this.recordActionsOpen = null; this.selected = null; this.detail = null; }
+            if (record) this.choose(record, this.selected.kind, cx, false);
+            else { this.detailRevision++; invalidateAction(this); this.actionOpen = null; this.recordActionsOpen = null; this.selected = null; this.detail = null; }
           }
         }
-      } catch (error) { if (revision === this.revision) this.error = String(error.message ?? error); }
-      finally { if (revision === this.revision) { this.loading = false; cx.notify(); } }
+        this.stale = false;
+      } catch (error) {
+        if (this.current(revision)) {
+          this.error = String(error.message ?? error);
+          this.stale = this.mode === "tracker" ? Boolean(this.snapshot) : Boolean(this.context);
+        }
+      } finally {
+        if (this.current(revision)) {
+          this.loading = false; this.lastRefreshAt = Date.now(); stopLoading(this);
+          const again = queue.finish();
+          this.changed(cx);
+          if (again) this.refresh(cx, automatic);
+        }
+      }
     });
   }
 
   choose(record, kind, cx, reveal = true) {
     if (this.drawer === "expanded" && this.selected?.id === record.id && reveal) return;
-    if (this.selected?.id !== record.id || this.selected.kind !== kind) {
+    const changed = this.selected?.id !== record.id || this.selected?.kind !== kind;
+    if (changed) {
       invalidateAction(this);
       clearHeaderControls(this);
       this.recordTab = "description"; this.activityFilter = "all";
@@ -160,19 +247,19 @@ export default class SharedContext extends View {
       if (path) revealPath(this.collapsed, path);
     }
     const serial = ++this.detailRevision, revision = this.revision;
-    this.detail = null; this.detailLoading = true; this.detailError = ""; this.event = null;
-    this.activity = workflowActivity();
+    if (changed) { this.detail = null; this.event = null; this.activity = workflowActivity(); }
+    this.detailLoading = true; this.detailError = "";
     cx.spawn(async cx => {
       try {
-        const detail = await request("detail", this.where, { id: record.id, kind });
-        if (serial === this.detailRevision && revision === this.revision) {
+        const detail = await this.query("detail", { id: record.id, kind }, cx);
+        if (this.current(revision) && serial === this.detailRevision) {
           this.detail = detail;
           this.activity = workflowActivity(detail.workflow);
         }
-      } catch (error) { if (serial === this.detailRevision && revision === this.revision) this.detailError = String(error.message ?? error); }
-      finally { if (serial === this.detailRevision && revision === this.revision) { this.detailLoading = false; cx.notify(); } }
+      } catch (error) { if (this.current(revision) && serial === this.detailRevision) this.detailError = String(error.message ?? error); }
+      finally { if (this.current(revision) && serial === this.detailRevision) { this.detailLoading = false; this.changed(cx); } }
     });
-    this.remember(); cx.notify();
+    this.remember(); this.changed(cx);
   }
 
   loadFolder(collection, path, cx) {
@@ -182,10 +269,10 @@ export default class SharedContext extends View {
     const revision = this.revision;
     cx.spawn(async cx => {
       try {
-        const entries = await request("directory", this.where, { collection, path });
-        if (revision === this.revision) this.fileEntries.set(key, entries);
-      } catch (error) { if (revision === this.revision) this.error = String(error.message ?? error); }
-      finally { if (revision === this.revision) { this.filePending.delete(key); cx.notify(); } }
+        const entries = await this.query("directory", { collection, path }, cx);
+        if (this.current(revision)) this.fileEntries.set(key, entries);
+      } catch (error) { if (this.current(revision)) { this.error = String(error.message ?? error); this.stale = this.fileEntries.size > 0; } }
+      finally { if (this.current(revision)) { this.filePending.delete(key); this.changed(cx); } }
     });
   }
 
@@ -193,31 +280,42 @@ export default class SharedContext extends View {
     const key = `${collection}:${path}`;
     if (this.fileFolders.has(key)) this.fileFolders.delete(key);
     else { this.fileFolders.add(key); this.loadFolder(collection, path, cx); }
-    this.remember(); cx.notify();
+    this.remember(); this.changed(cx);
   }
 
   openFile(collection, path, cx) {
-    this.fileSelection = { collection, path }; this.filePreview = null; this.error = "";
+    const changed = this.fileSelection?.collection !== collection || this.fileSelection?.path !== path;
+    this.fileSelection = { collection, path }; if (changed) this.filePreview = null;
+    this.error = "";
     const revision = this.revision, serial = ++this.fileRevision;
     cx.spawn(async cx => {
       try {
-        const preview = await request("file", this.where, { collection, path });
-        if (revision === this.revision && serial === this.fileRevision) this.filePreview = preview;
-      } catch (error) { if (revision === this.revision && serial === this.fileRevision) this.error = String(error.message ?? error); }
-      if (revision === this.revision && serial === this.fileRevision) cx.notify();
+        const preview = await this.query("file", { collection, path }, cx);
+        if (this.current(revision) && serial === this.fileRevision) this.filePreview = preview;
+      } catch (error) { if (this.current(revision) && serial === this.fileRevision) { this.error = String(error.message ?? error); this.stale = Boolean(this.filePreview); } }
+      if (this.current(revision) && serial === this.fileRevision) this.changed(cx);
     });
-    this.remember(); cx.notify();
+    this.remember(); this.changed(cx);
   }
 
   setup(cx) {
     if (this.loading) return;
     this.loading = true; const revision = this.revision;
+    this.changed(cx);
     cx.spawn(async cx => {
+      let configured = false;
       try {
-        const context = await request("setup", this.where, { store: this.store, preset: this.preset });
-        if (revision === this.revision) this.context = context;
-      } catch (error) { if (revision === this.revision) this.error = String(error.message ?? error); }
-      finally { if (revision === this.revision) { this.loading = false; this.refresh(cx); cx.notify(); } }
+        const context = await this.query("setup", { store: this.store, preset: this.preset }, cx);
+        if (this.current(revision)) { this.context = context; configured = true; }
+      } catch (error) {
+        if (this.current(revision)) this.error = String(error.message ?? error);
+      } finally {
+        if (this.current(revision)) {
+          this.loading = false;
+          if (configured) this.refresh(cx);
+          this.changed(cx);
+        }
+      }
     });
   }
 
@@ -295,12 +393,12 @@ export default class SharedContext extends View {
   setFilters(filters, cx) {
     this.filters = filters;
     this.remember();
-    cx.notify();
+    this.changed(cx);
   }
 
   openInitiativeGraph(initiative, cx) {
     this.graphInitiative = initiative.id;
-    this.focus.focus(); cx.notify();
+    this.focus.focus(); this.changed(cx);
   }
 
   initiativeGraphDrawer() {
@@ -314,7 +412,7 @@ export default class SharedContext extends View {
   selectRecordTab(tab, cx) {
     this.recordTab = tab;
     this.recordTabFocus[tab].focus();
-    cx.notify();
+    this.changed(cx);
   }
 
   inspectActivity(cx) {
@@ -326,7 +424,7 @@ export default class SharedContext extends View {
   filterActivity(filter, cx) {
     this.activityFilter = filter;
     this.event = null;
-    cx.notify();
+    this.changed(cx);
   }
 
   recordTabKey(event, cx) {
@@ -404,9 +502,10 @@ export default class SharedContext extends View {
     const reader = v_flex().id(`record-reader:${record.ref}`).flex_1().min_w(0).min_h(0)
       .on_size_change((size, cx) => { if (Math.abs(size.height - (this.readerHeight ?? 0)) > 1) { this.readerHeight = size.height; cx.notify(); } })
       .child(compactHeader(this, record));
-    if (this.detailError) return reader.child(v_flex().p(16).gap(8).child(note(this.detailError, true))
-      .child(button("retry-record", "Retry read", (_event, cx) => this.choose(record, this.selected.kind, cx, false))));
-    if (this.detailLoading || !this.detail) return reader.child(note("Read the selected record…"));
+    if (this.detailError) reader.child(v_flex().p(16).gap(8).child(note(`${this.detail ? "Showing the last successful record. " : ""}${this.detailError}`, true))
+      .child(button("retry-record", "Retry read", (_event, cx) => { this.client.invalidate(this.where, ["detail"]); this.choose(record, this.selected.kind, cx, false); })));
+    if (!this.detail) return reader.child(note(this.detailError ? "The record could not be read." : "Read the selected record…"));
+    if (this.detailLoading) reader.child(note("Refreshing the selected record…"));
     // Keep all readers laid out so their native scroll state survives a tab switch.
     // Inactive readers sit outside the clipped viewport and cannot intercept its wheel events.
     return reader.child(this.recordTabs(events))
@@ -430,41 +529,49 @@ export default class SharedContext extends View {
     const drawerTop = !selected || this.drawer === "closed" ? size.height : this.drawer === "expanded" ? 0 : Math.round(size.height / 2);
     const body = columns
       ? h_resizable(`tracker-columns:${this.viewKey}`).size_full().min_h(0)
-        .child(resizable_panel().size(360).size_range(220, Math.max(220, size.width - 300)).child(this.treeView()))
-        .child(resizable_panel().size_range(280).child(v_flex().size_full().min_w(0).min_h(0).bg(t.chrome).child(this.recordView())))
+        .child(resizable_panel().size(360).size_range(220, Math.max(220, size.width - 300)).child(this.parts.tree))
+        .child(resizable_panel().size_range(280).child(v_flex().size_full().min_w(0).min_h(0).bg(t.chrome).child(this.parts.detail)))
       : div().id("tracker-drawer-body").relative().size_full().min_h(0).overflow_hidden()
-        .child(this.treeView(selected && this.drawer === "peek" ? "50%" : "100%"))
+        .child(this.parts.tree)
         .when(selected, el => el.child(v_flex().id("tracker-detail-drawer").absolute().left(0).right(0).top(drawerTop).h(size.height).bg(t.chrome).border_t(1).border_color(t.border).transition("top", { duration: this.preferences.motion ? this.drawer === "closed" ? 240 : 340 : 0, easing: "ease-out" })
           .child(h_flex().h(44).flex_none().px(10).gap(7).items_center().border_b(1).border_color(t.border)
             .child(div().w(24).h(3).rounded(2).bg(t.dim))
             .child(div().flex_1().text_size(10).text_color(t.muted).child(`${this.selected.id} · Details`))
-            .child(button("drawer-expand", this.drawer === "expanded" ? "↓ Collapse" : "↑ Expand", (_event, cx) => { this.drawer = this.drawer === "expanded" ? "peek" : "expanded"; this.remember(); cx.notify(); }))
-            .child(button("drawer-close", "×", (_event, cx) => { this.drawer = "closed"; this.focus.focus(); this.remember(); cx.notify(); }, { label: "Close details", disabled: this.drawer === "closed" })))
-          .child(v_flex().h(this.drawer === "peek" ? Math.max(1, size.height / 2 - 44) : Math.max(1, size.height - 44)).min_h(0).child(this.recordView()))));
-    return v_flex().flex_1().min_h(0).child(div().id("tracker-body-size").relative().flex_1().min_h(0).overflow_hidden().on_size_change((next, cx) => { if (Math.abs(next.height - this.bodySize.height) > 1 || Math.abs(next.width - this.bodySize.width) > 1) { this.bodySize = next; cx.notify(); } }).child(body).when(Boolean(this.graphInitiative), el => el.child(this.initiativeGraphDrawer())));
+            .child(button("drawer-expand", this.drawer === "expanded" ? "↓ Collapse" : "↑ Expand", (_event, cx) => { this.drawer = this.drawer === "expanded" ? "peek" : "expanded"; this.remember(); this.changed(cx); }))
+            .child(button("drawer-close", "×", (_event, cx) => { this.drawer = "closed"; this.focus.focus(); this.remember(); this.changed(cx); }, { label: "Close details", disabled: this.drawer === "closed" })))
+          .child(v_flex().h(this.drawer === "peek" ? Math.max(1, size.height / 2 - 44) : Math.max(1, size.height - 44)).min_h(0).child(this.parts.detail))));
+    return v_flex().flex_1().min_h(0).child(div().id("tracker-body-size").relative().flex_1().min_h(0).overflow_hidden().on_size_change((next, cx) => { if (Math.abs(next.height - this.bodySize.height) > 1 || Math.abs(next.width - this.bodySize.width) > 1) { this.bodySize = next; this.changed(cx); } }).child(body).when(Boolean(this.graphInitiative), el => el.child(this.initiativeGraphDrawer())));
   }
 
   render(cx) {
+    observeAgentLaunch(this);
+    if (this.mode === "settings") return renderSettings(this);
     if (this.mode === "graph-actions") return renderGraphMenu(this);
-    this.follow(cx);
-    if (this.mode === "tracker" && this.snapshot && this.context) this.liveActivity = recordAgentActivity(this.snapshot, agents(), terminals(), this.context.repository, this.where.machine);
+    scheduleObservation(this);
     const t = theme();
     return v_flex().id(`shared-context:${this.mode}`).relative().track_focus(this.focus).size_full().min_h(0).rounded(0).overflow_hidden().bg(t.background).border_1().border_color(t.border).text_color(t.foreground).text_size(13).font_family("JetBrains Mono")
-      .on_key_down((event, cx) => { if (this.selectKeyHandlers) for (const id in this.selectKeyHandlers) if (this.selectKeyHandlers[id](event, cx)) return; if (event.key === "escape" && this.filtersOpen) { closeTreeFilters(this, cx); cx.stop_propagation(); return; } if (event.key === "escape" && this.graphInitiative) { this.graphInitiative = null; this.focus.focus(); cx.stop_propagation(); cx.notify(); return; } if (event.key !== "escape" || this.mode !== "tracker" || (this.preferences.layout === "C2" && this.bodySize.width >= 600) || !this.selected || this.drawer === "closed") return; this.drawer = this.drawer === "expanded" ? "peek" : "closed"; this.focus.focus(); this.remember(); cx.stop_propagation(); cx.notify(); })
+      .on_key_down((event, cx) => {
+        if (this.selectKeyHandlers) for (const id in this.selectKeyHandlers) if (this.selectKeyHandlers[id](event, cx)) return;
+        if (event.key === "escape" && this.filtersOpen) { closeTreeFilters(this, cx); this.changed(cx); cx.stop_propagation(); return; }
+        if (event.key === "escape" && this.graphInitiative) { this.graphInitiative = null; this.focus.focus(); cx.stop_propagation(); this.changed(cx); return; }
+        if (event.key !== "escape" || this.mode !== "tracker" || (this.preferences.layout === "C2" && this.bodySize.width >= 600) || !this.selected || this.drawer === "closed") return;
+        this.drawer = this.drawer === "expanded" ? "peek" : "closed"; this.focus.focus(); this.remember(); cx.stop_propagation(); this.changed(cx);
+      })
       .child(h_flex().id("shared-context-titlebar").h(48).flex_none().gap(0).items_stretch().border_b(1).border_color(t.border).bg(t.chrome)
         .child(div().w(48).flex_none().flex().items_center().justify_center().border_r(1).border_color(t.border).child(icon("context", 16).text_color(t.accent)))
         .children([["context", "Files"], ["tracker", "Tracker"]].map(([mode, label]) => button(`shared-context-nav:${mode}`, label, () => { run("layout.select", { stack: "panel-body", child: mode }); run("layout.show", { id: "panel" }); }, { label: `${label} view`, height: 48 })
           .rounded(0).px(16).border_r(1).border_color(t.border).bg(this.mode === mode ? t.selected : t.chrome).text_color(this.mode === mode ? t.accent : t.muted)))
         .child(div().flex_1().min_w(0))
         .child(button("context-metadata", "", (_event, cx) => openMetadata(this, cx), { label: `Show agent context metadata for ${this.context?.identity ?? "repository"}`, disabled: !this.context?.metadata, height: 48 }).max_w("45%").min_w(0).px(16).bg(t.chrome).tooltip("Show resolved repository context").child(div().whitespace_normal().child(this.context?.identity ?? "")))
-        .child(button("context-settings", "⚙", () => run("mod.open", { name: "better-config" }), { label: "Open mod settings", height: 48 }).w(40).rounded(0).border_l(1).border_color(t.border).bg(t.chrome))
+        .child(button("context-settings", "⚙", openSettings, { label: "Open Shared Context settings", height: 48 }).w(40).rounded(0).border_l(1).border_color(t.border).bg(t.chrome))
         .child(button("context-refresh", "↻", (_event, cx) => this.refresh(cx), { label: "Refresh shared context", disabled: this.loading, height: 48 }).w(40).rounded(0).border_l(1).border_color(t.border).bg(t.chrome)))
-      .when(Boolean(this.error), el => el.child(note(this.error, true)))
-      .when(!this.preferencesReady && !this.error, el => el.child(note("Read panel settings…")))
-      .when(this.preferencesReady && !this.context && this.loading && !this.error, el => el.child(note("Read repository context…")))
-      .when(Boolean(this.context) && !this.context.ready, el => el.child(this.onboarding()))
-      .when(Boolean(this.context?.ready), el => el.child(this.mode === "context" ? this.filesView() : this.snapshot ? this.trackerView() : note(this.error ? "The tracker is unavailable. Correct the error, then select Refresh." : "Read tracker records and workflow state…")))
-      .when(Boolean(this.context?.ready) && this.mode === "context", el => el.child(h_flex().h(25).flex_none().px(10).gap(8).items_center().border_t(1).border_color(t.border).text_size(10).text_color(t.dim).child(this.loading ? "Refresh records…" : `Canonical records · ${this.context.mode}`)))
+      .child(v_flex().flex_1().min_h(0).w_full().overflow_hidden()
+        .when(Boolean(this.error), el => el.child(note(`${this.stale ? "Showing the last successful snapshot. " : ""}${this.error}`, true)))
+        .when(!this.preferencesReady && !this.error, el => el.child(this.parts.loading))
+        .when(this.preferencesReady && !this.context && this.loading && !this.error, el => el.child(this.parts.loading))
+        .when(Boolean(this.context) && !this.context.ready, el => el.child(this.onboarding()))
+        .when(Boolean(this.context?.ready), el => el.child(this.mode === "context" ? this.parts.files : this.snapshot ? this.trackerView() : this.error ? note("The tracker is unavailable. Correct the error, then select Refresh.") : this.parts.loading)))
+      .child(this.parts.status)
       .when(Boolean(this.metadataOpen && this.context?.metadata), el => el.child(renderMetadata(this)))
       .when(Boolean(this.headerReason), el => el.child(renderHeaderReason(this)));
   }

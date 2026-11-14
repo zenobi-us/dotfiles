@@ -1,4 +1,5 @@
 [dotfiles]
+"~/.local/bin/herdr-context" = { source = "./app/bin/herdr-context.mjs", mode = "symlink" }
 "~/.config/herdr-app/mods/shared-context" = { source = "./app/mods/shared-context/", mode = "symlink" }
 "~/.config/herdr-app/mods/shared-context-tabs" = { source = "./app/mods/shared-context-tabs/", mode = "symlink" }
 

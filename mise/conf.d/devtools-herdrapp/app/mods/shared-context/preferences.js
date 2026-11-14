@@ -1,5 +1,5 @@
-// Better Config writes only user changes under mod.json.settings.
-import { appHome, readTextFile } from "herdr";
+// User overrides live under mod.json.settings; missing keys use the schema defaults.
+import { appHome, readTextFile, shared } from "herdr";
 export const DEFAULTS = { layout: "C", motion: true, harness: "omp" };
 // Keep in step with the muxer-subagents agent modules and mod.schema.json.
 const HARNESSES = ["omp", "pi", "zot", "codex", "claude"];
@@ -12,4 +12,18 @@ export async function loadPreferences() {
   if (value.motion !== undefined && typeof value.motion !== "boolean") throw new Error("Drawer motion must be true or false.");
   if (value.harness !== undefined && !HARNESSES.includes(value.harness)) throw new Error(`Agent harness must be one of ${HARNESSES.join(", ")}.`);
   return { ...DEFAULTS, ...value };
+}
+
+export function syncPreferences(view, cx) {
+  const revision = shared("shared-context.settings-revision");
+  if (view.preferencesRevision === revision) return;
+  view.preferencesRevision = revision;
+  if (!view.preferencesReady) return;
+  cx.spawn(async cx => {
+    try {
+      const preferences = await loadPreferences();
+      if (view.preferencesRevision === revision) view.preferences = preferences;
+    } catch (error) { view.error = String(error.message ?? error); }
+    cx.notify();
+  });
 }
