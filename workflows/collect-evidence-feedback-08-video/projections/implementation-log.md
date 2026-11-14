@@ -1,0 +1,54 @@
+# Implementation log
+
+## implementation-0002
+
+Source: 2a14e32edcca02dc297cfd61c30e566982ec0b7c
+
+Preserve the existing real Playwright WebM recorder; probe actual recording capability and record start time. Extend the existing annotation path to immutable timestamp-bound video notes and displayed frame dimensions. Add verified byte-range media responses for browser seeking. Retain image behavior, drafts, conflicts, tombstones and export. Rebuild the distributed single HTML viewer.
+
+### Changed files
+
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/SKILL.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/web.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/native-workflow.test.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/SKILL.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/how-to-browse-evidence.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/viewer-contract.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/annotations.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/server.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/video-workflow.test.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/index.html
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/components/annotation-image.tsx
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/drafts.tsx
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/main.tsx
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/types.ts
+
+### Validation
+
+- TypeScript typecheck passed.
+- Final single HTML bundle built: 345505 bytes, embedded React/CSS/fonts.
+- 103 passed, 32 skipped, 0 failed; 1040 assertions. Optional driver suites were then exercised separately. Final metadata/accessible-label adjustment was checked with a rebuilt actual browser surface.
+- 1 passed; real image capture, assertions, safety, sealing and read-only consumers; 28 assertions.
+- 1 passed; 12 assertions. Real terminal images remain valid with video requested and explicit native-video-unavailable limit.
+- 1 passed; 60 assertions. Native image-only fixture visually inspected. Optional video unavailable; permission, identity, capture and scope failures preserved.
+- Actual owned WebM recording start/stop probe reported video available.
+- Real 800x450, 3.2 second WebM decoded. Browser pixels and headings showed red initial and blue final scenes.
+- Playback and keyboard seeking; drawn paused box at 0.8086s; draft reload; durable save; edited note at 3.199s; restart; saved timestamp navigation; export identities/geometry preserved. Final bundle also opened saved note and created/cancelled keyboard point.
+- /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts validate /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-08-video/artifacts/evidence/video-acceptance-0001/capture --json — Exit 0; retained source validation and saved export comparison succeeded.
+- /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts validate /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-08-video/artifacts/evidence/video-acceptance-0001/feedback --json — Exit 0; retained source validation and saved export comparison succeeded.
+- /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts export /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-08-video/artifacts/evidence/video-acceptance-0001/feedback --json — Exit 0; retained source validation and saved export comparison succeeded.
+- Unavailable coverage: Surf native-host socket /tmp/surf.sock absent. No Surf capture or passing Surf acceptance claimed.
+
+### Unresolved questions
+
+None. Surf runtime coverage remains unavailable; no passing claim exists.
+
+The immutable draft snapshot has no display outcome text for three read-only CLI checks. Their authoritative receipt entries and [validation records](../artifacts/evidence/video-acceptance-0001/validation.json) retain exit code 0. This projection supplies the missing display text without rewriting the snapshot.
+
+[Receipt](../events/implementation-0002.yaml) · [Snapshot](../artifacts/snapshots/pr-draft-implementation-0002.md)
+

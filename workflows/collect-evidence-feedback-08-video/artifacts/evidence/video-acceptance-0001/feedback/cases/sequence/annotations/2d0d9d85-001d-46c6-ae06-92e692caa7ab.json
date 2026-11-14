@@ -1,0 +1,32 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "annotation",
+  "id": "2d0d9d85-001d-46c6-ae06-92e692caa7ab",
+  "sessionId": "review",
+  "caseId": "sequence",
+  "assetId": "sequence.video.capture-001",
+  "sourceSha256": "b469d5b0dff38c729bbf6212a48ce1b9e402a44e1dbb84ea6c74fd64d0cb1659",
+  "originalWidth": 800,
+  "originalHeight": 450,
+  "geometry": {
+    "x": 0.4,
+    "y": 0.4,
+    "width": 0.2,
+    "height": 0.2
+  },
+  "priority": "P2",
+  "comment": "Blank opening frame before navigation",
+  "mediaTimeSeconds": 0,
+  "displayedWidth": 621,
+  "displayedHeight": 349.3125,
+  "revision": 2,
+  "createdAt": "2026-11-14T23:39:35.014Z",
+  "updatedAt": "2026-11-14T23:44:35.010Z",
+  "pixelGeometry": {
+    "x": 320,
+    "y": 180,
+    "width": 160,
+    "height": 90
+  },
+  "deletedAt": null
+}

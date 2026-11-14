@@ -1,0 +1,499 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "export",
+  "success": true,
+  "session": {
+    "schema": "collect-feedback/v1",
+    "kind": "session",
+    "id": "review",
+    "createdAt": "2026-11-14T23:38:37.212Z",
+    "source": {
+      "schema": "collect-evidence/v1",
+      "kind": "run",
+      "id": "recording",
+      "status": "sealed",
+      "startedAt": "2026-11-14T23:38:31.873Z",
+      "finishedAt": "2026-11-14T23:38:36.513Z",
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "plan": "plan.json",
+      "cases": [
+        {
+          "id": "sequence",
+          "path": "cases/sequence/case.json"
+        }
+      ],
+      "files": [
+        {
+          "path": "cases/sequence/case.json",
+          "sha256": "f1df3c95297efdcb4a1624ba7a5090257f2eb639afd4bb3ac70cc518bc674117"
+        },
+        {
+          "path": "cases/sequence/events.jsonl",
+          "sha256": "8ccee0a390eabe0e04f20f83d2e17da4bfeafa4ebfd5ecae788af47cfb23086f"
+        },
+        {
+          "path": "cases/sequence/index.md",
+          "sha256": "3b26fe41f37251a25738319d579791aac27f87beea3980a443a3b4b9ef92e32a"
+        },
+        {
+          "path": "cases/sequence/media/step-001-case-recording--capture-001.webm",
+          "sha256": "b469d5b0dff38c729bbf6212a48ce1b9e402a44e1dbb84ea6c74fd64d0cb1659"
+        },
+        {
+          "path": "cases/sequence/media/step-001-step-sequence-001-red--capture-001--capture-001.png",
+          "sha256": "0bd173edeaac6590778f971365920527ae75d033f20c974f07dfe967ba4ee451"
+        },
+        {
+          "path": "cases/sequence/media/step-003-step-sequence-003-blue--capture-001--capture-001.png",
+          "sha256": "1e01fa48244f24b7936c81c3c051532070da3c0896d19a32fb2ffe4c5e9bf6d6"
+        },
+        {
+          "path": "cases/sequence/media/step-003-step-sequence-003-blue--capture-002--capture-002.png",
+          "sha256": "1e01fa48244f24b7936c81c3c051532070da3c0896d19a32fb2ffe4c5e9bf6d6"
+        },
+        {
+          "path": "index.md",
+          "sha256": "cea763f9fd95c24f4ee33338e887f34e1908b5037aaec3ece9e3d28b5ad519a0"
+        },
+        {
+          "path": "native/plan.ts",
+          "sha256": "e88caf2aae26968e4c8285d7f9e6f86528ad17f15174185088a6632838dd6a48"
+        },
+        {
+          "path": "native/report/shots/step-sequence-001-red--capture-001.png",
+          "sha256": "0bd173edeaac6590778f971365920527ae75d033f20c974f07dfe967ba4ee451"
+        },
+        {
+          "path": "native/report/shots/step-sequence-003-blue--capture-001.png",
+          "sha256": "1e01fa48244f24b7936c81c3c051532070da3c0896d19a32fb2ffe4c5e9bf6d6"
+        },
+        {
+          "path": "native/report/shots/step-sequence-003-blue--capture-002.png",
+          "sha256": "1e01fa48244f24b7936c81c3c051532070da3c0896d19a32fb2ffe4c5e9bf6d6"
+        },
+        {
+          "path": "native/report/videos/test-sequence.webm",
+          "sha256": "b469d5b0dff38c729bbf6212a48ce1b9e402a44e1dbb84ea6c74fd64d0cb1659"
+        },
+        {
+          "path": "native/report/videos/test-sequence.webm.metadata.json",
+          "sha256": "106482b72a67ea470335177af3b9a2925ec6f1f70d921b84405edd7561259f80"
+        },
+        {
+          "path": "native/report/videos/test-sequence.webm.start.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "native/report/videos/test-sequence.webm.start.stdout.log",
+          "sha256": "4367dda53543c0f376d0c63b1af6f36d7cc70bd6fcd4e010d07bbca0a8fb0733"
+        },
+        {
+          "path": "native/report/videos/test-sequence.webm.stop.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "native/report/videos/test-sequence.webm.stop.stdout.log",
+          "sha256": "3b713c54740dc4df84790d5e77f159e9dc59b095812493062455c6f67e7d9178"
+        },
+        {
+          "path": "native/runs/case-sequence.log",
+          "sha256": "6f90bb4124e9aac4071f0d8a35af4319549df240b22af14805331b9e54057a13"
+        },
+        {
+          "path": "native/workflows/video-test-sequence.js",
+          "sha256": "034a235c7abd6f70217ee5180cc35f49f284ea3b17ed5b77b10a02630b667a39"
+        },
+        {
+          "path": "plan.json",
+          "sha256": "c56c4f5826afdb80ebdd8c8d0b4e7eb1417fcb226cf9ef7a7cd72fc640a17fd3"
+        },
+        {
+          "path": "plan.ts",
+          "sha256": "e88caf2aae26968e4c8285d7f9e6f86528ad17f15174185088a6632838dd6a48"
+        }
+      ],
+      "runId": "recording",
+      "manifestSha256": "b4f3e4de23e8f4049fcf8663afd61230bdc06fbfa5922498b1d84a9769e5368d"
+    },
+    "cases": [
+      {
+        "id": "sequence",
+        "path": "cases/sequence/case.json"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "kind": "case",
+      "id": "sequence",
+      "order": 1,
+      "purpose": "Observe red then blue page transition",
+      "preconditions": [],
+      "expected": {
+        "pass": "Blue final scene",
+        "fail": "No transition"
+      },
+      "steps": [
+        {
+          "id": "sequence.1",
+          "order": 1,
+          "purpose": "Open red scene",
+          "actions": {
+            "do": "navigate",
+            "says": "Open red scene",
+            "to": "/",
+            "shot": "red"
+          },
+          "expected": null,
+          "observed": [
+            "Page loaded."
+          ],
+          "assertionResult": "not-applicable"
+        },
+        {
+          "id": "sequence.2",
+          "order": 2,
+          "purpose": "Wait for blue scene",
+          "actions": {
+            "do": "wait",
+            "says": "Wait for blue scene",
+            "locator": "#done"
+          },
+          "expected": null,
+          "observed": [
+            "Rendered."
+          ],
+          "assertionResult": "not-applicable"
+        },
+        {
+          "id": "sequence.3",
+          "order": 3,
+          "purpose": "Read blue scene",
+          "actions": {
+            "do": "expect",
+            "says": "Read blue scene",
+            "locator": "h1",
+            "text": "BLUE: final scene",
+            "shot": "blue"
+          },
+          "expected": {
+            "text": "BLUE: final scene",
+            "visible": null,
+            "url": null
+          },
+          "observed": [
+            "Captured before expect.",
+            "Found text: BLUE: final scene"
+          ],
+          "assertionResult": "passed"
+        }
+      ],
+      "events": "source/cases/sequence/events.jsonl",
+      "assets": [
+        {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "sequence.1.capture-001",
+          "caseId": "sequence",
+          "stepId": "sequence.1",
+          "path": "cases/sequence/media/step-001-step-sequence-001-red--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "0bd173edeaac6590778f971365920527ae75d033f20c974f07dfe967ba4ee451",
+          "mediaType": "image/png",
+          "width": 1280,
+          "height": 720,
+          "capturedAt": "2026-11-14T23:38:33.519Z",
+          "viewport": {
+            "width": 1280,
+            "height": 720,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-screenshot",
+          "url": "http://127.0.0.1:43123/"
+        },
+        {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "sequence.3.capture-001",
+          "caseId": "sequence",
+          "stepId": "sequence.3",
+          "path": "cases/sequence/media/step-003-step-sequence-003-blue--capture-001--capture-001.png",
+          "captureSequence": 1,
+          "sha256": "1e01fa48244f24b7936c81c3c051532070da3c0896d19a32fb2ffe4c5e9bf6d6",
+          "mediaType": "image/png",
+          "width": 1280,
+          "height": 720,
+          "capturedAt": "2026-11-14T23:38:35.351Z",
+          "viewport": {
+            "width": 1280,
+            "height": 720,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-screenshot",
+          "url": "http://127.0.0.1:43123/"
+        },
+        {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "sequence.3.capture-002",
+          "caseId": "sequence",
+          "stepId": "sequence.3",
+          "path": "cases/sequence/media/step-003-step-sequence-003-blue--capture-002--capture-002.png",
+          "captureSequence": 2,
+          "sha256": "1e01fa48244f24b7936c81c3c051532070da3c0896d19a32fb2ffe4c5e9bf6d6",
+          "mediaType": "image/png",
+          "width": 1280,
+          "height": 720,
+          "capturedAt": "2026-11-14T23:38:35.384Z",
+          "viewport": {
+            "width": 1280,
+            "height": 720,
+            "deviceScaleFactor": 1
+          },
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-screenshot",
+          "url": "http://127.0.0.1:43123/"
+        },
+        {
+          "schema": "collect-evidence/v1",
+          "kind": "asset",
+          "id": "sequence.video.capture-001",
+          "caseId": "sequence",
+          "stepId": "sequence.1",
+          "scope": "case",
+          "path": "cases/sequence/media/step-001-case-recording--capture-001.webm",
+          "sourcePath": "native/report/videos/test-sequence.webm",
+          "captureSequence": 1,
+          "sha256": "b469d5b0dff38c729bbf6212a48ce1b9e402a44e1dbb84ea6c74fd64d0cb1659",
+          "mediaType": "video/webm",
+          "width": 800,
+          "height": 450,
+          "durationMs": 3200,
+          "capturedAt": "2026-11-14T23:38:32.938Z",
+          "viewport": null,
+          "surface": "web",
+          "driver": "playwright",
+          "driverVersion": "0.1.22",
+          "captureMethod": "playwright-video",
+          "url": ""
+        }
+      ],
+      "errors": [],
+      "limits": [
+        "Capture time and viewport are unknown when the driver did not record them.",
+        "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+      ],
+      "sideEffects": "not-recorded",
+      "schema": "collect-feedback/v1",
+      "sessionId": "review",
+      "source": {
+        "runId": "recording",
+        "caseId": "sequence"
+      }
+    }
+  ],
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "sequence.1.capture-001",
+      "caseId": "sequence",
+      "stepId": "sequence.1",
+      "path": "cases/sequence/media/step-001-step-sequence-001-red--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "0bd173edeaac6590778f971365920527ae75d033f20c974f07dfe967ba4ee451",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-14T23:38:33.519Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:43123/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "sequence.3.capture-001",
+      "caseId": "sequence",
+      "stepId": "sequence.3",
+      "path": "cases/sequence/media/step-003-step-sequence-003-blue--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "1e01fa48244f24b7936c81c3c051532070da3c0896d19a32fb2ffe4c5e9bf6d6",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-14T23:38:35.351Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:43123/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "sequence.3.capture-002",
+      "caseId": "sequence",
+      "stepId": "sequence.3",
+      "path": "cases/sequence/media/step-003-step-sequence-003-blue--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "1e01fa48244f24b7936c81c3c051532070da3c0896d19a32fb2ffe4c5e9bf6d6",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-14T23:38:35.384Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:43123/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "sequence.video.capture-001",
+      "caseId": "sequence",
+      "stepId": "sequence.1",
+      "scope": "case",
+      "path": "cases/sequence/media/step-001-case-recording--capture-001.webm",
+      "sourcePath": "native/report/videos/test-sequence.webm",
+      "captureSequence": 1,
+      "sha256": "b469d5b0dff38c729bbf6212a48ce1b9e402a44e1dbb84ea6c74fd64d0cb1659",
+      "mediaType": "video/webm",
+      "width": 800,
+      "height": 450,
+      "durationMs": 3200,
+      "capturedAt": "2026-11-14T23:38:32.938Z",
+      "viewport": null,
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-video",
+      "url": ""
+    }
+  ],
+  "annotations": [
+    {
+      "schema": "collect-feedback/v1",
+      "kind": "annotation",
+      "id": "0a2ed782-715d-419d-8c6c-abfd0ebd3a96",
+      "sessionId": "review",
+      "caseId": "sequence",
+      "assetId": "sequence.video.capture-001",
+      "sourceSha256": "b469d5b0dff38c729bbf6212a48ce1b9e402a44e1dbb84ea6c74fd64d0cb1659",
+      "originalWidth": 800,
+      "originalHeight": 450,
+      "geometry": {
+        "x": 0.4,
+        "y": 0.4,
+        "width": 0.2,
+        "height": 0.2
+      },
+      "priority": "P2",
+      "comment": "Blue final scene timestamp box",
+      "mediaTimeSeconds": 3.199,
+      "displayedWidth": 621,
+      "displayedHeight": 349.3125,
+      "revision": 2,
+      "createdAt": "2026-11-14T23:41:18.355Z",
+      "updatedAt": "2026-11-14T23:41:41.965Z",
+      "pixelGeometry": {
+        "x": 320,
+        "y": 180,
+        "width": 160,
+        "height": 90
+      },
+      "deletedAt": null
+    },
+    {
+      "schema": "collect-feedback/v1",
+      "kind": "annotation",
+      "id": "23a3a67f-0aa4-4df3-99cb-5daf18553ee3",
+      "sessionId": "review",
+      "caseId": "sequence",
+      "assetId": "sequence.video.capture-001",
+      "sourceSha256": "b469d5b0dff38c729bbf6212a48ce1b9e402a44e1dbb84ea6c74fd64d0cb1659",
+      "originalWidth": 800,
+      "originalHeight": 450,
+      "geometry": {
+        "x": 0.1500000393141103,
+        "y": 0.15000001747293792,
+        "width": 0.19999992137177938,
+        "height": 0.19999996505412418
+      },
+      "priority": "P2",
+      "comment": "Red scene drawn box draft",
+      "mediaTimeSeconds": 0.8086,
+      "displayedWidth": 621,
+      "displayedHeight": 349.3125,
+      "revision": 1,
+      "createdAt": "2026-11-14T23:42:05.487Z",
+      "updatedAt": "2026-11-14T23:42:05.487Z",
+      "pixelGeometry": {
+        "x": 120,
+        "y": 68,
+        "width": 160,
+        "height": 89
+      }
+    },
+    {
+      "schema": "collect-feedback/v1",
+      "kind": "annotation",
+      "id": "2d0d9d85-001d-46c6-ae06-92e692caa7ab",
+      "sessionId": "review",
+      "caseId": "sequence",
+      "assetId": "sequence.video.capture-001",
+      "sourceSha256": "b469d5b0dff38c729bbf6212a48ce1b9e402a44e1dbb84ea6c74fd64d0cb1659",
+      "originalWidth": 800,
+      "originalHeight": 450,
+      "geometry": {
+        "x": 0.4,
+        "y": 0.4,
+        "width": 0.2,
+        "height": 0.2
+      },
+      "priority": "P2",
+      "comment": "Blank opening frame before navigation",
+      "mediaTimeSeconds": 0,
+      "displayedWidth": 621,
+      "displayedHeight": 349.3125,
+      "revision": 2,
+      "createdAt": "2026-11-14T23:39:35.014Z",
+      "updatedAt": "2026-11-14T23:44:35.010Z",
+      "pixelGeometry": {
+        "x": 320,
+        "y": 180,
+        "width": 160,
+        "height": 90
+      },
+      "deletedAt": null
+    }
+  ]
+}

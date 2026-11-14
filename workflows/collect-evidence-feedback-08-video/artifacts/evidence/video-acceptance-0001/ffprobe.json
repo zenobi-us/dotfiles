@@ -1,0 +1,73 @@
+{
+    "streams": [
+        {
+            "index": 0,
+            "codec_name": "vp8",
+            "codec_long_name": "On2 VP8",
+            "profile": "0",
+            "codec_type": "video",
+            "codec_tag_string": "[0][0][0][0]",
+            "codec_tag": "0x0000",
+            "mime_codec_string": "vp8",
+            "width": 800,
+            "height": 450,
+            "coded_width": 800,
+            "coded_height": 450,
+            "has_b_frames": 0,
+            "sample_aspect_ratio": "1:1",
+            "display_aspect_ratio": "16:9",
+            "pix_fmt": "yuv420p",
+            "level": -99,
+            "chroma_location": "center",
+            "field_order": "progressive",
+            "r_frame_rate": "25/1",
+            "avg_frame_rate": "25/1",
+            "time_base": "1/1000",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "disposition": {
+                "default": 1,
+                "dub": 0,
+                "original": 0,
+                "comment": 0,
+                "lyrics": 0,
+                "karaoke": 0,
+                "forced": 0,
+                "hearing_impaired": 0,
+                "visual_impaired": 0,
+                "clean_effects": 0,
+                "attached_pic": 0,
+                "timed_thumbnails": 0,
+                "non_diegetic": 0,
+                "captions": 0,
+                "descriptions": 0,
+                "metadata": 0,
+                "dependent": 0,
+                "still_image": 0,
+                "multilayer": 0
+            },
+            "tags": {
+                "language": "eng",
+                "ENCODER": "Lavc61.3.100 libvpx",
+                "DURATION": "00:00:03.200000000"
+            }
+        }
+    ],
+    "format": {
+        "filename": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-08-video/artifacts/evidence/video-acceptance-0001/capture/cases/sequence/media/step-001-case-recording--capture-001.webm",
+        "nb_streams": 1,
+        "nb_programs": 0,
+        "nb_stream_groups": 0,
+        "format_name": "matroska,webm",
+        "format_long_name": "Matroska / WebM",
+        "start_time": "0.000000",
+        "duration": "3.200000",
+        "size": "45646",
+        "bit_rate": "114115",
+        "probe_score": 100,
+        "tags": {
+            "creation_time": "2026-11-14T23:38:33.200000Z",
+            "ENCODER": "Lavf61.1.100"
+        }
+    }
+}

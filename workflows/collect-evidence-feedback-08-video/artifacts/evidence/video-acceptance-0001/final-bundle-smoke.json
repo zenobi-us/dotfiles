@@ -1,0 +1,15 @@
+{
+  "bundleBytes": 345505,
+  "currentTime": 3.199,
+  "paused": true,
+  "videoWidth": 800,
+  "videoHeight": 450,
+  "canvasLabel": "Paused recording annotation canvas",
+  "zoomLabel": "Recording zoom",
+  "savedNoteOpened": true,
+  "pointDraftCreatedAndCancelled": true,
+  "pid": 1009266,
+  "shutdown": "stopped",
+  "port18871Closed": true,
+  "writerLockAbsent": true
+}

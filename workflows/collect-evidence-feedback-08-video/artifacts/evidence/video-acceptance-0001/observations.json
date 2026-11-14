@@ -1,0 +1,49 @@
+{
+  "schema": "video-acceptance/v1",
+  "recorder": "playwright-cli 0.1.22",
+  "decodedBy": "ffmpeg -v error -i <recording.webm> -f null -: exit 0",
+  "browser": {
+    "red": {
+      "mediaTimeSeconds": 0.8086,
+      "pixel": [
+        241,
+        20,
+        22,
+        255
+      ]
+    },
+    "blue": {
+      "mediaTimeSeconds": 3.2,
+      "pixel": [
+        21,
+        20,
+        239,
+        255
+      ]
+    },
+    "videoWidth": 800,
+    "videoHeight": 450,
+    "durationSeconds": 3.2,
+    "savedRedDraftReload": true,
+    "restartedSavedNavigation": true
+  },
+  "rangeRegression": {
+    "before": "Chrome seeking returned to time 0 without byte range support",
+    "after": "Keyboard range seek reached 3.2; a 3.199 second note saved and reopened after restart"
+  },
+  "cleanup": {
+    "servicePids": [
+      893488,
+      897054,
+      920930,
+      973041
+    ],
+    "writerLockAbsent": true,
+    "portClosed": true,
+    "browserTabClosed": true
+  },
+  "limitations": [
+    "Playback timestamps are not exact-frame guarantees or object tracking.",
+    "Surf public capture was blocked by absent /tmp/surf.sock; no Surf capture is claimed."
+  ]
+}

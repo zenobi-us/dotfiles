@@ -1,0 +1,32 @@
+[
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "validate",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-08-video/artifacts/evidence/video-acceptance-0001/capture",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "validate",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-08-video/artifacts/evidence/video-acceptance-0001/feedback",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "export",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-08-video/artifacts/evidence/video-acceptance-0001/feedback",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0
+  }
+]
