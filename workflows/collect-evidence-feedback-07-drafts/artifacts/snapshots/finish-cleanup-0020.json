@@ -1,0 +1,17 @@
+{
+  "removed": [
+    "resolve/collect-evidence-feedback-07-drafts",
+    "integration/9efb02b0-e2c9-401a-8ab5-a0a8df44da86"
+  ],
+  "preserved": [
+    {
+      "branch": "feature/collect-evidence-feedback-07-drafts",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-07-drafts",
+      "reason": "Worktrunk state would_conflict; clean but not integrated/prune candidate due generated version conflict"
+    }
+  ],
+  "source_workspace_removed": true,
+  "candidate_workspace_removed": true,
+  "original_source_workspace_removed": false,
+  "phase_workspace_closed": true
+}

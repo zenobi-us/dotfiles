@@ -335,15 +335,15 @@ None. The independent review found no blocking findings.
 
 ## Remaining findings
 
-None for the reviewed source. Integration must still assess current-base compatibility.
+None. Resolved-source compatibility review and candidate-bound integration checks passed.
 
 ## Latest reviewer verdict
 
-SUCCESS at `adc77612bfbb3b8229aefff665848a4f79d963a1`, tree `d7498cc01ce684304b672b84cacd0c792d32edf2`.
+SUCCESS at `dbc3a9569818c70c2a682cfba829068203139dab`, tree `75c2c9dc30ad1c5221205618b979e1d805429f12`. Original product review retained; targeted resolution review passed.
 
 ## Merge status
 
-Not merged or pushed. The ticket remains claimed. Review is complete; integration requires finish or submit.
+Published squash `13fff823b79e6daab06100fa68133227ed78fa27` to origin/master; ticket completed. Original feature-branch cleanup remains pending because Worktrunk refuses removal.
 
 ## Limits
 
@@ -362,3 +362,14 @@ None.
 - [Implementation result receipt](../events/implementation-0002.yaml).
 - [Implementation snapshot](../artifacts/snapshots/pr-draft-implementation-0002.md).
 
+
+
+## Finish outcome
+
+Squash integration `13fff823b79e6daab06100fa68133227ed78fa27` was validated in its isolated candidate and published to `origin/master`. The ticket is completed. Candidate-bound public CLI, HTTP and browser workflow exited 0.
+
+The original product review remains [review-result-0006](../events/review-result-0006.yaml). The [resolved-source review](../artifacts/reviews/review-review-result-0013.md) returned SUCCESS for `dbc3a9569818c70c2a682cfba829068203139dab`; its [parent completion](../events/review-complete-0014.yaml) validates the result and shutdown. Generated plugin metadata is consistently 0.2.39 after the commit hook. Product source is byte-identical to the original reviewed source.
+
+See [integration evidence](../artifacts/snapshots/finish-integration-0017.json), [ticket completion](../events/finish-ticket-completed-0019.yaml) and [cleanup outcome](../events/finish-cleanup-pending-0020.yaml).
+
+Cleanup is pending only for `feature/collect-evidence-feedback-07-drafts`. Worktrunk reports `would_conflict` and refuses guarded removal. The resolved source and integration candidate workspaces and branches were removed. All phase-owned child shutdown is confirmed. Unrelated workspaces and dirty base changes remain untouched. Do not repeat integration or ticket completion.

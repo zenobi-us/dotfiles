@@ -1,0 +1,49 @@
+{
+  "decision": {
+    "action": "finish",
+    "mode": "reconcile",
+    "label": "Reconcile finish",
+    "reason": "Integration is recorded. Reconcile publication, ticket completion, and cleanup without repeating the merge.",
+    "requiredApproval": true,
+    "parentReceipt": "workflows/collect-evidence-feedback-07-drafts/events/finish-cleanup-pending-0020.yaml",
+    "inputs": [
+      "tracker/tickets/collect-evidence-feedback-07-drafts.md",
+      "workflows/collect-evidence-feedback-07-drafts/events/finish-cleanup-pending-0020.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/finish-ticket-completed-0019.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/finish-pushed-0018.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/finish-merged-0017.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/finish-prepared-0016.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/finish-start-0015.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/review-complete-0014.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/review-result-0013.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/artifacts/reviews/review-review-result-0013.md",
+      "workflows/collect-evidence-feedback-07-drafts/events/review-start-0012.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/finish-conflict-0010.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/finish-start-0009.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/finish-approval-0008.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/review-complete-0007.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/review-result-0006.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/artifacts/reviews/review-review-result-0006.md",
+      "workflows/collect-evidence-feedback-07-drafts/events/review-start-0005.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/review-approval-0004.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/start-complete-0003.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/implementation-0002.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/artifacts/snapshots/pr-draft-implementation-0002.md",
+      "workflows/collect-evidence-feedback-07-drafts/manifest.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/projections/pr-draft.md",
+      "workflows/collect-evidence-feedback-07-drafts/projections/implementation-log.md",
+      "workflows/collect-evidence-feedback-07-drafts/projections/latest-status.yaml",
+      "workflows/collect-evidence-feedback-07-drafts/events/start-0001.yaml"
+    ]
+  },
+  "diagnostics": [
+    {
+      "ref": "workflows/collect-evidence-feedback-07-drafts/events/finish-cleanup-pending-0020.yaml",
+      "code": "cleanup_pending",
+      "severity": "error",
+      "message": "The receipt records publication and ticket completion, but cleanup remains pending. Verify finish state without repeating implementation or integration."
+    }
+  ],
+  "ticket_state": "completed",
+  "checked_at": "2026-11-14T23:23:39.619Z"
+}

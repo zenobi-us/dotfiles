@@ -216,3 +216,14 @@ The independent reviewer and parent each ran the real public workflow: 1 pass, 0
 ### Unresolved questions
 
 None. Merge and push have not run. Owned reviewer, axis sessions, browser and service shutdown are confirmed.
+
+
+## Finish outcome
+
+Squash integration `13fff823b79e6daab06100fa68133227ed78fa27` was validated in its isolated candidate and published to `origin/master`. The ticket is completed. Candidate-bound public CLI, HTTP and browser workflow exited 0.
+
+The original product review remains [review-result-0006](../events/review-result-0006.yaml). The [resolved-source review](../artifacts/reviews/review-review-result-0013.md) returned SUCCESS for `dbc3a9569818c70c2a682cfba829068203139dab`; its [parent completion](../events/review-complete-0014.yaml) validates the result and shutdown. Generated plugin metadata is consistently 0.2.39 after the commit hook. Product source is byte-identical to the original reviewed source.
+
+See [integration evidence](../artifacts/snapshots/finish-integration-0017.json), [ticket completion](../events/finish-ticket-completed-0019.yaml) and [cleanup outcome](../events/finish-cleanup-pending-0020.yaml).
+
+Cleanup is pending only for `feature/collect-evidence-feedback-07-drafts`. Worktrunk reports `would_conflict` and refuses guarded removal. The resolved source and integration candidate workspaces and branches were removed. All phase-owned child shutdown is confirmed. Unrelated workspaces and dirty base changes remain untouched. Do not repeat integration or ticket completion.
