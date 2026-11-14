@@ -1,10 +1,11 @@
 // Screenshot geometry stays normalized; only the server derives original-pixel bounds.
-// Drafts stay in memory. A stable request body makes an uncertain save safe to retry.
+// The shared draft store retains identity and retry preconditions when this image unmounts.
 import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import type { Annotation, AnnotationInput, AnnotationResponse, AnnotationsResponse, Asset, Geometry, Priority } from '../types';
+import { useDrafts } from '../drafts';
 
 const priorities: [Priority, string][] = [['P1', 'Blocker'], ['P2', 'Friction'], ['P3', 'Polish']];
 const clamp = (value: number, max = 1) => Math.max(0, Math.min(max, value));
@@ -23,17 +24,31 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
   asset: Asset; sessionId: string; writeToken: string; onError: () => void;
 }) {
   const [annotations, setAnnotations] = useState<Annotation[]>([]);
-  const [draft, setDraft] = useState<AnnotationInput>();
+  const { store, memoryOnly } = useDrafts();
+  const record = store.get(asset);
+  const draft = record?.annotation;
+  const baseRevision = record?.startingRevision ?? undefined;
+  const setBaseRevision = (revision: number | undefined) => store.update(asset, current => ({ ...current, startingRevision: revision ?? null }));
+  function setDraft(change: AnnotationInput | undefined | ((current: AnnotationInput | undefined) => AnnotationInput | undefined)) {
+    const next = typeof change === 'function' ? change(store.get(asset)?.annotation) : change;
+    if (next) store.update(asset, current => ({ ...current, annotation: next }));
+    else store.remove(asset);
+  }
   const [selectedId, setSelectedId] = useState<string>();
-  const [baseRevision, setBaseRevision] = useState<number>();
   const [conflict, setConflict] = useState<Annotation>();
   const [zoom, setZoom] = useState(1);
   const [ready, setReady] = useState(false);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
   const [loadAttempt, setLoadAttempt] = useState(0);
-  const [saveError, setSaveError] = useState('');
-  const [saving, setSaving] = useState(false);
+  const [mutationError, setMutationError] = useState('');
+  const saveError = record?.error || mutationError;
+  function setSaveError(error: string) {
+    setMutationError(error);
+    store.update(asset, current => ({ ...current, error }));
+  }
+  const saving = store.isBusy(asset);
+  const setSaving = (busy: boolean) => store.setBusy(asset, busy);
   const [savedId, setSavedId] = useState<string>();
   const [etag, setEtag] = useState('');
   const [position, setPosition] = useState({ left: 8, top: 8 });
@@ -43,7 +58,10 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
   const draftPin = useRef<HTMLButtonElement>(null);
   const selectedPin = useRef<HTMLButtonElement>(null);
   const drawing = useRef<{ x: number; y: number; pointerId: number } | undefined>(undefined);
-  const submitted = useRef<AnnotationInput | undefined>(undefined);
+  const submitted = {
+    get current() { return store.get(asset)?.submitted; },
+    set current(value: AnnotationInput | undefined) { store.update(asset, current => ({ ...current, submitted: value })); },
+  };
   const inFlight = useRef(false);
   const selected = draft ?? annotations.find(note => note.id === selectedId);
   const selectedRevision = annotations.find(note => note.id === selectedId)?.revision;
@@ -62,12 +80,6 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
     return () => abort.abort();
   }, [sessionId, asset.id, asset.sha256, loadAttempt]);
 
-  useEffect(() => {
-    if (!draft) return;
-    function warn(event: BeforeUnloadEvent) { event.preventDefault(); event.returnValue = ''; }
-    window.addEventListener('beforeunload', warn);
-    return () => window.removeEventListener('beforeunload', warn);
-  }, [!!draft]);
 
   // Use viewport coordinates for the portal so inspector scrolling cannot clip it.
   useLayoutEffect(() => {
@@ -142,11 +154,11 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
     setSaveError('');
     setSavedId(undefined);
     setSelectedId(undefined);
-    setDraft({ schema: 'collect-feedback/v1', kind: 'annotation', id: crypto.randomUUID(), sessionId, caseId: asset.caseId, assetId: asset.id, sourceSha256: asset.sha256, originalWidth: asset.width!, originalHeight: asset.height!, geometry, priority: 'P2', comment: '' });
+    store.put({ schema: 'collect-feedback/v1', kind: 'draft', startingRevision: null, annotation: { schema: 'collect-feedback/v1', kind: 'annotation', id: crypto.randomUUID(), sessionId, caseId: asset.caseId, assetId: asset.id, sourceSha256: asset.sha256, originalWidth: asset.width!, originalHeight: asset.height!, geometry, priority: 'P2', comment: '' } });
     if (focus) requestAnimationFrame(() => draftPin.current?.focus());
   }
   function cancel() {
-    if (inFlight.current) return;
+    if (inFlight.current || store.isBusy(asset)) return;
     drawing.current = undefined;
     setDraft(undefined);
     setConflict(undefined);
@@ -178,14 +190,13 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
   }
   function edit(note: Annotation) {
     const { revision, createdAt: _createdAt, updatedAt: _updatedAt, pixelGeometry: _pixels, deletedAt: _deletedAt, ...input } = note;
-    setBaseRevision(revision);
-    setDraft(input);
+    store.put({ schema: 'collect-feedback/v1', kind: 'draft', startingRevision: revision, annotation: input });
     setSaveError('');
     setConflict(undefined);
     submitted.current = undefined;
   }
   async function tombstone(note: Annotation, restore = false, keepDraft = false) {
-    if (inFlight.current) return;
+    if (inFlight.current || store.isBusy(asset)) return;
     inFlight.current = true; setSaving(true); setSaveError('');
     try {
       const response = await fetch(`/api/v1/annotations/${note.id}`, {
@@ -217,7 +228,7 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
     finally { inFlight.current = false; setSaving(false); }
   }
   async function save() {
-    if (!draft || inFlight.current || !draft.comment.trim()) return;
+    if (!draft || inFlight.current || store.isBusy(asset) || loading || loadError || !ready || !draft.comment.trim()) return;
     // Freeze the first attempted payload: the server may have committed even if its response was lost.
     const payload = submitted.current ?? { ...draft, geometry: { ...draft.geometry }, comment: draft.comment.trim() };
     submitted.current = payload;
@@ -261,7 +272,7 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
         break;
       }
     } catch (cause: unknown) {
-      setSaveError(`${cause instanceof Error ? cause.message : String(cause)} Draft kept in memory. Retry sends the same note and ID.`);
+      setSaveError(`${cause instanceof Error ? cause.message : String(cause)} Draft retained. Retry sends the same note and ID.`);
     } finally {
       inFlight.current = false;
       setSaving(false);
@@ -313,10 +324,10 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
         <div className="priority-controls" role="group" aria-label="Priority">{priorities.map(([priority, label]) => <Button key={priority} type="button" variant="ghost" disabled={locked} aria-pressed={draft.priority === priority} className={`priority-${priority}`} onClick={() => setDraft(current => current && { ...current, priority })}><Badge variant="outline">{priority} {label}</Badge></Button>)}</div>
         <label className="comment-label" htmlFor={`comment-${draft.id}`}>Comment (required)</label>
         <textarea id={`comment-${draft.id}`} required value={draft.comment} readOnly={locked} onChange={event => setDraft(current => current && { ...current, comment: event.target.value })} rows={3} />
-        <p className="muted">Draft is memory-only until saved.</p>
+        <p className="muted">{memoryOnly ? 'Browser storage failed. Draft is memory-only and will not survive reload.' : 'Draft retained in this browser tab across navigation and reload. Not saved to the server.'}</p>
         {saveError && <p className="error" role="alert">{saveError}</p>}
         {conflict && <div role="group" aria-label="Saved version conflict"><p>Saved revision {conflict.revision} · {conflict.priority}{conflict.deletedAt ? ' · Deleted' : ''}</p><p className="saved-comment">{conflict.comment}</p><p className="muted">Saved geometry: {JSON.stringify(conflict.geometry)}</p>{conflict.deletedAt ? <Button type="button" variant="outline" disabled={saving} onClick={() => void tombstone(conflict, true, true)}>Undo deletion and keep draft</Button> : <Button type="button" variant="outline" disabled={saving} onClick={() => { setBaseRevision(conflict.revision); setAnnotations(current => [...current.filter(note => note.id !== conflict.id), conflict]); submitted.current = undefined; setConflict(undefined); setSaveError(''); }}>Use saved revision for next save</Button>}</div>}
-        <div className="annotation-actions"><Button type="button" variant="outline" disabled={saving} onClick={cancel}>Cancel</Button><Button type="submit" disabled={saving || !draft.comment.trim()}>{saving ? 'Saving…' : saveError ? 'Retry save' : 'Save note'}</Button></div>
+        <div className="annotation-actions"><Button type="button" variant="outline" disabled={saving} onClick={cancel}>Cancel</Button><Button type="submit" disabled={saving || loading || !!loadError || !ready || !draft.comment.trim()}>{saving ? 'Saving…' : saveError ? 'Retry save' : 'Save note'}</Button></div>
       </form> : <><Badge variant="outline" className={`priority-${selected.priority}`}>{selected.priority} {priorities.find(([priority]) => priority === selected.priority)?.[1]}</Badge><p className="saved-comment">{selected.comment}</p><p className="muted">Revision {selectedRevision}</p><div className="annotation-actions"><Button variant="outline" disabled={saving} onClick={() => edit(selected as Annotation)}>Edit note</Button><Button variant="outline" disabled={saving} onClick={() => void tombstone(selected as Annotation)}>Delete note</Button></div>{savedId === selected.id && <p className="save-ack" role="status">Saved · revision {selectedRevision}<span className="etag">ETag {etag}</span></p>}</>}
     </div>, document.body)}
   </div>;

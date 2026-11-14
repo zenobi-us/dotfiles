@@ -5,6 +5,8 @@ import { Badge } from './components/ui/badge';
 import { Separator } from './components/ui/separator';
 import { AnnotationImage } from './components/annotation-image';
 import type { Asset, Case, CasesResponse, Session, SessionResponse } from './types';
+import { DraftContext, DraftStore } from './drafts';
+import { DraftExport } from './components/draft-export';
 
 function text(value: unknown): string {
   if (value === undefined || value === null || value === '') return 'Unknown';
@@ -61,7 +63,7 @@ function AssetInspector({ asset, sessionId, writeToken }: { asset: Asset; sessio
   </>;
 }
 function App() {
-  const [data, setData] = useState<{ session: Session; cases: Case[]; writeToken: string }>();
+  const [data, setData] = useState<{ session: Session; cases: Case[]; writeToken: string; drafts: DraftStore }>();
   const [error, setError] = useState<string>();
   const [reload, setReload] = useState(0);
   const [caseId, setCaseId] = useState<string>();
@@ -78,7 +80,7 @@ function App() {
       request<SessionResponse>('/api/v1/session', 'session', abort.signal),
       request<CasesResponse>('/api/v1/cases', 'cases', abort.signal),
     ]).then(([session, cases]) => {
-      setData({ session: session.session, cases: cases.cases, writeToken: session.writeToken });
+      setData({ session: session.session, cases: cases.cases, writeToken: session.writeToken, drafts: new DraftStore(session.session.id, session.session.source.runId) });
       setCaseId(cases.cases[0]?.id);
       setAssetId(undefined);
     }).catch((cause: unknown) => {
@@ -101,8 +103,8 @@ function App() {
     if (originatingAsset.current?.isConnected) originatingAsset.current.focus({ preventScroll: true });
     else caseColumn.current?.focus({ preventScroll: true });
   }
-  return <div className="app">
-    <header className="app-header"><h1>Collect feedback <span className="muted">/ evidence viewer</span></h1><a href="/api/v1/export" target="_blank" rel="noreferrer">Export saved annotations ↗</a></header>
+  return <DraftContext.Provider value={data?.drafts}><div className="app">
+    <header className="app-header"><h1>Collect feedback <span className="muted">/ evidence viewer</span></h1>{data && <DraftExport cases={data.cases} open={(nextCase, nextAsset) => { setCaseId(nextCase); setAssetId(nextAsset); reveal(assetColumn.current, true); }} />}</header>
     {!data ? <main className="load-state" aria-live="polite">{error ? <><h2>Session unavailable</h2><p role="alert" className="error">{error}</p><Button variant="outline" onClick={() => setReload(value => value + 1)}>Reload session</Button></> : <p role="status">Loading session and cases…</p>}</main> : <main className="finder" aria-label="Evidence browser">
       <section className="column session-column" ref={sessionColumn} tabIndex={-1} aria-labelledby="session-title">
         <div className="column-heading"><h2 id="session-title">01 / Session</h2><Badge variant="outline">{data.cases.length} cases</Badge></div>
@@ -138,9 +140,9 @@ function App() {
       </section>
       <section className="column asset-column" ref={assetColumn} tabIndex={-1} aria-labelledby="asset-title" onKeyDown={event => { if (!event.defaultPrevented && event.key === 'ArrowLeft' && !(event.target as HTMLElement).closest('textarea, input, select, [contenteditable="true"], .annotation-workspace, .annotation-editor')) { event.preventDefault(); backToCases(); } }}>
         <div className="column-heading"><h2 id="asset-title">03 / Asset inspector</h2><Button variant="ghost" className="back" onClick={backToCases}>← Cases</Button></div>
-        <div className="column-body">{asset ? <AssetInspector key={`${caseId}/${asset.id}`} asset={asset} sessionId={data.session.id} writeToken={data.writeToken} /> : <p className="empty">Select an asset from the case to inspect its original media and capture metadata.</p>}</div>
+        <div className="column-body">{asset ? <AssetInspector key={`${caseId}/${asset.id}/${asset.sha256}`} asset={asset} sessionId={data.session.id} writeToken={data.writeToken} /> : <p className="empty">Select an asset from the case to inspect its original media and capture metadata.</p>}</div>
       </section>
     </main>}
-  </div>;
+  </div></DraftContext.Provider>;
 }
 createRoot(document.getElementById('root')!).render(<App />);

@@ -31,7 +31,7 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     await writeFile(join(repository, ".context-routes.toml"), 'schema = 2\n[records.alignment]\nadapter = "markdown"\nstore = "repository"\n[records.tickets]\nadapter = "local-markdown"\nstore = "repository"\n[records.initiatives]\nadapter = "markdown"\nstore = "repository"\n[records.sources]\nadapter = "files"\nstore = "inherit:alignment"\n[records.workflows]\nadapter = "files"\nstore = "repository"\n[records.evidence]\nadapter = "files"\nstore = "repository"\n');
     const work = join(root, "working");
     const initial = await collect(["init", work, "--repository", repository, "--workflow", "public", "--run", "source", "--driver", "playwright"]);
-    await writeFile(join(work, "plan.ts"), `export const plan = ${JSON.stringify({ schema: "collect-evidence/v1", kind: "plan", workId: "public", driver: "playwright", base: page.url.origin, approval: { origins: [page.url.origin], confirmations: [] }, tests: [{ id: "original", claim: "Inspect original pixels", pass: "Heading is present", fail: "Heading is absent", steps: [{ do: "navigate", says: "Open owned page", to: "/", shot: "" }, { do: "expect", says: "Read heading", locator: "h1", text: "Original evidence", shot: "original" }] }] })};`);
+    await writeFile(join(work, "plan.ts"), `export const plan = ${JSON.stringify({ schema: "collect-evidence/v1", kind: "plan", workId: "public", driver: "playwright", base: page.url.origin, approval: { origins: [page.url.origin], confirmations: [] }, tests: ["original", "other"].map(id => ({ id, claim: "Inspect original pixels", pass: "Heading is present", fail: "Heading is absent", steps: [{ do: "navigate", says: "Open owned page", to: "/", shot: "initial" }, { do: "expect", says: "Read heading", locator: "h1", text: "Original evidence", shot: "original" }] })) })};`);
     await collect(["render", work]); await collect(["compile", work]); await collect(["run", work]);
     const source = initial.destination.path;
     const options = ["--repository", repository, "--workflow", "public", "--session", "review"];
@@ -161,8 +161,10 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     expect(JSON.parse(await readFile(join(dir, "cases/original/annotations", input.id + ".json"), "utf8"))).toEqual(saved);
     const browserSession = `feedback-edits-${crypto.randomUUID()}`;
     async function browser(args: string[]) {
+      if (args.includes("run-code")) args[args.length - 1] = args.at(-1)!.replace(/\}\s*$/, 'return "feedback-browser-complete"; }');
       const child = Bun.spawn(["playwright-cli", ...args], { cwd: root, env: { ...process.env, PLAYWRIGHT_CLI_SESSION: browserSession }, stdout: "pipe", stderr: "pipe" });
       const [out, err] = await Promise.all([new Response(child.stdout).text(), new Response(child.stderr).text()]);
+      if (args.includes("run-code") && !out.includes("feedback-browser-complete")) throw new Error("Browser scenario did not finish: " + out + err);
       if (await child.exited !== 0 || /^### Error/m.test(out)) throw new Error(out + err);
     }
     try {
@@ -171,6 +173,22 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
         await page.locator('nav[aria-label="Assets"] button').first().click();
         await page.locator('.annotation-pin').click();
         if (await page.locator('textarea').count()) throw Error('Selection created a draft');
+        await page.getByRole('button', { name: 'Edit note', exact: true }).click();
+        await page.locator('textarea').fill('Draft survives navigation and reload');
+        await page.locator('nav[aria-label="Assets"] button').last().click();
+        if (await page.locator('textarea').count()) throw Error('Draft moved to another asset');
+        await page.locator('nav[aria-label="Cases"] button').last().click();
+        await page.locator('nav[aria-label="Assets"] button').first().click();
+        if (await page.locator('textarea').count()) throw Error('Draft moved to another case');
+        await page.locator('nav[aria-label="Cases"] button').first().click();
+        await page.locator('nav[aria-label="Assets"] button').first().click();
+        if (await page.locator('textarea').inputValue() !== 'Draft survives navigation and reload') throw Error('Navigation lost draft');
+        page.on('dialog', dialog => dialog.accept());
+        await page.reload();
+        await page.locator('nav[aria-label="Assets"] button').first().click();
+        if (await page.locator('textarea').inputValue() !== 'Draft survives navigation and reload') throw Error('Reload lost draft');
+        await page.getByRole('button', { name: 'Cancel', exact: true }).click();
+        await page.locator('.annotation-pin').click();
         await page.getByRole('button', { name: 'Edit note', exact: true }).click();
         await page.locator('textarea').fill('Retry after a lost acknowledgement');
         let dropped = false;
@@ -182,7 +200,7 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
           } else await route.continue();
         });
         await page.getByRole('button', { name: 'Save note', exact: true }).click();
-        await page.getByRole('alert').filter({ hasText: 'Draft kept in memory' }).waitFor();
+        await page.locator('.annotation-editor [role="alert"]').waitFor();
         if (await page.locator('textarea').inputValue() !== 'Retry after a lost acknowledgement') throw Error('Lost retry draft');
         await page.getByRole('button', { name: 'Retry save', exact: true }).click();
         await page.getByRole('status').filter({ hasText: 'Saved · revision 6' }).waitFor();
@@ -194,10 +212,14 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
           await second.locator('.annotation-pin').click();
           await second.getByRole('button', { name: 'Edit note', exact: true }).click();
           await second.locator('textarea').fill('Preserved second-client draft');
+          second.on('dialog', dialog => dialog.accept());
           await page.getByRole('button', { name: 'Edit note', exact: true }).click();
           await page.locator('textarea').fill('New first-client revision');
           await page.getByRole('button', { name: 'Save note', exact: true }).click();
           await page.getByRole('status').filter({ hasText: 'Saved · revision 7' }).waitFor();
+          await second.reload();
+          await second.locator('nav[aria-label="Assets"] button').first().click();
+          if (await second.locator('textarea').inputValue() !== 'Preserved second-client draft') throw Error('Reload lost concurrent draft');
           await second.getByRole('button', { name: 'Save note', exact: true }).click();
           await second.getByRole('group', { name: 'Saved version conflict' }).waitFor();
           if (await second.locator('textarea').inputValue() !== 'Preserved second-client draft') throw Error('Conflict lost draft');
@@ -257,6 +279,71 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     } finally { await browser(["close"]); }
     saved = (await (await fetch(origin + "/api/v1/export")).json()).annotations[0];
     expect(saved).toMatchObject({ id: input.id, revision: 13, comment: "Draft survives deletion and stale restoration", priority: "P3", geometry: input.geometry, sourceSha256: input.sourceSha256 });
+    await browser(["open", origin]);
+    try {
+      await browser(["--raw", "run-code", `async page => {
+        page.on('dialog', dialog => dialog.accept());
+        await page.locator('nav[aria-label="Assets"] button').first().click();
+        await page.locator('.annotation-pin').click();
+        const popup = page.waitForEvent('popup');
+        await page.getByRole('button', { name: 'Export saved annotations' }).click();
+        const exported = await popup;
+        await exported.waitForLoadState();
+        const body = JSON.parse(await exported.locator('body').innerText());
+        if (body.annotations[0].comment !== 'Draft survives deletion and stale restoration' || body.annotations[0].sourceSha256 !== ${JSON.stringify(asset.sha256)}) throw Error('Unchanged saved selection blocked or changed export');
+        await exported.close();
+        await page.getByRole('button', { name: 'Close annotation', exact: true }).click();
+        await page.getByRole('button', { name: 'Box', exact: true }).click();
+        await page.locator('textarea').fill('Retain this comment after real disk failure');
+      }`]);
+      const annotationDirectory = join(dir, "cases/original/annotations");
+      await chmod(annotationDirectory, 0o500);
+      try {
+        await browser(["--raw", "run-code", `async page => {
+          const failure = page.waitForResponse(response => response.request().method() === 'POST' && !response.ok());
+          await page.getByRole('button', { name: 'Save note', exact: true }).click();
+          await failure;
+          await page.locator('.annotation-editor [role="alert"]').waitFor();
+          if (await page.getByRole('status').filter({ hasText: 'Saved ·' }).count()) throw Error('Failed disk write showed Saved');
+          await page.reload();
+          await page.locator('nav[aria-label="Assets"] button').first().click();
+          if (await page.locator('textarea').inputValue() !== 'Retain this comment after real disk failure') throw Error('Failed disk write lost recovered comment');
+          await page.locator('nav[aria-label="Cases"] button').last().click();
+          await page.getByRole('button', { name: 'Export saved annotations' }).click();
+          await page.getByRole('region', { name: 'Resolve unfinished drafts' }).waitFor();
+          await page.getByRole('button', { name: 'Open draft', exact: true }).click();
+          if (await page.locator('textarea').inputValue() !== 'Retain this comment after real disk failure') throw Error('Export resolution lost comment');
+        }`]);
+      } finally { await chmod(annotationDirectory, 0o700); }
+      await browser(["--raw", "run-code", `async page => {
+        await page.getByRole('button', { name: 'Retry save', exact: true }).click();
+        await page.getByRole('status').filter({ hasText: 'Saved · revision 1' }).waitFor();
+        const body = await page.evaluate(async () => (await (await fetch('/api/v1/export')).json()));
+        const recovered = body.annotations.find(note => note.comment === 'Retain this comment after real disk failure');
+        if (!recovered || recovered.sourceSha256 !== ${JSON.stringify(asset.sha256)} || recovered.assetId !== ${JSON.stringify(asset.id)} || recovered.geometry.width !== .2) throw Error('Disk retry changed source or geometry');
+        await page.getByRole('button', { name: 'Close annotation', exact: true }).click();
+        await page.evaluate(() => { window.originalStorageSet = Storage.prototype.setItem; Storage.prototype.setItem = () => { throw new DOMException('Storage disabled', 'QuotaExceededError'); }; });
+        await page.getByRole('button', { name: 'Point', exact: true }).click();
+        await page.locator('textarea').fill('Memory-only comment stays available');
+        await page.getByRole('alert').filter({ hasText: 'Drafts are memory-only' }).waitFor();
+        await page.locator('nav[aria-label="Cases"] button').last().click();
+        await page.getByRole('button', { name: 'Export saved annotations' }).click();
+        await page.getByRole('region', { name: 'Resolve unfinished drafts' }).waitFor();
+        await page.getByRole('button', { name: 'Open draft', exact: true }).click();
+        if (await page.locator('textarea').inputValue() !== 'Memory-only comment stays available') throw Error('Browser storage failure lost in-memory comment');
+        await page.getByRole('button', { name: 'Export saved annotations' }).click();
+        await page.evaluate(() => { Storage.prototype.setItem = window.originalStorageSet; });
+        await page.getByRole('button', { name: 'Discard draft', exact: true }).click();
+        const popup = page.waitForEvent('popup');
+        await page.getByRole('button', { name: 'Export saved annotations' }).click();
+        const exported = await popup;
+        await exported.waitForLoadState();
+        const result = JSON.parse(await exported.locator('body').innerText());
+        if (result.annotations.some(note => note.comment === 'Memory-only comment stays available') || result.annotations.length !== 2) throw Error('Discard did not resolve complete export');
+        await exported.close();
+      }`]);
+    } finally { await browser(["close"]); }
+    const durableNotes = (await (await fetch(origin + "/api/v1/export")).json()).annotations;
     for (const [path, init, status] of [
       ["/api/v1/session", { headers: { Host: "attacker.invalid" } }, 403],
       ["/api/v1/cases", { headers: { Origin: "https://attacker.invalid" } }, 403],
@@ -284,8 +371,8 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     child.kill("SIGTERM"); expect(await child.exited).toBe(0);
     expect(await Bun.file(join(dir, ".writer.lock")).exists()).toBe(false);
     const restarted = await start(dir, port, direct);
-    expect((await (await fetch(origin + "/api/v1/annotations")).json()).annotations).toEqual([saved]);
-    expect((await invoke(["export", dir])).data.annotations).toEqual([saved]);
+    expect((await (await fetch(origin + "/api/v1/annotations")).json()).annotations).toEqual(durableNotes);
+    expect((await invoke(["export", dir])).data.annotations).toEqual(durableNotes);
     restarted.kill("SIGINT"); expect(await restarted.exited).toBe(0);
     expect(await Bun.file(join(dir, ".writer.lock")).exists()).toBe(false);
     const annotationPath = join(dir, "cases/original/annotations", input.id + ".json");

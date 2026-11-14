@@ -6,6 +6,10 @@ kind: changelog
 
 ## Unreleased
 
+- **Recover browser drafts:** Retain versioned, identity-bound drafts across case and asset navigation and reload in the same browser tab. Keep starting revisions and frozen retry payloads. Show memory-only warnings when browser storage fails.
+- **Resolve complete exports:** Require save or explicit discard of every unfinished browser draft. Keep unchanged saved-note selection clean. Keep CLI and direct API exports limited to authoritative saved records.
+- **Verify failure recovery:** Exercise real disk-write failures, browser storage failures, concurrent revisions after reload, retry identity and correct source hashes through public commands and the bundled page.
+
 - **Recover deleted-note conflicts:** Undo the displayed tombstone while keeping the draft and its identity. A stale undo refreshes the conflict without adopting its revision. Save the retained draft explicitly after restoration.
 
 - **Edit and undo notes:** Select saved pins without a draft. Edit comments, priorities and geometry. Delete with reversible tombstones and restore the same identity after reload or restart.
@@ -31,5 +35,3 @@ kind: changelog
 - **Browse original media:** Open a prebuilt Base Nova inspector with independent session, case and asset columns. Keep horizontal drill-down on narrow screens.
 - **Serve bounded reads:** Use one explicit-port loopback service for both entrypoints. Enforce registered paths, Host, Origin, request limits and an exclusive session writer lock.
 - **Keep capability explicit:** Support init, validate and read-only serve. Annotation editing, draft recovery and export are not part of this release.
-
-
