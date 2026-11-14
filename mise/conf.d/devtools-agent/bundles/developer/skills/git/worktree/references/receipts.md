@@ -4,7 +4,11 @@ Use receipts as the durable record for every worktree phase.
 
 New phase executions use `worktree-receipt/v2`. Retained `worktree-receipt/v1` events and explicitly authorized v1 envelope repairs keep their original semantics. Preserve original bytes. Mixed parent chains are valid. Read [Concurrent work streams](concurrency.md) before start, review, goal dispatch or finish. It owns cross-initiative coordination and the distinction between source review and integration validation.
 
-Use the absolute installed `scripts/write-result.ts` with `--parent-event --repository <absolute-repository> --input <event.json>` for parent records. Omit `--parent-event` for child results and use the assigned v2 delivery context. Parent writes do not consume child result slots. The writer validates store/source identity and refuses duplicate events.
+Use the absolute installed `scripts/write-result.ts` with `--parent-event --repository <absolute-repository> --input <event.json>` for parent records. Omit `--parent-event` for child results and use the assigned v2 delivery context. Parent writes do not consume child result slots. The writer validates store/source identity and refuses duplicate events. Before publishing v2 events, it also checks the parent identity and timestamp. A child result must name its matching phase-start receipt for the same ticket. A successful phase completion must name its matching child result and preserve that result’s source commit, tree, branch and status. Failed launches can close an attempt without a child result.
+
+The read-only inspector includes per-receipt `diagnostics` in its JSON output. Diagnostics have `ref`, `code`, `severity` and `message` fields. It reports unavailable historical roots, unavailable source objects, inconsistent source trees, parent chronology and completion bindings together. Coordination mode checks envelopes and links without probing source objects. V1 reconciliation differences remain warnings; they do not establish a new successful review or finish. Valid checksum-bound history supplements appear as information, not unresolved defects. A published, ticket-completed finish with failed worktree cleanup reports `cleanup_pending`; it does not authorize another implementation or integration.
+
+Coordinator journal kinds use lowercase underscore-separated names. Noncanonical kinds and timestamps that precede their ancestors make reservations ambiguous. Preserve the original events and obtain authorization before appending a reconciliation.
 
 ## Workflow layout
 
@@ -112,7 +116,7 @@ fields returned by `"$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts" r
 `workflow.root` is the store root. It is not the returned `path`, which includes
 `workflows/<ticket-id>`. Never substitute the workflow directory for the store root.
 
-Finish runs in the parent session and MAY record `pane_id: null` before or after ticket completion. A phase-start receipt MAY record `pane_id: null`, because the parent writes it before the pane opens. A parent `phase-complete` receipt MAY also record `pane_id: null` after the child pane closes, but MUST name a non-empty parent session ID. This does not waive session identity, receipt provenance, or recovery evidence. Child implementation, review, and fix results still require their child pane identity.
+Finish runs in the parent session and MAY record `pane_id: null` before or after ticket completion. A phase-start receipt MAY record `pane_id: null`, because the parent writes it before the pane opens. Parent `phase-complete`, `operator-approval`, and `operator-decision-required` receipts MAY record `pane_id: null`, but MUST name a non-empty parent session ID. Operator records identify the parent decision; they do not require a child pane. This does not waive session identity, receipt provenance, or recovery evidence. Child implementation, review, and fix results still require their child pane identity.
 
 For active workflows, `repository` MAY name another existing checkout of the same Git repository. The inspector MUST verify that both checkouts resolve to the same real Git common directory. A matching origin or source commit alone is insufficient. Repository workflow roots may retain the recorded parent repository or source worktree root when both share the current store’s Git common directory. Shared workflow roots must match the independently resolved store. A retained repository-store root MAY name its recorded source worktree when the inspector proves that it shares the current store’s Git common directory. Store and workflow references MUST still match. This permits byte-identical receipt copies in the base checkout while a review target remains frozen. These checks do not normalize or rewrite receipt fields.
 
@@ -391,3 +395,5 @@ REVIEWING → REVIEW_PASSED → FINISHING → FINISHED
 ```
 
 Require valid implementation/fix evidence for a new review target, current persisted `FAILURE` findings for a new fix, and a `SUCCESS` receipt covering the current clean source commit and tree for a new merge. These gates do not prohibit recovery of incomplete attempts selected by the shared decision: preserve partial start/fix source and reconcile valid results before choosing the next phase. Invalidate both review verdicts on subsequent source changes. After a verified merge, finish recovery uses the recorded reviewed-source-to-integration mapping; source-worktree removal does not invalidate that durable evidence.
+
+

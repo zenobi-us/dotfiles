@@ -6,7 +6,7 @@ modelRoles:
   slow: strata/qwen3.8-flash-next-coder-iq1_m
 symbolPreset: unicode
 theme:
-  dark: dark-rose-pine
+  dark: dark-github
   light: dark-rose-pine
 setupVersion: 3
 extensions:
@@ -72,3 +72,5 @@ codexResets:
 hideThinkingBlock: true
 update:
   auto: false
+out:
+  enabled: true

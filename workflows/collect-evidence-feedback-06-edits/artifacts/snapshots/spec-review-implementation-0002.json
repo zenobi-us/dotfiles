@@ -1,0 +1,14 @@
+{
+  "axis": "spec",
+  "findings": [
+    {
+      "description": "An acknowledged-response failure cannot recover an edited note through Retry save. If PATCH commits revision N+1 but its response is lost or unreadable, baseRevision remains N. Every retry sends If-Match N and receives 412. submitted.current also keeps the textarea read-only. The user must cancel the preserved draft to resume editing. This only partially meets initiative rule 45: a failed save keeps the draft and offers retry.",
+      "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/components/annotation-image.tsx",
+      "line": 210,
+      "requiredChange": "Reconcile an uncertain PATCH result against the current saved annotation without discarding the draft. If the current record confirms the submitted edit, acknowledge that saved revision. Otherwise retain the draft and expose conflict recovery without silently overwriting a newer revision.",
+      "severity": "P2"
+    }
+  ],
+  "schema": "code-review/v1",
+  "summary": "Static review of unstaged and staged collect-feedback changes against ticket collect-evidence-feedback-06-edits and its initiative. One failed-save recovery gap. Identity preservation, revision preconditions, tombstones, source checks and selection behavior otherwise match the reviewed requirements. No persistent-draft or video scope creep found. Supplied browser smoke and 115-assertion results were not rerun; no builds, tests or source changes performed."
+}

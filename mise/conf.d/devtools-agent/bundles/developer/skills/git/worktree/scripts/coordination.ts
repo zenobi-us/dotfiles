@@ -206,9 +206,9 @@ export async function loadCoordination(context: SharedAgentContext, ref: string,
       const active = archived
         ? inspection?.source.state === "available" || inspection?.ownership === "active" || outstanding || Boolean(retained?.length)
         : !isUnstarted(candidate) || workflow.receipts.length > 0 || Boolean(workflow.events?.length) || Boolean(workflow.error)
-          || inspection?.source.state === "available" || Boolean(inspection?.source.candidates) || inspection?.ownership === "active"
-          || Boolean(inspection?.commits.some(commit => commit.kind === "source")) || pending.length > 0
-          || Boolean(inspection?.inventoryError || inspection?.commitsError || inspection?.source.error);
+        || inspection?.source.state === "available" || Boolean(inspection?.source.candidates) || inspection?.ownership === "active"
+        || Boolean(inspection?.commits.some(commit => commit.kind === "source")) || pending.length > 0
+        || Boolean(inspection?.inventoryError || inspection?.commitsError || inspection?.source.error);
       if (!active || candidate.ref === ref) continue;
       const stream = await streamScope(candidate, workflow, pending, inventoryExec);
       stream.initiatives = memberships(snapshot, candidate.id);
@@ -299,8 +299,10 @@ async function observeSource(ticket: ExplorerTicket, workflow: WorkflowReadResul
   if (candidates.some(workspace => /🤖|💬|(?:^|\W)(?:working|waiting|active)(?:$|\W)/i.test(workspace.marker ?? ""))) inspection.ownership = "active";
   const matches = latest ? candidates.filter(workspace => workspace.path === recordedPath) : candidates;
   if (!matches.length) {
-    inspection.source = { state: recordedPath ? "unknown" : "missing", path: latest?.workspacePath, candidates: candidates.length,
-      ...(latest && (!isCompleted(ticket) || inspection.ownership === "active") ? { error: "Recorded source workspace is unavailable in the current inventory. A matching branch does not establish a replacement workspace." } : {}) };
+    inspection.source = {
+      state: recordedPath ? "unknown" : "missing", path: latest?.workspacePath, candidates: candidates.length,
+      ...(latest && (!isCompleted(ticket) || inspection.ownership === "active") ? { error: "Recorded source workspace is unavailable in the current inventory. A matching branch does not establish a replacement workspace." } : {})
+    };
     return;
   }
   if (matches.length !== 1) {
@@ -321,8 +323,10 @@ async function observeSource(ticket: ExplorerTicket, workflow: WorkflowReadResul
     }
     const current = await head;
     if (workspace.branch && current.branch !== workspace.branch) throw new Error("Workspace branch changed after inventory; repeat coordination.");
-    inspection.source = { state: "available", path: workspace.path, branch: current.branch, commit: current.commit, candidates: 1,
-      ...(latest && current.branch !== latest.sourceBranch ? { error: "Observed workspace no longer uses the recorded source branch." } : {}) };
+    inspection.source = {
+      state: "available", path: workspace.path, branch: current.branch, commit: current.commit, candidates: 1,
+      ...(latest && current.branch !== latest.sourceBranch ? { error: "Observed workspace no longer uses the recorded source branch." } : {})
+    };
   } catch (error) {
     inspection.source = { state: "unknown", path: workspace.path, candidates: 1, error: message(error) };
   }
@@ -473,6 +477,10 @@ async function goalReservations(contexts: SharedAgentContext[], ticket: Explorer
     const byRef = new Map<string, string>();
     let valid = true;
     for (const entry of entries) {
+      if (typeof entry.fields.kind !== "string" || !/^[a-z]+(?:_[a-z]+)*$/.test(entry.fields.kind)) {
+        errors.push(`${entry.ref}: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.`);
+        valid = false;
+      }
       const prior = byRef.get(entry.ref);
       if (prior && prior !== entry.digest) {
         errors.push(`${entry.ref}: inconsistent goal event copies across linked checkouts: ${entry.locations.join(", ")}.`);
@@ -490,7 +498,13 @@ async function goalReservations(contexts: SharedAgentContext[], ticket: Explorer
       while (typeof parent === "string") {
         if (seen.has(parent) || !byId.has(parent)) { errors.push(`${entry.ref}: broken goal parent graph.`); valid = false; break; }
         seen.add(parent);
-        parent = byId.get(parent)!.fields.parent_event;
+        const ancestor = byId.get(parent)!.fields;
+        if (Date.parse(String(ancestor.created_at)) > Date.parse(String(entry.fields.created_at))) {
+          errors.push(`${entry.ref}: [parent_after_child] Goal event timestamp precedes an ancestor timestamp.`);
+          valid = false;
+          break;
+        }
+        parent = ancestor.parent_event;
       }
     }
     for (const entry of entries.filter(entry => entry.fields.kind === "dispatch_reserved")) {

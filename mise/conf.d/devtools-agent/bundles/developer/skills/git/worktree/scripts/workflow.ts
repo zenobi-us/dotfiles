@@ -12,6 +12,8 @@ import { chronologicalReceipts, receiptEvent, receiptPhase } from "./recovery";
 import { DocumentReadSession } from "./document-cache";
 import type { ParsedDocument } from "./document-cache";
 import { validateReceiptContract } from "./receipt-contract";
+import { inspectReceiptDiagnostics } from "./receipt-diagnostics";
+import type { ReceiptDiagnostic } from "./receipt-diagnostics";
 
 type Fields = Record<string, unknown>;
 type Document = ParsedDocument;
@@ -133,6 +135,7 @@ function scopedSnapshot(snapshot: ExplorerSnapshot, scope: { ref: string; kind?:
 
 export interface WorkflowReadResult extends TicketWorkflow {
  inventory?: { envelopesValid: boolean };
+ diagnostics?: ReceiptDiagnostic[];
 }
 
 /** Observation mode validates envelopes, never source objects, phase outcomes, or publication. */
@@ -210,6 +213,7 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
    return identity;
   };
   const supplements = await historySupplements(documents, { root: record.root, ref: record.ref }, context, workflowId, session);
+  const envelopes: { ref: string; fields: Fields }[] = [];
   for (const file of eventFiles) {
    const ref = `${record.ref}/events/${relative(events, file).split("\\").join("/")}`;
    const event: ExplorerEvent = { id: ref, ref };
@@ -218,6 +222,7 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     if (readErrors.has(file)) throw readErrors.get(file);
     const doc = documents.get(file)!;
     const fields = supplements.get(file) ?? doc.fields;
+    envelopes.push({ ref, fields });
     event.fields = doc.fields;
     event.body = doc.body;
     validateReceiptContract(fields);
@@ -235,7 +240,10 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
      linkedWorkflowRoot = Boolean(recordedRoot && recordedRoot === currentRoot);
     }
     for (const field of ["ref", "store", "root"] as const) {
-     if (workflow[field] !== record[field] && !(field === "root" && ((historicalWorktree && workflow.root === workspacePath) || linkedWorkflowRoot))) throw new Error(`Receipt workflow.${field} does not match the resolved workflow${field === "root" ? " store root (not the workflow directory)" : ""}.`);
+     if (workflow[field] !== record[field] && !(field === "root" && ((historicalWorktree && workflow.root === workspacePath) || linkedWorkflowRoot))) {
+      if (field === "root" && typeof workflow.root === "string" && isAbsolute(workflow.root) && !await exists(workflow.root)) throw new Error("[historical_root_unavailable] Receipt workflow.root is unavailable; establish its repository identity before repairing the historical storage reference.");
+      throw new Error(`Receipt workflow.${field} does not match the resolved workflow${field === "root" ? " store root (not the workflow directory)" : ""}.`);
+     }
     }
     if (!isAbsolute(repository)) throw new Error("Receipt repository does not match the current repository.");
     if (resolve(repository) !== resolve(context.repositoryRoot) && !historicalWorktree) {
@@ -258,9 +266,9 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     if (!Number.isInteger(fields.attempt) || Number(fields.attempt) < (operatorEvent ? 0 : 1)) throw new Error(operatorEvent ? "Receipt attempt must be a non-negative integer for an operator decision." : "Receipt attempt must be a positive integer.");
     text(fields.muxer, "receipt muxer");
     text(fields.agent, "receipt agent");
-    // Starts precede pane creation; parent completions can outlive the child pane.
-    const parentCompletion = lifecycleEvent === "phase-complete" && typeof fields.session_id === "string" && fields.session_id.trim() !== "";
-    if (!((phase === "finish" || lifecycleEvent === "phase-start" || parentCompletion) && fields.pane_id === null) && typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string") throw new Error("Receipt pane_id is required.");
+    // Parent control records can precede child creation or outlive its pane.
+    const parentControl = (lifecycleEvent === "phase-complete" || operatorEvent) && typeof fields.session_id === "string" && fields.session_id.trim() !== "";
+    if (!((phase === "finish" || lifecycleEvent === "phase-start" || parentControl) && fields.pane_id === null) && typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string") throw new Error("Receipt pane_id is required.");
     // A phase with no evidence run records none; inventing one would be worse than its absence.
     if (fields.evidence != null) {
      const evidence = object(fields.evidence, "receipt evidence");
@@ -291,14 +299,27 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
    return (Number.isFinite(rightTime) ? rightTime : 0) - (Number.isFinite(leftTime) ? leftTime : 0) || left.ref.localeCompare(right.ref);
   });
   result.receipts = chronologicalReceipts(result.receipts).reverse();
+  const diagnostics = await inspectReceiptDiagnostics(envelopes, options ? undefined : context.repositoryRoot, options ? undefined : exec);
+  for (const event of result.events!) {
+   if (event.error) diagnostics.push({ ref: event.ref, code: event.error.startsWith("[historical_root_unavailable]") ? "historical_root_unavailable" : "invalid_receipt", severity: "error", message: event.error });
+   const issues = diagnostics.filter(issue => issue.ref === event.ref && issue.severity === "error");
+   if (issues.length) event.error = issues.map(issue => `[${issue.code}] ${issue.message.replace(/^\[historical_root_unavailable\] /, "")}`).join("\n");
+  }
+  result.diagnostics = diagnostics;
   const errors = result.events!.filter(event => event.error).map(event => `${event.ref}: ${event.error}`);
   delete result.recordedAttempts;
   const byId = new Map<string, ExplorerReceipt>();
   for (const receipt of result.receipts) {
-   if (byId.has(receipt.id)) throw new Error("Duplicate receipt ID.");
+   if (byId.has(receipt.id)) continue;
    byId.set(receipt.id, receipt);
   }
-  validateRelations([...byId.values()].map(item => ({ id: item.id, blockedBy: item.parentReceipt ? [item.parentReceipt] : [] })), "receipt parent");
+  try {
+   validateRelations([...byId.values()].map(item => ({ id: item.id, blockedBy: item.parentReceipt ? [item.parentReceipt] : [] })), "receipt parent");
+  } catch (error) {
+   const message = error instanceof Error ? error.message : String(error);
+   diagnostics.push({ ref: record.ref, code: "invalid_parent_graph", severity: "error", message });
+   errors.push(`[invalid_parent_graph] ${message}`);
+  }
   result.recordedAttempts = {
    review: result.receipts.filter(receipt => receiptPhase(receipt) === "review").length,
    fix: result.receipts.filter(receipt => receiptPhase(receipt) === "fix").length,
@@ -314,13 +335,13 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
    return result;
   }
   const newest = result.receipts[0];
-  // Validate source objects in the repository even when the recorded worktree is gone.
-  for (const receipt of result.receipts) {
-   const tree = (await run(exec, "git", ["-C", context.repositoryRoot, "rev-parse", "--verify", `${receipt.sourceCommit}^{tree}`])).trim();
-   if (tree !== receipt.sourceTree) throw new Error("Receipt source_tree does not match its source_commit.");
-  }
   result.inspection!.historyValid = true;
   if (archive && newest) {
+   if (receiptPhase(newest) === "finish" && newest.status === "FINISH_FAILED" && newest.fields.pushed === true && newest.fields.ticket_completed === true && newest.fields.worktree_removed === false) {
+    const message = "The receipt records publication and ticket completion, but cleanup remains pending. Verify finish state without repeating implementation or integration.";
+    diagnostics.push({ ref: newest.ref, code: "cleanup_pending", severity: "error", message });
+    throw new Error(`[cleanup_pending] ${message}`);
+   }
    if (receiptPhase(newest) !== "finish" || newest.status !== "FINISHED" || newest.fields.pushed !== true || newest.fields.ticket_completed !== true) throw new Error("Completed history requires a terminal FINISHED receipt with pushed and ticket_completed.");
    const mergedCommit = hash(newest.fields.merged_commit, "finish merged_commit");
    await run(exec, "git", ["-C", context.repositoryRoot, "merge-base", "--is-ancestor", mergedCommit, "HEAD"]);
@@ -379,8 +400,8 @@ async function historySupplements(
    if (supplement.normalize_finish_workspace != null) {
     // Old parent-side finishes recorded their own checkout instead of the removed source workspace.
     if (supplement.normalize_finish_workspace !== true || fields.schema !== "worktree-receipt/v1" || fields.phase !== "finish"
-      || !isAbsolute(String(fields.worktree)) || fields.worktree === fields.repository
-      || fields.workspace_path !== fields.repository || fields.source_workspace_path !== fields.worktree) {
+     || !isAbsolute(String(fields.worktree)) || fields.worktree === fields.repository
+     || fields.workspace_path !== fields.repository || fields.source_workspace_path !== fields.worktree) {
      throw new Error("Only a historical v1 finish with a recorded parent checkout and matching source_workspace_path can normalize its workspace.");
     }
     fields.workspace_path = fields.worktree;

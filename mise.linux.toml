@@ -3,3 +3,8 @@
 "apt:x11-xserver-utils" = "latest"
 "dnf:xrdb" = "latest"
 
+
+[tools]
+"btop" = "latest"
+"github:jarun/nnn" = "latest"
+"github:mexirica/aptui" = "latest"
