@@ -7,7 +7,7 @@ sequence: 1
 title: Cache shared-context query results and refresh only changed data
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 # Cache shared-context query results and refresh only changed data
