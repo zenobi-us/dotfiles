@@ -1,0 +1,4264 @@
+{
+  "method": "Counts and UTF-8 JSON body bytes derived from unchanged real-helper envelopes in transport.jsonl. Scenario durations include idle time and automatic refresh; not a benchmark. job-status polling counts as helper invocations. One logical validation request may use many processes.",
+  "initial_cold": {
+    "scenario": "initial-two-record-cold",
+    "filter": "transport rows with no scenario and request.operation !== validate",
+    "helper_invocations": 8,
+    "result_bodies": 4,
+    "result_body_bytes": 7713,
+    "commands": {
+      "request": 3,
+      "job-create": 1,
+      "job-status": 2,
+      "job-run": 1,
+      "job-remove": 1
+    }
+  },
+  "scenarios": [
+    {
+      "helper_invocations": 23,
+      "commands": {
+        "request": 18,
+        "job-create": 1,
+        "job-status": 2,
+        "job-run": 1,
+        "job-remove": 1
+      },
+      "logical_validation_requests": 15,
+      "result_bodies": 4,
+      "result_body_bytes": 7713,
+      "elapsed_ms": 184201,
+      "validations": [
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "context",
+          "id": null,
+          "bytes": 2671
+        },
+        {
+          "operation": "tracker",
+          "id": null,
+          "bytes": 1020
+        },
+        {
+          "operation": "detail",
+          "id": "A",
+          "bytes": 2013
+        },
+        {
+          "operation": "detail",
+          "id": "B",
+          "bytes": 2009
+        }
+      ]
+    },
+    {
+      "scenario": "cold-and-unchanged",
+      "helper_invocations": 1,
+      "commands": {
+        "request": 1
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 0,
+      "result_body_bytes": 0,
+      "elapsed_ms": 5167,
+      "validations": [
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        }
+      ],
+      "bodies": []
+    },
+    {
+      "scenario": "stale-validation",
+      "helper_invocations": 33,
+      "commands": {
+        "request": 28,
+        "job-create": 1,
+        "job-status": 2,
+        "job-run": 1,
+        "job-remove": 1
+      },
+      "logical_validation_requests": 25,
+      "result_bodies": 4,
+      "result_body_bytes": 7713,
+      "elapsed_ms": 520690,
+      "validations": [
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 431,
+          "statuses": {
+            "unknown": 4
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "context",
+          "id": null,
+          "bytes": 2671
+        },
+        {
+          "operation": "tracker",
+          "id": null,
+          "bytes": 1020
+        },
+        {
+          "operation": "detail",
+          "id": "A",
+          "bytes": 2013
+        },
+        {
+          "operation": "detail",
+          "id": "B",
+          "bytes": 2009
+        }
+      ]
+    },
+    {
+      "scenario": "baseline-v2",
+      "helper_invocations": 49,
+      "commands": {
+        "request": 33,
+        "job-create": 12,
+        "job-status": 2,
+        "job-run": 1,
+        "job-remove": 1
+      },
+      "logical_validation_requests": 41,
+      "result_bodies": 4,
+      "result_body_bytes": 7713,
+      "elapsed_ms": 741337,
+      "validations": [
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "request",
+          "bytes": 439,
+          "statuses": {
+            "unchanged": 4
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "context",
+          "id": null,
+          "bytes": 2671
+        },
+        {
+          "operation": "tracker",
+          "id": null,
+          "bytes": 1020
+        },
+        {
+          "operation": "detail",
+          "id": "B",
+          "bytes": 2009
+        },
+        {
+          "operation": "detail",
+          "id": "A",
+          "bytes": 2013
+        }
+      ]
+    },
+    {
+      "scenario": "warm-v3",
+      "helper_invocations": 4,
+      "commands": {
+        "job-create": 1,
+        "job-run": 1,
+        "job-status": 1,
+        "job-remove": 1
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 0,
+      "result_body_bytes": 0,
+      "elapsed_ms": 129,
+      "validations": [],
+      "bodies": []
+    },
+    {
+      "scenario": "unchanged-v3",
+      "helper_invocations": 4,
+      "commands": {
+        "job-create": 1,
+        "job-run": 1,
+        "job-status": 1,
+        "job-remove": 1
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 0,
+      "result_body_bytes": 0,
+      "elapsed_ms": 109,
+      "validations": [],
+      "bodies": []
+    },
+    {
+      "scenario": "unchanged-worker-fixed",
+      "helper_invocations": 10,
+      "commands": {
+        "job-create": 2,
+        "job-status": 4,
+        "job-run": 2,
+        "job-remove": 2
+      },
+      "logical_validation_requests": 2,
+      "result_bodies": 0,
+      "result_body_bytes": 0,
+      "elapsed_ms": 12133,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        }
+      ],
+      "bodies": []
+    },
+    {
+      "scenario": "one-record-edit",
+      "helper_invocations": 193,
+      "commands": {
+        "job-create": 38,
+        "job-status": 76,
+        "job-run": 38,
+        "job-remove": 38,
+        "request": 3
+      },
+      "logical_validation_requests": 37,
+      "result_bodies": 4,
+      "result_body_bytes": 7759,
+      "elapsed_ms": 383258,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 470,
+          "statuses": {
+            "unknown": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "context",
+          "id": null,
+          "bytes": 2671
+        },
+        {
+          "operation": "tracker",
+          "id": null,
+          "bytes": 1043
+        },
+        {
+          "operation": "detail",
+          "id": "A",
+          "bytes": 2036
+        },
+        {
+          "operation": "detail",
+          "id": "B",
+          "bytes": 2009
+        }
+      ]
+    },
+    {
+      "scenario": "redraw-baseline",
+      "helper_invocations": 10,
+      "commands": {
+        "job-create": 2,
+        "job-status": 4,
+        "job-run": 2,
+        "job-remove": 2
+      },
+      "logical_validation_requests": 2,
+      "result_bodies": 0,
+      "result_body_bytes": 0,
+      "elapsed_ms": 11777,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        }
+      ],
+      "bodies": []
+    },
+    {
+      "scenario": "one-record-edit-v4",
+      "helper_invocations": 142,
+      "commands": {
+        "job-create": 28,
+        "job-status": 56,
+        "job-run": 28,
+        "job-remove": 28,
+        "request": 2
+      },
+      "logical_validation_requests": 27,
+      "result_bodies": 3,
+      "result_body_bytes": 5752,
+      "elapsed_ms": 293294,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 474,
+          "statuses": {
+            "unchanged": 2,
+            "changed": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 175,
+          "statuses": {
+            "unchanged": 1
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 175,
+          "statuses": {
+            "unchanged": 1
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 175,
+          "statuses": {
+            "unchanged": 1
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "tracker",
+          "id": null,
+          "bytes": 1044
+        },
+        {
+          "operation": "detail",
+          "id": "A",
+          "bytes": 2037
+        },
+        {
+          "operation": "context",
+          "id": null,
+          "bytes": 2671
+        }
+      ]
+    },
+    {
+      "scenario": "files-cold-preview",
+      "helper_invocations": 21,
+      "commands": {
+        "job-create": 4,
+        "job-status": 8,
+        "job-run": 4,
+        "job-remove": 3,
+        "request": 2
+      },
+      "logical_validation_requests": 4,
+      "result_bodies": 2,
+      "result_body_bytes": 381,
+      "elapsed_ms": 33071,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 175,
+          "statuses": {
+            "unchanged": 1
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 377,
+          "statuses": {
+            "unchanged": 3
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 377,
+          "statuses": {
+            "unchanged": 3
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 377,
+          "statuses": {
+            "unchanged": 3
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "file",
+          "id": null,
+          "bytes": 284
+        },
+        {
+          "operation": "directory",
+          "id": null,
+          "bytes": 97
+        }
+      ]
+    },
+    {
+      "scenario": "files-changed-delayed",
+      "helper_invocations": 60,
+      "commands": {
+        "job-remove": 12,
+        "job-create": 11,
+        "job-status": 22,
+        "job-run": 11,
+        "request": 4
+      },
+      "logical_validation_requests": 11,
+      "result_bodies": 4,
+      "result_body_bytes": 1136,
+      "elapsed_ms": 100051,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 375,
+          "statuses": {
+            "unchanged": 2,
+            "changed": 1
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 375,
+          "statuses": {
+            "unchanged": 2,
+            "changed": 1
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 375,
+          "statuses": {
+            "unchanged": 2,
+            "changed": 1
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 375,
+          "statuses": {
+            "unchanged": 2,
+            "changed": 1
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 377,
+          "statuses": {
+            "unchanged": 3
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 377,
+          "statuses": {
+            "unchanged": 3
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 377,
+          "statuses": {
+            "unchanged": 3
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 377,
+          "statuses": {
+            "unchanged": 3
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 377,
+          "statuses": {
+            "unchanged": 3
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 377,
+          "statuses": {
+            "unchanged": 3
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 377,
+          "statuses": {
+            "unchanged": 3
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "file",
+          "id": null,
+          "bytes": 284
+        },
+        {
+          "operation": "file",
+          "id": null,
+          "bytes": 284
+        },
+        {
+          "operation": "file",
+          "id": null,
+          "bytes": 284
+        },
+        {
+          "operation": "file",
+          "id": null,
+          "bytes": 284
+        }
+      ]
+    },
+    {
+      "scenario": "files-deletion-race",
+      "helper_invocations": 152,
+      "commands": {
+        "job-create": 30,
+        "job-status": 60,
+        "job-run": 30,
+        "job-remove": 30,
+        "request": 2
+      },
+      "logical_validation_requests": 30,
+      "result_bodies": 2,
+      "result_body_bytes": 335,
+      "elapsed_ms": 287565,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 375,
+          "statuses": {
+            "unchanged": 2,
+            "changed": 1
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 375,
+          "statuses": {
+            "unchanged": 2,
+            "changed": 1
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 373,
+          "statuses": {
+            "unchanged": 1,
+            "changed": 1,
+            "removed": 1
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "directory",
+          "id": null,
+          "bytes": 49
+        },
+        {
+          "operation": "file",
+          "id": null,
+          "bytes": 286
+        }
+      ]
+    },
+    {
+      "scenario": "tree-ready-final",
+      "helper_invocations": 81,
+      "commands": {
+        "job-create": 16,
+        "job-status": 32,
+        "job-run": 16,
+        "job-remove": 16,
+        "request": 1
+      },
+      "logical_validation_requests": 15,
+      "result_bodies": 2,
+      "result_body_bytes": 3105,
+      "elapsed_ms": 154701,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 474,
+          "statuses": {
+            "changed": 2,
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "tracker",
+          "id": null,
+          "bytes": 1056
+        },
+        {
+          "operation": "detail",
+          "id": "A",
+          "bytes": 2049
+        }
+      ]
+    },
+    {
+      "scenario": "shared-dependency-setup",
+      "helper_invocations": 11,
+      "commands": {
+        "job-create": 2,
+        "job-status": 4,
+        "job-run": 2,
+        "job-remove": 2,
+        "request": 1
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 2,
+      "result_body_bytes": 2585,
+      "elapsed_ms": 939,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 474,
+          "statuses": {
+            "unchanged": 2,
+            "changed": 2
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "tracker",
+          "id": null,
+          "bytes": 1090
+        },
+        {
+          "operation": "detail",
+          "id": "A",
+          "bytes": 1495
+        }
+      ]
+    },
+    {
+      "scenario": "shared-dependency-edit",
+      "helper_invocations": 42,
+      "commands": {
+        "job-create": 8,
+        "job-status": 16,
+        "job-run": 8,
+        "job-remove": 8,
+        "request": 2
+      },
+      "logical_validation_requests": 7,
+      "result_bodies": 3,
+      "result_body_bytes": 4794,
+      "elapsed_ms": 46797,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 472,
+          "statuses": {
+            "unchanged": 1,
+            "changed": 3
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "tracker",
+          "id": null,
+          "bytes": 1190
+        },
+        {
+          "operation": "detail",
+          "id": "B",
+          "bytes": 2109
+        },
+        {
+          "operation": "detail",
+          "id": "A",
+          "bytes": 1495
+        }
+      ]
+    },
+    {
+      "scenario": "membership-add",
+      "helper_invocations": 11,
+      "commands": {
+        "job-create": 2,
+        "job-status": 4,
+        "job-run": 2,
+        "job-remove": 2,
+        "request": 1
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 2,
+      "result_body_bytes": 3594,
+      "elapsed_ms": 952,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 476,
+          "statuses": {
+            "unchanged": 3,
+            "changed": 1
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "tracker",
+          "id": null,
+          "bytes": 1557
+        },
+        {
+          "operation": "detail",
+          "id": "C",
+          "bytes": 2037
+        }
+      ]
+    },
+    {
+      "scenario": "membership-rename",
+      "helper_invocations": 11,
+      "commands": {
+        "job-create": 2,
+        "job-status": 4,
+        "job-run": 2,
+        "job-remove": 2,
+        "request": 1
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 2,
+      "result_body_bytes": 3608,
+      "elapsed_ms": 1470,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 575,
+          "statuses": {
+            "unchanged": 3,
+            "changed": 2
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "tracker",
+          "id": null,
+          "bytes": 1564
+        },
+        {
+          "operation": "detail",
+          "id": "C",
+          "bytes": 2044
+        }
+      ]
+    },
+    {
+      "scenario": "membership-delete",
+      "helper_invocations": 20,
+      "commands": {
+        "job-create": 4,
+        "job-status": 8,
+        "job-run": 4,
+        "job-remove": 4
+      },
+      "logical_validation_requests": 3,
+      "result_bodies": 1,
+      "result_body_bytes": 1190,
+      "elapsed_ms": 12735,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 575,
+          "statuses": {
+            "unchanged": 3,
+            "changed": 1,
+            "removed": 1
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "tracker",
+          "id": null,
+          "bytes": 1190
+        }
+      ]
+    },
+    {
+      "scenario": "fresh-action-after-deletion",
+      "helper_invocations": 26,
+      "commands": {
+        "request": 1,
+        "job-create": 5,
+        "job-status": 10,
+        "job-run": 5,
+        "job-remove": 5
+      },
+      "logical_validation_requests": 5,
+      "result_bodies": 0,
+      "result_body_bytes": 0,
+      "elapsed_ms": 49117,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        }
+      ],
+      "bodies": []
+    },
+    {
+      "scenario": "git-workflow-setup",
+      "helper_invocations": 8,
+      "commands": {
+        "job-create": 1,
+        "job-status": 2,
+        "job-run": 1,
+        "job-remove": 1,
+        "request": 3
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 3,
+      "result_body_bytes": 9265,
+      "elapsed_ms": 872,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 472,
+          "statuses": {
+            "changed": 3,
+            "unchanged": 1
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "context",
+          "id": null,
+          "bytes": 2707
+        },
+        {
+          "operation": "detail",
+          "id": "B",
+          "bytes": 2343
+        },
+        {
+          "operation": "detail",
+          "id": "A",
+          "bytes": 4215
+        }
+      ]
+    },
+    {
+      "scenario": "git-only-change",
+      "helper_invocations": 11,
+      "commands": {
+        "job-create": 2,
+        "job-status": 4,
+        "job-run": 2,
+        "job-remove": 2,
+        "request": 1
+      },
+      "logical_validation_requests": 2,
+      "result_bodies": 1,
+      "result_body_bytes": 4215,
+      "elapsed_ms": 1530,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 476,
+          "statuses": {
+            "unchanged": 3,
+            "changed": 1
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "detail",
+          "id": "A",
+          "bytes": 4215
+        }
+      ]
+    },
+    {
+      "scenario": "route-identity-change",
+      "helper_invocations": 13,
+      "commands": {
+        "job-create": 2,
+        "job-status": 4,
+        "job-run": 2,
+        "job-remove": 2,
+        "request": 3
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 4,
+      "result_body_bytes": 10453,
+      "elapsed_ms": 527,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 470,
+          "statuses": {
+            "unknown": 4
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "context",
+          "id": null,
+          "bytes": 2705
+        },
+        {
+          "operation": "tracker",
+          "id": null,
+          "bytes": 1190
+        },
+        {
+          "operation": "detail",
+          "id": "B",
+          "bytes": 2343
+        },
+        {
+          "operation": "detail",
+          "id": "A",
+          "bytes": 4215
+        }
+      ]
+    },
+    {
+      "scenario": "corrupt-disk-entry",
+      "helper_invocations": 6,
+      "commands": {
+        "job-create": 1,
+        "job-status": 2,
+        "job-run": 1,
+        "job-remove": 1,
+        "request": 1
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 1,
+      "result_body_bytes": 4215,
+      "elapsed_ms": 790,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 476,
+          "statuses": {
+            "unchanged": 3,
+            "unknown": 1
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "detail",
+          "id": "A",
+          "bytes": 4215
+        }
+      ]
+    },
+    {
+      "scenario": "missing-disk-entry",
+      "helper_invocations": 6,
+      "commands": {
+        "job-create": 1,
+        "job-status": 2,
+        "job-run": 1,
+        "job-remove": 1,
+        "request": 1
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 1,
+      "result_body_bytes": 2343,
+      "elapsed_ms": 774,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 476,
+          "statuses": {
+            "unchanged": 3,
+            "unknown": 1
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "detail",
+          "id": "B",
+          "bytes": 2343
+        }
+      ]
+    },
+    {
+      "scenario": "warm-restart-over-60s",
+      "helper_invocations": 123,
+      "commands": {
+        "job-create": 1,
+        "job-status": 120,
+        "job-run": 1,
+        "job-remove": 1
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 0,
+      "result_body_bytes": 0,
+      "elapsed_ms": 65412,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 478,
+          "statuses": {
+            "unchanged": 4
+          }
+        }
+      ],
+      "bodies": []
+    },
+    {
+      "scenario": "large-fixture-build",
+      "helper_invocations": 17,
+      "commands": {
+        "job-create": 3,
+        "job-status": 6,
+        "job-run": 3,
+        "job-remove": 3,
+        "request": 2
+      },
+      "logical_validation_requests": 3,
+      "result_bodies": 2,
+      "result_body_bytes": 2853,
+      "elapsed_ms": 20817,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 272,
+          "statuses": {
+            "unknown": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 276,
+          "statuses": {
+            "unchanged": 2
+          }
+        },
+        {
+          "command": "job-status",
+          "bytes": 274,
+          "statuses": {
+            "unchanged": 1,
+            "changed": 1
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "context",
+          "id": null,
+          "bytes": 2705
+        },
+        {
+          "operation": "directory",
+          "id": null,
+          "bytes": 148
+        }
+      ]
+    },
+    {
+      "scenario": "large-cold-sweep",
+      "helper_invocations": 209,
+      "commands": {
+        "request": 199,
+        "job-create": 2,
+        "job-status": 4,
+        "job-run": 2,
+        "job-remove": 2
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 200,
+      "result_body_bytes": 483864,
+      "elapsed_ms": 31464,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 476,
+          "statuses": {
+            "unchanged": 3,
+            "changed": 1
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "directory",
+          "id": null,
+          "bytes": 10840
+        },
+        {
+          "operation": "tracker",
+          "id": null,
+          "bytes": 72074
+        },
+        {
+          "operation": "detail",
+          "id": "R003",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R000",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R001",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R002",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R004",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R005",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R006",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R007",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R008",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R009",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R010",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R011",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R012",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R013",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R014",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R015",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R016",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R017",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R018",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R019",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R020",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R021",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R022",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R023",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R024",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R025",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R026",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R027",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R028",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R029",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R030",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R031",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R032",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R033",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R034",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R035",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R036",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R037",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R038",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R039",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R040",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R041",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R042",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R043",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R044",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R045",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R046",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R047",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R048",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R049",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R050",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R051",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R052",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R053",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R054",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R055",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R056",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R057",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R058",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R059",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R060",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R061",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R062",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R063",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R064",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R065",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R066",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R067",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R068",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R069",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R070",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R071",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R072",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R073",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R074",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R075",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R076",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R077",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R078",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R079",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R080",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R081",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R082",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R083",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R084",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R085",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R086",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R087",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R088",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R089",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R090",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R091",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R092",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R093",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R094",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R095",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R096",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R097",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R098",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R099",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R100",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R101",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R102",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R103",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R104",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R105",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R106",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R107",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R108",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R109",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R110",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R111",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R112",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R113",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R114",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R115",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R116",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R117",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R118",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R119",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R120",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R121",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R122",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R123",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R124",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R125",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R126",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R127",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R128",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R129",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R130",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R131",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R132",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R133",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R134",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R135",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R136",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R137",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R138",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R139",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R140",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R141",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R142",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R143",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R144",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R145",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R146",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R147",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R148",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R149",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R150",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R151",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R152",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R153",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R154",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R155",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R156",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R157",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R158",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R159",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R160",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R161",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R162",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R163",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R164",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R165",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R166",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R167",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R168",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R169",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R170",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R171",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R172",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R173",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R174",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R175",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R176",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R177",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R178",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R179",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R180",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R181",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R182",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R183",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R184",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R185",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R186",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R187",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R188",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R189",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R190",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R191",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R192",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R193",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R194",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R195",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R196",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R197",
+          "bytes": 2025
+        }
+      ]
+    },
+    {
+      "scenario": "large-unchanged-warm-sweep",
+      "helper_invocations": 82,
+      "commands": {
+        "job-create": 1,
+        "job-status": 5,
+        "job-run": 1,
+        "job-remove": 1,
+        "request": 74
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 74,
+      "result_body_bytes": 152358,
+      "elapsed_ms": 15142,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 13002,
+          "statuses": {
+            "unchanged": 128
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "detail",
+          "id": "R000",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R001",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "B",
+          "bytes": 2343
+        },
+        {
+          "operation": "detail",
+          "id": "A",
+          "bytes": 4215
+        },
+        {
+          "operation": "detail",
+          "id": "R002",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R003",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R004",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R005",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R006",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R007",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R008",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R009",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R010",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R011",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R012",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R013",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R014",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R015",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R016",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R017",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R018",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R019",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R020",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R021",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R022",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R023",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R024",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R025",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R026",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R027",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R028",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R029",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R030",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R031",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R032",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R033",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R034",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R035",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R036",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R037",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R038",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R039",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R040",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R041",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R042",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R043",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R044",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R045",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R046",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R047",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R048",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R049",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R050",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R051",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R052",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R053",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R054",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R055",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R056",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R057",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R058",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R059",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R060",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R061",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R062",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R063",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R064",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R065",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R066",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R067",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R068",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R069",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R070",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R071",
+          "bytes": 2025
+        }
+      ]
+    },
+    {
+      "scenario": "fresh-canonical-comparison",
+      "helper_invocations": 218,
+      "commands": {
+        "request": 209,
+        "job-create": 1,
+        "job-status": 6,
+        "job-run": 1,
+        "job-remove": 1
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 75,
+      "result_body_bytes": 151875,
+      "elapsed_ms": 158794,
+      "validations": [
+        {
+          "command": "job-status",
+          "bytes": 13002,
+          "statuses": {
+            "unchanged": 128
+          }
+        }
+      ],
+      "bodies": [
+        {
+          "operation": "detail",
+          "id": "R074",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R072",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R073",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R075",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R076",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R077",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R078",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R079",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R080",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R081",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R082",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R083",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R084",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R085",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R086",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R087",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R088",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R089",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R090",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R091",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R092",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R093",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R094",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R095",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R096",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R097",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R098",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R099",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R100",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R101",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R102",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R103",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R104",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R105",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R106",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R107",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R108",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R109",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R110",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R111",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R112",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R113",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R114",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R115",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R116",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R117",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R118",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R119",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R120",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R121",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R122",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R123",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R124",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R125",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R126",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R127",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R128",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R129",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R130",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R131",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R132",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R133",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R134",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R135",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R136",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R137",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R138",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R139",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R140",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R141",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R142",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R143",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R144",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R145",
+          "bytes": 2025
+        },
+        {
+          "operation": "detail",
+          "id": "R000",
+          "bytes": 2025
+        }
+      ]
+    },
+    {
+      "scenario": "view-close-cancellation",
+      "helper_invocations": 2,
+      "commands": {
+        "job-create": 1,
+        "job-status": 1
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 0,
+      "result_body_bytes": 0,
+      "elapsed_ms": 57,
+      "validations": [],
+      "bodies": []
+    },
+    {
+      "scenario": "cleanup-before-fix-reproduction",
+      "helper_invocations": 1,
+      "commands": {
+        "job-remove": 1
+      },
+      "logical_validation_requests": 0,
+      "result_bodies": 0,
+      "result_body_bytes": 0,
+      "elapsed_ms": 17,
+      "validations": [],
+      "bodies": []
+    },
+    {
+      "scenario": "view-close-cancellation-fixed",
+      "helper_invocations": 11,
+      "commands": {
+        "job-create": 1,
+        "job-status": 9,
+        "job-remove": 1
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 0,
+      "result_body_bytes": 0,
+      "elapsed_ms": 4829,
+      "validations": [],
+      "bodies": []
+    },
+    {
+      "scenario": "final-helper-validation",
+      "helper_invocations": 1,
+      "commands": {
+        "request": 1
+      },
+      "logical_validation_requests": 1,
+      "result_bodies": 0,
+      "result_body_bytes": 0,
+      "elapsed_ms": 1826,
+      "validations": [
+        {
+          "command": "request",
+          "bytes": 12963,
+          "statuses": {
+            "unchanged": 128
+          }
+        }
+      ],
+      "bodies": []
+    }
+  ]
+}

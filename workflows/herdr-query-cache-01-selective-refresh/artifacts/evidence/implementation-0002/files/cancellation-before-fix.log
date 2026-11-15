@@ -1,0 +1,39 @@
+TAP version 13
+# (node:1876553) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: release removes validation job files before a delayed status response returns
+not ok 1 - release removes validation job files before a delayed status response returns
+  ---
+  duration_ms: 335.3993
+  type: 'test'
+  location: '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh/mise/conf.d/devtools-herdrapp/tests/core.test.mjs:192:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + [
+    +   'f6827515-f2c3-49bd-a9d8-aa08d6ad8771'
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0: 'f6827515-f2c3-49bd-a9d8-aa08d6ad8771'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh/mise/conf.d/devtools-herdrapp/tests/core.test.mjs:202:12)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 391.88332

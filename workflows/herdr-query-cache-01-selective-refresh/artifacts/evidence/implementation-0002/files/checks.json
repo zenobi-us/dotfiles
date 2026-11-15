@@ -1,0 +1,85 @@
+[
+  {
+    "check": "build",
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "run",
+      "build"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh/mise/conf.d/devtools-herdrapp",
+    "exit_code": 0
+  },
+  {
+    "check": "full relevant suite",
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "run",
+      "test"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh/mise/conf.d/devtools-herdrapp",
+    "exit_code": 0,
+    "node_pass": 47,
+    "bun_pass": 17,
+    "fail": 0,
+    "evidence_ref": "workflows/herdr-query-cache-01-selective-refresh/artifacts/evidence/implementation-0002/files/full-suite.log"
+  },
+  {
+    "check": "TypeScript with isolated real peer declarations",
+    "argv": [
+      "/tmp/herdr-query-cache-bKzX6y/node_modules/.bin/tsc",
+      "--noEmit",
+      "-p",
+      "/tmp/herdr-query-cache-bKzX6y/typecheck.json"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+    "exit_code": 0,
+    "limitation": "Uses a temporary real TypeScript/agent-peer installation and path mapping; repository has no standalone typecheck script."
+  },
+  {
+    "check": "native mod contract",
+    "argv": [
+      "herdr-app",
+      "check",
+      "mise/conf.d/devtools-herdrapp/app/mods/shared-context"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+    "exit_code": 0,
+    "output": "check passed: mise/conf.d/devtools-herdrapp/app/mods/shared-context"
+  },
+  {
+    "check": "final generated-helper validation",
+    "argv_ref": "workflows/herdr-query-cache-01-selective-refresh/artifacts/evidence/implementation-0002/files/final-helper-validation.json",
+    "exit_code": 0,
+    "unchanged": 128,
+    "result_bodies": 0
+  },
+  {
+    "check": "fresh canonical comparison",
+    "evidence_ref": "workflows/herdr-query-cache-01-selective-refresh/artifacts/evidence/implementation-0002/files/canonical-comparisons.json",
+    "matches": 128,
+    "mismatches": 0
+  },
+  {
+    "check": "native cancellation cleanup",
+    "evidence_ref": "workflows/herdr-query-cache-01-selective-refresh/artifacts/evidence/implementation-0002/files/transport.jsonl",
+    "scenario": "view-close-cancellation-fixed",
+    "worker_removed": true,
+    "job_directory_removed": true,
+    "remaining_terminals_before_core_stop": [
+      "t1"
+    ]
+  },
+  {
+    "check": "owned native app and Core shutdown",
+    "evidence_ref": "workflows/herdr-query-cache-01-selective-refresh/artifacts/evidence/implementation-0002/files/service-shutdown.json",
+    "native_apps": "stopped",
+    "isolated_core": "stopped",
+    "note": "Remaining processes are this agent and its harness-managed eval/LSP runtimes; parent owns child-pane closure."
+  }
+]

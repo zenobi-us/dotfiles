@@ -1,0 +1,89 @@
+{
+  "format": "Original native captures, not a collect-evidence/v1 sealed run. Unknown capture timestamps remain null.",
+  "assets": [
+    {
+      "ref": "shots/tree-ready-before-details-final.png",
+      "sha256": "88652cbd943351ab9485cee8506dabbf65cf04231cc57e52c2ef849f72df39cb",
+      "capture_time": null,
+      "capture_api": "herdr-app shot; original native image"
+    },
+    {
+      "ref": "shots/files-current-preview.png",
+      "sha256": "7760a8299028fa02229e5d62f9b0a6734cc228469f8f87569bb0228ab1f4c60c",
+      "capture_time": null,
+      "capture_api": "herdr-app shot; original native image"
+    },
+    {
+      "ref": "shots/files-stale-during-body-read.png",
+      "sha256": "eb6278d636df8526d05a70d5df58c48ce4a88b27fb2a2bdd1825575b5b1c04b4",
+      "capture_time": null,
+      "capture_api": "herdr-app shot; original native image"
+    },
+    {
+      "ref": "shots/files-deleted-before-late-response.png",
+      "sha256": "028c14d1882316958fd8a0c81fe0610a9481ea575c5e1b80bb049f49aa7e7e7b",
+      "capture_time": null,
+      "capture_api": "herdr-app shot; original native image"
+    },
+    {
+      "ref": "shots/files-deleted-after-late-response.png",
+      "sha256": "b69c27f6a870c36f68b9404739079751175cde1e2d6ece517e8cfc4b3c1a53da",
+      "capture_time": null,
+      "capture_api": "herdr-app shot; original native image"
+    },
+    {
+      "ref": "shots/shared-dependency-current.png",
+      "sha256": "2419e2fb9c88984860bb4d4e1ed577f6cf12395d1923b7b197483c5cf99cdac5",
+      "capture_time": null,
+      "capture_api": "herdr-app shot; original native image"
+    },
+    {
+      "ref": "shots/membership-add-rename-delete-final.png",
+      "sha256": "6e1f20da17e4260a831337f4c70462e53873f07e6ebd857ad05118bae1c89bf4",
+      "capture_time": null,
+      "capture_api": "herdr-app shot; original native image"
+    },
+    {
+      "ref": "shots/git-only-current.png",
+      "sha256": "1ded0f8f7634388d1bd7aedb4883f58dfc1547278cdfba2fcc7e033becbafa55",
+      "capture_time": null,
+      "capture_api": "herdr-app shot; original native image"
+    },
+    {
+      "ref": "shots/route-change-current.png",
+      "sha256": "59de10061ddc9e2f99445d736e86c9ce63c679b56398555dc76e2c58e391737f",
+      "capture_time": null,
+      "capture_api": "herdr-app shot; original native image"
+    },
+    {
+      "ref": "shots/cache-recovery-current.png",
+      "sha256": "a20c2b1cb4b065233e9dfeaf100e687654484bbdbdc4fc57a3375b8502eef940",
+      "capture_time": null,
+      "capture_api": "herdr-app shot; original native image"
+    },
+    {
+      "ref": "shots/warm-cache-stale-before-65s-validation.png",
+      "sha256": "8a6140ab3051059a84a45a0474409386e2bece05e052dcb3a8b4ff754ca87215",
+      "capture_time": null,
+      "capture_api": "herdr-app shot; original native image"
+    },
+    {
+      "ref": "shots/warm-cache-current-after-65s-validation.png",
+      "sha256": "2b85ad63b134011dbc0549dbb2c15bdc2a205402cc27595c428d3c2b8e8e2b62",
+      "capture_time": null,
+      "capture_api": "herdr-app shot; original native image"
+    },
+    {
+      "ref": "shots/large-cold-200-details-applied.png",
+      "sha256": "d0cca43aa9e45680efa169469cbf073e25fa7a436ffd72ee6b1bf0345f47cd8e",
+      "capture_time": null,
+      "capture_api": "herdr-app shot; original native image"
+    },
+    {
+      "ref": "shots/large-warm-200-details-applied.png",
+      "sha256": "e6903c671e3e18ef2456ab7c6fa3f27d1b3ec5ca466a439f9f6c9141d16d277d",
+      "capture_time": null,
+      "capture_api": "herdr-app shot; original native image"
+    }
+  ]
+}
