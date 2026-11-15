@@ -71,3 +71,8 @@ Persistent helper watchers, resident helper lifecycle, new SSH or WebSocket tran
 
 The user approved this single vertical slice and its empty blocker list. The ticket remains unclaimed. No implementation started during ticket publication.
 
+
+
+### Review — 2026-11-15T07:39:54.746Z
+
+Verdict: FAILURE. Reviewed commit: `8ff5def35291d6271aa1ac3768386dff48dad26c`. Reviewed tree: `a1e58164be06dd02fb6ef73fb8d131db4498fe1e`. [Independent review](../../workflows/herdr-query-cache-01-selective-refresh/artifacts/reviews/review-review-0005.md).
