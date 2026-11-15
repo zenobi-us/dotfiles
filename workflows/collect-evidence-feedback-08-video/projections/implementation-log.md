@@ -57,3 +57,54 @@ The immutable draft snapshot has no display outcome text for three read-only CLI
 ## Review review-0005
 
 Review review-0005: FAILURE at 2026-11-15T04:03:13.575Z. Open finding: RV-01. No findings resolved. See [review artifact](../artifacts/reviews/review-review-0005.md), [result receipt](../events/review-0005.yaml), and [parent completion](../events/review-complete-0006.yaml). Source remains unchanged; fix is required before another review.
+
+## Fix fix-0008 — current source
+
+Ticket: tracker/tickets/collect-evidence-feedback-08-video.md.
+Source: 2f9a632c590a3b2a19a462415c31aa8f79e3fe36; tree 5967c9f852f13696a5cdb514871481a26405d61c. Branch: feature/collect-evidence-feedback-08-video. Base: master.
+
+### Problem and fix
+
+RV-01 restored selectedId without moving the video. Restore-and-select now uses the acknowledged note timestamp through the existing pause/seek path. The seeked event selects the pin. The keepDraft branch and image branch retain their existing behavior. The distributed viewer was rebuilt.
+
+### Changed files
+
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/viewer-contract.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/video-workflow.test.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/index.html
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/components/annotation-image.tsx
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
+
+### Validation
+
+- mise exec -- bun run typecheck, from viewer/: passed.
+- mise exec -- bun run build, from viewer/: passed; 345569-byte single HTML bundle.
+- PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test: 2 passed, 0 failed, 146 assertions. This includes the new actual-browser undo regression while paused and playing, plus existing image and keepDraft conflict scenarios.
+- Actual rebuilt browser player at http://127.0.0.1:18883: delete blue at 3.199s, select red at 0.8086s, close editor, undo. Both paused and playing cases returned paused=true, currentTime=3.199 and visible selected pin. Export retained original source hash, timestamp, dimensions and geometry.
+- Public feedback validate: passed for video-undo-fix-0008. Historical video-acceptance-0001 stayed unchanged.
+- React Doctor changed scope: 66/100; two existing warnings in unchanged seek/draft-effect lines (state adjustment and effect dependencies). No unrelated refactor.
+
+### Review history and findings
+
+Latest formal verdict remains FAILURE from review-0005, covering the previous source 2a14e32edcca02dc297cfd61c30e566982ec0b7c. That verdict is stale for the new source. RV-01 is fixed; no blocking findings remain unresolved by this fixer. ST-01 remains a non-blocking suggestion outside this fix. A fresh independent review is required. No SUCCESS verdict is claimed.
+
+### Merge and resources
+
+Not merged, rebased, submitted or pushed. Ticket remains claimed. Owned browser PID 1447649 and service PID 1444481 stopped; port 18883 closed and writer lock absent. Parent owns terminal t14c closure and phase completion.
+
+### Supporting records
+
+- [Fix result](../events/fix-0008.yaml)
+- [Fix authorization](../events/fix-start-0007.yaml)
+- [Consumed review](../artifacts/reviews/review-review-0005.md)
+- [Observations](../artifacts/evidence/video-undo-fix-0008/observations.json)
+- [Paused undo screenshot](../artifacts/evidence/video-undo-fix-0008/paused-undo-blue.webp)
+- [Playing undo screenshot](../artifacts/evidence/video-undo-fix-0008/playing-undo-blue.webp)
+- [Export](../artifacts/evidence/video-undo-fix-0008/export.json)
+- [Shutdown](../artifacts/evidence/video-undo-fix-0008/resources-after.json)
+
+### Limitations
+
+Playback timestamps do not establish exact frames or object tracking. No new Surf or native recording coverage. An initial custom smoke harness timed out; direct browser actions completed both scenarios. No open implementation questions.

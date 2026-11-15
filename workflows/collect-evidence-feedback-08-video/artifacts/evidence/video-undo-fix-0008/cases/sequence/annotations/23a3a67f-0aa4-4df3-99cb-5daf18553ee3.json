@@ -1,0 +1,31 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "annotation",
+  "id": "23a3a67f-0aa4-4df3-99cb-5daf18553ee3",
+  "sessionId": "video-undo-fix-0008",
+  "caseId": "sequence",
+  "assetId": "sequence.video.capture-001",
+  "sourceSha256": "b469d5b0dff38c729bbf6212a48ce1b9e402a44e1dbb84ea6c74fd64d0cb1659",
+  "originalWidth": 800,
+  "originalHeight": 450,
+  "geometry": {
+    "x": 0.1500000393141103,
+    "y": 0.15000001747293792,
+    "width": 0.19999992137177938,
+    "height": 0.19999996505412418
+  },
+  "priority": "P2",
+  "comment": "Red scene drawn box draft",
+  "mediaTimeSeconds": 0.8086,
+  "displayedWidth": 621,
+  "displayedHeight": 349.3125,
+  "revision": 1,
+  "createdAt": "2026-11-15T04:36:16.921Z",
+  "updatedAt": "2026-11-15T04:36:16.921Z",
+  "pixelGeometry": {
+    "x": 120,
+    "y": 68,
+    "width": 160,
+    "height": 89
+  }
+}

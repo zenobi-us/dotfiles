@@ -1,0 +1,132 @@
+# Current fix status
+
+## Fix fix-0008 — current source
+
+Ticket: tracker/tickets/collect-evidence-feedback-08-video.md.
+Source: 2f9a632c590a3b2a19a462415c31aa8f79e3fe36; tree 5967c9f852f13696a5cdb514871481a26405d61c. Branch: feature/collect-evidence-feedback-08-video. Base: master.
+
+### Problem and fix
+
+RV-01 restored selectedId without moving the video. Restore-and-select now uses the acknowledged note timestamp through the existing pause/seek path. The seeked event selects the pin. The keepDraft branch and image branch retain their existing behavior. The distributed viewer was rebuilt.
+
+### Changed files
+
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/viewer-contract.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/video-workflow.test.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/index.html
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/components/annotation-image.tsx
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
+
+### Validation
+
+- mise exec -- bun run typecheck, from viewer/: passed.
+- mise exec -- bun run build, from viewer/: passed; 345569-byte single HTML bundle.
+- PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test: 2 passed, 0 failed, 146 assertions. This includes the new actual-browser undo regression while paused and playing, plus existing image and keepDraft conflict scenarios.
+- Actual rebuilt browser player at http://127.0.0.1:18883: delete blue at 3.199s, select red at 0.8086s, close editor, undo. Both paused and playing cases returned paused=true, currentTime=3.199 and visible selected pin. Export retained original source hash, timestamp, dimensions and geometry.
+- Public feedback validate: passed for video-undo-fix-0008. Historical video-acceptance-0001 stayed unchanged.
+- React Doctor changed scope: 66/100; two existing warnings in unchanged seek/draft-effect lines (state adjustment and effect dependencies). No unrelated refactor.
+
+### Review history and findings
+
+Latest formal verdict remains FAILURE from review-0005, covering the previous source 2a14e32edcca02dc297cfd61c30e566982ec0b7c. That verdict is stale for the new source. RV-01 is fixed; no blocking findings remain unresolved by this fixer. ST-01 remains a non-blocking suggestion outside this fix. A fresh independent review is required. No SUCCESS verdict is claimed.
+
+### Merge and resources
+
+Not merged, rebased, submitted or pushed. Ticket remains claimed. Owned browser PID 1447649 and service PID 1444481 stopped; port 18883 closed and writer lock absent. Parent owns terminal t14c closure and phase completion.
+
+### Supporting records
+
+- [Fix result](../../events/fix-0008.yaml)
+- [Fix authorization](../../events/fix-start-0007.yaml)
+- [Consumed review](../reviews/review-review-0005.md)
+- [Observations](../evidence/video-undo-fix-0008/observations.json)
+- [Paused undo screenshot](../evidence/video-undo-fix-0008/paused-undo-blue.webp)
+- [Playing undo screenshot](../evidence/video-undo-fix-0008/playing-undo-blue.webp)
+- [Export](../evidence/video-undo-fix-0008/export.json)
+- [Shutdown](../evidence/video-undo-fix-0008/resources-after.json)
+
+### Limitations
+
+Playback timestamps do not establish exact frames or object tracking. No new Surf or native recording coverage. An initial custom smoke harness timed out; direct browser actions completed both scenarios. No open implementation questions.
+
+# Retained implementation and review history
+
+# Video evidence and timestamp feedback
+
+Ticket: tracker/tickets/collect-evidence-feedback-08-video.md
+
+## Problem
+
+Doctor advertised recording without probing it. Feedback displayed video but accepted image notes only. The browser also could not seek reliably without byte ranges.
+
+## Implementation
+
+Preserve the existing real Playwright WebM recorder; probe actual recording capability and record start time. Extend the existing annotation path to immutable timestamp-bound video notes and displayed frame dimensions. Add verified byte-range media responses for browser seeking. Retain image behavior, drafts, conflicts, tombstones and export. Rebuild the distributed single HTML viewer.
+
+Source: feature/collect-evidence-feedback-08-video at 2a14e32edcca02dc297cfd61c30e566982ec0b7c, tree 16676d6137a329fb7cde2a7d457df1f438f4c208. Base: master. Source workspace remains available and clean. Bundle metadata changes came from the required commit hook.
+
+## Changed files
+
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/SKILL.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/web.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/drivers/playwright-driver.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/native-workflow.test.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/SKILL.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/how-to-browse-evidence.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/viewer-contract.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/annotations.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/server.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/video-workflow.test.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/index.html
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/components/annotation-image.tsx
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/drafts.tsx
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/main.tsx
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/types.ts
+
+## Validation
+
+- bun run typecheck — TypeScript typecheck passed.
+- bun run build — Final single HTML bundle built: 345505 bytes, embedded React/CSS/fonts.
+- bun test /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test — 103 passed, 32 skipped, 0 failed; 1040 assertions. Optional driver suites were then exercised separately. Final metadata/accessible-label adjustment was checked with a rebuilt actual browser surface.
+- bun test --test-name-pattern playwright: capture /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/browser-workflow.test.ts — 1 passed; real image capture, assertions, safety, sealing and read-only consumers; 28 assertions.
+- bun test --test-name-pattern native sparse text /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/native-workflow.test.ts — 1 passed; 12 assertions. Real terminal images remain valid with video requested and explicit native-video-unavailable limit.
+- bun test /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/gui-workflow.test.ts — 1 passed; 60 assertions. Native image-only fixture visually inspected. Optional video unavailable; permission, identity, capture and scope failures preserved.
+- /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts doctor --driver playwright --json — Actual owned WebM recording start/stop probe reported video available.
+- ffmpeg -v error -i /tmp/ce-video-0dBCF5/repository/workflows/video/artifacts/evidence/recording/cases/sequence/media/step-001-case-recording--capture-001.webm -f null - — Real 800x450, 3.2 second WebM decoded. Browser pixels and headings showed red initial and blue final scenes.
+- Actual bundled browser player at http://127.0.0.1:18871 — Playback and keyboard seeking; drawn paused box at 0.8086s; draft reload; durable save; edited note at 3.199s; restart; saved timestamp navigation; export identities/geometry preserved. Final bundle also opened saved note and created/cancelled keyboard point.
+- /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts validate /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-08-video/artifacts/evidence/video-acceptance-0001/capture --json — Exit 0; source validation and saved export comparison succeeded.
+- /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts validate /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-08-video/artifacts/evidence/video-acceptance-0001/feedback --json — Exit 0; source validation and saved export comparison succeeded.
+- /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts export /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-08-video/artifacts/evidence/video-acceptance-0001/feedback --json — Exit 0; source validation and saved export comparison succeeded.
+- /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts doctor --driver surf --json — Unavailable coverage: Surf native-host socket /tmp/surf.sock absent. No Surf capture or passing Surf acceptance claimed.
+
+## Review history
+
+Review review-0005: FAILURE at 2026-11-15T04:03:13.575Z. Open finding: RV-01. No findings resolved. See [review artifact](../reviews/review-review-0005.md), [result receipt](../../events/review-0005.yaml), and [parent completion](../../events/review-complete-0006.yaml). Source remains unchanged; fix is required before another review.
+
+## Merge status
+
+Not merged, submitted or pushed. The canonical ticket remains claimed.
+
+## Limits and cleanup
+
+Surf capture remains blocked by its absent native-host socket. Native video remains unavailable. Playback notes do not promise exact frames or object tracking. All owned capture, GUI fixture and feedback services stopped. Browser tabs closed. Port 18871 closed and writer lock absent. Unrelated context changes remain unstaged.
+
+## Supporting records
+
+- [Phase start](../../events/start-0001.yaml)
+- [Implementation result](../../events/implementation-0002.yaml)
+- [Acceptance observations](../evidence/video-acceptance-0001/observations.json)
+- [Final bundle smoke](../evidence/video-acceptance-0001/final-bundle-smoke.json)
+- [Saved export](../evidence/video-acceptance-0001/export.json)
+- [Shutdown observation](../evidence/video-acceptance-0001/resources-final-bundle-after.json)
+
+## Open questions
+
+None.
+
