@@ -140,3 +140,10 @@ The full suite passed 52 Node and 17 Bun tests. The reviewer independently repro
 ## Current parent completion — fix-complete-0015
 
 [Parent completion](../events/fix-complete-0015.yaml) validates and acknowledges [fix-0014](../events/fix-0014.yaml). Exact source `e1a8cccee968e5c63ccdfec9bd48e7aff5ff41ce` is clean. SPEC-02 is resolved by the recorded production-method/helper smoke and regressions. Native visual proof remains limited to a welcome frame; no new Tracker screenshot proof is claimed. [Shutdown observation](../artifacts/snapshots/fix-shutdown-0015.json) confirms the fixer terminal is removed and all owned processes stopped. Fresh independent review is required. No merge, push, or ticket completion occurred.
+
+
+## Current independent review — review-0017
+
+State: REVIEW_FAILED. [Third immutable review](../artifacts/reviews/review-review-0017.md) returned FAILURE for `e1a8cccee968e5c63ccdfec9bd48e7aff5ff41ce`. One P2 finding remains: SPEC-03, alias STD-02 on the Standards axis. Both axes identified the same failed-replacement freshness defect; this is one fix task, not two. Prior normal-path findings are confirmed resolved. [Result](../events/review-0017.yaml). [Parent completion](../events/review-complete-0018.yaml).
+
+The reviewer ran all required checks, the 54 Node/17 Bun full suite, and real-helper production-method smoke. The failed-replacement case was reproduced despite passing existing tests. Parent reran 22 panel tests successfully. No new native Tracker visual proof is claimed. Source remains unchanged. Reviewer/axis shutdown is confirmed. No merge or push occurred. Next: fix SPEC-03 in a fresh session.
