@@ -660,8 +660,24 @@ Each available Tracker and graph action opens a dropdown. Select a preset, add a
 
 Changing the repository, record, preset, or additional instruction invalidates pending launch preparation. Obsolete responses cannot open a pane or change the current action error. An unchanged selection opens one fresh session. Before launch, the backend re-reads canonical workflow availability and prepares the skill command with the combined instructions. It starts a fresh OMP session in a new pane to the right. Each launch uses an isolated session directory and leaves existing chats unchanged. Prompts do not bypass workflow checks. Preparation errors appear in the dropdown. Description, Blocking lineage, and Activity remain available. No prompt-preview dialog is required.
 
-The GPUI mods call Herdr's `exec()` API once per request. A short-lived Bun process imports the existing shared-context and tracker TypeScript APIs, reads JSON arguments, and returns JSON on stdout. Errors return a JSON error and a failing exit code. Those APIs use `mq` with `okf.mq` to parse Markdown. There is no HTTP listener, connection token, or background Context service. Herdr limits exec output to 8 MiB; each request has a ten-minute deadline. Process startup cost repeats per request.
+The GPUI panels send domain requests through the existing Herdr Core transport. Short-lived Bun helpers call the canonical shared-context and tracker APIs. Those APIs parse Markdown with `mq` and `okf.mq`. Tracker reads and validation batches use owned, cancellable query jobs. Responses have a 6 MiB limit. Validation workers have a ten-minute deadline. There is no resident Context helper, HTTP listener, or new transport.
 
-The panels operate on local repositories. The backend imports modules from this checkout, so keep it available. If you update Bun or `mq`, run `mise run herdrapp.runtime`; the next request uses those paths.
+The panels follow repositories on the selected local or Core machine. Deploy the generated helper and the mod together. If you update Bun or `mq`, run `mise run herdrapp.runtime`. Rebuild the helper from `mise/conf.d/devtools-herdrapp` with `bun run build`; never edit `app/bin/herdr-context.mjs` by hand.
 
+
+
+
+### Cached reads and selective refresh
+
+Context, directory, file, tracker-tree, and record-detail reads use bounded memory and persistent caches. The panel keeps at most 128 read cells and an 8 MiB UTF-16 payload budget for persistent storage. The target helper keeps at most 512 entries and 32 MiB under `$XDG_CACHE_HOME/herdr/shared-context-reads`, or `~/.cache/herdr/shared-context-reads`. Disk writes use private temporary files and atomic rename. Missing, corrupt, or incompatible entries are misses.
+
+Identities include the machine ID, target user, canonical repository path, resolved routes, operation, arguments, cache schema, and loader version. Repository origin alone cannot identify an entry. Files and Tracker copies merge their persistent entries. One durable storage generation replaces per-record deletion markers. Older snapshots cannot republish retired bodies, even after repeated removals. Concurrent older reads and retirements cannot replace a newer stored value. The conservative fence also rejects unrelated writebacks from older snapshots; their existing stored bodies remain available, or a fresh read can cache them again. The new storage schema starts cold.
+
+On connection or Refresh, cached data stays stale until one batch validates the active read set. The helper returns unchanged, changed, removed, or unknown for each identity and version. Unknown always needs a fresh read. Unchanged results transfer no result bodies. Validation replays canonical loaders and Git inspections, checks bytes and path identities, and records related blockers and workflow inputs. A batch shares its tracker snapshot and checks a fresh canonical snapshot before publication. This saves body transfers, not all canonical computation; timestamps alone never establish freshness.
+
+A warm Tracker connection restores the saved selected description and workflow activity only from the matching target cache and cached tree membership. The selected detail stays stale until validation or a required replacement read succeeds. If replacement fails, the retained description and activity stay stale until a successful read or confirmed removal. Removed records and target switches clear both detail and activity. Cached action display still requires fresh canonical preparation.
+
+The current tree appears before changed detail bodies finish. The footer counts details actually applied to the current sweep. Large sweeps consume validated hits before misses and retain the context and tree cells. A warm Files connection restores saved expanded folders and the selected preview from the matching cached context before validation starts. Changed file previews and expanded folders stay visible and stale during replacement reads. Removed selections disappear, and obsolete responses cannot restore them.
+
+Setup, action preparation, writes, and agent launch authorization bypass these caches. Every action uses fresh canonical preparation. Cached display data never authorizes an action. Run `bun run build` and `bun run test` in `mise/conf.d/devtools-herdrapp` to build the helper and run the scoped regressions.
 

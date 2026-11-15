@@ -4,6 +4,8 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { SourceTextModule, SyntheticModule, createContext } from "node:vm";
 import { resolveLocation, targetKey, copyIsShown, localWatchPaths, localWatchFallback, completedAgentWork, RefreshQueue } from "../app/mods/shared-context/refresh-model.js";
+import { client as queryClient } from "./query-client.mjs";
+import { workflowActivity } from "../app/mods/shared-context/activity-model.js";
 
 const space = { id: "local-space", machine: null, folder: "/local", active: true, tabs: [{ id: "active-tab", active: true }] };
 const terminal = { pane: "p1", terminal: "t1", cwd: "/local/pane" };
@@ -157,9 +159,13 @@ function deferred() {
   return { promise, resolve, reject };
 }
 
-async function rootModel(client) {
+async function rootModel(client, storage = new Map()) {
   const current = { where: { machine: null, cwd: "/repo" } }, tasks = [];
   const noop = () => { };
+  client.validate ??= async () => [];
+  client.isCurrent ??= () => false;
+  client.peek ??= () => null;
+  client.retainDetails ??= noop;
   const stubs = (...names) => Object.fromEntries(names.map(name => [name, noop]));
   const modules = {
     "gpui-kit": { View: class { }, div: noop },
@@ -171,14 +177,14 @@ async function rootModel(client) {
     "./refresh.js": { ...stubs("initObservation", "scheduleObservation", "startRefreshResources", "stopRefreshResources", "updateLocalWatches"), currentLocation: given => given?.cwd ? resolveLocation(given, space, terminal, focus) : current.where },
     "./refresh-model.js": { targetKey, RefreshQueue },
     "./preferences.js": { loadPreferences: noop, DEFAULTS: {} },
-    "./tree.js": stubs("dependencyRows", "revealPath", "itemType"),
+    "./tree.js": { ...stubs("revealPath", "itemType"), dependencyRows: () => ({ canonical: new Map() }) },
     "./ui.js": stubs("button", "icon", "note", "select", "typeColor", "typeIcon"),
     "./graph-view.js": stubs("graphView", "initGraphMenu", "renderGraphMenu"),
     "./header.js": stubs("compactHeader"),
     "./header-controls.js": stubs("initHeaderControls", "clearHeaderControls", "renderHeaderReason"),
     "./progress-model.js": { initiativeProgress: () => new Map() },
     "./progress.js": stubs("initiativeProgressRow"),
-    "./activity-model.js": { workflowActivity: () => ({}) },
+    "./activity-model.js": { workflowActivity },
     "./action-menu.js": stubs("initActionMenus"),
     "./action.js": stubs("invalidateAction"),
     "./agents.js": stubs("observeAgentLaunch"),
@@ -189,7 +195,7 @@ async function rootModel(client) {
     "./metadata.js": stubs("openMetadata", "initMetadata", "renderMetadata"),
     "./settings.js": stubs("openSettings", "initSettings", "renderSettings"),
   };
-  const context = createContext({ Date, Map, Set, Object, Promise, JSON, localStorage: { setItem: noop } });
+  const context = createContext({ Date, Map, Set, Object, Promise, JSON, localStorage: { getItem: key => storage.get(key) ?? null, setItem: (key, value) => storage.set(key, value) } });
   const module = new SourceTextModule(await readFile(new URL("../app/mods/shared-context/main.js", import.meta.url), "utf8"), { context });
   await module.link(async name => {
     const values = modules[name];
@@ -295,3 +301,270 @@ test("an initial tracker failure does not claim that a tracker snapshot is retai
   assert.equal(view.snapshot, null);
   assert.equal(view.stale, false);
 });
+
+test("large detail sweeps consume validated hits before misses can evict them", async () => {
+  const requests = [];
+  const client = await queryClient(async (operation, where, fields) => {
+    if (operation === "validate") return fields.entries.map(entry => ({ identity: entry.identity, status: "unchanged" }));
+    requests.push({ operation, id: fields.id });
+    return operation === "detail" ? { record: { id: fields.id }, state: { state: "READY" } } : { identity: "repo" };
+  });
+  const { view, cx } = await rootModel(client);
+  const tickets = Array.from({ length: 200 }, (_, index) => ({ id: `T${index}`, ref: `tickets/T${index}` }));
+  const snapshot = { tickets, initiatives: [], states: {} };
+  view.snapshot = snapshot;
+  await client.query("context", view.where);
+  await client.query("tracker", view.where, { tree: true });
+  await view.loadDetails(cx, view.revision, snapshot);
+  const retained = new Set(tickets.filter(record => client.isCurrent("detail", view.where, { id: record.id, kind: "ticket" })).map(record => record.id));
+  await client.validate(view.where);
+  requests.length = 0;
+  await view.loadDetails(cx, view.revision, snapshot);
+  assert.equal(requests.some(request => retained.has(request.id)), false, "unchanged retained details never transfer again");
+  await client.query("context", view.where);
+  await client.query("tracker", view.where, { tree: true });
+  assert.equal(requests.some(request => request.operation !== "detail"), false, "detail scans preserve the current context and tree");
+  assert.equal(view.detailProgress.completed, 200);
+  await client.release();
+});
+
+test("a removed selected file disappears and its delayed read cannot restore the preview", async () => {
+  const late = deferred(), context = { identity: "repo", repository: "/repo", ready: true, collections: [] };
+  const { view, tasks, cx } = await rootModel({
+    validate: async () => [{ operation: "file", fields: { collection: "alignment", path: "gone.txt" }, status: "removed" }],
+    query: operation => operation === "file" ? late.promise : Promise.resolve(context),
+  });
+  Object.assign(view, { mode: "context", context, viewKey: "repo:/repo", fileSelection: { collection: "alignment", path: "gone.txt" }, filePreview: { body: "deleted content" }, fileFolders: new Set(), fileEntries: new Map() });
+  view.openFile("alignment", "gone.txt", cx);
+  view.refresh(cx);
+  await tasks[1];
+  late.resolve({ body: "late deleted content" }); await Promise.all(tasks);
+  assert.equal(view.fileSelection, null);
+  assert.equal(view.filePreview, null);
+});
+
+test("warm Files reconnect shows saved folders and preview stale before validation, then applies changes and removal", async () => {
+  const storage = new Map(), where = { cwd: "/repo", machine: null };
+  const context = { identity: "repo", repository: "/repo", ready: true, collections: [{ id: "alignment", path: "/repo" }] };
+  const directory = { collection: "alignment", path: "" }, file = { collection: "alignment", path: "a.md" };
+  const seed = await queryClient(async operation => operation === "context" ? context : operation === "directory" ? [{ name: "a.md", path: "a.md", directory: false }] : { body: "cached preview" }, storage);
+  await seed.query("context", where);
+  await seed.query("directory", where, directory);
+  await seed.query("file", where, file);
+  const { view: previous } = await rootModel(seed, storage);
+  Object.assign(previous, { viewKey: "repo:/repo", viewStorageKey: "shared-context:context:views:v1", saved: new Map(), filters: {}, collapsed: new Set(), fileFolders: new Set(["alignment:"]), fileSelection: file });
+  delete previous.remember;
+  previous.remember();
+  const validation = deferred(), replacement = deferred();
+  let removed = false;
+  const warm = await queryClient(async (operation, _where, fields) => {
+    if (operation === "validate") {
+      await validation.promise;
+      return fields.entries.map(entry => ({ identity: entry.identity, status: removed ? "removed" : "changed" }));
+    }
+    if (operation === "directory") return [{ name: "b.md", path: "b.md", directory: false }];
+    if (operation === "file") return replacement.promise;
+    return context;
+  }, storage);
+  const { view, cx, tasks } = await rootModel(warm, storage);
+  const saved = new Map(JSON.parse(storage.get("shared-context:context:views:v1")).map(([key, state]) => [key, { ...state, collapsed: new Set(state.collapsed), fileFolders: new Set(state.fileFolders) }]));
+  Object.assign(view, { mode: "context", key: "", where: null, preferencesReady: true, progress: new Map(), saved });
+  view.follow(cx);
+  view.refresh(cx);
+  assert.equal(view.fileEntries.get("alignment:")[0].name, "a.md");
+  assert.equal(view.filePreview.body, "cached preview");
+  assert.equal(view.fileSelection.path, "a.md");
+  assert.equal(view.stale, true);
+  validation.resolve();
+  await tasks[0];
+  assert.equal(view.filePreview.body, "cached preview", "changed preview stays visible while its body is pending");
+  assert.equal(view.stale, true);
+  replacement.resolve({ body: "changed preview" });
+  await Promise.all(tasks);
+  assert.equal(view.fileEntries.get("alignment:")[0].name, "b.md");
+  assert.equal(view.filePreview.body, "changed preview");
+  assert.equal(view.stale, false);
+  removed = true;
+  view.refresh(cx);
+  await Promise.all(tasks);
+  assert.equal(view.fileSelection, null);
+  assert.equal(view.filePreview, null);
+  assert.equal(view.fileEntries.size, 0);
+  assert.equal(view.fileFolders.size, 0);
+  await Promise.all([seed.release(), warm.release()]);
+});
+
+test("warm Files validation cannot restore the old target after follow changes machines", async () => {
+  const storage = new Map(), where = { cwd: "/repo", machine: null };
+  const context = { identity: "repo", repository: "/repo", ready: true, collections: [{ id: "alignment", path: "/repo" }] };
+  const selection = { collection: "alignment", path: "a.md" }, waiting = deferred();
+  const seed = await queryClient(async operation => operation === "context" ? context : { body: "local only" }, storage);
+  await seed.query("context", where); await seed.query("file", where, selection);
+  const warm = await queryClient(async (_operation, _where, fields) => { await waiting.promise; return fields.entries.map(entry => ({ identity: entry.identity, status: "unchanged" })); }, storage);
+  const { view, current, cx, tasks } = await rootModel(warm);
+  Object.assign(view, { mode: "context", key: "", where: null, preferencesReady: true, progress: new Map(),
+    saved: new Map([["repo:/repo", { fileFolders: new Set(), fileSelection: selection }]]) });
+  view.follow(cx); view.refresh(cx);
+  assert.equal(view.filePreview.body, "local only");
+  current.where = { cwd: "/repo", machine: "remote" };
+  view.follow(cx);
+  waiting.resolve(); await Promise.all(tasks);
+  assert.equal(view.context, null);
+  assert.equal(view.filePreview, null);
+  assert.equal(view.fileSelection, null);
+  assert.equal(view.fileEntries.size, 0);
+  await Promise.all([seed.release(), warm.release()]);
+});
+
+test("warm Tracker restores persisted selected description and activity before validation and retires removal", async () => {
+  const storage = new Map(), where = { cwd: "/repo", machine: null };
+  const context = { identity: "repo", repository: "/repo", ready: true, collections: [] };
+  const selected = { id: "A", kind: "ticket", ref: "tickets/A" };
+  const snapshot = { tickets: [selected], initiatives: [] };
+  const cached = { record: { id: "A", body: "cached description" }, workflow: { events: [{ id: "fix-1", phase: "fix", status: "completed" }] }, state: { state: "READY" } };
+  const seed = await queryClient(async operation => operation === "context" ? context : operation === "tracker" ? snapshot : cached, storage);
+  await seed.query("context", where); await seed.query("tracker", where, { tree: true }); await seed.query("detail", where, { id: "A", kind: "ticket" });
+  storage.set("shared-context:tracker:views:v1", JSON.stringify([["repo:/repo", { selected, collapsed: [], fileFolders: [] }]]));
+  const validation = deferred(), replacement = deferred();
+  let classification = "unchanged";
+  const warm = await queryClient(async (operation, _where, fields) => {
+    if (operation === "validate") {
+      await validation.promise;
+      return fields.entries.map(entry => ({ identity: entry.identity, status: classification }));
+    }
+    if (operation === "context") return context;
+    if (operation === "tracker") return classification === "removed" ? { tickets: [], initiatives: [] } : snapshot;
+    return replacement.promise;
+  }, storage);
+  const { view, cx, tasks } = await rootModel(warm, storage);
+  Object.assign(view, { key: "", where: null, preferencesReady: true, saved: new Map(JSON.parse(storage.get("shared-context:tracker:views:v1"))) });
+  view.follow(cx); view.refresh(cx);
+  assert.equal(view.detail.record.body, "cached description");
+  assert.equal(view.activity.events[0].id, "fix-1");
+  assert.equal(view.stale, true);
+  validation.resolve(); await Promise.all(tasks);
+  assert.equal(view.error, "");
+  assert.equal(view.detail.record.body, "cached description");
+  assert.equal(view.stale, false);
+  classification = "changed";
+  view.refresh(cx);
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(view.detail.record.body, "cached description");
+  assert.equal(view.stale, true, "a changed selected body remains stale while its replacement is pending");
+  replacement.resolve({ ...cached, record: { id: "A", body: "changed description" }, workflow: { events: [{ id: "fix-2", phase: "fix", status: "completed" }] } });
+  await Promise.all(tasks);
+  assert.equal(view.detail.record.body, "changed description");
+  assert.equal(view.activity.events[0].id, "fix-2");
+  assert.equal(view.stale, false);
+  classification = "removed";
+  view.refresh(cx); await Promise.all(tasks);
+  assert.equal(view.selected, null);
+  assert.equal(view.detail, null);
+  assert.equal(view.activity.events.length, 0);
+  assert.equal(warm.peek("detail", where, { id: "A", kind: "ticket" }), null);
+  await Promise.all([seed.release(), warm.release()]);
+});
+
+test("warm Tracker validation cannot restore selected detail or activity after a target switch", async () => {
+  const storage = new Map(), where = { cwd: "/repo", machine: null }, waiting = deferred();
+  const context = { identity: "repo", repository: "/repo", ready: true, collections: [] };
+  const selected = { id: "A", kind: "ticket", ref: "tickets/A" };
+  const seed = await queryClient(async operation => operation === "context" ? context : operation === "tracker" ? { tickets: [selected], initiatives: [] } : { record: { body: "local description" }, workflow: {} }, storage);
+  await seed.query("context", where); await seed.query("tracker", where, { tree: true }); await seed.query("detail", where, { id: "A", kind: "ticket" });
+  const warm = await queryClient(async (_operation, _where, fields) => { await waiting.promise; return fields.entries.map(entry => ({ identity: entry.identity, status: "unchanged" })); }, storage);
+  const { view, current, cx, tasks } = await rootModel(warm);
+  Object.assign(view, { key: "", where: null, preferencesReady: true, saved: new Map([["repo:/repo", { selected }]]) });
+  view.follow(cx); view.refresh(cx);
+  assert.equal(view.detail.record.body, "local description");
+  current.where = { cwd: "/repo", machine: "remote" }; view.follow(cx);
+  waiting.resolve(); await Promise.all(tasks);
+  assert.equal(view.detail, null);
+  assert.equal(view.selected, null);
+  assert.equal(view.activity.events.length, 0);
+  await Promise.all([seed.release(), warm.release()]);
+});
+
+async function retainedTracker() {
+  const where = { cwd: "/repo", machine: null };
+  const context = { identity: "repo", repository: "/repo", ready: true, collections: [] };
+  const records = ["A", "B"].map(id => ({ id, kind: "ticket", ref: `tickets/${id}` }));
+  const body = (id, version) => ({ record: { id, body: `${id} description ${version}` }, workflow: { events: [{ id: `${id}-${version}`, phase: "fix", status: "completed" }] }, state: { state: "READY" } });
+  const pending = deferred(), started = deferred();
+  let replacing = false, removed = false;
+  const client = await queryClient(async (operation, _where, fields) => {
+    if (operation === "validate") return fields.entries.map(entry => ({ identity: entry.identity, status: replacing ? "changed" : "unchanged" }));
+    if (operation === "context") return context;
+    if (operation === "tracker") return { tickets: removed ? [records[1]] : records, initiatives: [] };
+    if (replacing && fields.id === "A") { started.resolve(); return pending.promise; }
+    return body(fields.id, "current");
+  });
+  const model = await rootModel(client);
+  Object.assign(model.view, { context, viewKey: "repo:/repo", saved: new Map() });
+  model.view.refresh(model.cx); await Promise.all(model.tasks);
+  model.view.choose(records[0], "ticket", model.cx); await Promise.all(model.tasks);
+  replacing = true;
+  return { ...model, client, records, body, pending, started, remove() { removed = true; }, recover() { pending.promise = Promise.resolve(body("A", "recovered")); }, where };
+}
+
+for (const code of ["NOT_FOUND", "EIO"]) {
+  test(`failed selected replacement (${code}) retains stale description/activity until successful retry`, async () => {
+    const model = await retainedTracker();
+    const { view, cx, tasks, client, pending, started, records, where } = model;
+    view.refresh(cx); await started.promise;
+    assert.equal(view.snapshot.tickets.length, 2, "the validated tree is usable before detail replacement");
+    pending.reject(Object.assign(new Error("replacement failed"), { code }));
+    await Promise.all(tasks);
+    assert.equal(view.detail.record.body, "A description current");
+    assert.equal(view.activity.events[0].id, "A-current");
+    assert.equal(view.detailError, "replacement failed");
+    assert.equal(client.isCurrent("detail", where, { id: "A", kind: "ticket" }), false);
+    assert.equal(view.stale, true);
+    assert.equal(view.detailProgress.completed, 1, "failed details are not applied progress");
+    // Retry only the selected read, as a user can do without another tree sweep.
+    model.recover();
+    view.choose(records[0], "ticket", cx); await Promise.all(tasks);
+    assert.equal(view.detail.record.body, "A description recovered");
+    assert.equal(view.activity.events[0].id, "A-recovered");
+    assert.equal(view.detailError, "");
+    assert.equal(view.stale, false);
+    await client.release();
+  });
+}
+
+for (const outcome of ["failure", "success"]) {
+  test(`late selected replacement ${outcome} cannot alter a newer selection or retired record`, async () => {
+    const { view, cx, tasks, client, pending, started, records, body, remove } = await retainedTracker();
+    view.refresh(cx); await started.promise;
+    view.choose(records[1], "ticket", cx);
+    if (outcome === "failure") pending.reject(new Error("late A failure"));
+    else pending.resolve(body("A", "late"));
+    await Promise.all(tasks);
+    assert.equal(view.selected.id, "B");
+    assert.equal(view.detail.record.body, "B description current");
+    assert.equal(view.activity.events[0].id, "B-current");
+    assert.equal(view.detailError, "");
+    assert.equal(view.stale, false);
+    remove(); view.refresh(cx); await Promise.all(tasks);
+    assert.equal(view.snapshot.tickets.some(record => record.id === "A"), false);
+    assert.equal(client.peek("detail", view.where, { id: "A", kind: "ticket" }), null);
+    await client.release();
+  });
+}
+
+for (const outcome of ["failure", "success"]) {
+  test(`late replacement ${outcome} cannot change freshness after follow switches targets`, async () => {
+    const { view, current, cx, tasks, client, pending, started, body } = await retainedTracker();
+    view.refresh(cx); await started.promise;
+    current.where = { cwd: "/repo", machine: "other" }; view.preferencesReady = true; view.follow(cx);
+    assert.equal(view.stale, false);
+    if (outcome === "failure") pending.reject(new Error("old target failure"));
+    else pending.resolve(body("A", "old-target"));
+    await Promise.all(tasks);
+    assert.equal(view.detail, null);
+    assert.equal(view.selected, null);
+    assert.equal(view.activity.events.length, 0);
+    assert.equal(view.stale, false);
+    assert.equal(view.error, "");
+    await client.release();
+  });
+}

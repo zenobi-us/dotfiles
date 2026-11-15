@@ -20,6 +20,7 @@ import { agent as claude } from "../../devtools-agent/bundles/agent-core/skills/
 import type { AgentId } from "../../devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/modules/types";
 
 import { executor, resolveCommand, sessionRoot, ensurePrivateDirectory } from "./native";
+import { readSnapshot } from "./read-session";
 const agents = { omp, pi, zot, codex, claude };
 
 /** The agent-model.js launch parser reads this marker; the prompt itself is in a file. */
@@ -116,14 +117,15 @@ export async function file(cwd: string, kind: CollectionKind, relative: string) 
 
 type TrackerProgress = DocumentReadProgress | { phase: "context" | "workflows"; completed: number; total: number | null; current?: string };
 
-export async function tracker(cwd: string, onProgress?: (progress: TrackerProgress) => void) {
+export async function tracker(cwd: string, onProgress?: (progress: TrackerProgress) => void, treeOnly = false) {
   onProgress?.({ phase: "context", completed: 0, total: null });
   const context = await project(cwd), exec = executor(cwd);
   onProgress?.({ phase: "context", completed: 1, total: 1 });
   onProgress?.({ phase: "discover", completed: 0, total: null });
-  const snapshot = await loadExplorerSnapshot(context, exec, undefined, undefined, onProgress);
+  const snapshot = await readSnapshot(context, exec, onProgress);
   const inspectionExec = createInspectionExecutor(exec, context.repositoryRoot);
   const states: Record<string, { state: string; reason: string; next?: string }> = {};
+  if (treeOnly) return { ...snapshot, states, identity: context.slug, repository: context.repositoryRoot };
   let cursor = 0, completed = 0;
   onProgress?.({ phase: "workflows", completed, total: snapshot.tickets.length });
   // Limit concurrent Git inspections. A large tracker must not start one process per ticket at once.
@@ -168,15 +170,17 @@ async function commands() {
 }
 
 export async function detail(cwd: string, id: string, kind: "ticket" | "initiative" = "ticket") {
-  const context = await project(cwd), exec = executor(cwd), snapshot = await loadExplorerSnapshot(context, exec);
+  const context = await project(cwd), exec = executor(cwd), snapshot = await readSnapshot(context, exec);
   const record = kind === "initiative" ? snapshot.initiatives.find(item => item.id === id) : snapshot.tickets.find(item => item.id === id);
-  if (!record) throw new Error("The selected record no longer exists. Refresh the tracker.");
+  if (!record) throw Object.assign(new Error("The selected record no longer exists. Refresh the tracker."), { code: "NOT_FOUND" });
   if ("group" in record && record.group) throw new Error("Select an initiative record, not a collection.");
   const ticket = kind === "ticket" ? snapshot.tickets.find(item => item.id === id)! : undefined;
   const target = ticket ? { kind: "ticket" as const, ticket } : { kind: "initiative" as const, initiative: snapshot.initiatives.find(item => item.id === id)! };
   const workflow = ticket && recordKind(ticket) === "ticket" ? await loadTicketWorkflow(context, ticket, exec) : undefined;
-  const nextAction = ticket && recordKind(ticket) === "ticket" ? recoveryDecision(ticket, snapshot, workflow).action ?? null : null;
-  return { record, kind, workflow, nextAction, actions: actionChoices(target, snapshot, workflow, await commands()), repository: context.repositoryRoot };
+  const decision = ticket && recordKind(ticket) === "ticket" ? recoveryDecision(ticket, snapshot, workflow) : undefined;
+  const nextAction = decision?.action ?? null;
+  const state = decision ? { state: recoveryState(decision), reason: decision.reason, next: decision.label } : { state: "status" in record ? record.status : "PLANNING", reason: "Recorded planning context." };
+  return { record, kind, workflow, nextAction, state, actions: actionChoices(target, snapshot, workflow, await commands()), repository: context.repositoryRoot };
 }
 
 export async function prepare(cwd: string, id: string, kind: "ticket" | "initiative", action: ExplorerAction, prompt: string, harness: string) {

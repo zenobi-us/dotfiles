@@ -20,14 +20,14 @@ async function main(): Promise<never> {
           description: "Run Shared Context queries on this Core target.",
           usage: [
             "herdr-context request <request-json>",
-            "herdr-context job-create <tracker-request-json>",
+            "herdr-context job-create <read-request-json>",
             "herdr-context job-run <job-uuid>",
             "herdr-context job-status <job-uuid> [afterSeq] [waitMs]",
             "herdr-context job-remove <job-uuid>",
           ],
           request: { protocol: 1, operation: "context", cwd: "/absolute/repository", fields: {} },
           output: "One protocol 1 JSON envelope. Exit 0 on success, 1 on failure.",
-          jobs: "Tracker reads only. Status wait is 0..1000 ms. Failed jobs return an error state from job-status.",
+          jobs: "Tracker and validation reads only. Status wait is 0..1000 ms. Failed jobs return an error state from job-status.",
         };
         break;
       case "request":
@@ -35,7 +35,7 @@ async function main(): Promise<never> {
         value = await withDeadline(() => dispatch(parseRequest(args[0])));
         break;
       case "job-create":
-        if (args.length !== 1) throw new QueryError("INVALID_REQUEST", "Use job-create with one JSON tracker request argument.");
+        if (args.length !== 1) throw new QueryError("INVALID_REQUEST", "Use job-create with one tracker or validation request argument.");
         value = await jobs.create(parseRequest(args[0]));
         break;
       case "job-run": {

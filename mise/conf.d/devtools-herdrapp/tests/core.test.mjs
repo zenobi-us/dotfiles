@@ -18,13 +18,18 @@ const modules = new Map();
 let root, environment, query, createQueryClient, agents;
 const owned = new Set();
 let observedTerminals = [];
+let statusHold;
 
 async function hc(args) {
   try { const output = await execute("hc", args, { env: environment, maxBuffer: 16_000_000 }); return { code: 0, ...output }; }
   catch (error) { return { code: typeof error.code === "number" ? error.code : 1, stdout: error.stdout ?? "", stderr: error.stderr || error.message }; }
 }
 async function exec(command, args, options = {}) {
-  return hc(["exec", "--timeout", String((options.timeout ?? 60000) / 1000), ...(options.on ? ["--on", options.on] : []), ...(options.cwd ? ["--cwd", options.cwd] : []), "--", command, ...args]);
+  const hold = statusHold, held = hold && args.includes("job-status");
+  if (held && hold.before) { hold.entered.resolve(); await hold.resume.promise; }
+  const result = await hc(["exec", "--timeout", String((options.timeout ?? 60000) / 1000), ...(options.on ? ["--on", options.on] : []), ...(options.cwd ? ["--cwd", options.cwd] : []), "--", command, ...args]);
+  if (held && !hold.before) { hold.entered.resolve(); await hold.resume.promise; }
+  return result;
 }
 async function load(name) {
   if (modules.has(name)) return modules.get(name);
@@ -50,7 +55,7 @@ before(async () => {
   root = await fs.mkdtemp(path.join(os.tmpdir(), "herdr-query-test-"));
   environment = { ...process.env, HC_SESSION: `mod-test-${randomUUID().slice(0, 8)}`, HOME: `${root}/home`, XDG_CONFIG_HOME: `${root}/config`, XDG_STATE_HOME: `${root}/state`, XDG_RUNTIME_DIR: `${root}/runtime` };
   environment.PI_CODING_AGENT_DIR = `${root}/agent`;
-  environment.PATH = `${root}/bin:${process.env.PATH}`;
+  environment.PATH = `${environment.HOME}/.local/bin:${root}/bin:${process.env.PATH}`;
   await fs.mkdir(`${root}/bin`);
   await fs.writeFile(`${root}/bin/omp`, "#!/bin/sh\nexit 0\n", { mode: 0o700 });
   delete environment.HC_SOCKET; delete environment.HC_TERMINAL_ID;
@@ -183,6 +188,39 @@ test("releasing a tracker cell stops only its query worker and removes its job f
   assert.equal(remaining.filter(terminal => terminal.labels?.["shared-context.query"]).length, 0);
   assert.deepEqual(await fs.readdir(`${environment.XDG_STATE_HOME}/herdr/shared-context-queries`), []);
   await client.release();
+});
+
+test("release removes validation job files before a delayed status response returns", async () => {
+  const where = await trackerFixture("cancel-validation", ["SAFE"]), client = createQueryClient();
+  await client.query("context", where);
+  const entered = Promise.withResolvers(), resume = Promise.withResolvers();
+  statusHold = { entered, resume };
+  const pending = client.validate(where);
+  const rejected = assert.rejects(pending, error => error.code === "CANCELLED");
+  try {
+    await entered.promise;
+    await client.release(where);
+    assert.deepEqual(await fs.readdir(`${environment.XDG_STATE_HOME}/herdr/shared-context-queries`), []);
+  } finally {
+    statusHold = null; resume.resolve();
+    await rejected; await client.release();
+  }
+});
+
+test("cancellation wins over a status read whose job was removed during cleanup", async () => {
+  const where = await trackerFixture("cancel-status-race", ["SAFE"]), client = createQueryClient();
+  await client.query("context", where);
+  const entered = Promise.withResolvers(), resume = Promise.withResolvers();
+  statusHold = { entered, resume, before: true };
+  const pending = client.validate(where);
+  const rejected = assert.rejects(pending, error => error.code === "CANCELLED");
+  try {
+    await entered.promise;
+    await client.release(where);
+  } finally {
+    statusHold = null; resume.resolve();
+    await rejected; await client.release();
+  }
 });
 
 test("a named Core machine executes queries in its own home and cleans up remote tracker workers", async () => {

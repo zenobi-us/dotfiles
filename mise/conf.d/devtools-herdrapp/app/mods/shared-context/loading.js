@@ -67,16 +67,24 @@ export function loadingView(view) {
  */
 export function queryFooter(view) {
   const t = theme(), pending = [...view.pendingQueries];
+  const filesStale = view.mode === "context" && view.where && (view.fileSelection
+    ? Boolean(view.filePreview) && !view.client.isCurrent("file", view.where, view.fileSelection)
+    : [...view.fileFolders].some(folder => {
+      const separator = folder.indexOf(":"), collection = folder.slice(0, separator), path = folder.slice(separator + 1);
+      return view.fileEntries.has(folder) && !view.client.isCurrent("directory", view.where, { collection, path });
+    }));
+  const stale = view.stale || filesStale;
   const request = pending[pending.length - 1] ?? view.lastQuery;
-  const active = pending.length > 0, progress = request?.progress;
+  const active = pending.length > 0 || view.loading, progress = request?.progress;
   const error = view.error || (active ? "" : request?.error);
-  const title = request ? `${request.operation}${request.target ? ` · ${request.target}` : ""}` : view.preferencesReady ? "No query" : "settings";
+  const title = stale ? "Validate cached reads" : request ? `${request.operation}${request.target ? ` · ${request.target}` : ""}` : view.preferencesReady ? "No query" : "settings";
   const phase = active && progress ? PHASES[progress.phase]?.[0] ?? progress.phase : "";
   const known = active && progress?.total != null;
   const percent = known ? progress.total === 0 ? 100 : Math.min(100, progress.completed / progress.total * 100) : null;
-  const status = error ? view.stale ? "Stale · failed" : "Failed" : active ? known ? `${progress.completed}/${progress.total} · ${Math.round(percent)}%` : "Running…" : view.stale ? "Stale" : request ? "Complete" : view.preferencesReady ? "Idle" : "Loading…";
+  const details = view.detailProgress;
+  const status = error ? stale ? "Stale · failed" : "Failed" : stale ? view.loading ? "Stale · validating" : "Stale · refreshing" : details && view.mode === "tracker" ? `Current · ${details.completed}/${details.total} details applied` : active ? known ? `${progress.completed}/${progress.total} · ${Math.round(percent)}%` : "Running…" : request ? "Current" : view.preferencesReady ? "Idle" : "Loading…";
   const label = `${title}${phase ? ` · ${phase}` : ""}`;
-  const detail = [label, view.stale ? "Showing the last successful snapshot." : "", progress?.current, error, pending.length > 1 ? `${pending.length} queries running` : ""].filter(Boolean).join("\n");
+  const detail = [label, stale ? "Showing the last successful snapshot." : "", progress?.current, error, pending.length > 1 ? `${pending.length} queries running` : ""].filter(Boolean).join("\n");
   return h_flex().id("shared-context-status").w_full().h(30).min_w(0).flex_none().px(10).gap(8).items_center()
     .border_t(1).border_color(t.border).bg(t.chrome).text_size(10).text_color(t.muted)
     .accessibility_label(`Query: ${label}. ${status}${error ? `. ${error}` : ""}`).tooltip(detail)

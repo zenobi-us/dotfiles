@@ -20,13 +20,13 @@ export class QueryJobs {
   constructor(private readonly root = path.join(process.env.XDG_STATE_HOME || path.join(os.homedir(), ".local/state"), "herdr/shared-context-queries")) { }
 
   async create(request: Request): Promise<{ job: string }> {
-    if (request.operation !== "tracker") throw new QueryError("INVALID_REQUEST", "Only tracker reads use background query jobs.");
+    if (request.operation !== "tracker" && request.operation !== "validate") throw new QueryError("INVALID_REQUEST", "Only tracker and validation reads use background query jobs.");
     await ensurePrivateDirectory(this.root);
     const job = randomUUID(), directory = path.join(this.root, job);
     await fs.mkdir(directory, { mode: 0o700 });
     try {
       atomicJson(directory, "request.json", { protocol: 1, job, uid: process.getuid!(), request } satisfies Manifest);
-      atomicJson(directory, "status.json", { state: "pending", progress: [], deadline: Date.now() + QUERY_TIMEOUT_MS } satisfies Snapshot);
+      atomicJson(directory, "status.json", { state: "pending", progress: [], deadline: Date.now() + (request.operation === "validate" ? 600_000 : QUERY_TIMEOUT_MS) } satisfies Snapshot);
       return { job };
     } catch (error) {
       await fs.rm(directory, { recursive: true, force: true });
@@ -46,7 +46,8 @@ export class QueryJobs {
       throw error;
     }
     closeSync(lock);
-    const snapshot: Snapshot = { state: "running", progress: [], deadline: Date.now() + QUERY_TIMEOUT_MS, pid: process.pid };
+    const timeout = manifest.request.operation === "validate" ? 600_000 : QUERY_TIMEOUT_MS;
+    const snapshot: Snapshot = { state: "running", progress: [], deadline: Date.now() + timeout, pid: process.pid };
     atomicJson(directory, "status.json", snapshot);
     let sequence = 0, active = true;
     const phases = new Map<string, { first: Event; latest: Event }>();
@@ -61,7 +62,7 @@ export class QueryJobs {
       atomicJson(directory, "status.json", snapshot);
     };
     try {
-      const value = await withDeadline(() => dispatch(manifest.request, onProgress));
+      const value = await withDeadline(() => dispatch(manifest.request, onProgress), timeout);
       active = false;
       // Validate the largest status response before publishing a terminal success.
       encodeEnvelope({ protocol: 1, ok: true, value: { state: "done", progress: snapshot.progress, value } });
@@ -118,7 +119,7 @@ export class QueryJobs {
     const manifest = readJson(path.join(directory, "request.json"), 2 * 1024 * 1024) as Manifest;
     if (!manifest || manifest.protocol !== 1 || manifest.job !== job || manifest.uid !== process.getuid!()) throw new QueryError("INVALID_JOB", "The query job has no matching ownership record.");
     manifest.request = parseRequest(JSON.stringify(manifest.request));
-    if (manifest.request.operation !== "tracker") throw new QueryError("INVALID_JOB", "The query job does not contain a tracker read.");
+    if (manifest.request.operation !== "tracker" && manifest.request.operation !== "validate") throw new QueryError("INVALID_JOB", "The query job does not contain a tracker or validation read.");
     return { directory, manifest };
   }
 }

@@ -124,7 +124,9 @@ export default class SharedContext extends View {
     invalidateAction(this);
     clearHeaderControls(this);
     this.context = null; this.snapshot = null; this.detail = null; this.filePreview = null; this.viewKey = null;
+    this.selected = null;
     this.fileEntries = new Map(); this.filePending = new Set();
+    this.fileFolders = new Set(); this.fileSelection = null;
     this.pendingQueries.clear(); this.lastQuery = null;
     this.metadataOpen = false; this.liveActivity = new Map();
     this.progress = new Map();
@@ -136,8 +138,62 @@ export default class SharedContext extends View {
     this.loading = false; this.error = ""; this.stale = false;
     this.changed(cx);
     if (!next.cwd) { this.error = "Select a repository folder."; return; }
+    this.context = this.client.peek("context", next);
+    if (this.context) this.restoreView(this.context);
+    if (this.mode === "context" && this.context?.ready) {
+      for (const collection of this.context.collections) {
+        if (!collection.path) continue;
+        const prefix = `${collection.id}:`;
+        for (const folder of this.fileFolders) {
+          if (!folder.startsWith(prefix)) continue;
+          const entries = this.client.peek("directory", next, { collection: collection.id, path: folder.slice(prefix.length) });
+          if (entries) this.fileEntries.set(folder, entries);
+        }
+      }
+      if (this.fileSelection) this.filePreview = this.client.peek("file", next, this.fileSelection);
+    }
+    this.snapshot = this.client.peek("tracker", next, { tree: true });
+    if (this.mode === "tracker" && this.context?.ready && this.selected && this.snapshot) {
+      const records = this.selected.kind === "initiative" ? this.snapshot.initiatives : this.snapshot.tickets;
+      if (records.some(record => record.id === this.selected.id)) {
+        this.detail = this.client.peek("detail", next, { id: this.selected.id, kind: this.selected.kind });
+        this.activity = workflowActivity(this.detail?.workflow);
+      } else this.selected = null;
+    }
+    if (this.context || this.snapshot) this.stale = true;
+    this.changed(cx);
     startRefreshResources(this, cx);
     this.targetDirty = true;
+  }
+
+  restoreView(context) {
+    const viewKey = `${this.where.machine ? `${this.where.machine}:` : ""}${context.identity}:${context.repository}`;
+    if (viewKey === this.viewKey) return;
+    const saved = this.saved.get(viewKey);
+    this.viewKey = viewKey;
+    this.detailRevision++; this.fileRevision++;
+    this.snapshot = null; this.detail = null; this.filePreview = null;
+    this.activity = workflowActivity(); this.event = null;
+    this.selected = saved?.selected ?? null; this.filters = { ...DEFAULT_FILTERS, ...saved?.filters }; this.drawer = saved?.drawer ?? "peek";
+    this.collapsed = new Set(saved?.collapsed); this.fileFolders = new Set(saved?.fileFolders); this.fileSelection = saved?.fileSelection ?? null;
+    this.fileEntries = new Map(); this.filePending = new Set();
+  }
+
+  filesAreStale() {
+    if (this.context && !this.client.isCurrent("context", this.where)) return true;
+    for (const key of this.fileEntries.keys()) {
+      const colon = key.indexOf(":");
+      if (!this.client.isCurrent("directory", this.where, { collection: key.slice(0, colon), path: key.slice(colon + 1) })) return true;
+    }
+    return Boolean(this.filePreview && this.fileSelection && !this.client.isCurrent("file", this.where, this.fileSelection));
+  }
+
+  trackerIsStale() {
+    if (this.context && !this.client.isCurrent("context", this.where)) return true;
+    if (this.snapshot && !this.client.isCurrent("tracker", this.where, { tree: true })) return true;
+    if (!this.selected || !this.detail) return false;
+    const fields = { id: this.selected.id, kind: this.selected.kind };
+    return !this.client.isCurrent("detail", this.where, fields) || this.client.peek("detail", this.where, fields) !== this.detail;
   }
 
   async query(operation, fields, cx, onProgress) {
@@ -170,24 +226,30 @@ export default class SharedContext extends View {
     if (this.loading && !this.refreshQueue.running) { this.refreshQueue.queued = true; return; }
     if (!this.refreshQueue.request()) return;
     const revision = this.revision, where = this.where, queue = this.refreshQueue;
-    this.client.invalidate(where);
+    this.detailRevision++; this.fileRevision++;
+    this.stale = Boolean(this.context || this.snapshot);
     this.loading = true; this.error = "";
     beginLoading(this, cx);
     this.changed(cx);
     cx.spawn(async cx => {
       try {
+        const validation = await this.client.validate(where);
+        if (!this.current(revision)) return;
+        for (const row of validation) {
+          if (row.status !== "removed") continue;
+          if (row.operation === "file" && this.fileSelection?.collection === row.fields.collection && this.fileSelection?.path === row.fields.path) {
+            this.fileRevision++; this.fileSelection = null; this.filePreview = null;
+          }
+          if (row.operation === "directory") this.forgetFolder(row.fields.collection, row.fields.path);
+          if (row.operation === "detail" && this.selected?.id === row.fields.id && this.selected?.kind === row.fields.kind) {
+            this.detailRevision++; invalidateAction(this); this.actionOpen = null; this.recordActionsOpen = null;
+            this.selected = null; this.detail = null; this.activity = workflowActivity(); this.event = null;
+          }
+        }
+        this.remember();
         const context = await this.query("context", {}, cx);
         if (!this.current(revision)) return;
-        const viewKey = `${where.machine ? `${where.machine}:` : ""}${context.identity}:${context.repository}`;
-        if (viewKey !== this.viewKey) {
-          const saved = this.saved.get(viewKey);
-          this.viewKey = viewKey;
-          this.detailRevision++; this.fileRevision++;
-          this.snapshot = null; this.detail = null; this.filePreview = null;
-          this.selected = saved?.selected ?? null; this.filters = { ...DEFAULT_FILTERS, ...saved?.filters }; this.drawer = saved?.drawer ?? "peek";
-          this.collapsed = new Set(saved?.collapsed); this.fileFolders = new Set(saved?.fileFolders); this.fileSelection = saved?.fileSelection ?? null;
-          this.fileEntries = new Map(); this.filePending = new Set();
-        }
+        this.restoreView(context);
         this.context = context;
         updateLocalWatches(this, cx);
         if (context.ready) { this.openSelect = null; this.selectKeyHandlers = null; }
@@ -201,20 +263,25 @@ export default class SharedContext extends View {
           }
           if (this.fileSelection) this.openFile(this.fileSelection.collection, this.fileSelection.path, cx);
         } else {
-          const snapshot = await this.query("tracker", {}, cx, progress => {
+          const snapshot = await this.query("tracker", { tree: true }, cx, progress => {
             if (this.current(revision)) updateLoading(this, progress, cx);
           });
           if (!this.current(revision)) return;
-          this.snapshot = snapshot;
+          this.snapshot = { ...snapshot, states: {} };
+          this.client.retainDetails(where, snapshot);
           this.progress = initiativeProgress(snapshot);
           if (this.selected) {
             const records = this.selected.kind === "initiative" ? snapshot.initiatives : snapshot.tickets;
             const record = records.find(item => item.id === this.selected.id);
             if (record) this.choose(record, this.selected.kind, cx, false);
-            else { this.detailRevision++; invalidateAction(this); this.actionOpen = null; this.recordActionsOpen = null; this.selected = null; this.detail = null; }
+            else { this.detailRevision++; invalidateAction(this); this.actionOpen = null; this.recordActionsOpen = null; this.selected = null; this.detail = null; this.activity = workflowActivity(); this.event = null; }
           }
+          this.stale = this.trackerIsStale();
+          this.changed(cx);
+          await this.loadDetails(cx, revision, this.snapshot);
         }
-        this.stale = false;
+        if (!this.current(revision)) return;
+        this.stale = this.mode === "context" ? this.filesAreStale() : this.trackerIsStale();
       } catch (error) {
         if (this.current(revision)) {
           this.error = String(error.message ?? error);
@@ -230,6 +297,33 @@ export default class SharedContext extends View {
       }
     });
   }
+  async loadDetails(cx, revision, snapshot) {
+    const records = [...snapshot.tickets.map(record => ({ record, kind: "ticket" })), ...snapshot.initiatives.filter(record => !record.group).map(record => ({ record, kind: "initiative" }))]
+      .map(item => ({ ...item, current: this.client.isCurrent("detail", this.where, { id: item.record.id, kind: item.kind }) }))
+      .sort((a, b) => Number(b.current) - Number(a.current));
+    this.detailProgress = { completed: 0, total: records.length };
+    let cursor = 0;
+    await Promise.all(Array.from({ length: Math.min(4, records.length) }, async () => {
+      while (cursor < records.length && this.current(revision) && this.snapshot === snapshot) {
+        const { record, kind } = records[cursor++];
+        try {
+          const detail = await this.query("detail", { id: record.id, kind }, cx);
+          if (!this.current(revision) || this.snapshot !== snapshot) return;
+          if (kind === "ticket") snapshot.states[record.id] = detail.state;
+          this.detailProgress.completed++;
+          if (this.selected?.id === record.id && this.selected?.kind === kind) {
+            this.detail = detail; this.detailLoading = false; this.detailError = "";
+            this.activity = workflowActivity(detail.workflow);
+          }
+        } catch (error) {
+          if (!this.current(revision) || this.snapshot !== snapshot) return;
+          if (this.selected?.id === record.id && this.selected?.kind === kind) this.detailError = String(error.message ?? error);
+        }
+        this.changed(cx);
+      }
+    }));
+  }
+
 
   choose(record, kind, cx, reveal = true) {
     if (this.drawer === "expanded" && this.selected?.id === record.id && reveal) return;
@@ -257,9 +351,15 @@ export default class SharedContext extends View {
           this.activity = workflowActivity(detail.workflow);
         }
       } catch (error) { if (this.current(revision) && serial === this.detailRevision) this.detailError = String(error.message ?? error); }
-      finally { if (this.current(revision) && serial === this.detailRevision) { this.detailLoading = false; this.changed(cx); } }
+      finally { if (this.current(revision) && serial === this.detailRevision) { this.detailLoading = false; this.stale = this.trackerIsStale(); this.changed(cx); } }
     });
     this.remember(); this.changed(cx);
+  }
+
+  forgetFolder(collection, path) {
+    const key = `${collection}:${path}`, matches = folder => folder === key || folder.startsWith(path ? `${key}/` : key);
+    for (const folder of this.fileEntries.keys()) if (matches(folder)) this.fileEntries.delete(folder);
+    for (const folder of this.fileFolders) if (matches(folder)) this.fileFolders.delete(folder);
   }
 
   loadFolder(collection, path, cx) {
@@ -271,8 +371,14 @@ export default class SharedContext extends View {
       try {
         const entries = await this.query("directory", { collection, path }, cx);
         if (this.current(revision)) this.fileEntries.set(key, entries);
-      } catch (error) { if (this.current(revision)) { this.error = String(error.message ?? error); this.stale = this.fileEntries.size > 0; } }
-      finally { if (this.current(revision)) { this.filePending.delete(key); this.changed(cx); } }
+      } catch (error) {
+        if (this.current(revision)) {
+          if (error.code === "NOT_FOUND") { this.forgetFolder(collection, path); this.remember(); }
+          this.error = String(error.message ?? error);
+          this.stale = error.code !== "NOT_FOUND" && this.fileEntries.has(key);
+        }
+      }
+      finally { if (this.current(revision)) { this.filePending.delete(key); this.stale = this.filesAreStale(); this.changed(cx); } }
     });
   }
 
@@ -291,8 +397,13 @@ export default class SharedContext extends View {
     cx.spawn(async cx => {
       try {
         const preview = await this.query("file", { collection, path }, cx);
-        if (this.current(revision) && serial === this.fileRevision) this.filePreview = preview;
-      } catch (error) { if (this.current(revision) && serial === this.fileRevision) { this.error = String(error.message ?? error); this.stale = Boolean(this.filePreview); } }
+        if (this.current(revision) && serial === this.fileRevision) { this.filePreview = preview; this.stale = this.filesAreStale(); }
+      } catch (error) {
+        if (this.current(revision) && serial === this.fileRevision) {
+          if (error.code === "NOT_FOUND") { this.fileSelection = null; this.filePreview = null; this.remember(); }
+          this.error = String(error.message ?? error); this.stale = Boolean(this.filePreview);
+        }
+      }
       if (this.current(revision) && serial === this.fileRevision) this.changed(cx);
     });
     this.remember(); this.changed(cx);

@@ -5,7 +5,7 @@ const runners = new Map();
 const PROTOCOL = 1;
 const LIMIT = 6 * 1024 * 1024;
 const JOB = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-const READS = new Set(["context", "directory", "file", "tracker", "detail"]);
+const READS = new Set(["context", "directory", "file", "tracker", "detail", "validate"]);
 
 export async function runQuery(operation, where, fields = {}, onProgress, control = {}) {
   if (!READS.has(operation) && !["setup", "prepare", "discard-session"].includes(operation)) throw new Error("Unknown Shared Context operation.");
@@ -16,7 +16,7 @@ export async function runQuery(operation, where, fields = {}, onProgress, contro
   const target = { cwd: where.cwd, machine: where.machine ?? null };
   const runner = await resolveRunner(target);
   checkCancelled(control);
-  if (operation === "tracker") return queryJob(target, runner, request, onProgress, control);
+  if (operation === "tracker" || operation === "validate") return queryJob(target, runner, request, onProgress, control);
   const value = await invoke(target, runner, ["request", request], ["setup", "prepare"].includes(operation) ? 600000 : 60000);
   // A completed mutation must reach its caller so it can clean up a prepared session.
   if (READS.has(operation)) checkCancelled(control);
@@ -71,11 +71,16 @@ async function invoke(where, runner, args, timeout = 15000) {
 }
 
 async function queryJob(where, runner, request, onProgress, control) {
-  let job, address, terminalCleanup;
+  let job, address, terminalCleanup, jobCleanup;
   const removeTerminal = () => {
     if (!address) return Promise.resolve();
     terminalCleanup ??= stopTerminal();
     return terminalCleanup;
+  };
+  const removeJob = () => {
+    if (!job || !JOB.test(job)) return Promise.resolve();
+    jobCleanup ??= invoke(where, runner, ["job-remove", job]);
+    return jobCleanup;
   };
   const stopTerminal = async () => {
     const result = await hc(["get", "--json", address]);
@@ -95,8 +100,10 @@ async function queryJob(where, runner, request, onProgress, control) {
   };
   control.cancel = () => {
     control.cancelled = true;
-    // A late launch response is handled by finally; never remove its job before that response arrives.
-    if (address) return removeTerminal();
+    // Release must finish both cleanup steps even when a status response is
+    // still pending and the view's final callback is about to end.
+    // A late launch response remains owned by finally.
+    if (address || terminalCleanup) return removeTerminal().then(removeJob);
   };
   try {
     checkCancelled(control);
@@ -134,10 +141,13 @@ async function queryJob(where, runner, request, onProgress, control) {
         throw new Error("The query worker exited without publishing its result. Refresh to start a new read query.");
       }
     }
+  } catch (error) {
+    checkCancelled(control);
+    throw error;
   } finally {
     control.cancel = null;
     await removeTerminal();
-    if (job && JOB.test(job)) await invoke(where, runner, ["job-remove", job]);
+    await removeJob();
   }
 }
 
