@@ -1,3 +1,15 @@
+## Current review review-0011
+
+Verdict: FAILURE for source `2f9a632c590a3b2a19a462415c31aa8f79e3fe36`, tree `5967c9f852f13696a5cdb514871481a26405d61c`; base `9dda756eaa8fa7766e384a13b8ce6ae92d7da198`. Branch: `feature/collect-evidence-feedback-08-video`; base branch: `master`.
+
+[Immutable review](../artifacts/reviews/review-review-0011.md) and [review result](../events/review-0011.yaml) record STD-01 as the only open blocker. RV-01 passed independent browser validation. SPEC-01 was closed by review-time browser creation, draft reload, restart and export checks. Full findings remain in the immutable review.
+
+Validation: reviewer batch passed 2 tests and 146 assertions; 28 native opt-in tests skipped. Actual bundled-browser checks passed decoded red/blue sequence, paused undo, draft recovery and restart/export. Long-comment layout failed. Parent independently passed the configured real-recorder/browser public workflow (1 test, 30 assertions), doctor recording probe, and retained WebM decode. The unconfigured browser attempts failed because `/opt/google/chrome/chrome` is absent; configured Chromium passed.
+
+No merge or push. Source unchanged. Review delivery acknowledged; reviewer and axis terminals closed; owned-resource shutdown confirmed. [Parent completion](../events/review-complete-0012.yaml). Next: fix current STD-01, then request a fresh review.
+
+## Retained implementation and review history
+
 ## Parent completion fix-complete-0009
 
 [Verified completion](../events/fix-complete-0009.yaml) accepted fix-0008 and its exact source commit/tree. RV-01 resolved; tests, build, typecheck and actual paused/playing Undo smoke passed. Retained feedback validation passed independently. Delivery acknowledged; terminal t14c removed; owned shutdown confirmed. No open implementation questions. Fresh review required.
