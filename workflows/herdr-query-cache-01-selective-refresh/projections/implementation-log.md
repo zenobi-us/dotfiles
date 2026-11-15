@@ -32,5 +32,10 @@ Source tree: `a1e58164be06dd02fb6ef73fb8d131db4498fe1e`. Changed files and exact
 
 ## Open questions and next action
 
-No open questions. Independent review. Parent completion and approved child-process shutdown are confirmed in `workflows/herdr-query-cache-01-selective-refresh/events/start-complete-0003.yaml`. No formal verdict, merge, push or ticket completion is recorded.
+No open questions. Review FAILURE recorded below. Parent implementation completion and approved child-process shutdown are confirmed in `workflows/herdr-query-cache-01-selective-refresh/events/start-complete-0003.yaml`. Review verdict FAILURE is recorded below; no merge, push or ticket completion occurred.
 
+
+
+## Review phase history
+
+[review-start-0004](../events/review-start-0004.yaml) → [review-0005](../events/review-0005.yaml) → [review-complete-0006](../events/review-complete-0006.yaml). Verdict: FAILURE. Source `8ff5def35291d6271aa1ac3768386dff48dad26c` remains unchanged. No fix phase has run. [Review artifact](../artifacts/reviews/review-review-0005.md). Next: fix STD-01 and SPEC-01.

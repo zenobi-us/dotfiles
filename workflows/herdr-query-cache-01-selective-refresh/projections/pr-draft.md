@@ -12,7 +12,7 @@ Generated from `workflows/herdr-query-cache-01-selective-refresh/events/start-00
 
 ## Status
 
-IMPLEMENTED. Parent phase completion and child shutdown are confirmed. Formal review has no verdict. No merge, push or ticket completion occurred.
+REVIEW_FAILED. Parent phase completion and child shutdown are confirmed. Formal review verdict: FAILURE; see the independent review below. No merge, push or ticket completion occurred.
 
 ## Problem and changes
 
@@ -59,11 +59,20 @@ Build, 47 panel/Core tests, 17 helper/backend tests, isolated-peer TypeScript an
 
 ## Review history
 
-Implementation self-review findings resolved; formal worktree review pending.
+Implementation self-review findings were resolved before formal review. Independent review subsequently returned FAILURE, as recorded below.
 
-All implementation self-review findings and the native cancellation leak were resolved and exercised. Independent formal review remains the next phase; these checks do not establish a review verdict.
+All implementation self-review findings and the native cancellation leak were resolved and exercised. Independent review returned FAILURE; current findings are linked below.
 
 ## Open questions
 
 None.
 
+
+
+## Independent review — review-0005
+
+Latest verdict: FAILURE for commit `8ff5def35291d6271aa1ac3768386dff48dad26c`. Standards: STD-01 (P2). Spec: SPEC-01 (P2). Both remain unresolved; no findings have been fixed. The [immutable review](../artifacts/reviews/review-review-0005.md) contains the findings, reproductions and required changes. [Result receipt](../events/review-0005.yaml). [Parent completion](../events/review-complete-0006.yaml).
+
+The effective full package suite passed 47 Node and 17 Bun tests. Native mod check and real-helper smoke passed. Both defects were reproduced despite the passing suite. Parent reran 14 cache tests successfully. Source remains unchanged. Reviewer and axis sessions are closed; owned process shutdown is confirmed. No merge, push, or ticket completion occurred.
+
+Next: fix current findings in a fresh session, then review the changed source again.

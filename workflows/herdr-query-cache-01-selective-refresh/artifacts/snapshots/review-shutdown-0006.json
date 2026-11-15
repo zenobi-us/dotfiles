@@ -1,0 +1,58 @@
+{
+  "terminal_removed": "t15p",
+  "observation": {
+    "manifest": {
+      "runId": "1fbcc67c-5efd-449b-9667-5f309410aaa5",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t15p",
+      "createdAt": "2026-11-15T07:31:25.930Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+      "operationId": "herdr-query-cache-01-selective-refresh-review-1"
+    },
+    "resources": {
+      "version": 1,
+      "runId": "1fbcc67c-5efd-449b-9667-5f309410aaa5",
+      "observedAt": "2026-11-15T07:41:16.875Z",
+      "processes": [
+        {
+          "pid": 2107216,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "21290856",
+          "command": "omp",
+          "parentPid": 2106064,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "stopped"
+        },
+        {
+          "pid": 2126973,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "21304202",
+          "command": "omp daemon brok",
+          "parentPid": 2107216,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "stopped"
+        },
+        {
+          "pid": 2127000,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "21304208",
+          "command": "omp",
+          "parentPid": 2126973,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "stopped"
+        },
+        {
+          "pid": 2119914,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "21297273",
+          "command": "python",
+          "parentPid": 2107216,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  }
+}
