@@ -86,3 +86,8 @@ Verdict: FAILURE. Reviewed commit: `ccca30b1eaba2320ee8e29d5cbdb42f6996a3bea`. R
 ### Review — 2026-11-15T11:31:36.954Z
 
 Verdict: FAILURE. Reviewed commit: `e1a8cccee968e5c63ccdfec9bd48e7aff5ff41ce`. Reviewed tree: `6135e1c1d522af9f050a18eab21bb06961a3d272`. [Independent selected-detail review](../../workflows/herdr-query-cache-01-selective-refresh/artifacts/reviews/review-review-0017.md).
+
+
+### Review — 2026-11-15T22:27:20.795Z
+
+Verdict: SUCCESS. Reviewed commit: `95497af730b060bc7e50522ab1128ca8231c7f78`. Reviewed tree: `2480b6a2ba3b4e9821decad2f119a60ce4bd8ce4`. [Independent successful review](../../workflows/herdr-query-cache-01-selective-refresh/artifacts/reviews/review-review-0023.md).
