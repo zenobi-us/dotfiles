@@ -52,3 +52,8 @@ The immutable draft snapshot has no display outcome text for three read-only CLI
 
 [Receipt](../events/implementation-0002.yaml) · [Snapshot](../artifacts/snapshots/pr-draft-implementation-0002.md)
 
+
+
+## Review review-0005
+
+Review review-0005: FAILURE at 2026-11-15T04:03:13.575Z. Open finding: RV-01. No findings resolved. See [review artifact](../artifacts/reviews/review-review-0005.md), [result receipt](../events/review-0005.yaml), and [parent completion](../events/review-complete-0006.yaml). Source remains unchanged; fix is required before another review.
