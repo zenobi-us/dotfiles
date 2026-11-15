@@ -1,0 +1,31 @@
+[
+  {
+    "argv": [
+      "mise",
+      "-C",
+      "mise/conf.d/devtools-herdrapp",
+      "exec",
+      "--",
+      "bun",
+      "run",
+      "test"
+    ]
+  },
+  {
+    "argv": [
+      "herdr-app",
+      "check",
+      "mise/conf.d/devtools-herdrapp/app/mods/shared-context"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "-e",
+      "const run=(op,fields={})=>{const p=Bun.spawnSync(['bun','mise/conf.d/devtools-herdrapp/app/bin/herdr-context.mjs','request',JSON.stringify({protocol:1,operation:op,cwd:process.cwd(),fields})]); const r=JSON.parse(p.stdout.toString());if(p.exitCode||!r.ok)throw Error(JSON.stringify(r));return r.value;};const x=run('context',{$cache:true});if(x.value.repository!==process.cwd())throw Error('Wrong canonical repository');const y=run('validate',{entries:[x.cache]});if(y.length!==1||y[0].identity!==x.cache.identity||y[0].status!=='unchanged')throw Error(JSON.stringify(y));console.log('PASS real helper cached context -> unchanged batched validation, no result body replay');"
+    ]
+  }
+]

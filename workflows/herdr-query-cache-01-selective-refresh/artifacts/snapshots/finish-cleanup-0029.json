@@ -1,0 +1,14 @@
+{
+  "preview": "remove  closeout/pi-ink-bridge-01  /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/closeout-pi-ink-bridge-01  (all changes in master)\nremove  feature/herdr-query-cache-01-selective-refresh  /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh  (all changes in master)\nremove  feature/pi-ink-bridge-02-install-client  /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-pi-ink-bridge-02-install-client  (ancestor of master)\nremove  integration/4ef0a797-64ae-429d-9cb1-e5fca5cfd877  /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-4ef0a797-64ae-429d-9cb1-e5fca5cfd877  (ancestor of master)\nremove  reconcile/origin-master-ticket-01  /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/reconcile-origin-master-ticket-01  (ancestor of master)\n",
+  "removal": {
+    "removed": [
+      "feature/herdr-query-cache-01-selective-refresh",
+      "integration/4ef0a797-64ae-429d-9cb1-e5fca5cfd877"
+    ],
+    "refused": []
+  },
+  "source_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+  "candidate_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-4ef0a797-64ae-429d-9cb1-e5fca5cfd877",
+  "phase_owned_resources": "Prior review shutdown confirmed; finish launched no agents or services.",
+  "observed_at": "2026-11-15T22:51:23.626Z"
+}
