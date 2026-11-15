@@ -1,0 +1,110 @@
+{
+  "before": {
+    "manifest": {
+      "runId": "aa2ddd39-fc23-4ae4-8e5a-caff327c8bef",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t176",
+      "createdAt": "2026-11-15T22:20:10.066Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+      "operationId": "herdr-query-cache-01-selective-refresh-review-4"
+    },
+    "resources": {
+      "version": 1,
+      "runId": "aa2ddd39-fc23-4ae4-8e5a-caff327c8bef",
+      "observedAt": "2026-11-15T22:28:22.907Z",
+      "processes": [
+        {
+          "pid": 2804402,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "26623206",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "running"
+        },
+        {
+          "pid": 2805425,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "26629863",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "running"
+        },
+        {
+          "pid": 2817256,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "26640034",
+          "command": "omp daemon brok",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "running"
+        },
+        {
+          "pid": 2817283,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "26640040",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "running"
+        }
+      ],
+      "shutdown": "pending"
+    }
+  },
+  "after": {
+    "manifest": {
+      "runId": "aa2ddd39-fc23-4ae4-8e5a-caff327c8bef",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t176",
+      "createdAt": "2026-11-15T22:20:10.066Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+      "operationId": "herdr-query-cache-01-selective-refresh-review-4"
+    },
+    "resources": {
+      "version": 1,
+      "runId": "aa2ddd39-fc23-4ae4-8e5a-caff327c8bef",
+      "observedAt": "2026-11-15T22:38:35.421Z",
+      "processes": [
+        {
+          "pid": 2804402,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "26623206",
+          "command": "omp",
+          "parentPid": 2804095,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "stopped"
+        },
+        {
+          "pid": 2805425,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "26629863",
+          "command": "omp",
+          "parentPid": 2804402,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "stopped"
+        },
+        {
+          "pid": 2817256,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "26640034",
+          "command": "omp daemon brok",
+          "parentPid": 2804402,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "stopped"
+        },
+        {
+          "pid": 2817283,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "26640040",
+          "command": "omp",
+          "parentPid": 2817256,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  },
+  "operator_approval": "User selected Stop owned processes for PIDs 2804402, 2805425, 2817256, 2817283; identities rechecked before TERM; stopped parent resumed to deliver signal.",
+  "terminal_removed": true
+}
