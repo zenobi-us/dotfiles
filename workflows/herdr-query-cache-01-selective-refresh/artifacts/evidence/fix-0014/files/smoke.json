@@ -1,0 +1,23 @@
+{
+  "warm": {
+    "description": "# Cached Alpha\n\nCached selected description.",
+    "activity": 1,
+    "stale": true
+  },
+  "unchanged": {
+    "stale": false
+  },
+  "changed": {
+    "description": "# Changed Alpha\n\nChanged selected description.",
+    "stale": false
+  },
+  "removed": {
+    "detail": null,
+    "selection": null,
+    "activity": 0
+  },
+  "targetSwitch": {
+    "detail": null,
+    "activity": 0
+  }
+}

@@ -1,0 +1,817 @@
+[
+  {
+    "operation": "setup",
+    "fields": {
+      "store": "repository"
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "identity": "github-com-example-spec02--146fee91",
+        "repository": "/tmp/spec02-deEPU7/repo",
+        "root": "/tmp/spec02-deEPU7/repo",
+        "routeSource": "/tmp/spec02-deEPU7/repo/.context-routes.toml",
+        "storage": "repository",
+        "mode": "repository",
+        "metadata": {
+          "repositoryRoot": "/tmp/spec02-deEPU7/repo",
+          "checkoutAvailable": true,
+          "origin": "git@github.com:example/spec02.git",
+          "canonicalOrigin": "github.com/example/spec02",
+          "slug": "github-com-example-spec02--146fee91",
+          "sharedRoot": "/tmp/spec02-deEPU7/repo",
+          "candidateSharedRoot": "/home/zenobius/Notes/SharedAgentContext/github-com-example-spec02--146fee91",
+          "root": "/tmp/spec02-deEPU7/repo",
+          "storage": "repository",
+          "mode": "repository",
+          "alignmentRoot": "/tmp/spec02-deEPU7/repo",
+          "routes": {
+            "alignment": {
+              "adapter": "markdown",
+              "store": "repository"
+            },
+            "tickets": {
+              "adapter": "local-markdown",
+              "store": "repository"
+            },
+            "initiatives": {
+              "adapter": "markdown",
+              "store": "repository"
+            },
+            "workflows": {
+              "adapter": "files",
+              "store": "repository"
+            },
+            "evidence": {
+              "adapter": "files",
+              "inherits": "workflows"
+            },
+            "sources": {
+              "adapter": "files",
+              "inherits": "alignment"
+            }
+          },
+          "routeSource": "/tmp/spec02-deEPU7/repo/.context-routes.toml",
+          "layout": {
+            "tracker": "tracker",
+            "sources": "sources",
+            "tickets": "tracker/tickets",
+            "initiatives": "tracker/initiatives"
+          },
+          "source": "/tmp/spec02-deEPU7/repo/AGENTS.md"
+        },
+        "ready": true,
+        "missing": [],
+        "collections": [
+          {
+            "kind": "alignment",
+            "adapter": "markdown",
+            "store": "repository",
+            "root": "/tmp/spec02-deEPU7/repo",
+            "path": "/tmp/spec02-deEPU7/repo",
+            "ref": ".",
+            "publication": "repository",
+            "id": "alignment",
+            "label": "Alignment"
+          },
+          {
+            "kind": "tickets",
+            "adapter": "local-markdown",
+            "store": "repository",
+            "root": "/tmp/spec02-deEPU7/repo",
+            "path": "/tmp/spec02-deEPU7/repo/tracker/tickets",
+            "ref": "tracker/tickets",
+            "publication": "repository",
+            "id": "tickets",
+            "label": "Tickets"
+          },
+          {
+            "kind": "initiatives",
+            "adapter": "markdown",
+            "store": "repository",
+            "root": "/tmp/spec02-deEPU7/repo",
+            "path": "/tmp/spec02-deEPU7/repo/tracker/initiatives",
+            "ref": "tracker/initiatives",
+            "publication": "repository",
+            "id": "initiatives",
+            "label": "Initiatives"
+          },
+          {
+            "kind": "sources",
+            "adapter": "files",
+            "store": "repository",
+            "root": "/tmp/spec02-deEPU7/repo",
+            "path": "/tmp/spec02-deEPU7/repo/sources",
+            "ref": "sources",
+            "publication": "repository",
+            "id": "sources",
+            "label": "Sources"
+          }
+        ],
+        "watchPaths": [
+          "/tmp/spec02-deEPU7/repo",
+          "/tmp/spec02-deEPU7/repo/tracker/tickets",
+          "/tmp/spec02-deEPU7/repo/tracker/initiatives"
+        ],
+        "watchMissing": [
+          "sources",
+          "workflow"
+        ]
+      }
+    }
+  },
+  {
+    "operation": "context",
+    "fields": {
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "b659d274d788c5972a8e369bdd8f6bb53f7114f5597f6ea83ecf238b6b0346f8",
+          "version": "11bbe9c42756285069d537c503cba357660cbed3cd2506230475a97ef2194375"
+        },
+        "value": {
+          "identity": "github-com-example-spec02--146fee91",
+          "repository": "/tmp/spec02-deEPU7/repo",
+          "root": "/tmp/spec02-deEPU7/repo",
+          "routeSource": "/tmp/spec02-deEPU7/repo/.context-routes.toml",
+          "storage": "repository",
+          "mode": "repository",
+          "metadata": {
+            "repositoryRoot": "/tmp/spec02-deEPU7/repo",
+            "checkoutAvailable": true,
+            "origin": "git@github.com:example/spec02.git",
+            "canonicalOrigin": "github.com/example/spec02",
+            "slug": "github-com-example-spec02--146fee91",
+            "sharedRoot": "/tmp/spec02-deEPU7/repo",
+            "candidateSharedRoot": "/home/zenobius/Notes/SharedAgentContext/github-com-example-spec02--146fee91",
+            "root": "/tmp/spec02-deEPU7/repo",
+            "storage": "repository",
+            "mode": "repository",
+            "alignmentRoot": "/tmp/spec02-deEPU7/repo",
+            "routes": {
+              "alignment": {
+                "adapter": "markdown",
+                "store": "repository"
+              },
+              "tickets": {
+                "adapter": "local-markdown",
+                "store": "repository"
+              },
+              "initiatives": {
+                "adapter": "markdown",
+                "store": "repository"
+              },
+              "workflows": {
+                "adapter": "files",
+                "store": "repository"
+              },
+              "evidence": {
+                "adapter": "files",
+                "inherits": "workflows"
+              },
+              "sources": {
+                "adapter": "files",
+                "inherits": "alignment"
+              }
+            },
+            "routeSource": "/tmp/spec02-deEPU7/repo/.context-routes.toml",
+            "layout": {
+              "tracker": "tracker",
+              "sources": "sources",
+              "tickets": "tracker/tickets",
+              "initiatives": "tracker/initiatives"
+            },
+            "source": "/tmp/spec02-deEPU7/repo/AGENTS.md"
+          },
+          "ready": true,
+          "missing": [],
+          "collections": [
+            {
+              "kind": "alignment",
+              "adapter": "markdown",
+              "store": "repository",
+              "root": "/tmp/spec02-deEPU7/repo",
+              "path": "/tmp/spec02-deEPU7/repo",
+              "ref": ".",
+              "publication": "repository",
+              "id": "alignment",
+              "label": "Alignment"
+            },
+            {
+              "kind": "tickets",
+              "adapter": "local-markdown",
+              "store": "repository",
+              "root": "/tmp/spec02-deEPU7/repo",
+              "path": "/tmp/spec02-deEPU7/repo/tracker/tickets",
+              "ref": "tracker/tickets",
+              "publication": "repository",
+              "id": "tickets",
+              "label": "Tickets"
+            },
+            {
+              "kind": "initiatives",
+              "adapter": "markdown",
+              "store": "repository",
+              "root": "/tmp/spec02-deEPU7/repo",
+              "path": "/tmp/spec02-deEPU7/repo/tracker/initiatives",
+              "ref": "tracker/initiatives",
+              "publication": "repository",
+              "id": "initiatives",
+              "label": "Initiatives"
+            },
+            {
+              "kind": "sources",
+              "adapter": "files",
+              "store": "repository",
+              "root": "/tmp/spec02-deEPU7/repo",
+              "path": "/tmp/spec02-deEPU7/repo/sources",
+              "ref": "sources",
+              "publication": "repository",
+              "id": "sources",
+              "label": "Sources"
+            }
+          ],
+          "watchPaths": [
+            "/tmp/spec02-deEPU7/repo",
+            "/tmp/spec02-deEPU7/repo/tracker/tickets",
+            "/tmp/spec02-deEPU7/repo/tracker/initiatives",
+            "/tmp/spec02-deEPU7/repo/workflows"
+          ],
+          "watchMissing": [
+            "sources"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "operation": "tracker",
+    "fields": {
+      "tree": true,
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "4618d97ce3cd045372463aa3903b5ad2fdcb97255c88bf1975abceaf039c8ac7",
+          "version": "53a58a828093b3319738912d3b178d13671081406768d2126d7f33ef7ea1453e"
+        },
+        "value": {
+          "backend": "local-markdown",
+          "tickets": [
+            {
+              "id": "A",
+              "title": "Cached Alpha",
+              "documentType": "enhancement",
+              "fields": {
+                "blocked_by": [],
+                "id": "A",
+                "schema": "tracker-ticket/v1",
+                "title": "Cached Alpha",
+                "triage": "ready-for-agent",
+                "type": "enhancement",
+                "work_status": "unclaimed"
+              },
+              "ref": "tracker/tickets/A.md",
+              "backend": "local-markdown",
+              "status": "unclaimed",
+              "blockedBy": [],
+              "body": "# Cached Alpha\n\nCached selected description."
+            }
+          ],
+          "initiatives": [
+            {
+              "id": "unassigned",
+              "title": "Ungrouped",
+              "ref": "tracker/tickets",
+              "ticketIds": [
+                "A"
+              ],
+              "rootTicketIds": [
+                "A"
+              ],
+              "body": "Records without an assigned initiative.",
+              "group": true
+            }
+          ],
+          "states": {},
+          "identity": "github-com-example-spec02--146fee91",
+          "repository": "/tmp/spec02-deEPU7/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "detail",
+    "fields": {
+      "id": "A",
+      "kind": "ticket",
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "5a21bcfe870f6559aced38b76de9ff5bc030ab42391c993c041d5a861402e882",
+          "version": "36814ab1eaf867e1a06eef1ff34c9d8147002a050374b0ea591e708727c3cefe"
+        },
+        "value": {
+          "record": {
+            "id": "A",
+            "title": "Cached Alpha",
+            "documentType": "enhancement",
+            "fields": {
+              "blocked_by": [],
+              "id": "A",
+              "schema": "tracker-ticket/v1",
+              "title": "Cached Alpha",
+              "triage": "ready-for-agent",
+              "type": "enhancement",
+              "work_status": "unclaimed"
+            },
+            "ref": "tracker/tickets/A.md",
+            "backend": "local-markdown",
+            "status": "unclaimed",
+            "blockedBy": [],
+            "body": "# Cached Alpha\n\nCached selected description."
+          },
+          "kind": "ticket",
+          "workflow": {
+            "ticketId": "A",
+            "receipts": [],
+            "events": [
+              {
+                "id": "workflows/A/events/start-1.yaml",
+                "ref": "workflows/A/events/start-1.yaml",
+                "fields": {
+                  "schema": "worktree-receipt/v2",
+                  "receipt_id": "start-1",
+                  "phase": "start",
+                  "status": "started"
+                },
+                "body": "",
+                "error": "[invalid_receipt] Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "inspection": {
+              "historyValid": false,
+              "historyError": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+              "source": {
+                "state": "missing",
+                "candidates": 0
+              },
+              "ownership": "unknown",
+              "worktrees": [
+                {
+                  "path": "/tmp/spec02-deEPU7/repo",
+                  "branch": "master"
+                }
+              ],
+              "commits": [],
+              "artifacts": []
+            },
+            "diagnostics": [
+              {
+                "ref": "workflows/A/events/start-1.yaml",
+                "code": "invalid_receipt",
+                "severity": "error",
+                "message": "Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "recordedAttempts": {
+              "review": 0,
+              "fix": 0
+            },
+            "error": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+          },
+          "nextAction": null,
+          "state": {
+            "state": "BLOCKED",
+            "reason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+            "next": "Repair workflow history"
+          },
+          "actions": [
+            {
+              "action": "ask-matt",
+              "key": "m",
+              "label": "Ask Matt"
+            },
+            {
+              "action": "start",
+              "key": "s",
+              "label": "Start worktree",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "review",
+              "key": "r",
+              "label": "Review",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "fix",
+              "key": "x",
+              "label": "Fix",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "finish",
+              "key": "f",
+              "label": "Finish",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "submit",
+              "key": "u",
+              "label": "Submit",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            }
+          ],
+          "repository": "/tmp/spec02-deEPU7/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "validate",
+    "fields": {
+      "entries": [
+        {
+          "identity": "b659d274d788c5972a8e369bdd8f6bb53f7114f5597f6ea83ecf238b6b0346f8",
+          "version": "11bbe9c42756285069d537c503cba357660cbed3cd2506230475a97ef2194375"
+        },
+        {
+          "identity": "4618d97ce3cd045372463aa3903b5ad2fdcb97255c88bf1975abceaf039c8ac7",
+          "version": "53a58a828093b3319738912d3b178d13671081406768d2126d7f33ef7ea1453e"
+        },
+        {
+          "identity": "5a21bcfe870f6559aced38b76de9ff5bc030ab42391c993c041d5a861402e882",
+          "version": "36814ab1eaf867e1a06eef1ff34c9d8147002a050374b0ea591e708727c3cefe"
+        }
+      ]
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": [
+        {
+          "identity": "b659d274d788c5972a8e369bdd8f6bb53f7114f5597f6ea83ecf238b6b0346f8",
+          "status": "unchanged"
+        },
+        {
+          "identity": "4618d97ce3cd045372463aa3903b5ad2fdcb97255c88bf1975abceaf039c8ac7",
+          "status": "unchanged"
+        },
+        {
+          "identity": "5a21bcfe870f6559aced38b76de9ff5bc030ab42391c993c041d5a861402e882",
+          "status": "unchanged"
+        }
+      ]
+    }
+  },
+  {
+    "operation": "validate",
+    "fields": {
+      "entries": [
+        {
+          "identity": "b659d274d788c5972a8e369bdd8f6bb53f7114f5597f6ea83ecf238b6b0346f8",
+          "version": "11bbe9c42756285069d537c503cba357660cbed3cd2506230475a97ef2194375"
+        },
+        {
+          "identity": "4618d97ce3cd045372463aa3903b5ad2fdcb97255c88bf1975abceaf039c8ac7",
+          "version": "53a58a828093b3319738912d3b178d13671081406768d2126d7f33ef7ea1453e"
+        },
+        {
+          "identity": "5a21bcfe870f6559aced38b76de9ff5bc030ab42391c993c041d5a861402e882",
+          "version": "36814ab1eaf867e1a06eef1ff34c9d8147002a050374b0ea591e708727c3cefe"
+        }
+      ]
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": [
+        {
+          "identity": "b659d274d788c5972a8e369bdd8f6bb53f7114f5597f6ea83ecf238b6b0346f8",
+          "status": "unchanged"
+        },
+        {
+          "identity": "4618d97ce3cd045372463aa3903b5ad2fdcb97255c88bf1975abceaf039c8ac7",
+          "status": "changed"
+        },
+        {
+          "identity": "5a21bcfe870f6559aced38b76de9ff5bc030ab42391c993c041d5a861402e882",
+          "status": "changed"
+        }
+      ]
+    }
+  },
+  {
+    "operation": "tracker",
+    "fields": {
+      "tree": true,
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "4618d97ce3cd045372463aa3903b5ad2fdcb97255c88bf1975abceaf039c8ac7",
+          "version": "9aa5c74eb0976e0562cc927e72d5d1461cc87217a2636e8d8c5b073daa594be8"
+        },
+        "value": {
+          "backend": "local-markdown",
+          "tickets": [
+            {
+              "id": "A",
+              "title": "Changed Alpha",
+              "documentType": "enhancement",
+              "fields": {
+                "blocked_by": [],
+                "id": "A",
+                "schema": "tracker-ticket/v1",
+                "title": "Changed Alpha",
+                "triage": "ready-for-agent",
+                "type": "enhancement",
+                "work_status": "unclaimed"
+              },
+              "ref": "tracker/tickets/A.md",
+              "backend": "local-markdown",
+              "status": "unclaimed",
+              "blockedBy": [],
+              "body": "# Changed Alpha\n\nChanged selected description."
+            }
+          ],
+          "initiatives": [
+            {
+              "id": "unassigned",
+              "title": "Ungrouped",
+              "ref": "tracker/tickets",
+              "ticketIds": [
+                "A"
+              ],
+              "rootTicketIds": [
+                "A"
+              ],
+              "body": "Records without an assigned initiative.",
+              "group": true
+            }
+          ],
+          "states": {},
+          "identity": "github-com-example-spec02--146fee91",
+          "repository": "/tmp/spec02-deEPU7/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "detail",
+    "fields": {
+      "id": "A",
+      "kind": "ticket",
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "5a21bcfe870f6559aced38b76de9ff5bc030ab42391c993c041d5a861402e882",
+          "version": "e015e6203293154774db613e40f91e6db8e71637253dfca704f6d9df020164bc"
+        },
+        "value": {
+          "record": {
+            "id": "A",
+            "title": "Changed Alpha",
+            "documentType": "enhancement",
+            "fields": {
+              "blocked_by": [],
+              "id": "A",
+              "schema": "tracker-ticket/v1",
+              "title": "Changed Alpha",
+              "triage": "ready-for-agent",
+              "type": "enhancement",
+              "work_status": "unclaimed"
+            },
+            "ref": "tracker/tickets/A.md",
+            "backend": "local-markdown",
+            "status": "unclaimed",
+            "blockedBy": [],
+            "body": "# Changed Alpha\n\nChanged selected description."
+          },
+          "kind": "ticket",
+          "workflow": {
+            "ticketId": "A",
+            "receipts": [],
+            "events": [
+              {
+                "id": "workflows/A/events/start-1.yaml",
+                "ref": "workflows/A/events/start-1.yaml",
+                "fields": {
+                  "schema": "worktree-receipt/v2",
+                  "receipt_id": "start-1",
+                  "phase": "start",
+                  "status": "started"
+                },
+                "body": "",
+                "error": "[invalid_receipt] Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "inspection": {
+              "historyValid": false,
+              "historyError": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+              "source": {
+                "state": "missing",
+                "candidates": 0
+              },
+              "ownership": "unknown",
+              "worktrees": [
+                {
+                  "path": "/tmp/spec02-deEPU7/repo",
+                  "branch": "master"
+                }
+              ],
+              "commits": [],
+              "artifacts": []
+            },
+            "diagnostics": [
+              {
+                "ref": "workflows/A/events/start-1.yaml",
+                "code": "invalid_receipt",
+                "severity": "error",
+                "message": "Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "recordedAttempts": {
+              "review": 0,
+              "fix": 0
+            },
+            "error": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+          },
+          "nextAction": null,
+          "state": {
+            "state": "BLOCKED",
+            "reason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+            "next": "Repair workflow history"
+          },
+          "actions": [
+            {
+              "action": "ask-matt",
+              "key": "m",
+              "label": "Ask Matt"
+            },
+            {
+              "action": "start",
+              "key": "s",
+              "label": "Start worktree",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "review",
+              "key": "r",
+              "label": "Review",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "fix",
+              "key": "x",
+              "label": "Fix",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "finish",
+              "key": "f",
+              "label": "Finish",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "submit",
+              "key": "u",
+              "label": "Submit",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            }
+          ],
+          "repository": "/tmp/spec02-deEPU7/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "validate",
+    "fields": {
+      "entries": [
+        {
+          "identity": "b659d274d788c5972a8e369bdd8f6bb53f7114f5597f6ea83ecf238b6b0346f8",
+          "version": "11bbe9c42756285069d537c503cba357660cbed3cd2506230475a97ef2194375"
+        },
+        {
+          "identity": "4618d97ce3cd045372463aa3903b5ad2fdcb97255c88bf1975abceaf039c8ac7",
+          "version": "9aa5c74eb0976e0562cc927e72d5d1461cc87217a2636e8d8c5b073daa594be8"
+        },
+        {
+          "identity": "5a21bcfe870f6559aced38b76de9ff5bc030ab42391c993c041d5a861402e882",
+          "version": "e015e6203293154774db613e40f91e6db8e71637253dfca704f6d9df020164bc"
+        }
+      ]
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": [
+        {
+          "identity": "b659d274d788c5972a8e369bdd8f6bb53f7114f5597f6ea83ecf238b6b0346f8",
+          "status": "unchanged"
+        },
+        {
+          "identity": "4618d97ce3cd045372463aa3903b5ad2fdcb97255c88bf1975abceaf039c8ac7",
+          "status": "changed"
+        },
+        {
+          "identity": "5a21bcfe870f6559aced38b76de9ff5bc030ab42391c993c041d5a861402e882",
+          "status": "removed"
+        }
+      ]
+    }
+  },
+  {
+    "operation": "tracker",
+    "fields": {
+      "tree": true,
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "4618d97ce3cd045372463aa3903b5ad2fdcb97255c88bf1975abceaf039c8ac7",
+          "version": "ef5365ad7d4f85c394441a22d6cab7ced7a19b67fd9187cc51a1129d6a73416e"
+        },
+        "value": {
+          "backend": "local-markdown",
+          "tickets": [],
+          "initiatives": [
+            {
+              "id": "unassigned",
+              "title": "Ungrouped",
+              "ref": "tracker/tickets",
+              "ticketIds": [],
+              "rootTicketIds": [],
+              "body": "Records without an assigned initiative.",
+              "group": true
+            }
+          ],
+          "states": {},
+          "identity": "github-com-example-spec02--146fee91",
+          "repository": "/tmp/spec02-deEPU7/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "validate",
+    "fields": {
+      "entries": [
+        {
+          "identity": "b659d274d788c5972a8e369bdd8f6bb53f7114f5597f6ea83ecf238b6b0346f8",
+          "version": "11bbe9c42756285069d537c503cba357660cbed3cd2506230475a97ef2194375"
+        },
+        {
+          "identity": "4618d97ce3cd045372463aa3903b5ad2fdcb97255c88bf1975abceaf039c8ac7",
+          "version": "53a58a828093b3319738912d3b178d13671081406768d2126d7f33ef7ea1453e"
+        },
+        {
+          "identity": "5a21bcfe870f6559aced38b76de9ff5bc030ab42391c993c041d5a861402e882",
+          "version": "36814ab1eaf867e1a06eef1ff34c9d8147002a050374b0ea591e708727c3cefe"
+        }
+      ]
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": [
+        {
+          "identity": "b659d274d788c5972a8e369bdd8f6bb53f7114f5597f6ea83ecf238b6b0346f8",
+          "status": "unchanged"
+        },
+        {
+          "identity": "4618d97ce3cd045372463aa3903b5ad2fdcb97255c88bf1975abceaf039c8ac7",
+          "status": "changed"
+        },
+        {
+          "identity": "5a21bcfe870f6559aced38b76de9ff5bc030ab42391c993c041d5a861402e882",
+          "status": "removed"
+        }
+      ]
+    }
+  }
+]

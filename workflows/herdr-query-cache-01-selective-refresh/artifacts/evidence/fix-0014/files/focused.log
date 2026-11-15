@@ -1,0 +1,144 @@
+TAP version 13
+# Subtest: explicit location props win, including a local folder in a remote space
+ok 1 - explicit location props win, including a local folder in a remote space
+  ---
+  duration_ms: 1.293
+  type: 'test'
+  ...
+# Subtest: a peek and a layout terminal use their terminal machine, not the active space
+ok 2 - a peek and a layout terminal use their terminal machine, not the active space
+  ---
+  duration_ms: 0.228037
+  type: 'test'
+  ...
+# Subtest: target keys distinguish machine and folder but normalize absent local machine
+ok 3 - target keys distinguish machine and folder but normalize absent local machine
+  ---
+  duration_ms: 0.149821
+  type: 'test'
+  ...
+# Subtest: only the shown stack child polls, and a hidden ancestor disables it
+ok 4 - only the shown stack child polls, and a hidden ancestor disables it
+  ---
+  duration_ms: 0.342061
+  type: 'test'
+  ...
+# Subtest: explicit pane visibility respects active tabs and zoom; ambiguous copies do not poll
+ok 5 - explicit pane visibility respects active tabs and zoom; ambiguous copies do not poll
+  ---
+  duration_ms: 0.198843
+  type: 'test'
+  ...
+# Subtest: remote paths never become local watches; local tracker watches include workflows
+ok 6 - remote paths never become local watches; local tracker watches include workflows
+  ---
+  duration_ms: 0.703206
+  type: 'test'
+  ...
+# Subtest: missing local watch folders enable polling only for the affected view
+ok 7 - missing local watch folders enable polling only for the affected view
+  ---
+  duration_ms: 0.162234
+  type: 'test'
+  ...
+# Subtest: a refresh burst coalesces into one trailing pass without overlap
+ok 8 - a refresh burst coalesces into one trailing pass without overlap
+  ---
+  duration_ms: 0.126597
+  type: 'test'
+  ...
+# Subtest: only an observed relevant work-to-done or idle transition refreshes
+ok 9 - only an observed relevant work-to-done or idle transition refreshes
+  ---
+  duration_ms: 0.269394
+  type: 'test'
+  ...
+# (node:2646876) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: progress redraws only its retained owners even when another mod resolves the task
+ok 10 - progress redraws only its retained owners even when another mod resolves the task
+  ---
+  duration_ms: 9.71872
+  type: 'test'
+  ...
+# Subtest: an older record completion cannot replace a newer selection or a different machine
+ok 11 - an older record completion cannot replace a newer selection or a different machine
+  ---
+  duration_ms: 3.231008
+  type: 'test'
+  ...
+# Subtest: an older file completion cannot replace the latest file preview
+ok 12 - an older file completion cannot replace the latest file preview
+  ---
+  duration_ms: 2.924644
+  type: 'test'
+  ...
+# Subtest: an old tracker completion cannot replace a snapshot after the repository changes
+ok 13 - an old tracker completion cannot replace a snapshot after the repository changes
+  ---
+  duration_ms: 2.770285
+  type: 'test'
+  ...
+# Subtest: refresh failure keeps the last successful tracker snapshot and marks it stale
+ok 14 - refresh failure keeps the last successful tracker snapshot and marks it stale
+  ---
+  duration_ms: 3.079233
+  type: 'test'
+  ...
+# Subtest: captured root props keep retained callbacks pinned when the focused terminal changes
+ok 15 - captured root props keep retained callbacks pinned when the focused terminal changes
+  ---
+  duration_ms: 2.120669
+  type: 'test'
+  ...
+# Subtest: an initial tracker failure does not claim that a tracker snapshot is retained
+ok 16 - an initial tracker failure does not claim that a tracker snapshot is retained
+  ---
+  duration_ms: 2.536808
+  type: 'test'
+  ...
+# Subtest: large detail sweeps consume validated hits before misses can evict them
+ok 17 - large detail sweeps consume validated hits before misses can evict them
+  ---
+  duration_ms: 1841.826491
+  type: 'test'
+  ...
+# Subtest: a removed selected file disappears and its delayed read cannot restore the preview
+ok 18 - a removed selected file disappears and its delayed read cannot restore the preview
+  ---
+  duration_ms: 3.550866
+  type: 'test'
+  ...
+# Subtest: warm Files reconnect shows saved folders and preview stale before validation, then applies changes and removal
+ok 19 - warm Files reconnect shows saved folders and preview stale before validation, then applies changes and removal
+  ---
+  duration_ms: 12.654083
+  type: 'test'
+  ...
+# Subtest: warm Files validation cannot restore the old target after follow changes machines
+ok 20 - warm Files validation cannot restore the old target after follow changes machines
+  ---
+  duration_ms: 5.73826
+  type: 'test'
+  ...
+# Subtest: warm Tracker restores persisted selected description and activity before validation and retires removal
+ok 21 - warm Tracker restores persisted selected description and activity before validation and retires removal
+  ---
+  duration_ms: 16.361392
+  type: 'test'
+  ...
+# Subtest: warm Tracker validation cannot restore selected detail or activity after a target switch
+ok 22 - warm Tracker validation cannot restore selected detail or activity after a target switch
+  ---
+  duration_ms: 6.325068
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1970.967316

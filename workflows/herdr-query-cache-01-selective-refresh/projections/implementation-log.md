@@ -1,10 +1,24 @@
 ---
-source_commit: ccca30b1eaba2320ee8e29d5cbdb42f6996a3bea
-source_tree: c9b7a555c581397c1a06fcbe5d01d24947df0e03
+source_commit: e1a8cccee968e5c63ccdfec9bd48e7aff5ff41ce
+source_tree: 6135e1c1d522af9f050a18eab21bb06961a3d272
 ticket_ref: tracker/tickets/herdr-query-cache-01-selective-refresh.md
 title: Selective refresh implementation log
 type: Concept
 ---
+
+# Current fix result
+
+[fix-0014](../events/fix-0014.yaml) resolves SPEC-02. [Phase start](../events/fix-start-0013.yaml). Source: `e1a8cccee968e5c63ccdfec9bd48e7aff5ff41ce`, tree `6135e1c1d522af9f050a18eab21bb06961a3d272`.
+
+Changed files: `README.md`, `mise/conf.d/devtools-herdrapp/app/mods/shared-context/main.js`, `mise/conf.d/devtools-herdrapp/tests/ui-model.test.mjs`.
+
+Validation: final focused suite 22 passed; full suite 54 Node and 17 Bun passed; native mod contract passed; real-helper warm/unchanged/changed/removed/target-switch smoke passed. Native Tracker visual proof is unavailable; the private window retained its welcome frame. [Evidence](../artifacts/evidence/fix-0014/index.md).
+
+No unresolved selected findings or source questions. Parent completion and fresh independent review remain required. Both historical FAILURE reviews are stale for the changed source.
+
+## Historical implementation and fix log
+
+The following state labels apply only to their historical source commits.
 
 # Implementation and fix history
 
@@ -81,3 +95,8 @@ No unresolved selected findings or open questions. Parent fix validation and com
 Current state: REVIEW_FAILED. [Second immutable review](../artifacts/reviews/review-review-0011.md) returned FAILURE for `ccca30b1eaba2320ee8e29d5cbdb42f6996a3bea`. Standards passed; Spec found current P2 SPEC-02. Prior STD-01 and SPEC-01 are independently confirmed resolved. See the artifact for evidence and required changes. [Result](../events/review-0011.yaml). [Parent completion](../events/review-complete-0012.yaml).
 
 The full suite passed 52 Node and 17 Bun tests. The reviewer independently reproduced SPEC-02 using production methods and the real helper; native drawing adapters were substituted, so no new desktop visual proof is claimed. Parent reran 20 existing panel tests successfully. Source is unchanged. Both axis children and reviewer terminal are closed; shutdown is confirmed. No merge or push occurred. Next: fix SPEC-02 in a fresh session.
+
+
+## Current parent completion — fix-complete-0015
+
+[Parent completion](../events/fix-complete-0015.yaml) validates and acknowledges [fix-0014](../events/fix-0014.yaml). Exact source `e1a8cccee968e5c63ccdfec9bd48e7aff5ff41ce` is clean. SPEC-02 is resolved by the recorded production-method/helper smoke and regressions. Native visual proof remains limited to a welcome frame; no new Tracker screenshot proof is claimed. [Shutdown observation](../artifacts/snapshots/fix-shutdown-0015.json) confirms the fixer terminal is removed and all owned processes stopped. Fresh independent review is required. No merge, push, or ticket completion occurred.

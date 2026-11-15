@@ -1,0 +1,348 @@
+$ node --experimental-vm-modules --test tests/*.test.mjs && bun test build/
+TAP version 13
+# (node:2623489) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: review attaches its agent when the unchanged pane has only the SDK tab field
+ok 1 - review attaches its agent when the unchanged pane has only the SDK tab field
+  ---
+  duration_ms: 9.576765
+  type: 'test'
+  ...
+# Subtest: moving the target tab to another workspace stops only the unshown agent and removes its session
+ok 2 - moving the target tab to another workspace stops only the unshown agent and removes its session
+  ---
+  duration_ms: 4.761532
+  type: 'test'
+  ...
+# Subtest: closing the target pane during startup stops the unshown agent and removes its session
+ok 3 - closing the target pane during startup stops the unshown agent and removes its session
+  ---
+  duration_ms: 2.486304
+  type: 'test'
+  ...
+# Subtest: a focus change during startup still attaches beside the original valid pane
+ok 4 - a focus change during startup still attaches beside the original valid pane
+  ---
+  duration_ms: 2.431632
+  type: 'test'
+  ...
+# (node:2623490) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: read cells share matching work without mixing machines or selected records
+ok 5 - read cells share matching work without mixing machines or selected records
+  ---
+  duration_ms: 17.456984
+  type: 'test'
+  ...
+# Subtest: invalidating an in-flight read coalesces refresh and never publishes its obsolete result
+ok 6 - invalidating an in-flight read coalesces refresh and never publishes its obsolete result
+  ---
+  duration_ms: 2.68202
+  type: 'test'
+  ...
+# Subtest: releasing one target cancels its owned job and cannot cancel another target
+ok 7 - releasing one target cancels its owned job and cannot cancel another target
+  ---
+  duration_ms: 3.71277
+  type: 'test'
+  ...
+# Subtest: refresh does not replay or combine user-requested mutations
+ok 8 - refresh does not replay or combine user-requested mutations
+  ---
+  duration_ms: 2.909386
+  type: 'test'
+  ...
+# Subtest: a released read cannot deliver a late successful result
+ok 9 - a released read cannot deliver a late successful result
+  ---
+  duration_ms: 1.991818
+  type: 'test'
+  ...
+# Subtest: a failed superseded read does not replace an explicitly requested refresh with its error
+ok 10 - a failed superseded read does not replace an explicitly requested refresh with its error
+  ---
+  duration_ms: 2.193265
+  type: 'test'
+  ...
+# Subtest: warm storage displays stale data then reuses bodies after one validation
+ok 11 - warm storage displays stale data then reuses bodies after one validation
+  ---
+  duration_ms: 5.261328
+  type: 'test'
+  ...
+# Subtest: unknown entries refresh and removed entries release pending consumers
+ok 12 - unknown entries refresh and removed entries release pending consumers
+  ---
+  duration_ms: 4.392712
+  type: 'test'
+  ...
+# Subtest: tree membership prevents a delayed detail from restoring a deleted record
+ok 13 - tree membership prevents a delayed detail from restoring a deleted record
+  ---
+  duration_ms: 2.8848
+  type: 'test'
+  ...
+# Subtest: old validation cannot make a later invalidation current
+ok 14 - old validation cannot make a later invalidation current
+  ---
+  duration_ms: 3.076899
+  type: 'test'
+  ...
+# Subtest: corrupt persisted result bytes are a miss even with a valid cache token
+ok 15 - corrupt persisted result bytes are a miss even with a valid cache token
+  ---
+  duration_ms: 4.724363
+  type: 'test'
+  ...
+# Subtest: concurrent Files and Tracker clients preserve each other's persistent bodies
+ok 16 - concurrent Files and Tracker clients preserve each other's persistent bodies
+  ---
+  duration_ms: 7.311926
+  type: 'test'
+  ...
+# Subtest: a stale client's later persistence cannot restore a retired record
+ok 17 - a stale client's later persistence cannot restore a retired record
+  ---
+  duration_ms: 5.398725
+  type: 'test'
+  ...
+# Subtest: changed previews stay stale while their replacement body is pending
+ok 18 - changed previews stay stale while their replacement body is pending
+  ---
+  duration_ms: 3.103559
+  type: 'test'
+  ...
+# Subtest: retirement overflow fences old snapshots while preserving fresh and cross-target values
+ok 19 - retirement overflow fences old snapshots while preserving fresh and cross-target values
+  ---
+  duration_ms: 105.116056
+  type: 'test'
+  ...
+# Subtest: a read started before another client's deletion cannot republish that deleted body
+ok 20 - a read started before another client's deletion cannot republish that deleted body
+  ---
+  duration_ms: 12.251241
+  type: 'test'
+  ...
+# Subtest: older concurrent reads and retirements cannot replace a newer same-target value
+ok 21 - older concurrent reads and retirements cannot replace a newer same-target value
+  ---
+  duration_ms: 12.701984
+  type: 'test'
+  ...
+# (node:2623492) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: target-side context queries separate checkouts and reject collection symlink escapes
+ok 22 - target-side context queries separate checkouts and reject collection symlink escapes
+  ---
+  duration_ms: 410.174695
+  type: 'test'
+  ...
+# Subtest: a fresh local context polls until its record folders exist, then switches to scoped watches
+ok 23 - a fresh local context polls until its record folders exist, then switches to scoped watches
+  ---
+  duration_ms: 136.713346
+  type: 'test'
+  ...
+# Subtest: file previews preserve UTF-8 and reject binary and oversized contents
+ok 24 - file previews preserve UTF-8 and reject binary and oversized contents
+  ---
+  duration_ms: 256.766079
+  type: 'test'
+  ...
+# Subtest: session cleanup refuses unrelated directories
+ok 25 - session cleanup refuses unrelated directories
+  ---
+  duration_ms: 75.722209
+  type: 'test'
+  ...
+# Subtest: Core owns an agent terminal with the requested working directory and record identity
+ok 26 - Core owns an agent terminal with the requested working directory and record identity
+  ---
+  duration_ms: 37.476324
+  type: 'test'
+  ...
+# Subtest: tracker jobs report measured phase counts before returning independent query results
+ok 27 - tracker jobs report measured phase counts before returning independent query results
+  ---
+  duration_ms: 1003.089634
+  type: 'test'
+  ...
+# Subtest: releasing a tracker cell stops only its query worker and removes its job files
+ok 28 - releasing a tracker cell stops only its query worker and removes its job files
+  ---
+  duration_ms: 827.833026
+  type: 'test'
+  ...
+# Subtest: release removes validation job files before a delayed status response returns
+ok 29 - release removes validation job files before a delayed status response returns
+  ---
+  duration_ms: 351.708503
+  type: 'test'
+  ...
+# Subtest: cancellation wins over a status read whose job was removed during cleanup
+ok 30 - cancellation wins over a status read whose job was removed during cleanup
+  ---
+  duration_ms: 352.487902
+  type: 'test'
+  ...
+# Subtest: a named Core machine executes queries in its own home and cleans up remote tracker workers
+ok 31 - a named Core machine executes queries in its own home and cleans up remote tracker workers
+  ---
+  duration_ms: 398.404494
+  type: 'test'
+  ...
+# Subtest: preparing an action writes a private target-side prompt and cleanup removes only its session
+ok 32 - preparing an action writes a private target-side prompt and cleanup removes only its session
+  ---
+  duration_ms: 293.048238
+  type: 'test'
+  ...# Subtest: explicit location props win, including a local folder in a remote space
+ok 33 - explicit location props win, including a local folder in a remote space
+  ---
+  duration_ms: 1.531687
+  type: 'test'
+  ...
+# Subtest: a peek and a layout terminal use their terminal machine, not the active space
+ok 34 - a peek and a layout terminal use their terminal machine, not the active space
+  ---
+  duration_ms: 1.096122
+  type: 'test'
+  ...
+# Subtest: target keys distinguish machine and folder but normalize absent local machine
+ok 35 - target keys distinguish machine and folder but normalize absent local machine
+  ---
+  duration_ms: 0.157505
+  type: 'test'
+  ...
+# Subtest: only the shown stack child polls, and a hidden ancestor disables it
+ok 36 - only the shown stack child polls, and a hidden ancestor disables it
+  ---
+  duration_ms: 0.332943
+  type: 'test'
+  ...
+# Subtest: explicit pane visibility respects active tabs and zoom; ambiguous copies do not poll
+ok 37 - explicit pane visibility respects active tabs and zoom; ambiguous copies do not poll
+  ---
+  duration_ms: 0.199985
+  type: 'test'
+  ...
+# Subtest: remote paths never become local watches; local tracker watches include workflows
+ok 38 - remote paths never become local watches; local tracker watches include workflows
+  ---
+  duration_ms: 0.816959
+  type: 'test'
+  ...
+# Subtest: missing local watch folders enable polling only for the affected view
+ok 39 - missing local watch folders enable polling only for the affected view
+  ---
+  duration_ms: 0.18187
+  type: 'test'
+  ...
+# Subtest: a refresh burst coalesces into one trailing pass without overlap
+ok 40 - a refresh burst coalesces into one trailing pass without overlap
+  ---
+  duration_ms: 0.139061
+  type: 'test'
+  ...
+# Subtest: only an observed relevant work-to-done or idle transition refreshes
+ok 41 - only an observed relevant work-to-done or idle transition refreshes
+  ---
+  duration_ms: 0.286526
+  type: 'test'
+  ...
+# (node:2623499) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: progress redraws only its retained owners even when another mod resolves the task
+ok 42 - progress redraws only its retained owners even when another mod resolves the task
+  ---
+  duration_ms: 9.940566
+  type: 'test'
+  ...
+# Subtest: an older record completion cannot replace a newer selection or a different machine
+ok 43 - an older record completion cannot replace a newer selection or a different machine
+  ---
+  duration_ms: 4.467342
+  type: 'test'
+  ...
+# Subtest: an older file completion cannot replace the latest file preview
+ok 44 - an older file completion cannot replace the latest file preview
+  ---
+  duration_ms: 2.913353
+  type: 'test'
+  ...
+# Subtest: an old tracker completion cannot replace a snapshot after the repository changes
+ok 45 - an old tracker completion cannot replace a snapshot after the repository changes
+  ---
+  duration_ms: 2.9227
+  type: 'test'
+  ...
+# Subtest: refresh failure keeps the last successful tracker snapshot and marks it stale
+ok 46 - refresh failure keeps the last successful tracker snapshot and marks it stale
+  ---
+  duration_ms: 3.610508
+  type: 'test'
+  ...
+# Subtest: captured root props keep retained callbacks pinned when the focused terminal changes
+ok 47 - captured root props keep retained callbacks pinned when the focused terminal changes
+  ---
+  duration_ms: 2.216569
+  type: 'test'
+  ...
+# Subtest: an initial tracker failure does not claim that a tracker snapshot is retained
+ok 48 - an initial tracker failure does not claim that a tracker snapshot is retained
+  ---
+  duration_ms: 2.645341
+  type: 'test'
+  ...
+# Subtest: large detail sweeps consume validated hits before misses can evict them
+ok 49 - large detail sweeps consume validated hits before misses can evict them
+  ---
+  duration_ms: 2040.958865
+  type: 'test'
+  ...
+# Subtest: a removed selected file disappears and its delayed read cannot restore the preview
+ok 50 - a removed selected file disappears and its delayed read cannot restore the preview
+  ---
+  duration_ms: 4.045072
+  type: 'test'
+  ...
+# Subtest: warm Files reconnect shows saved folders and preview stale before validation, then applies changes and removal
+ok 51 - warm Files reconnect shows saved folders and preview stale before validation, then applies changes and removal
+  ---
+  duration_ms: 13.668634
+  type: 'test'
+  ...
+# Subtest: warm Files validation cannot restore the old target after follow changes machines
+ok 52 - warm Files validation cannot restore the old target after follow changes machines
+  ---
+  duration_ms: 6.205595
+  type: 'test'
+  ...
+# Subtest: warm Tracker restores persisted selected description and activity before validation and retires removal
+ok 53 - warm Tracker restores persisted selected description and activity before validation and retires removal
+  ---
+  duration_ms: 16.16176
+  type: 'test'
+  ...
+# Subtest: warm Tracker validation cannot restore selected detail or activity after a target switch
+ok 54 - warm Tracker validation cannot restore selected detail or activity after a target switch
+  ---
+  duration_ms: 13.336161
+  type: 'test'
+  ...
+1..54
+# tests 54
+# suites 0
+# pass 54
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4220.440404
+bun test v1.4.3 (c6da4a4d3)
+
+ 17 pass
+ 0 fail
+ 50 expect() calls
+Ran 17 tests across 2 files. [20.51s]
