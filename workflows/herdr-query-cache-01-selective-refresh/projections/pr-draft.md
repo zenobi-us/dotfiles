@@ -74,14 +74,21 @@ Branch: `feature/herdr-query-cache-01-selective-refresh`; base: `master`.
 - Independent [review-0005](../events/review-0005.yaml) returned **FAILURE** for that original source. [Review artifact](../artifacts/reviews/review-review-0005.md), [review start](../events/review-start-0004.yaml), [parent review completion](../events/review-complete-0006.yaml). STD-01 references data.js lines 91,107,117–124. SPEC-01 references main.js lines 139–140,193–216. These are the original reviewed line references.
 - [fix-start-0007](../events/fix-start-0007.yaml) authorized this independent fix. Result: [fix-0008](../events/fix-0008.yaml). Both finding IDs are resolved by this fix; no unresolved selected finding remains.
 
-Latest reviewer verdict remains historical FAILURE. It is **stale for the new source**, not a new verdict. This fix did not perform a formal review. Parent validation and completion succeeded. Fresh independent review is required for the changed source.
+Review-0005 remains historical FAILURE for the original source. Review-0011 below supplies the current FAILURE verdict after independently checking the fixes. Parent fix validation and completion succeeded. The subsequent independent review is recorded below.
 
 ## Remaining findings, questions and merge status
 
-No unresolved selected findings or open questions. Parent fix completion is recorded below. No merge, push, ticket completion or source-worktree removal occurred.
+The selected fix findings STD-01 and SPEC-01 are resolved. Current review finding SPEC-02 remains open, as recorded below. Parent fix completion is recorded below. No merge, push, ticket completion or source-worktree removal occurred.
 
 
 
 ## Parent fix completion
 
 [fix-complete-0009](../events/fix-complete-0009.yaml) validates and acknowledges [fix-0008](../events/fix-0008.yaml). All durable references exist and the exact source is clean. The fixer terminal is removed. [Final shutdown observation](../artifacts/snapshots/fix-shutdown-final-0009.json) confirms all owned processes stopped after scoped operator approval. Fresh independent review of `ccca30b1eaba2320ee8e29d5cbdb42f6996a3bea` is next.
+
+
+## Independent review — review-0011
+
+Current state: REVIEW_FAILED. [Second immutable review](../artifacts/reviews/review-review-0011.md) returned FAILURE for `ccca30b1eaba2320ee8e29d5cbdb42f6996a3bea`. Standards passed; Spec found current P2 SPEC-02. Prior STD-01 and SPEC-01 are independently confirmed resolved. See the artifact for evidence and required changes. [Result](../events/review-0011.yaml). [Parent completion](../events/review-complete-0012.yaml).
+
+The full suite passed 52 Node and 17 Bun tests. The reviewer independently reproduced SPEC-02 using production methods and the real helper; native drawing adapters were substituted, so no new desktop visual proof is claimed. Parent reran 20 existing panel tests successfully. Source is unchanged. Both axis children and reviewer terminal are closed; shutdown is confirmed. No merge or push occurred. Next: fix SPEC-02 in a fresh session.

@@ -67,10 +67,17 @@ Original checks: build, 47 Node tests, 17 Bun tests, isolated-peer TypeScript, n
 
 ## Questions and next action
 
-No unresolved selected findings or open questions. Parent validation and completion succeeded. Run a fresh independent review of the new source. No merge, push or ticket completion occurred.
+No unresolved selected findings or open questions. Parent fix validation and completion succeeded. The subsequent independent review is recorded below. No merge, push or ticket completion occurred.
 
 
 
 ## Parent fix completion
 
 [fix-complete-0009](../events/fix-complete-0009.yaml) validates and acknowledges [fix-0008](../events/fix-0008.yaml). All durable references exist and the exact source is clean. The fixer terminal is removed. [Final shutdown observation](../artifacts/snapshots/fix-shutdown-final-0009.json) confirms all owned processes stopped after scoped operator approval. Fresh independent review of `ccca30b1eaba2320ee8e29d5cbdb42f6996a3bea` is next.
+
+
+## Independent review — review-0011
+
+Current state: REVIEW_FAILED. [Second immutable review](../artifacts/reviews/review-review-0011.md) returned FAILURE for `ccca30b1eaba2320ee8e29d5cbdb42f6996a3bea`. Standards passed; Spec found current P2 SPEC-02. Prior STD-01 and SPEC-01 are independently confirmed resolved. See the artifact for evidence and required changes. [Result](../events/review-0011.yaml). [Parent completion](../events/review-complete-0012.yaml).
+
+The full suite passed 52 Node and 17 Bun tests. The reviewer independently reproduced SPEC-02 using production methods and the real helper; native drawing adapters were substituted, so no new desktop visual proof is claimed. Parent reran 20 existing panel tests successfully. Source is unchanged. Both axis children and reviewer terminal are closed; shutdown is confirmed. No merge or push occurred. Next: fix SPEC-02 in a fresh session.
