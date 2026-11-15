@@ -76,3 +76,8 @@ The user approved this single vertical slice and its empty blocker list. The tic
 ### Review — 2026-11-15T07:39:54.746Z
 
 Verdict: FAILURE. Reviewed commit: `8ff5def35291d6271aa1ac3768386dff48dad26c`. Reviewed tree: `a1e58164be06dd02fb6ef73fb8d131db4498fe1e`. [Independent review](../../workflows/herdr-query-cache-01-selective-refresh/artifacts/reviews/review-review-0005.md).
+
+
+### Review — 2026-11-15T09:25:29.388Z
+
+Verdict: FAILURE. Reviewed commit: `ccca30b1eaba2320ee8e29d5cbdb42f6996a3bea`. Reviewed tree: `c9b7a555c581397c1a06fcbe5d01d24947df0e03`. [Independent review after fixes](../../workflows/herdr-query-cache-01-selective-refresh/artifacts/reviews/review-review-0011.md).
