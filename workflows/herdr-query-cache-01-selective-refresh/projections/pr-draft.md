@@ -1,3 +1,44 @@
+# SPEC-03 failed selected-detail replacement
+
+## Ticket and source
+
+Ticket: `tracker/tickets/herdr-query-cache-01-selective-refresh.md`. Branch: `feature/herdr-query-cache-01-selective-refresh`. Base: `master`. Commit: `95497af730b060bc7e50522ab1128ca8231c7f78`. Tree: `2480b6a2ba3b4e9821decad2f119a60ce4bd8ce4`.
+
+## Problem and implementation
+
+The detail sweep cleared Tracker stale state after a failed selected replacement. Old description and activity remained visible, although the detail cell was non-current. Tracker now derives stale state from the displayed context, tree, and selected detail cells. The displayed detail must also match the cached value. A successful selected read clears stale state. Late sweeps cannot change a new target. A non-selected failure cannot replace the selected error.
+
+## Changed files
+
+- **Panel:** `mise/conf.d/devtools-herdrapp/app/mods/shared-context/main.js`.
+- **Regressions:** `mise/conf.d/devtools-herdrapp/tests/ui-model.test.mjs`.
+- **Documentation:** `README.md`.
+
+## Validation
+
+- **Focused suite:** 45 tests passed. Command: `mise exec -- node --experimental-vm-modules --test mise/conf.d/devtools-herdrapp/tests/cells.test.mjs mise/conf.d/devtools-herdrapp/tests/ui-model.test.mjs`.
+- **Full suite:** 60 Node tests and 17 Bun tests passed. Command: `mise exec -- bun run test` from `mise/conf.d/devtools-herdrapp`.
+- **Native contract:** `herdr-app check mise/conf.d/devtools-herdrapp/app/mods/shared-context` passed.
+- **Real-helper smoke:** production SharedContext/QueryClient with checked-in helper and scratch repository passed transient failure/recovery, removal after valid tree, next-refresh retirement, change during replacement, selection guards and target guards. The transient EIO came from the transport boundary. The missing-record error came from the real helper.
+
+[Smoke outcomes](../artifacts/evidence/fix-0020/files/smoke.json), [calls](../artifacts/evidence/fix-0020/files/calls.json), [replay script](../artifacts/evidence/fix-0020/files/smoke.mjs), [focused log](../artifacts/evidence/fix-0020/files/focused.log), [full log](../artifacts/evidence/fix-0020/files/full-suite.log), [limits](../artifacts/evidence/fix-0020/files/limits.json). Native rendering was not exercised. No native Tracker screenshot is claimed. No native app/Core service was started.
+
+## Review history and findings
+
+- **review-0005:** [artifact](../artifacts/reviews/review-review-0005.md), FAILURE for `8ff5def35291d6271aa1ac3768386dff48dad26c`; historical and stale for the new source.
+- **review-0011:** [artifact](../artifacts/reviews/review-review-0011.md), FAILURE for `ccca30b1eaba2320ee8e29d5cbdb42f6996a3bea`; historical and stale for the new source.
+- **review-0017:** [artifact](../artifacts/reviews/review-review-0017.md), FAILURE for `e1a8cccee968e5c63ccdfec9bd48e7aff5ff41ce`; historical and stale for the new source.
+
+SPEC-03 (alias STD-02) is resolved by this fix and its runtime evidence. Earlier resolved STD-01, SPEC-01 and SPEC-02 remain historical. No unresolved selected finding remains. No fresh reviewer verdict is implied.
+
+## Workflow and merge status
+
+[Fix start](../events/fix-start-0019.yaml), [fix result](../events/fix-0020.yaml), [original implementation](../events/implementation-0002.yaml), [previous fix](../events/fix-0014.yaml). Parent completion is recorded below. The claim stays with t14t. No rebase, merge, push, ticket completion or worktree removal occurred. The parent owns workflow commits and a fresh independent review.
+
+## Historical projection
+
+The following content preserves earlier phases. Its current/open labels describe their recorded source only.
+
 ---
 source_commit: e1a8cccee968e5c63ccdfec9bd48e7aff5ff41ce
 source_tree: 6135e1c1d522af9f050a18eab21bb06961a3d272
@@ -147,3 +188,10 @@ The full suite passed 52 Node and 17 Bun tests. The reviewer independently repro
 State: REVIEW_FAILED. [Third immutable review](../artifacts/reviews/review-review-0017.md) returned FAILURE for `e1a8cccee968e5c63ccdfec9bd48e7aff5ff41ce`. One P2 finding remains: SPEC-03, alias STD-02 on the Standards axis. Both axes identified the same failed-replacement freshness defect; this is one fix task, not two. Prior normal-path findings are confirmed resolved. [Result](../events/review-0017.yaml). [Parent completion](../events/review-complete-0018.yaml).
 
 The reviewer ran all required checks, the 54 Node/17 Bun full suite, and real-helper production-method smoke. The failed-replacement case was reproduced despite passing existing tests. Parent reran 22 panel tests successfully. No new native Tracker visual proof is claimed. Source remains unchanged. Reviewer/axis shutdown is confirmed. No merge or push occurred. Next: fix SPEC-03 in a fresh session.
+
+
+
+
+## Current parent completion — fix-complete-0021
+
+[Parent completion](../events/fix-complete-0021.yaml) validates and acknowledges [fix-0020](../events/fix-0020.yaml). Exact source `95497af730b060bc7e50522ab1128ca8231c7f78` is clean. SPEC-03 (STD-02 alias) is resolved by the recorded focused regressions and production-method/real-helper smoke. Native rendering was not exercised. [Shutdown observation](../artifacts/snapshots/fix-shutdown-0021.json) confirms terminal removal and owned process shutdown. Fresh independent review is next. No merge, push, or ticket completion occurred.

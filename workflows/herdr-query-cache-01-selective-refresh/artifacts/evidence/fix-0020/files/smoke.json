@@ -1,0 +1,37 @@
+{
+  "transient": {
+    "stale": true,
+    "error": "transient detail read failure",
+    "body": "# Cached Alpha\n\nCached selected description.",
+    "activity": 1,
+    "completed": 0
+  },
+  "recovery": {
+    "stale": false,
+    "body": "# Transient replacement\n\nTransient replacement"
+  },
+  "removedAfterTree": {
+    "stale": true,
+    "error": "The selected record no longer exists. Refresh the tracker.",
+    "body": "# Transient replacement\n\nTransient replacement",
+    "activity": 1,
+    "completed": 0
+  },
+  "retired": {
+    "selected": null,
+    "detail": null,
+    "stale": false
+  },
+  "changedDuringReplacement": {
+    "body": "# Generation third\n\nGeneration third",
+    "stale": false
+  },
+  "selectionGuard": {
+    "selected": "missing-B",
+    "detail": null
+  },
+  "targetGuard": {
+    "detail": null,
+    "stale": false
+  }
+}

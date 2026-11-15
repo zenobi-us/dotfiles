@@ -1,3 +1,15 @@
+# Fix-0020 implementation log
+
+Source: `95497af730b060bc7e50522ab1128ca8231c7f78`, tree `2480b6a2ba3b4e9821decad2f119a60ce4bd8ce4`. [Receipt](../events/fix-0020.yaml). [Draft](pr-draft.md).
+
+Changed files: `README.md`, `mise/conf.d/devtools-herdrapp/app/mods/shared-context/main.js`, `mise/conf.d/devtools-herdrapp/tests/ui-model.test.mjs`.
+
+SPEC-03/STD-02: derive stale state from displayed cells; keep retained failed replacement stale; guard late completion and selected errors. Six deterministic regressions passed. Focused suite: 45 passed. Full suite: 60 Node and 17 Bun passed. Native mod check passed. Production real-helper smoke passed. [Outcomes](../artifacts/evidence/fix-0020/files/smoke.json). Native rendering remains unverified.
+
+All three earlier review FAILURE verdicts are historical and stale after this source change. Fresh review remains required. No unresolved selected findings or open implementation questions. No owned services started. Parent owns workflow completion/publication.
+
+## Earlier phase history
+
 ---
 source_commit: e1a8cccee968e5c63ccdfec9bd48e7aff5ff41ce
 source_tree: 6135e1c1d522af9f050a18eab21bb06961a3d272
@@ -107,3 +119,9 @@ The full suite passed 52 Node and 17 Bun tests. The reviewer independently repro
 State: REVIEW_FAILED. [Third immutable review](../artifacts/reviews/review-review-0017.md) returned FAILURE for `e1a8cccee968e5c63ccdfec9bd48e7aff5ff41ce`. One P2 finding remains: SPEC-03, alias STD-02 on the Standards axis. Both axes identified the same failed-replacement freshness defect; this is one fix task, not two. Prior normal-path findings are confirmed resolved. [Result](../events/review-0017.yaml). [Parent completion](../events/review-complete-0018.yaml).
 
 The reviewer ran all required checks, the 54 Node/17 Bun full suite, and real-helper production-method smoke. The failed-replacement case was reproduced despite passing existing tests. Parent reran 22 panel tests successfully. No new native Tracker visual proof is claimed. Source remains unchanged. Reviewer/axis shutdown is confirmed. No merge or push occurred. Next: fix SPEC-03 in a fresh session.
+
+
+
+## Current parent completion — fix-complete-0021
+
+[Parent completion](../events/fix-complete-0021.yaml) validates and acknowledges [fix-0020](../events/fix-0020.yaml). Exact source `95497af730b060bc7e50522ab1128ca8231c7f78` is clean. SPEC-03 (STD-02 alias) is resolved by the recorded focused regressions and production-method/real-helper smoke. Native rendering was not exercised. [Shutdown observation](../artifacts/snapshots/fix-shutdown-0021.json) confirms terminal removal and owned process shutdown. Fresh independent review is next. No merge, push, or ticket completion occurred.

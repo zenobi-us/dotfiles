@@ -1,0 +1,9 @@
+{
+  "nativeTrackerVisualProof": false,
+  "nativeAppLaunched": false,
+  "reason": "Production SharedContext and QueryClient transitions exercised with the checked-in helper. Rendering and OS event integration were not exercised.",
+  "servicesStarted": [],
+  "scratch": "/tmp/spec03-2j7vcjR1",
+  "transientError": "Transport-boundary EIO injection; subsequent canonical real-helper recovery",
+  "missingError": "Real helper NOT_FOUND after removing selected record following valid tree"
+}

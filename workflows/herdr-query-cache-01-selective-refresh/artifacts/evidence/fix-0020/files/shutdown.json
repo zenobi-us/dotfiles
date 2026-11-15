@@ -1,0 +1,10 @@
+{
+  "run_id": "66abfd52-5575-4e55-8539-1ba8cc2536ce",
+  "services_started": [],
+  "query_clients": "released by completed smoke",
+  "helper_processes": "all awaited execFile requests completed",
+  "scratch_removed": "/tmp/spec03-2j7vcjR1",
+  "source_worktree": "retained clean",
+  "child_session": "parent owns shutdown",
+  "muxer_subagent_run_id": "preserved"
+}

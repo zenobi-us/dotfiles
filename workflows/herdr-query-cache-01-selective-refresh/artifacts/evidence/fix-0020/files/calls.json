@@ -1,0 +1,1981 @@
+[
+  {
+    "operation": "setup",
+    "fields": {
+      "store": "repository"
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "identity": "github-com-example-spec03--518cbaae",
+        "repository": "/tmp/spec03-2j7vcjR1/repo",
+        "root": "/tmp/spec03-2j7vcjR1/repo",
+        "routeSource": "/tmp/spec03-2j7vcjR1/repo/.context-routes.toml",
+        "storage": "repository",
+        "mode": "repository",
+        "metadata": {
+          "repositoryRoot": "/tmp/spec03-2j7vcjR1/repo",
+          "checkoutAvailable": true,
+          "origin": "git@github.com:example/spec03.git",
+          "canonicalOrigin": "github.com/example/spec03",
+          "slug": "github-com-example-spec03--518cbaae",
+          "sharedRoot": "/tmp/spec03-2j7vcjR1/repo",
+          "candidateSharedRoot": "/home/zenobius/Notes/SharedAgentContext/github-com-example-spec03--518cbaae",
+          "root": "/tmp/spec03-2j7vcjR1/repo",
+          "storage": "repository",
+          "mode": "repository",
+          "alignmentRoot": "/tmp/spec03-2j7vcjR1/repo",
+          "routes": {
+            "alignment": {
+              "adapter": "markdown",
+              "store": "repository"
+            },
+            "tickets": {
+              "adapter": "local-markdown",
+              "store": "repository"
+            },
+            "initiatives": {
+              "adapter": "markdown",
+              "store": "repository"
+            },
+            "workflows": {
+              "adapter": "files",
+              "store": "repository"
+            },
+            "evidence": {
+              "adapter": "files",
+              "inherits": "workflows"
+            },
+            "sources": {
+              "adapter": "files",
+              "inherits": "alignment"
+            }
+          },
+          "routeSource": "/tmp/spec03-2j7vcjR1/repo/.context-routes.toml",
+          "layout": {
+            "tracker": "tracker",
+            "sources": "sources",
+            "tickets": "tracker/tickets",
+            "initiatives": "tracker/initiatives"
+          },
+          "source": "/tmp/spec03-2j7vcjR1/repo/AGENTS.md"
+        },
+        "ready": true,
+        "missing": [],
+        "collections": [
+          {
+            "kind": "alignment",
+            "adapter": "markdown",
+            "store": "repository",
+            "root": "/tmp/spec03-2j7vcjR1/repo",
+            "path": "/tmp/spec03-2j7vcjR1/repo",
+            "ref": ".",
+            "publication": "repository",
+            "id": "alignment",
+            "label": "Alignment"
+          },
+          {
+            "kind": "tickets",
+            "adapter": "local-markdown",
+            "store": "repository",
+            "root": "/tmp/spec03-2j7vcjR1/repo",
+            "path": "/tmp/spec03-2j7vcjR1/repo/tracker/tickets",
+            "ref": "tracker/tickets",
+            "publication": "repository",
+            "id": "tickets",
+            "label": "Tickets"
+          },
+          {
+            "kind": "initiatives",
+            "adapter": "markdown",
+            "store": "repository",
+            "root": "/tmp/spec03-2j7vcjR1/repo",
+            "path": "/tmp/spec03-2j7vcjR1/repo/tracker/initiatives",
+            "ref": "tracker/initiatives",
+            "publication": "repository",
+            "id": "initiatives",
+            "label": "Initiatives"
+          },
+          {
+            "kind": "sources",
+            "adapter": "files",
+            "store": "repository",
+            "root": "/tmp/spec03-2j7vcjR1/repo",
+            "path": "/tmp/spec03-2j7vcjR1/repo/sources",
+            "ref": "sources",
+            "publication": "repository",
+            "id": "sources",
+            "label": "Sources"
+          }
+        ],
+        "watchPaths": [
+          "/tmp/spec03-2j7vcjR1/repo",
+          "/tmp/spec03-2j7vcjR1/repo/tracker/tickets",
+          "/tmp/spec03-2j7vcjR1/repo/tracker/initiatives",
+          "/tmp/spec03-2j7vcjR1/repo/workflows"
+        ],
+        "watchMissing": [
+          "sources"
+        ]
+      }
+    }
+  },
+  {
+    "operation": "context",
+    "fields": {
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "version": "d312c54b10b70af369ca48ec02ca8101cec33666dff9f2daa7cb9cc5bdf01f9d"
+        },
+        "value": {
+          "identity": "github-com-example-spec03--518cbaae",
+          "repository": "/tmp/spec03-2j7vcjR1/repo",
+          "root": "/tmp/spec03-2j7vcjR1/repo",
+          "routeSource": "/tmp/spec03-2j7vcjR1/repo/.context-routes.toml",
+          "storage": "repository",
+          "mode": "repository",
+          "metadata": {
+            "repositoryRoot": "/tmp/spec03-2j7vcjR1/repo",
+            "checkoutAvailable": true,
+            "origin": "git@github.com:example/spec03.git",
+            "canonicalOrigin": "github.com/example/spec03",
+            "slug": "github-com-example-spec03--518cbaae",
+            "sharedRoot": "/tmp/spec03-2j7vcjR1/repo",
+            "candidateSharedRoot": "/home/zenobius/Notes/SharedAgentContext/github-com-example-spec03--518cbaae",
+            "root": "/tmp/spec03-2j7vcjR1/repo",
+            "storage": "repository",
+            "mode": "repository",
+            "alignmentRoot": "/tmp/spec03-2j7vcjR1/repo",
+            "routes": {
+              "alignment": {
+                "adapter": "markdown",
+                "store": "repository"
+              },
+              "tickets": {
+                "adapter": "local-markdown",
+                "store": "repository"
+              },
+              "initiatives": {
+                "adapter": "markdown",
+                "store": "repository"
+              },
+              "workflows": {
+                "adapter": "files",
+                "store": "repository"
+              },
+              "evidence": {
+                "adapter": "files",
+                "inherits": "workflows"
+              },
+              "sources": {
+                "adapter": "files",
+                "inherits": "alignment"
+              }
+            },
+            "routeSource": "/tmp/spec03-2j7vcjR1/repo/.context-routes.toml",
+            "layout": {
+              "tracker": "tracker",
+              "sources": "sources",
+              "tickets": "tracker/tickets",
+              "initiatives": "tracker/initiatives"
+            },
+            "source": "/tmp/spec03-2j7vcjR1/repo/AGENTS.md"
+          },
+          "ready": true,
+          "missing": [],
+          "collections": [
+            {
+              "kind": "alignment",
+              "adapter": "markdown",
+              "store": "repository",
+              "root": "/tmp/spec03-2j7vcjR1/repo",
+              "path": "/tmp/spec03-2j7vcjR1/repo",
+              "ref": ".",
+              "publication": "repository",
+              "id": "alignment",
+              "label": "Alignment"
+            },
+            {
+              "kind": "tickets",
+              "adapter": "local-markdown",
+              "store": "repository",
+              "root": "/tmp/spec03-2j7vcjR1/repo",
+              "path": "/tmp/spec03-2j7vcjR1/repo/tracker/tickets",
+              "ref": "tracker/tickets",
+              "publication": "repository",
+              "id": "tickets",
+              "label": "Tickets"
+            },
+            {
+              "kind": "initiatives",
+              "adapter": "markdown",
+              "store": "repository",
+              "root": "/tmp/spec03-2j7vcjR1/repo",
+              "path": "/tmp/spec03-2j7vcjR1/repo/tracker/initiatives",
+              "ref": "tracker/initiatives",
+              "publication": "repository",
+              "id": "initiatives",
+              "label": "Initiatives"
+            },
+            {
+              "kind": "sources",
+              "adapter": "files",
+              "store": "repository",
+              "root": "/tmp/spec03-2j7vcjR1/repo",
+              "path": "/tmp/spec03-2j7vcjR1/repo/sources",
+              "ref": "sources",
+              "publication": "repository",
+              "id": "sources",
+              "label": "Sources"
+            }
+          ],
+          "watchPaths": [
+            "/tmp/spec03-2j7vcjR1/repo",
+            "/tmp/spec03-2j7vcjR1/repo/tracker/tickets",
+            "/tmp/spec03-2j7vcjR1/repo/tracker/initiatives",
+            "/tmp/spec03-2j7vcjR1/repo/workflows"
+          ],
+          "watchMissing": [
+            "sources"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "operation": "tracker",
+    "fields": {
+      "tree": true,
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "fdc6dc28aab17998fcb163167342ee30702c523e687e4e30c3e36ffe814bbc16"
+        },
+        "value": {
+          "backend": "local-markdown",
+          "tickets": [
+            {
+              "id": "A",
+              "title": "Cached Alpha",
+              "documentType": "enhancement",
+              "fields": {
+                "blocked_by": [],
+                "id": "A",
+                "schema": "tracker-ticket/v1",
+                "title": "Cached Alpha",
+                "triage": "ready-for-agent",
+                "type": "enhancement",
+                "work_status": "unclaimed"
+              },
+              "ref": "tracker/tickets/A.md",
+              "backend": "local-markdown",
+              "status": "unclaimed",
+              "blockedBy": [],
+              "body": "# Cached Alpha\n\nCached selected description."
+            }
+          ],
+          "initiatives": [
+            {
+              "id": "unassigned",
+              "title": "Ungrouped",
+              "ref": "tracker/tickets",
+              "ticketIds": [
+                "A"
+              ],
+              "rootTicketIds": [
+                "A"
+              ],
+              "body": "Records without an assigned initiative.",
+              "group": true
+            }
+          ],
+          "states": {},
+          "identity": "github-com-example-spec03--518cbaae",
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "detail",
+    "fields": {
+      "id": "A",
+      "kind": "ticket",
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "ab50f29a80545feb4d601f5755d164c5cf35f2cbb2b367360ffabea1e83272a8"
+        },
+        "value": {
+          "record": {
+            "id": "A",
+            "title": "Cached Alpha",
+            "documentType": "enhancement",
+            "fields": {
+              "blocked_by": [],
+              "id": "A",
+              "schema": "tracker-ticket/v1",
+              "title": "Cached Alpha",
+              "triage": "ready-for-agent",
+              "type": "enhancement",
+              "work_status": "unclaimed"
+            },
+            "ref": "tracker/tickets/A.md",
+            "backend": "local-markdown",
+            "status": "unclaimed",
+            "blockedBy": [],
+            "body": "# Cached Alpha\n\nCached selected description."
+          },
+          "kind": "ticket",
+          "workflow": {
+            "ticketId": "A",
+            "receipts": [],
+            "events": [
+              {
+                "id": "workflows/A/events/start-1.yaml",
+                "ref": "workflows/A/events/start-1.yaml",
+                "fields": {
+                  "schema": "worktree-receipt/v2",
+                  "receipt_id": "start-1",
+                  "phase": "start",
+                  "status": "started"
+                },
+                "body": "",
+                "error": "[invalid_receipt] Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "inspection": {
+              "historyValid": false,
+              "historyError": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+              "source": {
+                "state": "missing",
+                "candidates": 0
+              },
+              "ownership": "unknown",
+              "worktrees": [
+                {
+                  "path": "/tmp/spec03-2j7vcjR1/repo",
+                  "branch": "master"
+                }
+              ],
+              "commits": [],
+              "artifacts": []
+            },
+            "diagnostics": [
+              {
+                "ref": "workflows/A/events/start-1.yaml",
+                "code": "invalid_receipt",
+                "severity": "error",
+                "message": "Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "recordedAttempts": {
+              "review": 0,
+              "fix": 0
+            },
+            "error": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+          },
+          "nextAction": null,
+          "state": {
+            "state": "BLOCKED",
+            "reason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+            "next": "Repair workflow history"
+          },
+          "actions": [
+            {
+              "action": "ask-matt",
+              "key": "m",
+              "label": "Ask Matt"
+            },
+            {
+              "action": "start",
+              "key": "s",
+              "label": "Start worktree",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "review",
+              "key": "r",
+              "label": "Review",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "fix",
+              "key": "x",
+              "label": "Fix",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "finish",
+              "key": "f",
+              "label": "Finish",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "submit",
+              "key": "u",
+              "label": "Submit",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            }
+          ],
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "validate",
+    "fields": {
+      "entries": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "version": "d312c54b10b70af369ca48ec02ca8101cec33666dff9f2daa7cb9cc5bdf01f9d"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "fdc6dc28aab17998fcb163167342ee30702c523e687e4e30c3e36ffe814bbc16"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "ab50f29a80545feb4d601f5755d164c5cf35f2cbb2b367360ffabea1e83272a8"
+        }
+      ]
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "status": "unchanged"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "status": "unchanged"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "status": "unchanged"
+        }
+      ]
+    }
+  },
+  {
+    "operation": "validate",
+    "fields": {
+      "entries": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "version": "d312c54b10b70af369ca48ec02ca8101cec33666dff9f2daa7cb9cc5bdf01f9d"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "fdc6dc28aab17998fcb163167342ee30702c523e687e4e30c3e36ffe814bbc16"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "ab50f29a80545feb4d601f5755d164c5cf35f2cbb2b367360ffabea1e83272a8"
+        }
+      ]
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "status": "unchanged"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "status": "changed"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "status": "changed"
+        }
+      ]
+    }
+  },
+  {
+    "operation": "tracker",
+    "fields": {
+      "tree": true,
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "e34a2382181d4b3e8e70f68cd11087ebd13d18595541e606d89155b47bacb3aa"
+        },
+        "value": {
+          "backend": "local-markdown",
+          "tickets": [
+            {
+              "id": "A",
+              "title": "Transient replacement",
+              "documentType": "enhancement",
+              "fields": {
+                "blocked_by": [],
+                "id": "A",
+                "schema": "tracker-ticket/v1",
+                "title": "Transient replacement",
+                "triage": "ready-for-agent",
+                "type": "enhancement",
+                "work_status": "unclaimed"
+              },
+              "ref": "tracker/tickets/A.md",
+              "backend": "local-markdown",
+              "status": "unclaimed",
+              "blockedBy": [],
+              "body": "# Transient replacement\n\nTransient replacement"
+            }
+          ],
+          "initiatives": [
+            {
+              "id": "unassigned",
+              "title": "Ungrouped",
+              "ref": "tracker/tickets",
+              "ticketIds": [
+                "A"
+              ],
+              "rootTicketIds": [
+                "A"
+              ],
+              "body": "Records without an assigned initiative.",
+              "group": true
+            }
+          ],
+          "states": {},
+          "identity": "github-com-example-spec03--518cbaae",
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "validate",
+    "fields": {
+      "entries": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "version": "d312c54b10b70af369ca48ec02ca8101cec33666dff9f2daa7cb9cc5bdf01f9d"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "e34a2382181d4b3e8e70f68cd11087ebd13d18595541e606d89155b47bacb3aa"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "ab50f29a80545feb4d601f5755d164c5cf35f2cbb2b367360ffabea1e83272a8"
+        }
+      ]
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "status": "unchanged"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "status": "unchanged"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "status": "changed"
+        }
+      ]
+    }
+  },
+  {
+    "operation": "detail",
+    "fields": {
+      "id": "A",
+      "kind": "ticket",
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "71fedfe5a600fbdbc9bc1d68b23785e9aad0309006a00d2032de95f298a75874"
+        },
+        "value": {
+          "record": {
+            "id": "A",
+            "title": "Transient replacement",
+            "documentType": "enhancement",
+            "fields": {
+              "blocked_by": [],
+              "id": "A",
+              "schema": "tracker-ticket/v1",
+              "title": "Transient replacement",
+              "triage": "ready-for-agent",
+              "type": "enhancement",
+              "work_status": "unclaimed"
+            },
+            "ref": "tracker/tickets/A.md",
+            "backend": "local-markdown",
+            "status": "unclaimed",
+            "blockedBy": [],
+            "body": "# Transient replacement\n\nTransient replacement"
+          },
+          "kind": "ticket",
+          "workflow": {
+            "ticketId": "A",
+            "receipts": [],
+            "events": [
+              {
+                "id": "workflows/A/events/start-1.yaml",
+                "ref": "workflows/A/events/start-1.yaml",
+                "fields": {
+                  "schema": "worktree-receipt/v2",
+                  "receipt_id": "start-1",
+                  "phase": "start",
+                  "status": "started"
+                },
+                "body": "",
+                "error": "[invalid_receipt] Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "inspection": {
+              "historyValid": false,
+              "historyError": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+              "source": {
+                "state": "missing",
+                "candidates": 0
+              },
+              "ownership": "unknown",
+              "worktrees": [
+                {
+                  "path": "/tmp/spec03-2j7vcjR1/repo",
+                  "branch": "master"
+                }
+              ],
+              "commits": [],
+              "artifacts": []
+            },
+            "diagnostics": [
+              {
+                "ref": "workflows/A/events/start-1.yaml",
+                "code": "invalid_receipt",
+                "severity": "error",
+                "message": "Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "recordedAttempts": {
+              "review": 0,
+              "fix": 0
+            },
+            "error": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+          },
+          "nextAction": null,
+          "state": {
+            "state": "BLOCKED",
+            "reason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+            "next": "Repair workflow history"
+          },
+          "actions": [
+            {
+              "action": "ask-matt",
+              "key": "m",
+              "label": "Ask Matt"
+            },
+            {
+              "action": "start",
+              "key": "s",
+              "label": "Start worktree",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "review",
+              "key": "r",
+              "label": "Review",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "fix",
+              "key": "x",
+              "label": "Fix",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "finish",
+              "key": "f",
+              "label": "Finish",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "submit",
+              "key": "u",
+              "label": "Submit",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            }
+          ],
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "validate",
+    "fields": {
+      "entries": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "version": "d312c54b10b70af369ca48ec02ca8101cec33666dff9f2daa7cb9cc5bdf01f9d"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "e34a2382181d4b3e8e70f68cd11087ebd13d18595541e606d89155b47bacb3aa"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "71fedfe5a600fbdbc9bc1d68b23785e9aad0309006a00d2032de95f298a75874"
+        }
+      ]
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "status": "unchanged"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "status": "changed"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "status": "changed"
+        }
+      ]
+    }
+  },
+  {
+    "operation": "tracker",
+    "fields": {
+      "tree": true,
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "d49db3d33e173340c93e8392d4a0ce2e223884e2de6c53d9634fc2c17aef565c"
+        },
+        "value": {
+          "backend": "local-markdown",
+          "tickets": [
+            {
+              "id": "A",
+              "title": "Removed after valid tree",
+              "documentType": "enhancement",
+              "fields": {
+                "blocked_by": [],
+                "id": "A",
+                "schema": "tracker-ticket/v1",
+                "title": "Removed after valid tree",
+                "triage": "ready-for-agent",
+                "type": "enhancement",
+                "work_status": "unclaimed"
+              },
+              "ref": "tracker/tickets/A.md",
+              "backend": "local-markdown",
+              "status": "unclaimed",
+              "blockedBy": [],
+              "body": "# Removed after valid tree\n\nRemoved after valid tree"
+            }
+          ],
+          "initiatives": [
+            {
+              "id": "unassigned",
+              "title": "Ungrouped",
+              "ref": "tracker/tickets",
+              "ticketIds": [
+                "A"
+              ],
+              "rootTicketIds": [
+                "A"
+              ],
+              "body": "Records without an assigned initiative.",
+              "group": true
+            }
+          ],
+          "states": {},
+          "identity": "github-com-example-spec03--518cbaae",
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "detail",
+    "fields": {
+      "id": "A",
+      "kind": "ticket",
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": false,
+      "error": {
+        "code": "QUERY_FAILED",
+        "message": "The selected record no longer exists. Refresh the tracker."
+      }
+    }
+  },
+  {
+    "operation": "validate",
+    "fields": {
+      "entries": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "version": "d312c54b10b70af369ca48ec02ca8101cec33666dff9f2daa7cb9cc5bdf01f9d"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "d49db3d33e173340c93e8392d4a0ce2e223884e2de6c53d9634fc2c17aef565c"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "71fedfe5a600fbdbc9bc1d68b23785e9aad0309006a00d2032de95f298a75874"
+        }
+      ]
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "status": "unchanged"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "status": "changed"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "status": "removed"
+        }
+      ]
+    }
+  },
+  {
+    "operation": "tracker",
+    "fields": {
+      "tree": true,
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "179a905bd154568c20258e553149e7ca599b93331fb09522548ac539fbb624c4"
+        },
+        "value": {
+          "backend": "local-markdown",
+          "tickets": [],
+          "initiatives": [
+            {
+              "id": "unassigned",
+              "title": "Ungrouped",
+              "ref": "tracker/tickets",
+              "ticketIds": [],
+              "rootTicketIds": [],
+              "body": "Records without an assigned initiative.",
+              "group": true
+            }
+          ],
+          "states": {},
+          "identity": "github-com-example-spec03--518cbaae",
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "validate",
+    "fields": {
+      "entries": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "version": "d312c54b10b70af369ca48ec02ca8101cec33666dff9f2daa7cb9cc5bdf01f9d"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "179a905bd154568c20258e553149e7ca599b93331fb09522548ac539fbb624c4"
+        }
+      ]
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "status": "unchanged"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "status": "changed"
+        }
+      ]
+    }
+  },
+  {
+    "operation": "tracker",
+    "fields": {
+      "tree": true,
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "cb64317b20c147998754dd54c0248a041b7129f064312b96b5fec7134c3dac99"
+        },
+        "value": {
+          "backend": "local-markdown",
+          "tickets": [
+            {
+              "id": "A",
+              "title": "Generation first",
+              "documentType": "enhancement",
+              "fields": {
+                "blocked_by": [],
+                "id": "A",
+                "schema": "tracker-ticket/v1",
+                "title": "Generation first",
+                "triage": "ready-for-agent",
+                "type": "enhancement",
+                "work_status": "unclaimed"
+              },
+              "ref": "tracker/tickets/A.md",
+              "backend": "local-markdown",
+              "status": "unclaimed",
+              "blockedBy": [],
+              "body": "# Generation first\n\nGeneration first"
+            }
+          ],
+          "initiatives": [
+            {
+              "id": "unassigned",
+              "title": "Ungrouped",
+              "ref": "tracker/tickets",
+              "ticketIds": [
+                "A"
+              ],
+              "rootTicketIds": [
+                "A"
+              ],
+              "body": "Records without an assigned initiative.",
+              "group": true
+            }
+          ],
+          "states": {},
+          "identity": "github-com-example-spec03--518cbaae",
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "detail",
+    "fields": {
+      "id": "A",
+      "kind": "ticket",
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "4459fc8d79573b6acfd9380b4fccfee594f8838c64a744992b3cc79b3972fba0"
+        },
+        "value": {
+          "record": {
+            "id": "A",
+            "title": "Generation first",
+            "documentType": "enhancement",
+            "fields": {
+              "blocked_by": [],
+              "id": "A",
+              "schema": "tracker-ticket/v1",
+              "title": "Generation first",
+              "triage": "ready-for-agent",
+              "type": "enhancement",
+              "work_status": "unclaimed"
+            },
+            "ref": "tracker/tickets/A.md",
+            "backend": "local-markdown",
+            "status": "unclaimed",
+            "blockedBy": [],
+            "body": "# Generation first\n\nGeneration first"
+          },
+          "kind": "ticket",
+          "workflow": {
+            "ticketId": "A",
+            "receipts": [],
+            "events": [
+              {
+                "id": "workflows/A/events/start-1.yaml",
+                "ref": "workflows/A/events/start-1.yaml",
+                "fields": {
+                  "schema": "worktree-receipt/v2",
+                  "receipt_id": "start-1",
+                  "phase": "start",
+                  "status": "started"
+                },
+                "body": "",
+                "error": "[invalid_receipt] Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "inspection": {
+              "historyValid": false,
+              "historyError": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+              "source": {
+                "state": "missing",
+                "candidates": 0
+              },
+              "ownership": "unknown",
+              "worktrees": [
+                {
+                  "path": "/tmp/spec03-2j7vcjR1/repo",
+                  "branch": "master"
+                }
+              ],
+              "commits": [],
+              "artifacts": []
+            },
+            "diagnostics": [
+              {
+                "ref": "workflows/A/events/start-1.yaml",
+                "code": "invalid_receipt",
+                "severity": "error",
+                "message": "Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "recordedAttempts": {
+              "review": 0,
+              "fix": 0
+            },
+            "error": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+          },
+          "nextAction": null,
+          "state": {
+            "state": "BLOCKED",
+            "reason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+            "next": "Repair workflow history"
+          },
+          "actions": [
+            {
+              "action": "ask-matt",
+              "key": "m",
+              "label": "Ask Matt"
+            },
+            {
+              "action": "start",
+              "key": "s",
+              "label": "Start worktree",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "review",
+              "key": "r",
+              "label": "Review",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "fix",
+              "key": "x",
+              "label": "Fix",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "finish",
+              "key": "f",
+              "label": "Finish",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "submit",
+              "key": "u",
+              "label": "Submit",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            }
+          ],
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "validate",
+    "fields": {
+      "entries": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "version": "d312c54b10b70af369ca48ec02ca8101cec33666dff9f2daa7cb9cc5bdf01f9d"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "cb64317b20c147998754dd54c0248a041b7129f064312b96b5fec7134c3dac99"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "4459fc8d79573b6acfd9380b4fccfee594f8838c64a744992b3cc79b3972fba0"
+        }
+      ]
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "status": "unchanged"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "status": "changed"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "status": "changed"
+        }
+      ]
+    }
+  },
+  {
+    "operation": "tracker",
+    "fields": {
+      "tree": true,
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "cf6b30cb73280a10dadd653868e454ac885af1a3ecbd803b5ccdc1119da004e7"
+        },
+        "value": {
+          "backend": "local-markdown",
+          "tickets": [
+            {
+              "id": "A",
+              "title": "Generation second",
+              "documentType": "enhancement",
+              "fields": {
+                "blocked_by": [],
+                "id": "A",
+                "schema": "tracker-ticket/v1",
+                "title": "Generation second",
+                "triage": "ready-for-agent",
+                "type": "enhancement",
+                "work_status": "unclaimed"
+              },
+              "ref": "tracker/tickets/A.md",
+              "backend": "local-markdown",
+              "status": "unclaimed",
+              "blockedBy": [],
+              "body": "# Generation second\n\nGeneration second"
+            }
+          ],
+          "initiatives": [
+            {
+              "id": "unassigned",
+              "title": "Ungrouped",
+              "ref": "tracker/tickets",
+              "ticketIds": [
+                "A"
+              ],
+              "rootTicketIds": [
+                "A"
+              ],
+              "body": "Records without an assigned initiative.",
+              "group": true
+            }
+          ],
+          "states": {},
+          "identity": "github-com-example-spec03--518cbaae",
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "detail",
+    "fields": {
+      "id": "A",
+      "kind": "ticket",
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "4275d09f26129b766c617fe230a3b494ff8c65fe733315ab91f1b4972a34e173"
+        },
+        "value": {
+          "record": {
+            "id": "A",
+            "title": "Generation third",
+            "documentType": "enhancement",
+            "fields": {
+              "blocked_by": [],
+              "id": "A",
+              "schema": "tracker-ticket/v1",
+              "title": "Generation third",
+              "triage": "ready-for-agent",
+              "type": "enhancement",
+              "work_status": "unclaimed"
+            },
+            "ref": "tracker/tickets/A.md",
+            "backend": "local-markdown",
+            "status": "unclaimed",
+            "blockedBy": [],
+            "body": "# Generation third\n\nGeneration third"
+          },
+          "kind": "ticket",
+          "workflow": {
+            "ticketId": "A",
+            "receipts": [],
+            "events": [
+              {
+                "id": "workflows/A/events/start-1.yaml",
+                "ref": "workflows/A/events/start-1.yaml",
+                "fields": {
+                  "schema": "worktree-receipt/v2",
+                  "receipt_id": "start-1",
+                  "phase": "start",
+                  "status": "started"
+                },
+                "body": "",
+                "error": "[invalid_receipt] Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "inspection": {
+              "historyValid": false,
+              "historyError": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+              "source": {
+                "state": "missing",
+                "candidates": 0
+              },
+              "ownership": "unknown",
+              "worktrees": [
+                {
+                  "path": "/tmp/spec03-2j7vcjR1/repo",
+                  "branch": "master"
+                }
+              ],
+              "commits": [],
+              "artifacts": []
+            },
+            "diagnostics": [
+              {
+                "ref": "workflows/A/events/start-1.yaml",
+                "code": "invalid_receipt",
+                "severity": "error",
+                "message": "Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "recordedAttempts": {
+              "review": 0,
+              "fix": 0
+            },
+            "error": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+          },
+          "nextAction": null,
+          "state": {
+            "state": "BLOCKED",
+            "reason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+            "next": "Repair workflow history"
+          },
+          "actions": [
+            {
+              "action": "ask-matt",
+              "key": "m",
+              "label": "Ask Matt"
+            },
+            {
+              "action": "start",
+              "key": "s",
+              "label": "Start worktree",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "review",
+              "key": "r",
+              "label": "Review",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "fix",
+              "key": "x",
+              "label": "Fix",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "finish",
+              "key": "f",
+              "label": "Finish",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "submit",
+              "key": "u",
+              "label": "Submit",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            }
+          ],
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "detail",
+    "fields": {
+      "id": "A",
+      "kind": "ticket",
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "4275d09f26129b766c617fe230a3b494ff8c65fe733315ab91f1b4972a34e173"
+        },
+        "value": {
+          "record": {
+            "id": "A",
+            "title": "Generation third",
+            "documentType": "enhancement",
+            "fields": {
+              "blocked_by": [],
+              "id": "A",
+              "schema": "tracker-ticket/v1",
+              "title": "Generation third",
+              "triage": "ready-for-agent",
+              "type": "enhancement",
+              "work_status": "unclaimed"
+            },
+            "ref": "tracker/tickets/A.md",
+            "backend": "local-markdown",
+            "status": "unclaimed",
+            "blockedBy": [],
+            "body": "# Generation third\n\nGeneration third"
+          },
+          "kind": "ticket",
+          "workflow": {
+            "ticketId": "A",
+            "receipts": [],
+            "events": [
+              {
+                "id": "workflows/A/events/start-1.yaml",
+                "ref": "workflows/A/events/start-1.yaml",
+                "fields": {
+                  "schema": "worktree-receipt/v2",
+                  "receipt_id": "start-1",
+                  "phase": "start",
+                  "status": "started"
+                },
+                "body": "",
+                "error": "[invalid_receipt] Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "inspection": {
+              "historyValid": false,
+              "historyError": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+              "source": {
+                "state": "missing",
+                "candidates": 0
+              },
+              "ownership": "unknown",
+              "worktrees": [
+                {
+                  "path": "/tmp/spec03-2j7vcjR1/repo",
+                  "branch": "master"
+                }
+              ],
+              "commits": [],
+              "artifacts": []
+            },
+            "diagnostics": [
+              {
+                "ref": "workflows/A/events/start-1.yaml",
+                "code": "invalid_receipt",
+                "severity": "error",
+                "message": "Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "recordedAttempts": {
+              "review": 0,
+              "fix": 0
+            },
+            "error": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+          },
+          "nextAction": null,
+          "state": {
+            "state": "BLOCKED",
+            "reason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+            "next": "Repair workflow history"
+          },
+          "actions": [
+            {
+              "action": "ask-matt",
+              "key": "m",
+              "label": "Ask Matt"
+            },
+            {
+              "action": "start",
+              "key": "s",
+              "label": "Start worktree",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "review",
+              "key": "r",
+              "label": "Review",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "fix",
+              "key": "x",
+              "label": "Fix",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "finish",
+              "key": "f",
+              "label": "Finish",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "submit",
+              "key": "u",
+              "label": "Submit",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            }
+          ],
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "validate",
+    "fields": {
+      "entries": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "version": "d312c54b10b70af369ca48ec02ca8101cec33666dff9f2daa7cb9cc5bdf01f9d"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "cf6b30cb73280a10dadd653868e454ac885af1a3ecbd803b5ccdc1119da004e7"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "4275d09f26129b766c617fe230a3b494ff8c65fe733315ab91f1b4972a34e173"
+        }
+      ]
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "status": "unchanged"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "status": "changed"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "status": "changed"
+        }
+      ]
+    }
+  },
+  {
+    "operation": "tracker",
+    "fields": {
+      "tree": true,
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "7534427454aa1c7c0d24a3d17bc54c0e30de12122417a13f76e51d4da11066d9"
+        },
+        "value": {
+          "backend": "local-markdown",
+          "tickets": [
+            {
+              "id": "A",
+              "title": "Selection guard",
+              "documentType": "enhancement",
+              "fields": {
+                "blocked_by": [],
+                "id": "A",
+                "schema": "tracker-ticket/v1",
+                "title": "Selection guard",
+                "triage": "ready-for-agent",
+                "type": "enhancement",
+                "work_status": "unclaimed"
+              },
+              "ref": "tracker/tickets/A.md",
+              "backend": "local-markdown",
+              "status": "unclaimed",
+              "blockedBy": [],
+              "body": "# Selection guard\n\nSelection guard"
+            }
+          ],
+          "initiatives": [
+            {
+              "id": "unassigned",
+              "title": "Ungrouped",
+              "ref": "tracker/tickets",
+              "ticketIds": [
+                "A"
+              ],
+              "rootTicketIds": [
+                "A"
+              ],
+              "body": "Records without an assigned initiative.",
+              "group": true
+            }
+          ],
+          "states": {},
+          "identity": "github-com-example-spec03--518cbaae",
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "detail",
+    "fields": {
+      "id": "missing-B",
+      "kind": "ticket",
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": false,
+      "error": {
+        "code": "QUERY_FAILED",
+        "message": "The selected record no longer exists. Refresh the tracker."
+      }
+    }
+  },
+  {
+    "operation": "detail",
+    "fields": {
+      "id": "A",
+      "kind": "ticket",
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "e08e2a6af68fcf4b170f3ef691dfefdfc15612fc63048704b6d274ced4d5aac2"
+        },
+        "value": {
+          "record": {
+            "id": "A",
+            "title": "Selection guard",
+            "documentType": "enhancement",
+            "fields": {
+              "blocked_by": [],
+              "id": "A",
+              "schema": "tracker-ticket/v1",
+              "title": "Selection guard",
+              "triage": "ready-for-agent",
+              "type": "enhancement",
+              "work_status": "unclaimed"
+            },
+            "ref": "tracker/tickets/A.md",
+            "backend": "local-markdown",
+            "status": "unclaimed",
+            "blockedBy": [],
+            "body": "# Selection guard\n\nSelection guard"
+          },
+          "kind": "ticket",
+          "workflow": {
+            "ticketId": "A",
+            "receipts": [],
+            "events": [
+              {
+                "id": "workflows/A/events/start-1.yaml",
+                "ref": "workflows/A/events/start-1.yaml",
+                "fields": {
+                  "schema": "worktree-receipt/v2",
+                  "receipt_id": "start-1",
+                  "phase": "start",
+                  "status": "started"
+                },
+                "body": "",
+                "error": "[invalid_receipt] Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "inspection": {
+              "historyValid": false,
+              "historyError": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+              "source": {
+                "state": "missing",
+                "candidates": 0
+              },
+              "ownership": "unknown",
+              "worktrees": [
+                {
+                  "path": "/tmp/spec03-2j7vcjR1/repo",
+                  "branch": "master"
+                }
+              ],
+              "commits": [],
+              "artifacts": []
+            },
+            "diagnostics": [
+              {
+                "ref": "workflows/A/events/start-1.yaml",
+                "code": "invalid_receipt",
+                "severity": "error",
+                "message": "Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "recordedAttempts": {
+              "review": 0,
+              "fix": 0
+            },
+            "error": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+          },
+          "nextAction": null,
+          "state": {
+            "state": "BLOCKED",
+            "reason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+            "next": "Repair workflow history"
+          },
+          "actions": [
+            {
+              "action": "ask-matt",
+              "key": "m",
+              "label": "Ask Matt"
+            },
+            {
+              "action": "start",
+              "key": "s",
+              "label": "Start worktree",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "review",
+              "key": "r",
+              "label": "Review",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "fix",
+              "key": "x",
+              "label": "Fix",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "finish",
+              "key": "f",
+              "label": "Finish",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "submit",
+              "key": "u",
+              "label": "Submit",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            }
+          ],
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "validate",
+    "fields": {
+      "entries": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "version": "d312c54b10b70af369ca48ec02ca8101cec33666dff9f2daa7cb9cc5bdf01f9d"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "7534427454aa1c7c0d24a3d17bc54c0e30de12122417a13f76e51d4da11066d9"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "e08e2a6af68fcf4b170f3ef691dfefdfc15612fc63048704b6d274ced4d5aac2"
+        }
+      ]
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": [
+        {
+          "identity": "2b520588ec234389b04dcb8750122c2fcfc48ec206cb5cb8193c56ecfbc80b11",
+          "status": "unchanged"
+        },
+        {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "status": "changed"
+        },
+        {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "status": "changed"
+        }
+      ]
+    }
+  },
+  {
+    "operation": "tracker",
+    "fields": {
+      "tree": true,
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "db401cea7c142dc003e6005203b94c11f772ab825151b58ca668c9397d49ecf6",
+          "version": "7ad6734e84c845f364b788e0c3905f2b3c7669a6f283ed1101d4488281d1a070"
+        },
+        "value": {
+          "backend": "local-markdown",
+          "tickets": [
+            {
+              "id": "A",
+              "title": "Target guard",
+              "documentType": "enhancement",
+              "fields": {
+                "blocked_by": [],
+                "id": "A",
+                "schema": "tracker-ticket/v1",
+                "title": "Target guard",
+                "triage": "ready-for-agent",
+                "type": "enhancement",
+                "work_status": "unclaimed"
+              },
+              "ref": "tracker/tickets/A.md",
+              "backend": "local-markdown",
+              "status": "unclaimed",
+              "blockedBy": [],
+              "body": "# Target guard\n\nTarget guard"
+            }
+          ],
+          "initiatives": [
+            {
+              "id": "unassigned",
+              "title": "Ungrouped",
+              "ref": "tracker/tickets",
+              "ticketIds": [
+                "A"
+              ],
+              "rootTicketIds": [
+                "A"
+              ],
+              "body": "Records without an assigned initiative.",
+              "group": true
+            }
+          ],
+          "states": {},
+          "identity": "github-com-example-spec03--518cbaae",
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  },
+  {
+    "operation": "detail",
+    "fields": {
+      "id": "A",
+      "kind": "ticket",
+      "$cache": true
+    },
+    "result": {
+      "protocol": 1,
+      "ok": true,
+      "value": {
+        "cache": {
+          "identity": "2094a3832091f6e60248c43933a7fe48f185beabdb63c683e007199a80954c2b",
+          "version": "eb6cb8025ad0d412de3cd6b65f68ae00729f00bc282be4e5272f5914e4a93c6d"
+        },
+        "value": {
+          "record": {
+            "id": "A",
+            "title": "Target guard",
+            "documentType": "enhancement",
+            "fields": {
+              "blocked_by": [],
+              "id": "A",
+              "schema": "tracker-ticket/v1",
+              "title": "Target guard",
+              "triage": "ready-for-agent",
+              "type": "enhancement",
+              "work_status": "unclaimed"
+            },
+            "ref": "tracker/tickets/A.md",
+            "backend": "local-markdown",
+            "status": "unclaimed",
+            "blockedBy": [],
+            "body": "# Target guard\n\nTarget guard"
+          },
+          "kind": "ticket",
+          "workflow": {
+            "ticketId": "A",
+            "receipts": [],
+            "events": [
+              {
+                "id": "workflows/A/events/start-1.yaml",
+                "ref": "workflows/A/events/start-1.yaml",
+                "fields": {
+                  "schema": "worktree-receipt/v2",
+                  "receipt_id": "start-1",
+                  "phase": "start",
+                  "status": "started"
+                },
+                "body": "",
+                "error": "[invalid_receipt] Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "inspection": {
+              "historyValid": false,
+              "historyError": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+              "source": {
+                "state": "missing",
+                "candidates": 0
+              },
+              "ownership": "unknown",
+              "worktrees": [
+                {
+                  "path": "/tmp/spec03-2j7vcjR1/repo",
+                  "branch": "master"
+                }
+              ],
+              "commits": [],
+              "artifacts": []
+            },
+            "diagnostics": [
+              {
+                "ref": "workflows/A/events/start-1.yaml",
+                "code": "invalid_receipt",
+                "severity": "error",
+                "message": "Receipt workflow_id does not match the selected ticket."
+              }
+            ],
+            "recordedAttempts": {
+              "review": 0,
+              "fix": 0
+            },
+            "error": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+          },
+          "nextAction": null,
+          "state": {
+            "state": "BLOCKED",
+            "reason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket.",
+            "next": "Repair workflow history"
+          },
+          "actions": [
+            {
+              "action": "ask-matt",
+              "key": "m",
+              "label": "Ask Matt"
+            },
+            {
+              "action": "start",
+              "key": "s",
+              "label": "Start worktree",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "review",
+              "key": "r",
+              "label": "Review",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "fix",
+              "key": "x",
+              "label": "Fix",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "finish",
+              "key": "f",
+              "label": "Finish",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            },
+            {
+              "action": "submit",
+              "key": "u",
+              "label": "Submit",
+              "disabledReason": "workflows/A/events/start-1.yaml: [invalid_receipt] Receipt workflow_id does not match the selected ticket."
+            }
+          ],
+          "repository": "/tmp/spec03-2j7vcjR1/repo"
+        }
+      }
+    }
+  }
+]
