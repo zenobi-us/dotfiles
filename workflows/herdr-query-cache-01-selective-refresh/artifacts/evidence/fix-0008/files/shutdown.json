@@ -1,0 +1,57 @@
+{
+  "observedAt": "2026-11-15T08:41:12.601Z",
+  "runId": "9674b311-bf89-4c86-943d-e401ff41e694",
+  "coreStopped": true,
+  "terminalsBeforeClose": {
+    "hidden_finished": 0,
+    "terminals": [
+      {
+        "address": "t1",
+        "agent": "zsh",
+        "cwd": "/tmp/herdr-fix-0008-EFevpz/repo",
+        "state": "live",
+        "turn": 0,
+        "where": "fix-0008-scratch / 1"
+      }
+    ]
+  },
+  "processes": [
+    {
+      "pid": 2327721,
+      "state": "absent"
+    },
+    {
+      "pid": 2327949,
+      "state": "absent"
+    },
+    {
+      "pid": 2329117,
+      "state": "absent"
+    },
+    {
+      "pid": 2329347,
+      "state": "absent"
+    },
+    {
+      "pid": 2330427,
+      "state": "absent"
+    },
+    {
+      "pid": 2330655,
+      "state": "absent"
+    },
+    {
+      "pid": 2330657,
+      "state": "absent"
+    },
+    {
+      "pid": 2330659,
+      "state": "absent"
+    },
+    {
+      "pid": 2330663,
+      "state": "absent"
+    }
+  ],
+  "ownedNativeServicesStopped": true
+}

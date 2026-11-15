@@ -1,0 +1,54 @@
+[
+  {
+    "file": "store-ce8576d214027498.json",
+    "validation": [
+      {
+        "operation": "file",
+        "fields": {
+          "collection": "tickets",
+          "path": "preview.txt"
+        },
+        "status": "removed"
+      },
+      {
+        "operation": "context",
+        "fields": {},
+        "status": "unchanged"
+      },
+      {
+        "operation": "directory",
+        "fields": {
+          "collection": "tickets",
+          "path": ""
+        },
+        "status": "changed"
+      }
+    ]
+  },
+  {
+    "file": "store-36babf3e3c257cc3.json",
+    "validation": [
+      {
+        "operation": "context",
+        "fields": {},
+        "status": "unchanged"
+      },
+      {
+        "operation": "directory",
+        "fields": {
+          "collection": "tickets",
+          "path": ""
+        },
+        "status": "changed"
+      },
+      {
+        "operation": "file",
+        "fields": {
+          "collection": "tickets",
+          "path": "preview.txt"
+        },
+        "status": "removed"
+      }
+    ]
+  }
+]

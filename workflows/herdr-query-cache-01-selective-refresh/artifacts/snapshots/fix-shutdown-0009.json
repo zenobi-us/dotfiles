@@ -1,0 +1,54 @@
+{
+  "terminal_removed": "t163",
+  "observation": {
+    "manifest": {
+      "runId": "9674b311-bf89-4c86-943d-e401ff41e694",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t163",
+      "createdAt": "2026-11-15T08:13:10.639Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+      "operationId": "herdr-query-cache-01-selective-refresh-fix-1"
+    },
+    "resources": {
+      "version": 1,
+      "runId": "9674b311-bf89-4c86-943d-e401ff41e694",
+      "observedAt": "2026-11-15T08:47:16.055Z",
+      "processes": [
+        {
+          "pid": 2285150,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "21541314",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "running"
+        },
+        {
+          "pid": 2287054,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "21542050",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "running"
+        },
+        {
+          "pid": 2312004,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "21554288",
+          "command": "omp daemon brok",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "running"
+        },
+        {
+          "pid": 2312032,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "21554293",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh",
+          "state": "running"
+        }
+      ],
+      "shutdown": "pending"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "source_commit": "ccca30b1eaba2320ee8e29d5cbdb42f6996a3bea",
+  "source_tree": "c9b7a555c581397c1a06fcbe5d01d24947df0e03",
+  "assets": [
+    {
+      "ref": "shots/warm-validation-pending.png",
+      "capture_api": "herdr-app shot",
+      "capture_time": "2026-11-15T08:36:20.979Z",
+      "sha256": "6bc938ac4111e7b7274cfb0bcf84e875301516065be051ccfdacf40c20e96b3d"
+    },
+    {
+      "ref": "shots/changed-native.png",
+      "capture_api": "herdr-app shot",
+      "capture_time": "2026-11-15T08:36:43.111Z",
+      "sha256": "f28467319a4d8c6e82a90bd39bcc92f42590da9871fa4092159cf21dd49a22b9"
+    },
+    {
+      "ref": "shots/removed-native.png",
+      "capture_api": "herdr-app shot",
+      "capture_time": "2026-11-15T08:37:47.487Z",
+      "sha256": "ae35f16ec81ca2d69e15e6c9ce129553193df7d5784fb5af8e281bf6396a7c91"
+    }
+  ],
+  "kind": "Original native images; not a sealed collect-evidence/v1 run"
+}

@@ -1,0 +1,32 @@
+{
+  "retirements": 141,
+  "retirementKeys": 0,
+  "removedBodyRecovered": false,
+  "sameKeyNewBody": "Visible cached file before validation.\n",
+  "unchangedValidation": [
+    {
+      "operation": "context",
+      "fields": {},
+      "status": "unchanged"
+    },
+    {
+      "operation": "directory",
+      "fields": {
+        "collection": "tickets",
+        "path": ""
+      },
+      "status": "unchanged"
+    },
+    {
+      "operation": "file",
+      "fields": {
+        "collection": "tickets",
+        "path": "preview.txt"
+      },
+      "status": "unchanged"
+    }
+  ],
+  "unchangedBodyReads": 0,
+  "storedBytes": 9246,
+  "helperCalls": 289
+}

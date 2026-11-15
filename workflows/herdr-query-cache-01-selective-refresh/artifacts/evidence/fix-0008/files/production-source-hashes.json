@@ -1,0 +1,16 @@
+{
+  "source_commit": "ccca30b1eaba2320ee8e29d5cbdb42f6996a3bea",
+  "source_tree": "c9b7a555c581397c1a06fcbe5d01d24947df0e03",
+  "files": [
+    {
+      "source": "main.js",
+      "sha256": "ef6a5082cc637253eb6d50967667c7b155098145c793ff40a15967b727172e2b",
+      "native_sha256": "ef6a5082cc637253eb6d50967667c7b155098145c793ff40a15967b727172e2b"
+    },
+    {
+      "source": "data.js",
+      "sha256": "5966ec272b08f3e7ec3e3fa22351044496edeb6cdc86225c8a07e796f2403ae9",
+      "native_sha256": "5966ec272b08f3e7ec3e3fa22351044496edeb6cdc86225c8a07e796f2403ae9"
+    }
+  ]
+}
