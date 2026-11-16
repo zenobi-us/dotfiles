@@ -8,7 +8,7 @@ sequence: 9
 title: Review historical evidence without rewriting it
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 # Review historical evidence without rewriting it
