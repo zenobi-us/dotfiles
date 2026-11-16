@@ -1,0 +1,17 @@
+{
+  "mode": "full",
+  "since": null,
+  "queries": [
+    "payroll-epics",
+    "payroll-open-issues"
+  ],
+  "issues": 10199,
+  "closure": {
+    "children": 9348,
+    "blockers": 140
+  },
+  "written_count": 9494,
+  "unchanged": 705,
+  "stale": [],
+  "commit": "72fb577617a3c1d03ce76442edb9637d0e1cbff9"
+}

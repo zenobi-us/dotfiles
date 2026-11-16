@@ -1,0 +1,17 @@
+{
+  "mode": "incremental",
+  "since": "2026-11-12 18:35",
+  "queries": [
+    "payroll-epics",
+    "payroll-open-issues"
+  ],
+  "issues": 78,
+  "closure": {
+    "children": 0,
+    "blockers": 0
+  },
+  "written": [],
+  "unchanged": 78,
+  "stale": [],
+  "commit": null
+}
