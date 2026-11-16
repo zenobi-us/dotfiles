@@ -33,7 +33,11 @@ The caller supplies an existing directory through `--cwd`. The router first find
 
 If one space matches, the router opens a fresh tab there with `herdr-app do tab.new`, its explicit space ID, a unique name, `folder`, and an argv array. If none matches, it calls `herdr-app do space.new` with that folder and argv for the first tab. It sets `machine` to the parent's machine, or `""` for the app's own machine. If multiple spaces match, it reports their IDs and fails before opening a terminal. Spaces on other machines with the same folder do not match. The router removes the machine prefix from the returned terminal address, because the local `hc` knows the terminal without it.
 
-Every launch creates a fresh terminal. Review and fix sessions reuse the target worktree space, not the orchestrator’s space. New spaces and tabs can change what the user sees; use this route only when the caller requests a child pane. Ordinary hidden workers belong in `hc run --bg` instead.
+Every launch creates a fresh terminal. Review and fix sessions reuse the target worktree space, not the orchestrator’s space. Use this route only when the caller requests a child pane. Ordinary hidden workers belong in `hc run --bg` instead.
+
+MUST pass JSON boolean `focus: false` to both `tab.new` and `space.new`, including manual launches. This keeps the shown space and selected tabs unchanged; a new space is shown only when no space is currently shown. Creation still adds visible resources, not hidden workers. Address the returned terminal directly. Do not select the child or restore focus afterward; show it only when the user requests it.
+
+The router creates tabs, not splits. For a requested manual split, use `pane.split` with an explicit pane ID from `herdr-app ls`. The installed command schema has no `focus` argument for splits. A cross-space split preserved the shown space, tab, and focused pane in the 2026-11-17 smoke check; do not generalize that observation to same-space splits.
 
 The argv array uses `env` to pass depth, run identity, child role, and result context, then starts the interactive agent with its handoff file. Codex also receives `--no-daemon`, as required by the core manual. The target returned by the router is a terminal address, not a pane or tab ID.
 
@@ -93,3 +97,7 @@ Real desktop smoke programs passed three placement checks: a fresh tab in an exi
 
 Checked 2026-11-12 from WSL with the Windows app. Before the fix, the spawn failed with `Executable not found in $PATH: "herdr-app"`. After the fix, 39 tests passed. A real spawn with `HERDR_APP_BIN` set to the Windows `herdr-app.exe` opened a fresh tab in the existing `wsl-docker` space for the target folder. `hc get` confirmed the working directory, `router.ts wait` returned `completed`, and the child replied. The smoke terminal was removed.
 
+
+Checked 2026-11-17 against installed `herdr-app commands` and `herdr-app --skill`. Both `space.new` and `tab.new` support `focus: false`; `pane.split` does not expose that argument. The desktop launcher now supplies `focus: false` for both creation paths.
+
+All 48 existing tests passed across the four muxer test files. Real launcher smoke programs verified a fresh tab in another existing space, creation of a missing space, and another fresh tab in that new space. Each program printed its readiness marker. The shown space, tab, focused pane, and existing spaces' selected tabs remained unchanged. Smoke terminals were killed and removed; the temporary space disappeared automatically, and its directory was removed.

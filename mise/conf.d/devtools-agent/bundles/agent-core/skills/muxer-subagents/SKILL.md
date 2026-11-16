@@ -109,6 +109,7 @@ A caller that requires an independent agent session MUST get a new pane or tab. 
 3. MUST receive the target directory from the caller. This skill does not create it.
 4. For a formal handoff, MUST use `scripts/router.ts spawn --result-schema <domain-schema>` to allocate the delivery context before opening the pane. Save its delivery fields.
 5. The router opens the pane and launches the child through the resolved contracts. For manual launches, apply the same assigned context and run identity to the child environment.
+   For herdr-app, MUST preserve the user's current selection during child creation. Apply the desktop contract's non-focusing creation rule for router and manual launches.
 6. MUST wait for completion through the muxer contract. Do not poll a status command in a loop where the contract offers a wait or an event stream.
 7. MUST read the child output through the muxer contract's read command.
 8. MUST record owned resources with `scripts/router.ts resources <runId>` before closing the pane. Stop owned services through their normal shutdown commands.
