@@ -1,5 +1,5 @@
 if (-not $env:MISE_GLOBAL_CONFIG_ROOT) {
-	$env:MISE_GLOBAL_CONFIG_ROOT = "$HOME/.local/share/dotfiles"
+	Write-Warning "MISE_GLOBAL_CONFIG_ROOT is not set. Run mise bootstrap with --from-dir."
 }
 
 . "${PSScriptRoot}/common.ps1"

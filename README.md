@@ -91,15 +91,7 @@ mise bootstrap `
   --yes
 ```
 
-Set the repository as the persistent mise global config root:
-
-```powershell
-[Environment]::SetEnvironmentVariable(
-  "MISE_GLOBAL_CONFIG_ROOT",
-  "$HOME/.local/share/dotfiles",
-  "User"
-)
-```
+Bootstrap sets `MISE_GLOBAL_CONFIG_ROOT` to the repository root as a persistent User environment variable. The post-dotfiles hook in `mise.windows.toml` does this.
 
 Open a new PowerShell window. Future bootstrap runs do not need `--from` or `--from-dir`:
 
