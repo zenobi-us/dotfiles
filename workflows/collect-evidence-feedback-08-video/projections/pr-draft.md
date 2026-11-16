@@ -1,3 +1,13 @@
+## Resolved-source review review-0024
+
+SUCCESS for `d7da10bec12e453e592c1f8344b3aa6c5dfe5332`, tree `21b921fc81a927f000107b626199605f4380c077`, branch `resolve/collect-evidence-feedback-08-video`. [Independent review](../artifacts/reviews/review-review-0024.md), [result](../events/review-0024.yaml), [completion](../events/review-complete-0025.yaml).
+
+The first finish preparation stopped on release-version conflicts without integration. The isolated resolution preserves all 19 product blobs from reviewed `5b639183` and current base files elsewhere. Both manifests retain `0.2.43`. Two fresh axes approve the exact combined source. Prior runtime acceptance remains separate; final candidate recorder/browser checks are pending.
+
+The user authorized the one-field parent-checkpoint correction. [Original bytes](../artifacts/snapshots/resolution-inputs-0021-original.yaml) and checksum are preserved through [approval provenance](../events/operator-approval-0022.yaml). All workflow diagnostics cleared. Reviewer delivery acknowledged and resources stopped. Original source remains preserved under its branch and retained Git ref. No merge or push yet. Next: finish the newly reviewed source.
+
+## Retained history
+
 ## Current review review-0017
 
 Verdict: SUCCESS for source `5b639183c884d2ee6061860609cbc6c7a09633c3`, tree `c4a3c3d56c8a6c39e97c89a87673e3caa7cf9638`. Review base: `30cb456ac6ae9977b337656b11675e259effaf5e`.

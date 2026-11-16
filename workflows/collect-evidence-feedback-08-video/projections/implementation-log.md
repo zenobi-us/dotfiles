@@ -1,3 +1,7 @@
+## Resolution review completion review-complete-0025
+
+[Completion](../events/review-complete-0025.yaml) accepts [review-0024](../events/review-0024.yaml) for isolated resolution `d7da10bec12e453e592c1f8344b3aa6c5dfe5332`. All 19 reviewed product blobs match prior accepted `5b639183`. Current base-only files remain intact. The release-version conflict is resolved at `0.2.43` in both manifests. The exact new source has independent SUCCESS. Final candidate checks remain pending. No product file changed after this review.
+
 ## Review completion review-complete-0018
 
 [Parent completion](../events/review-complete-0018.yaml) accepts [review-0017](../events/review-0017.yaml) for source `5b639183c884d2ee6061860609cbc6c7a09633c3`. No source changed. Parent video regression passed 1 test with 30 expectations. Independent browser checks passed. Delivery acknowledged and all owned review resources stopped. No blocking findings remain. The current source requires finish safety checks before integration.
