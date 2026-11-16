@@ -29,6 +29,12 @@ Confirm origins, actions, attended operation and optional recording before run. 
 
 Doctor and run handle SIGINT and SIGTERM from the start of each command. Run shares its cancellation state with the prerequisite doctor. An interruption waits for browser acquisition and owned-session cleanup before returning exit 1. It does not start capture after a cancelled prerequisite or report an interrupted command as completed. Repeated signals do not cancel cleanup. Borrowed sessions stay open.
 
+## Recording capability
+
+Playwright doctor starts and stops a real owned recording. Its `videoCapability` reports availability, method and the observed reason. Browser launch remains required for images. Optional recorder failure does not block valid image evidence. Surf has no supported recording method.
+
+When `video: true`, the case retains original WebM bytes, native command diagnostics, recording start time, container dimensions and duration, driver provenance and SHA-256. Playback timestamps are not exact-frame or object-tracking claims.
+
 ## Collection and consumers
 
 Run doctor, init, render, compile and run in order. If the plan changes, regenerate render and compile with --force. A compiled fingerprint does not authorize changed actions. run --dry-run performs no driver execution or writes.
@@ -36,6 +42,7 @@ Run doctor, init, render, compile and run in order. If the plan changes, regener
 Inspect actual images, assertion events and cleanup. Validate the sealed run. report prints self-contained HTML. comment prints manual steps with an explicitly supplied published URL. Neither command publishes or changes the run. Retain exports in a caller-owned path outside the sealed run.
 
 Run Bun tests in the installed scripts/browser-evidence/test directory. Set COLLECT_EVIDENCE_REAL_DRIVERS=1 to include real controlled-page workflows. Complete browser setup separately. Set COLLECT_EVIDENCE_ACCEPTANCE_OUTPUT to an external evidence directory to retain the validated real-driver runs before destructive tamper checks. Use a new directory for each attempt. The checks never install tools. Keep the missing-media plan valid through public compile and render before running its screenshot-deletion scenario. Its navigation and heading assertion need reader-facing says fields. Compile success does not verify missing-media rejection or browser acceptance.
+
 
 
 

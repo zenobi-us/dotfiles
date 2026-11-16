@@ -1,7 +1,7 @@
 ---
 schema: collect-feedback/v1
 name: collect-feedback
-description: Imports sealed evidence, opens a local screenshot annotation viewer and exports saved feedback with verified source identities.
+description: Imports sealed evidence, opens a local image and video annotation viewer and exports saved feedback with verified source identities.
 user-invocable: true
 ---
 # collect-feedback
@@ -16,7 +16,7 @@ Browse a sealed `collect-evidence/v1` run. Keep source identities, capture times
 4. Run `init <sealed-run> --repository <repository-in-scope> --workflow <workflow-id> --session <new-session-id> --json`. The CLI resolves the existing shared-context evidence route. Keep its returned `destination.path`. `COLLECT_FEEDBACK_REPOSITORY` supplies the repository default; the flag takes precedence.
 5. Run `validate <destination.path> --json`. It validates the copied sealed run, feedback records and registered media. If validation fails, stop. Correct the source and import a new session identity.
 6. Run `serve <destination.path> --port <explicit-port> --json`. Open the exact returned `http://127.0.0.1:<port>` URL. The direct `scripts/collect-feedback/serve.ts <session> --port <port>` entrypoint uses the same command and server.
-7. Select a case, then an image. Click for a point or drag a box. Use Point or Box for keyboard creation. Move with arrows; resize boxes with Shift plus arrows. Write a comment, select a labelled priority badge, then save with Ctrl or Meta plus Enter. Escape cancels. Saved appears only after durable acknowledgement. Select a saved pin to inspect it without creating a draft. Use Edit note to change it, Delete note to remove it, or Undo deletion to restore it, including after reload. If another editor changes it, compare the saved version with the retained draft. Choose Use saved revision for next save only when you intend to replace that version. Retry an uncertain save without changing its payload. Zoom and scroll to inspect details. Narrow screens retain horizontal columns.
+7. Select a case, then an image or registered WebM recording. Click for a point or drag a box. Use Point or Box for keyboard creation. Move with arrows; resize boxes with Shift plus arrows. Write a comment, select a labelled priority badge, then save with Ctrl or Meta plus Enter. Escape cancels. Saved appears only after durable acknowledgement. Select a saved pin to inspect it without creating a draft. Use Edit note to change it, Delete note to remove it, or Undo deletion to restore it, including after reload. If another editor changes it, compare the saved version with the retained draft. Choose Use saved revision for next save only when you intend to replace that version. Retry an uncertain save without changing its payload. Zoom and scroll to inspect details. Narrow screens retain horizontal columns.
 8. Run `export <session> --json` or open `GET /api/v1/export` to read saved feedback and source references. Use the viewer export control for a complete review. It requires you to save or explicitly discard every unfinished draft. CLI and direct API exports contain saved server records only.
 9. Send SIGINT or SIGTERM to the server this operation created. Confirm that it releases its port and `.writer.lock`. Keep all session data. Never close a user's browser or unrelated process.
 
@@ -37,8 +37,9 @@ Use `--help`, `--version`, `--json`, `--plain`, `--quiet`, `--no-color` and `--n
 - **Keep originals unchanged.** Imports preserve a sealed source snapshot and separate read-only case media copies. Unknown capture times stay unknown. Import time never replaces capture time.
 - **Respect ownership.** A second writer fails. If a crash leaves `.writer.lock`, establish that its process has stopped before an operator removes that exact lock. The CLI never steals locks.
 - **Keep publication separate.** Do not run remote Git commands, commit, push, publish evidence or enter credentials during import or serving. Local serving does not approve sharing.
-- **Keep scope explicit.** Saved notes support revision-checked editing, deletion and undo. Browser drafts recover across navigation and reload in the same tab and origin. Keep the same port. Storage failures retain memory-only drafts and show a warning. Video comments are not supported. Failed saves retain the draft, starting revision and stable retry payload. Signals drain pending saves before releasing the writer lock. Native video playback does not create timestamped comments.
+- **Keep scope explicit.** Saved notes support revision-checked editing, deletion and undo. Browser drafts recover across navigation and reload in the same tab and origin. Keep the same port. Storage failures retain memory-only drafts and show a warning. For video, pause playback before creating a note. Save or cancel the draft before seeking. Failed saves retain the draft, starting revision and stable retry payload. Signals drain pending saves before releasing the writer lock. Video notes retain their playback timestamp and displayed frame dimensions. They do not track objects or promise exact frame accuracy.
 
 ## Completion
 
 Report the session path, selected source run, viewer URL, observed image and cleanup. Keep test results separate from visual proof. Use [the human guide](how-to-browse-evidence.md) for manual invocation.
+

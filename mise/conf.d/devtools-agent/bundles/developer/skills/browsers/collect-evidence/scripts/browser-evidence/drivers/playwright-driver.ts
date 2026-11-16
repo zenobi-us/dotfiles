@@ -279,6 +279,7 @@ export const playwrightDriver: Driver = {
   const videoFile = join(ctx.reportDir, videoPath(ctx.test.id));
   const videoResults: Array<ShResult & { phase: "start" | "stop" }> = [];
   let recording = false;
+  const recordingStartedAt = new Date().toISOString();
   if (ctx.plan.video) {
    const start = await sh(["playwright-cli", "video-start", videoFile], env(ctx.session));
    videoResults.push({ phase: "start", ...start });
@@ -299,7 +300,7 @@ export const playwrightDriver: Driver = {
    }) + "\n", { flag: "wx" });
   } else if (recording) {
    await writeFile(videoFile + ".metadata.json", JSON.stringify({
-    schema: "collect-evidence/v1", kind: "asset", capturedAt: new Date().toISOString(),
+    schema: "collect-evidence/v1", kind: "asset", capturedAt: recordingStartedAt,
    }) + "\n", { flag: "wx" });
   }
   let records: Evidence[] = [];

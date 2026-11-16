@@ -23,6 +23,12 @@ function boundedGeometry(geometry: Geometry, originalWidth: number, originalHeig
 export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
   asset: Asset; sessionId: string; writeToken: string; onError: () => void;
 }) {
+  const isVideo = asset.mediaType === 'video/webm';
+  const video = useRef<HTMLVideoElement>(null);
+  const pendingNote = useRef<string | undefined>(undefined);
+  const [paused, setPaused] = useState(true);
+  const [time, setTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const [annotations, setAnnotations] = useState<Annotation[]>([]);
   const { store, memoryOnly } = useDrafts();
   const record = store.get(asset);
@@ -65,7 +71,19 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
   const inFlight = useRef(false);
   const selected = draft ?? annotations.find(note => note.id === selectedId);
   const selectedRevision = annotations.find(note => note.id === selectedId)?.revision;
-  const canCreate = ready && !loading && !loadError && !draft && !!writeToken && !!asset.width && !!asset.height;
+  const canCreate = ready && !loading && !loadError && !draft && !!writeToken && !!asset.width && !!asset.height && (!isVideo || paused);
+
+  function seek(seconds: number, noteId?: string) {
+    if (!video.current) return;
+    pendingNote.current = noteId;
+    video.current.pause();
+    video.current.currentTime = seconds;
+    setTime(seconds);
+    setSelectedId(undefined);
+  }
+  useEffect(() => {
+    if (ready && draft?.mediaTimeSeconds !== undefined && video.current && Math.abs(video.current.currentTime - draft.mediaTimeSeconds) > .0001) seek(draft.mediaTimeSeconds);
+  }, [ready, draft?.id]);
 
   useEffect(() => {
     const abort = new AbortController();
@@ -154,7 +172,8 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
     setSaveError('');
     setSavedId(undefined);
     setSelectedId(undefined);
-    store.put({ schema: 'collect-feedback/v1', kind: 'draft', startingRevision: null, annotation: { schema: 'collect-feedback/v1', kind: 'annotation', id: crypto.randomUUID(), sessionId, caseId: asset.caseId, assetId: asset.id, sourceSha256: asset.sha256, originalWidth: asset.width!, originalHeight: asset.height!, geometry, priority: 'P2', comment: '' } });
+    const frame = stage.current!.getBoundingClientRect();
+    store.put({ schema: 'collect-feedback/v1', kind: 'draft', startingRevision: null, annotation: { schema: 'collect-feedback/v1', kind: 'annotation', id: crypto.randomUUID(), sessionId, caseId: asset.caseId, assetId: asset.id, sourceSha256: asset.sha256, originalWidth: asset.width!, originalHeight: asset.height!, geometry, priority: 'P2', comment: '', ...(isVideo ? { mediaTimeSeconds: video.current!.currentTime, displayedWidth: frame.width, displayedHeight: frame.height } : {}) } });
     if (focus) requestAnimationFrame(() => draftPin.current?.focus());
   }
   function cancel() {
@@ -220,7 +239,8 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
         submitted.current = undefined;
         setConflict(undefined);
       } else {
-        setSelectedId(restore ? note.id : undefined);
+        if (restore && isVideo) seek(body.annotation.mediaTimeSeconds, body.annotation.id);
+        else setSelectedId(restore ? note.id : undefined);
         setSavedId(restore ? note.id : undefined);
         setEtag(response.headers.get('ETag') ?? '');
       }
@@ -301,25 +321,46 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
     <div className="annotation-toolbar" aria-label="Annotation tools">
       <Button variant="outline" disabled={!canCreate} onClick={() => begin({ x: .5, y: .5, width: 0, height: 0 }, true)}>Point</Button>
       <Button variant="outline" disabled={!canCreate} onClick={() => begin({ x: .4, y: .4, width: .2, height: .2 }, true)}>Box</Button>
-      <label className="zoom-control">Zoom <select aria-label="Image zoom" value={zoom} onChange={event => setZoom(Number(event.target.value))}>{[1, 1.5, 2, 3, 4].map(value => <option key={value} value={value}>{value * 100}%</option>)}</select></label>
+      <label className="zoom-control">Zoom <select aria-label={isVideo ? 'Recording zoom' : 'Image zoom'} value={zoom} onChange={event => setZoom(Number(event.target.value))}>{[1, 1.5, 2, 3, 4].map(value => <option key={value} value={value}>{value * 100}%</option>)}</select></label>
     </div>
+    {isVideo && <div className="annotation-toolbar" aria-label="Recording playback">
+      <Button variant="outline" disabled={!ready || !!draft} onClick={() => { if (video.current?.paused) { setSelectedId(undefined); void video.current.play(); } else video.current?.pause(); }}>{paused ? 'Play' : 'Pause'}</Button>
+      <label>Recording position <input type="range" aria-label="Recording position" min={0} max={Math.max(duration, time)} step="0.001" value={time} disabled={!ready || !!draft} onChange={event => seek(Number(event.target.value))} /></label>
+      <span>{time.toFixed(3)} s · {paused ? 'Paused' : 'Playing'}</span>
+    </div>}
+    {isVideo && <p className="muted">Pause to annotate. Notes bind to a playback timestamp, not tracked objects or exact frames. Save or cancel a draft before seeking.</p>}
     <p className="muted annotation-help" id={`pin-help-${asset.id}`}>Click for a point; drag in either direction for a box. Point and Box also create with the keyboard. Arrows move; Shift + arrows resize. Escape cancels; Ctrl/⌘ + Enter saves. Scroll to pan.</p>
     {loading && <p role="status">Loading annotations…</p>}
     {loadError && <div role="alert"><p className="error">{loadError}</p><Button variant="outline" onClick={() => setLoadAttempt(value => value + 1)}>Retry loading annotations</Button></div>}
     {(!asset.width || !asset.height) && <p className="muted">Annotation requires registered original image dimensions.</p>}
-    <div className="image-viewport" ref={viewport} tabIndex={0} aria-label="Screenshot annotation canvas" aria-describedby={`pin-help-${asset.id}`}>
+    <div className="image-viewport" ref={viewport} tabIndex={0} aria-label={isVideo ? 'Paused recording annotation canvas' : 'Screenshot annotation canvas'} aria-describedby={`pin-help-${asset.id}`}>
       <div className="image-stage" ref={stage} style={{ width: `${zoom * 100}%` }} onPointerDown={start} onPointerMove={move} onPointerUp={event => { if (drawing.current?.pointerId === event.pointerId) { move(event); drawing.current = undefined; draftPin.current?.focus(); } }} onPointerCancel={() => { drawing.current = undefined; setDraft(undefined); }}>
-        <img src={`/api/v1/assets/${encodeURIComponent(asset.id)}`} alt={`Original evidence ${asset.id}`} draggable={false} onLoad={() => setReady(true)} onError={() => { setReady(false); onError(); }} />
-        {annotations.filter(note => !note.deletedAt && note.id !== draft?.id).map((note, index) => <div key={note.id} className={`annotation-region priority-${note.priority}`} style={{ left: `${note.geometry.x * 100}%`, top: `${note.geometry.y * 100}%`, width: `${note.geometry.width * 100}%`, height: `${note.geometry.height * 100}%` }}>
+        {isVideo ? <video ref={video} src={`/api/v1/assets/${encodeURIComponent(asset.id)}`} aria-label={`Original recording ${asset.id}`} preload="auto" playsInline
+          onLoadedData={() => {
+            const player = video.current!;
+            if (player.videoWidth !== asset.width || player.videoHeight !== asset.height) { onError(); return; }
+            setReady(true);
+            setDuration(Number.isFinite(player.duration) ? player.duration : 0);
+          }}
+          onDurationChange={() => { if (video.current && Number.isFinite(video.current.duration)) setDuration(video.current.duration); }}
+          onTimeUpdate={() => setTime(video.current!.currentTime)}
+          onSeeking={() => { setReady(false); setSelectedId(undefined); }}
+          onSeeked={() => { setReady(true); setTime(video.current!.currentTime); setSelectedId(pendingNote.current); pendingNote.current = undefined; }}
+          onPlay={() => setPaused(false)} onPause={() => setPaused(true)}
+          onError={() => { setReady(false); onError(); }} style={{ display: 'block', width: '100%' }} />
+          : <img src={`/api/v1/assets/${encodeURIComponent(asset.id)}`} alt={`Original evidence ${asset.id}`} draggable={false} onLoad={() => setReady(true)} onError={() => { setReady(false); onError(); }} />}
+        {annotations.filter(note => !note.deletedAt && note.id !== draft?.id && (!isVideo || (paused && Math.abs((note.mediaTimeSeconds ?? -1) - time) < .001))).map((note, index) => <div key={note.id} className={`annotation-region priority-${note.priority}`} style={{ left: `${note.geometry.x * 100}%`, top: `${note.geometry.y * 100}%`, width: `${note.geometry.width * 100}%`, height: `${note.geometry.height * 100}%` }}>
           <Button ref={note.id === selectedId ? selectedPin : undefined} variant="outline" className="annotation-pin" aria-label={`Annotation ${index + 1}, ${note.priority} ${priorities.find(([p]) => p === note.priority)?.[1]}: ${note.comment}`} aria-pressed={note.id === selectedId} disabled={!!draft} onClick={() => { setSelectedId(note.id); setSavedId(undefined); setEtag(''); }}>{index + 1}</Button>
         </div>)}
         {draft && <div className={`annotation-region draft-region priority-${draft.priority}`} style={{ left: `${draft.geometry.x * 100}%`, top: `${draft.geometry.y * 100}%`, width: `${draft.geometry.width * 100}%`, height: `${draft.geometry.height * 100}%` }}><Button ref={draftPin} variant="outline" className="annotation-pin" aria-label="Draft pin. Arrow keys move; Shift plus arrows resize." aria-pressed="true">+</Button></div>}
       </div>
     </div>
+    {isVideo && <div className="selection-list" aria-label="Timestamp notes">{annotations.filter(note => !note.deletedAt).map(note => <Button key={note.id} variant="outline" className="selection-row" aria-pressed={note.id === selectedId} disabled={!!draft} onClick={() => { seek(note.mediaTimeSeconds!, note.id); }}><span>{note.mediaTimeSeconds?.toFixed(3)} s · {note.comment}</span></Button>)}</div>}
     {!draft && saveError && <p className="error" role="alert">{saveError}</p>}
     {annotations.filter(note => note.deletedAt).map(note => <div className="annotation-actions" key={note.id}><span>Deleted: {note.comment}</span><Button variant="outline" disabled={saving || !!draft} onClick={() => void tombstone(note, true)}>Undo deletion</Button></div>)}
     {selected && createPortal(<div ref={editor} role="dialog" aria-modal="false" aria-label={draft ? baseRevision ? 'Edit annotation' : 'New annotation' : 'Saved annotation'} className="annotation-editor" style={position} onKeyDown={keys}>
       <div className="annotation-editor-heading"><h3>{draft ? baseRevision ? 'Edit annotation' : 'New annotation' : 'Saved annotation'}</h3><Button variant="ghost" disabled={saving} onClick={cancel} aria-label={draft ? 'Cancel annotation' : 'Close annotation'}>×</Button></div>
+      {selected.mediaTimeSeconds !== undefined && <p className="muted">Paused at {selected.mediaTimeSeconds.toFixed(3)} s · displayed frame {selected.displayedWidth} × {selected.displayedHeight}</p>}
       {draft ? <form onSubmit={event => { event.preventDefault(); void save(); }}>
         <div className="priority-controls" role="group" aria-label="Priority">{priorities.map(([priority, label]) => <Button key={priority} type="button" variant="ghost" disabled={locked} aria-pressed={draft.priority === priority} className={`priority-${priority}`} onClick={() => setDraft(current => current && { ...current, priority })}><Badge variant="outline">{priority} {label}</Badge></Button>)}</div>
         <label className="comment-label" htmlFor={`comment-${draft.id}`}>Comment (required)</label>

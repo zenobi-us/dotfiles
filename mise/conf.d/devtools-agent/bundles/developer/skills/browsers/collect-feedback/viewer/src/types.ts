@@ -11,6 +11,7 @@ export type Priority = 'P1' | 'P2' | 'P3';
 export interface AnnotationInput {
   schema: 'collect-feedback/v1'; kind: 'annotation'; id: string; sessionId: string; caseId: string; assetId: string;
   sourceSha256: string; originalWidth: number; originalHeight: number; geometry: Geometry; priority: Priority; comment: string;
+  mediaTimeSeconds?: number; displayedWidth?: number; displayedHeight?: number;
 }
 export interface Annotation extends AnnotationInput {
   revision: number; createdAt: string; updatedAt: string; pixelGeometry: Geometry; deletedAt?: string | null;

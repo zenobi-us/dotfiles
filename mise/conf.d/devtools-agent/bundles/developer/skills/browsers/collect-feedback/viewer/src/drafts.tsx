@@ -18,6 +18,7 @@ function validInput(value: unknown, sessionId: string): value is AnnotationInput
     && [note.id, note.caseId, note.assetId, note.sourceSha256].every(item => typeof item === 'string' && item.length > 0)
     && typeof note.comment === 'string' && ['P1', 'P2', 'P3'].includes(note.priority)
     && Number.isInteger(note.originalWidth) && note.originalWidth > 0 && Number.isInteger(note.originalHeight) && note.originalHeight > 0
+    && (note.mediaTimeSeconds === undefined || (Number.isFinite(note.mediaTimeSeconds) && note.mediaTimeSeconds >= 0 && Number.isFinite(note.displayedWidth) && note.displayedWidth! > 0 && Number.isFinite(note.displayedHeight) && note.displayedHeight! > 0))
     && !!note.geometry && ['x', 'y', 'width', 'height'].every(key => Number.isFinite(note.geometry[key as keyof typeof note.geometry]));
 }
 export class DraftStore {

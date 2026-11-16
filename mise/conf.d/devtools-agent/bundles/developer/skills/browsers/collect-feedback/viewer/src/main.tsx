@@ -48,9 +48,8 @@ function AssetInspector({ asset, sessionId, writeToken }: { asset: Asset; sessio
   return <>
     <Section title="Original media">
       {failed && <p role="alert" className="error">Media could not be loaded. The asset may be missing, changed, or unavailable. Reload the session after checking the server.</p>}
-      {asset.mediaType.startsWith('image/') ? <AnnotationImage asset={asset} sessionId={sessionId} writeToken={writeToken} onError={() => setFailed(true)} />
-        : asset.mediaType.startsWith('video/') ? <video className="original" src={url} controls preload="metadata" onError={() => setFailed(true)} aria-label={`Original recording ${asset.id}`} />
-          : <p className="muted">Preview unavailable for {asset.mediaType}. This viewer displays images and video.</p>}
+      {asset.mediaType.startsWith('image/') || asset.mediaType === 'video/webm' ? <AnnotationImage asset={asset} sessionId={sessionId} writeToken={writeToken} onError={() => setFailed(true)} />
+        : <p className="muted">Preview unavailable for {asset.mediaType}. This viewer displays images and video.</p>}
       <p className="muted">Original evidence · no image transformations</p>
       <a href={url} target="_blank" rel="noreferrer">Open original asset ↗</a>
     </Section>

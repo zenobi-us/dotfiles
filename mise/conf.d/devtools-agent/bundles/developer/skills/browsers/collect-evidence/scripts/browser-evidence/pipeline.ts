@@ -98,20 +98,33 @@ async function checkPrerequisites(options: Options, state: Cancellation): Promis
   const r = await sh(driver === "surf" ? ["surf", "doctor", "--json"] : ["playwright-cli", "--version"]);
   checkCancellation(state);
   if (r.code !== 0) throw new CliError(`${driver} prerequisite failed: ${r.err || r.out}`, 3);
+  let video = { available: false, method: driver === "playwright" ? "playwright-cli video-start/video-stop" : null, reason: "Surf does not expose a supported recording method." };
   if (driver === "playwright") {
     const session = `ce-doctor-${randomUUID()}`;
     const browser = getDriver(driver);
+    const probe = await mkdtemp(join(tmpdir(), "ce-video-doctor-"));
     try {
       await browser.open(session);
+      const path = join(probe, "recording.webm");
+      const start = await sh(["playwright-cli", "video-start", path], { PLAYWRIGHT_CLI_SESSION: session });
+      if (start.code === 0 && !/^### Error/m.test(start.out)) {
+        await sh(["playwright-cli", "--raw", "run-code", "async (page) => { await page.waitForTimeout(200); }"], { PLAYWRIGHT_CLI_SESSION: session });
+        const stop = await sh(["playwright-cli", "video-stop"], { PLAYWRIGHT_CLI_SESSION: session });
+        const bytes = await readFile(path).catch(() => Buffer.alloc(0));
+        video = stop.code === 0 && !/^### Error/m.test(stop.out) && bytes.length > 100 && bytes.readUInt32BE(0) === 0x1a45dfa3
+          ? { available: true, method: video.method, reason: "Owned browser recording start, stop and WebM output succeeded." }
+          : { ...video, reason: `Recording stop/output failed: ${stop.err || stop.out}` };
+      } else video = { ...video, reason: `Recording start failed: ${start.err || start.out}` };
     } catch (error) {
       checkCancellation(state);
       throw new CliError(`Playwright browser launch is unavailable. Configure an installed browser before capture: ${error instanceof Error ? error.message : String(error)}`, 3);
     } finally {
       await browser.close(session);
+      await rm(probe, { recursive: true, force: true });
     }
     checkCancellation(state);
   }
-  return { driver, available: true, attended: driver === "surf", diagnostic: r.out.trim(), video: driver === "surf" ? "unavailable" : "supported by playwright-cli" };
+  return { driver, available: true, attended: driver === "surf", diagnostic: r.out.trim(), video: video.available ? "available" : "unavailable", videoCapability: video };
 }
 
 export async function initWorkspace(dir: string, options: Options): Promise<object> {

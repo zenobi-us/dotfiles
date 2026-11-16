@@ -86,7 +86,21 @@ export async function serveSession(directory: string, port: number, ready: (data
             const asset = assets.get(id);
             if (!asset) return json("error", { message: "Asset is not registered" }, 404);
             const bytes = await assetBytes(directory, asset);
-            return new Response(bytes, { headers: { ...headers, "Content-Type": asset.mediaType, "Content-Length": String(bytes.length), ETag: `"${asset.sha256}"` } });
+            const mediaHeaders = { ...headers, "Content-Type": asset.mediaType, "Content-Length": String(bytes.length), ETag: `"${asset.sha256}"`, "Accept-Ranges": "bytes" };
+            const range = request.headers.get("Range");
+            if (range) {
+              const match = /^bytes=(\d*)-(\d*)$/.exec(range);
+              let start = 0, end = bytes.length - 1;
+              if (match && (match[1] || match[2])) {
+                start = match[1] ? Number(match[1]) : Math.max(0, bytes.length - Number(match[2]));
+                end = match[1] && match[2] ? Math.min(Number(match[2]), bytes.length - 1) : end;
+              }
+              if (!match || (!match[1] && !match[2]) || (!match[1] && Number(match[2]) === 0) || !Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start > end || start >= bytes.length) {
+                return new Response(null, { status: 416, headers: { ...headers, "Content-Range": `bytes */${bytes.length}` } });
+              }
+              return new Response(bytes.subarray(start, end + 1), { status: 206, headers: { ...mediaHeaders, "Content-Range": `bytes ${start}-${end}/${bytes.length}`, "Content-Length": String(end - start + 1) } });
+            }
+            return new Response(bytes, { headers: mediaHeaders });
           }
           return json("error", { message: "Route not found" }, 404);
         } catch (error) {

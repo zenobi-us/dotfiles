@@ -31,6 +31,7 @@ process.stdin.on("data", () => { screen("Loading screen"); setTimeout(() => scre
     const image = { width: 1280, height: 720, pixels: [{ x: 10, y: 55, rgb: [201, 166, 255] as [number, number, number] }], lines: [{ text: "Ready screen", top: 11 }, { text: "Selected item", top: 31 }] };
     const plan: Plan = {
       schema: "collect-evidence/v1", kind: "plan", workId: "native", driver: "tui", base: "terminal://private",
+      video: true,
       terminal: { command, cwd: root, columns: 80, rows: 24, font: "monospace:size=12", lineHeight: 20 },
       approval: { origins: [], confirmations: ["transition.2"], terminal: { command, cwd: root } },
       tests: [{ id: "transition", claim: "Native delayed transition", pass: "Both frames match", fail: "A frame differs", steps: [
@@ -46,6 +47,7 @@ process.stdin.on("data", () => { screen("Loading screen"); setTimeout(() => scre
     expect(verdicts.verdicts).toEqual([{ caseId: "transition", verdict: "PASS" }]);
     await checked([cli, "validate", run, "--json"], root);
     const result = JSON.parse(await readFile(join(run, "cases/transition/case.json"), "utf8"));
+    expect(result.limits).toContain("Native video is unavailable.");
     expect(result.steps.map((step: { assertionResult: string }) => step.assertionResult)).toEqual(["passed", "not-applicable", "passed"]);
     expect(result.assets.map((asset: { stepId: string }) => asset.stepId)).toEqual(["transition.1", "transition.3"]);
     expect(result.assets[0].sha256).not.toBe(result.assets[1].sha256);

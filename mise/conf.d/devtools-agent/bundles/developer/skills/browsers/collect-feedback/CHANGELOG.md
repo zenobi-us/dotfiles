@@ -6,6 +6,13 @@ kind: changelog
 
 ## Unreleased
 
+- **Wrap timestamp notes:** Keep full saved video comments within the inspector using native keyboard-selectable Base Nova rows.
+
+- **Restore video moments:** Undo deletion pauses and seeks to the restored note before selecting its pin. Keep image selection and retained conflict drafts unchanged.
+
+- **Review recorded video:** Play and seek registered WebM assets. Draw paused timestamp pins with displayed frame dimensions. Retain timing through draft recovery, revision-checked saves, restart and export.
+- **Serve seekable media:** Validate original bytes before each full or partial response. Support single byte ranges without exposing other files.
+
 - **Recover browser drafts:** Retain versioned, identity-bound drafts across case and asset navigation and reload in the same browser tab. Keep starting revisions and frozen retry payloads. Show memory-only warnings when browser storage fails.
 - **Resolve complete exports:** Require save or explicit discard of every unfinished browser draft. Keep unchanged saved-note selection clean. Keep CLI and direct API exports limited to authoritative saved records.
 - **Verify failure recovery:** Exercise real disk-write failures, browser storage failures, concurrent revisions after reload, retry identity and correct source hashes through public commands and the bundled page.
@@ -35,3 +42,4 @@ kind: changelog
 - **Browse original media:** Open a prebuilt Base Nova inspector with independent session, case and asset columns. Keep horizontal drill-down on narrow screens.
 - **Serve bounded reads:** Use one explicit-port loopback service for both entrypoints. Enforce registered paths, Host, Origin, request limits and an exclusive session writer lock.
 - **Keep capability explicit:** Support init, validate and read-only serve. Annotation editing, draft recovery and export are not part of this release.
+

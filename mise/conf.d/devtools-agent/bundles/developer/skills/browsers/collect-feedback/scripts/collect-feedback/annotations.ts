@@ -13,6 +13,8 @@ interface AnnotationInput {
   sessionId: string; caseId: string; assetId: string; sourceSha256: string;
   originalWidth: number; originalHeight: number; geometry: Geometry;
   priority: "P1" | "P2" | "P3"; comment: string;
+  mediaTimeSeconds?: number;
+  displayedWidth?: number; displayedHeight?: number;
 }
 export interface Annotation extends AnnotationInput {
   revision: number; createdAt: string; updatedAt: string; pixelGeometry: Geometry; deletedAt?: string | null;
@@ -108,7 +110,8 @@ export async function exportSession(directory: string): Promise<object> {
 function validateInput(view: FeedbackView, value: unknown): AnnotationInput {
   requireAnnotation(isObject(value), "Annotation must be an object");
   const keys = ["schema", "kind", "id", "sessionId", "caseId", "assetId", "sourceSha256", "originalWidth", "originalHeight", "geometry", "priority", "comment"];
-  requireAnnotation(Object.keys(value).length === keys.length && keys.every(key => Object.hasOwn(value, key)), "Annotation fields do not match the supported schema");
+  const videoKeys = ["mediaTimeSeconds", "displayedWidth", "displayedHeight"];
+  requireAnnotation(keys.every(key => Object.hasOwn(value, key)) && Object.keys(value).every(key => keys.includes(key) || videoKeys.includes(key)), "Annotation fields do not match the supported schema");
   requireAnnotation(value.schema === schema && value.kind === "annotation", "Unsupported annotation schema or kind");
   for (const key of ["id", "sessionId", "caseId", "assetId"]) {
     try { checkId(value[key]); } catch { throw new AnnotationError("Annotation identity must use a safe stable ID"); }
@@ -116,7 +119,13 @@ function validateInput(view: FeedbackView, value: unknown): AnnotationInput {
   requireAnnotation(value.sessionId === view.session.id, "Annotation belongs to a different session", 409);
   const record = view.cases.find(record => record.id === value.caseId);
   const asset = record?.assets.find(asset => asset.id === value.assetId);
-  requireAnnotation(asset?.mediaType === "image/png", "Annotation requires a registered image asset");
+  requireAnnotation(asset && (asset.mediaType === "image/png" || asset.mediaType === "video/webm"), "Annotation requires a registered image or video asset");
+  if (asset.mediaType === "video/webm") {
+    requireAnnotation(typeof value.mediaTimeSeconds === "number" && Number.isFinite(value.mediaTimeSeconds) && value.mediaTimeSeconds >= 0 && (asset.durationMs === null || value.mediaTimeSeconds <= asset.durationMs / 1000), "Video timestamp must be within the recording");
+    requireAnnotation([value.displayedWidth, value.displayedHeight].every(size => typeof size === "number" && Number.isFinite(size) && size > 0), "Video annotation requires displayed frame dimensions");
+  } else {
+    requireAnnotation(videoKeys.every(key => !Object.hasOwn(value, key)), "Image annotations cannot contain video timing");
+  }
   requireAnnotation(value.sourceSha256 === asset.sha256 && value.originalWidth === asset.width && value.originalHeight === asset.height, "Annotation source hash or dimensions changed; import a new session", 409);
   requireAnnotation(value.priority === "P1" || value.priority === "P2" || value.priority === "P3", "Annotation priority must be P1, P2 or P3");
   requireAnnotation(typeof value.comment === "string" && value.comment.trim().length > 0 && Buffer.byteLength(value.comment, "utf8") <= 64 * 1024, "Annotation comment must contain text and fit within 64 KiB");
@@ -125,7 +134,7 @@ function validateInput(view: FeedbackView, value: unknown): AnnotationInput {
   const { x, y, width, height } = geometry as unknown as Geometry;
   requireAnnotation(x + width <= 1 && y + height <= 1, "Annotation geometry exceeds the image bounds");
   requireAnnotation((width === 0 && height === 0) || (width > 0 && height > 0), "Annotation must be a point or a positive-area box");
-  return { schema, kind: "annotation", id: value.id as string, sessionId: value.sessionId as string, caseId: value.caseId as string, assetId: value.assetId as string, sourceSha256: asset.sha256, originalWidth: asset.width, originalHeight: asset.height, geometry: { x: x || 0, y: y || 0, width: width || 0, height: height || 0 }, priority: value.priority, comment: value.comment };
+  return { schema, kind: "annotation", id: value.id as string, sessionId: value.sessionId as string, caseId: value.caseId as string, assetId: value.assetId as string, sourceSha256: asset.sha256, originalWidth: asset.width, originalHeight: asset.height, geometry: { x: x || 0, y: y || 0, width: width || 0, height: height || 0 }, priority: value.priority, comment: value.comment, ...(asset.mediaType === "video/webm" ? { mediaTimeSeconds: value.mediaTimeSeconds as number, displayedWidth: value.displayedWidth as number, displayedHeight: value.displayedHeight as number } : {}) };
 }
 
 function validateStored(view: FeedbackView, value: unknown): Annotation {

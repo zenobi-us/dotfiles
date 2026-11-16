@@ -2,7 +2,7 @@
 schema: collect-feedback/v1
 kind: reference
 ---
-# Screenshot feedback contract
+# Image and video feedback contract
 
 ## Storage and identity
 
@@ -17,7 +17,7 @@ Geometry uses normalized top-left `{x,y,width,height}` coordinates. A point has 
 | GET / | Prebuilt React/Base Nova viewer with bundled CSS and JetBrains Mono fonts. |
 | GET /api/v1/session | Session plus the current in-memory writeToken. |
 | GET /api/v1/cases | Ordered cases and registered assets. |
-| GET /api/v1/assets/:id | Verified original bytes and hash ETag. |
+| GET /api/v1/assets/:id | Verified original bytes and hash ETag. Single byte ranges return 206; invalid ranges return 416. |
 | GET /api/v1/annotations | Saved annotations. |
 | POST /api/v1/annotations | Durable saved annotation and revision ETag. |
 | PATCH /api/v1/annotations/:id | Revision-checked edit or undo and a new ETag. |
@@ -59,3 +59,13 @@ The installed `export <session> --json` command and GET export return the same s
 Build from viewer/ with `mise exec -- bun install --frozen-lockfile` and `mise exec -- bun run build`. Commit viewer/index.html. Server startup reads this file without a build or CDN access.
 
 Run scripts/collect-feedback/test/workflow.test.ts with Bun. Exercise the actual bundled browser page separately. Check point and reverse-box creation, keyboard controls, source hash binding, odd-width image bounds, case and asset navigation, reload, concurrent revisions, failed disk writes, failed browser storage, guarded UI export, server restart and read-only CLI export.
+
+
+## Paused video notes
+
+A video creation payload adds `mediaTimeSeconds`, `displayedWidth` and `displayedHeight` to the image annotation fields. The timestamp must be finite, non-negative and within the known recording duration. Displayed dimensions are positive CSS-pixel dimensions of the uncropped frame at creation. `originalWidth` and `originalHeight` remain the registered video-track dimensions. Geometry uses those original dimensions for pixel bounds. Image payloads reject video fields.
+
+Timing and source bindings cannot change through PATCH. Edit comments, priority and geometry at the same timestamp. Create another note for another timestamp. The viewer locks playback and seeking while a draft exists, restores the draft timestamp after reload, and opens saved notes at their recorded position. Pins appear only at their bound paused timestamp, not during playback. Draft recovery, stable retries, revision conflicts, tombstones, export checks and original-byte validation use the existing annotation path.
+
+
+Undo deletion of a video note pauses playback and seeks to its bound timestamp. The viewer selects the restored pin after seeking completes. Undo deletion and keep draft retains the existing draft and its timestamp instead of selecting the saved note. Image undo selects the restored pin without media seeking.

@@ -36,7 +36,7 @@ All commands use a mise Bun shebang and pinned CrustJS dependencies. Run the exe
 
 | Command | Contract |
 |---|---|
-| `doctor --driver <driver>` | Check the installed CLI and connection or browser launch; do not install tools. |
+| `doctor --driver <driver>` | Check installed tools and access. Playwright also probes an owned WebM recorder; do not install tools. |
 | `init <dir> --repository <repo> --workflow <id> --run <id>` | Create an external authored plan and resolve the final evidence route. |
 | `render <dir>` | Generate `plan.json` and versioned `test-plan.md`. |
 | `compile <dir>` | Generate driver-native workflows and a plan fingerprint. |
@@ -61,3 +61,4 @@ Use `writing-reports` only to present validated common records. Do not create an
 ## Surface limits
 
 Surf and Playwright remain the web drivers. The `tui` driver implements the private Linux foot/Cage/wlroots/grim path in `references/tui.md`. A prepared Fedora 45 host passed the real delayed-transition workflow, native RGB and 20 px line-spacing checks, credential and unapproved-input stops, and interrupted owned cleanup. See the TUI playbook for evidence and host limits. The `gui` driver captures approved Linux X11 windows or displays with ImageMagick import. Read `references/gui.md` for exact scope approval, pixel assertions and platform limits. It never changes focus, enters credentials, confirms operations or closes borrowed windows. Browser screenshots do not prove native terminal or desktop behaviour.
+
