@@ -1,3 +1,15 @@
+## Finished — finish-0032
+
+[Terminal receipt](../events/finish-0032.yaml). Ticket completed and published. Squash integration: `6ff209af94897b04c7660a8fa55685a46f6c7ead` on `origin/master`. Reviewed resolution: `d7da10bec12e453e592c1f8344b3aa6c5dfe5332`, approved by [review-0024](../artifacts/reviews/review-review-0024.md).
+
+The [integration result](../artifacts/snapshots/integration-result-finish-0028.json) binds the exact candidate commit/tree and passing public video workflow to the expected squash mapping. The check exercised the real recorder and browser player. No new test count is inferred from the helper output. Prior independent desktop/mobile browser acceptance remains linked in review history.
+
+[Published integration](../events/finish-pushed-0029.yaml) is reachable from tracker publication `3ab9afda3d471e88ba4b382c0d0429eb89fca253`. [Ticket completion](../events/finish-ticket-completed-0030.yaml) records completed state. [Cleanup](../artifacts/snapshots/cleanup-finish-0031.json) removed only original source, resolution and integration candidate branches/workspaces with no refusal. All review resources stopped. Unrelated worktrees remain. Reviewed source objects remain retained under their Git review refs.
+
+The rejected first preparation, exact product-blob resolution, and user-approved checkpoint correction remain in append-only history with preserved original snapshot/checksum. No remaining action for this ticket. No new Surf, native recorder, exact-frame or object-tracking claim.
+
+## Retained implementation and review history
+
 ## Resolved-source review review-0024
 
 SUCCESS for `d7da10bec12e453e592c1f8344b3aa6c5dfe5332`, tree `21b921fc81a927f000107b626199605f4380c077`, branch `resolve/collect-evidence-feedback-08-video`. [Independent review](../artifacts/reviews/review-review-0024.md), [result](../events/review-0024.yaml), [completion](../events/review-complete-0025.yaml).

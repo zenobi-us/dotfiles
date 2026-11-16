@@ -1,3 +1,9 @@
+## Finish finish-0032
+
+[FINISHED](../events/finish-0032.yaml). Independent resolution review passed. The exact isolated squash candidate passed the public recorder/browser video check and was published as `6ff209af94897b04c7660a8fa55685a46f6c7ead`. Ticket completion was committed and published as `3ab9afda3d471e88ba4b382c0d0429eb89fca253`. Original source, resolution and integration candidate worktrees/branches were removed. No cleanup remains pending.
+
+[Prepared inputs](../events/finish-prepared-0027.yaml), [merged mapping](../events/finish-merged-0028.yaml), [publication](../events/finish-pushed-0029.yaml), [ticket completion](../events/finish-ticket-completed-0030.yaml), [removal](../events/finish-worktree-removed-0031.yaml). Earlier failed preparation and authorized correction provenance remain intact. No product bytes changed after reviewed resolution.
+
 ## Resolution review completion review-complete-0025
 
 [Completion](../events/review-complete-0025.yaml) accepts [review-0024](../events/review-0024.yaml) for isolated resolution `d7da10bec12e453e592c1f8344b3aa6c5dfe5332`. All 19 reviewed product blobs match prior accepted `5b639183`. Current base-only files remain intact. The release-version conflict is resolved at `0.2.43` in both manifests. The exact new source has independent SUCCESS. Final candidate checks remain pending. No product file changed after this review.

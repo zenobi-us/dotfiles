@@ -1,0 +1,43 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/developer/skills/git/cleanup-merged/scripts/cleanup-merged.ts",
+    "remove",
+    "feature/collect-evidence-feedback-08-video",
+    "resolve/collect-evidence-feedback-08-video",
+    "integration/ecfff94f-850b-4b1c-8b76-5ec7709f4612",
+    "--min-age=0s"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "exit_code": 0,
+  "result": {
+    "removed": [
+      "feature/collect-evidence-feedback-08-video",
+      "resolve/collect-evidence-feedback-08-video",
+      "integration/ecfff94f-850b-4b1c-8b76-5ec7709f4612"
+    ],
+    "refused": []
+  },
+  "observed_at": "2026-11-16T04:50:27.951Z",
+  "worktrunk_integration_reasons": {
+    "feature/collect-evidence-feedback-08-video": "merge_adds_nothing",
+    "resolve/collect-evidence-feedback-08-video": "merge_adds_nothing",
+    "integration/ecfff94f-850b-4b1c-8b76-5ec7709f4612": "ancestor"
+  },
+  "hook_safety": {
+    "ports": [
+      17217,
+      15399,
+      10757
+    ],
+    "listeners": [],
+    "lsof_exit_code": 1
+  },
+  "source_review_ref": "refs/worktree-reviews/d7da10bec12e453e592c1f8344b3aa6c5dfe5332",
+  "original_source_review_ref": "refs/worktree-reviews/5b639183c884d2ee6061860609cbc6c7a09633c3",
+  "resource_shutdown": {
+    "original_reviewer": "confirmed",
+    "resolution_reviewer": "confirmed",
+    "axis_resources": "confirmed in reviewed phase results",
+    "source_terminals": "all removed; neither source workspace present in herdr-app after child close"
+  }
+}
