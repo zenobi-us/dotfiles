@@ -1,0 +1,485 @@
+{
+  "before": [
+    {
+      "manifest": {
+        "runId": "66a7a53f-87bb-4973-8593-3d0153450d5b",
+        "muxer": "herdr-app",
+        "agent": "omp",
+        "target": "t1d1",
+        "createdAt": "2026-11-16T21:32:21.227Z",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+        "operationId": "collect-evidence-feedback-09-history-review-0018"
+      },
+      "resources": {
+        "version": 1,
+        "runId": "66a7a53f-87bb-4973-8593-3d0153450d5b",
+        "observedAt": "2026-11-16T21:42:13.377Z",
+        "processes": [
+          {
+            "pid": 749862,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "34976348",
+            "command": "omp",
+            "parentPid": 749211,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "stopped"
+          },
+          {
+            "pid": 756021,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "34992627",
+            "command": "bun",
+            "parentPid": 749862,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "stopped"
+          },
+          {
+            "pid": 756022,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "34992627",
+            "command": "bun",
+            "parentPid": 749862,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "stopped"
+          },
+          {
+            "pid": 756140,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "34992678",
+            "command": "hc",
+            "parentPid": 756021,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "stopped"
+          },
+          {
+            "pid": 756141,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "34992678",
+            "command": "hc",
+            "parentPid": 756022,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "stopped"
+          },
+          {
+            "pid": 752796,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "34985147",
+            "command": "python",
+            "parentPid": 749862,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "stopped"
+          },
+          {
+            "pid": 761670,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35001990",
+            "command": "omp daemon brok",
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "running"
+          },
+          {
+            "pid": 761696,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35001995",
+            "command": "bun",
+            "parentPid": 761670,
+            "cwd": "/tmp",
+            "state": "stopped"
+          },
+          {
+            "pid": 761962,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002509",
+            "command": "bwrap",
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "running"
+          },
+          {
+            "pid": 761963,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002509",
+            "command": "xdg-dbus-proxy",
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "running"
+          },
+          {
+            "pid": 761967,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002511",
+            "command": "chrome",
+            "cwd": "/var/home/zenobius",
+            "state": "running"
+          },
+          {
+            "pid": 761984,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002520",
+            "command": "chrome_crashpad",
+            "cwd": "/var/home/zenobius",
+            "state": "running"
+          },
+          {
+            "pid": 761986,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002521",
+            "command": "chrome_crashpad",
+            "cwd": "/var/home/zenobius",
+            "state": "running"
+          },
+          {
+            "pid": 762827,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35007031",
+            "command": "bun",
+            "parentPid": 749862,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "stopped"
+          },
+          {
+            "pid": 761955,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002504",
+            "command": "bwrap",
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "running"
+          },
+          {
+            "pid": 761966,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002510",
+            "command": "bwrap",
+            "cwd": "/var/home/zenobius",
+            "state": "running"
+          },
+          {
+            "pid": 761991,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002521",
+            "command": "chrome",
+            "cwd": "/var/home/zenobius",
+            "state": "running"
+          },
+          {
+            "pid": 761993,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002521",
+            "command": "chrome",
+            "cwd": "/var/home/zenobius",
+            "state": "running"
+          },
+          {
+            "pid": 762021,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002524",
+            "command": "chrome",
+            "cwd": "/var/home/zenobius",
+            "state": "running"
+          },
+          {
+            "pid": 762024,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002524",
+            "command": "chrome",
+            "cwd": "/var/home/zenobius",
+            "state": "running"
+          },
+          {
+            "pid": 762027,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002527",
+            "command": "chrome",
+            "cwd": "/var/home/zenobius",
+            "state": "running"
+          },
+          {
+            "pid": 762059,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002529",
+            "command": "chrome",
+            "parentPid": 761993,
+            "cwd": "/var/home/zenobius",
+            "state": "stopped"
+          },
+          {
+            "pid": 762060,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002530",
+            "command": "chrome",
+            "parentPid": 761993,
+            "cwd": "/var/home/zenobius",
+            "state": "stopped"
+          },
+          {
+            "pid": 762062,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002530",
+            "command": "chrome",
+            "parentPid": 761993,
+            "cwd": "/var/home/zenobius",
+            "state": "stopped"
+          },
+          {
+            "pid": 762098,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002542",
+            "command": "chrome",
+            "parentPid": 761993,
+            "cwd": "/var/home/zenobius",
+            "state": "stopped"
+          },
+          {
+            "pid": 762107,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002543",
+            "command": "chrome",
+            "parentPid": 761993,
+            "cwd": "/var/home/zenobius",
+            "state": "stopped"
+          },
+          {
+            "pid": 762108,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35002543",
+            "command": "chrome",
+            "parentPid": 761993,
+            "cwd": "/var/home/zenobius",
+            "state": "stopped"
+          },
+          {
+            "pid": 765253,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "35010456",
+            "command": "chrome",
+            "cwd": "/var/home/zenobius",
+            "state": "running"
+          }
+        ],
+        "shutdown": "pending"
+      }
+    },
+    {
+      "manifest": {
+        "runId": "4b62805e-f790-4702-9cab-363ad2b9f531",
+        "muxer": "herdr-app",
+        "agent": "omp",
+        "target": "t1d6",
+        "createdAt": "2026-11-16T21:34:02.019Z",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+        "operationId": "4b62805e-f790-4702-9cab-363ad2b9f531",
+        "parentRunId": "66a7a53f-87bb-4973-8593-3d0153450d5b"
+      },
+      "resources": {
+        "version": 1,
+        "runId": "4b62805e-f790-4702-9cab-363ad2b9f531",
+        "observedAt": "2026-11-16T21:42:13.376Z",
+        "processes": [
+          {
+            "pid": 753921,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "34986433",
+            "command": "omp",
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "running"
+          },
+          {
+            "pid": 757566,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "34997297",
+            "command": "omp",
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "running"
+          }
+        ],
+        "shutdown": "pending"
+      }
+    },
+    {
+      "manifest": {
+        "runId": "3130dd6a-7154-48c3-b3d2-a1f15fa926cf",
+        "muxer": "herdr-app",
+        "agent": "omp",
+        "target": "t1d5",
+        "createdAt": "2026-11-16T21:34:02.019Z",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+        "operationId": "3130dd6a-7154-48c3-b3d2-a1f15fa926cf",
+        "parentRunId": "66a7a53f-87bb-4973-8593-3d0153450d5b"
+      },
+      "resources": {
+        "version": 1,
+        "runId": "3130dd6a-7154-48c3-b3d2-a1f15fa926cf",
+        "observedAt": "2026-11-16T21:42:13.376Z",
+        "processes": [
+          {
+            "pid": 753922,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "34986433",
+            "command": "omp",
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "running"
+          },
+          {
+            "pid": 757346,
+            "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+            "startTicks": "34996093",
+            "command": "omp",
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+            "state": "running"
+          }
+        ],
+        "shutdown": "pending"
+      }
+    }
+  ],
+  "approval": "User selected Terminate owned runtimes; exact recorded identities checked with pidfds before SIGTERM, SIGCONT only if stopped.",
+  "after": {
+    "approved": true,
+    "identities": [
+      {
+        "pid": 761670,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "35001990",
+        "command": "omp daemon brok",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+        "state": "running"
+      },
+      {
+        "pid": 761962,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "35002509",
+        "command": "bwrap",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+        "state": "running"
+      },
+      {
+        "pid": 761963,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "35002509",
+        "command": "xdg-dbus-proxy",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+        "state": "running"
+      },
+      {
+        "pid": 761967,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "35002511",
+        "command": "chrome",
+        "cwd": "/var/home/zenobius",
+        "state": "running"
+      },
+      {
+        "pid": 761984,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "35002520",
+        "command": "chrome_crashpad",
+        "cwd": "/var/home/zenobius",
+        "state": "running"
+      },
+      {
+        "pid": 761986,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "35002521",
+        "command": "chrome_crashpad",
+        "cwd": "/var/home/zenobius",
+        "state": "running"
+      },
+      {
+        "pid": 761955,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "35002504",
+        "command": "bwrap",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+        "state": "running"
+      },
+      {
+        "pid": 761966,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "35002510",
+        "command": "bwrap",
+        "cwd": "/var/home/zenobius",
+        "state": "running"
+      },
+      {
+        "pid": 761991,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "35002521",
+        "command": "chrome",
+        "cwd": "/var/home/zenobius",
+        "state": "running"
+      },
+      {
+        "pid": 761993,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "35002521",
+        "command": "chrome",
+        "cwd": "/var/home/zenobius",
+        "state": "running"
+      },
+      {
+        "pid": 762021,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "35002524",
+        "command": "chrome",
+        "cwd": "/var/home/zenobius",
+        "state": "running"
+      },
+      {
+        "pid": 762024,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "35002524",
+        "command": "chrome",
+        "cwd": "/var/home/zenobius",
+        "state": "running"
+      },
+      {
+        "pid": 762027,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "35002527",
+        "command": "chrome",
+        "cwd": "/var/home/zenobius",
+        "state": "running"
+      },
+      {
+        "pid": 765253,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "35010456",
+        "command": "chrome",
+        "cwd": "/var/home/zenobius",
+        "state": "running"
+      },
+      {
+        "pid": 753921,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "34986433",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+        "state": "running"
+      },
+      {
+        "pid": 757566,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "34997297",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+        "state": "running"
+      },
+      {
+        "pid": 753922,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "34986433",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+        "state": "running"
+      },
+      {
+        "pid": 757346,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "34996093",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+        "state": "running"
+      }
+    ],
+    "all_exited": true,
+    "remaining": []
+  }
+}

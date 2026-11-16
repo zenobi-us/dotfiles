@@ -120,3 +120,7 @@ The separate public runtime smoke invoked absolute commands from /tmp. Unsupport
 
 Not merged, rebased, pushed or ticket-completed. Fix result awaits parent completion and fresh review. Open question: assess hook-generated manifest version changes during integration.
 
+
+## Review review-0019 — current state
+
+FAILURE for source `7b52145875c1935340592d4f82e63edc5c00b931`, tree `74491d21ffd2c4e2736a49928da06ef703d48502`. [Immutable review](../artifacts/reviews/review-review-0019.md); [receipt](../events/review-0019.yaml). SPEC-01 and SPEC-02 are resolved. STD-01 remains blocking: unreadable valid annotation is classified as invalid input rather than an operation failure. Seven regressions passed with 83 assertions. Public CLI and actual browser paths exercised; source and saved feedback preserved. Source unchanged. All three review terminals removed; operator-approved remaining worker and browser processes confirmed exited. No push or merge. Next phase: fix.
