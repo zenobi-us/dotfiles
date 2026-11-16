@@ -72,23 +72,36 @@ Live artifacts:
 Q approved these steps.
 
 - `docs/agents/issue-tracker.md` has a new line, `closure: [children, blockers]`. It is not committed.
-- Commit `72fb5776` in `/home/zenobius/Projects/zeno` adds 9,494 mirror files. It is not pushed. The repository `pre-commit` hook also staged `context.json` into that commit; the ticket 02 sync commits `013999fc` and `9eb5476` show the same hook behaviour.
+- Commit `72fb5776` in `/home/zenobius/Projects/zeno` adds 9,494 mirror files. It was pushed later, with commit `94ff836d`. The repository `pre-commit` hook also staged `context.json` into that commit; the ticket 02 sync commits `013999fc` and `9eb5476` show the same hook behaviour.
 
 ## Review history
 
-None yet.
+- [review-0005](../artifacts/reviews/review-review-0005.md): FAILURE for `17ae3396`. Criteria 1-7 met. Criteria added on 2026-11-16 are not met.
+
+## Latest reviewer verdict
+
+FAILURE (review-0005).
 
 ## Remaining findings
 
-- The strict snapshot load fails on blocker cycles in live Jira data. This needs a decision in the snapshot or mod scope (tickets 03 and 05), not in this ticket.
-- An incremental sync cannot see an issue that left a query or an epic without a change to the issue. `--full` marks it stale.
+- F1: `closure: [parents]` is missing.
+- F2: the reckonone definition still has the old queries.
+- F3: the stale-file cleanup did not run.
+- F4: the Tracker pane still fails on a blocker loop (`data.ts:103`, `:145`, `:159`).
+- F5: no `herdr-app shot` capture.
+- Non-blocking: N1-N5 in the review artifact.
 
 ## Merge status
 
-Not merged. Waiting for review.
+Not merged. Waiting for a fix of F1-F5.
 
 ## Supporting records
 
 - [start-0001](../events/start-0001.yaml)
 - [implementation-0002](../events/implementation-0002.yaml)
 - [pr-draft-implementation-0002](../artifacts/snapshots/pr-draft-implementation-0002.md)
+- [start-complete-0003](../events/start-complete-0003.yaml)
+- [review-start-0004](../events/review-start-0004.yaml)
+- [review-0005](../events/review-0005.yaml)
+- [review-complete-0006](../events/review-complete-0006.yaml)
+- [review-review-0005](../artifacts/reviews/review-review-0005.md)

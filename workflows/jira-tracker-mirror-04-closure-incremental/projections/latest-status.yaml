@@ -1,12 +1,11 @@
 schema: worktree-latest-status/v1
 workflow_id: jira-tracker-mirror-04-closure-incremental
 ticket: tracker/tickets/jira-tracker-mirror-04-closure-incremental.md
-state: IMPLEMENTED
-latest_receipt: implementation-0002
+state: REVIEW_FAILED
+latest_receipt: review-complete-0006
 latest_source_commit: 17ae33962bb15eb7aead9c0cc08986a7b5ba2983
 latest_source_tree: ac0e81e19b6f2d44f294c33cee14ab472797519e
-latest_review_verdict: null
-open_findings: []
-blocked_criteria:
-  - "collect-evidence Tracker pane capture: the gui driver supports Linux X11 only and the Herdr-app window runs on the Windows host; the strict snapshot load also fails on live blocker cycles (Cycle in ticket blocker graph at RM-2183)."
-next: review
+latest_review_verdict: FAILURE
+open_findings: [F1, F2, F3, F4, F5]
+review_artifact: artifacts/reviews/review-review-0005.md
+next: fix
