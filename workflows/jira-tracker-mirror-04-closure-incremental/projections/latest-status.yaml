@@ -1,11 +1,14 @@
 schema: worktree-latest-status/v1
 workflow_id: jira-tracker-mirror-04-closure-incremental
 ticket: tracker/tickets/jira-tracker-mirror-04-closure-incremental.md
-state: REVIEW_FAILED
-latest_receipt: review-complete-0006
-latest_source_commit: 17ae33962bb15eb7aead9c0cc08986a7b5ba2983
-latest_source_tree: ac0e81e19b6f2d44f294c33cee14ab472797519e
+state: FIX_BLOCKED
+latest_receipt: fix-0008
+latest_source_commit: f140779ab071df0efc40c314431eb901d71ed20a
+latest_source_tree: 9c2d44f3eecda84b65e146f73c893710d5ec9eaf
 latest_review_verdict: FAILURE
-open_findings: [F1, F2, F3, F4, F5]
+latest_review_receipt: review-0005
+resolved_findings: [F1, F2, F3, F4]
+open_findings: [F5]
 review_artifact: artifacts/reviews/review-review-0005.md
-next: fix
+evidence: artifacts/evidence/fix-0008
+next: decide F5, then review

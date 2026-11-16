@@ -1,0 +1,231 @@
+{
+  "request": {
+    "operation": "tracker",
+    "cwd": "/home/zenobius/Projects/reckonone-monorepo"
+  },
+  "code": "worktree mod via repointed data.ts and request.ts",
+  "seconds": 848,
+  "clientTimeoutSeconds": 600,
+  "tickets": 3798,
+  "ticketsWithBlockers": 281,
+  "blockerEdges": 547,
+  "epics": [
+    {
+      "id": "AWS-3043",
+      "title": "Internal Projects",
+      "tickets": 76
+    },
+    {
+      "id": "DES1-1258",
+      "title": "R&D BAU H2 2024",
+      "tickets": 40
+    },
+    {
+      "id": "POR-4712",
+      "title": "Portal & Trail minor enhancements",
+      "tickets": 209
+    },
+    {
+      "id": "POR-5966",
+      "title": "Portal 2026 Technical",
+      "tickets": 14
+    },
+    {
+      "id": "POR-5986",
+      "title": "Portal 2026 BAU",
+      "tickets": 497
+    },
+    {
+      "id": "RM-3492",
+      "title": "Mobile 2026 BAU",
+      "tickets": 231
+    },
+    {
+      "id": "RWR-11228",
+      "title": "Refactor the Employee Wizard to improve state handling",
+      "tickets": 40
+    },
+    {
+      "id": "RWR-11411",
+      "title": "[Beta] - Core report customisation upgrades in React",
+      "tickets": 239
+    },
+    {
+      "id": "RWR-11746",
+      "title": "[Beta] - Report formatting and exporting improvements",
+      "tickets": 157
+    },
+    {
+      "id": "RWR-13328",
+      "title": "[Payroll] 2026 BAU",
+      "tickets": 528
+    },
+    {
+      "id": "RWR-13340",
+      "title": "Payroll Technical - 2026",
+      "tickets": 164
+    },
+    {
+      "id": "RWR-13415",
+      "title": "[Core] BAU - 2026",
+      "tickets": 672
+    },
+    {
+      "id": "RWR-13544",
+      "title": "[QA automation] Cypress/Playwright 2026 - Core",
+      "tickets": 188
+    },
+    {
+      "id": "RWR-18121",
+      "title": "[Epic]: Payroll performance improvements",
+      "tickets": 8
+    },
+    {
+      "id": "RWR-18175",
+      "title": "Update SuperStream page to React - 2nd roadmap",
+      "tickets": 67
+    },
+    {
+      "id": "RWR-19529",
+      "title": "Payroll STP pages improvements - 2nd Roadmap",
+      "tickets": 17
+    },
+    {
+      "id": "RWR-2213",
+      "title": "[Payroll web] Access Reckon Payroll as per the assigned role",
+      "tickets": 22
+    },
+    {
+      "id": "RWR-4335",
+      "title": "[Payroll web] Payroll handler for Open College books",
+      "tickets": 4
+    },
+    {
+      "id": "RWR-5599",
+      "title": "[Time Web] Timesheet SLC - new designs",
+      "tickets": 47
+    }
+  ],
+  "warnings": [
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-11759",
+      "error": "Cycle in ticket blocker graph at RWR-11759"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-14385",
+      "error": "Cycle in ticket blocker graph at RWR-14385"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-15348",
+      "error": "Cycle in ticket blocker graph at RWR-15348"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-15395",
+      "error": "Cycle in ticket blocker graph at RWR-14385"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-15549",
+      "error": "Cycle in ticket blocker graph at RWR-14385"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-15561",
+      "error": "Cycle in ticket blocker graph at RWR-14385"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-15567",
+      "error": "Cycle in ticket blocker graph at RWR-15348"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-15568",
+      "error": "Cycle in ticket blocker graph at RWR-15348"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-15591",
+      "error": "Cycle in ticket blocker graph at RWR-15348"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-15592",
+      "error": "Cycle in ticket blocker graph at RWR-14385"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-15717",
+      "error": "Cycle in ticket blocker graph at RWR-11759"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-15719",
+      "error": "Cycle in ticket blocker graph at RWR-11759"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-17031",
+      "error": "Cycle in ticket blocker graph at RWR-14385"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-17099",
+      "error": "Cycle in ticket blocker graph at RWR-15348"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-18507",
+      "error": "Cycle in ticket blocker graph at RWR-14385"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-19368",
+      "error": "Cycle in ticket blocker graph at RWR-14385"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-20169",
+      "error": "Cycle in ticket blocker graph at RWR-20169"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-20170",
+      "error": "Cycle in ticket blocker graph at RWR-20175"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-20171",
+      "error": "Cycle in ticket blocker graph at RWR-20171"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-20175",
+      "error": "Cycle in ticket blocker graph at RWR-20175"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-20176",
+      "error": "Cycle in ticket blocker graph at RWR-20175"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-20177",
+      "error": "Cycle in ticket blocker graph at RWR-20177"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-4445",
+      "error": "Cycle in ticket blocker graph at RWR-4445"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-5281",
+      "error": "Cycle in ticket blocker graph at RWR-5281"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-5282",
+      "error": "Cycle in ticket blocker graph at RWR-4445"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-5285",
+      "error": "Cycle in ticket blocker graph at RWR-4445"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-6254",
+      "error": "Cycle in ticket blocker graph at RWR-4445"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-6452",
+      "error": "Cycle in ticket blocker graph at RWR-6452"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-6522",
+      "error": "Cycle in ticket blocker graph at RWR-4445"
+    },
+    {
+      "ref": "https://reckon.atlassian.net/browse/RWR-8709",
+      "error": "Cycle in ticket blocker graph at RWR-8709"
+    }
+  ]
+}
