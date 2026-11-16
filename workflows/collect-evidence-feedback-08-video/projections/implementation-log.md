@@ -1,3 +1,7 @@
+## Review completion review-complete-0018
+
+[Parent completion](../events/review-complete-0018.yaml) accepts [review-0017](../events/review-0017.yaml) for source `5b639183c884d2ee6061860609cbc6c7a09633c3`. No source changed. Parent video regression passed 1 test with 30 expectations. Independent browser checks passed. Delivery acknowledged and all owned review resources stopped. No blocking findings remain. The current source requires finish safety checks before integration.
+
 ## Parent completion fix-complete-0015
 
 [Verified completion](../events/fix-complete-0015.yaml) records accepted fix-0014 delivery and confirmed resource shutdown. STD-01 resolved, no unresolved blocking findings from this fix. Fresh review must cover source 5b639183c884d2ee6061860609cbc6c7a09633c3.
