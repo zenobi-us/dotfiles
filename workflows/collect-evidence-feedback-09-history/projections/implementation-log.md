@@ -85,3 +85,38 @@ Latest reviewer verdict: FAILURE for the prior source only. Remaining findings: 
 [Review result](../events/review-0011.yaml) records FAILURE for `9f744831bc9a5edee5ab7a37aa2c089dd82fbf7f`. Standards found no issues. SPEC-01 is resolved. SPEC-02 remains blocking. Invalid saved annotation schemas and malformed JSON return code 1 instead of code 2. Seven regressions passed with 72 assertions. The actual historical viewer/report workflow preserved source and saved feedback. See the [immutable review](../artifacts/reviews/review-review-0011.md). No source fix, merge or push ran.
 
 The [parent completion](../events/review-complete-0012.yaml) records the review outcome. The later [cleanup approval](../events/cleanup-approval-0013.yaml) records confirmed shutdown of the retained specification-axis process. All owned review resources stopped.
+
+## Fix fix-0016 — current source, pending fresh review
+
+[Fix receipt](../events/fix-0016.yaml) consumes [review-0011](../events/review-0011.yaml) through [fix-start-0015](../events/fix-start-0015.yaml). [Review artifact](../artifacts/reviews/review-review-0011.md) remains FAILURE for the earlier source. No new review verdict is claimed.
+
+Source commit: 7b52145875c1935340592d4f82e63edc5c00b931. Source tree: 74491d21ffd2c4e2736a49928da06ef703d48502.
+
+SPEC-02 is resolved by the fix, pending fresh review. SPEC-01 remains resolved by fix-0008. No unresolved finding remains in this fix scope. The prior review verdict does not cover this source.
+
+The report boundary reuses the feedback CLI pattern: AnnotationError with status 400 is invalid input (exit 2). Other annotation errors retain operation-failure classification. The parser middleware is unchanged.
+
+### Changed files in fix-0016
+
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/history-workflow.test.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/CHANGELOG.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts
+
+The two manifest version changes came from the repository commit hook. Integration must assess them later.
+
+### Validation in fix-0016
+
+The scoped Bun command passed 7 tests and 83 assertions, with zero failures. It covers SPEC-01, help, legacy commands, historical metadata, valid report/export equality, source immutability, and copied malformed/unsupported annotations.
+
+The separate public runtime smoke invoked absolute commands from /tmp. Unsupported saved schema collect-feedback/v999 and malformed JSON each emitted exactly one collect-evidence/v1 error with success false, code 2, and exit 2. Valid saved-feedback report matched export before and after both invalid copies. Original source, valid feedback and copied invalid sessions remained unchanged by reports. No new capture was made.
+
+[Runtime command/output evidence](../artifacts/snapshots/spec02-runtime-fix-0016.json). The first smoke setup omitted required ticket routing and failed during init (exit 3); completing the temporary repository route table allowed the public runtime proof to pass. The temporary harness and temporary sessions were removed.
+
+[Owned-resource observation](../artifacts/snapshots/resources-fix-0016.json) reports shutdown pending because the current agent/harness remains active. No persistent service or browser tab was created by the smoke. The scoped historical test stopped its owned viewer. Parent owns terminal shutdown.
+
+### Current merge status and questions
+
+Not merged, rebased, pushed or ticket-completed. Fix result awaits parent completion and fresh review. Open question: assess hook-generated manifest version changes during integration.
+

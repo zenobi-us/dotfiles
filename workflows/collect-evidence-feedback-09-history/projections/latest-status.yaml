@@ -1,12 +1,1 @@
-schema: worktree-latest-status/v1
-workflow_id: collect-evidence-feedback-09-history
-ticket: tracker/tickets/collect-evidence-feedback-09-history.md
-state: REVIEW_FAILED
-latest_receipt: review-complete-0014
-latest_source_commit: 9f744831bc9a5edee5ab7a37aa2c089dd82fbf7f
-latest_source_tree: 00625a17e78c1b5728098f45a41c5ec7239c8cd7
-latest_review_verdict: FAILURE
-open_findings: [SPEC-02]
-resolved_findings: [SPEC-01]
-review_pending: false
-latest_review_receipt: review-0011
+{schema: worktree-latest-status/v1,workflow_id: collect-evidence-feedback-09-history,ticket: tracker/tickets/collect-evidence-feedback-09-history.md,state: FIXED,latest_receipt: fix-0016,latest_source_commit: 7b52145875c1935340592d4f82e63edc5c00b931,latest_source_tree: 74491d21ffd2c4e2736a49928da06ef703d48502,latest_review_verdict: FAILURE,latest_review_receipt: review-0011,open_findings: [],resolved_findings: [SPEC-01,SPEC-02],review_pending: true,parent_completion_pending: true}
