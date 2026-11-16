@@ -113,6 +113,7 @@ Known failure modes live in the `worktree` skill’s `references/troubleshooting
 - `wt-hook-approval-needed.md`
 - `fixer-agent-blocked.md`
 - `missing-review-verdict.md`
+- `blocker-cycle.md`
 
 For `unknown-muxer` or `unknown-agent`, see the `muxer-subagents` skill’s `references/troubleshooting/muxer-or-agent-undetected.md` file.
 

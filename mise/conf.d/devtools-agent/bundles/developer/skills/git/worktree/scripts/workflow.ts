@@ -52,8 +52,8 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
  const unmirrored = snapshot.backend === "jira" ? snapshot.tickets.flatMap(ticket => ticket.blockedBy.filter(id => !known.has(id)).map(blocker => ({ ticket, blocker }))) : [];
  // Relations without unmirrored Jira blockers. Cycle detection still covers every mirrored edge.
  const relations = unmirrored.length ? snapshot.tickets.map(ticket => ({ ...ticket, blockedBy: ticket.blockedBy.filter(id => known.has(id)) })) : snapshot.tickets;
- if (!diagnostics) validateRelations(relations, "ticket blocker");
- else {
+ if (!diagnostics && !scope) validateRelations(relations, "ticket blocker");
+ else if (diagnostics) {
   const byId = new Map<string, ExplorerTicket[]>();
   for (const ticket of relations) {
    const existing = byId.get(ticket.id);
@@ -87,6 +87,10 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
  snapshot.initiatives.push({ id: groupId, title: "Ungrouped", ref: collectionRef, ticketIds: unassigned, rootTicketIds: [...unassigned], body: "Records without an assigned initiative.", group: true });
  await session.validate();
  const result = scope ? scopedSnapshot(snapshot, scope) : snapshot;
+ if (!diagnostics && scope) {
+  const scoped = new Set(result.tickets.map(ticket => ticket.id));
+  validateRelations(relations.filter(ticket => scoped.has(ticket.id)), "ticket blocker");
+ }
  for (const { ticket, blocker } of unmirrored) {
   if (!result.tickets.includes(ticket)) continue;
   diagnostics?.push({ ref: ticket.ref, error: `Blocker not in the mirror: ${blocker}. Jira issue ${ticket.id} is blocked by ${blocker}. Add blockers to mirror.closure, then run jira-mirror.ts sync.` });
@@ -671,16 +675,17 @@ function validateRelations(rows: { id: string; blockedBy: string[] }[], label: s
   if (byId.has(row.id)) throw new Error(`Duplicate ${label} ID: ${row.id}`);
   byId.set(row.id, row);
  }
- const active = new Set<string>();
+ const path: string[] = [];
  const done = new Set<string>();
  const visit = (id: string): void => {
-  if (active.has(id)) throw new Error(`Cycle in ${label} graph at ${id}`);
+  const start = path.indexOf(id);
+  if (start >= 0) throw new Error(`Cycle in ${label} graph: ${[...path.slice(start), id].join(" -> ")}`);
   if (done.has(id)) return;
   const row = byId.get(id);
   if (!row) throw new Error(`Missing ${label}: ${id}`);
-  active.add(id);
+  path.push(id);
   for (const blocker of row.blockedBy) visit(blocker);
-  active.delete(id);
+  path.pop();
   done.add(id);
  };
  for (const row of rows) visit(row.id);

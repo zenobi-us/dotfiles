@@ -244,11 +244,22 @@ test("jira scoped load reads one ticket and its blockers from the mirror", async
 
 test("jira snapshot rejects blocker cycles", async () => {
   const cycle = await jiraFixture({ "ABC-1": mirrorIssue("ABC-1", { blockedBy: ["ABC-2", "ABC-404"] }), "ABC-2": mirrorIssue("ABC-2", { blockedBy: ["ABC-1"] }) });
-  await expect(loadExplorerSnapshot(cycle.context, cycle.execute)).rejects.toThrow("Cycle in ticket blocker graph");
+  await expect(loadExplorerSnapshot(cycle.context, cycle.execute)).rejects.toThrow("Cycle in ticket blocker graph: ABC-1 -> ABC-2 -> ABC-1");
   await expect(loadExplorerSnapshot(cycle.context, cycle.execute, undefined, [])).resolves.toBeDefined();
   const diagnostics: { ref: string; error: string }[] = [];
   await loadExplorerSnapshot(cycle.context, cycle.execute, undefined, diagnostics);
   expect(diagnostics.some(item => item.error.includes("Cycle in ticket blocker graph"))).toBe(true);
+}, 60_000);
+
+test("jira scoped load checks cycles only in the scoped blocker closure", async () => {
+  const { context, execute } = await jiraFixture({
+    "ABC-1": mirrorIssue("ABC-1", { blockedBy: ["ABC-2"] }), "ABC-2": mirrorIssue("ABC-2", { blockedBy: ["ABC-1"] }),
+    "ABC-5": mirrorIssue("ABC-5", { blockedBy: ["ABC-6"] }), "ABC-6": mirrorIssue("ABC-6", { status: "Done", category: "done" }),
+    "ABC-7": mirrorIssue("ABC-7", { blockedBy: ["ABC-1"] }),
+  });
+  const independent = await loadExplorerSnapshot(context, execute, { ref: `${JIRA_SITE}/browse/ABC-5` });
+  expect(independent.tickets.map(item => item.id).sort()).toEqual(["ABC-5", "ABC-6"]);
+  await expect(loadExplorerSnapshot(context, execute, { ref: `${JIRA_SITE}/browse/ABC-7` })).rejects.toThrow("Cycle in ticket blocker graph: ABC-1 -> ABC-2 -> ABC-1");
 }, 60_000);
 
 test("jira snapshot warns about a blocker that is not in the mirror and keeps the ticket blocked", async () => {
