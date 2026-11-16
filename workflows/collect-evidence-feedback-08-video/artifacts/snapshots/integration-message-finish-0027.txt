@@ -1,0 +1,7 @@
+feat(evidence): complete collect-evidence-feedback-08-video
+
+Integrate independently reviewed resolution d7da10bec12e453e592c1f8344b3aa6c5dfe5332.
+Review: workflows/collect-evidence-feedback-08-video/events/review-0024.yaml
+Preserve the original 19 reviewed product blobs and resolve release metadata
+at developer version 0.2.43. Candidate-bound recorder/browser validation is
+required before the base advances.

@@ -1,0 +1,58 @@
+{
+  "schema": "worktree-integration/v2",
+  "integration_method": "squash",
+  "reviewed_source_commit": "d7da10bec12e453e592c1f8344b3aa6c5dfe5332",
+  "reviewed_source_tree": "21b921fc81a927f000107b626199605f4380c077",
+  "base_branch": "master",
+  "base_before": "6252629bbbde5bedb8b683c36c6ee0f65c0b6dd0",
+  "expected_merge_tree": "48ce8ac02b0e0ea36111423ccdeb6b168fbffa06",
+  "merged_commit": "6ff209af94897b04c7660a8fa55685a46f6c7ead",
+  "merged_tree": "48ce8ac02b0e0ea36111423ccdeb6b168fbffa06",
+  "merged_parents": [
+    "6252629bbbde5bedb8b683c36c6ee0f65c0b6dd0"
+  ],
+  "validation_results": [
+    {
+      "argv": [
+        "wt",
+        "-C",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-ecfff94f-850b-4b1c-8b76-5ec7709f4612",
+        "hook",
+        "pre-merge",
+        "--var",
+        "target=master",
+        "--var",
+        "target_worktree_path=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-ecfff94f-850b-4b1c-8b76-5ec7709f4612",
+      "exit_code": 0,
+      "output": "",
+      "source_commit": "6ff209af94897b04c7660a8fa55685a46f6c7ead",
+      "source_tree": "48ce8ac02b0e0ea36111423ccdeb6b168fbffa06"
+    },
+    {
+      "argv": [
+        "env",
+        "PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/video-workflow.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-ecfff94f-850b-4b1c-8b76-5ec7709f4612",
+      "exit_code": 0,
+      "output": "bun test v1.4.3 (c6da4a4d3)\n",
+      "source_commit": "6ff209af94897b04c7660a8fa55685a46f6c7ead",
+      "source_tree": "48ce8ac02b0e0ea36111423ccdeb6b168fbffa06"
+    }
+  ],
+  "candidate_branch": "integration/ecfff94f-850b-4b1c-8b76-5ec7709f4612",
+  "candidate_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-ecfff94f-850b-4b1c-8b76-5ec7709f4612",
+  "pushed": true,
+  "reviewed_source_ref": "refs/worktree-reviews/d7da10bec12e453e592c1f8344b3aa6c5dfe5332",
+  "already_published": false,
+  "remote_observed_commit": "6ff209af94897b04c7660a8fa55685a46f6c7ead",
+  "integration_reachable": true
+}
