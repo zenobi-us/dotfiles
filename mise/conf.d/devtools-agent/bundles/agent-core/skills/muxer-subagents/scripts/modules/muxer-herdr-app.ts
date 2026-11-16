@@ -72,9 +72,9 @@ function spawnHerdrApp(
   const space = matches[0];
   const name = `agent-${runId.slice(0, 8)}`;
   const opened = space
-    ? call(app, ["do", "tab.new", JSON.stringify({ space: space.id, name, folder, argv })])
+    ? call(app, ["do", "tab.new", JSON.stringify({ space: space.id, name, folder, argv, focus: false })])
     : call(app, ["do", "space.new", JSON.stringify({
-      name: basename(folder), tab: name, folder, argv, machine: machine ?? "",
+      name: basename(folder), tab: name, folder, argv, machine: machine ?? "", focus: false,
     })]);
   if (typeof opened.terminal !== "string") throw new Error("herdr-app did not return the created terminal address.");
   // hc on the parent's machine knows the terminal by its local address.
