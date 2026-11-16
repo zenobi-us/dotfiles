@@ -1,0 +1,174 @@
+{
+  "installedRoot": "/tmp/history-installed-KepOcK",
+  "cwd": "/tmp",
+  "source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-06-edits/artifacts/evidence/edits-source-0001",
+  "sourceHashes": [
+    [
+      "cases/original/case.json",
+      "61d51f9de020b596ddcb848a6f8ce18ebbfb57e9878d916e5661d384b96a6399"
+    ],
+    [
+      "cases/original/events.jsonl",
+      "f0a191a70d03a5b173cabf02451150c4a17e1f36484caf93775c7f3f9ab66519"
+    ],
+    [
+      "cases/original/index.md",
+      "d44aa2276abf85dcd1246566ef07c7cf18bff1cbd51334a7b6060815e3a787c1"
+    ],
+    [
+      "cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "index.md",
+      "baf7d5fafb876b65881be8a7ff2d625cd33092de31011068380755d156917fd9"
+    ],
+    [
+      "native/plan.ts",
+      "509c0bf4b44f459ccc0836284d61c05c99a4009d090cf6e982330210edff6866"
+    ],
+    [
+      "native/report/shots/step-original-002-original--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "native/report/shots/step-original-002-original--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "native/runs/case-original.log",
+      "b9eb08902c6a3c970ce0e49915ce0d086923cd368769d4772b9ea0b105692ef4"
+    ],
+    [
+      "native/workflows/smoke-test-original.js",
+      "012cfeb5f462c4064d78f5d5c2b97e44d1607a5b2b6e29da50148353399de04e"
+    ],
+    [
+      "plan.json",
+      "6257f1fdb949c6d01cc3f46b4f504f18399d61b1bc3175cc60f80935b7c4c5d8"
+    ],
+    [
+      "plan.ts",
+      "509c0bf4b44f459ccc0836284d61c05c99a4009d090cf6e982330210edff6866"
+    ],
+    [
+      "run.json",
+      "205c51c158cde6e3c72f3aaa51328ec490a395f7c0215f1537dea9f8b639d90e"
+    ]
+  ],
+  "sessionHashes": [
+    [
+      ".writer.lock",
+      "e91fa3e04b31162a6df674d76badb48a481fc59d972c69cf2fc51ad4080d2bcf"
+    ],
+    [
+      "cases/original/annotations/f51e7b07-1f79-4b78-89c2-f4b6864e418c.json",
+      "938b67577b898bcce680bde865b962c63e98a3ce64401190372a80df1b08b04b"
+    ],
+    [
+      "cases/original/case.json",
+      "00736001b2a38986f8525c53e258bfcd63997fa6d21fc57fcfdeca050721dcb7"
+    ],
+    [
+      "cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "cases/original/notes.md",
+      "130c4a51c2d45a91ab0e3457cb4b9ecd554db981c161eaf9ea0306bb7c91cdae"
+    ],
+    [
+      "index.md",
+      "daa5073638b36537d90a019db232cce2add48f69d3f29a70d3098225d2d3480d"
+    ],
+    [
+      "session.json",
+      "d1ad3ac67dafb22c6c6ca6f9b50695b3450a4f605c6f75ca39c2a57272504c0a"
+    ],
+    [
+      "source/cases/original/case.json",
+      "61d51f9de020b596ddcb848a6f8ce18ebbfb57e9878d916e5661d384b96a6399"
+    ],
+    [
+      "source/cases/original/events.jsonl",
+      "f0a191a70d03a5b173cabf02451150c4a17e1f36484caf93775c7f3f9ab66519"
+    ],
+    [
+      "source/cases/original/index.md",
+      "d44aa2276abf85dcd1246566ef07c7cf18bff1cbd51334a7b6060815e3a787c1"
+    ],
+    [
+      "source/cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "source/cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "source/index.md",
+      "baf7d5fafb876b65881be8a7ff2d625cd33092de31011068380755d156917fd9"
+    ],
+    [
+      "source/native/plan.ts",
+      "509c0bf4b44f459ccc0836284d61c05c99a4009d090cf6e982330210edff6866"
+    ],
+    [
+      "source/native/report/shots/step-original-002-original--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "source/native/report/shots/step-original-002-original--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "source/native/runs/case-original.log",
+      "b9eb08902c6a3c970ce0e49915ce0d086923cd368769d4772b9ea0b105692ef4"
+    ],
+    [
+      "source/native/workflows/smoke-test-original.js",
+      "012cfeb5f462c4064d78f5d5c2b97e44d1607a5b2b6e29da50148353399de04e"
+    ],
+    [
+      "source/plan.json",
+      "6257f1fdb949c6d01cc3f46b4f504f18399d61b1bc3175cc60f80935b7c4c5d8"
+    ],
+    [
+      "source/plan.ts",
+      "509c0bf4b44f459ccc0836284d61c05c99a4009d090cf6e982330210edff6866"
+    ],
+    [
+      "source/run.json",
+      "205c51c158cde6e3c72f3aaa51328ec490a395f7c0215f1537dea9f8b639d90e"
+    ]
+  ],
+  "sourceUnchanged": true,
+  "savedFeedbackUnchanged": true,
+  "repeatedExportsEqual": true,
+  "reportExportEqual": true,
+  "annotation": [
+    {
+      "id": "f51e7b07-1f79-4b78-89c2-f4b6864e418c",
+      "revision": 1,
+      "sourceSha256": "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f",
+      "comment": "Historical review: retain the original source heading"
+    }
+  ],
+  "caseOrder": [
+    "original"
+  ],
+  "verdicts": [
+    {
+      "caseId": "original",
+      "verdict": "PASS"
+    }
+  ]
+}

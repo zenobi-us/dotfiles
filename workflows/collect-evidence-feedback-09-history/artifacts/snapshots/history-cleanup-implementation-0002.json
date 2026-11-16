@@ -1,0 +1,8 @@
+{
+  "service": "history-review-viewer",
+  "pid": 74492,
+  "port": 19869,
+  "portReleased": true,
+  "writerLockAbsent": true,
+  "ownedBrowserTabsClosed": true
+}

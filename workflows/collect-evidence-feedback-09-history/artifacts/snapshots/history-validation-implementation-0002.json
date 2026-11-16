@@ -1,0 +1,106 @@
+{
+  "source_commit": "710abe78428a93c4d22f2981d71614f598bf82f5",
+  "source_tree": "49c19b9e9e19178bb21d826ae558d460e9035221",
+  "checks": [
+    {
+      "name": "viewer build",
+      "argv": [
+        "mise",
+        "x",
+        "--",
+        "bun",
+        "run",
+        "build"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer",
+      "exit_code": 0,
+      "result": "Prebuilt HTML generated: 345901 bytes."
+    },
+    {
+      "name": "viewer typecheck",
+      "argv": [
+        "mise",
+        "x",
+        "--",
+        "bun",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer",
+      "exit_code": 0,
+      "result": "tsc --noEmit passed."
+    },
+    {
+      "name": "scoped regression suite, initial host configuration",
+      "argv": [
+        "mise",
+        "x",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/verdict.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+      "exit_code": 1,
+      "result": "100 passed, 2 failed, 942 assertions. Historical public regression passed. Existing workflow/video captures blocked because default Chrome was absent at /opt/google/chrome/chrome."
+    },
+    {
+      "name": "browser regressions with installed Chromium configured",
+      "argv": [
+        "env",
+        "PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome",
+        "mise",
+        "x",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/video-workflow.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+      "exit_code": 0,
+      "result": "2 passed, 0 failed, 150 assertions. The two initial host-configuration failures are resolved."
+    },
+    {
+      "name": "temporary installed public workflow",
+      "argv": [
+        "/tmp/history-installed-KepOcK/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "init",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-06-edits/artifacts/evidence/edits-source-0001",
+        "--repository",
+        "/tmp/history-public-smoke-hRwbWj/repository",
+        "--workflow",
+        "history",
+        "--session",
+        "earlier-review",
+        "--historical",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "result": "Copied skills installed into a temporary bundle layout. Help, dry-run, explicit earlier-run import, report and export succeeded from unrelated cwd. Browser saved one note, reloaded it and displayed original pixels plus historical label. Repeated report/export hashes left source and saved feedback unchanged."
+    },
+    {
+      "name": "owned service cleanup",
+      "argv": [
+        "/tmp/history-installed-KepOcK/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "serve",
+        "/tmp/history-public-smoke-hRwbWj/repository/workflows/history/artifacts/evidence/earlier-review",
+        "--port",
+        "19869",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "result": "Owned server PID 74492 stopped. Port 19869 refuses connections. Writer lock absent. Both owned browser tabs released. Harness processes and the child terminal remain parent-owned."
+    }
+  ],
+  "limits": [
+    "No new native capture was required for this historical-import slice.",
+    "The source archive already contains real earlier-run image pixels.",
+    "Browser helper initially timed out waiting for mixed-case text; subsequent DOM inspection showed the uppercase historical heading and no browser errors.",
+    "LSP initialization was unavailable at the repository root because it could not locate TypeScript. Viewer tsc and public runtime checks passed."
+  ]
+}
