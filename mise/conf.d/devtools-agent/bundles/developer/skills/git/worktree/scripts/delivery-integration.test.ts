@@ -1,7 +1,7 @@
 // Exercises actual operation CLIs, retained transport files and authoritative YAML in isolated repositories.
 import { afterEach, expect, test } from "bun:test";
 import { execFileSync } from "node:child_process";
-import { mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, mkdir, readFile, rename, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -93,6 +93,60 @@ test("phase writer publishes authoritative YAML and a verifiable result in one o
   const duplicate = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
   expect(duplicate.code).not.toBe(0);
   expect(await readFile(event, "utf8")).toBe(source);
+}, 120_000);
+
+test("phase writer accepts a shared store alias without following event-directory symlinks", async () => {
+  const f = await fixture();
+  const home = join(f.directory, "home");
+  const shared = join(f.directory, "shared");
+  const alias = join(f.directory, "shared-alias");
+  await mkdir(shared);
+  await symlink(shared, alias);
+  await mkdir(join(home, ".config/shared-agent-context"), { recursive: true });
+  await writeFile(join(home, ".config/shared-agent-context/config.json"), JSON.stringify({ storage_path: alias }));
+  const env = {
+    HOME: home,
+    MISE_DATA_DIR: process.env.MISE_DATA_DIR ?? join(process.env.HOME!, ".local/share/mise"),
+    MISE_CONFIG_DIR: process.env.MISE_CONFIG_DIR ?? join(process.env.HOME!, ".config/mise"),
+  };
+  const routes = ["schema = 2"];
+  for (const kind of ["alignment", "tickets", "initiatives", "workflows", "evidence", "sources"]) {
+    const adapter = kind === "tickets" ? "local-markdown" : ["alignment", "initiatives"].includes(kind) ? "markdown" : "files";
+    routes.push(`[records.${kind}]`, `adapter = "${adapter}"`, `store = "${kind === "workflows" ? "shared" : "repository"}"`);
+  }
+  await writeFile(join(f.repository, ".context-routes.toml"), routes.join("\n"));
+  const resolved = await run(contextCli, ["resolve", "workflow", "--id", "TASK-1", "--json"], env, f.repository);
+  expect(resolved.stderr).toBe("");
+  expect(resolved.code).toBe(0);
+  const workflow = JSON.parse(resolved.stdout);
+  expect(workflow.store).toBe("shared");
+  expect(workflow.root.startsWith(alias + "/")).toBe(true);
+  const receipt = {
+    ...f.receipt, schema: "worktree-receipt/v2", receipt_id: "start-0001",
+    phase: "start", event: "phase-start", status: "started", parent_receipt: null, pane_id: null,
+    workflow: { store: workflow.store, root: workflow.root, ref: workflow.ref },
+  };
+  const input = join(f.directory, "aliased-receipt.json");
+  await writeFile(input, JSON.stringify(receipt));
+  const result = await run(writer, ["--parent-event", "--repository", f.repository, "--input", input], env);
+  expect(result.stderr).toBe("");
+  expect(result.code).toBe(0);
+  const events = join(workflow.path, "events");
+  const event = join(events, "start-0001.yaml");
+  const bytes = await readFile(event, "utf8");
+  expect(Bun.YAML.parse(bytes)).toEqual(receipt);
+  const duplicate = await run(writer, ["--parent-event", "--repository", f.repository, "--input", input], env);
+  expect(duplicate.code).not.toBe(0);
+  expect(await readFile(event, "utf8")).toBe(bytes);
+
+  const outside = join(f.directory, "outside");
+  await mkdir(outside);
+  await rename(events, join(workflow.path, "retained-events"));
+  await symlink(outside, events);
+  await writeFile(input, JSON.stringify({ ...receipt, receipt_id: "start-0002" }));
+  const escaped = await run(writer, ["--parent-event", "--repository", f.repository, "--input", input], env);
+  expect(escaped.code).not.toBe(0);
+  expect(await Bun.file(join(outside, "start-0002.yaml")).exists()).toBe(false);
 }, 120_000);
 
 test("v2 child delivery and parent checkpoints use separate immutable result boundaries", async () => {

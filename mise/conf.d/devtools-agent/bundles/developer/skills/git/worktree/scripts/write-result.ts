@@ -3,7 +3,7 @@
 import { Crust } from "@crustjs/core@^0.0.19";
 import { helpPlugin } from "@crustjs/plugins@^0.1.2";
 import { mkdir, realpath } from "node:fs/promises";
-import { dirname, isAbsolute, join } from "node:path";
+import { dirname, isAbsolute, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { deliverResult, loadDeliveryContext, publishImmutableFile } from "../../../../../agent-core/skills/result-delivery/scripts/delivery.ts";
 import { validateReceiptContract } from "./receipt-contract";
@@ -74,8 +74,10 @@ const app = new Crust("write-worktree-result").meta({ description: "Write one im
       if (issues.length) throw new Error(issues.map(issue => `[${issue.code}] ${issue.message}`).join("\n"));
     }
     await mkdir(dirname(destination), { recursive: true });
+    // Store roots can use system aliases such as /home; workflow descendants still require no-follow traversal.
+    const storageDestination = join(await realpath(String(target.root)), relative(String(target.root), destination));
     publicationAttempted = true;
-    receiptWritten = await publishImmutableFile(destination, Bun.YAML.stringify(receipt));
+    receiptWritten = await publishImmutableFile(storageDestination, Bun.YAML.stringify(receipt));
     if (!receiptWritten) throw new Error("The receipt already exists. Inspect it; do not repeat the phase. Use delivery recovery to resend an existing result.");
     console.log(context ? await deliverResult(receipt, context) : JSON.stringify(receipt, null, 2));
   } catch (error) {
