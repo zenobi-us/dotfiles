@@ -1,3 +1,11 @@
+[tasks."pi.bootstrap"]
+description = "Install Zenobius Agent bundle plugins and their dependencies"
+tools.bun = "latest"
+run = """
+bun install
+"""
+dir = "~/.pi/agent"
+
 [dotfiles]
 "~/.pi/agent/bundles/agent-core" = { source = "../devtools-agent/bundles/agent-core", mode = "symlink" }
 "~/.pi/agent/bundles/creator" = { source = "../devtools-agent/bundles/creator", mode = "symlink" }
