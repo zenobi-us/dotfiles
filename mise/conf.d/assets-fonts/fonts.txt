@@ -1,7 +1,7 @@
-https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip
-https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.zip
-https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip
-https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/SourceCodePro.zip
-https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Ubuntu.zip
-https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/GeistMono.zip
-https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/ZedMono.zip
+https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/JetBrainsMono.zip
+https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/FiraCode.zip
+https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/Meslo.zip
+https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/SourceCodePro.zip
+https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/Ubuntu.zip
+https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/GeistMono.zip
+https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/ZedMono.zip
