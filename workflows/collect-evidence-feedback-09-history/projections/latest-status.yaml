@@ -2,7 +2,7 @@ schema: worktree-latest-status/v1
 workflow_id: collect-evidence-feedback-09-history
 ticket: tracker/tickets/collect-evidence-feedback-09-history.md
 state: FIXED
-latest_receipt: fix-0008
+latest_receipt: fix-complete-0009
 latest_source_commit: 9f744831bc9a5edee5ab7a37aa2c089dd82fbf7f
 latest_source_tree: 00625a17e78c1b5728098f45a41c5ec7239c8cd7
 latest_review_verdict: FAILURE
