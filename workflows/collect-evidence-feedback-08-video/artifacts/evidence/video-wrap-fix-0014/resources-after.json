@@ -1,0 +1,6 @@
+{"manifest":{"runId":"a90470a5-dfd3-47c9-beb9-8a63d606434b","muxer":"herdr-app","agent":"omp","target":"t189","createdAt":"2026-11-16T03:39:30.821Z","cwd":"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video","operationId":"collect-evidence-feedback-08-video-fix-2"},"resources":{"version":1,"runId":"a90470a5-dfd3-47c9-beb9-8a63d606434b","observedAt":"2026-11-16T03:45:33.992Z","processes":[{"pid":3344355,"bootId":"5cc3946f-11c5-42bb-8f61-913dffe03728","startTicks":"28539343","command":"omp","cwd":"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video","state":"running"},{"pid":3346942,"bootId":"5cc3946f-11c5-42bb-8f61-913dffe03728","startTicks":"…
+
+
+Command exited with code 1
+
+[Some lines truncated to 768 bytes. Use artifact://43:raw:1-1 to read line 1 whole]

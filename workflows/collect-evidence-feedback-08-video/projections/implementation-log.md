@@ -1,3 +1,53 @@
+## Parent completion fix-complete-0015
+
+[Verified completion](../events/fix-complete-0015.yaml) records accepted fix-0014 delivery and confirmed resource shutdown. STD-01 resolved, no unresolved blocking findings from this fix. Fresh review must cover source 5b639183c884d2ee6061860609cbc6c7a09633c3.
+
+# Fix fix-0014 — bounded timestamp notes
+
+Ticket: tracker/tickets/collect-evidence-feedback-08-video.md. Source: 5b639183c884d2ee6061860609cbc6c7a09633c3; tree c4a3c3d56c8a6c39e97c89a87673e3caa7cf9638. Branch: feature/collect-evidence-feedback-08-video; base: master.
+
+## Problem and implementation
+
+STD-01: long timestamp comments widened the inspector. Reuse the existing Base Nova selection-list/selection-row pattern, retain the full comment and native button keyboard activation, and expose selected state. Rebuilt distributed viewer/index.html. No rename or undo-path change.
+
+## Changed files
+
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/video-workflow.test.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/index.html
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/components/annotation-image.tsx
+
+Bundle metadata changed through the repository commit hook.
+
+## Validation
+
+- Viewer typecheck and build passed; 345671-byte embedded HTML.
+- Existing real video workflow: 1 pass, 0 fail, 30 expectations. Regression covers long-comment wrapping and Enter selection at 1400×1000 and 390×844, retaining undo/restart/range checks.
+- Actual rebuilt browser: full 780-character saved comment; desktop inspector 760px, row 713px, row client/scroll 711/711px. Mobile inspector 390px, row 343px, row client/scroll 341/341px.
+- Both keyboard selections paused and sought to 3.199s, selected the pin and decoded real 800×450 video. Displayed player: 656×369 desktop and 286×161 mobile; sampled blue pixel [20,20,241,255].
+- Mobile ArrowLeft returned focus to the originating video asset and revealed Cases at x=0; Enter reopened inspector. Horizontal column navigation remains intact.
+- Public feedback validate passed. React Doctor: 66/100, two existing warnings at unchanged lines 82/86; no unrelated refactor.
+
+## Review history and findings
+
+Consumed [review-0011](../events/review-0011.yaml), [review artifact](../artifacts/reviews/review-review-0011.md). Latest formal verdict remains FAILURE for old source 2f9a632; it does not cover this commit. STD-01 resolved by this fix; SPEC-01 already resolved by review validation; RV-01 remains resolved. No unresolved blocking findings. New independent review required.
+
+Earlier history: implementation-0002; review-0005 (FAILURE, RV-01); fix-0008 (RV-01 resolved); review-0011 (FAILURE, STD-01). Earlier records remain unchanged.
+
+## Evidence and shutdown
+
+[Observations](../artifacts/evidence/video-wrap-fix-0014/observations.json), [desktop](../artifacts/evidence/video-wrap-fix-0014/desktop.png), [mobile](../artifacts/evidence/video-wrap-fix-0014/mobile.png), [resource observations](../artifacts/evidence/video-wrap-fix-0014/resources-after.json).
+
+Historical real recording imported unchanged from video-undo-fix-0008/source. These are new viewer screenshots, not a new recording. Browser closed; owned service PID 3386250 exited 0; port 49184 closed and writer lock absent. Port 43147 startup failed because occupied; unrelated listener preserved. Parent owns child terminal closure and final all-process shutdown observation.
+
+## Status and supporting records
+
+Ticket remains claimed. Not merged, rebased, pushed or submitted. No unresolved implementation questions. [Fix result](../events/fix-0014.yaml), [authorization](../events/fix-start-0013.yaml), [earlier fix](../events/fix-0008.yaml), [implementation](../events/implementation-0002.yaml).
+
+# Retained history
+
 ## Current review review-0011
 
 Verdict: FAILURE for source `2f9a632c590a3b2a19a462415c31aa8f79e3fe36`, tree `5967c9f852f13696a5cdb514871481a26405d61c`; base `9dda756eaa8fa7766e384a13b8ce6ae92d7da198`. Branch: `feature/collect-evidence-feedback-08-video`; base branch: `master`.

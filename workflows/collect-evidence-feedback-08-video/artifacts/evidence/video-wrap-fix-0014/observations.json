@@ -1,0 +1,67 @@
+{
+  "provenance": "Historical real Playwright recording imported unchanged from video-undo-fix-0008/source; new screenshots show rebuilt viewer, not a new recording.",
+  "commentLength": 780,
+  "measurements": [
+    {
+      "viewport": [
+        1400,
+        1000
+      ],
+      "column": 760,
+      "row": 713,
+      "rowClient": 711,
+      "rowScroll": 711,
+      "commentLength": 790,
+      "paused": true,
+      "time": 3.199,
+      "video": [
+        800,
+        450
+      ],
+      "display": [
+        656,
+        369
+      ],
+      "pixel": [
+        20,
+        20,
+        241,
+        255
+      ],
+      "pin": true
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "column": 390,
+      "row": 343,
+      "rowClient": 341,
+      "rowScroll": 341,
+      "commentLength": 790,
+      "paused": true,
+      "time": 3.199,
+      "video": [
+        800,
+        450
+      ],
+      "display": [
+        286,
+        161
+      ],
+      "pixel": [
+        20,
+        20,
+        241,
+        255
+      ],
+      "pin": true
+    }
+  ],
+  "navigation": {
+    "focus": "sequence.video.capture-001video/webm · 2026-11-14T23:38:32.938Z›",
+    "assetX": 390,
+    "caseX": 0
+  }
+}

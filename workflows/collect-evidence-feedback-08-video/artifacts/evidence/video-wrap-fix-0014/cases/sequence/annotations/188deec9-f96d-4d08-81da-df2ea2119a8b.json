@@ -1,0 +1,32 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "annotation",
+  "id": "188deec9-f96d-4d08-81da-df2ea2119a8b",
+  "sessionId": "video-wrap-fix-0014",
+  "caseId": "sequence",
+  "assetId": "sequence.video.capture-001",
+  "sourceSha256": "b469d5b0dff38c729bbf6212a48ce1b9e402a44e1dbb84ea6c74fd64d0cb1659",
+  "originalWidth": 800,
+  "originalHeight": 450,
+  "geometry": {
+    "x": 0.25,
+    "y": 0.25,
+    "width": 0.2,
+    "height": 0.2
+  },
+  "priority": "P2",
+  "comment": "Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition Inspect paused transition.",
+  "mediaTimeSeconds": 3.199,
+  "displayedWidth": 656,
+  "displayedHeight": 369,
+  "revision": 2,
+  "createdAt": "2026-11-16T03:42:06.281Z",
+  "updatedAt": "2026-11-16T03:44:31.756Z",
+  "pixelGeometry": {
+    "x": 200,
+    "y": 113,
+    "width": 160,
+    "height": 90
+  },
+  "deletedAt": null
+}
