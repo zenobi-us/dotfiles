@@ -20,7 +20,7 @@ Earlier-run imports preserved pixels but did not state that they showed an earli
 - **Historical labels:** Show the label in the bundled viewer, exports and HTML reports. Preserve capture times, null dates, provenance and immutable asset bytes.
 - **Regression fixture:** Retain a real 2026-11-13 archive. Check unsupported versions, unknown dates, case order, asset identities, source bytes and saved-note immutability through public boundaries.
 
-## Exact source
+## Prior implementation source
 
 Branch: feature/collect-evidence-feedback-09-history
 
@@ -83,11 +83,35 @@ See [validation records](../artifacts/snapshots/history-validation-implementatio
 
 ## Merge status
 
-Not merged or pushed. The ticket remains claimed. The source requires a fix for SPEC-01 before a fresh review.
+Not merged or pushed. The ticket remains claimed. SPEC-01 is resolved by fix-0008, pending fresh review of the new source.
 
 ## Supporting records
 
 - [Phase start](../events/start-0001.yaml)
 - [Implementation result](../events/implementation-0002.yaml)
 - [Original earlier-run manifest](../../collect-evidence-feedback-06-edits/artifacts/evidence/edits-source-0001/run.json)
+
+
+
+## Fix fix-0008
+
+[Fix result](../events/fix-0008.yaml) consumes [review-0005](../events/review-0005.yaml) through [fix-start-0007](../events/fix-start-0007.yaml). SPEC-01 is resolved by the fix, pending fresh review. No new review verdict is claimed.
+
+Source commit: 9f744831bc9a5edee5ab7a37aa2c089dd82fbf7f. Source tree: 00625a17e78c1b5728098f45a41c5ec7239c8cd7.
+
+The evidence router now catches Crust parser errors through public middleware. It emits one collect-evidence/v1 error for --json and exits 2. Other commands keep their existing error behavior.
+
+Changed files:
+- `mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/test/report-cli.test.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/CHANGELOG.md`
+- `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
+- `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
+
+Validation: seven public-command and historical-workflow regressions passed with 72 assertions. From /tmp, both required invalid argument lists emitted one versioned error and exited 2. The actual historical-run report succeeded with historical true, case original and 60228 HTML bytes. The existing historical workflow also checked unchanged source and saved-feedback hashes. No new evidence capture was created.
+
+The commit hook changed only the developer bundle version manifests to 0.2.46. Integration must assess overlap with other streams.
+
+Latest reviewer verdict: FAILURE for the prior source only. Remaining findings: none from review-0005; fresh review is required for this new source. Open questions: none. Not merged or pushed. The ticket remains claimed. Parent owns phase completion and terminal closure. No owned service or browser tab remains; muxer process shutdown is pending while the child and harness remain active.
+
 
