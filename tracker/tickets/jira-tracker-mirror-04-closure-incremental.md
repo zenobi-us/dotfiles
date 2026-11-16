@@ -39,3 +39,4 @@ Extend the sync so that the mirror holds a complete graph and later syncs stay f
   4. Capture the pane with `herdr-app shot`, not `collect-evidence`. `collect-evidence` captures only Linux X11 windows, and the app runs on Windows.
   5. Run `--full` on a schedule. Ticket `jira-tracker-mirror-07-scheduled-full-sync` holds that work.
 - 2026-11-16, S: A separate session changed the worktree skill inspector so that a scoped load checks loops only in the requested ticket's blocker chain. Those changes are uncommitted on `master` and have no ticket. They do not touch this ticket's files.
+- 2026-11-16, S: Review `review-0005`: FAILURE for source commit `17ae33962bb15eb7aead9c0cc08986a7b5ba2983`. Artifact: `workflows/jira-tracker-mirror-04-closure-incremental/artifacts/reviews/review-review-0005.md`.
