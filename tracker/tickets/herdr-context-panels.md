@@ -90,3 +90,21 @@ Completed after review-0015 passed and Worktrunk integrated the two scoped corre
 Integrated checks passed: 35 tests, 114 assertions, TypeScript, and the real canonical context request. Native C/C2, expanded-directory restoration, stale action responses, fresh-session launch and preview ordering passed in the isolated app. [Native correction evidence](../../workflows/herdr-context-panels/artifacts/evidence/fix-0011-native/acceptance.json). [Integrated validation](../../workflows/herdr-context-panels/artifacts/evidence/finish-0020-integrated/validation.json). [Successful review](../../workflows/herdr-context-panels/artifacts/reviews/review-review-0015.md).
 
 The source worktree remains until tracker publication succeeds. The workflow records its actual cleanup separately. No historical review or repeated merge of the original implementation is asserted.
+
+
+### Remote cache state prototype — 2026-11-14
+
+Question: Can one machine/user helper publish the current file tree before details, then keep two panel caches current through Core documents?
+
+The throwaway prototype is on local branch `prototype/herdr-remote-cache-20261114`, commit `b1a70f19`. Its files are `remote-cache.prototype.mjs` and `remote-cache.prototype-model.mjs` beside the shared-context mod. The worktree is `/tmp/herdr-remote-cache-prototype`.
+
+Run from that worktree: `mise exec -- bun mise/conf.d/devtools-herdrapp/app/mods/shared-context/remote-cache.prototype.mjs`. Add `--scenario` for playback.
+
+The model removes the blocking state at `0/3 details` and stops the footer spinner at `3/3 details`. Playback and an interactive terminal run exercised two clients, refresh requests, related-record updates, deletion during disconnect, reconnect, stale-response rejection, and helper replacement after a crash. The model starts one helper for both clients and one replacement after the crash. It does not exercise concurrent OS lock acquisition.
+
+Decision for implementation: separate tree readiness from detail readiness. Use one remote helper per machine/user, with an OS-held lock. Use one helper writer for repository-scoped snapshot documents and a separate desired-state request document for each client. Keep route resolution and data collection in the canonical loaders. Core documents carry versioned state, not an event log. Use bounded chunks below the 1 MiB limit. Publish chunk version references in a manifest, coalesce updates, and fetch only changed chunks. Subscribe before reading. On reconnect, read current state again. Count details applied to the panel cache, not only details collected by the helper. Revalidate before actions.
+
+Limits: installation, process locking, documents, and watchers are in-memory models. No physical SSH connection, throughput measurement, real installer, or native panel change was exercised. The research identifies missing public mod SDK document reads, writes, and managed watches. Production also needs cancellation and reconnect delivery. Core documents do not install or supervise a helper. Confirm those interfaces before a production cutover.
+
+The production mod remains unchanged. This comment records a prototype result, not completed remote implementation. The prototype branch and this comment remain local.
+

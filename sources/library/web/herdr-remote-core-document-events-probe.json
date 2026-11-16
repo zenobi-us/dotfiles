@@ -1,0 +1,37 @@
+{
+  "ok": true,
+  "coreVersion": "0.1.21",
+  "transport": "Core machine --via connection between two isolated local instances; not a physical SSH host",
+  "separateServicePorts": 0,
+  "subscriptionSeq": 0,
+  "event": {
+    "data": {
+      "name": "shared-context-probe",
+      "version": 1
+    },
+    "machine": "probe-remote",
+    "seq": 1,
+    "type": "doc"
+  },
+  "readBack": {
+    "value": {
+      "completed": 3,
+      "phase": "reading",
+      "revision": 1,
+      "total": 7
+    },
+    "version": 1
+  },
+  "secondEvent": {
+    "data": {
+      "name": "shared-context-probe",
+      "version": 2
+    },
+    "machine": "probe-remote",
+    "seq": 2,
+    "type": "doc"
+  },
+  "secondVersion": 2,
+  "staleWriteRejected": true,
+  "desktopCoreTouched": false
+}
