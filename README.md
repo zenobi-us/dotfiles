@@ -629,6 +629,8 @@ mise run herdrapp.better-config
 
 An existing Better Config installation stays unchanged. Each backend request starts a fresh Bun process, so backend edits need no service restart.
 
+The Monoslate theme is symlinked from `app/themes/monoslate.json` to `~/.config/herdr-app/themes/monoslate.json`; deployment does not select it as the active theme.
+
 Deployment preserves the selected layout. `mise run herdrapp.activate` selects `cli` without redeploying files. After frontend edits, apply the dotfiles, switch to another existing layout and back, then inspect `herdr-app status` and a screenshot. Other personal layouts stay unchanged.
 
 Open the panel settings button. In Better Config, select **Shared Context → Tracker layout**:
