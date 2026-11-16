@@ -79,11 +79,11 @@ See [validation records](../artifacts/snapshots/history-validation-implementatio
 
 ## Review history
 
-No review phase has run. Latest reviewer verdict: none. Resolved findings: none. Remaining findings: none recorded. Open questions: none.
+[review-0005](../events/review-0005.yaml): **FAILURE** for `710abe78428a93c4d22f2981d71614f598bf82f5`. Standards: 0 findings. Spec: 1 blocking finding, SPEC-01. [Review artifact](../artifacts/reviews/review-review-0005.md). Resolved findings: none. Remaining findings: SPEC-01. Open questions: none.
 
 ## Merge status
 
-Not merged or pushed. The ticket remains claimed. The parent must validate the implementation result before it starts an independent review.
+Not merged or pushed. The ticket remains claimed. The source requires a fix for SPEC-01 before a fresh review.
 
 ## Supporting records
 

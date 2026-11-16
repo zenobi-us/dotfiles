@@ -52,3 +52,7 @@ Validation: viewer build and typecheck passed. The initial suite passed 100 chec
 
 See the [immutable draft and validation links](../artifacts/snapshots/pr-draft-implementation-0002.md). The ticket remains claimed. No review, merge or push occurred.
 
+
+## Review review-0005
+
+[Review result](../events/review-0005.yaml) records FAILURE for source `710abe78428a93c4d22f2981d71614f598bf82f5`. The source did not change. Standards found no issues. Spec found one blocking finding, SPEC-01. The historical workflow regression passed with 48 assertions. The public browser workflow preserved source and saved feedback. The reviewer and both axis sessions stopped. See the [immutable review](../artifacts/reviews/review-review-0005.md) and [parent completion](../events/review-complete-0006.yaml). No fix phase ran.
