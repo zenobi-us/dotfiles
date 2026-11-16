@@ -1,7 +1,4 @@
-[dotfiles]
-"~/AppData/Local/mise/config.toml" = { source = "../../../mise.toml", mode = "symlink" }
-
-[bootstrap.hooks.post-dotfiles]
-run = """
-powershell.exe -NoProfile -Command "[Environment]::SetEnvironmentVariable('MISE_GLOBAL_CONFIG_ROOT', '{{ config_root }}', 'User')"
-"""
+[settings]
+# The mise PATH is longer than the 8191 characters cmd.exe accepts, so cmd.exe
+# cannot find tools such as bun or font-install. PowerShell has no such limit.
+windows_default_inline_shell_args = "powershell.exe -NoProfile -Command"
