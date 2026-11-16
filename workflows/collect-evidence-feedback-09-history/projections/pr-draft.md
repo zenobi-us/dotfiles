@@ -115,3 +115,9 @@ The commit hook changed only the developer bundle version manifests to 0.2.46. I
 Latest reviewer verdict: FAILURE for the prior source only. Remaining findings: none from review-0005; fresh review is required for this new source. Open questions: none. Not merged or pushed. The ticket remains claimed. Parent owns phase completion and terminal closure. No owned service or browser tab remains; muxer process shutdown is pending while the child and harness remain active.
 
 
+
+## Review review-0011
+
+[Review result](../events/review-0011.yaml) records FAILURE for `9f744831bc9a5edee5ab7a37aa2c089dd82fbf7f`. Standards found no issues. SPEC-01 is resolved. SPEC-02 remains blocking. Invalid saved annotation schemas and malformed JSON return code 1 instead of code 2. Seven regressions passed with 72 assertions. The actual historical viewer/report workflow preserved source and saved feedback. See the [immutable review](../artifacts/reviews/review-review-0011.md). No source fix, merge or push ran.
+
+The [parent completion](../events/review-complete-0012.yaml) records the review outcome. The later [cleanup approval](../events/cleanup-approval-0013.yaml) records confirmed shutdown of the retained specification-axis process. All owned review resources stopped.
