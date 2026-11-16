@@ -109,8 +109,10 @@ Checked 2026-11-12 against live `twg` in `reckonone-monorepo`, read-only.
 - [Add epic children, outside blockers, and incremental sync](../../tickets/jira-tracker-mirror-04-closure-incremental.md)
 - [Start a Jira sync from the Herdr-app Tracker pane](../../tickets/jira-tracker-mirror-05-mod-sync-button.md)
 - [Remove the Jira get-issue adapter and document the mirror](../../tickets/jira-tracker-mirror-06-retire-cli-adapter.md)
+- [Run a full Jira mirror sync on a schedule](../../tickets/jira-tracker-mirror-07-scheduled-full-sync.md)
 
 ## Comments
 
 - 2026-11-12: Q decided: mirror files are committed; queries include closed epics; publish as an initiative.
 - 2026-11-12: S recorded the `twg` research results under "Verified `twg` behaviour". Because closed epics are included, "On hold" epics are included too.
+- 2026-11-16: Q changed two decisions after the first live closure sync mirrored 10199 issues. (1) The mirror holds only open epics that hold a ticket assigned to Q; closed epics are no longer included. (2) Blocker loops are warnings in the Tracker pane, not errors. `--full` runs on a schedule (ticket 07). Details are in ticket `jira-tracker-mirror-04-closure-incremental`.

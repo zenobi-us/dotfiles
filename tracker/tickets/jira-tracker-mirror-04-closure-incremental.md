@@ -23,8 +23,19 @@ Extend the sync so that the mirror holds a complete graph and later syncs stay f
 - [ ] `--full` runs every query without the time filter. It marks each key that no query or closure returns with `mirror_status: stale`. It deletes no file.
 - [ ] `--key <KEY>` syncs one issue, for use after a write through `twg`.
 - [ ] Unit tests cover a blocker chain outside the queries, an epic with no children, and a stale key.
-- [ ] `collect-evidence` captures the Tracker pane for reckonone with epics and a blocker graph. Moved from ticket 03 on 2026-11-13.
+- [ ] With `closure: [parents]`, the sync fetches the parent of each mirrored ticket in batches with `key in (...)`. It keeps only parents that are not done (`statusCategory != Done`). The children closure then runs on those epics.
+- [ ] The reckonone tracker definition mirrors only open epics that hold a ticket assigned to Q. Its query is `project = RWR AND assignee = currentUser() AND parent is not EMPTY`, with `closure: [parents, children, blockers]`. The old `payroll-epics` and `payroll-open-issues` queries are removed.
+- [ ] One `--full` sync with the new definition marks every file outside the new scope as stale. One commit in the reckonone shared context then deletes every stale file. No other file is deleted.
+- [ ] The Herdr-app Tracker pane shows a blocker loop as a warning and still draws the graph. A loop no longer stops the snapshot load.
+- [ ] `herdr-app shot` captures the Tracker pane for reckonone with epics, a blocker graph, and any loop warning. Moved from ticket 03 on 2026-11-13.
 
 ## Comments
 
 - 2026-11-13T02:40Z, S: Q moved the Tracker pane capture criterion here from `jira-tracker-mirror-03-snapshot-from-mirror`. A real blocker graph needs the children and blocker closure that this ticket adds.
+- 2026-11-16, S: Q decided after the first live sync. That sync mirrored 10199 issues, mostly children of closed epics, in commit `72fb5776` of the zeno shared-context repo, which is already pushed. Live Jira also has 27 blocker loops, for example RM-2183 and RWR-5450.
+  1. Mirror only open epics that hold a ticket assigned to Q. This Jira site has no JQL function for the parents of a ticket set (`issueFunction in parentsOf` and `parentIssuesOf` return nothing), so the sync gets a `parents` closure.
+  2. Remove the extra files: run one `--full` sync with the new definition, then delete the stale files in one new commit.
+  3. Show blocker loops as warnings in the Tracker pane. This ticket now includes that Herdr-app mod change.
+  4. Capture the pane with `herdr-app shot`, not `collect-evidence`. `collect-evidence` captures only Linux X11 windows, and the app runs on Windows.
+  5. Run `--full` on a schedule. Ticket `jira-tracker-mirror-07-scheduled-full-sync` holds that work.
+- 2026-11-16, S: A separate session changed the worktree skill inspector so that a scoped load checks loops only in the requested ticket's blocker chain. Those changes are uncommitted on `master` and have no ticket. They do not touch this ticket's files.
