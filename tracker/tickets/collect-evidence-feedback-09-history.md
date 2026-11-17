@@ -8,7 +8,7 @@ sequence: 9
 title: Review historical evidence without rewriting it
 triage: ready-for-agent
 type: enhancement
-work_status: claimed
+work_status: completed
 ---
 
 # Review historical evidence without rewriting it
@@ -50,3 +50,5 @@ No discussion has been recorded.
 - **Review 2026-11-17T06:11:33.271Z: FAILURE.** Commit `5e1ba904a178a7076aa556225beb4aff3288c65e`; tree `f691de272e6f2a040eb594438236000de451f40a`. [Review artifact](../../workflows/collect-evidence-feedback-09-history/artifacts/reviews/review-review-0025.md).
 
 - **Review 2026-11-17T10:48:14.932Z: SUCCESS.** Commit `6a99dc3b3b7e61d293dc47492cbc6590677ce994`; tree `417db5cbd797ef7c1c65c19c4e1b1f8335b295ee`. [Review artifact](../../workflows/collect-evidence-feedback-09-history/artifacts/reviews/review-review-0032.md).
+
+- **Completed:** Squash integration `b9cb245a51de4b8eaa3f9e15acefbedd8752e87d` published on `origin/master`. Review SUCCESS covers `6a99dc3b3b7e61d293dc47492cbc6590677ce994`. Candidate-bound regression checks and public historical import/export/report smoke passed; source and saved-session hashes stayed unchanged. [Publication checkpoint](../../workflows/collect-evidence-feedback-09-history/events/finish-pushed-0043.yaml).
