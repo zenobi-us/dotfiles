@@ -1,0 +1,26 @@
+{
+  "worktrunk": {
+    "command": "cleanup-merged.ts list --min-age=0s",
+    "output": "Nothing to clean up.",
+    "source_branch": "feature/collect-evidence-feedback-09-history",
+    "source_commit": "6a99dc3b3b7e61d293dc47492cbc6590677ce994",
+    "modified": false,
+    "untracked": false,
+    "merge_conflicts": true,
+    "guard_bypass": false
+  },
+  "publication": {
+    "remote": "origin",
+    "ref": "refs/heads/master",
+    "observed_commit": "c111b9d04adc944943f86cdeeba55d7508b8d529",
+    "integration_commit": "b9cb245a51de4b8eaa3f9e15acefbedd8752e87d",
+    "ancestor_check_exit_code": 0
+  },
+  "tracker_state": "completed",
+  "workspace_open": false,
+  "owned_resources": {
+    "run_id": "5625eb6f-d838-4e2d-b736-8f367d057c33",
+    "observer_exit_code": 0
+  },
+  "conclusion": "No permitted guarded removal path: Worktrunk does not recognize the source branch as integrated. Preserve source; do not alter reviewed history or bypass cleanup guards."
+}
