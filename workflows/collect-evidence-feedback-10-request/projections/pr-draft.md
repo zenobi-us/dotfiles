@@ -54,3 +54,8 @@ Implementation only. Not reviewed, merged, pushed or ticket-completed. Workflow 
 - **Evidence and limits:** [request-0002](workflows/collect-evidence-feedback-10-request/artifacts/evidence/request-0002/index.md).
 - **Suite output:** [public Bun suite output](workflows/collect-evidence-feedback-10-request/artifacts/evidence/request-0002/suite-output.json).
 - **Shutdown proof:** [owned server and display observations](workflows/collect-evidence-feedback-10-request/artifacts/evidence/request-0002/shutdown.json).
+
+## Parent completion
+
+Parent verified the exact receipt, all output paths, retained TUI session validation and GUI saved export. Parent inspected both saved viewer images. The implementation terminal was closed; the resource observer confirmed all registered processes stopped. [Completion receipt](workflows/collect-evidence-feedback-10-request/events/start-complete-0005.yaml) and [parent checks](workflows/collect-evidence-feedback-10-request/artifacts/snapshots/parent-check-0004.json) retain the observations. The source remains unreviewed and unmerged. Browser prerequisites and suite failures remain explicit coverage limits.
+

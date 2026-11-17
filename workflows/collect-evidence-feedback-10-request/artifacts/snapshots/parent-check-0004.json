@@ -1,0 +1,492 @@
+{
+  "schema": "worktree-parent-check/v1",
+  "ticket_ref": "tracker/tickets/collect-evidence-feedback-10-request.md",
+  "source_commit": "a1bb88ca440543bce3b1db6d8539972f9f857cb0",
+  "source_tree": "f9a88b8fa75e5d6a89727747912e5231f484a150",
+  "authoritative_matches_transport": true,
+  "output_references_exist": true,
+  "transport_sha256": "494c0edb964037086eda6ed4e098007889e06d72fe437260a999d33a7ee0f94a",
+  "pane_closed": true,
+  "shutdown": {
+    "manifest": {
+      "runId": "db3f38f7-8fcf-4677-b7aa-7991c0dc0ff3",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t1gv",
+      "createdAt": "2026-11-17T12:29:58.867Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+      "operationId": "collect-evidence-feedback-10-request-start-0001"
+    },
+    "resources": {
+      "version": 1,
+      "runId": "db3f38f7-8fcf-4677-b7aa-7991c0dc0ff3",
+      "observedAt": "2026-11-17T12:50:53.049Z",
+      "processes": [
+        {
+          "pid": 102669,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "423502",
+          "command": "omp",
+          "parentPid": 102349,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        },
+        {
+          "pid": 105479,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "433831",
+          "command": "omp daemon brok",
+          "parentPid": 102669,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        },
+        {
+          "pid": 105506,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "433836",
+          "command": "omp",
+          "parentPid": 105479,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        },
+        {
+          "pid": 106237,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "440204",
+          "command": "python",
+          "parentPid": 102669,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        },
+        {
+          "pid": 107861,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "452260",
+          "command": "omp",
+          "parentPid": 102669,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        },
+        {
+          "pid": 109922,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "457963",
+          "command": "bun",
+          "parentPid": 107861,
+          "cwd": "/tmp/request-10-smoke-cClCES",
+          "state": "stopped"
+        },
+        {
+          "pid": 110894,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "459255",
+          "command": "bun",
+          "parentPid": 102669,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        },
+        {
+          "pid": 111233,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460929",
+          "command": "bwrap",
+          "parentPid": 2697,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        },
+        {
+          "pid": 111234,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460929",
+          "command": "xdg-dbus-proxy",
+          "parentPid": 111233,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        },
+        {
+          "pid": 111238,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460931",
+          "command": "chrome",
+          "parentPid": 111237,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 111262,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460939",
+          "command": "chrome_crashpad",
+          "parentPid": 111237,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 111264,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460940",
+          "command": "chrome_crashpad",
+          "parentPid": 111237,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 113144,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "465833",
+          "command": "cage",
+          "parentPid": 107861,
+          "cwd": "/tmp/request-gui-runtime-QDbylI",
+          "state": "stopped"
+        },
+        {
+          "pid": 113145,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "465835",
+          "command": "Xwayland",
+          "parentPid": 113144,
+          "cwd": "/tmp/request-gui-runtime-QDbylI",
+          "state": "stopped"
+        },
+        {
+          "pid": 113445,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "468055",
+          "command": "python3",
+          "parentPid": 107861,
+          "cwd": "/tmp/request-10-smoke-cClCES",
+          "state": "stopped"
+        },
+        {
+          "pid": 114717,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "469338",
+          "command": "bun",
+          "parentPid": 107861,
+          "cwd": "/tmp/request-10-smoke-cClCES",
+          "state": "stopped"
+        },
+        {
+          "pid": 115342,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "470679",
+          "command": "bun",
+          "parentPid": 102669,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        },
+        {
+          "pid": 111227,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460924",
+          "command": "bwrap",
+          "parentPid": 105479,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        },
+        {
+          "pid": 111237,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460930",
+          "command": "bwrap",
+          "parentPid": 111227,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 111269,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460940",
+          "command": "chrome",
+          "parentPid": 111238,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 111271,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460940",
+          "command": "chrome",
+          "parentPid": 111238,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 111299,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460942",
+          "command": "chrome",
+          "parentPid": 111269,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 111302,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460942",
+          "command": "chrome",
+          "parentPid": 111238,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 111305,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460944",
+          "command": "chrome",
+          "parentPid": 111271,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 111338,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460946",
+          "command": "chrome",
+          "parentPid": 111271,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 111339,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460947",
+          "command": "chrome",
+          "parentPid": 111271,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 111342,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460947",
+          "command": "chrome",
+          "parentPid": 111271,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 111379,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460961",
+          "command": "chrome",
+          "parentPid": 111271,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 111395,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460962",
+          "command": "chrome",
+          "parentPid": 111271,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 111399,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "460963",
+          "command": "chrome",
+          "parentPid": 111271,
+          "cwd": "/var/home/zenobius",
+          "state": "stopped"
+        },
+        {
+          "pid": 116687,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "474892",
+          "command": "bun",
+          "parentPid": 107861,
+          "cwd": "/tmp/request-10-smoke-cClCES",
+          "state": "stopped"
+        },
+        {
+          "pid": 119918,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "486961",
+          "command": "bun",
+          "parentPid": 107861,
+          "cwd": "/tmp/request-10-smoke-cClCES",
+          "state": "stopped"
+        },
+        {
+          "pid": 123808,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "495006",
+          "command": "bun",
+          "parentPid": 107861,
+          "cwd": "/tmp/request-10-smoke-cClCES",
+          "state": "stopped"
+        },
+        {
+          "pid": 123935,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "496251",
+          "command": "bun",
+          "parentPid": 102669,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        },
+        {
+          "pid": 142534,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "500903",
+          "command": "bun",
+          "parentPid": 123935,
+          "cwd": "/tmp/evidence-public-test-M5MrTi",
+          "state": "stopped"
+        },
+        {
+          "pid": 142574,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "500908",
+          "command": "bun",
+          "parentPid": 107861,
+          "cwd": "/tmp/request-10-smoke-cClCES",
+          "state": "stopped"
+        },
+        {
+          "pid": 142628,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "500917",
+          "command": "bun",
+          "parentPid": 142534,
+          "cwd": "/tmp/evidence-public-test-M5MrTi/repository",
+          "state": "stopped"
+        },
+        {
+          "pid": 151857,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "504508",
+          "command": "bun",
+          "parentPid": 107861,
+          "cwd": "/tmp/request-10-smoke-cClCES",
+          "state": "stopped"
+        },
+        {
+          "pid": 151908,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "504520",
+          "command": "bun",
+          "parentPid": 151857,
+          "cwd": "/tmp/request-10-smoke-cClCES",
+          "state": "stopped"
+        },
+        {
+          "pid": 152057,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "504579",
+          "command": "bun",
+          "parentPid": 107861,
+          "cwd": "/tmp/request-10-smoke-cClCES",
+          "state": "stopped"
+        },
+        {
+          "pid": 152080,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "504580",
+          "command": "tmux: server",
+          "parentPid": 2697,
+          "cwd": "/tmp/ce-native-MYsy4P",
+          "state": "stopped"
+        },
+        {
+          "pid": 152081,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "504581",
+          "command": "sleep",
+          "parentPid": 152080,
+          "cwd": "/tmp/ce-native-MYsy4P",
+          "state": "stopped"
+        },
+        {
+          "pid": 152108,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "504582",
+          "command": "cage",
+          "parentPid": 151908,
+          "cwd": "/tmp/ce-native-MYsy4P",
+          "state": "stopped"
+        },
+        {
+          "pid": 152109,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "504584",
+          "command": "foot",
+          "parentPid": 152108,
+          "cwd": "/",
+          "state": "stopped"
+        },
+        {
+          "pid": 152110,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "504586",
+          "command": "tmux: client",
+          "parentPid": 152109,
+          "cwd": "/tmp/ce-native-MYsy4P",
+          "state": "stopped"
+        },
+        {
+          "pid": 152132,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "504587",
+          "command": "termscope",
+          "parentPid": 151908,
+          "cwd": "/tmp/ce-native-MYsy4P",
+          "state": "stopped"
+        },
+        {
+          "pid": 152133,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "504587",
+          "command": "tmux: client",
+          "parentPid": 152132,
+          "cwd": "/tmp/ce-native-MYsy4P",
+          "state": "stopped"
+        },
+        {
+          "pid": 152333,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "506177",
+          "command": "bun",
+          "parentPid": 107861,
+          "cwd": "/tmp/request-10-smoke-cClCES",
+          "state": "stopped"
+        },
+        {
+          "pid": 153650,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "517385",
+          "command": "bun",
+          "parentPid": 107861,
+          "cwd": "/tmp/request-10-smoke-cClCES",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  },
+  "parent_smoke": [
+    {
+      "command": "collect-feedback validate <retained tui-review> --json",
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "valid": true
+    },
+    {
+      "command": "collect-feedback export <retained gui-review> --json",
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "success": true
+    }
+  ],
+  "visuals_inspected": [
+    "tui-viewer.webp",
+    "gui-viewer.webp"
+  ],
+  "coverage_limits": [
+    "Fresh Surf and Playwright capture and real video remain unverified on this host. Their required installed browser access is unavailable; the two full-suite failures have that same prerequisite cause. Complete browser coverage on a prepared host.",
+    "Configured TypeScript language server failed to start; no passing LSP check is claimed."
+  ]
+}
