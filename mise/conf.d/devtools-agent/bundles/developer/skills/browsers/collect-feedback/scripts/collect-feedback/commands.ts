@@ -17,6 +17,7 @@ const flags = {
   repository: { type: "string", description: "Repository whose evidence route applies" },
   workflow: { type: "string", description: "Workflow ID" },
   session: { type: "string", description: "New immutable feedback session ID" },
+  historical: { type: "boolean", description: "Explicitly review this selected run as historical, not current evidence" },
   port: { type: "number", description: "Explicit loopback port; no fallback" },
 } as const;
 
@@ -41,6 +42,7 @@ function command(name: string) {
         const directory = resolve(args.dir);
         if (name !== "init" && (options.repository || options.workflow || options.session)) throw new CliError("Store flags apply only to init", 2);
         if (name !== "serve" && options.port !== undefined) throw new CliError("--port applies only to serve", 2);
+        if (name !== "init" && options.historical !== undefined) throw new CliError("--historical applies only to init", 2);
         const emit = (data: object) => {
           if (options.quiet) return;
           const result = { schema, kind: "event", command: name, success: true, ...data };
@@ -49,7 +51,7 @@ function command(name: string) {
         if (name === "init") {
           const repository = options.repository ?? process.env.COLLECT_FEEDBACK_REPOSITORY;
           requireValue(repository && options.workflow && options.session, "init requires --repository, --workflow and --session");
-          emit(await importSession(directory, { repository, workflow: options.workflow, session: options.session, dryRun: options["dry-run"] }));
+          emit(await importSession(directory, { repository, workflow: options.workflow, session: options.session, historical: options.historical, dryRun: options["dry-run"] }));
         } else if (name === "validate") {
           const view = await validateSession(directory);
           emit({ valid: true, session: view.session, cases: view.cases, annotations: await listAnnotations(view) });

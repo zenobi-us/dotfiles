@@ -108,6 +108,7 @@ function App() {
       <section className="column session-column" ref={sessionColumn} tabIndex={-1} aria-labelledby="session-title">
         <div className="column-heading"><h2 id="session-title">01 / Session</h2><Badge variant="outline">{data.cases.length} cases</Badge></div>
         <div className="column-body">
+          {data.session.historical && <Section title="Historical evidence"><p>This run shows an earlier application state, not the current application. Capture dates remain original. Unknown dates remain unknown.</p></Section>}
           <Section title="Session identity"><Fields entries={[
             ['Session ID', data.session.id], ['Created at', data.session.createdAt], ['Source run', data.session.source.runId], ['Started at', data.session.source.startedAt], ['Finished at', data.session.source.finishedAt], ['Surface', data.session.source.surface], ['Driver', data.session.source.driver],
           ]} /></Section>

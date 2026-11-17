@@ -87,9 +87,13 @@ export async function listAnnotations(view: FeedbackView): Promise<Annotation[]>
       }
       requireAnnotation(name.endsWith(".json"), "Unrecognized annotation file");
       const id = name.slice(0, -5); checkId(id);
+      const bytes = await boundedFile(view.directory, `cases/${record.id}/annotations/${name}`, 1024 * 1024);
       let value: unknown;
-      try { value = JSON.parse((await boundedFile(view.directory, `cases/${record.id}/annotations/${name}`, 1024 * 1024)).toString("utf8")); }
-      catch { throw new AnnotationError("Annotation record is missing, unsafe or malformed"); }
+      try { value = JSON.parse(bytes.toString("utf8")); }
+      catch (error) {
+        if (error instanceof SyntaxError) throw new AnnotationError("Annotation record is malformed JSON");
+        throw error;
+      }
       const annotation = validateStored(view, value);
       requireAnnotation(annotation.id === id && annotation.caseId === record.id, "Annotation file identity differs from its record");
       requireAnnotation(!ids.has(id), "Duplicate annotation ID");
@@ -99,7 +103,11 @@ export async function listAnnotations(view: FeedbackView): Promise<Annotation[]>
   return annotations;
 }
 
-export async function exportSession(directory: string): Promise<object> {
+export async function exportSession(directory: string): Promise<{
+  schema: typeof schema; kind: "export"; success: true;
+  session: FeedbackView["session"]; cases: FeedbackView["cases"];
+  assets: FeedbackView["cases"][number]["assets"]; annotations: Annotation[];
+}> {
   const view = await validateSession(directory);
   const annotations = await listAnnotations(view);
   const assets = view.cases.flatMap(record => record.assets);

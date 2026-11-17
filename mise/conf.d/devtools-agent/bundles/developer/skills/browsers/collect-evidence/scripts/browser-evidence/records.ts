@@ -187,8 +187,9 @@ export async function validateRun(directory: string): Promise<ValidatedRun> {
     await checkSealed(root);
     return result;
   } catch (error) {
-    if (error instanceof CliError) throw error;
-    throw new CliError(`Invalid evidence run: ${(error as Error).message}`, 2);
+    // Record shape and syntax are input errors; filesystem failures keep their operation identity.
+    if (error instanceof SyntaxError || error instanceof TypeError) throw new CliError(`Invalid evidence run: ${error.message}`, 2);
+    throw error;
   }
 }
 
@@ -447,15 +448,10 @@ async function rejectSymlinkComponents(path: string, allowMissing = false): Prom
 async function safeFile(root: string, path: string): Promise<string> {
   const file = join(root, safeRelative(path));
   requireValue(within(root, file), "Evidence path escapes run");
-  try {
-    let current = root;
-    for (const part of path.split("/")) { current = join(current, part); requireValue(!(await lstat(current)).isSymbolicLink(), "Evidence symlink is not allowed"); }
-    requireValue((await lstat(file)).isFile(), "Evidence reference is not a regular file");
-    return file;
-  } catch (error) {
-    if (error instanceof CliError) throw error;
-    throw new CliError(`Invalid evidence file reference: ${(error as Error).message}`, 2);
-  }
+  let current = root;
+  for (const part of path.split("/")) { current = join(current, part); requireValue(!(await lstat(current)).isSymbolicLink(), "Evidence symlink is not allowed"); }
+  requireValue((await lstat(file)).isFile(), "Evidence reference is not a regular file");
+  return file;
 }
 async function copyTree(source: string, destination: string): Promise<void> {
   await mkdir(destination);
@@ -495,14 +491,10 @@ async function checkSealed(path: string): Promise<void> {
 }
 async function jsonFile(path: string, value: unknown): Promise<void> { await writeFile(path, JSON.stringify(value, null, 2) + "\n", { flag: "wx" }); }
 async function readJson<T>(root: string, path: string, kind: Kind): Promise<T> {
-  try {
-    const value: unknown = JSON.parse(await readFile(await safeFile(root, path), "utf8"));
-    header(value, kind);
-    return value as T;
-  } catch (error) {
-    if (error instanceof CliError) throw error;
-    throw new CliError(`Invalid evidence JSON record: ${(error as Error).message}`, 2);
-  }
+  const text = await readFile(await safeFile(root, path), "utf8");
+  const value: unknown = JSON.parse(text);
+  header(value, kind);
+  return value as T;
 }
 async function markdown(path: string, kind: "run" | "case", body: string): Promise<void> {
   const raw = `---\nschema: ${SCHEMA}\nkind: ${kind}\n---\n${body}`;

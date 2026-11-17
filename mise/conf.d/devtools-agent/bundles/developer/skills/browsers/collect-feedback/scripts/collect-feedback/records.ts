@@ -12,6 +12,7 @@ const MAX_RECORD = 4 * 1024 * 1024;
 export const MAX_ASSET = 128 * 1024 * 1024;
 export interface Session {
   schema: typeof schema; kind: "session"; id: string; createdAt: string;
+  historical?: true;
   source: RunRecord & { runId: string; manifestSha256: string };
   cases: Array<{ id: string; path: string }>;
 }
@@ -19,7 +20,7 @@ export interface FeedbackCase extends Omit<CaseRecord, "schema" | "runId"> {
   schema: typeof schema; sessionId: string; source: { runId: string; caseId: string };
 }
 export interface FeedbackView { directory: string; session: Session; cases: FeedbackCase[] }
-export interface ImportOptions { repository: string; workflow: string; session: string; dryRun?: boolean }
+export interface ImportOptions { repository: string; workflow: string; session: string; historical?: boolean; dryRun?: boolean }
 
 export async function importSession(source: string, options: ImportOptions): Promise<object> {
   checkId(options.session); checkId(options.workflow);
@@ -27,7 +28,7 @@ export async function importSession(source: string, options: ImportOptions): Pro
   const destination = await route(options);
   const sourcePath = resolve(source), target = resolve(destination.path);
   requireValue(!inside(sourcePath, target) && !inside(target, sourcePath), "Source and destination must be separate trees");
-  if (options.dryRun) return { dryRun: true, destination, runId: evidence.run.id };
+  if (options.dryRun) return { dryRun: true, destination, runId: evidence.run.id, historical: Boolean(options.historical) };
   await safeComponents(dirname(target), true);
   await mkdir(dirname(target), { recursive: true });
   await safeComponents(dirname(target));
@@ -37,6 +38,7 @@ export async function importSession(source: string, options: ImportOptions): Pro
     const snapshot = await validateRun(join(staging, "source"));
     const session: Session = {
       schema, kind: "session", id: options.session, createdAt: new Date().toISOString(),
+      ...(options.historical ? { historical: true as const } : {}),
       source: { ...snapshot.run, runId: snapshot.run.id, manifestSha256: digest(await boundedFile(join(staging, "source"), "run.json", MAX_RECORD)) },
       cases: snapshot.run.cases,
     };
@@ -71,6 +73,7 @@ export async function validateSession(directory: string, importing = false): Pro
     requireValue(session.schema === schema && session.kind === "session", "Unsupported feedback session schema or kind");
     checkId(session.id);
     requireValue(typeof session.createdAt === "string" && Number.isFinite(Date.parse(session.createdAt)), "Invalid session creation time");
+    requireValue(session.historical === undefined || session.historical === true, "Invalid historical selection");
     const source = await validateRun(join(directory, "source"));
     requireValue(session.source?.manifestSha256 === digest(await boundedFile(join(directory, "source"), "run.json", MAX_RECORD)), "Source run identity changed");
     requireValue(same(session.source, { ...source.run, runId: source.run.id, manifestSha256: session.source.manifestSha256 }), "Source provenance changed");
@@ -90,8 +93,9 @@ export async function validateSession(directory: string, importing = false): Pro
     }
     return { directory, session, cases };
   } catch (error) {
-    if (error instanceof CliError) throw error;
-    throw new CliError("Invalid feedback session: missing, unsafe or malformed records", 2);
+    // Malformed records are invalid input, but failed filesystem operations are not.
+    if (error instanceof SyntaxError || error instanceof TypeError) throw new CliError("Invalid feedback session: malformed records", 2);
+    throw error;
   }
 }
 

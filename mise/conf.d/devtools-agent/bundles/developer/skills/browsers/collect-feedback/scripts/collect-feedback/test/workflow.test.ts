@@ -157,6 +157,11 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     expect(exported.code).toBe(0);
     expect(exported.data.annotations).toEqual([saved]);
     expect((await (await fetch(origin + "/api/v1/export")).json()).annotations).toEqual([saved]);
+    const commonReport = await invoke(["report", source], evidence);
+    expect(commonReport.code).toBe(0);
+    expect(commonReport.data.cases.map((record: { id: string }) => record.id)).toEqual(["original", "other"]);
+    expect(exported.data.cases.map((record: { id: string }) => record.id)).toEqual(commonReport.data.cases.map((record: { id: string }) => record.id));
+    expect(exported.data.cases.map((record: { assets: unknown; steps: unknown }) => [record.assets, record.steps])).toEqual(commonReport.data.cases.map((record: { assets: unknown; steps: unknown }) => [record.assets, record.steps]));
     expect((await invoke(["export", dir])).data).toEqual(exported.data);
     expect(JSON.parse(await readFile(join(dir, "cases/original/annotations", input.id + ".json"), "utf8"))).toEqual(saved);
     const browserSession = `feedback-edits-${crypto.randomUUID()}`;

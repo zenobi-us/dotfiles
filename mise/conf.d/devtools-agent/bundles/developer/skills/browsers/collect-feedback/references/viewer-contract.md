@@ -69,3 +69,9 @@ Timing and source bindings cannot change through PATCH. Edit comments, priority 
 
 
 Undo deletion of a video note pauses playback and seeks to its bound timestamp. The viewer selects the restored pin after seeking completes. Undo deletion and keep draft retains the existing draft and its timestamp instead of selecting the saved note. Image undo selects the restored pin without media seeking.
+
+## Historical selection
+
+`init <sealed-run> --historical` explicitly selects an earlier run for a new session. The versioned session adds optional `historical: true`. Existing sessions without this field remain readable and unchanged. The viewer, exports and writing-reports preserve this selection. `false`, strings and unknown session schema versions are invalid. The sealed source snapshot is not relabelled or rewritten.
+
+Capture dates remain those in each asset. Null dates remain unknown. The import timestamp describes only session creation. Source schema checks run before store writes. No legacy format is inferred from filenames.

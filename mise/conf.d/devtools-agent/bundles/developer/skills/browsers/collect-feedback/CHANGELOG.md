@@ -6,6 +6,10 @@ kind: changelog
 
 ## Unreleased
 
+- **Preserve manifest read failures:** Keep filesystem errors from shared run and session validation as operation failures (exit/code 1). Keep malformed JSON, unsupported schemas and invalid record shapes at exit/code 2. Restore exact file modes in public report permission regressions.
+
+- **Preserve annotation read failures:** Keep filesystem errors separate from invalid saved JSON and annotation schemas. Feedback reports return exit/code 1 for unreadable annotations and exit/code 2 for invalid input. Keep bounded reads and path safety checks unchanged.
+
 - **Wrap timestamp notes:** Keep full saved video comments within the inspector using native keyboard-selectable Base Nova rows.
 
 - **Restore video moments:** Undo deletion pauses and seeks to the restored note before selecting its pin. Keep image selection and retained conflict drafts unchanged.
@@ -42,4 +46,11 @@ kind: changelog
 - **Browse original media:** Open a prebuilt Base Nova inspector with independent session, case and asset columns. Keep horizontal drill-down on narrow screens.
 - **Serve bounded reads:** Use one explicit-port loopback service for both entrypoints. Enforce registered paths, Host, Origin, request limits and an exclusive session writer lock.
 - **Keep capability explicit:** Support init, validate and read-only serve. Annotation editing, draft recovery and export are not part of this release.
+
+
+## Historical review
+
+- Add explicit `init --historical` selection with a persistent viewer and export label.
+- Keep original capture dates, unknown dates, provenance and immutable media unchanged.
+- Support read-only writing-reports exports from the same validated evidence and saved feedback.
 

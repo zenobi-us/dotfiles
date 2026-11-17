@@ -18,6 +18,7 @@ const flags = {
   repository: { type: "string", description: "Repository whose shared-context evidence route applies" },
   workflow: { type: "string", description: "Workflow ID" },
   run: { type: "string", description: "New immutable run ID" },
+  historical: { type: "boolean", description: "Label the explicitly selected report as historical evidence" },
   driver: { type: "string", description: "surf, playwright, tui or gui (native Linux X11)" },
   display: { type: "string", description: "Approved local X11 display for GUI doctor" },
   window: { type: "string", description: "Approved X11 window ID or root for GUI doctor" },
@@ -39,6 +40,7 @@ async function execute(command: string, dir: string | undefined, raw: Record<str
   };
   try {
     if (options.force && command !== "render" && command !== "compile") throw new CliError("--force applies only to generated render and compile outputs", 2);
+    if (raw.historical !== undefined && command !== "report") throw new CliError("--historical applies only to report", 2);
     const path = dir ? resolve(dir) : "";
     let data: Output;
     if (options.dryRun && command === "doctor") data = { dryRun: true, driver: options.driver ?? "playwright" };
@@ -49,7 +51,7 @@ async function execute(command: string, dir: string | undefined, raw: Record<str
       case "compile": data = await compileWorkspace(path, options); break;
       case "run": data = await collect(path, options); break;
       case "validate": data = await validate(path); break;
-      case "report": data = await reportRun(path); break;
+      case "report": data = await reportRun(path, Boolean(raw.historical)); break;
       case "comment": data = await generatedComment(path, options.url, options.title); break;
       case "verdicts": {
         data = { verdicts: (await reportRun(path)).verdicts };

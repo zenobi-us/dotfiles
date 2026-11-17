@@ -272,7 +272,7 @@ export async function validate(dir: string): Promise<object> {
 
 const escape = (text: unknown) => String(text).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
-export async function reportRun(dir: string): Promise<{ runId: string; html: string; cases: object[]; verdicts: Array<{ caseId: string; verdict: string }> }> {
+export async function reportRun(dir: string, historical = false): Promise<{ runId: string; historical: boolean; html: string; cases: object[]; verdicts: Array<{ caseId: string; verdict: string }> }> {
   const { run, plan, cases, records } = await validateRun(dir);
   const verdicts = cases.map(c => ({
     caseId: c.id,
@@ -290,7 +290,7 @@ export async function reportRun(dir: string): Promise<{ runId: string; html: str
     }
     sections.push(`<section><h2>Case ${escape(c.id)}: ${escape(c.purpose)} — ${verdicts[i]!.verdict}</h2><p>Expected: ${escape(c.expected.pass)}</p><p>Failure: ${escape(c.expected.fail)}</p><ol>${c.steps.map(s => `<li>${escape(s.purpose)}<p>Observed: ${escape(s.observed.join("; ") || "Not executed")}</p><p>Assertion: ${s.assertionResult}</p></li>`).join("")}</ol>${c.errors.map(e => `<p>${escape(e.category)}: ${escape(e.message)}</p>`).join("")}${images.join("\n")}<p>Limits: ${escape(c.limits.join("; ") || "None recorded")}</p><p>Side effects: ${escape(Array.isArray(c.sideEffects) ? c.sideEffects.join("; ") : c.sideEffects)}</p></section>`);
   }
-  return { runId: run.id, html: `<!doctype html><html lang="en"><meta charset="utf-8"><title>Evidence ${escape(run.id)}</title><style>body{font:16px system-ui;max-width:1000px;margin:32px auto;padding:16px}img{max-width:100%;height:auto}section{border-top:1px solid;padding-block:16px}code{overflow-wrap:anywhere}figcaption{font-size:14px}</style><body><h1>Evidence ${escape(run.id)}</h1><p>Driver: ${escape(plan.driver)} · ${escape(run.driverVersion)}</p><p>Capture status and assertions are separate. A screenshot does not prove a passing assertion.</p>${sections.join("\n")}<h2>Cleanup</h2><p>The collector closed only its owned driver session before finalization. Publication is separate.</p></body></html>`, cases, verdicts };
+  return { runId: run.id, historical, html: `<!doctype html><html lang="en"><meta charset="utf-8"><title>Evidence ${escape(run.id)}</title><style>body{font:16px system-ui;max-width:1000px;margin:32px auto;padding:16px}img{max-width:100%;height:auto}section{border-top:1px solid;padding-block:16px}code{overflow-wrap:anywhere}figcaption{font-size:14px}</style><body><h1>Evidence ${escape(run.id)}</h1>${historical ? "<h2>Historical evidence</h2><p>This run shows an earlier application state, not the current application. Capture dates remain original. Unknown dates remain unknown.</p>" : ""}<p>Driver: ${escape(plan.driver)} · ${escape(run.driverVersion)}</p><p>Capture status and assertions are separate. A screenshot does not prove a passing assertion.</p>${sections.join("\n")}<h2>Cleanup</h2><p>The collector closed only its owned driver session before finalization. Publication is separate.</p></body></html>`, cases, verdicts };
 }
 
 export async function generatedComment(dir: string, url: string | undefined, title?: string): Promise<object> {

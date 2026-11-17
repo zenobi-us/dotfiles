@@ -47,3 +47,7 @@ Case notes and reports retain native limitations and application-side-effect war
 ## Native GUI surface
 
 GUI assets use captureMethod x11-imagemagick-import. Their gui identity records the approved local X11 display, exact window ID or root, title, borrowed ownership and preserved cleanup. Both plan.gui and approval.gui must match. GUI collection rejects all automated input. Image expectations contain actual dimensions and RGB probes. GUI permission failures seal blocked cases without media. Native video is unavailable. See [the GUI playbook](gui.md).
+
+## Historical reports
+
+`report <selected-run> --historical` labels a read-only HTML or JSON report as historical. It does not modify `run.json` or claim that the run represents current application state. Known capture dates and null dates remain unchanged. Feedback imports use their own explicit `--historical` selection and retain the original sealed snapshot.

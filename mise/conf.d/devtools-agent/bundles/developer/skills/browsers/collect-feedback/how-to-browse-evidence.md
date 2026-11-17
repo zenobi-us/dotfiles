@@ -17,3 +17,23 @@ title: Browse original evidence
 
 A screenshot proves a capture, not a passing assertion. If an asset is missing, changed or unsafe, import corrected evidence under a new identity.
 
+
+## Review an earlier run
+
+Select the exact sealed run path. Resolve `FEEDBACK_SKILL_ROOT` to the installed collect-feedback directory. Run its absolute command from any directory:
+
+```sh
+"$FEEDBACK_SKILL_ROOT/scripts/collect-feedback.ts" init /absolute/earlier-run --historical --repository /absolute/repository --workflow review --session earlier-review --json
+```
+
+Keep the returned `destination.path`. Validate and serve that session as described above. The viewer shows **Historical evidence**. It states that the run does not show the current application. Export retains `session.historical: true`. The source snapshot, capture dates, asset IDs, hashes, results and media bytes stay unchanged. `createdAt` is the session import time, not a capture date. Unknown capture dates display as unknown.
+
+Only sealed `collect-evidence/v1` runs are supported. Unsupported explicit versions and unversioned archives fail before session creation. Do not rewrite an earlier report or feedback session to make it importable. Select a supported run explicitly or obtain a separately approved format importer. Each import needs a new session ID. No command searches for the latest run or migrates earlier feedback.
+
+For a read-only report, resolve `REPORT_SKILL_ROOT` to the installed writing-reports directory:
+
+```sh
+"$REPORT_SKILL_ROOT/scripts/report-cli.ts" evidence /absolute/feedback-session --feedback --json
+```
+
+The response contains the shared report cases and verdicts plus verified saved feedback. Without `--json`, it prints self-contained HTML. Save that output outside the evidence and feedback directories. The session controls its historical label; the report cannot override it. Repeated reports do not change source records, media or saved notes.
