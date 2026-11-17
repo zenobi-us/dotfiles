@@ -11,7 +11,7 @@ sequence: 10
 title: Collect feedback from one workflow request
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 # Collect feedback from one workflow request
@@ -43,4 +43,5 @@ This slice covers initiative user stories 23. Keep the initiative as the complet
 ## Comments
 
 No discussion has been recorded.
+
 
