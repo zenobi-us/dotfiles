@@ -41,6 +41,18 @@ The router creates tabs, not splits. For a requested manual split, use `pane.spl
 
 The argv array uses `env` to pass depth, run identity, child role, and result context, then starts the interactive agent with its handoff file. Codex also receives `--no-daemon`, as required by the core manual. The target returned by the router is a terminal address, not a pane or tab ID.
 
+## Name the child for the user
+
+IDs are for commands. Names are for the user. The user cannot see terminal addresses (`t34`), pane IDs (`p…`), tab IDs (`tb…`), or space IDs (`sp…`) in the window.
+
+- Commands MUST use IDs and terminal addresses.
+- Messages to the user MUST name the child by its space name and tab name, for example: space `dotfiles`, tab `agent-1a2b3c4d`.
+- Messages to the user MUST NOT use a bare ID or terminal address as the only reference. An ID MAY follow the names in parentheses.
+
+To resolve the names, find the terminal in `herdr-app ls`. On another machine, match the prefixed address, such as `wsl-docker/t34`. Report the `name` of the containing space and tab. If the terminal has a non-null `name`, report it as well. The router names each child tab `agent-` plus the first eight characters of the run ID, so the tab name is known at spawn time. Resolve the space name from `herdr-app ls`, because a reused space keeps its own name, which can differ from the folder name.
+
+## Machine scope
+
 This router launch path places the child on the parent's machine only. The prompt and result context are files on that machine. For remote orchestration, use `hc run --on <machine>` and `hc file` with a delivery context accessible on that machine. Do not pass local file paths to a remote terminal.
 
 ## WSL with the Windows app
