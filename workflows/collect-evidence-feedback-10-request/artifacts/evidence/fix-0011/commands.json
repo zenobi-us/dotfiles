@@ -1,0 +1,348 @@
+[
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "doctor",
+      "--driver",
+      "gui",
+      "--display",
+      ":0",
+      "--window",
+      "0x1400001",
+      "--title",
+      "Owned feedback request fixture",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"doctor\",\"success\":true,\"driver\":\"gui\",\"available\":true,\"attended\":true,\"method\":\"x11-imagemagick-import\",\"permissions\":\"Selected surface query and native capture succeeded\",\"diagnostic\":\"Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org\",\"video\":\"unavailable\"}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/feedback-fix-0011-yp6c49/fix-0011-before",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-10-request",
+      "--run",
+      "fix-0011-before",
+      "--driver",
+      "gui",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/feedback-fix-0011-yp6c49/fix-0011-before\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-before\",\"ref\":\"workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-before\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/feedback-fix-0011-yp6c49/fix-0011-before",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 2,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"render\",\"success\":false,\"code\":2,\"message\":\"GUI uses explicit image expectations, not browser preconditions\"}\n",
+    "err": "GUI uses explicit image expectations, not browser preconditions\n"
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "doctor",
+      "--driver",
+      "tui",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 3,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"command\":\"doctor\",\"success\":false,\"code\":3,\"message\":\"Native TUI prerequisites unavailable: foot, grim, tesseract. Complete setup separately; no reconstruction or installation is permitted during collection.\"}\n",
+    "err": "Native TUI prerequisites unavailable: foot, grim, tesseract. Complete setup separately; no reconstruction or installation is permitted during collection.\n"
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "doctor",
+      "--driver",
+      "tui",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"doctor\",\"success\":true,\"driver\":\"tui\",\"available\":true,\"attended\":false,\"diagnostic\":\"termscope 0.1.1\",\"video\":\"unavailable\",\"method\":\"private CPU foot/Cage/wlroots/grim\",\"permissions\":\"private display launch and native PNG capture succeeded\"}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/feedback-fix-0011-yp6c49/fix-0011-mixed-before",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-10-request",
+      "--run",
+      "fix-0011-mixed-before",
+      "--driver",
+      "tui",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/feedback-fix-0011-yp6c49/fix-0011-mixed-before\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-mixed-before\",\"ref\":\"workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-mixed-before\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/feedback-fix-0011-yp6c49/fix-0011-mixed-before",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/feedback-fix-0011-yp6c49/fix-0011-mixed-before\",\"tests\":2}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/feedback-fix-0011-yp6c49/fix-0011-mixed-before",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/feedback-fix-0011-yp6c49/fix-0011-mixed-before\",\"driver\":\"tui\",\"tests\":2}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/feedback-fix-0011-yp6c49/fix-0011-mixed-after",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-10-request",
+      "--run",
+      "fix-0011-mixed-after",
+      "--driver",
+      "tui",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/feedback-fix-0011-yp6c49/fix-0011-mixed-after\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-mixed-after\",\"ref\":\"workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-mixed-after\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/feedback-fix-0011-yp6c49/fix-0011-mixed-after",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/feedback-fix-0011-yp6c49/fix-0011-mixed-after\",\"tests\":2}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/feedback-fix-0011-yp6c49/fix-0011-mixed-after",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/feedback-fix-0011-yp6c49/fix-0011-mixed-after\",\"driver\":\"tui\",\"tests\":2}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "request",
+      "/tmp/feedback-fix-0011-yp6c49/fix-0011-mixed-after",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-10-request",
+      "--session",
+      "fix-0011-mixed-after-review",
+      "--port",
+      "33327",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 3,
+    "out": "{\"schema\":\"collect-feedback/v1\",\"kind\":\"event\",\"command\":\"request\",\"success\":false,\"stage\":\"capture-stopped\",\"completed\":false,\"source\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-mixed-after\",\"ref\":\"workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-mixed-after\",\"publication\":\"repository\"},\"verdicts\":[{\"caseId\":\"assertion\",\"verdict\":\"FAIL\"},{\"caseId\":\"prerequisite\",\"verdict\":\"BLOCKED\"}]}\n{\"schema\":\"collect-feedback/v1\",\"kind\":\"error\",\"success\":false,\"code\":3,\"message\":\"Collector stopped; no feedback session was created. Inspect retained evidence and use a new run identity for retry\"}\n",
+    "err": "Collector stopped; no feedback session was created. Inspect retained evidence and use a new run identity for retry\n"
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "validate",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-mixed-after",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"validate\",\"success\":true,\"directory\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-mixed-after\",\"run\":{\"schema\":\"collect-evidence/v1\",\"kind\":\"run\",\"id\":\"fix-0011-mixed-after\",\"status\":\"sealed\",\"startedAt\":\"2026-11-17T21:59:26.080Z\",\"finishedAt\":\"2026-11-17T21:59:27.418Z\",\"surface\":\"tui\",\"driver\":\"tui\",\"driverVersion\":\"termscope 0.1.1\",\"plan\":\"plan.json\",\"cases\":[{\"id\":\"assertion\",\"path\":\"cases/assertion/case.json\"},{\"id\":\"prerequisite\",\"path\":\"cases/prerequisite/case.json\"}],\"files\":[{\"path\":\"cases/assertion/case.json\",\"sha256\":\"52692ede3cd2c90802221074f1733ef169628fe1874c494222a589d636150f6d\"},{\"path\":\"cases/assertion/events.jsonl\",\"sha256\":\"69ab106d6fe5b229a804ba85aa33f56f92cfa9a8ae806aab4fdb1d11c3f5edb3\"},{\"path\":\"cases/assertion/index.md\",\"sha256\":\"f1c2305cc5ab1425c0ce03ea6b4064c8ece4a864c8abe452f90e741850504b0e\"},{\"path\":\"cases/assertion/media/step-001-step-assertion-001-native-terminal--capture-001--capture-001.png\",\"sha256\":\"900d43ee08b4ebc10c944d6f60ecd06f73c2c51cf3131436fe4daa8998fcd184\"},{\"path\":\"cases/prerequisite/case.json\",\"sha256\":\"3c65b4d9571804f6533ad404e1e6f9737a3996e399153250e81601cd0eb3c96b\"},{\"path\":\"cases/prerequisite/events.jsonl\",\"sha256\":\"870f0b47025b7b72d250664eac27e98c7356195522101426885f540cb7ed687f\"},{\"path\":\"cases/prerequisite/index.md\",\"sha256\":\"5e7baf98f28912d49e781f3aa98b2810a088e2c3843108e66786b5524bb6c02f\"},{\"path\":\"index.md\",\"sha256\":\"9041253d03a31a2be3b23fcee45994b5138e7909986fb31ff59ad8ec688919f8\"},{\"path\":\"native/plan.ts\",\"sha256\":\"89364377948c345b32200d103d28c0703e3a5947d7f67d94fdd4aeba45596507\"},{\"path\":\"native/report/shots/step-assertion-001-native-terminal--capture-001.png\",\"sha256\":\"900d43ee08b4ebc10c944d6f60ecd06f73c2c51cf3131436fe4daa8998fcd184\"},{\"path\":\"native/runs/case-assertion.log\",\"sha256\":\"a5f02af0f1bd78a22b7714466809c26150249577356d50f934f2832615f42428\"},{\"path\":\"native/workflows/ce-tui-d602f3f3-b544-4049-9861-8737025ab23b-cage.stderr\",\"sha256\":\"9d5f4b7212e6fb115fa0422847aba783a94e96ff29304854f717ae3f33f48022\"},{\"path\":\"native/workflows/ce-tui-d602f3f3-b544-4049-9861-8737025ab23b-frame-000001.png\",\"sha256\":\"cec04114320172706aff70a86c72ac2add97865b96d57a5007f4f5afed47f356\"},{\"path\":\"native/workflows/ce-tui-d602f3f3-b544-4049-9861-8737025ab23b-frame-000002.png\",\"sha256\":\"900d43ee08b4ebc10c944d6f60ecd06f73c2c51cf3131436fe4daa8998fcd184\"},{\"path\":\"native/workflows/ce-tui-d602f3f3-b544-4049-9861-8737025ab23b-frame-000003.png\",\"sha256\":\"900d43ee08b4ebc10c944d6f60ecd06f73c2c51cf3131436fe4daa8998fcd184\"},{\"path\":\"native/workflows/ce-tui-d602f3f3-b544-4049-9861-8737025ab23b-frame-000004.png\",\"sha256\":\"900d43ee08b4ebc10c944d6f60ecd06f73c2c51cf3131436fe4daa8998fcd184\"},{\"path\":\"native/workflows/ce-tui-d602f3f3-b544-4049-9861-8737025ab23b-frame-000005.png\",\"sha256\":\"900d43ee08b4ebc10c944d6f60ecd06f73c2c51cf3131436fe4daa8998fcd184\"},{\"path\":\"native/workflows/ce-tui-d602f3f3-b544-4049-9861-8737025ab23b-termscope.jsonl\",\"sha256\":\"36ce1c987cb51d38e8d937e23ba389bc5d0244acba39ab2c3fb41f596ec1f235\"},{\"path\":\"native/workflows/ce-tui-d602f3f3-b544-4049-9861-8737025ab23b-termscope.stderr\",\"sha256\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"},{\"path\":\"native/workflows/tui-assertion.json\",\"sha256\":\"9d47e28410f1216a8e223f152167e3416ae3f527d357192649ae44afd028c4c2\"},{\"path\":\"native/workflows/tui-assertion.log\",\"sha256\":\"a5f02af0f1bd78a22b7714466809c26150249577356d50f934f2832615f42428\"},{\"path\":\"native/workflows/tui-prerequisite.json\",\"sha256\":\"435e3ff5d7fc65d178dcd7578ac8fd42919710d6fa59ca468cca35a384b42215\"},{\"path\":\"plan.json\",\"sha256\":\"b9c65e23b6b361f9aadeb00c5d0f82aca8046c597ab459213d5e8d239ff3aa8d\"},{\"path\":\"plan.ts\",\"sha256\":\"89364377948c345b32200d103d28c0703e3a5947d7f67d94fdd4aeba45596507\"}]},\"plan\":{\"schema\":\"collect-evidence/v1\",\"kind\":\"plan\",\"workId\":\"collect-evidence-feedback-10-request\",\"driver\":\"tui\",\"base\":\"terminal://private\",\"terminal\":{\"command\":[\"/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun\",\"/tmp/feedback-fix-0011-yp6c49/terminal.ts\"],\"cwd\":\"/tmp/feedback-fix-0011-yp6c49\",\"columns\":80,\"rows\":24,\"font\":\"monospace:size=12\",\"lineHeight\":20},\"approval\":{\"origins\":[],\"terminal\":{\"command\":[\"/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun\",\"/tmp/feedback-fix-0011-yp6c49/terminal.ts\"],\"cwd\":\"/tmp/feedback-fix-0011-yp6c49\"}},\"preconditions\":[{\"id\":\"missing-screen\",\"desc\":\"Required screen is unavailable\",\"check\":{\"locator\":\"screen\",\"text\":\"Unavailable required screen\",\"timeoutMs\":500}}],\"tests\":[{\"id\":\"assertion\",\"claim\":\"Inspect owned native fixture\",\"pass\":\"Deliberately wrong width matches\",\"fail\":\"Native width differs\",\"steps\":[{\"do\":\"expect\",\"says\":\"Check real terminal dimensions against deliberately wrong width.\",\"locator\":\"screen\",\"text\":\"Ready screen\",\"shot\":\"native-terminal\",\"timeoutMs\":700,\"image\":{\"width\":1281,\"height\":720,\"pixels\":[{\"x\":10,\"y\":55,\"rgb\":[36,36,36]}],\"lines\":[{\"text\":\"Ready screen\",\"top\":11,\"tolerance\":2},{\"text\":\"Selected item\",\"top\":31,\"tolerance\":2}]}}]},{\"id\":\"prerequisite\",\"claim\":\"Stop at missing required screen\",\"pass\":\"Deliberately wrong width matches\",\"fail\":\"Native width differs\",\"steps\":[{\"do\":\"expect\",\"says\":\"Check real terminal dimensions against deliberately wrong width.\",\"locator\":\"screen\",\"text\":\"Ready screen\",\"shot\":\"native-terminal\",\"timeoutMs\":700,\"image\":{\"width\":1281,\"height\":720,\"pixels\":[{\"x\":10,\"y\":55,\"rgb\":[36,36,36]}],\"lines\":[{\"text\":\"Ready screen\",\"top\":11,\"tolerance\":2},{\"text\":\"Selected item\",\"top\":31,\"tolerance\":2}]}}],\"requires\":[\"missing-screen\"]}]},\"cases\":[{\"schema\":\"collect-evidence/v1\",\"kind\":\"case\",\"id\":\"assertion\",\"runId\":\"fix-0011-mixed-after\",\"order\":1,\"purpose\":\"Inspect owned native fixture\",\"preconditions\":[],\"expected\":{\"pass\":\"Deliberately wrong width matches\",\"fail\":\"Native width differs\"},\"steps\":[{\"id\":\"assertion.1\",\"order\":1,\"purpose\":\"Check real terminal dimensions against deliberately wrong width.\",\"actions\":{\"do\":\"expect\",\"says\":\"Check real terminal dimensions against deliberately wrong width.\",\"locator\":\"screen\",\"text\":\"Ready screen\",\"shot\":\"native-terminal\",\"timeoutMs\":700,\"image\":{\"width\":1281,\"height\":720,\"pixels\":[{\"x\":10,\"y\":55,\"rgb\":[36,36,36]}],\"lines\":[{\"text\":\"Ready screen\",\"top\":11,\"tolerance\":2},{\"text\":\"Selected item\",\"top\":31,\"tolerance\":2}]}},\"expected\":{\"text\":\"Ready screen\",\"visible\":null,\"url\":null},\"observed\":[\"Native image dimensions do not match the expected display\"],\"assertionResult\":\"failed\"}],\"events\":\"cases/assertion/events.jsonl\",\"assets\":[{\"schema\":\"collect-evidence/v1\",\"kind\":\"asset\",\"id\":\"assertion.1.capture-001\",\"caseId\":\"assertion\",\"stepId\":\"assertion.1\",\"path\":\"cases/assertion/media/step-001-step-assertion-001-native-terminal--capture-001--capture-001.png\",\"captureSequence\":1,\"sha256\":\"900d43ee08b4ebc10c944d6f60ecd06f73c2c51cf3131436fe4daa8998fcd184\",\"mediaType\":\"image/png\",\"width\":1280,\"height\":720,\"capturedAt\":\"2026-11-17T21:59:27.391Z\",\"viewport\":null,\"surface\":\"tui\",\"driver\":\"tui\",\"driverVersion\":\"termscope 0.1.1\",\"captureMethod\":\"grim-native\",\"url\":\"terminal://ce-tui-d602f3f3-b544-4049-9861-8737025ab23b\",\"terminal\":{\"session\":\"ce-tui-d602f3f3-b544-4049-9861-8737025ab23b\",\"socket\":\"/tmp/ce-native-CfITgn/tmux.sock\",\"pane\":\"%0\",\"tty\":\"/dev/pts/12\",\"display\":\"wayland-0\",\"runtime\":\"/tmp/ce-native-CfITgn\",\"cagePid\":247626,\"footPid\":247627,\"columns\":80,\"rows\":24,\"font\":\"monospace:size=12\",\"lineHeight\":20,\"cleanup\":\"released\"}}],\"errors\":[{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"id\":\"assertion.error-001\",\"caseId\":\"assertion\",\"stepId\":\"assertion.1\",\"category\":\"assertion\",\"message\":\"Native image dimensions do not match the expected display\"}],\"limits\":[\"Native video is unavailable.\",\"OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.\",\"The private headless display does not reproduce a borrowed desktop terminal.\",\"Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match.\"],\"sideEffects\":[\"The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.\",\"Collector-owned resources were released before sealing; borrowed terminals were not attached or closed.\"]},{\"schema\":\"collect-evidence/v1\",\"kind\":\"case\",\"id\":\"prerequisite\",\"runId\":\"fix-0011-mixed-after\",\"order\":2,\"purpose\":\"Stop at missing required screen\",\"preconditions\":[{\"id\":\"missing-screen\",\"desc\":\"Required screen is unavailable\",\"check\":{\"locator\":\"screen\",\"text\":\"Unavailable required screen\",\"timeoutMs\":500}}],\"expected\":{\"pass\":\"Deliberately wrong width matches\",\"fail\":\"Native width differs\"},\"steps\":[{\"id\":\"prerequisite.1\",\"order\":1,\"purpose\":\"Check real terminal dimensions against deliberately wrong width.\",\"actions\":{\"do\":\"expect\",\"says\":\"Check real terminal dimensions against deliberately wrong width.\",\"locator\":\"screen\",\"text\":\"Ready screen\",\"shot\":\"native-terminal\",\"timeoutMs\":700,\"image\":{\"width\":1281,\"height\":720,\"pixels\":[{\"x\":10,\"y\":55,\"rgb\":[36,36,36]}],\"lines\":[{\"text\":\"Ready screen\",\"top\":11,\"tolerance\":2},{\"text\":\"Selected item\",\"top\":31,\"tolerance\":2}]}},\"expected\":{\"text\":\"Ready screen\",\"visible\":null,\"url\":null},\"observed\":[\"The test did not run.\"],\"assertionResult\":\"not-run\"}],\"events\":\"cases/prerequisite/events.jsonl\",\"assets\":[],\"errors\":[{\"schema\":\"collect-evidence/v1\",\"kind\":\"error\",\"id\":\"prerequisite.error-001\",\"caseId\":\"prerequisite\",\"stepId\":\"prerequisite.1\",\"category\":\"blocked\",\"message\":\"The test did not run.\"}],\"limits\":[\"Native video is unavailable.\",\"OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.\",\"The private headless display does not reproduce a borrowed desktop terminal.\",\"Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match.\"],\"sideEffects\":[\"The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.\",\"Collector-owned resources were released before sealing; borrowed terminals were not attached or closed.\"]}],\"records\":[{\"test\":\"assertion\",\"step\":\"assertion.1\",\"action\":\"assert\",\"target\":\"Ready screen\",\"resolved\":\"\",\"url\":\"terminal://ce-tui-d602f3f3-b544-4049-9861-8737025ab23b\",\"screenshot\":\"shots/step-assertion-001-native-terminal--capture-001.png\",\"observed\":\"Native image dimensions do not match the expected display\",\"verdict\":\"FAIL\",\"note\":\"FAIL line: Native width differs\",\"terminal\":{\"session\":\"ce-tui-d602f3f3-b544-4049-9861-8737025ab23b\",\"socket\":\"/tmp/ce-native-CfITgn/tmux.sock\",\"pane\":\"%0\",\"tty\":\"/dev/pts/12\",\"display\":\"wayland-0\",\"runtime\":\"/tmp/ce-native-CfITgn\",\"cagePid\":247626,\"footPid\":247627,\"columns\":80,\"rows\":24,\"font\":\"monospace:size=12\",\"lineHeight\":20,\"cleanup\":\"released\"},\"capturedAt\":\"2026-11-17T21:59:27.391Z\",\"captureSequence\":1,\"captureStatus\":\"captured\"},{\"test\":\"prerequisite\",\"step\":\"prerequisite.1\",\"action\":\"assert\",\"target\":\"precondition\",\"resolved\":\"\",\"url\":\"\",\"screenshot\":\"\",\"observed\":\"The test did not run.\",\"verdict\":\"BLOCKED\",\"note\":\"Native screen did not settle on the expected visible content before timeout\"}]}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/feedback-fix-0011-yp6c49/fix-0011-assertion-only",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--workflow",
+      "collect-evidence-feedback-10-request",
+      "--run",
+      "fix-0011-assertion-only",
+      "--driver",
+      "tui",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/feedback-fix-0011-yp6c49/fix-0011-assertion-only\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles\",\"path\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-assertion-only\",\"ref\":\"workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-assertion-only\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/feedback-fix-0011-yp6c49/fix-0011-assertion-only",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/feedback-fix-0011-yp6c49/fix-0011-assertion-only\",\"tests\":1}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/feedback-fix-0011-yp6c49/fix-0011-assertion-only",
+      "--json"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/feedback-fix-0011-yp6c49/fix-0011-assertion-only\",\"driver\":\"tui\",\"tests\":1}\n",
+    "err": ""
+  },
+  {
+    "argv": [
+      "env",
+      "RUN_NATIVE_EVIDENCE_TESTS=1",
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+    "exit_code": 1,
+    "out": "bun test v1.4.4 (38afee6c8)\n",
+    "err": "\nmise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts:\n(pass) installed request keeps historical identity and stops blocked fresh capture before import [2701.76ms]\n100 |     const reserve = Bun.serve({ hostname: \"127.0.0.1\", port: 0, fetch: () => new Response() });\n101 |     const port = reserve.port!; await reserve.stop(true);\n102 |     for (const mixed of [true, false]) {\n103 |       const id = mixed ? \"mixed\" : \"assertion-only\";\n104 |       const workspace = join(root, id);\n105 |       expect((await invoke(collector, [\"init\", workspace, \"--repository\", repository, \"--workflow\", \"request\", \"--run\", id, \"--driver\", \"tui\"])).code).toBe(0);\n                                                                                                                                                             ^\nerror: expect(received).toBe(expected)\n\nExpected: 0\nReceived: 3\n\n      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts:105:152)\n(fail) installed request rejects mixed FAIL/BLOCKED but serves assertion-only failure [260.55ms]\n\n 1 pass\n 1 fail\n 27 expect() calls\nRan 2 tests across 1 file. [2.97s]\n"
+  },
+  {
+    "argv": [
+      "env",
+      "RUN_NATIVE_EVIDENCE_TESTS=1",
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts",
+      "--test-name-pattern",
+      "mixed FAIL/BLOCKED"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+    "exit_code": 1,
+    "out": "bun test v1.4.4 (38afee6c8)\n",
+    "err": "\nmise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts:\n121 |         const reader = server.stdout.getReader(); let out = \"\";\n122 |         while (!out.includes(\"\\n\")) { const value = await reader.read(); if (value.done) throw Error(\"Assertion-only request stopped before serving\"); out += new TextDecoder().decode(value.value); }\n123 |         reader.releaseLock();\n124 |         const ready = JSON.parse(out);\n125 |         expect(ready.collection.verdicts).toEqual([{ caseId: \"assertion\", verdict: \"FAIL\" }]);\n126 |         expect((await (await fetch(ready.url + \"/api/v1/session\")).json()).session.historical).toBe(false);\n                                                                                                     ^\nerror: expect(received).toBe(expected)\n\nExpected: false\nReceived: undefined\n\n      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts:126:96)\n(fail) installed request rejects mixed FAIL/BLOCKED but serves assertion-only failure [5868.84ms]\n\n 0 pass\n 1 filtered out\n 1 fail\n 16 expect() calls\nRan 1 test across 1 file. [5.88s]\n"
+  },
+  {
+    "argv": [
+      "env",
+      "RUN_NATIVE_EVIDENCE_TESTS=1",
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts",
+      "--test-name-pattern",
+      "mixed FAIL/BLOCKED"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+    "exit_code": 0,
+    "out": "bun test v1.4.4 (38afee6c8)\n",
+    "err": "\nmise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts:\n(pass) installed request rejects mixed FAIL/BLOCKED but serves assertion-only failure [5758.01ms]\n\n 1 pass\n 1 filtered out\n 0 fail\n 20 expect() calls\nRan 1 test across 1 file. [5.76s]\n"
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "mq",
+      "--allow-http-import",
+      "-I",
+      "raw",
+      "-F",
+      "raw",
+      "import \"github.com/harehare/okf.mq\" | replace(\"A sealed assertion FAIL can open for review.\", \"A sealed assertion FAIL can open for review only when no case is BLOCKED. Any BLOCKED verdict takes precedence, including mixed FAIL/BLOCKED runs: return exit 3, retain the sealed diagnostic source, and do not import or serve a session.\")",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/request.md",
+      "-o",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/request.md"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+    "exit_code": 0,
+    "out": "",
+    "err": ""
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "mq",
+      "--allow-http-import",
+      "-I",
+      "raw",
+      "-F",
+      "raw",
+      "import \"github.com/harehare/okf.mq\" | replace(\"## Unreleased\", \"## Unreleased\n\n- **Stop mixed blocked requests:** Give any BLOCKED verdict precedence over assertion FAIL. Return exit 3 with the sealed diagnostic source and no feedback import or server. Keep assertion-only failures reviewable. The opt-in public request regression uses real private terminal captures (`RUN_NATIVE_EVIDENCE_TESTS=1`) to cover both outcomes.\")",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md",
+      "-o",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+    "exit_code": 0,
+    "out": "",
+    "err": ""
+  },
+  {
+    "argv": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+      "resources",
+      "37604d4b-fcd7-4a48-a05a-085c181bf04b"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+    "exit_code": 1,
+    "out": "{\"manifest\":{\"runId\":\"37604d4b-fcd7-4a48-a05a-085c181bf04b\",\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"target\":\"t1h7\",\"createdAt\":\"2026-11-17T21:54:42.807Z\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"operationId\":\"collect-evidence-feedback-10-request-fix-0010\"},\"resources\":{\"version\":1,\"runId\":\"37604d4b-fcd7-4a48-a05a-085c181bf04b\",\"observedAt\":\"2026-11-17T22:03:36.199Z\",\"processes\":[{\"pid\":239016,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"3811882\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":242336,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"3824250\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":244032,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"3831728\",\"command\":\"bun\",\"parentPid\":242336,\"cwd\":\"/tmp\",\"state\":\"stopped\"},{\"pid\":244096,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"3831745\",\"command\":\"tmux: server\",\"parentPid\":2697,\"cwd\":\"/tmp/ce-native-smyTwV\",\"state\":\"stopped\"},{\"pid\":244097,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"3831745\",\"command\":\"sleep\",\"parentPid\":244096,\"cwd\":\"/tmp/ce-native-smyTwV\",\"state\":\"stopped\"},{\"pid\":244102,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"3831746\",\"command\":\"cage\",\"parentPid\":244032,\"cwd\":\"/tmp/ce-native-smyTwV\",\"state\":\"stopped\"},{\"pid\":244104,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"3831749\",\"command\":\"foot\",\"parentPid\":244102,\"cwd\":\"/\",\"state\":\"stopped\"},{\"pid\":244105,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"3831751\",\"command\":\"tmux: client\",\"parentPid\":244104,\"cwd\":\"/tmp/ce-native-smyTwV\",\"state\":\"stopped\"},{\"pid\":244127,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"3831752\",\"command\":\"termscope\",\"parentPid\":244032,\"cwd\":\"/tmp/ce-native-smyTwV\",\"state\":\"stopped\"},{\"pid\":244128,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"3831752\",\"command\":\"tmux: client\",\"parentPid\":244127,\"cwd\":\"/tmp/ce-native-smyTwV\",\"state\":\"stopped\"},{\"pid\":245151,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"3834867\",\"command\":\"omp daemon brok\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":245178,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"3834872\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":258800,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"3861075\",\"command\":\"bun\",\"parentPid\":239016,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"stopped\"},{\"pid\":259428,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"3865000\",\"command\":\"bun\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"}],\"shutdown\":\"pending\"}}\n",
+    "err": ""
+  }
+]

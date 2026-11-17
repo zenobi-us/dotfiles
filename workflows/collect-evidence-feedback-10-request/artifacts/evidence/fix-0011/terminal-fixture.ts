@@ -1,0 +1,1 @@
+process.stdin.setRawMode(true); process.stdout.write('[2J[HReady screen\r\nSelected item\r\n'); process.stdin.resume();

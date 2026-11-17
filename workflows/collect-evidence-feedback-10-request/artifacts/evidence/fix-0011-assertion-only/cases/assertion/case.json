@@ -1,0 +1,123 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "assertion",
+  "runId": "fix-0011-assertion-only",
+  "order": 1,
+  "purpose": "Inspect owned native fixture",
+  "preconditions": [],
+  "expected": {
+    "pass": "Deliberately wrong width matches",
+    "fail": "Native width differs"
+  },
+  "steps": [
+    {
+      "id": "assertion.1",
+      "order": 1,
+      "purpose": "Check real terminal dimensions against deliberately wrong width.",
+      "actions": {
+        "do": "expect",
+        "says": "Check real terminal dimensions against deliberately wrong width.",
+        "locator": "screen",
+        "text": "Ready screen",
+        "shot": "native-terminal",
+        "timeoutMs": 700,
+        "image": {
+          "width": 1281,
+          "height": 720,
+          "pixels": [
+            {
+              "x": 10,
+              "y": 55,
+              "rgb": [
+                36,
+                36,
+                36
+              ]
+            }
+          ],
+          "lines": [
+            {
+              "text": "Ready screen",
+              "top": 11,
+              "tolerance": 2
+            },
+            {
+              "text": "Selected item",
+              "top": 31,
+              "tolerance": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "text": "Ready screen",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Native image dimensions do not match the expected display"
+      ],
+      "assertionResult": "failed"
+    }
+  ],
+  "events": "cases/assertion/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "assertion.1.capture-001",
+      "caseId": "assertion",
+      "stepId": "assertion.1",
+      "path": "cases/assertion/media/step-001-step-assertion-001-native-terminal--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "900d43ee08b4ebc10c944d6f60ecd06f73c2c51cf3131436fe4daa8998fcd184",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-17T21:59:30.939Z",
+      "viewport": null,
+      "surface": "tui",
+      "driver": "tui",
+      "driverVersion": "termscope 0.1.1",
+      "captureMethod": "grim-native",
+      "url": "terminal://ce-tui-5a29342d-8a74-42c9-b8fd-60e4ae09afc2",
+      "terminal": {
+        "session": "ce-tui-5a29342d-8a74-42c9-b8fd-60e4ae09afc2",
+        "socket": "/tmp/ce-native-HKEfHI/tmux.sock",
+        "pane": "%0",
+        "tty": "/dev/pts/12",
+        "display": "wayland-0",
+        "runtime": "/tmp/ce-native-HKEfHI",
+        "cagePid": 248338,
+        "footPid": 248339,
+        "columns": 80,
+        "rows": 24,
+        "font": "monospace:size=12",
+        "lineHeight": 20,
+        "cleanup": "released"
+      }
+    }
+  ],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "assertion.error-001",
+      "caseId": "assertion",
+      "stepId": "assertion.1",
+      "category": "assertion",
+      "message": "Native image dimensions do not match the expected display"
+    }
+  ],
+  "limits": [
+    "Native video is unavailable.",
+    "OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.",
+    "The private headless display does not reproduce a borrowed desktop terminal.",
+    "Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match."
+  ],
+  "sideEffects": [
+    "The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.",
+    "Collector-owned resources were released before sealing; borrowed terminals were not attached or closed."
+  ]
+}

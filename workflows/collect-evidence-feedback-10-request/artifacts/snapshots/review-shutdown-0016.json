@@ -1,0 +1,123 @@
+{
+  "observations": [
+    {
+      "manifest": {
+        "runId": "a482c898-cd1f-4ada-9520-cfe8be9b27be",
+        "muxer": "herdr-app",
+        "agent": "omp",
+        "target": "t1hj",
+        "createdAt": "2026-11-17T22:35:33.485Z",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+        "operationId": "collect-evidence-feedback-10-request-review-0014"
+      },
+      "resources": {
+        "version": 1,
+        "runId": "a482c898-cd1f-4ada-9520-cfe8be9b27be",
+        "observedAt": "2026-11-17T22:40:57.454Z",
+        "processes": [
+          {
+            "pid": 291320,
+            "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+            "startTicks": "4056973",
+            "command": "omp",
+            "parentPid": 291001,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+            "state": "stopped"
+          },
+          {
+            "pid": 292806,
+            "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+            "startTicks": "4063348",
+            "command": "omp",
+            "parentPid": 291320,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+            "state": "stopped"
+          }
+        ],
+        "shutdown": "confirmed"
+      }
+    },
+    {
+      "manifest": {
+        "runId": "9086599b-7d24-4de9-907d-983afa361e65",
+        "muxer": "herdr-app",
+        "agent": "omp",
+        "target": "t1hk",
+        "createdAt": "2026-11-17T22:36:51.129Z",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+        "operationId": "review-0015-spec",
+        "parentRunId": "a482c898-cd1f-4ada-9520-cfe8be9b27be"
+      },
+      "resources": {
+        "version": 1,
+        "runId": "9086599b-7d24-4de9-907d-983afa361e65",
+        "observedAt": "2026-11-17T22:50:21.398Z",
+        "processes": [
+          {
+            "pid": 293712,
+            "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+            "startTicks": "4064758",
+            "command": "omp",
+            "parentPid": 293090,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+            "state": "stopped"
+          },
+          {
+            "pid": 297596,
+            "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+            "startTicks": "4071260",
+            "command": "omp",
+            "parentPid": 293712,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+            "state": "stopped"
+          }
+        ],
+        "shutdown": "confirmed"
+      }
+    },
+    {
+      "manifest": {
+        "runId": "e78814da-90e0-4cb2-996c-e223736faac0",
+        "target": "t1hm",
+        "operationId": "review-0015-standards",
+        "parentRunId": "a482c898-cd1f-4ada-9520-cfe8be9b27be"
+      },
+      "resources": {
+        "observedAt": "2026-11-17T22:50:21.407Z",
+        "processes": [
+          {
+            "pid": 293713,
+            "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+            "startTicks": "4064759",
+            "command": "omp",
+            "parentPid": 293100,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+            "state": "stopped"
+          }
+        ],
+        "shutdown": "confirmed"
+      }
+    }
+  ],
+  "pane_closed": true,
+  "axis_panes_closed": true,
+  "approval": "User selected Terminate owned processes for PIDs 293712, 293713, 297596. Exact start ticks and commands checked before SIGTERM and SIGCONT.",
+  "verified_processes": [
+    {
+      "pid": 293712,
+      "startTicks": "4064758",
+      "command": "omp -- @/home/zenobius/.local/state/muxer-subagents/runs/9086599b-7d24-4de9-907d-983afa361e65/prompt.md "
+    },
+    {
+      "pid": 293713,
+      "startTicks": "4064759",
+      "command": "omp -- @/home/zenobius/.local/state/muxer-subagents/runs/e78814da-90e0-4cb2-996c-e223736faac0/prompt.md "
+    },
+    {
+      "pid": 297596,
+      "startTicks": "4071260",
+      "command": "/var/home/zenobius/.local/share/mise/installs/github-can1357-oh-my-pi/18.17.0/omp __omp_worker_js_eval_process "
+    }
+  ],
+  "user_resources_preserved": true
+}

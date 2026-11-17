@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "env",
+    "RUN_NATIVE_EVIDENCE_TESTS=1",
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "test",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts",
+    "--test-name-pattern",
+    "mixed FAIL/BLOCKED"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+  "exit_code": 1,
+  "out": "bun test v1.4.4 (38afee6c8)\n",
+  "err": "\nmise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts:\n121 |         const reader = server.stdout.getReader(); let out = \"\";\n122 |         while (!out.includes(\"\\n\")) { const value = await reader.read(); if (value.done) throw Error(\"Assertion-only request stopped before serving\"); out += new TextDecoder().decode(value.value); }\n123 |         reader.releaseLock();\n124 |         const ready = JSON.parse(out);\n125 |         expect(ready.collection.verdicts).toEqual([{ caseId: \"assertion\", verdict: \"FAIL\" }]);\n126 |         expect((await (await fetch(ready.url + \"/api/v1/session\")).json()).session.historical).toBe(false);\n                                                                                                     ^\nerror: expect(received).toBe(expected)\n\nExpected: false\nReceived: undefined\n\n      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts:126:96)\n(fail) installed request rejects mixed FAIL/BLOCKED but serves assertion-only failure [5868.84ms]\n\n 0 pass\n 1 filtered out\n 1 fail\n 16 expect() calls\nRan 1 test across 1 file. [5.88s]\n"
+}

@@ -1,0 +1,35 @@
+{
+  "source_commit": "9768929cd6bc5f47170d0b6f329b788369b16ea2",
+  "source_tree": "8e21baccc631faae5bf37a3b90191eb194776fad",
+  "validation_results": [
+    {
+      "argv": [
+        "env",
+        "PATH=/home/zenobius/.local/share/collect-evidence/native-tools/fedora-45-x86_64/bin:$PATH",
+        "RUN_NATIVE_EVIDENCE_TESTS=1",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+      "exit_code": 0,
+      "detail": "2 pass, 0 fail, 45 expectations. Initial parent run without prepared native PATH failed prerequisite; corrected PATH passed both tests."
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "validate",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-mixed-after",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "detail": "Retained real mixed diagnostic run sealed and valid; parent visually inspected original terminal PNG."
+    }
+  ],
+  "delivered_payload_equals_receipt": true,
+  "acknowledged_sha256": "0c690fa97bfad1b441c84c9a9008b44fa3c8c57ef301ff0bef93f80081cd79b9"
+}

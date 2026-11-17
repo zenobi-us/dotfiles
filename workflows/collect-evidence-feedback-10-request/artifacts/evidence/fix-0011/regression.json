@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "env",
+    "RUN_NATIVE_EVIDENCE_TESTS=1",
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "test",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+  "exit_code": 1,
+  "out": "bun test v1.4.4 (38afee6c8)\n",
+  "err": "\nmise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts:\n(pass) installed request keeps historical identity and stops blocked fresh capture before import [2701.76ms]\n100 |     const reserve = Bun.serve({ hostname: \"127.0.0.1\", port: 0, fetch: () => new Response() });\n101 |     const port = reserve.port!; await reserve.stop(true);\n102 |     for (const mixed of [true, false]) {\n103 |       const id = mixed ? \"mixed\" : \"assertion-only\";\n104 |       const workspace = join(root, id);\n105 |       expect((await invoke(collector, [\"init\", workspace, \"--repository\", repository, \"--workflow\", \"request\", \"--run\", id, \"--driver\", \"tui\"])).code).toBe(0);\n                                                                                                                                                             ^\nerror: expect(received).toBe(expected)\n\nExpected: 0\nReceived: 3\n\n      at <anonymous> (/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/request-workflow.test.ts:105:152)\n(fail) installed request rejects mixed FAIL/BLOCKED but serves assertion-only failure [260.55ms]\n\n 1 pass\n 1 fail\n 27 expect() calls\nRan 2 tests across 1 file. [2.97s]\n"
+}

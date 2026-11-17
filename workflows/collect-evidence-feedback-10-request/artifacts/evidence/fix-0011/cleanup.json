@@ -1,0 +1,54 @@
+{
+  "fixturePid": 242362,
+  "fixtureExit": 143,
+  "beforeServerExit": 0,
+  "assertionOnlyServerExit": 0,
+  "loopbackPort": 33327,
+  "listening": false,
+  "sessions": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-mixed-before-review",
+      "lockExists": false
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/collect-evidence-feedback-10-request/artifacts/evidence/fix-0011-assertion-only-review",
+      "lockExists": false
+    }
+  ],
+  "native": [
+    {
+      "run": "fix-0011-mixed-before",
+      "runtime": "/tmp/ce-native-4hmLNb",
+      "runtimeExists": false,
+      "cagePid": 244743,
+      "cageExists": false,
+      "footPid": 244744,
+      "footExists": false,
+      "recordedCleanup": "released"
+    },
+    {
+      "run": "fix-0011-mixed-after",
+      "runtime": "/tmp/ce-native-CfITgn",
+      "runtimeExists": false,
+      "cagePid": 247626,
+      "cageExists": false,
+      "footPid": 247627,
+      "footExists": false,
+      "recordedCleanup": "released"
+    },
+    {
+      "run": "fix-0011-assertion-only",
+      "runtime": "/tmp/ce-native-HKEfHI",
+      "runtimeExists": false,
+      "cagePid": 248338,
+      "cageExists": false,
+      "footPid": 248339,
+      "footExists": false,
+      "recordedCleanup": "released"
+    }
+  ],
+  "temporaryWorkspace": "/tmp/feedback-fix-0011-yp6c49",
+  "pane": "t1h7",
+  "paneClosure": "Parent-owned; active fixer harness intentionally retained",
+  "temporaryWorkspaceRemoved": true
+}

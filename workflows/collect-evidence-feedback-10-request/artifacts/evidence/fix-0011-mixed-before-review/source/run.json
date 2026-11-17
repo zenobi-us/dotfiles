@@ -1,0 +1,120 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "run",
+  "id": "fix-0011-mixed-before",
+  "status": "sealed",
+  "startedAt": "2026-11-17T21:58:24.652Z",
+  "finishedAt": "2026-11-17T21:58:26.010Z",
+  "surface": "tui",
+  "driver": "tui",
+  "driverVersion": "termscope 0.1.1",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "assertion",
+      "path": "cases/assertion/case.json"
+    },
+    {
+      "id": "prerequisite",
+      "path": "cases/prerequisite/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/assertion/case.json",
+      "sha256": "6b6721824dfd4e40d5614303c2fc05466b31a0317401cfc7833013a2352f303b"
+    },
+    {
+      "path": "cases/assertion/events.jsonl",
+      "sha256": "616422ab8f32134eb729de352fb6e240f3a9a5e2ffe54122808ed94a35d9a459"
+    },
+    {
+      "path": "cases/assertion/index.md",
+      "sha256": "f1c2305cc5ab1425c0ce03ea6b4064c8ece4a864c8abe452f90e741850504b0e"
+    },
+    {
+      "path": "cases/assertion/media/step-001-step-assertion-001-native-terminal--capture-001--capture-001.png",
+      "sha256": "900d43ee08b4ebc10c944d6f60ecd06f73c2c51cf3131436fe4daa8998fcd184"
+    },
+    {
+      "path": "cases/prerequisite/case.json",
+      "sha256": "987dbf304e1cc7c483f0fa85c9c23fb55bb8204e9b1621e60763b5930f136acc"
+    },
+    {
+      "path": "cases/prerequisite/events.jsonl",
+      "sha256": "870f0b47025b7b72d250664eac27e98c7356195522101426885f540cb7ed687f"
+    },
+    {
+      "path": "cases/prerequisite/index.md",
+      "sha256": "5e7baf98f28912d49e781f3aa98b2810a088e2c3843108e66786b5524bb6c02f"
+    },
+    {
+      "path": "index.md",
+      "sha256": "b8bd739c0e26fa40bf197274c8834e5daa03718525b9042f3d8edf80b10d7cf2"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "89364377948c345b32200d103d28c0703e3a5947d7f67d94fdd4aeba45596507"
+    },
+    {
+      "path": "native/report/shots/step-assertion-001-native-terminal--capture-001.png",
+      "sha256": "900d43ee08b4ebc10c944d6f60ecd06f73c2c51cf3131436fe4daa8998fcd184"
+    },
+    {
+      "path": "native/runs/case-assertion.log",
+      "sha256": "a5f02af0f1bd78a22b7714466809c26150249577356d50f934f2832615f42428"
+    },
+    {
+      "path": "native/workflows/ce-tui-93eb25f2-24ac-471b-9f2f-62d9358f40db-cage.stderr",
+      "sha256": "cff642bab40ea04bc5e91cbd67dfc941538e5782af57d36f94529c7e2db38b6a"
+    },
+    {
+      "path": "native/workflows/ce-tui-93eb25f2-24ac-471b-9f2f-62d9358f40db-frame-000001.png",
+      "sha256": "cec04114320172706aff70a86c72ac2add97865b96d57a5007f4f5afed47f356"
+    },
+    {
+      "path": "native/workflows/ce-tui-93eb25f2-24ac-471b-9f2f-62d9358f40db-frame-000002.png",
+      "sha256": "900d43ee08b4ebc10c944d6f60ecd06f73c2c51cf3131436fe4daa8998fcd184"
+    },
+    {
+      "path": "native/workflows/ce-tui-93eb25f2-24ac-471b-9f2f-62d9358f40db-frame-000003.png",
+      "sha256": "900d43ee08b4ebc10c944d6f60ecd06f73c2c51cf3131436fe4daa8998fcd184"
+    },
+    {
+      "path": "native/workflows/ce-tui-93eb25f2-24ac-471b-9f2f-62d9358f40db-frame-000004.png",
+      "sha256": "900d43ee08b4ebc10c944d6f60ecd06f73c2c51cf3131436fe4daa8998fcd184"
+    },
+    {
+      "path": "native/workflows/ce-tui-93eb25f2-24ac-471b-9f2f-62d9358f40db-frame-000005.png",
+      "sha256": "900d43ee08b4ebc10c944d6f60ecd06f73c2c51cf3131436fe4daa8998fcd184"
+    },
+    {
+      "path": "native/workflows/ce-tui-93eb25f2-24ac-471b-9f2f-62d9358f40db-termscope.jsonl",
+      "sha256": "36ce1c987cb51d38e8d937e23ba389bc5d0244acba39ab2c3fb41f596ec1f235"
+    },
+    {
+      "path": "native/workflows/ce-tui-93eb25f2-24ac-471b-9f2f-62d9358f40db-termscope.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/workflows/tui-assertion.json",
+      "sha256": "9d47e28410f1216a8e223f152167e3416ae3f527d357192649ae44afd028c4c2"
+    },
+    {
+      "path": "native/workflows/tui-assertion.log",
+      "sha256": "a5f02af0f1bd78a22b7714466809c26150249577356d50f934f2832615f42428"
+    },
+    {
+      "path": "native/workflows/tui-prerequisite.json",
+      "sha256": "435e3ff5d7fc65d178dcd7578ac8fd42919710d6fa59ca468cca35a384b42215"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "b9c65e23b6b361f9aadeb00c5d0f82aca8046c597ab459213d5e8d239ff3aa8d"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "89364377948c345b32200d103d28c0703e3a5947d7f67d94fdd4aeba45596507"
+    }
+  ]
+}

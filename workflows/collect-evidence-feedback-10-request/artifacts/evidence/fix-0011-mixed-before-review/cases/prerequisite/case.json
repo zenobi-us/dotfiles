@@ -1,0 +1,101 @@
+{
+  "kind": "case",
+  "id": "prerequisite",
+  "order": 2,
+  "purpose": "Stop at missing required screen",
+  "preconditions": [
+    {
+      "id": "missing-screen",
+      "desc": "Required screen is unavailable",
+      "check": {
+        "locator": "screen",
+        "text": "Unavailable required screen",
+        "timeoutMs": 500
+      }
+    }
+  ],
+  "expected": {
+    "pass": "Deliberately wrong width matches",
+    "fail": "Native width differs"
+  },
+  "steps": [
+    {
+      "id": "prerequisite.1",
+      "order": 1,
+      "purpose": "Check real terminal dimensions against deliberately wrong width.",
+      "actions": {
+        "do": "expect",
+        "says": "Check real terminal dimensions against deliberately wrong width.",
+        "locator": "screen",
+        "text": "Ready screen",
+        "shot": "native-terminal",
+        "timeoutMs": 700,
+        "image": {
+          "width": 1281,
+          "height": 720,
+          "pixels": [
+            {
+              "x": 10,
+              "y": 55,
+              "rgb": [
+                36,
+                36,
+                36
+              ]
+            }
+          ],
+          "lines": [
+            {
+              "text": "Ready screen",
+              "top": 11,
+              "tolerance": 2
+            },
+            {
+              "text": "Selected item",
+              "top": 31,
+              "tolerance": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "text": "Ready screen",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "The test did not run."
+      ],
+      "assertionResult": "not-run"
+    }
+  ],
+  "events": "source/cases/prerequisite/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "prerequisite.error-001",
+      "caseId": "prerequisite",
+      "stepId": "prerequisite.1",
+      "category": "blocked",
+      "message": "The test did not run."
+    }
+  ],
+  "limits": [
+    "Native video is unavailable.",
+    "OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.",
+    "The private headless display does not reproduce a borrowed desktop terminal.",
+    "Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match."
+  ],
+  "sideEffects": [
+    "The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.",
+    "Collector-owned resources were released before sealing; borrowed terminals were not attached or closed."
+  ],
+  "schema": "collect-feedback/v1",
+  "sessionId": "fix-0011-mixed-before-review",
+  "source": {
+    "runId": "fix-0011-mixed-before",
+    "caseId": "prerequisite"
+  }
+}
