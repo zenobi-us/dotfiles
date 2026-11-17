@@ -1,0 +1,36 @@
+{
+  "argv": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/skills/git/cleanup-merged/scripts/cleanup-merged.ts",
+    "remove",
+    "feature/collect-evidence-feedback-09-history",
+    "integration/49522d3e-604b-4d37-aad4-0d48c398b334",
+    "integration/15336ed8-0fc9-4196-99fa-8ff996dfc45c",
+    "integration/0e572b7f-af7e-4a05-bc47-b67524e446c0",
+    "integration/bd2b1868-fc90-4b62-9b82-e6983fe6a904",
+    "--min-age=0s"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "exit_code": 1,
+  "removed": [
+    "integration/49522d3e-604b-4d37-aad4-0d48c398b334",
+    "integration/15336ed8-0fc9-4196-99fa-8ff996dfc45c",
+    "integration/0e572b7f-af7e-4a05-bc47-b67524e446c0",
+    "integration/bd2b1868-fc90-4b62-9b82-e6983fe6a904"
+  ],
+  "refused": [
+    {
+      "branch": "feature/collect-evidence-feedback-09-history",
+      "path": null,
+      "reason": "not a Worktrunk prune candidate: unmerged, dirty, or younger than the age guard"
+    }
+  ],
+  "source_observation": {
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+    "commit": "6a99dc3b3b7e61d293dc47492cbc6590677ce994",
+    "modified": false,
+    "untracked": false,
+    "merge_conflicts": true
+  },
+  "workspace_closed": true,
+  "source_worktree_preserved": true
+}

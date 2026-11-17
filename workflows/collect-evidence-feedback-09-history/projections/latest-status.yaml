@@ -1,8 +1,8 @@
 schema: worktree-latest-status/v1
 workflow_id: collect-evidence-feedback-09-history
 ticket: tracker/tickets/collect-evidence-feedback-09-history.md
-state: REVIEW_PASSED
-latest_receipt: review-complete-0034
+state: FINISH_FAILED
+latest_receipt: finish-cleanup-pending-0045
 latest_source_commit: 6a99dc3b3b7e61d293dc47492cbc6590677ce994
 latest_source_tree: 417db5cbd797ef7c1c65c19c4e1b1f8335b295ee
 latest_review_verdict: SUCCESS
@@ -11,3 +11,11 @@ open_findings: []
 resolved_findings: [SPEC-01, SPEC-02, STD-01, SPEC-03]
 review_pending: false
 parent_completion_pending: false
+merged_commit: b9cb245a51de4b8eaa3f9e15acefbedd8752e87d
+integration_method: squash
+pushed: true
+ticket_completed: true
+worktree_removed: false
+workspace_closed: true
+cleanup_pending: true
+failure_step: cleanup_source_worktree

@@ -195,3 +195,16 @@ The historical suite passed 7 tests and 157 assertions. The reviewer exercised 4
 The reviewer tab and nested tabs closed. All owned feedback servers and the four operator-approved OMP processes stopped. [Resource observations](../artifacts/snapshots/resources-review-0032.json). Shared and unrelated resources were not signalled.
 
 Source is unchanged. Review metadata is committed locally, not pushed. No merge or ticket completion occurred. Integration must assess base movement and validate a separate candidate. Earlier review and fix history remains above.
+
+## Finish: published; source cleanup pending
+
+Squash integration `b9cb245a51de4b8eaa3f9e15acefbedd8752e87d` is published on `origin/master`. Ticket status is completed, published by `b789532d77c2f18f4f17f0ecb9e174e8d6d5dbcf`. Review `review-0032` remains SUCCESS for the unchanged source. Candidate-bound scoped tests and the public historical import/export/report scenario passed. Original bytes, capture time, common case/result records and saved-session hashes were preserved. Browser proof remains in the independent review; finish did not rerun the browser.
+
+Finish-only smoke preparation errors were corrected without product edits. Their append-only attempts remain in events `finish-failed-0036`, `finish-failed-0038` and `finish-failed-0040`.
+
+All four integration candidates were removed. Reviewer-owned resources have confirmed shutdown. The source workspace is clean but remains because Worktrunk refuses it as a prune candidate and reports merge conflicts after tracker completion. No force or bypass was used. Unrelated base changes and workspaces remain untouched. Published acceptance is complete; terminal FINISHED is not claimed.
+
+- **Finish receipt:** [cleanup pending](../events/finish-cleanup-pending-0045.yaml).
+- **Integration evidence:** [result](../artifacts/snapshots/integration-result-finish-0041.json), [publication](../events/finish-pushed-0043.yaml), [tracker completion](../events/finish-ticket-completed-0044.yaml).
+- **Cleanup evidence:** [refusal](../artifacts/snapshots/cleanup-finish-0045.json), [resources](../artifacts/snapshots/resources-finish-0044.json).
+- **Remaining action:** Resolve the named source branch prune refusal through Worktrunk without altering the reviewed source or bypassing cleanup guards.
