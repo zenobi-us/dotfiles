@@ -1,0 +1,6 @@
+feat(feedback): collect-evidence-feedback-09-history
+
+Import historical evidence without rewriting source artifacts.
+
+Ticket: tracker/tickets/collect-evidence-feedback-09-history.md
+Review: workflows/collect-evidence-feedback-09-history/events/review-0032.yaml

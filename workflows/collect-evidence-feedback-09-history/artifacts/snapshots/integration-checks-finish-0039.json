@@ -1,0 +1,23 @@
+[
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/test/report-cli.test.ts",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/history-workflow.test.ts"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "-e",
+      "import assert from 'node:assert/strict'; import {mkdtemp,mkdir,rm,readdir,readFile,cp,chmod} from 'node:fs/promises'; import {join,resolve} from 'node:path'; import {createHash} from 'node:crypto'; const cwd=process.cwd(), base=resolve('mise/conf.d/devtools-agent/bundles/developer/skills'), fixture=join(base,'browsers/collect-feedback/scripts/collect-feedback/test/historical-run'), feedback=join(base,'browsers/collect-feedback/scripts/collect-feedback.ts'), evidence=join(base,'browsers/collect-evidence/scripts/collect-evidence.ts'), reports=join(base,'devtools/writing-reports/scripts/report-cli.ts'); async function run(argv){let p=Bun.spawn(argv,{cwd:'/tmp',stdout:'pipe',stderr:'pipe'}); let [out,err,code]=await Promise.all([new Response(p.stdout).text(),new Response(p.stderr).text(),p.exited]);assert.equal(code,0,err);return out;} async function hashes(root,prefix=''){let result=[];for(let entry of await readdir(join(root,prefix),{withFileTypes:true})){let path=join(prefix,entry.name);result.push(...(entry.isDirectory()?await hashes(root,path):[[path,createHash('sha256').update(await readFile(join(root,path))).digest('hex')]]));}return result.sort((a,b)=>a[0].localeCompare(b[0]));} let tmp=await mkdtemp('/tmp/history-finish-');try{let source=join(tmp,'earlier-run');await cp(fixture,source,{recursive:true});async function seal(root){for(let entry of await readdir(root,{withFileTypes:true})){let path=join(root,entry.name);if(entry.isDirectory())await seal(path);else await chmod(path,0o444);}await chmod(root,0o555);}await seal(source);let repository=join(tmp,'repository');await mkdir(repository);await run(['git','init','--quiet',repository]);await run(['git','-C',repository,'remote','add','origin','https://example.invalid/history.git']);await Bun.write(join(repository,'.context-routes.toml'),'schema = 2\\n[records.alignment]\\nadapter = \"markdown\"\\nstore = \"repository\"\\n[records.tickets]\\nadapter = \"local-markdown\"\\nstore = \"repository\"\\n[records.initiatives]\\nadapter = \"markdown\"\\nstore = \"repository\"\\n[records.sources]\\nadapter = \"files\"\\nstore = \"inherit:alignment\"\\n[records.workflows]\\nadapter = \"files\"\\nstore = \"repository\"\\n[records.evidence]\\nadapter = \"files\"\\nstore = \"repository\"\\n');let before=await hashes(source);let imported=JSON.parse(await run([feedback,'init',source,'--historical','--repository',repository,'--workflow','history','--session','finish','--json']));assert.equal(imported.session.historical,true);let session=imported.destination.path;let saved=await hashes(session);let exported=JSON.parse(await run([feedback,'export',session,'--json']));let report=JSON.parse(await run([reports,'evidence',session,'--feedback','--json']));let common=JSON.parse(await run([evidence,'report',source,'--historical','--json']));assert.equal(report.historical,true);assert.deepEqual(report.feedback,exported);assert.deepEqual(report.cases,common.cases);assert.deepEqual(report.verdicts,common.verdicts);assert.equal(report.cases[0].assets[0].capturedAt,'2026-11-13T10:47:56.683Z');assert.deepEqual(await hashes(source),before);assert.deepEqual(await hashes(session),saved);console.log(JSON.stringify({success:true,historical:true,cases:report.cases.map(c=>c.id),capturedAt:report.cases[0].assets[0].capturedAt,originalsUnchanged:true,sessionUnchanged:true}));}finally{await rm(tmp,{recursive:true,force:true});}"
+    ]
+  }
+]
