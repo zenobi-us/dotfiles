@@ -1,0 +1,132 @@
+{
+  "before": {
+    "manifest": {
+      "runId": "fa789a5f-7819-4607-b678-eaa724723d9b",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t1f7",
+      "createdAt": "2026-11-17T06:22:24.578Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+      "operationId": "collect-evidence-feedback-09-history-fix-0027"
+    },
+    "resources": {
+      "version": 1,
+      "runId": "fa789a5f-7819-4607-b678-eaa724723d9b",
+      "observedAt": "2026-11-17T06:33:59.223Z",
+      "processes": [
+        {
+          "pid": 1317917,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "38156679",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "running"
+        },
+        {
+          "pid": 1320554,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "38164852",
+          "command": "omp daemon brok",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "running"
+        },
+        {
+          "pid": 1320581,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "38164858",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "running"
+        },
+        {
+          "pid": 1337515,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "38198519",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "running"
+        }
+      ],
+      "shutdown": "pending"
+    }
+  },
+  "after_terminal_close": {
+    "manifest": {
+      "runId": "fa789a5f-7819-4607-b678-eaa724723d9b",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t1f7",
+      "createdAt": "2026-11-17T06:22:24.578Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+      "operationId": "collect-evidence-feedback-09-history-fix-0027"
+    },
+    "resources": {
+      "version": 1,
+      "runId": "fa789a5f-7819-4607-b678-eaa724723d9b",
+      "observedAt": "2026-11-17T06:33:59.744Z",
+      "processes": [
+        {
+          "pid": 1317917,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "38156679",
+          "command": "omp",
+          "parentPid": 1317534,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "stopped"
+        },
+        {
+          "pid": 1320554,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "38164852",
+          "command": "omp daemon brok",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "running"
+        },
+        {
+          "pid": 1320581,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "38164858",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "running"
+        },
+        {
+          "pid": 1337515,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "38198519",
+          "command": "omp",
+          "parentPid": 1317917,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "pending"
+    }
+  },
+  "operator_approval": "User selected Terminate owned processes for PIDs1320554,1320581; pidfd/start-tick identity checked before SIGTERM; SIGCONT only if stopped.",
+  "after": {
+    "approved": true,
+    "identities": [
+      {
+        "pid": 1320554,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "38164852",
+        "command": "omp daemon brok",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+        "state": "running"
+      },
+      {
+        "pid": 1320581,
+        "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+        "startTicks": "38164858",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+        "state": "running"
+      }
+    ],
+    "all_exited": true,
+    "remaining": []
+  },
+  "terminal_removed": true,
+  "user_resources_preserved": true
+}

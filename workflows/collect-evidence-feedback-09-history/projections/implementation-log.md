@@ -156,3 +156,30 @@ Parent verified exact clean source 5e1ba904a178a7076aa556225beb4aff3288c65e and 
 ## Review review-0025 — current state
 
 FAILURE for source `5e1ba904a178a7076aa556225beb4aff3288c65e`, tree `f691de272e6f2a040eb594438236000de451f40a`. [Immutable review](../artifacts/reviews/review-review-0025.md); [result](../events/review-0025.yaml); [parent completion](../events/review-complete-0026.yaml). SPEC-01, SPEC-02 and STD-01 resolved. SPEC-03 is blocking: unreadable valid session/run manifests return invalid-input code2 instead of operation-failure code1. Seven tests passed with 89 assertions; actual CLI and historical browser save/reload exercised. Frozen source and saved feedback preserved. All three review terminals removed; operator-approved remaining reviewer/broker/browser processes confirmed exited. No merge or push. Next phase: fix.
+
+## Fix fix-0028 — pending fresh review
+
+[Fix result](../events/fix-0028.yaml) consumes [review-0025](../events/review-0025.yaml) through [fix-start-0027](../events/fix-start-0027.yaml). The [immutable review](../artifacts/reviews/review-review-0025.md) remains FAILURE for the previous source. SPEC-03 is resolved; SPEC-01, SPEC-02 and STD-01 remain resolved.
+
+Source commit: 6a99dc3b3b7e61d293dc47492cbc6590677ce994. Source tree: 417db5cbd797ef7c1c65c19c4e1b1f8335b295ee. Shared validators preserve filesystem operation errors. JSON syntax and record-shape errors remain invalid input. Safety checks remain unchanged.
+
+### Changed files in fix-0028
+
+- **Changed path:** `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
+- **Changed path:** `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
+- **Changed path:** `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts`
+- **Changed path:** `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md`
+- **Changed path:** `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/records.ts`
+- **Changed path:** `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/history-workflow.test.ts`
+
+### Validation in fix-0028
+
+The scoped suite passed 7 tests and 157 assertions with no failures. The observed UID 1000 smoke passed 36 public command checks from /tmp. Unreadable manifests and annotations returned code 1. Malformed JSON, unsupported schemas and prior parser errors returned code 2. Exact original modes and complete source/saved-session hashes were preserved.
+
+[Runtime snapshot](../artifacts/snapshots/runtime-fix-0028.json). [Immutable draft](../artifacts/snapshots/pr-draft-fix-0028.md). LSP references were unavailable because TypeScript initialization failed. No exported signatures changed.
+
+No open questions. No merge, push, tracker mutation or publication commit. Temporary stores and smoke script removed; child terminal remains parent-owned. Parent completion and fresh review are pending.
+
+## Parent completion fix-complete-0029
+
+Parent verified clean source 6a99dc3b3b7e61d293dc47492cbc6590677ce994 and authoritative fix-0028 transport match. Seven tests passed with 157 assertions; public historical report succeeded. Fixer t1f7 removed; operator-approved broker and worker shutdown confirmed with exact process identities. [Completion](../events/fix-complete-0029.yaml); [resource observation](../artifacts/snapshots/resources-fix-0028.json). Source preserved for fresh independent review. No merge or push.

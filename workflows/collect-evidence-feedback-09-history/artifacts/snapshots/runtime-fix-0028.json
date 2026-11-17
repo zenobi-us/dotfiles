@@ -1,0 +1,970 @@
+{
+  "uid": 1000,
+  "observations": [
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "init",
+        "/tmp/spec03-runtime-o934WV/earlier-run",
+        "--repository",
+        "/tmp/spec03-runtime-o934WV/repository",
+        "--workflow",
+        "spec03",
+        "--session",
+        "review",
+        "--historical",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "historical import",
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "schema": "collect-feedback/v1",
+      "kind": "event",
+      "stderr": "",
+      "stdout_sha256": "f800df8e06a28b8886f8874a50b20a02e1edbd3232a98100ee1433442ca7e9c2"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "export",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "valid export",
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "schema": "collect-feedback/v1",
+      "kind": "export",
+      "stderr": "",
+      "stdout_sha256": "e8ed8b055096001a4433f33304307f8a243be02eab99b845d48bf50935348685"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "valid historical report",
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "schema": "collect-evidence/v1",
+      "kind": "event",
+      "stderr": "",
+      "stdout_sha256": "ce8304800a2bbcfaa30b88a6df76b6b961c6840ba91e3da82a732a6dd2a56188"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "EACCES session.json",
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 1,
+      "stderr": "EACCES: permission denied, open '/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review/session.json'",
+      "stdout_sha256": "f2050422cf9a465db4352c6b90362c62b26f83733cb56be1438db1b3a4d5ec0b"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "restored session.json",
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "schema": "collect-evidence/v1",
+      "kind": "event",
+      "stderr": "",
+      "stdout_sha256": "ce8304800a2bbcfaa30b88a6df76b6b961c6840ba91e3da82a732a6dd2a56188"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "EACCES source/run.json",
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 1,
+      "stderr": "EACCES: permission denied, open '/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review/source/run.json'",
+      "stdout_sha256": "2f3837eb29d19ea659a5f13a934e9f5eabecf5a1f7cec5c90a339b07322b1085"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review/source",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "plain evidence EACCES",
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 1,
+      "stderr": "EACCES: permission denied, open '/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review/source/run.json'",
+      "stdout_sha256": "2f3837eb29d19ea659a5f13a934e9f5eabecf5a1f7cec5c90a339b07322b1085"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+        "validate",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review/source",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "collector validate EACCES",
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 1,
+      "stderr": "EACCES: permission denied, open '/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review/source/run.json'",
+      "stdout_sha256": "628352abc36ba63c9876fe0ff86b6353f67bfa8283807e224c2608758e91f85c"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "export",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "feedback export EACCES",
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "schema": "collect-feedback/v1",
+      "kind": "error",
+      "envelope_code": 1,
+      "stderr": "Feedback operation failed; check input files, permissions and explicit port availability",
+      "stdout_sha256": "8d093d8f1178a14a7925b143df0b3a99d7cb802999fcd1ea624fe142e8ec6dd8"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "validate",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "feedback validate EACCES",
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "schema": "collect-feedback/v1",
+      "kind": "error",
+      "envelope_code": 1,
+      "stderr": "Feedback operation failed; check input files, permissions and explicit port availability",
+      "stdout_sha256": "8d093d8f1178a14a7925b143df0b3a99d7cb802999fcd1ea624fe142e8ec6dd8"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "restored source/run.json",
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "schema": "collect-evidence/v1",
+      "kind": "event",
+      "stderr": "",
+      "stdout_sha256": "ce8304800a2bbcfaa30b88a6df76b6b961c6840ba91e3da82a732a6dd2a56188"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "EACCES source/plan.json",
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 1,
+      "stderr": "EACCES: permission denied, open '/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review/source/plan.json'",
+      "stdout_sha256": "bbe9f4ce7af156867c223df9712dab4c942bc18a8d2f540a344fac67b14fb42f"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "restored source/plan.json",
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "schema": "collect-evidence/v1",
+      "kind": "event",
+      "stderr": "",
+      "stdout_sha256": "ce8304800a2bbcfaa30b88a6df76b6b961c6840ba91e3da82a732a6dd2a56188"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "EACCES source/cases/original/case.json",
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 1,
+      "stderr": "EACCES: permission denied, open '/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review/source/cases/original/case.json'",
+      "stdout_sha256": "dc75551ff321ed7a844c3005ba02638d500b0297a3cb8a50759f9a08d0232868"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "restored source/cases/original/case.json",
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "schema": "collect-evidence/v1",
+      "kind": "event",
+      "stderr": "",
+      "stdout_sha256": "ce8304800a2bbcfaa30b88a6df76b6b961c6840ba91e3da82a732a6dd2a56188"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "EACCES cases/original/case.json",
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 1,
+      "stderr": "EACCES: permission denied, open '/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review/cases/original/case.json'",
+      "stdout_sha256": "34fa5a433cb511ddb1b7ed568ad5c5d1695739fce4495130fd4db96cf5bb19b4"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "restored cases/original/case.json",
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "schema": "collect-evidence/v1",
+      "kind": "event",
+      "stderr": "",
+      "stdout_sha256": "ce8304800a2bbcfaa30b88a6df76b6b961c6840ba91e3da82a732a6dd2a56188"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "EACCES cases/original/annotations/146eaa91-8e0d-4575-986f-79594c9f045e.json",
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 1,
+      "stderr": "EACCES: permission denied, open '/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review/cases/original/annotations/146eaa91-8e0d-4575-986f-79594c9f045e.json'",
+      "stdout_sha256": "b029ba9a80546aa75ce57bc8ceb659e4c01fd01e76168f3d9b335bc289d52ad0"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "restored cases/original/annotations/146eaa91-8e0d-4575-986f-79594c9f045e.json",
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "schema": "collect-evidence/v1",
+      "kind": "event",
+      "stderr": "",
+      "stdout_sha256": "ce8304800a2bbcfaa30b88a6df76b6b961c6840ba91e3da82a732a6dd2a56188"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "EACCES source/native",
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 1,
+      "stderr": "EACCES: permission denied, scandir '/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review/source/native'",
+      "stdout_sha256": "a063088c927d6cbb755436f7345f8da33c2fc53a19516c1fe9a83368bf7be65c"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "restored source/native",
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "schema": "collect-evidence/v1",
+      "kind": "event",
+      "stderr": "",
+      "stdout_sha256": "ce8304800a2bbcfaa30b88a6df76b6b961c6840ba91e3da82a732a6dd2a56188"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "malformed JSON session.json",
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 2,
+      "stderr": "Invalid feedback session: malformed records",
+      "stdout_sha256": "ef56ffa622dff3eed679132e378acf679c781b8b5107802012dc3059af5fa2bb"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "unsupported schema session.json",
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 2,
+      "stderr": "Unsupported feedback session schema or kind",
+      "stdout_sha256": "590de1e4a7fd9fc1f943af6799a1030b12f3446e87bf029c6791ab07a3a65a04"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "malformed JSON source/run.json",
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 2,
+      "stderr": "Invalid evidence run: JSON Parse error: Expected '}'",
+      "stdout_sha256": "f4127977a674190442d633ec4163e0412866e22f6cb3882e2cefbd886866177f"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "unsupported schema source/run.json",
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 2,
+      "stderr": "Unsupported schema or invalid record kind",
+      "stdout_sha256": "db59ba99ecea3c18e3db098d7969b70bada911d830ad9fc84fc61c8839ec3d71"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "malformed JSON source/plan.json",
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 2,
+      "stderr": "Invalid evidence run: JSON Parse error: Expected '}'",
+      "stdout_sha256": "f4127977a674190442d633ec4163e0412866e22f6cb3882e2cefbd886866177f"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "unsupported schema source/plan.json",
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 2,
+      "stderr": "Unsupported schema or invalid record kind",
+      "stdout_sha256": "db59ba99ecea3c18e3db098d7969b70bada911d830ad9fc84fc61c8839ec3d71"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "malformed JSON cases/original/case.json",
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 2,
+      "stderr": "Invalid feedback session: malformed records",
+      "stdout_sha256": "ef56ffa622dff3eed679132e378acf679c781b8b5107802012dc3059af5fa2bb"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "unsupported schema cases/original/case.json",
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 2,
+      "stderr": "Unsupported feedback case schema or kind",
+      "stdout_sha256": "fa351e40c4d2d69f6b18e55e9d68c0bdc0f6e51b59d30e0ab7aba264fb9e1ef2"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "malformed JSON cases/original/annotations/146eaa91-8e0d-4575-986f-79594c9f045e.json",
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 2,
+      "stderr": "Annotation record is malformed JSON",
+      "stdout_sha256": "7e20601ae1e8268ed656985d8e09ce94c054f5a567329427b612f40340741f20"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "unsupported schema cases/original/annotations/146eaa91-8e0d-4575-986f-79594c9f045e.json",
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 2,
+      "stderr": "Unsupported annotation schema or kind",
+      "stdout_sha256": "26b9203c5e69867fe9312ba98ac5f933c081b6c12182061581af732a202df53a"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "prior parser boundary",
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 2,
+      "stderr": "Missing required argument \"<directory>\"",
+      "stdout_sha256": "1720ea67c84b49c390d6db4fb9acaee5a4a5331b1813511fe5b322e39a4d73bc"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--unknown",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "prior parser boundary",
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 2,
+      "stderr": "Unknown flag \"--unknown\"",
+      "stdout_sha256": "75465ce00f0c271a884f4b7a9907bbf3a045f7cf568c3a588242552d795d45ef"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--historical=invalid",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "prior parser boundary",
+      "expected_exit_code": 2,
+      "exit_code": 2,
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "envelope_code": 2,
+      "stderr": "Failed to parse command arguments",
+      "stdout_sha256": "22e24a257363b730a5453bccc6d6eae636c642b3975eba677e7880a3af786d2f"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "final historical report",
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "schema": "collect-evidence/v1",
+      "kind": "event",
+      "stderr": "",
+      "stdout_sha256": "ce8304800a2bbcfaa30b88a6df76b6b961c6840ba91e3da82a732a6dd2a56188"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+        "export",
+        "/tmp/spec03-runtime-o934WV/repository/workflows/spec03/artifacts/evidence/review",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "condition": "final export",
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "schema": "collect-feedback/v1",
+      "kind": "export",
+      "stderr": "",
+      "stdout_sha256": "e8ed8b055096001a4433f33304307f8a243be02eab99b845d48bf50935348685"
+    }
+  ],
+  "restored_modes": [
+    {
+      "path": "session.json",
+      "original": 420,
+      "restored": 420
+    },
+    {
+      "path": "source/run.json",
+      "original": 292,
+      "restored": 292
+    },
+    {
+      "path": "source/plan.json",
+      "original": 292,
+      "restored": 292
+    },
+    {
+      "path": "source/cases/original/case.json",
+      "original": 292,
+      "restored": 292
+    },
+    {
+      "path": "cases/original/case.json",
+      "original": 420,
+      "restored": 420
+    },
+    {
+      "path": "cases/original/annotations/146eaa91-8e0d-4575-986f-79594c9f045e.json",
+      "original": 384,
+      "restored": 384
+    },
+    {
+      "path": "source/native",
+      "original": 365,
+      "restored": 365
+    }
+  ],
+  "source_hashes_before": [
+    [
+      "cases/original/case.json",
+      "61d51f9de020b596ddcb848a6f8ce18ebbfb57e9878d916e5661d384b96a6399"
+    ],
+    [
+      "cases/original/events.jsonl",
+      "f0a191a70d03a5b173cabf02451150c4a17e1f36484caf93775c7f3f9ab66519"
+    ],
+    [
+      "cases/original/index.md",
+      "d44aa2276abf85dcd1246566ef07c7cf18bff1cbd51334a7b6060815e3a787c1"
+    ],
+    [
+      "cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "index.md",
+      "baf7d5fafb876b65881be8a7ff2d625cd33092de31011068380755d156917fd9"
+    ],
+    [
+      "native/plan.ts",
+      "509c0bf4b44f459ccc0836284d61c05c99a4009d090cf6e982330210edff6866"
+    ],
+    [
+      "native/report/shots/step-original-002-original--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "native/report/shots/step-original-002-original--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "native/runs/case-original.log",
+      "b9eb08902c6a3c970ce0e49915ce0d086923cd368769d4772b9ea0b105692ef4"
+    ],
+    [
+      "native/workflows/smoke-test-original.js",
+      "012cfeb5f462c4064d78f5d5c2b97e44d1607a5b2b6e29da50148353399de04e"
+    ],
+    [
+      "plan.json",
+      "6257f1fdb949c6d01cc3f46b4f504f18399d61b1bc3175cc60f80935b7c4c5d8"
+    ],
+    [
+      "plan.ts",
+      "509c0bf4b44f459ccc0836284d61c05c99a4009d090cf6e982330210edff6866"
+    ],
+    [
+      "run.json",
+      "205c51c158cde6e3c72f3aaa51328ec490a395f7c0215f1537dea9f8b639d90e"
+    ]
+  ],
+  "source_hashes_after": [
+    [
+      "cases/original/case.json",
+      "61d51f9de020b596ddcb848a6f8ce18ebbfb57e9878d916e5661d384b96a6399"
+    ],
+    [
+      "cases/original/events.jsonl",
+      "f0a191a70d03a5b173cabf02451150c4a17e1f36484caf93775c7f3f9ab66519"
+    ],
+    [
+      "cases/original/index.md",
+      "d44aa2276abf85dcd1246566ef07c7cf18bff1cbd51334a7b6060815e3a787c1"
+    ],
+    [
+      "cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "index.md",
+      "baf7d5fafb876b65881be8a7ff2d625cd33092de31011068380755d156917fd9"
+    ],
+    [
+      "native/plan.ts",
+      "509c0bf4b44f459ccc0836284d61c05c99a4009d090cf6e982330210edff6866"
+    ],
+    [
+      "native/report/shots/step-original-002-original--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "native/report/shots/step-original-002-original--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "native/runs/case-original.log",
+      "b9eb08902c6a3c970ce0e49915ce0d086923cd368769d4772b9ea0b105692ef4"
+    ],
+    [
+      "native/workflows/smoke-test-original.js",
+      "012cfeb5f462c4064d78f5d5c2b97e44d1607a5b2b6e29da50148353399de04e"
+    ],
+    [
+      "plan.json",
+      "6257f1fdb949c6d01cc3f46b4f504f18399d61b1bc3175cc60f80935b7c4c5d8"
+    ],
+    [
+      "plan.ts",
+      "509c0bf4b44f459ccc0836284d61c05c99a4009d090cf6e982330210edff6866"
+    ],
+    [
+      "run.json",
+      "205c51c158cde6e3c72f3aaa51328ec490a395f7c0215f1537dea9f8b639d90e"
+    ]
+  ],
+  "session_hashes_before": [
+    [
+      "cases/original/annotations/146eaa91-8e0d-4575-986f-79594c9f045e.json",
+      "1a2def3310e28e8b4b3fe3a2cb10cae896bb981af50eebeda6523f85a4be2db6"
+    ],
+    [
+      "cases/original/case.json",
+      "9264561fee850d4ea3a5c4eb239f28134ddccad6a5e1c8dfe545c11eec2a84f6"
+    ],
+    [
+      "cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "cases/original/notes.md",
+      "130c4a51c2d45a91ab0e3457cb4b9ecd554db981c161eaf9ea0306bb7c91cdae"
+    ],
+    [
+      "index.md",
+      "19c80b9bb231a2bd7475cdfa8ee2763d6ff0e316bf6d1c1214657413be21ed07"
+    ],
+    [
+      "session.json",
+      "beb6031d0eda55ae6fb9b1350e3c998d8a57f7f94879b119d6ebd4eae7401924"
+    ],
+    [
+      "source/cases/original/case.json",
+      "61d51f9de020b596ddcb848a6f8ce18ebbfb57e9878d916e5661d384b96a6399"
+    ],
+    [
+      "source/cases/original/events.jsonl",
+      "f0a191a70d03a5b173cabf02451150c4a17e1f36484caf93775c7f3f9ab66519"
+    ],
+    [
+      "source/cases/original/index.md",
+      "d44aa2276abf85dcd1246566ef07c7cf18bff1cbd51334a7b6060815e3a787c1"
+    ],
+    [
+      "source/cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "source/cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "source/index.md",
+      "baf7d5fafb876b65881be8a7ff2d625cd33092de31011068380755d156917fd9"
+    ],
+    [
+      "source/native/plan.ts",
+      "509c0bf4b44f459ccc0836284d61c05c99a4009d090cf6e982330210edff6866"
+    ],
+    [
+      "source/native/report/shots/step-original-002-original--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "source/native/report/shots/step-original-002-original--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "source/native/runs/case-original.log",
+      "b9eb08902c6a3c970ce0e49915ce0d086923cd368769d4772b9ea0b105692ef4"
+    ],
+    [
+      "source/native/workflows/smoke-test-original.js",
+      "012cfeb5f462c4064d78f5d5c2b97e44d1607a5b2b6e29da50148353399de04e"
+    ],
+    [
+      "source/plan.json",
+      "6257f1fdb949c6d01cc3f46b4f504f18399d61b1bc3175cc60f80935b7c4c5d8"
+    ],
+    [
+      "source/plan.ts",
+      "509c0bf4b44f459ccc0836284d61c05c99a4009d090cf6e982330210edff6866"
+    ],
+    [
+      "source/run.json",
+      "205c51c158cde6e3c72f3aaa51328ec490a395f7c0215f1537dea9f8b639d90e"
+    ]
+  ],
+  "session_hashes_after": [
+    [
+      "cases/original/annotations/146eaa91-8e0d-4575-986f-79594c9f045e.json",
+      "1a2def3310e28e8b4b3fe3a2cb10cae896bb981af50eebeda6523f85a4be2db6"
+    ],
+    [
+      "cases/original/case.json",
+      "9264561fee850d4ea3a5c4eb239f28134ddccad6a5e1c8dfe545c11eec2a84f6"
+    ],
+    [
+      "cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "cases/original/notes.md",
+      "130c4a51c2d45a91ab0e3457cb4b9ecd554db981c161eaf9ea0306bb7c91cdae"
+    ],
+    [
+      "index.md",
+      "19c80b9bb231a2bd7475cdfa8ee2763d6ff0e316bf6d1c1214657413be21ed07"
+    ],
+    [
+      "session.json",
+      "beb6031d0eda55ae6fb9b1350e3c998d8a57f7f94879b119d6ebd4eae7401924"
+    ],
+    [
+      "source/cases/original/case.json",
+      "61d51f9de020b596ddcb848a6f8ce18ebbfb57e9878d916e5661d384b96a6399"
+    ],
+    [
+      "source/cases/original/events.jsonl",
+      "f0a191a70d03a5b173cabf02451150c4a17e1f36484caf93775c7f3f9ab66519"
+    ],
+    [
+      "source/cases/original/index.md",
+      "d44aa2276abf85dcd1246566ef07c7cf18bff1cbd51334a7b6060815e3a787c1"
+    ],
+    [
+      "source/cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "source/cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "source/index.md",
+      "baf7d5fafb876b65881be8a7ff2d625cd33092de31011068380755d156917fd9"
+    ],
+    [
+      "source/native/plan.ts",
+      "509c0bf4b44f459ccc0836284d61c05c99a4009d090cf6e982330210edff6866"
+    ],
+    [
+      "source/native/report/shots/step-original-002-original--capture-001.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "source/native/report/shots/step-original-002-original--capture-002.png",
+      "40d80e8833bafd3907bb068ff6993da3684be21f94c724bf6ce3e82d7fffdb5f"
+    ],
+    [
+      "source/native/runs/case-original.log",
+      "b9eb08902c6a3c970ce0e49915ce0d086923cd368769d4772b9ea0b105692ef4"
+    ],
+    [
+      "source/native/workflows/smoke-test-original.js",
+      "012cfeb5f462c4064d78f5d5c2b97e44d1607a5b2b6e29da50148353399de04e"
+    ],
+    [
+      "source/plan.json",
+      "6257f1fdb949c6d01cc3f46b4f504f18399d61b1bc3175cc60f80935b7c4c5d8"
+    ],
+    [
+      "source/plan.ts",
+      "509c0bf4b44f459ccc0836284d61c05c99a4009d090cf6e982330210edff6866"
+    ],
+    [
+      "source/run.json",
+      "205c51c158cde6e3c72f3aaa51328ec490a395f7c0215f1537dea9f8b639d90e"
+    ]
+  ],
+  "source_preserved": true,
+  "saved_feedback_preserved": true,
+  "server_stopped": true,
+  "port": 37513,
+  "temporary_root": "/tmp/spec03-runtime-o934WV",
+  "temporary_store_removed": true
+}

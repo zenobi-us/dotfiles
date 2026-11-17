@@ -1,195 +1,60 @@
 ---
-title: Current historical evidence implementation
+title: Historical evidence PR draft
 type: Concept
 ---
 
-# Historical evidence review
+# SPEC-03 manifest read fix
 
-## Ticket
+## Ticket and source
 
-[collect-evidence-feedback-09-history](../../../tracker/tickets/collect-evidence-feedback-09-history.md) implements explicit reuse of earlier sealed evidence.
+Ticket: tracker/tickets/collect-evidence-feedback-09-history.md.
+Branch: feature/collect-evidence-feedback-09-history. Base: master.
+Commit: 6a99dc3b3b7e61d293dc47492cbc6590677ce994. Tree: 417db5cbd797ef7c1c65c19c4e1b1f8335b295ee. Source is committed and clean.
 
-## Problem
+## Problem and implementation
 
-Earlier-run imports preserved pixels but did not state that they showed an earlier application state. Report consumers lacked a public writing-reports command that reused feedback source validation.
+The shared run and session validators converted filesystem failures into invalid input. They now translate only JSON syntax and record-shape errors to code 2. Filesystem failures retain their original identity through the safe file and JSON readers. Existing CLI boundaries classify them as code 1. Explicit schema, path, hash and sealing validation still uses CliError(2).
 
-## Implementation
-
-- **Explicit selection:** Add collect-feedback init --historical. Keep the label on a new versioned session, without rewriting the source run.
-- **Shared reporting:** Add writing-reports evidence with explicit run or --feedback selection. Reuse validated collector cases, assets and verdicts. Return verified saved feedback in JSON.
-- **Historical labels:** Show the label in the bundled viewer, exports and HTML reports. Preserve capture times, null dates, provenance and immutable asset bytes.
-- **Regression fixture:** Retain a real 2026-11-13 archive. Check unsupported versions, unknown dates, case order, asset identities, source bytes and saved-note immutability through public boundaries.
-
-## Prior implementation source
-
-Branch: feature/collect-evidence-feedback-09-history
-
-Commit: 710abe78428a93c4d22f2981d71614f598bf82f5
-
-Tree: 49c19b9e9e19178bb21d826ae558d460e9035221
-
-Source commits: 67c190e3 and 710abe78. Repository commit hooks updated the developer bundle version to 0.2.45. The source checkout is clean.
+The bounded feedback reader already preserves filesystem failures. Its enclosing session validator no longer masks them. Common report, collector validation and feedback export use the same corrected validators. No exported signatures or report-only workaround changed.
 
 ## Changed files
 
-- `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
-- `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/evidence-schema.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/SKILL.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/how-to-browse-evidence.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/viewer-contract.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/annotations.ts`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/commands.ts`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/records.ts`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-fixture.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/cases/original/case.json`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/cases/original/events.jsonl`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/cases/original/index.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/index.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/native/plan.ts`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/native/report/shots/step-original-002-original--capture-001.png`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/native/report/shots/step-original-002-original--capture-002.png`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/native/runs/case-original.log`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/native/workflows/smoke-test-original.js`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/plan.json`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/plan.ts`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/run.json`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/history-workflow.test.ts`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/index.html`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/main.tsx`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/types.ts`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/SKILL.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts`
+- **Changed path:** `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
+- **Changed path:** `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
+- **Changed path:** `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts`
+- **Changed path:** `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md`
+- **Changed path:** `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/records.ts`
+- **Changed path:** `mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/history-workflow.test.ts`
 
-## Validation
+The commit hook generated the two plugin manifest version changes. Integration must assess their overlap with other work streams.
 
-- **Build and typecheck:** Both passed.
-- **Public regressions:** The initial suite passed 100 checks and failed two existing browser checks because Chrome was absent. The two checks passed after selecting installed Chromium. No test was skipped.
-- **Actual browser:** The earlier-run viewer displayed original pixels and the historical label. A saved note survived reload. The self-contained report displayed the same case and result.
-- **Read-only checks:** Repeated reports and exports preserved all source and saved-session file hashes.
-- **Cleanup:** The owned viewer stopped, its port closed, its writer lock disappeared and both owned browser tabs closed. The active child terminal and harness remain for parent shutdown.
+## Verification
 
-See [validation records](../artifacts/snapshots/history-validation-implementation-0002.json), [preservation proof](../artifacts/snapshots/history-preservation-implementation-0002.json), [cleanup proof](../artifacts/snapshots/history-cleanup-implementation-0002.json), [resource observation](../artifacts/snapshots/history-resources-implementation-0002.json), [saved export](../artifacts/snapshots/history-export-implementation-0002.json), [viewer screenshot](../artifacts/snapshots/history-viewer-implementation-0002.webp), [report screenshot](../artifacts/snapshots/history-report-implementation-0002.webp) and [HTML report](../artifacts/snapshots/history-report-implementation-0002.html).
+- **Scoped suite:** mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/test/report-cli.test.ts mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/history-workflow.test.ts. Cwd: /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history. Exit 0; 7 tests passed, 0 failed, 157 assertions. A prior parallel tool call returned no suite result or job; this records only the observed run.
+- **Real CLI smoke:** mise exec -- bun /tmp/spec03-fix-0028-smoke.ts. Cwd: /tmp. Exit 0; UID 1000; 36 public command invocations. [Exact argv, conditions, exit codes and hashes](../artifacts/snapshots/runtime-fix-0028.json).
+- **Permission failures:** session.json, source/run.json, source/plan.json, source/cases/original/case.json, feedback case.json, annotation JSON and source/native directory each return code/exit 1. Collector validate, feedback validate/export and plain evidence report also preserve operation failures.
+- **Invalid records:** malformed JSON and unsupported schemas return code/exit 2 for session, run, plan, feedback case and annotation records. Permanent regressions also cover null record shapes. Existing parser cases retain code 2.
+- **Preservation:** restored every original mode, including sealed run.json 0444. Restored reads return 0. Full source and saved-session before/after hashes match. No viewer changes or browser run.
+- **Tool limit:** TypeScript LSP initialization failed because the workspace has no valid TypeScript installation. Reference fallback audited shared validator callers. Their existing error boundaries need no changes.
 
-## Review history
+## Review history and findings
 
-[review-0005](../events/review-0005.yaml): **FAILURE** for `710abe78428a93c4d22f2981d71614f598bf82f5`. Standards: 0 findings. Spec: 1 blocking finding, SPEC-01. [Review artifact](../artifacts/reviews/review-review-0005.md). Resolved findings: none. Remaining findings: SPEC-01. Open questions: none.
+- **Initial implementation:** [implementation-0002](../events/implementation-0002.yaml), [original draft and visual evidence](../artifacts/snapshots/pr-draft-implementation-0002.md).
+- **First review:** [review-0005](../events/review-0005.yaml), [review artifact](../artifacts/reviews/review-review-0005.md): FAILURE. SPEC-01 resolved by [fix-0008](../events/fix-0008.yaml).
+- **Second review:** [review-0011](../events/review-0011.yaml), [review artifact](../artifacts/reviews/review-review-0011.md): FAILURE. SPEC-02 resolved by [fix-0016](../events/fix-0016.yaml).
+- **Third review:** [review-0019](../events/review-0019.yaml), [review artifact](../artifacts/reviews/review-review-0019.md): FAILURE. STD-01 resolved by [fix-0022](../events/fix-0022.yaml). [Prior immutable draft](../artifacts/snapshots/pr-draft-fix-0022.md).
+- **Consumed review:** [review-0025](../events/review-0025.yaml), [immutable review](../artifacts/reviews/review-review-0025.md): FAILURE for prior source 5e1ba904a178a7076aa556225beb4aff3288c65e. SPEC-01, SPEC-02 and STD-01 remain resolved.
+- **Current fix:** [fix-start-0027](../events/fix-start-0027.yaml), [fix-0028](../events/fix-0028.yaml). SPEC-03 resolved. No unresolved finding remains in this fix scope. Fresh independent review is required; no current-source verdict is claimed.
 
-## Merge status
+## Cleanup and publication
 
-Not merged or pushed. The ticket remains claimed. SPEC-01 is resolved by fix-0008, pending fresh review of the new source.
+Temporary smoke stores and script removed. Smoke and regression servers stopped. No browser worker started. Child terminal remains open for parent closure. No merge, rebase, push, tracker mutation or publication commit. Context-root artifacts/ remains untouched. Parent must validate and commit workflow publication, close this child terminal, and complete the fix phase. Open questions: none.
 
-## Supporting records
+## Status and cleanup
 
-- [Phase start](../events/start-0001.yaml)
-- [Implementation result](../events/implementation-0002.yaml)
-- [Original earlier-run manifest](../../collect-evidence-feedback-06-edits/artifacts/evidence/edits-source-0001/run.json)
+SPEC-03 is resolved by fix-0028. No unresolved findings remain from review-0025. Latest reviewer verdict: FAILURE for the prior source only. Fresh independent review and parent phase completion remain pending. No merge, rebase, push, tracker mutation or publication commit occurred. Temporary stores and scripts are removed. No browser workers ran. The child terminal remains open for parent closure.
 
 
+## Parent completion fix-complete-0029
 
-## Fix fix-0008
-
-[Fix result](../events/fix-0008.yaml) consumes [review-0005](../events/review-0005.yaml) through [fix-start-0007](../events/fix-start-0007.yaml). SPEC-01 is resolved by the fix, pending fresh review. No new review verdict is claimed.
-
-Source commit: 9f744831bc9a5edee5ab7a37aa2c089dd82fbf7f. Source tree: 00625a17e78c1b5728098f45a41c5ec7239c8cd7.
-
-The evidence router now catches Crust parser errors through public middleware. It emits one collect-evidence/v1 error for --json and exits 2. Other commands keep their existing error behavior.
-
-Changed files:
-- `mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/test/report-cli.test.ts`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/CHANGELOG.md`
-- `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
-- `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
-
-Validation: seven public-command and historical-workflow regressions passed with 72 assertions. From /tmp, both required invalid argument lists emitted one versioned error and exited 2. The actual historical-run report succeeded with historical true, case original and 60228 HTML bytes. The existing historical workflow also checked unchanged source and saved-feedback hashes. No new evidence capture was created.
-
-The commit hook changed only the developer bundle version manifests to 0.2.46. Integration must assess overlap with other streams.
-
-Latest reviewer verdict: FAILURE for the prior source only. Remaining findings: none from review-0005; fresh review is required for this new source. Open questions: none. Not merged or pushed. The ticket remains claimed. Parent owns phase completion and terminal closure. No owned service or browser tab remains; muxer process shutdown is pending while the child and harness remain active.
-
-
-
-## Review review-0011
-
-[Review result](../events/review-0011.yaml) records FAILURE for `9f744831bc9a5edee5ab7a37aa2c089dd82fbf7f`. Standards found no issues. SPEC-01 is resolved. SPEC-02 remains blocking. Invalid saved annotation schemas and malformed JSON return code 1 instead of code 2. Seven regressions passed with 72 assertions. The actual historical viewer/report workflow preserved source and saved feedback. See the [immutable review](../artifacts/reviews/review-review-0011.md). No source fix, merge or push ran.
-
-The [parent completion](../events/review-complete-0012.yaml) records the review outcome. The later [cleanup approval](../events/cleanup-approval-0013.yaml) records confirmed shutdown of the retained specification-axis process. All owned review resources stopped.
-
-## Fix fix-0016 — current source, pending fresh review
-
-[Fix receipt](../events/fix-0016.yaml) consumes [review-0011](../events/review-0011.yaml) through [fix-start-0015](../events/fix-start-0015.yaml). [Review artifact](../artifacts/reviews/review-review-0011.md) remains FAILURE for the earlier source. No new review verdict is claimed.
-
-Source commit: 7b52145875c1935340592d4f82e63edc5c00b931. Source tree: 74491d21ffd2c4e2736a49928da06ef703d48502.
-
-SPEC-02 is resolved by the fix, pending fresh review. SPEC-01 remains resolved by fix-0008. No unresolved finding remains in this fix scope. The prior review verdict does not cover this source.
-
-The report boundary reuses the feedback CLI pattern: AnnotationError with status 400 is invalid input (exit 2). Other annotation errors retain operation-failure classification. The parser middleware is unchanged.
-
-### Changed files in fix-0016
-
-- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
-- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/history-workflow.test.ts
-- mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/CHANGELOG.md
-- mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts
-
-The two manifest version changes came from the repository commit hook. Integration must assess them later.
-
-### Validation in fix-0016
-
-The scoped Bun command passed 7 tests and 83 assertions, with zero failures. It covers SPEC-01, help, legacy commands, historical metadata, valid report/export equality, source immutability, and copied malformed/unsupported annotations.
-
-The separate public runtime smoke invoked absolute commands from /tmp. Unsupported saved schema collect-feedback/v999 and malformed JSON each emitted exactly one collect-evidence/v1 error with success false, code 2, and exit 2. Valid saved-feedback report matched export before and after both invalid copies. Original source, valid feedback and copied invalid sessions remained unchanged by reports. No new capture was made.
-
-[Runtime command/output evidence](../artifacts/snapshots/spec02-runtime-fix-0016.json). The first smoke setup omitted required ticket routing and failed during init (exit 3); completing the temporary repository route table allowed the public runtime proof to pass. The temporary harness and temporary sessions were removed.
-
-[Owned-resource observation](../artifacts/snapshots/resources-fix-0016.json) reports shutdown pending because the current agent/harness remains active. No persistent service or browser tab was created by the smoke. The scoped historical test stopped its owned viewer. Parent owns terminal shutdown.
-
-### Current merge status and questions
-
-Not merged, rebased, pushed or ticket-completed. Fix result awaits parent completion and fresh review. Open question: assess hook-generated manifest version changes during integration.
-
-
-
-## Review review-0019 — current state
-
-FAILURE for source `7b52145875c1935340592d4f82e63edc5c00b931`, tree `74491d21ffd2c4e2736a49928da06ef703d48502`. [Immutable review](../artifacts/reviews/review-review-0019.md); [receipt](../events/review-0019.yaml). SPEC-01 and SPEC-02 are resolved. STD-01 remains blocking: unreadable valid annotation is classified as invalid input rather than an operation failure. Seven regressions passed with 83 assertions. Public CLI and actual browser paths exercised; source and saved feedback preserved. Source unchanged. All three review terminals removed; operator-approved remaining worker and browser processes confirmed exited. No push or merge. Next phase: fix.
-
-
-## Fix fix-0022 — current source
-
-[Fix result](../events/fix-0022.yaml) consumes [review-0019](../events/review-0019.yaml) and its [immutable review](../artifacts/reviews/review-review-0019.md), through [fix-start-0021](../events/fix-start-0021.yaml).
-
-Source commit: 5e1ba904a178a7076aa556225beb4aff3288c65e. Source tree: f691de272e6f2a040eb594438236000de451f40a. Source checkout is clean.
-
-STD-01 is resolved: bounded annotation reads preserve filesystem errors; only JSON syntax failures become malformed-input errors. The explicit report boundary is unchanged. SPEC-01 and SPEC-02 remain resolved. No unresolved findings from the consumed review. Latest reviewer verdict remains FAILURE for the prior source; fresh review is pending.
-
-Changed files:
-
-- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
-- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/annotations.ts
-- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/history-workflow.test.ts
-
-Verification: scoped suite ran once, exit 0, 7 tests and 89 assertions. UID 1000 public-command smoke from /tmp: unreadable annotation exit/code 1; permission restored exit 0; malformed JSON and unsupported schema exit/code 2; original bytes restored exit 0. Source and session hashes unchanged. [Exact commands and cleanup](../artifacts/snapshots/runtime-fix-0022.json).
-
-[Immutable draft](../artifacts/snapshots/pr-draft-fix-0022.md). Temporary stores and smoke script removed. No browser workers started. Regression-owned server stopped. Child terminal t1f3 remains for parent closure. LSP references unavailable because TypeScript could not initialize; no signatures changed.
-
-Merge status: not merged, rebased or pushed. No tracker or publication commit. Parent completion and fresh review pending.
-
-
-## Parent completion fix-complete-0023
-
-Parent verified exact clean source 5e1ba904a178a7076aa556225beb4aff3288c65e and authoritative fix-0022 payload. Seven tests passed with 89 assertions; public historical report succeeded. Fixer t1f3 removed and owned runtime shutdown confirmed. [Completion](../events/fix-complete-0023.yaml); [shutdown observation](../artifacts/snapshots/resources-fix-0022.json). Source remains available for fresh review. No merge or push.
-
-## Review review-0025 — current state
-
-FAILURE for source `5e1ba904a178a7076aa556225beb4aff3288c65e`, tree `f691de272e6f2a040eb594438236000de451f40a`. [Immutable review](../artifacts/reviews/review-review-0025.md); [result](../events/review-0025.yaml); [parent completion](../events/review-complete-0026.yaml). SPEC-01, SPEC-02 and STD-01 resolved. SPEC-03 is blocking: unreadable valid session/run manifests return invalid-input code2 instead of operation-failure code1. Seven tests passed with 89 assertions; actual CLI and historical browser save/reload exercised. Frozen source and saved feedback preserved. All three review terminals removed; operator-approved remaining reviewer/broker/browser processes confirmed exited. No merge or push. Next phase: fix.
+Parent verified clean source 6a99dc3b3b7e61d293dc47492cbc6590677ce994 and authoritative fix-0028 transport match. Seven tests passed with 157 assertions; public historical report succeeded. Fixer t1f7 removed; operator-approved broker and worker shutdown confirmed with exact process identities. [Completion](../events/fix-complete-0029.yaml); [resource observation](../artifacts/snapshots/resources-fix-0028.json). Source preserved for fresh independent review. No merge or push.
