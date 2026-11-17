@@ -1,0 +1,87 @@
+{
+  "review": {
+    "manifest": {
+      "runId": "7ca2d4df-a7ae-4dd4-8737-228a57094143",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t1gy",
+      "createdAt": "2026-11-17T12:59:54.019Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+      "operationId": "collect-evidence-feedback-10-request-review-0006"
+    },
+    "resources": {
+      "version": 1,
+      "runId": "7ca2d4df-a7ae-4dd4-8737-228a57094143",
+      "observedAt": "2026-11-17T21:42:58.716Z",
+      "processes": [
+        {
+          "pid": 172391,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "603015",
+          "command": "omp",
+          "parentPid": 172070,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        },
+        {
+          "pid": 179799,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "3404526",
+          "command": "omp",
+          "parentPid": 172391,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        },
+        {
+          "pid": 181379,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "3409208",
+          "command": "omp daemon brok",
+          "parentPid": 172391,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        },
+        {
+          "pid": 181406,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "3409213",
+          "command": "omp",
+          "parentPid": 181379,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  },
+  "standards": {
+    "manifest": {
+      "runId": "3217e363-dc46-4942-bac7-8e391ad5620e",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t1gz",
+      "createdAt": "2026-11-17T20:46:51.483Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+      "operationId": "3217e363-dc46-4942-bac7-8e391ad5620e",
+      "parentRunId": "7ca2d4df-a7ae-4dd4-8737-228a57094143"
+    },
+    "resources": {
+      "version": 1,
+      "runId": "3217e363-dc46-4942-bac7-8e391ad5620e",
+      "observedAt": "2026-11-17T21:42:51.297Z",
+      "processes": [
+        {
+          "pid": 180582,
+          "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+          "startTicks": "3404775",
+          "command": "omp",
+          "parentPid": 179951,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  },
+  "operator_approval": "User selected Terminate owned process in review_cleanup question. Rechecked PID 180582 startTicks 3404775 before SIGTERM and SIGCONT. Other recorded processes exited without direct signals."
+}

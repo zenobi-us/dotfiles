@@ -34,17 +34,17 @@ Source: a1bb88ca440543bce3b1db6d8539972f9f857cb0. Tree: f9a88b8fa75e5d6a89727747
 
 ## Review history
 
-No review was requested or performed. Latest reviewer verdict: none. Resolved findings: none. Remaining review findings: none recorded.
+Review attempt review-0007 returned FAILURE. Resolved findings: none. Open finding: R-001. See the review attempt below.
 
 ## Open questions and limits
 
 Fresh Surf and Playwright capture and real video remain unverified on this host because required installed browser access is unavailable. The source retains the existing drivers unchanged. A prepared browser host is needed to close those coverage gaps. Native video remains explicitly unavailable.
 
-The resource observer still sees this active implementation harness and its shared browser runtime; whole-pane shutdown belongs to parent closure. All owned feedback servers, native display and fixture have stopped. No user window or terminal was closed.
+The implementation-time resource observation was superseded by parent closure and the final review shutdown observations below. All owned feedback servers, native display and fixture have stopped. No user window or terminal was closed.
 
 ## Merge and publication
 
-Implementation only. Not reviewed, merged, pushed or ticket-completed. Workflow records are committed locally in the designated context checkout after result publication. Capture and serving performed no remote Git operation, credential entry, installation or automatic publication.
+Reviewed with FAILURE. Not merged, pushed or ticket-completed. Workflow records are committed locally in the designated context checkout after result publication. Capture and serving performed no remote Git operation, credential entry, installation or automatic publication.
 
 ## Supporting records
 
@@ -57,5 +57,24 @@ Implementation only. Not reviewed, merged, pushed or ticket-completed. Workflow 
 
 ## Parent completion
 
-Parent verified the exact receipt, all output paths, retained TUI session validation and GUI saved export. Parent inspected both saved viewer images. The implementation terminal was closed; the resource observer confirmed all registered processes stopped. [Completion receipt](workflows/collect-evidence-feedback-10-request/events/start-complete-0005.yaml) and [parent checks](workflows/collect-evidence-feedback-10-request/artifacts/snapshots/parent-check-0004.json) retain the observations. The source remains unreviewed and unmerged. Browser prerequisites and suite failures remain explicit coverage limits.
+Parent verified the exact receipt, all output paths, retained TUI session validation and GUI saved export. Parent inspected both saved viewer images. The implementation terminal was closed; the resource observer confirmed all registered processes stopped. [Completion receipt](workflows/collect-evidence-feedback-10-request/events/start-complete-0005.yaml) and [parent checks](workflows/collect-evidence-feedback-10-request/artifacts/snapshots/parent-check-0004.json) retain the observations. At implementation completion, the source was unreviewed and unmerged; the review outcome follows below. Browser prerequisites and suite failures remain explicit coverage limits.
 
+
+
+## Review attempt review-0007
+
+Latest reviewer verdict: FAILURE. Source: `a1bb88ca440543bce3b1db6d8539972f9f857cb0`. Tree: `f9a88b8fa75e5d6a89727747912e5231f484a150`. Base: `512e2ec7eb0709365f76ba460b8336d8d33bf5eb`.
+
+One open P2 finding, R-001. No resolved findings. Read the [immutable review](workflows/collect-evidence-feedback-10-request/artifacts/reviews/review-review-0007.md) for the finding and required validation.
+
+Parent validation: scoped public request regression passed (1 test, 25 expectations). Public validate and export of the retained TUI feedback session passed and retained one saved annotation. The independent reviewer exercised the historical public CLI and HTTP saved-pin/export path; its wrapper exited 1 on immutable-directory cleanup, which was then completed. No full-suite pass is claimed.
+
+All review tabs closed. The user approved termination of the stopped Standards process after identity verification. Final resource observations confirm shutdown. No source change, merge or push occurred.
+
+- **Review start:** [review-start-0006](workflows/collect-evidence-feedback-10-request/events/review-start-0006.yaml).
+- **Review result:** [review-0007](workflows/collect-evidence-feedback-10-request/events/review-0007.yaml).
+- **Parent completion:** [review-complete-0009](workflows/collect-evidence-feedback-10-request/events/review-complete-0009.yaml).
+- **Parent validation:** [public CLI proof](workflows/collect-evidence-feedback-10-request/artifacts/snapshots/parent-review-check-0008.json).
+- **Shutdown:** [verified observations](workflows/collect-evidence-feedback-10-request/artifacts/snapshots/review-shutdown-0008.json).
+
+Next: fix R-001 in a fresh fixer session, then obtain a new exact-source review.
