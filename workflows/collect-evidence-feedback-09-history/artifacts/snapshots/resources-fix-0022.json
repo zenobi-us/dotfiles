@@ -1,0 +1,110 @@
+{
+  "before": {
+    "manifest": {
+      "runId": "4386ca1f-2e21-405a-94cc-569068cff8fe",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t1f3",
+      "createdAt": "2026-11-17T05:11:13.912Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+      "operationId": "collect-evidence-feedback-09-history-fix-0021"
+    },
+    "resources": {
+      "version": 1,
+      "runId": "4386ca1f-2e21-405a-94cc-569068cff8fe",
+      "observedAt": "2026-11-17T05:20:00.660Z",
+      "processes": [
+        {
+          "pid": 1212033,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "37729649",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "running"
+        },
+        {
+          "pid": 1212561,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "37731175",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "running"
+        },
+        {
+          "pid": 1214833,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "37737707",
+          "command": "omp daemon brok",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "running"
+        },
+        {
+          "pid": 1214861,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "37737712",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "running"
+        }
+      ],
+      "shutdown": "pending"
+    }
+  },
+  "after": {
+    "manifest": {
+      "runId": "4386ca1f-2e21-405a-94cc-569068cff8fe",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t1f3",
+      "createdAt": "2026-11-17T05:11:13.912Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+      "operationId": "collect-evidence-feedback-09-history-fix-0021"
+    },
+    "resources": {
+      "version": 1,
+      "runId": "4386ca1f-2e21-405a-94cc-569068cff8fe",
+      "observedAt": "2026-11-17T05:20:09.822Z",
+      "processes": [
+        {
+          "pid": 1212033,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "37729649",
+          "command": "omp",
+          "parentPid": 1211598,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "stopped"
+        },
+        {
+          "pid": 1212561,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "37731175",
+          "command": "omp",
+          "parentPid": 1212033,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "stopped"
+        },
+        {
+          "pid": 1214833,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "37737707",
+          "command": "omp daemon brok",
+          "parentPid": 1212033,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "stopped"
+        },
+        {
+          "pid": 1214861,
+          "bootId": "5cc3946f-11c5-42bb-8f61-913dffe03728",
+          "startTicks": "37737712",
+          "command": "omp",
+          "parentPid": 1214833,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  },
+  "terminal_removed": true,
+  "user_resources_preserved": true
+}

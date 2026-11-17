@@ -161,3 +161,31 @@ Not merged, rebased, pushed or ticket-completed. Fix result awaits parent comple
 ## Review review-0019 — current state
 
 FAILURE for source `7b52145875c1935340592d4f82e63edc5c00b931`, tree `74491d21ffd2c4e2736a49928da06ef703d48502`. [Immutable review](../artifacts/reviews/review-review-0019.md); [receipt](../events/review-0019.yaml). SPEC-01 and SPEC-02 are resolved. STD-01 remains blocking: unreadable valid annotation is classified as invalid input rather than an operation failure. Seven regressions passed with 83 assertions. Public CLI and actual browser paths exercised; source and saved feedback preserved. Source unchanged. All three review terminals removed; operator-approved remaining worker and browser processes confirmed exited. No push or merge. Next phase: fix.
+
+
+## Fix fix-0022 — current source
+
+[Fix result](../events/fix-0022.yaml) consumes [review-0019](../events/review-0019.yaml) and its [immutable review](../artifacts/reviews/review-review-0019.md), through [fix-start-0021](../events/fix-start-0021.yaml).
+
+Source commit: 5e1ba904a178a7076aa556225beb4aff3288c65e. Source tree: f691de272e6f2a040eb594438236000de451f40a. Source checkout is clean.
+
+STD-01 is resolved: bounded annotation reads preserve filesystem errors; only JSON syntax failures become malformed-input errors. The explicit report boundary is unchanged. SPEC-01 and SPEC-02 remain resolved. No unresolved findings from the consumed review. Latest reviewer verdict remains FAILURE for the prior source; fresh review is pending.
+
+Changed files:
+
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/annotations.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/history-workflow.test.ts
+
+Verification: scoped suite ran once, exit 0, 7 tests and 89 assertions. UID 1000 public-command smoke from /tmp: unreadable annotation exit/code 1; permission restored exit 0; malformed JSON and unsupported schema exit/code 2; original bytes restored exit 0. Source and session hashes unchanged. [Exact commands and cleanup](../artifacts/snapshots/runtime-fix-0022.json).
+
+[Immutable draft](../artifacts/snapshots/pr-draft-fix-0022.md). Temporary stores and smoke script removed. No browser workers started. Regression-owned server stopped. Child terminal t1f3 remains for parent closure. LSP references unavailable because TypeScript could not initialize; no signatures changed.
+
+Merge status: not merged, rebased or pushed. No tracker or publication commit. Parent completion and fresh review pending.
+
+
+## Parent completion fix-complete-0023
+
+Parent verified exact clean source 5e1ba904a178a7076aa556225beb4aff3288c65e and authoritative fix-0022 payload. Seven tests passed with 89 assertions; public historical report succeeded. Fixer t1f3 removed and owned runtime shutdown confirmed. [Completion](../events/fix-complete-0023.yaml); [shutdown observation](../artifacts/snapshots/resources-fix-0022.json). Source remains available for fresh review. No merge or push.

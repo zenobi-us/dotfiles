@@ -1,0 +1,111 @@
+{
+  "uid": 1000,
+  "validation_results": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/test/report-cli.test.ts",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/history-workflow.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "summary": "7 pass, 0 fail, 89 assertions; existing suite run once after edits as UID 1000."
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/std01-runtime-Z3CFBp/repository/workflows/std01/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "condition": "unreadable valid annotation",
+      "summary": "One collect-evidence/v1 error record with matching code; stderr equals message."
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/std01-runtime-Z3CFBp/repository/workflows/std01/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "condition": "restored permission",
+      "summary": "Successful historical report with saved annotation."
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/std01-runtime-Z3CFBp/repository/workflows/std01/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "condition": "malformed JSON",
+      "summary": "One collect-evidence/v1 error record with matching code; stderr equals message."
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/std01-runtime-Z3CFBp/repository/workflows/std01/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "condition": "unsupported annotation schema",
+      "summary": "One collect-evidence/v1 error record with matching code; stderr equals message."
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+        "evidence",
+        "/tmp/std01-runtime-Z3CFBp/repository/workflows/std01/artifacts/evidence/review",
+        "--feedback",
+        "--json"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "condition": "restored original bytes",
+      "summary": "Successful historical report with saved annotation."
+    }
+  ],
+  "hash_preservation": {
+    "source_unchanged": true,
+    "session_after_permission_restore_unchanged": true,
+    "invalid_inputs_not_modified": true,
+    "session_after_byte_restore_unchanged": true
+  },
+  "resource_cleanup": {
+    "temporary_stores_removed": [
+      "/tmp/std01-runtime-Dmy1DE",
+      "/tmp/std01-runtime-Z3CFBp"
+    ],
+    "throwaway_script_removed": "/tmp/std01-fix-0022-smoke.ts",
+    "browser_workers_started": 0,
+    "live_servers": 0,
+    "terminal": "t1f3",
+    "terminal_retained_for_parent": true
+  },
+  "notes": [
+    "Initial smoke failed during cleanup on copied read-only directories (exit 1); that run was not accepted as proof. Updated disposable cleanup to make owned files writable. Subsequent smoke passed (exit 0). Both stores removed.",
+    "LSP references unavailable: server initialization could not find TypeScript. No exported signatures or callers changed."
+  ]
+}
