@@ -6,6 +6,7 @@ import { CliError } from "../../../collect-evidence/scripts/browser-evidence/sh.
 import { importSession, requireValue, schema, validateSession } from "./records.ts";
 import { serveSession } from "./server.ts";
 import { AnnotationError, exportSession, listAnnotations } from "./annotations.ts";
+import { requestFeedback } from "./request.ts";
 
 const flags = {
   json: { type: "boolean", description: "Emit versioned JSON" },
@@ -31,27 +32,31 @@ export async function runCli(directServe = false): Promise<void> {
   } };
   const root = directServe ? command("serve").use(errors).use(helpPlugin()) : new Crust("collect-feedback")
     .meta({ description: "Import, annotate and export immutable evidence" }).use(errors).use(helpPlugin())
-    .command(command("init")).command(command("validate")).command(command("serve")).command(command("export"));
+    .command(command("request")).command(command("init")).command(command("validate")).command(command("serve")).command(command("export"));
   try { await root.execute(); } catch (error) { failure(error, 2); }
 }
 function command(name: string) {
-  return new Crust(name).meta({ description: name === "init" ? "Import a sealed run into a new resolved feedback session" : name === "serve" ? "Serve the bundled annotation viewer on loopback" : name === "export" ? "Read saved annotations and verified source references" : "Validate feedback and original media hashes" })
-    .flags(flags).args([{ name: "dir", type: "string", required: true, description: name === "init" ? "Sealed evidence run" : "Feedback session directory" }])
+  return new Crust(name).meta({ description: name === "request" ? "Collect an approved workspace (or explicit historical run), import and serve feedback" : name === "init" ? "Import a sealed run into a new resolved feedback session" : name === "serve" ? "Serve the bundled annotation viewer on loopback" : name === "export" ? "Read saved annotations and verified source references" : "Validate feedback and original media hashes" })
+    .flags(flags).args([{ name: "dir", type: "string", required: true, description: name === "request" ? "Approved compiled collector workspace, or sealed run with --historical" : name === "init" ? "Sealed evidence run" : "Feedback session directory" }])
     .run(async ({ args, flags: options }) => {
       try {
         const directory = resolve(args.dir);
-        if (name !== "init" && (options.repository || options.workflow || options.session)) throw new CliError("Store flags apply only to init", 2);
-        if (name !== "serve" && options.port !== undefined) throw new CliError("--port applies only to serve", 2);
-        if (name !== "init" && options.historical !== undefined) throw new CliError("--historical applies only to init", 2);
+        if (name !== "init" && name !== "request" && (options.repository || options.workflow || options.session)) throw new CliError("Store flags apply only to init or request", 2);
+        if (name !== "serve" && name !== "request" && options.port !== undefined) throw new CliError("--port applies only to serve or request", 2);
+        if (name !== "init" && name !== "request" && options.historical !== undefined) throw new CliError("--historical applies only to init or request", 2);
         const emit = (data: object) => {
           if (options.quiet) return;
           const result = { schema, kind: "event", command: name, success: true, ...data };
           console.log(options.plain && !options.json ? plainResult(result) : JSON.stringify(result, null, options.json ? undefined : 2));
         };
-        if (name === "init") {
+        if (name === "init" || name === "request") {
           const repository = options.repository ?? process.env.COLLECT_FEEDBACK_REPOSITORY;
-          requireValue(repository && options.workflow && options.session, "init requires --repository, --workflow and --session");
-          emit(await importSession(directory, { repository, workflow: options.workflow, session: options.session, historical: options.historical, dryRun: options["dry-run"] }));
+          requireValue(repository && options.workflow && options.session, `${name} requires --repository, --workflow and --session`);
+          const selection = { repository, workflow: options.workflow, session: options.session, historical: options.historical, dryRun: options["dry-run"] };
+          if (name === "request") {
+            requireValue(options.port !== undefined, "request requires --port");
+            await requestFeedback(directory, { ...selection, port: options.port }, emit);
+          } else emit(await importSession(directory, selection));
         } else if (name === "validate") {
           const view = await validateSession(directory);
           emit({ valid: true, session: view.session, cases: view.cases, annotations: await listAnnotations(view) });

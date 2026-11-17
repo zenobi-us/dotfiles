@@ -6,6 +6,12 @@ kind: changelog
 
 ## Unreleased
 
+- **Stop mixed blocked requests:** Give any BLOCKED verdict precedence over assertion FAIL. Return exit 3 with the sealed diagnostic source and no feedback import or server. Keep assertion-only failures reviewable. The opt-in public request regression uses real private terminal captures (`RUN_NATIVE_EVIDENCE_TESTS=1`) to cover both outcomes.
+
+- **Collect one workflow request:** Run the installed collector from an approved compiled workspace, validate and import sealed evidence, then serve through the existing loopback server. Return its actual URL and saved-record references.
+- **Keep request branches explicit:** Reuse earlier runs only with `request --historical`. Stop blocked capture before import. Retain sealed assertion failures for review without relabelling them as passes. Keep dry-run free of capture, writes and server startup.
+- **Preserve capture safety:** Select the web, TUI or GUI playbook before preparation. Forward interruptions to owned collection and retain normal server shutdown. Keep user resources and publication boundaries unchanged.
+
 - **Preserve manifest read failures:** Keep filesystem errors from shared run and session validation as operation failures (exit/code 1). Keep malformed JSON, unsupported schemas and invalid record shapes at exit/code 2. Restore exact file modes in public report permission regressions.
 
 - **Preserve annotation read failures:** Keep filesystem errors separate from invalid saved JSON and annotation schemas. Feedback reports return exit/code 1 for unreadable annotations and exit/code 2 for invalid input. Keep bounded reads and path safety checks unchanged.

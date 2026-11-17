@@ -4,7 +4,7 @@ title: Browse original evidence
 ---
 # Browse original evidence
 
-1. Invoke `/collect-feedback` with an explicit sealed evidence run, repository, workflow ID, new session ID and local port.
+1. Invoke `/collect-feedback` with the requested workflow and approved web, TUI or GUI scope. The agent follows [the request procedure](references/request.md), prepares one collector plan, then uses `request` to collect, validate, import and serve. For earlier evidence, explicitly select the sealed run and historical review.
 2. Keep the returned session path. The session contains copied evidence, so it remains available after the original run moves.
 3. Open the returned `http://127.0.0.1:<port>` URL on the same machine.
 4. Select a case. Read its purpose, steps, recorded results and limits.
@@ -18,6 +18,16 @@ title: Browse original evidence
 A screenshot proves a capture, not a passing assertion. If an asset is missing, changed or unsafe, import corrected evidence under a new identity.
 
 
+## Run an approved fresh workspace
+
+Resolve `FEEDBACK_SKILL_ROOT` to the installed collect-feedback directory. Complete the matching collect-evidence driver playbook through plan approval, render and compile. Then run this absolute command from any directory:
+
+```sh
+"$FEEDBACK_SKILL_ROOT/scripts/collect-feedback.ts" request /tmp/approved-workspace --repository /absolute/repository --workflow review --session fresh-review --port 8091 --json
+```
+
+Keep the foreground process running while you review. Open its returned `url`. Keep `destination.ref` and `records.session` for saved-record references. Stop only the process you created. A blocked prerequisite returns exit 3 without a feedback session. A sealed assertion failure can open for feedback without changing its FAIL result. No command publishes evidence.
+
 ## Review an earlier run
 
 Select the exact sealed run path. Resolve `FEEDBACK_SKILL_ROOT` to the installed collect-feedback directory. Run its absolute command from any directory:
@@ -26,7 +36,9 @@ Select the exact sealed run path. Resolve `FEEDBACK_SKILL_ROOT` to the installed
 "$FEEDBACK_SKILL_ROOT/scripts/collect-feedback.ts" init /absolute/earlier-run --historical --repository /absolute/repository --workflow review --session earlier-review --json
 ```
 
-Keep the returned `destination.path`. Validate and serve that session as described above. The viewer shows **Historical evidence**. It states that the run does not show the current application. Export retains `session.historical: true`. The source snapshot, capture dates, asset IDs, hashes, results and media bytes stay unchanged. `createdAt` is the session import time, not a capture date. Unknown capture dates display as unknown.
+For one import-and-serve operation, use `request /absolute/earlier-run --historical` with the same store flags and an explicit `--port`. It returns the actual viewer URL and saved-record references.
+
+For separate commands, keep the returned `destination.path`. Validate and serve that session as described above. The viewer shows **Historical evidence**. It states that the run does not show the current application. Export retains `session.historical: true`. The source snapshot, capture dates, asset IDs, hashes, results and media bytes stay unchanged. `createdAt` is the session import time, not a capture date. Unknown capture dates display as unknown.
 
 Only sealed `collect-evidence/v1` runs are supported. Unsupported explicit versions and unversioned archives fail before session creation. Do not rewrite an earlier report or feedback session to make it importable. Select a supported run explicitly or obtain a separately approved format importer. Each import needs a new session ID. No command searches for the latest run or migrates earlier feedback.
 

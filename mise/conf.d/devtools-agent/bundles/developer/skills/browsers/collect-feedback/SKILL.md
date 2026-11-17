@@ -1,16 +1,24 @@
 ---
 schema: collect-feedback/v1
 name: collect-feedback
-description: Imports sealed evidence, opens a local image and video annotation viewer and exports saved feedback with verified source identities.
+description: Collects approved web, TUI or GUI workflows through collect-evidence, opens local feedback, and exports saved annotations with verified source identities. Use for fresh workflow requests or explicit historical review.
 user-invocable: true
 ---
 # collect-feedback
 
-Browse a sealed `collect-evidence/v1` run. Keep source identities, capture times and image bytes unchanged. Create point or box annotations without changing source media.
+Collect fresh evidence through the installed `collect-evidence` driver, or explicitly select historical evidence. Keep source identities, capture times and image bytes unchanged. Create point or box annotations without changing source media.
+
+## One workflow request
+
+For fresh web, TUI or GUI work, follow [the request procedure](references/request.md). Select the driver playbook from the requested surface and approved scope. Author, render and compile one collector plan. Then run `request <workspace> --repository <repo> --workflow <id> --session <new-id> --port <explicit-port> --json`. This command runs the installed collector, validates and imports its sealed result, validates the session, and serves it through the existing server. Return its actual `url`, `destination` and `records`.
+
+For explicit earlier evidence, use the same command with `--historical` and the selected sealed run instead of a workspace. Never infer historical reuse after a fresh capture stops.
+
+The request owns its foreground server until SIGINT or SIGTERM. Register live owned resources and verify shutdown before handoff. Local serving does not authorize publication.
 
 ## Procedure
 
-1. Select an explicit sealed evidence run. If new evidence is needed, use `collect-evidence` and its selected driver playbook first. This viewer has no capture driver.
+1. For the separate import and serve commands, select an explicit sealed evidence run. For a fresh end-to-end request, use the request procedure above. This viewer has no capture driver.
 2. Resolve the installed directory containing this `SKILL.md` as `FEEDBACK_SKILL_ROOT`. All script and viewer paths are relative to that directory, not the repository. Invoke the absolute `scripts/collect-feedback.ts` path from any directory. Complete first-run Bun dependency downloads before serving.
 3. Read [the record and service contract](references/viewer-contract.md). Run `validate <sealed-run>` through the installed `collect-evidence/scripts/collect-evidence.ts` command. Do not import unsupported schemas or alter earlier evidence.
 4. Run `init <sealed-run> --repository <repository-in-scope> --workflow <workflow-id> --session <new-session-id> --json`. The CLI resolves the existing shared-context evidence route. Keep its returned `destination.path`. `COLLECT_FEEDBACK_REPOSITORY` supplies the repository default; the flag takes precedence.
@@ -24,6 +32,7 @@ Browse a sealed `collect-evidence/v1` run. Keep source identities, capture times
 
 | Command | Result |
 |---|---|
+| `request <workspace-or-historical-run> --repository <repo> --workflow <id> --session <id> --port <port> [--historical]` | Collect or explicitly reuse, validate, import and serve. Return actual URL and saved-record paths. |
 | `init <sealed-run> --repository <repo> --workflow <id> --session <id>` | Create a new session through the existing evidence route. Never replace a session. |
 | `validate <session>` | Check supported schemas, source snapshot, case references and immutable asset hashes. |
 | `serve <session> --port <port>` | Start the bundled loopback annotation viewer. Never choose a fallback port. |
