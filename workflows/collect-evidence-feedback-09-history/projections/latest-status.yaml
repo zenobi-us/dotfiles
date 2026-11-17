@@ -1,13 +1,13 @@
 schema: worktree-latest-status/v1
 workflow_id: collect-evidence-feedback-09-history
 ticket: tracker/tickets/collect-evidence-feedback-09-history.md
-state: FIXED
-latest_receipt: fix-complete-0023
+state: REVIEW_FAILED
+latest_receipt: review-complete-0026
 latest_source_commit: 5e1ba904a178a7076aa556225beb4aff3288c65e
 latest_source_tree: f691de272e6f2a040eb594438236000de451f40a
 latest_review_verdict: FAILURE
-latest_review_receipt: review-0019
-open_findings: []
+latest_review_receipt: review-0025
+open_findings: [SPEC-03]
 resolved_findings: [SPEC-01, SPEC-02, STD-01]
-review_pending: true
+review_pending: false
 parent_completion_pending: false

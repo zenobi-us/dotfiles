@@ -189,3 +189,7 @@ Merge status: not merged, rebased or pushed. No tracker or publication commit. P
 ## Parent completion fix-complete-0023
 
 Parent verified exact clean source 5e1ba904a178a7076aa556225beb4aff3288c65e and authoritative fix-0022 payload. Seven tests passed with 89 assertions; public historical report succeeded. Fixer t1f3 removed and owned runtime shutdown confirmed. [Completion](../events/fix-complete-0023.yaml); [shutdown observation](../artifacts/snapshots/resources-fix-0022.json). Source remains available for fresh review. No merge or push.
+
+## Review review-0025 — current state
+
+FAILURE for source `5e1ba904a178a7076aa556225beb4aff3288c65e`, tree `f691de272e6f2a040eb594438236000de451f40a`. [Immutable review](../artifacts/reviews/review-review-0025.md); [result](../events/review-0025.yaml); [parent completion](../events/review-complete-0026.yaml). SPEC-01, SPEC-02 and STD-01 resolved. SPEC-03 is blocking: unreadable valid session/run manifests return invalid-input code2 instead of operation-failure code1. Seven tests passed with 89 assertions; actual CLI and historical browser save/reload exercised. Frozen source and saved feedback preserved. All three review terminals removed; operator-approved remaining reviewer/broker/browser processes confirmed exited. No merge or push. Next phase: fix.
