@@ -4,7 +4,7 @@ id: collect-evidence-feedback-11-docs
 title: Document the evidence and feedback workflow
 type: enhancement
 triage: ready-for-agent
-work_status: unclaimed
+work_status: claimed
 parent: collect-evidence-feedback
 sequence: 11
 blocked_by:
