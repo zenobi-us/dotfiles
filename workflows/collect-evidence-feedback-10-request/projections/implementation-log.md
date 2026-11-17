@@ -100,3 +100,8 @@ Next: fresh review of 9768929cd6bc5f47170d0b6f329b788369b16ea2; no integration a
 ## Review review-0015 completed
 
 SUCCESS for 9768929cd6bc5f47170d0b6f329b788369b16ea2. Standards: 0 findings; Spec: 0 findings. No source change. [Review](workflows/collect-evidence-feedback-10-request/artifacts/reviews/review-review-0015.md). [Completion](workflows/collect-evidence-feedback-10-request/events/review-complete-0017.yaml). Parent public regression passed both tests and 45 expectations; real request/HTTP export/shutdown smoke passed. Reviewer delivery acknowledged; all owned processes confirmed stopped after approved cleanup. Earlier implementation, FAILURE review and fix history remain unchanged.
+
+
+## Finish finish-0024
+
+Validated squash integration `809f5d4fe969cad851d9f7d9f2c5033c4c051f86` published on origin/master. Pre-merge hook, public request regression and real request/HTTP export/shutdown smoke passed against the exact integrated commit and tree. [Validation](workflows/collect-evidence-feedback-10-request/artifacts/snapshots/integration-result-0020.json). Ticket completed and pushed in `1a149da1`. Both named source/candidate branches and worktrees removed; no owned service or app workspace remains. Unrelated changes preserved. [Finish](workflows/collect-evidence-feedback-10-request/events/finish-0024.yaml).

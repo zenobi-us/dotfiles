@@ -1,0 +1,15 @@
+{
+  "removed": [
+    "feature/collect-evidence-feedback-10-request",
+    "integration/96e47da0-6373-4fb6-8b71-aeebd56cf913"
+  ],
+  "refused": [],
+  "source_workspace_absent": true,
+  "candidate_workspace_absent": true,
+  "source_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request",
+  "candidate_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-96e47da0-6373-4fb6-8b71-aeebd56cf913",
+  "app_workspaces_absent": true,
+  "process_shutdown": "confirmed",
+  "scope": "Only named published source and integration candidate; cleanup-merged Worktrunk verification succeeded.",
+  "smoke_scaffold_removed": true
+}
