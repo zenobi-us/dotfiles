@@ -183,3 +183,15 @@ No open questions. No merge, push, tracker mutation or publication commit. Tempo
 ## Parent completion fix-complete-0029
 
 Parent verified clean source 6a99dc3b3b7e61d293dc47492cbc6590677ce994 and authoritative fix-0028 transport match. Seven tests passed with 157 assertions; public historical report succeeded. Fixer t1f7 removed; operator-approved broker and worker shutdown confirmed with exact process identities. [Completion](../events/fix-complete-0029.yaml); [resource observation](../artifacts/snapshots/resources-fix-0028.json). Source preserved for fresh independent review. No merge or push.
+
+## Current review review-0032
+
+Latest verdict: SUCCESS for `6a99dc3b3b7e61d293dc47492cbc6590677ce994`; tree `417db5cbd797ef7c1c65c19c4e1b1f8335b295ee`. Independent Standards and Spec axes have no findings. SPEC-01, SPEC-02, STD-01 and SPEC-03 remain resolved.
+
+[Immutable review](../artifacts/reviews/review-review-0032.md). [Review result](../events/review-0032.yaml). [Parent completion](../events/review-complete-0034.yaml).
+
+The historical suite passed 7 tests and 157 assertions. The reviewer exercised 46 public commands and the real browser view. Parent public report smoke passed after review. Reports preserved source bytes and saved feedback. The extra fresh-capture workflow test failed because `/opt/google/chrome/chrome` is absent; this coverage limit remains open.
+
+The reviewer tab and nested tabs closed. All owned feedback servers and the four operator-approved OMP processes stopped. [Resource observations](../artifacts/snapshots/resources-review-0032.json). Shared and unrelated resources were not signalled.
+
+Source is unchanged. Review metadata is committed locally, not pushed. No merge or ticket completion occurred. Integration must assess base movement and validate a separate candidate. Earlier review and fix history remains above.
