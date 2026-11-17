@@ -1,0 +1,67 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "plan",
+  "data": {
+    "schema": "collect-evidence/v1",
+    "kind": "plan",
+    "workId": "request",
+    "driver": "gui",
+    "base": "gui://local",
+    "gui": {
+      "display": ":65000",
+      "window": "0x200001",
+      "title": "Owned feedback request fixture"
+    },
+    "approval": {
+      "origins": [],
+      "gui": {
+        "display": ":65000",
+        "window": "0x200001",
+        "title": "Owned feedback request fixture"
+      }
+    },
+    "video": true,
+    "tests": [
+      {
+        "id": "scene",
+        "claim": "Inspect the owned native GUI fixture",
+        "pass": "Selected native panels match",
+        "fail": "Panels differ",
+        "steps": [
+          {
+            "do": "expect",
+            "says": "Inspect the selected window.",
+            "locator": "screen",
+            "visible": true,
+            "shot": "native-panels",
+            "image": {
+              "width": 480,
+              "height": 260,
+              "pixels": [
+                {
+                  "x": 40,
+                  "y": 110,
+                  "rgb": [
+                    201,
+                    166,
+                    255
+                  ]
+                },
+                {
+                  "x": 270,
+                  "y": 110,
+                  "rgb": [
+                    156,
+                    207,
+                    216
+                  ]
+                }
+              ],
+              "lines": []
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

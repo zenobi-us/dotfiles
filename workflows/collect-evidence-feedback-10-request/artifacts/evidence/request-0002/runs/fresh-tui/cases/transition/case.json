@@ -1,0 +1,142 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "case",
+  "id": "transition",
+  "runId": "fresh-tui",
+  "order": 1,
+  "purpose": "Inspect the real delayed native transition",
+  "preconditions": [],
+  "expected": {
+    "pass": "Both native frames match",
+    "fail": "A frame differs"
+  },
+  "steps": [
+    {
+      "id": "transition.1",
+      "order": 1,
+      "purpose": "Inspect ready.",
+      "actions": {
+        "do": "expect",
+        "says": "Inspect ready.",
+        "locator": "screen",
+        "text": "Ready screen",
+        "shot": "ready",
+        "image": {
+          "width": 1280,
+          "height": 720,
+          "pixels": [
+            {
+              "x": 10,
+              "y": 55,
+              "rgb": [
+                201,
+                166,
+                255
+              ]
+            }
+          ],
+          "lines": [
+            {
+              "text": "Ready screen",
+              "top": 11
+            },
+            {
+              "text": "Selected item",
+              "top": 31
+            }
+          ]
+        }
+      },
+      "expected": {
+        "text": "Ready screen",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "SAFETY STOP: unexpected terminal confirmation; approve the actual prompt before input"
+      ],
+      "assertionResult": "not-run"
+    },
+    {
+      "id": "transition.2",
+      "order": 2,
+      "purpose": "Open details.",
+      "actions": {
+        "do": "press",
+        "says": "Open details.",
+        "key": "n",
+        "screen": "Ready screen"
+      },
+      "expected": null,
+      "observed": [],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "transition.3",
+      "order": 3,
+      "purpose": "Inspect details.",
+      "actions": {
+        "do": "expect",
+        "says": "Inspect details.",
+        "locator": "screen",
+        "text": "Details screen",
+        "shot": "details",
+        "image": {
+          "width": 1280,
+          "height": 720,
+          "pixels": [
+            {
+              "x": 10,
+              "y": 55,
+              "rgb": [
+                201,
+                166,
+                255
+              ]
+            }
+          ],
+          "lines": [
+            {
+              "text": "Details screen",
+              "top": 11
+            },
+            {
+              "text": "Selected item",
+              "top": 31
+            }
+          ]
+        }
+      },
+      "expected": {
+        "text": "Details screen",
+        "visible": null,
+        "url": null
+      },
+      "observed": [],
+      "assertionResult": "not-run"
+    }
+  ],
+  "events": "cases/transition/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "error",
+      "id": "transition.error-001",
+      "caseId": "transition",
+      "stepId": "transition.1",
+      "category": "blocked",
+      "message": "SAFETY STOP: unexpected terminal confirmation; approve the actual prompt before input"
+    }
+  ],
+  "limits": [
+    "Native video is unavailable.",
+    "OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.",
+    "The private headless display does not reproduce a borrowed desktop terminal.",
+    "Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match."
+  ],
+  "sideEffects": [
+    "The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.",
+    "Collector-owned resources were released before sealing; borrowed terminals were not attached or closed."
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "run",
+  "id": "stop-credential",
+  "status": "sealed",
+  "startedAt": "2026-11-17T12:41:52.999Z",
+  "finishedAt": "2026-11-17T12:41:53.454Z",
+  "surface": "tui",
+  "driver": "tui",
+  "driverVersion": "termscope 0.1.1",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "stop",
+      "path": "cases/stop/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/stop/case.json",
+      "sha256": "aaefee75b61e2c86b515fece724e593d75efb3757654797533ff526cd2028fe1"
+    },
+    {
+      "path": "cases/stop/events.jsonl",
+      "sha256": "43ebcdaafd303dfc065a35cc325707af90f497cc97b196262b4b0a68abebf323"
+    },
+    {
+      "path": "cases/stop/index.md",
+      "sha256": "88f6671c3601f9b59bab7eaf58ff84e6e366388ae776a13d9646b0c74f0d34a0"
+    },
+    {
+      "path": "index.md",
+      "sha256": "95082b36162893a8bca1d32a12017654365d57415fc8568ce5a2250527bbad66"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "0540fe7a43a4a794db14738d531d9f02784427cb5d143cb873e51f28e709e00c"
+    },
+    {
+      "path": "native/runs/case-stop.log",
+      "sha256": "4cf8e684e62ad821052f9782d8cb778e2764b98e7aa0b8dd9ba17195810fc065"
+    },
+    {
+      "path": "native/workflows/ce-tui-edd65410-d31d-41e9-888c-6469a91ade44-cage.stderr",
+      "sha256": "6797245f61db9304598159d05f9ee305fb0207aeaaccbe706edba605e5398be6"
+    },
+    {
+      "path": "native/workflows/ce-tui-edd65410-d31d-41e9-888c-6469a91ade44-frame-000001.png",
+      "sha256": "cec04114320172706aff70a86c72ac2add97865b96d57a5007f4f5afed47f356"
+    },
+    {
+      "path": "native/workflows/ce-tui-edd65410-d31d-41e9-888c-6469a91ade44-termscope.jsonl",
+      "sha256": "3c40ee82445945817b085cc606740444581e2c841590cce9e20aac0859d3f3e1"
+    },
+    {
+      "path": "native/workflows/ce-tui-edd65410-d31d-41e9-888c-6469a91ade44-termscope.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/workflows/tui-stop.json",
+      "sha256": "1a2f7ee3e7dd1c0cc690358d845213ada3be5e0121652fe5751a00fbddfb7890"
+    },
+    {
+      "path": "native/workflows/tui-stop.log",
+      "sha256": "4cf8e684e62ad821052f9782d8cb778e2764b98e7aa0b8dd9ba17195810fc065"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "58d6eff7e29f613d035890b706f0d943353227a0b891197aa342d5bddbf620f5"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "0540fe7a43a4a794db14738d531d9f02784427cb5d143cb873e51f28e709e00c"
+    }
+  ]
+}

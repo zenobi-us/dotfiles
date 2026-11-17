@@ -1,0 +1,93 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "plan",
+  "terminal": {
+    "command": [
+      "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+      "/tmp/request-10-smoke-cClCES/terminal.ts"
+    ],
+    "cwd": "/tmp/request-10-smoke-cClCES",
+    "columns": 80,
+    "rows": 24,
+    "font": "monospace:size=12",
+    "lineHeight": 20
+  },
+  "test": {
+    "id": "transition",
+    "claim": "Inspect the real delayed native transition",
+    "pass": "Both native frames match",
+    "fail": "A frame differs",
+    "steps": [
+      {
+        "do": "expect",
+        "says": "Inspect ready.",
+        "locator": "screen",
+        "text": "Ready screen",
+        "shot": "ready",
+        "image": {
+          "width": 1280,
+          "height": 720,
+          "pixels": [
+            {
+              "x": 10,
+              "y": 55,
+              "rgb": [
+                201,
+                166,
+                255
+              ]
+            }
+          ],
+          "lines": [
+            {
+              "text": "Ready screen",
+              "top": 11
+            },
+            {
+              "text": "Selected item",
+              "top": 31
+            }
+          ]
+        }
+      },
+      {
+        "do": "press",
+        "says": "Open details.",
+        "key": "n",
+        "screen": "Ready screen"
+      },
+      {
+        "do": "expect",
+        "says": "Inspect details.",
+        "locator": "screen",
+        "text": "Details screen",
+        "shot": "details",
+        "image": {
+          "width": 1280,
+          "height": 720,
+          "pixels": [
+            {
+              "x": 10,
+              "y": 55,
+              "rgb": [
+                201,
+                166,
+                255
+              ]
+            }
+          ],
+          "lines": [
+            {
+              "text": "Details screen",
+              "top": 11
+            },
+            {
+              "text": "Selected item",
+              "top": 31
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

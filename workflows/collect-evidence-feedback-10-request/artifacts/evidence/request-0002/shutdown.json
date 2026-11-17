@@ -1,0 +1,41 @@
+{
+  "servers": [
+    {
+      "name": "tui",
+      "pid": 109922,
+      "code": 0,
+      "portReleased": true,
+      "lockReleased": true
+    },
+    {
+      "name": "gui",
+      "pid": 114717,
+      "code": 0,
+      "portReleased": true,
+      "lockReleased": true
+    },
+    {
+      "name": "historical",
+      "pid": 116687,
+      "code": 0,
+      "portReleased": true,
+      "lockReleased": true
+    },
+    {
+      "name": "failed",
+      "pid": 119918,
+      "code": 0,
+      "portReleased": true,
+      "lockReleased": true
+    }
+  ],
+  "fixture": {
+    "pid": 113445,
+    "exitCode": null
+  },
+  "display": {
+    "pid": 113144,
+    "exitCode": 0
+  },
+  "privateRuntimeRemoved": true
+}

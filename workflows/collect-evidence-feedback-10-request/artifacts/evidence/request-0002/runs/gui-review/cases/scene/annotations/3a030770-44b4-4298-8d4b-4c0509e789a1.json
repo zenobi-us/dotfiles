@@ -1,0 +1,28 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "annotation",
+  "id": "3a030770-44b4-4298-8d4b-4c0509e789a1",
+  "sessionId": "gui-review",
+  "caseId": "scene",
+  "assetId": "scene.1.capture-001",
+  "sourceSha256": "998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19",
+  "originalWidth": 480,
+  "originalHeight": 260,
+  "geometry": {
+    "x": 0.5,
+    "y": 0.5,
+    "width": 0,
+    "height": 0
+  },
+  "priority": "P2",
+  "comment": "Native purple and cyan panels match the approved fixture.",
+  "revision": 1,
+  "createdAt": "2026-11-17T12:38:22.053Z",
+  "updatedAt": "2026-11-17T12:38:22.053Z",
+  "pixelGeometry": {
+    "x": 240,
+    "y": 130,
+    "width": 0,
+    "height": 0
+  }
+}

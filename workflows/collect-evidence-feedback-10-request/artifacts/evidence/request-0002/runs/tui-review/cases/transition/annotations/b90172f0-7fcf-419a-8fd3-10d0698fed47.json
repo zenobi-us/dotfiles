@@ -1,0 +1,28 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "annotation",
+  "id": "b90172f0-7fcf-419a-8fd3-10d0698fed47",
+  "sessionId": "tui-review",
+  "caseId": "transition",
+  "assetId": "transition.3.capture-001",
+  "sourceSha256": "b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a",
+  "originalWidth": 1280,
+  "originalHeight": 720,
+  "geometry": {
+    "x": 0.5,
+    "y": 0.5,
+    "width": 0,
+    "height": 0
+  },
+  "priority": "P2",
+  "comment": "The delayed Details screen retains native line spacing and the purple selection bar.",
+  "revision": 1,
+  "createdAt": "2026-11-17T12:36:40.799Z",
+  "updatedAt": "2026-11-17T12:36:40.799Z",
+  "pixelGeometry": {
+    "x": 640,
+    "y": 360,
+    "width": 0,
+    "height": 0
+  }
+}

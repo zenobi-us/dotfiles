@@ -1,0 +1,7 @@
+{
+  "pid": 151857,
+  "code": 1,
+  "out": "{\"schema\":\"collect-feedback/v1\",\"kind\":\"error\",\"success\":false,\"code\":1,\"message\":\"Feedback request interrupted; retained records are not a completed request\"}\n",
+  "err": "Incomplete capture retained at /tmp/collect-evidence-qZdJjQ\nCollection interrupted; the command did not complete\nFeedback request interrupted; retained records are not a completed request\n",
+  "sessionCreated": false
+}

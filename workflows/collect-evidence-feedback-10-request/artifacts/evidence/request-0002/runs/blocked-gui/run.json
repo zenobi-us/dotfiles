@@ -1,0 +1,56 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "run",
+  "id": "blocked-gui",
+  "status": "sealed",
+  "startedAt": "2026-11-17T12:38:36.450Z",
+  "finishedAt": "2026-11-17T12:38:36.458Z",
+  "surface": "gui",
+  "driver": "gui",
+  "driverVersion": "Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org\nCopyright: (C) 1999 ImageMagick Studio LLC\nLicense: https://imagemagick.org/license/\nFeatures: Cipher DPC HDRI Modules OpenMP \nDelegates (built-in): bzlib cairo djvu fftw fontconfig freetype gslib gvc heic jbig jng jp2 jpeg jxl lcms lqr ltdl lzma openexr pangocairo png ps raqm raw rsvg tiff uhdr webp wmf x xml zip zlib zstd\nCompiler: gcc (16.2)",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "scene",
+      "path": "cases/scene/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/scene/case.json",
+      "sha256": "30fb8265f28e9eb83f9b03616d23abe568286ebfa1b3de377c9bd383cbaa123d"
+    },
+    {
+      "path": "cases/scene/events.jsonl",
+      "sha256": "c948fc745e447de67271182352f6cd39c90d6e0322209c049fa28910687e1976"
+    },
+    {
+      "path": "cases/scene/index.md",
+      "sha256": "bedeb8c28dd6363de1cf03c088f1747e40407bf5a740a22b9cffad3337cff6b6"
+    },
+    {
+      "path": "index.md",
+      "sha256": "16607440c69c9abce779d75a2056ebe0526a64a254d05bbcba07e30b910eeaf0"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "3fbcdc1490797aeb8f91396b5064a3754edb3c8a37960f1a2e04bbdcd920e37f"
+    },
+    {
+      "path": "native/runs/case-scene.log",
+      "sha256": "261e00fff081e3f50e265f82c19d55359d1e2a51e7579e79a8fef9b7d6abcd60"
+    },
+    {
+      "path": "native/workflows/gui-scene.json",
+      "sha256": "9ce7a6d8beaad780ce05f271a416631cf4e97301fa9d84a3826cd6a897918fdd"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "e8bb259dc56bbc08aced51816b11a202f470fa26ef26dedf7f6d1dce900793da"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "3fbcdc1490797aeb8f91396b5064a3754edb3c8a37960f1a2e04bbdcd920e37f"
+    }
+  ]
+}

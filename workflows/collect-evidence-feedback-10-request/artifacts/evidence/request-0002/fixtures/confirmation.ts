@@ -1,0 +1,1 @@
+process.stdin.setRawMode(true);process.stdout.write('\x1b[2J\x1b[HReady screen\r\nSelected item\r\n'+"Delete files? [y/N]");process.stdin.on('data',()=>process.stdout.write('INPUT RECEIVED'));

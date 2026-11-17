@@ -1,0 +1,1014 @@
+{
+  "tui": {
+    "schema": "collect-feedback/v1",
+    "kind": "event",
+    "command": "request",
+    "success": true,
+    "url": "http://127.0.0.1:19481",
+    "port": 19481,
+    "sessionId": "tui-review",
+    "readOnly": false,
+    "historical": false,
+    "source": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/fresh-tui-02",
+    "destination": {
+      "kind": "evidence",
+      "adapter": "files",
+      "store": "repository",
+      "root": "/tmp/request-10-smoke-cClCES/repository",
+      "path": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/tui-review",
+      "ref": "workflows/request/artifacts/evidence/tui-review",
+      "publication": "repository"
+    },
+    "records": {
+      "session": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/tui-review/session.json",
+      "index": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/tui-review/index.md",
+      "cases": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/tui-review/cases"
+    },
+    "collection": {
+      "schema": "collect-evidence/v1",
+      "kind": "event",
+      "command": "run",
+      "success": true,
+      "destination": {
+        "kind": "evidence",
+        "adapter": "files",
+        "store": "repository",
+        "root": "/tmp/request-10-smoke-cClCES/repository",
+        "path": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/fresh-tui-02",
+        "ref": "workflows/request/artifacts/evidence/fresh-tui-02",
+        "publication": "repository"
+      },
+      "capability": {
+        "driver": "tui",
+        "available": true,
+        "attended": false,
+        "diagnostic": "termscope 0.1.1",
+        "video": "unavailable",
+        "method": "private CPU foot/Cage/wlroots/grim",
+        "permissions": "private display launch and native PNG capture succeeded"
+      },
+      "finalized": {
+        "directory": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/fresh-tui-02",
+        "run": {
+          "schema": "collect-evidence/v1",
+          "kind": "run",
+          "id": "fresh-tui-02",
+          "status": "sealed",
+          "startedAt": "2026-11-17T12:35:46.084Z",
+          "finishedAt": "2026-11-17T12:35:49.561Z",
+          "surface": "tui",
+          "driver": "tui",
+          "driverVersion": "termscope 0.1.1",
+          "plan": "plan.json",
+          "cases": [
+            {
+              "id": "transition",
+              "path": "cases/transition/case.json"
+            }
+          ],
+          "files": [
+            {
+              "path": "cases/transition/case.json",
+              "sha256": "558eabc90b0d2769901c0a3136794d8f6361071b0dfaed4e23ae0452af15752a"
+            },
+            {
+              "path": "cases/transition/events.jsonl",
+              "sha256": "e2f666593de51e3665c16214686c44de8007d53e6c356eff5357a2c474e91b5f"
+            },
+            {
+              "path": "cases/transition/index.md",
+              "sha256": "103ddffb44b40cfdf37080c65098add80a6eb978f8046b22a2d13b652e5ce1a1"
+            },
+            {
+              "path": "cases/transition/media/step-001-step-transition-001-ready--capture-001--capture-001.png",
+              "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+            },
+            {
+              "path": "cases/transition/media/step-003-step-transition-003-details--capture-001--capture-001.png",
+              "sha256": "b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a"
+            },
+            {
+              "path": "index.md",
+              "sha256": "809c3995d51a8dcf73254492cacceafe79ea6bd3c409dbab9ab518261c2b253e"
+            },
+            {
+              "path": "native/plan.ts",
+              "sha256": "ec43d32936459a1c3c48afb63ea24afcdf2ed8404316dfcf78965e01fb300f33"
+            },
+            {
+              "path": "native/report/shots/step-transition-001-ready--capture-001.png",
+              "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+            },
+            {
+              "path": "native/report/shots/step-transition-003-details--capture-001.png",
+              "sha256": "b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a"
+            },
+            {
+              "path": "native/runs/case-transition.log",
+              "sha256": "52ac3cb3bcbbb60a5679c405469e8a7eaf2ed1fef8fa4a7dfb088ff36c23dc6e"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-cage.stderr",
+              "sha256": "cff642bab40ea04bc5e91cbd67dfc941538e5782af57d36f94529c7e2db38b6a"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000001.png",
+              "sha256": "cec04114320172706aff70a86c72ac2add97865b96d57a5007f4f5afed47f356"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000002.png",
+              "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000003.png",
+              "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000004.png",
+              "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000005.png",
+              "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000006.png",
+              "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000007.png",
+              "sha256": "bde0896611184ee272fd4c460e5d323d7c7542a76bddc40481161c666189a0b9"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000008.png",
+              "sha256": "bde0896611184ee272fd4c460e5d323d7c7542a76bddc40481161c666189a0b9"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000009.png",
+              "sha256": "bde0896611184ee272fd4c460e5d323d7c7542a76bddc40481161c666189a0b9"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000010.png",
+              "sha256": "bde0896611184ee272fd4c460e5d323d7c7542a76bddc40481161c666189a0b9"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000011.png",
+              "sha256": "bde0896611184ee272fd4c460e5d323d7c7542a76bddc40481161c666189a0b9"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000012.png",
+              "sha256": "b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000013.png",
+              "sha256": "b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-termscope.jsonl",
+              "sha256": "3c99967d46cf29238e93fd9a5f8b17b369d96350003247e7ee5edcea77d4d487"
+            },
+            {
+              "path": "native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-termscope.stderr",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "path": "native/workflows/tui-transition.json",
+              "sha256": "90bbc8c09ab59357d30b414a0aeb65c0d0457e7f004d72567257874e5add2b63"
+            },
+            {
+              "path": "native/workflows/tui-transition.log",
+              "sha256": "52ac3cb3bcbbb60a5679c405469e8a7eaf2ed1fef8fa4a7dfb088ff36c23dc6e"
+            },
+            {
+              "path": "plan.json",
+              "sha256": "23514055ac5d087a5479e4a55d452c165270319a63f92822968b2996a66c35ed"
+            },
+            {
+              "path": "plan.ts",
+              "sha256": "ec43d32936459a1c3c48afb63ea24afcdf2ed8404316dfcf78965e01fb300f33"
+            }
+          ]
+        },
+        "plan": {
+          "schema": "collect-evidence/v1",
+          "kind": "plan",
+          "workId": "request",
+          "driver": "tui",
+          "base": "terminal://private",
+          "video": true,
+          "terminal": {
+            "command": [
+              "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+              "/tmp/request-10-smoke-cClCES/terminal.ts"
+            ],
+            "cwd": "/tmp/request-10-smoke-cClCES",
+            "columns": 80,
+            "rows": 24,
+            "font": "monospace:size=12",
+            "lineHeight": 20
+          },
+          "approval": {
+            "origins": [],
+            "confirmations": [
+              "transition.2"
+            ],
+            "terminal": {
+              "command": [
+                "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+                "/tmp/request-10-smoke-cClCES/terminal.ts"
+              ],
+              "cwd": "/tmp/request-10-smoke-cClCES"
+            }
+          },
+          "tests": [
+            {
+              "id": "transition",
+              "claim": "Inspect the real delayed native transition",
+              "pass": "Both native frames match",
+              "fail": "A frame differs",
+              "steps": [
+                {
+                  "do": "expect",
+                  "says": "Inspect ready.",
+                  "locator": "screen",
+                  "text": "Ready screen",
+                  "shot": "ready",
+                  "image": {
+                    "width": 1280,
+                    "height": 720,
+                    "pixels": [
+                      {
+                        "x": 10,
+                        "y": 55,
+                        "rgb": [
+                          201,
+                          166,
+                          255
+                        ]
+                      }
+                    ],
+                    "lines": [
+                      {
+                        "text": "Ready screen",
+                        "top": 11
+                      },
+                      {
+                        "text": "Selected item",
+                        "top": 31
+                      }
+                    ]
+                  }
+                },
+                {
+                  "do": "press",
+                  "says": "Open details.",
+                  "key": "n",
+                  "screen": "Ready screen"
+                },
+                {
+                  "do": "expect",
+                  "says": "Inspect details.",
+                  "locator": "screen",
+                  "text": "Details screen",
+                  "shot": "details",
+                  "image": {
+                    "width": 1280,
+                    "height": 720,
+                    "pixels": [
+                      {
+                        "x": 10,
+                        "y": 55,
+                        "rgb": [
+                          201,
+                          166,
+                          255
+                        ]
+                      }
+                    ],
+                    "lines": [
+                      {
+                        "text": "Details screen",
+                        "top": 11
+                      },
+                      {
+                        "text": "Selected item",
+                        "top": 31
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "cases": [
+          {
+            "schema": "collect-evidence/v1",
+            "kind": "case",
+            "id": "transition",
+            "runId": "fresh-tui-02",
+            "order": 1,
+            "purpose": "Inspect the real delayed native transition",
+            "preconditions": [],
+            "expected": {
+              "pass": "Both native frames match",
+              "fail": "A frame differs"
+            },
+            "steps": [
+              {
+                "id": "transition.1",
+                "order": 1,
+                "purpose": "Inspect ready.",
+                "actions": {
+                  "do": "expect",
+                  "says": "Inspect ready.",
+                  "locator": "screen",
+                  "text": "Ready screen",
+                  "shot": "ready",
+                  "image": {
+                    "width": 1280,
+                    "height": 720,
+                    "pixels": [
+                      {
+                        "x": 10,
+                        "y": 55,
+                        "rgb": [
+                          201,
+                          166,
+                          255
+                        ]
+                      }
+                    ],
+                    "lines": [
+                      {
+                        "text": "Ready screen",
+                        "top": 11
+                      },
+                      {
+                        "text": "Selected item",
+                        "top": 31
+                      }
+                    ]
+                  }
+                },
+                "expected": {
+                  "text": "Ready screen",
+                  "visible": null,
+                  "url": null
+                },
+                "observed": [
+                  "Expected screen, native dimensions, colour probes and text line positions match"
+                ],
+                "assertionResult": "passed"
+              },
+              {
+                "id": "transition.2",
+                "order": 2,
+                "purpose": "Open details.",
+                "actions": {
+                  "do": "press",
+                  "says": "Open details.",
+                  "key": "n",
+                  "screen": "Ready screen"
+                },
+                "expected": null,
+                "observed": [
+                  "Input completed on the owned terminal"
+                ],
+                "assertionResult": "not-applicable"
+              },
+              {
+                "id": "transition.3",
+                "order": 3,
+                "purpose": "Inspect details.",
+                "actions": {
+                  "do": "expect",
+                  "says": "Inspect details.",
+                  "locator": "screen",
+                  "text": "Details screen",
+                  "shot": "details",
+                  "image": {
+                    "width": 1280,
+                    "height": 720,
+                    "pixels": [
+                      {
+                        "x": 10,
+                        "y": 55,
+                        "rgb": [
+                          201,
+                          166,
+                          255
+                        ]
+                      }
+                    ],
+                    "lines": [
+                      {
+                        "text": "Details screen",
+                        "top": 11
+                      },
+                      {
+                        "text": "Selected item",
+                        "top": 31
+                      }
+                    ]
+                  }
+                },
+                "expected": {
+                  "text": "Details screen",
+                  "visible": null,
+                  "url": null
+                },
+                "observed": [
+                  "Expected screen, native dimensions, colour probes and text line positions match"
+                ],
+                "assertionResult": "passed"
+              }
+            ],
+            "events": "cases/transition/events.jsonl",
+            "assets": [
+              {
+                "schema": "collect-evidence/v1",
+                "kind": "asset",
+                "id": "transition.1.capture-001",
+                "caseId": "transition",
+                "stepId": "transition.1",
+                "path": "cases/transition/media/step-001-step-transition-001-ready--capture-001--capture-001.png",
+                "captureSequence": 1,
+                "sha256": "2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f",
+                "mediaType": "image/png",
+                "width": 1280,
+                "height": 720,
+                "capturedAt": "2026-11-17T12:35:46.905Z",
+                "viewport": null,
+                "surface": "tui",
+                "driver": "tui",
+                "driverVersion": "termscope 0.1.1",
+                "captureMethod": "grim-native",
+                "url": "terminal://ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033",
+                "terminal": {
+                  "session": "ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033",
+                  "socket": "/tmp/ce-native-rlxPqi/tmux.sock",
+                  "pane": "%0",
+                  "tty": "/dev/pts/10",
+                  "display": "wayland-0",
+                  "runtime": "/tmp/ce-native-rlxPqi",
+                  "cagePid": 110138,
+                  "footPid": 110139,
+                  "columns": 80,
+                  "rows": 24,
+                  "font": "monospace:size=12",
+                  "lineHeight": 20,
+                  "cleanup": "released"
+                }
+              },
+              {
+                "schema": "collect-evidence/v1",
+                "kind": "asset",
+                "id": "transition.3.capture-001",
+                "caseId": "transition",
+                "stepId": "transition.3",
+                "path": "cases/transition/media/step-003-step-transition-003-details--capture-001--capture-001.png",
+                "captureSequence": 1,
+                "sha256": "b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a",
+                "mediaType": "image/png",
+                "width": 1280,
+                "height": 720,
+                "capturedAt": "2026-11-17T12:35:49.395Z",
+                "viewport": null,
+                "surface": "tui",
+                "driver": "tui",
+                "driverVersion": "termscope 0.1.1",
+                "captureMethod": "grim-native",
+                "url": "terminal://ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033",
+                "terminal": {
+                  "session": "ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033",
+                  "socket": "/tmp/ce-native-rlxPqi/tmux.sock",
+                  "pane": "%0",
+                  "tty": "/dev/pts/10",
+                  "display": "wayland-0",
+                  "runtime": "/tmp/ce-native-rlxPqi",
+                  "cagePid": 110138,
+                  "footPid": 110139,
+                  "columns": 80,
+                  "rows": 24,
+                  "font": "monospace:size=12",
+                  "lineHeight": 20,
+                  "cleanup": "released"
+                }
+              }
+            ],
+            "errors": [],
+            "limits": [
+              "Native video is unavailable.",
+              "OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.",
+              "The private headless display does not reproduce a borrowed desktop terminal.",
+              "Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match."
+            ],
+            "sideEffects": [
+              "The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.",
+              "Collector-owned resources were released before sealing; borrowed terminals were not attached or closed."
+            ]
+          }
+        ],
+        "records": [
+          {
+            "test": "transition",
+            "step": "transition.1",
+            "action": "assert",
+            "target": "Ready screen",
+            "resolved": "",
+            "url": "terminal://ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033",
+            "screenshot": "shots/step-transition-001-ready--capture-001.png",
+            "observed": "Expected screen, native dimensions, colour probes and text line positions match",
+            "verdict": "",
+            "note": "Native video unavailable. OCR is not a substitute for human image inspection.",
+            "terminal": {
+              "session": "ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033",
+              "socket": "/tmp/ce-native-rlxPqi/tmux.sock",
+              "pane": "%0",
+              "tty": "/dev/pts/10",
+              "display": "wayland-0",
+              "runtime": "/tmp/ce-native-rlxPqi",
+              "cagePid": 110138,
+              "footPid": 110139,
+              "columns": 80,
+              "rows": 24,
+              "font": "monospace:size=12",
+              "lineHeight": 20,
+              "cleanup": "released"
+            },
+            "capturedAt": "2026-11-17T12:35:46.905Z",
+            "captureSequence": 1,
+            "captureStatus": "captured",
+            "assertionPassed": true
+          },
+          {
+            "test": "transition",
+            "step": "transition.2",
+            "action": "press",
+            "target": "screen",
+            "resolved": "",
+            "url": "terminal://ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033",
+            "screenshot": "",
+            "observed": "Input completed on the owned terminal",
+            "verdict": "",
+            "note": "Native video unavailable. OCR is not a substitute for human image inspection.",
+            "terminal": {
+              "session": "ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033",
+              "socket": "/tmp/ce-native-rlxPqi/tmux.sock",
+              "pane": "%0",
+              "tty": "/dev/pts/10",
+              "display": "wayland-0",
+              "runtime": "/tmp/ce-native-rlxPqi",
+              "cagePid": 110138,
+              "footPid": 110139,
+              "columns": 80,
+              "rows": 24,
+              "font": "monospace:size=12",
+              "lineHeight": 20,
+              "cleanup": "released"
+            }
+          },
+          {
+            "test": "transition",
+            "step": "transition.3",
+            "action": "assert",
+            "target": "Details screen",
+            "resolved": "",
+            "url": "terminal://ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033",
+            "screenshot": "shots/step-transition-003-details--capture-001.png",
+            "observed": "Expected screen, native dimensions, colour probes and text line positions match",
+            "verdict": "PASS",
+            "note": "Native video unavailable. OCR is not a substitute for human image inspection.",
+            "terminal": {
+              "session": "ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033",
+              "socket": "/tmp/ce-native-rlxPqi/tmux.sock",
+              "pane": "%0",
+              "tty": "/dev/pts/10",
+              "display": "wayland-0",
+              "runtime": "/tmp/ce-native-rlxPqi",
+              "cagePid": 110138,
+              "footPid": 110139,
+              "columns": 80,
+              "rows": 24,
+              "font": "monospace:size=12",
+              "lineHeight": 20,
+              "cleanup": "released"
+            },
+            "capturedAt": "2026-11-17T12:35:49.395Z",
+            "captureSequence": 1,
+            "captureStatus": "captured",
+            "assertionPassed": true
+          }
+        ]
+      },
+      "verdicts": [
+        {
+          "caseId": "transition",
+          "verdict": "PASS"
+        }
+      ]
+    }
+  },
+  "gui": {
+    "schema": "collect-feedback/v1",
+    "kind": "event",
+    "command": "request",
+    "success": true,
+    "url": "http://127.0.0.1:19482",
+    "port": 19482,
+    "sessionId": "gui-review",
+    "readOnly": false,
+    "historical": false,
+    "source": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/fresh-gui",
+    "destination": {
+      "kind": "evidence",
+      "adapter": "files",
+      "store": "repository",
+      "root": "/tmp/request-10-smoke-cClCES/repository",
+      "path": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/gui-review",
+      "ref": "workflows/request/artifacts/evidence/gui-review",
+      "publication": "repository"
+    },
+    "records": {
+      "session": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/gui-review/session.json",
+      "index": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/gui-review/index.md",
+      "cases": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/gui-review/cases"
+    },
+    "collection": {
+      "schema": "collect-evidence/v1",
+      "kind": "event",
+      "command": "run",
+      "success": true,
+      "destination": {
+        "kind": "evidence",
+        "adapter": "files",
+        "store": "repository",
+        "root": "/tmp/request-10-smoke-cClCES/repository",
+        "path": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/fresh-gui",
+        "ref": "workflows/request/artifacts/evidence/fresh-gui",
+        "publication": "repository"
+      },
+      "capability": {
+        "driver": "gui",
+        "checks": "Selected native permissions are checked per case",
+        "video": "unavailable"
+      },
+      "finalized": {
+        "directory": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/fresh-gui",
+        "run": {
+          "schema": "collect-evidence/v1",
+          "kind": "run",
+          "id": "fresh-gui",
+          "status": "sealed",
+          "startedAt": "2026-11-17T12:37:39.544Z",
+          "finishedAt": "2026-11-17T12:37:39.805Z",
+          "surface": "gui",
+          "driver": "gui",
+          "driverVersion": "Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org\nCopyright: (C) 1999 ImageMagick Studio LLC\nLicense: https://imagemagick.org/license/\nFeatures: Cipher DPC HDRI Modules OpenMP \nDelegates (built-in): bzlib cairo djvu fftw fontconfig freetype gslib gvc heic jbig jng jp2 jpeg jxl lcms lqr ltdl lzma openexr pangocairo png ps raqm raw rsvg tiff uhdr webp wmf x xml zip zlib zstd\nCompiler: gcc (16.2)",
+          "plan": "plan.json",
+          "cases": [
+            {
+              "id": "scene",
+              "path": "cases/scene/case.json"
+            }
+          ],
+          "files": [
+            {
+              "path": "cases/scene/case.json",
+              "sha256": "801930e1c4257dbd01b56a6b9ca1f0b27ad1ab973b93b587d7506f9db81d41ee"
+            },
+            {
+              "path": "cases/scene/events.jsonl",
+              "sha256": "04902266d539f1888bf19e129dde6d86aff46cd184b2f96a6e1eea056f9b024d"
+            },
+            {
+              "path": "cases/scene/index.md",
+              "sha256": "6250c560174fd6c5c9b92ea7e0d7100c3d1c6b8ca1b043d3c278fc977e6d4df1"
+            },
+            {
+              "path": "cases/scene/media/step-001-step-scene-001-native-panels--capture-001--capture-001.png",
+              "sha256": "998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19"
+            },
+            {
+              "path": "index.md",
+              "sha256": "c5d18fd4d63d6c36a709f5b8f667cc555499e294829be0d84c317fd651da9cac"
+            },
+            {
+              "path": "native/plan.ts",
+              "sha256": "3a615bfd56d207e26e72fb7058279f28aefe65d4d46198903641bcf1f3e6057f"
+            },
+            {
+              "path": "native/report/shots/step-scene-001-native-panels--capture-001.png",
+              "sha256": "998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19"
+            },
+            {
+              "path": "native/runs/case-scene.log",
+              "sha256": "8f18ddc5a66abb31f20a5048b10e81523d02062d0edad29167cf651c97c9f384"
+            },
+            {
+              "path": "native/workflows/gui-scene.json",
+              "sha256": "bab9342fd6951e6f34947c844aa37cd59d685dfd3ac9937b1e400c2d44c10ace"
+            },
+            {
+              "path": "plan.json",
+              "sha256": "03ddb10768b36da6ac9a1f074a0f73e3fb4413e480f43050b08c41ceff19fddc"
+            },
+            {
+              "path": "plan.ts",
+              "sha256": "3a615bfd56d207e26e72fb7058279f28aefe65d4d46198903641bcf1f3e6057f"
+            }
+          ]
+        },
+        "plan": {
+          "schema": "collect-evidence/v1",
+          "kind": "plan",
+          "workId": "request",
+          "driver": "gui",
+          "base": "gui://local",
+          "gui": {
+            "display": ":3",
+            "window": "0x200001",
+            "title": "Owned feedback request fixture"
+          },
+          "approval": {
+            "origins": [],
+            "gui": {
+              "display": ":3",
+              "window": "0x200001",
+              "title": "Owned feedback request fixture"
+            }
+          },
+          "video": true,
+          "tests": [
+            {
+              "id": "scene",
+              "claim": "Inspect the owned native GUI fixture",
+              "pass": "Selected native panels match",
+              "fail": "Panels differ",
+              "steps": [
+                {
+                  "do": "expect",
+                  "says": "Inspect the selected window.",
+                  "locator": "screen",
+                  "visible": true,
+                  "shot": "native-panels",
+                  "image": {
+                    "width": 480,
+                    "height": 260,
+                    "pixels": [
+                      {
+                        "x": 40,
+                        "y": 110,
+                        "rgb": [
+                          201,
+                          166,
+                          255
+                        ]
+                      },
+                      {
+                        "x": 270,
+                        "y": 110,
+                        "rgb": [
+                          156,
+                          207,
+                          216
+                        ]
+                      }
+                    ],
+                    "lines": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "cases": [
+          {
+            "schema": "collect-evidence/v1",
+            "kind": "case",
+            "id": "scene",
+            "runId": "fresh-gui",
+            "order": 1,
+            "purpose": "Inspect the owned native GUI fixture",
+            "preconditions": [],
+            "expected": {
+              "pass": "Selected native panels match",
+              "fail": "Panels differ"
+            },
+            "steps": [
+              {
+                "id": "scene.1",
+                "order": 1,
+                "purpose": "Inspect the selected window.",
+                "actions": {
+                  "do": "expect",
+                  "says": "Inspect the selected window.",
+                  "locator": "screen",
+                  "visible": true,
+                  "shot": "native-panels",
+                  "image": {
+                    "width": 480,
+                    "height": 260,
+                    "pixels": [
+                      {
+                        "x": 40,
+                        "y": 110,
+                        "rgb": [
+                          201,
+                          166,
+                          255
+                        ]
+                      },
+                      {
+                        "x": 270,
+                        "y": 110,
+                        "rgb": [
+                          156,
+                          207,
+                          216
+                        ]
+                      }
+                    ],
+                    "lines": []
+                  }
+                },
+                "expected": {
+                  "text": null,
+                  "visible": true,
+                  "url": null,
+                  "image": {
+                    "width": 480,
+                    "height": 260,
+                    "pixels": [
+                      {
+                        "x": 40,
+                        "y": 110,
+                        "rgb": [
+                          201,
+                          166,
+                          255
+                        ]
+                      },
+                      {
+                        "x": 270,
+                        "y": 110,
+                        "rgb": [
+                          156,
+                          207,
+                          216
+                        ]
+                      }
+                    ],
+                    "lines": []
+                  }
+                },
+                "observed": [
+                  "Exact selected surface title, stable native frame, dimensions and RGB probes match"
+                ],
+                "assertionResult": "passed"
+              }
+            ],
+            "events": "cases/scene/events.jsonl",
+            "assets": [
+              {
+                "schema": "collect-evidence/v1",
+                "kind": "asset",
+                "id": "scene.1.capture-001",
+                "caseId": "scene",
+                "stepId": "scene.1",
+                "path": "cases/scene/media/step-001-step-scene-001-native-panels--capture-001--capture-001.png",
+                "captureSequence": 1,
+                "sha256": "998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19",
+                "mediaType": "image/png",
+                "width": 480,
+                "height": 260,
+                "capturedAt": "2026-11-17T12:37:39.804Z",
+                "viewport": null,
+                "surface": "gui",
+                "driver": "gui",
+                "driverVersion": "Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org",
+                "captureMethod": "x11-imagemagick-import",
+                "url": "x11://:3/0x200001",
+                "gui": {
+                  "display": ":3",
+                  "window": "0x200001",
+                  "title": "Owned feedback request fixture",
+                  "ownership": "borrowed",
+                  "cleanup": "preserved"
+                }
+              }
+            ],
+            "errors": [],
+            "limits": [
+              "Native video and automated GUI input are unavailable.",
+              "Only Linux X11 is supported. Wayland portals, macOS and Windows are not implemented.",
+              "Pixel probes and stable frames do not prove usability or absence of private content. Inspect every original PNG.",
+              "Keep the selected window unobscured; X11 capture can include occlusion. Display root captures include the whole approved display."
+            ],
+            "sideEffects": [
+              "Read-only capture; no application input, launch, focus or shutdown operations performed. Borrowed windows and displays preserved."
+            ]
+          }
+        ],
+        "records": [
+          {
+            "test": "scene",
+            "step": "scene.1",
+            "target": "screen",
+            "resolved": "0x200001",
+            "url": "x11://:3/0x200001",
+            "screenshot": "shots/step-scene-001-native-panels--capture-001.png",
+            "note": "Read-only native capture; inspect original pixels. No input or video support.",
+            "gui": {
+              "display": ":3",
+              "window": "0x200001",
+              "title": "Owned feedback request fixture",
+              "ownership": "borrowed",
+              "cleanup": "preserved"
+            },
+            "action": "assert",
+            "observed": "Exact selected surface title, stable native frame, dimensions and RGB probes match",
+            "verdict": "PASS",
+            "toolVersion": "Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org",
+            "capturedAt": "2026-11-17T12:37:39.804Z",
+            "captureSequence": 1,
+            "captureStatus": "captured",
+            "assertionPassed": true
+          }
+        ]
+      },
+      "verdicts": [
+        {
+          "caseId": "scene",
+          "verdict": "PASS"
+        }
+      ]
+    }
+  },
+  "historical": {
+    "schema": "collect-feedback/v1",
+    "kind": "event",
+    "command": "request",
+    "success": true,
+    "url": "http://127.0.0.1:19483",
+    "port": 19483,
+    "sessionId": "historical-review",
+    "readOnly": false,
+    "historical": true,
+    "source": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/fresh-gui",
+    "destination": {
+      "kind": "evidence",
+      "adapter": "files",
+      "store": "repository",
+      "root": "/tmp/request-10-smoke-cClCES/repository",
+      "path": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/historical-review",
+      "ref": "workflows/request/artifacts/evidence/historical-review",
+      "publication": "repository"
+    },
+    "records": {
+      "session": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/historical-review/session.json",
+      "index": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/historical-review/index.md",
+      "cases": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/historical-review/cases"
+    }
+  },
+  "failed": {
+    "schema": "collect-feedback/v1",
+    "kind": "event",
+    "command": "request",
+    "success": true,
+    "url": "http://127.0.0.1:19485",
+    "port": 19485,
+    "sessionId": "failed-review",
+    "readOnly": false,
+    "historical": false,
+    "source": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/failed-pixels",
+    "destination": {
+      "kind": "evidence",
+      "adapter": "files",
+      "store": "repository",
+      "root": "/tmp/request-10-smoke-cClCES/repository",
+      "path": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/failed-review",
+      "ref": "workflows/request/artifacts/evidence/failed-review",
+      "publication": "repository"
+    },
+    "records": {
+      "session": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/failed-review/session.json",
+      "index": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/failed-review/index.md",
+      "cases": "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/failed-review/cases"
+    },
+    "collection": {
+      "capability": {
+        "driver": "gui",
+        "checks": "Selected native permissions are checked per case",
+        "video": "unavailable"
+      },
+      "verdicts": [
+        {
+          "caseId": "scene",
+          "verdict": "FAIL"
+        }
+      ]
+    }
+  }
+}

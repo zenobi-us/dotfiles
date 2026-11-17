@@ -1,0 +1,98 @@
+
+
+
+
+
+{"id":1,"result":{"cols":80,"rows":24,"cursor":[0,0],"cursor_style":"block","cursor_visible":true,"title":"","alt_screen":true}}
+
+{"id":2,"result":{}}
+
+
+
+{"id":3,"result":{"cols":80,"rows":24,"cursor":[0,0],"cursor_visible":true,"cursor_style":"block","screen":"alternate","title":"","lines":[""]}}
+
+Estimating resolution as 263
+Estimating resolution as 263
+
+{"id":4,"result":{"cols":80,"rows":24,"cursor":[2,30],"cursor_visible":false,"cursor_style":"block","screen":"alternate","title":"","lines":["Ready screen","Selected item",""]}}
+
+Estimating resolution as 156
+
+{"id":5,"result":{"cols":80,"rows":24,"cursor":[2,30],"cursor_visible":false,"cursor_style":"block","screen":"alternate","title":"","lines":["Ready screen","Selected item",""]}}
+
+Estimating resolution as 156
+
+
+
+Estimating resolution as 156
+
+level	page_num	block_num	par_num	line_num	word_num	left	top	width	height	conf	text
+1	1	0	0	0	0	0	0	1280	720	-1	
+2	1	1	0	0	0	1	11	118	16	-1	
+3	1	1	1	0	0	1	11	118	16	-1	
+4	1	1	1	1	0	1	11	118	16	-1	
+5	1	1	1	1	1	1	11	48	16	96.975952	Ready
+5	1	1	1	1	2	62	15	57	9	96.143654	screen
+2	1	2	0	0	0	1	31	128	13	-1	
+3	1	2	1	0	0	1	31	128	13	-1	
+4	1	2	1	1	0	1	31	128	13	-1	
+5	1	2	1	1	1	1	31	77	13	75.570068	Selected
+5	1	2	1	1	2	91	31	38	13	75.570068	item
+
+{"id":6,"result":{"cols":80,"rows":24,"cursor":[2,30],"cursor_visible":false,"cursor_style":"block","screen":"alternate","title":"","lines":["Ready screen","Selected item",""]}}
+
+Estimating resolution as 156
+
+{"id":7,"result":{"cols":80,"rows":24,"cursor":[2,30],"cursor_visible":false,"cursor_style":"block","screen":"alternate","title":"","lines":["Ready screen","Selected item",""]}}
+
+Estimating resolution as 156
+
+{"id":8,"result":{}}
+{"id":9,"result":{"cols":80,"rows":24,"cursor":[2,30],"cursor_visible":false,"cursor_style":"block","screen":"alternate","title":"","lines":["Ready screen","Selected item",""]}}
+
+Estimating resolution as 156
+
+{"id":10,"result":{"cols":80,"rows":24,"cursor":[2,30],"cursor_visible":false,"cursor_style":"block","screen":"alternate","title":"","lines":["Loading screen","Selected item",""]}}
+
+Estimating resolution as 154
+
+{"id":11,"result":{"cols":80,"rows":24,"cursor":[2,30],"cursor_visible":false,"cursor_style":"block","screen":"alternate","title":"","lines":["Loading screen","Selected item",""]}}
+
+Estimating resolution as 154
+
+{"id":12,"result":{"cols":80,"rows":24,"cursor":[2,30],"cursor_visible":false,"cursor_style":"block","screen":"alternate","title":"","lines":["Loading screen","Selected item",""]}}
+
+Estimating resolution as 154
+
+{"id":13,"result":{"cols":80,"rows":24,"cursor":[2,30],"cursor_visible":false,"cursor_style":"block","screen":"alternate","title":"","lines":["Loading screen","Selected item",""]}}
+
+Estimating resolution as 154
+
+{"id":14,"result":{"cols":80,"rows":24,"cursor":[2,30],"cursor_visible":false,"cursor_style":"block","screen":"alternate","title":"","lines":["Loading screen","Selected item",""]}}
+
+Estimating resolution as 154
+
+{"id":15,"result":{"cols":80,"rows":24,"cursor":[2,30],"cursor_visible":false,"cursor_style":"block","screen":"alternate","title":"","lines":["Details screen","Selected item",""]}}
+
+Estimating resolution as 154
+
+{"id":16,"result":{"cols":80,"rows":24,"cursor":[2,30],"cursor_visible":false,"cursor_style":"block","screen":"alternate","title":"","lines":["Details screen","Selected item",""]}}
+
+Estimating resolution as 154
+
+
+
+Estimating resolution as 154
+
+level	page_num	block_num	par_num	line_num	word_num	left	top	width	height	conf	text
+1	1	0	0	0	0	0	0	1280	720	-1	
+2	1	1	0	0	0	1	11	138	13	-1	
+3	1	1	1	0	0	1	11	138	13	-1	
+4	1	1	1	1	0	1	11	138	13	-1	
+5	1	1	1	1	1	1	11	67	13	96.842720	Details
+5	1	1	1	1	2	82	15	57	9	96.828140	screen
+2	1	2	0	0	0	1	31	128	13	-1	
+3	1	2	1	0	0	1	31	128	13	-1	
+4	1	2	1	1	0	1	31	128	13	-1	
+5	1	2	1	1	1	1	31	77	13	75.570068	Selected
+5	1	2	1	1	2	91	31	38	13	75.570068	item

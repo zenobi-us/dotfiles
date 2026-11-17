@@ -1,0 +1,29 @@
+{
+  "schema": "collect-evidence/v1",
+  "kind": "plan",
+  "terminal": {
+    "command": [
+      "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+      "/tmp/request-10-smoke-cClCES/credential.ts"
+    ],
+    "cwd": "/tmp/request-10-smoke-cClCES",
+    "columns": 80,
+    "rows": 24,
+    "font": "monospace:size=12",
+    "lineHeight": 20
+  },
+  "test": {
+    "id": "stop",
+    "claim": "Stop before unsafe input",
+    "pass": "No input received",
+    "fail": "Unsafe input submitted",
+    "steps": [
+      {
+        "do": "press",
+        "says": "Try the approved harmless key only on the ready screen.",
+        "key": "RET",
+        "screen": "Ready screen"
+      }
+    ]
+  }
+}

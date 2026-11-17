@@ -1,0 +1,656 @@
+[
+  {
+    "args": [
+      "git",
+      "init",
+      "--quiet",
+      "/tmp/request-10-smoke-cClCES/repository"
+    ],
+    "out": "",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "git",
+      "-C",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "remote",
+      "add",
+      "origin",
+      "https://example.invalid/owned/request-smoke.git"
+    ],
+    "out": "",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/request-10-smoke-cClCES/tui",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--run",
+      "fresh-tui",
+      "--driver",
+      "tui",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/tui\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/request-10-smoke-cClCES/repository\",\"path\":\"/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/fresh-tui\",\"ref\":\"workflows/request/artifacts/evidence/fresh-tui\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/request-10-smoke-cClCES/tui",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/tui\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/request-10-smoke-cClCES/tui",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/tui\",\"driver\":\"tui\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "request",
+      "/tmp/request-10-smoke-cClCES/tui",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--session",
+      "tui-review",
+      "--port",
+      "19481",
+      "--json",
+      "--dry-run"
+    ],
+    "out": "{\"schema\":\"collect-feedback/v1\",\"kind\":\"event\",\"command\":\"request\",\"success\":true,\"dryRun\":true,\"historical\":false,\"source\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/request-10-smoke-cClCES/repository\",\"path\":\"/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/fresh-tui\",\"ref\":\"workflows/request/artifacts/evidence/fresh-tui\",\"publication\":\"repository\"},\"driver\":\"tui\",\"sessionId\":\"tui-review\",\"port\":19481}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "verdicts",
+      "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/fresh-tui",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"verdicts\",\"success\":true,\"verdicts\":[{\"caseId\":\"transition\",\"verdict\":\"BLOCKED\"}]}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/request-10-smoke-cClCES/tui-second",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--run",
+      "fresh-tui-02",
+      "--driver",
+      "tui",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/tui-second\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/request-10-smoke-cClCES/repository\",\"path\":\"/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/fresh-tui-02\",\"ref\":\"workflows/request/artifacts/evidence/fresh-tui-02\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/request-10-smoke-cClCES/tui-second",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/tui-second\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/request-10-smoke-cClCES/tui-second",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/tui-second\",\"driver\":\"tui\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "export",
+      "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/tui-review",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-feedback/v1\",\"kind\":\"export\",\"success\":true,\"session\":{\"schema\":\"collect-feedback/v1\",\"kind\":\"session\",\"id\":\"tui-review\",\"createdAt\":\"2026-11-17T12:35:49.965Z\",\"source\":{\"schema\":\"collect-evidence/v1\",\"kind\":\"run\",\"id\":\"fresh-tui-02\",\"status\":\"sealed\",\"startedAt\":\"2026-11-17T12:35:46.084Z\",\"finishedAt\":\"2026-11-17T12:35:49.561Z\",\"surface\":\"tui\",\"driver\":\"tui\",\"driverVersion\":\"termscope 0.1.1\",\"plan\":\"plan.json\",\"cases\":[{\"id\":\"transition\",\"path\":\"cases/transition/case.json\"}],\"files\":[{\"path\":\"cases/transition/case.json\",\"sha256\":\"558eabc90b0d2769901c0a3136794d8f6361071b0dfaed4e23ae0452af15752a\"},{\"path\":\"cases/transition/events.jsonl\",\"sha256\":\"e2f666593de51e3665c16214686c44de8007d53e6c356eff5357a2c474e91b5f\"},{\"path\":\"cases/transition/index.md\",\"sha256\":\"103ddffb44b40cfdf37080c65098add80a6eb978f8046b22a2d13b652e5ce1a1\"},{\"path\":\"cases/transition/media/step-001-step-transition-001-ready--capture-001--capture-001.png\",\"sha256\":\"2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f\"},{\"path\":\"cases/transition/media/step-003-step-transition-003-details--capture-001--capture-001.png\",\"sha256\":\"b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a\"},{\"path\":\"index.md\",\"sha256\":\"809c3995d51a8dcf73254492cacceafe79ea6bd3c409dbab9ab518261c2b253e\"},{\"path\":\"native/plan.ts\",\"sha256\":\"ec43d32936459a1c3c48afb63ea24afcdf2ed8404316dfcf78965e01fb300f33\"},{\"path\":\"native/report/shots/step-transition-001-ready--capture-001.png\",\"sha256\":\"2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f\"},{\"path\":\"native/report/shots/step-transition-003-details--capture-001.png\",\"sha256\":\"b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a\"},{\"path\":\"native/runs/case-transition.log\",\"sha256\":\"52ac3cb3bcbbb60a5679c405469e8a7eaf2ed1fef8fa4a7dfb088ff36c23dc6e\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-cage.stderr\",\"sha256\":\"cff642bab40ea04bc5e91cbd67dfc941538e5782af57d36f94529c7e2db38b6a\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000001.png\",\"sha256\":\"cec04114320172706aff70a86c72ac2add97865b96d57a5007f4f5afed47f356\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000002.png\",\"sha256\":\"2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000003.png\",\"sha256\":\"2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000004.png\",\"sha256\":\"2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000005.png\",\"sha256\":\"2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000006.png\",\"sha256\":\"2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000007.png\",\"sha256\":\"bde0896611184ee272fd4c460e5d323d7c7542a76bddc40481161c666189a0b9\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000008.png\",\"sha256\":\"bde0896611184ee272fd4c460e5d323d7c7542a76bddc40481161c666189a0b9\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000009.png\",\"sha256\":\"bde0896611184ee272fd4c460e5d323d7c7542a76bddc40481161c666189a0b9\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000010.png\",\"sha256\":\"bde0896611184ee272fd4c460e5d323d7c7542a76bddc40481161c666189a0b9\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000011.png\",\"sha256\":\"bde0896611184ee272fd4c460e5d323d7c7542a76bddc40481161c666189a0b9\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000012.png\",\"sha256\":\"b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-frame-000013.png\",\"sha256\":\"b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-termscope.jsonl\",\"sha256\":\"3c99967d46cf29238e93fd9a5f8b17b369d96350003247e7ee5edcea77d4d487\"},{\"path\":\"native/workflows/ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033-termscope.stderr\",\"sha256\":\"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"},{\"path\":\"native/workflows/tui-transition.json\",\"sha256\":\"90bbc8c09ab59357d30b414a0aeb65c0d0457e7f004d72567257874e5add2b63\"},{\"path\":\"native/workflows/tui-transition.log\",\"sha256\":\"52ac3cb3bcbbb60a5679c405469e8a7eaf2ed1fef8fa4a7dfb088ff36c23dc6e\"},{\"path\":\"plan.json\",\"sha256\":\"23514055ac5d087a5479e4a55d452c165270319a63f92822968b2996a66c35ed\"},{\"path\":\"plan.ts\",\"sha256\":\"ec43d32936459a1c3c48afb63ea24afcdf2ed8404316dfcf78965e01fb300f33\"}],\"runId\":\"fresh-tui-02\",\"manifestSha256\":\"e5769a4dd867b08ab563f75d6dde174cda107e968792eb11578db358a4b1b565\"},\"cases\":[{\"id\":\"transition\",\"path\":\"cases/transition/case.json\"}]},\"cases\":[{\"kind\":\"case\",\"id\":\"transition\",\"order\":1,\"purpose\":\"Inspect the real delayed native transition\",\"preconditions\":[],\"expected\":{\"pass\":\"Both native frames match\",\"fail\":\"A frame differs\"},\"steps\":[{\"id\":\"transition.1\",\"order\":1,\"purpose\":\"Inspect ready.\",\"actions\":{\"do\":\"expect\",\"says\":\"Inspect ready.\",\"locator\":\"screen\",\"text\":\"Ready screen\",\"shot\":\"ready\",\"image\":{\"width\":1280,\"height\":720,\"pixels\":[{\"x\":10,\"y\":55,\"rgb\":[201,166,255]}],\"lines\":[{\"text\":\"Ready screen\",\"top\":11},{\"text\":\"Selected item\",\"top\":31}]}},\"expected\":{\"text\":\"Ready screen\",\"visible\":null,\"url\":null},\"observed\":[\"Expected screen, native dimensions, colour probes and text line positions match\"],\"assertionResult\":\"passed\"},{\"id\":\"transition.2\",\"order\":2,\"purpose\":\"Open details.\",\"actions\":{\"do\":\"press\",\"says\":\"Open details.\",\"key\":\"n\",\"screen\":\"Ready screen\"},\"expected\":null,\"observed\":[\"Input completed on the owned terminal\"],\"assertionResult\":\"not-applicable\"},{\"id\":\"transition.3\",\"order\":3,\"purpose\":\"Inspect details.\",\"actions\":{\"do\":\"expect\",\"says\":\"Inspect details.\",\"locator\":\"screen\",\"text\":\"Details screen\",\"shot\":\"details\",\"image\":{\"width\":1280,\"height\":720,\"pixels\":[{\"x\":10,\"y\":55,\"rgb\":[201,166,255]}],\"lines\":[{\"text\":\"Details screen\",\"top\":11},{\"text\":\"Selected item\",\"top\":31}]}},\"expected\":{\"text\":\"Details screen\",\"visible\":null,\"url\":null},\"observed\":[\"Expected screen, native dimensions, colour probes and text line positions match\"],\"assertionResult\":\"passed\"}],\"events\":\"source/cases/transition/events.jsonl\",\"assets\":[{\"schema\":\"collect-evidence/v1\",\"kind\":\"asset\",\"id\":\"transition.1.capture-001\",\"caseId\":\"transition\",\"stepId\":\"transition.1\",\"path\":\"cases/transition/media/step-001-step-transition-001-ready--capture-001--capture-001.png\",\"captureSequence\":1,\"sha256\":\"2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f\",\"mediaType\":\"image/png\",\"width\":1280,\"height\":720,\"capturedAt\":\"2026-11-17T12:35:46.905Z\",\"viewport\":null,\"surface\":\"tui\",\"driver\":\"tui\",\"driverVersion\":\"termscope 0.1.1\",\"captureMethod\":\"grim-native\",\"url\":\"terminal://ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033\",\"terminal\":{\"session\":\"ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033\",\"socket\":\"/tmp/ce-native-rlxPqi/tmux.sock\",\"pane\":\"%0\",\"tty\":\"/dev/pts/10\",\"display\":\"wayland-0\",\"runtime\":\"/tmp/ce-native-rlxPqi\",\"cagePid\":110138,\"footPid\":110139,\"columns\":80,\"rows\":24,\"font\":\"monospace:size=12\",\"lineHeight\":20,\"cleanup\":\"released\"}},{\"schema\":\"collect-evidence/v1\",\"kind\":\"asset\",\"id\":\"transition.3.capture-001\",\"caseId\":\"transition\",\"stepId\":\"transition.3\",\"path\":\"cases/transition/media/step-003-step-transition-003-details--capture-001--capture-001.png\",\"captureSequence\":1,\"sha256\":\"b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a\",\"mediaType\":\"image/png\",\"width\":1280,\"height\":720,\"capturedAt\":\"2026-11-17T12:35:49.395Z\",\"viewport\":null,\"surface\":\"tui\",\"driver\":\"tui\",\"driverVersion\":\"termscope 0.1.1\",\"captureMethod\":\"grim-native\",\"url\":\"terminal://ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033\",\"terminal\":{\"session\":\"ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033\",\"socket\":\"/tmp/ce-native-rlxPqi/tmux.sock\",\"pane\":\"%0\",\"tty\":\"/dev/pts/10\",\"display\":\"wayland-0\",\"runtime\":\"/tmp/ce-native-rlxPqi\",\"cagePid\":110138,\"footPid\":110139,\"columns\":80,\"rows\":24,\"font\":\"monospace:size=12\",\"lineHeight\":20,\"cleanup\":\"released\"}}],\"errors\":[],\"limits\":[\"Native video is unavailable.\",\"OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.\",\"The private headless display does not reproduce a borrowed desktop terminal.\",\"Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match.\"],\"sideEffects\":[\"The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.\",\"Collector-owned resources were released before sealing; borrowed terminals were not attached or closed.\"],\"schema\":\"collect-feedback/v1\",\"sessionId\":\"tui-review\",\"source\":{\"runId\":\"fresh-tui-02\",\"caseId\":\"transition\"}}],\"assets\":[{\"schema\":\"collect-evidence/v1\",\"kind\":\"asset\",\"id\":\"transition.1.capture-001\",\"caseId\":\"transition\",\"stepId\":\"transition.1\",\"path\":\"cases/transition/media/step-001-step-transition-001-ready--capture-001--capture-001.png\",\"captureSequence\":1,\"sha256\":\"2493a3a4e51d475e6f0bac03014d1c51e4e182d9526a78c6de677aa4cdbf5a6f\",\"mediaType\":\"image/png\",\"width\":1280,\"height\":720,\"capturedAt\":\"2026-11-17T12:35:46.905Z\",\"viewport\":null,\"surface\":\"tui\",\"driver\":\"tui\",\"driverVersion\":\"termscope 0.1.1\",\"captureMethod\":\"grim-native\",\"url\":\"terminal://ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033\",\"terminal\":{\"session\":\"ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033\",\"socket\":\"/tmp/ce-native-rlxPqi/tmux.sock\",\"pane\":\"%0\",\"tty\":\"/dev/pts/10\",\"display\":\"wayland-0\",\"runtime\":\"/tmp/ce-native-rlxPqi\",\"cagePid\":110138,\"footPid\":110139,\"columns\":80,\"rows\":24,\"font\":\"monospace:size=12\",\"lineHeight\":20,\"cleanup\":\"released\"}},{\"schema\":\"collect-evidence/v1\",\"kind\":\"asset\",\"id\":\"transition.3.capture-001\",\"caseId\":\"transition\",\"stepId\":\"transition.3\",\"path\":\"cases/transition/media/step-003-step-transition-003-details--capture-001--capture-001.png\",\"captureSequence\":1,\"sha256\":\"b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a\",\"mediaType\":\"image/png\",\"width\":1280,\"height\":720,\"capturedAt\":\"2026-11-17T12:35:49.395Z\",\"viewport\":null,\"surface\":\"tui\",\"driver\":\"tui\",\"driverVersion\":\"termscope 0.1.1\",\"captureMethod\":\"grim-native\",\"url\":\"terminal://ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033\",\"terminal\":{\"session\":\"ce-tui-fa990f07-abc1-423e-a4ce-cb477fafb033\",\"socket\":\"/tmp/ce-native-rlxPqi/tmux.sock\",\"pane\":\"%0\",\"tty\":\"/dev/pts/10\",\"display\":\"wayland-0\",\"runtime\":\"/tmp/ce-native-rlxPqi\",\"cagePid\":110138,\"footPid\":110139,\"columns\":80,\"rows\":24,\"font\":\"monospace:size=12\",\"lineHeight\":20,\"cleanup\":\"released\"}}],\"annotations\":[{\"schema\":\"collect-feedback/v1\",\"kind\":\"annotation\",\"id\":\"b90172f0-7fcf-419a-8fd3-10d0698fed47\",\"sessionId\":\"tui-review\",\"caseId\":\"transition\",\"assetId\":\"transition.3.capture-001\",\"sourceSha256\":\"b6c7cd3ce3061d69feb27c979bf960ed49c44f411734afb9219626e3aeb8ca5a\",\"originalWidth\":1280,\"originalHeight\":720,\"geometry\":{\"x\":0.5,\"y\":0.5,\"width\":0,\"height\":0},\"priority\":\"P2\",\"comment\":\"The delayed Details screen retains native line spacing and the purple selection bar.\",\"revision\":1,\"createdAt\":\"2026-11-17T12:36:40.799Z\",\"updatedAt\":\"2026-11-17T12:36:40.799Z\",\"pixelGeometry\":{\"x\":640,\"y\":360,\"width\":0,\"height\":0}}]}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "doctor",
+      "--driver",
+      "gui",
+      "--display",
+      ":3",
+      "--window",
+      "0x200001",
+      "--title",
+      "Owned feedback request fixture",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"doctor\",\"success\":true,\"driver\":\"gui\",\"available\":true,\"attended\":true,\"method\":\"x11-imagemagick-import\",\"permissions\":\"Selected surface query and native capture succeeded\",\"diagnostic\":\"Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org\",\"video\":\"unavailable\"}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/request-10-smoke-cClCES/gui",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--run",
+      "fresh-gui",
+      "--driver",
+      "gui",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/gui\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/request-10-smoke-cClCES/repository\",\"path\":\"/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/fresh-gui\",\"ref\":\"workflows/request/artifacts/evidence/fresh-gui\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/request-10-smoke-cClCES/gui",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/gui\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/request-10-smoke-cClCES/gui",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/gui\",\"driver\":\"gui\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "export",
+      "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/gui-review",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-feedback/v1\",\"kind\":\"export\",\"success\":true,\"session\":{\"schema\":\"collect-feedback/v1\",\"kind\":\"session\",\"id\":\"gui-review\",\"createdAt\":\"2026-11-17T12:37:40.182Z\",\"source\":{\"schema\":\"collect-evidence/v1\",\"kind\":\"run\",\"id\":\"fresh-gui\",\"status\":\"sealed\",\"startedAt\":\"2026-11-17T12:37:39.544Z\",\"finishedAt\":\"2026-11-17T12:37:39.805Z\",\"surface\":\"gui\",\"driver\":\"gui\",\"driverVersion\":\"Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org\\nCopyright: (C) 1999 ImageMagick Studio LLC\\nLicense: https://imagemagick.org/license/\\nFeatures: Cipher DPC HDRI Modules OpenMP \\nDelegates (built-in): bzlib cairo djvu fftw fontconfig freetype gslib gvc heic jbig jng jp2 jpeg jxl lcms lqr ltdl lzma openexr pangocairo png ps raqm raw rsvg tiff uhdr webp wmf x xml zip zlib zstd\\nCompiler: gcc (16.2)\",\"plan\":\"plan.json\",\"cases\":[{\"id\":\"scene\",\"path\":\"cases/scene/case.json\"}],\"files\":[{\"path\":\"cases/scene/case.json\",\"sha256\":\"801930e1c4257dbd01b56a6b9ca1f0b27ad1ab973b93b587d7506f9db81d41ee\"},{\"path\":\"cases/scene/events.jsonl\",\"sha256\":\"04902266d539f1888bf19e129dde6d86aff46cd184b2f96a6e1eea056f9b024d\"},{\"path\":\"cases/scene/index.md\",\"sha256\":\"6250c560174fd6c5c9b92ea7e0d7100c3d1c6b8ca1b043d3c278fc977e6d4df1\"},{\"path\":\"cases/scene/media/step-001-step-scene-001-native-panels--capture-001--capture-001.png\",\"sha256\":\"998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19\"},{\"path\":\"index.md\",\"sha256\":\"c5d18fd4d63d6c36a709f5b8f667cc555499e294829be0d84c317fd651da9cac\"},{\"path\":\"native/plan.ts\",\"sha256\":\"3a615bfd56d207e26e72fb7058279f28aefe65d4d46198903641bcf1f3e6057f\"},{\"path\":\"native/report/shots/step-scene-001-native-panels--capture-001.png\",\"sha256\":\"998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19\"},{\"path\":\"native/runs/case-scene.log\",\"sha256\":\"8f18ddc5a66abb31f20a5048b10e81523d02062d0edad29167cf651c97c9f384\"},{\"path\":\"native/workflows/gui-scene.json\",\"sha256\":\"bab9342fd6951e6f34947c844aa37cd59d685dfd3ac9937b1e400c2d44c10ace\"},{\"path\":\"plan.json\",\"sha256\":\"03ddb10768b36da6ac9a1f074a0f73e3fb4413e480f43050b08c41ceff19fddc\"},{\"path\":\"plan.ts\",\"sha256\":\"3a615bfd56d207e26e72fb7058279f28aefe65d4d46198903641bcf1f3e6057f\"}],\"runId\":\"fresh-gui\",\"manifestSha256\":\"aab62a5364d663f74cef71b7f113fc906957f016c5a47356cd5add31c49d3d9f\"},\"cases\":[{\"id\":\"scene\",\"path\":\"cases/scene/case.json\"}]},\"cases\":[{\"kind\":\"case\",\"id\":\"scene\",\"order\":1,\"purpose\":\"Inspect the owned native GUI fixture\",\"preconditions\":[],\"expected\":{\"pass\":\"Selected native panels match\",\"fail\":\"Panels differ\"},\"steps\":[{\"id\":\"scene.1\",\"order\":1,\"purpose\":\"Inspect the selected window.\",\"actions\":{\"do\":\"expect\",\"says\":\"Inspect the selected window.\",\"locator\":\"screen\",\"visible\":true,\"shot\":\"native-panels\",\"image\":{\"width\":480,\"height\":260,\"pixels\":[{\"x\":40,\"y\":110,\"rgb\":[201,166,255]},{\"x\":270,\"y\":110,\"rgb\":[156,207,216]}],\"lines\":[]}},\"expected\":{\"text\":null,\"visible\":true,\"url\":null,\"image\":{\"width\":480,\"height\":260,\"pixels\":[{\"x\":40,\"y\":110,\"rgb\":[201,166,255]},{\"x\":270,\"y\":110,\"rgb\":[156,207,216]}],\"lines\":[]}},\"observed\":[\"Exact selected surface title, stable native frame, dimensions and RGB probes match\"],\"assertionResult\":\"passed\"}],\"events\":\"source/cases/scene/events.jsonl\",\"assets\":[{\"schema\":\"collect-evidence/v1\",\"kind\":\"asset\",\"id\":\"scene.1.capture-001\",\"caseId\":\"scene\",\"stepId\":\"scene.1\",\"path\":\"cases/scene/media/step-001-step-scene-001-native-panels--capture-001--capture-001.png\",\"captureSequence\":1,\"sha256\":\"998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19\",\"mediaType\":\"image/png\",\"width\":480,\"height\":260,\"capturedAt\":\"2026-11-17T12:37:39.804Z\",\"viewport\":null,\"surface\":\"gui\",\"driver\":\"gui\",\"driverVersion\":\"Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org\",\"captureMethod\":\"x11-imagemagick-import\",\"url\":\"x11://:3/0x200001\",\"gui\":{\"display\":\":3\",\"window\":\"0x200001\",\"title\":\"Owned feedback request fixture\",\"ownership\":\"borrowed\",\"cleanup\":\"preserved\"}}],\"errors\":[],\"limits\":[\"Native video and automated GUI input are unavailable.\",\"Only Linux X11 is supported. Wayland portals, macOS and Windows are not implemented.\",\"Pixel probes and stable frames do not prove usability or absence of private content. Inspect every original PNG.\",\"Keep the selected window unobscured; X11 capture can include occlusion. Display root captures include the whole approved display.\"],\"sideEffects\":[\"Read-only capture; no application input, launch, focus or shutdown operations performed. Borrowed windows and displays preserved.\"],\"schema\":\"collect-feedback/v1\",\"sessionId\":\"gui-review\",\"source\":{\"runId\":\"fresh-gui\",\"caseId\":\"scene\"}}],\"assets\":[{\"schema\":\"collect-evidence/v1\",\"kind\":\"asset\",\"id\":\"scene.1.capture-001\",\"caseId\":\"scene\",\"stepId\":\"scene.1\",\"path\":\"cases/scene/media/step-001-step-scene-001-native-panels--capture-001--capture-001.png\",\"captureSequence\":1,\"sha256\":\"998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19\",\"mediaType\":\"image/png\",\"width\":480,\"height\":260,\"capturedAt\":\"2026-11-17T12:37:39.804Z\",\"viewport\":null,\"surface\":\"gui\",\"driver\":\"gui\",\"driverVersion\":\"Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org\",\"captureMethod\":\"x11-imagemagick-import\",\"url\":\"x11://:3/0x200001\",\"gui\":{\"display\":\":3\",\"window\":\"0x200001\",\"title\":\"Owned feedback request fixture\",\"ownership\":\"borrowed\",\"cleanup\":\"preserved\"}}],\"annotations\":[{\"schema\":\"collect-feedback/v1\",\"kind\":\"annotation\",\"id\":\"3a030770-44b4-4298-8d4b-4c0509e789a1\",\"sessionId\":\"gui-review\",\"caseId\":\"scene\",\"assetId\":\"scene.1.capture-001\",\"sourceSha256\":\"998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19\",\"originalWidth\":480,\"originalHeight\":260,\"geometry\":{\"x\":0.5,\"y\":0.5,\"width\":0,\"height\":0},\"priority\":\"P2\",\"comment\":\"Native purple and cyan panels match the approved fixture.\",\"revision\":1,\"createdAt\":\"2026-11-17T12:38:22.053Z\",\"updatedAt\":\"2026-11-17T12:38:22.053Z\",\"pixelGeometry\":{\"x\":240,\"y\":130,\"width\":0,\"height\":0}}]}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "export",
+      "/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/historical-review",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-feedback/v1\",\"kind\":\"export\",\"success\":true,\"session\":{\"schema\":\"collect-feedback/v1\",\"kind\":\"session\",\"id\":\"historical-review\",\"createdAt\":\"2026-11-17T12:38:34.960Z\",\"historical\":true,\"source\":{\"schema\":\"collect-evidence/v1\",\"kind\":\"run\",\"id\":\"fresh-gui\",\"status\":\"sealed\",\"startedAt\":\"2026-11-17T12:37:39.544Z\",\"finishedAt\":\"2026-11-17T12:37:39.805Z\",\"surface\":\"gui\",\"driver\":\"gui\",\"driverVersion\":\"Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org\\nCopyright: (C) 1999 ImageMagick Studio LLC\\nLicense: https://imagemagick.org/license/\\nFeatures: Cipher DPC HDRI Modules OpenMP \\nDelegates (built-in): bzlib cairo djvu fftw fontconfig freetype gslib gvc heic jbig jng jp2 jpeg jxl lcms lqr ltdl lzma openexr pangocairo png ps raqm raw rsvg tiff uhdr webp wmf x xml zip zlib zstd\\nCompiler: gcc (16.2)\",\"plan\":\"plan.json\",\"cases\":[{\"id\":\"scene\",\"path\":\"cases/scene/case.json\"}],\"files\":[{\"path\":\"cases/scene/case.json\",\"sha256\":\"801930e1c4257dbd01b56a6b9ca1f0b27ad1ab973b93b587d7506f9db81d41ee\"},{\"path\":\"cases/scene/events.jsonl\",\"sha256\":\"04902266d539f1888bf19e129dde6d86aff46cd184b2f96a6e1eea056f9b024d\"},{\"path\":\"cases/scene/index.md\",\"sha256\":\"6250c560174fd6c5c9b92ea7e0d7100c3d1c6b8ca1b043d3c278fc977e6d4df1\"},{\"path\":\"cases/scene/media/step-001-step-scene-001-native-panels--capture-001--capture-001.png\",\"sha256\":\"998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19\"},{\"path\":\"index.md\",\"sha256\":\"c5d18fd4d63d6c36a709f5b8f667cc555499e294829be0d84c317fd651da9cac\"},{\"path\":\"native/plan.ts\",\"sha256\":\"3a615bfd56d207e26e72fb7058279f28aefe65d4d46198903641bcf1f3e6057f\"},{\"path\":\"native/report/shots/step-scene-001-native-panels--capture-001.png\",\"sha256\":\"998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19\"},{\"path\":\"native/runs/case-scene.log\",\"sha256\":\"8f18ddc5a66abb31f20a5048b10e81523d02062d0edad29167cf651c97c9f384\"},{\"path\":\"native/workflows/gui-scene.json\",\"sha256\":\"bab9342fd6951e6f34947c844aa37cd59d685dfd3ac9937b1e400c2d44c10ace\"},{\"path\":\"plan.json\",\"sha256\":\"03ddb10768b36da6ac9a1f074a0f73e3fb4413e480f43050b08c41ceff19fddc\"},{\"path\":\"plan.ts\",\"sha256\":\"3a615bfd56d207e26e72fb7058279f28aefe65d4d46198903641bcf1f3e6057f\"}],\"runId\":\"fresh-gui\",\"manifestSha256\":\"aab62a5364d663f74cef71b7f113fc906957f016c5a47356cd5add31c49d3d9f\"},\"cases\":[{\"id\":\"scene\",\"path\":\"cases/scene/case.json\"}]},\"cases\":[{\"kind\":\"case\",\"id\":\"scene\",\"order\":1,\"purpose\":\"Inspect the owned native GUI fixture\",\"preconditions\":[],\"expected\":{\"pass\":\"Selected native panels match\",\"fail\":\"Panels differ\"},\"steps\":[{\"id\":\"scene.1\",\"order\":1,\"purpose\":\"Inspect the selected window.\",\"actions\":{\"do\":\"expect\",\"says\":\"Inspect the selected window.\",\"locator\":\"screen\",\"visible\":true,\"shot\":\"native-panels\",\"image\":{\"width\":480,\"height\":260,\"pixels\":[{\"x\":40,\"y\":110,\"rgb\":[201,166,255]},{\"x\":270,\"y\":110,\"rgb\":[156,207,216]}],\"lines\":[]}},\"expected\":{\"text\":null,\"visible\":true,\"url\":null,\"image\":{\"width\":480,\"height\":260,\"pixels\":[{\"x\":40,\"y\":110,\"rgb\":[201,166,255]},{\"x\":270,\"y\":110,\"rgb\":[156,207,216]}],\"lines\":[]}},\"observed\":[\"Exact selected surface title, stable native frame, dimensions and RGB probes match\"],\"assertionResult\":\"passed\"}],\"events\":\"source/cases/scene/events.jsonl\",\"assets\":[{\"schema\":\"collect-evidence/v1\",\"kind\":\"asset\",\"id\":\"scene.1.capture-001\",\"caseId\":\"scene\",\"stepId\":\"scene.1\",\"path\":\"cases/scene/media/step-001-step-scene-001-native-panels--capture-001--capture-001.png\",\"captureSequence\":1,\"sha256\":\"998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19\",\"mediaType\":\"image/png\",\"width\":480,\"height\":260,\"capturedAt\":\"2026-11-17T12:37:39.804Z\",\"viewport\":null,\"surface\":\"gui\",\"driver\":\"gui\",\"driverVersion\":\"Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org\",\"captureMethod\":\"x11-imagemagick-import\",\"url\":\"x11://:3/0x200001\",\"gui\":{\"display\":\":3\",\"window\":\"0x200001\",\"title\":\"Owned feedback request fixture\",\"ownership\":\"borrowed\",\"cleanup\":\"preserved\"}}],\"errors\":[],\"limits\":[\"Native video and automated GUI input are unavailable.\",\"Only Linux X11 is supported. Wayland portals, macOS and Windows are not implemented.\",\"Pixel probes and stable frames do not prove usability or absence of private content. Inspect every original PNG.\",\"Keep the selected window unobscured; X11 capture can include occlusion. Display root captures include the whole approved display.\"],\"sideEffects\":[\"Read-only capture; no application input, launch, focus or shutdown operations performed. Borrowed windows and displays preserved.\"],\"schema\":\"collect-feedback/v1\",\"sessionId\":\"historical-review\",\"source\":{\"runId\":\"fresh-gui\",\"caseId\":\"scene\"}}],\"assets\":[{\"schema\":\"collect-evidence/v1\",\"kind\":\"asset\",\"id\":\"scene.1.capture-001\",\"caseId\":\"scene\",\"stepId\":\"scene.1\",\"path\":\"cases/scene/media/step-001-step-scene-001-native-panels--capture-001--capture-001.png\",\"captureSequence\":1,\"sha256\":\"998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19\",\"mediaType\":\"image/png\",\"width\":480,\"height\":260,\"capturedAt\":\"2026-11-17T12:37:39.804Z\",\"viewport\":null,\"surface\":\"gui\",\"driver\":\"gui\",\"driverVersion\":\"Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org\",\"captureMethod\":\"x11-imagemagick-import\",\"url\":\"x11://:3/0x200001\",\"gui\":{\"display\":\":3\",\"window\":\"0x200001\",\"title\":\"Owned feedback request fixture\",\"ownership\":\"borrowed\",\"cleanup\":\"preserved\"}}],\"annotations\":[]}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/request-10-smoke-cClCES/blocked",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--run",
+      "blocked-gui",
+      "--driver",
+      "gui",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/blocked\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/request-10-smoke-cClCES/repository\",\"path\":\"/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/blocked-gui\",\"ref\":\"workflows/request/artifacts/evidence/blocked-gui\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/request-10-smoke-cClCES/blocked",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/blocked\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/request-10-smoke-cClCES/blocked",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/blocked\",\"driver\":\"gui\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "request",
+      "/tmp/request-10-smoke-cClCES/blocked",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--session",
+      "blocked-review",
+      "--port",
+      "19484",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-feedback/v1\",\"kind\":\"event\",\"command\":\"request\",\"success\":false,\"stage\":\"capture-stopped\",\"completed\":false,\"source\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/request-10-smoke-cClCES/repository\",\"path\":\"/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/blocked-gui\",\"ref\":\"workflows/request/artifacts/evidence/blocked-gui\",\"publication\":\"repository\"},\"verdicts\":[{\"caseId\":\"scene\",\"verdict\":\"BLOCKED\"}]}\n{\"schema\":\"collect-feedback/v1\",\"kind\":\"error\",\"success\":false,\"code\":3,\"message\":\"Collector stopped; no feedback session was created. Inspect retained evidence and use a new run identity for retry\"}\n",
+    "err": "Collector stopped; no feedback session was created. Inspect retained evidence and use a new run identity for retry\n",
+    "code": 3
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/request-10-smoke-cClCES/failed",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--run",
+      "failed-pixels",
+      "--driver",
+      "gui",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/failed\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/request-10-smoke-cClCES/repository\",\"path\":\"/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/failed-pixels\",\"ref\":\"workflows/request/artifacts/evidence/failed-pixels\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/request-10-smoke-cClCES/failed",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/failed\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/request-10-smoke-cClCES/failed",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/failed\",\"driver\":\"gui\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/request-10-smoke-cClCES/surf",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--run",
+      "blocked-surf",
+      "--driver",
+      "surf",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/surf\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/request-10-smoke-cClCES/repository\",\"path\":\"/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/blocked-surf\",\"ref\":\"workflows/request/artifacts/evidence/blocked-surf\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/request-10-smoke-cClCES/surf",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/surf\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/request-10-smoke-cClCES/surf",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/surf\",\"driver\":\"surf\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "request",
+      "/tmp/request-10-smoke-cClCES/surf",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--session",
+      "blocked-surf-review",
+      "--port",
+      "19486",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-feedback/v1\",\"kind\":\"error\",\"success\":false,\"code\":3,\"message\":\"surf prerequisite failed: {\\n  \\\"ok\\\": false,\\n  \\\"summary\\\": {\\n    \\\"pass\\\": 7,\\n    \\\"warn\\\": 0,\\n    \\\"fail\\\": 2\\n  },\\n  \\\"environment\\\": {\\n    \\\"platform\\\": \\\"linux\\\",\\n    \\\"runningInWsl\\\": false,\\n    \\\"effectiveTarget\\\": \\\"linux\\\",\\n    \\\"socketPath\\\": \\\"/tmp/surf.sock\\\",\\n    \\\"surfSocketSet\\\": true,\\n    \\\"socketOverrideSet\\\": false,\\n    \\\"browsers\\\": [\\n      \\\"chrome\\\"\\n    ]\\n  },\\n  \\\"manifests\\\": [\\n    {\\n      \\\"browser\\\": \\\"chrome\\\",\\n      \\\"name\\\": \\\"Google Chrome\\\",\\n      \\\"path\\\": \\\"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\\\",\\n      \\\"supported\\\": true,\\n      \\\"manifest\\\": {\\n        \\\"name\\\": \\\"surf.browser.host\\\",\\n        \\\"description\\\": \\\"Surf CLI Native Host\\\",\\n        \\\"path\\\": \\\"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\\\",\\n        \\\"type\\\": \\\"stdio\\\",\\n        \\\"allowed_origins\\\": [\\n          \\\"chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/\\\",\\n          \\\"chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/\\\",\\n          \\\"chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/\\\"\\n        ]\\n      },\\n      \\\"checks\\\": [\\n        {\\n          \\\"id\\\": \\\"manifest-file\\\",\\n          \\\"status\\\": \\\"pass\\\",\\n          \\\"message\\\": \\\"Manifest found: /home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\\\",\\n          \\\"path\\\": \\\"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\\\",\\n          \\\"fsPath\\\": \\\"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\\\",\\n          \\\"browser\\\": \\\"chrome\\\"\\n        },\\n        {\\n          \\\"id\\\": \\\"manifest-json\\\",\\n          \\\"status\\\": \\\"pass\\\",\\n          \\\"message\\\": \\\"Manifest JSON is valid\\\",\\n          \\\"browser\\\": \\\"chrome\\\"\\n        },\\n        {\\n          \\\"id\\\": \\\"manifest-name\\\",\\n          \\\"status\\\": \\\"pass\\\",\\n          \\\"message\\\": \\\"Manifest name is surf.browser.host\\\",\\n          \\\"browser\\\": \\\"chrome\\\"\\n        },\\n        {\\n          \\\"id\\\": \\\"manifest-type\\\",\\n          \\\"status\\\": \\\"pass\\\",\\n          \\\"message\\\": \\\"Manifest type is stdio\\\",\\n          \\\"browser\\\": \\\"chrome\\\"\\n        },\\n        {\\n          \\\"id\\\": \\\"manifest-origins\\\",\\n          \\\"status\\\": \\\"pass\\\",\\n          \\\"message\\\": \\\"Manifest has 3 Chrome extension origins\\\",\\n          \\\"origins\\\": [\\n            \\\"chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/\\\",\\n            \\\"chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/\\\",\\n            \\\"chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/\\\"\\n          ],\\n          \\\"browser\\\": \\\"chrome\\\"\\n        },\\n        {\\n          \\\"id\\\": \\\"manifest-path\\\",\\n          \\\"status\\\": \\\"pass\\\",\\n          \\\"message\\\": \\\"Manifest path exists: /home/zenobius/.local/share/surf-cli/host-wrapper.sh\\\",\\n          \\\"path\\\": \\\"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\\\",\\n          \\\"fsPath\\\": \\\"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\\\",\\n          \\\"browser\\\": \\\"chrome\\\"\\n        },\\n        {\\n          \\\"id\\\": \\\"manifest-path-executable\\\",\\n          \\\"status\\\": \\\"pass\\\",\\n          \\\"message\\\": \\\"Manifest wrapper is executable\\\",\\n          \\\"browser\\\": \\\"chrome\\\"\\n        }\\n      ]\\n    }\\n  ],\\n  \\\"checks\\\": [\\n    {\\n      \\\"id\\\": \\\"socket-file\\\",\\n      \\\"status\\\": \\\"fail\\\",\\n      \\\"message\\\": \\\"Socket path does not exist: /tmp/surf.sock\\\",\\n      \\\"path\\\": \\\"/tmp/surf.sock\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"socket-connect\\\",\\n      \\\"status\\\": \\\"fail\\\",\\n      \\\"message\\\": \\\"Could not connect to socket: connect ENOENT /tmp/surf.sock\\\",\\n      \\\"code\\\": \\\"ENOENT\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"manifest-file\\\",\\n      \\\"status\\\": \\\"pass\\\",\\n      \\\"message\\\": \\\"Manifest found: /home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\\\",\\n      \\\"path\\\": \\\"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\\\",\\n      \\\"fsPath\\\": \\\"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\\\",\\n      \\\"browser\\\": \\\"chrome\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"manifest-json\\\",\\n      \\\"status\\\": \\\"pass\\\",\\n      \\\"message\\\": \\\"Manifest JSON is valid\\\",\\n      \\\"browser\\\": \\\"chrome\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"manifest-name\\\",\\n      \\\"status\\\": \\\"pass\\\",\\n      \\\"message\\\": \\\"Manifest name is surf.browser.host\\\",\\n      \\\"browser\\\": \\\"chrome\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"manifest-type\\\",\\n      \\\"status\\\": \\\"pass\\\",\\n      \\\"message\\\": \\\"Manifest type is stdio\\\",\\n      \\\"browser\\\": \\\"chrome\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"manifest-origins\\\",\\n      \\\"status\\\": \\\"pass\\\",\\n      \\\"message\\\": \\\"Manifest has 3 Chrome extension origins\\\",\\n      \\\"origins\\\": [\\n        \\\"chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/\\\",\\n        \\\"chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/\\\",\\n        \\\"chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/\\\"\\n      ],\\n      \\\"browser\\\": \\\"chrome\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"manifest-path\\\",\\n      \\\"status\\\": \\\"pass\\\",\\n      \\\"message\\\": \\\"Manifest path exists: /home/zenobius/.local/share/surf-cli/host-wrapper.sh\\\",\\n      \\\"path\\\": \\\"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\\\",\\n      \\\"fsPath\\\": \\\"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\\\",\\n      \\\"browser\\\": \\\"chrome\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"manifest-path-executable\\\",\\n      \\\"status\\\": \\\"pass\\\",\\n      \\\"message\\\": \\\"Manifest wrapper is executable\\\",\\n      \\\"browser\\\": \\\"chrome\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"platform\\\",\\n      \\\"status\\\": \\\"info\\\",\\n      \\\"message\\\": \\\"Platform: linux\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"target\\\",\\n      \\\"status\\\": \\\"info\\\",\\n      \\\"message\\\": \\\"Install target: linux\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"socket-path\\\",\\n      \\\"status\\\": \\\"info\\\",\\n      \\\"message\\\": \\\"Socket path: /tmp/surf.sock\\\",\\n      \\\"path\\\": \\\"/tmp/surf.sock\\\"\\n    }\\n  ],\\n  \\\"recommendations\\\": [\\n    \\\"Make sure the browser is running with the Surf extension enabled, then restart the browser after install changes.\\\",\\n    \\\"Open chrome://extensions and inspect Surf's service worker console. In Surf's Details > Extension options, enable Debug Mode, reproduce the failure, then disable Debug Mode when finished.\\\",\\n    \\\"SURF_SOCKET is set; make sure Chrome launches the native host with the same socket value.\\\"\\n  ]\\n}\\n\"}\n",
+    "err": "surf prerequisite failed: {\n  \"ok\": false,\n  \"summary\": {\n    \"pass\": 7,\n    \"warn\": 0,\n    \"fail\": 2\n  },\n  \"environment\": {\n    \"platform\": \"linux\",\n    \"runningInWsl\": false,\n    \"effectiveTarget\": \"linux\",\n    \"socketPath\": \"/tmp/surf.sock\",\n    \"surfSocketSet\": true,\n    \"socketOverrideSet\": false,\n    \"browsers\": [\n      \"chrome\"\n    ]\n  },\n  \"manifests\": [\n    {\n      \"browser\": \"chrome\",\n      \"name\": \"Google Chrome\",\n      \"path\": \"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\",\n      \"supported\": true,\n      \"manifest\": {\n        \"name\": \"surf.browser.host\",\n        \"description\": \"Surf CLI Native Host\",\n        \"path\": \"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\",\n        \"type\": \"stdio\",\n        \"allowed_origins\": [\n          \"chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/\",\n          \"chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/\",\n          \"chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/\"\n        ]\n      },\n      \"checks\": [\n        {\n          \"id\": \"manifest-file\",\n          \"status\": \"pass\",\n          \"message\": \"Manifest found: /home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\",\n          \"path\": \"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\",\n          \"fsPath\": \"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\",\n          \"browser\": \"chrome\"\n        },\n        {\n          \"id\": \"manifest-json\",\n          \"status\": \"pass\",\n          \"message\": \"Manifest JSON is valid\",\n          \"browser\": \"chrome\"\n        },\n        {\n          \"id\": \"manifest-name\",\n          \"status\": \"pass\",\n          \"message\": \"Manifest name is surf.browser.host\",\n          \"browser\": \"chrome\"\n        },\n        {\n          \"id\": \"manifest-type\",\n          \"status\": \"pass\",\n          \"message\": \"Manifest type is stdio\",\n          \"browser\": \"chrome\"\n        },\n        {\n          \"id\": \"manifest-origins\",\n          \"status\": \"pass\",\n          \"message\": \"Manifest has 3 Chrome extension origins\",\n          \"origins\": [\n            \"chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/\",\n            \"chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/\",\n            \"chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/\"\n          ],\n          \"browser\": \"chrome\"\n        },\n        {\n          \"id\": \"manifest-path\",\n          \"status\": \"pass\",\n          \"message\": \"Manifest path exists: /home/zenobius/.local/share/surf-cli/host-wrapper.sh\",\n          \"path\": \"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\",\n          \"fsPath\": \"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\",\n          \"browser\": \"chrome\"\n        },\n        {\n          \"id\": \"manifest-path-executable\",\n          \"status\": \"pass\",\n          \"message\": \"Manifest wrapper is executable\",\n          \"browser\": \"chrome\"\n        }\n      ]\n    }\n  ],\n  \"checks\": [\n    {\n      \"id\": \"socket-file\",\n      \"status\": \"fail\",\n      \"message\": \"Socket path does not exist: /tmp/surf.sock\",\n      \"path\": \"/tmp/surf.sock\"\n    },\n    {\n      \"id\": \"socket-connect\",\n      \"status\": \"fail\",\n      \"message\": \"Could not connect to socket: connect ENOENT /tmp/surf.sock\",\n      \"code\": \"ENOENT\"\n    },\n    {\n      \"id\": \"manifest-file\",\n      \"status\": \"pass\",\n      \"message\": \"Manifest found: /home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\",\n      \"path\": \"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\",\n      \"fsPath\": \"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\",\n      \"browser\": \"chrome\"\n    },\n    {\n      \"id\": \"manifest-json\",\n      \"status\": \"pass\",\n      \"message\": \"Manifest JSON is valid\",\n      \"browser\": \"chrome\"\n    },\n    {\n      \"id\": \"manifest-name\",\n      \"status\": \"pass\",\n      \"message\": \"Manifest name is surf.browser.host\",\n      \"browser\": \"chrome\"\n    },\n    {\n      \"id\": \"manifest-type\",\n      \"status\": \"pass\",\n      \"message\": \"Manifest type is stdio\",\n      \"browser\": \"chrome\"\n    },\n    {\n      \"id\": \"manifest-origins\",\n      \"status\": \"pass\",\n      \"message\": \"Manifest has 3 Chrome extension origins\",\n      \"origins\": [\n        \"chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/\",\n        \"chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/\",\n        \"chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/\"\n      ],\n      \"browser\": \"chrome\"\n    },\n    {\n      \"id\": \"manifest-path\",\n      \"status\": \"pass\",\n      \"message\": \"Manifest path exists: /home/zenobius/.local/share/surf-cli/host-wrapper.sh\",\n      \"path\": \"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\",\n      \"fsPath\": \"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\",\n      \"browser\": \"chrome\"\n    },\n    {\n      \"id\": \"manifest-path-executable\",\n      \"status\": \"pass\",\n      \"message\": \"Manifest wrapper is executable\",\n      \"browser\": \"chrome\"\n    },\n    {\n      \"id\": \"platform\",\n      \"status\": \"info\",\n      \"message\": \"Platform: linux\"\n    },\n    {\n      \"id\": \"target\",\n      \"status\": \"info\",\n      \"message\": \"Install target: linux\"\n    },\n    {\n      \"id\": \"socket-path\",\n      \"status\": \"info\",\n      \"message\": \"Socket path: /tmp/surf.sock\",\n      \"path\": \"/tmp/surf.sock\"\n    }\n  ],\n  \"recommendations\": [\n    \"Make sure the browser is running with the Surf extension enabled, then restart the browser after install changes.\",\n    \"Open chrome://extensions and inspect Surf's service worker console. In Surf's Details > Extension options, enable Debug Mode, reproduce the failure, then disable Debug Mode when finished.\",\n    \"SURF_SOCKET is set; make sure Chrome launches the native host with the same socket value.\"\n  ]\n}\n\nsurf prerequisite failed: {\n  \"ok\": false,\n  \"summary\": {\n    \"pass\": 7,\n    \"warn\": 0,\n    \"fail\": 2\n  },\n  \"environment\": {\n    \"platform\": \"linux\",\n    \"runningInWsl\": false,\n    \"effectiveTarget\": \"linux\",\n    \"socketPath\": \"/tmp/surf.sock\",\n    \"surfSocketSet\": true,\n    \"socketOverrideSet\": false,\n    \"browsers\": [\n      \"chrome\"\n    ]\n  },\n  \"manifests\": [\n    {\n      \"browser\": \"chrome\",\n      \"name\": \"Google Chrome\",\n      \"path\": \"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\",\n      \"supported\": true,\n      \"manifest\": {\n        \"name\": \"surf.browser.host\",\n        \"description\": \"Surf CLI Native Host\",\n        \"path\": \"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\",\n        \"type\": \"stdio\",\n        \"allowed_origins\": [\n          \"chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/\",\n          \"chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/\",\n          \"chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/\"\n        ]\n      },\n      \"checks\": [\n        {\n          \"id\": \"manifest-file\",\n          \"status\": \"pass\",\n          \"message\": \"Manifest found: /home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\",\n          \"path\": \"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\",\n          \"fsPath\": \"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\",\n          \"browser\": \"chrome\"\n        },\n        {\n          \"id\": \"manifest-json\",\n          \"status\": \"pass\",\n          \"message\": \"Manifest JSON is valid\",\n          \"browser\": \"chrome\"\n        },\n        {\n          \"id\": \"manifest-name\",\n          \"status\": \"pass\",\n          \"message\": \"Manifest name is surf.browser.host\",\n          \"browser\": \"chrome\"\n        },\n        {\n          \"id\": \"manifest-type\",\n          \"status\": \"pass\",\n          \"message\": \"Manifest type is stdio\",\n          \"browser\": \"chrome\"\n        },\n        {\n          \"id\": \"manifest-origins\",\n          \"status\": \"pass\",\n          \"message\": \"Manifest has 3 Chrome extension origins\",\n          \"origins\": [\n            \"chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/\",\n            \"chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/\",\n            \"chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/\"\n          ],\n          \"browser\": \"chrome\"\n        },\n        {\n          \"id\": \"manifest-path\",\n          \"status\": \"pass\",\n          \"message\": \"Manifest path exists: /home/zenobius/.local/share/surf-cli/host-wrapper.sh\",\n          \"path\": \"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\",\n          \"fsPath\": \"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\",\n          \"browser\": \"chrome\"\n        },\n        {\n          \"id\": \"manifest-path-executable\",\n          \"status\": \"pass\",\n          \"message\": \"Manifest wrapper is executable\",\n          \"browser\": \"chrome\"\n        }\n      ]\n    }\n  ],\n  \"checks\": [\n    {\n      \"id\": \"socket-file\",\n      \"status\": \"fail\",\n      \"message\": \"Socket path does not exist: /tmp/surf.sock\",\n      \"path\": \"/tmp/surf.sock\"\n    },\n    {\n      \"id\": \"socket-connect\",\n      \"status\": \"fail\",\n      \"message\": \"Could not connect to socket: connect ENOENT /tmp/surf.sock\",\n      \"code\": \"ENOENT\"\n    },\n    {\n      \"id\": \"manifest-file\",\n      \"status\": \"pass\",\n      \"message\": \"Manifest found: /home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\",\n      \"path\": \"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\",\n      \"fsPath\": \"/home/zenobius/.config/google-chrome/NativeMessagingHosts/surf.browser.host.json\",\n      \"browser\": \"chrome\"\n    },\n    {\n      \"id\": \"manifest-json\",\n      \"status\": \"pass\",\n      \"message\": \"Manifest JSON is valid\",\n      \"browser\": \"chrome\"\n    },\n    {\n      \"id\": \"manifest-name\",\n      \"status\": \"pass\",\n      \"message\": \"Manifest name is surf.browser.host\",\n      \"browser\": \"chrome\"\n    },\n    {\n      \"id\": \"manifest-type\",\n      \"status\": \"pass\",\n      \"message\": \"Manifest type is stdio\",\n      \"browser\": \"chrome\"\n    },\n    {\n      \"id\": \"manifest-origins\",\n      \"status\": \"pass\",\n      \"message\": \"Manifest has 3 Chrome extension origins\",\n      \"origins\": [\n        \"chrome-extension://eljjdnijodbljgbajncoafgmmbnpbpep/\",\n        \"chrome-extension://nlfadjoojknddhcnpgebnpmedhgdhikn/\",\n        \"chrome-extension://ijfgajmpgjmmdfolbcdhmhdembfgaaak/\"\n      ],\n      \"browser\": \"chrome\"\n    },\n    {\n      \"id\": \"manifest-path\",\n      \"status\": \"pass\",\n      \"message\": \"Manifest path exists: /home/zenobius/.local/share/surf-cli/host-wrapper.sh\",\n      \"path\": \"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\",\n      \"fsPath\": \"/home/zenobius/.local/share/surf-cli/host-wrapper.sh\",\n      \"browser\": \"chrome\"\n    },\n    {\n      \"id\": \"manifest-path-executable\",\n      \"status\": \"pass\",\n      \"message\": \"Manifest wrapper is executable\",\n      \"browser\": \"chrome\"\n    },\n    {\n      \"id\": \"platform\",\n      \"status\": \"info\",\n      \"message\": \"Platform: linux\"\n    },\n    {\n      \"id\": \"target\",\n      \"status\": \"info\",\n      \"message\": \"Install target: linux\"\n    },\n    {\n      \"id\": \"socket-path\",\n      \"status\": \"info\",\n      \"message\": \"Socket path: /tmp/surf.sock\",\n      \"path\": \"/tmp/surf.sock\"\n    }\n  ],\n  \"recommendations\": [\n    \"Make sure the browser is running with the Surf extension enabled, then restart the browser after install changes.\",\n    \"Open chrome://extensions and inspect Surf's service worker console. In Surf's Details > Extension options, enable Debug Mode, reproduce the failure, then disable Debug Mode when finished.\",\n    \"SURF_SOCKET is set; make sure Chrome launches the native host with the same socket value.\"\n  ]\n}\n\n",
+    "code": 3
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/request-10-smoke-cClCES/playwright",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--run",
+      "blocked-playwright",
+      "--driver",
+      "playwright",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/playwright\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/request-10-smoke-cClCES/repository\",\"path\":\"/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/blocked-playwright\",\"ref\":\"workflows/request/artifacts/evidence/blocked-playwright\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/request-10-smoke-cClCES/playwright",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/playwright\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/request-10-smoke-cClCES/playwright",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/playwright\",\"driver\":\"playwright\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "request",
+      "/tmp/request-10-smoke-cClCES/playwright",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--session",
+      "blocked-playwright-review",
+      "--port",
+      "19486",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-feedback/v1\",\"kind\":\"error\",\"success\":false,\"code\":3,\"message\":\"Playwright browser launch is unavailable. Configure an installed browser before capture: open failed: /var/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.mise/playwright-core@1.64.0-alpha-1790635538000/node_modules/playwright-core/lib/tools/cli-client/session.js:172\\n    const rejectWithPid = (reject, message) => reject(Object.assign(new Error(`Daemon pid=${child.pid}: ${message}`), { daemonPid: child.pid }));\\n                                                                    ^\\n\\nError: Daemon pid=122308: Daemon process exited with code 1\\n[PlaywrightError: Chromium distribution 'chrome' is not found at /opt/google/chrome/chrome\\nRun \\\"npx playwright install chrome\\\"] {\\n  log: []\\n}\\n\\n    at rejectWithPid (/var/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.mise/playwright-core@1.64.0-alpha-1790635538000/node_modules/playwright-core/lib/tools/cli-client/session.js:172:69)\\n    at ChildProcess.<anonymous> (/var/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.mise/playwright-core@1.64.0-alpha-1790635538000/node_modules/playwright-core/lib/tools/cli-client/session.js:182:11)\\n    at ChildProcess.emit (node:events:519:28)\\n    at maybeClose (node:internal/child_process:1101:16)\\n    at ChildProcess._handle.onexit (node:internal/child_process:304:5) {\\n  daemonPid: 122308\\n}\\n\\nNode.js v22.23.3\\n\"}\n",
+    "err": "Playwright browser launch is unavailable. Configure an installed browser before capture: open failed: /var/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.mise/playwright-core@1.64.0-alpha-1790635538000/node_modules/playwright-core/lib/tools/cli-client/session.js:172\n    const rejectWithPid = (reject, message) => reject(Object.assign(new Error(`Daemon pid=${child.pid}: ${message}`), { daemonPid: child.pid }));\n                                                                    ^\n\nError: Daemon pid=122308: Daemon process exited with code 1\n[PlaywrightError: Chromium distribution 'chrome' is not found at /opt/google/chrome/chrome\nRun \"npx playwright install chrome\"] {\n  log: []\n}\n\n    at rejectWithPid (/var/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.mise/playwright-core@1.64.0-alpha-1790635538000/node_modules/playwright-core/lib/tools/cli-client/session.js:172:69)\n    at ChildProcess.<anonymous> (/var/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.mise/playwright-core@1.64.0-alpha-1790635538000/node_modules/playwright-core/lib/tools/cli-client/session.js:182:11)\n    at ChildProcess.emit (node:events:519:28)\n    at maybeClose (node:internal/child_process:1101:16)\n    at ChildProcess._handle.onexit (node:internal/child_process:304:5) {\n  daemonPid: 122308\n}\n\nNode.js v22.23.3\n\nPlaywright browser launch is unavailable. Configure an installed browser before capture: open failed: /var/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.mise/playwright-core@1.64.0-alpha-1790635538000/node_modules/playwright-core/lib/tools/cli-client/session.js:172\n    const rejectWithPid = (reject, message) => reject(Object.assign(new Error(`Daemon pid=${child.pid}: ${message}`), { daemonPid: child.pid }));\n                                                                    ^\n\nError: Daemon pid=122308: Daemon process exited with code 1\n[PlaywrightError: Chromium distribution 'chrome' is not found at /opt/google/chrome/chrome\nRun \"npx playwright install chrome\"] {\n  log: []\n}\n\n    at rejectWithPid (/var/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.mise/playwright-core@1.64.0-alpha-1790635538000/node_modules/playwright-core/lib/tools/cli-client/session.js:172:69)\n    at ChildProcess.<anonymous> (/var/home/zenobius/.local/share/mise/installs/npm-playwright-cli/0.1.22/node_modules/.mise/playwright-core@1.64.0-alpha-1790635538000/node_modules/playwright-core/lib/tools/cli-client/session.js:182:11)\n    at ChildProcess.emit (node:events:519:28)\n    at maybeClose (node:internal/child_process:1101:16)\n    at ChildProcess._handle.onexit (node:internal/child_process:304:5) {\n  daemonPid: 122308\n}\n\nNode.js v22.23.3\n\n",
+    "code": 3
+  },
+  {
+    "args": [
+      "xwininfo",
+      "-display",
+      ":3",
+      "-id",
+      "0x200001"
+    ],
+    "out": "\nxwininfo: Window id: 0x200001 \"Owned feedback request fixture\"\n\n  Absolute upper-left X:  0\n  Absolute upper-left Y:  0\n  Relative upper-left X:  0\n  Relative upper-left Y:  0\n  Width: 480\n  Height: 260\n  Depth: 24\n  Visual: 0x4e\n  Visual Class: TrueColor\n  Border width: 0\n  Class: InputOutput\n  Colormap: 0x4d (installed)\n  Bit Gravity State: ForgetGravity\n  Window Gravity State: NorthWestGravity\n  Backing Store State: NotUseful\n  Save Under State: no\n  Map State: IsViewable\n  Override Redirect State: no\n  Corners:  +0+0  -800+0  -800-460  +0-460\n  -geometry 480x260+0+0\n\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/request-10-smoke-cClCES/credential",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--run",
+      "stop-credential",
+      "--driver",
+      "tui",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/credential\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/request-10-smoke-cClCES/repository\",\"path\":\"/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/stop-credential\",\"ref\":\"workflows/request/artifacts/evidence/stop-credential\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/request-10-smoke-cClCES/credential",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/credential\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/request-10-smoke-cClCES/credential",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/credential\",\"driver\":\"tui\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "request",
+      "/tmp/request-10-smoke-cClCES/credential",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--session",
+      "stop-credential-review",
+      "--port",
+      "19487",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-feedback/v1\",\"kind\":\"event\",\"command\":\"request\",\"success\":false,\"stage\":\"capture-stopped\",\"completed\":false,\"source\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/request-10-smoke-cClCES/repository\",\"path\":\"/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/stop-credential\",\"ref\":\"workflows/request/artifacts/evidence/stop-credential\",\"publication\":\"repository\"},\"verdicts\":[{\"caseId\":\"stop\",\"verdict\":\"BLOCKED\"}]}\n{\"schema\":\"collect-feedback/v1\",\"kind\":\"error\",\"success\":false,\"code\":3,\"message\":\"Collector stopped; no feedback session was created. Inspect retained evidence and use a new run identity for retry\"}\n",
+    "err": "Collector stopped; no feedback session was created. Inspect retained evidence and use a new run identity for retry\n",
+    "code": 3
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/request-10-smoke-cClCES/confirmation",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--run",
+      "stop-confirmation",
+      "--driver",
+      "tui",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/confirmation\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/request-10-smoke-cClCES/repository\",\"path\":\"/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/stop-confirmation\",\"ref\":\"workflows/request/artifacts/evidence/stop-confirmation\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/request-10-smoke-cClCES/confirmation",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/confirmation\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/request-10-smoke-cClCES/confirmation",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/confirmation\",\"driver\":\"tui\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback.ts",
+      "request",
+      "/tmp/request-10-smoke-cClCES/confirmation",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--session",
+      "stop-confirmation-review",
+      "--port",
+      "19487",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-feedback/v1\",\"kind\":\"event\",\"command\":\"request\",\"success\":false,\"stage\":\"capture-stopped\",\"completed\":false,\"source\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/request-10-smoke-cClCES/repository\",\"path\":\"/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/stop-confirmation\",\"ref\":\"workflows/request/artifacts/evidence/stop-confirmation\",\"publication\":\"repository\"},\"verdicts\":[{\"caseId\":\"stop\",\"verdict\":\"BLOCKED\"}]}\n{\"schema\":\"collect-feedback/v1\",\"kind\":\"error\",\"success\":false,\"code\":3,\"message\":\"Collector stopped; no feedback session was created. Inspect retained evidence and use a new run identity for retry\"}\n",
+    "err": "Collector stopped; no feedback session was created. Inspect retained evidence and use a new run identity for retry\n",
+    "code": 3
+  },
+  {
+    "args": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+      "resources",
+      "db3f38f7-8fcf-4677-b7aa-7991c0dc0ff3"
+    ],
+    "out": "{\"manifest\":{\"runId\":\"db3f38f7-8fcf-4677-b7aa-7991c0dc0ff3\",\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"target\":\"t1gv\",\"createdAt\":\"2026-11-17T12:29:58.867Z\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"operationId\":\"collect-evidence-feedback-10-request-start-0001\"},\"resources\":{\"version\":1,\"runId\":\"db3f38f7-8fcf-4677-b7aa-7991c0dc0ff3\",\"observedAt\":\"2026-11-17T12:41:56.027Z\",\"processes\":[{\"pid\":102669,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"423502\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":105479,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"433831\",\"command\":\"omp daemon brok\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":105506,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"433836\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":106237,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"440204\",\"command\":\"python\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":107861,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"452260\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":109922,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"457963\",\"command\":\"bun\",\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"running\"},{\"pid\":110894,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"459255\",\"command\":\"bun\",\"parentPid\":102669,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"stopped\"},{\"pid\":111233,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460929\",\"command\":\"bwrap\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":111234,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460929\",\"command\":\"xdg-dbus-proxy\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":111238,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460931\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111262,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460939\",\"command\":\"chrome_crashpad\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111264,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460940\",\"command\":\"chrome_crashpad\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":113144,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"465833\",\"command\":\"cage\",\"cwd\":\"/tmp/request-gui-runtime-QDbylI\",\"state\":\"running\"},{\"pid\":113145,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"465835\",\"command\":\"Xwayland\",\"cwd\":\"/tmp/request-gui-runtime-QDbylI\",\"state\":\"running\"},{\"pid\":113445,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"468055\",\"command\":\"python3\",\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"running\"},{\"pid\":114717,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"469338\",\"command\":\"bun\",\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"running\"},{\"pid\":115342,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"470679\",\"command\":\"bun\",\"parentPid\":102669,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"stopped\"},{\"pid\":111227,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460924\",\"command\":\"bwrap\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":111237,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460930\",\"command\":\"bwrap\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111269,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460940\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111271,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460940\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111299,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460942\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111302,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460942\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111305,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460944\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111338,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460946\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111339,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460947\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111342,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460947\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111379,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460961\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111395,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460962\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111399,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460963\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":116687,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"474892\",\"command\":\"bun\",\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"running\"},{\"pid\":119918,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"486961\",\"command\":\"bun\",\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"running\"},{\"pid\":123808,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"495006\",\"command\":\"bun\",\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"running\"}],\"shutdown\":\"pending\"}}\n",
+    "err": "",
+    "code": 1
+  },
+  {
+    "args": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+      "resources",
+      "db3f38f7-8fcf-4677-b7aa-7991c0dc0ff3"
+    ],
+    "out": "{\"manifest\":{\"runId\":\"db3f38f7-8fcf-4677-b7aa-7991c0dc0ff3\",\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"target\":\"t1gv\",\"createdAt\":\"2026-11-17T12:29:58.867Z\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"operationId\":\"collect-evidence-feedback-10-request-start-0001\"},\"resources\":{\"version\":1,\"runId\":\"db3f38f7-8fcf-4677-b7aa-7991c0dc0ff3\",\"observedAt\":\"2026-11-17T12:42:55.051Z\",\"processes\":[{\"pid\":102669,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"423502\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":105479,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"433831\",\"command\":\"omp daemon brok\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":105506,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"433836\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":106237,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"440204\",\"command\":\"python\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":107861,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"452260\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":109922,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"457963\",\"command\":\"bun\",\"parentPid\":107861,\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"stopped\"},{\"pid\":110894,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"459255\",\"command\":\"bun\",\"parentPid\":102669,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"stopped\"},{\"pid\":111233,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460929\",\"command\":\"bwrap\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":111234,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460929\",\"command\":\"xdg-dbus-proxy\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":111238,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460931\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111262,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460939\",\"command\":\"chrome_crashpad\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111264,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460940\",\"command\":\"chrome_crashpad\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":113144,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"465833\",\"command\":\"cage\",\"parentPid\":107861,\"cwd\":\"/tmp/request-gui-runtime-QDbylI\",\"state\":\"stopped\"},{\"pid\":113145,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"465835\",\"command\":\"Xwayland\",\"parentPid\":113144,\"cwd\":\"/tmp/request-gui-runtime-QDbylI\",\"state\":\"stopped\"},{\"pid\":113445,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"468055\",\"command\":\"python3\",\"parentPid\":107861,\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"stopped\"},{\"pid\":114717,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"469338\",\"command\":\"bun\",\"parentPid\":107861,\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"stopped\"},{\"pid\":115342,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"470679\",\"command\":\"bun\",\"parentPid\":102669,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"stopped\"},{\"pid\":111227,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460924\",\"command\":\"bwrap\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":111237,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460930\",\"command\":\"bwrap\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111269,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460940\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111271,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460940\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111299,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460942\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111302,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460942\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111305,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460944\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111338,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460946\",\"command\":\"chrome\",\"parentPid\":111271,\"cwd\":\"/var/home/zenobius\",\"state\":\"stopped\"},{\"pid\":111339,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460947\",\"command\":\"chrome\",\"parentPid\":111271,\"cwd\":\"/var/home/zenobius\",\"state\":\"stopped\"},{\"pid\":111342,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460947\",\"command\":\"chrome\",\"parentPid\":111271,\"cwd\":\"/var/home/zenobius\",\"state\":\"stopped\"},{\"pid\":111379,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460961\",\"command\":\"chrome\",\"parentPid\":111271,\"cwd\":\"/var/home/zenobius\",\"state\":\"stopped\"},{\"pid\":111395,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460962\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111399,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460963\",\"command\":\"chrome\",\"parentPid\":111271,\"cwd\":\"/var/home/zenobius\",\"state\":\"stopped\"},{\"pid\":116687,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"474892\",\"command\":\"bun\",\"parentPid\":107861,\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"stopped\"},{\"pid\":119918,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"486961\",\"command\":\"bun\",\"parentPid\":107861,\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"stopped\"},{\"pid\":123808,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"495006\",\"command\":\"bun\",\"parentPid\":107861,\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"stopped\"},{\"pid\":123935,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"496251\",\"command\":\"bun\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":142534,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"500903\",\"command\":\"bun\",\"cwd\":\"/tmp/evidence-public-test-M5MrTi\",\"state\":\"running\"},{\"pid\":142574,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"500908\",\"command\":\"bun\",\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"running\"},{\"pid\":142628,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"500917\",\"command\":\"bun\",\"cwd\":\"/tmp/evidence-public-test-M5MrTi/repository\",\"state\":\"running\"}],\"shutdown\":\"pending\"}}\n",
+    "err": "",
+    "code": 1
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "init",
+      "/tmp/request-10-smoke-cClCES/interrupted",
+      "--repository",
+      "/tmp/request-10-smoke-cClCES/repository",
+      "--workflow",
+      "request",
+      "--run",
+      "interrupted",
+      "--driver",
+      "tui",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"init\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/interrupted\",\"destination\":{\"kind\":\"evidence\",\"adapter\":\"files\",\"store\":\"repository\",\"root\":\"/tmp/request-10-smoke-cClCES/repository\",\"path\":\"/tmp/request-10-smoke-cClCES/repository/workflows/request/artifacts/evidence/interrupted\",\"ref\":\"workflows/request/artifacts/evidence/interrupted\",\"publication\":\"repository\"},\"next\":\"Author cases in plan.ts, then render and compile. Confirm the plan before run.\"}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "render",
+      "/tmp/request-10-smoke-cClCES/interrupted",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"render\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/interrupted\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/tmp/request-10-smoke-cClCES/installed/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts",
+      "compile",
+      "/tmp/request-10-smoke-cClCES/interrupted",
+      "--json"
+    ],
+    "out": "{\"schema\":\"collect-evidence/v1\",\"kind\":\"event\",\"command\":\"compile\",\"success\":true,\"directory\":\"/tmp/request-10-smoke-cClCES/interrupted\",\"driver\":\"tui\",\"tests\":1}\n",
+    "err": "",
+    "code": 0
+  },
+  {
+    "args": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents/scripts/router.ts",
+      "resources",
+      "db3f38f7-8fcf-4677-b7aa-7991c0dc0ff3"
+    ],
+    "out": "{\"manifest\":{\"runId\":\"db3f38f7-8fcf-4677-b7aa-7991c0dc0ff3\",\"muxer\":\"herdr-app\",\"agent\":\"omp\",\"target\":\"t1gv\",\"createdAt\":\"2026-11-17T12:29:58.867Z\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"operationId\":\"collect-evidence-feedback-10-request-start-0001\"},\"resources\":{\"version\":1,\"runId\":\"db3f38f7-8fcf-4677-b7aa-7991c0dc0ff3\",\"observedAt\":\"2026-11-17T12:43:31.743Z\",\"processes\":[{\"pid\":102669,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"423502\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":105479,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"433831\",\"command\":\"omp daemon brok\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":105506,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"433836\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":106237,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"440204\",\"command\":\"python\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":107861,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"452260\",\"command\":\"omp\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":109922,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"457963\",\"command\":\"bun\",\"parentPid\":107861,\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"stopped\"},{\"pid\":110894,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"459255\",\"command\":\"bun\",\"parentPid\":102669,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"stopped\"},{\"pid\":111233,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460929\",\"command\":\"bwrap\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":111234,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460929\",\"command\":\"xdg-dbus-proxy\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":111238,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460931\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111262,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460939\",\"command\":\"chrome_crashpad\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111264,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460940\",\"command\":\"chrome_crashpad\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":113144,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"465833\",\"command\":\"cage\",\"parentPid\":107861,\"cwd\":\"/tmp/request-gui-runtime-QDbylI\",\"state\":\"stopped\"},{\"pid\":113145,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"465835\",\"command\":\"Xwayland\",\"parentPid\":113144,\"cwd\":\"/tmp/request-gui-runtime-QDbylI\",\"state\":\"stopped\"},{\"pid\":113445,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"468055\",\"command\":\"python3\",\"parentPid\":107861,\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"stopped\"},{\"pid\":114717,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"469338\",\"command\":\"bun\",\"parentPid\":107861,\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"stopped\"},{\"pid\":115342,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"470679\",\"command\":\"bun\",\"parentPid\":102669,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"stopped\"},{\"pid\":111227,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460924\",\"command\":\"bwrap\",\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"running\"},{\"pid\":111237,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460930\",\"command\":\"bwrap\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111269,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460940\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111271,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460940\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111299,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460942\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111302,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460942\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111305,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460944\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111338,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460946\",\"command\":\"chrome\",\"parentPid\":111271,\"cwd\":\"/var/home/zenobius\",\"state\":\"stopped\"},{\"pid\":111339,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460947\",\"command\":\"chrome\",\"parentPid\":111271,\"cwd\":\"/var/home/zenobius\",\"state\":\"stopped\"},{\"pid\":111342,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460947\",\"command\":\"chrome\",\"parentPid\":111271,\"cwd\":\"/var/home/zenobius\",\"state\":\"stopped\"},{\"pid\":111379,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460961\",\"command\":\"chrome\",\"parentPid\":111271,\"cwd\":\"/var/home/zenobius\",\"state\":\"stopped\"},{\"pid\":111395,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460962\",\"command\":\"chrome\",\"cwd\":\"/var/home/zenobius\",\"state\":\"running\"},{\"pid\":111399,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"460963\",\"command\":\"chrome\",\"parentPid\":111271,\"cwd\":\"/var/home/zenobius\",\"state\":\"stopped\"},{\"pid\":116687,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"474892\",\"command\":\"bun\",\"parentPid\":107861,\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"stopped\"},{\"pid\":119918,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"486961\",\"command\":\"bun\",\"parentPid\":107861,\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"stopped\"},{\"pid\":123808,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"495006\",\"command\":\"bun\",\"parentPid\":107861,\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"stopped\"},{\"pid\":123935,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"496251\",\"command\":\"bun\",\"parentPid\":102669,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request\",\"state\":\"stopped\"},{\"pid\":142534,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"500903\",\"command\":\"bun\",\"parentPid\":123935,\"cwd\":\"/tmp/evidence-public-test-M5MrTi\",\"state\":\"stopped\"},{\"pid\":142574,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"500908\",\"command\":\"bun\",\"parentPid\":107861,\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"stopped\"},{\"pid\":142628,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"500917\",\"command\":\"bun\",\"parentPid\":142534,\"cwd\":\"/tmp/evidence-public-test-M5MrTi/repository\",\"state\":\"stopped\"},{\"pid\":151857,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"504508\",\"command\":\"bun\",\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"running\"},{\"pid\":151908,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"504520\",\"command\":\"bun\",\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"running\"},{\"pid\":152057,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"504579\",\"command\":\"bun\",\"cwd\":\"/tmp/request-10-smoke-cClCES\",\"state\":\"running\"},{\"pid\":152080,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"504580\",\"command\":\"tmux: server\",\"cwd\":\"/tmp/ce-native-MYsy4P\",\"state\":\"running\"},{\"pid\":152081,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"504581\",\"command\":\"sleep\",\"cwd\":\"/tmp/ce-native-MYsy4P\",\"state\":\"running\"},{\"pid\":152108,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"504582\",\"command\":\"cage\",\"cwd\":\"/tmp/ce-native-MYsy4P\",\"state\":\"running\"},{\"pid\":152109,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"504584\",\"command\":\"foot\",\"cwd\":\"/\",\"state\":\"running\"},{\"pid\":152110,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"504586\",\"command\":\"tmux: client\",\"cwd\":\"/tmp/ce-native-MYsy4P\",\"state\":\"running\"},{\"pid\":152132,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"504587\",\"command\":\"termscope\",\"cwd\":\"/tmp/ce-native-MYsy4P\",\"state\":\"running\"},{\"pid\":152133,\"bootId\":\"7a94ab69-92ef-49ef-a137-b72b7f76f024\",\"startTicks\":\"504587\",\"command\":\"tmux: client\",\"cwd\":\"/tmp/ce-native-MYsy4P\",\"state\":\"running\"}],\"shutdown\":\"pending\"}}\n",
+    "err": "",
+    "code": 1
+  }
+]

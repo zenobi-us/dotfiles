@@ -1,0 +1,78 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "session",
+  "id": "gui-review",
+  "createdAt": "2026-11-17T12:37:40.182Z",
+  "source": {
+    "schema": "collect-evidence/v1",
+    "kind": "run",
+    "id": "fresh-gui",
+    "status": "sealed",
+    "startedAt": "2026-11-17T12:37:39.544Z",
+    "finishedAt": "2026-11-17T12:37:39.805Z",
+    "surface": "gui",
+    "driver": "gui",
+    "driverVersion": "Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org\nCopyright: (C) 1999 ImageMagick Studio LLC\nLicense: https://imagemagick.org/license/\nFeatures: Cipher DPC HDRI Modules OpenMP \nDelegates (built-in): bzlib cairo djvu fftw fontconfig freetype gslib gvc heic jbig jng jp2 jpeg jxl lcms lqr ltdl lzma openexr pangocairo png ps raqm raw rsvg tiff uhdr webp wmf x xml zip zlib zstd\nCompiler: gcc (16.2)",
+    "plan": "plan.json",
+    "cases": [
+      {
+        "id": "scene",
+        "path": "cases/scene/case.json"
+      }
+    ],
+    "files": [
+      {
+        "path": "cases/scene/case.json",
+        "sha256": "801930e1c4257dbd01b56a6b9ca1f0b27ad1ab973b93b587d7506f9db81d41ee"
+      },
+      {
+        "path": "cases/scene/events.jsonl",
+        "sha256": "04902266d539f1888bf19e129dde6d86aff46cd184b2f96a6e1eea056f9b024d"
+      },
+      {
+        "path": "cases/scene/index.md",
+        "sha256": "6250c560174fd6c5c9b92ea7e0d7100c3d1c6b8ca1b043d3c278fc977e6d4df1"
+      },
+      {
+        "path": "cases/scene/media/step-001-step-scene-001-native-panels--capture-001--capture-001.png",
+        "sha256": "998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19"
+      },
+      {
+        "path": "index.md",
+        "sha256": "c5d18fd4d63d6c36a709f5b8f667cc555499e294829be0d84c317fd651da9cac"
+      },
+      {
+        "path": "native/plan.ts",
+        "sha256": "3a615bfd56d207e26e72fb7058279f28aefe65d4d46198903641bcf1f3e6057f"
+      },
+      {
+        "path": "native/report/shots/step-scene-001-native-panels--capture-001.png",
+        "sha256": "998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19"
+      },
+      {
+        "path": "native/runs/case-scene.log",
+        "sha256": "8f18ddc5a66abb31f20a5048b10e81523d02062d0edad29167cf651c97c9f384"
+      },
+      {
+        "path": "native/workflows/gui-scene.json",
+        "sha256": "bab9342fd6951e6f34947c844aa37cd59d685dfd3ac9937b1e400c2d44c10ace"
+      },
+      {
+        "path": "plan.json",
+        "sha256": "03ddb10768b36da6ac9a1f074a0f73e3fb4413e480f43050b08c41ceff19fddc"
+      },
+      {
+        "path": "plan.ts",
+        "sha256": "3a615bfd56d207e26e72fb7058279f28aefe65d4d46198903641bcf1f3e6057f"
+      }
+    ],
+    "runId": "fresh-gui",
+    "manifestSha256": "aab62a5364d663f74cef71b7f113fc906957f016c5a47356cd5add31c49d3d9f"
+  },
+  "cases": [
+    {
+      "id": "scene",
+      "path": "cases/scene/case.json"
+    }
+  ]
+}

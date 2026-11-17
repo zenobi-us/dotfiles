@@ -1,0 +1,78 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "session",
+  "id": "failed-review",
+  "createdAt": "2026-11-17T12:40:41.259Z",
+  "source": {
+    "schema": "collect-evidence/v1",
+    "kind": "run",
+    "id": "failed-pixels",
+    "status": "sealed",
+    "startedAt": "2026-11-17T12:40:35.762Z",
+    "finishedAt": "2026-11-17T12:40:40.866Z",
+    "surface": "gui",
+    "driver": "gui",
+    "driverVersion": "Version: ImageMagick 7.1.2-35 Q16-HDRI x86_64 24992 https://imagemagick.org\nCopyright: (C) 1999 ImageMagick Studio LLC\nLicense: https://imagemagick.org/license/\nFeatures: Cipher DPC HDRI Modules OpenMP \nDelegates (built-in): bzlib cairo djvu fftw fontconfig freetype gslib gvc heic jbig jng jp2 jpeg jxl lcms lqr ltdl lzma openexr pangocairo png ps raqm raw rsvg tiff uhdr webp wmf x xml zip zlib zstd\nCompiler: gcc (16.2)",
+    "plan": "plan.json",
+    "cases": [
+      {
+        "id": "scene",
+        "path": "cases/scene/case.json"
+      }
+    ],
+    "files": [
+      {
+        "path": "cases/scene/case.json",
+        "sha256": "30184ea7023f658a7810a7e128587d9a8c412ec6ed3c9d3da342a1979505f629"
+      },
+      {
+        "path": "cases/scene/events.jsonl",
+        "sha256": "57ed5d9b67ffcb5a6151173102ae22482808f0fa2a8a9e086717560fe39d04d9"
+      },
+      {
+        "path": "cases/scene/index.md",
+        "sha256": "e385ac45223b8023c04baea2dd1751d6098e501435175c0566b41ea6ad8d75f7"
+      },
+      {
+        "path": "cases/scene/media/step-001-step-scene-001-native-panels--capture-001--capture-001.png",
+        "sha256": "998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19"
+      },
+      {
+        "path": "index.md",
+        "sha256": "63218906c8ccb39d49be538b7def4e030091b0798344543b07825c5a70e02042"
+      },
+      {
+        "path": "native/plan.ts",
+        "sha256": "46152fd9aeb6f552819aab5db748495c4c8dca53d4f5651e18ac34f90867101a"
+      },
+      {
+        "path": "native/report/shots/step-scene-001-native-panels--capture-001.png",
+        "sha256": "998769a24674e637d4d2d6819a9492728cc0239c4f760bfd61cfaf12fca67b19"
+      },
+      {
+        "path": "native/runs/case-scene.log",
+        "sha256": "261e00fff081e3f50e265f82c19d55359d1e2a51e7579e79a8fef9b7d6abcd60"
+      },
+      {
+        "path": "native/workflows/gui-scene.json",
+        "sha256": "3cef80420e3f15170e1ba22ef627dd3295c27e8161138b36902bf878e6b22364"
+      },
+      {
+        "path": "plan.json",
+        "sha256": "0e28e05af2c199d756cbdbfa4971d225337d450b1ac50f80ed65778dcbc889b8"
+      },
+      {
+        "path": "plan.ts",
+        "sha256": "46152fd9aeb6f552819aab5db748495c4c8dca53d4f5651e18ac34f90867101a"
+      }
+    ],
+    "runId": "failed-pixels",
+    "manifestSha256": "c5e2ff01cfd5ab145713af629da0991feca2b97de9938e0b2df47521442b057d"
+  },
+  "cases": [
+    {
+      "id": "scene",
+      "path": "cases/scene/case.json"
+    }
+  ]
+}
