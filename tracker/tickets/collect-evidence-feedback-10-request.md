@@ -11,7 +11,7 @@ sequence: 10
 title: Collect feedback from one workflow request
 triage: ready-for-agent
 type: enhancement
-work_status: claimed
+work_status: completed
 ---
 
 # Collect feedback from one workflow request
@@ -54,3 +54,8 @@ Verdict: FAILURE. Reviewed commit: `a1bb88ca440543bce3b1db6d8539972f9f857cb0`. R
 ### Review 2026-11-17T22:39:56.341Z
 
 Verdict: SUCCESS. Reviewed commit: `9768929cd6bc5f47170d0b6f329b788369b16ea2`. Reviewed tree: `8e21baccc631faae5bf37a3b90191eb194776fad`. [Immutable review](../../workflows/collect-evidence-feedback-10-request/artifacts/reviews/review-review-0015.md).
+
+
+### Completion 2026-11-17
+
+Merged and published squash integration `809f5d4fe969cad851d9f7d9f2c5033c4c051f86` on `origin/master`. Independent SUCCESS review covers source `9768929cd6bc5f47170d0b6f329b788369b16ea2`. Candidate-bound public request regression and real historical request, HTTP export and shutdown checks passed. [Published integration](../../workflows/collect-evidence-feedback-10-request/events/finish-pushed-0021.yaml). [Candidate validation](../../workflows/collect-evidence-feedback-10-request/artifacts/snapshots/integration-result-0020.json).
