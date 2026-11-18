@@ -1,0 +1,35 @@
+[
+  {
+    "argv": [
+      "bun",
+      "install",
+      "--cwd",
+      "docs/website",
+      "--frozen-lockfile"
+    ]
+  },
+  {
+    "argv": [
+      "bun",
+      "run",
+      "--cwd",
+      "docs/website",
+      "test"
+    ]
+  },
+  {
+    "argv": [
+      "bun",
+      "run",
+      "--cwd",
+      "docs/website",
+      "build"
+    ]
+  },
+  {
+    "argv": [
+      "bun",
+      "/tmp/collect-evidence-feedback-11-integration-smoke.ts"
+    ]
+  }
+]

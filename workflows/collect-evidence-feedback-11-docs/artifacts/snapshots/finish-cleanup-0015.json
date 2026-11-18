@@ -1,0 +1,26 @@
+{
+  "removed": [
+    "feature/collect-evidence-feedback-11-docs",
+    "integration/9ce09b58-5e8f-43cf-b62e-e8ad956159ea",
+    "integration/befc4c9f-b44d-46cb-ab87-dca71330c36b"
+  ],
+  "refused": [],
+  "workspaces": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs",
+      "exists": false
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-9ce09b58-5e8f-43cf-b62e-e8ad956159ea",
+      "exists": false
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-befc4c9f-b44d-46cb-ab87-dca71330c36b",
+      "exists": false
+    }
+  ],
+  "herdr_matching_spaces": [],
+  "implementation_shutdown": "confirmed",
+  "review_shutdown": "confirmed",
+  "authorization": "User requested finish; published integration and tracker completion authorize only these named branches."
+}

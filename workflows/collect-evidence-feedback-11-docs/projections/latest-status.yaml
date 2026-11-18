@@ -4,8 +4,8 @@ ticket:
   backend: local-markdown
   id: collect-evidence-feedback-11-docs
   ref: tracker/tickets/collect-evidence-feedback-11-docs.md
-state: REVIEW_PASSED
-latest_receipt: review-complete-0006
+state: FINISHED
+latest_receipt: finish-0016
 latest_source_commit: d9740e9dac01adb6a7e5efba63f2427ff8458c11
 latest_source_tree: dae2ac1c4aab5164a116de9946b13569f853b363
 latest_review_verdict: SUCCESS
@@ -27,3 +27,9 @@ limitations:
   requests, recorded in screenshot-preview.json.
 review_receipt: review-0005
 review_artifact: workflows/collect-evidence-feedback-11-docs/artifacts/reviews/review-review-0005.md
+integration_commit: 475819e119772edf8c88cbf33d65291082274351
+integration_method: squash
+pushed: true
+ticket_completed: true
+worktree_removed: true
+workspace_closed: true

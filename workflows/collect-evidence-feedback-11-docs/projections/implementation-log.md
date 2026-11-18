@@ -13,6 +13,17 @@ Generated from authoritative events.
 - [review-0005](../events/review-0005.yaml): SUCCESS, no blocking findings; [review artifact](../artifacts/reviews/review-review-0005.md).
 - [review-complete-0006](../events/review-complete-0006.yaml): parent validated source, delivery, ticket comment and approved shutdown.
 
+- [finish-start-0007](../events/finish-start-0007.yaml)
+- [finish-prepared-0008](../events/finish-prepared-0008.yaml)
+- [finish-failed-0009](../events/finish-failed-0009.yaml)
+- [finish-start-0010](../events/finish-start-0010.yaml)
+- [finish-prepared-0011](../events/finish-prepared-0011.yaml)
+- [finish-merged-0012](../events/finish-merged-0012.yaml)
+- [finish-pushed-0013](../events/finish-pushed-0013.yaml)
+- [finish-ticket-completed-0014](../events/finish-ticket-completed-0014.yaml)
+- [finish-worktree-removed-0015](../events/finish-worktree-removed-0015.yaml)
+- [finish-0016](../events/finish-0016.yaml)
+
 ## Changed files by phase
 
 ### implementation-0002
@@ -55,4 +66,4 @@ The screenshot guide preview used identical local bytes for two unpublished imag
 
 ## Unresolved questions
 
-No open product question. Parent completion is verified. Independent formal review passed. Integration and publication remain pending.
+No open product question. Parent completion is verified. Independent formal review passed. Integration and publication completed. Source and both candidates removed. The first temporary HTTP harness failed before integration; the corrected harness passed on the published candidate.

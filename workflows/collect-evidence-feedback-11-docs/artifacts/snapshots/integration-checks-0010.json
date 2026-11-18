@@ -1,0 +1,36 @@
+[
+  {
+    "argv": [
+      "bun",
+      "install",
+      "--cwd",
+      "docs/website",
+      "--frozen-lockfile"
+    ]
+  },
+  {
+    "argv": [
+      "bun",
+      "run",
+      "--cwd",
+      "docs/website",
+      "test"
+    ]
+  },
+  {
+    "argv": [
+      "bun",
+      "run",
+      "--cwd",
+      "docs/website",
+      "build"
+    ]
+  },
+  {
+    "argv": [
+      "bun",
+      "-e",
+      "// Exercises the built candidate through Vite's production preview.\nimport { resolve } from \"node:path\";\nconst root = resolve(\"docs/website\");\nprocess.chdir(root);\n// The candidate checkout is allocated at runtime; resolve its own Vite installation.\nconst { preview } = await import(Bun.resolveSync(\"vite\", root));\nconst server = await preview({ root, preview: { host: \"127.0.0.1\", port: 0, open: false } });\ntry {\n  const address = server.httpServer.address();\n  if (!address || typeof address === \"string\") throw new Error(\"Preview has no TCP address\");\n  const base = `http://127.0.0.1:${address.port}/dotfiles`;\n  for (const [route, expected] of [\n    [\"/\", \"Evidence and feedback\"],\n    [\"/bundles/developer/skill/collect-feedback/how-to/\", \"Collect evidence and save feedback\"],\n    [\"/bundles/developer/skill/collect-evidence/how-to/\", \"Collect a web image for feedback\"],\n  ]) {\n    const response = await fetch(base + route);\n    const html = await response.text();\n    if (!response.ok || !html.includes(expected)) throw new Error(`Route failed: ${route} ${response.status}`);\n    if (route.includes(\"collect-feedback\") && (!html.includes(\"references/cli.md\") || !html.includes(\"references/system.md\") || !html.includes(\"assets/howto/saved-box-note.png\"))) throw new Error(\"Feedback guide lost reference or screenshot links\");\n    console.log(JSON.stringify({ route, status: response.status, expected, passed: true }));\n  }\n} finally {\n  const closed = Promise.withResolvers<void>();\n  server.httpServer.close(() => closed.resolve());\n  await closed.promise;\n}\nprocess.exit(0);\n"
+    ]
+  }
+]

@@ -1,7 +1,7 @@
 # Evidence and feedback documentation
 
 Ticket: [collect-evidence-feedback-11-docs](../../../tracker/tickets/collect-evidence-feedback-11-docs.md).
-Generated from authoritative events. Latest result: review-0005. Review completion: [review-complete-0006](../events/review-complete-0006.yaml). Parent completion: [start-complete-0003](../events/start-complete-0003.yaml).
+Generated from authoritative events. Latest result: finish-0016. [Finish receipt](../events/finish-0016.yaml). Review completion: [review-complete-0006](../events/review-complete-0006.yaml). Parent completion: [start-complete-0003](../events/start-complete-0003.yaml).
 
 ## Ticket summary
 
@@ -72,7 +72,7 @@ Review validation: 14 website tests passed; build and browser navigation passed.
 
 ## Merge status
 
-Not merged or pushed. Ticket remains claimed. Source is clean and committed. Owned services stopped.
+FINISHED. Squash integration 475819e119772edf8c88cbf33d65291082274351 is published on origin/master. Ticket completion is published in bbf21be4. Source and both candidate worktrees are removed; owned resources stopped.
 
 ## Supporting records
 

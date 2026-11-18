@@ -5,6 +5,12 @@ initiative: collect-evidence-feedback
 event_root: events
 artifact_root: artifacts
 projection_root: projections
-latest_receipt: review-complete-0006
-state: REVIEW_PASSED
+latest_receipt: finish-0016
+state: FINISHED
 parent_completion: completed
+integration_commit: 475819e119772edf8c88cbf33d65291082274351
+integration_method: squash
+pushed: true
+ticket_completed: true
+worktree_removed: true
+workspace_closed: true
