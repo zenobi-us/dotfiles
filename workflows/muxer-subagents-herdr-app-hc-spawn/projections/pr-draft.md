@@ -67,3 +67,18 @@ The parent validated the result envelope and source identity, acknowledged deliv
 - [Phase start](../events/start-0001.yaml).
 - [Implementation result](../events/implementation-0002.yaml).
 - [Raw desktop observations and exact probes](../artifacts/snapshots/hc-smoke-implementation-0002.json).
+
+
+## Recovery implementation-recovery-0005
+
+Status: blocked. Attempt 2 preserves source 01a87a4d8ee952666b29eaaa547fa4615ced783f, tree e76c5a5b599650eec3de7f67856a011a11961637. No source files changed.
+
+The 23 focused spawn tests passed with 82 assertions. Real source placement preflight passed. Local hc smoke opened a fresh tab in the target space and forwarded the run ID and result context. The shown space stayed unchanged. Explicit terminal cleanup produced failed/129, not completed; resource observation confirmed shutdown. Prior completed-wait and full-delivery evidence remains in implementation-0002.
+
+Real SSH and WSL acceptance requires reachable app-connected remote core terminals. No registered machines, both configured laptops unreachable, and no local WSL runtime. No machines or credentials were changed.
+
+Base compatibility: preserve focus:false on bootstrap space.new during future integration. Source currently omits it. No missing-space launch or source integration occurred. Shared WSL fallback remains intact.
+
+Review history: none. Latest reviewer verdict: null. Resolved findings: none. Remaining acceptance: real SSH and WSL fresh-tab launch without an app executable. Merge status: not merged, rebased or pushed; ticket remains claimed.
+
+Recovery approval: [start-recovery-0004](../events/start-recovery-0004.yaml). Prior result: [implementation-0002](../events/implementation-0002.yaml). Parent completion: [start-complete-0003](../events/start-complete-0003.yaml). Current result: [implementation-recovery-0005](../events/implementation-recovery-0005.yaml). Raw checks: [local smoke](../artifacts/snapshots/hc-smoke-implementation-recovery-0005.json). Immutable draft: [snapshot](../artifacts/snapshots/pr-draft-implementation-recovery-0005.md).
