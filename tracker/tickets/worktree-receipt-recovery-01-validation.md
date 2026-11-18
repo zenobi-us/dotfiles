@@ -27,3 +27,6 @@ The receipt writer and inspector must use the same validation rules. Reject inco
 
 
 - Review SUCCESS at 2026-11-11T06:46:37.468Z. Reviewed commit `b2764c46af75893c000cae3d2ea62b26062b7848`, tree `9322e9541dfcdfb3a158665d368ce74d9cd80202`. [Independent review artifact](../../workflows/worktree-receipt-recovery-01-validation/artifacts/reviews/review-review-0005.md).
+
+- Review SUCCESS at 2026-11-18T22:02:10.904Z. Reviewed conflict-resolution commit `ee446c94a7a8996cc6654688dbda5da46c512165`, tree `5d7d3ad8dc395803101d7036f03247026e0d9189`. [Independent review artifact](../../workflows/worktree-receipt-recovery-01-validation/artifacts/reviews/review-review-0011.md).
+
