@@ -68,6 +68,29 @@ Give each ticket its **blocking edges**: the other tickets that must complete be
 
 **Wide refactors are the exception to vertical slicing.** A **wide refactor** is one mechanical change (rename a column, retype a shared symbol) whose **blast radius** fans across the whole codebase, so a single edit breaks thousands of call sites at once and no vertical slice can land green. Don't force it into a tracer bullet; sequence it as **expand–contract**. First expand: add the new form beside the old so nothing breaks. Then migrate the call sites over in batches sized by blast radius (per package, per directory), each batch its own ticket blocked by the expand, keeping CI green batch to batch because the old form still exists. Finally contract: delete the old form once no caller remains, in a ticket blocked by every migrate batch. When even the batches can't stay green alone, keep the sequence but let them share an integration branch that all block a final integrate-and-verify ticket; green is promised only there.
 
+#### Plan documentation closeout
+
+Assess how the initiative changes what users need to know.
+
+If user-facing documentation needs to change, include a final
+documentation ticket in the proposed breakdown. Cover the relevant
+README, documentation website, guides, and examples. Create missing
+documentation when users need it. Do not create a website unless
+the initiative requires one.
+
+The ticket MUST:
+- Describe the audience, affected workflows, and required content.
+- Depend on the tickets that determine the documented behaviour.
+- Require documentation to match the delivered behaviour.
+- Require verification of documented commands, examples, and links.
+
+Keep documentation needed to use or verify each vertical slice
+within that slice. Use the final ticket to check completeness and
+consistency across the initiative, not to defer essential instructions.
+
+If no documentation changes are needed, explain why in the proposed
+breakdown instead of creating an empty ticket.
+
 ### 4. Quiz the user
 
 Present the proposed breakdown as a numbered list. For each ticket, show:
