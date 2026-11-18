@@ -191,6 +191,10 @@ When a blocked or failed review has no usable verdict, omit `verdict`. An explic
 
 Fix receipts MUST record the consumed review receipt IDs, resolved finding IDs, unresolved finding IDs, validation results, and the new source commit.
 
+## Receipt validation
+
+Publication and inspection use `scripts/receipt-validation.ts` for the common receipt envelope. `worktree` and `workspace_path` must contain the same absolute path. For an available source worktree, that path must resolve to the Git worktree root, not a directory inside it. The writer checks this before it writes an event or delivers a result. A failed check preserves existing events and creates no successful result. Historical inspection can retain receipts for removed worktrees; it does not establish current source availability.
+
 ## Child result delivery
 
 Use the agent-core result-delivery skill for transport, not workflow authority. Before launch, select worktree-receipt/v2 as the result schema and retain the muxer delivery context and target. Retained v1 handoffs must still receive v1 results; do not change a live handoff's schema.
@@ -395,5 +399,6 @@ REVIEWING → REVIEW_PASSED → FINISHING → FINISHED
 ```
 
 Require valid implementation/fix evidence for a new review target, current persisted `FAILURE` findings for a new fix, and a `SUCCESS` receipt covering the current clean source commit and tree for a new merge. These gates do not prohibit recovery of incomplete attempts selected by the shared decision: preserve partial start/fix source and reconcile valid results before choosing the next phase. Invalidate both review verdicts on subsequent source changes. After a verified merge, finish recovery uses the recorded reviewed-source-to-integration mapping; source-worktree removal does not invalidate that durable evidence.
+
 
 

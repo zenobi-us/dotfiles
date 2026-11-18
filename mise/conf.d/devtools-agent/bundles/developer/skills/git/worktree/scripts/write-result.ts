@@ -9,6 +9,7 @@ import { deliverResult, loadDeliveryContext, publishImmutableFile } from "../../
 import { validateReceiptContract } from "./receipt-contract";
 import { receiptParentIssues } from "./receipt-diagnostics";
 import { verifyIntegration } from "./integration";
+import { validateReceipt as validateEnvelope, validateSourceWorktree } from "./receipt-validation";
 
 const sharedContextCli = fileURLToPath(new URL("../../../../../agent-core/skills/shared-context/scripts/shared-context/cli.ts", import.meta.url));
 const app = new Crust("write-worktree-result").meta({ description: "Write one immutable worktree phase-result receipt and deliver the same object to its caller." }).flags({
@@ -32,6 +33,10 @@ const app = new Crust("write-worktree-result").meta({ description: "Write one im
     receipt.created_at ??= new Date().toISOString();
     validateReceipt(receipt, Boolean(flags["parent-event"]));
     if (context?.mode === "artifact-reference" && context.target?.schema !== receipt.schema) throw new Error("Receipt schema must match the assigned result handoff");
+    await validateSourceWorktree(receipt, async (command, args) => {
+      const result = Bun.spawnSync([command, ...args], { stdout: "pipe", stderr: "pipe" });
+      return { code: result.exitCode, stdout: new TextDecoder().decode(result.stdout) };
+    }, Boolean(flags["parent-event"]));
     const resolution = Bun.spawnSync([sharedContextCli, "resolve", "workflow", "--id", String(receipt.workflow_id), "--json"], { cwd: flags.repository, stdout: "pipe", stderr: "pipe" });
     if (resolution.exitCode !== 0) throw new Error("Shared-context could not resolve the workflow. No receipt was written.");
     const target = object(JSON.parse(new TextDecoder().decode(resolution.stdout)));
@@ -108,7 +113,7 @@ async function gitCommonDirectory(repository: string): Promise<string> {
 const createdAtTolerance = 10 * 60_000;
 
 function validateReceipt(receipt: Record<string, unknown>, parent: boolean): void {
-  validateReceiptContract(receipt);
+  validateEnvelope(receipt);
   if (!parent && receipt.event !== "phase-result") throw new Error("Expected a child phase-result");
   if (!parent && !["implementation", "review", "fix"].includes(String(receipt.phase))) throw new Error("A child phase-result phase must be implementation, review or fix; the parent records start and finish");
   const createdAt = Date.parse(String(receipt.created_at));
@@ -124,30 +129,11 @@ function validateReceipt(receipt: Record<string, unknown>, parent: boolean): voi
     };
     if (!states[String(receipt.event)]?.includes(String(receipt.status))) throw new Error("Parent event and status do not match");
   }
-  for (const key of ["receipt_id", "workflow_id", "phase", "repository", "worktree", "source_branch", "base_branch", "source_commit", "source_tree", "created_at", "muxer", "workspace_path", "agent", "ticket_ref", ...(!parent ? ["parent_receipt", "session_id"] : [])]) {
-    if (typeof receipt[key] !== "string" || !(receipt[key] as string).trim()) throw new Error("The receipt requires a non-empty " + key);
+  if (!parent) {
+    for (const key of ["parent_receipt", "session_id"]) if (typeof receipt[key] !== "string" || !String(receipt[key]).trim()) throw new Error("The child result requires " + key);
   }
-  if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(String(receipt.receipt_id))) throw new Error("The receipt ID must be a safe event filename");
-  const operator = parent && ["operator-approval", "operator-decision-required"].includes(String(receipt.event));
-  if (!Number.isInteger(receipt.attempt) || Number(receipt.attempt) < (operator ? 0 : 1)) throw new Error("Invalid receipt attempt");
   if (!parent && !["completed", "failed", "blocked"].includes(String(receipt.status))) throw new Error("The child result status must be completed, failed or blocked");
-  if (parent && !["started", "completed", "failed", "blocked", "approved", "FINISHING", "FINISHED", "FINISH_FAILED"].includes(String(receipt.status))) throw new Error("Unsupported parent status");
   if ((!parent || receipt.pane_id !== null) && typeof receipt.pane_id !== "string" && typeof receipt.pane_id !== "number") throw new Error("The result must identify its pane");
   if (parent && (typeof receipt.session_id !== "string" || !receipt.session_id.trim() || !Object.hasOwn(receipt, "parent_receipt"))) throw new Error("Parent events require session_id and parent_receipt (null for the first event)");
-  if (!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?(?:Z|[+-]\d\d:\d\d)$/.test(String(receipt.created_at)) || !Number.isFinite(Date.parse(String(receipt.created_at)))) throw new Error("Receipt timestamp must include a timezone");
-  const ticket = object(receipt.ticket);
-  for (const key of ["backend", "id", "ref"]) if (typeof ticket[key] !== "string" || !String(ticket[key]).trim()) throw new Error("The receipt ticket requires " + key);
-  if (ticket.ref !== receipt.ticket_ref) throw new Error("The ticket reference fields disagree");
-  const workflow = object(receipt.workflow);
-  for (const key of ["store", "root", "ref"]) if (typeof workflow[key] !== "string" || !String(workflow[key]).trim()) throw new Error("The workflow requires " + key);
-  for (const key of ["repository", "worktree", "workspace_path"]) if (!isAbsolute(String(receipt[key]))) throw new Error(key + " must be absolute");
-  if (receipt.worktree !== receipt.workspace_path) throw new Error("worktree and workspace_path must identify the same workspace");
-  for (const key of ["inputs", "outputs"]) {
-    if (!Array.isArray(receipt[key])) throw new Error("The receipt requires an " + key + " array");
-    for (const entry of receipt[key] as unknown[]) {
-      const reference = object(entry);
-      if (typeof reference.kind !== "string" || typeof reference.ref !== "string" || !reference.ref.trim()) throw new Error("Receipt references require kind and ref");
-    }
-  }
   if (!parent && receipt.phase === "review" && (receipt.status === "completed" || receipt.verdict !== undefined) && !["SUCCESS", "FAILURE"].includes(String(receipt.verdict))) throw new Error("A completed review requires a SUCCESS or FAILURE verdict; an explicit verdict must also be valid");
 }

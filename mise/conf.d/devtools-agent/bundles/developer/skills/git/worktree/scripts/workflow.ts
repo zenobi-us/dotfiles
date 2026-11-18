@@ -8,12 +8,13 @@ import type { Exec, ExplorerEvent, ExplorerInitiative, ExplorerReceipt, Explorer
 import { assertRecord, INITIATIVE_SCHEMA, validateInitiativeMembership } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/record-schema";
 import { MIRROR_SCHEMA } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/jira-mirror";
 import { inspectWorkflow } from "./inspection";
-import { chronologicalReceipts, receiptEvent, receiptPhase } from "./recovery";
+import { chronologicalReceipts, receiptPhase } from "./recovery";
 import { DocumentReadSession } from "./document-cache";
 import type { ParsedDocument, DocumentReadProgress } from "./document-cache";
 import { validateReceiptContract } from "./receipt-contract";
 import { inspectReceiptDiagnostics } from "./receipt-diagnostics";
 import type { ReceiptDiagnostic } from "./receipt-diagnostics";
+import { validateReceipt, validateSourcePaths, validateSourceWorktree } from "./receipt-validation";
 
 type Fields = Record<string, unknown>;
 type Document = ParsedDocument;
@@ -236,8 +237,7 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     if (String(identity.id) !== ticket.id || identity.backend !== ticket.backend || identity.ref !== ticket.ref || fields.ticket_ref !== ticket.ref) throw new Error("Receipt ticket identity or ref does not match the selected ticket.");
     const workflow = object(fields.workflow, "receipt workflow");
     const repository = text(fields.repository, "receipt repository");
-    const workspacePath = text(fields.worktree, "receipt worktree");
-    if (!isAbsolute(workspacePath) || fields.workspace_path !== workspacePath) throw new Error("Receipt worktree and workspace_path must name the same absolute worktree.");
+    const workspacePath = validateSourcePaths(fields);
     const historicalWorktree = archive && workflow.store === "repository" && repository === workspacePath;
     let linkedWorkflowRoot = false;
     if (workflow.store === "repository" && record.store === "repository" && (workflow.root === workspacePath || workflow.root === repository) && workflow.root !== record.root) {
@@ -255,37 +255,9 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
      const [recordedIdentity, currentIdentity] = await Promise.all([repositoryIdentity(repository), repositoryIdentity(context.repositoryRoot)]);
      if (!recordedIdentity || recordedIdentity !== currentIdentity) throw new Error("Receipt repository does not match the current repository.");
     }
-    const status = text(fields.status, "receipt status");
-    const phase = receiptPhase({ phase: text(fields.phase, "receipt phase") });
-    const lifecycleEvent = receiptEvent({ phase: String(fields.phase), fields });
-    const started = ["phase-start", "phase-input-ready", "phase-checkpoint"].includes(lifecycleEvent ?? "")
-     && (status === "started" || (lifecycleEvent === "phase-start" && phase === "finish" && status === "RUNNING"));
-    const operatorEvent = lifecycleEvent === "operator-approval" || lifecycleEvent === "operator-decision-required";
-    const approved = lifecycleEvent === "operator-approval" && status === "approved";
-    const prepared = ["source-once-inputs-prepared", "bounded-review-inputs-prepared"].includes(lifecycleEvent ?? "") && status === "prepared";
-    const finishing = phase === "finish" && status === "FINISHING";
-    if (!started && !approved && !prepared && !finishing && !["completed", "failed", "blocked", "FINISHED", "FINISH_FAILED"].includes(status)) throw new Error("Receipt status is not a supported phase result or lifecycle state.");
-    // Control records remain parents in the audit graph, but cannot stand in for a review result.
-    if ((started || approved || prepared || operatorEvent) && fields.verdict != null) throw new Error("Lifecycle and operator records cannot carry a review verdict.");
-    if (fields.verdict != null && !["SUCCESS", "FAILURE"].includes(String(fields.verdict))) throw new Error("Receipt verdict must be SUCCESS or FAILURE.");
-    if (!Number.isInteger(fields.attempt) || Number(fields.attempt) < (operatorEvent ? 0 : 1)) throw new Error(operatorEvent ? "Receipt attempt must be a non-negative integer for an operator decision." : "Receipt attempt must be a positive integer.");
-    text(fields.muxer, "receipt muxer");
-    text(fields.agent, "receipt agent");
-    // Parent control records can precede child creation or outlive its pane.
-    const parentControl = (lifecycleEvent === "phase-complete" || operatorEvent) && typeof fields.session_id === "string" && fields.session_id.trim() !== "";
-    if (!((phase === "finish" || lifecycleEvent === "phase-start" || parentControl) && fields.pane_id === null) && typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string") throw new Error("Receipt pane_id is required.");
-    // A phase with no evidence run records none; inventing one would be worse than its absence.
-    if (fields.evidence != null) {
-     const evidence = object(fields.evidence, "receipt evidence");
-     text(evidence.store, "receipt evidence store");
-     text(evidence.ref, "receipt evidence ref");
-    }
-    references(fields.inputs, "receipt inputs");
-    const outputs = references(fields.outputs, "receipt outputs");
-    const createdAt = text(fields.created_at, "receipt created_at");
-    if (!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?(?:Z|[+-]\d\d:\d\d)$/.test(createdAt) || !Number.isFinite(Date.parse(createdAt))) throw new Error("Receipt created_at must be an ISO timestamp with a timezone.");
-    if (!Object.hasOwn(fields, "parent_receipt") || !Object.hasOwn(fields, "session_id")) throw new Error("Receipt parent_receipt and session_id are required; use null when absent.");
-    const parentReceipt = fields.parent_receipt == null ? undefined : text(fields.parent_receipt, "receipt parent_receipt");
+    const { status, outputs, createdAt, parentReceipt } = validateReceipt(fields);
+    // Historical receipts can outlive removed worktrees.
+    if (await exists(workspacePath)) await validateSourceWorktree(fields, exec);
     result.receipts.push({
      id: text(fields.receipt_id, "receipt receipt_id"), ref,
      workflowId, phase: text(fields.phase, "receipt phase"), status, parentReceipt,

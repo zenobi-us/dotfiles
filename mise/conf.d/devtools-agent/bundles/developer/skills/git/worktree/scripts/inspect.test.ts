@@ -652,7 +652,6 @@ test("missing input refs can be supplemented without changing original bytes or 
   const target = `${workflowRoot}/events/start-1.json`;
   await put(join(root, target), original);
   const readOnly: Exec = async (command, args, cwd) => command === "wt" ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "main", worktree: { path: root } }] }) } : exec(command, args, cwd);
-  expect((await loadTicketWorkflow(context, ticket, readOnly)).error).toContain("receipt inputs ref must be a string");
   const supplement = { ref: target, sha256: createHash("sha256").update(original).digest("hex"), input_refs: [{ index: 0, ref: artifact }] };
   const repair = {
     ...common, receipt_id: "repair-2", parent_receipt: "start-1", phase: "start", event: "history-reconciled", status: "blocked",

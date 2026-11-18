@@ -12,6 +12,7 @@ const delivery = join(root, "agent-core/skills/result-delivery/scripts/router.ts
 const contextCli = join(root, "agent-core/skills/shared-context/scripts/shared-context/cli.ts");
 const writer = fileURLToPath(new URL("./write-result.ts", import.meta.url));
 const temporary: string[] = [];
+const inspector = fileURLToPath(new URL("./inspect.ts", import.meta.url));
 afterEach(async () => { await Promise.all(temporary.splice(0).map((directory) => rm(directory, { recursive: true, force: true }))); });
 
 async function run(command: string, args: string[], env: Record<string, string | undefined> = {}, cwd = tmpdir()) {
@@ -37,6 +38,7 @@ async function fixture() {
   }
   await markdown("docs/agents/issue-tracker.md", { backend: "local-markdown", "issue-root": "tracker/tickets", "initiative-root": "tracker/initiatives" }, "# Tracker\n");
   await mkdir(join(repository, "tracker/tickets"), { recursive: true });
+  await markdown("tracker/tickets/TASK-1.md", { schema: "tracker-ticket/v1", id: "TASK-1", title: "Validate receipt", work_status: "claimed", blocked_by: [] }, "# Validate receipt\n");
   await markdown("tracker/initiatives/check/index.md", { schema: "tracker-initiative/v1", id: "check", title: "Check delivery" }, "# Check delivery\n\n## Tickets\n");
   const resolved = await run(contextCli, ["resolve", "workflow", "--id", "TASK-1", "--json"], {}, repository);
   if (resolved.code !== 0) throw new Error(resolved.stderr);
@@ -207,6 +209,54 @@ test("v2 child delivery and parent checkpoints use separate immutable result bou
   const missing = await run(writer, ["--parent-event", "--repository", f.repository, "--input", input]);
   expect(missing.code).not.toBe(0);
   expect(missing.stderr).toContain("parent event is missing");
+}, 120_000);
+
+test.each(["mismatch", "relative", "subdirectory"])("writer and inspector reject %s source paths without changing prior events", async (invalid) => {
+  const f = await fixture();
+  const context = await f.context("worktree-receipt/v1", "invalid-source");
+  const events = join(f.workflow.path, "events");
+  await mkdir(events, { recursive: true });
+  const start = { ...f.receipt, receipt_id: "start-0001", event: "phase-start", phase: "start", status: "started", parent_receipt: null };
+  const prior = Bun.YAML.stringify(start);
+  const startPath = join(events, "start-0001.yaml");
+  await writeFile(startPath, prior);
+  const nested = join(f.repository, "nested");
+  await mkdir(nested);
+  const receipt = { ...f.receipt, ...(invalid === "mismatch" ? { workspace_path: nested } : invalid === "relative" ? { worktree: ".", workspace_path: "." } : { worktree: nested, workspace_path: nested }) };
+  const input = join(f.directory, "invalid.json");
+  await writeFile(input, JSON.stringify(receipt));
+  const rejected = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  expect(rejected.code).not.toBe(0);
+  expect(rejected.stderr).toContain(invalid === "subdirectory" ? "worktree root" : "same absolute worktree");
+  expect(await Bun.file(join(events, "implementation-0002.yaml")).exists()).toBe(false);
+  expect(await Bun.file(context.target).exists()).toBe(false);
+  expect(await readFile(startPath, "utf8")).toBe(prior);
+  const invalidPath = join(events, "implementation-0002.yaml");
+  const invalidBytes = Bun.YAML.stringify(receipt);
+  await writeFile(invalidPath, invalidBytes);
+  const inspected = await run(inspector, [String(f.receipt.ticket_ref), "--json"], {}, f.repository);
+  expect(inspected.code).toBe(0);
+  const workflow = JSON.parse(inspected.stdout).workflow;
+  expect(workflow.inspection.historyValid).toBe(false);
+  expect(workflow.events.find((event: { ref: string }) => event.ref.endsWith("implementation-0002.yaml")).error).toContain(invalid === "subdirectory" ? "worktree root" : "same absolute worktree");
+  expect(await readFile(invalidPath, "utf8")).toBe(invalidBytes);
+  expect(await readFile(startPath, "utf8")).toBe(prior);
+}, 120_000);
+
+test("a published valid receipt passes actual CLI inspection", async () => {
+  const f = await fixture();
+  const events = join(f.workflow.path, "events");
+  await mkdir(events, { recursive: true });
+  await writeFile(join(events, "start-0001.yaml"), Bun.YAML.stringify({ ...f.receipt, receipt_id: "start-0001", event: "phase-start", phase: "start", status: "started", parent_receipt: null }));
+  const input = join(f.directory, "valid.json");
+  await writeFile(input, JSON.stringify(f.receipt));
+  const published = await run(writer, ["--repository", f.repository, "--input", input]);
+  expect(published.code).toBe(0);
+  const inspected = await run(inspector, [String(f.receipt.ticket_ref), "--json"], {}, f.repository);
+  expect(inspected.code).toBe(0);
+  const workflow = JSON.parse(inspected.stdout).workflow;
+  expect(workflow.inspection.historyValid).toBe(true);
+  expect(workflow.receipts.find((receipt: { id: string }) => receipt.id === "implementation-0002")).toMatchObject({ workspacePath: f.repository, sourceCommit: f.receipt.source_commit });
 }, 120_000);
 
 test.each(["blocked", "failed"])("phase writer delivers a %s review without inventing a verdict", async (status) => {
