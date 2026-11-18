@@ -1,102 +1,79 @@
 ---
 schema: collect-evidence/v1
 kind: procedure
-title: Collect a web image for feedback
+title: Collect evidence with your coding agent
 ---
-# Collect a web image for feedback
+# Collect evidence with your coding agent
 
-Collect a real image of a controlled local page through the installed public CLI.
-For operators and agents. Version: collect-evidence/v1.
-For real application work, use the [web](references/web.md), [TUI](references/tui.md), or [GUI](references/gui.md) driver procedure.
+Ask your coding agent to capture a workflow and show what actually happened.
+Use `collect-evidence` when you need screenshots, recorded results, or a report without an annotation viewer.
+For drawing notes on captures, use [Review your application with your coding agent](../collect-feedback/howto.md).
 
-## Prepare the tools and scope
+## Before you start
 
-Prerequisites: mise, Bun, installed skills, a launchable Playwright browser, and a writable shared-context evidence route.
-Complete dependency setup separately. This example approves read-only navigation to one local fixture. It does not approve other application actions.
+Open your agent in the repository in scope. It needs `collect-evidence` and `shared-context` available, plus the tools and permissions for the selected surface.
+You do not need a ticket. If you provide one, the agent uses `reading-and-writing-tickets` to read its requirements.
+Child-session management is needed only when the calling workflow launches child sessions.
 
-Set absolute paths and a new workspace outside the repository:
+Ask the agent to check these prerequisites first. It should explain missing tools or permissions before attempting capture, not install tools or change access during collection.
 
-```sh
-BUNDLES="$HOME/.omp/agent/bundles"
-EVIDENCE="$BUNDLES/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts"
-REPOSITORY=/absolute/repository-in-scope
-WORKSPACE=/absolute/new-external-workspace
-"$EVIDENCE" doctor --driver playwright --json
-"$EVIDENCE" init "$WORKSPACE" --repository "$REPOSITORY" \
-  --workflow review-example --run fresh-001 --driver playwright --json
-```
+## 1. Describe the evidence you need
 
-If default Chrome is absent, export `PLAYWRIGHT_MCP_EXECUTABLE_PATH=/absolute/existing/browser` before doctor and capture.
-Do not install a browser during collection. A missing required browser returns exit 3.
+Select `collect-evidence` in your agent's skill picker, if available, or name it in your request:
 
-## Start the controlled page
+> Use collect-evidence to capture the settings workflow at http://localhost:3000/settings. Show the empty form, validation errors, and a successful save using test data. Check the prerequisites and propose the steps before running them.
 
-In a separate terminal, run this fixture through the installed Bun runtime:
+Tell the agent what should happen and what it must not do.
+For terminal work, provide the command and directory. For desktop work, identify the approved window or display; the current GUI driver captures read-only X11 surfaces.
 
-```sh
-mise exec -- bun -e 'Bun.serve({hostname:"127.0.0.1",port:8090,fetch:()=>new Response("<!doctype html><title>Evidence example</title><h1>Evidence ready</h1>",{headers:{"content-type":"text/html"}})}); console.log("http://127.0.0.1:8090");'
-```
+> Collect terminal evidence for this command in this repository. Use a native terminal capture, not a browser image or reconstructed terminal output. Ask before sending input.
 
-Expected result: the foreground server owns port 8090 and returns the fixture page.
-If the port is occupied, stop the example. Do not close another process or select an unapproved origin.
-Agents must preserve their muxer run identity in this service environment and register live ownership.
+**Expected result:** the agent selects the appropriate capture method and shows a plan with actions, expected results, and limits.
+If you want video, ask before approving capture. The agent must check recording capability; still images are not a substitute for a requested recording.
 
-## Author and approve the plan
+## 2. Approve the capture scope
 
-Write this complete `plan.ts` into the workspace from the first terminal:
+Read the planned actions, origins or surfaces, test data, and confirmation steps.
+Approve only the scope you intend:
 
-```sh
-cat > "$WORKSPACE/plan.ts" <<'PLAN'
-export const plan = {
-  schema: "collect-evidence/v1", kind: "plan",
-  workId: "review-example", driver: "playwright",
-  base: "http://127.0.0.1:8090",
-  approval: { origins: ["http://127.0.0.1:8090"] },
-  tests: [{
-    id: "ready", claim: "Inspect the controlled page",
-    pass: "The expected heading is visible", fail: "The expected heading is absent",
-    steps: [
-      { do: "navigate", says: "Open the controlled page.", to: "/" },
-      { do: "expect", says: "Read the ready heading.", locator: "h1",
-        text: "Evidence ready", visible: true, shot: "ready-heading" },
-    ],
-  }],
-};
-PLAN
-"$EVIDENCE" render "$WORKSPACE" --json
-```
+> Capture those steps with the agreed test data. Stop for credentials, unexpected confirmations, or anything outside the approved scope.
 
-Read the generated human procedure before capture. Obtain approval for the exact local origin and read-only actions.
-The approval fields record that permission. They cannot grant it.
-If the plan changes, regenerate render and compile with `--force` after renewed approval.
+The agent prepares the plan, runs the checks, captures the evidence, and stores the results.
+It handles commands, identifiers, and storage paths behind the scenes.
 
-## Collect and validate the run
+**Expected result:** a new evidence run with original captures, ordered observations, check results, and a stable reference.
+If a required capture tool is unavailable, the agent reports that limit instead of claiming another surface was verified.
 
-```sh
-"$EVIDENCE" compile "$WORKSPACE" --json
-"$EVIDENCE" run "$WORKSPACE" --dry-run --json
-"$EVIDENCE" run "$WORKSPACE" --json
-SEALED_RUN=/absolute/path/from-run-destination
-"$EVIDENCE" validate "$SEALED_RUN" --json
-"$EVIDENCE" verdicts "$SEALED_RUN" --json
-"$EVIDENCE" report "$SEALED_RUN" > /absolute/external-report.html
-```
+## 3. Inspect the results
 
-Expected result: a new sealed run contains the actual page image, source hashes, ordered observations, and the heading assertion result.
-Inspect the image itself. A screenshot without the expected live heading is not passing proof.
-Keep report output outside the sealed run. Every retry needs a new run identity.
+> Show me the captures and a readable summary of what passed, failed, or could not be checked. Include the evidence reference.
 
-For optional recording, set `video: true` in the approved plan before render and compile.
-Playwright doctor reports recorder capability. Surf, native TUI, and native GUI recording remain unavailable.
-Video notes do not promise exact-frame accuracy.
+Compare the images with the workflow you asked for. Read the observed results and limits separately from the screenshots.
+A captured screen is not proof that an assertion passed.
+If the wrong state was captured, ask for a new run; keep the original evidence unchanged.
 
-## Open feedback or hand off evidence
+**Expected result:** you can identify the captured state, understand each check result, and find the evidence later.
+The agent stops only its own capture resources and preserves the saved run.
 
-Use the [feedback how-to](../collect-feedback/howto.md#collect-and-open-a-session) to import this sealed run, save notes, and export them.
-For one fresh request, use its `request` command after compile instead of the separate collector `run` command.
-Use the [CLI reference](../collect-feedback/references/cli.md) for output formats and exit codes.
-Use the [system explanation](../collect-feedback/references/system.md) for storage, immutable records, and phase authority.
+## Reuse or share the evidence
 
-Stop only the fixture server you created with Ctrl-C. Validate that port 8090 is released.
-The collector closes its own browser session. Keep user-owned tabs and terminals open.
-Local capture and report generation do not approve publication or remote Git operations.
+To leave visual notes on a run you just collected:
+
+> Use collect-feedback to open the run you just collected for annotation. Give me the viewer URL and session reference.
+
+For an earlier run, name it explicitly and ask the agent to label the review as historical.
+Earlier evidence does not prove current application behavior.
+
+For a report:
+
+> Prepare a readable report from this evidence. Show what was not covered. Keep it local; do not upload or publish it.
+
+`writing-reports` is an optional report integration. Capture does not complete a ticket or approve a merge.
+Sharing evidence needs a separate decision about its destination and private data.
+
+## Technical details
+
+You do not need to run these commands yourself. For manual operation, use the
+[complete web CLI example](references/manual-web-example.md) and [CLI reference](../collect-feedback/references/cli.md).
+The [web](references/web.md), [TUI](references/tui.md), and [GUI](references/gui.md) procedures describe driver requirements and limits.
+The [system explanation](../collect-feedback/references/system.md) describes storage and record ownership.

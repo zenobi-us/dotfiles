@@ -4,7 +4,7 @@ kind: procedure
 ---
 # Collect feedback from one request
 
-Use the [operator how-to](../howto.md) for complete procedures.
+Use the [human guide](../howto.md) to request and review evidence through a coding agent.
 Use the [CLI reference](cli.md) for flags and exit codes, or the [system explanation](system.md) for record ownership.
 
 ## Select the approved surface

@@ -56,9 +56,9 @@ Use `--help`, `--version`, `--json`, `--plain`, `--quiet`, `--no-color` and `--n
 
 ## Completion
 
-Report the session path, selected source run, viewer URL, observed image and cleanup. Keep test results separate from visual proof. Use [the human guide](how-to-browse-evidence.md) for manual invocation.
+Report the session path, selected source run, viewer URL, observed image and cleanup. Keep test results separate from visual proof. Use [the human guide](howto.md) for manual invocation.
 
 
 ## Historical review
 
-For an earlier run, use `init <explicit-sealed-run> --historical` with a new session identity. Read [the historical import procedure](how-to-browse-evidence.md#review-an-earlier-run). The viewer and exports retain the historical label. Unknown capture dates stay unknown. Unsupported formats fail before writes. Never silently relabel an existing session or migrate earlier feedback.
+For an earlier run, use `init <explicit-sealed-run> --historical` with a new session identity. Read [the historical import procedure](howto.md#reopen-a-session-or-review-earlier-evidence). The viewer and exports retain the historical label. Unknown capture dates stay unknown. Unsupported formats fail before writes. Never silently relabel an existing session or migrate earlier feedback.

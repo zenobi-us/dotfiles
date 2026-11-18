@@ -6,6 +6,9 @@ kind: changelog
 
 ## Unreleased
 
+- **Write for people using coding agents:** Replace CLI-heavy human guides with prompt-led capture, approval, annotation, handoff, export, and reopening steps. Explain required skills and optional ticket/session integrations.
+- **Consolidate guide discovery:** Keep one feedback how-to, retain its real screenshots, move the manual collector example into technical references, update backlinks, and remove the dedicated topbar links. Browser checks verified both guide routes, loaded screenshots, and navigation without the removed item.
+
 - **Illustrate the how-to:** Add real original-asset and saved-box-note screenshots from the controlled public workflow. Keep descriptive alternative text beside the review steps.
 - **Document the complete workflow:** Add `howto.md`, a separate CLI reference, and a storage/system explanation. Cover approved collection, explicit historical review, saved notes, drafts, validation, export, and shutdown.
 - **Connect the existing website:** Include canonical `howto.md` guides in content discovery and static routes. Add evidence navigation and README links. Correct skill source links to the repository default branch, `master`.

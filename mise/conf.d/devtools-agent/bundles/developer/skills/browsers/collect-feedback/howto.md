@@ -1,199 +1,136 @@
 ---
 schema: collect-feedback/v1
 kind: procedure
-title: Collect evidence and save feedback
+title: Review your application with your coding agent
 ---
-# Collect evidence and save feedback
+# Review your application with your coding agent
 
-Collect an approved workflow, save review notes, and export their source references.
-For operators, reviewers, and agents. Version: collect-feedback/v1.
+Ask your coding agent to collect evidence, then leave feedback on the captures in a local viewer.
+You describe the workflow and approve the actions. The agent handles capture plans, commands, storage, and server cleanup.
 
-## Overview
+## Before you start
 
-Use fresh capture for current behavior. Select historical evidence explicitly for an earlier review.
-A captured image does not prove a passing assertion. Saved feedback does not change ticket status.
+Open your coding agent in the repository you want to review. Have the application running, or ask the agent to help start it.
+The agent needs these skills available:
 
-- **Prepare current evidence:** [Prepare an approved plan](#prepare-an-approved-plan).
-- **Open fresh feedback:** [Collect and open a session](#collect-and-open-a-session).
-- **Review earlier evidence:** [Open an earlier run](#open-an-earlier-run).
-- **Inspect source media:** [Inspect the original asset](#inspect-the-original-asset).
-- **Save review notes:** [Annotate an image or recording](#annotate-an-image-or-recording).
-- **Export saved feedback:** [Validate and export](#validate-and-export).
-- **Stop or recover:** [Stop and reopen the server](#stop-and-reopen-the-server).
-- **Look up contracts:** Read the [CLI reference](references/cli.md) or [storage and system explanation](references/system.md).
+| Skill | When it is needed |
+|---|---|
+| `collect-feedback` | Opens the viewer and manages saved annotations. |
+| `collect-evidence` | Collects fresh evidence and validates supported evidence runs. |
+| `shared-context` | Resolves where evidence and feedback belong for this repository. |
+| `reading-and-writing-tickets` | Reads ticket requirements when you provide a ticket. Standalone feedback does not require one. |
+| `muxer-subagents` | Manages child sessions and owned processes when the calling workflow uses them. |
+| `worktree` / `writing-reports` | Optional implementation/review lifecycle or report generation. Neither is required to leave feedback. |
 
-## Prepare an approved plan
+You do not need to choose storage paths, run IDs, ports, or CLI flags.
+Ask the agent to check skill availability, capture tools, and permissions before starting.
+Missing tools need a separate setup decision, not automatic installation during capture.
 
-Prerequisites: mise, Bun, the installed skills, a writable resolved evidence store, and the selected driver's tools and permissions.
-Complete first-run dependency downloads before capture. Obtain approval for the exact surface and actions.
+The current feedback server requires Linux. The viewer runs on the agent's machine; open its local URL on that same machine.
+Web, terminal, and desktop capture have different tool and permission requirements. A supported driver is not proof that it works on your machine.
 
-1. Set absolute installed paths. This example uses the OMP installation. For another harness, select its installed bundle root.
+## 1. Describe what you want to review
 
-   ```sh
-   BUNDLES="$HOME/.omp/agent/bundles"
-   COLLECT_EVIDENCE_SKILL_ROOT="$BUNDLES/developer/skills/browsers/collect-evidence"
-   FEEDBACK_SKILL_ROOT="$BUNDLES/developer/skills/browsers/collect-feedback"
-   SHARED_CONTEXT_SKILL_ROOT="$BUNDLES/agent-core/skills/shared-context"
-   REPOSITORY=/absolute/repository-in-scope
-   WORKSPACE=/absolute/external-working-directory
-   ```
+Select `collect-feedback` in your agent's skill picker, if it has one, or ask for the skill by name:
 
-2. Select the [web procedure](../collect-evidence/references/web.md), [native TUI procedure](../collect-evidence/references/tui.md), or [native GUI procedure](../collect-evidence/references/gui.md).
-3. Run the driver's doctor. For GUI, supply the exact approved display, window, and title.
+> Use collect-feedback to review the settings workflow in my running application. Check the prerequisites first. Show me the proposed steps before you capture anything, then open the feedback viewer.
 
-   ```sh
-   "$COLLECT_EVIDENCE_SKILL_ROOT/scripts/collect-evidence.ts" doctor --driver playwright --json
-   ```
+Give the agent the application URL or the terminal command and directory.
+Name the screens and states you care about, what should happen, and any boundaries:
 
-   If default Chrome is absent, Playwright accepts `PLAYWRIGHT_MCP_EXECUTABLE_PATH` for an existing browser. Provision tools separately.
-   A blocked required prerequisite stops that surface. Optional video failure does not invalidate image evidence.
+> Start at http://localhost:3000/settings. Capture the empty form, validation errors, and a successful save using test data. Do not use real customer data or change account permissions.
 
-4. Create a workspace outside the watched repository. Use distinct new run and session IDs.
+For a ticket-backed review, include the ticket reference:
 
-   ```sh
-   (cd "$REPOSITORY" && "$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts" resolve evidence --workflow review-example --run fresh-001 --json)
-   "$COLLECT_EVIDENCE_SKILL_ROOT/scripts/collect-evidence.ts" init "$WORKSPACE" \
-     --repository "$REPOSITORY" --workflow review-example --run fresh-001 --driver playwright --json
-   ```
+> Use collect-feedback to review the workflow described in this ticket. Read its acceptance criteria and propose a capture plan before running it.
 
-   The resolver's `path` is the final store location, not the external workspace.
+**Expected result:** the agent identifies the repository, checks the selected capture tools, and proposes a workflow you can approve.
+If a required tool or permission is missing, it explains what is blocked instead of substituting unrelated evidence.
 
-5. Author `$WORKSPACE/plan.ts` through the selected driver procedure. Give cases purposes, preconditions, actions, expected results, and executable assertions.
-6. Render the human procedure. Obtain approval for its origins, actions, confirmations, and optional video. Record that approval in the plan.
-7. Compile the approved plan.
+## 2. Approve the capture
 
-   ```sh
-   "$COLLECT_EVIDENCE_SKILL_ROOT/scripts/collect-evidence.ts" render "$WORKSPACE" --json
-   "$COLLECT_EVIDENCE_SKILL_ROOT/scripts/collect-evidence.ts" compile "$WORKSPACE" --json
-   ```
+Read the proposed screens, actions, expected results, and capture scope.
+Check any save, delete, submit, or other confirmation step before approving it.
+A request for screenshots does not approve every action in the application.
 
-Expected result: one approved `plan.ts`, its generated procedure and fingerprint, and a resolved destination.
-For a complete runnable web example, use the [collector how-to](../collect-evidence/howto.md).
+> Capture those steps with the test data we agreed on. Stop if you encounter credentials, an unexpected confirmation, or a screen outside this scope.
 
-## Collect and open a session
+The agent prepares and runs the capture behind the scenes. You do not need to author a plan file or copy commands into a terminal.
+If you want a recording, ask before capture; the agent must check whether the selected driver supports it.
 
-Prerequisite: the compiled workspace repository and workflow match the request flags.
+**Expected result:** the agent reports the observed results and limitations, then supplies the actual feedback viewer URL and a saved session reference.
+Keep that reference in the conversation so you can reopen the session later.
+A screenshot proves what was captured, not that every check passed. Read failures and blocked steps separately.
 
-1. Inspect the request without writes or capture.
+## 3. Open the viewer and inspect the evidence
 
-   ```sh
-   "$FEEDBACK_SKILL_ROOT/scripts/collect-feedback.ts" request "$WORKSPACE" \
-     --repository "$REPOSITORY" --workflow review-example --session feedback-001 --port 8091 --dry-run --json
-   ```
+Open the URL supplied by the agent. Select a case, read its purpose and results, then select an image or recording.
+Check that it shows the state you intended to review before adding notes.
 
-2. Run the same command without `--dry-run`.
-3. Keep the foreground process alive. Open its returned `url` on the same machine.
-4. Retain `destination.path`, `destination.ref`, and `records` from the readiness event.
+[![The feedback viewer shows the session, case results, and the selected original image containing Evidence ready.](assets/howto/original-asset.webp)](assets/howto/original-asset.webp)
 
-Expected result: the collector seals the run, the importer creates a separate session, and the server binds the explicit loopback port.
-Readiness is not a passing case verdict. Assertion-only FAIL runs can open for review.
-Any BLOCKED case stops the request before import, even in a mixed FAIL/BLOCKED run.
-A stopped capture never silently becomes historical evidence. Retry with a new run ID.
+This example shows a controlled web capture. The asset inspector identifies the original capture and its source hash.
+Click either screenshot in this guide to inspect it at full size.
 
-If you already ran collector `run`, use `init` instead of collecting that identity again:
+For a recording, pause at the moment you want to discuss. Video notes retain a timestamp; they do not track moving objects or guarantee an exact frame.
+If the evidence is wrong or incomplete, ask for a new capture instead of annotating it as though it were correct.
 
-```sh
-SEALED_RUN=/absolute/sealed-run
-"$FEEDBACK_SKILL_ROOT/scripts/collect-feedback.ts" init "$SEALED_RUN" \
-  --repository "$REPOSITORY" --workflow review-example --session feedback-002 --json
-SESSION=/absolute/path/from-destination.path
-"$FEEDBACK_SKILL_ROOT/scripts/collect-feedback.ts" validate "$SESSION" --json
-"$FEEDBACK_SKILL_ROOT/scripts/collect-feedback.ts" serve "$SESSION" --port 8091 --json
-```
+## 4. Save your feedback
 
-## Open an earlier run
+1. Choose **Point** for a location, or **Box** for an area. Click or drag on the image or paused recording.
+2. Enter a comment beside the mark. Describe the problem and the result you expect.
+3. Choose **P1 Blocker**, **P2 Friction**, or **P3 Polish**.
+4. Select **Save**, or press Ctrl or Meta plus Enter. Wait for **Saved**.
 
-Prerequisites: an explicitly selected sealed `collect-evidence/v1` run and a new session ID.
+[![A saved box note appears beside its numbered pin. The note shows P3 Polish, revision 1, and Saved.](assets/howto/saved-box-note.png)](assets/howto/saved-box-note.png)
 
-```sh
-EARLIER_RUN=/absolute/earlier-sealed-run
-"$FEEDBACK_SKILL_ROOT/scripts/collect-feedback.ts" request "$EARLIER_RUN" --historical \
-  --repository "$REPOSITORY" --workflow review-example --session historical-001 --port 8091 --json
-```
+You can select a saved pin to inspect it, edit its note, delete it, or undo deletion.
+For keyboard creation, use Point or Box, move with arrow keys, and resize boxes with Shift plus arrow keys. Escape cancels the active draft.
 
-For separate import and serve, use `init "$EARLIER_RUN" --historical` with the same store flags.
-Expected result: the viewer and export label the session historical. Capture times and hashes remain original.
-Unknown capture times stay unknown. Import time is not capture time.
-Unsupported versions and unversioned archives fail before session creation. Existing reports and feedback remain unchanged.
+**Expected result:** a saved note stays linked to the original evidence without changing the source image.
+A draft is not saved feedback. Draft recovery is limited to the same browser tab and origin; save before closing or changing the viewer URL.
+If saving fails, keep the page open and retry. If another editor changed the note, compare the saved revision with your draft before replacing it.
 
-## Inspect the original asset
+## 5. Return to your coding agent
 
-Prerequisite: the local viewer shows a validated session.
+Save the notes you want the agent to read, then return to the conversation:
 
-Select a case, then select its captured image in the asset list.
-Read the case results separately from the image.
+> Read the feedback I saved in this session. Group it by priority and propose fixes. Do not edit code yet.
 
-[![The feedback viewer shows session, case, and asset columns. The selected original image contains the heading Evidence ready.](assets/howto/original-asset.webp)](assets/howto/original-asset.webp)
+The agent locates the session, validates its saved records, and reads or exports the notes.
+You decide which changes to make. Saving feedback does not approve code edits, complete a ticket, or merge a branch.
 
-Open either screenshot for full-size detail.
-This controlled example shows the settled web capture before any annotation.
-The asset inspector retains the original dimensions, capture time, asset ID, and source hash.
+**Expected result:** the agent connects each proposed change to your saved note and the relevant captured state.
+After a fix, ask for fresh evidence to check the current behavior; the earlier capture remains unchanged.
 
-## Annotate an image or recording
+## Export your feedback
 
-Prerequisite: the local viewer shows a validated case and registered asset.
+Use **Export saved annotations** in the viewer when you want a copy.
+Save or explicitly discard every unfinished draft when prompted.
+You can also ask the agent:
 
-1. Select a case and read its purpose, steps, results, and limits.
-2. Select an image or WebM recording. For video, pause at the required timestamp.
-3. Click for a point, or drag in either direction for a box. For keyboard creation, use Point or Box.
-4. Move the mark with arrows. Resize boxes with Shift plus arrows.
-5. Enter a comment. Select P1 Blocker, P2 Friction, or P3 Polish.
-6. Save with the Save button or Ctrl or Meta plus Enter. Wait for Saved.
+> Export the saved feedback from this session and give me the file location and session reference. Do not publish it anywhere.
 
-Expected result: a durable annotation binds the asset ID, hash, original dimensions, geometry, and comment.
-[![A saved box note appears beside its numbered pin on the original image. The editor shows P3 Polish, revision 1, and Saved.](assets/howto/saved-box-note.png)](assets/howto/saved-box-note.png)
+**Expected result:** the export contains saved annotations and verified source references, not unfinished browser drafts.
+Local review does not authorize uploading screenshots, publishing reports, or sharing private data.
 
-The Saved label follows server acknowledgement. The box retains its source-image coordinates.
+## Reopen a session or review earlier evidence
 
-Video notes also retain the playback timestamp. They do not track objects or promise exact frames.
-Zoom and scroll preserve image coordinates. Narrow screens retain horizontal inspector columns.
+To continue with existing saved feedback:
 
-Select a saved pin to inspect it without a draft. Use Edit note, Delete note, or Undo deletion for changes.
-Escape cancels the active draft. Undo remains available after reload or restart.
-If a save fails, retain the draft and retry the same payload.
-If a revision conflict occurs, compare the saved version with your draft before replacement.
-Use saved revision for next save adopts the displayed revision only after your explicit choice.
+> Reopen my previous feedback session without collecting new evidence. Use the same viewer port if I need to recover drafts in this browser tab.
 
-Unfinished drafts recover across navigation and reload in the same tab and origin. Keep the same port.
-Tab closure or a different port loses access to those tab-local drafts.
-If browser storage fails, the warning means that drafts remain in memory only.
+Saved annotations remain in the session after the server stops. Ask the agent to stop its viewer when you finish; it should keep the saved records.
 
-## Validate and export
+To review an earlier capture in a new feedback session, select it explicitly:
 
-Prerequisite: all comments intended for a complete review are saved or explicitly discarded.
+> Use collect-feedback to review this earlier evidence run. Do not collect new evidence. Clearly label it as historical.
 
-1. Use Export saved annotations in the viewer. Resolve every unfinished draft when prompted.
-2. Validate the session and export the saved records through the CLI.
+**Expected result:** earlier evidence is labelled historical and retains its original capture times.
+It does not prove what the application does now. If fresh capture fails, the agent must not silently reuse an earlier run.
 
-   ```sh
-   SESSION=/absolute/path/from-destination.path
-   "$FEEDBACK_SKILL_ROOT/scripts/collect-feedback.ts" validate "$SESSION" --json
-   "$FEEDBACK_SKILL_ROOT/scripts/collect-feedback.ts" export "$SESSION" --json > /absolute/external-review.json
-   ```
+## Technical details
 
-3. Compare exported asset IDs and hashes with the selected source. Retain the session stable reference with the export.
-
-Expected result: a `collect-feedback/v1` export contains verified sources and saved annotations, including revisions and deletion state.
-CLI and direct API exports contain saved server records only. They cannot inspect browser drafts.
-Export does not change source assets or saved feedback.
-
-For a report, use the installed read-only consumer:
-
-```sh
-REPORT_SKILL_ROOT="$BUNDLES/developer/skills/devtools/writing-reports"
-"$REPORT_SKILL_ROOT/scripts/report-cli.ts" evidence "$SESSION" --feedback --json
-```
-
-Without `--json`, this command prints self-contained HTML.
-Store exports and reports outside the immutable evidence and feedback directories.
-
-## Stop and reopen the server
-
-1. Send Ctrl-C, SIGINT, or SIGTERM only to the foreground server you created.
-2. Validate that its port and `.writer.lock` are released. Keep the session directory.
-3. To reopen, run `serve "$SESSION" --port 8091 --json` through the same installed CLI.
-
-Expected result: saved annotations survive the restart. A second writer or occupied port fails without a fallback.
-If a crash leaves a lock, establish process shutdown before an operator removes that exact lock.
-The CLI never steals a lock. Agents must register live owned resources through their muxer contract before shutdown.
-Local collection and serving do not approve publication, remote Git operations, or credential entry.
+The agent handles the commands. For manual operation or troubleshooting, use the [CLI reference](references/cli.md),
+[request procedure](references/request.md), and [storage and system explanation](references/system.md).
+For evidence without annotations, use [Collect evidence with your coding agent](../collect-evidence/howto.md).

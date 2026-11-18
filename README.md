@@ -103,11 +103,11 @@ mise bootstrap --yes
 
 Use the installed collect-evidence and collect-feedback skills for real capture and saved review notes.
 
-- **Collect a web image:** [Run the collector example](mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/howto.md).
-- **Save and export feedback:** [Use the feedback how-to](mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/howto.md).
+- **Collect a web image:** [Collect evidence with your agent](mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/howto.md).
+- **Save and export feedback:** [Review your application with your agent](mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/howto.md).
 - **Look up commands:** [Read the CLI reference](mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/cli.md).
 - **Understand the records:** [Read the storage and system explanation](mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/system.md).
-- **Browse the website:** [Open the feedback guides](https://zenobi-us.github.io/dotfiles/bundles/developer/skill/collect-feedback/how-to/).
+- **Browse the website:** [Open the feedback guide](https://zenobi-us.github.io/dotfiles/bundles/developer/skill/collect-feedback/how-to/).
 
 Stores come from shared-context resolution for the repository in scope. Local evidence and feedback do not change ticket status or approve publication.
 

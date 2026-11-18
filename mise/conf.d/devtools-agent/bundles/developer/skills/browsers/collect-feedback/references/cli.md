@@ -38,6 +38,8 @@ Dependency setup can require a network connection. Complete setup before capture
 A writable store, supported records, and Linux non-following file access are required for feedback serving.
 The feedback viewer is prebuilt. Startup needs neither a frontend build nor a CDN.
 
+For a complete manual capture example, use [Collect a web image through the CLI](../../collect-evidence/references/manual-web-example.md).
+
 ## Command index
 
 The collector owns capture. Feedback invokes it for a request, or imports an explicitly selected sealed run.
@@ -117,4 +119,4 @@ The existence of a driver does not prove coverage on an unexercised host.
 The [viewer contract](viewer-contract.md#http-api) defines routes, write tokens, payloads, revision ETags, and HTTP error codes.
 The [evidence schema](../../collect-evidence/references/evidence-schema.md) defines sealed runs, cases, events, and assets.
 The [request contract](request.md) defines collection failure precedence and foreground ownership.
-Use the [how-to](../howto.md#validate-and-export) for a saved-feedback export procedure.
+Use the [how-to](../howto.md#export-your-feedback) for a saved-feedback export procedure.
