@@ -18,7 +18,7 @@ Implement accepted UX option 2 for Herdr shared context.
 - Replace separate Context and Tracker title-bar controls with one shared-context entry. Keep workspace Files and Changes.
 - Replace footer filters with a borderless vertical-ellipsis dropdown at the top right of the tracker tree. Use checkboxes and an active-restriction count.
 - Preserve repository selection, dependency context, file navigation and refresh behavior.
-- Follow DESIGN.md palette, local JetBrains Mono, square geometry, compact spacing and thin borders.
+- Use the active Herdr theme palette, locally provisioned JetBrains Mono, square geometry, compact spacing and thin borders.
 - Verify filtering, keyboard dismissal and the running native surface.
 
 ## Comments
@@ -55,3 +55,7 @@ The user reported that dependency nesting returned after deployment. The reposit
 
 Correction verification: all 30 scoped tests pass with 95 assertions, including flat leaf rows, shared membership, filtering, and unchanged DAG edges/cycle errors. Typechecking and the installed native mod check pass. The running native tree visibly shows member tickets at one depth with no ticket expanders. The CLI layout reports no errors.
 
+
+### Approved verification follow-up
+
+The user approved the proposed changes on 2026-11-18. Retain the active Herdr theme instead of a fixed violet palette. Provision pinned JetBrains Mono fonts, add focused filter and persistence regressions, and verify native keyboard, navigation, refresh, and layout-reload behavior in an isolated session. Keep unrelated typing diagnostics outside this ticket. Retain work_status: implemented; this follow-up does not claim completion or restart implementation ownership.
