@@ -194,6 +194,12 @@ After updating a checkout from the old layout, refresh deployed symlinks without
 ```bash
 mise bootstrap --only dotfiles --yes
 ```
+## OMP pre hooks
+
+OMP loads pre hooks from `~/.omp/agent/bundles/agent-core/hooks/pre`.
+Mise bootstrap deploys the `agent-core` bundle as a symlink. No separate
+`~/.omp/agent/hooks` symlink is required. Restart OMP after changing its hook configuration.
+
 ## OMP shared-context autocomplete
 The mise bootstrap links `.mise/conf.d/devtools-omp/extensions` to `~/.omp/agent/extensions`. In OMP, type `#` to find files from the shared context associated with the current repository. Select an item to insert it as an `@` attachment. OMP keeps its built-in `@` file autocomplete.
 

@@ -10,7 +10,7 @@ theme:
   light: dark-rose-pine
 setupVersion: 3
 extensions:
-  - ~/.omp/agent/hooks/pre
+  - ~/.omp/agent/bundles/agent-core/hooks/pre
 task:
   disabledAgents: []
   enableLsp: true
