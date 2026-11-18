@@ -1,0 +1,392 @@
+{
+  "decision": "proceed with frozen-source independent review",
+  "inventoryComplete": false,
+  "ownership": "Same parent session owns start-complete-0003; prior run shutdown confirmed. User explicitly requested this review. No takeover.",
+  "reservations": [],
+  "hardBlockers": [],
+  "hazards": [
+    "README overlap with Pi Ink implementation requires section-level integration assessment; review is read-only.",
+    "Other inventory errors concern stale copies, absent old prototype checkout, and malformed historical Pi goal records; no proposed reservation or direct prerequisite is unresolved.",
+    "Do not claim compatibility from unknown scopes; record producer/consumer and moving-base checks."
+  ],
+  "observations": {
+    "inventoryComplete": false,
+    "proposed": {
+      "ticket": {
+        "id": "collect-evidence-feedback-11-docs",
+        "title": "Document the evidence and feedback workflow",
+        "documentType": "enhancement",
+        "fields": {
+          "schema": "tracker-ticket/v1",
+          "id": "collect-evidence-feedback-11-docs",
+          "title": "Document the evidence and feedback workflow",
+          "type": "enhancement",
+          "triage": "ready-for-agent",
+          "work_status": "claimed",
+          "parent": "collect-evidence-feedback",
+          "sequence": 11,
+          "blocked_by": [
+            "collect-evidence-feedback-01-web",
+            "collect-evidence-feedback-02-tui",
+            "collect-evidence-feedback-03-gui",
+            "collect-evidence-feedback-04-viewer",
+            "collect-evidence-feedback-05-pins",
+            "collect-evidence-feedback-06-edits",
+            "collect-evidence-feedback-07-drafts",
+            "collect-evidence-feedback-08-video",
+            "collect-evidence-feedback-09-history",
+            "collect-evidence-feedback-10-request"
+          ]
+        },
+        "ref": "tracker/tickets/collect-evidence-feedback-11-docs.md",
+        "backend": "local-markdown",
+        "status": "claimed",
+        "blockedBy": [
+          "collect-evidence-feedback-01-web",
+          "collect-evidence-feedback-02-tui",
+          "collect-evidence-feedback-03-gui",
+          "collect-evidence-feedback-04-viewer",
+          "collect-evidence-feedback-05-pins",
+          "collect-evidence-feedback-06-edits",
+          "collect-evidence-feedback-07-drafts",
+          "collect-evidence-feedback-08-video",
+          "collect-evidence-feedback-09-history",
+          "collect-evidence-feedback-10-request"
+        ],
+        "body": "# Document the evidence and feedback workflow\n\n## What to build\n\nComplete the documentation for operators, reviewers, and agents who use collect-evidence and collect-feedback.\nUsers must be able to collect evidence, save feedback, and locate the records through the skill documentation and the existing website.\n\nUse the completed initiative as the source for the documented behavior. Keep essential instructions in each feature's documentation.\nUse this final ticket to make the documentation complete and consistent across the initiative.\n\n## Acceptance criteria\n\n- **Audience and workflows:** Cover evidence collection, historical evidence, feedback sessions, annotations, validation, and export for operators, reviewers, and agents.\n- **Di\u00e1taxis structure:** Add howto.md to the new collect-feedback skill. Use task-focused procedures with prerequisites and expected results. Keep CLI reference and system explanations separate, with links between them. Add links to the collect-evidence driver procedures.\n- **CLI documentation:** Explain the supported commands, inputs, outputs, output formats, exit codes, prerequisites, and driver limits. Include complete examples that use the installed entrypoints and do not depend on the caller's current directory.\n- **Data storage:** Explain how shared-context resolves the evidence store for the repository in scope. Cover evidence runs, feedback sessions, record layout, stable references, immutable assets, saved annotations, browser drafts, and exports. Explain capture staging, finalization, historical provenance, and separate publication approval. Do not assume that all stores use the repository root.\n- **System relationships:** Explain the responsibilities of collect-evidence, collect-feedback, shared-context, reading-and-writing-tickets, worktree, and writing-reports. Show how ticket references, workflow IDs, evidence runs, feedback sessions, and reports connect. Distinguish authoritative ticket records, phase receipts, evidence records, saved feedback, and browser drafts. Evidence and feedback do not change ticket status or prove phase completion.\n- **Website and navigation:** Update the existing website with the how-to guide and links to the CLI reference and system explanations. Update relevant README links, guides, and examples. Create missing documentation that users need. Do not create another website.\n- **Delivered behavior:** Make all documentation match the completed implementation. State supported capabilities and known limits. Do not describe an unavailable driver or an unexercised platform as verified.\n- **Documentation checks:** Run the documented commands and examples through their public interfaces with temporary resolved stores. Inspect the website pages and navigation. Check all changed links and record unavailable prerequisite coverage. Correct inaccurate instructions before completion.\n\n## Verification\n\nUse the installed CLIs and the existing website as the public interfaces.\nExercise a complete documented path from evidence collection to saved feedback and export.\nCompare the documented store locations and record references with the shared-context results and saved records.\nUse historical evidence only where the guide explicitly requires it. Preserve source assets and existing user feedback.\n\n## Comments"
+      },
+      "initiatives": [
+        {
+          "id": "collect-evidence-feedback",
+          "ref": "tracker/initiatives/collect-evidence-feedback/index.md"
+        }
+      ],
+      "scope": {
+        "state": "declared",
+        "plannedScope": "known",
+        "paths": [
+          "README.md",
+          "docs/website",
+          "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence",
+          "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback"
+        ],
+        "evidence": [
+          {
+            "ref": "tracker/tickets/collect-evidence-feedback-11-docs.md",
+            "paths": [
+              "README.md",
+              "docs/website",
+              "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence",
+              "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback"
+            ],
+            "kind": "declared"
+          }
+        ]
+      },
+      "reservations": [],
+      "ownership": "unknown",
+      "owners": [
+        {
+          "ref": "workflows/collect-evidence-feedback-11-docs/events/start-complete-0003.yaml",
+          "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs",
+          "sourceBranch": "feature/collect-evidence-feedback-11-docs",
+          "sessionId": "01a1ebe1-1788-770b-b35a-ef0f1bdb5567",
+          "agent": "omp",
+          "muxer": "herdr-app",
+          "paneId": null
+        }
+      ],
+      "sourceObservations": [
+        {
+          "checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+          "source": {
+            "state": "available",
+            "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs",
+            "branch": "feature/collect-evidence-feedback-11-docs",
+            "commit": "d9740e9dac01adb6a7e5efba63f2427ff8458c11",
+            "candidates": 1
+          },
+          "errors": []
+        }
+      ],
+      "receiptRefs": [
+        "workflows/collect-evidence-feedback-11-docs/events/start-complete-0003.yaml",
+        "workflows/collect-evidence-feedback-11-docs/events/implementation-0002.yaml",
+        "workflows/collect-evidence-feedback-11-docs/events/start-0001.yaml"
+      ]
+    },
+    "hardBlockers": [],
+    "comparisons": [
+      {
+        "ticketRef": "tracker/tickets/collect-evidence-feedback-07-drafts.md",
+        "assessment": "cleanup-only",
+        "overlaps": []
+      },
+      {
+        "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+        "assessment": "cleanup-only",
+        "overlaps": [
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/evidence-schema.md"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/records.ts"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/CHANGELOG.md"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/SKILL.md"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/how-to-browse-evidence.md"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/viewer-contract.md"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/annotations.ts"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/commands.ts"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/records.ts"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-fixture.md"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/cases/original/case.json"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/cases/original/events.jsonl"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/cases/original/index.md"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/cases/original/media/step-002-step-original-002-original--capture-001--capture-001.png"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/cases/original/media/step-002-step-original-002-original--capture-002--capture-002.png"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/index.md"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/native/plan.ts"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/native/report/shots/step-original-002-original--capture-001.png"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/native/report/shots/step-original-002-original--capture-002.png"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/native/runs/case-original.log"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/native/workflows/smoke-test-original.js"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/plan.json"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/plan.ts"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/historical-run/run.json"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/history-workflow.test.ts"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test/workflow.test.ts"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/index.html"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/main.tsx"
+          },
+          {
+            "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback",
+            "active": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/viewer/src/types.ts"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/herdr-context-header-filters.md",
+        "assessment": "unknown-scope",
+        "overlaps": []
+      },
+      {
+        "ticketRef": "tracker/tickets/jira-tracker-mirror-04-closure-incremental.md",
+        "assessment": "unknown-scope",
+        "overlaps": []
+      },
+      {
+        "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+        "assessment": "distinct-observed-paths",
+        "overlaps": []
+      },
+      {
+        "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-wsl.md",
+        "assessment": "unknown-scope",
+        "overlaps": []
+      },
+      {
+        "ticketRef": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+        "assessment": "cleanup-only",
+        "overlaps": [
+          {
+            "proposed": "README.md",
+            "active": "README.md"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+        "assessment": "overlap-risk",
+        "overlaps": [
+          {
+            "proposed": "README.md",
+            "active": "README.md"
+          }
+        ]
+      },
+      {
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+        "assessment": "unknown-scope",
+        "overlaps": []
+      },
+      {
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+        "assessment": "unknown-scope",
+        "overlaps": []
+      },
+      {
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+        "assessment": "unknown-scope",
+        "overlaps": []
+      },
+      {
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+        "assessment": "unknown-scope",
+        "overlaps": []
+      },
+      {
+        "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+        "assessment": "unknown-scope",
+        "overlaps": []
+      },
+      {
+        "ticketRef": "tracker/tickets/worktree-receipt-recovery-01-validation.md",
+        "assessment": "unknown-scope",
+        "overlaps": []
+      }
+    ],
+    "errors": [
+      "/tmp/herdr-remote-cache-prototype: linked checkout identity unavailable: ENOENT: no such file or directory, realpath '/tmp/herdr-remote-cache-prototype'",
+      "tracker/tickets/collect-evidence-feedback-01-web.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/collect-evidence-feedback-02-tui.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/collect-evidence-feedback-03-gui.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/collect-evidence-feedback-04-viewer.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/collect-evidence-feedback-05-pins.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/collect-evidence-feedback-06-edits.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/collect-evidence-feedback-07-drafts.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/collect-evidence-feedback-08-video.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/collect-evidence-feedback-09-history.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/collect-evidence-feedback-10-request.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/herdr-context-panels.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/jira-tracker-mirror-04-closure-incremental.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/pi-ink-bridge-01-pen-prototype.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/pi-ink-bridge-02-install-client.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/pi-ink-bridge-03-pair-device.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/skill-contract-manifests-01-local-definitions.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "tracker/tickets/worktree-receipt-recovery-01-validation.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-observed-0112.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0113.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0122.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0123.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0124.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0130.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0136.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0146.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0147.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0148.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0159.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0160.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0162.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0170.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0171.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0178.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0179.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0186.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0111.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0119.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0120.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0121.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0129.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0135.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0142.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0143.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0144.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0156.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0157.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0158.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0168.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0169.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0176.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0177.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0185.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0193.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0196.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0199.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0202.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0205.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0208.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0150.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0164.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+      "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0181.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation."
+    ]
+  }
+}
