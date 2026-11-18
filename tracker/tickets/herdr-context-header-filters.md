@@ -97,3 +97,9 @@ Review: direct review of the source follow-up against this ticket found no unres
 Limits: native interaction coverage used the C2 layout and local fixture trackers, not Jira or remote machines. Existing editor typing diagnostics remain outside this follow-up; no TypeScript-clean claim is made.
 
 Status remains `implemented`. The changes and verification are committed locally; no merge or push was performed.
+
+### Native per-space destination check — 2026-11-18
+
+A second owned native session used two real private Core spaces without explicit repository props. Space A selected Tracker; space B selected Files. Switching spaces restored each destination. An `empty` → `acceptance` layout reload preserved both destinations. The native app reported no errors. Both private spaces and their terminals were closed, the private window exited, and the private Core returned `stopped: true`. Temporary runtime files were removed.
+
+Evidence: [space A Tracker](../../workflows/herdr-context-header-filters/artifacts/evidence/verification-2026-11-18/space-a-tracker-restored.png), [space B Files](../../workflows/herdr-context-header-filters/artifacts/evidence/verification-2026-11-18/space-b-files-restored.png), and [capture hashes](../../workflows/herdr-context-header-filters/artifacts/evidence/verification-2026-11-18/spaces-captures.json).

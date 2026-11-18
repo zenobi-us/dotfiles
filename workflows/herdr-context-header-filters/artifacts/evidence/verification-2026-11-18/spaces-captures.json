@@ -1,0 +1,24 @@
+{
+  "kind": "raw-herdr-native-captures",
+  "note": "Owned private Core session hfp; two spaces retained different Files/Tracker destinations after a layout reload. Not a sealed collect-evidence run.",
+  "assets": [
+    {
+      "file": "space-a-tracker-restored.png",
+      "sha256": "ef1e725ecba172ce27d78aea6a3d427419c695599d14fd8e3b554558a8e2b1c3",
+      "capture_method": "herdr-app shot",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "space-b-files-restored.png",
+      "sha256": "418ed3c649e7d0d880ebc2da6b41757b4b312b00a5d740f7bce39f85c92c5559",
+      "capture_method": "herdr-app shot",
+      "dimensions": [
+        1280,
+        720
+      ]
+    }
+  ]
+}
