@@ -1,5 +1,5 @@
-// The tree shows initiative membership. Dependency edges belong in the graph views.
-import { matchesFilters, STATUS_FILTERS } from "./filter-model.js";
+// Grouping changes presentation only. Dependency edges stay in graph views.
+import { matchesFilters, STATUS_FILTERS, statusFilterKey } from "./filter-model.js";
 
 export function dependencyRows(snapshot, filters, collapsed) {
   const tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
@@ -11,7 +11,7 @@ export function dependencyRows(snapshot, filters, collapsed) {
     if (!reference) canonical.set(record.id, path);
   };
   const section = (id, title) => rows.push({ type: "section", record: { id, title }, path: `section:${id}`, depth: 0, expanded: true, children: 0 });
-  const initiatives = filters.initiatives ? snapshot.initiatives.filter(item => !item.group) : [];
+  const initiatives = filters.groupBy === "initiative" ? snapshot.initiatives.filter(item => !item.group) : [];
   const showEmptyInitiatives = STATUS_FILTERS.every(([key]) => filters[key]);
   for (const initiative of initiatives) {
     const members = [...new Set(initiative.ticketIds)].map(id => {
@@ -30,14 +30,21 @@ export function dependencyRows(snapshot, filters, collapsed) {
   for (const ticket of snapshot.tickets) {
     const type = itemType(ticket);
     if (!eligible(ticket) || type === "ticket" && assigned.has(ticket.id)) continue;
-    if (!groups.has(type)) groups.set(type, []);
-    groups.get(type).push(ticket);
+    if (filters.groupBy === "none") { add(ticket, "flat", 0, true); continue; }
+    const key = filters.groupBy === "status" ? statusFilterKey(ticketDisplayState(ticket, snapshot.states?.[ticket.id])) : type;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(ticket);
   }
-  for (const type of ["ticket", "prototype", "research", "planning", "record"]) {
-    const members = groups.get(type);
+  const headings = filters.groupBy === "status" ? STATUS_FILTERS : [
+    ["ticket", filters.groupBy === "initiative" ? "Unassigned tickets" : "Tickets"],
+    ["prototype", "Prototypes"], ["research", "Research"], ["planning", "Planning"], ["record", "Records"],
+  ];
+  for (const [key, title] of headings) {
+    const members = groups.get(key);
     if (!members?.length) continue;
-    section(type, { ticket: "Other tickets", prototype: "Prototypes", research: "Research", planning: "Planning", record: "Records" }[type]);
-    for (const member of members) add(member, `section:${type}`, 0, true);
+    const id = `${filters.groupBy}:${key}`;
+    section(id, title);
+    for (const member of members) add(member, `section:${id}`, 0, true);
   }
   return { rows, canonical };
 }

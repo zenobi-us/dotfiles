@@ -6,7 +6,7 @@ import { SourceTextModule, SyntheticModule, createContext } from "node:vm";
 import { resolveLocation, targetKey, copyIsShown, localWatchPaths, localWatchFallback, completedAgentWork, RefreshQueue } from "../app/mods/shared-context/refresh-model.js";
 import { client as queryClient } from "./query-client.mjs";
 import { workflowActivity } from "../app/mods/shared-context/activity-model.js";
-import { DEFAULT_FILTERS, STATUS_FILTERS, applyFilterPreset, selectedFilterPreset, restoreFilters, filterRestrictions } from "../app/mods/shared-context/filter-model.js";
+import { DEFAULT_FILTERS, STATUS_FILTERS, GROUPING_OPTIONS, applyFilterPreset, selectedFilterPreset, restoreFilters, filterRestrictions } from "../app/mods/shared-context/filter-model.js";
 import { dependencyRows } from "../app/mods/shared-context/tree.js";
 import { initiativeProgress } from "../app/mods/shared-context/progress-model.js";
 
@@ -648,9 +648,10 @@ test("tracker status queues combine with OR without expanding dependencies", () 
   assert.deepEqual(snapshot.tickets[0].blockedBy, ["BLOCKED"]);
 });
 
-test("hiding initiatives keeps matching tickets visible outside initiative groups", () => {
-  const rows = dependencyRows(filterSnapshot(), { ...applyFilterPreset(DEFAULT_FILTERS, "in-flight"), initiatives: false, active: false }, new Set()).rows;
+test("flat grouping keeps matching tickets visible without group headings", () => {
+  const rows = dependencyRows(filterSnapshot(), { ...applyFilterPreset(DEFAULT_FILTERS, "in-flight"), groupBy: "none", active: false }, new Set()).rows;
   assert.equal(rows.some(row => row.type === "initiative"), false);
+  assert.equal(rows.some(row => row.type === "section"), false);
   assert.deepEqual(rows.filter(row => row.type === "ticket").map(row => [row.record.id, row.depth]), [["BLOCKED", 0], ["ERROR", 0], ["UNKNOWN", 0]]);
 });
 
@@ -658,10 +659,10 @@ test("grouping never changes which statuses match", () => {
   const snapshot = filterSnapshot();
   const ids = filters => dependencyRows(snapshot, filters, new Set()).rows.filter(row => row.type === "ticket").map(row => row.record.id);
   assert.deepEqual(ids(DEFAULT_FILTERS), snapshot.tickets.map(ticket => ticket.id));
-  assert.deepEqual(ids({ ...DEFAULT_FILTERS, initiatives: false }), ids(DEFAULT_FILTERS));
-  const next = applyFilterPreset({ ...DEFAULT_FILTERS, initiatives: false }, "next-actions");
+  assert.deepEqual(ids({ ...DEFAULT_FILTERS, groupBy: "none" }), ids(DEFAULT_FILTERS));
+  const next = applyFilterPreset({ ...DEFAULT_FILTERS, groupBy: "none" }, "next-actions");
   assert.deepEqual(ids(next), ["READY", "REVIEW", "FIX", "FINISH", "SUBMIT"]);
-  assert.equal(next.initiatives, false);
+  assert.equal(next.groupBy, "none");
   assert.equal(selectedFilterPreset(next), "next-actions");
   assert.deepEqual(ids(applyFilterPreset(next, "in-flight")), ["ACTIVE", "BLOCKED", "ERROR", "UNKNOWN"]);
   assert.deepEqual(ids(applyFilterPreset(next, "everything")), ids(DEFAULT_FILTERS));
@@ -673,24 +674,25 @@ test("explicit status filters work before details load and keep recorded complet
   snapshot.states.DONE = { state: "REVIEW" };
   delete snapshot.states.READY;
   snapshot.tickets[0].status = "ready";
-  const none = Object.fromEntries(Object.keys(DEFAULT_FILTERS).map(key => [key, false]));
+  const none = { groupBy: "initiative", ...Object.fromEntries(STATUS_FILTERS.map(([key]) => [key, false])) };
   const ids = filters => dependencyRows(snapshot, filters, new Set()).rows.filter(row => row.type === "ticket").map(row => row.record.id);
   assert.deepEqual(ids({ ...none, completed: true }), ["DONE"]);
   assert.deepEqual(ids({ ...none, active: true }), ["ACTIVE"]);
   assert.deepEqual(ids({ ...none, other: true }), ["OTHER"]);
   assert.deepEqual(ids({ ...none, ready: true }), ["READY"]);
-  assert.deepEqual(dependencyRows(snapshot, { ...none, initiatives: true }, new Set()).rows, []);
+  assert.deepEqual(dependencyRows(snapshot, none, new Set()).rows, []);
 });
 
 test("stored filters upgrade without broadening a restricted queue", () => {
   const restricted = restoreFilters({ initiatives: false, ready: true, review: false, blocked: true });
   assert.deepEqual(STATUS_FILTERS.filter(([key]) => restricted[key]).map(([key]) => key), ["ready", "blocked"]);
-  assert.equal(restricted.initiatives, false);
+  assert.equal(restricted.groupBy, "none");
+  assert.equal("initiatives" in restricted, false);
   assert.deepEqual(restoreFilters({ initiatives: true, ready: true, review: true, blocked: true }), DEFAULT_FILTERS);
-  const custom = { ...DEFAULT_FILTERS, active: false, completed: false, initiatives: false };
+  const custom = { ...DEFAULT_FILTERS, active: false, completed: false, groupBy: "status" };
   assert.deepEqual(restoreFilters(custom), custom);
-  assert.equal(filterRestrictions({ ...DEFAULT_FILTERS, initiatives: false }), 1);
-  assert.equal(filterRestrictions(custom), 3);
+  assert.equal(filterRestrictions({ ...DEFAULT_FILTERS, groupBy: "none" }), 0);
+  assert.equal(filterRestrictions(custom), 2);
 });
 
 test("repository filters and selections survive another repository and a mod reload", async () => {
@@ -703,17 +705,17 @@ test("repository filters and selections survive another repository and a mod rel
   view.collapsed.add("initiative:I");
   view.fileFolders.add("alignment:docs");
   view.fileSelection = { collection: "alignment", path: "docs/guide.md" };
-  view.setFilters({ ...applyFilterPreset(DEFAULT_FILTERS, "in-flight"), initiatives: false, active: false, ready: true }, cx);
+  view.setFilters({ ...applyFilterPreset(DEFAULT_FILTERS, "in-flight"), groupBy: "type", active: false, ready: true }, cx);
   view.restoreView(second);
   assert.equal(view.selected, null);
   assert.equal(view.fileSelection, null);
-  assert.equal(view.filters.initiatives, true);
-  view.setFilters({ ...applyFilterPreset(DEFAULT_FILTERS, "next-actions"), ready: false }, cx);
+  assert.equal(view.filters.groupBy, "initiative");
+  view.setFilters({ ...applyFilterPreset(DEFAULT_FILTERS, "next-actions"), groupBy: "status", ready: false }, cx);
 
   const { view: reloaded } = await rootModel({}, storage);
   Object.assign(reloaded, { saved: new Map(JSON.parse(storage.get("shared-context:tracker:views:v1"))) });
   reloaded.restoreView(first);
-  assert.equal(reloaded.filters.initiatives, false);
+  assert.equal(reloaded.filters.groupBy, "type");
   assert.equal(reloaded.filters.ready, true);
   assert.equal(reloaded.filters.review, false);
   assert.equal(reloaded.filters.blocked, true);
@@ -722,7 +724,58 @@ test("repository filters and selections survive another repository and a mod rel
   assert.ok(reloaded.collapsed.has("initiative:I"));
   assert.ok(reloaded.fileFolders.has("alignment:docs"));
   reloaded.restoreView(second);
+  assert.equal(reloaded.filters.groupBy, "status");
   assert.equal(reloaded.filters.ready, false);
   assert.equal(reloaded.filters.review, true);
   assert.equal(reloaded.selected, null);
+});
+
+test("status grouping uses the same categories and completion precedence as filtering", () => {
+  const snapshot = filterSnapshot();
+  snapshot.states.DONE = { state: "REVIEW" };
+  const { rows } = dependencyRows(snapshot, { ...DEFAULT_FILTERS, groupBy: "status" }, new Set());
+  assert.deepEqual(rows.filter(row => row.type === "section").map(row => row.record.title), STATUS_FILTERS.map(([, label]) => label));
+  const membership = new Map();
+  let group;
+  for (const row of rows) {
+    if (row.type === "section") { group = row.record.title; membership.set(group, []); }
+    else membership.get(group).push(row.record.id);
+  }
+  assert.deepEqual(membership.get("Review"), ["REVIEW", "FIX", "FINISH", "SUBMIT"]);
+  assert.deepEqual(membership.get("Blocked"), ["BLOCKED", "ERROR", "UNKNOWN"]);
+  assert.deepEqual(membership.get("Completed"), ["DONE"]);
+  assert.deepEqual(membership.get("Other"), ["OTHER"]);
+});
+
+test("record-type grouping classifies mixed records while flat mode preserves input order", () => {
+  const snapshot = {
+    tickets: [
+      { id: "A", documentType: "enhancement", status: "ready" },
+      { id: "B", documentType: "prototype", status: "ready" },
+      { id: "C", documentType: "research", status: "completed" },
+      { id: "D", documentType: "specification", status: "draft" },
+      { id: "E", documentType: "report", status: "draft" },
+      { id: "U", documentType: "task", status: "ready" },
+    ],
+    initiatives: [{ id: "I", title: "First", ticketIds: ["A"] }, { id: "J", title: "Second", ticketIds: ["A"] }],
+    states: {},
+  };
+  const typed = dependencyRows(snapshot, { ...DEFAULT_FILTERS, groupBy: "type" }, new Set());
+  assert.deepEqual(typed.rows.map(row => row.type === "section" ? row.record.title : row.record.id), ["Tickets", "A", "U", "Prototypes", "B", "Research", "C", "Planning", "D", "Records", "E"]);
+  const flat = dependencyRows(snapshot, { ...DEFAULT_FILTERS, groupBy: "none" }, new Set());
+  assert.deepEqual(flat.rows.map(row => row.record.id), ["A", "B", "C", "D", "E", "U"]);
+  assert.ok(flat.rows.every(row => row.type === "ticket" && row.depth === 0 && !row.reference));
+  for (const [groupBy] of GROUPING_OPTIONS) {
+    const filters = applyFilterPreset({ ...DEFAULT_FILTERS, groupBy }, "next-actions");
+    const forest = dependencyRows(snapshot, filters, new Set());
+    const ids = forest.rows.filter(row => row.type === "ticket").map(row => row.record.id);
+    assert.deepEqual([...new Set(ids)].sort(), ["A", "B", "U"]);
+    assert.equal(filters.groupBy, groupBy);
+    if (groupBy !== "initiative") assert.equal(ids.length, 3);
+    for (const id of ["A", "B", "U"]) assert.ok(forest.canonical.has(id));
+  }
+  const initiative = dependencyRows(snapshot, DEFAULT_FILTERS, new Set(["initiative:I"]));
+  assert.equal(initiative.canonical.get("A"), "initiative:I/A");
+  assert.equal(initiative.rows.find(row => row.type === "ticket" && row.record.id === "A").reference, "initiative:I/A");
+  assert.ok(initiative.rows.some(row => row.type === "section" && row.record.title === "Unassigned tickets"));
 });

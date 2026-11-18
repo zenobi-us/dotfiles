@@ -1,12 +1,13 @@
 // Presets select ticket statuses; fine tuning keeps tree structure independent.
 import { div } from "gpui-kit";
-import { h_flex, v_flex, Popover, Checkbox } from "gpui-base";
+import { h_flex, v_flex, Popover, Checkbox, Radio, RadioGroup } from "gpui-base";
 import { button } from "./ui.js";
 import { theme } from "herdr";
-import { DEFAULT_FILTERS, STATUS_FILTERS, FILTER_PRESETS, applyFilterPreset, selectedFilterPreset, filterRestrictions } from "./filter-model.js";
+import { DEFAULT_FILTERS, STATUS_FILTERS, GROUPING_OPTIONS, FILTER_PRESETS, applyFilterPreset, selectedFilterPreset, filterRestrictions } from "./filter-model.js";
 
 const baseControls = ["reset", ...FILTER_PRESETS.map(preset => preset.id), "fine-tune"];
-const fineControls = ["initiatives", "all", ...STATUS_FILTERS.map(([key]) => key)];
+const groupingControls = GROUPING_OPTIONS.map(([key]) => `group:${key}`);
+const fineControls = [...groupingControls, "all", ...STATUS_FILTERS.map(([key]) => key)];
 
 export function initTreeFilters(view, cx) {
   view.filterFocus = cx.focus_handle();
@@ -38,6 +39,7 @@ export function treeFilters(view) {
     if (key === "reset") view.setFilters({ ...DEFAULT_FILTERS }, cx);
     else if (key === "fine-tune") { view.filtersFineTune = !view.filtersFineTune; view.changed(cx); }
     else if (key === "all") view.setFilters({ ...view.filters, ...Object.fromEntries(STATUS_FILTERS.map(([key]) => [key, statusCount !== STATUS_FILTERS.length])) }, cx);
+    else if (key.startsWith("group:")) view.setFilters({ ...view.filters, groupBy: key.slice(6) }, cx);
     else if (fineControls.includes(key)) view.setFilters({ ...view.filters, [key]: !view.filters[key] }, cx);
     else view.setFilters(applyFilterPreset(view.filters, key), cx);
   };
@@ -67,6 +69,12 @@ export function treeFilters(view) {
     .key_context("SharedContextFilters")
     .on_key_down((event, cx) => {
       if (event.key === "escape") { closeTreeFilters(view, cx); cx.stop_propagation(); }
+      else if (["left", "right"].includes(event.key)) {
+        const index = groupingControls.findIndex(key => view.filterChoicesFocus[key].is_focused());
+        if (index < 0) return;
+        const next = groupingControls[(index + (event.key === "left" ? groupingControls.length - 1 : 1)) % groupingControls.length];
+        activate(next, cx); view.filterChoicesFocus[next].focus(); cx.stop_propagation();
+      }
       else if (["up", "down", "home", "end"].includes(event.key)) {
         const index = controls.findIndex(key => view.filterChoicesFocus[key].is_focused());
         const next = event.key === "home" ? 0 : event.key === "end" ? controls.length - 1 : (index + (event.key === "up" ? controls.length - 1 : 1)) % controls.length;
@@ -85,13 +93,23 @@ export function treeFilters(view) {
       .mt(8).border_t(1).border_color(t.border).w_full().text_color(t.accent)
       .accessibility_label(`Fine tune. ${view.filtersFineTune ? "Expanded" : "Collapsed"}.${preset === "custom" ? " Custom statuses." : ""}`))
     .when(view.filtersFineTune, el => el
-      .child(heading("TREE STRUCTURE"))
-      .child(checkbox("initiatives", "Group by initiative"))
+      .child(heading("GROUP BY"))
+      .child(RadioGroup.new("tracker-grouping").accessibility_label("Group by").flex().flex_wrap().gap(4).flex_none()
+        .children(GROUPING_OPTIONS.map(([key, label]) => {
+          const id = `group:${key}`, checked = view.filters.groupBy === key;
+          return Radio.new(`tracker-filter:${id}`).checked(checked).track_focus(view.filterChoicesFocus[id]).tab_index(0).key_context("SharedContextFilters")
+            .accessibility_label(key === "none" ? "No grouping" : `Group by ${label}`).w(122).h(30).px(6).rounded(0).border_1()
+            .border_color(checked || view.filterChoicesFocus[id].is_focused() ? t.accent : t.border)
+            .bg(view.filterChoicesFocus[id].is_focused() ? t.selected : t.popover)
+            .on_change((_value, cx) => activate(id, cx))
+            .on_action("shared-context.toggle-filter", (_event, cx) => { activate(id, cx); cx.stop_propagation(); })
+            .child(h_flex().items_center().gap(7).child(div().text_color(t.accent).child(checked ? "●" : "○")).child(div().child(label)));
+        })))
       .child(heading("TICKET STATUS · MATCH ANY"))
       .child(checkbox("all", "All statuses"))
       .children(STATUS_FILTERS.map(([key, label]) => checkbox(key, label))))
     .child(div().flex_none().pt(8).text_size(10).text_color(t.muted).whitespace_normal()
-      .child(`${statusCount === STATUS_FILTERS.length ? "All statuses" : statusCount ? `${statusCount} statuses selected` : "No statuses selected"} · ${view.filters.initiatives ? "Grouped" : "Flat list"}`));
+      .child(`${statusCount === STATUS_FILTERS.length ? "All statuses" : statusCount ? `${statusCount} statuses selected` : "No statuses selected"} · ${view.filters.groupBy === "none" ? "Flat list" : `By ${GROUPING_OPTIONS.find(([key]) => key === view.filters.groupBy)[1].toLowerCase()}`}`));
   return h_flex().id("tracker-tree-header").h(48).flex_none().px(12).items_center().justify_between().border_b(1).border_color(t.border)
     .child(div().text_size(10).font_weight(500).text_color(t.muted).child("TRACKER"))
     .child(Popover.new("tracker-filters-popover").open(view.filtersOpen).anchor("top_right").track_focus(view.filterChoicesFocus.everything)
