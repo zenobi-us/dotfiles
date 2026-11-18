@@ -1,0 +1,260 @@
+{
+  "version": 1,
+  "runId": "791e3bac-db62-4f96-92c0-9e82a0d614d0",
+  "observedAt": "2026-11-18T03:04:48.810Z",
+  "processes": [
+    {
+      "pid": 460215,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4932585",
+      "command": "omp",
+      "parentPid": 459903,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs",
+      "state": "stopped"
+    },
+    {
+      "pid": 462740,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4942413",
+      "command": "omp",
+      "parentPid": 460215,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs",
+      "state": "stopped"
+    },
+    {
+      "pid": 465651,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4949917",
+      "command": "omp daemon brok",
+      "parentPid": 460215,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs",
+      "state": "stopped"
+    },
+    {
+      "pid": 465678,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4949922",
+      "command": "bun",
+      "parentPid": 465651,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs/docs/website",
+      "state": "stopped"
+    },
+    {
+      "pid": 465913,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950110",
+      "command": "node",
+      "parentPid": 465678,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs/docs/website",
+      "state": "stopped"
+    },
+    {
+      "pid": 465995,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950172",
+      "command": "esbuild",
+      "parentPid": 465913,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs/docs/website",
+      "state": "stopped"
+    },
+    {
+      "pid": 466006,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950220",
+      "command": "bun",
+      "parentPid": 460215,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs",
+      "state": "stopped"
+    },
+    {
+      "pid": 466066,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950271",
+      "command": "hc",
+      "parentPid": 466006,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs",
+      "state": "stopped"
+    },
+    {
+      "pid": 466109,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950761",
+      "command": "bwrap",
+      "parentPid": 2697,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs",
+      "state": "stopped"
+    },
+    {
+      "pid": 466110,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950761",
+      "command": "xdg-dbus-proxy",
+      "parentPid": 466109,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs",
+      "state": "stopped"
+    },
+    {
+      "pid": 466114,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950763",
+      "command": "chrome",
+      "parentPid": 466113,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 466131,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950772",
+      "command": "chrome_crashpad",
+      "parentPid": 466113,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 466133,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950773",
+      "command": "chrome_crashpad",
+      "parentPid": 466113,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 466728,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4953171",
+      "command": "bun",
+      "parentPid": 460215,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs",
+      "state": "stopped"
+    },
+    {
+      "pid": 466103,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950756",
+      "command": "bwrap",
+      "parentPid": 465651,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs",
+      "state": "stopped"
+    },
+    {
+      "pid": 466113,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950762",
+      "command": "bwrap",
+      "parentPid": 466103,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 466138,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950773",
+      "command": "chrome",
+      "parentPid": 466114,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 466140,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950773",
+      "command": "chrome",
+      "parentPid": 466114,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 466170,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950776",
+      "command": "chrome",
+      "parentPid": 466138,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 466173,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950777",
+      "command": "chrome",
+      "parentPid": 466114,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 466183,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950780",
+      "command": "chrome",
+      "parentPid": 466140,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 466205,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950783",
+      "command": "chrome",
+      "parentPid": 466140,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 466207,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950783",
+      "command": "chrome",
+      "parentPid": 466140,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 466209,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950784",
+      "command": "chrome",
+      "parentPid": 466140,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 466243,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950797",
+      "command": "chrome",
+      "parentPid": 466140,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 466252,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950798",
+      "command": "chrome",
+      "parentPid": 466140,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 466255,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950798",
+      "command": "chrome",
+      "parentPid": 466140,
+      "cwd": "/var/home/zenobius",
+      "state": "stopped"
+    },
+    {
+      "pid": 469294,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4967022",
+      "command": "bun",
+      "parentPid": 462740,
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs",
+      "state": "stopped"
+    }
+  ],
+  "shutdown": "confirmed"
+}

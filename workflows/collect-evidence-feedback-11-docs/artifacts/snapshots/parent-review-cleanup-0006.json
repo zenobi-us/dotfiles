@@ -1,0 +1,137 @@
+{
+  "approval": "User selected Terminate review processes.",
+  "run_id": "791e3bac-db62-4f96-92c0-9e82a0d614d0",
+  "identities": [
+    {
+      "pid": 460215,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4932585",
+      "signals": [
+        "SIGTERM",
+        "SIGCONT"
+      ]
+    },
+    {
+      "pid": 462740,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4942413",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 465651,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4949917",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 466109,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950761",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 466110,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950761",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 466114,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950763",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 466131,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950772",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 466133,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950773",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 466103,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950756",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 466113,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950762",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 466138,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950773",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 466140,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950773",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 466170,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950776",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 466173,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950777",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 466183,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950780",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 466252,
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "startTicks": "4950798",
+      "signals": [
+        "SIGTERM"
+      ]
+    }
+  ],
+  "review_pane_closed": true,
+  "terminal_removed": "t1jh"
+}

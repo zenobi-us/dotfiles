@@ -9,6 +9,10 @@ Generated from authoritative events.
 
 - [start-complete-0003](../events/start-complete-0003.yaml): start phase completed after parent validation, delivery acknowledgement, pane closure, and approved process shutdown.
 
+- [review-start-0004](../events/review-start-0004.yaml): frozen-source review started.
+- [review-0005](../events/review-0005.yaml): SUCCESS, no blocking findings; [review artifact](../artifacts/reviews/review-review-0005.md).
+- [review-complete-0006](../events/review-complete-0006.yaml): parent validated source, delivery, ticket comment and approved shutdown.
+
 ## Changed files by phase
 
 ### implementation-0002
@@ -51,4 +55,4 @@ The screenshot guide preview used identical local bytes for two unpublished imag
 
 ## Unresolved questions
 
-No open product question. Parent completion is verified. Independent formal review and publication remain pending.
+No open product question. Parent completion is verified. Independent formal review passed. Integration and publication remain pending.

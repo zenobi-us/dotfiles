@@ -1,7 +1,7 @@
 # Evidence and feedback documentation
 
 Ticket: [collect-evidence-feedback-11-docs](../../../tracker/tickets/collect-evidence-feedback-11-docs.md).
-Generated from authoritative events. Latest result: implementation-0002. Parent completion: [start-complete-0003](../events/start-complete-0003.yaml).
+Generated from authoritative events. Latest result: review-0005. Review completion: [review-complete-0006](../events/review-complete-0006.yaml). Parent completion: [start-complete-0003](../events/start-complete-0003.yaml).
 
 ## Ticket summary
 
@@ -49,7 +49,7 @@ The screenshot-illustrated guide was inspected with identical local bytes for un
 
 ## Review history
 
-No formal worktree review. Read-only helper findings are retained in the evidence record.
+[review-0005](../events/review-0005.yaml): SUCCESS for d9740e9dac01adb6a7e5efba63f2427ff8458c11. [Immutable review artifact](../artifacts/reviews/review-review-0005.md). Standards: 0 findings. Spec: 0 findings. Earlier implementation self-checks remain in the evidence record.
 
 ## Resolved findings
 
@@ -66,7 +66,9 @@ The website guide-naming rule now names howto.md and how-to-*.md.
 
 ## Latest reviewer verdict
 
-None. Formal review remains pending.
+SUCCESS. Source commit d9740e9dac01adb6a7e5efba63f2427ff8458c11 and tree dae2ac1c4aab5164a116de9946b13569f853b363 remain unchanged.
+
+Review validation: 14 website tests passed; build and browser navigation passed. Parent documentation check: 3 passed. Review pane closed; approved owned-process shutdown confirmed.
 
 ## Merge status
 

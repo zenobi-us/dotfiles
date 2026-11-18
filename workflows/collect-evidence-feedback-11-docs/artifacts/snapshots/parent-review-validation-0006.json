@@ -1,0 +1,16 @@
+{
+  "receipt": "review-0005",
+  "delivery_sha256": "1c37518b4110e295106676cf13717c33810591176460364884006116cf8c7099",
+  "event_matches_transport": true,
+  "source_unchanged": true,
+  "source_commit": "d9740e9dac01adb6a7e5efba63f2427ff8458c11",
+  "source_tree": "dae2ac1c4aab5164a116de9946b13569f853b363",
+  "argv": [
+    "bun",
+    "test",
+    "src/lib/documentation.test.ts"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs/docs/website",
+  "exit_code": 0,
+  "result": "3 pass, 0 fail, 10 expectations"
+}

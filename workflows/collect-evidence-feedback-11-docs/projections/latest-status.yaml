@@ -4,11 +4,11 @@ ticket:
   backend: local-markdown
   id: collect-evidence-feedback-11-docs
   ref: tracker/tickets/collect-evidence-feedback-11-docs.md
-state: IMPLEMENTED
-latest_receipt: start-complete-0003
+state: REVIEW_PASSED
+latest_receipt: review-complete-0006
 latest_source_commit: d9740e9dac01adb6a7e5efba63f2427ff8458c11
 latest_source_tree: dae2ac1c4aab5164a116de9946b13569f853b363
-latest_review_verdict: null
+latest_review_verdict: SUCCESS
 open_findings: []
 parent_completion: completed
 limitations:
@@ -25,3 +25,5 @@ limitations:
 - New GitHub/Pages URLs cannot be verified remotely until parent publication. Illustrated
   website preview served identical local bytes for only the two unpublished screenshot
   requests, recorded in screenshot-preview.json.
+review_receipt: review-0005
+review_artifact: workflows/collect-evidence-feedback-11-docs/artifacts/reviews/review-review-0005.md
