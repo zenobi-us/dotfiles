@@ -11,7 +11,6 @@ home:
     - { label: Guides, href: "#guides" }
     - { label: Reference, href: "#reference" }
     - { label: Agent bundles, href: /bundles/ }
-    - { label: Evidence and feedback, href: /bundles/developer/skill/collect-feedback/how-to/ }
   footer:
     label: zenobi-us / dotfiles
     links:
@@ -22,7 +21,6 @@ bundles:
   links:
     - { label: Workstation guide, href: /, iconBefore: "←" }
     - { label: Agent bundles, href: /bundles/ }
-    - { label: Evidence and feedback, href: /bundles/developer/skill/collect-feedback/how-to/ }
   footer:
     label: zenobi-us / dotfiles
     links:
