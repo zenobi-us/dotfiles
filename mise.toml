@@ -29,7 +29,6 @@ starship = "latest"
 "github:JustVugg/colibri" = "latest"
 "github:alacritty/alacritty" = "latest"
 "github:can1357/oh-my-pi" = "latest"
-"github:earendil-works/pi" = { version = "latest", os = ["linux", "macos"] }
 "github:finefindus/artem" = "latest"
 "github:gopasspw/gopass" = "latest"
 "github:graykode/abtop" = "latest"
@@ -104,6 +103,7 @@ fnox = { version = "1.44.0", workflow = "release.yml" }
 "github:sigoden/dufs" = "latest"
 "github:asciimoo/hister" = "latest"
 "github:civitai/cli" = "latest"
+pi = "latest"
 
 [tool_alias]
 pi = "github:earendil-works/pi"
