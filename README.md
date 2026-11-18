@@ -201,7 +201,7 @@ Mise bootstrap deploys the `agent-core` bundle as a symlink. No separate
 `~/.omp/agent/hooks` symlink is required. Restart OMP after changing its hook configuration.
 
 ## OMP shared-context autocomplete
-The mise bootstrap links `.mise/conf.d/devtools-omp/extensions` to `~/.omp/agent/extensions`. In OMP, type `#` to find files from the shared context associated with the current repository. Select an item to insert it as an `@` attachment. OMP keeps its built-in `@` file autocomplete.
+The mise bootstrap links `mise/conf.d/devtools-omp/extensions` to `~/.omp/agent/extensions`. In OMP, type `shared://` followed by a fuzzy query to find files from the shared context associated with the current repository. Select an item to insert it as an `@` attachment. OMP keeps its built-in `@` file autocomplete.
 
 ## OMP image editor
 

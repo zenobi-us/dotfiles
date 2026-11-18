@@ -78,8 +78,10 @@ interface SharedContextAutocompleteItem extends AutocompleteItem {
 const MAX_SUGGESTIONS = 100;
 const CACHE_TTL_MS = 2_000;
 
-function hashPrefix(textBeforeCursor: string): string | null {
-  const match = /(?:^|\s)(#[^\s#]*)$/.exec(textBeforeCursor);
+const SHARED_PREFIX = "shared://";
+
+function sharedPrefix(textBeforeCursor: string): string | null {
+  const match = /(?:^|\s)(shared:\/\/[^\s]*)$/.exec(textBeforeCursor);
   return match?.[1] ?? null;
 }
 
@@ -105,7 +107,7 @@ function matchScore(query: string, target: string): number {
 }
 
 function suggestionsFor(items: SharedContextItem[], prefix: string): SharedContextAutocompleteItem[] {
-  const query = prefix.slice(1).toLowerCase();
+  const query = prefix.slice(SHARED_PREFIX.length).toLowerCase();
   const matches: Array<{ item: SharedContextItem; score: number }> = [];
 
   for (const item of items) {
@@ -178,7 +180,7 @@ export function createSharedContextAutocompleteProvider(
   return {
     async getSuggestions(lines, cursorLine, cursorCol, signal, onPartial) {
       const currentLine = lines[cursorLine] ?? "";
-      const prefix = hashPrefix(currentLine.slice(0, cursorCol));
+      const prefix = sharedPrefix(currentLine.slice(0, cursorCol));
       if (!prefix) return current.getSuggestions(lines, cursorLine, cursorCol, signal, onPartial);
       if (signal?.aborted) return null;
 
@@ -188,13 +190,13 @@ export function createSharedContextAutocompleteProvider(
     },
 
     applyCompletion(lines, cursorLine, cursorCol, item, prefix) {
-      if (!isSharedContextItem(item) || !prefix.startsWith("#")) {
+      if (!isSharedContextItem(item) || !prefix.startsWith(SHARED_PREFIX)) {
         return current.applyCompletion(lines, cursorLine, cursorCol, item, prefix);
       }
 
       const currentLine = lines[cursorLine] ?? "";
       const textBeforeCursor = currentLine.slice(0, cursorCol);
-      const livePrefix = hashPrefix(textBeforeCursor);
+      const livePrefix = sharedPrefix(textBeforeCursor);
       if (!livePrefix) return current.applyCompletion(lines, cursorLine, cursorCol, item, prefix);
 
       const beforePrefix = currentLine.slice(0, cursorCol - livePrefix.length);

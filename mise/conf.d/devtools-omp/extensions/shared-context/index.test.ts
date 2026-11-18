@@ -20,7 +20,7 @@ function baseProvider(): AutocompleteProvider {
 }
 
 describe("shared-context autocomplete", () => {
-  it("replaces hash actions with matching context items and inserts an attachment", async () => {
+  it("matches shared URI queries and inserts an attachment", async () => {
     const items: SharedContextItem[] = [
       {
         absolutePath: "/context/docs/adr/0006-typed-context-store-layout.md",
@@ -33,10 +33,10 @@ describe("shared-context autocomplete", () => {
     ];
     const provider = createSharedContextAutocompleteProvider(baseProvider(), async () => items);
 
-    const suggestions = await provider.getSuggestions(["review #typed"], 0, 13);
+    const suggestions = await provider.getSuggestions(["review shared://typed"], 0, 21);
 
     expect(suggestions).toEqual({
-      prefix: "#typed",
+      prefix: "shared://typed",
       items: [
         {
           value: "/context/docs/adr/0006-typed-context-store-layout.md",
@@ -48,9 +48,9 @@ describe("shared-context autocomplete", () => {
     });
 
     const completion = provider.applyCompletion(
-      ["review #typed next"],
+      ["review shared://typed next"],
       0,
-      13,
+      21,
       suggestions!.items[0]!,
       suggestions!.prefix,
     );
@@ -68,16 +68,54 @@ describe("shared-context autocomplete", () => {
       relativePath: "docs/plans/migrate skill.md",
     };
     const provider = createSharedContextAutocompleteProvider(baseProvider(), async () => [item]);
-    const suggestions = await provider.getSuggestions(["#migrate"], 0, 8);
+    const suggestions = await provider.getSuggestions(["shared://migrate"], 0, 16);
 
     const completion = provider.applyCompletion(
-      ["#migrate"],
+      ["shared://migrate"],
       0,
-      8,
+      16,
       suggestions!.items[0]!,
       suggestions!.prefix,
     );
 
     expect(completion.lines).toEqual(["@\"/context/docs/plans/migrate skill.md\" "]);
+  });
+
+  it.each(["#typed", "@typed", "typed", "xshared://typed", "shared:/typed"])(
+    "delegates ordinary input %s without loading shared files",
+    async (text) => {
+      const provider = createSharedContextAutocompleteProvider(baseProvider(), async () => {
+        throw new Error("Shared files should not load for ordinary input");
+      });
+      expect(await provider.getSuggestions([text], 0, text.length)).toEqual(
+        await baseProvider().getSuggestions([text], 0, text.length),
+      );
+    },
+  );
+
+  it("lists files for an empty query and matches non-contiguous letters case-insensitively", async () => {
+    const items: SharedContextItem[] = [
+      { absolutePath: "/context/docs/migration.md", relativePath: "docs/migration.md" },
+      { absolutePath: "/context/tracker/ticket.md", relativePath: "tracker/ticket.md" },
+    ];
+    const provider = createSharedContextAutocompleteProvider(baseProvider(), async () => items);
+    expect((await provider.getSuggestions(["shared://"], 0, 9))?.items).toHaveLength(2);
+    const text = "review shared://MGRTN";
+    expect((await provider.getSuggestions([text], 0, text.length))?.items.map((item) => item.label))
+      .toEqual(["docs/migration.md"]);
+  });
+
+  it("keeps unmatched shared queries separate from ordinary file suggestions", async () => {
+    const provider = createSharedContextAutocompleteProvider(baseProvider(), async () => []);
+    expect(await provider.getSuggestions(["shared://missing"], 0, 16)).toBeNull();
+  });
+
+  it("ignores cancelled queries", async () => {
+    const controller = new AbortController();
+    controller.abort();
+    const provider = createSharedContextAutocompleteProvider(baseProvider(), async () => {
+      throw new Error("Cancelled queries should not load files");
+    });
+    expect(await provider.getSuggestions(["shared://"], 0, 9, controller.signal)).toBeNull();
   });
 });
