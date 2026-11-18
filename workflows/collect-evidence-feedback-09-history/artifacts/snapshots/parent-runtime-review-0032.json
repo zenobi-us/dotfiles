@@ -1,0 +1,25 @@
+{
+  "argv": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history/mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/report-cli.ts",
+    "evidence",
+    "/tmp/history-parent-smoke-2zte9y7w/earlier-run",
+    "--historical",
+    "--json"
+  ],
+  "cwd": "/tmp/history-parent-smoke-2zte9y7w",
+  "exit_code": 0,
+  "source_commit": "6a99dc3b3b7e61d293dc47492cbc6590677ce994",
+  "source_tree": "417db5cbd797ef7c1c65c19c4e1b1f8335b295ee",
+  "source_hashes_unchanged": true,
+  "summary": "Public writing-reports evidence --historical command on disposable copy of committed earlier-run fixture.",
+  "cleanup": "Disposable copied fixture removed. Directory owner-write permissions restored only inside temporary copy for removal.",
+  "observed": {
+    "schema": "collect-evidence/v1",
+    "kind": "event",
+    "success": true,
+    "historical": true,
+    "case_ids": [
+      "original"
+    ]
+  }
+}
