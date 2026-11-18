@@ -6,7 +6,12 @@ const CATEGORIES = new Map([
   ["READY", "ready"], ["REVIEW", "ready"], ["FIX", "ready"], ["FINISH", "ready"], ["SUBMIT", "ready"],
 ]);
 
-/** Count recorded completion before workflow recommendations; missing finish history does not reopen a ticket. */
+/**
+ * Return initiative counts from the current ticket records and workflow states.
+ * Recalculate when restoring a cached tree or applying ticket details; the result
+ * does not track later snapshot changes. Recorded completion takes precedence
+ * over workflow recommendations, including missing finish history.
+ */
 export function initiativeProgress(snapshot) {
   const tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
   const results = new Map();

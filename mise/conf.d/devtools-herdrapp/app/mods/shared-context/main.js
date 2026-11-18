@@ -153,6 +153,7 @@ export default class SharedContext extends View {
       if (this.fileSelection) this.filePreview = this.client.peek("file", next, this.fileSelection);
     }
     this.snapshot = this.client.peek("tracker", next, { tree: true });
+    if (this.snapshot) this.progress = initiativeProgress(this.snapshot);
     if (this.mode === "tracker" && this.context?.ready && this.selected && this.snapshot) {
       const records = this.selected.kind === "initiative" ? this.snapshot.initiatives : this.snapshot.tickets;
       if (records.some(record => record.id === this.selected.id)) {
@@ -269,7 +270,7 @@ export default class SharedContext extends View {
           if (!this.current(revision)) return;
           this.snapshot = { ...snapshot, states: {} };
           this.client.retainDetails(where, snapshot);
-          this.progress = initiativeProgress(snapshot);
+          this.progress = initiativeProgress(this.snapshot);
           if (this.selected) {
             const records = this.selected.kind === "initiative" ? snapshot.initiatives : snapshot.tickets;
             const record = records.find(item => item.id === this.selected.id);
@@ -309,7 +310,10 @@ export default class SharedContext extends View {
         try {
           const detail = await this.query("detail", { id: record.id, kind }, cx);
           if (!this.current(revision) || this.snapshot !== snapshot) return;
-          if (kind === "ticket") snapshot.states[record.id] = detail.state;
+          if (kind === "ticket") {
+            snapshot.states[record.id] = detail.state;
+            this.progress = initiativeProgress(snapshot);
+          }
           this.detailProgress.completed++;
           if (this.selected?.id === record.id && this.selected?.kind === kind) {
             this.detail = detail; this.detailLoading = false; this.detailError = "";
@@ -348,6 +352,11 @@ export default class SharedContext extends View {
         const detail = await this.query("detail", { id: record.id, kind }, cx);
         if (this.current(revision) && serial === this.detailRevision) {
           this.detail = detail;
+          if (kind === "ticket" && this.snapshot) {
+            this.snapshot.states ??= {};
+            this.snapshot.states[record.id] = detail.state;
+            this.progress = initiativeProgress(this.snapshot);
+          }
           this.activity = workflowActivity(detail.workflow);
         }
       } catch (error) { if (this.current(revision) && serial === this.detailRevision) this.detailError = String(error.message ?? error); }

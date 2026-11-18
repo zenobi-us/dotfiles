@@ -8,6 +8,7 @@ import { client as queryClient } from "./query-client.mjs";
 import { workflowActivity } from "../app/mods/shared-context/activity-model.js";
 import { DEFAULT_FILTERS, filterRestrictions } from "../app/mods/shared-context/filter-model.js";
 import { dependencyRows } from "../app/mods/shared-context/tree.js";
+import { initiativeProgress } from "../app/mods/shared-context/progress-model.js";
 
 const space = { id: "local-space", machine: null, folder: "/local", active: true, tabs: [{ id: "active-tab", active: true }] };
 const terminal = { pane: "p1", terminal: "t1", cwd: "/local/pane" };
@@ -184,7 +185,7 @@ async function rootModel(client, storage = new Map()) {
     "./graph-view.js": stubs("graphView", "initGraphMenu", "renderGraphMenu"),
     "./header.js": stubs("compactHeader"),
     "./header-controls.js": stubs("initHeaderControls", "clearHeaderControls", "renderHeaderReason"),
-    "./progress-model.js": { initiativeProgress: () => new Map() },
+    "./progress-model.js": { initiativeProgress },
     "./progress.js": stubs("initiativeProgressRow"),
     "./activity-model.js": { workflowActivity },
     "./action-menu.js": stubs("initActionMenus"),
@@ -215,6 +216,60 @@ async function rootModel(client, storage = new Map()) {
   const cx = { spawn(body) { tasks.push(Promise.resolve(body(cx))); return { cancel: noop }; } };
   return { view, current, tasks, cx };
 }
+
+test("cached trees show completed initiative progress before validation", async () => {
+  const snapshot = { tickets: [{ id: "T", status: "completed" }], initiatives: [{ id: "I", ticketIds: ["T"] }] };
+  const { view, current, tasks, cx } = await rootModel({
+    release() { },
+    peek(operation) { return operation === "tracker" ? snapshot : null; },
+  });
+  view.preferencesReady = true;
+  current.where = { machine: null, cwd: "/cached" };
+  view.follow(cx);
+  assert.equal(view.progress.get("I").done, 1);
+  assert.equal(view.progress.get("I").percent, 100);
+  await Promise.all(tasks);
+});
+
+test("initiative progress follows workflow details as each ticket loads", async () => {
+  const first = deferred(), second = deferred();
+  const snapshot = {
+    tickets: [{ id: "A", status: "ready" }, { id: "B", status: "ready" }],
+    initiatives: [{ id: "I", ticketIds: ["A", "B"] }], states: {},
+  };
+  const { view, cx } = await rootModel({
+    query(_operation, _where, fields) {
+      return fields.id === "I" ? Promise.resolve({}) : ({ A: first, B: second })[fields.id].promise;
+    },
+  });
+  view.snapshot = snapshot;
+  view.progress = initiativeProgress(snapshot);
+  const loading = view.loadDetails(cx, view.revision, snapshot);
+  first.resolve({ state: { state: "DONE" } });
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(view.progress.get("I").done, 1);
+  assert.equal(view.progress.get("I").unavailable, 1);
+  second.resolve({ state: { state: "BLOCKED" } });
+  await loading;
+  assert.equal(view.progress.get("I").percent, 50);
+  assert.equal(view.progress.get("I").blocked, 1);
+  assert.equal(view.progress.get("I").unavailable, 0);
+});
+
+test("selected ticket refresh updates initiative progress without a tree reload", async () => {
+  const { view, tasks, cx } = await rootModel({
+    query() { return Promise.resolve({ state: { state: "ACTIVE" } }); },
+  });
+  view.snapshot = {
+    tickets: [{ id: "T", status: "ready" }],
+    initiatives: [{ id: "I", ticketIds: ["T"] }],
+  };
+  view.choose({ id: "T", ref: "tickets/T" }, "ticket", cx);
+  await Promise.all(tasks);
+  assert.equal(view.progress.get("I").active, 1);
+  assert.equal(view.progress.get("I").percent, 0);
+  assert.equal(view.progress.get("I").unavailable, 0);
+});
 
 test("an older record completion cannot replace a newer selection or a different machine", async () => {
   const first = deferred(), second = deferred(), third = deferred();
