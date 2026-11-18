@@ -1,0 +1,135 @@
+{
+  "url": "http://127.0.0.1:4187/dotfiles/bundles/developer/skill/collect-feedback/how-to",
+  "renderedLinks": [
+    {
+      "text": "Collect evidence and save feedback",
+      "href": "http://127.0.0.1:4187/dotfiles/bundles/developer/skill/collect-feedback/how-to#guide-developer-skills-browsers-collect-feedback-howto"
+    },
+    {
+      "text": "CLI reference",
+      "href": "https://github.com/zenobi-us/dotfiles/blob/main/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/cli.md"
+    },
+    {
+      "text": "system explanation",
+      "href": "https://github.com/zenobi-us/dotfiles/blob/main/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/system.md"
+    },
+    {
+      "text": "CLI reference",
+      "href": "https://github.com/zenobi-us/dotfiles/blob/main/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/cli.md"
+    },
+    {
+      "text": "storage and system explanation",
+      "href": "https://github.com/zenobi-us/dotfiles/blob/main/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/system.md"
+    },
+    {
+      "text": "web procedure",
+      "href": "https://github.com/zenobi-us/dotfiles/blob/main/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/web.md"
+    },
+    {
+      "text": "native TUI procedure",
+      "href": "https://github.com/zenobi-us/dotfiles/blob/main/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/tui.md"
+    },
+    {
+      "text": "native GUI procedure",
+      "href": "https://github.com/zenobi-us/dotfiles/blob/main/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/gui.md"
+    }
+  ],
+  "fragments": [
+    {
+      "href": "#skill",
+      "exists": true
+    },
+    {
+      "href": "#page-title",
+      "exists": true
+    },
+    {
+      "href": "#guide-developer-skills-browsers-collect-feedback-how-to-browse-evidence",
+      "exists": true
+    },
+    {
+      "href": "#guide-developer-skills-browsers-collect-feedback-howto",
+      "exists": true
+    },
+    {
+      "href": "#guide-developer-skills-browsers-collect-feedback-how-to-browse-evidence-title",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-how-to-browse-evidence-browse-original-evidence",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-how-to-browse-evidence-run-an-approved-fresh-workspace",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-how-to-browse-evidence-review-an-earlier-run",
+      "exists": true
+    },
+    {
+      "href": "#guide-developer-skills-browsers-collect-feedback-howto-title",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-howto-collect-evidence-and-save-feedback",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-howto-overview",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-howto-prepare-an-approved-plan",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-howto-collect-and-open-a-session",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-howto-open-an-earlier-run",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-howto-annotate-an-image-or-recording",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-howto-validate-and-export",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-howto-stop-and-reopen-the-server",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-howto-prepare-an-approved-plan",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-howto-collect-and-open-a-session",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-howto-open-an-earlier-run",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-howto-annotate-an-image-or-recording",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-howto-validate-and-export",
+      "exists": true
+    },
+    {
+      "href": "#doc-developer-skills-browsers-collect-feedback-howto-stop-and-reopen-the-server",
+      "exists": true
+    },
+    {
+      "href": "#skill",
+      "exists": true
+    }
+  ]
+}

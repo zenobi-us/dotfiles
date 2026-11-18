@@ -1,0 +1,14 @@
+{
+  "axis": "Standards",
+  "findings": [
+    {
+      "description": "The new canonical howto.md convention conflicts with docs/website/AGENTS.md, Agent bundle pages. That rule still requires how-to-*.md. The collector and feedback guides now use the undocumented filename. Future maintenance can remove discovery support while following the written rule.",
+      "file": "docs/website/content-collections.ts",
+      "line": 241,
+      "required_change": "Update docs/website/AGENTS.md to document both howto.md and how-to-*.md as supported adjacent guide filenames.",
+      "severity": "low"
+    }
+  ],
+  "schema": "documentation-check/v1",
+  "summary": "One low-severity standards documentation gap. Inspected tracked changes against dc2072ad0f90422ad9bb41c3258a2d0fc06cd135 and all four new untracked guides/references. Applied repository rules and the full smell baseline. No other non-tooling standard violations or actionable baseline smells found. Read-only helper check; no source or workflow changes and no build, lint, tests, or formatters run. This result is not a formal worktree review verdict."
+}

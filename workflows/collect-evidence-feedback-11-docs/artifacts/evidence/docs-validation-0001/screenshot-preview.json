@@ -1,0 +1,16 @@
+{
+  "url": "http://127.0.0.1:4187/dotfiles/bundles/developer/skill/collect-feedback/how-to/",
+  "method": "Built website browser preview. Only the two unpublished raw GitHub image requests were answered with identical local source screenshot bytes. Public GitHub availability was not verified before publication.",
+  "images": [
+    {
+      "path": "assets/howto/original-asset.webp",
+      "width": 1024,
+      "height": 711
+    },
+    {
+      "path": "assets/howto/saved-box-note.png",
+      "width": 1800,
+      "height": 1250
+    }
+  ]
+}

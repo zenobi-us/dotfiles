@@ -1,0 +1,277 @@
+[
+  {
+    "file": "README.md",
+    "href": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/howto.md",
+    "exists": true
+  },
+  {
+    "file": "README.md",
+    "href": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/howto.md",
+    "exists": true
+  },
+  {
+    "file": "README.md",
+    "href": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/cli.md",
+    "exists": true
+  },
+  {
+    "file": "README.md",
+    "href": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/system.md",
+    "exists": true
+  },
+  {
+    "file": "README.md",
+    "href": "mise/conf.d/devtools-agent/bundles/developer/skills/shells/creating-herdr-app-mods/SKILL.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/SKILL.md",
+    "href": "howto.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/SKILL.md",
+    "href": "../collect-feedback/howto.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/SKILL.md",
+    "href": "../collect-feedback/references/cli.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/SKILL.md",
+    "href": "../collect-feedback/references/system.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/howto.md",
+    "href": "references/web.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/howto.md",
+    "href": "references/tui.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/howto.md",
+    "href": "references/gui.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/howto.md",
+    "href": "../collect-feedback/howto.md#collect-and-open-a-session",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/howto.md",
+    "href": "../collect-feedback/references/cli.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/howto.md",
+    "href": "../collect-feedback/references/system.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/SKILL.md",
+    "href": "howto.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/SKILL.md",
+    "href": "references/cli.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/SKILL.md",
+    "href": "references/system.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/SKILL.md",
+    "href": "references/request.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/SKILL.md",
+    "href": "references/viewer-contract.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/SKILL.md",
+    "href": "how-to-browse-evidence.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/SKILL.md",
+    "href": "how-to-browse-evidence.md#review-an-earlier-run",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/howto.md",
+    "href": "references/cli.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/howto.md",
+    "href": "references/system.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/howto.md",
+    "href": "../collect-evidence/references/web.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/howto.md",
+    "href": "../collect-evidence/references/tui.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/howto.md",
+    "href": "../collect-evidence/references/gui.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/howto.md",
+    "href": "../collect-evidence/howto.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/how-to-browse-evidence.md",
+    "href": "howto.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/how-to-browse-evidence.md",
+    "href": "references/cli.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/how-to-browse-evidence.md",
+    "href": "references/system.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/how-to-browse-evidence.md",
+    "href": "references/request.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/cli.md",
+    "href": "../howto.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/cli.md",
+    "href": "system.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/cli.md",
+    "href": "../../collect-evidence/references/web.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/cli.md",
+    "href": "../../collect-evidence/references/tui.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/cli.md",
+    "href": "../../collect-evidence/references/gui.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/cli.md",
+    "href": "viewer-contract.md#http-api",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/cli.md",
+    "href": "../../collect-evidence/references/evidence-schema.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/cli.md",
+    "href": "request.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/cli.md",
+    "href": "../howto.md#validate-and-export",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/system.md",
+    "href": "../howto.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/system.md",
+    "href": "cli.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/system.md",
+    "href": "../../collect-evidence/SKILL.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/system.md",
+    "href": "../SKILL.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/system.md",
+    "href": "../../../../../agent-core/skills/shared-context/SKILL.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/system.md",
+    "href": "../../../../../matt-pocock/skills/reading-and-writing-tickets/SKILL.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/system.md",
+    "href": "../../../git/worktree/SKILL.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/system.md",
+    "href": "../../../devtools/writing-reports/SKILL.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/request.md",
+    "href": "../howto.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/request.md",
+    "href": "cli.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/request.md",
+    "href": "system.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/viewer-contract.md",
+    "href": "../howto.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/viewer-contract.md",
+    "href": "cli.md",
+    "exists": true
+  },
+  {
+    "file": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/viewer-contract.md",
+    "href": "system.md",
+    "exists": true
+  }
+]

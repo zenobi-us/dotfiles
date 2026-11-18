@@ -1,0 +1,28 @@
+{
+  "schema": "collect-feedback/v1",
+  "kind": "annotation",
+  "id": "fdf83824-6de3-446b-9512-9ee77db53bc0",
+  "sessionId": "feedback-001",
+  "caseId": "ready",
+  "assetId": "ready.2.capture-002",
+  "sourceSha256": "7b02f5161ac08b37c6581cc0a7858865bd776111ea53ec4b1f75f19d45a3beec",
+  "originalWidth": 1280,
+  "originalHeight": 720,
+  "geometry": {
+    "x": 0.02586206896551724,
+    "y": 0.02681992337164751,
+    "width": 0.2442528735632184,
+    "height": 0.10217113665389527
+  },
+  "priority": "P3",
+  "comment": "Documentation smoke: the captured heading identifies the controlled page.",
+  "revision": 1,
+  "createdAt": "2026-11-17T23:56:04.497Z",
+  "updatedAt": "2026-11-17T23:56:04.497Z",
+  "pixelGeometry": {
+    "x": 33,
+    "y": 19,
+    "width": 313,
+    "height": 74
+  }
+}

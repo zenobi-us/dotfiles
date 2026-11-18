@@ -1,0 +1,114 @@
+{
+  "kind": "case",
+  "id": "ready",
+  "order": 1,
+  "purpose": "Inspect the controlled page",
+  "preconditions": [],
+  "expected": {
+    "pass": "The expected heading is visible",
+    "fail": "The expected heading is absent"
+  },
+  "steps": [
+    {
+      "id": "ready.1",
+      "order": 1,
+      "purpose": "Open the controlled page.",
+      "actions": {
+        "do": "navigate",
+        "says": "Open the controlled page.",
+        "to": "/"
+      },
+      "expected": null,
+      "observed": [
+        "Page loaded."
+      ],
+      "assertionResult": "not-applicable"
+    },
+    {
+      "id": "ready.2",
+      "order": 2,
+      "purpose": "Read the ready heading.",
+      "actions": {
+        "do": "expect",
+        "says": "Read the ready heading.",
+        "locator": "h1",
+        "text": "Evidence ready",
+        "visible": true,
+        "shot": "ready-heading"
+      },
+      "expected": {
+        "text": "Evidence ready",
+        "visible": true,
+        "url": null
+      },
+      "observed": [
+        "Captured before expect.",
+        "Found text: Evidence ready"
+      ],
+      "assertionResult": "passed"
+    }
+  ],
+  "events": "source/cases/ready/events.jsonl",
+  "assets": [
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "ready.2.capture-001",
+      "caseId": "ready",
+      "stepId": "ready.2",
+      "path": "cases/ready/media/step-002-step-ready-002-ready-heading--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "7b02f5161ac08b37c6581cc0a7858865bd776111ea53ec4b1f75f19d45a3beec",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-17T23:54:28.868Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:8090/"
+    },
+    {
+      "schema": "collect-evidence/v1",
+      "kind": "asset",
+      "id": "ready.2.capture-002",
+      "caseId": "ready",
+      "stepId": "ready.2",
+      "path": "cases/ready/media/step-002-step-ready-002-ready-heading--capture-002--capture-002.png",
+      "captureSequence": 2,
+      "sha256": "7b02f5161ac08b37c6581cc0a7858865bd776111ea53ec4b1f75f19d45a3beec",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-17T23:54:28.913Z",
+      "viewport": {
+        "width": 1280,
+        "height": 720,
+        "deviceScaleFactor": 1
+      },
+      "surface": "web",
+      "driver": "playwright",
+      "driverVersion": "0.1.22",
+      "captureMethod": "playwright-screenshot",
+      "url": "http://127.0.0.1:8090/"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Capture time and viewport are unknown when the driver did not record them.",
+    "Only executed expect evidence with assertionPassed=true can establish a passing assertion."
+  ],
+  "sideEffects": "not-recorded",
+  "schema": "collect-feedback/v1",
+  "sessionId": "feedback-001",
+  "source": {
+    "runId": "fresh-001",
+    "caseId": "ready"
+  }
+}

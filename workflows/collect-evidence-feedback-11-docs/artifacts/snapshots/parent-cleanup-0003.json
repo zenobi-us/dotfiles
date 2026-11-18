@@ -1,0 +1,144 @@
+{
+  "approval": "User selected Terminate owned processes after child terminal closure left recorded processes live.",
+  "identities": [
+    {
+      "pid": 353835,
+      "startTicks": "4472570",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM",
+        "SIGCONT"
+      ]
+    },
+    {
+      "pid": 359156,
+      "startTicks": "4505859",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 360315,
+      "startTicks": "4520317",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 366284,
+      "startTicks": "4537066",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 366285,
+      "startTicks": "4537066",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 366289,
+      "startTicks": "4537068",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 366306,
+      "startTicks": "4537077",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 366308,
+      "startTicks": "4537078",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 366277,
+      "startTicks": "4537062",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 366288,
+      "startTicks": "4537067",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 366313,
+      "startTicks": "4537078",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 366315,
+      "startTicks": "4537078",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 366343,
+      "startTicks": "4537081",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 366346,
+      "startTicks": "4537081",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 366349,
+      "startTicks": "4537084",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 397728,
+      "startTicks": "4614738",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    },
+    {
+      "pid": 403867,
+      "startTicks": "4662671",
+      "bootId": "7a94ab69-92ef-49ef-a137-b72b7f76f024",
+      "signals": [
+        "SIGTERM"
+      ]
+    }
+  ],
+  "pane_closed": true,
+  "terminal_removed": "t1hr"
+}

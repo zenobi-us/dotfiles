@@ -1,0 +1,11 @@
+{
+  "path": "/tmp/evidence-docs-WCh29z",
+  "removed": true,
+  "method": "Changed only owned temporary directory permissions to allow removal of sealed temporary trees. Durable sealed-run and feedback copies retain original bytes and permissions.",
+  "preserved": [
+    "collected-run",
+    "feedback-session",
+    "saved-export.json",
+    "restart-export.json"
+  ]
+}

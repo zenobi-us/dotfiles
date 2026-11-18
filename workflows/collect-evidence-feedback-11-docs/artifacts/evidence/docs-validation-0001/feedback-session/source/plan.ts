@@ -1,0 +1,15 @@
+export const plan = {
+  schema: "collect-evidence/v1", kind: "plan",
+  workId: "docs-example", driver: "playwright",
+  base: "http://127.0.0.1:8090",
+  approval: { origins: ["http://127.0.0.1:8090"] },
+  tests: [{
+    id: "ready", claim: "Inspect the controlled page",
+    pass: "The expected heading is visible", fail: "The expected heading is absent",
+    steps: [
+      { do: "navigate", says: "Open the controlled page.", to: "/" },
+      { do: "expect", says: "Read the ready heading.", locator: "h1",
+        text: "Evidence ready", visible: true, shot: "ready-heading" },
+    ],
+  }],
+};

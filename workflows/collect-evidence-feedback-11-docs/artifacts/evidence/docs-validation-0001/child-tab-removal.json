@@ -1,0 +1,228 @@
+{
+  "spaces": [
+    {
+      "id": "spe45e3a290a7169a83b0357ebf63b9682",
+      "name": "Dotfiles",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/finance",
+      "machine": null,
+      "active": false,
+      "tabs": [
+        {
+          "id": "tb8d931c37b6cdbc5aa894883d52c1b827",
+          "name": "OMP",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t1hp",
+              "pane": "p7be93723ad94c803fc20c2c6beaf6195",
+              "status": "working",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            },
+            {
+              "terminal": "t1hz",
+              "pane": "pca580e48e74f18ee1045cef3dcb3168a",
+              "status": null,
+              "app": null,
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sp148c5d9a16619b5af3162f4a3621d527",
+      "name": "feature-collect-evidence-feedback-11-docs",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-11-docs",
+      "machine": null,
+      "active": true,
+      "tabs": [
+        {
+          "id": "tb01c29c94fee05fbd0e04c62c4d66d540",
+          "name": "agent-2e93e93d",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t1hr",
+              "pane": "pf44e4225d2cf14a7d332e98aa7c4b672",
+              "status": "working",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spef2366ff009238c4fab170c7e2e079ae",
+      "name": "nvim",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/finance",
+      "machine": null,
+      "active": false,
+      "tabs": [
+        {
+          "id": "tb4d05321f89e6204f9f971b71e3ce99c9",
+          "name": "1",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t17",
+              "pane": "pc5cf9d723eddf85eb3b1d3953f6ca997",
+              "status": "idle",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spb9cad9d002f8cd49e9a672e81e17c931",
+      "name": "serverfiles",
+      "folder": "/var/home/zenobius/Applications/serverfiles",
+      "machine": null,
+      "active": false,
+      "tabs": [
+        {
+          "id": "tb91fc8b7524c98bcf266b025fd56f4813",
+          "name": "1",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t1ds",
+              "pane": "p276e628923715515ac6332aaeb098c4b",
+              "status": "idle",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            },
+            {
+              "terminal": "t1h1",
+              "pane": "p534cff5e768e0e0be631ab906b086b17",
+              "status": null,
+              "app": null,
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sp39578d535a449d2153248dc2737a562e",
+      "name": "finance",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "machine": null,
+      "active": false,
+      "tabs": [
+        {
+          "id": "tbafad3436d7d6c2c8c08c74d72f2f2ca1",
+          "name": "1",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t1fw",
+              "pane": "p6ea0117fa64e1a78a3e9b89ae79aca73",
+              "status": "done",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            },
+            {
+              "terminal": "t1h6",
+              "pane": "p266d15fb8b0a3d7c56c28a5c06a6111f",
+              "status": "done",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spba5a4229b3d1d45b5bc0efb174347d57",
+      "name": "ComfyUI-Pixaroma",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/finance",
+      "machine": null,
+      "active": false,
+      "tabs": [
+        {
+          "id": "tb24b1a606526d644cdaeb9b8dc876d203",
+          "name": "1",
+          "active": true,
+          "settled": false,
+          "terminals": [
+            {
+              "terminal": "t1gt",
+              "pane": "p94f1a8de4a7b23747a405572ce4416f5",
+              "status": "done",
+              "app": "omp",
+              "name": null,
+              "sub_agents": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "recent": [
+    {
+      "name": "feature-collect-evidence-feedback-10-request",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-10-request"
+    },
+    {
+      "name": "feat-ledger-app-public-repository-06",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/finance.worktrees/feat-ledger-app-public-repository-06"
+    },
+    {
+      "name": "feature-collect-evidence-feedback-09-history",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-09-history"
+    },
+    {
+      "name": "muxer-focus-5wP2fj",
+      "folder": "/tmp/muxer-focus-5wP2fj"
+    },
+    {
+      "name": "feat-ledger-app-public-repository-05",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/finance.worktrees/feat-ledger-app-public-repository-05"
+    },
+    {
+      "name": "herdr-app",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/herdr-app"
+    },
+    {
+      "name": "resolve-collect-evidence-feedback-08-video",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-collect-evidence-feedback-08-video"
+    },
+    {
+      "name": "feature-collect-evidence-feedback-08-video",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-08-video"
+    },
+    {
+      "name": "feature-herdr-query-cache-01-selective-refresh",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-herdr-query-cache-01-selective-refresh"
+    },
+    {
+      "name": "resolve-collect-evidence-feedback-07-drafts",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-collect-evidence-feedback-07-drafts"
+    },
+    {
+      "name": "feature-collect-evidence-feedback-07-drafts",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-collect-evidence-feedback-07-drafts"
+    },
+    {
+      "name": "resolve-collect-evidence-feedback-06-edits",
+      "folder": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-collect-evidence-feedback-06-edits"
+    }
+  ]
+}

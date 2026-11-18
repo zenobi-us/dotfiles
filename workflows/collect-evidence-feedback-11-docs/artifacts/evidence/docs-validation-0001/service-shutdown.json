@@ -1,0 +1,38 @@
+{
+  "ports": [
+    {
+      "port": 8090,
+      "open": false
+    },
+    {
+      "port": 8091,
+      "open": false
+    },
+    {
+      "port": 8092,
+      "open": false
+    },
+    {
+      "port": 8093,
+      "open": false
+    },
+    {
+      "port": 4187,
+      "open": false
+    }
+  ],
+  "locks": [
+    {
+      "session": "feedback-001",
+      "present": false
+    },
+    {
+      "session": "request-feedback-002",
+      "present": false
+    },
+    {
+      "session": "historical-request-001",
+      "present": false
+    }
+  ]
+}

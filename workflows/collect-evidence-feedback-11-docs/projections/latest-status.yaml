@@ -1,0 +1,27 @@
+schema: worktree-latest-status/v1
+workflow_id: collect-evidence-feedback-11-docs
+ticket:
+  backend: local-markdown
+  id: collect-evidence-feedback-11-docs
+  ref: tracker/tickets/collect-evidence-feedback-11-docs.md
+state: IMPLEMENTED
+latest_receipt: start-complete-0003
+latest_source_commit: d9740e9dac01adb6a7e5efba63f2427ff8458c11
+latest_source_tree: dae2ac1c4aab5164a116de9946b13569f853b363
+latest_review_verdict: null
+open_findings: []
+parent_completion: completed
+limitations:
+- 'Surf doctor blocked: /tmp/surf.sock unavailable.'
+- 'Native TUI doctor blocked: foot, grim, tesseract missing.'
+- Native GUI doctor blocked for explicitly unavailable display :65000; no user display
+  captured.
+- Playwright default Chrome absent; successful capture used the already installed
+  Chromium via PLAYWRIGHT_MCP_EXECUTABLE_PATH. Video recorder doctor passed, but this
+  evidence run captured images only.
+- React Doctor exited 1 for react-doctor/artifact-env-leak in generated vite-flare-starter
+  documentation artifact; unchanged skill source remains outside this change. Typecheck,
+  lint, final formatting, build, and 14 existing website tests passed.
+- New GitHub/Pages URLs cannot be verified remotely until parent publication. Illustrated
+  website preview served identical local bytes for only the two unpublished screenshot
+  requests, recorded in screenshot-preview.json.

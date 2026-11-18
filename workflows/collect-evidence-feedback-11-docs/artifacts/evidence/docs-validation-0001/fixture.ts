@@ -1,0 +1,1 @@
+Bun.serve({hostname:"127.0.0.1",port:8090,fetch:()=>new Response("<!doctype html><title>Evidence example</title><h1>Evidence ready</h1>",{headers:{"content-type":"text/html"}})}); console.log("http://127.0.0.1:8090");
