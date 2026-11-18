@@ -1,9 +1,9 @@
 // The tree shows initiative membership. Dependency edges belong in the graph views.
-import { matchesFilters } from "./filter-model.js";
+import { matchesFilters, STATUS_FILTERS } from "./filter-model.js";
 
 export function dependencyRows(snapshot, filters, collapsed) {
   const tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
-  const eligible = ticket => matchesFilters(snapshot.states?.[ticket.id]?.state, filters);
+  const eligible = ticket => matchesFilters(ticketDisplayState(ticket, snapshot.states?.[ticket.id]), filters);
   const rows = [], canonical = new Map(), assigned = new Set();
   const add = (record, parent, depth, visible) => {
     const path = `${parent}/${record.id}`, reference = canonical.get(record.id);
@@ -12,7 +12,7 @@ export function dependencyRows(snapshot, filters, collapsed) {
   };
   const section = (id, title) => rows.push({ type: "section", record: { id, title }, path: `section:${id}`, depth: 0, expanded: true, children: 0 });
   const initiatives = filters.initiatives ? snapshot.initiatives.filter(item => !item.group) : [];
-  if (initiatives.length) section("initiatives", "Initiatives");
+  const showEmptyInitiatives = STATUS_FILTERS.every(([key]) => filters[key]);
   for (const initiative of initiatives) {
     const members = [...new Set(initiative.ticketIds)].map(id => {
       const ticket = tickets.get(id);
@@ -20,6 +20,8 @@ export function dependencyRows(snapshot, filters, collapsed) {
       assigned.add(id);
       return ticket;
     }).filter(ticket => eligible(ticket) && itemType(ticket) === "ticket");
+    if (!members.length && !showEmptyInitiatives) continue;
+    if (!rows.length) section("initiatives", "Initiatives");
     const path = `initiative:${initiative.id}`, expanded = !collapsed.has(path);
     rows.push({ type: "initiative", itemType: "initiative", record: initiative, path, depth: 0, expanded, children: members.length });
     for (const member of members) add(member, path, 1, expanded);

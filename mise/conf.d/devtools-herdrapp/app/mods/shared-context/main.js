@@ -19,7 +19,7 @@ import { workflowActivity } from "./activity-model.js";
 import { initActionMenus } from "./action-menu.js";
 import { invalidateAction } from "./action.js";
 import { observeAgentLaunch } from "./agents.js";
-import { DEFAULT_FILTERS } from "./filter-model.js";
+import { DEFAULT_FILTERS, restoreFilters } from "./filter-model.js";
 import { initTreeFilters, treeFilters, closeTreeFilters } from "./tree-filters.js";
 import { agentDots } from "./agent-activity.js";
 import { agentActivitySummary } from "./agent-model.js";
@@ -72,6 +72,11 @@ export default class SharedContext extends View {
         const command = await nextCommand();
         if (this.closed) return;
         if (command === "refresh") this.refresh(cx);
+        if (command === "filters") {
+          this.filtersOpen = !this.filtersOpen;
+          (this.filtersOpen ? this.filterChoicesFocus.everything : this.filterFocus).focus();
+          this.changed(cx);
+        }
         if (command === "metadata") openMetadata(this, cx);
         if (command === "focus") this.focus.focus();
         if (command === "expand") { this.drawer = "expanded"; this.changed(cx); }
@@ -175,7 +180,7 @@ export default class SharedContext extends View {
     this.detailRevision++; this.fileRevision++;
     this.snapshot = null; this.detail = null; this.filePreview = null;
     this.activity = workflowActivity(); this.event = null;
-    this.selected = saved?.selected ?? null; this.filters = { ...DEFAULT_FILTERS, ...saved?.filters }; this.drawer = saved?.drawer ?? "peek";
+    this.selected = saved?.selected ?? null; this.filters = restoreFilters(saved?.filters); this.drawer = saved?.drawer ?? "peek";
     this.collapsed = new Set(saved?.collapsed); this.fileFolders = new Set(saved?.fileFolders); this.fileSelection = saved?.fileSelection ?? null;
     this.fileEntries = new Map(); this.filePending = new Set();
   }

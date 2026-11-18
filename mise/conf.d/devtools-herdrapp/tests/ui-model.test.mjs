@@ -6,7 +6,7 @@ import { SourceTextModule, SyntheticModule, createContext } from "node:vm";
 import { resolveLocation, targetKey, copyIsShown, localWatchPaths, localWatchFallback, completedAgentWork, RefreshQueue } from "../app/mods/shared-context/refresh-model.js";
 import { client as queryClient } from "./query-client.mjs";
 import { workflowActivity } from "../app/mods/shared-context/activity-model.js";
-import { DEFAULT_FILTERS, filterRestrictions } from "../app/mods/shared-context/filter-model.js";
+import { DEFAULT_FILTERS, STATUS_FILTERS, applyFilterPreset, selectedFilterPreset, restoreFilters, filterRestrictions } from "../app/mods/shared-context/filter-model.js";
 import { dependencyRows } from "../app/mods/shared-context/tree.js";
 import { initiativeProgress } from "../app/mods/shared-context/progress-model.js";
 
@@ -191,7 +191,7 @@ async function rootModel(client, storage = new Map()) {
     "./action-menu.js": stubs("initActionMenus"),
     "./action.js": stubs("invalidateAction"),
     "./agents.js": stubs("observeAgentLaunch"),
-    "./filter-model.js": { DEFAULT_FILTERS },
+    "./filter-model.js": { DEFAULT_FILTERS, restoreFilters },
     "./tree-filters.js": stubs("initTreeFilters", "treeFilters", "closeTreeFilters"),
     "./agent-model.js": stubs("agentActivitySummary"),
     "./agent-activity.js": stubs("agentDots"),
@@ -629,7 +629,7 @@ for (const outcome of ["failure", "success"]) {
 }
 
 function filterSnapshot() {
-  const tickets = ["READY", "REVIEW", "FIX", "FINISH", "SUBMIT", "BLOCKED", "ERROR", "UNKNOWN", "DONE", "OTHER"].map(state => ({
+  const tickets = ["READY", "ACTIVE", "REVIEW", "FIX", "FINISH", "SUBMIT", "BLOCKED", "ERROR", "UNKNOWN", "DONE", "OTHER"].map(state => ({
     id: state, title: state, documentType: "ticket", status: state === "DONE" ? "completed" : "unclaimed", blockedBy: state === "READY" ? ["BLOCKED"] : [],
   }));
   return {
@@ -641,7 +641,7 @@ function filterSnapshot() {
 
 test("tracker status queues combine with OR without expanding dependencies", () => {
   const snapshot = filterSnapshot();
-  const rows = dependencyRows(snapshot, { initiatives: true, ready: true, review: true, blocked: false }, new Set()).rows;
+  const rows = dependencyRows(snapshot, applyFilterPreset(DEFAULT_FILTERS, "next-actions"), new Set()).rows;
   const tickets = rows.filter(row => row.type === "ticket");
   assert.deepEqual(tickets.map(row => row.record.id), ["READY", "REVIEW", "FIX", "FINISH", "SUBMIT"]);
   assert.ok(tickets.every(row => row.depth === 1 && row.children === 0));
@@ -649,24 +649,48 @@ test("tracker status queues combine with OR without expanding dependencies", () 
 });
 
 test("hiding initiatives keeps matching tickets visible outside initiative groups", () => {
-  const rows = dependencyRows(filterSnapshot(), { initiatives: false, ready: false, review: false, blocked: true }, new Set()).rows;
+  const rows = dependencyRows(filterSnapshot(), { ...applyFilterPreset(DEFAULT_FILTERS, "in-flight"), initiatives: false, active: false }, new Set()).rows;
   assert.equal(rows.some(row => row.type === "initiative"), false);
   assert.deepEqual(rows.filter(row => row.type === "ticket").map(row => [row.record.id, row.depth]), [["BLOCKED", 0], ["ERROR", 0], ["UNKNOWN", 0]]);
 });
 
-test("All includes completed and unclassified records that status queues omit", () => {
+test("grouping never changes which statuses match", () => {
   const snapshot = filterSnapshot();
-  const all = dependencyRows(snapshot, { ...DEFAULT_FILTERS }, new Set()).rows.filter(row => row.type === "ticket").map(row => row.record.id);
-  assert.deepEqual(all, ["READY", "REVIEW", "FIX", "FINISH", "SUBMIT", "BLOCKED", "ERROR", "UNKNOWN", "DONE", "OTHER"]);
-  const queues = dependencyRows(snapshot, { ...DEFAULT_FILTERS, initiatives: false }, new Set()).rows.filter(row => row.type === "ticket").map(row => row.record.id);
-  assert.deepEqual(queues, ["READY", "REVIEW", "FIX", "FINISH", "SUBMIT", "BLOCKED", "ERROR", "UNKNOWN"]);
-  assert.deepEqual(dependencyRows(snapshot, { initiatives: false, ready: false, review: false, blocked: false }, new Set()).rows, []);
+  const ids = filters => dependencyRows(snapshot, filters, new Set()).rows.filter(row => row.type === "ticket").map(row => row.record.id);
+  assert.deepEqual(ids(DEFAULT_FILTERS), snapshot.tickets.map(ticket => ticket.id));
+  assert.deepEqual(ids({ ...DEFAULT_FILTERS, initiatives: false }), ids(DEFAULT_FILTERS));
+  const next = applyFilterPreset({ ...DEFAULT_FILTERS, initiatives: false }, "next-actions");
+  assert.deepEqual(ids(next), ["READY", "REVIEW", "FIX", "FINISH", "SUBMIT"]);
+  assert.equal(next.initiatives, false);
+  assert.equal(selectedFilterPreset(next), "next-actions");
+  assert.deepEqual(ids(applyFilterPreset(next, "in-flight")), ["ACTIVE", "BLOCKED", "ERROR", "UNKNOWN"]);
+  assert.deepEqual(ids(applyFilterPreset(next, "everything")), ids(DEFAULT_FILTERS));
+  assert.equal(selectedFilterPreset({ ...next, completed: true }), "custom");
 });
 
-test("restriction counts include hidden initiatives and disabled status queues", () => {
-  assert.equal(filterRestrictions({ initiatives: false, ready: true, review: false, blocked: true }), 2);
-  assert.equal(filterRestrictions({ initiatives: true, ready: false, review: false, blocked: false }), 3);
-  assert.equal(filterRestrictions({ initiatives: false, ready: false, review: false, blocked: false }), 4);
+test("explicit status filters work before details load and keep recorded completion authoritative", () => {
+  const snapshot = filterSnapshot();
+  snapshot.states.DONE = { state: "REVIEW" };
+  delete snapshot.states.READY;
+  snapshot.tickets[0].status = "ready";
+  const none = Object.fromEntries(Object.keys(DEFAULT_FILTERS).map(key => [key, false]));
+  const ids = filters => dependencyRows(snapshot, filters, new Set()).rows.filter(row => row.type === "ticket").map(row => row.record.id);
+  assert.deepEqual(ids({ ...none, completed: true }), ["DONE"]);
+  assert.deepEqual(ids({ ...none, active: true }), ["ACTIVE"]);
+  assert.deepEqual(ids({ ...none, other: true }), ["OTHER"]);
+  assert.deepEqual(ids({ ...none, ready: true }), ["READY"]);
+  assert.deepEqual(dependencyRows(snapshot, { ...none, initiatives: true }, new Set()).rows, []);
+});
+
+test("stored filters upgrade without broadening a restricted queue", () => {
+  const restricted = restoreFilters({ initiatives: false, ready: true, review: false, blocked: true });
+  assert.deepEqual(STATUS_FILTERS.filter(([key]) => restricted[key]).map(([key]) => key), ["ready", "blocked"]);
+  assert.equal(restricted.initiatives, false);
+  assert.deepEqual(restoreFilters({ initiatives: true, ready: true, review: true, blocked: true }), DEFAULT_FILTERS);
+  const custom = { ...DEFAULT_FILTERS, active: false, completed: false, initiatives: false };
+  assert.deepEqual(restoreFilters(custom), custom);
+  assert.equal(filterRestrictions({ ...DEFAULT_FILTERS, initiatives: false }), 1);
+  assert.equal(filterRestrictions(custom), 3);
 });
 
 test("repository filters and selections survive another repository and a mod reload", async () => {
@@ -679,12 +703,12 @@ test("repository filters and selections survive another repository and a mod rel
   view.collapsed.add("initiative:I");
   view.fileFolders.add("alignment:docs");
   view.fileSelection = { collection: "alignment", path: "docs/guide.md" };
-  view.setFilters({ initiatives: false, ready: true, review: false, blocked: true }, cx);
+  view.setFilters({ ...applyFilterPreset(DEFAULT_FILTERS, "in-flight"), initiatives: false, active: false, ready: true }, cx);
   view.restoreView(second);
   assert.equal(view.selected, null);
   assert.equal(view.fileSelection, null);
   assert.equal(view.filters.initiatives, true);
-  view.setFilters({ initiatives: true, ready: false, review: true, blocked: false }, cx);
+  view.setFilters({ ...applyFilterPreset(DEFAULT_FILTERS, "next-actions"), ready: false }, cx);
 
   const { view: reloaded } = await rootModel({}, storage);
   Object.assign(reloaded, { saved: new Map(JSON.parse(storage.get("shared-context:tracker:views:v1"))) });
