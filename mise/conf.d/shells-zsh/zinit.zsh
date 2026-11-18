@@ -55,7 +55,6 @@ zinit_load_interactive_modules() {
 
 	zinit_load_local_module "keybindings__config.zsh"
 	[[ "$OSTYPE" == linux* ]] && zinit_load_local_module "keybindings__config-linux.zsh"
-	zinit_load_local_module "hrdx__config.zsh"
 	zinit_load_local_module "mcfly__config.zsh"
 	zinit_load_local_module "mise__config.zsh"
 	# Starship comes from mise; init each shell so the prompt follows upgrades and prunes.

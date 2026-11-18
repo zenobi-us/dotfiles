@@ -1,5 +1,0 @@
-[tools]
-hrdx = "latest"
-
-[tool_alias]
-hrdx = "github:patriceckhart/hrdx"

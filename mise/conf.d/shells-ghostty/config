@@ -26,7 +26,7 @@ confirm-close-surface = false
 app-notifications = no-clipboard-copy,no-config-reload
 
 # Key bindings for common actions
-# Preserve Shift+Enter through hrdx for pi multiline input.
+# Preserve Shift+Enter for pi multiline input.
 keybind = shift+enter=text:\x1b[13;2u
 # Send modified arrow keys through to Neovim.
 keybind = ctrl+shift+up=csi:1;6A
