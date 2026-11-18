@@ -16,7 +16,6 @@ describe("desktop muxer detection", () => {
     expect(detectMuxer({ HC_TERMINAL_ID: "t7", TMUX: "/tmp/tmux" })).toBe("tmux");
     expect(detectMuxer({ HC_TERMINAL_ID: "t7", ZELLIJ: "1" })).toBe("zellij");
     expect(detectMuxer({ HC_TERMINAL_ID: "t7", HERDR_ENV: "1" })).toBe("herdr");
-    expect(detectMuxer({ HC_TERMINAL_ID: "t7", HRDX: "1" })).toBe("hrdx");
   });
 });
 

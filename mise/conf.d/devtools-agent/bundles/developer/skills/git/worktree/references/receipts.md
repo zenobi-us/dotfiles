@@ -138,7 +138,7 @@ source_commit: 0123456789abcdef
 source_tree: 0123456789abcdef
 created_at: 2026-09-29T12:00:00Z
 
-muxer: hrdx
+muxer: herdr-app
 workspace_path: /absolute/path/to/worktree
 pane_id: 42
 agent: pi

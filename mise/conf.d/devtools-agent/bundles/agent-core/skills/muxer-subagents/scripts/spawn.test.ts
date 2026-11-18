@@ -2,7 +2,6 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { createServer } from "node:net";
 import { deliverResult, readDeliveredResult } from "../../result-delivery/scripts/delivery.ts";
 import { removeRun, runPromptPath, writeRunSignal } from "./signals.ts";
 import { spawnAgent } from "./spawn.ts";
@@ -414,45 +413,26 @@ if (args[0] === "ls") {
     await removeRun(spawned.runId);
   });
 
-  for (const muxer of ["tmux", "zellij", "hrdx"] as const) {
+  for (const muxer of ["tmux", "zellij"] as const) {
     test(`propagates context and run identities through ${muxer} without starting an agent`, async () => {
       const commands: string[][] = [];
-      const socketDirectory = join(root, "config", "hrdx");
-      mkdirSync(socketDirectory, { recursive: true });
-      process.env.XDG_CONFIG_HOME = join(root, "config");
       process.env.MUXER_SUBAGENT_RUN_ID = "parent-run";
       const capture = prepareFakeAgent();
       const shell = join(root, "sh");
       writeFileSync(shell, `#!/bin/sh\nshift\nexec /bin/sh -c "$1"\n`);
       chmodSync(shell, 0o755);
-      const server = createServer((socket) => {
-        socket.on("data", (data) => {
-          const request = JSON.parse(data.toString());
-          if (request.method === "pane.send_text") commands.push([request.params.text]);
-          socket.end(`${JSON.stringify({ result: request.method === "pane.create" ? { pane_id: 9 } : {} })}\n`);
-        });
-      });
-      if (muxer === "hrdx") {
-        const listening = Promise.withResolvers<void>();
-        server.once("error", listening.reject);
-        server.listen(join(socketDirectory, "hrdx.sock"), listening.resolve);
-        await listening.promise;
-      } else {
-        const executable = join(root, muxer);
-        writeFileSync(executable, `#!/usr/bin/env bun\nimport { appendFileSync } from "node:fs";\nappendFileSync(process.env.FAKE_HERDR_LOG, JSON.stringify(process.argv.slice(2)) + "\\n");\nconsole.log("%fake-pane");\n`);
-        chmodSync(executable, 0o755);
-      }
+      const executable = join(root, muxer);
+      writeFileSync(executable, `#!/usr/bin/env bun\nimport { appendFileSync } from "node:fs";\nappendFileSync(process.env.FAKE_HERDR_LOG, JSON.stringify(process.argv.slice(2)) + "\\n");\nconsole.log("%fake-pane");\n`);
+      chmodSync(executable, 0o755);
       let promptFile: string | undefined;
       try {
         const spawned = await spawnAgent({
           muxer, agent: "claude", prompt: "task", cwd: root, depth: 1, resultSchema: "test-result/v1",
         });
-        if (muxer !== "hrdx") commands.push(...readFileSync(log, "utf8").trim().split("\n").map((line) => JSON.parse(line)));
-        const launch = muxer === "hrdx"
-          ? commands[0]?.[0]
-          : commands.find((command) => muxer === "tmux"
-            ? command[0] === "split-window"
-            : command[0] === "action" && command[1] === "new-pane")?.at(-1);
+        commands.push(...readFileSync(log, "utf8").trim().split("\n").map((line) => JSON.parse(line)));
+        const launch = commands.find((command) => muxer === "tmux"
+          ? command[0] === "split-window"
+          : command[0] === "action" && command[1] === "new-pane")?.at(-1);
         if (!launch) throw new Error("Fake muxer did not capture a launch command");
         await deliverResult({ schema: "test-result/v1", status: "failed", checks: ["domain failure"] }, spawned.deliveryContext);
         expect(await waitForAgent({ runId: spawned.runId, afterSequence: 0, timeoutMs: 10 })).toBeNull();
@@ -479,11 +459,6 @@ if (args[0] === "ls") {
         });
       } finally {
         if (promptFile) rmSync(promptFile, { force: true });
-        if (server.listening) {
-          const closed = Promise.withResolvers<void>();
-          server.close(() => closed.resolve());
-          await closed.promise;
-        }
       }
     });
   }

@@ -14,8 +14,3 @@ Other pi env vars (`PI_SESSION_ID`, `PI_SESSION_FILE`, `PI_PROVIDER`, `PI_MODEL`
 pi <task or -- @handoff-file>
 ```
 
-hrdx's built-in harness kind for this agent is `pi`.
-
-## Resume
-
-hrdx: `hrdx --continue` resumes previous sessions, including pi ones.

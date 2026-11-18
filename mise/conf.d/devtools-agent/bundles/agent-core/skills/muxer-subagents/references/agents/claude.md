@@ -12,8 +12,6 @@ To run a nested, non-interactive `claude` from inside an existing Claude Code se
 claude <task or -- @handoff-file>
 ```
 
-hrdx's built-in harness kind for this agent is `claude`.
-
 ## Non-interactive / one-shot invocation
 
 ```bash

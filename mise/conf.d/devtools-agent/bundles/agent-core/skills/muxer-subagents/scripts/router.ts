@@ -39,7 +39,7 @@ const detectMuxerCmd = app
   .sub("detect-muxer")
   .meta({
     description:
-      "Print the active terminal multiplexer: herdr, herdr-app, zellij, tmux, hrdx, or unknown-muxer.",
+      "Print the active terminal multiplexer: herdr, herdr-app, zellij, tmux, or unknown-muxer.",
   })
   .run(() => {
     console.log(detectMuxer());

@@ -6,7 +6,7 @@ Herdr desktop is not the older `herdr` TUI. They use separate runtimes and do no
 
 ## Detection and prerequisites
 
-`HC_TERMINAL_ID` is the current core terminal address, such as `t7`. It is not an app pane ID. The router selects `herdr-app` when this value is non-empty and no explicit TUI, Zellij, tmux, or hrdx marker wins. `HC_SESSION`, `HC_SOCKET`, an installed binary, and `HERDR_APP_HOME` alone do not prove a terminal session.
+`HC_TERMINAL_ID` is the current core terminal address, such as `t7`. It is not an app pane ID. The router selects `herdr-app` when this value is non-empty and no explicit TUI, Zellij, or tmux marker wins. `HC_SESSION`, `HC_SOCKET`, an installed binary, and `HERDR_APP_HOME` alone do not prove a terminal session.
 
 A core terminal can exist without a window. Before launching, the router requires an open window containing the parent terminal. It fails rather than opening a window or guessing the focused space. Run these read-only commands when diagnosing it:
 

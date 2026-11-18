@@ -9,5 +9,3 @@
 ```bash
 codex <task or @handoff-file>
 ```
-
-hrdx's built-in harness kind for this agent is `codex`.

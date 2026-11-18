@@ -1,7 +1,6 @@
 export const MUXERS = [
   "herdr",
   "herdr-app",
-  "hrdx",
   "zellij",
   "tmux",
   "unknown-muxer",

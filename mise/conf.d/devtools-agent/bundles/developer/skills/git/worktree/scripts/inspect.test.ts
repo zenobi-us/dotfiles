@@ -332,7 +332,7 @@ test("removed source permits finish recovery only after exact squash mapping and
   ticket.status = "completed";
   const common = {
     schema: "worktree-receipt/v1", workflow_id: ticket.id, attempt: 1, repository: context.repositoryRoot, worktree: source, workspace_path: source,
-    source_commit: sourceCommit, source_tree: sourceTree, source_branch: "feature/T-1", base_branch: "main", muxer: "hrdx", pane_id: "1", agent: "pi", session_id: null,
+    source_commit: sourceCommit, source_tree: sourceTree, source_branch: "feature/T-1", base_branch: "main", muxer: "herdr-app", pane_id: "1", agent: "pi", session_id: null,
     ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
     workflow: { root: context.repositoryRoot, store: "repository", ref: "workflows/T-1" }, evidence: { store: "repository", ref: "workflows/T-1/artifacts/evidence/run-1" }, inputs: [], outputs: [],
   };
@@ -392,7 +392,7 @@ test("v2 finish remains complete after independent remote advancement and report
     schema: "worktree-receipt/v2", workflow_id: ticket.id, attempt: 1, repository: repo,
     worktree: join(root, "removed-source"), workspace_path: join(root, "removed-source"),
     source_commit: sourceCommit, source_tree: sourceTree, source_branch: "feature/T-1", base_branch: "main",
-    muxer: "hrdx", pane_id: null, agent: "omp", session_id: "parent",
+    muxer: "herdr-app", pane_id: null, agent: "omp", session_id: "parent",
     ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
     workflow: { root: repo, store: "repository", ref: "workflows/T-1" }, inputs: [], outputs: [],
   };
@@ -530,7 +530,7 @@ test("a start written before its pane opens and a result with no evidence run st
   const workflowRoot = "workflows/T-1";
   const common = {
     schema: "worktree-receipt/v1", workflow_id: ticket.id, attempt: 1, repository: root, worktree: root, workspace_path: root,
-    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "hrdx", agent: "pi", session_id: null,
+    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "herdr-app", agent: "pi", session_id: null,
     ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
     workflow: { root, store: "repository", ref: workflowRoot }, inputs: [], outputs: [],
   };
@@ -559,7 +559,7 @@ test("a review artifact ref relative to the workflow folder resolves inside it",
   const workflowRoot = "workflows/T-1";
   const common = {
     schema: "worktree-receipt/v1", workflow_id: ticket.id, attempt: 1, repository: root, worktree: root, workspace_path: root,
-    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "hrdx", agent: "pi", pane_id: "1", session_id: null,
+    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "herdr-app", agent: "pi", pane_id: "1", session_id: null,
     ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
     workflow: { root, store: "repository", ref: workflowRoot }, inputs: [],
   };
@@ -583,7 +583,7 @@ test("checksum-bound history supplements repair envelopes without rewriting rece
   await put(join(root, evidence.ref), '{"observed":true}\n');
   const common = {
     schema: "worktree-receipt/v1", workflow_id: ticket.id, attempt: 1, repository: root, worktree: root, workspace_path: root,
-    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "hrdx", pane_id: "1", agent: "pi", session_id: null,
+    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "herdr-app", pane_id: "1", agent: "pi", session_id: null,
     ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
     workflow: { root, store: "repository", ref: workflowRoot }, inputs: [], outputs: [],
   };
@@ -640,7 +640,7 @@ test("missing input refs can be supplemented without changing original bytes or 
   await symlink(join(root, "outside.json"), join(root, escaped));
   const common = {
     schema: "worktree-receipt/v1", workflow_id: ticket.id, attempt: 1, repository: root, worktree: root, workspace_path: root,
-    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "hrdx", pane_id: "1", agent: "pi", session_id: null,
+    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "herdr-app", pane_id: "1", agent: "pi", session_id: null,
     ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
     workflow: { root, store: "repository", ref: workflowRoot }, outputs: [],
   };
@@ -706,7 +706,7 @@ test("historical v1 finish workspace repairs preserve source identity and reject
   const source = join(root, "removed-source");
   const common = {
     schema: "worktree-receipt/v1", workflow_id: ticket.id, attempt: 1, repository: root, worktree: root, workspace_path: root,
-    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "hrdx", pane_id: null, agent: "pi", session_id: "parent",
+    source_commit: commit, source_tree: tree, source_branch: "main", base_branch: "main", muxer: "herdr-app", pane_id: null, agent: "pi", session_id: "parent",
     ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend }, ticket_ref: ticket.ref,
     workflow: { root, store: "repository", ref: workflowRoot }, inputs: [], outputs: [],
   };

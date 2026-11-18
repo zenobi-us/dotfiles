@@ -41,7 +41,7 @@ For Herdr, `wait` uses Herdr's agent state. It does not read pane text. It retur
 
 For herdr-app, `wait` reads native herdr-core state through `hc wait --json`. It accepts explicit `done`, `blocked`, `error`, or a confirmed process exit. Startup idle and terminal loss without an exit code or signal do not confirm completion. Read `muxers/herdr-app.md` for message interruptions and resumption.
 
-For hrdx, tmux, and Zellij, a shell wrapper writes `running` before it starts the agent. The wrapper writes `completed`, `failed`, or `cancelled` after the process exits. A pane becoming idle does not mean that the agent completed.
+For tmux and Zellij, a shell wrapper writes `running` before it starts the agent. The wrapper writes `completed`, `failed`, or `cancelled` after the process exits. A pane becoming idle does not mean that the agent completed.
 
 ## Waiting and resuming
 

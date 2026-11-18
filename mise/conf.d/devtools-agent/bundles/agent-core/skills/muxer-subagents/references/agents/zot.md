@@ -11,5 +11,3 @@ The upstream zot project does not document a self-identifying environment variab
 ```bash
 zot <task or -- @handoff-file>
 ```
-
-hrdx's built-in harness kind for this agent is `zot`.

@@ -1,6 +1,6 @@
 ---
 name: muxer-subagents
-description: Spawn a child agent in a terminal multiplexer pane, tab, or workspace. Detects the active muxer (herdr, herdr-app, hrdx, zellij, tmux) and agent CLI (claude, omp, pi, zot), then resolves the contract that says how to open, launch, wait, read, and close a session.
+description: Spawn a child agent in a terminal multiplexer pane, tab, or workspace. Detects the active muxer (herdr, herdr-app, zellij, tmux) and agent CLI (claude, omp, pi, zot), then resolves the contract that says how to open, launch, wait, read, and close a session.
 ---
 
 Use this skill whenever a parent agent must start a child agent in its own pane.
@@ -21,11 +21,11 @@ MUST resolve the muxer before opening a pane, every time, in this order:
 
 The Claude `SessionStart` hook and the OMP `hooks/pre/muxer-session.ts` hook both inject this tag. Both call `scripts/session-context.ts`, so they render the same context.
 
-Either source gives `herdr-app`, `herdr`, `zellij`, `tmux`, `hrdx`, or `unknown-muxer`. If detection is wrong, pass `--muxer <actual>` to `contracts`.
+Either source gives `herdr-app`, `herdr`, `zellij`, `tmux`, or `unknown-muxer`. If detection is wrong, pass `--muxer <actual>` to `contracts`.
 
 # Desktop app versus TUI
 
-`herdr-app` is separate from the older `herdr` TUI. `HC_TERMINAL_ID` identifies a herdr-core terminal; it does not prove that the app window is open. Explicit TUI, Zellij, tmux, and hrdx markers take precedence over an inherited core address. Read `references/muxers/herdr-app.md` before using the desktop route. Never use `herdr agent` or `herdr worktree` commands for the desktop app.
+`herdr-app` is separate from the older `herdr` TUI. `HC_TERMINAL_ID` identifies a herdr-core terminal; it does not prove that the app window is open. Explicit TUI, Zellij, and tmux markers take precedence over an inherited core address. Read `references/muxers/herdr-app.md` before using the desktop route. Never use `herdr agent` or `herdr worktree` commands for the desktop app.
 
 # Rule 2: detect the agent
 
@@ -97,7 +97,7 @@ Herdr's `agent start` does not support `zot`. The router reports this combinatio
 A caller that requires an independent agent session MUST get a new pane or tab. Apply these mechanics:
 
 - Reuse the workspace for the caller’s target directory, not the orchestrator’s workspace. Create a new tab in it. Do not create a second workspace for the same directory. For a missing herdr-app space, follow the desktop contract’s target-directory creation rule.
-- Address the workspace by its absolute path, never by its name. See the hrdx contract's trap list.
+- Address the workspace by its absolute path, never by its name.
 - Launch a new agent process in the returned pane.
 - MUST NOT send text to, resume, or reuse an earlier child pane.
 - Close the child pane when its phase completes. Leave the workspace open.
@@ -128,7 +128,7 @@ Use one pane for each independent task. Give each child a short name, one clear 
 
 | Kind | Contracts |
 |---|---|
-| Muxer | `references/muxers/herdr-app.md`, `references/muxers/herdr.md`, `hrdx.md`, `zellij.md`, `tmux.md`, `unknown-muxer.md` |
+| Muxer | `references/muxers/herdr-app.md`, `references/muxers/herdr.md`, `zellij.md`, `tmux.md`, `unknown-muxer.md` |
 | Agent | `references/agents/claude.md`, `omp.md`, `pi.md`, `zot.md` |
 | Completion | `references/completion-signals.md` |
 

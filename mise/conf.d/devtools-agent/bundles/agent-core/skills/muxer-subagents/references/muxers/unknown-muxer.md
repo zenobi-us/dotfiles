@@ -2,7 +2,7 @@
 
 ## Detection
 
-None of `HERDR_ENV`, `$ZELLIJ`, `$TMUX`, or `HRDX` are set, and no `--muxer` override was given. There is no multiplexer to open a pane in — treat this the same whether it means "genuinely no muxer" or "an active muxer this script cannot recognize."
+None of `HERDR_ENV`, `$ZELLIJ`, or `$TMUX` are set, and no `--muxer` override was given. There is no multiplexer to open a pane in — treat this the same whether it means "genuinely no muxer" or "an active muxer this script cannot recognize."
 
 ## Worktree awareness
 
