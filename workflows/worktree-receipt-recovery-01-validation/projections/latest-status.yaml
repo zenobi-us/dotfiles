@@ -3,19 +3,23 @@
   "workflow_id": "worktree-receipt-recovery-01-validation",
   "ticket": "tracker/tickets/worktree-receipt-recovery-01-validation.md",
   "state": "REVIEW_PASSED",
-  "latest_receipt": "review-complete-0006",
-  "latest_receipt_ref": "workflows/worktree-receipt-recovery-01-validation/events/review-complete-0006.yaml",
-  "latest_source_commit": "b2764c46af75893c000cae3d2ea62b26062b7848",
-  "latest_source_tree": "9322e9541dfcdfb3a158665d368ce74d9cd80202",
+  "latest_receipt": "review-complete-0012",
+  "latest_source_commit": "ee446c94a7a8996cc6654688dbda5da46c512165",
+  "latest_source_tree": "5d7d3ad8dc395803101d7036f03247026e0d9189",
   "latest_review_verdict": "SUCCESS",
   "open_findings": [],
-  "parent_completion": "completed",
   "supporting_receipts": [
     "workflows/worktree-receipt-recovery-01-validation/events/start-0001.yaml",
     "workflows/worktree-receipt-recovery-01-validation/events/implementation-0002.yaml",
     "workflows/worktree-receipt-recovery-01-validation/events/start-0003.yaml",
     "workflows/worktree-receipt-recovery-01-validation/events/review-start-0004.yaml",
     "workflows/worktree-receipt-recovery-01-validation/events/review-0005.yaml",
-    "workflows/worktree-receipt-recovery-01-validation/events/review-complete-0006.yaml"
+    "workflows/worktree-receipt-recovery-01-validation/events/review-complete-0006.yaml",
+    "workflows/worktree-receipt-recovery-01-validation/events/finish-failed-0007.yaml",
+    "workflows/worktree-receipt-recovery-01-validation/events/operator-approval-0008.yaml",
+    "workflows/worktree-receipt-recovery-01-validation/events/resolution-0009.yaml",
+    "workflows/worktree-receipt-recovery-01-validation/events/review-start-0010.yaml",
+    "workflows/worktree-receipt-recovery-01-validation/events/review-0011.yaml",
+    "workflows/worktree-receipt-recovery-01-validation/events/review-complete-0012.yaml"
   ]
 }

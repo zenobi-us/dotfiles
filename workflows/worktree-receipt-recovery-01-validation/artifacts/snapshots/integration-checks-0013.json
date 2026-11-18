@@ -1,0 +1,22 @@
+[
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "-e",
+      "import { spawnSync } from 'node:child_process'; const r=spawnSync('./mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.ts',['tracker/tickets/worktree-receipt-recovery-01-validation.md','--json'],{encoding:'utf8'}); if(r.status!==0)throw Error(r.stderr);const w=JSON.parse(r.stdout);if(!w.workflow.inspection.historyValid)throw Error(JSON.stringify(w.workflow.diagnostics)); console.log('Actual inspector accepts durable receipt history');"
+    ]
+  }
+]

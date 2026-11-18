@@ -1,0 +1,4 @@
+fix: worktree-receipt-recovery-01-validation guard paths
+
+Integrate independently reviewed conflict-resolution source.
+Review: workflows/worktree-receipt-recovery-01-validation/events/review-0011.yaml
