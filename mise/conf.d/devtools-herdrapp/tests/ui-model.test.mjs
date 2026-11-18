@@ -6,6 +6,8 @@ import { SourceTextModule, SyntheticModule, createContext } from "node:vm";
 import { resolveLocation, targetKey, copyIsShown, localWatchPaths, localWatchFallback, completedAgentWork, RefreshQueue } from "../app/mods/shared-context/refresh-model.js";
 import { client as queryClient } from "./query-client.mjs";
 import { workflowActivity } from "../app/mods/shared-context/activity-model.js";
+import { DEFAULT_FILTERS, filterRestrictions } from "../app/mods/shared-context/filter-model.js";
+import { dependencyRows } from "../app/mods/shared-context/tree.js";
 
 const space = { id: "local-space", machine: null, folder: "/local", active: true, tabs: [{ id: "active-tab", active: true }] };
 const terminal = { pane: "p1", terminal: "t1", cwd: "/local/pane" };
@@ -188,7 +190,7 @@ async function rootModel(client, storage = new Map()) {
     "./action-menu.js": stubs("initActionMenus"),
     "./action.js": stubs("invalidateAction"),
     "./agents.js": stubs("observeAgentLaunch"),
-    "./filter-model.js": { DEFAULT_FILTERS: {} },
+    "./filter-model.js": { DEFAULT_FILTERS },
     "./tree-filters.js": stubs("initTreeFilters", "treeFilters", "closeTreeFilters"),
     "./agent-model.js": stubs("agentActivitySummary"),
     "./agent-activity.js": stubs("agentDots"),
@@ -402,8 +404,10 @@ test("warm Files validation cannot restore the old target after follow changes m
   await seed.query("context", where); await seed.query("file", where, selection);
   const warm = await queryClient(async (_operation, _where, fields) => { await waiting.promise; return fields.entries.map(entry => ({ identity: entry.identity, status: "unchanged" })); }, storage);
   const { view, current, cx, tasks } = await rootModel(warm);
-  Object.assign(view, { mode: "context", key: "", where: null, preferencesReady: true, progress: new Map(),
-    saved: new Map([["repo:/repo", { fileFolders: new Set(), fileSelection: selection }]]) });
+  Object.assign(view, {
+    mode: "context", key: "", where: null, preferencesReady: true, progress: new Map(),
+    saved: new Map([["repo:/repo", { fileFolders: new Set(), fileSelection: selection }]])
+  });
   view.follow(cx); view.refresh(cx);
   assert.equal(view.filePreview.body, "local only");
   current.where = { cwd: "/repo", machine: "remote" };
@@ -568,3 +572,78 @@ for (const outcome of ["failure", "success"]) {
     await client.release();
   });
 }
+
+function filterSnapshot() {
+  const tickets = ["READY", "REVIEW", "FIX", "FINISH", "SUBMIT", "BLOCKED", "ERROR", "UNKNOWN", "DONE", "OTHER"].map(state => ({
+    id: state, title: state, documentType: "ticket", status: state === "DONE" ? "completed" : "unclaimed", blockedBy: state === "READY" ? ["BLOCKED"] : [],
+  }));
+  return {
+    tickets,
+    initiatives: [{ id: "I", title: "Initiative", ticketIds: tickets.map(ticket => ticket.id) }],
+    states: Object.fromEntries(tickets.map(ticket => [ticket.id, { state: ticket.id }])),
+  };
+}
+
+test("tracker status queues combine with OR without expanding dependencies", () => {
+  const snapshot = filterSnapshot();
+  const rows = dependencyRows(snapshot, { initiatives: true, ready: true, review: true, blocked: false }, new Set()).rows;
+  const tickets = rows.filter(row => row.type === "ticket");
+  assert.deepEqual(tickets.map(row => row.record.id), ["READY", "REVIEW", "FIX", "FINISH", "SUBMIT"]);
+  assert.ok(tickets.every(row => row.depth === 1 && row.children === 0));
+  assert.deepEqual(snapshot.tickets[0].blockedBy, ["BLOCKED"]);
+});
+
+test("hiding initiatives keeps matching tickets visible outside initiative groups", () => {
+  const rows = dependencyRows(filterSnapshot(), { initiatives: false, ready: false, review: false, blocked: true }, new Set()).rows;
+  assert.equal(rows.some(row => row.type === "initiative"), false);
+  assert.deepEqual(rows.filter(row => row.type === "ticket").map(row => [row.record.id, row.depth]), [["BLOCKED", 0], ["ERROR", 0], ["UNKNOWN", 0]]);
+});
+
+test("All includes completed and unclassified records that status queues omit", () => {
+  const snapshot = filterSnapshot();
+  const all = dependencyRows(snapshot, { ...DEFAULT_FILTERS }, new Set()).rows.filter(row => row.type === "ticket").map(row => row.record.id);
+  assert.deepEqual(all, ["READY", "REVIEW", "FIX", "FINISH", "SUBMIT", "BLOCKED", "ERROR", "UNKNOWN", "DONE", "OTHER"]);
+  const queues = dependencyRows(snapshot, { ...DEFAULT_FILTERS, initiatives: false }, new Set()).rows.filter(row => row.type === "ticket").map(row => row.record.id);
+  assert.deepEqual(queues, ["READY", "REVIEW", "FIX", "FINISH", "SUBMIT", "BLOCKED", "ERROR", "UNKNOWN"]);
+  assert.deepEqual(dependencyRows(snapshot, { initiatives: false, ready: false, review: false, blocked: false }, new Set()).rows, []);
+});
+
+test("restriction counts include hidden initiatives and disabled status queues", () => {
+  assert.equal(filterRestrictions({ initiatives: false, ready: true, review: false, blocked: true }), 2);
+  assert.equal(filterRestrictions({ initiatives: true, ready: false, review: false, blocked: false }), 3);
+  assert.equal(filterRestrictions({ initiatives: false, ready: false, review: false, blocked: false }), 4);
+});
+
+test("repository filters and selections survive another repository and a mod reload", async () => {
+  const storage = new Map(), first = { identity: "A", repository: "/a" }, second = { identity: "B", repository: "/b" };
+  const { view, cx } = await rootModel({}, storage);
+  delete view.remember;
+  Object.assign(view, { saved: new Map(), viewStorageKey: "shared-context:tracker:views:v1" });
+  view.restoreView(first);
+  view.selected = { id: "READY", kind: "ticket", ref: "tracker/tickets/READY.md" };
+  view.collapsed.add("initiative:I");
+  view.fileFolders.add("alignment:docs");
+  view.fileSelection = { collection: "alignment", path: "docs/guide.md" };
+  view.setFilters({ initiatives: false, ready: true, review: false, blocked: true }, cx);
+  view.restoreView(second);
+  assert.equal(view.selected, null);
+  assert.equal(view.fileSelection, null);
+  assert.equal(view.filters.initiatives, true);
+  view.setFilters({ initiatives: true, ready: false, review: true, blocked: false }, cx);
+
+  const { view: reloaded } = await rootModel({}, storage);
+  Object.assign(reloaded, { saved: new Map(JSON.parse(storage.get("shared-context:tracker:views:v1"))) });
+  reloaded.restoreView(first);
+  assert.equal(reloaded.filters.initiatives, false);
+  assert.equal(reloaded.filters.ready, true);
+  assert.equal(reloaded.filters.review, false);
+  assert.equal(reloaded.filters.blocked, true);
+  assert.equal(reloaded.selected.id, "READY");
+  assert.equal(reloaded.fileSelection.path, "docs/guide.md");
+  assert.ok(reloaded.collapsed.has("initiative:I"));
+  assert.ok(reloaded.fileFolders.has("alignment:docs"));
+  reloaded.restoreView(second);
+  assert.equal(reloaded.filters.ready, false);
+  assert.equal(reloaded.filters.review, true);
+  assert.equal(reloaded.selected, null);
+});

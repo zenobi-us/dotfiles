@@ -13,5 +13,20 @@
     "file": "RobotoMono-OFL.txt",
     "url": "https://raw.githubusercontent.com/google/fonts/aa24661a5ba24c8f8a550a16fb13198719fc2c23/ofl/robotomono/OFL.txt",
     "sha256": "50ab8dd54680d3473f649c9db86fece88434d097c7834475c1c72d2f8c429215"
+  },
+  {
+    "file": "JetBrainsMono.ttf",
+    "url": "https://raw.githubusercontent.com/google/fonts/aa24661a5ba24c8f8a550a16fb13198719fc2c23/ofl/jetbrainsmono/JetBrainsMono%5Bwght%5D.ttf",
+    "sha256": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda"
+  },
+  {
+    "file": "JetBrainsMono-Italic.ttf",
+    "url": "https://raw.githubusercontent.com/google/fonts/aa24661a5ba24c8f8a550a16fb13198719fc2c23/ofl/jetbrainsmono/JetBrainsMono-Italic%5Bwght%5D.ttf",
+    "sha256": "85ae2a5cd3f56baf1ce1c21a851322c58e3d8fbe8e8ad4a4d090a820dd7fe558"
+  },
+  {
+    "file": "JetBrainsMono-OFL.txt",
+    "url": "https://raw.githubusercontent.com/google/fonts/aa24661a5ba24c8f8a550a16fb13198719fc2c23/ofl/jetbrainsmono/OFL.txt",
+    "sha256": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d"
   }
 ]
