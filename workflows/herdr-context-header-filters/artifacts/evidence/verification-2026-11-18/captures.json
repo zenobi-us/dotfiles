@@ -1,0 +1,101 @@
+{
+  "kind": "raw-herdr-native-captures",
+  "note": "Original application screenshots, not a sealed collect-evidence run. Observations are recorded in the ticket.",
+  "application_version": "0.1.16",
+  "private_session": "hf",
+  "font_families_observed": [
+    "JetBrains Mono"
+  ],
+  "assets": [
+    {
+      "file": "filter-menu.png",
+      "sha256": "020fcac88163c50ea4f19a397155db596c2acd2b8048f69008ee085a3a24e807",
+      "capture_method": "herdr-app shot",
+      "surface": "owned headless Cage Wayland display",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "outside-dismissal.png",
+      "sha256": "e917fcc07a066d0e8a347a4427bc415e7c3233c9dc3519003967b934c0348cc0",
+      "capture_method": "herdr-app shot",
+      "surface": "owned headless Cage Wayland display",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "space-opens-menu.png",
+      "sha256": "020fcac88163c50ea4f19a397155db596c2acd2b8048f69008ee085a3a24e807",
+      "capture_method": "herdr-app shot",
+      "surface": "owned headless Cage Wayland display",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "escape-dismissal.png",
+      "sha256": "9b532ccfa5565be61e3e54f23e7e87a28bd075e6ab0c16f4237719ed63bc89d0",
+      "capture_method": "herdr-app shot",
+      "surface": "owned headless Cage Wayland display",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "dependency-graph.png",
+      "sha256": "2d6d1f223d46812f6d57352eff2af47e48fff3e95826fa3bfb55af286804666d",
+      "capture_method": "herdr-app shot",
+      "surface": "owned headless Cage Wayland display",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "file-refreshed.png",
+      "sha256": "b6b6d5e13b6e8cd6ad93f408d0605f27c1c2b0edaddbb1e8a24d3e69899b554b",
+      "capture_method": "herdr-app shot",
+      "surface": "owned headless Cage Wayland display",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "repository-b-unfiltered.png",
+      "sha256": "40e14106af5586a9957328bd5e92b9b9c1ecb9be055496a08e24c0b9e17059c7",
+      "capture_method": "herdr-app shot",
+      "surface": "owned headless Cage Wayland display",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "repository-a-restored.png",
+      "sha256": "d22ad362d1d4ea33c444ee906e6dab9afae40d4ff8987e2b3a057e66dbb41973",
+      "capture_method": "herdr-app shot",
+      "surface": "owned headless Cage Wayland display",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "file-selection-restored.png",
+      "sha256": "df62d60741b7befa97e12d85bff07824009ffbfdef6ddca3dfddc1a8b94d25ab",
+      "capture_method": "herdr-app shot",
+      "surface": "owned headless Cage Wayland display",
+      "dimensions": [
+        1280,
+        720
+      ]
+    }
+  ]
+}

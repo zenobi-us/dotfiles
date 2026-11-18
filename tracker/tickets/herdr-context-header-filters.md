@@ -59,3 +59,41 @@ Correction verification: all 30 scoped tests pass with 95 assertions, including 
 ### Approved verification follow-up
 
 The user approved the proposed changes on 2026-11-18. Retain the active Herdr theme instead of a fixed violet palette. Provision pinned JetBrains Mono fonts, add focused filter and persistence regressions, and verify native keyboard, navigation, refresh, and layout-reload behavior in an isolated session. Keep unrelated typing diagnostics outside this ticket. Retain work_status: implemented; this follow-up does not claim completion or restart implementation ownership.
+
+### Verification follow-up — 2026-11-18
+
+Source commit: `1698d99e` (`fix(herdr): pin fonts for herdr-context-header-filters`). The approved acceptance change is in `16f5639e`.
+
+Changes:
+
+- Provisioned pinned regular and italic JetBrains Mono files in `mise/conf.d/devtools-herdrapp/app/mods/shared-context/fonts/`, with the upstream SIL Open Font License. The existing managed font manifest records their immutable source URLs and SHA-256 checksums.
+- Retained the active Herdr theme. No fixed violet palette or unrelated typing changes were added.
+- Added five behavior regressions for OR status queues, independent initiative visibility, completed and unclassified records, restriction counts, and repository-specific filter and selection persistence across reload.
+
+Font correction: the earlier system `fc-match` result did not describe Herdr's font choice. Herdr already bundles JetBrains Mono and loads additional files from a mod's `fonts/` directory, not `fonts.json`. A probe in the running isolated application returned the exact `JetBrains Mono` family through `herdr.fonts()`. The local files match the recorded upstream checksums.
+
+Observed checks:
+
+- `mise exec -- node --experimental-vm-modules --test tests/ui-model.test.mjs`: 33 passed, 0 failed.
+- `mise exec -- bun run test`: 65 Node tests and 17 Bun tests passed, 0 failed and 0 skipped.
+- `herdr-app check` passed for `shared-context` and `shared-context-tabs`.
+- Native acceptance used Herdr 0.1.16 on an owned 1280 × 720 headless Cage Wayland display and a private Core session. Real Local Markdown fixture repositories supplied READY, BLOCKED, and completed tickets.
+- Native pointer and Enter/Space activation opened the checkbox menu. Keyboard status changes hid completed records and displayed one active restriction. Escape, Tab, and outside-click dismissal passed. These assertions used actual native frames, not mocked GPUI dispatch.
+- Opening a blocking ticket and its prerequisite preserved navigation. The Blocking lineage view rendered both nodes and their dependency edge.
+- Files navigation opened a real text preview. The Refresh control displayed changed file contents. Returning to Tracker retained the selected ticket and filter.
+- Switching to a second repository showed its independent unfiltered records. Switching back and reloading the layout restored the first repository's filter, selected ticket, expanded file tree, and selected file preview.
+- The installed application completed a `terminals` → `zenobius` refresh round-trip. Its original space, tab, and focused pane remained unchanged, and `herdr-app status` reported no errors.
+- The owned private window closed normally and its private Core returned `stopped: true`. No pointer or keyboard automation touched the person's display.
+
+Native originals and hashes: [capture provenance](../../workflows/herdr-context-header-filters/artifacts/evidence/verification-2026-11-18/captures.json). These are raw `herdr-app shot` captures, not a sealed collect-evidence run.
+
+- [Checkbox menu and restriction count](../../workflows/herdr-context-header-filters/artifacts/evidence/verification-2026-11-18/filter-menu.png)
+- [Dependency graph](../../workflows/herdr-context-header-filters/artifacts/evidence/verification-2026-11-18/dependency-graph.png)
+- [Refreshed file preview](../../workflows/herdr-context-header-filters/artifacts/evidence/verification-2026-11-18/file-refreshed.png)
+- [Repository state restored](../../workflows/herdr-context-header-filters/artifacts/evidence/verification-2026-11-18/repository-a-restored.png)
+
+Review: direct review of the source follow-up against this ticket found no unresolved standards or specification findings. Font assets retain their license and immutable provenance; tests cover visible filtering and state isolation. This was not an independent subagent review.
+
+Limits: native interaction coverage used the C2 layout and local fixture trackers, not Jira or remote machines. Existing editor typing diagnostics remain outside this follow-up; no TypeScript-clean claim is made.
+
+Status remains `implemented`. The changes and verification are committed locally; no merge or push was performed.
