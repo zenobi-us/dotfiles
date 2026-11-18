@@ -1,0 +1,24 @@
+{
+  "removed": [
+    "resolve/worktree-receipt-recovery-01-validation",
+    "integration/ce3b0179-3c8c-4cbd-851b-ed6ad167bafe"
+  ],
+  "refused": [],
+  "original_worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+  "original_worktree_present": true,
+  "original_worktree_removed": false,
+  "original_resource_shutdown": "unconfirmed",
+  "original_run_id": "404a0cf4-0033-4863-92c2-dca6e70f19f3",
+  "original_removal": "not attempted; resource run manifest missing and original branch was absent from Worktrunk prune candidates",
+  "resolved_worktree_absent": true,
+  "integration_worktree_absent": true,
+  "review_shutdown": "confirmed",
+  "hook_port_observation": {
+    "ports": [
+      11692,
+      13555
+    ],
+    "listeners": [],
+    "exit_code": 1
+  }
+}

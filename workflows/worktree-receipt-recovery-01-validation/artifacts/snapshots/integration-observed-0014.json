@@ -1,0 +1,68 @@
+{
+  "schema": "worktree-integration/v2",
+  "integration_method": "squash",
+  "reviewed_source_commit": "ee446c94a7a8996cc6654688dbda5da46c512165",
+  "reviewed_source_tree": "5d7d3ad8dc395803101d7036f03247026e0d9189",
+  "base_branch": "master",
+  "base_before": "0b4e5831adbbeec501d81ba3b1efb3a36fc33e48",
+  "expected_merge_tree": "983a782118d4f59dab606539cb7dc528942a6d01",
+  "merged_commit": "3be33fca691eeecfa113c9c1efbd7918b29e5078",
+  "merged_tree": "983a782118d4f59dab606539cb7dc528942a6d01",
+  "merged_parents": [
+    "0b4e5831adbbeec501d81ba3b1efb3a36fc33e48"
+  ],
+  "candidate_branch": "integration/ce3b0179-3c8c-4cbd-851b-ed6ad167bafe",
+  "candidate_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-ce3b0179-3c8c-4cbd-851b-ed6ad167bafe",
+  "pushed": true,
+  "reviewed_source_ref": "refs/worktree-reviews/ee446c94a7a8996cc6654688dbda5da46c512165",
+  "remote_observed_commit": "3be33fca691eeecfa113c9c1efbd7918b29e5078",
+  "integration_reachable": true,
+  "already_published": false,
+  "validation_results": [
+    {
+      "argv": [
+        "wt",
+        "-C",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-ce3b0179-3c8c-4cbd-851b-ed6ad167bafe",
+        "hook",
+        "pre-merge",
+        "--var",
+        "target=master",
+        "--var",
+        "target_worktree_path=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-ce3b0179-3c8c-4cbd-851b-ed6ad167bafe",
+      "exit_code": 0,
+      "source_commit": "3be33fca691eeecfa113c9c1efbd7918b29e5078",
+      "source_tree": "983a782118d4f59dab606539cb7dc528942a6d01"
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-ce3b0179-3c8c-4cbd-851b-ed6ad167bafe",
+      "exit_code": 0,
+      "source_commit": "3be33fca691eeecfa113c9c1efbd7918b29e5078",
+      "source_tree": "983a782118d4f59dab606539cb7dc528942a6d01"
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "-e",
+        "import { spawnSync } from 'node:child_process'; const r=spawnSync('./mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.ts',['tracker/tickets/worktree-receipt-recovery-01-validation.md','--json'],{encoding:'utf8'}); if(r.status!==0)throw Error(r.stderr);const w=JSON.parse(r.stdout);if(!w.workflow.inspection.historyValid)throw Error(JSON.stringify(w.workflow.diagnostics)); console.log('Actual inspector accepts durable receipt history');"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-ce3b0179-3c8c-4cbd-851b-ed6ad167bafe",
+      "exit_code": 0,
+      "source_commit": "3be33fca691eeecfa113c9c1efbd7918b29e5078",
+      "source_tree": "983a782118d4f59dab606539cb7dc528942a6d01"
+    }
+  ]
+}

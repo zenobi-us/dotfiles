@@ -6,7 +6,14 @@
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "review-complete-0012",
-  "latest_receipt_ref": "workflows/worktree-receipt-recovery-01-validation/events/review-complete-0012.yaml",
-  "state": "REVIEW_PASSED"
+  "latest_receipt": "finish-cleanup-pending-0017",
+  "latest_receipt_ref": "workflows/worktree-receipt-recovery-01-validation/events/finish-cleanup-pending-0017.yaml",
+  "state": "CLEANUP_PENDING",
+  "merged_commit": "3be33fca691eeecfa113c9c1efbd7918b29e5078",
+  "integration_method": "squash",
+  "pushed": true,
+  "ticket_completed": true,
+  "cleanup_pending": true,
+  "remaining_resource": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation",
+  "remaining_action": "Recover historical shutdown evidence and establish Worktrunk-supported original-source disposition; do not repeat integration."
 }

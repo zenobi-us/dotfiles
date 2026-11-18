@@ -45,4 +45,9 @@ No unresolved implementation findings. Historical resource shutdown remains unco
 - [review-start-0010](../events/review-start-0010.yaml)
 - [review-0011](../events/review-0011.yaml)
 - [review-complete-0012](../events/review-complete-0012.yaml)
+- [finish-prepared-0013](../events/finish-prepared-0013.yaml)
+- [finish-merged-0014](../events/finish-merged-0014.yaml)
+- [finish-pushed-0015](../events/finish-pushed-0015.yaml)
+- [finish-ticket-completed-0016](../events/finish-ticket-completed-0016.yaml)
+- [finish-cleanup-pending-0017](../events/finish-cleanup-pending-0017.yaml)
 
