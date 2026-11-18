@@ -234,11 +234,11 @@ const bundleSkills = defineCollection({
   },
 });
 
-/** A how-to guide that sits next to a skill's SKILL.md: `<bundle>/skills/[<category>/]<skill>/how-to-*.md`. */
+/** Skill-local procedures share the how-to route, including the canonical `howto.md` entrypoint. */
 const skillHowTos = defineCollection({
   name: "skillHowTos",
   directory: bundlesDirectory,
-  include: "*/skills/**/how-to-*.md",
+  include: "*/skills/**/{howto,how-to-*}.md",
   exclude: "**/node_modules/**",
   schema: z.object({ title: z.string(), content: z.string() }),
   transform: async (document, context) => ({

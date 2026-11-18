@@ -6,6 +6,12 @@ kind: changelog
 
 ## Unreleased
 
+- **Illustrate the how-to:** Add real original-asset and saved-box-note screenshots from the controlled public workflow. Keep descriptive alternative text beside the review steps.
+- **Document the complete workflow:** Add `howto.md`, a separate CLI reference, and a storage/system explanation. Cover approved collection, explicit historical review, saved notes, drafts, validation, export, and shutdown.
+- **Connect the existing website:** Include canonical `howto.md` guides in content discovery and static routes. Add evidence navigation and README links. Correct skill source links to the repository default branch, `master`.
+- **Exercise public procedures:** Run installed Playwright capture, fresh and historical feedback requests, browser box save, restart, validation, report, and export with temporary resolved stores. Record unavailable Surf, native TUI, and native GUI prerequisites separately.
+
+
 - **Stop mixed blocked requests:** Give any BLOCKED verdict precedence over assertion FAIL. Return exit 3 with the sealed diagnostic source and no feedback import or server. Keep assertion-only failures reviewable. The opt-in public request regression uses real private terminal captures (`RUN_NATIVE_EVIDENCE_TESTS=1`) to cover both outcomes.
 
 - **Collect one workflow request:** Run the installed collector from an approved compiled workspace, validate and import sealed evidence, then serve through the existing loopback server. Return its actual URL and saved-record references.

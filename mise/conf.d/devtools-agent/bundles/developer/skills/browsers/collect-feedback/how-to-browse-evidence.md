@@ -4,6 +4,10 @@ title: Browse original evidence
 ---
 # Browse original evidence
 
+For prerequisites and complete CLI procedures, use the [collection and feedback how-to](howto.md).
+For commands and exit codes, use the [CLI reference](references/cli.md).
+For record authority and storage, use the [system explanation](references/system.md).
+
 1. Invoke `/collect-feedback` with the requested workflow and approved web, TUI or GUI scope. The agent follows [the request procedure](references/request.md), prepares one collector plan, then uses `request` to collect, validate, import and serve. For earlier evidence, explicitly select the sealed run and historical review.
 2. Keep the returned session path. The session contains copied evidence, so it remains available after the original run moves.
 3. Open the returned `http://127.0.0.1:<port>` URL on the same machine.

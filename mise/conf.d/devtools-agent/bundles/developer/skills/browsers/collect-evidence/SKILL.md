@@ -9,6 +9,13 @@ user-invocable: true
 
 Use one typed `Plan` and the existing `Driver` boundary. Capture completion and assertion results are separate. A screenshot alone is not a pass.
 
+## Documentation
+
+Use the [web image how-to](howto.md) for a complete installed-CLI example.
+Use the [feedback how-to](../collect-feedback/howto.md) to save and export review notes.
+Use the [CLI reference](../collect-feedback/references/cli.md) for command contracts and driver limits.
+Use the [system explanation](../collect-feedback/references/system.md) for routes and record authority.
+
 ## Procedure
 
 1. Read the ticket, changed source and approved scope. For Surf or Playwright, read `references/web.md`. For the native Linux TUI driver, read `references/tui.md`, including its host limits. For GUI collection, read `references/gui.md`.

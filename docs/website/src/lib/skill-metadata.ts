@@ -8,7 +8,7 @@ import { unified } from "unified";
 import { markdownText } from "./markdown";
 
 const parser = unified().use(remarkParse);
-const repositorySource = "https://github.com/zenobi-us/dotfiles/blob/main/mise/conf.d/devtools-agent/bundles/";
+const repositorySource = "https://github.com/zenobi-us/dotfiles/blob/master/mise/conf.d/devtools-agent/bundles/";
 
 export function skillSource(path: string): string {
   return repositorySource + path.split("/").map(encodeURIComponent).join("/");

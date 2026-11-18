@@ -4,6 +4,9 @@ kind: reference
 ---
 # Image and video feedback contract
 
+Use the [how-to](../howto.md) for review procedures, the [CLI reference](cli.md) for commands,
+and the [system explanation](system.md) for routing and record authority.
+
 ## Storage and identity
 
 Import sealed evidence through the existing shared-context evidence route. Preserve the source snapshot and immutable media. Each case stores annotations in `cases/<case-id>/annotations/<annotation-id>.json`. Each record uses `collect-feedback/v1`, kind `annotation`, stable annotation/session/case/asset IDs, source SHA-256, original dimensions, priority, comment, revision and creation/update timestamps.

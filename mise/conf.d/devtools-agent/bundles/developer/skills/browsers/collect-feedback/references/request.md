@@ -4,6 +4,9 @@ kind: procedure
 ---
 # Collect feedback from one request
 
+Use the [operator how-to](../howto.md) for complete procedures.
+Use the [CLI reference](cli.md) for flags and exit codes, or the [system explanation](system.md) for record ownership.
+
 ## Select the approved surface
 
 Resolve the installed directory containing collect-feedback/SKILL.md as FEEDBACK_SKILL_ROOT. Its sibling collect-evidence directory is COLLECT_EVIDENCE_SKILL_ROOT. Invoke absolute script paths from any directory. Complete dependency setup separately before capture or serving.

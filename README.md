@@ -99,6 +99,18 @@ Open a new PowerShell window. Future bootstrap runs do not need `--from` or `--f
 mise bootstrap --yes
 ```
 
+## Evidence and feedback
+
+Use the installed collect-evidence and collect-feedback skills for real capture and saved review notes.
+
+- **Collect a web image:** [Run the collector example](mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/howto.md).
+- **Save and export feedback:** [Use the feedback how-to](mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/howto.md).
+- **Look up commands:** [Read the CLI reference](mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/cli.md).
+- **Understand the records:** [Read the storage and system explanation](mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/references/system.md).
+- **Browse the website:** [Open the feedback guides](https://zenobi-us.github.io/dotfiles/bundles/developer/skill/collect-feedback/how-to/).
+
+Stores come from shared-context resolution for the repository in scope. Local evidence and feedback do not change ticket status or approve publication.
+
 ## Common commands
 
 The pre-commit hook automatically bumps bundle versions for staged bundle changes and stages the plugin manifests and marketplace record in the same commit. `hk fix` also stages its version fixes. Neither operation stashes local changes. Review unstaged edits in those version files before committing, because automatic staging can include them. Stashes from earlier interrupted hook runs remain untouched.

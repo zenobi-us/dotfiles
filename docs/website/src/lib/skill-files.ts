@@ -12,7 +12,10 @@ export function skillFiles(directory: string): { name: string; hasHowTos: boolea
   if (files.some((file) => file.isFile() && file.name === "SKILL.md")) {
     const data = matter(readFileSync(join(directory, "SKILL.md"), "utf8")).data;
     return [
-      { name: String(data.name), hasHowTos: files.some((file) => file.isFile() && /^how-to-.+\.md$/.test(file.name)) },
+      {
+        name: String(data.name),
+        hasHowTos: files.some((file) => file.isFile() && /^(?:howto|how-to-.+)\.md$/.test(file.name)),
+      },
       ...children,
     ];
   }

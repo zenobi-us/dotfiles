@@ -8,6 +8,12 @@ user-invocable: true
 
 Collect fresh evidence through the installed `collect-evidence` driver, or explicitly select historical evidence. Keep source identities, capture times and image bytes unchanged. Create point or box annotations without changing source media.
 
+## Documentation
+
+Use [howto.md](howto.md) for collection, historical review, annotations, validation, export, and shutdown.
+Use the [CLI reference](references/cli.md) for commands, output, exit codes, and driver limits.
+Use the [system explanation](references/system.md) for routes, record authority, immutable assets, and publication.
+
 ## One workflow request
 
 For fresh web, TUI or GUI work, follow [the request procedure](references/request.md). Select the driver playbook from the requested surface and approved scope. Author, render and compile one collector plan. Then run `request <workspace> --repository <repo> --workflow <id> --session <new-id> --port <explicit-port> --json`. This command runs the installed collector, validates and imports its sealed result, validates the session, and serves it through the existing server. Return its actual `url`, `destination` and `records`.
