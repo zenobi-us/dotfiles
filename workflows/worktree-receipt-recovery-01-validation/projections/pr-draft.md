@@ -32,9 +32,9 @@ Share receipt envelope/source-root validation. Preserve current v2 integration a
 
 No blocking findings; latest independent verdict SUCCESS. No unresolved implementation questions.
 
-## Merge status
+## Previous merge status
 
-CLEANUP_PENDING. {"merged_commit":"3be33fca691eeecfa113c9c1efbd7918b29e5078","integration_method":"squash","pushed":true,"ticket_completed":true,"cleanup_pending":true,"remaining_resource":"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation","remaining_action":"Recover historical shutdown evidence and establish Worktrunk-supported original-source disposition; do not repeat integration."}
+Superseded cleanup checkpoint: CLEANUP_PENDING. {"merged_commit":"3be33fca691eeecfa113c9c1efbd7918b29e5078","integration_method":"squash","pushed":true,"ticket_completed":true,"cleanup_pending":true,"remaining_resource":"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-01-validation","remaining_action":"Recover historical shutdown evidence and establish Worktrunk-supported original-source disposition; do not repeat integration."}
 
 Historical source cleanup remains separate from acceptance; historical run manifest is unavailable.
 
@@ -73,3 +73,20 @@ Approved cleanup-only recovery is recorded in [operator-approval-0018](../events
 The historical run manifest is missing. Its retained result provides no shutdown evidence. Worktrunk does not recognize the original source branch as an integrated prune candidate. No resource was removed and no integration was repeated.
 
 [Current cleanup observations](../artifacts/snapshots/cleanup-observed-0019.json) contain the actual resource, Worktrunk, desktop, remote and integration-ancestry checks. Candidate test results remain historical; they were not rerun during cleanup recovery.
+
+## Final cleanup recovery
+
+FINISHED. The operator approved removal of the original checkout while retaining `feature/worktree-receipt-recovery-01-validation` unchanged at `b2764c46af75893c000cae3d2ea62b26062b7848`. All three recorded source and integration workspace paths are absent. No process was terminated.
+
+The November 17 machine reboot independently establishes shutdown of the November 11 local implementation and review processes. Current open-file, recorded-port and desktop checks found no use of the original checkout. Historical manifests remain unavailable; no historical evidence was recreated. No external service handles are recorded in the consumed original receipts.
+
+Worktrunk removed only the clean checkout with `--foreground --no-delete-branch --no-hooks`. Branch deletion was not attempted. The global port-based kill hook was skipped. This ticket-specific disposition does not change general cleanup policy.
+
+Published squash integration `3be33fca691eeecfa113c9c1efbd7918b29e5078` and tracker completion remain reachable from the observed `origin/master`. Source review `review-0011` and its candidate-bound validation remain historical and unchanged. The actual inspector now reports valid history, verified finish, no diagnostics and recovery mode `complete`. No implementation checks were rerun.
+
+- [Operator approval](../events/operator-approval-0020.yaml)
+- [Cleanup attempt](../events/finish-start-0021.yaml)
+- [Verified workspace removal](../events/finish-worktree-removed-0022.yaml)
+- [Terminal finish receipt](../events/finish-finished-0023.yaml)
+- [Approved disposition and checks](../artifacts/snapshots/cleanup-recovery-approved-0020.json)
+- [Actual removal observations](../artifacts/snapshots/cleanup-recovery-observed-0022.json)
