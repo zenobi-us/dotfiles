@@ -1,0 +1,19 @@
+[
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/contracts.test.ts"
+    ]
+  },
+  {
+    "argv": [
+      "bun",
+      "-e",
+      "const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),cp=require('node:child_process'),assert=require('node:assert/strict'); const root=fs.mkdtempSync(path.join(os.tmpdir(),'integration-historical-')); const cli=path.join(process.cwd(),'mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts'); const run=(args,cwd)=>cp.spawnSync(args[0],args.slice(1),{cwd,encoding:'utf8'}); try { const declared=path.join(root,'declared'), caller=path.join(root,'caller'), skill=path.join(root,'skill'); fs.mkdirSync(skill); for(const repo of [declared,caller,skill]){fs.mkdirSync(repo,{recursive:true});assert.equal(run(['git','init','-q',repo]).status,0);fs.writeFileSync(path.join(repo,'definition.txt'),path.basename(repo)+' definition\\n');assert.equal(run(['git','add','.'],repo).status,0);assert.equal(run(['git','-c','user.name=Smoke','-c','user.email=smoke@example.invalid','commit','-qm','fixture'],repo).status,0);} const pin=run(['git','rev-parse','HEAD'],declared).stdout.trim(); const manifest={schemaVersion:'skill-contract-manifest/v1',sourceRepository:declared,produces:[],accepts:['sample/v1'],contracts:{'sample/v1':'git:'+pin+':definition.txt'},upgrades:[]}; const file=path.join(skill,'contracts.json'); fs.writeFileSync(file,JSON.stringify(manifest)); const snapshot=()=>JSON.stringify([declared,caller,skill].map(repo=>[run(['git','rev-parse','HEAD'],repo).stdout,run(['git','status','--porcelain'],repo).stdout,fs.readFileSync(path.join(repo,'definition.txt'),'utf8')])); let before=snapshot(); let good=run([cli,'resolve','--skill',skill,'--contract','sample/v1'],caller); assert.equal(good.status,0,good.stderr); assert.equal(JSON.parse(good.stdout).content,'declared definition\\n'); assert.equal(snapshot(),before); const valid=run([cli,'validate','--skill',skill],caller);assert.equal(valid.status,0,valid.stderr); assert.equal(snapshot(),before); for(const bad of ['git:'+pin.slice(0,12)+':definition.txt','git:master:definition.txt','git:'+pin+':missing.txt']){manifest.contracts['sample/v1']=bad;fs.writeFileSync(file,JSON.stringify(manifest));before=snapshot();const rejected=run([cli,'resolve','--skill',skill,'--contract','sample/v1'],caller);assert.notEqual(rejected.status,0);assert.equal(rejected.stdout.trim(),'');assert.equal(snapshot(),before);} console.log('PASS: candidate public CLI resolves exact declared content; validate succeeds; abbreviated/mutable/missing references reject without output; caller, source and installed checkouts unchanged.'); } finally {fs.rmSync(root,{recursive:true,force:true});}"
+    ]
+  }
+]

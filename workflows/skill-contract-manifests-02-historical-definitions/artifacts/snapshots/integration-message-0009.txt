@@ -1,0 +1,5 @@
+feat(contracts): resolve history skill-contract-manifests-02-historical-definitions
+
+Integrate reviewed source 613c8a3d42260b1443195303d8e6b74f158992ad.
+Review: workflows/skill-contract-manifests-02-historical-definitions/events/review-0006.yaml
+Review artifact: workflows/skill-contract-manifests-02-historical-definitions/artifacts/reviews/review-review-0006.md
