@@ -8,7 +8,7 @@ sequence: 2
 title: Resolve pinned historical definitions
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 ## What to build
