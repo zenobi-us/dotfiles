@@ -6,8 +6,10 @@ import type { ExplorerTicket, TicketWorkflow } from "../../../../../agent-core/e
 import { recoveryDecision } from "./recovery";
 import type { RecoveryDecision } from "./recovery";
 import { loadExplorerSnapshot, loadTicketWorkflow } from "./workflow";
+import { formatInspection, inspectionBlockers } from "./inspection-blockers";
+import type { InspectionBlocker } from "./inspection-blockers";
 
-export async function inspectTicket(ref: string, exec: Exec, cwd = process.cwd()): Promise<{ ticket: ExplorerTicket; workflow: TicketWorkflow; decision: RecoveryDecision }> {
+export async function inspectTicket(ref: string, exec: Exec, cwd = process.cwd()): Promise<{ ticket: ExplorerTicket; workflow: TicketWorkflow; decision: RecoveryDecision; blockers: InspectionBlocker[] }> {
   const context = await resolveSharedContext(exec, cwd);
   if (!context) throw new Error("Inspection requires a repository with a canonical origin and configured ticket adapter.");
   if (context.error) throw new Error(context.error);
@@ -15,7 +17,8 @@ export async function inspectTicket(ref: string, exec: Exec, cwd = process.cwd()
   const ticket = snapshot.tickets.find(ticket => ticket.ref === ref);
   if (!ticket) throw new Error("No ticket matches the canonical reference. Use the resolved ticket adapter's exact reference.");
   const workflow = await loadTicketWorkflow(context, ticket, exec);
-  return { ticket, workflow, decision: recoveryDecision(ticket, snapshot, workflow) };
+  const decision = recoveryDecision(ticket, snapshot, workflow);
+  return { ticket, workflow, decision, blockers: inspectionBlockers(workflow, decision) };
 }
 
 export async function runInspectCommand(ref: string, json: boolean): Promise<void> {
@@ -29,7 +32,7 @@ export async function runInspectCommand(ref: string, json: boolean): Promise<voi
   };
   try {
     const result = await inspectTicket(ref, exec);
-    console.log(json ? JSON.stringify(result, null, 2) : `${result.decision.label}: ${result.decision.reason}\nAction: ${result.decision.action ?? "none"}\nMode: ${result.decision.mode}\nApproval required: ${result.decision.requiredApproval}`);
+    console.log(json ? JSON.stringify(result, null, 2) : formatInspection(result));
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     if (json) console.log(JSON.stringify({ error: message }));

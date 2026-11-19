@@ -1,6 +1,6 @@
 // Uses disposable Git repositories; inspection itself must not write workflow or source state.
 import { afterEach, expect, test } from "bun:test";
-import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, readdir, rm, symlink, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
@@ -783,3 +783,61 @@ test("inspection reports independent root, source and chronology defects on the 
   expect(recoveryDecision(ticket, { tickets: [ticket] }, workflow).mode).toBe("blocked");
   expect(await readFile(file, "utf8")).toBe(original);
 }, 60_000);
+
+test("blocked CLI workflows report evidence and preserve receipts, source, and index", async () => {
+  const { context, ticket, root } = await fixture();
+  const repo = context.repositoryRoot;
+  await run("git", ["-C", repo, "remote", "add", "origin", `https://github.com/example/${root.split("/").at(-1)}.git`]);
+  const commit = await run("git", ["-C", repo, "rev-parse", "HEAD"]);
+  const tree = await run("git", ["-C", repo, "rev-parse", "HEAD^{tree}"]);
+  const start = {
+    schema: "worktree-receipt/v1", receipt_id: "start-1", workflow_id: ticket.id,
+    phase: "start", event: "phase-start", status: "started", attempt: 1, parent_receipt: null,
+    repository: repo, worktree: repo, workspace_path: repo, source_branch: "main", base_branch: "main",
+    source_commit: commit, source_tree: tree, muxer: "herdr-app", pane_id: "fixture", agent: "omp", session_id: "fixture",
+    created_at: "2026-10-01T00:00:00Z", ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend },
+    ticket_ref: ticket.ref, workflow: { root: repo, store: "repository", ref: "workflows/T-1" }, inputs: [], outputs: [],
+  };
+  const eventRoot = join(repo, "workflows/T-1/events");
+  const eventPath = join(eventRoot, "start.json");
+  const resultPath = join(eventRoot, "result.json");
+  const script = fileURLToPath(new URL("inspect.ts", import.meta.url));
+  for (const scenario of ["path_inconsistency", "source_unavailable", "missing_parent_completion", "unusable_review_evidence", "unknown_ownership"]) {
+    await rm(resultPath, { force: true });
+    await put(eventPath, JSON.stringify({
+      ...start,
+      ...(scenario === "path_inconsistency" ? { workspace_path: join(repo, "subdirectory") } : {}),
+      ...(scenario === "source_unavailable" ? { phase: "implementation", event: "phase-complete", worktree: join(root, "missing"), workspace_path: join(root, "missing"), status: "completed" } : {}),
+    }));
+    if (["missing_parent_completion", "unusable_review_evidence"].includes(scenario)) {
+      await put(eventPath, JSON.stringify({ ...start, ...(scenario === "unusable_review_evidence" ? { phase: "review" } : {}) }));
+      await put(resultPath, JSON.stringify({
+        ...start, receipt_id: "result-2", parent_receipt: "start-1", event: "phase-result",
+        phase: scenario === "unusable_review_evidence" ? "review" : "implementation", status: "completed",
+        created_at: "2026-10-02T00:00:00Z", ...(scenario === "unusable_review_evidence" ? { verdict: "SUCCESS" } : {}),
+      }));
+    }
+    const files = await readdir(eventRoot);
+    const bytes = await Promise.all(files.map(file => readFile(join(eventRoot, file), "utf8")));
+    const index = await readFile(join(repo, ".git/index"));
+    const status = await run("git", ["--no-optional-locks", "-C", repo, "status", "--porcelain=v1", "--untracked-files=all"]);
+    const machine = await exec(process.execPath, [script, ticket.ref, "--json"], repo);
+    if (machine.code) throw new Error(machine.stdout);
+    const json = JSON.parse(machine.stdout);
+    const blocker = json.blockers.find((item: { code: string }) => item.code === scenario);
+    expect(blocker).toBeDefined();
+    expect(blocker.missingEvidence[0]).toBeDefined();
+    expect(blocker.requiredApproval).toBe(json.decision.requiredApproval);
+    if (json.decision.mode === "blocked") expect(blocker.recoveryActions).toEqual([]);
+    else if (json.decision.action) expect(blocker.recoveryActions.map((item: { action: string }) => item.action)).toContain(json.decision.action);
+    const humanResult = await exec(process.execPath, [script, ticket.ref], repo);
+    if (humanResult.code) throw new Error(humanResult.stdout);
+    const human = humanResult.stdout;
+    expect(human).toContain(`Blocker: ${scenario}`);
+    expect(human).toContain(`Mode: ${json.decision.mode}`);
+    expect(await readdir(eventRoot)).toEqual(files);
+    expect(await Promise.all(files.map(file => readFile(join(eventRoot, file), "utf8")))).toEqual(bytes);
+    expect(await readFile(join(repo, ".git/index"))).toEqual(index);
+    expect(await run("git", ["--no-optional-locks", "-C", repo, "status", "--porcelain=v1", "--untracked-files=all"])).toBe(status);
+  }
+}, 120_000);

@@ -220,10 +220,12 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
   };
   const supplements = await historySupplements(documents, { root: record.root, ref: record.ref }, context, workflowId, session);
   const envelopes: { ref: string; fields: Fields }[] = [];
+  const validationCodes = new Map<string, string>();
   for (const file of eventFiles) {
    const ref = `${record.ref}/events/${relative(events, file).split("\\").join("/")}`;
    const event: ExplorerEvent = { id: ref, ref };
    result.events!.push(event);
+   let validationCode = "invalid_receipt";
    try {
     if (readErrors.has(file)) throw readErrors.get(file);
     const doc = documents.get(file)!;
@@ -236,6 +238,7 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     const identity = object(fields.ticket, "receipt ticket");
     if (String(identity.id) !== ticket.id || identity.backend !== ticket.backend || identity.ref !== ticket.ref || fields.ticket_ref !== ticket.ref) throw new Error("Receipt ticket identity or ref does not match the selected ticket.");
     const workflow = object(fields.workflow, "receipt workflow");
+    validationCode = "path_inconsistency";
     const repository = text(fields.repository, "receipt repository");
     const workspacePath = validateSourcePaths(fields);
     const historicalWorktree = archive && workflow.store === "repository" && repository === workspacePath;
@@ -255,9 +258,13 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
      const [recordedIdentity, currentIdentity] = await Promise.all([repositoryIdentity(repository), repositoryIdentity(context.repositoryRoot)]);
      if (!recordedIdentity || recordedIdentity !== currentIdentity) throw new Error("Receipt repository does not match the current repository.");
     }
+    validationCode = "invalid_receipt";
     const { status, outputs, createdAt, parentReceipt } = validateReceipt(fields);
     // Historical receipts can outlive removed worktrees.
-    if (await exists(workspacePath)) await validateSourceWorktree(fields, exec);
+    if (await exists(workspacePath)) {
+     validationCode = "path_inconsistency";
+     await validateSourceWorktree(fields, exec);
+    }
     result.receipts.push({
      id: text(fields.receipt_id, "receipt receipt_id"), ref,
      workflowId, phase: text(fields.phase, "receipt phase"), status, parentReceipt,
@@ -268,6 +275,7 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
     });
    } catch (error) {
     event.error = error instanceof Error ? error.message : String(error);
+    validationCodes.set(event.ref, validationCode);
    }
   }
   result.events!.sort((left, right) => {
@@ -278,7 +286,7 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
   result.receipts = chronologicalReceipts(result.receipts).reverse();
   const diagnostics = await inspectReceiptDiagnostics(envelopes, options ? undefined : context.repositoryRoot, options ? undefined : exec);
   for (const event of result.events!) {
-   if (event.error) diagnostics.push({ ref: event.ref, code: event.error.startsWith("[historical_root_unavailable]") ? "historical_root_unavailable" : "invalid_receipt", severity: "error", message: event.error });
+   if (event.error) diagnostics.push({ ref: event.ref, code: event.error.startsWith("[historical_root_unavailable]") ? "historical_root_unavailable" : validationCodes.get(event.ref) ?? "invalid_receipt", severity: "error", message: event.error });
    const issues = diagnostics.filter(issue => issue.ref === event.ref && issue.severity === "error");
    if (issues.length) event.error = issues.map(issue => `[${issue.code}] ${issue.message.replace(/^\[historical_root_unavailable\] /, "")}`).join("\n");
   }
