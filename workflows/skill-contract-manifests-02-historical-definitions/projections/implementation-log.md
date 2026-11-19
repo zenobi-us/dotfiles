@@ -39,3 +39,18 @@ SUCCESS for commit `613c8a3d42260b1443195303d8e6b74f158992ad`. Standards: 0 find
 - [Review review-0006](../artifacts/reviews/review-review-0006.md)
 - [Review receipt](../events/review-0006.yaml)
 - [Parent completion](../events/review-complete-0007.yaml)
+
+## Finish finish-0014
+
+Squash integration `d4993baa001e411af81018a0a09752f0e65c587f` published to `origin/master`. Canonical ticket completed and published in `6713c332`. Candidate-bound tests and public CLI scenarios passed. Source and candidate branches/workspaces removed through cleanup-merged; no desktop spaces remain. [Finish receipt](../events/finish-0014.yaml).
+
+Reviewed source: `613c8a3d42260b1443195303d8e6b74f158992ad`, tree `6fc6394ecad750c000417c93262a2cd5ab487ba3`. Integration tree: `d6716356c6a0532db9269b4d98f4c5c5136b3308`. Retained source ref: `refs/worktree-reviews/613c8a3d42260b1443195303d8e6b74f158992ad`.
+
+- [Prepared integration](../events/finish-prepared-0009.yaml)
+- [Merged boundary](../events/finish-merged-0010.yaml)
+- [Published boundary](../events/finish-pushed-0011.yaml)
+- [Ticket completion](../events/finish-ticket-completed-0012.yaml)
+- [Cleanup boundary](../events/finish-worktree-removed-0013.yaml)
+- [Candidate checks and results](../artifacts/snapshots/integration-result-0010.json)
+
+Unrelated base edits remain untouched. Committed workflow tools ran from a temporary snapshot because concurrent uncommitted extension moves broke installed coordination imports. No remaining ticket findings or owned resources.

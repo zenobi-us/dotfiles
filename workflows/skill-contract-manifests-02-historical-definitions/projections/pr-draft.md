@@ -20,7 +20,7 @@ Commit: `613c8a3d42260b1443195303d8e6b74f158992ad`
 Tree: `6fc6394ecad750c000417c93262a2cd5ab487ba3`
 Branch: `feature/skill-contract-manifests-02-historical-definitions`
 Source worktree: `/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-02-historical-definitions`
-The source checkout is clean.
+The reviewed source checkout was removed after verified integration and publication.
 
 ## Changed files
 
@@ -61,7 +61,7 @@ SUCCESS.
 
 ## Merge status
 
-Not merged, submitted, pushed or marked completed. The ticket remains claimed.
+Squash integration `d4993baa001e411af81018a0a09752f0e65c587f` published to `origin/master`. Canonical ticket completed and published in `6713c332`. Candidate-bound tests and public CLI scenarios passed. Source and candidate branches/workspaces removed through cleanup-merged; no desktop spaces remain. [Finish receipt](../events/finish-0014.yaml).
 
 ## Open questions
 
