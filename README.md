@@ -194,44 +194,14 @@ After updating a checkout from the old layout, refresh deployed symlinks without
 ```bash
 mise bootstrap --only dotfiles --yes
 ```
-## Pi coding agent
-
-Mise installs Pi through the `pi` alias for `github:earendil-works/pi`.
-The Unix configuration in `mise/conf.d/devtools-pi/mise.unix.toml` links agent settings and seven shared bundles into `~/.pi/agent`.
-Package settings load `./bundles/{name}`. Do not add duplicate bundle links under `~/.pi/agent/extensions`.
-
-After applying dotfiles, install the agent and bundle dependencies:
-
-```sh
-mise run pi.bootstrap
-```
-
-The task installs the agent root dependencies, then enters each bundle's resolved directory and runs `bun install`. It stops if an install fails.
-The repository already includes these bundles in its Bun workspace. Host-provided Pi packages belong in `peerDependencies` with a `"*"` range.
-
-Shell commands load the mise environment without importing Zsh aliases.
-Global defaults select `openai/gpt-5.5` with medium thinking. This repository's `.pi/settings.json` selects `openai/gpt-6-luna` after project approval.
-Pi uses its default `"ask"` project trust policy. Saved trust decisions still apply. For a trusted project in non-interactive mode, pass `--approve` explicitly.
-
 ## OMP pre hooks
 
 OMP loads pre hooks from `~/.omp/agent/bundles/agent-core/hooks/pre`.
 Mise bootstrap deploys the `agent-core` bundle as a symlink. No separate
 `~/.omp/agent/hooks` symlink is required. Restart OMP after changing its hook configuration.
 
-## Shared-context autocomplete for Pi and OMP
-
-The shared implementation and tests live in `mise/conf.d/devtools-agent/bundles/agent-core/extensions/shared-context`.
-Pi loads `pi.ts` through the `agent-core` package manifest. OMP loads `omp.ts` through its `config.yml` extension list. Both use the existing bundle symlinks; do not add a second link under either agent's `extensions` directory.
-
-In either agent, type `shared://` followed by a fuzzy query, then press Tab to select a shared-context file as an `@` attachment. Paths with spaces are quoted. Built-in `@` file autocomplete remains available.
-The adapters preserve each agent's cancellation contract: OMP passes an `AbortSignal`, while Pi passes an options object containing `signal` and `force`. Matching, caching, and attachment insertion use the same implementation. This extension registers no shortcut or modal.
-
-Restart Pi or OMP after changing its extension configuration. Run the focused tests from the repository root:
-
-```sh
-mise exec -- bun x vitest run mise/conf.d/devtools-agent/bundles/agent-core/extensions/shared-context
-```
+## OMP shared-context autocomplete
+The mise bootstrap links `mise/conf.d/devtools-omp/extensions` to `~/.omp/agent/extensions`. In OMP, type `shared://` followed by a fuzzy query to find files from the shared context associated with the current repository. Select an item to insert it as an `@` attachment. OMP keeps its built-in `@` file autocomplete.
 
 ## OMP image editor
 
@@ -643,8 +613,6 @@ Activity comes from Herdr’s live `agents()` API. Terminal launch arguments est
 The Tracker uses a title-first header with a three-part `[ ? | next action | chevron ]` control. The question mark opens the next-action reason in a pane-local modal. The primary button opens the existing preset and instruction prompt. The chevron lists the other record actions with their unavailable-action reasons. If no next action exists, the primary button is disabled and the reason and dropdown remain available. Close the reason modal with Escape, Close, or a backdrop click.
 
 Click the repository ID in the Context or Tracker header to open the agent metadata modal at the top centre of that pane. Only the shared-context pane is modal; terminals and other panes remain interactive. It slides down and renders structured data from the shared-context resolver, without using the CLI or hook formatter. Labelled sections show repository details, context roots, storage routes and inheritance, collection paths, and agent instructions. Close it with Escape, the Close button, or a click outside the modal.
-
-Right-click an initiative or ticket to open its record actions. Shift+F10 opens the same menu from a focused row. Arrow keys select an available action; Enter opens its preset and instruction prompt. Completed initiatives appear after unfinished and empty initiatives. A successful task launch clears additional instructions; cancellation or launch failure keeps the unfinished draft for retry.
 
 For mod creation and edits, use [creating-herdr-app-mods](mise/conf.d/devtools-agent/bundles/developer/skills/shells/creating-herdr-app-mods/SKILL.md).
 
