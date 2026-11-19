@@ -8,7 +8,7 @@ sequence: 2
 title: Resolve pinned historical definitions
 triage: ready-for-agent
 type: enhancement
-work_status: claimed
+work_status: completed
 ---
 
 ## What to build
@@ -19,10 +19,10 @@ Implement this slice under the parent initiative. Preserve its contract ownershi
 
 ## Acceptance criteria
 
-- [ ] Require sourceRepository for git: references. Require a full immutable commit ID and a repository-root-relative path; reject branches, tags, and abbreviated IDs.
-- [ ] Resolve against the declared repository rather than the caller checkout. Fetch unavailable objects from that source when possible.
-- [ ] If the object, repository, or definition cannot be resolved, reject the affected operation without revision substitution or a successful validation claim.
-- [ ] Exercise public resolution with a caller in another repository, an initially missing object, invalid pins, and unavailable content. Verify caller and installed-skill checkouts remain unchanged.
+- [x] Require sourceRepository for git: references. Require a full immutable commit ID and a repository-root-relative path; reject branches, tags, and abbreviated IDs.
+- [x] Resolve against the declared repository rather than the caller checkout. Fetch unavailable objects from that source when possible.
+- [x] If the object, repository, or definition cannot be resolved, reject the affected operation without revision substitution or a successful validation claim.
+- [x] Exercise public resolution with a caller in another repository, an initially missing object, invalid pins, and unavailable content. Verify caller and installed-skill checkouts remain unchanged.
 
 ## Verification
 
@@ -32,3 +32,5 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 
 
 - 2026-11-19T21:50:05.748Z: Review SUCCESS for commit `613c8a3d42260b1443195303d8e6b74f158992ad`, tree `6fc6394ecad750c000417c93262a2cd5ab487ba3`. [Review artifact](../../workflows/skill-contract-manifests-02-historical-definitions/artifacts/reviews/review-review-0006.md).
+
+- Completed after independent SUCCESS review and squash integration `d4993baa001e411af81018a0a09752f0e65c587f` published to `origin/master`. Candidate-bound resolver tests and real CLI checks passed. [Integration evidence](../../workflows/skill-contract-manifests-02-historical-definitions/events/finish-pushed-0011.yaml).
