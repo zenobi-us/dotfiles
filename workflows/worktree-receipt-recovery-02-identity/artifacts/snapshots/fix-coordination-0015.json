@@ -1,0 +1,246 @@
+{
+  "schema": "worktree-coordination/v1",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "inventoryComplete": false,
+  "proposed": {
+    "ticket": {
+      "id": "worktree-receipt-recovery-02-identity",
+      "title": "Generate receipt identity from verified phase context",
+      "documentType": "enhancement",
+      "fields": {
+        "schema": "tracker-ticket/v1",
+        "id": "worktree-receipt-recovery-02-identity",
+        "title": "Generate receipt identity from verified phase context",
+        "type": "enhancement",
+        "triage": "ready-for-agent",
+        "work_status": "implemented",
+        "parent": "worktree-receipt-recovery",
+        "sequence": 2,
+        "blocked_by": [
+          "worktree-receipt-recovery-01-validation"
+        ]
+      },
+      "ref": "tracker/tickets/worktree-receipt-recovery-02-identity.md",
+      "backend": "local-markdown",
+      "status": "implemented",
+      "blockedBy": [
+        "worktree-receipt-recovery-01-validation"
+      ],
+      "body": "## What to build\n\nAgents must supply outcomes and evidence instead of copying the receipt envelope. Generate identity from validated phase context and observed source state.\n\n## Acceptance criteria\n\n- [ ] Obtain ticket, workflow, parent receipt, and session identity from validated phase context. Reject missing or inconsistent identity before publication.\n- [ ] Resolve the source worktree root once. Populate worktree and workspace_path with the same verified absolute path.\n- [ ] Read the source branch, commit, and tree through Git at publication. Compare observed identity with the applicable phase expectations.\n- [ ] For review, preserve the frozen source identity. Reject source changes instead of silently recording a different reviewed source.\n- [ ] Keep the execution directory separate from the source worktree. Permit a parent finish session to run elsewhere without changing source identity.\n- [ ] Update parent, implementation, review, fix, submit, and finish receipt producers to use generated identity. Keep worktree-receipt/v1.\n- [ ] Exercise receipt publication from a different execution directory and rejection of a wrong source checkout.\n\n## Comments\n\n\n- Review FAILURE at 2026-11-19T11:37:22.073Z. Reviewed commit `29c1f3244006803965c13655f8de9ae3b642c8fb`, tree `96648df74d25b9edbb372b94e06248b3d8eb9794`. [Independent review artifact](../../workflows/worktree-receipt-recovery-02-identity/artifacts/reviews/review-review-0005.md).\n\n- Review FAILURE at 2026-11-19T21:09:42.792Z. Reviewed commit `542aeda624bf79ca1df866e939402f9e68d69955`, tree `d0bbad25b4c5af2e76bd8d41de8bc1098bf38820`. [Independent review artifact](../../workflows/worktree-receipt-recovery-02-identity/artifacts/reviews/review-review-0012.md)."
+    },
+    "initiatives": [
+      {
+        "id": "worktree-receipt-recovery",
+        "ref": "tracker/initiatives/worktree-receipt-recovery/index.md"
+      }
+    ],
+    "scope": {
+      "state": "declared",
+      "plannedScope": "known",
+      "paths": [
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree"
+      ],
+      "evidence": [
+        {
+          "ref": "tracker/tickets/worktree-receipt-recovery-02-identity.md",
+          "paths": [
+            "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree"
+          ],
+          "kind": "declared"
+        }
+      ]
+    },
+    "reservations": [],
+    "ownership": "unknown",
+    "owners": [
+      {
+        "ref": "workflows/worktree-receipt-recovery-02-identity/events/review-complete-0013.yaml",
+        "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-02-identity",
+        "sourceBranch": "feature/worktree-receipt-recovery-02-identity",
+        "sessionId": "herdr-app:t1qq",
+        "agent": "omp",
+        "muxer": "herdr-app",
+        "paneId": null
+      }
+    ],
+    "sourceObservations": [
+      {
+        "checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source": {
+          "state": "available",
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-02-identity",
+          "branch": "feature/worktree-receipt-recovery-02-identity",
+          "commit": "542aeda624bf79ca1df866e939402f9e68d69955",
+          "candidates": 1
+        },
+        "errors": []
+      }
+    ],
+    "receiptRefs": [
+      "workflows/worktree-receipt-recovery-02-identity/events/review-complete-0013.yaml",
+      "workflows/worktree-receipt-recovery-02-identity/events/review-0012.yaml",
+      "workflows/worktree-receipt-recovery-02-identity/events/review-start-0011.yaml",
+      "workflows/worktree-receipt-recovery-02-identity/events/review-approval-0010.yaml",
+      "workflows/worktree-receipt-recovery-02-identity/events/fix-complete-0009.yaml",
+      "workflows/worktree-receipt-recovery-02-identity/events/fix-0008.yaml",
+      "workflows/worktree-receipt-recovery-02-identity/events/fix-start-0007.yaml",
+      "workflows/worktree-receipt-recovery-02-identity/events/review-complete-0006.yaml",
+      "workflows/worktree-receipt-recovery-02-identity/events/review-0005.yaml",
+      "workflows/worktree-receipt-recovery-02-identity/events/review-start-0004.yaml",
+      "workflows/worktree-receipt-recovery-02-identity/events/start-complete-0003.yaml",
+      "workflows/worktree-receipt-recovery-02-identity/events/implementation-0002.yaml",
+      "workflows/worktree-receipt-recovery-02-identity/events/start-0001.yaml"
+    ]
+  },
+  "hardBlockers": [],
+  "comparisons": [
+    {
+      "ticketRef": "tracker/tickets/collect-evidence-feedback-07-drafts.md",
+      "assessment": "cleanup-only",
+      "overlaps": []
+    },
+    {
+      "ticketRef": "tracker/tickets/collect-evidence-feedback-09-history.md",
+      "assessment": "cleanup-only",
+      "overlaps": []
+    },
+    {
+      "ticketRef": "tracker/tickets/herdr-context-header-filters.md",
+      "assessment": "unknown-scope",
+      "overlaps": []
+    },
+    {
+      "ticketRef": "tracker/tickets/jira-tracker-mirror-04-closure-incremental.md",
+      "assessment": "unknown-scope",
+      "overlaps": []
+    },
+    {
+      "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md",
+      "assessment": "overlap-risk",
+      "overlaps": [
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree",
+          "active": "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/receipts.md"
+        },
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree",
+          "active": "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.test.ts"
+        },
+        {
+          "proposed": "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree",
+          "active": "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/workflow.ts"
+        }
+      ]
+    },
+    {
+      "ticketRef": "tracker/tickets/muxer-subagents-herdr-app-wsl.md",
+      "assessment": "unknown-scope",
+      "overlaps": []
+    },
+    {
+      "ticketRef": "tracker/tickets/pi-ink-bridge-01-pen-prototype.md",
+      "assessment": "cleanup-only",
+      "overlaps": []
+    },
+    {
+      "ticketRef": "tracker/tickets/pi-ink-bridge-03-pair-device.md",
+      "assessment": "unknown-scope",
+      "overlaps": []
+    },
+    {
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-02-initiatives.md",
+      "assessment": "unknown-scope",
+      "overlaps": []
+    },
+    {
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-03-mixed-items.md",
+      "assessment": "unknown-scope",
+      "overlaps": []
+    },
+    {
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-04-descriptions.md",
+      "assessment": "unknown-scope",
+      "overlaps": []
+    },
+    {
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-05-events.md",
+      "assessment": "unknown-scope",
+      "overlaps": []
+    },
+    {
+      "ticketRef": "tracker/tickets/pi-shared-context-ux-06-queues.md",
+      "assessment": "unknown-scope",
+      "overlaps": []
+    }
+  ],
+  "errors": [
+    "/tmp/herdr-remote-cache-prototype: linked checkout identity unavailable: ENOENT: no such file or directory, realpath '/tmp/herdr-remote-cache-prototype'",
+    "tracker/tickets/collect-evidence-feedback-01-web.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/collect-evidence-feedback-02-tui.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/collect-evidence-feedback-03-gui.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/collect-evidence-feedback-04-viewer.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/collect-evidence-feedback-05-pins.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/collect-evidence-feedback-06-edits.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/collect-evidence-feedback-07-drafts.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/collect-evidence-feedback-08-video.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/collect-evidence-feedback-09-history.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/collect-evidence-feedback-10-request.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/herdr-context-header-filters.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/herdr-context-panels.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/jira-tracker-mirror-04-closure-incremental.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/muxer-subagents-herdr-app-hc-spawn.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/pi-ink-bridge-01-pen-prototype.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/pi-ink-bridge-02-install-client.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/pi-ink-bridge-03-pair-device.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/skill-contract-manifests-02-historical-definitions.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/worktree-receipt-recovery-01-validation.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/worktree-receipt-recovery-02-identity.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "tracker/tickets/worktree-receipt-recovery-03-blockers.md: unpublished or inconsistent linked ticket copies differ from the designated context record.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-observed-0112.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0113.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0122.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0123.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0124.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0130.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0136.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0146.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0147.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0148.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0159.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0160.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0162.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0170.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0171.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0178.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0179.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-reconciled-0186.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0111.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0119.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0120.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0121.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0129.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0135.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0142.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0143.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0144.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0156.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0157.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0158.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0168.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0169.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0176.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0177.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0185.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0193.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0196.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0199.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0202.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0205.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/dispatch-started-0208.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0150.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0164.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation.",
+    "workflows/goal-pi-shared-context-tui-ux-spec/events/limits-renewed-0181.yaml: [noncanonical_goal_event_kind] Goal event kinds must use lowercase underscore-separated names; preserve this event and append an authorized reconciliation."
+  ],
+  "tooling_source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-02-identity/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/coordination.ts",
+  "assessment": "Source tooling used read-only because base pi-shared-context module is removed by unrelated user changes. Target reservations empty; hardBlockers empty. Partial inventory from stale linked records and missing unrelated checkout. Isolated source fix only; no compatibility or integration claim."
+}
