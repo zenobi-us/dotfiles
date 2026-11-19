@@ -4,7 +4,7 @@ id: "worktree-receipt-recovery-02-identity"
 title: "Generate receipt identity from verified phase context"
 type: "enhancement"
 triage: "ready-for-agent"
-work_status: "claimed"
+work_status: "implemented"
 parent: "worktree-receipt-recovery"
 sequence: 2
 blocked_by: ["worktree-receipt-recovery-01-validation"]
