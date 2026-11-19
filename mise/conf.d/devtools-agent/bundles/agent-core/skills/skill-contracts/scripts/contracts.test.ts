@@ -162,3 +162,106 @@ test.each(["\n", "\r"])("rejects trailing line terminators in every identifier p
   expect(requested.code).toBe(1);
   expect(requested.error).toContain("Contract identifier must use");
 });
+
+async function gitAt(directory: string, ...args: string[]): Promise<string> {
+  const child = Bun.spawn(["git", "-C", directory, ...args], { stdout: "pipe", stderr: "pipe" });
+  const [code, out, error] = await Promise.all([child.exited, new Response(child.stdout).text(), new Response(child.stderr).text()]);
+  if (code) throw new Error(error);
+  return out.trim();
+}
+
+async function historicalSource(): Promise<{ source: string; commit: string }> {
+  const source = join(root, "source");
+  await mkdir(source);
+  for (const directory of [source, caller, skill]) {
+    await gitAt(directory, "init", "-q");
+    await gitAt(directory, "add", ".");
+    await gitAt(directory, "-c", "user.name=Test", "-c", "user.email=test@example.com", "commit", "--allow-empty", "-qm", "initial");
+  }
+  await writeFile(join(source, "definition.txt"), "Pinned historical definition.\n");
+  await gitAt(source, "add", ".");
+  await gitAt(source, "-c", "user.name=Test", "-c", "user.email=test@example.com", "commit", "-qm", "historical");
+  const commit = await gitAt(source, "rev-parse", "HEAD");
+  await writeFile(join(source, "definition.txt"), "New checkout content must not replace the pin.\n");
+  await gitAt(source, "add", ".");
+  await gitAt(source, "-c", "user.name=Test", "-c", "user.email=test@example.com", "commit", "-qm", "newer");
+  return { source, commit };
+}
+
+test("fetches an absent pinned object from the declared source without changing any checkout", async () => {
+  const { source, commit } = await historicalSource();
+  const absent = Bun.spawn(["git", "-C", caller, "cat-file", "-e", commit], { stdout: "ignore", stderr: "ignore" });
+  expect(await absent.exited).not.toBe(0);
+  const reference = `git:${commit}:definition.txt`;
+  await save({ ...empty, sourceRepository: source, accepts: ["sample/v1"], contracts: { "sample/v1": reference } });
+  const directories = [caller, skill, source];
+  const before = await Promise.all(directories.map(async (directory) => [await gitAt(directory, "rev-parse", "HEAD"), await gitAt(directory, "status", "--porcelain=v1", "--untracked-files=all")]));
+  const result = await run("resolve", "sample/v1");
+  expect(result.code).toBe(0);
+  expect(JSON.parse(result.out)).toEqual({ reference, path: `${commit}:definition.txt`, content: "Pinned historical definition.\n" });
+  expect((await run()).code).toBe(0);
+  const after = await Promise.all(directories.map(async (directory) => [await gitAt(directory, "rev-parse", "HEAD"), await gitAt(directory, "status", "--porcelain=v1", "--untracked-files=all")]));
+  expect(after).toEqual(before);
+  expect(await readFile(join(caller, "definition.txt"), "utf8")).toBe("Wrong caller definition.\n");
+  expect(await readFile(join(skill, "definition.txt"), "utf8")).toBe("Owner definition: preserve authored text.\n");
+});
+
+test("rejects mutable pins, missing source, and invalid repository paths", async () => {
+  const { source, commit } = await historicalSource();
+  for (const reference of [
+    "git:HEAD:definition.txt", "git:master:definition.txt", "git:v1:definition.txt",
+    `git:${commit.slice(0, 12)}:definition.txt`, `git:${commit}:/definition.txt`,
+    `git:${commit}:../definition.txt`, `git:${commit}:./definition.txt`,
+    `git:${commit}:dir//definition.txt`, `git:${commit}:definition.txt\n`,
+  ]) {
+    await save({ ...empty, sourceRepository: source, contracts: { "sample/v1": reference } });
+    const result = await run();
+    expect(result.code).toBe(1);
+    expect(result.out).toBe("");
+  }
+  await save({ ...empty, contracts: { "sample/v1": `git:${commit}:definition.txt` } });
+  expect((await run()).error).toContain("require sourceRepository");
+  await save({ ...empty, sourceRepository: "../source", contracts: { "sample/v1": `git:${commit}:definition.txt` } });
+  expect((await run()).code).toBe(1);
+});
+
+test("fails closed for unavailable repositories, commits, content, and non-commit objects", async () => {
+  const { source, commit } = await historicalSource();
+  await gitAt(source, "-c", "user.name=Test", "-c", "user.email=test@example.com", "tag", "-am", "tag", "v1", commit);
+  const tag = await gitAt(source, "rev-parse", "v1");
+  const tree = await gitAt(source, "rev-parse", `${commit}^{tree}`);
+  for (const [repository, reference] of [
+    [join(root, "unavailable"), `git:${commit}:definition.txt`],
+    [caller, `git:${commit}:definition.txt`],
+    [source, `git:${"0".repeat(40)}:definition.txt`],
+    [source, `git:${commit}:missing.txt`],
+    [source, `git:${tag}:definition.txt`],
+    [source, `git:${tree}:definition.txt`],
+  ]) {
+    await save({ ...empty, sourceRepository: repository, contracts: { "sample/v1": "file:definition.txt", "sample/v2": reference } });
+    const result = await run("resolve", "sample/v1");
+    expect(result.code).toBe(1);
+    expect(result.out).toBe("");
+  }
+});
+
+test("resolves pinned upgrade procedures without execution and rejects empty historical content", async () => {
+  const { source, commit } = await historicalSource();
+  await save({
+    ...empty, sourceRepository: source,
+    contracts: { "sample/v1": "file:definition.txt", "sample/v2": "file:definition.txt" },
+    upgrades: [{ from: "sample/v1", to: "sample/v2", procedure: `git:${commit}:definition.txt` }],
+  });
+  const result = await run();
+  expect(result.code).toBe(0);
+  expect(JSON.parse(result.out).procedures[0].content).toBe("Pinned historical definition.\n");
+  await writeFile(join(source, "definition.txt"), " \n");
+  await gitAt(source, "add", ".");
+  await gitAt(source, "-c", "user.name=Test", "-c", "user.email=test@example.com", "commit", "-qm", "empty definition");
+  const emptyCommit = await gitAt(source, "rev-parse", "HEAD");
+  await save({ ...empty, sourceRepository: source, contracts: { "sample/v1": `git:${emptyCommit}:definition.txt` } });
+  const rejected = await run();
+  expect(rejected.code).toBe(1);
+  expect(rejected.out).toBe("");
+  expect(rejected.error).toContain("must not be empty");
+});

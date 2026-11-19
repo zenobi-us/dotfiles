@@ -4,7 +4,7 @@ import { Crust } from "@crustjs/core@^0.0.19";
 import { helpPlugin } from "@crustjs/plugins@^0.1.2";
 import { loadContracts, resolveContract } from "./contracts.ts";
 
-const app = new Crust("skill-contracts").meta({ description: "Validate installed skill manifests and resolve local authoritative definitions." });
+const app = new Crust("skill-contracts").meta({ description: "Validate installed skill manifests and resolve local or pinned historical authoritative definitions." });
 const skillFlag = { skill: { type: "string" as const, required: true as const, description: "Installed skill directory containing contracts.json." } };
 
 const validate = app.sub("validate").meta({ description: "Validate all declarations and resolve every definition and upgrade procedure without mutation." })
