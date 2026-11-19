@@ -1,0 +1,10 @@
+schema: worktree-latest-status/v1
+workflow_id: worktree-receipt-recovery-02-identity
+ticket: tracker/tickets/worktree-receipt-recovery-02-identity.md
+state: IMPLEMENTED
+latest_receipt: start-complete-0003
+latest_source_commit: 29c1f3244006803965c13655f8de9ae3b642c8fb
+latest_source_tree: 96648df74d25b9edbb372b94e06248b3d8eb9794
+latest_review_verdict: null
+open_findings: []
+parent_phase_complete: true
