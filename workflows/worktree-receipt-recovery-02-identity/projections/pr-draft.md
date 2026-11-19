@@ -1,102 +1,76 @@
 ---
-description: Implementation result for worktree-receipt-recovery-02-identity
-title: Current identity implementation draft
-type: Report
+description: SPEC-01 and SPEC-02 fix result for worktree-receipt-recovery-02-identity
+source_commit: 542aeda624bf79ca1df866e939402f9e68d69955
+source_tree: d0bbad25b4c5af2e76bd8d41de8bc1098bf38820
+title: "Fix result: receipt identity recovery"
+type: Concept
 ---
 
 # Generate receipt identity from verified phase context
 
-## Ticket summary
+## Fix result
 
-Implement [worktree-receipt-recovery-02-identity](tracker/tickets/worktree-receipt-recovery-02-identity.md). Keep new executions on v2 and retain supported v1 history.
-
-## Problem statement
-
-Agents copied source and session identity into receipt envelopes. A copied checkout or stale review identity could be published without the intended phase context.
-
-## Implementation summary
-
-Generate receipt identity from validated phase context and observed Git state. Reject identity overrides, missing authorization, wrong source checkout, changed frozen review source and mismatched delivery session before publication. Migrate parent, implementation, review, fix, submit and finish producer instructions. Preserve retained v1 envelopes and explicitly assigned live v1 handoffs.
-
-The new `--phase-context` input supplies authorization and session identity. `--input` supplies outcomes and evidence. The writer resolves the workflow, validates the parent and session, observes Git, and generates the unchanged receipt schema. Both source path fields use the verified physical root. The execution directory does not select source identity.
+Resolve SPEC-01 and SPEC-02 from [review-0005](workflows/worktree-receipt-recovery-02-identity/artifacts/reviews/review-review-0005.md). No ADR applies. Preserve the original review and all event bytes.
 
 ## Source
 
-Branch: `feature/worktree-receipt-recovery-02-identity`.
+Ticket: `tracker/tickets/worktree-receipt-recovery-02-identity.md`.
+Branch: `feature/worktree-receipt-recovery-02-identity`. Base: `master`.
+Commit: `542aeda624bf79ca1df866e939402f9e68d69955`. Tree: `d0bbad25b4c5af2e76bd8d41de8bc1098bf38820`.
+The source is committed and clean. No rebase, merge, push, tracker change, or source workflow write occurred.
 
-Commit: `29c1f3244006803965c13655f8de9ae3b642c8fb`.
+## Fixes
 
-Tree: `96648df74d25b9edbb372b94e06248b3d8eb9794`.
+- **SPEC-01:** Full v1 publication now requires independently retained phase-start identity or an existing checksum-bound operator approval. Generated v1 child results still require a retained v1 start and assigned live handoff. New execution identity uses generated phase context.
+- **SPEC-02:** Failed or blocked start, implementation, or fix completion can observe advanced and dirty partial source only with `result_missing: true` and its matching phase-start parent. The generated `source_dirty` field records observed state. Success, reviews, and retained child-result closure stay frozen.
 
-The source checkout is clean and frozen. Workflow publication remains in the designated context checkout. The commit includes generated developer plugin and marketplace metadata.
+## Commits
+
+- **SPEC-01:** `6373b8a6` gates retained v1 identity and approved repair.
+- **SPEC-02:** `dcef20af` preserves observed partial source.
+- **Typecheck:** `542aeda6` adds an explicit record type to the repair test fixture. No runtime change. Bundle version hooks updated the existing plugin and marketplace metadata in each commit.
 
 ## Changed files
 
-- `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
-- `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/concurrency.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/playbooks/finish.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/playbooks/fix.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/playbooks/review.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/playbooks/start.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/playbooks/submit.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/receipts.md`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/phase-context.ts`
-- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/write-result.ts`
+- **Path:** `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
+- **Path:** `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
+- **Path:** `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/receipts.md`
+- **Path:** `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts`
+- **Path:** `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/phase-context.ts`
+- **Path:** `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/write-result.ts`
 
-## Validation results
+## Validation
 
-- **Worktree suite:** 125 tests passed across 7 files; 673 assertions.
-- **Committed identity scenarios:** 5 tests passed; 52 assertions; 22 unrelated cases filtered out.
-- **Changed-file typecheck:** Passed with TypeScript 5.9.3, Bun types 1.4.4 and explicit existing Crust declaration mappings.
-- **Real publication:** The writer published a generated child receipt from another execution directory. The actual inspector reported `historyValid=true`. The source remained clean.
-- **Wrong checkout:** The writer rejected the context checkout as source before event publication or result delivery.
-- **Parent finish:** A parent finish start executed elsewhere, retained source identity and left the child result unchanged.
+- **SPEC-01 exact regression:** `mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts --test-name-pattern "phase writer publishes authoritative YAML and a verifiable result in one operation"` — 1 passed; 0 failed; 15 assertions; 31 filtered
+- **SPEC-02 exact regression:** `mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts --test-name-pattern "generation observes implementation Git state"` — 5 passed; 0 failed; 45 assertions; 27 filtered
+- **Full worktree suite:** `mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts` — 130 passed; 0 failed; 725 assertions; 7 files. Final commit adds only a fixture type annotation and generated bundle metadata.
+- **Scoped changed-file TypeScript:** `mise exec -- bun /var/home/zenobius/.bun/install/cache/typescript@5.9.3@@@1/bin/tsc --project /tmp/identity-fix-tsconfig.json` — Passed TypeScript 5.9.3 strict/noEmit/skipLibCheck with Bun 1.4.4, Node declarations and explicit existing Crust declaration mappings. Includes writer, generator and integration tests. Temporary config removed after validation.
+- **Actual writer smoke:** `mise exec -- bun /tmp/identity-fix-smoke.ts /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-02-identity/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/write-result.ts` — Generated v2 event and transport publication from a third cwd; unretained full-v1 rejection; retained identity acceptance; checksum-bound approved repair; failed fix closure records advanced commit/tree and source_dirty, preserves dirty partial file, rejects stale success. Isolated Git fixture removed.
 
-The default developer typecheck could not find `tsc`. A whole-bundle check with isolated tooling found unrelated existing browser, backlog and CLI declaration errors. The changed-file check passed. No evidence run was created. Temporary smoke fixtures were removed after verification. Exact argv, cwd and outcomes are in the implementation receipt.
+The reviewer had already proved both original failures. This fix did not rerun those failures merely to confirm them. The scoped typecheck first found the new fixture annotation error; the correction passed. The default missing-tsc and unrelated whole-bundle declaration failures were not rerun. LSP references were attempted; server initialization failed because TypeScript is not installed in the source workspace.
 
-## Review history
-
-These are implementation quality checks, not the formal worktree review phase.
+## Quality review
 
 ### Standards
 
-No findings.
+SUCCESS. No findings. Read-only review of the two behavioral fixes at `dcef20af1a9e0baebd4489cf073dd031b71a0fc9`.
 
 ### Spec
 
-One medium finding: generated v1 identity allowed a new initial workflow. Resolved: generated v1 child results now require an existing v1 phase-start and its assigned live handoff. Initial generated v1 starts fail before publication. Regression coverage verifies both rejection and retained-v1 publication.
+SUCCESS. No findings. Read-only review of the two behavioral fixes at the same commit.
 
-Both quality-review children completed, their deliveries were verified and acknowledged, and their owned processes stopped. No formal reviewer verdict exists for this commit.
+Both fresh depth-2 child deliveries were verified and acknowledged. Both OMP processes exited with Ctrl+D. Their owned launcher terminals were closed and removed. Router resources confirm shutdown. The final commit adds only the fixture type annotation and generated bundle metadata.
 
-## Resolved findings
+## Review history
 
-The generated-v1 execution boundary is resolved and covered by regression tests.
+Formal review attempt 1 remains FAILURE for source `29c1f3244006803965c13655f8de9ae3b642c8fb`, tree `96648df74d25b9edbb372b94e06248b3d8eb9794`. Its findings were SPEC-01 and SPEC-02. The immutable [review artifact](workflows/worktree-receipt-recovery-02-identity/artifacts/reviews/review-review-0005.md), [review result](workflows/worktree-receipt-recovery-02-identity/events/review-0005.yaml), and [parent review completion](workflows/worktree-receipt-recovery-02-identity/events/review-complete-0006.yaml) remain unchanged. This verdict is stale for the changed source, not a new approval.
 
-## Remaining findings
+## Current state
 
-None from the implementation quality checks.
-
-## Latest reviewer verdict
-
-FAILURE. See formal review attempt 1 below.
-
-## Merge status
-
-Not merged or pushed. Parent completion is recorded in `start-complete-0003`. Formal review failed; SPEC-01 and SPEC-02 require fixes. The child terminal is closed and owned process shutdown is confirmed.
-
-## Supporting records
-
-- [Parent start](workflows/worktree-receipt-recovery-02-identity/events/start-0001.yaml)
-- [Implementation result](workflows/worktree-receipt-recovery-02-identity/events/implementation-0002.yaml)
-- [Versioned draft snapshot](workflows/worktree-receipt-recovery-02-identity/artifacts/snapshots/pr-draft-implementation-0002.md)
+Resolved finding IDs: SPEC-01, SPEC-02. Unresolved finding IDs: none.
+A new formal review is required. The parent owns fix phase-complete, tracker/workflow commits, acknowledgement, and next-action inspection. No evidence run was created. Temporary smoke and typecheck files were removed after validation.
 
 
-## Parent completion
+## Parent fix completion
 
-[Start completion](workflows/worktree-receipt-recovery-02-identity/events/start-complete-0003.yaml) validates the child result and exact clean source. Parent identity checks passed: 5 tests and 52 assertions. The generated writer published this completion from the separate context checkout.
-
-## Formal review attempt 1
-
-Verdict: FAILURE. Standards: SUCCESS; Spec: FAILURE. Open findings: SPEC-01 and SPEC-02. The immutable [review artifact](workflows/worktree-receipt-recovery-02-identity/artifacts/reviews/review-review-0005.md) contains the findings and required changes. [Review result](workflows/worktree-receipt-recovery-02-identity/events/review-0005.yaml) and [parent completion](workflows/worktree-receipt-recovery-02-identity/events/review-complete-0006.yaml) bind this verdict to source `29c1f3244006803965c13655f8de9ae3b642c8fb`. Source remains clean. Review processes stopped; child terminal closed. No merge or push occurred.
+[Fix result](workflows/worktree-receipt-recovery-02-identity/events/fix-0008.yaml) and [parent completion](workflows/worktree-receipt-recovery-02-identity/events/fix-complete-0009.yaml) bind both resolved findings to source `542aeda624bf79ca1df866e939402f9e68d69955`. Parent validation passed 6 publication and partial-recovery tests with 60 assertions. Delivery is acknowledged. The fixer terminal is closed and process shutdown is confirmed. Source remains clean; fresh formal review is required.
