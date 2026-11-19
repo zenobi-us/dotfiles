@@ -2,10 +2,10 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "skill-contract-manifests-02-historical-definitions",
   "ticket": "tracker/tickets/skill-contract-manifests-02-historical-definitions.md",
-  "state": "IMPLEMENTED",
-  "latest_receipt": "implementation-0002",
+  "state": "REVIEW_PASSED",
+  "latest_receipt": "review-complete-0007",
   "latest_source_commit": "613c8a3d42260b1443195303d8e6b74f158992ad",
   "latest_source_tree": "6fc6394ecad750c000417c93262a2cd5ab487ba3",
-  "latest_review_verdict": null,
+  "latest_review_verdict": "SUCCESS",
   "open_findings": []
 }

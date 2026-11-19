@@ -31,3 +31,11 @@ None. No owned service was started.
 - [Start](../events/start-0001.yaml)
 - [Implementation](../events/implementation-0002.yaml)
 - [Draft snapshot](../artifacts/snapshots/pr-draft-implementation-0002.md)
+
+## Review review-0006
+
+SUCCESS for commit `613c8a3d42260b1443195303d8e6b74f158992ad`. Standards: 0 findings. Spec: 0 findings. Parent regression check: 39 tests, 169 assertions. Parent real CLI smoke passed; reviewer exercised 18 public CLI cases. No source changed and no findings remain. Remote authenticated transport was not exercised.
+
+- [Review review-0006](../artifacts/reviews/review-review-0006.md)
+- [Review receipt](../events/review-0006.yaml)
+- [Parent completion](../events/review-complete-0007.yaml)
