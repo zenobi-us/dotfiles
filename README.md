@@ -644,6 +644,8 @@ The Tracker uses a title-first header with a three-part `[ ? | next action | che
 
 Click the repository ID in the Context or Tracker header to open the agent metadata modal at the top centre of that pane. Only the shared-context pane is modal; terminals and other panes remain interactive. It slides down and renders structured data from the shared-context resolver, without using the CLI or hook formatter. Labelled sections show repository details, context roots, storage routes and inheritance, collection paths, and agent instructions. Close it with Escape, the Close button, or a click outside the modal.
 
+Right-click an initiative or ticket to open its record actions. Shift+F10 opens the same menu from a focused row. Arrow keys select an available action; Enter opens its preset and instruction prompt. Completed initiatives appear after unfinished and empty initiatives. A successful task launch clears additional instructions; cancellation or launch failure keeps the unfinished draft for retry.
+
 For mod creation and edits, use [creating-herdr-app-mods](mise/conf.d/devtools-agent/bundles/developer/skills/shells/creating-herdr-app-mods/SKILL.md).
 
 The native panels add **Context** and **Tracker** beside **Files** and **Changes**.

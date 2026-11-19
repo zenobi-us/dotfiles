@@ -188,7 +188,7 @@ async function rootModel(client, storage = new Map()) {
     "./progress-model.js": { initiativeProgress },
     "./progress.js": stubs("initiativeProgressRow"),
     "./activity-model.js": { workflowActivity },
-    "./action-menu.js": stubs("initActionMenus"),
+    "./action-menu.js": stubs("initActionMenus", "recordContextMenu"),
     "./action.js": stubs("invalidateAction"),
     "./agents.js": stubs("observeAgentLaunch"),
     "./filter-model.js": { DEFAULT_FILTERS, restoreFilters },
@@ -778,4 +778,25 @@ test("record-type grouping classifies mixed records while flat mode preserves in
   assert.equal(initiative.canonical.get("A"), "initiative:I/A");
   assert.equal(initiative.rows.find(row => row.type === "ticket" && row.record.id === "A").reference, "initiative:I/A");
   assert.ok(initiative.rows.some(row => row.type === "section" && row.record.title === "Unassigned tickets"));
+});
+
+test("completed initiatives follow unfinished and empty initiatives without reordering either group", () => {
+  const snapshot = {
+    tickets: [
+      { id: "done", status: "completed" }, { id: "active", status: "ready" },
+      { id: "workflow", status: "ready" }, { id: "research", documentType: "research", status: "draft" },
+    ],
+    initiatives: [
+      { id: "complete", ticketIds: ["done", "done", "research"] },
+      { id: "empty", ticketIds: [] },
+      { id: "mixed", ticketIds: ["done", "active"] },
+      { id: "workflow-complete", ticketIds: ["workflow"] },
+      { id: "research-only", ticketIds: ["research"] },
+    ],
+    states: { done: { state: "FINISH" }, active: { state: "ACTIVE" }, workflow: { state: "DONE" } },
+  };
+  const order = filters => dependencyRows(snapshot, filters, new Set()).rows.filter(row => row.type === "initiative").map(row => row.record.id);
+  assert.deepEqual(order(DEFAULT_FILTERS), ["empty", "mixed", "research-only", "complete", "workflow-complete"]);
+  assert.deepEqual(order({ ...DEFAULT_FILTERS, completed: false }), ["mixed"]);
+  assert.deepEqual(snapshot.initiatives.map(item => item.id), ["complete", "empty", "mixed", "workflow-complete", "research-only"]);
 });

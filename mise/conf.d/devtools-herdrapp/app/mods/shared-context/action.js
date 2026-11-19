@@ -1,4 +1,4 @@
-// Tracker and graph actions start isolated agent sessions beside the selected pane. The harness setting selects the agent.
+// Tracker and graph actions attach isolated agent sessions as a new pane or tab. The harness setting selects the agent.
 import { run, focused, panes, spaces, closeOverlay } from "herdr";
 import { query, discardSession } from "./data.js";
 import { startAgent, stopAgent, waitForAgent, cancelAgentWait } from "./agents.js";
@@ -14,7 +14,7 @@ export function invalidateAction(view) {
  * Before attachment, this action owns the new terminal and prepared session.
  *
  * @param {{ actionBusy: boolean, actionError: string, preferencesReady?: boolean, preferences: { harness: string }, actionGeneration?: number, revision?: number, actionOpen?: object, context?: { repository: string }, selected?: { id: string, kind: string }, menuProps?: { cwd: string, id: string, kind: string } }} view
- * @param {{ cwd: string, machine?: string | null, space: string, id: string, kind: "ticket" | "initiative", action: string, prompt: string, overlay?: string }} given
+ * @param {{ cwd: string, machine?: string | null, space: string, id: string, kind: "ticket" | "initiative", action: string, prompt: string, destination: "pane" | "tab", overlay?: string }} given
  * @param {import("gpui-kit").Context} cx
  * @param {() => void} opened
  */
@@ -42,7 +42,7 @@ export function launchAction(view, given, cx, opened) {
       if (!current()) return;
       if (!paneInSpace(target.pane, given.space)) throw new Error("The selected pane was closed or moved while the agent started.");
       run("pane.focus", { pane: target.pane });
-      run("terminal.keep", { terminal: address, place: "right" });
+      run("terminal.keep", { terminal: address, place: given.destination === "tab" ? "tab" : "right" });
       attached = true;
       view.actionBusy = false;
       opened();

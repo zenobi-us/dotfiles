@@ -1,4 +1,4 @@
-// Anchored action menus keep one selected preset and an optional detail draft per record.
+// Action menus retain preset and pane/tab choices in drafts; successful launches clear additional instructions.
 import { div } from "gpui-kit";
 import { h_flex, v_flex, Popup, Input, InputState } from "gpui-base";
 import { theme } from "herdr";
@@ -10,11 +10,13 @@ import { recordReasonButton } from "./header-controls.js";
 export function initActionMenus(view, cx) {
   invalidateAction(view); view.actionOpen = null;
   view.recordActionsOpen = null;
+  view.recordContextOpen = null;
   view.recordActionsFocus = cx.focus_handle();
   view.recordPrimaryFocus = cx.focus_handle();
   view.actionDrafts = new Map();
   view.actionTriggerFocus = new Map(Object.keys(ACTION_PRESETS).map(action => [action, cx.focus_handle()]));
   view.actionFocus = cx.focus_handle();
+  view.actionDestinationFocus = cx.focus_handle();
   view.actionCancelFocus = cx.focus_handle(); view.actionLaunchFocus = cx.focus_handle();
   view.actionInputFocused = false;
   view.actionInput = InputState.new({ placeholder: "e.g. Focus on the narrow-screen flow" });
@@ -102,13 +104,62 @@ export function recordActionControl(view, choices, primary, given, status, palet
     .when(pickerShown || promptShown, el => el.content(promptShown ? actionMenuContent(view) : picker()));
 }
 
+export function recordContextMenu(view, row, trigger, disabled) {
+  const key = row.path, kind = row.type;
+  const selected = view.selected?.id === row.record.id && view.selected?.kind === kind;
+  const shown = view.recordContextOpen === key;
+  const open = cx => {
+    if (disabled || view.actionBusy) return;
+    view.choose(row.record, kind, cx);
+    invalidateAction(view);
+    view.actionOpen = null;
+    view.recordActionsOpen = null;
+    view.recordContextOpen = key;
+    view.recordContextIndex = 0;
+    view.actionFocus.focus(); cx.notify();
+  };
+  const close = cx => { view.recordContextOpen = null; view.focus.focus(); cx.notify(); };
+  const given = { cwd: view.context.repository, machine: view.where.machine, space: view.where.space, id: row.record.id, kind };
+  const choices = selected ? view.detail?.actions ?? [] : [];
+  const enabled = choices.filter(choice => !choice.disabledReason);
+  const choose = (choice, cx) => {
+    view.recordContextOpen = null;
+    openActionMenu(view, choice, given, cx);
+  };
+  const t = theme();
+  return Popup.new(`record-context:${key}`, trigger
+    .on_mouse_down("right", (_event, cx) => { cx.stop_propagation(); open(cx); })
+    .on_key_down((event, cx) => {
+      if (event.key === "f10" && event.modifiers.shift || event.key === "contextmenu") { cx.stop_propagation(); open(cx); }
+    })).w_full().flex_none()
+    .when(shown, el => el.content(v_flex().id(`record-context-menu:${key}`).role("menu")
+      .accessibility_label(`Actions for ${row.record.title}`).w(320).max_h(480).overflow_y_scrollbar().p(6).gap(2).border_1().border_color(t.border).bg(t.popover)
+      .track_focus(view.actionFocus).tab_index(0)
+      .on_mouse_down_out((_event, cx) => close(cx))
+      .on_key_down((event, cx) => {
+        if (event.key === "escape" || event.key === "tab") { cx.stop_propagation(); close(cx); return; }
+        if (!enabled.length) return;
+        const index = Math.min(view.recordContextIndex ?? 0, enabled.length - 1);
+        if (event.key === "enter" || event.key === "space") { cx.stop_propagation(); choose(enabled[index], cx); return; }
+        if (!["up", "down", "home", "end"].includes(event.key)) return;
+        cx.stop_propagation();
+        view.recordContextIndex = event.key === "home" ? 0 : event.key === "end" ? enabled.length - 1 : (index + (event.key === "down" ? 1 : enabled.length - 1)) % enabled.length;
+        cx.notify();
+      })
+      .children(choices.length ? choices.map(choice => button(`context-action:${key}:${choice.action}`, choice.label, (_event, cx) => choose(choice, cx), {
+        disabled: view.actionBusy || Boolean(choice.disabledReason), label: `${choice.label}${choice.disabledReason ? `. ${choice.disabledReason}` : ""}`,
+      }).role("menu_item").tab_stop(false).w_full().bg(enabled[view.recordContextIndex ?? 0] === choice ? t.selected : t.popover).tooltip(choice.disabledReason ?? `Open ${choice.label} prompt`))
+        : [note(view.detailError || (view.detailLoading || !selected ? "Loading actions…" : "No actions available."), Boolean(view.detailError))])));
+}
+
 function openActionMenu(view, choice, given, cx, returnFocus) {
   if (view.actionBusy || !choice || choice.disabledReason) return;
   view.recordActionsOpen = null;
+  view.recordContextOpen = null;
   view.referenceOpen = null;
   const key = JSON.stringify([given.cwd, given.kind, given.id, choice.action]);
   let draft = view.actionDrafts.get(key);
-  if (!draft) { draft = { preset: 0, detail: "" }; view.actionDrafts.set(key, draft); }
+  if (!draft) { draft = { preset: 0, detail: "", destination: "pane" }; view.actionDrafts.set(key, draft); }
   view.actionOpen = { key, choice, given, draft, returnFocus };
   invalidateAction(view);
   view.actionError = ""; view.openSelect = null;
@@ -142,21 +193,38 @@ function actionMenuContent(view) {
     return div().id(`action-preset:${index}`).role("list_box_option").aria_selected(selected)
       .when(selected, el => el.aria_active_descendant()).child(row);
   });
-  return v_flex().id("action-prompt-menu").role("dialog").accessibility_label(`${open.choice.label}: preset and additional instruction`)
+  return v_flex().id("action-prompt-menu").role("dialog").accessibility_label(`${open.choice.label}: preset, launch destination and additional instruction`)
     .w(360).max_w("100%").max_h(500).overflow_y_scrollbar().rounded(0).border_1().border_color(t.border).bg(t.popover).text_color(t.foreground).text_size(13).font_family("JetBrains Mono")
     .on_mouse_down_out((_event, cx) => closeActionMenu(view, cx, false))
     .on_key_down((event, cx) => actionMenuKey(view, event, cx))
     .child(v_flex().p(12).gap(5)
-      .child(h_flex().gap(12).items_center().child(div().flex_1().font_semibold().child(open.choice.label)).child(div().text_size(10).text_color(t.muted).child("New pane ↗")))
+      .child(div().font_semibold().child(open.choice.label))
       .child(div().text_size(11).text_color(t.muted).child("Choose a preset, then add optional detail.")))
     .child(v_flex().role("list_box").accessibility_label(`${open.choice.label} presets`).track_focus(view.actionFocus).tab_index(0).px(6).pb(8).gap(2).children(rows))
+    .child(v_flex().px(12).pb(12).gap(6)
+      .child(div().text_size(11).text_color(t.muted).child("Open in"))
+      .child(h_flex().role("list_box").accessibility_label("Launch destination. Use left and right arrows to choose pane or tab.")
+        .track_focus(view.actionDestinationFocus).tab_index(0).gap(4)
+        .children(["pane", "tab"].map(destination => {
+          const selected = open.draft.destination === destination;
+          return div().flex_1().role("list_box_option").aria_selected(selected)
+            .when(selected, el => el.aria_active_descendant())
+            .child(button(`action-destination:${destination}`, `${selected ? "●" : "○"} New ${destination}`, (_event, cx) => {
+              if (view.actionBusy) return;
+              invalidateAction(view);
+              open.draft.destination = destination; view.actionDestinationFocus.focus(); cx.notify();
+            }, { disabled: view.actionBusy, label: `New ${destination}${selected ? ". Selected" : ""}` })
+              .tab_stop(false).w_full().bg(selected ? t.selected : t.raised)
+              .text_color(selected ? t.foreground : t.muted)
+              .border_1().border_color(view.actionDestinationFocus.is_focused() && selected ? t.accent : t.border));
+        }))))
     .child(v_flex().p(12).gap(8).border_t(1).border_color(t.border)
       .child(div().text_size(11).text_color(t.muted).child("Additional instruction · optional"))
       .child(Input.new(view.actionInput).h(32).disabled(view.actionBusy).accessibility_label("Additional instruction, optional").bg(t.input).border_1().border_color(t.border).rounded(0))
       .when(Boolean(view.actionError), el => el.child(note(view.actionError, true)))
       .child(h_flex().gap(8).justify_between()
         .child(button("cancel-action-prompt", "Cancel", (_event, cx) => closeActionMenu(view, cx), { disabled: view.actionBusy }).track_focus(view.actionCancelFocus).tab_index(0))
-        .child(button("launch-action-prompt", view.actionBusy ? "Starting…" : "Open new pane ↗", (_event, cx) => submitActionMenu(view, cx), { primary: true, disabled: view.actionBusy }).track_focus(view.actionLaunchFocus).tab_index(0))));
+        .child(button("launch-action-prompt", view.actionBusy ? "Starting…" : `Open new ${open.draft.destination} ↗`, (_event, cx) => submitActionMenu(view, cx), { primary: true, disabled: view.actionBusy }).track_focus(view.actionLaunchFocus).tab_index(0))));
 }
 
 function submitActionMenu(view, cx) {
@@ -164,8 +232,10 @@ function submitActionMenu(view, cx) {
   if (!open || view.actionBusy) return;
   open.draft.detail = view.actionInput.value();
   const prompt = actionPrompt(open.choice.action, open.draft.preset, open.draft.detail);
-  launchAction(view, { ...open.given, action: open.choice.action, prompt }, cx, () => {
+  launchAction(view, { ...open.given, action: open.choice.action, prompt, destination: open.draft.destination }, cx, () => {
     if (view.actionOpen === open) view.actionOpen = null;
+    open.draft.detail = "";
+    view.actionInput.set_value("");
   });
 }
 
@@ -175,15 +245,26 @@ function actionMenuKey(view, event, cx) {
   if (view.actionBusy) return;
   const draft = view.actionOpen.draft, presets = ACTION_PRESETS[view.actionOpen.choice.action];
   const cancel = view.actionCancelFocus.is_focused(), launch = view.actionLaunchFocus.is_focused();
+  const destination = view.actionDestinationFocus.is_focused();
   if (event.key === "tab") {
     cx.stop_propagation();
-    if (view.actionInputFocused) (event.modifiers.shift ? view.actionFocus : view.actionCancelFocus).focus();
+    if (view.actionInputFocused) (event.modifiers.shift ? view.actionDestinationFocus : view.actionCancelFocus).focus();
+    else if (destination) { if (event.modifiers.shift) view.actionFocus.focus(); else view.actionInput.focus(); }
     else if (cancel) { if (event.modifiers.shift) view.actionInput.focus(); else view.actionLaunchFocus.focus(); }
     else if (launch) { if (event.modifiers.shift) view.actionCancelFocus.focus(); else closeActionMenu(view, cx); }
-    else { if (event.modifiers.shift) view.actionLaunchFocus.focus(); else view.actionInput.focus(); }
+    else { if (event.modifiers.shift) view.actionLaunchFocus.focus(); else view.actionDestinationFocus.focus(); }
     return;
   }
   if (view.actionInputFocused) return;
+  if (destination) {
+    if (["left", "right", "up", "down", "home", "end"].includes(event.key)) {
+      cx.stop_propagation();
+      invalidateAction(view);
+      draft.destination = event.key === "home" ? "pane" : event.key === "end" ? "tab" : draft.destination === "pane" ? "tab" : "pane";
+      cx.notify();
+    } else if (["enter", "space"].includes(event.key)) cx.stop_propagation();
+    return;
+  }
   if (["enter", "space"].includes(event.key)) {
     cx.stop_propagation();
     if (cancel) closeActionMenu(view, cx);

@@ -16,7 +16,7 @@ import { initHeaderControls, clearHeaderControls, renderHeaderReason } from "./h
 import { initiativeProgress } from "./progress-model.js";
 import { initiativeProgressRow } from "./progress.js";
 import { workflowActivity } from "./activity-model.js";
-import { initActionMenus } from "./action-menu.js";
+import { initActionMenus, recordContextMenu } from "./action-menu.js";
 import { invalidateAction } from "./action.js";
 import { observeAgentLaunch } from "./agents.js";
 import { DEFAULT_FILTERS, restoreFilters } from "./filter-model.js";
@@ -138,6 +138,7 @@ export default class SharedContext extends View {
     this.recordTab = "description"; this.detailError = "";
     this.activity = workflowActivity(); this.activityFilter = "all";
     this.actionOpen = null; this.recordActionsOpen = null; this.actionError = "";
+    this.recordContextOpen = null;
     this.openSelect = null; this.selectKeyHandlers = null; this.filtersOpen = false; this.graphInitiative = null; this.graphViews = new Map();
     stopLoading(this);
     this.loading = false; this.error = ""; this.stale = false;
@@ -335,6 +336,7 @@ export default class SharedContext extends View {
 
 
   choose(record, kind, cx, reveal = true) {
+    this.recordContextOpen = null;
     if (this.drawer === "expanded" && this.selected?.id === record.id && reveal) return;
     const changed = this.selected?.id !== record.id || this.selected?.kind !== kind;
     if (changed) {
@@ -493,7 +495,7 @@ export default class SharedContext extends View {
         if (row.reference) revealPath(this.collapsed, row.reference);
         this.choose(row.record, group ? "initiative" : "ticket", cx);
       };
-      return h_flex().id(`tracker-row:${row.path}`).h(group ? 80 : 60).flex_none().pl(8 + row.depth * 18).pr(8).gap(8).items_center().rounded(0).bg(selected ? t.selected : t.background).hover(el => el.bg(selected ? t.selected : t.hover))
+      const trigger = h_flex().id(`tracker-row:${row.path}`).h(group ? 80 : 60).flex_none().pl(8 + row.depth * 18).pr(8).gap(8).items_center().rounded(0).bg(selected ? t.selected : t.background).hover(el => el.bg(selected ? t.selected : t.hover))
         .child(row.children ? button(`toggle:${row.path}`, "", (_event, cx) => { cx.stop_propagation(); if (disabled) return; if (this.collapsed.has(row.path)) this.collapsed.delete(row.path); else this.collapsed.add(row.path); this.remember(); cx.notify(); }, { label: `${row.expanded ? "Collapse" : "Expand"} ${row.record.title}`, disabled }).w(24).px(0).bg("#00000000").child(icon(row.expanded ? "down" : "right", 12)) : div().w(24).flex_none())
         .child(button(`select:${row.path}`, "", action, { label: `${type}: ${row.record.title}. ${row.record.id}. ${row.state ?? `${row.children} tickets`}${row.stale ? ". Stale mirror record. Sync the Jira mirror." : ""}${row.reference ? ". Shared initiative membership. Open canonical membership." : ""}${liveAgents.length ? `. Live agents: ${agentActivitySummary(liveAgents)}.` : ""}`, disabled, height: group ? 76 : 56 }).flex_1().min_w(0).px(0).bg("#00000000").hover(el => el.bg("#00000000")).text_color(t.foreground).tooltip(`${row.record.title}\n${row.record.id} · ${type}${row.state ? ` · ${row.state}` : ""}${row.stale ? " · stale: not in the last sync" : ""}${liveAgents.length ? `\nLive agents: ${agentActivitySummary(liveAgents)}` : ""}`)
           .child(v_flex().flex_1().min_w(0).gap(5)
@@ -505,6 +507,7 @@ export default class SharedContext extends View {
               .when(Boolean(row.reference), el => el.child(div().text_color(t.accent).child("↗"))))
             .when(group, el => el.child(v_flex().w_full().min_w(0).pl(23).child(initiativeProgressRow(this.progress.get(row.record.id), t))))))
         .when(group, el => el.child(button(`initiative-graph:${row.record.id}`, "⑂", (_event, cx) => { cx.stop_propagation(); this.openInitiativeGraph(row.record, cx); }, { label: `Open dependency graph for ${row.record.title}`, disabled }).w(28).px(0).text_color(typeColor("initiative", t)).tooltip("Initiative dependency graph")));
+      return recordContextMenu(this, row, trigger, disabled);
     });
     // Resizable panels do not stretch their child to the dragged width.
     return v_flex().id("tracker-tree-frame").w_full().min_w(0).min_h(0).h(height ?? "100%").bg(t.background)

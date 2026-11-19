@@ -12,6 +12,12 @@ export function dependencyRows(snapshot, filters, collapsed) {
   };
   const section = (id, title) => rows.push({ type: "section", record: { id, title }, path: `section:${id}`, depth: 0, expanded: true, children: 0 });
   const initiatives = filters.groupBy === "initiative" ? snapshot.initiatives.filter(item => !item.group) : [];
+  const completed = new Set(initiatives.filter(initiative => {
+    const members = [...new Set(initiative.ticketIds)].map(id => tickets.get(id));
+    const work = members.filter(ticket => !ticket || itemType(ticket) === "ticket");
+    return work.length > 0 && work.every(ticket => ticket && ticketDisplayState(ticket, snapshot.states?.[ticket.id]) === "DONE");
+  }).map(initiative => initiative.id));
+  initiatives.sort((a, b) => Number(completed.has(a.id)) - Number(completed.has(b.id)));
   const showEmptyInitiatives = STATUS_FILTERS.every(([key]) => filters[key]);
   for (const initiative of initiatives) {
     const members = [...new Set(initiative.ticketIds)].map(id => {
