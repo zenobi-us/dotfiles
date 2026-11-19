@@ -51,3 +51,12 @@ No unresolved implementation findings. Historical resource shutdown remains unco
 - [finish-ticket-completed-0016](../events/finish-ticket-completed-0016.yaml)
 - [finish-cleanup-pending-0017](../events/finish-cleanup-pending-0017.yaml)
 
+
+
+## Cleanup recovery 2026-11-19
+
+Approved cleanup-only recovery is recorded in [operator-approval-0018](../events/operator-approval-0018.yaml). [finish-cleanup-pending-0019](../events/finish-cleanup-pending-0019.yaml) preserves published acceptance and records the current cleanup blockers.
+
+The historical run manifest is missing. Its retained result provides no shutdown evidence. Worktrunk does not recognize the original source branch as an integrated prune candidate. No resource was removed and no integration was repeated.
+
+[Current cleanup observations](../artifacts/snapshots/cleanup-observed-0019.json) contain the actual resource, Worktrunk, desktop, remote and integration-ancestry checks. Candidate test results remain historical; they were not rerun during cleanup recovery.

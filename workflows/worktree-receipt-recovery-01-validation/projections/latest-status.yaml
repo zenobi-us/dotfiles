@@ -3,7 +3,7 @@
   "workflow_id": "worktree-receipt-recovery-01-validation",
   "ticket": "tracker/tickets/worktree-receipt-recovery-01-validation.md",
   "state": "CLEANUP_PENDING",
-  "latest_receipt": "finish-cleanup-pending-0017",
+  "latest_receipt": "finish-cleanup-pending-0019",
   "latest_source_commit": "ee446c94a7a8996cc6654688dbda5da46c512165",
   "latest_source_tree": "5d7d3ad8dc395803101d7036f03247026e0d9189",
   "latest_review_verdict": "SUCCESS",
@@ -25,7 +25,9 @@
     "workflows/worktree-receipt-recovery-01-validation/events/finish-merged-0014.yaml",
     "workflows/worktree-receipt-recovery-01-validation/events/finish-pushed-0015.yaml",
     "workflows/worktree-receipt-recovery-01-validation/events/finish-ticket-completed-0016.yaml",
-    "workflows/worktree-receipt-recovery-01-validation/events/finish-cleanup-pending-0017.yaml"
+    "workflows/worktree-receipt-recovery-01-validation/events/finish-cleanup-pending-0017.yaml",
+    "workflows/worktree-receipt-recovery-01-validation/events/operator-approval-0018.yaml",
+    "workflows/worktree-receipt-recovery-01-validation/events/finish-cleanup-pending-0019.yaml"
   ],
   "merged_commit": "3be33fca691eeecfa113c9c1efbd7918b29e5078",
   "integration_method": "squash",
