@@ -10,7 +10,8 @@ import { loadExplorerSnapshot, loadTicketWorkflow } from "./workflow";
 import { recoveryDecision } from "./recovery";
 import { inspectWorkflow } from "./inspection";
 import type { Exec, SharedAgentContext } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
-import type { ExplorerTicket, TicketWorkflow } from "../../../../../agent-core/extensions/pi-shared-context/model";
+import type { TicketRecord } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/model";
+import type { TicketWorkflow } from "./model";
 import { prepareIntegration } from "./integration";
 
 const directories: string[] = [];
@@ -45,7 +46,7 @@ async function fixture() {
     layout: { tracker: "tracker", tickets: "tracker/tickets", initiatives: "tracker/initiatives", sources: "sources" },
     routes: { alignment: { adapter: "markdown", store: "repository" }, tickets: { adapter: "local-markdown", store: "repository" }, initiatives: { adapter: "markdown", store: "repository" }, workflows: { adapter: "files", store: "repository" }, evidence: { adapter: "files", inherits: "workflows" }, sources: { adapter: "files", inherits: "alignment" } },
   };
-  const ticket: ExplorerTicket = { id: "T-1", title: "Recover ticket", ref: "tracker/tickets/T-1.md", backend: "local-markdown", status: "open", blockedBy: [], body: "" };
+  const ticket: TicketRecord = { id: "T-1", title: "Recover ticket", ref: "tracker/tickets/T-1.md", backend: "local-markdown", status: "open", blockedBy: [], body: "" };
   return { root, context, ticket };
 }
 

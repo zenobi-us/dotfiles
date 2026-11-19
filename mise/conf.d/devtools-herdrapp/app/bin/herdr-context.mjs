@@ -808,8 +808,8 @@ Migrate each record kind explicitly, then retry.`);
 }
 
 // ../devtools-agent/bundles/developer/skills/git/worktree/scripts/workflow.ts
-import { lstat as lstat2, realpath as realpath3, stat as stat3 } from "fs/promises";
-import { basename as basename2, dirname as dirname2, isAbsolute as isAbsolute4, join as join2, relative as relative3, resolve as resolve3 } from "path";
+import { lstat as lstat2, realpath as realpath4, stat as stat3 } from "fs/promises";
+import { basename as basename2, dirname as dirname2, isAbsolute as isAbsolute5, join as join2, relative as relative3, resolve as resolve3 } from "path";
 import { fileURLToPath as fileURLToPath2 } from "url";
 
 // ../devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/record-schema.ts
@@ -1839,6 +1839,109 @@ async function inspectReceiptDiagnostics(entries, repository, exec) {
   return diagnostics;
 }
 
+// ../devtools-agent/bundles/developer/skills/git/worktree/scripts/receipt-validation.ts
+import { realpath as realpath3 } from "fs/promises";
+import { isAbsolute as isAbsolute4 } from "path";
+function validateReceipt(fields) {
+  validateReceiptContract(fields);
+  for (const key of ["receipt_id", "workflow_id", "phase", "repository", "source_branch", "base_branch", "muxer", "agent", "ticket_ref"])
+    text(fields[key], "receipt " + key);
+  if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(String(fields.receipt_id)))
+    throw new Error("The receipt ID must be a safe event filename");
+  if (!isAbsolute4(String(fields.repository)))
+    throw new Error("Receipt repository must be absolute.");
+  validateSourcePaths(fields);
+  const ticket = object2(fields.ticket, "receipt ticket");
+  for (const key of ["backend", "id", "ref"])
+    text(ticket[key], "receipt ticket " + key);
+  if (ticket.ref !== fields.ticket_ref)
+    throw new Error("The ticket reference fields disagree");
+  const workflow = object2(fields.workflow, "receipt workflow");
+  for (const key of ["store", "root", "ref"])
+    text(workflow[key], "receipt workflow " + key);
+  const status = text(fields.status, "receipt status");
+  const phase = receiptPhase({ phase: String(fields.phase) });
+  const event = receiptEvent({ phase: String(fields.phase), fields });
+  const started = ["phase-start", "phase-input-ready", "phase-checkpoint"].includes(event ?? "") && (status === "started" || event === "phase-start" && phase === "finish" && status === "RUNNING");
+  const operatorEvent = event === "operator-approval" || event === "operator-decision-required";
+  const approved = event === "operator-approval" && status === "approved";
+  const prepared = ["source-once-inputs-prepared", "bounded-review-inputs-prepared"].includes(event ?? "") && status === "prepared";
+  const finishing = phase === "finish" && status === "FINISHING";
+  if (!started && !approved && !prepared && !finishing && !["completed", "failed", "blocked", "FINISHED", "FINISH_FAILED"].includes(status))
+    throw new Error("Receipt status is not a supported phase result or lifecycle state.");
+  if ((started || approved || prepared || operatorEvent) && fields.verdict != null)
+    throw new Error("Lifecycle and operator records cannot carry a review verdict.");
+  if (fields.verdict != null && !["SUCCESS", "FAILURE"].includes(String(fields.verdict)))
+    throw new Error("Receipt verdict must be SUCCESS or FAILURE.");
+  if (phase === "review" && event === "phase-result" && status === "completed" && !["SUCCESS", "FAILURE"].includes(String(fields.verdict)))
+    throw new Error("A completed review requires a SUCCESS or FAILURE verdict.");
+  if (!Number.isInteger(fields.attempt) || Number(fields.attempt) < (operatorEvent ? 0 : 1))
+    throw new Error(operatorEvent ? "Receipt attempt must be a non-negative integer for an operator decision." : "Receipt attempt must be a positive integer.");
+  const parentControl = (event === "phase-complete" || operatorEvent) && typeof fields.session_id === "string" && fields.session_id.trim() !== "";
+  if (!((phase === "finish" || event === "phase-start" || parentControl) && fields.pane_id === null) && typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string")
+    throw new Error("Receipt pane_id is required.");
+  if (fields.evidence != null) {
+    const evidence = object2(fields.evidence, "receipt evidence");
+    text(evidence.store, "receipt evidence store");
+    text(evidence.ref, "receipt evidence ref");
+  }
+  references(fields.inputs, "receipt inputs");
+  const outputs = references(fields.outputs, "receipt outputs");
+  const createdAt = text(fields.created_at, "receipt created_at");
+  if (!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?(?:Z|[+-]\d\d:\d\d)$/.test(createdAt) || !Number.isFinite(Date.parse(createdAt)))
+    throw new Error("Receipt created_at must be an ISO timestamp with a timezone.");
+  if (!Object.hasOwn(fields, "parent_receipt") || !Object.hasOwn(fields, "session_id"))
+    throw new Error("Receipt parent_receipt and session_id are required; use null when absent.");
+  const parentReceipt = fields.parent_receipt == null ? undefined : text(fields.parent_receipt, "receipt parent_receipt");
+  if (fields.session_id != null)
+    text(fields.session_id, "receipt session_id");
+  for (const key of ["source_commit", "source_tree"])
+    if (!/^(?:[a-f0-9]{40}|[a-f0-9]{64})$/.test(text(fields[key], "receipt " + key)))
+      throw new Error("Receipt " + key + " must be a full Git object ID.");
+  return { status, phase, outputs, createdAt, parentReceipt };
+}
+function validateSourcePaths(fields) {
+  const path = text(fields.worktree, "receipt worktree");
+  if (!isAbsolute4(path) || fields.worktree !== path || fields.workspace_path !== path)
+    throw new Error("Receipt worktree and workspace_path must name the same absolute worktree.");
+  return path;
+}
+async function validateSourceWorktree(fields, exec, allowRemoved = false) {
+  const path = validateSourcePaths(fields);
+  let sourceRoot;
+  try {
+    sourceRoot = await realpath3(path);
+  } catch (error) {
+    if (allowRemoved && error.code === "ENOENT")
+      return;
+    throw error;
+  }
+  const result = await exec("git", ["-C", path, "rev-parse", "--show-toplevel"]);
+  if (result.code !== 0)
+    throw new Error("Receipt source worktree root is unavailable.");
+  if (await realpath3(result.stdout.trim()) !== sourceRoot)
+    throw new Error("Receipt source path must identify the worktree root.");
+}
+function text(value, label) {
+  if (typeof value !== "string" || !value.trim())
+    throw new Error(label + " must be a non-empty string.");
+  return value.trim();
+}
+function object2(value, label) {
+  if (!value || typeof value !== "object" || Array.isArray(value))
+    throw new Error(label + " must be an object.");
+  return value;
+}
+function references(value, label) {
+  if (!Array.isArray(value))
+    throw new Error(label + " must be a list.");
+  return value.map((entry) => {
+    const reference = object2(entry, label);
+    text(reference.kind, label + " kind");
+    return text(reference.ref, label + " ref");
+  });
+}
+
 // ../devtools-agent/bundles/developer/skills/git/worktree/scripts/workflow.ts
 async function loadExplorerSnapshot(context, exec, scope, diagnostics, onProgress) {
   if (context.error)
@@ -1859,7 +1962,7 @@ async function loadExplorerSnapshot(context, exec, scope, diagnostics, onProgres
       localDefinition = { file: definition, root: alignment.path };
     else {
       config = (await session.read(definition, alignment.path)).fields;
-      backend = text(config.backend, "tracker backend");
+      backend = text2(config.backend, "tracker backend");
       if (backend !== context.routes.tickets.adapter)
         throw new Error("Tracker backend disagrees with the resolved tickets route. Update the tracker definition or route configuration.");
     }
@@ -1871,9 +1974,9 @@ async function loadExplorerSnapshot(context, exec, scope, diagnostics, onProgres
   const known = new Set(snapshot.tickets.map((ticket) => ticket.id));
   const unmirrored = snapshot.backend === "jira" ? snapshot.tickets.flatMap((ticket) => ticket.blockedBy.filter((id) => !known.has(id)).map((blocker) => ({ ticket, blocker }))) : [];
   const relations = unmirrored.length ? snapshot.tickets.map((ticket) => ({ ...ticket, blockedBy: ticket.blockedBy.filter((id) => known.has(id)) })) : snapshot.tickets;
-  if (!diagnostics)
+  if (!diagnostics && !scope)
     validateRelations(relations, "ticket blocker");
-  else {
+  else if (diagnostics) {
     const byId = new Map;
     for (const ticket of relations) {
       const existing = byId.get(ticket.id);
@@ -1915,6 +2018,10 @@ async function loadExplorerSnapshot(context, exec, scope, diagnostics, onProgres
   snapshot.initiatives.push({ id: groupId, title: "Ungrouped", ref: collectionRef, ticketIds: unassigned, rootTicketIds: [...unassigned], body: "Records without an assigned initiative.", group: true });
   await session.validate();
   const result = scope ? scopedSnapshot(snapshot, scope) : snapshot;
+  if (!diagnostics && scope) {
+    const scoped = new Set(result.tickets.map((ticket) => ticket.id));
+    validateRelations(relations.filter((ticket) => scoped.has(ticket.id)), "ticket blocker");
+  }
   for (const { ticket, blocker } of unmirrored) {
     if (!result.tickets.includes(ticket))
       continue;
@@ -1943,7 +2050,7 @@ async function loadExplorerAdrs(context, exec) {
     if (record.path !== file)
       throw new Error("ADR identity does not match its resolved alignment record.");
     const doc = documents.get(file);
-    records.push({ id, title: doc.fields.title == null ? basename2(file, ".md") : text(doc.fields.title, "ADR title"), ref: record.ref, backend: "local-markdown", documentType: "adr", fields: { ...doc.fields, record_kind: "adr" }, status: doc.fields.status == null ? "unavailable" : text(doc.fields.status, "ADR status"), blockedBy: [], body: doc.body });
+    records.push({ id, title: doc.fields.title == null ? basename2(file, ".md") : text2(doc.fields.title, "ADR title"), ref: record.ref, backend: "local-markdown", documentType: "adr", fields: { ...doc.fields, record_kind: "adr" }, status: doc.fields.status == null ? "unavailable" : text2(doc.fields.status, "ADR status"), blockedBy: [], body: doc.body });
   }
   await session.validate();
   return records;
@@ -2029,7 +2136,7 @@ async function loadWorkflowHistory(context, ticket, exec, session, options) {
           const git = await exec("git", ["-C", key, "rev-parse", "--path-format=absolute", "--git-common-dir"]);
           if (git.code !== 0 || !git.stdout.trim())
             return;
-          return realpath3(git.stdout.trim());
+          return realpath4(git.stdout.trim());
         })();
         repositoryIdentities.set(key, identity);
       }
@@ -2037,10 +2144,12 @@ async function loadWorkflowHistory(context, ticket, exec, session, options) {
     };
     const supplements = await historySupplements(documents, { root: record.root, ref: record.ref }, context, workflowId, session);
     const envelopes = [];
+    const validationCodes = new Map;
     for (const file of eventFiles) {
       const ref = `${record.ref}/events/${relative3(events, file).split("\\").join("/")}`;
       const event = { id: ref, ref };
       result.events.push(event);
+      let validationCode = "invalid_receipt";
       try {
         if (readErrors.has(file))
           throw readErrors.get(file);
@@ -2052,14 +2161,13 @@ async function loadWorkflowHistory(context, ticket, exec, session, options) {
         validateReceiptContract(fields);
         if (fields.workflow_id !== workflowId)
           throw new Error("Receipt workflow_id does not match the selected ticket.");
-        const identity = object2(fields.ticket, "receipt ticket");
+        const identity = object3(fields.ticket, "receipt ticket");
         if (String(identity.id) !== ticket.id || identity.backend !== ticket.backend || identity.ref !== ticket.ref || fields.ticket_ref !== ticket.ref)
           throw new Error("Receipt ticket identity or ref does not match the selected ticket.");
-        const workflow = object2(fields.workflow, "receipt workflow");
-        const repository = text(fields.repository, "receipt repository");
-        const workspacePath = text(fields.worktree, "receipt worktree");
-        if (!isAbsolute4(workspacePath) || fields.workspace_path !== workspacePath)
-          throw new Error("Receipt worktree and workspace_path must name the same absolute worktree.");
+        const workflow = object3(fields.workflow, "receipt workflow");
+        validationCode = "path_inconsistency";
+        const repository = text2(fields.repository, "receipt repository");
+        const workspacePath = validateSourcePaths(fields);
         const historicalWorktree = archive && workflow.store === "repository" && repository === workspacePath;
         let linkedWorkflowRoot = false;
         if (workflow.store === "repository" && record.store === "repository" && (workflow.root === workspacePath || workflow.root === repository) && workflow.root !== record.root) {
@@ -2068,73 +2176,46 @@ async function loadWorkflowHistory(context, ticket, exec, session, options) {
         }
         for (const field of ["ref", "store", "root"]) {
           if (workflow[field] !== record[field] && !(field === "root" && (historicalWorktree && workflow.root === workspacePath || linkedWorkflowRoot))) {
-            if (field === "root" && typeof workflow.root === "string" && isAbsolute4(workflow.root) && !await exists3(workflow.root))
+            if (field === "root" && typeof workflow.root === "string" && isAbsolute5(workflow.root) && !await exists3(workflow.root))
               throw new Error("[historical_root_unavailable] Receipt workflow.root is unavailable; establish its repository identity before repairing the historical storage reference.");
             throw new Error(`Receipt workflow.${field} does not match the resolved workflow${field === "root" ? " store root (not the workflow directory)" : ""}.`);
           }
         }
-        if (!isAbsolute4(repository))
+        if (!isAbsolute5(repository))
           throw new Error("Receipt repository does not match the current repository.");
         if (resolve3(repository) !== resolve3(context.repositoryRoot) && !historicalWorktree) {
           const [recordedIdentity, currentIdentity] = await Promise.all([repositoryIdentity(repository), repositoryIdentity(context.repositoryRoot)]);
           if (!recordedIdentity || recordedIdentity !== currentIdentity)
             throw new Error("Receipt repository does not match the current repository.");
         }
-        const status = text(fields.status, "receipt status");
-        const phase = receiptPhase({ phase: text(fields.phase, "receipt phase") });
-        const lifecycleEvent = receiptEvent({ phase: String(fields.phase), fields });
-        const started = ["phase-start", "phase-input-ready", "phase-checkpoint"].includes(lifecycleEvent ?? "") && (status === "started" || lifecycleEvent === "phase-start" && phase === "finish" && status === "RUNNING");
-        const operatorEvent = lifecycleEvent === "operator-approval" || lifecycleEvent === "operator-decision-required";
-        const approved = lifecycleEvent === "operator-approval" && status === "approved";
-        const prepared = ["source-once-inputs-prepared", "bounded-review-inputs-prepared"].includes(lifecycleEvent ?? "") && status === "prepared";
-        const finishing = phase === "finish" && status === "FINISHING";
-        if (!started && !approved && !prepared && !finishing && !["completed", "failed", "blocked", "FINISHED", "FINISH_FAILED"].includes(status))
-          throw new Error("Receipt status is not a supported phase result or lifecycle state.");
-        if ((started || approved || prepared || operatorEvent) && fields.verdict != null)
-          throw new Error("Lifecycle and operator records cannot carry a review verdict.");
-        if (fields.verdict != null && !["SUCCESS", "FAILURE"].includes(String(fields.verdict)))
-          throw new Error("Receipt verdict must be SUCCESS or FAILURE.");
-        if (!Number.isInteger(fields.attempt) || Number(fields.attempt) < (operatorEvent ? 0 : 1))
-          throw new Error(operatorEvent ? "Receipt attempt must be a non-negative integer for an operator decision." : "Receipt attempt must be a positive integer.");
-        text(fields.muxer, "receipt muxer");
-        text(fields.agent, "receipt agent");
-        const parentControl = (lifecycleEvent === "phase-complete" || operatorEvent) && typeof fields.session_id === "string" && fields.session_id.trim() !== "";
-        if (!((phase === "finish" || lifecycleEvent === "phase-start" || parentControl) && fields.pane_id === null) && typeof fields.pane_id !== "number" && typeof fields.pane_id !== "string")
-          throw new Error("Receipt pane_id is required.");
-        if (fields.evidence != null) {
-          const evidence = object2(fields.evidence, "receipt evidence");
-          text(evidence.store, "receipt evidence store");
-          text(evidence.ref, "receipt evidence ref");
+        validationCode = "invalid_receipt";
+        const { status, outputs, createdAt, parentReceipt } = validateReceipt(fields);
+        if (await exists3(workspacePath)) {
+          validationCode = "path_inconsistency";
+          await validateSourceWorktree(fields, exec);
         }
-        references(fields.inputs, "receipt inputs");
-        const outputs = references(fields.outputs, "receipt outputs");
-        const createdAt = text(fields.created_at, "receipt created_at");
-        if (!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?(?:Z|[+-]\d\d:\d\d)$/.test(createdAt) || !Number.isFinite(Date.parse(createdAt)))
-          throw new Error("Receipt created_at must be an ISO timestamp with a timezone.");
-        if (!Object.hasOwn(fields, "parent_receipt") || !Object.hasOwn(fields, "session_id"))
-          throw new Error("Receipt parent_receipt and session_id are required; use null when absent.");
-        const parentReceipt = fields.parent_receipt == null ? undefined : text(fields.parent_receipt, "receipt parent_receipt");
         result.receipts.push({
-          id: text(fields.receipt_id, "receipt receipt_id"),
+          id: text2(fields.receipt_id, "receipt receipt_id"),
           ref,
           workflowId,
-          phase: text(fields.phase, "receipt phase"),
+          phase: text2(fields.phase, "receipt phase"),
           status,
           parentReceipt,
           sourceCommit: hash(fields.source_commit, "receipt source_commit"),
           sourceTree: hash(fields.source_tree, "receipt source_tree"),
           createdAt,
           workspacePath,
-          sourceBranch: text(fields.source_branch, "receipt source_branch"),
-          baseBranch: text(fields.base_branch, "receipt base_branch"),
-          sessionId: fields.session_id == null ? undefined : text(fields.session_id, "receipt session_id"),
-          verdict: fields.verdict == null ? undefined : text(fields.verdict, "receipt verdict"),
+          sourceBranch: text2(fields.source_branch, "receipt source_branch"),
+          baseBranch: text2(fields.base_branch, "receipt base_branch"),
+          sessionId: fields.session_id == null ? undefined : text2(fields.session_id, "receipt session_id"),
+          verdict: fields.verdict == null ? undefined : text2(fields.verdict, "receipt verdict"),
           outputs,
           fields,
           body: doc.body
         });
       } catch (error) {
         event.error = error instanceof Error ? error.message : String(error);
+        validationCodes.set(event.ref, validationCode);
       }
     }
     result.events.sort((left, right) => {
@@ -2146,7 +2227,7 @@ async function loadWorkflowHistory(context, ticket, exec, session, options) {
     const diagnostics = await inspectReceiptDiagnostics(envelopes, options ? undefined : context.repositoryRoot, options ? undefined : exec);
     for (const event of result.events) {
       if (event.error)
-        diagnostics.push({ ref: event.ref, code: event.error.startsWith("[historical_root_unavailable]") ? "historical_root_unavailable" : "invalid_receipt", severity: "error", message: event.error });
+        diagnostics.push({ ref: event.ref, code: event.error.startsWith("[historical_root_unavailable]") ? "historical_root_unavailable" : validationCodes.get(event.ref) ?? "invalid_receipt", severity: "error", message: event.error });
       const issues = diagnostics.filter((issue) => issue.ref === event.ref && issue.severity === "error");
       if (issues.length)
         event.error = issues.map((issue) => `[${issue.code}] ${issue.message.replace(/^\[historical_root_unavailable\] /, "")}`).join(`
@@ -2214,14 +2295,14 @@ async function historySupplements(documents, record, context, workflowId, sessio
   for (const [holder, doc] of documents) {
     if (doc.fields.history_supplements == null)
       continue;
-    text(doc.fields.history_repair_reason, "history repair reason");
-    text(doc.fields.history_repair_authorization, "history repair authorization");
-    const inputs = references(doc.fields.inputs, "history repair inputs");
+    text2(doc.fields.history_repair_reason, "history repair reason");
+    text2(doc.fields.history_repair_authorization, "history repair authorization");
+    const inputs = references2(doc.fields.inputs, "history repair inputs");
     for (const value of list(doc.fields.history_supplements, "history supplements")) {
-      const supplement = object2(value, "history supplement");
+      const supplement = object3(value, "history supplement");
       if (Object.keys(supplement).some((key) => !["ref", "sha256", "evidence", "normalize_workflow_root", "normalize_finish_workspace", "input_refs"].includes(key)))
         throw new Error("History supplements may only repair missing evidence, workflow roots, historical finish workspaces or absent input refs.");
-      const ref = text(supplement.ref, "history supplement ref");
+      const ref = text2(supplement.ref, "history supplement ref");
       const file = join2(record.root, ref);
       const original = documents.get(file);
       if (!original || file === holder || !inputs.includes(ref))
@@ -2237,9 +2318,9 @@ async function historySupplements(documents, record, context, workflowId, sessio
       if (supplement.evidence != null) {
         if (fields.evidence != null)
           throw new Error("History supplements cannot replace existing evidence.");
-        const evidence = object2(supplement.evidence, "supplement evidence");
-        const evidenceRef = text(evidence.ref, "supplement evidence ref");
-        if (evidence.store !== evidenceRoot.store || !evidenceRoot.root || !evidenceRoot.path || isAbsolute4(evidenceRef))
+        const evidence = object3(supplement.evidence, "supplement evidence");
+        const evidenceRef = text2(evidence.ref, "supplement evidence ref");
+        if (evidence.store !== evidenceRoot.store || !evidenceRoot.root || !evidenceRoot.path || isAbsolute5(evidenceRef))
           throw new Error("Supplement evidence must use the resolved evidence store and a relative ref.");
         await contained2(dirname2(evidenceRoot.path), join2(evidenceRoot.root, evidenceRef));
         fields.evidence = evidence;
@@ -2247,13 +2328,13 @@ async function historySupplements(documents, record, context, workflowId, sessio
       if (supplement.normalize_workflow_root != null) {
         if (supplement.normalize_workflow_root !== true)
           throw new Error("normalize_workflow_root must be true.");
-        const workflow = object2(fields.workflow, "historical workflow");
+        const workflow = object3(fields.workflow, "historical workflow");
         if (workflow.store !== "repository" || workflow.ref !== record.ref || workflow.root !== fields.worktree || workflow.root === record.root || fields.repository !== context.repositoryRoot)
           throw new Error("Only a historical repository-worktree workflow root can be normalized.");
         fields.workflow = { ...workflow, root: record.root };
       }
       if (supplement.normalize_finish_workspace != null) {
-        if (supplement.normalize_finish_workspace !== true || fields.schema !== "worktree-receipt/v1" || fields.phase !== "finish" || !isAbsolute4(String(fields.worktree)) || fields.worktree === fields.repository || fields.workspace_path !== fields.repository || fields.source_workspace_path !== fields.worktree) {
+        if (supplement.normalize_finish_workspace !== true || fields.schema !== "worktree-receipt/v1" || fields.phase !== "finish" || !isAbsolute5(String(fields.worktree)) || fields.worktree === fields.repository || fields.workspace_path !== fields.repository || fields.source_workspace_path !== fields.worktree) {
           throw new Error("Only a historical v1 finish with a recorded parent checkout and matching source_workspace_path can normalize its workspace.");
         }
         fields.workspace_path = fields.worktree;
@@ -2262,9 +2343,9 @@ async function historySupplements(documents, record, context, workflowId, sessio
         const repairs = list(supplement.input_refs, "supplement input refs");
         if (!repairs.length)
           throw new Error("Supplement input refs must not be empty.");
-        const patched = list(fields.inputs, "historical inputs").map((value) => ({ ...object2(value, "historical input") }));
+        const patched = list(fields.inputs, "historical inputs").map((value) => ({ ...object3(value, "historical input") }));
         for (const value of repairs) {
-          const repair = object2(value, "supplement input ref");
+          const repair = object3(value, "supplement input ref");
           if (Object.keys(repair).some((key) => !["index", "ref"].includes(key)))
             throw new Error("Input ref supplements may only supply an index and ref.");
           const index = repair.index;
@@ -2273,9 +2354,9 @@ async function historySupplements(documents, record, context, workflowId, sessio
           const input = patched[index];
           if ("ref" in input)
             throw new Error("Input ref supplements cannot replace an existing ref.");
-          text(input.kind, "historical input kind");
-          const inputRef = text(repair.ref, "supplement input ref");
-          if (isAbsolute4(inputRef) || !inputs.includes(inputRef))
+          text2(input.kind, "historical input kind");
+          const inputRef = text2(repair.ref, "supplement input ref");
+          if (isAbsolute5(inputRef) || !inputs.includes(inputRef))
             throw new Error("Supplement input refs must be relative artifacts listed in the repair inputs.");
           const artifact = await contained2(join2(record.root, record.ref, "artifacts"), join2(record.root, inputRef));
           if (!(await stat3(artifact)).isFile())
@@ -2304,7 +2385,7 @@ async function localSnapshot(context, session, definition, diagnostics, onProgre
     throw errors.values().next().value;
   if (definition && errors.has(definition.file))
     throw errors.get(definition.file);
-  if (definition && text(documents.get(definition.file).fields.backend, "tracker backend") !== context.routes.tickets.adapter)
+  if (definition && text2(documents.get(definition.file).fields.backend, "tracker backend") !== context.routes.tickets.adapter)
     throw new Error("Tracker backend disagrees with the resolved tickets route. Update the tracker definition or route configuration.");
   const tickets = [];
   const paths = new Map;
@@ -2317,9 +2398,9 @@ async function localSnapshot(context, session, definition, diagnostics, onProgre
       const doc = documents.get(file);
       assertRecord(doc.fields, "ticket", { allowLegacy: true, expectedId: basename2(file, ".md") });
       const id = scalar(doc.fields.id, "ticket id");
-      const documentType = doc.fields.type == null ? undefined : text(doc.fields.type, "ticket type");
+      const documentType = doc.fields.type == null ? undefined : text2(doc.fields.type, "ticket type");
       const parent = doc.fields.parent == null ? undefined : scalar(doc.fields.parent, "ticket parent");
-      const ticket = { id, title: text(doc.fields.title, "ticket title"), documentType, fields: doc.fields, ref, backend: "local-markdown", status: doc.fields.work_status == null ? doc.fields.status == null ? "unavailable" : text(doc.fields.status, "record status") : text(doc.fields.work_status, "ticket work_status"), blockedBy: list(doc.fields.blocked_by ?? [], "ticket blocked_by").map((value) => scalar(value, "ticket blocker")), body: doc.body };
+      const ticket = { id, title: text2(doc.fields.title, "ticket title"), documentType, fields: doc.fields, ref, backend: "local-markdown", status: doc.fields.work_status == null ? doc.fields.status == null ? "unavailable" : text2(doc.fields.status, "record status") : text2(doc.fields.work_status, "ticket work_status"), blockedBy: list(doc.fields.blocked_by ?? [], "ticket blocked_by").map((value) => scalar(value, "ticket blocker")), body: doc.body };
       paths.set(session.actual(file), id);
       if (parent)
         parents.set(id, parent);
@@ -2344,7 +2425,7 @@ async function localSnapshot(context, session, definition, diagnostics, onProgre
       assertRecord(doc.fields, "initiative", { allowLegacy: true, expectedId: id });
       const ticketIds = [];
       for (const rawLink of doc.links) {
-        const url = text(object2(rawLink, "initiative link").url, "initiative link URL");
+        const url = text2(object3(rawLink, "initiative link").url, "initiative link URL");
         if (url.startsWith("#") || url.startsWith("//") || /^[A-Za-z][A-Za-z0-9+.-]*:/.test(url) && !url.startsWith("file:"))
           continue;
         const target = url.startsWith("file:") ? fileURLToPath2(new URL(url)) : resolve3(dirname2(file), decodeURIComponent(url.split(/[?#]/, 1)[0]));
@@ -2354,7 +2435,7 @@ async function localSnapshot(context, session, definition, diagnostics, onProgre
           continue;
         try {
           await contained2(ticketsRecord.path, target);
-          const linkedId = paths.get(await realpath3(target));
+          const linkedId = paths.get(await realpath4(target));
           if (!linkedId)
             throw new Error("Initiative links to a missing or unknown ticket.");
           ticketIds.push(linkedId);
@@ -2372,7 +2453,7 @@ async function localSnapshot(context, session, definition, diagnostics, onProgre
           diagnostics.push({ ref, error: errors.join(" ") });
         }
       }
-      initiatives.push({ id, title: doc.fields.title == null ? id : text(doc.fields.title, "initiative title"), ref, ticketIds: [...new Set(ticketIds)], rootTicketIds: [...new Set(ticketIds)], body: doc.body, ...typeof doc.fields.phase === "string" && doc.fields.phase.trim() ? { phase: doc.fields.phase } : {} });
+      initiatives.push({ id, title: doc.fields.title == null ? id : text2(doc.fields.title, "initiative title"), ref, ticketIds: [...new Set(ticketIds)], rootTicketIds: [...new Set(ticketIds)], body: doc.body, ...typeof doc.fields.phase === "string" && doc.fields.phase.trim() ? { phase: doc.fields.phase } : {} });
     } catch (error) {
       if (!diagnostics)
         throw error;
@@ -2422,7 +2503,7 @@ async function githubSnapshot(context, exec, scope) {
   const initiatives = new Map;
   const parents = new Map;
   const childrenById = new Map;
-  const pending = scope ? [selectedId] : (await pages(exec, `repos/${repository}/issues?state=all&per_page=100`)).filter((value) => !object2(value, "GitHub issue").pull_request).map((value) => issueNumber(object2(value, "GitHub issue").number));
+  const pending = scope ? [selectedId] : (await pages(exec, `repos/${repository}/issues?state=all&per_page=100`)).filter((value) => !object3(value, "GitHub issue").pull_request).map((value) => issueNumber(object3(value, "GitHub issue").number));
   while (pending.length) {
     const id = pending.shift();
     const existing = tickets.get(id);
@@ -2430,7 +2511,7 @@ async function githubSnapshot(context, exec, scope) {
     if (existing && (!expandChildren || childrenById.has(id)))
       continue;
     const related = async (endpoint) => (await pages(exec, `repos/${repository}/issues/${id}/${endpoint}?per_page=100`)).map((value) => {
-      const relation = object2(value, "GitHub issue relationship");
+      const relation = object3(value, "GitHub issue relationship");
       const number = issueNumber(relation.number);
       if (relation.html_url !== `${base}${number}`)
         throw new Error("GitHub relationship refers to an unsupported cross-repository or noncanonical issue.");
@@ -2452,18 +2533,18 @@ async function githubSnapshot(context, exec, scope) {
       pending.push(...children);
       continue;
     }
-    const issue = object2(JSON.parse(await run4(exec, "gh", ["issue", "view", id, "--repo", repository, "--json", "number,title,body,state,labels,issueType,parent"])), "GitHub issue");
+    const issue = object3(JSON.parse(await run4(exec, "gh", ["issue", "view", id, "--repo", repository, "--json", "number,title,body,state,labels,issueType,parent"])), "GitHub issue");
     if (issueNumber(issue.number) !== id)
       throw new Error("GitHub returned a different issue identity.");
-    const title = text(issue.title, "GitHub issue title");
+    const title = text2(issue.title, "GitHub issue title");
     const body = string(issue.body, "GitHub issue body");
-    const labels = list(issue.labels, "GitHub labels").map((value) => text(object2(value, "GitHub label").name, "GitHub label name"));
-    const type = issue.issueType == null ? undefined : text(object2(issue.issueType, "GitHub issue type").name, "GitHub issue type name");
-    tickets.set(id, { id, title, documentType: type, fields: { labels }, ref: `${base}${id}`, backend: "github", status: text(issue.state, "GitHub issue state"), blockedBy, body });
+    const labels = list(issue.labels, "GitHub labels").map((value) => text2(object3(value, "GitHub label").name, "GitHub label name"));
+    const type = issue.issueType == null ? undefined : text2(object3(issue.issueType, "GitHub issue type").name, "GitHub issue type name");
+    tickets.set(id, { id, title, documentType: type, fields: { labels }, ref: `${base}${id}`, backend: "github", status: text2(issue.state, "GitHub issue state"), blockedBy, body });
     if (labels.includes("wayfinder:map") || type?.toLowerCase() === "spec")
       initiatives.set(id, { id, title, ref: `${base}${id}`, ticketIds: [...children], rootTicketIds: children, body });
     if (issue.parent != null) {
-      const parent = object2(issue.parent, "GitHub parent");
+      const parent = object3(issue.parent, "GitHub parent");
       const parentId = issueNumber(parent.number);
       if (parent.url !== undefined && parent.url !== `${base}${parentId}`)
         throw new Error("GitHub parent belongs to another repository.");
@@ -2491,7 +2572,7 @@ async function jiraSnapshot(context, session, config, onProgress) {
   const alignment = await resolveContextRecord(context, { kind: "alignment" });
   if (!alignment.root)
     throw new Error("Alignment has no file-backed store for the Jira mirror.");
-  const mirrorRoot = join2(alignment.root, validateRelativePath(object2(config.mirror, "Jira mirror").root, "mirror.root"));
+  const mirrorRoot = join2(alignment.root, validateRelativePath(object3(config.mirror, "Jira mirror").root, "mirror.root"));
   const files = (await session.collect(mirrorRoot, /\.md$/, alignment.root)).filter((file) => dirname2(file) === mirrorRoot);
   if (!files.length)
     throw new Error(`Jira mirror ${mirrorRoot} has no issue files. Run jira-mirror.ts sync --repository ${context.repositoryRoot} to fill it.`);
@@ -2507,19 +2588,19 @@ async function jiraSnapshot(context, session, config, onProgress) {
     const label = `Jira mirror file ${basename2(file)}`;
     if (doc.fields.schema !== MIRROR_SCHEMA)
       throw new Error(`${label} schema ${String(doc.fields.schema)} is not ${MIRROR_SCHEMA}. Run jira-mirror.ts sync with the same version of these scripts.`);
-    const id = text(doc.fields.id, `${label} id`);
+    const id = text2(doc.fields.id, `${label} id`);
     if (`${id}.md` !== basename2(file))
       throw new Error(`${label} id ${id} does not match its file name ${basename2(file)}.`);
     const ref = `${site}/browse/${id}`;
     if (doc.fields.ref !== ref)
       throw new Error(`${label} ref must be ${ref}.`);
-    const title = text(doc.fields.title, `${label} title`);
-    const issueType = text(doc.fields.type, `${label} type`);
-    const statusName = text(doc.fields.status, `${label} status`);
-    const status = jiraStatus({ name: statusName, statusCategory: { key: text(doc.fields.status_category, `${label} status_category`) } }, `${label} status`);
+    const title = text2(doc.fields.title, `${label} title`);
+    const issueType = text2(doc.fields.type, `${label} type`);
+    const statusName = text2(doc.fields.status, `${label} status`);
+    const status = jiraStatus({ name: statusName, statusCategory: { key: text2(doc.fields.status_category, `${label} status_category`) } }, `${label} status`);
     if (doc.fields.mirror_status != null && doc.fields.mirror_status !== "stale")
       throw new Error(`${label} mirror_status ${String(doc.fields.mirror_status)} is not stale. Remove the field or run jira-mirror.ts sync.`);
-    const parent = doc.fields.parent == null ? undefined : text(doc.fields.parent, `${label} parent`);
+    const parent = doc.fields.parent == null ? undefined : text2(doc.fields.parent, `${label} parent`);
     if (parent)
       parents.set(id, parent);
     const epic = issueType.toLowerCase() === "epic";
@@ -2531,7 +2612,7 @@ async function jiraSnapshot(context, session, config, onProgress) {
       documentType: epic ? "epic" : "issue",
       status: status.state,
       body: doc.body,
-      blockedBy: list(doc.fields.blocked_by ?? [], `${label} blocked_by`).map((value) => text(value, `${label} blocker`)),
+      blockedBy: list(doc.fields.blocked_by ?? [], `${label} blocked_by`).map((value) => text2(value, `${label} blocker`)),
       fields: { issueType, status: statusName, ...parent ? { parent } : {}, ...doc.fields.mirror_status === "stale" ? { stale: true } : {}, ...doc.fields.synced_at == null ? {} : { synced_at: doc.fields.synced_at } }
     });
     if (epic)
@@ -2547,16 +2628,16 @@ async function jiraSnapshot(context, session, config, onProgress) {
   return { backend: "jira", tickets, initiatives: epics };
 }
 function jiraStatus(value, label) {
-  const status = object2(value, label);
-  const name = text(status.name, `${label} name`);
-  const category = text(object2(status.statusCategory, `${label} category`).key, `${label} category key`);
+  const status = object3(value, label);
+  const name = text2(status.name, `${label} name`);
+  const category = text2(object3(status.statusCategory, `${label} category`).key, `${label} category key`);
   const state = { new: "todo", indeterminate: "in_progress", done: "done" }[category];
   if (!state)
     throw new Error(`${label} category ${category} is not new, indeterminate or done.`);
   return { name, state };
 }
 function jiraSite(config) {
-  const site = text(config.site, "Jira tracker site").replace(/\/+$/, "");
+  const site = text2(config.site, "Jira tracker site").replace(/\/+$/, "");
   if (!/^https:\/\/[^/\s]+$/.test(site))
     throw new Error("Jira tracker site must be an https origin such as https://example.atlassian.net.");
   return site;
@@ -2572,20 +2653,21 @@ function validateRelations(rows, label) {
       throw new Error(`Duplicate ${label} ID: ${row.id}`);
     byId.set(row.id, row);
   }
-  const active = new Set;
+  const path = [];
   const done = new Set;
   const visit = (id) => {
-    if (active.has(id))
-      throw new Error(`Cycle in ${label} graph at ${id}`);
+    const start = path.indexOf(id);
+    if (start >= 0)
+      throw new Error(`Cycle in ${label} graph: ${[...path.slice(start), id].join(" -> ")}`);
     if (done.has(id))
       return;
     const row = byId.get(id);
     if (!row)
       throw new Error(`Missing ${label}: ${id}`);
-    active.add(id);
+    path.push(id);
     for (const blocker of row.blockedBy)
       visit(blocker);
-    active.delete(id);
+    path.pop();
     done.add(id);
   };
   for (const row of rows)
@@ -2610,13 +2692,13 @@ async function exists3(path) {
 }
 function within2(root, target) {
   const path = relative3(resolve3(root), resolve3(target));
-  return path === "" || path !== ".." && !path.startsWith(`..${process.platform === "win32" ? "\\" : "/"}`) && !isAbsolute4(path);
+  return path === "" || path !== ".." && !path.startsWith(`..${process.platform === "win32" ? "\\" : "/"}`) && !isAbsolute5(path);
 }
 async function contained2(root, target) {
   if (!within2(root, target))
     throw new Error("Record path escapes its configured store.");
-  const actual = await realpath3(target);
-  if (!within2(await realpath3(root), actual))
+  const actual = await realpath4(target);
+  if (!within2(await realpath4(root), actual))
     throw new Error("Record symlink escapes its configured store.");
   return actual;
 }
@@ -2626,7 +2708,7 @@ async function run4(exec, command, args) {
     throw new Error(`${command} failed (exit ${result.code}): ${result.stdout}`);
   return result.stdout;
 }
-function object2(value, label) {
+function object3(value, label) {
   if (!value || typeof value !== "object" || Array.isArray(value))
     throw new Error(`${label} must be an object.`);
   return value;
@@ -2641,14 +2723,14 @@ function string(value, label) {
     throw new Error(`${label} must be a string.`);
   return value;
 }
-function text(value, label) {
+function text2(value, label) {
   const result = string(value, label).trim();
   if (!result)
     throw new Error(`${label} must not be empty.`);
   return result;
 }
 function scalar(value, label) {
-  return typeof value === "number" && Number.isFinite(value) ? String(value) : text(value, label);
+  return typeof value === "number" && Number.isFinite(value) ? String(value) : text2(value, label);
 }
 function issueNumber(value) {
   const id = scalar(value, "GitHub issue number");
@@ -2657,16 +2739,16 @@ function issueNumber(value) {
   return id;
 }
 function hash(value, label) {
-  const result = text(value, label);
+  const result = text2(value, label);
   if (!/^(?:[a-f0-9]{40}|[a-f0-9]{64})$/.test(result))
     throw new Error(`${label} must be a full Git object ID.`);
   return result;
 }
-function references(value, label) {
+function references2(value, label) {
   return list(value, label).map((item) => {
-    const fields = object2(item, label);
-    text(fields.kind, `${label} kind`);
-    return text(fields.ref, `${label} ref`);
+    const fields = object3(item, label);
+    text2(fields.kind, `${label} kind`);
+    return text2(fields.ref, `${label} ref`);
   });
 }
 
@@ -2715,7 +2797,7 @@ function isObservation(command, args) {
   return operation !== undefined && (Object.hasOwn(gitObservations, operation) || operation === "branch" && args[index + 1] === "--show-current" && args.length === index + 2);
 }
 
-// ../devtools-agent/bundles/agent-core/extensions/pi-shared-context/model.ts
+// ../devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/model.ts
 function recordKind(ticket) {
   const type = ticket.documentType?.trim().toLowerCase();
   if (!type || ["ticket", "issue", "task", "bug", "fix", "feature", "enhancement", "chore"].includes(type))
@@ -2727,7 +2809,7 @@ function recordKind(ticket) {
   return "record";
 }
 
-// ../devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions.ts
+// ../devtools-agent/bundles/developer/skills/git/worktree/scripts/session-actions.ts
 var initiativeActions = [
   { action: "ask-matt", key: "m", label: "Ask Matt" },
   { action: "to-tickets", key: "t", label: "To tickets" },
@@ -2779,7 +2861,7 @@ function quoteData(value) {
   return JSON.stringify(value).replaceAll("<", "\\u003c").replaceAll(">", "\\u003e").replaceAll("&", "\\u0026").replace(/[\u007f-\u009f\u202a-\u202e\u2066-\u2069\u2028\u2029]/g, (character) => `\\u${character.charCodeAt(0).toString(16).padStart(4, "0")}`);
 }
 
-// ../devtools-agent/bundles/agent-core/extensions/pi-shared-context/preparation.ts
+// ../devtools-agent/bundles/developer/skills/git/worktree/scripts/session-preparation.ts
 import { createHash as createHash4 } from "crypto";
 import { dirname as dirname3 } from "path";
 async function prepareSessionRequest(context, exec, request) {

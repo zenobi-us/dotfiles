@@ -4,11 +4,11 @@ import { AsyncLocalStorage } from "node:async_hooks";
 import { createHash } from "node:crypto";
 import { loadExplorerSnapshot } from "../../devtools-agent/bundles/developer/skills/git/worktree/scripts/workflow";
 import type { SharedAgentContext, Exec } from "../../devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib";
-import type { ExplorerSnapshot } from "../../devtools-agent/bundles/agent-core/extensions/pi-shared-context/model";
+import type { TrackerSnapshot } from "../../devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/model";
 import type { DocumentReadProgress } from "../../devtools-agent/bundles/developer/skills/git/worktree/scripts/document-cache";
 import { QueryError } from "./native";
 
-type SnapshotRead = { context: SharedAgentContext; exec: Exec; value: Promise<ExplorerSnapshot> };
+type SnapshotRead = { context: SharedAgentContext; exec: Exec; value: Promise<TrackerSnapshot> };
 const scopes = new AsyncLocalStorage<Map<string, SnapshotRead>>();
 
 export async function withReadSession<T>(work: () => Promise<T>): Promise<T> {
@@ -24,7 +24,7 @@ export async function withReadSession<T>(work: () => Promise<T>): Promise<T> {
   });
 }
 
-export function readSnapshot(context: SharedAgentContext, exec: Exec, progress?: (value: DocumentReadProgress) => void): Promise<ExplorerSnapshot> {
+export function readSnapshot(context: SharedAgentContext, exec: Exec, progress?: (value: DocumentReadProgress) => void): Promise<TrackerSnapshot> {
   const snapshots = scopes.getStore();
   if (!snapshots) return loadExplorerSnapshot(context, exec, undefined, undefined, progress);
   const key = JSON.stringify([context.repositoryRoot, context.root, context.routes, context.layout]);

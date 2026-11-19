@@ -315,3 +315,25 @@ Each event separates identity, execution status, review verdict, and source comm
 Use Up/Down or Page Up/Page Down to reach full commit/tree IDs, workspace, branch, session, raw recorded fields, and dependency blockers. `matched`, `stale`, and `unavailable` source labels have distinct meanings. Invalid events remain readable with warnings. Changed-file counts use only structured `changed_files` or `changed_file_count` evidence.
 
 Esc or the Events breadcrumb returns to the selected event and its list position. Live updates retain stable event identity. A failed history refresh keeps the last readable history, displays the failure, and blocks unsafe worktree transitions. Empty, loading, and unreadable histories have separate messages. Actions continue to target the current canonical ticket, not the historical event. Files, description readers, and unsent fresh-chat and path-insertion behavior remain independent. At short heights, scroll to read each labelled event field.
+
+## Shared domain module ownership
+
+The resolver owns storage routes and locations, not tracker or workflow policy.
+Herdr and the Pi explorer import domain modules from skills. Shared skill modules
+must not import the Pi explorer extension.
+
+Paths below are relative to `mise/conf.d/devtools-agent/bundles/`.
+
+| Module | Responsibility |
+| --- | --- |
+| `matt-pocock/skills/reading-and-writing-tickets/scripts/model.ts` | Tracker records, snapshots, record classification and unresolved blockers |
+| `developer/skills/git/worktree/scripts/model.ts` | Workflow receipts, events and ticket workflow evidence |
+| `developer/skills/git/worktree/scripts/session-actions.ts` | Session request types, available actions and skill prompts |
+| `developer/skills/git/worktree/scripts/session-preparation.ts` | Canonical record refresh, confirmation keys and revalidation before dispatch |
+| `agent-core/extensions/pi-shared-context/actions.ts` | Pi/OMP session creation and prompt delivery only |
+
+Import `Exec` and `SharedAgentContext` directly from this directory's `lib.ts`.
+The former extension `model.ts` and `preparation.ts` paths have no re-exports.
+Action-policy and preparation tests live beside their skill modules. Session-host
+tests stay in the extension. Rebuild the Herdr target helper after domain changes
+with `mise x -- bun run build` from `mise/conf.d/devtools-herdrapp`.

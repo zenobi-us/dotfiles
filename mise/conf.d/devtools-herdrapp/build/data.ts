@@ -9,9 +9,10 @@ import { loadExplorerSnapshot, loadTicketWorkflow } from "../../devtools-agent/b
 import type { DocumentReadProgress } from "../../devtools-agent/bundles/developer/skills/git/worktree/scripts/document-cache";
 import { createInspectionExecutor } from "../../devtools-agent/bundles/developer/skills/git/worktree/scripts/inspection-exec";
 import { recoveryDecision, recoveryState } from "../../devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery";
-import { actionChoices, buildSessionPrompt } from "../../devtools-agent/bundles/agent-core/extensions/pi-shared-context/actions";
-import { prepareSessionRequest } from "../../devtools-agent/bundles/agent-core/extensions/pi-shared-context/preparation";
-import { recordKind, type ExplorerAction, type ExplorerSessionRequest } from "../../devtools-agent/bundles/agent-core/extensions/pi-shared-context/model";
+import { actionChoices, buildSessionPrompt } from "../../devtools-agent/bundles/developer/skills/git/worktree/scripts/session-actions";
+import { prepareSessionRequest } from "../../devtools-agent/bundles/developer/skills/git/worktree/scripts/session-preparation";
+import { recordKind } from "../../devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/model";
+import { type SessionAction, type SessionRequest } from "../../devtools-agent/bundles/developer/skills/git/worktree/scripts/session-actions";
 import { agent as omp } from "../../devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/modules/agent-omp";
 import { agent as pi } from "../../devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/modules/agent-pi";
 import { agent as zot } from "../../devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/modules/agent-zot";
@@ -183,7 +184,7 @@ export async function detail(cwd: string, id: string, kind: "ticket" | "initiati
   return { record, kind, workflow, nextAction, state, actions: actionChoices(target, snapshot, workflow, await commands()), repository: context.repositoryRoot };
 }
 
-export async function prepare(cwd: string, id: string, kind: "ticket" | "initiative", action: ExplorerAction, prompt: string, harness: string) {
+export async function prepare(cwd: string, id: string, kind: "ticket" | "initiative", action: SessionAction, prompt: string, harness: string) {
   if (!Object.hasOwn(agents, harness)) throw new Error(`Unknown agent harness: ${harness}. Select one of ${Object.keys(agents).join(", ")}.`);
   const agent = agents[harness as AgentId];
   const context = await project(cwd), exec = executor(cwd), snapshot = await loadExplorerSnapshot(context, exec);
@@ -192,7 +193,7 @@ export async function prepare(cwd: string, id: string, kind: "ticket" | "initiat
     : { kind: "ticket" as const, ticket: snapshot.tickets.find(item => item.id === id)! };
   if (kind === "ticket" && !target.ticket || kind === "initiative" && !target.initiative) throw new Error("The selected record no longer exists.");
   if (target.kind === "initiative" && target.initiative.group) throw new Error("Select an initiative record, not a collection.");
-  const request = { action, target, snapshot, prompt } as ExplorerSessionRequest;
+  const request = { action, target, snapshot, prompt } as SessionRequest;
   const prepared = await prepareSessionRequest(context, exec, request);
   const choice = actionChoices(prepared.request.target, prepared.request.snapshot, prepared.request.workflow, await commands()).find(item => item.action === action);
   if (!choice || choice.disabledReason) throw new Error(choice?.disabledReason ?? "This action is unavailable.");

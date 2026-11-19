@@ -5,8 +5,9 @@ import { readdir, realpath } from "node:fs/promises";
 import { dirname, isAbsolute, join, relative } from "node:path";
 import { resolveContextRecord, resolveSharedContext } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
 import type { Exec, SharedAgentContext } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
-import { isCompleted, recordKind } from "../../../../../agent-core/extensions/pi-shared-context/model";
-import type { ExplorerSnapshot, ExplorerTicket, TicketWorkflow } from "../../../../../agent-core/extensions/pi-shared-context/model";
+import { isCompleted, recordKind } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/model";
+import type { TrackerSnapshot, TicketRecord } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/model";
+import type { TicketWorkflow } from "./model";
 import { DocumentReadSession } from "./document-cache";
 import { chronologicalReceipts, isUnstarted, receiptPhase } from "./recovery";
 import type { WorkflowInspection } from "./recovery";
@@ -35,7 +36,7 @@ interface Reservation {
   verificationError?: string;
 }
 interface Stream {
-  ticket: ExplorerTicket;
+  ticket: TicketRecord;
   initiatives: { id: string; ref: string }[];
   scope: Scope;
   ownership: string;
@@ -52,7 +53,7 @@ export interface CoordinationReport {
   checkouts: string[];
   ambiguities: { ref: string; copies: { checkout: string; ref: string; id: string; backend: string; status: string; blockedBy: string[]; snapshotDigest: string }[] }[];
   recordDiagnostics: { checkout: string; ref: string; error: string }[];
-  proposed: { ticket: ExplorerTicket; initiatives: { id: string; ref: string }[]; scope: Scope; reservations: Reservation[]; ownership: string; owners: Stream["owners"]; sourceObservations: { checkout: string; source: WorkflowInspection["source"]; errors: string[] }[]; receiptRefs: string[] };
+  proposed: { ticket: TicketRecord; initiatives: { id: string; ref: string }[]; scope: Scope; reservations: Reservation[]; ownership: string; owners: Stream["owners"]; sourceObservations: { checkout: string; source: WorkflowInspection["source"]; errors: string[] }[]; receiptRefs: string[] };
   reservationObservations: Omit<Reservation, "fields">[];
   hardBlockers: { id: string; ref?: string; status: string; initiatives: { id: string; ref: string }[] }[];
   streams: Stream[];
@@ -80,7 +81,7 @@ export async function loadCoordination(context: SharedAgentContext, ref: string,
   let inventoryComplete = true;
   const primaryDiagnostics: { ref: string; error: string }[] = [];
   // The Jira adapter reads the whole mirror. A blocker that is not in the mirror is a diagnostic.
-  let snapshot: ExplorerSnapshot = await loadExplorerSnapshot(context, exec, undefined, primaryDiagnostics);
+  let snapshot: TrackerSnapshot = await loadExplorerSnapshot(context, exec, undefined, primaryDiagnostics);
   const workspaces: WorkspaceObservation[] = [];
   const contexts = await linkedContexts(context, inventoryExec, errors, workspaces);
   const inventoryError = errors.find(error => error.startsWith("Linked-checkout inventory unavailable:"));
@@ -98,7 +99,7 @@ export async function loadCoordination(context: SharedAgentContext, ref: string,
   const invalidProposed = primaryDiagnostics.find(diagnostic => diagnostic.ref === ref && !snapshots[0]!.snapshot.tickets.some(ticket => ticket.ref === ref));
   if (invalidProposed) throw new Error(`Proposed ticket record is invalid: ${ref} (${context.repositoryRoot}): ${invalidProposed.error}`);
   const ambiguities: CoordinationReport["ambiguities"] = [];
-  const tickets = new Map<string, ExplorerTicket>();
+  const tickets = new Map<string, TicketRecord>();
   for (const item of snapshots) for (const candidate of item.snapshot.tickets) {
     if (!tickets.has(candidate.ref)) {
       const canonical = snapshots[0]!.snapshot.tickets.some(ticket => ticket.ref === candidate.ref);
@@ -116,7 +117,7 @@ export async function loadCoordination(context: SharedAgentContext, ref: string,
       errors.push(`${ticketRef}: unpublished or inconsistent linked ticket copies differ from the designated context record.`);
     }
   }
-  const initiatives = new Map<string, ExplorerSnapshot["initiatives"][number]>();
+  const initiatives = new Map<string, TrackerSnapshot["initiatives"][number]>();
   for (const item of snapshots) for (const initiative of item.snapshot.initiatives) {
     const known = initiatives.get(initiative.ref);
     initiatives.set(initiative.ref, known ? { ...known, ticketIds: [...new Set([...known.ticketIds, ...initiative.ticketIds])] } : initiative);
@@ -283,7 +284,7 @@ async function linkedContexts(context: SharedAgentContext, exec: Exec, errors: s
   return contexts;
 }
 
-async function observeSource(ticket: ExplorerTicket, workflow: WorkflowReadResult, workspaces: WorkspaceObservation[], exec: Exec, heads: Map<string, Promise<{ commit: string; branch: string }>>, inventoryError?: string): Promise<void> {
+async function observeSource(ticket: TicketRecord, workflow: WorkflowReadResult, workspaces: WorkspaceObservation[], exec: Exec, heads: Map<string, Promise<{ commit: string; branch: string }>>, inventoryError?: string): Promise<void> {
   const inspection = workflow.inspection ??= { historyValid: false, source: { state: "unknown" }, ownership: "unknown", worktrees: [], commits: [], artifacts: [] };
   inspection.worktrees = workspaces;
   if (inventoryError) {
@@ -333,7 +334,7 @@ async function observeSource(ticket: ExplorerTicket, workflow: WorkflowReadResul
 }
 
 /** A lightweight archive probe avoids remote/artifact validation when no workspace remains. */
-async function archivedWorkspaces(context: SharedAgentContext, ticket: ExplorerTicket, exec: Exec, workspaces: WorkspaceObservation[]): Promise<{ path: string; branch?: string }[] | undefined> {
+async function archivedWorkspaces(context: SharedAgentContext, ticket: TicketRecord, exec: Exec, workspaces: WorkspaceObservation[]): Promise<{ path: string; branch?: string }[] | undefined> {
   try {
     if (!workspaces.length) return [];
     const id = ticket.backend === "github" ? `GH-${ticket.id}` : ticket.id;
@@ -377,7 +378,7 @@ function reservationCompleted(reservation: Reservation, workflow: WorkflowReadRe
   return result.sourceCommit === completion.sourceCommit && result.sourceTree === completion.sourceTree && result.sourceBranch === completion.sourceBranch;
 }
 
-async function streamScope(ticket: ExplorerTicket, workflow: TicketWorkflow, reservations: Reservation[], exec: Exec): Promise<Stream> {
+async function streamScope(ticket: TicketRecord, workflow: TicketWorkflow, reservations: Reservation[], exec: Exec): Promise<Stream> {
   const errors = [workflow.error, workflow.inspection?.inventoryError, workflow.inspection?.commitsError, workflow.inspection?.source.error].filter((value): value is string => Boolean(value));
   const evidence: Scope["evidence"] = [];
   const receipts = chronologicalReceipts(workflow.receipts).reverse();
@@ -415,7 +416,7 @@ async function streamScope(ticket: ExplorerTicket, workflow: TicketWorkflow, res
   return { ticket, initiatives: [], scope: { state: declared ? "declared" : paths.length ? "observed" : "unknown", plannedScope: declared ? "known" : "unknown", paths, evidence }, ownership: workflow.inspection?.ownership ?? "unknown", owners, reservations, receiptRefs: receipts.map(receipt => receipt.ref), errors };
 }
 
-async function goalReservations(contexts: SharedAgentContext[], ticket: ExplorerTicket, exec: Exec, errors: string[], workflowRoots: Map<string, Set<string>>): Promise<Reservation[]> {
+async function goalReservations(contexts: SharedAgentContext[], ticket: TicketRecord, exec: Exec, errors: string[], workflowRoots: Map<string, Set<string>>): Promise<Reservation[]> {
   const reservations: Reservation[] = [];
   type Entry = { ref: string; fields: Fields; digest: string; locations: string[] };
   const journals = new Map<string, Entry[]>();
@@ -528,7 +529,7 @@ function descendsFrom(fields: Fields, ancestor: unknown, byId: Map<string, { fie
   }
   return false;
 }
-function memberships(snapshot: ExplorerSnapshot, id: string): { id: string; ref: string }[] {
+function memberships(snapshot: TrackerSnapshot, id: string): { id: string; ref: string }[] {
   return snapshot.initiatives.filter(initiative => !initiative.group && initiative.ticketIds.includes(id)).map(({ id, ref }) => ({ id, ref }));
 }
 function scopePath(value: string): string {

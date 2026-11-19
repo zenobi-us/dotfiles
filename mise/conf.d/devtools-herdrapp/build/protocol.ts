@@ -2,14 +2,14 @@
 import path from "node:path";
 import { contextData, setup, directory, file, tracker, detail, prepare, type CollectionKind } from "./data";
 import { discardSession, QueryError } from "./native";
-import type { ExplorerAction } from "../../devtools-agent/bundles/agent-core/extensions/pi-shared-context/model";
+import type { SessionAction } from "../../devtools-agent/bundles/developer/skills/git/worktree/scripts/session-actions";
 import { ReadCache } from "./cache";
 
 export const MAX_ENVELOPE_BYTES = 6 * 1024 * 1024;
 const MAX_REQUEST_BYTES = 1024 * 1024;
 const operations: Record<string, true> = { context: true, setup: true, directory: true, file: true, tracker: true, detail: true, validate: true, prepare: true, "discard-session": true };
 const collections: Record<string, true> = { alignment: true, tickets: true, initiatives: true, sources: true };
-const actions: Record<ExplorerAction, true> = { "ask-matt": true, "to-tickets": true, grill: true, prototype: true, start: true, review: true, fix: true, finish: true, submit: true };
+const actions: Record<SessionAction, true> = { "ask-matt": true, "to-tickets": true, grill: true, prototype: true, start: true, review: true, fix: true, finish: true, submit: true };
 export type Request = { protocol: 1; operation: string; cwd: string; fields: Record<string, unknown> };
 export type Progress = { phase: string; completed: number; total: number | null; current?: string };
 export type Failure = { code: string; message: string };
@@ -36,7 +36,7 @@ async function load(request: Request, onProgress?: (progress: Progress) => void)
     case "file": return file(cwd, fields.collection as CollectionKind, fields.path as string);
     case "tracker": return tracker(cwd, onProgress, fields.tree === true);
     case "detail": return detail(cwd, fields.id as string, fields.kind as "ticket" | "initiative");
-    case "prepare": return prepare(cwd, fields.id as string, fields.kind as "ticket" | "initiative", fields.action as ExplorerAction, (fields.prompt as string | undefined) ?? "", fields.harness as string);
+    case "prepare": return prepare(cwd, fields.id as string, fields.kind as "ticket" | "initiative", fields.action as SessionAction, (fields.prompt as string | undefined) ?? "", fields.harness as string);
     case "discard-session": return discardSession(fields.session as string);
     default: throw new QueryError("INVALID_REQUEST", "Select a supported Shared Context operation.");
   }

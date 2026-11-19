@@ -5,12 +5,13 @@ import { isAbsolute, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolveContextRecord } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
 import type { Exec, SharedAgentContext } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
-import type { ExplorerTicket, TicketWorkflow } from "../../../../../agent-core/extensions/pi-shared-context/model";
+import type { TicketRecord } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/model";
+import type { TicketWorkflow } from "./model";
 import type { WorkflowInspection } from "./recovery";
 import { receiptEvent, receiptPhase } from "./recovery";
 import { verifyIntegration } from "./integration";
 
-export async function inspectWorkflow(context: SharedAgentContext, ticket: ExplorerTicket, workflow: TicketWorkflow, exec: Exec): Promise<WorkflowInspection> {
+export async function inspectWorkflow(context: SharedAgentContext, ticket: TicketRecord, workflow: TicketWorkflow, exec: Exec): Promise<WorkflowInspection> {
   const inspection: WorkflowInspection = {
     historyValid: workflow.inspection?.historyValid ?? !workflow.error,
     ...(workflow.inspection?.historyError ? { historyError: workflow.inspection.historyError } : {}),
@@ -104,7 +105,7 @@ export async function inspectWorkflow(context: SharedAgentContext, ticket: Explo
   return inspection;
 }
 
-async function inspectCommits(context: SharedAgentContext, ticket: ExplorerTicket, workflow: TicketWorkflow, inspection: WorkflowInspection, exec: Exec): Promise<void> {
+async function inspectCommits(context: SharedAgentContext, ticket: TicketRecord, workflow: TicketWorkflow, inspection: WorkflowInspection, exec: Exec): Promise<void> {
   const related = new Set(workflow.receipts.map(receipt => receipt.sourceCommit));
   const candidates = new Set(related);
   const log = await run(exec, "git", ["-C", context.repositoryRoot, "log", "--all", "--format=%H", "--fixed-strings", `--grep=${ticket.id}`]);
@@ -132,7 +133,7 @@ async function inspectCommits(context: SharedAgentContext, ticket: ExplorerTicke
   }
 }
 
-async function inspectFinish(context: SharedAgentContext, ticket: ExplorerTicket, workflow: TicketWorkflow, inspection: WorkflowInspection, exec: Exec): Promise<void> {
+async function inspectFinish(context: SharedAgentContext, ticket: TicketRecord, workflow: TicketWorkflow, inspection: WorkflowInspection, exec: Exec): Promise<void> {
   const finish = workflow.receipts[0];
   if (!finish || receiptPhase(finish) !== "finish") return;
   const byId = new Map(workflow.receipts.map(receipt => [receipt.id, receipt]));

@@ -8,7 +8,7 @@
       "name": "agent-core",
       "source": "./agent-core",
       "description": "Superpowers, skill management, and shell environment for pi",
-      "version": "0.1.30"
+      "version": "0.1.31"
     },
     {
       "name": "creator",
@@ -20,13 +20,13 @@
       "name": "developer",
       "source": "./developer",
       "description": "Code writing, git workflow, testing, and language/quality experts",
-      "version": "0.2.57"
+      "version": "0.2.58"
     },
     {
       "name": "matt-pocock",
       "source": "./matt-pocock",
       "description": "Matt Pocock engineering workflow skills",
-      "version": "0.1.10"
+      "version": "0.1.11"
     },
     {
       "name": "platform",

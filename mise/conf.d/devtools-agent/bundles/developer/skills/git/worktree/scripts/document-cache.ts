@@ -6,7 +6,7 @@ import { lstat, mkdtemp, open, readdir, realpath, rm, stat, writeFile } from "no
 import { tmpdir } from "node:os";
 import { basename, dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { TextDecoder } from "node:util";
-import type { Exec, SharedAgentContext } from "../../../../../agent-core/extensions/pi-shared-context/model";
+import type { Exec, SharedAgentContext } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
 import { INITIATIVE_LINKS_QUERY } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/record-schema";
 import { validateStorePath } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/layout";
 

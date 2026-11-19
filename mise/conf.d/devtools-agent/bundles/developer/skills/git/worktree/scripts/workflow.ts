@@ -4,7 +4,9 @@ import { basename, dirname, isAbsolute, join, relative, resolve } from "node:pat
 import { fileURLToPath } from "node:url";
 import { resolveContextRecord } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
 import { validateRelativePath } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/layout";
-import type { Exec, ExplorerEvent, ExplorerInitiative, ExplorerReceipt, ExplorerSnapshot, ExplorerTicket, SharedAgentContext, TicketWorkflow } from "../../../../../agent-core/extensions/pi-shared-context/model";
+import type { Exec, SharedAgentContext } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
+import type { WorkflowEvent, WorkflowReceipt, TicketWorkflow } from "./model";
+import type { InitiativeRecord, TrackerSnapshot, TicketRecord } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/model";
 import { assertRecord, INITIATIVE_SCHEMA, validateInitiativeMembership } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/record-schema";
 import { MIRROR_SCHEMA } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/jira-mirror";
 import { inspectWorkflow } from "./inspection";
@@ -25,7 +27,7 @@ type Document = ParsedDocument;
  * A Jira blocker that is not in the mirror is a warning in both modes: it goes
  * to the sink when one is given, and the ticket keeps the blocker.
  */
-export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Exec, scope?: { ref: string; kind?: "ticket" | "initiative" }, diagnostics?: { ref: string; error: string }[], onProgress?: (progress: DocumentReadProgress) => void): Promise<ExplorerSnapshot> {
+export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Exec, scope?: { ref: string; kind?: "ticket" | "initiative" }, diagnostics?: { ref: string; error: string }[], onProgress?: (progress: DocumentReadProgress) => void): Promise<TrackerSnapshot> {
  if (context.error) throw new Error(context.error);
  const session = new DocumentReadSession(context, exec, onProgress);
  let backend = context.routes.tickets.adapter;
@@ -55,7 +57,7 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
  const relations = unmirrored.length ? snapshot.tickets.map(ticket => ({ ...ticket, blockedBy: ticket.blockedBy.filter(id => known.has(id)) })) : snapshot.tickets;
  if (!diagnostics && !scope) validateRelations(relations, "ticket blocker");
  else if (diagnostics) {
-  const byId = new Map<string, ExplorerTicket[]>();
+  const byId = new Map<string, TicketRecord[]>();
   for (const ticket of relations) {
    const existing = byId.get(ticket.id);
    if (existing) existing.push(ticket);
@@ -64,7 +66,7 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
   for (const ticket of relations) {
    const seen = new Set<string>();
    const pending = [ticket.id];
-   const reachable: ExplorerTicket[] = [];
+   const reachable: TicketRecord[] = [];
    while (pending.length) {
     const id = pending.pop()!;
     if (seen.has(id)) continue;
@@ -100,7 +102,7 @@ export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Ex
 }
 
 /** Discover numbered ADRs in the resolved alignment store, not the ticket store. */
-export async function loadExplorerAdrs(context: SharedAgentContext, exec: Exec): Promise<ExplorerTicket[]> {
+export async function loadExplorerAdrs(context: SharedAgentContext, exec: Exec): Promise<TicketRecord[]> {
  if (context.error) throw new Error(context.error);
  const alignment = await resolveContextRecord(context, { kind: "alignment" });
  if (!alignment.path || !alignment.root) throw new Error("Alignment has no file-backed ADR collection.");
@@ -110,7 +112,7 @@ export async function loadExplorerAdrs(context: SharedAgentContext, exec: Exec):
  const files = (await session.collect(directory, /\.md$/, alignment.root)).filter(file => dirname(file) === directory && /^\d+(?:-[^/]+)?\.md$/.test(basename(file)));
  const { documents, errors } = await session.readAll(files.map(file => ({ file, root: alignment.root! })));
  if (errors.size) throw errors.values().next().value;
- const records: ExplorerTicket[] = [];
+ const records: TicketRecord[] = [];
  for (const file of files) {
   const id = /^(\d+)/.exec(basename(file))![1]!;
   const record = await resolveContextRecord(context, { kind: "adr", id });
@@ -122,7 +124,7 @@ export async function loadExplorerAdrs(context: SharedAgentContext, exec: Exec):
  return records;
 }
 
-function scopedSnapshot(snapshot: ExplorerSnapshot, scope: { ref: string; kind?: "ticket" | "initiative" }): ExplorerSnapshot {
+function scopedSnapshot(snapshot: TrackerSnapshot, scope: { ref: string; kind?: "ticket" | "initiative" }): TrackerSnapshot {
  const initiative = scope.kind === "initiative" ? snapshot.initiatives.find(item => item.ref === scope.ref) : undefined;
  const selected = initiative ? initiative.ticketIds : snapshot.tickets.filter(item => item.ref === scope.ref).map(item => item.id);
  const tickets = new Map(snapshot.tickets.map(ticket => [ticket.id, ticket]));
@@ -160,7 +162,7 @@ export interface WorkflowReadOptions {
  * Coordination mode returns separate envelope observations and leaves
  * inspection.historyValid false; those observations do not authorize a phase.
  */
-export async function loadTicketWorkflow(context: SharedAgentContext, ticket: ExplorerTicket, exec: Exec, options?: WorkflowReadOptions): Promise<WorkflowReadResult> {
+export async function loadTicketWorkflow(context: SharedAgentContext, ticket: TicketRecord, exec: Exec, options?: WorkflowReadOptions): Promise<WorkflowReadResult> {
  const session = new DocumentReadSession(context, exec);
  const result = await loadWorkflowHistory(context, ticket, exec, session, options);
  if (!options) result.inspection = await inspectWorkflow(context, ticket, result, exec);
@@ -187,7 +189,7 @@ export async function loadTicketWorkflow(context: SharedAgentContext, ticket: Ex
  return result;
 }
 
-async function loadWorkflowHistory(context: SharedAgentContext, ticket: ExplorerTicket, exec: Exec, session: DocumentReadSession, options?: WorkflowReadOptions): Promise<WorkflowReadResult> {
+async function loadWorkflowHistory(context: SharedAgentContext, ticket: TicketRecord, exec: Exec, session: DocumentReadSession, options?: WorkflowReadOptions): Promise<WorkflowReadResult> {
  const result: WorkflowReadResult = {
   ticketId: ticket.id, receipts: [], events: [], recordedAttempts: { review: 0, fix: 0 },
   inspection: { historyValid: false, source: { state: "unknown" }, ownership: "unknown", worktrees: [], commits: [], artifacts: [] },
@@ -223,7 +225,7 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
   const validationCodes = new Map<string, string>();
   for (const file of eventFiles) {
    const ref = `${record.ref}/events/${relative(events, file).split("\\").join("/")}`;
-   const event: ExplorerEvent = { id: ref, ref };
+   const event: WorkflowEvent = { id: ref, ref };
    result.events!.push(event);
    let validationCode = "invalid_receipt";
    try {
@@ -293,7 +295,7 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: Explorer
   result.diagnostics = diagnostics;
   const errors = result.events!.filter(event => event.error).map(event => `${event.ref}: ${event.error}`);
   delete result.recordedAttempts;
-  const byId = new Map<string, ExplorerReceipt>();
+  const byId = new Map<string, WorkflowReceipt>();
   for (const receipt of result.receipts) {
    if (byId.has(receipt.id)) continue;
    byId.set(receipt.id, receipt);
@@ -418,7 +420,7 @@ async function historySupplements(
  return effective;
 }
 
-async function localSnapshot(context: SharedAgentContext, session: DocumentReadSession, definition?: { file: string; root: string }, diagnostics?: { ref: string; error: string }[], onProgress?: (progress: DocumentReadProgress) => void): Promise<ExplorerSnapshot> {
+async function localSnapshot(context: SharedAgentContext, session: DocumentReadSession, definition?: { file: string; root: string }, diagnostics?: { ref: string; error: string }[], onProgress?: (progress: DocumentReadProgress) => void): Promise<TrackerSnapshot> {
  const ticketsRecord = await resolveContextRecord(context, { kind: "tickets" });
  const initiativesRecord = await resolveContextRecord(context, { kind: "initiatives" });
  if (!ticketsRecord.path || !ticketsRecord.root || !initiativesRecord.path || !initiativesRecord.root || !["markdown", "local-markdown"].includes(initiativesRecord.adapter)) throw new Error("Local Markdown requires file-backed ticket and initiative routes.");
@@ -429,7 +431,7 @@ async function localSnapshot(context: SharedAgentContext, session: DocumentReadS
  if (!diagnostics && errors.size) throw errors.values().next().value;
  if (definition && errors.has(definition.file)) throw errors.get(definition.file);
  if (definition && text(documents.get(definition.file)!.fields.backend, "tracker backend") !== context.routes.tickets.adapter) throw new Error("Tracker backend disagrees with the resolved tickets route. Update the tracker definition or route configuration.");
- const tickets: ExplorerTicket[] = [];
+ const tickets: TicketRecord[] = [];
  const paths = new Map<string, string>();
  const parents = new Map<string, string>();
  for (const file of ticketFiles) {
@@ -441,7 +443,7 @@ async function localSnapshot(context: SharedAgentContext, session: DocumentReadS
    const id = scalar(doc.fields.id, "ticket id");
    const documentType = doc.fields.type == null ? undefined : text(doc.fields.type, "ticket type");
    const parent = doc.fields.parent == null ? undefined : scalar(doc.fields.parent, "ticket parent");
-   const ticket: ExplorerTicket = { id, title: text(doc.fields.title, "ticket title"), documentType, fields: doc.fields, ref, backend: "local-markdown", status: doc.fields.work_status == null ? doc.fields.status == null ? "unavailable" : text(doc.fields.status, "record status") : text(doc.fields.work_status, "ticket work_status"), blockedBy: list(doc.fields.blocked_by ?? [], "ticket blocked_by").map(value => scalar(value, "ticket blocker")), body: doc.body };
+   const ticket: TicketRecord = { id, title: text(doc.fields.title, "ticket title"), documentType, fields: doc.fields, ref, backend: "local-markdown", status: doc.fields.work_status == null ? doc.fields.status == null ? "unavailable" : text(doc.fields.status, "record status") : text(doc.fields.work_status, "ticket work_status"), blockedBy: list(doc.fields.blocked_by ?? [], "ticket blocked_by").map(value => scalar(value, "ticket blocker")), body: doc.body };
    paths.set(session.actual(file), id);
    if (parent) parents.set(id, parent);
    tickets.push(ticket);
@@ -451,7 +453,7 @@ async function localSnapshot(context: SharedAgentContext, session: DocumentReadS
    diagnostics.push({ ref, error: message });
   }
  }
- const initiatives: ExplorerInitiative[] = [];
+ const initiatives: InitiativeRecord[] = [];
  for (const file of initiativeFiles) {
   if (relative(initiativesRecord.path, file).split(/[\\/]/).length !== 2 || !file.endsWith("/index.md")) continue;
   const id = dirname(relative(initiativesRecord.path, file));
@@ -514,7 +516,7 @@ async function localSnapshot(context: SharedAgentContext, session: DocumentReadS
  return { backend: "local-markdown", tickets, initiatives };
 }
 
-async function githubSnapshot(context: SharedAgentContext, exec: Exec, scope?: { ref: string; kind?: "ticket" | "initiative" }): Promise<ExplorerSnapshot> {
+async function githubSnapshot(context: SharedAgentContext, exec: Exec, scope?: { ref: string; kind?: "ticket" | "initiative" }): Promise<TrackerSnapshot> {
  const match = /^github\.com\/([^/\s]+)\/([^/\s]+)$/.exec(context.canonicalOrigin.replace(/^https?:\/\//, "").replace(/\.git$/, ""));
  if (!match) throw new Error("GitHub backend requires a github.com OWNER/REPO canonical origin.");
  const repository = `${match[1]}/${match[2]}`;
@@ -522,8 +524,8 @@ async function githubSnapshot(context: SharedAgentContext, exec: Exec, scope?: {
  const selectedId = scope?.ref.startsWith(base) ? scope.ref.slice(base.length) : undefined;
  if (scope && (!selectedId || !/^[1-9]\d*$/.test(selectedId))) throw new Error(`GitHub record reference must be ${base}<NUMBER>.`);
  const descendants = new Set<string>(scope?.kind === "initiative" && selectedId ? [selectedId] : []);
- const tickets = new Map<string, ExplorerTicket>();
- const initiatives = new Map<string, ExplorerInitiative>();
+ const tickets = new Map<string, TicketRecord>();
+ const initiatives = new Map<string, InitiativeRecord>();
  const parents = new Map<string, string>();
  const childrenById = new Map<string, string[]>();
  const pending = scope ? [selectedId!] : (await pages(exec, `repos/${repository}/issues?state=all&per_page=100`)).filter(value => !object(value, "GitHub issue").pull_request).map(value => issueNumber(object(value, "GitHub issue").number));
@@ -581,7 +583,7 @@ async function githubSnapshot(context: SharedAgentContext, exec: Exec, scope?: {
  * Read the Jira mirror that `jira-mirror.ts sync` writes: one `<KEY>.md` file for each issue.
  * Epics become initiatives. `parent` gives membership, and `blocked_by` gives ticket edges.
  */
-async function jiraSnapshot(context: SharedAgentContext, session: DocumentReadSession, config: Fields, onProgress?: (progress: DocumentReadProgress) => void): Promise<ExplorerSnapshot> {
+async function jiraSnapshot(context: SharedAgentContext, session: DocumentReadSession, config: Fields, onProgress?: (progress: DocumentReadProgress) => void): Promise<TrackerSnapshot> {
  const site = jiraSite(config);
  if (config.mirror == null) throw new Error("docs/agents/issue-tracker.md has no mirror block. Add mirror.root and mirror.queries, then run jira-mirror.ts sync.");
  const alignment = await resolveContextRecord(context, { kind: "alignment" });
@@ -592,9 +594,9 @@ async function jiraSnapshot(context: SharedAgentContext, session: DocumentReadSe
  const { documents, errors } = await session.readAll(files.map(file => ({ file, root: alignment.root! })));
  onProgress?.({ phase: "records", completed: 0, total: null });
  if (errors.size) throw errors.values().next().value;
- const tickets: ExplorerTicket[] = [];
+ const tickets: TicketRecord[] = [];
  const parents = new Map<string, string>();
- const epics: ExplorerInitiative[] = [];
+ const epics: InitiativeRecord[] = [];
  for (const file of files) {
   const doc = documents.get(file)!;
   const label = `Jira mirror file ${basename(file)}`;

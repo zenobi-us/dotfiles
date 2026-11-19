@@ -2,14 +2,15 @@
 // Resolves the current adapter and prints the same recovery decision as the explorer.
 import { resolveSharedContext } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
 import type { Exec } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
-import type { ExplorerTicket, TicketWorkflow } from "../../../../../agent-core/extensions/pi-shared-context/model";
+import type { TicketRecord } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/model";
+import type { TicketWorkflow } from "./model";
 import { recoveryDecision } from "./recovery";
 import type { RecoveryDecision } from "./recovery";
 import { loadExplorerSnapshot, loadTicketWorkflow } from "./workflow";
 import { formatInspection, inspectionBlockers } from "./inspection-blockers";
 import type { InspectionBlocker } from "./inspection-blockers";
 
-export async function inspectTicket(ref: string, exec: Exec, cwd = process.cwd()): Promise<{ ticket: ExplorerTicket; workflow: TicketWorkflow; decision: RecoveryDecision; blockers: InspectionBlocker[] }> {
+export async function inspectTicket(ref: string, exec: Exec, cwd = process.cwd()): Promise<{ ticket: TicketRecord; workflow: TicketWorkflow; decision: RecoveryDecision; blockers: InspectionBlocker[] }> {
   const context = await resolveSharedContext(exec, cwd);
   if (!context) throw new Error("Inspection requires a repository with a canonical origin and configured ticket adapter.");
   if (context.error) throw new Error(context.error);

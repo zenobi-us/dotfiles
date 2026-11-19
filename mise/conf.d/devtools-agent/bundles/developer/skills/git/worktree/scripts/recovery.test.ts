@@ -2,16 +2,17 @@
 import { expect, test } from "bun:test";
 import { recoveryDecision, recoveryState } from "./recovery";
 import type { WorkflowInspection } from "./recovery";
-import type { ExplorerReceipt, ExplorerTicket, TicketWorkflow } from "../../../../../agent-core/extensions/pi-shared-context/model";
+import type { WorkflowReceipt, TicketWorkflow } from "./model";
+import type { TicketRecord } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/model";
 
-const ticket: ExplorerTicket = { id: "T-1", title: "Recover", ref: "tracker/tickets/T-1.md", backend: "local-markdown", status: "open", blockedBy: [], body: "" };
+const ticket: TicketRecord = { id: "T-1", title: "Recover", ref: "tracker/tickets/T-1.md", backend: "local-markdown", status: "open", blockedBy: [], body: "" };
 const snapshot = { tickets: [ticket], initiatives: [], backend: ticket.backend };
 const commit = "a".repeat(40);
 const tree = "b".repeat(40);
-function receipt(phase: string, overrides: Partial<ExplorerReceipt> = {}): ExplorerReceipt {
+function receipt(phase: string, overrides: Partial<WorkflowReceipt> = {}): WorkflowReceipt {
   return { id: `${phase}-1`, ref: `workflows/T-1/events/${phase}-1.json`, workflowId: ticket.id, phase, status: "completed", sourceCommit: commit, sourceTree: tree, sourceBranch: "feature/T-1", baseBranch: "main", workspacePath: "/work/T-1", createdAt: "2026-10-01T00:00:00Z", outputs: [], fields: { event: "phase-complete" }, body: "", ...overrides };
 }
-function workflow(receipts: ExplorerReceipt[] = [], overrides: Partial<WorkflowInspection> = {}): TicketWorkflow {
+function workflow(receipts: WorkflowReceipt[] = [], overrides: Partial<WorkflowInspection> = {}): TicketWorkflow {
   return { ticketId: ticket.id, receipts, sourceCommit: commit, sourceTree: tree, inspection: { historyValid: true, source: { state: "available", path: "/work/T-1", branch: "feature/T-1", commit, tree, dirty: false }, ownership: "inactive", worktrees: [], commits: [], artifacts: [], ...overrides } };
 }
 function reviewed(verdict: "SUCCESS" | "FAILURE"): TicketWorkflow {
