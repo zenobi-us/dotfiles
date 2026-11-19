@@ -17,8 +17,6 @@
       "dependencies": {
         "@crustjs/core": "^0.0.19",
         "@crustjs/plugins": "^0.1.2",
-        "@earendil-works/pi-coding-agent": ">=1.1.0",
-        "@earendil-works/pi-tui": ">=1.1.0",
         "ajv": "^8.17.1",
         "turndown": "^7.2.4",
         "turndown-plugin-gfm": "^1.0.2",
@@ -27,6 +25,11 @@
         "@types/bun": "latest",
         "@types/turndown": "^5.0.6",
         "typescript": "^5",
+        "vitest": "^4.1.11",
+      },
+      "peerDependencies": {
+        "@earendil-works/pi-coding-agent": "*",
+        "@earendil-works/pi-tui": "*",
       },
     },
     "mise/conf.d/devtools-agent/bundles/creator": {
@@ -94,10 +97,6 @@
         "typescript": "5.9.3",
         "vite": "^7.3.0",
       },
-    },
-    "mise/conf.d/devtools-omp/extensions/shared-context": {
-      "name": "@zenobius/omp-shared-context",
-      "version": "0.1.0",
     },
     "mise/conf.d/devtools-pi/agent": {
       "name": "@zenobius/pi-agent-extensions",
@@ -539,8 +538,6 @@
     "@zenobis/agent-bundle-writing": ["@zenobis/agent-bundle-writing@workspace:mise/conf.d/devtools-agent/bundles/writing"],
 
     "@zenobius/omp-image-annotator": ["@zenobius/omp-image-annotator@workspace:mise/conf.d/devtools-omp/extensions/image-annotator"],
-
-    "@zenobius/omp-shared-context": ["@zenobius/omp-shared-context@workspace:mise/conf.d/devtools-omp/extensions/shared-context"],
 
     "@zenobius/pi-agent-extensions": ["@zenobius/pi-agent-extensions@workspace:mise/conf.d/devtools-pi/agent"],
 
@@ -1063,14 +1060,6 @@
     "@chevrotain/gast/@chevrotain/types": ["@chevrotain/types@11.0.3", "", {}, "sha512-gsiM3G8b58kZC2HaWR50gu6Y1440cHiJ+i3JUvcp/35JchYejb2+5MVeJK0iKThYpAa/P2PYFV4hoi44HD+aHQ=="],
 
     "@chevrotain/gast/lodash-es": ["lodash-es@4.17.21", "", {}, "sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw=="],
-
-    "@crustjs/core/typescript": ["typescript@6.0.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-bGdAIrZ0wiGDo5l8c++HWtbaNCWTS4UTv7RaTH/ThVIgjkveJt83m74bBHMJkuCbslY8ixgLBVZJIOiQlQTjfQ=="],
-
-    "@crustjs/plugins/typescript": ["typescript@6.0.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-bGdAIrZ0wiGDo5l8c++HWtbaNCWTS4UTv7RaTH/ThVIgjkveJt83m74bBHMJkuCbslY8ixgLBVZJIOiQlQTjfQ=="],
-
-    "@crustjs/style/typescript": ["typescript@6.0.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-bGdAIrZ0wiGDo5l8c++HWtbaNCWTS4UTv7RaTH/ThVIgjkveJt83m74bBHMJkuCbslY8ixgLBVZJIOiQlQTjfQ=="],
-
-    "@crustjs/utils/typescript": ["typescript@6.0.2", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-bGdAIrZ0wiGDo5l8c++HWtbaNCWTS4UTv7RaTH/ThVIgjkveJt83m74bBHMJkuCbslY8ixgLBVZJIOiQlQTjfQ=="],
 
     "@excalidraw/mermaid-to-excalidraw/nanoid": ["nanoid@4.0.2", "", { "bin": { "nanoid": "bin/nanoid.js" } }, "sha512-7ZtY5KTCNheRGfEFxnedV5zFiORN1+Y1N6zvPTnHQd8ENUvfaDBeuJDZb2bN/oXwXxu3qkTXDzy57W5vAmDTBw=="],
 

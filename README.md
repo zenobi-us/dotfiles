@@ -194,14 +194,44 @@ After updating a checkout from the old layout, refresh deployed symlinks without
 ```bash
 mise bootstrap --only dotfiles --yes
 ```
+## Pi coding agent
+
+Mise installs Pi through the `pi` alias for `github:earendil-works/pi`.
+The Unix configuration in `mise/conf.d/devtools-pi/mise.unix.toml` links agent settings and seven shared bundles into `~/.pi/agent`.
+Package settings load `./bundles/{name}`. Do not add duplicate bundle links under `~/.pi/agent/extensions`.
+
+After applying dotfiles, install the agent and bundle dependencies:
+
+```sh
+mise run pi.bootstrap
+```
+
+The task installs the agent root dependencies, then enters each bundle's resolved directory and runs `bun install`. It stops if an install fails.
+The repository already includes these bundles in its Bun workspace. Host-provided Pi packages belong in `peerDependencies` with a `"*"` range.
+
+Shell commands load the mise environment without importing Zsh aliases.
+Global defaults select `openai/gpt-5.5` with medium thinking. This repository's `.pi/settings.json` selects `openai/gpt-6-luna` after project approval.
+Pi uses its default `"ask"` project trust policy. Saved trust decisions still apply. For a trusted project in non-interactive mode, pass `--approve` explicitly.
+
 ## OMP pre hooks
 
 OMP loads pre hooks from `~/.omp/agent/bundles/agent-core/hooks/pre`.
 Mise bootstrap deploys the `agent-core` bundle as a symlink. No separate
 `~/.omp/agent/hooks` symlink is required. Restart OMP after changing its hook configuration.
 
-## OMP shared-context autocomplete
-The mise bootstrap links `mise/conf.d/devtools-omp/extensions` to `~/.omp/agent/extensions`. In OMP, type `shared://` followed by a fuzzy query to find files from the shared context associated with the current repository. Select an item to insert it as an `@` attachment. OMP keeps its built-in `@` file autocomplete.
+## Shared-context autocomplete for Pi and OMP
+
+The shared implementation and tests live in `mise/conf.d/devtools-agent/bundles/agent-core/extensions/shared-context`.
+Pi loads `pi.ts` through the `agent-core` package manifest. OMP loads `omp.ts` through its `config.yml` extension list. Both use the existing bundle symlinks; do not add a second link under either agent's `extensions` directory.
+
+In either agent, type `shared://` followed by a fuzzy query, then press Tab to select a shared-context file as an `@` attachment. Paths with spaces are quoted. Built-in `@` file autocomplete remains available.
+The adapters preserve each agent's cancellation contract: OMP passes an `AbortSignal`, while Pi passes an options object containing `signal` and `force`. Matching, caching, and attachment insertion use the same implementation. This extension registers no shortcut or modal.
+
+Restart Pi or OMP after changing its extension configuration. Run the focused tests from the repository root:
+
+```sh
+mise exec -- bun x vitest run mise/conf.d/devtools-agent/bundles/agent-core/extensions/shared-context
+```
 
 ## OMP image editor
 
