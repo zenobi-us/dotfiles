@@ -74,3 +74,13 @@ A new formal review is required. The parent owns fix phase-complete, tracker/wor
 ## Parent fix completion
 
 [Fix result](workflows/worktree-receipt-recovery-02-identity/events/fix-0008.yaml) and [parent completion](workflows/worktree-receipt-recovery-02-identity/events/fix-complete-0009.yaml) bind both resolved findings to source `542aeda624bf79ca1df866e939402f9e68d69955`. Parent validation passed 6 publication and partial-recovery tests with 60 assertions. Delivery is acknowledged. The fixer terminal is closed and process shutdown is confirmed. Source remains clean; fresh formal review is required.
+
+## Formal review attempt 2 — current state
+
+Latest verdict: FAILURE for `542aeda624bf79ca1df866e939402f9e68d69955` (`d0bbad25b4c5af2e76bd8d41de8bc1098bf38820`). Standards: 0 findings. Spec: 1 blocking finding, SPEC-03. Earlier fix sections describe the previous phase.
+
+See the immutable [review](../artifacts/reviews/review-review-0012.md), [result](../events/review-0012.yaml), and [parent completion](../events/review-complete-0013.yaml). Resolved findings remain SPEC-01 and SPEC-02. Open finding: SPEC-03.
+
+Validation: 130 tests passed; actual CLI smoke reproduced SPEC-03 and verified third-cwd publication and wrong-checkout rejection. Parent focused check passed 6 tests, 60 assertions. Source remained clean and unchanged. All reviewer processes stopped.
+
+Not merged or pushed. Next phase: fix the current persisted finding, with scoped authorization and fresh source/liveness inspection.

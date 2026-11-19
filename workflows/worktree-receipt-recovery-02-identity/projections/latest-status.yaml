@@ -1,20 +1,22 @@
 schema: worktree-latest-status/v1
 workflow_id: worktree-receipt-recovery-02-identity
 ticket: tracker/tickets/worktree-receipt-recovery-02-identity.md
-state: FIXED
-latest_receipt: fix-complete-0009
+state: REVIEW_FAILED
+latest_receipt: review-complete-0013
 latest_source_commit: 542aeda624bf79ca1df866e939402f9e68d69955
 latest_source_tree: d0bbad25b4c5af2e76bd8d41de8bc1098bf38820
 latest_review_verdict: FAILURE
-latest_review_receipt: review-0005
-latest_review_source_commit: 29c1f3244006803965c13655f8de9ae3b642c8fb
-latest_review_stale: true
-formal_review_required: true
+latest_review_receipt: review-0012
+latest_review_source_commit: 542aeda624bf79ca1df866e939402f9e68d69955
+latest_review_stale: false
+formal_review_required: false
 consumed_review_receipt_ids:
   - review-0005
+  - review-0012
 resolved_finding_ids:
   - SPEC-01
   - SPEC-02
-open_findings: []
+open_findings:
+  - SPEC-03
 parent_phase_complete: true
 snapshot: workflows/worktree-receipt-recovery-02-identity/artifacts/snapshots/pr-draft-fix-0008.md
