@@ -1,0 +1,11 @@
+{
+  "schema": "worktree-latest-status/v1",
+  "workflow_id": "worktree-receipt-recovery-03-blockers",
+  "ticket": "tracker/tickets/worktree-receipt-recovery-03-blockers.md",
+  "state": "IMPLEMENTED",
+  "latest_receipt": "start-complete-0003",
+  "latest_source_commit": "3f6bd3017b6820f64d3b7bf480165e6dbc83c129",
+  "latest_source_tree": "8aa9bcb8cdbd76d77688269437295bd451c14b80",
+  "latest_review_verdict": null,
+  "open_findings": []
+}
