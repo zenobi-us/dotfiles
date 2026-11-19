@@ -1,0 +1,11 @@
+{
+  "schema": "worktree-workflow/v2",
+  "workflow_id": "skill-contract-manifests-02-historical-definitions",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-02-historical-definitions.md",
+  "initiative": "skill-contract-manifests",
+  "event_root": "events",
+  "artifact_root": "artifacts",
+  "projection_root": "projections",
+  "latest_receipt": "implementation-0002",
+  "state": "IMPLEMENTED"
+}
