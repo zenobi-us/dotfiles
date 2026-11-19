@@ -152,6 +152,12 @@ Commands, working directories, and results:
 
 LSP reference lookup was unavailable because the workspace has no TypeScript installation. No typecheck result is claimed.
 
+## Integration validation
+
+Squash integration: `b70136f32d947c2f588fe3098ccfc75fab718cdd`; tree: `e6ab0f3feeff157fccff2d2c9914b0a91299f149`; parent: `a679a4a854fe57e27af5b6a0f4962f362f1186f0`. Candidate-bound affected tests, integration helper tests, pre-merge hook check, and actual inspector CLI smoke all exited zero. The smoke preserved event inventory, receipt bytes, index bytes, and source status. See [candidate-bound results](../artifacts/snapshots/integration-result-0012.json) and [exact check commands](../artifacts/snapshots/integration-checks-0010.json).
+
+The first plan was refused before candidate creation because the base advanced by one unrelated workflow record. A refreshed plan preserved the same source review and completed once. Both plans and the refusal remain in append-only history.
+
 ## Review history
 
 Latest reviewer verdict: SUCCESS for `3f6bd3017b6820f64d3b7bf480165e6dbc83c129` at 2026-11-19T11:36:08.823Z.
@@ -162,7 +168,7 @@ Parent validation: 3 focused tests passed. Reviewer validation: 62 tests and fiv
 
 ## Merge status
 
-Not merged or pushed. Review passed. Ticket remains claimed.
+Integrated by squash as `b70136f32d947c2f588fe3098ccfc75fab718cdd` and published to `origin/master`. Ticket completion commit `6e870aff2bfeba7587fa9286737d04b33b09f3c7` is published. Source and candidate branches/workspaces were removed through cleanup-merged. App spaces are absent and phase-owned process shutdown is confirmed. The reviewed source remains retained at `refs/worktree-reviews/3f6bd3017b6820f64d3b7bf480165e6dbc83c129`. Terminal state: FINISHED.
 
 ## Receipts and artifacts
 
@@ -177,7 +183,29 @@ Not merged or pushed. Review passed. Ticket remains claimed.
 - [Review completion](../events/review-complete-0006.yaml).
 - [Immutable review](../artifacts/reviews/review-review-0005.md).
 
+
+- [finish-start-0007](../events/finish-start-0007.yaml).
+- [finish-prepared-0008](../events/finish-prepared-0008.yaml).
+- [finish-failed-0009](../events/finish-failed-0009.yaml).
+- [finish-start-0010](../events/finish-start-0010.yaml).
+- [finish-prepared-0011](../events/finish-prepared-0011.yaml).
+- [finish-merged-0012](../events/finish-merged-0012.yaml).
+- [finish-pushed-0013](../events/finish-pushed-0013.yaml).
+- [finish-ticket-completed-0014](../events/finish-ticket-completed-0014.yaml).
+- [finish-worktree-removed-0015](../events/finish-worktree-removed-0015.yaml).
+- [finish-complete-0016](../events/finish-complete-0016.yaml).
+- [integration-plan-0007.json](../artifacts/snapshots/integration-plan-0007.json).
+- [integration-checks-0007.json](../artifacts/snapshots/integration-checks-0007.json).
+- [integration-assessment-0007.json](../artifacts/snapshots/integration-assessment-0007.json).
+- [integration-message-0007.txt](../artifacts/snapshots/integration-message-0007.txt).
+- [integration-plan-0010.json](../artifacts/snapshots/integration-plan-0010.json).
+- [integration-checks-0010.json](../artifacts/snapshots/integration-checks-0010.json).
+- [integration-assessment-0010.json](../artifacts/snapshots/integration-assessment-0010.json).
+- [integration-message-0010.txt](../artifacts/snapshots/integration-message-0010.txt).
+- [integration-result-0012.json](../artifacts/snapshots/integration-result-0012.json).
+- [cleanup-result-0015.json](../artifacts/snapshots/cleanup-result-0015.json).
+
 ## Open questions
 
-None. No services or external resources were created. Parent session owns child-pane closure and workflow publication.
+None. No services or external resources remain. Cleanup is verified.
 

@@ -1,0 +1,40 @@
+{
+  "schema": "worktree-cleanup-observation/v1",
+  "branches_removed": [
+    "feature/worktree-receipt-recovery-03-blockers",
+    "integration/49222d6d-1d63-4f0a-b482-e319f72d7d5b"
+  ],
+  "refused": [],
+  "workspaces": [
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-03-blockers",
+      "absent": true
+    },
+    {
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-49222d6d-1d63-4f0a-b482-e319f72d7d5b",
+      "absent": true
+    }
+  ],
+  "app_spaces": [],
+  "resource_shutdown": {
+    "implementation": true,
+    "reviewer": true,
+    "standards_axis": true,
+    "spec_axis": true
+  },
+  "hook_ports": [
+    {
+      "port": 13557,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "port": 12455,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "scope": "Only the two finish-owned branches; unrelated branches and workspaces preserved."
+}
