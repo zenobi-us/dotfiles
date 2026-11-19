@@ -1,0 +1,14 @@
+{
+  "review_receipt": "review-0005",
+  "source_unchanged": true,
+  "review_base_commit": "4e6557501f08719e627a93ce7ed00f008fa5c79d",
+  "base_before": "26a29bf1c04795f3e5909e63a45713c3969ac415",
+  "base_changes": "Only tracker and workflow metadata since review base; no producer/consumer code changed. 02-identity failed source remains unmerged in its separate branch.",
+  "inventory_complete": false,
+  "proposed_reservations": [],
+  "ownership": "Original parent herdr-app:t1ps owns review-complete-0006; explicit user finish request authorizes this operation. Source/implementation/review sessions have confirmed shutdown.",
+  "coordination": "Canonical and linked source observations agree on unique frozen source. No proposed record diagnostics or reservation. Other workflow defects and missing /tmp prototype remain unrelated. Retained source streams are not integrated by this operation.",
+  "dirty_base": "Preserve README.md, Herdr UI changes, research and source-library files; candidate does not include these uncommitted paths. None overlap reviewed changes. Worktrunk fast-forward will refuse conflicts without discarding files.",
+  "policy": "wt config show: user merge.squash=true. No project config or pre/post-merge hooks. User pre-remove hook must be dry-run checked for named source/candidate ports before cleanup; no broad process signals authorized.",
+  "remote": "origin/master fetched; local master ahead by 17 metadata commits, remote has no extra commits. Publish reviewed integration and existing committed context; never stage user changes."
+}

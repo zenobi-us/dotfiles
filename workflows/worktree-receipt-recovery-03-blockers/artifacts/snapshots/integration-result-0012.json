@@ -1,0 +1,69 @@
+{
+  "schema": "worktree-integration/v2",
+  "integration_method": "squash",
+  "reviewed_source_commit": "3f6bd3017b6820f64d3b7bf480165e6dbc83c129",
+  "reviewed_source_tree": "8aa9bcb8cdbd76d77688269437295bd451c14b80",
+  "base_branch": "master",
+  "base_before": "a679a4a854fe57e27af5b6a0f4962f362f1186f0",
+  "expected_merge_tree": "e6ab0f3feeff157fccff2d2c9914b0a91299f149",
+  "merged_commit": "b70136f32d947c2f588fe3098ccfc75fab718cdd",
+  "merged_tree": "e6ab0f3feeff157fccff2d2c9914b0a91299f149",
+  "merged_parents": [
+    "a679a4a854fe57e27af5b6a0f4962f362f1186f0"
+  ],
+  "validation_results": [
+    {
+      "argv": [
+        "wt",
+        "-C",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-49222d6d-1d63-4f0a-b482-e319f72d7d5b",
+        "hook",
+        "pre-merge",
+        "--var",
+        "target=master",
+        "--var",
+        "target_worktree_path=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-49222d6d-1d63-4f0a-b482-e319f72d7d5b",
+      "exit_code": 0,
+      "output": "",
+      "source_commit": "b70136f32d947c2f588fe3098ccfc75fab718cdd",
+      "source_tree": "e6ab0f3feeff157fccff2d2c9914b0a91299f149"
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.test.ts",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/recovery.test.ts",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/receipt-diagnostics.test.ts",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspection-blockers.test.ts",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/integration.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-49222d6d-1d63-4f0a-b482-e319f72d7d5b",
+      "exit_code": 0,
+      "output": "bun test v1.4.4 (38afee6c8)\n",
+      "source_commit": "b70136f32d947c2f588fe3098ccfc75fab718cdd",
+      "source_tree": "e6ab0f3feeff157fccff2d2c9914b0a91299f149"
+    },
+    {
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+        "-e",
+        "import { strict as assert } from 'node:assert'; import { readFile, readdir } from 'node:fs/promises'; import { join } from 'node:path';\nconst run=async(args)=>{const p=Bun.spawn(args,{cwd:process.cwd(),stdout:'pipe',stderr:'pipe',env:{...process.env,GIT_OPTIONAL_LOCKS:'0'}});const [out,err,code]=await Promise.all([new Response(p.stdout).text(),new Response(p.stderr).text(),p.exited]);assert.equal(code,0,err||out);return out;};\nconst eventDir=join(process.cwd(),'workflows/worktree-receipt-recovery-03-blockers/events'); const names=await readdir(eventDir);const eventBytes=await Promise.all(names.map(n=>readFile(join(eventDir,n),'utf8')));const status=await run(['git','status','--porcelain=v1','--untracked-files=all']);const indexPath=(await run(['git','rev-parse','--git-path','index'])).trim();const index=await readFile(indexPath);\nconst text=await run([process.execPath,'mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.ts','tracker/tickets/worktree-receipt-recovery-03-blockers.md','--json']); const observed=JSON.parse(text);assert.equal(observed.decision.action,'finish');assert.equal(observed.decision.mode,'begin');assert.equal(observed.workflow.inspection.historyValid,true);assert.equal(observed.workflow.inspection.source.commit,'3f6bd3017b6820f64d3b7bf480165e6dbc83c129');assert.equal(observed.workflow.inspection.source.dirty,false);assert.ok(observed.blockers.some(b=>b.code==='unknown_ownership'&&b.evidence.ownership==='unknown'&&b.missingEvidence.length>0));\nassert.deepEqual(await readdir(eventDir),names);assert.deepEqual(await Promise.all(names.map(n=>readFile(join(eventDir,n),'utf8'))),eventBytes);assert.deepEqual(await readFile(indexPath),index);assert.equal(await run(['git','status','--porcelain=v1','--untracked-files=all']),status);console.log(JSON.stringify({scenario:'candidate inspector CLI',action:observed.decision.action,mode:observed.decision.mode,historyValid:true,readOnly:{events:true,bytes:true,index:true,sourceStatus:true}}));"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-49222d6d-1d63-4f0a-b482-e319f72d7d5b",
+      "exit_code": 0,
+      "output": "{\"scenario\":\"candidate inspector CLI\",\"action\":\"finish\",\"mode\":\"begin\",\"historyValid\":true,\"readOnly\":{\"events\":true,\"bytes\":true,\"index\":true,\"sourceStatus\":true}}\n",
+      "source_commit": "b70136f32d947c2f588fe3098ccfc75fab718cdd",
+      "source_tree": "e6ab0f3feeff157fccff2d2c9914b0a91299f149"
+    }
+  ],
+  "candidate_branch": "integration/49222d6d-1d63-4f0a-b482-e319f72d7d5b",
+  "candidate_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-49222d6d-1d63-4f0a-b482-e319f72d7d5b",
+  "pushed": true,
+  "reviewed_source_ref": "refs/worktree-reviews/3f6bd3017b6820f64d3b7bf480165e6dbc83c129",
+  "already_published": false,
+  "remote_observed_commit": "b70136f32d947c2f588fe3098ccfc75fab718cdd",
+  "integration_reachable": true
+}
