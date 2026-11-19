@@ -4,16 +4,18 @@ export interface AutocompleteItem {
   value: string;
   label: string;
   description?: string;
-  [key: string]: unknown;
 }
 
-export interface AutocompleteProvider {
+export interface AutocompleteProvider<Arguments extends unknown[] = [
+  signal?: AbortSignal,
+  onPartial?: (suggestions: { items: AutocompleteItem[]; prefix: string }) => void,
+]> {
+  triggerCharacters?: string[];
   getSuggestions(
     lines: string[],
     cursorLine: number,
     cursorCol: number,
-    signal?: AbortSignal,
-    onPartial?: (suggestions: { items: AutocompleteItem[]; prefix: string }) => void,
+    ...args: Arguments
   ): Promise<{ items: AutocompleteItem[]; prefix: string } | null>;
   applyCompletion(
     lines: string[],
@@ -47,29 +49,7 @@ interface CommandResult {
 }
 
 type RunSharedContext = (args: string[], cwd: string) => Promise<CommandResult>;
-type GetItems = () => Promise<SharedContextItem[]>;
-
-interface ExtensionApi {
-  exec(
-    command: string,
-    args: string[],
-    options: { cwd: string; timeout: number },
-  ): Promise<CommandResult>;
-  logger?: { warn(message: string, fields?: Record<string, unknown>): void };
-  on(
-    event: "session_start",
-    handler: (
-      event: unknown,
-      context: {
-        cwd: string;
-        hasUI: boolean;
-        ui: {
-          addAutocompleteProvider(factory: (current: AutocompleteProvider) => AutocompleteProvider): void;
-        };
-      },
-    ) => void,
-  ): void;
-}
+export type GetItems = () => Promise<SharedContextItem[]>;
 
 interface SharedContextAutocompleteItem extends AutocompleteItem {
   sharedContextPath: string;
@@ -128,7 +108,7 @@ function suggestionsFor(items: SharedContextItem[], prefix: string): SharedConte
 }
 
 function isSharedContextItem(item: AutocompleteItem): item is SharedContextAutocompleteItem {
-  return typeof item.sharedContextPath === "string";
+  return "sharedContextPath" in item && typeof item.sharedContextPath === "string";
 }
 
 function attachmentFor(filePath: string): string {
@@ -173,15 +153,18 @@ export async function loadSharedContextItems(cwd: string, run: RunSharedContext)
   return items;
 }
 
-export function createSharedContextAutocompleteProvider(
-  current: AutocompleteProvider,
+export function createSharedContextAutocompleteProvider<Arguments extends unknown[]>(
+  current: AutocompleteProvider<Arguments>,
   getItems: GetItems,
-): AutocompleteProvider {
+  getSignal: (...args: Arguments) => AbortSignal | undefined,
+): AutocompleteProvider<Arguments> {
   return {
-    async getSuggestions(lines, cursorLine, cursorCol, signal, onPartial) {
+    triggerCharacters: current.triggerCharacters,
+    async getSuggestions(lines, cursorLine, cursorCol, ...args) {
       const currentLine = lines[cursorLine] ?? "";
       const prefix = sharedPrefix(currentLine.slice(0, cursorCol));
-      if (!prefix) return current.getSuggestions(lines, cursorLine, cursorCol, signal, onPartial);
+      if (!prefix) return current.getSuggestions(lines, cursorLine, cursorCol, ...args);
+      const signal = getSignal(...args);
       if (signal?.aborted) return null;
 
       const items = suggestionsFor(await getItems(), prefix);
@@ -220,7 +203,7 @@ export function createSharedContextAutocompleteProvider(
   };
 }
 
-function cachedItems(loader: GetItems, onError: (error: unknown) => void): GetItems {
+export function cachedItems(loader: GetItems, onError: (error: unknown) => void): GetItems {
   let items: SharedContextItem[] = [];
   let loadedAt = 0;
   let pending: Promise<SharedContextItem[]> | undefined;
@@ -245,23 +228,3 @@ function cachedItems(loader: GetItems, onError: (error: unknown) => void): GetIt
   };
 }
 
-export default function sharedContextAutocomplete(pi: ExtensionApi): void {
-  pi.on("session_start", (_event, context) => {
-    if (!context.hasUI) return;
-
-    const getItems = cachedItems(
-      () => loadSharedContextItems(
-        context.cwd,
-        (args, cwd) => pi.exec("shared-context", args, { cwd, timeout: 15_000 }),
-      ),
-      (error) => pi.logger?.warn("shared-context autocomplete refresh failed", {
-        error: error instanceof Error ? error.message : String(error),
-      }),
-    );
-
-    context.ui.addAutocompleteProvider((current) =>
-      createSharedContextAutocompleteProvider(current, getItems),
-    );
-    void getItems();
-  });
-}

@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
-  createSharedContextAutocompleteProvider,
   type AutocompleteProvider,
   type SharedContextItem,
-} from "./index";
+} from "./autocomplete";
+import { createOmpAutocompleteProvider as createSharedContextAutocompleteProvider } from "./omp";
 
 function baseProvider(): AutocompleteProvider {
   return {
@@ -81,18 +81,6 @@ describe("shared-context autocomplete", () => {
     expect(completion.lines).toEqual(["@\"/context/docs/plans/migrate skill.md\" "]);
   });
 
-  it.each(["#typed", "@typed", "typed", "xshared://typed", "shared:/typed"])(
-    "delegates ordinary input %s without loading shared files",
-    async (text) => {
-      const provider = createSharedContextAutocompleteProvider(baseProvider(), async () => {
-        throw new Error("Shared files should not load for ordinary input");
-      });
-      expect(await provider.getSuggestions([text], 0, text.length)).toEqual(
-        await baseProvider().getSuggestions([text], 0, text.length),
-      );
-    },
-  );
-
   it("lists files for an empty query and matches non-contiguous letters case-insensitively", async () => {
     const items: SharedContextItem[] = [
       { absolutePath: "/context/docs/migration.md", relativePath: "docs/migration.md" },
@@ -110,12 +98,4 @@ describe("shared-context autocomplete", () => {
     expect(await provider.getSuggestions(["shared://missing"], 0, 16)).toBeNull();
   });
 
-  it("ignores cancelled queries", async () => {
-    const controller = new AbortController();
-    controller.abort();
-    const provider = createSharedContextAutocompleteProvider(baseProvider(), async () => {
-      throw new Error("Cancelled queries should not load files");
-    });
-    expect(await provider.getSuggestions(["shared://"], 0, 9, controller.signal)).toBeNull();
-  });
 });

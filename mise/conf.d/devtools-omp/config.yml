@@ -11,6 +11,7 @@ theme:
 setupVersion: 3
 extensions:
   - ~/.omp/agent/bundles/agent-core/hooks/pre
+  - ~/.omp/agent/bundles/agent-core/extensions/shared-context/omp.ts
 task:
   disabledAgents: []
   enableLsp: true
@@ -69,7 +70,7 @@ skills:
     - ~/.omp/agent/bundles/writing/skills/fictional
 codexResets:
   autoRedeem: "no"
-hideThinkingBlock: true
+hideThinkingBlock: false
 update:
   auto: false
 out:

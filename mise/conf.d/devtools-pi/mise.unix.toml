@@ -2,7 +2,14 @@
 description = "Install Zenobius Agent bundle plugins and their dependencies"
 tools.bun = "latest"
 run = """
+set -e
 bun install
+for name in agent-core creator developer matt-pocock platform researcher writing; do
+  (
+    cd -P "bundles/$name"
+    bun install
+  )
+done
 """
 dir = "~/.pi/agent"
 

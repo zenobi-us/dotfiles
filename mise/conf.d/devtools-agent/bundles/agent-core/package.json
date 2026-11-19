@@ -9,24 +9,27 @@
   "dependencies": {
     "@crustjs/core": "^0.0.19",
     "@crustjs/plugins": "^0.1.2",
-    "@earendil-works/pi-coding-agent": ">=1.1.0",
-    "@earendil-works/pi-tui": ">=1.1.0",
     "ajv": "^8.17.1",
     "turndown": "^7.2.4",
     "turndown-plugin-gfm": "^1.0.2"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
   },
   "pi": {
     "skills": [
       "./skills"
     ],
     "extensions": [
-      "./extensions/pi-shared-context"
+      "./extensions/shared-context/pi.ts"
     ]
   },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/turndown": "^5.0.6",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.11"
   },
   "scripts": {
     "typecheck": "tsc --noEmit -p tsconfig.json"
