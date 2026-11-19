@@ -4,7 +4,7 @@ id: "worktree-receipt-recovery-03-blockers"
 title: "Report blockers with supported recovery actions"
 type: "enhancement"
 triage: "ready-for-agent"
-work_status: "unclaimed"
+work_status: "claimed"
 parent: "worktree-receipt-recovery"
 sequence: 3
 blocked_by: ["worktree-receipt-recovery-01-validation"]
