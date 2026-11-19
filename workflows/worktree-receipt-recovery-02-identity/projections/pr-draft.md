@@ -80,11 +80,11 @@ None from the implementation quality checks.
 
 ## Latest reviewer verdict
 
-None. Formal review has not started.
+FAILURE. See formal review attempt 1 below.
 
 ## Merge status
 
-Not merged or pushed. Parent completion is recorded in `start-complete-0003`. Formal review remains pending. The child terminal is closed and owned process shutdown is confirmed.
+Not merged or pushed. Parent completion is recorded in `start-complete-0003`. Formal review failed; SPEC-01 and SPEC-02 require fixes. The child terminal is closed and owned process shutdown is confirmed.
 
 ## Supporting records
 
@@ -96,3 +96,7 @@ Not merged or pushed. Parent completion is recorded in `start-complete-0003`. Fo
 ## Parent completion
 
 [Start completion](workflows/worktree-receipt-recovery-02-identity/events/start-complete-0003.yaml) validates the child result and exact clean source. Parent identity checks passed: 5 tests and 52 assertions. The generated writer published this completion from the separate context checkout.
+
+## Formal review attempt 1
+
+Verdict: FAILURE. Standards: SUCCESS; Spec: FAILURE. Open findings: SPEC-01 and SPEC-02. The immutable [review artifact](workflows/worktree-receipt-recovery-02-identity/artifacts/reviews/review-review-0005.md) contains the findings and required changes. [Review result](workflows/worktree-receipt-recovery-02-identity/events/review-0005.yaml) and [parent completion](workflows/worktree-receipt-recovery-02-identity/events/review-complete-0006.yaml) bind this verdict to source `29c1f3244006803965c13655f8de9ae3b642c8fb`. Source remains clean. Review processes stopped; child terminal closed. No merge or push occurred.
