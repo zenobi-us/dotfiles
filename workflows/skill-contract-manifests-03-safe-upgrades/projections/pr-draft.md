@@ -10,7 +10,7 @@ Manifest declarations previously resolved definitions but could not execute safe
 
 ## Implementation summary
 
-Source commit: 61325389b18be55808813456371f0ebdb270e285. Source tree: 6e606a819342ae734a569a304861c723d8e3a743. Branch: feature/skill-contract-manifests-03-safe-upgrades. The source worktree is clean.
+Source commit: 61325389b18be55808813456371f0ebdb270e285. Source tree: 6e606a819342ae734a569a304861c723d8e3a743. Branch: feature/skill-contract-manifests-03-safe-upgrades. The reviewed source worktree was removed after verified publication.
 
 Public safe-upgrade and bulk-upgrade commands reuse the shared manifest resolver. Installed owner adapters retain domain validation, legacy detection, immutable classification, operation destinations, conversion and mutation. Shared checks require one declared path, validated intermediate content, lossless authored-content comparison and final mutation validation before atomic persistence. Cleanup errors retain the actual persisted result and return nonzero.
 
@@ -108,7 +108,7 @@ SUCCESS. See the independent review artifact and result receipt below.
 
 ## Merge status
 
-Not merged or pushed. No PR was submitted. The ticket remains claimed, not completed.
+Squash integrated and published to origin/master. The ticket is completed; recorded source and candidate resources are removed.
 
 ## Supporting records
 
@@ -124,4 +124,14 @@ SUCCESS for source `61325389b18be55808813456371f0ebdb270e285`. Standards: two no
 
 [Review artifact](../artifacts/reviews/review-review-0005.md), [review result](../events/review-0005.yaml), and [parent completion](../events/review-complete-0006.yaml). Original implementation and review history remain above.
 
-Reviewer and axis child panes are removed. User approved exact-identity cleanup of the two orphaned axis processes; all owned process shutdown is confirmed. Source remains clean and unchanged. Not merged or pushed.
+Reviewer and axis child panes are removed. User approved exact-identity cleanup of the two orphaned axis processes; all owned process shutdown is confirmed. Reviewed source remained unchanged through integration and was then removed after publication.
+
+## Finish outcome
+
+FINISHED. Squash integration `70055597a15a237025359fabd162a827e6e115cd` has parent `268da19a302493cba216de65b72a4ec31dfe98a9` and tree `00fa32bd4e81c97e741778e0416df81f45c20ef2`. Independent SUCCESS covers source `61325389b18be55808813456371f0ebdb270e285`; source identity remains retained separately from the integration candidate.
+
+Candidate-bound contract tests and real CLI smoke passed. CLI checks covered conversion, requested mutation, authored-content preservation, byte-identical read-only access, immutable and unsupported-input rejection, partial bulk persistence, and plugin/catalogue agreement.
+
+Integration and ticket completion are published to `origin/master`; tracker publication commit is `724bd710afd01730895c2b8625140af7291c9a57`. Ticket state is completed. Both recorded branches/worktrees are removed, app spaces are absent, and owned process shutdown is confirmed. Other workflows and unrelated Zsh changes remain untouched. Two non-blocking P3 review findings remain recorded; no blocking findings remain.
+
+[Integration plan](../artifacts/snapshots/integration-plan-0007.json), [candidate result](../artifacts/snapshots/integration-result-0008.json), [publication checkpoint](../events/finish-pushed-0009.yaml), [ticket checkpoint](../events/finish-ticket-completed-0010.yaml), [cleanup checkpoint](../events/finish-worktree-removed-0011.yaml), and [terminal receipt](../events/finish-0012.yaml).
