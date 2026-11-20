@@ -171,3 +171,13 @@ The reviewer supplied the failing baseline. The fix did not rerun it merely to c
 
 Source is committed and clean. No rebase, merge, push, tracker mutation, or source workflow write occurred. No evidence run or service was created. [Parent completion](../events/fix-complete-0017.yaml) validates the authoritative fix result and source identity. Delivery acknowledged; fixer tab closed; all four owned processes confirmed stopped. Workflow records committed locally; no merge or push. Next action: fresh formal review of the changed source. Open questions: none.
 
+
+
+## Formal review attempt 3 — current state
+
+Latest verdict: FAILURE for `c54b293d8e3079803babe8e4a5dbb075f95d749b` (tree `25ea26786dbeaf944d4bee9fcf64629f4da78a3e`). Standards reported no findings. The current review confirms one medium blocker, SPEC-2. Earlier verdicts and resolved findings remain history.
+
+Read the immutable [review](../artifacts/reviews/review-review-0020.md), [result](../events/review-0020.yaml), and [parent completion](../events/review-complete-0021.yaml). The completion records verified transport, exact clean source, and confirmed shutdown for all three review runs after scoped cleanup approval.
+
+Validation: scoped suite passed 130 tests with 734 assertions; parent focused regression passed 1 test with 15 assertions. Actual writer smoke exercised cross-directory publication and rejection paths. The retained-v1 wrong-branch scenario reproduced the blocking defect. No fix, merge, or push occurred. Next action requires fresh workflow inspection and fix authorization.
+
