@@ -1,20 +1,21 @@
 schema: worktree-latest-status/v1
 workflow_id: worktree-receipt-recovery-02-identity
 ticket: tracker/tickets/worktree-receipt-recovery-02-identity.md
-state: FIXED
-latest_receipt: fix-complete-0033
+state: REVIEW_PASSED
+latest_receipt: review-complete-0037
 latest_source_commit: 2a843de309311b624fd64e8671fb83a414d4e774
 latest_source_tree: 7773e1f8683022ad985d59c17b90a728e8a34190
-latest_review_verdict: FAILURE
-latest_review_receipt: review-0028
-latest_review_source_commit: 05c403f8b9707d11418c07756d334335b139e32b
-latest_review_stale: true
-formal_review_required: true
+latest_review_verdict: SUCCESS
+latest_review_receipt: review-0036
+latest_review_source_commit: 2a843de309311b624fd64e8671fb83a414d4e774
+latest_review_stale: false
+formal_review_required: false
 consumed_review_receipt_ids:
   - review-0005
   - review-0012
   - review-0020
   - review-0028
+  - review-0036
 resolved_finding_ids:
   - SPEC-01
   - SPEC-02
@@ -26,4 +27,9 @@ unresolved_finding_ids: []
 parent_phase_complete: true
 snapshot: workflows/worktree-receipt-recovery-02-identity/artifacts/snapshots/pr-draft-fix-0032.md
 cleanup_status: confirmed
-review_artifact: workflows/worktree-receipt-recovery-02-identity/artifacts/reviews/review-review-0028.md
+review_artifact: workflows/worktree-receipt-recovery-02-identity/artifacts/reviews/review-review-0036.md
+advisory_findings:
+  - id: STD-0036-1
+    severity: low
+    blocking: false
+    review_receipt: review-0036

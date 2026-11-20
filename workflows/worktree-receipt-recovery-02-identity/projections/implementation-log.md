@@ -217,3 +217,11 @@ Source `2a843de309311b624fd64e8671fb83a414d4e774`, tree `7773e1f8683022ad985d59c
 
 The fixer ran the scoped suite (131 pass, 767 assertions) and actual inspector/writer smoke. All authorized findings are resolved; prior failed reviews remain unchanged and stale. A fresh independent review is required for this changed source. No merge or push occurred.
 
+
+
+## Formal review attempt 5 — current state
+
+Latest verdict: SUCCESS for `2a843de309311b624fd64e8671fb83a414d4e774` (tree `7773e1f8683022ad985d59c17b90a728e8a34190`). Read the [immutable review](../artifacts/reviews/review-review-0036.md), [result](../events/review-0036.yaml), and [parent completion](../events/review-complete-0037.yaml). Standards has one low non-blocking advisory, STD-0036-1. Spec has no findings. No blocking finding remains. Historical reviews remain unchanged.
+
+Scoped suite: 131 pass, 0 fail, 767 assertions. Actual inspector/writer CLI smoke passed linked-root continuation and rejection boundaries. Parent focused regression: 1 pass, 28 assertions. The parent verified the authoritative transport, exact clean source, acknowledgement, reviewer closure and confirmed owned shutdown; both axis results were acknowledged and closed. No source edit, merge or push occurred. Integration still requires current-base compatibility checks and a separately authorized finish/submit phase.
+
