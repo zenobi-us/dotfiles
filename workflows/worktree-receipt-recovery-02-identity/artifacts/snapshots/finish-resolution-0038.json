@@ -1,0 +1,17 @@
+{
+  "original_source_commit": "2a843de309311b624fd64e8671fb83a414d4e774",
+  "base_commit": "3459a614fb83a772e7795a812e49c62d9fa689a6",
+  "prepare_failed": true,
+  "conflicts": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json"
+  ],
+  "conflict_values": {
+    "base": "0.2.58",
+    "source": "0.2.63"
+  },
+  "resolution": "Retain higher matching source version 0.2.63; existing version generator ran successfully without further edits.",
+  "candidate_branch": "resolve/worktree-receipt-recovery-02-identity-finish",
+  "candidate_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-worktree-receipt-recovery-02-identity-finish",
+  "authorization": "User invoked finish, then selected Resolve and review candidate for generated metadata conflicts. Preserve original reviewed source; independently review resolved candidate before integration."
+}
