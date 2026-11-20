@@ -8,7 +8,7 @@ sequence: 3
 title: Perform safe contract upgrades
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 ## What to build
