@@ -16,7 +16,7 @@ import type { ParsedDocument, DocumentReadProgress } from "./document-cache";
 import { validateReceiptContract } from "./receipt-contract";
 import { inspectReceiptDiagnostics } from "./receipt-diagnostics";
 import type { ReceiptDiagnostic } from "./receipt-diagnostics";
-import { validateReceipt, validateSourcePaths, validateSourceWorktree } from "./receipt-validation";
+import { linkedWorkflowRoot, repositoryIdentity, validateReceipt, validateSourcePaths, validateSourceWorktree } from "./receipt-validation";
 
 type Fields = Record<string, unknown>;
 type Document = ParsedDocument;
@@ -207,19 +207,6 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: TicketRe
   const eventFiles = await session.collect(events, /\.(md|yaml|yml|json)$/, record.root);
   const { documents, errors: readErrors } = await session.readAll(eventFiles.map(file => ({ file, root: record.root! })));
   const repositoryIdentities = options?.repositoryIdentities ?? new Map<string, Promise<string | undefined>>();
-  const repositoryIdentity = (path: string): Promise<string | undefined> => {
-   const key = resolve(path);
-   let identity = repositoryIdentities.get(key);
-   if (!identity) {
-    identity = (async () => {
-     const git = await exec("git", ["-C", key, "rev-parse", "--path-format=absolute", "--git-common-dir"]);
-     if (git.code !== 0 || !git.stdout.trim()) return undefined;
-     return realpath(git.stdout.trim());
-    })();
-    repositoryIdentities.set(key, identity);
-   }
-   return identity;
-  };
   const supplements = await historySupplements(documents, { root: record.root, ref: record.ref }, context, workflowId, session);
   const envelopes: { ref: string; fields: Fields }[] = [];
   const validationCodes = new Map<string, string>();
@@ -244,20 +231,16 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: TicketRe
     const repository = text(fields.repository, "receipt repository");
     const workspacePath = validateSourcePaths(fields);
     const historicalWorktree = archive && workflow.store === "repository" && repository === workspacePath;
-    let linkedWorkflowRoot = false;
-    if (workflow.store === "repository" && record.store === "repository" && (workflow.root === workspacePath || workflow.root === repository) && workflow.root !== record.root) {
-     const [recordedRoot, currentRoot] = await Promise.all([repositoryIdentity(String(workflow.root)), repositoryIdentity(record.root)]);
-     linkedWorkflowRoot = Boolean(recordedRoot && recordedRoot === currentRoot);
-    }
+    const compatibleRoot = await linkedWorkflowRoot(fields, record, exec, repositoryIdentities);
     for (const field of ["ref", "store", "root"] as const) {
-     if (workflow[field] !== record[field] && !(field === "root" && ((historicalWorktree && workflow.root === workspacePath) || linkedWorkflowRoot))) {
+     if (workflow[field] !== record[field] && !(field === "root" && ((historicalWorktree && workflow.root === workspacePath) || compatibleRoot))) {
       if (field === "root" && typeof workflow.root === "string" && isAbsolute(workflow.root) && !await exists(workflow.root)) throw new Error("[historical_root_unavailable] Receipt workflow.root is unavailable; establish its repository identity before repairing the historical storage reference.");
       throw new Error(`Receipt workflow.${field} does not match the resolved workflow${field === "root" ? " store root (not the workflow directory)" : ""}.`);
      }
     }
     if (!isAbsolute(repository)) throw new Error("Receipt repository does not match the current repository.");
     if (resolve(repository) !== resolve(context.repositoryRoot) && !historicalWorktree) {
-     const [recordedIdentity, currentIdentity] = await Promise.all([repositoryIdentity(repository), repositoryIdentity(context.repositoryRoot)]);
+     const [recordedIdentity, currentIdentity] = await Promise.all([repositoryIdentity(repository, exec, repositoryIdentities), repositoryIdentity(context.repositoryRoot, exec, repositoryIdentities)]);
      if (!recordedIdentity || recordedIdentity !== currentIdentity) throw new Error("Receipt repository does not match the current repository.");
     }
     validationCode = "invalid_receipt";

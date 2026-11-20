@@ -81,7 +81,7 @@ Record the assessed scope as optional `scope_paths` in the new phase-start recei
    completion requirements:
    - Implement the ticket.
    - Run validation.
-   - Write the immutable implementation phase-result with `"$WORKTREE_SKILL_ROOT/scripts/write-result.ts" --repository <absolute-designated-context-checkout> --input <prepared-result.json>`, following `references/receipts.md`. This writes authoritative YAML and delivers the parent result in one operation. Resolve publication through the supplied context checkout, not the child's source cwd. Keep publication writes outside the frozen source worktree.
+   - Write the immutable implementation phase-result with `"$WORKTREE_SKILL_ROOT/scripts/write-result.ts" --repository <absolute-designated-context-checkout> --phase-context <phase-context.json> --input <outcome.json>`, following `references/receipts.md`. This writes authoritative YAML and delivers the parent result in one operation. Resolve publication through the supplied context checkout, not the child's source cwd. Keep publication writes outside the frozen source worktree.
    - Write `artifacts/snapshots/pr-draft-<receipt-id>.md`.
    - Regenerate `manifest.yaml`, `projections/pr-draft.md`,
      `projections/implementation-log.md`, and
@@ -114,3 +114,9 @@ Report:
 - validation result
 - pane close result
 - next action and reason from a fresh shared inspection after recording the actual outcome; report `review <ticket-id>` only when a valid clean implementation result supports it. For failed, blocked, or missing results, report the inspected recovery/observation requirement instead of promising review.
+
+## Generated receipt identity
+
+Use `references/receipts.md` to prepare `worktree-phase-context/v1` before each parent or child write. Pass `--phase-context <phase-context.json>` to `scripts/write-result.ts`. Supply only outcomes and evidence through `--input`; do not copy the receipt envelope.
+
+Bind the context to the canonical ticket, resolved workflow ID, existing parent receipt, verified source worktree and current session. For child results, include the assigned run ID and operation ID in the session. Keep the source path separate from execution cwd and the publication checkout. Parent completion preserves the child result identity. Review, submit and finish preserve the frozen reviewed commit and tree; implementation and fix observe the new committed source. Retain the source identity after finish removes the worktree. Reject changed identity before publication or delivery.

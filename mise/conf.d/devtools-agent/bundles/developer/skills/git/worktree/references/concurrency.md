@@ -57,7 +57,7 @@ If a reservation remains after interruption, inspect its owner record and proces
 
 New records use `worktree-receipt/v2`; retained v1 records keep their original semantics and bytes. Mixed parent chains are allowed. The v2 finish mapping records integration method, base, reviewed source, expected tree, actual commit and parents, candidate workspace and passing checks bound to that commit/tree. Preserve source-review evidence separately from integration validation.
 
-Use `scripts/write-result.ts --parent-event --repository <absolute-repository> --input <event.json>` for parent lifecycle, checkpoint and finish records. Child results omit `--parent-event` and use their assigned v2 handoff. The writer checks the envelope, store route and source identity, rejects duplicate files, and verifies completed integration mappings. Parent writes do not consume child delivery slots.
+Use `scripts/write-result.ts --parent-event --repository <absolute-repository> --phase-context <phase-context.json> --input <outcome.json>` for parent lifecycle, checkpoint and finish records. Child results omit `--parent-event` and use their assigned v2 handoff. The writer checks the envelope, store route and source identity, rejects duplicate files, and verifies completed integration mappings. Parent writes do not consume child delivery slots.
 
 Remote publication is proved by integration reachability from the observed remote tip. Later independent commits do not invalidate completion. If the observed remote object is absent locally, the read-only inspector reports verification unavailable. Fetch the named remote branch explicitly, then inspect again. This is not permission to merge again.
 

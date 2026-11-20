@@ -4,7 +4,7 @@ Use receipts as the durable record for every worktree phase.
 
 New phase executions use `worktree-receipt/v2`. Retained `worktree-receipt/v1` events and explicitly authorized v1 envelope repairs keep their original semantics. Preserve original bytes. Mixed parent chains are valid. Read [Concurrent work streams](concurrency.md) before start, review, goal dispatch or finish. It owns cross-initiative coordination and the distinction between source review and integration validation.
 
-Use the absolute installed `scripts/write-result.ts` with `--parent-event --repository <absolute-repository> --input <event.json>` for parent records. Omit `--parent-event` for child results and use the assigned v2 delivery context. Parent writes do not consume child result slots. The writer validates store/source identity and refuses duplicate events. It resolves the configured store root to its physical path for publication, so system aliases such as `/home` work without changing receipt root fields or stable references. Workflow descendants still use no-follow traversal; symlinked event directories and event files remain rejected. Before publishing v2 events, it also checks the parent identity and timestamp. A child result must name its matching phase-start receipt for the same ticket. A successful phase completion must name its matching child result and preserve that result’s source commit, tree, branch and status. Failed launches can close an attempt without a child result.
+Use the absolute installed `scripts/write-result.ts` with `--parent-event --repository <absolute-repository> --phase-context <phase-context.json> --input <outcome.json>` for parent records. Omit `--parent-event` for child results and use the assigned v2 delivery context. Parent writes do not consume child result slots. The writer validates store/source identity and refuses duplicate events. It resolves the configured store root to its physical path for publication, so system aliases such as `/home` work without changing receipt root fields or stable references. Workflow descendants still use no-follow traversal; symlinked event directories and event files remain rejected. Before publishing v2 events, it also checks the parent identity and timestamp. A child result must name its matching phase-start receipt for the same ticket. A successful phase completion must name its matching child result and preserve that result’s source commit, tree, branch and status. Failed launches can close an attempt without a child result.
 
 The read-only inspector includes per-receipt `diagnostics` in its JSON output. Diagnostics have `ref`, `code`, `severity` and `message` fields. It reports unavailable historical roots, unavailable source objects, inconsistent source trees, parent chronology and completion bindings together. Coordination mode checks envelopes and links without probing source objects. V1 reconciliation differences remain warnings; they do not establish a new successful review or finish. Valid checksum-bound history supplements appear as information, not unresolved defects. A published, ticket-completed finish with failed worktree cleanup reports `cleanup_pending`; it does not authorize another implementation or integration.
 
@@ -95,6 +95,12 @@ Graphs show `READY` only for `start` in `begin` mode. Start recovery and takeove
 
 ## Append-only envelope repair
 
+Generated v1 child results require a retained parent phase-start whose phase matches the result phase; implementation maps to start. Reject mismatches before authoritative event or transport writes. Preserve retained v1 bytes.
+
+New publication requires `--phase-context`. A full v1 child envelope is accepted only when its retained v1 phase-start matches its ticket, workflow, repository, source, attempt, and session identity exactly. A changed child session uses generated context with the assigned live handoff.
+
+For an explicitly authorized v1 repair, pass `--repair-authorization <approval-id>`. First retain an `operator-approval` event with status `approved`, the same ticket, workflow and repository, and `envelope_repair: {receipt_id, sha256}`. The checksum covers the exact UTF-8 input file bytes. The writer requires an existing parent and rejects a changed payload, wrong approval, or missing approval. This option does not authorize a new v1 execution.
+
 An explicitly authorized history repair may restore missing receipts from retained source-worktree or Git records. Create byte-identical copies with exclusive writes; record their source and SHA-256. Preserve every original receipt and parent link.
 
 To supplement a malformed historical envelope, append a normal receipt with a valid parent and current source identity. An authorized repair may retain the historical v1 envelope; do not invent v2 candidate evidence for an old integration. New phase executions use v2. Record `history_repair_reason`, `history_repair_authorization`, and `history_supplements`. List each target in `inputs`. Each supplement contains its root-relative event `ref`, exact original-byte `sha256`, and one or more of:
@@ -109,9 +115,15 @@ The inspector validates supplements before constructing the parent graph. Target
 
 For a terminal v1 finish repair, retain the exact reviewed source commit/tree and source worktree in the appended finish envelope. Record the current repair checkout, commit/tree and session separately in recovery provenance. Reverify the integration mapping, remote reachability, tracker state and source removal before retaining `FINISHED`; do not claim that historical validation ran again. The repair records the current observation of an old integration, not a new finish execution.
 
+## Partial source closure
+
+A failed or blocked `phase-complete` for start, implementation, or fix can preserve incomplete source when `result_missing: true` names its matching phase-start parent. The writer observes the current commit, tree, and `source_dirty` instead of freezing the launch commit. Keep the source worktree and all partial files. The writer still checks the checkout, branch, repository, attempt, ticket, workflow, and session context.
+
+Successful completion, completion of a retained child result, and review, submit, or finish phases keep frozen source checks. A missing result never authorizes a successful completion.
+
 ## Receipt fields
 
-Copy `workflow.store`, `workflow.root`, and `workflow.ref` from the corresponding
+The writer generates `workflow.store`, `workflow.root`, and `workflow.ref` from the corresponding
 fields returned by `"$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts" resolve workflow --id <ticket-id> --json`.
 `workflow.root` is the store root. It is not the returned `path`, which includes
 `workflows/<ticket-id>`. Never substitute the workflow directory for the store root.
@@ -195,13 +207,41 @@ Fix receipts MUST record the consumed review receipt IDs, resolved finding IDs, 
 
 Publication and inspection use `scripts/receipt-validation.ts` for the common receipt envelope. `worktree` and `workspace_path` must contain the same absolute path. For an available source worktree, that path must resolve to the Git worktree root, not a directory inside it. The writer checks this before it writes an event or delivers a result. A failed check preserves existing events and creates no successful result. Historical inspection can retain receipts for removed worktrees; it does not establish current source availability.
 
+## Generated phase context
+
+New publication uses `--phase-context <phase-context.json> --input <outcome.json>`. The writer generates the receipt envelope. `--input` contains status, inputs, outputs, validation results and phase-specific evidence, not identity fields. Identity fields in outcomes are rejected, even when they match. New executions use v2. Generated v1 child results require an existing v1 phase-start and its explicitly assigned v1 handoff. An initial generated v1 start is rejected. Full v1 envelopes remain supported for retained history and authorized repairs; this is not a v2 fallback.
+
+The parent prepares the context from resolved phase authorization, not from execution cwd. It includes the canonical ticket, workflow ID, parent event ID, intended source branch and worktree, base branch and actual session. Resolve the workflow through the designated publication checkout. The writer independently resolves its store fields and reads the named parent. Ticket, workflow, source path, branch, base and goal identity must agree with that parent. Only the initial start may have a null parent.
+
+```json
+{
+  "schema": "worktree-phase-context/v1",
+  "receipt_schema": "worktree-receipt/v2",
+  "receipt_id": "implementation-0002",
+  "workflow_id": "TASK-1",
+  "event": "phase-result",
+  "phase": "implementation",
+  "attempt": 1,
+  "parent_receipt": "start-0001",
+  "ticket": {"backend": "local-markdown", "id": "TASK-1", "ref": "tracker/tickets/TASK-1.md"},
+  "source": {"worktree": "/absolute/source", "branch": "feature/TASK-1", "base_branch": "main"},
+  "session": {"muxer": "herdr-app", "agent": "omp", "pane_id": "actual-child-pane", "session_id": "actual-session", "run_id": "assigned-run", "operation_id": "assigned-operation"}
+}
+```
+
+Child session run and operation IDs must match the assigned result-delivery context. Parent records use the parent session and may have a null pane. They do not consume a child handoff.
+
+The writer resolves the source root to one absolute physical path and uses it for both `worktree` and `workspace_path`. It observes the branch, commit and tree through Git. A source path inside a worktree or a different checkout is rejected. Implementation and fix may omit source `commit` and `tree` to observe their new source. If either expectation is supplied, both must match. Review, submit, finish and parent completion require both expectations and preserve the parent identity. Frozen source must also be clean. A changed review source is rejected, not silently re-pinned.
+
+Finish may execute from the parent checkout or another directory. After verified source removal, it retains the parent source path and frozen commit/tree and verifies the retained Git objects through the publication checkout. It never substitutes execution cwd or the integration candidate for reviewed source.
+
 ## Child result delivery
 
 Use the agent-core result-delivery skill for transport, not workflow authority. Before launch, select worktree-receipt/v2 as the result schema and retain the muxer delivery context and target. Retained v1 handoffs must still receive v1 results; do not change a live handoff's schema.
 
 Launch the child through the muxer spawn router with --result-schema worktree-receipt/v2. The router opens the fresh pane, sets RESULT_DELIVERY_CONTEXT and binds the run identity. Include the phase-start reference and result requirements. Do not launch the child twice.
 
-The child prepares its phase-result as one JSON object with the existing receipt fields. Resolve WORKTREE_SKILL_ROOT to this installed skill directory. From the source repository, invoke its absolute scripts/write-result.ts entrypoint with --repository, --input and the prepared JSON filename. Its mise shebang selects Bun. The command resolves the workflow through shared-context, checks the envelope and current source identities, writes an immutable YAML event and delivers the same object to the parent. It does not approve the phase, claim a ticket, merge, commit or push. Existing phase preconditions still apply.
+The child prepares outcome and evidence as one JSON object, plus the validated phase context below. Resolve WORKTREE_SKILL_ROOT to this installed skill directory. From the source repository, invoke its absolute scripts/write-result.ts entrypoint with --repository, --phase-context and --input pointing to the context and outcome JSON files. Its mise shebang selects Bun. The command resolves the workflow through shared-context, checks the envelope and current source identities, writes an immutable YAML event and delivers the same object to the parent. It does not approve the phase, claim a ticket, merge, commit or push. Existing phase preconditions still apply.
 
 Without `--parent-event`, the writer accepts only child phase-result events with phase `implementation`, `review` or `fix`. With `--parent-event`, it writes parent lifecycle and finish records without consuming the child handoff. Omit `created_at`; the writer records the current UTC time. It rejects a `created_at` more than 10 minutes from the current time. Existing events are never overwritten. If publication succeeded but transport failed, preserve recovery JSON and recover delivery; do not repeat implementation, review or fix.
 
@@ -401,4 +441,15 @@ REVIEWING → REVIEW_PASSED → FINISHING → FINISHED
 Require valid implementation/fix evidence for a new review target, current persisted `FAILURE` findings for a new fix, and a `SUCCESS` receipt covering the current clean source commit and tree for a new merge. These gates do not prohibit recovery of incomplete attempts selected by the shared decision: preserve partial start/fix source and reconcile valid results before choosing the next phase. Invalidate both review verdicts on subsequent source changes. After a verified merge, finish recovery uses the recorded reviewed-source-to-integration mapping; source-worktree removal does not invalidate that durable evidence.
 
 
+
+
+
+
+## Retained v1 source branch check
+
+Retained full-v1 child publication checks the observed source branch as well as HEAD commit and tree. A branch mismatch or detached HEAD fails before authoritative event or transport writes, even when the retained parent and child agree at the same commit and tree. Matching retained-v1 publication preserves the original parent bytes. Parent-event repair keeps its retained Git-object checks.
+
+## Retained workflow-root continuation
+
+Generated publication uses the same linked-checkout rule as inspection. A retained repository workflow root may equal the receipt repository or source workspace when both roots resolve to the same real Git common directory. Store and workflow reference must still match the resolved workflow. A matching origin or source commit is not enough. Keep retained parent bytes unchanged and record the current resolved workflow root in the new receipt.
 

@@ -71,7 +71,7 @@ Reject the request when any of these conditions is true:
    - exact review artifact path;
    - review receipt path.
 7. Use the muxer spawn router in the existing worktree workspace with the review handoff and `--result-schema worktree-receipt/v2`. It opens the fresh session. Retain its delivery context and assigned result target. Do not send input to the previous session.
-8. Require the reviewer to write its phase-result with `"$WORKTREE_SKILL_ROOT/scripts/write-result.ts" --repository <absolute-designated-context-checkout> --input <prepared-result.json>`, following `references/receipts.md`. This writes authoritative YAML and delivers the parent result in one operation. Resolve publication through the supplied context checkout, not the review source cwd; keep all publication writes outside the frozen source. Do not launch the agent a second time.
+8. Require the reviewer to write its phase-result with `"$WORKTREE_SKILL_ROOT/scripts/write-result.ts" --repository <absolute-designated-context-checkout> --phase-context <phase-context.json> --input <outcome.json>`, following `references/receipts.md`. This writes authoritative YAML and delivers the parent result in one operation. Resolve publication through the supplied context checkout, not the review source cwd; keep all publication writes outside the frozen source. Do not launch the agent a second time.
    Its v2 review result MUST record `review_base_commit`, `changed_scope`, `affected_contracts`, and `integration_checks` under those exact names. Require explicit changed paths; an empty `changed_scope` is appropriate only for a metadata-only source review. Require at least one real integration check with a non-empty executable/argument array. Keep source commit/tree exact and include the affected producer/consumer contracts in the review artifact.
 9. Wait through the muxer contract. Read the assigned transport result through result-delivery. Validate the authoritative receipt and artifact independently before acknowledgement. Do not extract JSON from pane output.
 10. Verify that the reviewer created one immutable phase-result receipt and one
@@ -127,3 +127,9 @@ Use `NO ADR` when no ADR applies. State why the finding blocks completion.
 ## Next step
 {Next action and reason from fresh shared inspection after recording the outcome. Recommend fix only for current usable FAILURE findings, or finish/submit only for current clean SUCCESS. For failed, blocked, or unavailable results, report the inspected recovery/observation requirement instead.}
 ```
+
+## Generated receipt identity
+
+Use `references/receipts.md` to prepare `worktree-phase-context/v1` before each parent or child write. Pass `--phase-context <phase-context.json>` to `scripts/write-result.ts`. Supply only outcomes and evidence through `--input`; do not copy the receipt envelope.
+
+Bind the context to the canonical ticket, resolved workflow ID, existing parent receipt, verified source worktree and current session. For child results, include the assigned run ID and operation ID in the session. Keep the source path separate from execution cwd and the publication checkout. Parent completion preserves the child result identity. Review, submit and finish preserve the frozen reviewed commit and tree; implementation and fix observe the new committed source. Retain the source identity after finish removes the worktree. Reject changed identity before publication or delivery.

@@ -138,3 +138,9 @@ A report is HTML. A raw git forge blob link renders source, not the page.
 ## Manual test reports
 - {url, or "none found"}
 ```
+
+## Generated receipt identity
+
+Use `references/receipts.md` to prepare `worktree-phase-context/v1` before each parent or child write. Pass `--phase-context <phase-context.json>` to `scripts/write-result.ts`. Supply only outcomes and evidence through `--input`; do not copy the receipt envelope.
+
+Bind the context to the canonical ticket, resolved workflow ID, existing parent receipt, verified source worktree and current session. For child results, include the assigned run ID and operation ID in the session. Keep the source path separate from execution cwd and the publication checkout. Parent completion preserves the child result identity. Review, submit and finish preserve the frozen reviewed commit and tree; implementation and fix observe the new committed source. Retain the source identity after finish removes the worktree. Reject changed identity before publication or delivery.

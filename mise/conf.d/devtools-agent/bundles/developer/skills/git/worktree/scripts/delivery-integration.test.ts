@@ -1,6 +1,7 @@
 // Exercises actual operation CLIs, retained transport files and authoritative YAML in isolated repositories.
 import { afterEach, expect, test } from "bun:test";
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { mkdtemp, mkdir, readFile, rename, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
@@ -21,7 +22,19 @@ async function run(command: string, args: string[], env: Record<string, string |
   return { stdout, stderr, code };
 }
 
-async function fixture() {
+// Existing publication scenarios now prepare phase context instead of copying an envelope to the writer.
+async function publishPhase(receipt: Record<string, unknown>, input: string, repository: string, env: Record<string, string | undefined> = {}, parent = false, cwd = tmpdir()) {
+  const { schema, receipt_id, workflow_id, event, phase, attempt, parent_receipt, worktree, workspace_path: _workspace, source_branch, base_branch, source_commit, source_tree, repository: _repository, ticket, ticket_ref: _ticketRef, workflow: _workflow, muxer, agent, pane_id, session_id, ...outcome } = receipt;
+  const context = {
+    schema: "worktree-phase-context/v1", receipt_schema: schema, receipt_id, workflow_id, event, phase, attempt, parent_receipt, ticket,
+    source: { worktree, branch: source_branch, base_branch, commit: source_commit, tree: source_tree },
+    session: { muxer, agent, pane_id, session_id, run_id: "integration-run", operation_id: env.RESULT_DELIVERY_CONTEXT ? JSON.parse(await readFile(env.RESULT_DELIVERY_CONTEXT, "utf8")).operationId : undefined },
+  };
+  await writeFile(input + ".phase.json", JSON.stringify(context));
+  await writeFile(input, JSON.stringify(outcome));
+  return run(writer, [...(parent ? ["--parent-event"] : []), "--repository", repository, "--phase-context", input + ".phase.json", "--input", input], env, cwd);
+}
+async function fixture(retained = true) {
   const directory = await mkdtemp(join(tmpdir(), "delivery-workflow-"));
   temporary.push(directory);
   const repository = join(directory, "repository");
@@ -52,6 +65,10 @@ async function fixture() {
     return { file, target };
   }
   const receipt: Record<string, unknown> = { schema: "worktree-receipt/v1", event: "phase-result", receipt_id: "implementation-0002", workflow_id: "TASK-1", phase: "implementation", attempt: 1, parent_receipt: "start-0001", repository, worktree: repository, source_branch: "main", base_branch: "main", source_commit: commit, source_tree: tree, created_at: new Date().toISOString(), muxer: "tmux", workspace_path: repository, pane_id: "test-pane", agent: "omp", session_id: "test-session", ticket: { backend: "local-markdown", id: "TASK-1", ref: "tracker/tickets/TASK-1.md" }, workflow: { store: workflow.store, root: workflow.root, ref: workflow.ref }, ticket_ref: "tracker/tickets/TASK-1.md", inputs: [{ kind: "receipt", ref: "start-0001" }], outputs: [{ kind: "receipt", ref: "implementation-0002" }], status: "completed", changed_files: [], validation: [{ command: "smoke", result: "passed" }], summary: "Checked the delivery workflow", open_questions: [] };
+  if (retained) {
+    await mkdir(join(workflow.path, "events"), { recursive: true });
+    await writeFile(join(workflow.path, "events/start-0001.yaml"), Bun.YAML.stringify({ ...receipt, receipt_id: "start-0001", event: "phase-start", phase: "start", status: "started", parent_receipt: null }));
+  }
   return { directory, repository, workflow, receipt, context };
 }
 
@@ -79,6 +96,28 @@ test("phase writer publishes authoritative YAML and a verifiable result in one o
   const context = await f.context("worktree-receipt/v1", "phase-result");
   const input = join(f.directory, "receipt.json");
   await writeFile(input, JSON.stringify(f.receipt));
+  const parentPath = join(f.workflow.path, "events/start-0001.yaml");
+  const retained = await readFile(parentPath, "utf8");
+  await rm(parentPath);
+  const unassigned = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  expect(unassigned.code).not.toBe(0);
+  expect(unassigned.stderr).toContain("requires --phase-context");
+  expect(await Bun.file(context.target).exists()).toBe(false);
+  expect(await Bun.file(join(f.workflow.path, "events/implementation-0002.yaml")).exists()).toBe(false);
+  await writeFile(parentPath, retained);
+  await writeFile(input, JSON.stringify({ ...f.receipt, session_id: "invented-session" }));
+  const wrongSession = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  expect(wrongSession.code).not.toBe(0);
+  expect(wrongSession.stderr).toContain("differs from retained phase identity");
+  await writeFile(input, JSON.stringify(f.receipt));
+  execFileSync("git", ["-C", f.repository, "switch", "--quiet", "-c", "wrong-branch"]);
+  expect(execFileSync("git", ["-C", f.repository, "rev-parse", "HEAD", "HEAD^{tree}"], { encoding: "utf8" }).trim().split("\n")).toEqual([f.receipt.source_commit, f.receipt.source_tree]);
+  const wrongBranch = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  expect(wrongBranch.code).not.toBe(0);
+  expect(await Bun.file(join(f.workflow.path, "events/implementation-0002.yaml")).exists()).toBe(false);
+  expect(await Bun.file(context.target).exists()).toBe(false);
+  expect(await readFile(parentPath, "utf8")).toBe(retained);
+  execFileSync("git", ["-C", f.repository, "switch", "--quiet", "main"]);
   const result = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
   expect(result.code).toBe(0);
   const reference = JSON.parse(result.stdout);
@@ -98,7 +137,7 @@ test("phase writer publishes authoritative YAML and a verifiable result in one o
 }, 120_000);
 
 test("phase writer accepts a shared store alias without following event-directory symlinks", async () => {
-  const f = await fixture();
+  const f = await fixture(false);
   const home = join(f.directory, "home");
   const shared = join(f.directory, "shared");
   const alias = join(f.directory, "shared-alias");
@@ -130,14 +169,14 @@ test("phase writer accepts a shared store alias without following event-director
   };
   const input = join(f.directory, "aliased-receipt.json");
   await writeFile(input, JSON.stringify(receipt));
-  const result = await run(writer, ["--parent-event", "--repository", f.repository, "--input", input], env);
+  const result = await publishPhase(receipt, input, f.repository, env, true);
   expect(result.stderr).toBe("");
   expect(result.code).toBe(0);
   const events = join(workflow.path, "events");
   const event = join(events, "start-0001.yaml");
   const bytes = await readFile(event, "utf8");
   expect(Bun.YAML.parse(bytes)).toEqual(receipt);
-  const duplicate = await run(writer, ["--parent-event", "--repository", f.repository, "--input", input], env);
+  const duplicate = await publishPhase(receipt, input, f.repository, env, true);
   expect(duplicate.code).not.toBe(0);
   expect(await readFile(event, "utf8")).toBe(bytes);
 
@@ -146,13 +185,13 @@ test("phase writer accepts a shared store alias without following event-director
   await rename(events, join(workflow.path, "retained-events"));
   await symlink(outside, events);
   await writeFile(input, JSON.stringify({ ...receipt, receipt_id: "start-0002" }));
-  const escaped = await run(writer, ["--parent-event", "--repository", f.repository, "--input", input], env);
+  const escaped = await publishPhase({ ...receipt, receipt_id: "start-0002" }, input, f.repository, env, true);
   expect(escaped.code).not.toBe(0);
   expect(await Bun.file(join(outside, "start-0002.yaml")).exists()).toBe(false);
 }, 120_000);
 
 test("v2 child delivery and parent checkpoints use separate immutable result boundaries", async () => {
-  const f = await fixture();
+  const f = await fixture(false);
   const context = await f.context("worktree-receipt/v2", "v2-result");
   const input = join(f.directory, "v2.json");
   const isolatedConfig = join(f.directory, "wt.toml");
@@ -164,24 +203,24 @@ test("v2 child delivery and parent checkpoints use separate immutable result bou
   const row = (Array.isArray(inventory) ? inventory : inventory.items).find((item: { branch: string }) => item.branch === "feature/TASK-1");
   const source = row.worktree?.path ?? row.path;
   const child: Record<string, unknown> = { ...f.receipt, schema: "worktree-receipt/v2", worktree: source, workspace_path: source, source_branch: "feature/TASK-1" };
+  const start = { ...child, receipt_id: "start-0001", parent_receipt: null, phase: "start", event: "phase-start", status: "started", pane_id: null };
+  await writeFile(input, JSON.stringify(start));
+  expect((await publishPhase(start, input, f.repository, {}, true)).code).toBe(0);
   await writeFile(input, JSON.stringify({ ...child, worktree: f.repository, workspace_path: f.repository }));
-  const dirtying = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  const dirtying = await publishPhase({ ...child, worktree: f.repository, workspace_path: f.repository }, input, f.repository, { RESULT_DELIVERY_CONTEXT: context.file });
   expect(dirtying.code).not.toBe(0);
-  expect(dirtying.stderr).toContain("separate context checkout");
+  expect(dirtying.stderr).toContain("does not match its parent");
   await writeFile(input, JSON.stringify({ ...child, source_branch: "feature/OTHER" }));
-  const wrongBranch = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  const wrongBranch = await publishPhase({ ...child, source_branch: "feature/OTHER" }, input, f.repository, { RESULT_DELIVERY_CONTEXT: context.file });
   expect(wrongBranch.code).not.toBe(0);
-  expect(wrongBranch.stderr).toContain("current source branch");
+  expect(wrongBranch.stderr).toContain("does not match its parent");
   await writeFile(input, JSON.stringify(child));
-  const orphan = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  const orphan = await publishPhase({ ...child, parent_receipt: "absent" }, input, f.repository, { RESULT_DELIVERY_CONTEXT: context.file });
   expect(orphan.code).not.toBe(0);
   expect(await Bun.file(context.target).exists()).toBe(false);
   expect(await Bun.file(join(f.workflow.path, "events/implementation-0002.yaml")).exists()).toBe(false);
-  const start = { ...child, receipt_id: "start-0001", parent_receipt: null, phase: "start", event: "phase-start", status: "started", pane_id: null };
-  await writeFile(input, JSON.stringify(start));
-  expect((await run(writer, ["--parent-event", "--repository", f.repository, "--input", input])).code).toBe(0);
   await writeFile(input, JSON.stringify(child));
-  const result = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  const result = await publishPhase(child, input, f.repository, { RESULT_DELIVERY_CONTEXT: context.file });
   expect(result.code).toBe(0);
   expect((await run("git", ["-C", source, "status", "--porcelain=v1"])).stdout).toBe("");
   const delivered = await readFile(context.target, "utf8");
@@ -194,19 +233,19 @@ test("v2 child delivery and parent checkpoints use separate immutable result bou
     { ...parent, parent_receipt: start.receipt_id },
   ]) {
     await writeFile(input, JSON.stringify(invalid));
-    expect((await run(writer, ["--parent-event", "--repository", f.repository, "--input", input])).code).not.toBe(0);
+    expect((await publishPhase(invalid, input, f.repository, {}, true)).code).not.toBe(0);
     expect(await Bun.file(join(f.workflow.path, "events/parent-complete-0003.yaml")).exists()).toBe(false);
     expect(await readFile(context.target, "utf8")).toBe(delivered);
   }
   await writeFile(input, JSON.stringify(parent));
-  const completed = await run(writer, ["--parent-event", "--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
+  const completed = await publishPhase(parent, input, f.repository, { RESULT_DELIVERY_CONTEXT: context.file }, true);
   expect(completed.code).toBe(0);
   expect(Bun.YAML.parse(await readFile(join(f.workflow.path, "events/parent-complete-0003.yaml"), "utf8"))).toEqual(parent);
   expect(await readFile(context.target, "utf8")).toBe(delivered);
-  const duplicate = await run(writer, ["--parent-event", "--repository", f.repository, "--input", input]);
+  const duplicate = await publishPhase(parent, input, f.repository, {}, true);
   expect(duplicate.code).not.toBe(0);
   await writeFile(input, JSON.stringify({ ...parent, receipt_id: "missing-parent", parent_receipt: "absent" }));
-  const missing = await run(writer, ["--parent-event", "--repository", f.repository, "--input", input]);
+  const missing = await publishPhase({ ...parent, receipt_id: "missing-parent", parent_receipt: "absent" }, input, f.repository, {}, true);
   expect(missing.code).not.toBe(0);
   expect(missing.stderr).toContain("parent event is missing");
 }, 120_000);
@@ -259,10 +298,61 @@ test("a published valid receipt passes actual CLI inspection", async () => {
   expect(workflow.receipts.find((receipt: { id: string }) => receipt.id === "implementation-0002")).toMatchObject({ workspacePath: f.repository, sourceCommit: f.receipt.source_commit });
 }, 120_000);
 
+test("generated v2 publication continues inspected retained source-root history and rejects foreign workflow identity", async () => {
+  const f = await fixture(false);
+  const source = join(f.directory, "source");
+  execFileSync("git", ["-C", f.repository, "worktree", "add", "--quiet", "-b", "feature/TASK-1", source]);
+  const child = { ...f.receipt, schema: "worktree-receipt/v2", worktree: source, workspace_path: source, source_branch: "feature/TASK-1" };
+  const parent = {
+    ...child, schema: "worktree-receipt/v1", receipt_id: "start-0001", parent_receipt: null,
+    phase: "start", event: "phase-start", status: "started",
+    workflow: { store: "repository", root: source, ref: f.workflow.ref },
+  };
+  const parentPath = join(f.workflow.path, "events/start-0001.yaml");
+  await mkdir(dirname(parentPath), { recursive: true });
+  const retained = Bun.YAML.stringify(parent);
+  await writeFile(parentPath, retained);
+  const inspected = await run(inspector, [String(child.ticket_ref), "--json"], {}, f.repository);
+  expect(inspected.code).toBe(0);
+  expect(JSON.parse(inspected.stdout).workflow.inspection.historyValid).toBe(true);
+  const context = await f.context("worktree-receipt/v2", "retained-root");
+  const input = join(f.directory, "retained-root.json");
+  const event = join(f.workflow.path, "events/implementation-0002.yaml");
+  const foreign = join(f.directory, "foreign");
+  execFileSync("git", ["init", "--quiet", foreign]);
+  // A matching origin cannot establish linked-checkout identity.
+  execFileSync("git", ["-C", foreign, "remote", "add", "origin", execFileSync("git", ["-C", f.repository, "remote", "get-url", "origin"], { encoding: "utf8" }).trim()]);
+  for (const invalid of [
+    { ...parent, repository: foreign, workflow: { ...parent.workflow, root: foreign } },
+    { ...parent, workflow: { ...parent.workflow, root: f.directory } },
+    { ...parent, workflow: { ...parent.workflow, store: "shared" } },
+    { ...parent, workflow: { ...parent.workflow, ref: "workflows/OTHER" } },
+  ]) {
+    const bytes = Bun.YAML.stringify(invalid);
+    await writeFile(parentPath, bytes);
+    const rejected = await publishPhase(child, input, f.repository, { RESULT_DELIVERY_CONTEXT: context.file });
+    expect(rejected.code).toBe(1);
+    expect(rejected.stderr).toContain("Phase parent does not match the resolved workflow");
+    expect(await Bun.file(event).exists()).toBe(false);
+    expect(await Bun.file(context.target).exists()).toBe(false);
+    expect(await readFile(parentPath, "utf8")).toBe(bytes);
+  }
+  await writeFile(parentPath, retained);
+  const published = await publishPhase(child, input, f.repository, { RESULT_DELIVERY_CONTEXT: context.file });
+  expect(published.stderr).toBe("");
+  expect(published.code).toBe(0);
+  const receipt = Bun.YAML.parse(await readFile(event, "utf8"));
+  expect(receipt.workflow).toEqual({ store: "repository", root: f.repository, ref: f.workflow.ref });
+  expect(receipt.worktree).toBe(source);
+  expect(JSON.parse(await readFile(context.target, "utf8")).result).toEqual(receipt);
+  expect(await readFile(parentPath, "utf8")).toBe(retained);
+}, 120_000);
+
 test.each(["blocked", "failed"])("phase writer delivers a %s review without inventing a verdict", async (status) => {
   const f = await fixture();
   const context = await f.context("worktree-receipt/v1", "review-" + status);
   const receipt = { ...f.receipt, phase: "review", status, receipt_id: "review-" + status };
+  await writeFile(join(f.workflow.path, "events/start-0001.yaml"), Bun.YAML.stringify({ ...receipt, receipt_id: "start-0001", event: "phase-start", status: "started", parent_receipt: null }));
   const input = join(f.directory, "receipt.json");
   await writeFile(input, JSON.stringify(receipt));
   const published = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: context.file });
@@ -382,4 +472,200 @@ test("intermediate ticket checks do not consume a phase handoff", async () => {
   const wrongBinding = await run(records, [...flags, "--deliver"], { RESULT_DELIVERY_CONTEXT: context.file });
   expect(wrongBinding.code).not.toBe(0);
   expect(await Bun.file(context.target).exists()).toBe(false);
+}, 120_000);
+
+async function generatedFixture() {
+  const f = await fixture(false);
+  const config = join(f.directory, "wt.toml");
+  await writeFile(config, "");
+  const created = await run("wt", ["--config", config, "-C", f.repository, "switch", "--create", "feature/TASK-1", "--base", "main", "--no-cd", "--no-hooks"]);
+  if (created.code !== 0) throw new Error(created.stderr);
+  const listed = await run("wt", ["--config", config, "-C", f.repository, "list", "--format=json"]);
+  const rows = JSON.parse(listed.stdout);
+  const row = (Array.isArray(rows) ? rows : rows.items).find((item: { branch: string }) => item.branch === "feature/TASK-1");
+  const source: string = row.worktree?.path ?? row.path;
+  const input = join(f.directory, "generated.json");
+  const start = { ...f.receipt, schema: "worktree-receipt/v2", receipt_id: "start-0001", event: "phase-start", phase: "start", status: "started", parent_receipt: null, worktree: source, workspace_path: source, source_branch: "feature/TASK-1", pane_id: null };
+  const published = await publishPhase(start, input, f.repository, {}, true);
+  if (published.code !== 0) throw new Error(published.stderr);
+  const delivery = await f.context("worktree-receipt/v2", "generated-result");
+  const phase = {
+    schema: "worktree-phase-context/v1", receipt_schema: "worktree-receipt/v2", receipt_id: "implementation-0002",
+    workflow_id: "TASK-1", ticket: f.receipt.ticket as { backend: string; id: string; ref: string }, parent_receipt: "start-0001", event: "phase-result", phase: "implementation", attempt: 1,
+    source: { worktree: source, branch: "feature/TASK-1", base_branch: "main" },
+    session: { muxer: "tmux", agent: "omp", pane_id: "child-pane", session_id: "child-session", run_id: "integration-run", operation_id: "generated-result" },
+  };
+  const outcome = { status: "completed", inputs: [{ kind: "receipt", ref: "start-0001" }], outputs: [{ kind: "receipt", ref: "implementation-0002" }] };
+  async function publish(context: Record<string, unknown> = phase, result: Record<string, unknown> = outcome, parent = false) {
+    await writeFile(input + ".phase.json", JSON.stringify(context));
+    await writeFile(input, JSON.stringify(result));
+    return run(writer, [...(parent ? ["--parent-event"] : []), "--repository", f.repository, "--phase-context", input + ".phase.json", "--input", input], { RESULT_DELIVERY_CONTEXT: delivery.file }, f.directory);
+  }
+  return { ...f, source, phase, outcome, publish, delivery };
+}
+
+test("generated publication rejects absent or inconsistent authorization before event and delivery writes", async () => {
+  const f = await generatedFixture();
+  const { session: _session, ...missingSession } = f.phase;
+  const cases = [
+    missingSession,
+    { ...f.phase, ticket: { ...f.phase.ticket, id: "OTHER" } },
+    { ...f.phase, ticket: { ...f.phase.ticket, ref: "tracker/tickets/OTHER.md" } },
+    { ...f.phase, receipt_schema: "worktree-receipt/v1" },
+    { ...f.phase, attempt: 2 },
+    { ...f.phase, parent_receipt: null },
+    { ...f.phase, session: { ...f.phase.session, operation_id: "another-operation" } },
+    { ...f.phase, source: { ...f.phase.source, worktree: f.repository } },
+    { ...f.phase, goal_run_id: "unpaired-goal" },
+  ];
+  const prior = await readFile(join(f.workflow.path, "events/start-0001.yaml"), "utf8");
+  for (const phase of cases) {
+    expect((await f.publish(phase)).code).not.toBe(0);
+    expect(await Bun.file(join(f.workflow.path, "events/implementation-0002.yaml")).exists()).toBe(false);
+    expect(await Bun.file(f.delivery.target).exists()).toBe(false);
+  }
+  const override = await f.publish(f.phase, { ...f.outcome, source_commit: f.receipt.source_commit });
+  expect(override.code).not.toBe(0);
+  expect(override.stderr).toContain("Outcome must not supply receipt identity");
+  expect(await readFile(join(f.workflow.path, "events/start-0001.yaml"), "utf8")).toBe(prior);
+}, 120_000);
+
+test("generation observes implementation Git state from another cwd and preserves parent finish source", async () => {
+  const f = await generatedFixture();
+  execFileSync("git", ["-C", f.source, "-c", "user.name=Delivery Tests", "-c", "user.email=delivery@example.invalid", "-c", "commit.gpgsign=false", "-c", "core.hooksPath=/dev/null", "commit", "--quiet", "--allow-empty", "-m", "test: changed implementation"]);
+  const observed = execFileSync("git", ["-C", f.source, "rev-parse", "HEAD", "HEAD^{tree}"], { encoding: "utf8" }).trim().split("\n");
+  const published = await f.publish();
+  expect(published.code).toBe(0);
+  const child = Bun.YAML.parse(await readFile(join(f.workflow.path, "events/implementation-0002.yaml"), "utf8")) as Record<string, unknown>;
+  expect(child).toMatchObject({ worktree: f.source, workspace_path: f.source, source_branch: "feature/TASK-1", source_commit: observed[0], source_tree: observed[1], session_id: "child-session" });
+  const delivered = await readFile(f.delivery.target, "utf8");
+  const finish = { ...f.phase, receipt_id: "finish-checkpoint", phase: "finish", event: "phase-start", parent_receipt: child.receipt_id, source: { ...f.phase.source, commit: observed[0], tree: observed[1] }, session: { muxer: "tmux", agent: "omp", session_id: "parent-session", pane_id: null } };
+  expect((await f.publish(finish, { ...f.outcome, status: "started" }, true)).code).toBe(0);
+  const parent = Bun.YAML.parse(await readFile(join(f.workflow.path, "events/finish-checkpoint.yaml"), "utf8"));
+  expect(parent).toMatchObject({ repository: f.repository, worktree: f.source, workspace_path: f.source, source_commit: observed[0], session_id: "parent-session" });
+  expect(await readFile(f.delivery.target, "utf8")).toBe(delivered);
+}, 120_000);
+
+test("review publication rejects changed commit and dirty source instead of re-pinning review identity", async () => {
+  const f = await generatedFixture();
+  expect((await f.publish()).code).toBe(0);
+  const start = { ...f.receipt, created_at: undefined, schema: "worktree-receipt/v2", worktree: f.source, workspace_path: f.source, source_branch: "feature/TASK-1", receipt_id: "review-start", parent_receipt: "implementation-0002", phase: "review", event: "phase-start", status: "started", pane_id: null };
+  const started = await publishPhase(start, join(f.directory, "review-start.json"), f.repository, {}, true);
+  expect(started.code).toBe(0);
+  const review = { ...f.phase, receipt_id: "review-result", phase: "review", parent_receipt: "review-start", source: { ...f.phase.source, commit: f.receipt.source_commit, tree: f.receipt.source_tree } };
+  const outcome = { ...f.outcome, status: "blocked" };
+  await writeFile(join(f.source, "uncommitted"), "changed review input");
+  const dirty = await f.publish(review, outcome);
+  expect(dirty.code).not.toBe(0);
+  expect(dirty.stderr).toContain("uncommitted changes");
+  await rm(join(f.source, "uncommitted"));
+  execFileSync("git", ["-C", f.source, "-c", "user.name=Delivery Tests", "-c", "user.email=delivery@example.invalid", "-c", "commit.gpgsign=false", "-c", "core.hooksPath=/dev/null", "commit", "--quiet", "--allow-empty", "-m", "test: stale review"]);
+  const changed = await f.publish(review, outcome);
+  expect(changed.code).not.toBe(0);
+  expect(changed.stderr).toContain("differs from phase expectations");
+  expect(await Bun.file(join(f.workflow.path, "events/review-result.yaml")).exists()).toBe(false);
+}, 120_000);
+
+test("generated v1 identity requires a retained phase-start and its assigned live handoff", async () => {
+  const f = await fixture(false);
+  const input = join(f.directory, "retained-v1.json");
+  const start = { ...f.receipt, receipt_id: "start-0001", event: "phase-start", phase: "start", status: "started", parent_receipt: null };
+  const initial = await publishPhase(start, input, f.repository, {}, true);
+  expect(initial.code).not.toBe(0);
+  expect(initial.stderr).toContain("new executions use v2");
+  expect(await Bun.file(join(f.workflow.path, "events/start-0001.yaml")).exists()).toBe(false);
+  await mkdir(join(f.workflow.path, "events"), { recursive: true });
+  const retained = Bun.YAML.stringify(start);
+  await writeFile(join(f.workflow.path, "events/start-0001.yaml"), retained);
+  const delivery = await f.context("worktree-receipt/v1", "retained-result");
+  const mismatched = await publishPhase({ ...f.receipt, receipt_id: "fix-mismatched", phase: "fix" }, input, f.repository, { RESULT_DELIVERY_CONTEXT: delivery.file });
+  expect(mismatched.code).not.toBe(0);
+  expect(mismatched.stderr).toContain("matching parent phase");
+  expect(await Bun.file(join(f.workflow.path, "events/fix-mismatched.yaml")).exists()).toBe(false);
+  expect(await Bun.file(delivery.target).exists()).toBe(false);
+  const result = await publishPhase(f.receipt, input, f.repository, { RESULT_DELIVERY_CONTEXT: delivery.file });
+  expect(result.code).toBe(0);
+  expect(Bun.YAML.parse(await readFile(join(f.workflow.path, "events/implementation-0002.yaml"), "utf8"))).toEqual(f.receipt);
+  expect(await readFile(join(f.workflow.path, "events/start-0001.yaml"), "utf8")).toBe(retained);
+  const fixStart = { ...start, receipt_id: "fix-start", phase: "fix", parent_receipt: "implementation-0002" };
+  const fixRetained = Bun.YAML.stringify(fixStart);
+  await writeFile(join(f.workflow.path, "events/fix-start.yaml"), fixRetained);
+  const fixDelivery = await f.context("worktree-receipt/v1", "retained-fix");
+  const fix = { ...f.receipt, receipt_id: "fix-result", phase: "fix", parent_receipt: "fix-start" };
+  const matching = await publishPhase(fix, input, f.repository, { RESULT_DELIVERY_CONTEXT: fixDelivery.file });
+  expect(matching.code).toBe(0);
+  expect(Bun.YAML.parse(await readFile(join(f.workflow.path, "events/fix-result.yaml"), "utf8"))).toEqual(fix);
+  expect(await Bun.file(fixDelivery.target).exists()).toBe(true);
+  expect(await readFile(join(f.workflow.path, "events/fix-start.yaml"), "utf8")).toBe(fixRetained);
+  expect(await readFile(join(f.workflow.path, "events/start-0001.yaml"), "utf8")).toBe(retained);
+}, 120_000);
+
+test("outcome-only publication cannot proceed without phase context", async () => {
+  const f = await generatedFixture();
+  const input = join(f.directory, "outcome-only.json");
+  await writeFile(input, JSON.stringify(f.outcome));
+  const rejected = await run(writer, ["--repository", f.repository, "--input", input], { RESULT_DELIVERY_CONTEXT: f.delivery.file });
+  expect(rejected.code).not.toBe(0);
+  expect(rejected.stderr).toContain("requires --phase-context");
+  expect(await Bun.file(join(f.workflow.path, "events/implementation-0002.yaml")).exists()).toBe(false);
+  expect(await Bun.file(f.delivery.target).exists()).toBe(false);
+}, 120_000);
+
+test("full v1 repairs require a retained checksum-bound operator approval", async () => {
+  const f = await fixture();
+  const input = join(f.directory, "repair.json");
+  const receipt: Record<string, unknown> = { ...f.receipt, session_id: "repair-session" };
+  const bytes = JSON.stringify(receipt);
+  await writeFile(input, bytes);
+  const approvalPath = join(f.workflow.path, "events/repair-approval.yaml");
+  const approval = { ...f.receipt, receipt_id: "repair-approval", event: "operator-approval", status: "approved", envelope_repair: { receipt_id: receipt.receipt_id, sha256: createHash("sha256").update(bytes).digest("hex") } };
+  await writeFile(approvalPath, Bun.YAML.stringify({ ...approval, status: "blocked" }));
+  const flags = ["--repository", f.repository, "--repair-authorization", "repair-approval", "--input", input];
+  expect((await run(writer, flags)).code).not.toBe(0);
+  await writeFile(approvalPath, Bun.YAML.stringify(approval));
+  await writeFile(input, JSON.stringify({ ...receipt, status: "blocked" }));
+  expect((await run(writer, flags)).code).not.toBe(0);
+  expect(await Bun.file(join(f.workflow.path, "events/implementation-0002.yaml")).exists()).toBe(false);
+  await writeFile(input, bytes);
+  const result = await run(writer, flags);
+  expect(result.stderr).toBe("");
+  expect(result.code).toBe(0);
+  expect(Bun.YAML.parse(await readFile(join(f.workflow.path, "events/implementation-0002.yaml"), "utf8"))).toEqual(receipt);
+}, 120_000);
+
+test.each([
+  { phase: "start", status: "failed", dirty: true },
+  { phase: "implementation", status: "blocked", dirty: false },
+  { phase: "fix", status: "failed", dirty: false },
+  { phase: "fix", status: "blocked", dirty: true },
+])("generation observes implementation Git state for $status $phase closure with partial source", async ({ phase, status, dirty }) => {
+  const f = await generatedFixture();
+  let parentId = "start-0001";
+  if (phase === "fix") {
+    expect((await f.publish()).code).toBe(0);
+    parentId = "fix-start";
+    const start = { ...f.phase, receipt_id: parentId, parent_receipt: "implementation-0002", phase: "fix", event: "phase-start" };
+    expect((await f.publish(start, { ...f.outcome, status: "started" }, true)).code).toBe(0);
+  }
+  const prior = await readFile(join(f.workflow.path, "events", parentId + ".yaml"), "utf8");
+  await writeFile(join(f.source, "partial-source"), "retained committed work\n");
+  execFileSync("git", ["-C", f.source, "add", "partial-source"]);
+  execFileSync("git", ["-C", f.source, "-c", "user.name=Delivery Tests", "-c", "user.email=delivery@example.invalid", "-c", "commit.gpgsign=false", "-c", "core.hooksPath=/dev/null", "commit", "--quiet", "-m", "test: partial implementation"]);
+  if (dirty) await writeFile(join(f.source, "partial-source"), "retained dirty work\n");
+  const observed = execFileSync("git", ["-C", f.source, "rev-parse", "HEAD", "HEAD^{tree}"], { encoding: "utf8" }).trim().split("\n");
+  const closure = { ...f.phase, receipt_id: "partial-complete", parent_receipt: parentId, phase, event: "phase-complete", source: { ...f.phase.source, commit: f.receipt.source_commit, tree: f.receipt.source_tree } };
+  const outcome = { status, result_missing: true, failure_reason: "Child exited without a result", inputs: [{ kind: "receipt", ref: parentId }], outputs: [{ kind: "receipt", ref: "partial-complete" }] };
+  const success = await f.publish(closure, { ...outcome, status: "completed" }, true);
+  expect(success.code).not.toBe(0);
+  expect(await Bun.file(join(f.workflow.path, "events/partial-complete.yaml")).exists()).toBe(false);
+  const wrongBranch = await f.publish({ ...closure, source: { ...closure.source, branch: "feature/OTHER" } }, outcome, true);
+  expect(wrongBranch.code).not.toBe(0);
+  expect(wrongBranch.stderr).toContain("does not match its parent");
+  const published = await f.publish(closure, outcome, true);
+  expect(published.stderr).toBe("");
+  expect(published.code).toBe(0);
+  const result = Bun.YAML.parse(await readFile(join(f.workflow.path, "events/partial-complete.yaml"), "utf8"));
+  expect(result).toMatchObject({ phase, status, result_missing: true, source_commit: observed[0], source_tree: observed[1], source_dirty: dirty, parent_receipt: parentId });
+  expect(await readFile(join(f.source, "partial-source"), "utf8")).toBe(dirty ? "retained dirty work\n" : "retained committed work\n");
+  expect(await readFile(join(f.workflow.path, "events", parentId + ".yaml"), "utf8")).toBe(prior);
 }, 120_000);

@@ -1,11 +1,38 @@
 // Keeps publication and inspection on the same receipt envelope and source-path contract.
 import { realpath } from "node:fs/promises";
-import { isAbsolute } from "node:path";
+import { isAbsolute, resolve } from "node:path";
 import type { Exec } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
 import { receiptEvent, receiptPhase } from "./recovery";
 import { validateReceiptContract } from "./receipt-contract";
 
 type Fields = Record<string, unknown>;
+
+/** Resolve real Git identity once per root during a workflow read. */
+export function repositoryIdentity(path: string, exec: Exec, identities = new Map<string, Promise<string | undefined>>()): Promise<string | undefined> {
+  const key = resolve(path);
+  let identity = identities.get(key);
+  if (!identity) {
+    identity = (async () => {
+      const git = await exec("git", ["-C", key, "rev-parse", "--path-format=absolute", "--git-common-dir"]);
+      if (git.code !== 0 || !git.stdout.trim()) return undefined;
+      return realpath(git.stdout.trim());
+    })();
+    identities.set(key, identity);
+  }
+  return identity;
+}
+
+/** Retained repository roots may name the recorded checkout, but must share real Git identity. */
+export async function linkedWorkflowRoot(fields: Fields, current: Fields, exec: Exec, identities?: Map<string, Promise<string | undefined>>): Promise<boolean> {
+  const workflow = object(fields.workflow, "receipt workflow");
+  if (workflow.store !== "repository" || current.store !== "repository"
+    || (workflow.root !== fields.workspace_path && workflow.root !== fields.repository) || workflow.root === current.root) return false;
+  const [recordedRoot, currentRoot] = await Promise.all([
+    repositoryIdentity(String(workflow.root), exec, identities),
+    repositoryIdentity(String(current.root), exec, identities),
+  ]);
+  return Boolean(recordedRoot && recordedRoot === currentRoot);
+}
 
 export function validateReceipt(fields: Fields): { status: string; phase: string; outputs: string[]; createdAt: string; parentReceipt?: string } {
   validateReceiptContract(fields);
