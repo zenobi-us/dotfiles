@@ -8,7 +8,7 @@ sequence: 3
 title: Perform safe contract upgrades
 triage: ready-for-agent
 type: enhancement
-work_status: claimed
+work_status: completed
 ---
 
 ## What to build
@@ -34,3 +34,5 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 
 
 - 2026-11-20T22:59:45.278Z — SUCCESS. Reviewed commit `61325389b18be55808813456371f0ebdb270e285`, tree `6e606a819342ae734a569a304861c723d8e3a743`. [Independent review](../../workflows/skill-contract-manifests-03-safe-upgrades/artifacts/reviews/review-review-0005.md).
+
+- Completed after squash integration `70055597a15a237025359fabd162a827e6e115cd` and verified publication to `origin/master`. Candidate-bound tests and public CLI smoke passed. [Publication evidence](../../workflows/skill-contract-manifests-03-safe-upgrades/events/finish-pushed-0009.yaml).
