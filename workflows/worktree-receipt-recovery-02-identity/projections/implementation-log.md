@@ -201,3 +201,19 @@ Latest verdict: FAILURE on `05c403f8b9707d11418c07756d334335b139e32b` (tree `49d
 
 Scoped suite: 130 pass, 0 fail, 739 assertions. Parent focused regression: 1 pass, 20 assertions. Actual writer smoke confirmed matching publication and branch rejection. Separate actual inspector/writer smoke confirmed the new retained-root compatibility defect. The completion verifies the transport hash, exact clean source, acknowledgement, closed reviewer, and confirmed axis/reviewer process shutdown. No fix, merge, or push occurred. Next action requires fresh workflow inspection and scoped fix authorization.
 
+
+
+## fix-0032: SPEC-3 resolved
+
+Source `2a843de309311b624fd64e8671fb83a414d4e774`, tree `7773e1f8683022ad985d59c17b90a728e8a34190`. Shared verified Git-common-directory compatibility now permits retained source/repository roots. Store/ref stay strict; new receipts use the current root; retained bytes remain unchanged. Scoped suite: 131 pass, 0 fail, 767 assertions. Actual inspector/writer CLI smoke passed acceptance and four rejection boundaries before side effects. Generated plugin and marketplace versions changed through normal hooks.
+
+[Immutable fix snapshot](../artifacts/snapshots/pr-draft-fix-0032.md) records exact commands, changed files, limits, and finding disposition. [Fix result](../events/fix-0032.yaml) consumes review-0028. Resolved: SPEC-3. Unresolved authorized findings: none. No new verdict. Earlier reviews remain historical and stale for the new source. Parent completion, acknowledgement, shutdown and fresh review remain pending.
+
+
+
+## Parent fix completion — attempt 4
+
+[Fix result](../events/fix-0032.yaml), [immutable snapshot](../artifacts/snapshots/pr-draft-fix-0032.md), and [parent completion](../events/fix-complete-0033.yaml) bind SPEC-3 to clean source `2a843de309311b624fd64e8671fb83a414d4e774` (tree `7773e1f8683022ad985d59c17b90a728e8a34190`). The parent validated and acknowledged the exact authoritative delivery, passed the focused retained-root boundary regression (1 test, 28 assertions), closed the fixer, and confirmed all owned processes stopped.
+
+The fixer ran the scoped suite (131 pass, 767 assertions) and actual inspector/writer smoke. All authorized findings are resolved; prior failed reviews remain unchanged and stale. A fresh independent review is required for this changed source. No merge or push occurred.
+
