@@ -4,7 +4,7 @@ id: "worktree-receipt-recovery-04-repair"
 title: "Repair verified receipt path errors without changing history"
 type: "enhancement"
 triage: "ready-for-agent"
-work_status: "unclaimed"
+work_status: "claimed"
 parent: "worktree-receipt-recovery"
 sequence: 4
 blocked_by: ["worktree-receipt-recovery-03-blockers"]
