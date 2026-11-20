@@ -152,3 +152,11 @@ Resolved SPEC-2 from review-0020. Unresolved finding IDs: none. Commit: `05c403f
 
 The [immutable fix snapshot](../artifacts/snapshots/pr-draft-fix-0024.md) records changes and writer smoke evidence. The historical review remains unchanged and stale. No fix finding remains unresolved; a new independent review is required. No merge or push occurred.
 
+
+
+## Formal review attempt 4 — current state
+
+Latest verdict: FAILURE on `05c403f8b9707d11418c07756d334335b139e32b` (tree `49d6b3b7ffc0c6d6478e52a0031acd9ad719a423`). The [immutable review](../artifacts/reviews/review-review-0028.md), [result](../events/review-0028.yaml), and [parent completion](../events/review-complete-0029.yaml) establish one medium blocker, SPEC-3, and one non-blocking Standards advisory, STD-1. Prior SPEC-2 is confirmed resolved; older review history remains unchanged.
+
+Scoped suite: 130 pass, 0 fail, 739 assertions. Parent focused regression: 1 pass, 20 assertions. Actual writer smoke confirmed matching publication and branch rejection. Separate actual inspector/writer smoke confirmed the new retained-root compatibility defect. The completion verifies the transport hash, exact clean source, acknowledgement, closed reviewer, and confirmed axis/reviewer process shutdown. No fix, merge, or push occurred. Next action requires fresh workflow inspection and scoped fix authorization.
+
