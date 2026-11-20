@@ -47,3 +47,5 @@ Unknown fields, unsupported schema versions, malformed identifiers, missing coll
 
 The owner remains responsible for content validation, compatibility, safety, and conversion. Successful manifest validation does not prove that an artifact matches its contract.
 
+
+For authorized mutation or explicit bulk conversion, follow [safe upgrades](upgrades.md). Manifest inspection remains read-only.

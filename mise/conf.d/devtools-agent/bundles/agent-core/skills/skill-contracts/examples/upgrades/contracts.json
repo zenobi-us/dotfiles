@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": ["example-note/v2"],
+  "accepts": ["example-note/v1", "example-note/v2"],
+  "contracts": {"example-note/v1": "file:definitions.txt", "example-note/v2": "file:definitions.txt"},
+  "upgrades": [{"from": "example-note/v1", "to": "example-note/v2", "procedure": "file:upgrade.txt"}]
+}

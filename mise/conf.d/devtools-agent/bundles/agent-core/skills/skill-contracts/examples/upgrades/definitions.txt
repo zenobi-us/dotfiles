@@ -1,0 +1,3 @@
+example-note/v1: UTF-8 JSON object with schemaVersion example-note/v1, string title and string body; no document key. Legacy input has no schemaVersion and the same content fields.
+example-note/v2: UTF-8 JSON object with schemaVersion example-note/v2 and document containing string heading and string text; no title or body keys.
+All other authored fields retain their exact JSON values. immutable true forbids mutation. The rename operation changes only document.heading to the request title.
