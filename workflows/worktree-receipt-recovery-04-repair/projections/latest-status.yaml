@@ -1,0 +1,12 @@
+schema: worktree-latest-status/v1
+workflow_id: worktree-receipt-recovery-04-repair
+ticket: tracker/tickets/worktree-receipt-recovery-04-repair.md
+state: IMPLEMENTED
+latest_receipt: start-complete-0003
+latest_source_commit: edf4e5585799abb093d1b8df3211fe72c72da93c
+latest_source_tree: defadfc579887d577800e27302621fbbb756757d
+latest_review_verdict: null
+open_findings: []
+parent_completion_pending: false
+merged: false
+publication_pending: true

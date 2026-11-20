@@ -1,0 +1,19 @@
+{
+  "argv": ["mise", "exec", "--", "bun", "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/worktree-receipt-recovery-04-repair/artifacts/evidence/repair-cli-smoke-0001/repair-cli-smoke.ts"],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair",
+  "exit_code": 0,
+  "source_commit": "edf4e5585799abb093d1b8df3211fe72c72da93c",
+  "source_tree": "defadfc579887d577800e27302621fbbb756757d",
+  "result": {
+    "scenario": "actual repair CLI and inspector",
+    "before_history_valid": false,
+    "after_history_valid": true,
+    "ambiguous_rejected": ["workflows/T-1/events/start-1.json: Parent-checkout mismatch requires retained launch records and source evidence; common Git identity is insufficient."],
+    "stale_checksum_rejected": true,
+    "partial_append": false,
+    "original_sha256": "fa556e10909462e6aec6eaa057ebddd72ee8b9ba3734295db569807b88652749",
+    "receipt": "workflows/T-1/events/repair-2.yaml",
+    "events": ["repair-2.yaml", "start-1.json"]
+  },
+  "scope": "Isolated disposable fixture only. No historical workflow repair was applied."
+}

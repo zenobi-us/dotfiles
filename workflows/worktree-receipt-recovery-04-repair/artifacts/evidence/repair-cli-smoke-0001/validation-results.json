@@ -1,0 +1,28 @@
+{
+  "checks": [
+    {
+      "argv": ["mise", "exec", "--", "bun", "test", "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts"],
+      "exit_code": 0,
+      "result": "147 pass; 0 fail; 817 expect() calls; 11 files",
+      "source_state": "Final implementation working tree before commits. Source code and tests were committed unchanged. Commit hooks also updated plugin version metadata."
+    },
+    {
+      "argv": ["/tmp/worktree-repair-typecheck/node_modules/.bin/tsc", "--noEmit", "-p", "/tmp/worktree-repair-typecheck/tsconfig.json"],
+      "exit_code": 0,
+      "result": "Changed TypeScript files and their imported dependencies passed strict checking with the repository base configuration and isolated Bun/Node types. The temporary configuration and dependencies were removed after verification."
+    },
+    {
+      "argv": ["mise", "exec", "--", "bun", "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/worktree-receipt-recovery-04-repair/artifacts/evidence/repair-cli-smoke-0001/repair-cli-smoke.ts"],
+      "exit_code": 0,
+      "source_commit": "edf4e5585799abb093d1b8df3211fe72c72da93c",
+      "source_tree": "defadfc579887d577800e27302621fbbb756757d",
+      "result": "Actual repair plan/apply and inspector CLI passed in a disposable repository; ambiguous launch and stale checksum rejected; no partial append; original bytes preserved.",
+      "output_ref": "workflows/worktree-receipt-recovery-04-repair/artifacts/evidence/repair-cli-smoke-0001/smoke-result.json"
+    }
+  ],
+  "limits": [
+    "The first bundle-wide tsc attempt could not resolve Bun type definitions. With isolated type dependencies, bundle-wide checking reported 80 diagnostics in 14 files. One repair.ts store-narrowing error was fixed. The changed-file check then passed. A final bundle-wide check was not run; Crust versioned imports and unrelated collect-feedback diagnostics remain outside this ticket.",
+    "Internal standards and specification checks each found aggregate-history and removed-source issues. Both were fixed and covered by passing regressions. These checks are not the independent worktree review phase.",
+    "No historical repair, tracker completion, integration, push, or workflow metadata commit occurred."
+  ]
+}

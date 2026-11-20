@@ -1,0 +1,13 @@
+schema: worktree-workflow/v2
+workflow_id: worktree-receipt-recovery-04-repair
+ticket_ref: tracker/tickets/worktree-receipt-recovery-04-repair.md
+initiative: worktree-receipt-recovery
+event_root: events
+artifact_root: artifacts
+projection_root: projections
+latest_receipt: start-complete-0003
+state: IMPLEMENTED
+parent_completion_pending: false
+reviewed: false
+merged: false
+publication_pending: true

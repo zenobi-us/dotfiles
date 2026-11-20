@@ -1,0 +1,35 @@
+import { mkdtemp, mkdir, writeFile, readFile, readdir, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join, dirname } from 'node:path';
+import { createHash } from 'node:crypto';
+const sourceRoot = '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair';
+const scripts = join(sourceRoot, 'mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts');
+const root = await mkdtemp(join(tmpdir(), 'path-repair-smoke-'));
+const base = join(root, 'repo');
+const run = async (args: string[], cwd?: string, code = 0) => { const child = Bun.spawn(args, {cwd,stdout:'pipe',stderr:'pipe'}); const [out,err,status] = await Promise.all([new Response(child.stdout).text(),new Response(child.stderr).text(),child.exited]); if(status !== code) throw new Error(`${args.join(' ')}: ${status} ${out} ${err}`); return out + (status ? err : ''); };
+const put = async (path: string, data: unknown) => {await mkdir(dirname(path),{recursive:true});await writeFile(path,typeof data === 'string' ? data : JSON.stringify(data));};
+let source: string | undefined;
+try {
+ await run(['git','init','-q','-b','main',base]);
+ await run(['git','-C',base,'config','user.name','Smoke']); await run(['git','-C',base,'config','user.email','smoke@example.invalid']); await run(['git','-C',base,'remote','add','origin',`https://github.com/example/${root.split('/').at(-1)}.git`]);
+ await put(join(base,'docs/agents/issue-tracker.md'),'---\nbackend: local-markdown\n---\n'); await put(join(base,'tracker/tickets/T-1.md'),'---\nid: T-1\ntitle: Smoke\nwork_status: claimed\nblocked_by: []\n---\n');
+ await run(['git','-C',base,'add','.']);await run(['git','-C',base,'commit','-qm','Initial']);
+ await run(['wt','switch','--create','feature/T-1','--no-cd','--no-hooks'],base);
+ const inventory=JSON.parse(await run(['wt','list','--format=json'],base)); source=inventory.items.find((item:{branch:string})=>item.branch==='feature/T-1').worktree.path;
+ const commit=(await run(['git','-C',source!,'rev-parse','HEAD'])).trim(),tree=(await run(['git','-C',source!,'rev-parse','HEAD^{tree}'])).trim();
+ const target='workflows/T-1/events/start-1.json', launch='workflows/T-1/artifacts/snapshots/retained-launch.json';
+ const event={schema:'worktree-receipt/v1',receipt_id:'start-1',workflow_id:'T-1',phase:'start',event:'phase-start',status:'started',attempt:1,parent_receipt:null,repository:base,worktree:source,workspace_path:base,source_branch:'feature/T-1',base_branch:'main',source_commit:commit,source_tree:tree,created_at:'2026-10-01T00:00:00Z',muxer:'herdr-app',pane_id:'smoke',session_id:'smoke',agent:'omp',ticket:{backend:'local-markdown',id:'T-1',ref:'tracker/tickets/T-1.md'},ticket_ref:'tracker/tickets/T-1.md',workflow:{root:base,store:'repository',ref:'workflows/T-1'},inputs:[],outputs:[]};
+ const original=JSON.stringify(event);await put(join(base,target),original);await put(join(base,launch),{...event,schema:'worktree-launch-evidence/v1',source_path:source});
+ const inspect=async()=>JSON.parse(await run(['bun',join(scripts,'inspect.ts'),event.ticket_ref,'--json'],base));
+ const before=await inspect();if(before.workflow.inspection.historyValid)throw new Error('Expected damaged paths before repair');
+ const request=join(root,'request.json'),planPath=join(root,'plan.json'),approvalPath=join(root,'approval.json');
+ await put(request,{ticket_ref:event.ticket_ref,targets:[{ref:target,source_path:source}]});
+ const ambiguous=JSON.parse(await run(['bun',join(scripts,'repair.ts'),'plan',request],base));if(!ambiguous.blockers.length)throw new Error('Expected ambiguous launch rejection');
+ await put(request,{ticket_ref:event.ticket_ref,targets:[{ref:target,source_path:source,launch_ref:launch}]});
+ const plan=JSON.parse(await run(['bun',join(scripts,'repair.ts'),'plan',request],base));if(plan.blockers.length)throw new Error(JSON.stringify(plan.blockers));await put(planPath,plan);
+ await put(approvalPath,{plan_sha256:plan.plan_sha256,authorization:'Isolated smoke operator approves this exact plan',receipt:{...event,schema:'worktree-receipt/v2',receipt_id:'repair-2',event:'operator-approval',status:'approved',attempt:0,parent_receipt:'start-1',workspace_path:source,created_at:'2026-10-02T00:00:00Z',inputs:[{kind:'receipt',ref:target},{kind:'launch',ref:launch}],outputs:[{kind:'receipt',ref:'workflows/T-1/events/repair-2.yaml'}]}});
+ await put(join(base,target),original+'\n');const stale=await run(['bun',join(scripts,'repair.ts'),'apply',planPath,approvalPath],base,1);if(!stale.includes('Stale'))throw new Error(stale);if((await readdir(join(base,'workflows/T-1/events'))).length!==1)throw new Error('Partial stale append');await put(join(base,target),original);
+ const applied=JSON.parse(await run(['bun',join(scripts,'repair.ts'),'apply',planPath,approvalPath],base));const after=await inspect();if(!after.workflow.inspection.historyValid)throw new Error(JSON.stringify(after));
+ if(await readFile(join(base,target),'utf8')!==original)throw new Error('Original was changed');
+ console.log(JSON.stringify({scenario:'actual repair CLI and inspector',before_history_valid:before.workflow.inspection.historyValid,after_history_valid:after.workflow.inspection.historyValid,ambiguous_rejected:ambiguous.blockers,stale_checksum_rejected:true,partial_append:false,original_sha256:createHash('sha256').update(original).digest('hex'),receipt:applied.receipt,events:await readdir(join(base,'workflows/T-1/events'))},null,2));
+} finally { if(source && !source.startsWith(root+'/'))await rm(source,{recursive:true,force:true});await rm(root,{recursive:true,force:true}); }
