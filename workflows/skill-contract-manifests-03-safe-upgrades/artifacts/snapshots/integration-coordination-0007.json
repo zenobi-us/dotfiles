@@ -1,0 +1,23 @@
+{
+  "review_base_commit": "7c6b604922e6d1a2c4b90f16a8903caaaa12612d",
+  "current_base": "268da19a302493cba216de65b72a4ec31dfe98a9",
+  "base_changes_since_review": "Only ticket/review workflow metadata changed; no producer/consumer source changes.",
+  "generated_overlap": "Shared catalogue overlaps with other streams are risks, not dependencies. Current accepted base has no product changes after review; candidate smoke validates plugin/catalogue agreement.",
+  "inventory_complete": false,
+  "unknowns": "Unrelated stale histories, linked ticket copies and unknown scopes remain preserved; no reservation for proposed ticket.",
+  "owner": "01a1faf7-4a3f-73cb-a1a0-f3dee71addd6",
+  "ownership": "Same parent as review completion; user explicitly requested finish. All phase-owned children stopped.",
+  "unrelated_dirty_paths": [
+    "mise/conf.d/shells-zsh/.zprofile",
+    "mise/conf.d/shells-zsh/.zshrc",
+    "workflows/worktree-receipt-recovery-02-identity"
+  ],
+  "dirty_safety": "Paths outside integration product diff; Worktrunk must preserve them. No stash/reset/blanket staging.",
+  "hooks": {
+    "project_config": "absent",
+    "pre_merge": "none configured",
+    "post_merge": "none configured",
+    "pre_remove": "user server port hook; normal approvals remain required"
+  },
+  "method_policy": "Worktrunk user configuration merge.squash=true"
+}

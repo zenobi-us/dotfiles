@@ -1,0 +1,22 @@
+[
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "-e",
+      "import assert from 'node:assert/strict'; import {mkdtemp,writeFile,readFile,rm} from 'node:fs/promises'; import {tmpdir} from 'node:os'; import {join,resolve} from 'node:path';\nconst root=process.cwd(); const skill=resolve(root,'mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts'); const owner=join(skill,'examples/upgrades'); const cli=join(skill,'scripts/router.ts'); const dir=await mkdtemp(join(tmpdir(),'integration-safe-upgrades-'));\nconst note={schemaVersion:'example-note/v1',title:'Original',body:'Authored Unicode π\\nline two',metadata:{author:'User',tags:['one','two']}};\nconst run=(args)=>{const child=Bun.spawnSync([cli,...args],{cwd:root,stdout:'pipe',stderr:'pipe'});return {code:child.exitCode,out:child.stdout.toString(),err:child.stderr.toString()};};\ntry {const artifact=join(dir,'note.json');const request=join(dir,'request.json');await writeFile(artifact,JSON.stringify(note));await writeFile(request,JSON.stringify({title:'Integrated'}));const original=await readFile(artifact);assert.equal(run(['validate','--skill',owner]).code,0);assert.equal(run(['resolve','--skill',owner,'--contract','example-note/v1']).code,0);assert.deepEqual(await readFile(artifact),original);\nconst upgraded=run(['safe-upgrade','--skill',owner,'--owner','file:owner.ts','--artifact',artifact,'--operation','rename','--request',request]);assert.equal(upgraded.code,0,upgraded.err);assert.equal(JSON.parse(upgraded.out).changed,true);const persisted=JSON.parse(await readFile(artifact,'utf8'));assert.equal(persisted.schemaVersion,'example-note/v2');assert.deepEqual(persisted.document,{heading:'Integrated',text:note.body});assert.deepEqual(persisted.metadata,note.metadata);\nconst mutable=join(dir,'mutable.json'),immutable=join(dir,'immutable.json'),unknown=join(dir,'unknown.json'),list=join(dir,'list.json');await writeFile(mutable,JSON.stringify(note));await writeFile(immutable,JSON.stringify({...note,immutable:true}));await writeFile(unknown,JSON.stringify({...note,schemaVersion:'example-note/v99'}));const immutableBefore=await readFile(immutable),unknownBefore=await readFile(unknown);await writeFile(list,JSON.stringify([mutable,immutable,unknown]));const bulk=run(['bulk-upgrade','--skill',owner,'--owner','file:owner.ts','--artifacts',list]);assert.notEqual(bulk.code,0);const actual=JSON.parse(await readFile(mutable,'utf8'));assert.equal(actual.schemaVersion,'example-note/v2');assert.equal(actual.document.text,note.body);assert.deepEqual(actual.metadata,note.metadata);assert.deepEqual(await readFile(immutable),immutableBefore);assert.deepEqual(await readFile(unknown),unknownBefore);const report=JSON.parse(bulk.out);assert.equal(report.status,'partial');\nconst plugin=JSON.parse(await readFile(resolve(root,'mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json'),'utf8'));const catalog=JSON.parse(await readFile(resolve(root,'mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json'),'utf8'));assert.equal(catalog.plugins.find(p=>p.name==='agent-core').version,plugin.version);console.log('PASS: candidate CLI conversion, mutation, preservation, rejection, bulk persistence and catalogue compatibility');\n} finally {await rm(dir,{recursive:true,force:true});}"
+    ]
+  }
+]

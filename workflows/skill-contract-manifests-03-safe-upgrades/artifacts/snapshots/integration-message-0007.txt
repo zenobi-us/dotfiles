@@ -1,0 +1,4 @@
+feat(contracts): finish skill-contract-manifests-03-safe-upgrades
+
+Integrate reviewed source 61325389b18be55808813456371f0ebdb270e285.
+Review: workflows/skill-contract-manifests-03-safe-upgrades/events/review-0005.yaml
