@@ -184,3 +184,9 @@ Latest verdict: SUCCESS for `2a843de309311b624fd64e8671fb83a414d4e774` (tree `77
 
 Scoped suite: 131 pass, 0 fail, 767 assertions. Actual inspector/writer CLI smoke passed linked-root continuation and rejection boundaries. Parent focused regression: 1 pass, 28 assertions. The parent verified the authoritative transport, exact clean source, acknowledgement, reviewer closure and confirmed owned shutdown; both axis results were acknowledged and closed. No source edit, merge or push occurred. Integration still requires current-base compatibility checks and a separately authorized finish/submit phase.
 
+
+
+## Resolved integration-source review
+
+[Review-0040](../artifacts/reviews/review-review-0040.md), [result](../events/review-0040.yaml), and [completion](../events/review-complete-0041.yaml) independently approve resolved source `30080a8a3302ee803cf5beeb4dd3cef1573bdf9c` (tree `8a718a84f6809a1d5ac63589a1ced4a6cc295b62`). The original source and review-0036 remain unchanged. Only generated developer versions conflicted; both remain0.2.63 under the existing generator. Combined suite passed151 tests/913 assertions; actual combined inspector/writer CLI smoke passed. Reviewer and axes are closed with confirmed shutdown. Integration remains pending.
+
