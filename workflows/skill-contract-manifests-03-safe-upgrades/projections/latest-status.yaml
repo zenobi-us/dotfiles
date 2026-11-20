@@ -1,9 +1,15 @@
 schema: worktree-latest-status/v1
 workflow_id: skill-contract-manifests-03-safe-upgrades
 ticket: tracker/tickets/skill-contract-manifests-03-safe-upgrades.md
-state: IMPLEMENTED
-latest_receipt: start-complete-0003
+state: REVIEW_PASSED
+latest_receipt: review-complete-0006
 latest_source_commit: 61325389b18be55808813456371f0ebdb270e285
 latest_source_tree: 6e606a819342ae734a569a304861c723d8e3a743
-latest_review_verdict: null
-open_findings: []
+latest_review_verdict: SUCCESS
+open_findings:
+  - id: STD-01
+    severity: P3
+    blocking: false
+  - id: STD-02
+    severity: P3
+    blocking: false
