@@ -140,3 +140,15 @@ Read the immutable [review](../artifacts/reviews/review-review-0020.md), [result
 
 Validation: scoped suite passed 130 tests with 734 assertions; parent focused regression passed 1 test with 15 assertions. Actual writer smoke exercised cross-directory publication and rejection paths. The retained-v1 wrong-branch scenario reproduced the blocking defect. No fix, merge, or push occurred. Next action requires fresh workflow inspection and fix authorization.
 
+
+## Fix attempt 3 — current source
+
+Resolved SPEC-2 from review-0020. Unresolved finding IDs: none. Commit: `05c403f8b9707d11418c07756d334335b139e32b`. Tree: `49d6b3b7ffc0c6d6478e52a0031acd9ad719a423`. See [immutable fix snapshot](../artifacts/snapshots/pr-draft-fix-0024.md) and [fix result](../events/fix-0024.yaml). Scoped suite: 130 pass, 0 fail, 739 assertions. Actual retained-v1 writer rejected a same-commit wrong branch before event and transport writes; matching branch published both; retained parent bytes unchanged. Historical FAILURE remains on the old source. Fresh formal review required; no new verdict. Parent completion, acknowledgement and shutdown verification remain pending.
+
+
+## Parent fix completion — attempt 3
+
+[Fix result](../events/fix-0024.yaml) and [parent completion](../events/fix-complete-0025.yaml) bind SPEC-2 to clean source `05c403f8b9707d11418c07756d334335b139e32b` (tree `49d6b3b7ffc0c6d6478e52a0031acd9ad719a423`). The parent verified and acknowledged the authoritative delivery, passed the focused retained-branch regression (1 test, 20 assertions), closed the fixer terminal, and confirmed all owned processes stopped.
+
+The [immutable fix snapshot](../artifacts/snapshots/pr-draft-fix-0024.md) records changes and writer smoke evidence. The historical review remains unchanged and stale. No fix finding remains unresolved; a new independent review is required. No merge or push occurred.
+
