@@ -4,7 +4,7 @@ id: "worktree-receipt-recovery-02-identity"
 title: "Generate receipt identity from verified phase context"
 type: "enhancement"
 triage: "ready-for-agent"
-work_status: "implemented"
+work_status: "completed"
 parent: "worktree-receipt-recovery"
 sequence: 2
 blocked_by: ["worktree-receipt-recovery-01-validation"]
@@ -16,13 +16,13 @@ Agents must supply outcomes and evidence instead of copying the receipt envelope
 
 ## Acceptance criteria
 
-- [ ] Obtain ticket, workflow, parent receipt, and session identity from validated phase context. Reject missing or inconsistent identity before publication.
-- [ ] Resolve the source worktree root once. Populate worktree and workspace_path with the same verified absolute path.
-- [ ] Read the source branch, commit, and tree through Git at publication. Compare observed identity with the applicable phase expectations.
-- [ ] For review, preserve the frozen source identity. Reject source changes instead of silently recording a different reviewed source.
-- [ ] Keep the execution directory separate from the source worktree. Permit a parent finish session to run elsewhere without changing source identity.
-- [ ] Update parent, implementation, review, fix, submit, and finish receipt producers to use generated identity. Keep worktree-receipt/v1.
-- [ ] Exercise receipt publication from a different execution directory and rejection of a wrong source checkout.
+- [x] Obtain ticket, workflow, parent receipt, and session identity from validated phase context. Reject missing or inconsistent identity before publication.
+- [x] Resolve the source worktree root once. Populate worktree and workspace_path with the same verified absolute path.
+- [x] Read the source branch, commit, and tree through Git at publication. Compare observed identity with the applicable phase expectations.
+- [x] For review, preserve the frozen source identity. Reject source changes instead of silently recording a different reviewed source.
+- [x] Keep the execution directory separate from the source worktree. Permit a parent finish session to run elsewhere without changing source identity.
+- [x] Update parent, implementation, review, fix, submit, and finish receipt producers to use generated identity. Keep worktree-receipt/v1.
+- [x] Exercise receipt publication from a different execution directory and rejection of a wrong source checkout.
 
 ## Comments
 
@@ -42,3 +42,5 @@ Agents must supply outcomes and evidence instead of copying the receipt envelope
 
 - Review SUCCESS at 2026-11-20T04:20:12.242Z. Reviewed resolved commit `30080a8a3302ee803cf5beeb4dd3cef1573bdf9c`, tree `8a718a84f6809a1d5ac63589a1ced4a6cc295b62`. [Independent resolution review](../../workflows/worktree-receipt-recovery-02-identity/artifacts/reviews/review-review-0040.md).
 
+
+- Completed after recovery verification. Published squash `f901b27b0b144f3a8559d4788580555489c137b1` matches independently reviewed resolved source `30080a8a3302ee803cf5beeb4dd3cef1573bdf9c`. Candidate validation: 151 tests passed, 0 failed, 913 assertions; actual inspector smoke passed. [Publication checkpoint](../../workflows/worktree-receipt-recovery-02-identity/events/finish-pushed-0045.yaml).
