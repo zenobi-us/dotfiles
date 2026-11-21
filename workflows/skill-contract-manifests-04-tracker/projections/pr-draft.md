@@ -26,7 +26,7 @@ The initial broad run exposed two failures in unchanged explorer expectation pat
 
 ## Review history and findings
 
-Implementation standards and specification self-checks found three mutation gaps; all were fixed and covered by passing owning CLI regressions. Remaining scoped findings: none. Latest formal reviewer verdict: not available. Formal review remains pending; self-checks do not replace it.
+Implementation standards and specification self-checks found three mutation gaps; all were fixed and covered by passing owning CLI regressions. Formal review attempt 1 completed with **FAILURE** for `b062761b4a31681f4e826c4e3dad8770e8944607`. Standards: zero findings. Spec: two blocking P2 findings, SPEC-1 and SPEC-2. See [immutable review](../artifacts/reviews/review-review-0005.md), [result](../events/review-0005.yaml), and [parent completion](../events/review-complete-0006.yaml). No fix phase has run.
 
 ## Merge status
 
@@ -42,4 +42,4 @@ Not merged or pushed. Ticket completion and lifecycle completion remain parent-o
 
 ## Parent completion
 
-[Parent completion](../events/start-complete-0003.yaml) validates the exact clean source and authoritative result. The parent exercised historical read/check and authorized current-format mutation through the actual CLI in a disposable fixture. All owned child processes stopped; the implementation pane closed; the source workspace remains available. Formal review, integration and push have not run.
+[Parent completion](../events/start-complete-0003.yaml) validates the exact clean source and authoritative result. The parent exercised historical read/check and authorized current-format mutation through the actual CLI in a disposable fixture. All owned child processes stopped; the implementation pane closed; the source workspace remains available. Formal review later completed with FAILURE; integration and push have not run.
