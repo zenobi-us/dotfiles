@@ -18,8 +18,10 @@ export function inspectionBlockers(workflow: WorkflowReadResult, decision: Recov
   const add = (code: string, receiptRefs: string[], evidence: Record<string, unknown>, missingEvidence: string[]): void => {
     const actions = decision.mode !== "blocked" && decision.mode !== "complete" && decision.action
       ? [decision.action, ...decision.alternatives ?? []] : [];
-    blockers.push({ code, receiptRefs, evidence, missingEvidence, requiredApproval: decision.requiredApproval,
-      recoveryActions: actions.map(action => ({ action, mode: decision.mode, requiredApproval: decision.requiredApproval })) });
+    blockers.push({
+      code, receiptRefs, evidence, missingEvidence, requiredApproval: decision.requiredApproval,
+      recoveryActions: actions.map(action => ({ action, mode: decision.mode, requiredApproval: decision.requiredApproval }))
+    });
   };
   for (const diagnostic of workflow.diagnostics ?? []) {
     if (diagnostic.severity !== "error") continue;
@@ -37,6 +39,7 @@ export function inspectionBlockers(workflow: WorkflowReadResult, decision: Recov
     add("source_unavailable", refs, { ...inspection.source }, ["Available source worktree with verified branch, commit, tree, and uncommitted changes."]);
   }
   for (const receipt of workflow.receipts) {
+    if (receiptEvent(receipt) === "operator-approval") continue;
     if (receiptEvent(receipt) === "phase-result" && !workflow.receipts.some(parent => receiptEvent(parent) === "phase-complete" && parent.parentReceipt === receipt.id)) {
       add("missing_parent_completion", [receipt.ref], { phase: receipt.phase, status: receipt.status, sourceCommit: receipt.sourceCommit, sourceTree: receipt.sourceTree }, ["Parent validation of child outcome, artifacts, exact source, and session shutdown."]);
     }

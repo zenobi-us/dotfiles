@@ -10,7 +10,7 @@ import type { InitiativeRecord, TrackerSnapshot, TicketRecord } from "../../../.
 import { assertRecord, INITIATIVE_SCHEMA, validateInitiativeMembership } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/record-schema";
 import { MIRROR_SCHEMA } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/jira-mirror";
 import { inspectWorkflow } from "./inspection";
-import { chronologicalReceipts, receiptPhase } from "./recovery";
+import { chronologicalReceipts, receiptEvent, receiptPhase } from "./recovery";
 import { DocumentReadSession } from "./document-cache";
 import type { ParsedDocument, DocumentReadProgress } from "./document-cache";
 import { validateReceiptContract } from "./receipt-contract";
@@ -294,8 +294,8 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: TicketRe
    errors.push(`[invalid_parent_graph] ${message}`);
   }
   result.recordedAttempts = {
-   review: result.receipts.filter(receipt => receiptPhase(receipt) === "review").length,
-   fix: result.receipts.filter(receipt => receiptPhase(receipt) === "fix").length,
+   review: result.receipts.filter(receipt => receiptPhase(receipt) === "review" && receiptEvent(receipt) !== "operator-approval").length,
+   fix: result.receipts.filter(receipt => receiptPhase(receipt) === "fix" && receiptEvent(receipt) !== "operator-approval").length,
   };
   historyValidated = true;
   if (errors.length) {

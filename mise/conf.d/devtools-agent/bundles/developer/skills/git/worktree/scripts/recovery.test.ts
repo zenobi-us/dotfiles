@@ -4,6 +4,7 @@ import { recoveryDecision, recoveryState } from "./recovery";
 import type { WorkflowInspection } from "./recovery";
 import type { WorkflowReceipt, TicketWorkflow } from "./model";
 import type { TicketRecord } from "../../../../../matt-pocock/skills/reading-and-writing-tickets/scripts/model";
+import { inspectionBlockers } from "./inspection-blockers";
 
 const ticket: TicketRecord = { id: "T-1", title: "Recover", ref: "tracker/tickets/T-1.md", backend: "local-markdown", status: "open", blockedBy: [], body: "" };
 const snapshot = { tickets: [ticket], initiatives: [], backend: ticket.backend };
@@ -138,6 +139,29 @@ test("current failure offers fix but source changes after either verdict require
     state.inspection!.source.tree = "d".repeat(40);
     expect(recoveryDecision(ticket, snapshot, state)).toMatchObject({ action: "review", mode: "retry" });
   }
+});
+
+test("ownership approvals preserve the current failed review decision and inputs", () => {
+  const state = reviewed("FAILURE");
+  const approval = receipt("fix", {
+    id: "fix-handoff", status: "approved", parentReceipt: state.receipts[0]!.id,
+    createdAt: "2026-10-02T00:00:00Z", fields: { event: "operator-approval" },
+  });
+  state.receipts.unshift(approval);
+  const decision = recoveryDecision(ticket, snapshot, state);
+  expect(decision).toMatchObject({ action: "fix", mode: "begin", parentReceipt: state.receipts[1]!.ref });
+  expect(decision.inputs).toContain(approval.ref);
+});
+
+test("review ownership approvals are not unusable review results", () => {
+  const state = reviewed("FAILURE");
+  state.receipts.unshift(receipt("review", {
+    id: "review-approval", status: "approved", parentReceipt: state.receipts[0]!.id,
+    createdAt: "2026-10-02T00:00:00Z", fields: { event: "operator-approval" },
+  }));
+  const decision = recoveryDecision(ticket, snapshot, state);
+  expect(decision).toMatchObject({ action: "fix", mode: "begin" });
+  expect(inspectionBlockers(state, decision)).toEqual([]);
 });
 
 test("interrupted fix takes over only traceable findings and preserves dirty source", () => {

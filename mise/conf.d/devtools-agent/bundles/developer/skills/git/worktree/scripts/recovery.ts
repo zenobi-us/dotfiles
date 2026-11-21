@@ -43,7 +43,7 @@ export function recoveryDecision(ticket: Ticket, snapshot: { tickets: Ticket[] }
   if (!workflow) return { mode: "blocked", label: "Inspect workflow", reason: "Load the current workflow before choosing a recovery action.", requiredApproval: false, inputs: [ticket.ref] };
   const inspection = workflow.inspection;
   const receipts = chronologicalReceipts(workflow.receipts).reverse().map(receipt => ({ ...receipt, phase: receiptPhase(receipt), event: receiptEvent(receipt) }));
-  const latest = receipts[0];
+  const latest = receipts.find(receipt => receipt.event !== "operator-approval");
   const inputs = [...new Set([ticket.ref, ...receipts.flatMap(receipt => [receipt.ref, ...receipt.outputs])])];
   const decision = (action: WorktreeAction | undefined, mode: RecoveryMode, label: string, reason: string, approval = false, alternatives?: WorktreeAction[]): RecoveryDecision => ({
     ...(action ? { action } : {}), mode, label, reason, requiredApproval: approval,

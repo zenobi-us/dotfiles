@@ -61,6 +61,9 @@ write workflow state to `.scratch/`, `<ticket>/local/`, the ticket collection, o
 
 ## Shared recovery decision
 
+Operator approvals remain provenance, not phase execution. They do not replace the latest phase for recovery, count as review or fix attempts, or require review verdicts and artifacts. Keep their references in recovery inputs.
+
+
 Every phase command recovers its own interrupted attempt; recovery is not limited to `continue` or `goal`. Resolve the absolute installed `WORKTREE_SKILL_ROOT` and, from the repository or surviving base worktree, run:
 
 ```sh
