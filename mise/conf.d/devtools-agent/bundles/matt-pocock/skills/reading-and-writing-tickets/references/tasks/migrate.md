@@ -13,6 +13,18 @@ Resolve the installed ticket skill directory as `TICKET_SKILL_ROOT`. `scripts/re
 
 Read-only checks report record versions, validation failures, membership, and dependency issues. A check never writes schemas or repairs records. Standalone tickets can be checked before an initiative collection exists; missing blocker records still fail validation. Keep the explicit selector; do not silently expand into a whole-tracker migration.
 
+## Safe contract conversion
+
+For an otherwise authorized scalar update, use the owning records command. It resolves the canonical record, validates its kind and complete direct membership, then invokes shared safe conversion. A request contains `{ "fields": { "title": "Revised title" } }`; it cannot change schema or record identity. Tickets accept `title`, `work_status` and `triage`; initiatives accept `title` only.
+
+```sh
+"$TICKET_SKILL_ROOT/scripts/records.ts" update --repository "$REPOSITORY_ROOT" --ticket T-1 --request /absolute/path/update.json
+"$TICKET_SKILL_ROOT/scripts/records.ts" update --repository "$REPOSITORY_ROOT" --initiative example-navigation --request /absolute/path/update.json
+"$TICKET_SKILL_ROOT/scripts/records.ts" upgrade --repository "$REPOSITORY_ROOT" --artifacts /absolute/path/selected-record-paths.json
+```
+
+Bulk conversion requires an explicit JSON array of absolute canonical ticket or initiative-index paths. Each item validates before persistence. Results retain independently persisted outcomes and return nonzero for partial or failed conversion. Unknown versions, unsafe conversion and immutable history remain unchanged. Read, check and installation never invoke upgrades. The internal owner adapter is not a public entrypoint: direct shared-router calls omit required tracker preflight.
+
 ## Plan before approval
 
 ```sh
@@ -41,7 +53,9 @@ The acknowledgement asserts that the caller coordinated writers; the CLI does no
 
 Apply must re-resolve destinations, validate the plan, reject changed inputs and conflicts, validate staged records, and recognize an already-applied plan. Preserve custom fields, authored body and comments, child identity/status/dependencies, and relative link targets. A specification move removes only ticket-specific fields that have no executable meaning. Nonempty blockers or execution history on the specification require a human migration decision.
 
-Record an immutable plan under the resolved `migration-<migration-id>` workflow's `artifacts/snapshots/` and append migration state events under `events/` with `tracker-migration/v1`. These are migration records, not ticket-phase receipts. Never rewrite existing workflow events, reviews, snapshots, or coordinator accounting. Store old/new references and source commit/blob provenance for historical lookup; do not leave an executable stub at the old specification path.
+New plans declare `schemaVersion: tracker-migration-plan/v2`. Read historical `schema: tracker-migration-plan/v1` plans and `schema: tracker-migration/v1` event chains through their explicit readers without changing bytes or hashes. New event chains declare `schemaVersion: tracker-migration/v2`; never append a different contract to an existing historical chain.
+
+Record an immutable plan under the resolved `migration-<migration-id>` workflow's `artifacts/snapshots/` and append migration state events under `events/` with `tracker-migration/v2`. These are migration records, not ticket-phase receipts. Never rewrite existing workflow events, reviews, snapshots, or coordinator accounting. Store old/new references and source commit/blob provenance for historical lookup; do not leave an executable stub at the old specification path.
 
 On partial failure, stop and report persisted changes, recovery state, and whether internal rollback restored the original records. Do not resume ticket execution while records or publication are inconsistent. A retry must reconcile the existing migration rather than append duplicate conversions.
 

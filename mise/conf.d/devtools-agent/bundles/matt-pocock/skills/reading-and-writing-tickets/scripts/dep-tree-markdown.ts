@@ -13,6 +13,10 @@ const MQ_LOCKFILE = fileURLToPath(new URL("../mq.lock", import.meta.url));
 type MarkdownTicket = { ticket: Ticket; blockedBy: string[]; parent?: string };
 interface MarkdownInitiative { id: string; ticketIds: string[] }
 
+/**
+ * Read the dependency graph without upgrading records. Versioned initiative
+ * indexes use direct-parent membership; unversioned indexes keep legacy links.
+ */
 export async function markdownGraph(
   repositoryRoot: string,
   ticketId: string | undefined,
@@ -75,7 +79,7 @@ export async function markdownGraph(
       }
       return ticketId ? [ticketId] : [];
     });
-    if (frontmatter.schema === INITIATIVE_SCHEMA) {
+    if (frontmatter.schema === "tracker-initiative/v1" || frontmatter.schemaVersion === INITIATIVE_SCHEMA) {
       const errors = validateInitiativeMembership(id, ticketIds, [...tickets].map(([id, ticket]) => ({ id, parent: ticket.parent })));
       if (errors.length) throw new Error(errors.join(" "));
     }

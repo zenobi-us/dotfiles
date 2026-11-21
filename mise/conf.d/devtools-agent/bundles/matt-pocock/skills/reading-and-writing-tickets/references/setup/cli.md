@@ -17,7 +17,7 @@ Resolve the installed `reading-and-writing-tickets` directory as `TICKET_SKILL_R
 ## Answers
 
 ```yaml
-schema: 1
+schemaVersion: tracker-setup-answers/v2
 tracker_backend: local-markdown
 domain_mode: single
 triage_enabled: true
@@ -29,7 +29,7 @@ Use `domain_mode: multi` with `domains: [billing, ordering]` for multiple contex
 
 Override triage values with a `triage_labels` mapping keyed by `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, and `wontfix`. Values must be distinct non-empty strings.
 
-Unknown answer keys and backend/route mismatches are errors. The shared-context resolver owns storage and collection paths. Preserve existing `docs/agents/context-layout.toml` and local tracker frontmatter roots. Configure or migrate routes separately before setup when the tracker adapter must change.
+Answers declare `schemaVersion: tracker-setup-answers/v2`. The explicit historical reader accepts numeric `schema: 1` answers without rewriting the input. Unknown identities, mixed identity fields, unknown answer keys, and backend/route mismatches are errors. The shared-context resolver owns storage and collection paths. Preserve existing `docs/agents/context-layout.toml` and local tracker frontmatter roots. Configure or migrate routes separately before setup when the tracker adapter must change.
 
 The shared-context CLI does not resolve file-backed tracker paths for external adapters. Setup reads the reported adapter first and resolves collections only for Local Markdown.
 
@@ -50,7 +50,7 @@ When new shared instructions would hide a repository-local route manifest, the p
 
 The CLI supplies normalized answers, store-relative collection roots, origin, and lists of existing records. Cross-store navigation uses the resolver's stable references as text, rather than fragile relative links between stores. Templates contain all generated document prose. File ordering and output are stable; no timestamps enter generated state.
 
-`docs/agents/setup-state.json` records effective answers, template hash, Copier version, and managed-content hashes. It is the only persistent setup state. Do not copy Copier staging answers into the target.
+`docs/agents/setup-state.json` declares `schemaVersion: tracker-setup-state/v2` and records effective current answers, template hash, Copier version, and managed-content hashes. The historical reader accepts numeric `schema: 1` state during plan and check without writing it. The declared v1-to-v2 procedure uses shared `safeUpgrade` on an owned temporary copy; the existing setup transaction alone writes the live target after approval, conflict detection, and freshness checks. Unknown state or managed-file fields block conversion instead of disappearing. See [Setup upgrade procedure](../setup-contracts/upgrade-v1-v2.md). It is the only persistent setup state. Do not copy Copier staging answers into the target.
 
 ## Authored content
 
@@ -67,7 +67,7 @@ An existing configuration file must match the rendered bytes to be adopted witho
 
 ## Output
 
-Human output shows routes and file actions. Plans show exact before/after content. `--json` writes one structured result to stdout, including `command`, `target`, `alignmentRoot`, `routes`, `changes`, and `errors`. Each change has `path`, `action`, `before`, and `after`; a conflict also has `reason`. Diagnostics go to stderr. Error-only results contain `error` and `code`.
+Human output shows routes and file actions. Plans show exact before/after content. `--json` writes one structured result to stdout, declaring `schemaVersion: tracker-setup-result/v1` and including `command`, `target`, `alignmentRoot`, `routes`, `changes`, and `errors`. Each change has `path`, `action`, `before`, and `after`; a conflict also has `reason`. Diagnostics go to stderr. Error-only results declare `schemaVersion: tracker-setup-error/v1` and contain `error` and `code`. Authoritative setup definitions live under `references/setup-contracts/`. Shared-context route manifests, layout configuration, hosted tracker API formats, and Copier configuration retain their external owner formats.
 
 | Code | Meaning |
 |---|---|

@@ -6,7 +6,7 @@ def inspect(source):
   | {fields: okf::okf_parse(normalized)["frontmatter"], links: filter(map(to_markdown(source), fn(node): {url: node.url, node: node};), fn(link): !is_none(link["url"]);)}
 end
 
-def stamp(source, schema, defaults, removed):
+def stamp(source, schema, schemaField, defaults, removed):
   let newline = if (contains(source, "\r\n")): "\r\n" else: "\n"
   | let lines = split(source, newline)
   | let close = if (lines[0] == "---"): find_index(skip(lines, 1), fn(line): line == "---";) + 1 else: -1
@@ -19,7 +19,7 @@ def stamp(source, schema, defaults, removed):
             do
               let top = is_regex_match(line, "^[^ \\t#][^:]*:")
               | let key = if (top): replace(replace(trim(split(line, ":")[0]), "\"", ""), "'", "") else: ""
-              | if (top): dropping = in(removed + ["schema"], key) else: None
+              | if (top): dropping = in(removed + ["schema", "schemaVersion"], key) else: None
               | if (!dropping || starts_with(trim(line), "#") || trim(line) == ""):
                   kept = kept + [line]
                 elif (top && contains(line, " #")):
@@ -29,7 +29,7 @@ def stamp(source, schema, defaults, removed):
             end
           end
         | let added = map(keys(defaults), fn(key): key + ": " + defaults[key];)
-        | join(["---", "schema: " + schema] + kept + added + slice(lines, close, len(lines)), newline)
+        | join(["---", schemaField + ": " + schema] + kept + added + slice(lines, close, len(lines)), newline)
       end
 end
 
@@ -74,7 +74,7 @@ end
 if (operation == "inspect"):
   inspect(.)
 elif (operation == "stamp"):
-  stamp(., schema, defaults, removed)
+  stamp(., schema, schemaField, defaults, removed)
 elif (operation == "replace"):
   fold(replacements, ., replace_link)
 elif (operation == "membership"):

@@ -8,15 +8,15 @@ The authoritative validator is `scripts/record-schema.ts`, relative to the insta
 
 | Record | Schema | Required content | Forbidden ticket state |
 |---|---|---|---|
-| Initiative `index.md` | `tracker-initiative/v1` | Stable string `id`, string `title`, complete specification, child links under `## Tickets`, discussion under `## Comments` | `work_status`, `blocked_by` |
-| Executable ticket | `tracker-ticket/v1` | Stable string `id`, string `title`, recognized `work_status`, string-list `blocked_by`; optional string `parent` and positive integer `sequence` | None |
-| Skill/CLI result | `tracker-result/v1` | Operation result and observed validation/publication | Do not represent an initiative as a ticket |
-| Migration plan | `tracker-migration-plan/v1` | Repository/routes, explicit selector, before/after snapshots and hashes, source provenance, coverage, conflicts | No implied execution approval |
-| Migration event | `tracker-migration/v1` | Migration identity, immutable plan hash, sequence/parent hash, observed apply or recovery state | Never rewrite historical receipts |
+| Initiative `index.md` | `tracker-initiative/v2` | Stable string `id`, string `title`, complete specification, child links under `## Tickets`, discussion under `## Comments` | `work_status`, `blocked_by` |
+| Executable ticket | `tracker-ticket/v2` | Stable string `id`, string `title`, recognized `work_status`, string-list `blocked_by`; optional string `parent` and positive integer `sequence` | None |
+| Skill/CLI result | `tracker-result/v2` | Operation result and observed validation/publication | Do not represent an initiative as a ticket |
+| Migration plan | `tracker-migration-plan/v2` | Repository/routes, explicit selector, before/after snapshots and hashes, source provenance, coverage, conflicts | No implied execution approval |
+| Migration event | `tracker-migration/v2` | Migration identity, immutable plan hash, sequence/parent hash, observed apply or recovery state | Never rewrite historical receipts |
 
 Ticket status values are `unclaimed`, `claimed`, `implemented`, `merged`, and `completed`. Claims are tracker ownership operations, not worktree phase status. `claimed` alone proves neither implementation nor current owner liveness. `implemented` and `merged` are not completed. Recovery state, session identity, review validity, and finish checkpoints belong to append-only worktree receipts, not new ticket frontmatter fields. Status is not triage. A parent is an initiative identity, not a dependency. Sequence is display order, not an execution edge. Required product intent and acceptance evidence remain workflow requirements beyond structural validation.
 
-`scripts/record-migration.ts` validates plan identity, snapshot hashes, fresh routes, staged records, and append-only migration event chains. Results declare `tracker-result/v1`; that envelope does not upgrade the records it reports.
+`scripts/record-migration.ts` validates plan identity, snapshot hashes, fresh routes, staged records, and append-only migration event chains. Results declare `tracker-result/v2`; that envelope does not upgrade the records it reports.
 
 ## Cross-initiative dependencies
 
@@ -30,7 +30,7 @@ Shared files alone do not require a dependency edge. Assess shared interfaces an
 
 ```yaml
 # Resolved initiative directory's index.md frontmatter
-schema: tracker-initiative/v1
+schemaVersion: tracker-initiative/v2
 id: example-navigation
 title: Example navigation
 ```
@@ -39,7 +39,7 @@ The body holds the complete specification plus `## Tickets` links and `## Commen
 
 ```yaml
 # Resolved child ticket's frontmatter
-schema: tracker-ticket/v1
+schemaVersion: tracker-ticket/v2
 id: example-navigation-01-projects
 title: Select a project
 parent: example-navigation
@@ -48,11 +48,15 @@ work_status: unclaimed
 blocked_by: []
 ```
 
-Keep the initiative's ticket links and direct child parent fields consistent. Explicit v1 readers must not interpret arbitrary specification links as child membership. Resolve paths and references through shared-context. Never derive a store from the schema name.
+Keep the initiative's ticket links and direct child parent fields consistent. Explicit v1 and current readers must not interpret arbitrary specification links as child membership. Resolve paths and references through shared-context. Never derive a store from the schema name.
 
 ## Version policy
 
-An absent schema is a legacy record, not an implicit v1 record. Read-only consumers may read supported legacy shapes without modifying them. New records must declare v1. Before changing a legacy record, use an explicitly approved migration rather than silently stamping a schema. Unknown explicit schemas fail validation even when legacy reading is enabled. Refuse mutation until a supported migration exists.
+Current records declare `schemaVersion: tracker-ticket/v2` or `schemaVersion: tracker-initiative/v2`. Historical v1 records declare `schema: tracker-ticket/v1` or `schema: tracker-initiative/v1`; use their explicit readers. An absent identifier requires exactly one supported legacy detector match, not an implicit version. Reject mixed identity fields and unknown explicit identifiers.
+
+Read, list, check, manifest resolution, and installation never rewrite content. An otherwise authorized scalar mutation runs the installed `scripts/records.ts update` command. It validates canonical kind, identity and complete membership before shared `safeUpgrade` applies the request. The adapter is internal; direct shared-router calls omit required tracker preflight and are not owning tracker operations. The `update` operation accepts `{ "fields": { ... } }` and forbids schema-identity and record-identity changes. Conversion must preserve authored text, comments, unknown metadata, identity, child membership, ordering, and direct blockers. Unsafe, ambiguous, or decision-dependent conversion stops without persisted changes.
+
+For deliberate conversion without mutation, use the installed `scripts/records.ts upgrade --artifacts <paths.json>` command with an explicit JSON path list. The owning command validates each selected record before shared `bulkUpgrade` runs. Storage relocation and semantic restructuring still require their separately approved migration plan. Immutable migration plans and event chains use historical readers and are never converted.
 
 Schema versions change when record meaning or required structure changes. Skill descriptions, package versions, setup CLI versions, and template hashes do not upgrade records. Change this reference, validator, consumers, migration steps, fixtures, and caller instructions together.
 

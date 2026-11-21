@@ -1,4 +1,4 @@
-#!/usr/bin/env -S mise x -- bun
+#!/usr/bin/env -S mise x -- bun --install=fallback
 // Resolve record stores before rendering; Copier never writes directly into the repository.
 import { createHash, randomUUID } from "node:crypto";
 import { existsSync, promises as fs } from "node:fs";
@@ -6,8 +6,9 @@ import type { Dirent } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { parseArgs } from "node:util";
+import { safeUpgrade, type UpgradeOwner } from "../../../../agent-core/skills/skill-contracts/scripts/upgrades.ts";
 
-const VERSION = "1.0.0";
+const VERSION = "2.0.0";
 const COPIER_VERSION = "9.15.1";
 const SKILL_ROOT = path.resolve(import.meta.dir, "..");
 const STATE_NAME = "docs/agents/setup-state.json";
@@ -16,7 +17,7 @@ const END = "<!-- matt-pocock:setup end -->";
 const ROLES = ["needs-triage", "needs-info", "ready-for-agent", "ready-for-human", "wontfix"] as const;
 type Backend = "local-markdown" | "github" | "gitlab";
 type Answers = {
-  schema: 1;
+  schemaVersion: "tracker-setup-answers/v2";
   tracker_backend: Backend;
   domain_mode: "single" | "multi";
   triage_enabled: boolean;
@@ -26,9 +27,9 @@ type Answers = {
 };
 type RecordTarget = { kind: string; adapter: string; store?: string; root?: string; path?: string; ref: string; publication: string };
 type ManagedFile = { path: string; root: string; hash: string; kind: "file" | "region" };
-type State = { schema: 1; version: string; copierVersion: string; templateHash: string; answers: Answers; files: ManagedFile[]; directories: string[] };
+type State = { schemaVersion: "tracker-setup-state/v2"; version: string; copierVersion: string; templateHash: string; answers: Answers; files: ManagedFile[]; directories: string[] };
 type Change = { path: string; action: "create" | "unchanged" | "managed-update" | "conflict"; before: string | null; after: string | null; reason?: string };
-type Result = { command: string; target: string; alignmentRoot: string; routes: Record<string, RecordTarget>; changes: Change[]; errors: string[]; publication: string[] };
+type Result = { schemaVersion: "tracker-setup-result/v1"; command: string; target: string; alignmentRoot: string; routes: Record<string, RecordTarget>; changes: Change[]; errors: string[]; publication: string[] };
 type Options = { command: "plan" | "init" | "check"; target: string; answers?: string; templates: string; resolver: string; dryRun: boolean; json: boolean };
 
 class SetupError extends Error {
@@ -74,11 +75,12 @@ async function readOptional(file: string): Promise<string | null> {
 
 function parseAnswers(raw: unknown): Answers {
   if (!isObject(raw)) throw new SetupError("Answers must be a YAML mapping.", 2);
-  const fields: Record<string, true> = { schema: true, tracker_backend: true, domain_mode: true, triage_enabled: true, triage_labels: true, domains: true, instruction_file: true };
+  const fields: Record<string, true> = { schemaVersion: true, schema: true, tracker_backend: true, domain_mode: true, triage_enabled: true, triage_labels: true, domains: true, instruction_file: true };
   for (const key of Object.keys(raw)) if (!Object.hasOwn(fields, key)) throw new SetupError(`Unknown answer: ${key}`, 2);
-  if (raw.schema !== 1) throw new SetupError("Answers require schema: 1.", 2);
+  const historical = !Object.hasOwn(raw, "schemaVersion") && raw.schema === 1;
+  if (!historical && (raw.schemaVersion !== "tracker-setup-answers/v2" || Object.hasOwn(raw, "schema"))) throw new SetupError("Answers require schemaVersion: tracker-setup-answers/v2; historical schema: 1 is read-only input.", 2);
   if (!["local-markdown", "github", "gitlab"].includes(String(raw.tracker_backend))) throw new SetupError("tracker_backend must be local-markdown, github, or gitlab.", 2);
-  const domain = raw.domain_mode ?? "single";
+  const domain = raw.domain_mode === undefined ? "single" : raw.domain_mode;
   if (domain !== "single" && domain !== "multi") throw new SetupError("domain_mode must be single or multi.", 2);
   if (raw.triage_enabled !== undefined && typeof raw.triage_enabled !== "boolean") throw new SetupError("triage_enabled must be a boolean.", 2);
   const labels: Record<string, string> = Object.fromEntries(ROLES.map((role) => [role, role]));
@@ -90,12 +92,12 @@ function parseAnswers(raw: unknown): Answers {
     }
   }
   if (new Set(Object.values(labels)).size !== ROLES.length) throw new SetupError("Triage labels must be distinct.", 2);
-  const domains = raw.domains ?? [];
+  const domains = raw.domains === undefined ? [] : raw.domains;
   if (!Array.isArray(domains) || domains.some((value) => typeof value !== "string" || !/^[a-z][a-z0-9-]*$/.test(value)) || new Set(domains).size !== domains.length) throw new SetupError("domains must contain distinct lowercase domain IDs.", 2);
   if (domain === "multi" && domains.length === 0) throw new SetupError("Multi-context setup requires domains.", 2);
   if (domain === "single" && domains.length !== 0) throw new SetupError("domains is only valid with domain_mode: multi.", 2);
   if (raw.instruction_file !== undefined && raw.instruction_file !== "AGENTS.md" && raw.instruction_file !== "CLAUDE.md") throw new SetupError("instruction_file must be AGENTS.md or CLAUDE.md.", 2);
-  return { schema: 1, tracker_backend: raw.tracker_backend as Backend, domain_mode: domain, triage_enabled: raw.triage_enabled ?? true, triage_labels: labels, domains: [...domains].sort(), ...(raw.instruction_file ? { instruction_file: raw.instruction_file } : {}) };
+  return { schemaVersion: "tracker-setup-answers/v2", tracker_backend: raw.tracker_backend as Backend, domain_mode: domain, triage_enabled: raw.triage_enabled ?? true, triage_labels: labels, domains: [...domains].sort(), ...(raw.instruction_file ? { instruction_file: raw.instruction_file } : {}) };
 }
 
 function locateResolver(explicit?: string): string {
@@ -261,17 +263,108 @@ function trackerMetadata(body: string | null): Record<string, unknown> | null {
   } catch { return null; }
 }
 
-async function loadState(file: string): Promise<State | null> {
-  const text = await readOptional(file);
-  if (text === null) return null;
-  let state: State;
-  try { state = JSON.parse(text); }
-  catch { throw new SetupError(`Invalid setup state: ${file}`, 4); }
-  if (state.schema !== 1 || !Array.isArray(state.files) || !Array.isArray(state.directories) || typeof state.templateHash !== "string") throw new SetupError(`Unsupported setup state: ${file}`, 4);
-  parseAnswers(state.answers);
+function parseState(raw: unknown, file: string): State {
+  if (!isObject(raw)) throw new SetupError(`Invalid setup state: ${file}`, 4);
+  const historical = !Object.hasOwn(raw, "schemaVersion") && raw.schema === 1;
+  if (!historical && (raw.schemaVersion !== "tracker-setup-state/v2" || Object.hasOwn(raw, "schema"))) throw new SetupError(`Unsupported setup state: ${file}`, 4);
+  const allowed: Record<string, true> = { schema: true, schemaVersion: true, version: true, copierVersion: true, templateHash: true, answers: true, files: true, directories: true };
+  if (Object.keys(raw).some((key) => !Object.hasOwn(allowed, key))) throw new SetupError(`Unknown setup state field: ${file}`, 4);
+  if (!Array.isArray(raw.files) || !Array.isArray(raw.directories) || raw.directories.some((entry) => typeof entry !== "string") || typeof raw.templateHash !== "string" || typeof raw.version !== "string" || typeof raw.copierVersion !== "string") throw new SetupError(`Invalid setup state: ${file}`, 4);
+  const managedFields: Record<string, true> = { path: true, root: true, hash: true, kind: true };
+  if (raw.files.some((entry) => !isObject(entry) || Object.keys(entry).some((key) => !Object.hasOwn(managedFields, key)) || typeof entry.path !== "string" || typeof entry.root !== "string" || typeof entry.hash !== "string")) throw new SetupError(`Unknown or malformed managed-file fields: ${file}`, 4);
+  if (!isObject(raw.answers) || (historical ? raw.answers.schema !== 1 || Object.hasOwn(raw.answers, "schemaVersion") : raw.answers.schemaVersion !== "tracker-setup-answers/v2" || Object.hasOwn(raw.answers, "schema"))) throw new SetupError(`Setup state answers use a different contract generation: ${file}`, 4);
+  const { schema: _historicalSchema, ...fields } = raw;
+  const state = { ...fields, schemaVersion: "tracker-setup-state/v2", answers: parseAnswers(raw.answers) } as State;
   if (new Set(state.files.map((entry) => entry.path)).size !== state.files.length || state.files.some((entry) => !entry.path || !entry.root || !/^[a-f0-9]{64}$/.test(entry.hash) || !["file", "region"].includes(entry.kind))) throw new SetupError(`Invalid managed-file records: ${file}`, 4);
   return state;
 }
+
+async function normalizeSetupInput(raw: unknown, kind: "answers" | "state"): Promise<unknown> {
+  if (!isObject(raw) || Object.hasOwn(raw, "schemaVersion") || raw.schema !== 1) return raw;
+  if (kind === "answers") parseAnswers(raw);
+  // Shared conversion validates declarations and preservation on a staging copy;
+  // the existing setup transaction remains the only writer of the target files.
+  const stage = await fs.mkdtemp(path.join(os.tmpdir(), "matt-pocock-contract-upgrade-"));
+  try {
+    const artifact = path.join(stage, kind === "state" ? "setup-state.json" : "setup-answers.yml");
+    await fs.writeFile(artifact, JSON.stringify(raw));
+    await safeUpgrade({ skill: SKILL_ROOT, owner: "file:scripts/setup.ts", artifact, operation: "upgrade" });
+    return JSON.parse(await fs.readFile(artifact, "utf8"));
+  } finally { await fs.rm(stage, { recursive: true, force: true }); }
+}
+
+async function loadState(file: string, authorizedUpgrade = false): Promise<State | null> {
+  const text = await readOptional(file);
+  if (text === null) return null;
+  let raw: unknown;
+  try { raw = JSON.parse(text); }
+  catch { throw new SetupError(`Invalid setup state: ${file}`, 4); }
+  parseState(raw, file);
+  return parseState(authorizedUpgrade ? await normalizeSetupInput(raw, "state") : raw, file);
+}
+
+function setupArtifact(content: string): Record<string, unknown> {
+  const raw: unknown = Bun.YAML.parse(content);
+  if (!isObject(raw)) throw new SetupError("Setup artifact must be a mapping.", 2);
+  return raw;
+}
+
+const setupUpgradeOwner: UpgradeOwner = {
+  identify(content) {
+    const raw = setupArtifact(content);
+    if (Object.hasOwn(raw, "schemaVersion")) {
+      if (typeof raw.schemaVersion !== "string" || Object.hasOwn(raw, "schema")) throw new SetupError("Invalid or mixed setup contract identity.", 2);
+      return raw.schemaVersion;
+    }
+    if (raw.schema !== 1) throw new SetupError("Unsupported historical setup identity.", 2);
+    return null;
+  },
+  detectLegacy(content) {
+    const raw = setupArtifact(content);
+    return raw.schema === 1 ? [Object.hasOwn(raw, "files") ? "tracker-setup-state/v1" : "tracker-setup-answers/v1"] : [];
+  },
+  validate(contract, content) {
+    try {
+      const raw = setupArtifact(content);
+      const historical = contract.endsWith("/v1");
+      if (historical ? raw.schema !== 1 || Object.hasOwn(raw, "schemaVersion") : raw.schemaVersion !== contract || Object.hasOwn(raw, "schema")) return false;
+      if (contract === "tracker-setup-state/v1" || contract === "tracker-setup-state/v2") {
+        parseState(raw, "setup-state.json");
+        return true;
+      }
+      if (contract === "tracker-setup-answers/v1" || contract === "tracker-setup-answers/v2") {
+        parseAnswers(raw);
+        return true;
+      }
+      return false;
+    } catch { return false; }
+  },
+  preservation(contract, content) {
+    const raw = setupArtifact(content);
+    // The JSON converter cannot retain YAML comments. Reject before staging bytes.
+    try { JSON.parse(content); }
+    catch {
+      if (content.includes("#")) throw new SetupError("Cannot losslessly upgrade YAML containing '#'; retain the authored file and convert it with a comment-preserving editor.", 2);
+    }
+    return contract.startsWith("tracker-setup-state/") ? parseState(raw, "setup-state.json") : parseAnswers(raw);
+  },
+  mutable(file) {
+    return ["setup-state.json", "setup-answers.yml", "setup-answers.yaml", "answers.yml", "answers.yaml"].includes(path.basename(file)) && !file.split(path.sep).some((part) => ["events", "snapshots", "reviews"].includes(part));
+  },
+  destinations(operation) {
+    if (operation !== "upgrade") throw new SetupError("Setup adapter supports pure upgrade only.", 2);
+    return ["tracker-setup-answers/v2", "tracker-setup-state/v2"];
+  },
+  convert(procedure, from, to, content) {
+    if (procedure !== "file:references/setup-contracts/upgrade-v1-v2.md" || !((from === "tracker-setup-answers/v1" && to === "tracker-setup-answers/v2") || (from === "tracker-setup-state/v1" && to === "tracker-setup-state/v2"))) throw new SetupError("Unsupported setup upgrade procedure or endpoints.", 2);
+    const raw = setupArtifact(content);
+    const converted = to === "tracker-setup-state/v2" ? parseState(raw, "setup-state.json") : parseAnswers(raw);
+    return { content: `${JSON.stringify(converted, null, 2)}\n`, lossless: true, requiresDecision: false };
+  },
+  mutate() { throw new SetupError("Setup mutations require the owning multi-file transaction.", 2); },
+};
+
+export default setupUpgradeOwner;
 
 async function directoryEntries(directory: string): Promise<Dirent[]> {
   try { return (await fs.readdir(directory, { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name, "en")); }
@@ -318,8 +411,8 @@ async function plan(opts: Options, answers: Answers): Promise<{ result: Result; 
   if (ctx.routes.tickets.adapter !== answers.tracker_backend) throw new SetupError(`tracker_backend ${answers.tracker_backend} conflicts with the resolved ${ctx.routes.tickets.adapter} route. Change tracker routes explicitly through shared-context first.`, 2);
   const statePath = path.join(ctx.alignment, STATE_NAME);
   await safePath(ctx.alignment, statePath);
-  const previous = await loadState(statePath);
-  const result: Result = { command: opts.command, target: opts.target, alignmentRoot: ctx.alignment, routes: ctx.routes, changes: [], errors: [], publication: [] };
+  const previous = await loadState(statePath, opts.command === "init" && !opts.dryRun);
+  const result: Result = { schemaVersion: "tracker-setup-result/v1", command: opts.command, target: opts.target, alignmentRoot: ctx.alignment, routes: ctx.routes, changes: [], errors: [], publication: [] };
   const roots = new Map<string, string>();
   const directories = ctx.tickets ? [ctx.tickets, ctx.initiatives] : [];
   const stores = new Set(Object.values(ctx.routes).map((record) => record.root).filter((root): root is string => Boolean(root)));
@@ -458,7 +551,7 @@ async function plan(opts: Options, answers: Answers): Promise<{ result: Result; 
     result.changes.push({ path: old.path, action: "managed-update", before, after });
   }
   nextFiles.sort((a, b) => a.path.localeCompare(b.path, "en"));
-  const state: State = { schema: 1, version: VERSION, copierVersion: COPIER_VERSION, templateHash: templateDigest, answers, files: nextFiles, directories: directories.sort() };
+  const state: State = { schemaVersion: "tracker-setup-state/v2", version: VERSION, copierVersion: COPIER_VERSION, templateHash: templateDigest, answers, files: nextFiles, directories: directories.sort() };
   const stateText = `${JSON.stringify(state, null, 2)}\n`;
   const oldState = await readOptional(statePath);
   roots.set(statePath, ctx.alignment);
@@ -542,7 +635,7 @@ async function apply(changes: Change[], roots: Map<string, string>, directories:
 
 async function check(opts: Options): Promise<Result> {
   const ctx = await context(opts);
-  const result: Result = { command: "check", target: opts.target, alignmentRoot: ctx.alignment, routes: ctx.routes, changes: [], errors: [], publication: [] };
+  const result: Result = { schemaVersion: "tracker-setup-result/v1", command: "check", target: opts.target, alignmentRoot: ctx.alignment, routes: ctx.routes, changes: [], errors: [], publication: [] };
   const statePath = path.join(ctx.alignment, STATE_NAME);
   await safePath(ctx.alignment, statePath);
   const state = await loadState(statePath);
@@ -597,7 +690,8 @@ async function main(): Promise<void> {
   let raw: unknown;
   try { raw = Bun.YAML.parse(await fs.readFile(path.resolve(opts.answers!), "utf8")); }
   catch (error) { throw new SetupError(`Cannot read YAML answers: ${(error as Error).message}`, 2); }
-  const planned = await plan(opts, parseAnswers(raw));
+  const authorizedUpgrade = opts.command === "init" && !opts.dryRun;
+  const planned = await plan(opts, parseAnswers(authorizedUpgrade ? await normalizeSetupInput(raw, "answers") : raw));
   const conflicts = planned.result.changes.some((change) => change.action === "conflict");
   if (conflicts) { output(opts, planned.result); process.exitCode = 3; return; }
   if (planned.result.errors.length) { output(opts, planned.result); process.exitCode = 4; return; }
@@ -614,7 +708,7 @@ if (import.meta.main) {
   main().catch((error: unknown) => {
     const code = error instanceof SetupError ? error.code : 1;
     const message = error instanceof Error ? error.message : String(error);
-    if (process.argv.includes("--json")) console.log(JSON.stringify({ error: message, code }));
+    if (process.argv.includes("--json")) console.log(JSON.stringify({ schemaVersion: "tracker-setup-error/v1", error: message, code }));
     console.error(message);
     process.exitCode = code;
   });

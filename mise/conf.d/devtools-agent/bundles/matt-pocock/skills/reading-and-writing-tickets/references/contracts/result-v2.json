@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "tracker-result/v2",
+  "description": "Tracker operation result. Acceptance of historical v1 does not permit new v1 production.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "operation",
+    "backend",
+    "initiatives",
+    "tickets",
+    "changes",
+    "validation",
+    "publication",
+    "rendered"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "tracker-result/v2"
+    },
+    "operation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "backend": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "initiatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "ref",
+          "children"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "ref": {
+            "type": "string"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "ref"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "ref": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "tickets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "ref"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "ref": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "blocked_by": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "changes": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "validation": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "publication": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "rendered": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "not": {
+    "required": [
+      "schema"
+    ]
+  },
+  "additionalProperties": true
+}

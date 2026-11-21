@@ -76,6 +76,27 @@ describe("durable artifact delivery", () => {
     expect(await readdir(root)).toEqual([]);
   });
 
+  test("delivers current tracker identities and retains explicit v1 reads without rewriting", async () => {
+    const current = { schemaVersion: "tracker-result/v2", operation: "check", ok: true };
+    const trackerContext = { ...context, target: { ...context.target!, schema: "tracker-result/v2" } };
+    for (const invalid of [{ ...current, schema: "tracker-result/v1" }, { ...current, schemaVersion: "tracker-result/v99" }, { schema: "tracker-result/v2" }]) {
+      await expect(deliverResult(invalid, trackerContext)).rejects.toThrow("schema");
+    }
+    expect(await readdir(root)).toEqual([]);
+    await deliverResult(current, trackerContext);
+    expect((await readDeliveredResult(trackerContext)).result).toEqual(current);
+    const before = await readFile(context.target!.path, "utf8");
+    await expect(deliverResult({ ...current, schema: "tracker-result/v1" }, trackerContext)).rejects.toThrow("schema");
+    expect(await readFile(context.target!.path, "utf8")).toBe(before);
+    const oldContext = { ...context, target: { ...context.target!, path: join(root, "historical.json"), schema: "tracker-result/v1" } };
+    const historical = { schema: "tracker-result/v1", operation: "check", ok: true };
+    await deliverResult(historical, oldContext);
+    const oldBytes = await readFile(oldContext.target.path, "utf8");
+    expect((await readDeliveredResult(oldContext)).result).toEqual(historical);
+    await expect(deliverResult({ ...historical, schemaVersion: "tracker-result/v2" }, oldContext)).rejects.toThrow("schema");
+    expect(await readFile(oldContext.target.path, "utf8")).toBe(oldBytes);
+  });
+
   test.each([
     ["transport schema", { schema: "unknown/v1" }],
     ["transport kind", { kind: "reference" }],

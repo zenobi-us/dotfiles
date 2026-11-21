@@ -26,6 +26,9 @@ type Document = ParsedDocument;
  * coordination; configuration, backend, and read-race failures remain fatal.
  * A Jira blocker that is not in the mirror is a warning in both modes: it goes
  * to the sink when one is given, and the ticket keeps the blocker.
+ * Local Markdown reads historical schema v1 and current schemaVersion v2
+ * without upgrading files. Both contracts enforce direct-parent membership;
+ * only unversioned indexes retain whole-document link discovery.
  */
 export async function loadExplorerSnapshot(context: SharedAgentContext, exec: Exec, scope?: { ref: string; kind?: "ticket" | "initiative" }, diagnostics?: { ref: string; error: string }[], onProgress?: (progress: DocumentReadProgress) => void): Promise<TrackerSnapshot> {
  if (context.error) throw new Error(context.error);
@@ -462,7 +465,7 @@ async function localSnapshot(context: SharedAgentContext, session: DocumentReadS
      diagnostics.push({ ref, error: `${target}: ${error instanceof Error ? error.message : String(error)}` });
     }
    }
-   if (doc.fields.schema === INITIATIVE_SCHEMA) {
+   if (doc.fields.schema === "tracker-initiative/v1" || doc.fields.schemaVersion === INITIATIVE_SCHEMA) {
     const errors = validateInitiativeMembership(id, ticketIds, tickets.map(ticket => ({ id: ticket.id, parent: parents.get(ticket.id) })));
     if (errors.length) {
      if (!diagnostics) throw new Error(errors.join(" "));

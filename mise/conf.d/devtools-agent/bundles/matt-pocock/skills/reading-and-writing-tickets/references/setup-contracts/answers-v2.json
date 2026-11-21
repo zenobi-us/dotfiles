@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "tracker-setup-answers/v2",
+  "description": "Setup answer mapping. setup.ts parseAnswers additionally enforces distinct safe triage labels, multi-context domain requirements, and instruction-file decisions. Historical v1 inputs are read without rewriting; current output uses v2 only.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "const": "tracker-setup-answers/v2"
+    },
+    "tracker_backend": {
+      "enum": [
+        "local-markdown",
+        "github",
+        "gitlab"
+      ]
+    },
+    "domain_mode": {
+      "enum": [
+        "single",
+        "multi"
+      ],
+      "default": "single"
+    },
+    "triage_enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "triage_labels": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "domains": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      }
+    },
+    "instruction_file": {
+      "enum": [
+        "AGENTS.md",
+        "CLAUDE.md"
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "tracker_backend"
+  ],
+  "additionalProperties": false
+}

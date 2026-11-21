@@ -1,0 +1,6 @@
+{
+  "title": "tracker-initiative-legacy/v1",
+  "description": "Supported unversioned initiative. No schema or schemaVersion field. Require the same content fields as current initiative validation. Initiative detector additionally requires type: Initiative. Never infer identity from headings or filenames. Mutation rejects missing current required fields rather than inventing meaning.",
+  "validator": "scripts/record-upgrade.ts default validate/detectLegacy",
+  "immutable": false
+}

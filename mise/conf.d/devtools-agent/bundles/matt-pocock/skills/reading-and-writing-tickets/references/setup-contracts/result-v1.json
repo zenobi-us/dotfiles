@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "tracker-setup-result/v1",
+  "description": "Setup CLI plan, init, and check report; distinct from the tracker-result envelope. A successful transport does not prove setup succeeded: errors and conflict actions remain authoritative. External shared-context routes retain their owner format.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "command",
+    "target",
+    "alignmentRoot",
+    "routes",
+    "changes",
+    "errors",
+    "publication"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "tracker-setup-result/v1"
+    },
+    "command": {
+      "enum": [
+        "plan",
+        "init",
+        "check"
+      ]
+    },
+    "target": {
+      "type": "string"
+    },
+    "alignmentRoot": {
+      "type": "string"
+    },
+    "routes": {
+      "type": "object"
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "action",
+          "before",
+          "after"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "action": {
+            "enum": [
+              "create",
+              "unchanged",
+              "managed-update",
+              "conflict"
+            ]
+          },
+          "before": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "after": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "publication": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

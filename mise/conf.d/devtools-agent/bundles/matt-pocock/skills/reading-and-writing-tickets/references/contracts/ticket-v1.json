@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "tracker-ticket/v1",
+  "description": "Tracker owner definition. scripts/record-schema.ts validates identity, kind and direct membership. Unknown authored fields are retained. Only the Tickets section of initiative Markdown declares direct membership.",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "title",
+    "work_status",
+    "blocked_by"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schema": {
+      "const": "tracker-ticket/v1"
+    },
+    "work_status": {
+      "enum": [
+        "unclaimed",
+        "claimed",
+        "implemented",
+        "merged",
+        "completed"
+      ]
+    },
+    "blocked_by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "parent": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "not": {
+    "required": [
+      "schemaVersion"
+    ]
+  },
+  "additionalProperties": true
+}

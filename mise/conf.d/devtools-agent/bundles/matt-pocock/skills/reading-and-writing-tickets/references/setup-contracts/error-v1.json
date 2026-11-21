@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "tracker-setup-error/v1",
+  "description": "Setup CLI error-only JSON output. Exit code and stderr also report failure; this is not a tracker operation result.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "error",
+    "code"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "tracker-setup-error/v1"
+    },
+    "error": {
+      "type": "string"
+    },
+    "code": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4
+    }
+  },
+  "additionalProperties": false
+}

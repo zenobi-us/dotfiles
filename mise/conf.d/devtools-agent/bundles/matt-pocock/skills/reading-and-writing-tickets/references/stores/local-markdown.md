@@ -6,7 +6,7 @@
 2. Use `agent-core:mq-query` for every Markdown read, query, or validation. Load its matching task reference and upstream reference first. Use an explicit input and output format and load `okf.mq`.
 3. Read ticket metadata from YAML frontmatter. Keep the body as human-readable intent and comments as conversation history.
 
-Read [Tracker schemas](../schema.md). New tickets use `schema: tracker-ticket/v1`; new initiative indexes use `schema: tracker-initiative/v1`. Validate before and after writes. Legacy records remain readable; migrate explicitly before changing them. Unknown explicit schemas block mutation. Use [Check and migrate](../tasks/migrate.md), not storage relocation or ad hoc frontmatter edits.
+Read [Tracker schemas](../schema.md). New tickets use `schemaVersion: tracker-ticket/v2`; new initiative indexes use `schemaVersion: tracker-initiative/v2`. Validate before and after writes. Explicit v1 and supported unversioned records remain readable without writes. Otherwise authorized scalar updates use `scripts/records.ts update` with request `{ "fields": { ... } }`. Use `scripts/records.ts upgrade` for explicit conversion. These owning commands validate canonical kind and complete membership before shared persistence. Requests must not change schema identity or record identity. Unknown explicit versions and unsafe upgrades block mutation. Use [Check and migrate](../tasks/migrate.md), not storage relocation or ad hoc frontmatter edits.
 
 The tracker config can declare `issue-root` and `initiative-root` as store-relative paths. If absent, they default to `tickets` and `initiatives` beneath the configured tracker base (`tracker` by default). For example, a `docs/tracker` base defaults to `docs/tracker/tickets` and `docs/tracker/initiatives`. Storage routes still select each collection's store independently. Tickets use stable `id`, `title`, `work_status`, `blocked_by`, and optional `parent` fields. Workflow tickets may also use `type` (`research`, `prototype`, `grilling`, or `task`) and `triage`. Preserve unknown fields. Valid `work_status` values are `unclaimed`, `claimed`, `implemented`, `merged`, and `completed`. Set `completed` only after validation, review, merge, and push succeed.
 
@@ -22,7 +22,7 @@ For example, after resolving a new initiative, its `index.md` contains:
 
 ```markdown
 ---
-schema: tracker-initiative/v1
+schemaVersion: tracker-initiative/v2
 id: example-navigation
 title: Example navigation
 ---
@@ -51,9 +51,9 @@ Repository cloning and storage migration.
 ## Comments
 ```
 
-The resolved child file declares `schema: tracker-ticket/v1`, `parent: example-navigation`, `sequence: 1`, and `blocked_by: []`, in addition to its normal ticket fields and acceptance criteria. This relative link illustrates records in the default repository store only. Generate real links from resolved paths and shared-context publication rules. Read both records back and verify normal initiative discovery returns the specification and child. Do not copy the example's product decisions into unrelated work.
+The resolved child file declares `schemaVersion: tracker-ticket/v2`, `parent: example-navigation`, `sequence: 1`, and `blocked_by: []`, in addition to its normal ticket fields and acceptance criteria. This relative link illustrates records in the default repository store only. Generate real links from resolved paths and shared-context publication rules. Read both records back and verify normal initiative discovery returns the specification and child. Do not copy the example's product decisions into unrelated work.
 
-Validate child parent fields against initiative ticket links on every membership write. Preserve non-ticket links and all unrelated authored text. Existing parent-specification tickets and separate specification files require explicit migration approval; they remain readable and must not be silently relocated.
+Validate child parent fields against initiative ticket links on every membership write. Preserve non-ticket links and all unrelated authored text. Existing parent-specification tickets and separate specification files require explicit migration approval for relocation or changed membership; they remain readable. Safe contract conversion alone does not authorize either change.
 
 ## Query and graph
 

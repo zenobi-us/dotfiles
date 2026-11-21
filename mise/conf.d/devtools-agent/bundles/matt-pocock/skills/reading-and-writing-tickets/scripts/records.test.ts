@@ -1,6 +1,7 @@
 // Temporary repositories exercise the public CLI and real graph reader, never live tracker records.
 import { afterEach, expect, spyOn, test } from "bun:test";
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -70,7 +71,9 @@ test("actual CLI plans and applies preserved spec, child records and live refere
   const output = path.join(f.directory, "migration-plan.json");
   const flags = ["--repository", f.repository, "--shared-context-base", f.sharedContextBase];
   const planResult = JSON.parse(execFileSync(cli, ["migrate", "plan", ...flags, "--spec-ticket", "launch-spec", "--output", output], { encoding: "utf8" }));
-  expect(planResult.schema).toBe("tracker-result/v1");
+  expect(planResult.schemaVersion).toBe("tracker-result/v2");
+  expect(planResult).not.toHaveProperty("schema");
+  expect(planResult.plan.schemaVersion).toBe("tracker-migration-plan/v2");
   expect(planResult.changes).toBeNull();
   expect(planResult.validation.status).toBe("planned");
   expect(planResult.initiatives[0].id).toBe("launch-spec");
@@ -81,7 +84,8 @@ test("actual CLI plans and applies preserved spec, child records and live refere
   expect(plan.changes[0]!.newPath).toBe(path.join(f.initiative, "index.md"));
   expect(await fs.stat(path.join(f.repository, "workflows/migration-" + plan.id)).catch(() => null)).toBeNull();
   const result = JSON.parse(execFileSync(cli, ["migrate", "apply", ...flags, "--plan", output, "--acknowledge-writer-safety"], { encoding: "utf8" }));
-  expect(result.schema).toBe("tracker-result/v1");
+  expect(result.schemaVersion).toBe("tracker-result/v2");
+  expect(result).not.toHaveProperty("schema");
   expect(result.contentVerified).toBe(true);
   expect(result.normalTrackerDiscovery).toEqual({ tickets: 2, initiatives: 1 });
   expect(result.furtherWorkBlocked).toBe(true);
@@ -90,7 +94,7 @@ test("actual CLI plans and applies preserved spec, child records and live refere
   expect(result.changes.dependency_edges_added).toEqual([]);
   expect(result.validation.status).toBe("passed");
   const text = await markdown(path.join(f.initiative, "index.md"));
-  expect(text).toContain("schema: tracker-initiative/v1");
+  expect(recordDocument(path.join(f.initiative, "index.md")).frontmatter).toMatchObject({ schemaVersion: "tracker-initiative/v2" });
   expect(text).toContain("id: launch-spec");
   expect(text).toContain("custom: {nested: yes}\n# custom comment");
   expect(text).toContain("<!-- preserve this comment -->");
@@ -100,9 +104,9 @@ test("actual CLI plans and applies preserved spec, child records and live refere
   expect(text).not.toContain("work_status:");
   expect(text).not.toContain("blocked_by:");
   const afterChild = recordDocument(f.child);
-  expect(afterChild.frontmatter).toEqual({ ...beforeChild.frontmatter, schema: "tracker-ticket/v1" });
+  expect(afterChild.frontmatter).toEqual({ ...beforeChild.frontmatter, schemaVersion: "tracker-ticket/v2" });
   expect(afterChild.body).toBe(beforeChild.body);
-  expect(recordDocument(f.prerequisite).frontmatter).toMatchObject({ schema: "tracker-ticket/v1", id: "TASK-2", parent: "launch-spec", work_status: "completed", blocked_by: [] });
+  expect(recordDocument(f.prerequisite).frontmatter).toMatchObject({ schemaVersion: "tracker-ticket/v2", id: "TASK-2", parent: "launch-spec", work_status: "completed", blocked_by: [] });
   expect(await markdown(f.event)).toBe(beforeEvent);
   const inbound = await markdown(f.inbound);
   expect(inbound).toContain('[spec]: plans/launch-spec/index.md#details "Full spec"');
@@ -218,7 +222,7 @@ test("legacy ticket stamping preserves fields and initiative spec consolidation 
   const ticket = await planMigration(f, { kind: "ticket", id: "TASK-1" });
   expect(ticket.affectedChildren).toEqual([]);
   expect(ticket.changes).toHaveLength(1);
-  expect(ticket.changes[0]!.after).toContain("schema: tracker-ticket/v1");
+  expect(ticket.changes[0]!.after).toContain("schemaVersion: tracker-ticket/v2");
   expect(ticket.changes[0]!.after).toContain("work_status: claimed");
   await applyMigration(f, ticket, true);
   expect(await markdownGraph(f.repository, "TASK-1", undefined, f.sharedContextBase)).toContain("TASK-2");
@@ -255,7 +259,7 @@ test("workflow collisions and unsupported journal versions block mutation and re
   await applyMigration(f, plan, true);
   const eventPath = path.join(workflow, "events/000002-migration.json");
   const event = JSON.parse(await fs.readFile(eventPath, "utf8"));
-  await fs.writeFile(eventPath, JSON.stringify({ ...event, schema: "tracker-migration/v99" }));
+  await fs.writeFile(eventPath, JSON.stringify({ ...event, schemaVersion: "tracker-migration/v99" }));
   await expect(checkMigration(f, plan.id)).rejects.toThrow("unsupported schema");
   await expect(applyMigration(f, plan, true)).rejects.toThrow("unsupported schema");
 }, timeout);
@@ -279,7 +283,7 @@ test("group conversion merges a child's inbound repair with stamping and leaves 
   expect(plan.changes.filter((entry) => entry.oldPath === f.child)).toHaveLength(1);
   expect(plan.changes.some((entry) => entry.oldPath === f.prerequisite)).toBe(false);
   await applyMigration(f, plan, true);
-  expect(recordDocument(f.child).frontmatter).toEqual({ ...childBefore.frontmatter, schema: "tracker-ticket/v1" });
+  expect(recordDocument(f.child).frontmatter).toEqual({ ...childBefore.frontmatter, schemaVersion: "tracker-ticket/v2" });
   expect(await markdown(f.child)).toContain("[Specification](../plans/launch-spec/index.md)");
   expect(await markdown(f.prerequisite)).toBe(versionedBefore);
 }, timeout);
@@ -329,7 +333,7 @@ test("CLI failures retain the result envelope and identify the failed operation"
     failure = JSON.parse(String(error.stdout));
   }
   expect(failure).toMatchObject({
-    schema: "tracker-result/v1", operation: "migrate apply", ok: false,
+    schemaVersion: "tracker-result/v2", operation: "migrate apply", ok: false,
     initiatives: [], tickets: [], changes: null, publication: null, rendered: null,
     validation: { status: "failed" },
   });
@@ -346,4 +350,234 @@ test("standalone ticket check works before the first initiative collection exist
   expect(result.graph).toContain("TASK-2");
   expect(await fs.stat(path.dirname(f.initiative)).catch(() => null)).toBeNull();
   expect(await markdown(f.child)).toBe(before);
+}, timeout);
+
+// Build immutable v1 fixtures from the same reviewed semantics, including property
+// order: historical plan IDs and event hashes used JSON.stringify, not sorted JSON.
+async function historicalPlan(f: { repository: string; sharedContextBase: string }): Promise<MigrationPlan> {
+  const current = await planned(f);
+  const { schemaVersion, id, ...rest } = current;
+  const changes = current.changes.map((entry) => {
+    const after = entry.after.replace("schemaVersion: tracker-initiative/v2", "schema: tracker-initiative/v1").replace("schemaVersion: tracker-ticket/v2", "schema: tracker-ticket/v1");
+    return { ...entry, after, afterHash: createHash("sha256").update(after).digest("hex") };
+  });
+  const core = { schema: "tracker-migration-plan/v1" as const, ...rest, routes: { ...rest.routes, workflow: { ...rest.routes.workflow, path: path.join(f.repository, "workflows/migration-plan"), ref: "workflows/migration-plan" } }, changes };
+  const historicalId = createHash("sha256").update(JSON.stringify(core)).digest("hex").slice(0, 24);
+  return { ...core, id: historicalId, routes: { ...core.routes, workflow: { ...core.routes.workflow, path: path.join(f.repository, `workflows/migration-${historicalId}`), ref: `workflows/migration-${historicalId}` } } };
+}
+
+test("unapplied v1 plans are verified but cannot create new historical record output", async () => {
+  const f = await fixture();
+  const plan = await historicalPlan(f);
+  await expect(applyMigration(f, plan, true)).rejects.toThrow("new v2 plan");
+  expect(await markdown(f.spec)).toBe(plan.changes[0]!.before);
+  expect(await fs.stat(path.join(f.repository, `workflows/migration-${plan.id}`)).catch(() => null)).toBeNull();
+}, timeout);
+
+test("retained v1 plans and event hashes remain byte-identical on check and idempotent apply", async () => {
+  const f = await fixture();
+  const plan = await historicalPlan(f);
+  const workflow = path.join(f.repository, `workflows/migration-${plan.id}`);
+  const planFile = path.join(workflow, "artifacts/snapshots/migration-plan.json");
+  const events = path.join(workflow, "events");
+  await fs.mkdir(path.dirname(planFile), { recursive: true });
+  await fs.mkdir(events, { recursive: true });
+  const planText = JSON.stringify(plan, null, 4) + "\n";
+  await fs.writeFile(planFile, planText);
+  for (const entry of plan.changes) {
+    await markdown(entry.newPath, entry.after);
+    if (entry.oldPath !== entry.newPath) await fs.unlink(entry.oldPath);
+  }
+  const applying = { schema: "tracker-migration/v1", migration: plan.id, sequence: 1, previousHash: null, state: "applying", planHash: createHash("sha256").update(JSON.stringify(plan)).digest("hex"), at: "2026-01-01T00:00:00.000Z" };
+  const applied = { ...applying, sequence: 2, previousHash: createHash("sha256").update(JSON.stringify(applying)).digest("hex"), state: "applied" };
+  const first = JSON.stringify(applying, null, 4) + "\n";
+  const last = JSON.stringify(applied, null, 4) + "\n";
+  await fs.writeFile(path.join(events, "000001-migration.json"), first);
+  await fs.writeFile(path.join(events, "000002-migration.json"), last);
+  expect((await checkMigration(f, plan.id)).contentVerified).toBe(true);
+  expect(await applyMigration(f, plan, true)).toMatchObject({ schemaVersion: "tracker-result/v2", idempotent: true, membershipVerified: true });
+  expect(await fs.readFile(planFile, "utf8")).toBe(planText);
+  expect(await fs.readFile(path.join(events, "000001-migration.json"), "utf8")).toBe(first);
+  expect(await fs.readFile(path.join(events, "000002-migration.json"), "utf8")).toBe(last);
+  expect((await fs.readdir(events)).sort()).toEqual(["000001-migration.json", "000002-migration.json"]);
+}, timeout);
+
+test("unknown and dual migration identities reject without record writes", async () => {
+  const f = await fixture();
+  const plan = await planned(f);
+  for (const altered of [{ ...plan, schema: "tracker-migration-plan/v1" }, { ...plan, schemaVersion: "tracker-migration-plan/v99" }]) {
+    await expect(applyMigration(f, altered as MigrationPlan, true)).rejects.toThrow("malformed migration plan");
+    expect(await markdown(f.spec)).toBe(plan.changes[0]!.before);
+  }
+  expect(await fs.stat(path.join(f.repository, `workflows/migration-${plan.id}`)).catch(() => null)).toBeNull();
+}, timeout);
+
+function commandResult(args: string[]): Record<string, any> {
+  try { return JSON.parse(execFileSync(cli, args, { encoding: "utf8" })); }
+  catch (error) {
+    if (!error || typeof error !== "object" || !("stdout" in error)) throw error;
+    return JSON.parse(String(error.stdout));
+  }
+}
+
+test("actual update upgrades a v1 ticket before mutation while preserving blockers and authored bytes", async () => {
+  const f = await fixture();
+  await markdown(f.child, f.childText.replace("---\n", "---\nschema: tracker-ticket/v1\n") + "\n<!-- authored child comment -->\n");
+  const before = recordDocument(f.child);
+  const request = path.join(f.directory, "update.json");
+  await fs.writeFile(request, JSON.stringify({ fields: { title: "Reviewed title", triage: "ready-for-agent" } }));
+  const result = commandResult(["update", "--repository", f.repository, "--shared-context-base", f.sharedContextBase, "--ticket", "TASK-1", "--request", request]);
+  expect(result).toMatchObject({ schemaVersion: "tracker-result/v2", ok: true, upgrade: { changed: true, from: "tracker-ticket/v1", to: "tracker-ticket/v2" } });
+  const after = recordDocument(f.child);
+  const { schema, ...retained } = before.frontmatter;
+  expect(after.frontmatter).toEqual({ ...retained, schemaVersion: "tracker-ticket/v2", title: "Reviewed title", triage: "ready-for-agent" });
+  expect(after.body).toBe(before.body);
+  expect(result.tickets[0]).toMatchObject({ id: "TASK-1", state: "claimed", blocked_by: ["TASK-2"] });
+}, timeout);
+
+test("actual initiative update retains authored specification and direct child membership", async () => {
+  const f = await fixture();
+  const index = path.join(f.initiative, "index.md");
+  await markdown(index, "---\nschema: tracker-initiative/v1\nid: launch-spec\ntitle: Launch\ntype: Initiative\ncustom: retain\n---\n# Authored specification\n\n<!-- preserve -->\n\n## Tickets\n\n- [First](../../issues/TASK-1.md)\n- [Second](../../issues/TASK-2.md)\n");
+  const before = recordDocument(index);
+  const request = path.join(f.directory, "initiative-update.json");
+  await fs.writeFile(request, JSON.stringify({ fields: { title: "Reviewed launch" } }));
+  const result = commandResult(["update", "--repository", f.repository, "--shared-context-base", f.sharedContextBase, "--initiative", "launch-spec", "--request", request]);
+  expect(result).toMatchObject({ ok: true, initiatives: [{ id: "launch-spec", title: "Reviewed launch", children: [{ id: "TASK-1", ref: "records/issues/TASK-1.md" }, { id: "TASK-2", ref: "records/issues/TASK-2.md" }] }] });
+  const after = recordDocument(index);
+  expect(after.body).toBe(before.body);
+  expect(after.frontmatter).toMatchObject({ schemaVersion: "tracker-initiative/v2", custom: "retain" });
+  expect(await markdown(f.child)).toBe(f.childText);
+}, timeout);
+
+test("actual bulk upgrade reports partial persistence and leaves unsupported inputs byte-identical", async () => {
+  const f = await fixture();
+  await markdown(f.child, f.childText.replace("---\n", "---\nschema: tracker-ticket/v1\n"));
+  await markdown(f.prerequisite, (await markdown(f.prerequisite)).replace("---\n", "---\nschemaVersion: tracker-ticket/v99\n"));
+  const unknownBefore = await markdown(f.prerequisite);
+  const bodyBefore = recordDocument(f.child).body;
+  const list = path.join(f.directory, "artifacts.json");
+  await fs.writeFile(list, JSON.stringify([f.child, f.prerequisite]));
+  const args = ["upgrade", "--repository", f.repository, "--shared-context-base", f.sharedContextBase, "--artifacts", list];
+  const result = commandResult(args);
+  expect(result).toMatchObject({ schemaVersion: "tracker-result/v2", ok: false, upgrade: { status: "partial", results: [{ artifact: f.child, changed: true, status: "completed" }, { artifact: f.prerequisite, changed: false, status: "failed" }] } });
+  expect(recordDocument(f.child).frontmatter).toMatchObject({ schemaVersion: "tracker-ticket/v2", id: "TASK-1", parent: "launch-spec", blocked_by: ["TASK-2"] });
+  expect(recordDocument(f.child).body).toBe(bodyBefore);
+  expect(await markdown(f.prerequisite)).toBe(unknownBefore);
+  const currentBefore = await markdown(f.child);
+  await fs.writeFile(list, JSON.stringify([f.child]));
+  expect(commandResult(args)).toMatchObject({ ok: true, changes: null, upgrade: { status: "completed", results: [{ changed: false }] } });
+  expect(await markdown(f.child)).toBe(currentBefore);
+}, timeout);
+
+test("structural mutations and immutable bulk paths reject without changing records", async () => {
+  const f = await fixture();
+  const request = path.join(f.directory, "unsafe.json");
+  const before = await markdown(f.child);
+  await fs.writeFile(request, JSON.stringify({ fields: { parent: "other", blocked_by: [] } }));
+  expect(commandResult(["update", "--repository", f.repository, "--shared-context-base", f.sharedContextBase, "--ticket", "TASK-1", "--request", request]).ok).toBe(false);
+  expect(await markdown(f.child)).toBe(before);
+  const list = path.join(f.directory, "unsafe-artifacts.json");
+  const eventBefore = await markdown(f.event);
+  await fs.writeFile(list, JSON.stringify([f.child, f.event]));
+  expect(commandResult(["upgrade", "--repository", f.repository, "--shared-context-base", f.sharedContextBase, "--artifacts", list]).ok).toBe(false);
+  expect(await markdown(f.child)).toBe(before);
+  expect(await markdown(f.event)).toBe(eventBefore);
+}, timeout);
+
+test("membership projection rejects before mutation and bulk retains independent outcomes", async () => {
+  const f = await fixture();
+  const index = path.join(f.initiative, "index.md");
+  const invalid = "---\nschema: tracker-initiative/v1\nid: launch-spec\ntitle: Launch\n---\n## Tickets\n\n[Missing](../../issues/missing.md)\n";
+  await markdown(index, invalid);
+  const request = path.join(f.directory, "update.json");
+  await fs.writeFile(request, JSON.stringify({ fields: { title: "Changed launch" } }));
+  const flags = ["--repository", f.repository, "--shared-context-base", f.sharedContextBase];
+  expect(commandResult(["update", ...flags, "--initiative", "launch-spec", "--request", request]).ok).toBe(false);
+  expect(await markdown(index)).toBe(invalid);
+  const list = path.join(f.directory, "selected.json");
+  const independent = path.join(f.issues, "independent.md");
+  await markdown(independent, "---\nschema: tracker-ticket/v1\nid: independent\ntitle: Independent\nwork_status: unclaimed\nblocked_by: []\n---\n");
+  await fs.writeFile(list, JSON.stringify([independent, index]));
+  const result = commandResult(["upgrade", ...flags, "--artifacts", list]);
+  expect(result).toMatchObject({ ok: false, upgrade: { status: "partial", results: [{ changed: true, status: "completed" }, { changed: false, status: "failed" }] } });
+  expect(await markdown(index)).toBe(invalid);
+  expect(recordDocument(independent).frontmatter.schemaVersion).toBe("tracker-ticket/v2");
+}, timeout);
+
+test("selected record kind and complete initiative membership are validated before writes", async () => {
+  const f = await fixture();
+  const flags = ["--repository", f.repository, "--shared-context-base", f.sharedContextBase];
+  const request = path.join(f.directory, "update.json");
+  await fs.writeFile(request, JSON.stringify({ fields: { title: "Changed title" } }));
+  const wrongKind = "---\nschema: tracker-initiative/v1\nid: TASK-1\ntitle: Wrong kind\n---\n## Tickets\n";
+  await markdown(f.child, wrongKind);
+  expect(commandResult(["update", ...flags, "--ticket", "TASK-1", "--request", request]).ok).toBe(false);
+  expect(await markdown(f.child)).toBe(wrongKind);
+  const list = path.join(f.directory, "selected.json");
+  await fs.writeFile(list, JSON.stringify([f.child, f.prerequisite]));
+  expect(commandResult(["upgrade", ...flags, "--artifacts", list])).toMatchObject({ ok: false, upgrade: { status: "partial", results: [{ status: "failed", changed: false }, { status: "completed", changed: true }] } });
+  expect(await markdown(f.child)).toBe(wrongKind);
+  await markdown(f.child, f.childText);
+  const index = path.join(f.initiative, "index.md");
+  const incomplete = "---\nschema: tracker-initiative/v1\nid: launch-spec\ntitle: Launch\n---\n## Tickets\n";
+  await markdown(index, incomplete);
+  expect(commandResult(["update", ...flags, "--initiative", "launch-spec", "--request", request]).ok).toBe(false);
+  expect(await markdown(index)).toBe(incomplete);
+  await fs.writeFile(list, JSON.stringify([index]));
+  expect(commandResult(["upgrade", ...flags, "--artifacts", list])).toMatchObject({ ok: false, upgrade: { results: [{ status: "failed", changed: false }] } });
+  expect(await markdown(index)).toBe(incomplete);
+}, timeout);
+
+test("initiative scalar mutation cannot add ticket triage metadata", async () => {
+  const f = await fixture();
+  const index = path.join(f.initiative, "index.md");
+  const original = "---\nschema: tracker-initiative/v1\nid: launch-spec\ntitle: Launch\n---\n## Tickets\n\n- [First](../../issues/TASK-1.md)\n- [Second](../../issues/TASK-2.md)\n";
+  await markdown(index, original);
+  const request = path.join(f.directory, "update.json");
+  await fs.writeFile(request, JSON.stringify({ fields: { triage: "ready-for-agent" } }));
+  expect(commandResult(["update", "--repository", f.repository, "--shared-context-base", f.sharedContextBase, "--initiative", "launch-spec", "--request", request]).ok).toBe(false);
+  expect(await markdown(index)).toBe(original);
+}, timeout);
+
+test("ticket update and bulk reject incomplete direct parent membership before persistence", async () => {
+  const f = await fixture();
+  const flags = ["--repository", f.repository, "--shared-context-base", f.sharedContextBase];
+  const index = path.join(f.initiative, "index.md");
+  await markdown(index, "---\nschema: tracker-initiative/v1\nid: launch-spec\ntitle: Launch\n---\n## Tickets\n\n- [Second](../../issues/TASK-2.md)\n");
+  await markdown(f.child, f.childText.replace("---\n", "---\nschema: tracker-ticket/v1\n"));
+  const before = await markdown(f.child);
+  const indexBefore = await markdown(index);
+  const request = path.join(f.directory, "update.json");
+  await fs.writeFile(request, JSON.stringify({ fields: { title: "Changed" } }));
+  expect(commandResult(["update", ...flags, "--ticket", "TASK-1", "--request", request]).ok).toBe(false);
+  expect(await markdown(f.child)).toBe(before);
+  const independent = path.join(f.issues, "independent.md");
+  await markdown(independent, "---\nschema: tracker-ticket/v1\nid: independent\ntitle: Independent\nwork_status: unclaimed\nblocked_by: []\n---\n");
+  const list = path.join(f.directory, "selected.json");
+  await fs.writeFile(list, JSON.stringify([f.child, independent]));
+  expect(commandResult(["upgrade", ...flags, "--artifacts", list])).toMatchObject({
+    ok: false, upgrade: { status: "partial", results: [{ status: "failed", changed: false }, { status: "completed", changed: true }] },
+  });
+  expect(await markdown(f.child)).toBe(before);
+  expect(await markdown(index)).toBe(indexBefore);
+  expect(recordDocument(independent).frontmatter.schemaVersion).toBe("tracker-ticket/v2");
+}, timeout);
+
+test("ticket updates support direct and hierarchical membership without changing parent records", async () => {
+  const f = await fixture();
+  const flags = ["--repository", f.repository, "--shared-context-base", f.sharedContextBase];
+  const index = path.join(f.initiative, "index.md");
+  await markdown(index, "---\nschema: tracker-initiative/v1\nid: launch-spec\ntitle: Launch\n---\n## Tickets\n\n- [First](../../issues/TASK-1.md)\n- [Second](../../issues/TASK-2.md)\n");
+  const nested = path.join(f.issues, "nested.md");
+  await markdown(nested, "---\nschema: tracker-ticket/v1\nid: nested\ntitle: Nested\nparent: TASK-1\nwork_status: unclaimed\nblocked_by: []\n---\n<!-- retain -->\n");
+  const indexBefore = await markdown(index);
+  const request = path.join(f.directory, "update.json");
+  await fs.writeFile(request, JSON.stringify({ fields: { title: "Changed" } }));
+  for (const id of ["TASK-1", "nested"]) {
+    expect(commandResult(["update", ...flags, "--ticket", id, "--request", request]).ok).toBe(true);
+  }
+  expect(recordDocument(nested).frontmatter).toMatchObject({ schemaVersion: "tracker-ticket/v2", parent: "TASK-1", title: "Changed" });
+  expect(recordDocument(nested).body).toContain("<!-- retain -->");
+  expect(await markdown(index)).toBe(indexBefore);
 }, timeout);

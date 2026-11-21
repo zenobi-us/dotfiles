@@ -85,12 +85,83 @@ test("check detects edited managed files and init conflicts without partial writ
   expect(await snapshot(fixture.target)).toEqual(beforeInit);
 }, timeout);
 
+test("historical setup state stays unchanged during check and upgrades only during approved init", async () => {
+  const fixture = await createRepository();
+  expectSuccess(await setup(fixture, "init"));
+  const statePath = path.join(fixture.target, "docs/agents/setup-state.json");
+  const state = JSON.parse(await fs.readFile(statePath, "utf8"));
+  delete state.schemaVersion;
+  state.schema = 1;
+  delete state.answers.schemaVersion;
+  state.answers.schema = 1;
+  await fs.writeFile(statePath, JSON.stringify(state, null, 2) + "\n");
+  const before = await snapshot(fixture.target);
+  expectSuccess(await setup(fixture, "check"));
+  expect(await snapshot(fixture.target)).toEqual(before);
+  await fs.writeFile(fixture.answers, "schema: 1\ntracker_backend: local-markdown\ninstruction_file: AGENTS.md\n");
+  expectSuccess(await setup(fixture, "init"));
+  const current = JSON.parse(await fs.readFile(statePath, "utf8"));
+  expect(current.schemaVersion).toBe("tracker-setup-state/v2");
+  expect(current.answers.schemaVersion).toBe("tracker-setup-answers/v2");
+  expect(current.schema).toBeUndefined();
+  expect(current.answers.schema).toBeUndefined();
+  expect(current.files).toEqual(state.files);
+  expect(current.directories).toEqual(state.directories);
+}, timeout);
+
+test("declared shared setup upgrade rejects authored YAML comments without changing bytes", async () => {
+  const fixture = await createRepository();
+  const router = fileURLToPath(new URL("../../../../agent-core/skills/skill-contracts/scripts/router.ts", import.meta.url));
+  const skill = fileURLToPath(new URL("../", import.meta.url));
+  const historical = "schema: 1\ntracker_backend: local-markdown\ninstruction_file: AGENTS.md\n";
+  const args = [process.execPath, router, "safe-upgrade", "--skill", skill, "--owner", "file:scripts/setup.ts", "--artifact", fixture.answers, "--operation", "upgrade"];
+  for (const content of ["# Keep the local policy.\n" + historical, historical.replace("schema: 1", "schema: 1 # historical decision")]) {
+    await fs.writeFile(fixture.answers, content);
+    const result = await run(fixture, args);
+    expect(result.code, diagnostic(result)).not.toBe(0);
+    expect(await fs.readFile(fixture.answers, "utf8")).toBe(content);
+  }
+  await fs.writeFile(fixture.answers, historical);
+  expectSuccess(await run(fixture, args));
+  expect(JSON.parse(await fs.readFile(fixture.answers, "utf8"))).toMatchObject({
+    schemaVersion: "tracker-setup-answers/v2", tracker_backend: "local-markdown", instruction_file: "AGENTS.md",
+  });
+}, timeout);
+
+test("unknown setup state fields never disappear during init", async () => {
+  const fixture = await createRepository();
+  expectSuccess(await setup(fixture, "init"));
+  const statePath = path.join(fixture.target, "docs/agents/setup-state.json");
+  const original = JSON.parse(await fs.readFile(statePath, "utf8"));
+  for (const historical of [false, true]) {
+    for (const nested of [false, true]) {
+      const state = structuredClone(original);
+      if (historical) {
+        delete state.schemaVersion;
+        state.schema = 1;
+        delete state.answers.schemaVersion;
+        state.answers.schema = 1;
+      }
+      if (nested) state.files[0].authored_policy = "retain";
+      else state.authored_policy = "retain";
+      await fs.writeFile(statePath, JSON.stringify(state, null, 2) + "\n");
+      const before = await snapshot(fixture.target);
+      const result = await setup(fixture, "init");
+      expect(result.code, diagnostic(result)).toBe(4);
+      expect(await snapshot(fixture.target)).toEqual(before);
+    }
+  }
+}, timeout);
+
 test("invalid answers, missing decisions, and backend route mismatches never write", async () => {
   const fixture = await createRepository();
   const invalidAnswers = [
     "schema: 1\ntracker_backend: local-markdown\nunknown_option: true\ninstruction_file: AGENTS.md\n",
     "schema: 1\ntracker_backend: unsupported\ninstruction_file: AGENTS.md\n",
     "schema: 2\ntracker_backend: local-markdown\ninstruction_file: AGENTS.md\n",
+    "schemaVersion: tracker-setup-answers/v99\ntracker_backend: local-markdown\ninstruction_file: AGENTS.md\n",
+    "schemaVersion: tracker-setup-answers/v2\nschema: 1\ntracker_backend: local-markdown\ninstruction_file: AGENTS.md\n",
+    "schemaVersion: null\nschema: 1\ntracker_backend: local-markdown\ninstruction_file: AGENTS.md\n",
     "schema: 1\ntracker_backend: local-markdown\ndomain_mode: multi\ninstruction_file: AGENTS.md\n",
     "schema: 1\ntracker_backend: local-markdown\n",
   ];
@@ -241,7 +312,7 @@ type SetupResult = {
   changes: Change[];
 };
 
-const defaultAnswers = "schema: 1\ntracker_backend: local-markdown\ninstruction_file: AGENTS.md\n";
+const defaultAnswers = "schemaVersion: tracker-setup-answers/v2\ntracker_backend: local-markdown\ninstruction_file: AGENTS.md\n";
 
 async function createRepository(): Promise<Fixture> {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), "matt-pocock-setup-test-"));

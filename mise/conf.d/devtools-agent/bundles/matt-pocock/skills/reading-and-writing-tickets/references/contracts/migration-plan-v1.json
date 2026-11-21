@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "tracker-migration-plan/v1",
+  "description": "Immutable reviewed migration snapshot. IDs hash JSON.stringify(core) with workflow placeholder; input and change hashes verify exact UTF-8 bytes. Retained v1 plans are read unchanged; unapplied v1 plans must be regenerated as v2 before writes.",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "repository",
+    "origin",
+    "slug",
+    "selector",
+    "routes",
+    "selected",
+    "affectedChildren",
+    "inboundReferences",
+    "coverage",
+    "inputs",
+    "changes",
+    "conflicts",
+    "validation",
+    "writerSafety"
+  ],
+  "properties": {
+    "schema": {
+      "const": "tracker-migration-plan/v1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{24}$"
+    },
+    "repository": {
+      "type": "string"
+    },
+    "origin": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "selector": {
+      "type": "object",
+      "required": [
+        "kind",
+        "id"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "ticket",
+            "spec-ticket",
+            "initiative-spec"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "routes": {
+      "type": "object",
+      "required": [
+        "tickets",
+        "initiatives",
+        "tracker",
+        "workflow"
+      ]
+    },
+    "selected": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "affectedChildren": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inboundReferences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "from",
+          "url",
+          "to"
+        ]
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "required": [
+        "roots",
+        "scope",
+        "excluded"
+      ]
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "root",
+          "text",
+          "hash",
+          "commit",
+          "blob"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "root": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "commit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "blob": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "changes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "oldPath",
+          "newPath",
+          "oldRef",
+          "newRef",
+          "oldRoot",
+          "newRoot",
+          "before",
+          "after",
+          "beforeHash",
+          "afterHash"
+        ]
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validation": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "writerSafety": {
+      "type": "string"
+    }
+  },
+  "not": {
+    "required": [
+      "schemaVersion"
+    ]
+  },
+  "additionalProperties": true
+}

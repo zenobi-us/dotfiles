@@ -82,7 +82,7 @@ test("ticket CLI keeps machine JSON and gives humans a summary without losing a 
   expect(human.code).toBe(0);
   expect(human.stdout).toContain("tracker/initiatives/check/index.md");
   expect(human.stdout.trim().startsWith("{")).toBe(false);
-  const context = await f.context("tracker-result/v1", "ticket-check");
+  const context = await f.context("tracker-result/v2", "ticket-check");
   const delegated = await run(records, [...flags, "--deliver", "--format", "human"], { RESULT_DELIVERY_CONTEXT: context.file });
   expect(delegated.code).toBe(0);
   expect(JSON.parse(delegated.stdout).kind).toBe("reference");
@@ -467,7 +467,7 @@ test("intermediate ticket checks do not consume a phase handoff", async () => {
   const flags = ["check", "--repository", f.repository, "--initiative", "check"];
   const intermediate = await run(records, flags, { RESULT_DELIVERY_CONTEXT: context.file });
   expect(intermediate.code).toBe(0);
-  expect(JSON.parse(intermediate.stdout).schema).toBe("tracker-result/v1");
+  expect(JSON.parse(intermediate.stdout).schemaVersion).toBe("tracker-result/v2");
   expect(await Bun.file(context.target).exists()).toBe(false);
   const wrongBinding = await run(records, [...flags, "--deliver"], { RESULT_DELIVERY_CONTEXT: context.file });
   expect(wrongBinding.code).not.toBe(0);

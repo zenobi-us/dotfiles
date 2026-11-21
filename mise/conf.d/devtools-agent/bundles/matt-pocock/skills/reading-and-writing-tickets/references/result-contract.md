@@ -3,7 +3,7 @@
 Use this contract for every subcommand, including setup.
 
 
-Produce one canonical JSON object with `schema: tracker-result/v1` for every operation, including setup, check, migration plans, failures, and publication results. Use a string ID and the canonical tracker URL or resolved local file reference. This result schema is independent of record, setup-state, route, and receipt versions.
+Produce one canonical JSON object with `schemaVersion: tracker-result/v2` for every operation, including setup, check, migration plans, failures, and publication results. Use a string ID and the canonical tracker URL or resolved local file reference. This result schema is independent of record, setup-state, route, and receipt versions.
 
 Use the agent-core `result-delivery` skill before returning. It owns audience selection, transport and presentation. Human sessions receive an outcome, canonical references, validation, publication state and blockers, not a raw JSON dump. Machine clients receive JSON. Delegated children preserve the caller's required handoff. A muxer name or depth alone does not select the audience.
 
@@ -13,7 +13,7 @@ For skill-owned operations without an integrated CLI, use the shared delivery li
 
 ```json
 {
-  "schema": "tracker-result/v1",
+  "schemaVersion": "tracker-result/v2",
   "operation": "read",
   "backend": "github",
   "initiatives": [],
@@ -39,7 +39,7 @@ For example, publishing a local specification produces this domain result before
 
 ```json
 {
-  "schema": "tracker-result/v1",
+  "schemaVersion": "tracker-result/v2",
   "operation": "create",
   "backend": "local-markdown",
   "initiatives": [{
@@ -78,3 +78,23 @@ Set `validation.status` to `planned`, `conflict`, `passed`, or `failed`, as conf
 
 For an unsupported backend or missing prerequisite, return a failed validation and name the missing operation. Never report an unsupported ticket backend as operational merely because its configuration was rendered.
 
+
+## Historical result and migration contracts
+
+New results use only `schemaVersion: tracker-result/v2`. The delivery target names `tracker-result/v2`; transport contexts and envelopes retain their independently owned `result-delivery/v1` fields. Explicit historical results use only `schema: tracker-result/v1`. Reject dual identity fields and unknown explicit identifiers. Historical acceptance does not permit new v1 output.
+
+New migration plans use `schemaVersion: tracker-migration-plan/v2`. New immutable migration events use `schemaVersion: tracker-migration/v2`. Read retained v1 plans and event chains through explicit v1 readers without changing stored bytes, property order, IDs, or hashes. Already-applied v1 plans support read-only check and idempotent apply. For an unapplied v1 plan, verify its retained semantics, then create and approve a v2 plan before any new record writes.
+
+The records CLI also provides `update --ticket <id> --request <request.json>` or `update --initiative <id> --request <request.json>`. Requests contain `fields` with nonempty string values for `title`, `work_status`, or `triage`; initiatives permit only `title`. The command uses the declared safe upgrade before mutation. IDs, direct blockers, membership, comments, and other authored content remain unchanged.
+
+Use `upgrade --artifacts <paths.json>` for explicit bulk conversion. Supply a nonempty JSON array of absolute canonical live ticket or initiative-index paths. Each item persists independently. Partial and failed results exit nonzero and retain per-item outcomes, including actual changes after cleanup failures. Current valid records are byte-identical no-ops. This command never converts migration plans, events, receipts, or arbitrary Markdown.
+
+## Content validation
+
+The records CLI validates each domain result before delivery. Resolve the installed tracker skill directory as TRACKER_SKILL_ROOT. To validate a saved result from any working directory, run its absolute entrypoint:
+
+```sh
+"$TRACKER_SKILL_ROOT/scripts/validate-result.ts" --input /absolute/result.json
+```
+
+The command validates the exact current or historical contract and prints the unchanged result. It does not rewrite the input or consume an inherited delivery handoff. Unknown identifiers, dual identity fields and malformed record membership fail without output. Transport identity checks do not replace this owning content validator.

@@ -97,24 +97,32 @@ test("initiative links cannot hide missing tickets or escape through collection 
   await expect(loadExplorerSnapshot(context, execute)).rejects.toThrow();
 });
 
-test("versioned records render direct members and descendants without treating specification links as members", async () => {
+test.each([
+  ["schema", "v1"],
+  ["schemaVersion", "v2"],
+])("versioned %s %s records render direct members and descendants without treating specification links as members", async (field, version) => {
   const context = await fixture();
-  await put(join(context.repositoryRoot, "records/issues/A.md"), "---\nschema: tracker-ticket/v1\nid: A\ntitle: Ticket A\nwork_status: claimed\nblocked_by: []\nparent: release\nsequence: 1\n---\n\nImplementation detail.\n");
-  await put(join(context.repositoryRoot, "records/issues/B.md"), "---\nschema: tracker-ticket/v1\nid: B\ntitle: Child B\nwork_status: unclaimed\nblocked_by: [A]\nparent: A\n---\n");
+  const ticketPath = join(context.repositoryRoot, "records/issues/A.md");
+  const ticketSource = `---\n${field}: tracker-ticket/${version}\nid: A\ntitle: Ticket A\nwork_status: claimed\nblocked_by: []\nparent: release\nsequence: 1\n---\n\nImplementation detail.\n`;
+  await put(ticketPath, ticketSource);
+  await put(join(context.repositoryRoot, "records/issues/B.md"), `---\n${field}: tracker-ticket/${version}\nid: B\ntitle: Child B\nwork_status: unclaimed\nblocked_by: [A]\nparent: A\n---\n`);
   const index = join(context.sharedRoot, "records/plans/release/index.md");
   const target = relative(dirname(index), join(context.repositoryRoot, "records/issues/A.md"));
   const missing = relative(dirname(index), join(context.repositoryRoot, "records/issues/missing.md"));
-  await put(index, `---\nschema: tracker-initiative/v1\nid: release\ntitle: Release\n---\n\n## Specification\n\n[Reference](${missing})\n\n## Tickets\n\n[A](${target})\n\n## Notes\n\n[Reference](${missing})\n`);
+  const indexSource = `---\n${field}: tracker-initiative/${version}\nid: release\ntitle: Release\n---\n\n## Specification\n\n[Reference](${missing})\n\n## Tickets\n\n[A](${target})\n\n## Notes\n\n[Reference](${missing})\n`;
+  await put(index, indexSource);
   const snapshot = await loadExplorerSnapshot(context, execute);
   expect(snapshot.initiatives.find(item => item.id === "release")?.ticketIds).toEqual(["A", "B"]);
   expect(snapshot.tickets.find(item => item.id === "A")?.status).toBe("claimed");
   expect(snapshot.tickets.find(item => item.id === "A")?.body).toContain("Implementation detail.");
+  expect(await readFile(ticketPath, "utf8")).toBe(ticketSource);
+  expect(await readFile(index, "utf8")).toBe(indexSource);
 });
 
 test("versioned UI reader rejects future ticket schemas, malformed fields, and filename identity mismatches", async () => {
   const context = await fixture();
   const file = join(context.repositoryRoot, "records/issues/A.md");
-  for (const fields of ["schema: tracker-ticket/v2\nid: A\ntitle: Future", "schema: tracker-ticket/v1\nid: A\ntitle: Invalid\nwork_status: open\nblocked_by: []", "schema: tracker-ticket/v1\nid: B\ntitle: Wrong\nwork_status: claimed\nblocked_by: []", "schema: tracker-ticket/v1\nid: A\ntitle: Invalid\nwork_status: claimed\nblocked_by: [2]"]) {
+  for (const fields of ["schemaVersion: tracker-ticket/v99\nid: A\ntitle: Future", "schema: tracker-ticket/v1\nschemaVersion: tracker-ticket/v2\nid: A\ntitle: Dual\nwork_status: claimed\nblocked_by: []", "schema: tracker-ticket/v1\nid: A\ntitle: Invalid\nwork_status: open\nblocked_by: []", "schemaVersion: tracker-ticket/v2\nid: B\ntitle: Wrong\nwork_status: claimed\nblocked_by: []", "schemaVersion: tracker-ticket/v2\nid: A\ntitle: Invalid\nwork_status: claimed\nblocked_by: [2]"]) {
     await put(file, `---\n${fields}\n---\n`);
     await expect(loadExplorerSnapshot(context, execute)).rejects.toThrow("Invalid ticket record");
   }
@@ -125,12 +133,12 @@ test("versioned UI initiative indexes enforce schemas and exact direct-parent me
   await ticket(context, "A");
   const index = join(context.sharedRoot, "records/plans/release/index.md");
   const target = relative(dirname(index), join(context.repositoryRoot, "records/issues/A.md"));
-  for (const fields of ["schema: tracker-initiative/v2\nid: release\ntitle: Future", "schema: tracker-initiative/v1\nid: wrong\ntitle: Wrong", "schema: tracker-initiative/v1\nid: release\ntitle: Invalid\nblocked_by: []", "schema: tracker-initiative/v1\nid: release\ntitle: Release"]) {
+  for (const fields of ["schemaVersion: tracker-initiative/v99\nid: release\ntitle: Future", "schema: tracker-initiative/v1\nschemaVersion: tracker-initiative/v2\nid: release\ntitle: Dual", "schema: tracker-initiative/v1\nid: wrong\ntitle: Wrong", "schemaVersion: tracker-initiative/v2\nid: release\ntitle: Invalid\nblocked_by: []", "schema: tracker-initiative/v1\nid: release\ntitle: Release", "schemaVersion: tracker-initiative/v2\nid: release\ntitle: Release"]) {
     await put(index, `---\n${fields}\n---\n\n## Tickets\n\n[A](${target})\n`);
     await expect(loadExplorerSnapshot(context, execute)).rejects.toThrow();
   }
   await put(join(context.repositoryRoot, "records/issues/A.md"), "---\nid: A\ntitle: A\nparent: release\n---\n");
-  await put(index, "---\nschema: tracker-initiative/v1\nid: release\ntitle: Release\n---\n\n## Tickets\n");
+  await put(index, "---\nschemaVersion: tracker-initiative/v2\nid: release\ntitle: Release\n---\n\n## Tickets\n");
   await expect(loadExplorerSnapshot(context, execute)).rejects.toThrow("missing ticket A");
 });
 

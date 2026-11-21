@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "tracker-migration/v1",
+  "description": "Immutable migration event. Previous hashes cover JSON.stringify(previous event), preserving original identity fields and property order. A chain starts applying and ends applied, rolled-back, or recovery-required. Never upgrade retained events.",
+  "type": "object",
+  "required": [
+    "schema",
+    "migration",
+    "sequence",
+    "previousHash",
+    "state",
+    "planHash",
+    "at"
+  ],
+  "properties": {
+    "schema": {
+      "const": "tracker-migration/v1"
+    },
+    "migration": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{24}$"
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "previousHash": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      ]
+    },
+    "state": {
+      "enum": [
+        "applying",
+        "applied",
+        "rolled-back",
+        "recovery-required"
+      ]
+    },
+    "planHash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "error": {
+      "type": "string"
+    },
+    "recovery": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "not": {
+    "required": [
+      "schemaVersion"
+    ]
+  },
+  "additionalProperties": true
+}

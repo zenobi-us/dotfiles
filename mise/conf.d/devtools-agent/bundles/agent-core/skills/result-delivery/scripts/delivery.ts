@@ -157,7 +157,10 @@ function text(value: unknown, field: string): string {
 }
 
 function validateResult(result: Record<string, unknown>, context: ArtifactContext): void {
-  if (result.schema !== context.target.schema) throw new Error("Domain result schema does not match target.schema.");
+  // Tracker owns the v2 field cutover. Other domain families retain their contracts.
+  const currentTracker = context.target.schema === "tracker-result/v2";
+  const identity = currentTracker ? result.schemaVersion : result.schema;
+  if (identity !== context.target.schema || (currentTracker && Object.hasOwn(result, "schema")) || (context.target.schema === "tracker-result/v1" && Object.hasOwn(result, "schemaVersion"))) throw new Error("Domain result schema does not match target.schema.");
 }
 
 function canonicalJson(value: unknown, ancestors = new Set<object>()): string {
@@ -289,7 +292,7 @@ function humanResult(result: Record<string, unknown>): string {
   const publication = resultObject(result.publication);
   const plan = resultObject(result.plan);
   const state = explicitState(result) ?? (result.ok === true ? "succeeded" : result.ok === false ? "failed" : undefined);
-  const operation = [result.operation, result.phase, result.event, result.name, result.summary, result.schema].find((value) => typeof value === "string" && value.trim()) ?? "Result";
+  const operation = [result.operation, result.phase, result.event, result.name, result.summary, result.schemaVersion, result.schema].find((value) => typeof value === "string" && value.trim()) ?? "Result";
   const lines = [`${safeText(String(operation))}: ${state ? safeText(state) : "result available; use --format json for full details"}`];
   if (result.operation && typeof result.summary === "string") lines.push(`Summary: ${safeText(result.summary)}`);
   if (typeof result.verdict === "string" && result.verdict.trim()) lines.push(`Verdict: ${safeText(result.verdict)}`);

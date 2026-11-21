@@ -29,7 +29,7 @@ Own tracker setup, initiatives, and ticket operations. Use the `iso-24495-1` and
 
 Use `create initiative <id>`, `read initiative <id>`, `update initiative <id>`, or `create ticket <id> --parent <initiative-id>` as skill request forms, not shell commands. For initiative operations and child membership changes, also read [Initiative publication](references/tasks/initiative.md). `claim`, `review`, and `complete` apply only to executable tickets; initiative completion has no defined operation.
 
-Read [Tracker schemas](references/schema.md) before Local Markdown writes. New initiatives and tickets declare their v1 record schema. Supported unversioned records remain readable; mutation requires an approved migration. Unknown explicit versions block mutation. Content migration belongs here; `shared-context migrate` changes storage routes, not tracker meaning.
+Read [Tracker schemas](references/schema.md) before Local Markdown writes. New initiatives and tickets declare their v2 record schema through `schemaVersion`. Explicit v1 and supported unversioned records remain readable without writes. Otherwise authorized scalar mutation uses `scripts/records.ts update`; explicit conversion uses `scripts/records.ts upgrade`. These owning commands validate the selected kind, canonical path and complete membership before invoking shared safe upgrades. Unsafe or decision-dependent conversion and unknown explicit versions block mutation. Content migration belongs here; `shared-context migrate` changes storage routes, not tracker meaning.
 
 The user-facing `setup-matt-pocock-skills` skill gathers decisions and approval. This skill owns setup scripts, templates, file changes, checks, and publication results.
 

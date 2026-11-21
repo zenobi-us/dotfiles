@@ -11,7 +11,8 @@ import { validateStorePath } from "../../../../agent-core/skills/shared-context/
 import { loadExplorerSnapshot } from "../../../../developer/skills/git/worktree/scripts/workflow.ts";
 import { markdownGraph } from "./dep-tree-markdown.ts";
 import { buildDependencyGraph, renderDependencyGraph } from "./dep-tree-shared.ts";
-import { assertRecord, INITIATIVE_SCHEMA, RESULT_SCHEMA, TICKET_SCHEMA, validateRecord } from "./record-schema.ts";
+import { assertRecord, INITIATIVE_LINKS_QUERY, INITIATIVE_SCHEMA, RESULT_SCHEMA, TICKET_SCHEMA, validateInitiativeMembership, validateRecord } from "./record-schema.ts";
+import { bulkUpgrade, safeUpgrade } from "../../../../agent-core/skills/skill-contracts/scripts/upgrades.ts";
 
 export type Selector = { kind: "ticket" | "spec-ticket" | "initiative-spec"; id: string };
 export type Options = { repository: string; sharedContextBase?: string };
@@ -20,21 +21,30 @@ type Link = { url: string; node: { position: { start: Position; end: Position } 
 type Document = { path: string; root: string; ref: string; store?: string; text: string; fields: Record<string, unknown>; links: Link[] };
 type Input = { path: string; root: string; text: string; hash: string; commit: string | null; blob: string | null };
 type Change = { oldPath: string; newPath: string; oldRef: string; newRef: string; oldRoot: string; newRoot: string; before: string; after: string; beforeHash: string; afterHash: string };
-export type MigrationPlan = {
-  schema: "tracker-migration-plan/v1"; id: string; repository: string; origin: string; slug: string; selector: Selector;
+type PlanIdentity = { schemaVersion: "tracker-migration-plan/v2"; schema?: never } | { schema: "tracker-migration-plan/v1"; schemaVersion?: never };
+export type MigrationPlan = PlanIdentity & {
+  id: string; repository: string; origin: string; slug: string; selector: Selector;
   routes: { tickets: ResolvedRecord; initiatives: ResolvedRecord; tracker: ResolvedRecord; workflow: ResolvedRecord };
   selected: string[]; affectedChildren: string[]; inboundReferences: { from: string; url: string; to: string }[];
   coverage: { roots: string[]; scope: string; excluded: string[] }; inputs: Input[]; changes: Change[];
   conflicts: string[]; validation: string[]; writerSafety: string;
 };
-type State = { schema: "tracker-migration/v1"; migration: string; sequence: number; previousHash: string | null; state: "applying" | "applied" | "rolled-back" | "recovery-required"; planHash: string; at: string; error?: string; recovery?: string[] };
+type State = ({ schemaVersion: "tracker-migration/v2"; schema?: never } | { schema: "tracker-migration/v1"; schemaVersion?: never }) & { migration: string; sequence: number; previousHash: string | null; state: "applying" | "applied" | "rolled-back" | "recovery-required"; planHash: string; at: string; error?: string; recovery?: string[] };
 type Environment = { context: SharedAgentContext; tickets: ResolvedRecord; initiatives: ResolvedRecord; tracker: ResolvedRecord };
+type RecordProjection = { initiatives: Record<string, unknown>[]; tickets: Record<string, unknown>[] };
 const helper = fileURLToPath(new URL("./record-markdown.mq", import.meta.url));
 // The skill's tracked lock pins the remote okf.mq module, wherever the caller runs.
 const lockfile = fileURLToPath(new URL("../mq.lock", import.meta.url));
+const skillRoot = fileURLToPath(new URL("../", import.meta.url));
 const excludedSegments: Record<string, true> = { events: true, reviews: true, artifacts: true, ".git": true };
 
 export async function planMigration(options: Options, selector: Selector): Promise<MigrationPlan> {
+  return buildMigrationPlan(options, selector, false);
+}
+
+// Historical reconstruction keeps the old identity, field spelling and snapshot hashes.
+// It never upgrades a retained plan or writes a historical record.
+async function buildMigrationPlan(options: Options, selector: Selector, historical: boolean): Promise<MigrationPlan> {
   const env = await environment(options);
   const documents = await discover(env);
   const selectedTarget = await resolveContextRecord(env.context, selector.kind === "initiative-spec" ? { kind: "initiative", id: selector.id } : { kind: "ticket", id: selector.id });
@@ -43,7 +53,7 @@ export async function planMigration(options: Options, selector: Selector): Promi
   if (!source) throw new Error("Selected record was not found in its resolved collection");
   const errors = validateRecord(source.fields, selector.kind === "initiative-spec" ? "initiative" : "ticket", { allowLegacy: true, expectedId: selector.id });
   if (errors.length) throw new Error(errors.join("; "));
-  if (source.fields.schema !== undefined && selector.kind !== "initiative-spec") throw new Error("Named migration requires an unversioned legacy record; use check for versioned records");
+  if ((source.fields.schema !== undefined || source.fields.schemaVersion !== undefined) && selector.kind !== "initiative-spec") throw new Error("Named migration requires an unversioned legacy record; use check for versioned records");
   if (typeof source.fields.id !== "string" || !source.fields.id.trim() || typeof source.fields.title !== "string" || !source.fields.title.trim()) throw new Error("Migration requires nonempty string id and title in source YAML frontmatter. Add reviewed metadata first; this tool does not infer it from filenames or headings.");
   if (String(source.fields.id) !== selector.id) throw new Error("Selected record id must match the explicit selector");
   const children = selector.kind === "ticket" ? [] : documents.filter((document) => within(requiredPath(env.tickets), document.path) && document.fields.parent === selector.id);
@@ -53,7 +63,7 @@ export async function planMigration(options: Options, selector: Selector): Promi
   let target = selectedTarget;
   let after: string;
   if (selector.kind === "ticket") {
-    after = stamp(source, TICKET_SCHEMA, []);
+    after = stamp(source, historical ? "tracker-ticket/v1" : TICKET_SCHEMA, [], historical);
   } else {
     target = await resolveContextRecord(env.context, { kind: "initiative", id: selector.id });
     destination = path.join(requiredPath(target), "index.md");
@@ -67,7 +77,7 @@ export async function planMigration(options: Options, selector: Selector): Promi
       if (await exists(requiredPath(sourceWorkflow)) && (await fs.readdir(requiredPath(sourceWorkflow))).length) conflicts.push("Spec ticket has workflow history; explicit history reconciliation is required before conversion");
     }
     const relocated = rewriteLinks(source.text, source.links, sourcePath, destination, new Map([[sourcePath, destination]]));
-    after = stamp({ ...source, text: relocated }, INITIATIVE_SCHEMA, ["work_status", "blocked_by"]);
+    after = stamp({ ...source, text: relocated }, historical ? "tracker-initiative/v1" : INITIATIVE_SCHEMA, ["work_status", "blocked_by"], historical);
     const memberships = children.map((child) => ({ text: String(child.fields.title ?? child.fields.id), url: relativeLink(destination, child.path) }));
     after = membership(after, memberships);
     for (const document of documents) {
@@ -92,9 +102,9 @@ export async function planMigration(options: Options, selector: Selector): Promi
   for (const child of children) {
     const childErrors = validateRecord(child.fields, "ticket", { allowLegacy: true });
     if (childErrors.length) conflicts.push(`${child.ref}: ${childErrors.join("; ")}`);
-    if (selector.kind !== "ticket" && child.fields.schema === undefined) {
+    if (selector.kind !== "ticket" && child.fields.schema === undefined && child.fields.schemaVersion === undefined) {
       const existing = changes.find((entry) => entry.oldPath === child.path);
-      const after = stamp({ ...child, text: existing?.after ?? child.text }, TICKET_SCHEMA, []);
+      const after = stamp({ ...child, text: existing?.after ?? child.text }, historical ? "tracker-ticket/v1" : TICKET_SCHEMA, [], historical);
       assertRecord(inspect(after).fields, "ticket", { expectedId: String(child.fields.id) });
       const stamped = change(child, recordForDocument(env, child), child.path, after);
       if (existing) Object.assign(existing, stamped);
@@ -104,7 +114,7 @@ export async function planMigration(options: Options, selector: Selector): Promi
   const inputs = documents.map((document) => ({ path: document.path, root: document.root, text: document.text, hash: hash(document.text), ...gitSnapshot(document.root, document.path) }));
   const workflowPlaceholder = await resolveContextRecord(env.context, { kind: "workflow", id: "migration-plan" });
   const core = {
-    schema: "tracker-migration-plan/v1" as const, repository: env.context.repositoryRoot, origin: env.context.canonicalOrigin, slug: env.context.slug, selector,
+    ...(historical ? { schema: "tracker-migration-plan/v1" as const } : { schemaVersion: "tracker-migration-plan/v2" as const }), repository: env.context.repositoryRoot, origin: env.context.canonicalOrigin, slug: env.context.slug, selector,
     routes: { tickets: env.tickets, initiatives: env.initiatives, tracker: env.tracker, workflow: workflowPlaceholder },
     selected: [source.ref], affectedChildren: children.map((child) => child.ref).sort(), inboundReferences,
     coverage: { roots: [...new Set([requiredPath(env.tracker), requiredPath(env.tickets), requiredPath(env.initiatives)])].sort(), scope: "Live Markdown in resolved tracker, ticket and initiative collections only. Ordinary repository docs, external repositories and sources are not searched: review those references manually before publication.", excluded: ["events", "reviews", "artifacts", "immutable workflow history"] },
@@ -133,8 +143,10 @@ export async function applyMigration(options: Options, plan: MigrationPlan, ackn
   }
   if (await exists(directory) && (await fs.readdir(directory)).length) throw new Error("Migration workflow collision: existing content has no approved migration plan");
   await blockIncompleteMigrations(env, plan.id);
-  const rebuilt = await planMigration(options, plan.selector);
+  const historical = plan.schema === "tracker-migration-plan/v1";
+  const rebuilt = await buildMigrationPlan(options, plan.selector, historical);
   if (JSON.stringify(rebuilt) !== JSON.stringify(plan)) throw new Error("Stale or altered plan: routes, selected records, collection membership, Git source or destination changed; create a new plan");
+  if (historical) throw new Error("Historical v1 plan verified without changes; create and approve a new v2 plan before applying new record writes");
   if (plan.conflicts.length) throw new Error(`Plan has conflicts: ${plan.conflicts.join("; ")}`);
   await validateStaged(options, plan);
   await fs.mkdir(directory, { recursive: true });
@@ -144,7 +156,7 @@ export async function applyMigration(options: Options, plan: MigrationPlan, ackn
   let stateStarted = false;
   try {
     // Recheck inside the local lock. This lock does not coordinate non-CLI writers.
-    const lockedPlan = await planMigration(options, plan.selector);
+    const lockedPlan = await buildMigrationPlan(options, plan.selector, false);
     if (JSON.stringify(lockedPlan) !== JSON.stringify(plan)) throw new Error("Inputs changed before apply acquired its local lock");
     await fs.mkdir(path.dirname(planFile), { recursive: true });
     await durableWrite(planFile, JSON.stringify(plan, null, 2) + "\n", true);
@@ -191,7 +203,7 @@ export async function checkMigration(options: Options, id: string): Promise<Reco
     : stores.some((item) => item.status === "committed") ? "committed"
       : stores.every((item) => item.status === "local-only") ? "local-only" : "published";
   const publication = { status, stores, required: furtherWorkBlocked, details: stores.map((item) => item.required) };
-  return { schema: RESULT_SCHEMA, operation: "migrate check", backend: "local-markdown", ok: true, migration: id, workflow: workflow.ref, recovery: state.state, coverage: plan.coverage, snapshots: plan.changes.map((entry) => ({ oldRef: entry.oldRef, newRef: entry.newRef, beforeHash: entry.beforeHash, afterHash: entry.afterHash })), changes: null, validation: { status: "passed", details: ["Verified immutable migration snapshots, event chain, membership, dependency graph and normal tracker discovery."] }, rendered: content.dependencyGraph ?? null, ...content, publication, furtherWorkBlocked };
+  return { schemaVersion: RESULT_SCHEMA, operation: "migrate check", backend: "local-markdown", ok: true, migration: id, workflow: workflow.ref, recovery: state.state, coverage: plan.coverage, snapshots: plan.changes.map((entry) => ({ oldRef: entry.oldRef, newRef: entry.newRef, beforeHash: entry.beforeHash, afterHash: entry.afterHash })), changes: null, validation: { status: "passed", details: ["Verified immutable migration snapshots, event chain, membership, dependency graph and normal tracker discovery."] }, rendered: content.dependencyGraph ?? null, ...content, publication, furtherWorkBlocked };
 }
 
 export async function checkRecord(options: Options, kind: "ticket" | "initiative", id: string): Promise<Record<string, unknown>> {
@@ -235,7 +247,126 @@ export async function checkRecord(options: Options, kind: "ticket" | "initiative
   const ticketIds = kind === "ticket" ? [id] : selectedInitiative?.ticketIds ?? [];
   const tickets = snapshot.tickets.filter((ticket) => ticketIds.includes(ticket.id)).map((ticket) => ({ id: ticket.id, title: ticket.title, ref: ticket.ref, state: ticket.status, blocked_by: ticket.blockedBy }));
   const initiatives = kind === "initiative" && selectedInitiative ? [{ id, title: selectedInitiative.title, ref: selectedInitiative.ref, children: tickets.map((ticket) => ({ id: ticket.id, ref: ticket.ref })) }] : [];
-  return { schema: RESULT_SCHEMA, operation: "check", backend: "local-markdown", ok: true, initiatives, tickets, changes: null, validation: { status: "passed", details: ["Validated the selected record through the normal graph and tracker explorer readers."] }, publication: null, rendered: graph, kind, id, ref: reference(target, recordPath), recordSchema: document.fields.schema ?? null, legacy: document.fields.schema === undefined, graph, graphScope, normalTrackerDiscovery: { tickets: snapshot.tickets.length, initiatives: discoveredInitiatives.length }, coverage: "Resolved tracker collections; normal Markdown graph and explorer discovery" };
+  return { schemaVersion: RESULT_SCHEMA, operation: "check", backend: "local-markdown", ok: true, initiatives, tickets, changes: null, validation: { status: "passed", details: ["Validated the selected record through the normal graph and tracker explorer readers."] }, publication: null, rendered: graph, kind, id, ref: reference(target, recordPath), recordSchema: document.fields.schemaVersion ?? document.fields.schema ?? null, legacy: document.fields.schema === undefined && document.fields.schemaVersion === undefined, graph, graphScope, normalTrackerDiscovery: { tickets: snapshot.tickets.length, initiatives: discoveredInitiatives.length }, coverage: "Resolved tracker collections; normal Markdown graph and explorer discovery" };
+}
+
+export async function updateRecord(options: Options, kind: "ticket" | "initiative", id: string, request: unknown): Promise<Record<string, unknown>> {
+  if (!request || typeof request !== "object" || !("fields" in request) || !request.fields || typeof request.fields !== "object" || Array.isArray(request.fields)) throw new Error("Update requires a fields object.");
+  const env = await environment(options);
+  const target = await resolveContextRecord(env.context, { kind, id });
+  const artifact = kind === "initiative" ? path.join(requiredPath(target), "index.md") : requiredPath(target);
+  await validateStorePath(target.root!, path.relative(target.root!, artifact));
+  const before = inspect(mq<string>("read_file(filename)", "", { filename: artifact }, path.dirname(artifact), false)).fields;
+  if (before.id !== id) throw new Error("Record id does not match the selected filename or initiative directory");
+  const records = await recordResult(env, kind, before, target, artifact);
+  const upgraded = await safeUpgrade({ skill: skillRoot, owner: "file:scripts/record-upgrade.ts", artifact, operation: "update", request });
+  // The owner permits only scalar status/title/triage changes; membership was checked before persistence.
+  const after: Record<string, unknown> = { ...before, ...request.fields, schemaVersion: kind === "ticket" ? TICKET_SCHEMA : INITIATIVE_SCHEMA };
+  delete after.schema;
+  const fields: Record<string, { before: unknown; after: unknown }> = Object.fromEntries(Object.keys(after).filter((key) => JSON.stringify(before[key]) !== JSON.stringify(after[key])).map((key) => [key, { before: before[key] ?? null, after: after[key] }]));
+  if (Object.hasOwn(before, "schema")) fields.schema = { before: before.schema, after: null };
+  for (const record of [...records.tickets, ...records.initiatives]) {
+    record.title = after.title;
+    if (kind === "ticket") record.state = after.work_status;
+  }
+  return { schemaVersion: RESULT_SCHEMA, operation: "update", backend: "local-markdown", ok: upgraded.status === "completed", ...records, upgrade: upgraded, changes: upgraded.changed ? { fields, dependency_edges_added: [], dependency_edges_removed: [] } : null, validation: { status: upgraded.status === "completed" ? "passed" : "failed", details: upgraded.cleanup_errors ?? ["Validated source, lossless conversion and requested mutation before atomic persistence."] }, publication: upgraded.changed ? { status: "required", details: ["Commit and publish the updated record if its store uses Git."] } : null, rendered: null };
+}
+
+export async function upgradeRecords(options: Options, artifacts: unknown): Promise<Record<string, unknown>> {
+  if (!Array.isArray(artifacts) || artifacts.length === 0 || artifacts.some((artifact) => typeof artifact !== "string" || !path.isAbsolute(artifact))) throw new Error("Upgrade requires a nonempty JSON array of absolute record paths");
+  const env = await environment(options);
+  const selections: { artifact: string; kind: "ticket" | "initiative"; target: ResolvedRecord }[] = [];
+  for (const artifact of artifacts as string[]) {
+    const filename = path.resolve(artifact);
+    const ticketRelative = path.relative(requiredPath(env.tickets), filename);
+    const initiativeRelative = path.relative(requiredPath(env.initiatives), filename);
+    const kind = /^[^/\\]+\.md$/.test(ticketRelative) ? "ticket" : /^[^/\\]+[/\\]index\.md$/.test(initiativeRelative) ? "initiative" : undefined;
+    if (!kind) throw new Error("Bulk upgrades accept only canonical ticket files and initiative index.md files in resolved live collections");
+    const target = kind === "ticket" ? env.tickets : env.initiatives;
+    await validateStorePath(target.root!, path.relative(target.root!, filename));
+    selections.push({ artifact: filename, kind, target });
+  }
+  // Validate result membership before writes. A presentation failure must not hide committed bytes.
+  const projections = new Map<string, RecordProjection>();
+  const rejected = new Map<string, { artifact: string; status: "failed"; changed: false; error: string }>();
+  for (const selection of selections) {
+    try {
+      const fields = inspect(mq<string>("read_file(filename)", "", { filename: selection.artifact }, path.dirname(selection.artifact), false)).fields;
+      projections.set(selection.artifact, await recordResult(env, selection.kind, fields, selection.target, selection.artifact));
+    } catch (error) {
+      rejected.set(selection.artifact, { artifact: selection.artifact, status: "failed", changed: false, error: message(error) });
+    }
+  }
+  const accepted = await bulkUpgrade({ skill: skillRoot, owner: "file:scripts/record-upgrade.ts" }, selections.filter(selection => !rejected.has(selection.artifact)).map(selection => selection.artifact));
+  const results = selections.map(selection => rejected.get(selection.artifact) ?? accepted.results.find(result => result.artifact === selection.artifact)!);
+  const failures = results.filter(result => result.status === "failed").length;
+  const upgraded = { status: failures === 0 ? "completed" : failures === results.length ? "failed" : "partial", results };
+  const initiatives: Record<string, unknown>[] = [];
+  const tickets: Record<string, unknown>[] = [];
+  for (const result of upgraded.results) {
+    if (!("to" in result)) continue;
+    const records = projections.get(result.artifact)!;
+    initiatives.push(...records.initiatives);
+    tickets.push(...records.tickets);
+  }
+  const changed = upgraded.results.filter((result) => result.changed);
+  return { schemaVersion: RESULT_SCHEMA, operation: "upgrade", backend: "local-markdown", ok: upgraded.status === "completed", initiatives, tickets, upgrade: upgraded, changes: changed.length ? { fields: Object.fromEntries(changed.map((result) => [result.artifact, { from: "from" in result ? result.from : null, to: "to" in result ? result.to : null }])), dependency_edges_added: [], dependency_edges_removed: [] } : null, validation: { status: upgraded.status === "completed" ? "passed" : upgraded.status, details: upgraded.results.filter((result) => result.status === "failed").flatMap((result) => "error" in result ? [result.error] : result.cleanup_errors ?? []) }, publication: changed.length ? { status: "required", details: ["Each item commits independently; publish all changed records. Failed items are not represented as upgraded."] } : null, rendered: null };
+}
+
+async function recordResult(env: Environment, kind: "ticket" | "initiative", fields: Record<string, unknown>, target: ResolvedRecord, artifact: string): Promise<RecordProjection> {
+  const expectedId = kind === "ticket" ? path.basename(artifact, ".md") : path.basename(path.dirname(artifact));
+  assertRecord(fields, kind, { allowLegacy: true, expectedId });
+  if (fields.id !== expectedId) throw new Error("Record identity does not match its canonical path.");
+  const record = { id: String(fields.id), title: String(fields.title), ref: reference(target, artifact) };
+  if (kind === "ticket") {
+    await validateTicketParent(env, fields);
+    return { initiatives: [], tickets: [{ ...record, state: fields.work_status, blocked_by: fields.blocked_by }] };
+  }
+  const links = mq<{ url: string }[]>(`import "section" | let source = read_file(filename) | let doc = okf::okf_parse(source) | ${INITIATIVE_LINKS_QUERY}`, "", { filename: artifact }, path.dirname(artifact), false);
+  const children: { id: string; ref: string }[] = [];
+  for (const link of links) {
+    const filename = linkPath(artifact, link.url);
+    if (!filename || path.dirname(filename) !== requiredPath(env.tickets) || path.extname(filename) !== ".md") throw new Error("Initiative membership must link to a canonical ticket in the resolved live collection");
+    await validateStorePath(env.tickets.root!, path.relative(env.tickets.root!, filename));
+    const child = inspect(mq<string>("read_file(filename)", "", { filename }, path.dirname(filename), false)).fields;
+    assertRecord(child, "ticket", { allowLegacy: true, expectedId: path.basename(filename, ".md") });
+    if (typeof child.id !== "string" || child.parent !== fields.id) throw new Error("Initiative membership does not match the ticket's id and direct parent");
+    children.push({ id: child.id, ref: reference(env.tickets, filename) });
+  }
+  const ticketRoot = requiredPath(env.tickets);
+  const direct = await exists(ticketRoot) ? mq<{ path: string; fields: Record<string, unknown> }[]>('map(walk_files(root, "*.md"), fn(file): {path: file, fields: okf::okf_parse(read_file(root + "/" + file))["frontmatter"]};)', "", { root: ticketRoot }, ticketRoot, false).filter(row => row.fields.parent === fields.id) : [];
+  for (const row of direct) {
+    assertRecord(row.fields, "ticket", { allowLegacy: true, expectedId: path.basename(row.path, ".md") });
+    if (row.fields.id !== path.basename(row.path, ".md")) throw new Error("Direct child identity does not match its canonical path.");
+  }
+  const membershipErrors = validateInitiativeMembership(String(fields.id), children.map(child => child.id), direct.map(row => ({ id: String(row.fields.id), parent: String(row.fields.parent) })));
+  if (membershipErrors.length) throw new Error(membershipErrors.join(" "));
+  return { initiatives: [{ ...record, children }], tickets: [] };
+}
+
+async function validateTicketParent(env: Environment, fields: Record<string, unknown>): Promise<void> {
+  const visited = new Set([String(fields.id)]);
+  let parent = fields.parent;
+  while (typeof parent === "string" && parent) {
+    if (visited.has(parent)) throw new Error("Ticket parent membership contains a cycle.");
+    visited.add(parent);
+    const target = await resolveContextRecord(env.context, { kind: "initiative", id: parent });
+    const index = path.join(requiredPath(target), "index.md");
+    if (await exists(index)) {
+      await validateStorePath(target.root!, path.relative(target.root!, index));
+      const initiative = inspect(mq<string>("read_file(filename)", "", { filename: index }, path.dirname(index), false)).fields;
+      await recordResult(env, "initiative", initiative, target, index);
+      return;
+    }
+    const ticket = await resolveContextRecord(env.context, { kind: "ticket", id: parent });
+    const filename = requiredPath(ticket);
+    if (!await exists(filename)) return;
+    await validateStorePath(ticket.root!, path.relative(ticket.root!, filename));
+    const ancestor = inspect(mq<string>("read_file(filename)", "", { filename }, path.dirname(filename), false)).fields;
+    assertRecord(ancestor, "ticket", { allowLegacy: true, expectedId: parent });
+    if (ancestor.id !== parent) throw new Error("Parent ticket identity does not match its canonical path.");
+    parent = ancestor.parent;
+  }
 }
 
 export async function writePlanOutput(options: Options, plan: MigrationPlan, filename: string): Promise<void> {
@@ -295,7 +426,7 @@ async function discover(env: Environment): Promise<Document[]> {
       if (documents.has(filename)) continue;
       await validateStorePath(target.root!, path.relative(target.root!, filename));
       const metadata = inspect(row.text);
-      if (metadata.fields.schema !== undefined) {
+      if (metadata.fields.schema !== undefined || metadata.fields.schemaVersion !== undefined) {
         const kind = within(requiredPath(env.tickets), filename) ? "ticket" : "initiative";
         const errors = validateRecord(metadata.fields, kind, { allowLegacy: true });
         if (errors.length) throw new Error(`${reference(target, filename)}: ${errors.join("; ")}`);
@@ -319,13 +450,13 @@ function mq<T>(query: string, input: string, args: Record<string, unknown> = {},
 }
 
 function inspect(text: string): { fields: Record<string, unknown>; links: Link[] } { return mq("", text, { operation: "inspect" }); }
-function stamp(document: Document, schema: string, removed: string[]): string {
+function stamp(document: Document, schema: string, removed: string[], historical = false): string {
   const defaults: Record<string, string> = {};
-  if (schema === TICKET_SCHEMA) {
+  if (schema === TICKET_SCHEMA || schema === "tracker-ticket/v1") {
     if (document.fields.work_status === undefined) defaults.work_status = "unclaimed";
     if (document.fields.blocked_by === undefined) defaults.blocked_by = "[]";
   }
-  return mq("", document.text, { operation: "stamp", schema, defaults, removed });
+  return mq("", document.text, { operation: "stamp", schema, schemaField: historical ? "schema" : "schemaVersion", defaults, removed });
 }
 function membership(text: string, links: { text: string; url: string }[]): string {
   return mq("", text, { operation: "membership", entries: links });
@@ -368,7 +499,8 @@ function gitSnapshot(root: string, filename: string): { commit: string | null; b
 }
 
 function validatePlanShape(plan: MigrationPlan): void {
-  if (!plan || plan.schema !== "tracker-migration-plan/v1" || !/^[a-f0-9]{24}$/.test(plan.id) || !["ticket", "spec-ticket", "initiative-spec"].includes(plan.selector?.kind) || !Array.isArray(plan.changes) || plan.changes.length === 0 || !Array.isArray(plan.inputs)) throw new Error("Unsupported or malformed migration plan");
+  const supportedIdentity = plan && ((plan.schema === "tracker-migration-plan/v1" && !Object.hasOwn(plan, "schemaVersion")) || (plan.schemaVersion === "tracker-migration-plan/v2" && !Object.hasOwn(plan, "schema")));
+  if (!supportedIdentity || !/^[a-f0-9]{24}$/.test(plan.id) || !["ticket", "spec-ticket", "initiative-spec"].includes(plan.selector?.kind) || !Array.isArray(plan.changes) || plan.changes.length === 0 || !Array.isArray(plan.inputs)) throw new Error("Unsupported or malformed migration plan");
   for (const entry of plan.changes) if (hash(entry.before) !== entry.beforeHash || hash(entry.after) !== entry.afterHash) throw new Error("Migration snapshot bytes do not match their hashes");
   for (const input of plan.inputs) if (hash(input.text) !== input.hash) throw new Error("Migration input snapshot does not match its hash");
 }
@@ -463,7 +595,7 @@ async function restoreChange(entry: Change): Promise<void> {
 async function appendState(directory: string, plan: MigrationPlan, state: State["state"], error?: string, recovery?: string[]): Promise<void> {
   const latest = await latestState(directory);
   const sequence = (latest?.sequence ?? 0) + 1;
-  const event: State = { schema: "tracker-migration/v1", migration: plan.id, sequence, previousHash: latest ? hash(JSON.stringify(latest)) : null, state, planHash: hash(JSON.stringify(plan)), at: new Date().toISOString(), ...(error ? { error } : {}), ...(recovery ? { recovery } : {}) };
+  const event: State = { schemaVersion: "tracker-migration/v2", migration: plan.id, sequence, previousHash: latest ? hash(JSON.stringify(latest)) : null, state, planHash: hash(JSON.stringify(plan)), at: new Date().toISOString(), ...(error ? { error } : {}), ...(recovery ? { recovery } : {}) };
   const events = path.join(directory, "events");
   await fs.mkdir(events, { recursive: true });
   await durableWrite(path.join(events, `${String(sequence).padStart(6, "0")}-migration.json`), JSON.stringify(event, null, 2) + "\n", true);
@@ -476,7 +608,8 @@ async function latestState(directory: string): Promise<State | undefined> {
   let latest: State | undefined;
   for (const filename of files) {
     const state = JSON.parse(await fs.readFile(path.join(events, filename), "utf8")) as State;
-    if (state.schema !== "tracker-migration/v1" || !["applying", "applied", "rolled-back", "recovery-required"].includes(state.state) || state.sequence !== previous + 1 || state.sequence !== Number(filename.slice(0, 6)) || state.previousHash !== (latest ? hash(JSON.stringify(latest)) : null) || (latest && (latest.state !== "applying" || state.state === "applying" || state.migration !== latest.migration || state.planHash !== latest.planHash)) || (!latest && state.state !== "applying")) throw new Error("Migration event history is corrupt or uses an unsupported schema");
+    const supportedIdentity = (state.schema === "tracker-migration/v1" && !Object.hasOwn(state, "schemaVersion")) || (state.schemaVersion === "tracker-migration/v2" && !Object.hasOwn(state, "schema"));
+    if (!supportedIdentity || !["applying", "applied", "rolled-back", "recovery-required"].includes(state.state) || state.sequence !== previous + 1 || state.sequence !== Number(filename.slice(0, 6)) || state.previousHash !== (latest ? hash(JSON.stringify(latest)) : null) || (latest && (latest.state !== "applying" || state.state === "applying" || state.migration !== latest.migration || state.planHash !== latest.planHash || state.schema !== latest.schema || state.schemaVersion !== latest.schemaVersion)) || (!latest && state.state !== "applying")) throw new Error("Migration event history is corrupt or uses an unsupported schema");
     previous = state.sequence;
     latest = state;
   }

@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "tracker-setup-state/v1",
+  "description": "Generated setup state; authoritative runtime reader is setup.ts parseState. The shared declared v1-to-v2 procedure validates a staging copy before the owning multi-file setup transaction may persist current state. Read-only plan/check never change source bytes. Unknown state and managed-file properties are rejected rather than discarded.",
+  "type": "object",
+  "required": [
+    "schema",
+    "version",
+    "copierVersion",
+    "templateHash",
+    "answers",
+    "files",
+    "directories"
+  ],
+  "properties": {
+    "schema": {
+      "const": 1
+    },
+    "version": {
+      "type": "string"
+    },
+    "copierVersion": {
+      "type": "string"
+    },
+    "templateHash": {
+      "type": "string"
+    },
+    "answers": {
+      "$ref": "answers-v1.json"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "root",
+          "hash",
+          "kind"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "root": {
+            "type": "string",
+            "minLength": 1
+          },
+          "hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "kind": {
+            "enum": [
+              "file",
+              "region"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "directories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "not": {
+    "required": [
+      "schemaVersion"
+    ]
+  }
+}

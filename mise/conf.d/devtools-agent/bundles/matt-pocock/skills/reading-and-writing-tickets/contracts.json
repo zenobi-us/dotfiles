@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": [
+    "tracker-ticket/v2",
+    "tracker-initiative/v2",
+    "tracker-result/v2",
+    "tracker-migration-plan/v2",
+    "tracker-migration/v2",
+    "tracker-setup-answers/v2",
+    "tracker-setup-state/v2",
+    "tracker-setup-result/v1",
+    "tracker-setup-error/v1"
+  ],
+  "accepts": [
+    "tracker-ticket/v2",
+    "tracker-initiative/v2",
+    "tracker-result/v2",
+    "tracker-migration-plan/v2",
+    "tracker-migration/v2",
+    "tracker-ticket/v1",
+    "tracker-initiative/v1",
+    "tracker-result/v1",
+    "tracker-migration-plan/v1",
+    "tracker-migration/v1",
+    "tracker-ticket-legacy/v1",
+    "tracker-initiative-legacy/v1",
+    "result-delivery/v1",
+    "tracker-setup-answers/v1",
+    "tracker-setup-answers/v2",
+    "tracker-setup-state/v1",
+    "tracker-setup-state/v2"
+  ],
+  "contracts": {
+    "tracker-ticket/v2": "file:references/contracts/ticket-v2.json",
+    "tracker-initiative/v2": "file:references/contracts/initiative-v2.json",
+    "tracker-result/v2": "file:references/contracts/result-v2.json",
+    "tracker-migration-plan/v2": "file:references/contracts/migration-plan-v2.json",
+    "tracker-migration/v2": "file:references/contracts/migration-v2.json",
+    "tracker-ticket/v1": "file:references/contracts/ticket-v1.json",
+    "tracker-initiative/v1": "file:references/contracts/initiative-v1.json",
+    "tracker-result/v1": "file:references/contracts/result-v1.json",
+    "tracker-migration-plan/v1": "file:references/contracts/migration-plan-v1.json",
+    "tracker-migration/v1": "file:references/contracts/migration-v1.json",
+    "tracker-ticket-legacy/v1": "file:references/contracts/ticket-legacy-v1.json",
+    "tracker-initiative-legacy/v1": "file:references/contracts/initiative-legacy-v1.json",
+    "result-delivery/v1": "file:../../../agent-core/skills/result-delivery/scripts/delivery.ts",
+    "tracker-setup-answers/v1": "file:references/setup-contracts/answers-v1.json",
+    "tracker-setup-answers/v2": "file:references/setup-contracts/answers-v2.json",
+    "tracker-setup-state/v1": "file:references/setup-contracts/state-v1.json",
+    "tracker-setup-state/v2": "file:references/setup-contracts/state-v2.json",
+    "tracker-setup-result/v1": "file:references/setup-contracts/result-v1.json",
+    "tracker-setup-error/v1": "file:references/setup-contracts/error-v1.json"
+  },
+  "upgrades": [
+    {
+      "from": "tracker-ticket/v1",
+      "to": "tracker-ticket/v2",
+      "procedure": "file:references/contracts/record-upgrade.md"
+    },
+    {
+      "from": "tracker-ticket-legacy/v1",
+      "to": "tracker-ticket/v2",
+      "procedure": "file:references/contracts/record-upgrade.md"
+    },
+    {
+      "from": "tracker-initiative/v1",
+      "to": "tracker-initiative/v2",
+      "procedure": "file:references/contracts/record-upgrade.md"
+    },
+    {
+      "from": "tracker-initiative-legacy/v1",
+      "to": "tracker-initiative/v2",
+      "procedure": "file:references/contracts/record-upgrade.md"
+    },
+    {
+      "from": "tracker-setup-answers/v1",
+      "to": "tracker-setup-answers/v2",
+      "procedure": "file:references/setup-contracts/upgrade-v1-v2.md"
+    },
+    {
+      "from": "tracker-setup-state/v1",
+      "to": "tracker-setup-state/v2",
+      "procedure": "file:references/setup-contracts/upgrade-v1-v2.md"
+    }
+  ]
+}

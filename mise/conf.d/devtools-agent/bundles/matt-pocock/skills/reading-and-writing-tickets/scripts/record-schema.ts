@@ -1,16 +1,20 @@
 // Shared validation for versioned tracker readers and explicit migration tooling.
-export const TICKET_SCHEMA = "tracker-ticket/v1";
-export const INITIATIVE_SCHEMA = "tracker-initiative/v1";
-export const RESULT_SCHEMA = "tracker-result/v1";
+export const TICKET_SCHEMA = "tracker-ticket/v2";
+export const INITIATIVE_SCHEMA = "tracker-initiative/v2";
+export const RESULT_SCHEMA = "tracker-result/v2";
 export type RecordKind = "ticket" | "initiative";
 
 type ValidationOptions = { allowLegacy?: boolean; expectedId?: string };
 const statuses = ["unclaimed", "claimed", "implemented", "merged", "completed"];
 
 export function validateRecord(fields: Record<string, unknown>, kind: RecordKind, options: ValidationOptions = {}): string[] {
-  if (!Object.hasOwn(fields, "schema")) return options.allowLegacy ? [] : ["schema is required; migrate this legacy record explicitly."];
-  const schema = kind === "ticket" ? TICKET_SCHEMA : INITIATIVE_SCHEMA;
-  if (fields.schema !== schema) return [`schema must be ${schema}; unsupported schemas cannot be read or changed.`];
+  const current = kind === "ticket" ? TICKET_SCHEMA : INITIATIVE_SCHEMA;
+  const historical = kind === "ticket" ? "tracker-ticket/v1" : "tracker-initiative/v1";
+  const hasCurrent = Object.hasOwn(fields, "schemaVersion");
+  const hasHistorical = Object.hasOwn(fields, "schema");
+  if (!hasCurrent && !hasHistorical) return options.allowLegacy ? [] : ["schemaVersion is required; upgrade this legacy record before mutation."];
+  if (hasCurrent && hasHistorical) return ["schema and schemaVersion cannot appear together."];
+  if (hasCurrent ? fields.schemaVersion !== current : fields.schema !== historical) return [`Unsupported schema: use schemaVersion ${current} or the explicit historical ${historical} reader.`];
   const errors: string[] = [];
   for (const field of ["id", "title"]) {
     if (typeof fields[field] !== "string" || !fields[field].trim()) errors.push(`${field} must be a non-empty string.`);
@@ -45,6 +49,6 @@ export function validateInitiativeMembership(initiativeId: string, ticketIds: st
   return errors;
 }
 
-// Only the Tickets section declares v1 membership; specification links are references.
+// Only the Tickets section declares membership; specification links are references.
 // Both readers bind source and doc, with the OKF and section mq modules loaded.
-export const INITIATIVE_LINKS_QUERY = 'if (doc["frontmatter"]["schema"] == "tracker-initiative/v1"): okf::okf_extract_links(to_markdown_string(section::collect(filter(section::sections(to_markdown(doc["body"]), true), fn(s): section::level(s) == 2 && section::title(s) == "Tickets";)))) else: okf::okf_extract_links(source)';
+export const INITIATIVE_LINKS_QUERY = 'if (doc["frontmatter"]["schema"] == "tracker-initiative/v1" || doc["frontmatter"]["schemaVersion"] == "tracker-initiative/v2"): okf::okf_extract_links(to_markdown_string(section::collect(filter(section::sections(to_markdown(doc["body"]), true), fn(s): section::level(s) == 2 && section::title(s) == "Tickets";)))) else: okf::okf_extract_links(source)';
