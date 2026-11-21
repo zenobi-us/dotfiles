@@ -1,0 +1,89 @@
+{
+  "review_receipt": "workflows/skill-contract-manifests-04-tracker/events/review-0011.yaml",
+  "reviewed_source_commit": "007dbbf52e4fc2da57ac10ebdafcf9e23c1adf4d",
+  "reviewed_source_tree": "232b6a74548c15731a6fba4290a21936357c6ece",
+  "review_base_commit": "a831e8cafda04d6102adc3220d829bb6990ccca6",
+  "base_observed": "774aec9443b146d594a340e5e2544751ba4491cc",
+  "remote_observed": "caf5124fe0b9743d35cf970b73ae1e8d99be9c88",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "method": "squash",
+  "policy": "Worktrunk user merge.squash=true",
+  "base_advancement": "Only canonical tracker comment and workflow metadata changed since review base. No product-code drift.",
+  "dirty_base": "Unrelated OMP config and Zsh profile edits preserved; no overlap with integration paths.",
+  "coordination": {
+    "inventoryComplete": false,
+    "hardBlockers": [],
+    "proposed_owners": [
+      {
+        "ref": "workflows/skill-contract-manifests-04-tracker/events/review-complete-0012.yaml",
+        "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-04-tracker",
+        "sourceBranch": "feature/skill-contract-manifests-04-tracker",
+        "sessionId": "herdr-app:t1vc",
+        "agent": "omp",
+        "muxer": "herdr-app",
+        "paneId": null
+      }
+    ],
+    "reservations": [],
+    "overlap": "Other muxer/repair code stays isolated. Candidate combines only current accepted base and reviewed tracker source; no other source is approved."
+  },
+  "hooks": {
+    "pre_merge": "No project or user pre-merge hook configured; helper still invokes Worktrunk hook runner.",
+    "post_merge": "No configured post-merge hooks.",
+    "pre_remove": "User server hook targets branch hash port. Must establish no unrelated listener before named cleanup."
+  },
+  "checks": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-04-tracker/artifacts/snapshots/finish-0013-check.ts"
+      ]
+    }
+  ],
+  "declared_checks": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/result-delivery/scripts"
+      ]
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts"
+      ]
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/extensions/pi-shared-context/data.test.ts",
+        "--test-name-pattern",
+        "versioned|initiative links"
+      ]
+    }
+  ],
+  "limits": [
+    "Known broad explorer assertions data.test.ts:296 and :609 were not rerun; full explorer suite not claimed.",
+    "Historical implementation results were 142/33/5. Fixer initial85passed6failed then six targeted cases passed; historical results remain unchanged.",
+    "Initial standalone probe used noncanonical setup artifact basenames and was correctly rejected before comment preservation. Corrected supported answers.yaml paths establish reported guard scenarios.",
+    "No repeated typecheck, live tracker migration, merge or push.",
+    "Temporary process-local core.excludesfile ignored the isolated dependency link; no repository source config or resolver shim changed."
+  ]
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-04-tracker/artifacts/snapshots/finish-0013-check.ts"
+    ]
+  }
+]
