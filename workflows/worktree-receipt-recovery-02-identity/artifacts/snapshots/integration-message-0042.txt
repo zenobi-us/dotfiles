@@ -1,0 +1,5 @@
+fix(worktree): finish worktree-receipt-recovery-02-identity
+
+Integrate independently reviewed resolved source 30080a8a3302ee803cf5beeb4dd3cef1573bdf9c.
+Review: workflows/worktree-receipt-recovery-02-identity/events/review-0040.yaml
+Preserve original source 2a843de309311b624fd64e8671fb83a414d4e774.

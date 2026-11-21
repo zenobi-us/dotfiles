@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-integration-coordination-assessment/v1",
+  "observed_at": "2026-11-20T07:01:44.845Z",
+  "ticket_ref": "tracker/tickets/worktree-receipt-recovery-02-identity.md",
+  "inspection_command": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/coordination.ts",
+    "tracker/tickets/worktree-receipt-recovery-02-identity.md",
+    "--json",
+    "--scope",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree"
+  ],
+  "inventory_complete": false,
+  "proposed_reservations": [],
+  "verified_owner": "same parent herdr-app:t1rg for original and resolved source",
+  "receipt_refs": [
+    "workflows/worktree-receipt-recovery-02-identity/events/review-complete-0041.yaml",
+    "workflows/worktree-receipt-recovery-02-identity/events/review-complete-0037.yaml",
+    "workflows/worktree-receipt-recovery-04-repair/events/review-start-0004.yaml"
+  ],
+  "assessment": "04-repair and older muxer streams overlap source paths in separate worktrees but have no same-ticket reservation. Actual current-base movement since resolution review is tracker/workflow metadata only; no executable contract changes. Preserve unrelated copies/legacy goals. Validate exact combined candidate under exclusive base-branch reservation."
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "-e",
+      "const p=Bun.spawnSync([\"mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.ts\",\"tracker/tickets/worktree-receipt-recovery-02-identity.md\",\"--json\"],{stdout:\"pipe\",stderr:\"pipe\"});if(p.exitCode!==0)throw Error(new TextDecoder().decode(p.stderr));const x=JSON.parse(new TextDecoder().decode(p.stdout));if(!x.workflow.inspection.historyValid)throw Error(\"Workflow history invalid\");console.log(JSON.stringify({historyValid:true,source:x.workflow.inspection.source.state,decision:x.decision.action}));"
+    ]
+  }
+]
