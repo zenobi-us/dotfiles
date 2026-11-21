@@ -1,34 +1,41 @@
 ---
-title: Tracker implementation log
+title: Tracker implementation and repair log
 type: Report
 ---
 
 # Implementation log
 
-## Start: start-0001
+## Retained authoritative history
 
-The parent claimed the canonical ticket, created the isolated source and recorded [start-0001](../events/start-0001.yaml). The implementation session did not repeat those operations.
+- [start-0001](../events/start-0001.yaml): phase-start, start, started; source cfd5af676f097aa7eae186357502972a03e0d61e.
+- [implementation-0002](../events/implementation-0002.yaml): phase-result, implementation, completed; source b062761b4a31681f4e826c4e3dad8770e8944607.
+- [start-complete-0003](../events/start-complete-0003.yaml): phase-complete, start, completed; source b062761b4a31681f4e826c4e3dad8770e8944607.
+- [review-start-0004](../events/review-start-0004.yaml): phase-start, review, started; source b062761b4a31681f4e826c4e3dad8770e8944607.
+- [review-0005](../events/review-0005.yaml): phase-result, review, completed, verdict FAILURE; source b062761b4a31681f4e826c4e3dad8770e8944607.
+- [review-complete-0006](../events/review-complete-0006.yaml): phase-complete, review, completed; source b062761b4a31681f4e826c4e3dad8770e8944607.
+- [fix-start-0007](../events/fix-start-0007.yaml): phase-start, fix, started; source b062761b4a31681f4e826c4e3dad8770e8944607.
 
-## Implementation: implementation-0002
+## Fix: fix-0008
 
-Source commit: `b062761b4a31681f4e826c4e3dad8770e8944607`. Source tree: `c741f5a04985243460a9677166ab9d049d836e9b`.
+Validate ticket parent initiative membership before shared safe/bulk persistence. Follow supported ticket-parent hierarchies and reuse the existing complete direct-membership validator. Reject YAML with possible comments before the setup adapter can serialize it to JSON.
 
-Declared tracker-owned record, result, migration and setup contracts, with current schemaVersion outputs and explicit retained historical readers. Reused shared manifest resolution and safe/bulk upgrade policy. Added authorized owning update/upgrade commands with canonical kind/identity and complete membership preflight, raw authored-byte preservation, independent partial outcomes and rejected-byte equality. Preserved immutable migration plan/event bytes and hash chains. Coordinated normal tracker discovery, explorer consumers and tracker result validation/delivery. Setup upgrades run through shared policy only during authorized init; plan/check remain read-only. Updated owner guidance, examples/templates and required plugin/catalogue versions. No live tracker/workflow content was converted, and no merge, push, ticket completion or formal worktree review was performed.
+Source: 007dbbf52e4fc2da57ac10ebdafcf9e23c1adf4d; tree: 232b6a74548c15731a6fba4290a21936357c6ece. Selected findings SPEC-1 and SPEC-2 are fixed and verified. Review-0005 remains retained with FAILURE for its old source; that verdict is stale for this commit. No new review verdict exists.
 
-Changed files: the complete 53-file inventory is in the [versioned implementation draft](../artifacts/snapshots/pr-draft-implementation-0002.md#changed-files).
+Validation: 85 tests passed in the scoped run; six failed fixture/import cases passed in a targeted retry. The separate owning CLI smoke and staged plugin-version check passed. All temporary links/dependencies, fixtures and smoke scripts were removed.
 
-Validation: 142 owner/result tests, 33 delivery-integration tests and five explorer compatibility cases passed. Strict TypeScript, staged plugin versions and three actual command smoke scenarios passed. The draft records exact commands, outcomes and the two unrelated broad-suite expectation failures.
+- No full-suite pass is claimed. The scoped run passed 85 tests; the six failed cases passed after fixture/dependency repair in a targeted retry.
+- Known broad explorer failures data.test.ts:296 and :609 were not rerun.
+- Bun test required isolated temporary Ajv and Crust dependencies with qualified-name links. All temporary source links/dependencies and smoke scripts/fixtures were removed; no source resolver shim.
+- The YAML guard conservatively rejects any # in non-JSON YAML, including quoted strings; documented.
+- No live tracker/workflow migration, immutable plan/event rewrite, merge, push, tracker completion, or independent formal review occurred.
 
-Independent standards/specification self-check findings were resolved. Formal review completed with FAILURE; [review-0005](../events/review-0005.yaml) and [parent completion](../events/review-complete-0006.yaml) record the exact source. Five owned child processes stopped and their panes were removed. No owned services remain.
+## Next action
 
-Supporting receipt: [implementation-0002](../events/implementation-0002.yaml).
+Parent acknowledged the result, verified process shutdown and recorded [fix-complete-0009](../events/fix-complete-0009.yaml). Parent CLI checks exercised both safety boundaries with exact byte preservation and a supported uncommented-answer control. Then run a fresh independent review of the new source. Do not complete the ticket or integrate from the old FAILURE.
 
-## Unresolved questions
+## Supporting records
 
-No implementation decisions remain open. Two broad-suite explorer expectation failures concern unchanged behavior outside this cutover; preserve them for separate triage. SPEC-1 and SPEC-2 remain open in the current review; no fix phase has run.
+- [Implementation snapshot](../artifacts/snapshots/pr-draft-implementation-0002.md).
+- [Fix snapshot](../artifacts/snapshots/pr-draft-fix-0008.md).
+- [Fix result](../events/fix-0008.yaml).
 
-
-
-## Parent completion
-
-[Parent completion](../events/start-complete-0003.yaml) validates the exact clean source and authoritative result. The parent exercised historical read/check and authorized current-format mutation through the actual CLI in a disposable fixture. All owned child processes stopped; the implementation pane closed; the source workspace remains available. Formal review later completed with FAILURE; integration and push have not run.

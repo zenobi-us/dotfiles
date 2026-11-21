@@ -5,8 +5,12 @@ initiative: skill-contract-manifests
 event_root: events
 artifact_root: artifacts
 projection_root: projections
-latest_receipt: review-complete-0006
-state: REVIEW_FAILED
-latest_source_commit: b062761b4a31681f4e826c4e3dad8770e8944607
-latest_source_tree: c741f5a04985243460a9677166ab9d049d836e9b
+latest_receipt: fix-complete-0009
+state: FIXED
+latest_source_commit: 007dbbf52e4fc2da57ac10ebdafcf9e23c1adf4d
+latest_source_tree: 232b6a74548c15731a6fba4290a21936357c6ece
 parent_completion_pending: false
+latest_snapshot: artifacts/snapshots/pr-draft-fix-0008.md
+retained_review: review-0005
+retained_review_verdict: FAILURE
+retained_review_current: false
