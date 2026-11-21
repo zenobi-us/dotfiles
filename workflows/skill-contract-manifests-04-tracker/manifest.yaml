@@ -1,0 +1,12 @@
+schema: worktree-workflow/v2
+workflow_id: skill-contract-manifests-04-tracker
+ticket_ref: tracker/tickets/skill-contract-manifests-04-tracker.md
+initiative: skill-contract-manifests
+event_root: events
+artifact_root: artifacts
+projection_root: projections
+latest_receipt: start-complete-0003
+state: IMPLEMENTED
+latest_source_commit: b062761b4a31681f4e826c4e3dad8770e8944607
+latest_source_tree: c741f5a04985243460a9677166ab9d049d836e9b
+parent_completion_pending: false

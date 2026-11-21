@@ -1,0 +1,16 @@
+schema: worktree-latest-status/v1
+workflow_id: skill-contract-manifests-04-tracker
+ticket: tracker/tickets/skill-contract-manifests-04-tracker.md
+state: IMPLEMENTED
+latest_receipt: start-complete-0003
+latest_source_commit: b062761b4a31681f4e826c4e3dad8770e8944607
+latest_source_tree: c741f5a04985243460a9677166ab9d049d836e9b
+latest_review_verdict: null
+open_findings: []
+validation_limits:
+  - "Initial broad suite reported unchanged explorer assertions at data.test.ts:296 and :609; no separate baseline run."
+  - "Scoped owner/result suite (142), delivery integration (33), explorer compatibility (5), strict TypeScript and three runtime smokes passed."
+formal_review: pending-parent-dispatch
+source_clean: true
+owned_child_shutdown: confirmed
+parent_completion_pending: false
