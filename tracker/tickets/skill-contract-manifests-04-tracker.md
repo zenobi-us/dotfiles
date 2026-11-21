@@ -1,14 +1,14 @@
 ---
+schemaVersion: tracker-ticket/v2
 blocked_by: 
   - skill-contract-manifests-03-safe-upgrades
 id: skill-contract-manifests-04-tracker
 parent: skill-contract-manifests
-schema: tracker-ticket/v1
 sequence: 4
 title: Adopt contracts in tracker operations
 triage: ready-for-agent
 type: enhancement
-work_status: claimed
+work_status: "completed"
 ---
 
 ## What to build
