@@ -1,0 +1,44 @@
+[
+  {
+    "argv": [
+      "mise",
+      "trust",
+      "-y"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "-e",
+      "await require('node:fs/promises').symlink(\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-05-result-delivery/node_modules\",'node_modules','dir');console.log('Ignored candidate dependencies prepared');"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/result-delivery/scripts/delivery.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/result-delivery/scripts/router.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/spawn.test.ts",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/session-context.test.ts",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts",
+      "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.test.ts"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "-e",
+      "const fs=require('node:fs/promises'),p=require('node:path'),assert=require('node:assert/strict');const dir=await fs.mkdtemp('/tmp/delivery-integration-');const cli=p.join(process.cwd(),'mise/conf.d/devtools-agent/bundles/agent-core/skills/result-delivery/scripts/router.ts');let commands=0;async function run(args,code=0){const child=Bun.spawn([cli,...args],{cwd:dir,env:{...process.env,RESULT_DELIVERY_CONTEXT:'',MUXER_SUBAGENT_ROLE:''},stdout:'pipe',stderr:'pipe'});const [out,err,exit]=await Promise.all([new Response(child.stdout).text(),new Response(child.stderr).text(),child.exited]);assert.equal(exit,code,err);commands++;return out;}try{const ctx={schemaVersion:'result-delivery/v2',kind:'context',audience:'agent',mode:'artifact-reference',runId:'integration',operationId:'integration',target:{path:p.join(dir,'result.json'),ref:'smoke://integration',schema:'smoke-domain/v2'}};const domain={schemaVersion:'smoke-domain/v2',status:'completed',validation:{status:'passed'},ref:'smoke://integration-domain'};const cp=p.join(dir,'context.json'),ip=p.join(dir,'input.json');await fs.writeFile(cp,JSON.stringify(ctx));await fs.writeFile(ip,JSON.stringify(domain));assert.deepEqual(JSON.parse(await run(['emit','--format','json','--input',ip])),domain);const ref=JSON.parse(await run(['emit','--context',cp,'--input',ip,'--format','human']));assert.equal(ref.schemaVersion,'result-delivery/v2');assert.deepEqual(JSON.parse(await run(['read','--context',cp])),domain);await run(['ack','--context',cp,'--sha256',ref.sha256]);const before=await fs.readFile(ctx.target.path,'utf8');await run(['emit','--context',cp,'--input',ip]);await run(['ack','--context',cp,'--sha256','0'.repeat(64)],1);assert.equal(await fs.readFile(ctx.target.path,'utf8'),before);console.log(JSON.stringify({status:'passed',commands,requiredChild:true,duplicateRecovery:true,wrongHashRejected:true}));}finally{await fs.rm(dir,{recursive:true,force:true});}"
+    ]
+  }
+]

@@ -1,0 +1,4 @@
+feat(delivery): adopt skill-contract-manifests-05-result-delivery
+
+Review: review-0006 (SUCCESS)
+Reviewed source: ffe96b173909ba6836cc2ef419d97055582df8bc
