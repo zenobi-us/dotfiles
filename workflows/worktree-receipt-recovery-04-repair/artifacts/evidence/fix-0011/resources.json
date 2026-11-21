@@ -1,0 +1,12 @@
+{
+  "phase_owned_services": [],
+  "fixture_runs_retained": false,
+  "fixture_worktrees_removed": true,
+  "child_session": {
+    "muxer": "herdr-app",
+    "pane_id": "t1w9",
+    "session_id": "herdr-app:t1w9",
+    "run_id": "aa52253e-c682-4444-8842-9ca6e2aa51b9"
+  },
+  "shutdown": "No phase-owned long-lived service was started. Child session exits after publication."
+}

@@ -1,12 +1,16 @@
 schema: worktree-latest-status/v1
 workflow_id: worktree-receipt-recovery-04-repair
 ticket: tracker/tickets/worktree-receipt-recovery-04-repair.md
-state: REVIEW_FAILED
-latest_receipt: review-complete-0008
-latest_source_commit: edf4e5585799abb093d1b8df3211fe72c72da93c
-latest_source_tree: defadfc579887d577800e27302621fbbb756757d
-latest_review_verdict: FAILURE
-open_findings: [SPEC-1, SPEC-2]
+state: FIXED
+latest_receipt: fix-complete-0012
+latest_source_commit: 07c1cc32fcc9d2012dd3a370236100034ad6f51f
+latest_source_tree: 183718852c78b9f84cce3deb3b514244ff67e998
+latest_review_verdict: null
+historical_review_verdict: FAILURE
+historical_review_receipt: review-0007
+open_findings: []
+resolved_findings: [SPEC-1, SPEC-2]
+fresh_review_required: true
 parent_completion_pending: false
 merged: false
 publication_pending: true

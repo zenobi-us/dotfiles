@@ -1,0 +1,297 @@
+{
+  "status": "passed",
+  "actual_cli": true,
+  "before_history_valid": false,
+  "after_history_valid": true,
+  "ambiguous_rejected": true,
+  "changed_checksum_rejected": true,
+  "common_lock_rejected_writer_and_repair": true,
+  "stale_competing_publication_rejected": true,
+  "partial_repair": false,
+  "original_sha256": "18b092e7b54e6f908f8b57aefbdf2dd966c8f408c822146017d3c204156d058c",
+  "native_launch_sha256": "e2e01acf1dc444f5247b50026ba2eb9f698e4bf0634f3be0885510e154311097",
+  "source_record_sha256": "b73054c089665d732361592089125e5a3230d8134981dfa00082ae33bad2379f",
+  "repaired_event": "workflows/T-1/events/repair-3.yaml",
+  "original_records_preserved": true,
+  "fixture_source_commit": "c935609496dc49dc0ea5773f919fe2facf1d9b08",
+  "fixture_source_tree": "023fd4254dfe43a4b65f2002668afe1341596324",
+  "checks": [
+    {
+      "argv": [
+        "git",
+        "init",
+        "-q",
+        "-b",
+        "main",
+        "/tmp/fix-0011-smoke-OKIaya/repo"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/tmp/fix-0011-smoke-OKIaya/repo",
+        "config",
+        "user.name",
+        "Fixture"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/tmp/fix-0011-smoke-OKIaya/repo",
+        "config",
+        "user.email",
+        "fixture@example.invalid"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/tmp/fix-0011-smoke-OKIaya/repo",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/example/fix-0011-smoke-OKIaya.git"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/tmp/fix-0011-smoke-OKIaya/repo",
+        "add",
+        "."
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/tmp/fix-0011-smoke-OKIaya/repo",
+        "commit",
+        "-qm",
+        "Initial"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "wt",
+        "switch",
+        "--create",
+        "feature/T-1",
+        "--no-cd",
+        "--no-hooks"
+      ],
+      "cwd": "/tmp/fix-0011-smoke-OKIaya/repo",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "✓ Created branch feature/T-1 from main and worktree @ /tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\n"
+    },
+    {
+      "argv": [
+        "wt",
+        "list",
+        "--format=json"
+      ],
+      "cwd": "/tmp/fix-0011-smoke-OKIaya/repo",
+      "exit_code": 0,
+      "stdout": "{\n  \"schema\": 2,\n  \"repo\": {\n    \"default_branch\": \"main\",\n    \"forge\": {\n      \"url\": \"https://github.com/example/fix-0011-smoke-OKIaya\",\n      \"provider\": \"github\",\n      \"host\": \"github.com\",\n      \"owner\": \"example\",\n      \"name\": \"fix-0011-smoke-OKIaya\",\n      \"remote\": \"origin\"\n    }\n  },\n  \"collected\": {\n    \"ci\": false,\n    \"summary\": false\n  },\n  \"items\": [\n    {\n      \"branch\": \"main\",\n      \"head\": {\n        \"sha\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n        \"short_sha\": \"c935609\",\n        \"subject\": \"Initial\",\n        \"committed_at\": \"2026-11-21T07:54:14Z\"\n      },\n      \"worktree\": {\n        \"path\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n        \"main\": true,\n        \"current\": true,\n        \"previous\": true,\n        \"detached\": false,\n        \"branch_mismatch\": false,\n        \"duplicate_branch\": false,\n        \"changes\": {\n          \"staged\": false,\n          \"modified\": false,\n          \"untracked\": false,\n          \"renamed\": false,\n          \"deleted\": false,\n          \"conflicted\": false,\n          \"diff\": {\n            \"added\": 0,\n            \"deleted\": 0\n          }\n        }\n      },\n      \"display\": {\n        \"state\": \"is_main\",\n        \"symbols\": \"^\",\n        \"statusline\": \"main  \\u001b[2m^\\u001b[22m\"\n      }\n    },\n    {\n      \"branch\": \"feature/T-1\",\n      \"head\": {\n        \"sha\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n        \"short_sha\": \"c935609\",\n        \"subject\": \"Initial\",\n        \"committed_at\": \"2026-11-21T07:54:14Z\"\n      },\n      \"worktree\": {\n        \"path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n        \"main\": false,\n        \"current\": false,\n        \"previous\": false,\n        \"detached\": false,\n        \"branch_mismatch\": false,\n        \"duplicate_branch\": false,\n        \"changes\": {\n          \"staged\": false,\n          \"modified\": false,\n          \"untracked\": false,\n          \"renamed\": false,\n          \"deleted\": false,\n          \"conflicted\": false,\n          \"diff\": {\n            \"added\": 0,\n            \"deleted\": 0\n          }\n        }\n      },\n      \"default_branch\": {\n        \"ahead\": 0,\n        \"behind\": 0,\n        \"diff\": {\n          \"added\": 0,\n          \"deleted\": 0\n        },\n        \"orphan\": false,\n        \"integration\": {\n          \"reason\": \"same_commit\"\n        },\n        \"merge_conflicts\": false\n      },\n      \"display\": {\n        \"state\": \"empty\",\n        \"symbols\": \"_\",\n        \"statusline\": \"feature/T-1  \\u001b[2m_\\u001b[22m\"\n      }\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair",
+      "exit_code": 0,
+      "stdout": "c935609496dc49dc0ea5773f919fe2facf1d9b08\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair",
+      "exit_code": 0,
+      "stdout": "023fd4254dfe43a4b65f2002668afe1341596324\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.ts",
+        "tracker/tickets/T-1.md",
+        "--json"
+      ],
+      "cwd": "/tmp/fix-0011-smoke-OKIaya/repo",
+      "exit_code": 0,
+      "stdout": "{\n  \"ticket\": {\n    \"id\": \"T-1\",\n    \"title\": \"Fixture\",\n    \"fields\": {\n      \"id\": \"T-1\",\n      \"title\": \"Fixture\",\n      \"work_status\": \"claimed\",\n      \"blocked_by\": []\n    },\n    \"ref\": \"tracker/tickets/T-1.md\",\n    \"backend\": \"local-markdown\",\n    \"status\": \"claimed\",\n    \"blockedBy\": [],\n    \"body\": \"\"\n  },\n  \"workflow\": {\n    \"ticketId\": \"T-1\",\n    \"receipts\": [],\n    \"events\": [\n      {\n        \"id\": \"workflows/T-1/events/start-1.json\",\n        \"ref\": \"workflows/T-1/events/start-1.json\",\n        \"fields\": {\n          \"schema\": \"worktree-receipt/v1\",\n          \"receipt_id\": \"start-1\",\n          \"workflow_id\": \"T-1\",\n          \"event\": \"phase-start\",\n          \"phase\": \"start\",\n          \"status\": \"started\",\n          \"attempt\": 1,\n          \"parent_receipt\": null,\n          \"repository\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n          \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n          \"source_branch\": \"feature/T-1\",\n          \"base_branch\": \"main\",\n          \"source_commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n          \"source_tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\",\n          \"created_at\": \"2026-10-01T00:00:00Z\",\n          \"muxer\": \"herdr-app\",\n          \"agent\": \"omp\",\n          \"pane_id\": \"smoke-child\",\n          \"session_id\": \"8e8480fd-1616-4a9a-a6dc-3c1f72f3b7ad\",\n          \"ticket\": {\n            \"backend\": \"local-markdown\",\n            \"id\": \"T-1\",\n            \"ref\": \"tracker/tickets/T-1.md\"\n          },\n          \"ticket_ref\": \"tracker/tickets/T-1.md\",\n          \"workflow\": {\n            \"store\": \"repository\",\n            \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n            \"ref\": \"workflows/T-1\"\n          },\n          \"inputs\": [],\n          \"outputs\": []\n        },\n        \"body\": \"\",\n        \"error\": \"[path_inconsistency] Receipt worktree and workspace_path must name the same absolute worktree.\"\n      }\n    ],\n    \"inspection\": {\n      \"historyValid\": false,\n      \"historyError\": \"workflows/T-1/events/start-1.json: [path_inconsistency] Receipt worktree and workspace_path must name the same absolute worktree.\",\n      \"source\": {\n        \"state\": \"available\",\n        \"path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n        \"branch\": \"feature/T-1\",\n        \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n        \"tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\",\n        \"dirty\": false,\n        \"candidates\": 1\n      },\n      \"ownership\": \"unknown\",\n      \"worktrees\": [\n        {\n          \"path\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n          \"branch\": \"main\"\n        },\n        {\n          \"path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"branch\": \"feature/T-1\"\n        }\n      ],\n      \"commits\": [\n        {\n          \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n          \"paths\": [\n            \"docs/agents/issue-tracker.md\",\n            \"tracker/tickets/T-1.md\"\n          ],\n          \"kind\": \"source\",\n          \"relatedBy\": \"ticket-path\"\n        }\n      ],\n      \"artifacts\": []\n    },\n    \"diagnostics\": [\n      {\n        \"ref\": \"workflows/T-1/events/start-1.json\",\n        \"code\": \"path_inconsistency\",\n        \"severity\": \"error\",\n        \"message\": \"Receipt worktree and workspace_path must name the same absolute worktree.\"\n      }\n    ],\n    \"recordedAttempts\": {\n      \"review\": 0,\n      \"fix\": 0\n    },\n    \"error\": \"workflows/T-1/events/start-1.json: [path_inconsistency] Receipt worktree and workspace_path must name the same absolute worktree.\"\n  },\n  \"decision\": {\n    \"mode\": \"blocked\",\n    \"label\": \"Repair workflow history\",\n    \"reason\": \"workflows/T-1/events/start-1.json: [path_inconsistency] Receipt worktree and workspace_path must name the same absolute worktree.\",\n    \"requiredApproval\": false,\n    \"inputs\": [\n      \"tracker/tickets/T-1.md\"\n    ]\n  },\n  \"blockers\": [\n    {\n      \"code\": \"path_inconsistency\",\n      \"receiptRefs\": [\n        \"workflows/T-1/events/start-1.json\"\n      ],\n      \"evidence\": {\n        \"message\": \"Receipt worktree and workspace_path must name the same absolute worktree.\"\n      },\n      \"missingEvidence\": [\n        \"Validated receipt identity, source objects, and parent history.\"\n      ],\n      \"requiredApproval\": false,\n      \"recoveryActions\": []\n    },\n    {\n      \"code\": \"unknown_ownership\",\n      \"receiptRefs\": [],\n      \"evidence\": {\n        \"ownership\": \"unknown\",\n        \"workspace\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\"\n      },\n      \"missingEvidence\": [\n        \"Verified session liveness, reservations, and scoped ownership or takeover approval before mutation.\"\n      ],\n      \"requiredApproval\": false,\n      \"recoveryActions\": []\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/repair.ts",
+        "plan",
+        "/tmp/fix-0011-smoke-OKIaya/request.json"
+      ],
+      "cwd": "/tmp/fix-0011-smoke-OKIaya/repo",
+      "exit_code": 0,
+      "stdout": "{\n  \"schema\": \"worktree-path-repair-plan/v1\",\n  \"request\": {\n    \"ticket_ref\": \"tracker/tickets/T-1.md\",\n    \"targets\": [\n      {\n        \"ref\": \"workflows/T-1/events/start-1.json\",\n        \"source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\"\n      }\n    ]\n  },\n  \"workflow\": {\n    \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n    \"ref\": \"workflows/T-1\",\n    \"path\": \"/tmp/fix-0011-smoke-OKIaya/repo/workflows/T-1\",\n    \"store\": \"repository\"\n  },\n  \"inventory\": [\n    {\n      \"ref\": \"workflows/T-1/events/start-1.json\",\n      \"sha256\": \"18b092e7b54e6f908f8b57aefbdf2dd966c8f408c822146017d3c204156d058c\"\n    }\n  ],\n  \"repairs\": [],\n  \"blockers\": [\n    \"workflows/T-1/events/start-1.json: Parent-checkout mismatch requires retained launch records and source evidence; common Git identity is insufficient.\"\n  ],\n  \"plan_sha256\": \"85eb9a646d0aebc34e2235eade2d0eb7817f955e1240819774e74ea5afc8c6be\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/repair.ts",
+        "plan",
+        "/tmp/fix-0011-smoke-OKIaya/request.json"
+      ],
+      "cwd": "/tmp/fix-0011-smoke-OKIaya/repo",
+      "exit_code": 0,
+      "stdout": "{\n  \"schema\": \"worktree-path-repair-plan/v1\",\n  \"request\": {\n    \"ticket_ref\": \"tracker/tickets/T-1.md\",\n    \"targets\": [\n      {\n        \"ref\": \"workflows/T-1/events/start-1.json\",\n        \"source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n        \"launch_ref\": \"workflows/T-1/artifacts/snapshots/run.json\",\n        \"source_ref\": \"workflows/T-1/artifacts/snapshots/source-start.json\"\n      }\n    ]\n  },\n  \"workflow\": {\n    \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n    \"ref\": \"workflows/T-1\",\n    \"path\": \"/tmp/fix-0011-smoke-OKIaya/repo/workflows/T-1\",\n    \"store\": \"repository\"\n  },\n  \"inventory\": [\n    {\n      \"ref\": \"workflows/T-1/events/start-1.json\",\n      \"sha256\": \"18b092e7b54e6f908f8b57aefbdf2dd966c8f408c822146017d3c204156d058c\"\n    }\n  ],\n  \"repairs\": [\n    {\n      \"ref\": \"workflows/T-1/events/start-1.json\",\n      \"sha256\": \"18b092e7b54e6f908f8b57aefbdf2dd966c8f408c822146017d3c204156d058c\",\n      \"path_correction\": {\n        \"source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n        \"original_paths\": {\n          \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo\"\n        },\n        \"original_roots\": {\n          \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo\"\n        },\n        \"source\": {\n          \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"git_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git/worktrees/feature-T-1\",\n          \"common_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n          \"branch\": \"feature/T-1\",\n          \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n          \"tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\"\n        },\n        \"parent\": {\n          \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n          \"git_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n          \"common_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n          \"branch\": \"main\",\n          \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n          \"tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\"\n        },\n        \"launch_source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n        \"launch_source_root\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n        \"launch_ref\": \"workflows/T-1/artifacts/snapshots/run.json\",\n        \"launch_sha256\": \"e2e01acf1dc444f5247b50026ba2eb9f698e4bf0634f3be0885510e154311097\",\n        \"source_ref\": \"workflows/T-1/artifacts/snapshots/source-start.json\",\n        \"source_sha256\": \"b73054c089665d732361592089125e5a3230d8134981dfa00082ae33bad2379f\"\n      }\n    }\n  ],\n  \"blockers\": [],\n  \"plan_sha256\": \"a173addcef391163da6023cb7b907ac08370391ef44f22ffa165c61035eeb7cf\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/repair.ts",
+        "apply",
+        "/tmp/fix-0011-smoke-OKIaya/plan.json",
+        "/tmp/fix-0011-smoke-OKIaya/approval.json"
+      ],
+      "cwd": "/tmp/fix-0011-smoke-OKIaya/repo",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Stale repair plan: receipt checksums, source evidence, workflow route or inventory changed.\n"
+    },
+    {
+      "argv": [
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/write-result.ts",
+        "--repository",
+        "/tmp/fix-0011-smoke-OKIaya/repo",
+        "--parent-event",
+        "--input",
+        "/tmp/fix-0011-smoke-OKIaya/checkpoint.json"
+      ],
+      "cwd": "/tmp/fix-0011-smoke-OKIaya/repo",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Another receipt publication holds the workflow lock. Inspect its owner before removing an abandoned lock.\n"
+    },
+    {
+      "argv": [
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/repair.ts",
+        "apply",
+        "/tmp/fix-0011-smoke-OKIaya/plan.json",
+        "/tmp/fix-0011-smoke-OKIaya/approval.json"
+      ],
+      "cwd": "/tmp/fix-0011-smoke-OKIaya/repo",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Another receipt publication holds the workflow lock. Inspect its owner before removing an abandoned lock.\n"
+    },
+    {
+      "argv": [
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/write-result.ts",
+        "--repository",
+        "/tmp/fix-0011-smoke-OKIaya/repo",
+        "--parent-event",
+        "--input",
+        "/tmp/fix-0011-smoke-OKIaya/checkpoint.json"
+      ],
+      "cwd": "/tmp/fix-0011-smoke-OKIaya/repo",
+      "exit_code": 0,
+      "stdout": "{\n  \"schema\": \"worktree-receipt/v1\",\n  \"receipt_id\": \"checkpoint-2\",\n  \"workflow_id\": \"T-1\",\n  \"event\": \"phase-checkpoint\",\n  \"phase\": \"start\",\n  \"status\": \"started\",\n  \"attempt\": 1,\n  \"parent_receipt\": \"start-1\",\n  \"repository\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n  \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n  \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n  \"source_branch\": \"feature/T-1\",\n  \"base_branch\": \"main\",\n  \"source_commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n  \"source_tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\",\n  \"created_at\": \"2026-11-21T07:54:15.254Z\",\n  \"muxer\": \"herdr-app\",\n  \"agent\": \"omp\",\n  \"pane_id\": \"smoke-child\",\n  \"session_id\": \"8e8480fd-1616-4a9a-a6dc-3c1f72f3b7ad\",\n  \"ticket\": {\n    \"backend\": \"local-markdown\",\n    \"id\": \"T-1\",\n    \"ref\": \"tracker/tickets/T-1.md\"\n  },\n  \"ticket_ref\": \"tracker/tickets/T-1.md\",\n  \"workflow\": {\n    \"store\": \"repository\",\n    \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n    \"ref\": \"workflows/T-1\"\n  },\n  \"inputs\": [],\n  \"outputs\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/repair.ts",
+        "apply",
+        "/tmp/fix-0011-smoke-OKIaya/plan.json",
+        "/tmp/fix-0011-smoke-OKIaya/approval.json"
+      ],
+      "cwd": "/tmp/fix-0011-smoke-OKIaya/repo",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Stale repair plan: receipt checksums, source evidence, workflow route or inventory changed.\n"
+    },
+    {
+      "argv": [
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/repair.ts",
+        "plan",
+        "/tmp/fix-0011-smoke-OKIaya/request.json"
+      ],
+      "cwd": "/tmp/fix-0011-smoke-OKIaya/repo",
+      "exit_code": 0,
+      "stdout": "{\n  \"schema\": \"worktree-path-repair-plan/v1\",\n  \"request\": {\n    \"ticket_ref\": \"tracker/tickets/T-1.md\",\n    \"targets\": [\n      {\n        \"ref\": \"workflows/T-1/events/start-1.json\",\n        \"source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n        \"launch_ref\": \"workflows/T-1/artifacts/snapshots/run.json\",\n        \"source_ref\": \"workflows/T-1/artifacts/snapshots/source-start.json\"\n      }\n    ]\n  },\n  \"workflow\": {\n    \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n    \"ref\": \"workflows/T-1\",\n    \"path\": \"/tmp/fix-0011-smoke-OKIaya/repo/workflows/T-1\",\n    \"store\": \"repository\"\n  },\n  \"inventory\": [\n    {\n      \"ref\": \"workflows/T-1/events/checkpoint-2.yaml\",\n      \"sha256\": \"c340b93f14d9e13616178cb053a563609943a645f2b639da1ea06a19389eb646\"\n    },\n    {\n      \"ref\": \"workflows/T-1/events/start-1.json\",\n      \"sha256\": \"18b092e7b54e6f908f8b57aefbdf2dd966c8f408c822146017d3c204156d058c\"\n    }\n  ],\n  \"repairs\": [\n    {\n      \"ref\": \"workflows/T-1/events/start-1.json\",\n      \"sha256\": \"18b092e7b54e6f908f8b57aefbdf2dd966c8f408c822146017d3c204156d058c\",\n      \"path_correction\": {\n        \"source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n        \"original_paths\": {\n          \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo\"\n        },\n        \"original_roots\": {\n          \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo\"\n        },\n        \"source\": {\n          \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"git_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git/worktrees/feature-T-1\",\n          \"common_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n          \"branch\": \"feature/T-1\",\n          \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n          \"tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\"\n        },\n        \"parent\": {\n          \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n          \"git_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n          \"common_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n          \"branch\": \"main\",\n          \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n          \"tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\"\n        },\n        \"launch_source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n        \"launch_source_root\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n        \"launch_ref\": \"workflows/T-1/artifacts/snapshots/run.json\",\n        \"launch_sha256\": \"e2e01acf1dc444f5247b50026ba2eb9f698e4bf0634f3be0885510e154311097\",\n        \"source_ref\": \"workflows/T-1/artifacts/snapshots/source-start.json\",\n        \"source_sha256\": \"b73054c089665d732361592089125e5a3230d8134981dfa00082ae33bad2379f\"\n      }\n    }\n  ],\n  \"blockers\": [],\n  \"plan_sha256\": \"6c5246ec514ee1cb002b2c2287e29bd3983c353e15a0e166f0b99a63a8f227cf\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/repair.ts",
+        "apply",
+        "/tmp/fix-0011-smoke-OKIaya/plan.json",
+        "/tmp/fix-0011-smoke-OKIaya/approval.json"
+      ],
+      "cwd": "/tmp/fix-0011-smoke-OKIaya/repo",
+      "exit_code": 0,
+      "stdout": "{\"receipt\":\"workflows/T-1/events/repair-3.yaml\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.ts",
+        "tracker/tickets/T-1.md",
+        "--json"
+      ],
+      "cwd": "/tmp/fix-0011-smoke-OKIaya/repo",
+      "exit_code": 0,
+      "stdout": "{\n  \"ticket\": {\n    \"id\": \"T-1\",\n    \"title\": \"Fixture\",\n    \"fields\": {\n      \"id\": \"T-1\",\n      \"title\": \"Fixture\",\n      \"work_status\": \"claimed\",\n      \"blocked_by\": []\n    },\n    \"ref\": \"tracker/tickets/T-1.md\",\n    \"backend\": \"local-markdown\",\n    \"status\": \"claimed\",\n    \"blockedBy\": [],\n    \"body\": \"\"\n  },\n  \"workflow\": {\n    \"ticketId\": \"T-1\",\n    \"receipts\": [\n      {\n        \"id\": \"repair-3\",\n        \"ref\": \"workflows/T-1/events/repair-3.yaml\",\n        \"workflowId\": \"T-1\",\n        \"phase\": \"start\",\n        \"status\": \"approved\",\n        \"parentReceipt\": \"checkpoint-2\",\n        \"sourceCommit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n        \"sourceTree\": \"023fd4254dfe43a4b65f2002668afe1341596324\",\n        \"createdAt\": \"2026-11-21T07:54:16.002Z\",\n        \"workspacePath\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n        \"sourceBranch\": \"feature/T-1\",\n        \"baseBranch\": \"main\",\n        \"sessionId\": \"8e8480fd-1616-4a9a-a6dc-3c1f72f3b7ad\",\n        \"outputs\": [\n          \"workflows/T-1/events/repair-3.yaml\"\n        ],\n        \"fields\": {\n          \"schema\": \"worktree-receipt/v2\",\n          \"receipt_id\": \"repair-3\",\n          \"workflow_id\": \"T-1\",\n          \"event\": \"operator-approval\",\n          \"phase\": \"start\",\n          \"status\": \"approved\",\n          \"attempt\": 0,\n          \"parent_receipt\": \"checkpoint-2\",\n          \"repository\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n          \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"source_branch\": \"feature/T-1\",\n          \"base_branch\": \"main\",\n          \"source_commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n          \"source_tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\",\n          \"created_at\": \"2026-11-21T07:54:16.002Z\",\n          \"muxer\": \"herdr-app\",\n          \"agent\": \"omp\",\n          \"pane_id\": \"smoke-child\",\n          \"session_id\": \"8e8480fd-1616-4a9a-a6dc-3c1f72f3b7ad\",\n          \"ticket\": {\n            \"backend\": \"local-markdown\",\n            \"id\": \"T-1\",\n            \"ref\": \"tracker/tickets/T-1.md\"\n          },\n          \"ticket_ref\": \"tracker/tickets/T-1.md\",\n          \"workflow\": {\n            \"store\": \"repository\",\n            \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n            \"ref\": \"workflows/T-1\"\n          },\n          \"inputs\": [\n            {\n              \"kind\": \"receipt\",\n              \"ref\": \"workflows/T-1/events/start-1.json\"\n            },\n            {\n              \"kind\": \"launch\",\n              \"ref\": \"workflows/T-1/artifacts/snapshots/run.json\"\n            },\n            {\n              \"kind\": \"source\",\n              \"ref\": \"workflows/T-1/artifacts/snapshots/source-start.json\"\n            }\n          ],\n          \"outputs\": [\n            {\n              \"kind\": \"receipt\",\n              \"ref\": \"workflows/T-1/events/repair-3.yaml\"\n            }\n          ],\n          \"history_repair_reason\": \"Approved targeted source path repair\",\n          \"history_repair_authorization\": \"Disposable fixture exact-plan approval only\",\n          \"history_repair_plan\": {\n            \"schema\": \"worktree-path-repair-plan/v1\",\n            \"request\": {\n              \"ticket_ref\": \"tracker/tickets/T-1.md\",\n              \"targets\": [\n                {\n                  \"ref\": \"workflows/T-1/events/start-1.json\",\n                  \"source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                  \"launch_ref\": \"workflows/T-1/artifacts/snapshots/run.json\",\n                  \"source_ref\": \"workflows/T-1/artifacts/snapshots/source-start.json\"\n                }\n              ]\n            },\n            \"workflow\": {\n              \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n              \"ref\": \"workflows/T-1\",\n              \"path\": \"/tmp/fix-0011-smoke-OKIaya/repo/workflows/T-1\",\n              \"store\": \"repository\"\n            },\n            \"inventory\": [\n              {\n                \"ref\": \"workflows/T-1/events/checkpoint-2.yaml\",\n                \"sha256\": \"c340b93f14d9e13616178cb053a563609943a645f2b639da1ea06a19389eb646\"\n              },\n              {\n                \"ref\": \"workflows/T-1/events/start-1.json\",\n                \"sha256\": \"18b092e7b54e6f908f8b57aefbdf2dd966c8f408c822146017d3c204156d058c\"\n              }\n            ],\n            \"repairs\": [\n              {\n                \"ref\": \"workflows/T-1/events/start-1.json\",\n                \"sha256\": \"18b092e7b54e6f908f8b57aefbdf2dd966c8f408c822146017d3c204156d058c\",\n                \"path_correction\": {\n                  \"source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                  \"original_paths\": {\n                    \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                    \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo\"\n                  },\n                  \"original_roots\": {\n                    \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                    \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo\"\n                  },\n                  \"source\": {\n                    \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                    \"git_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git/worktrees/feature-T-1\",\n                    \"common_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n                    \"branch\": \"feature/T-1\",\n                    \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n                    \"tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\"\n                  },\n                  \"parent\": {\n                    \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n                    \"git_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n                    \"common_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n                    \"branch\": \"main\",\n                    \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n                    \"tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\"\n                  },\n                  \"launch_source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                  \"launch_source_root\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                  \"launch_ref\": \"workflows/T-1/artifacts/snapshots/run.json\",\n                  \"launch_sha256\": \"e2e01acf1dc444f5247b50026ba2eb9f698e4bf0634f3be0885510e154311097\",\n                  \"source_ref\": \"workflows/T-1/artifacts/snapshots/source-start.json\",\n                  \"source_sha256\": \"b73054c089665d732361592089125e5a3230d8134981dfa00082ae33bad2379f\"\n                }\n              }\n            ],\n            \"blockers\": []\n          },\n          \"history_repair_plan_sha256\": \"6c5246ec514ee1cb002b2c2287e29bd3983c353e15a0e166f0b99a63a8f227cf\",\n          \"history_supplements\": [\n            {\n              \"ref\": \"workflows/T-1/events/start-1.json\",\n              \"sha256\": \"18b092e7b54e6f908f8b57aefbdf2dd966c8f408c822146017d3c204156d058c\",\n              \"path_correction\": {\n                \"source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                \"original_paths\": {\n                  \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                  \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo\"\n                },\n                \"original_roots\": {\n                  \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                  \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo\"\n                },\n                \"source\": {\n                  \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                  \"git_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git/worktrees/feature-T-1\",\n                  \"common_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n                  \"branch\": \"feature/T-1\",\n                  \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n                  \"tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\"\n                },\n                \"parent\": {\n                  \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n                  \"git_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n                  \"common_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n                  \"branch\": \"main\",\n                  \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n                  \"tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\"\n                },\n                \"launch_source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                \"launch_source_root\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                \"launch_ref\": \"workflows/T-1/artifacts/snapshots/run.json\",\n                \"launch_sha256\": \"e2e01acf1dc444f5247b50026ba2eb9f698e4bf0634f3be0885510e154311097\",\n                \"source_ref\": \"workflows/T-1/artifacts/snapshots/source-start.json\",\n                \"source_sha256\": \"b73054c089665d732361592089125e5a3230d8134981dfa00082ae33bad2379f\"\n              }\n            }\n          ]\n        },\n        \"body\": \"\"\n      },\n      {\n        \"id\": \"checkpoint-2\",\n        \"ref\": \"workflows/T-1/events/checkpoint-2.yaml\",\n        \"workflowId\": \"T-1\",\n        \"phase\": \"start\",\n        \"status\": \"started\",\n        \"parentReceipt\": \"start-1\",\n        \"sourceCommit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n        \"sourceTree\": \"023fd4254dfe43a4b65f2002668afe1341596324\",\n        \"createdAt\": \"2026-11-21T07:54:15.254Z\",\n        \"workspacePath\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n        \"sourceBranch\": \"feature/T-1\",\n        \"baseBranch\": \"main\",\n        \"sessionId\": \"8e8480fd-1616-4a9a-a6dc-3c1f72f3b7ad\",\n        \"outputs\": [],\n        \"fields\": {\n          \"schema\": \"worktree-receipt/v1\",\n          \"receipt_id\": \"checkpoint-2\",\n          \"workflow_id\": \"T-1\",\n          \"event\": \"phase-checkpoint\",\n          \"phase\": \"start\",\n          \"status\": \"started\",\n          \"attempt\": 1,\n          \"parent_receipt\": \"start-1\",\n          \"repository\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n          \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"source_branch\": \"feature/T-1\",\n          \"base_branch\": \"main\",\n          \"source_commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n          \"source_tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\",\n          \"created_at\": \"2026-11-21T07:54:15.254Z\",\n          \"muxer\": \"herdr-app\",\n          \"agent\": \"omp\",\n          \"pane_id\": \"smoke-child\",\n          \"session_id\": \"8e8480fd-1616-4a9a-a6dc-3c1f72f3b7ad\",\n          \"ticket\": {\n            \"backend\": \"local-markdown\",\n            \"id\": \"T-1\",\n            \"ref\": \"tracker/tickets/T-1.md\"\n          },\n          \"ticket_ref\": \"tracker/tickets/T-1.md\",\n          \"workflow\": {\n            \"store\": \"repository\",\n            \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n            \"ref\": \"workflows/T-1\"\n          },\n          \"inputs\": [],\n          \"outputs\": []\n        },\n        \"body\": \"\"\n      },\n      {\n        \"id\": \"start-1\",\n        \"ref\": \"workflows/T-1/events/start-1.json\",\n        \"workflowId\": \"T-1\",\n        \"phase\": \"start\",\n        \"status\": \"started\",\n        \"sourceCommit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n        \"sourceTree\": \"023fd4254dfe43a4b65f2002668afe1341596324\",\n        \"createdAt\": \"2026-10-01T00:00:00Z\",\n        \"workspacePath\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n        \"sourceBranch\": \"feature/T-1\",\n        \"baseBranch\": \"main\",\n        \"sessionId\": \"8e8480fd-1616-4a9a-a6dc-3c1f72f3b7ad\",\n        \"outputs\": [],\n        \"fields\": {\n          \"schema\": \"worktree-receipt/v1\",\n          \"receipt_id\": \"start-1\",\n          \"workflow_id\": \"T-1\",\n          \"event\": \"phase-start\",\n          \"phase\": \"start\",\n          \"status\": \"started\",\n          \"attempt\": 1,\n          \"parent_receipt\": null,\n          \"repository\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n          \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"source_branch\": \"feature/T-1\",\n          \"base_branch\": \"main\",\n          \"source_commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n          \"source_tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\",\n          \"created_at\": \"2026-10-01T00:00:00Z\",\n          \"muxer\": \"herdr-app\",\n          \"agent\": \"omp\",\n          \"pane_id\": \"smoke-child\",\n          \"session_id\": \"8e8480fd-1616-4a9a-a6dc-3c1f72f3b7ad\",\n          \"ticket\": {\n            \"backend\": \"local-markdown\",\n            \"id\": \"T-1\",\n            \"ref\": \"tracker/tickets/T-1.md\"\n          },\n          \"ticket_ref\": \"tracker/tickets/T-1.md\",\n          \"workflow\": {\n            \"store\": \"repository\",\n            \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n            \"ref\": \"workflows/T-1\"\n          },\n          \"inputs\": [],\n          \"outputs\": []\n        },\n        \"body\": \"\"\n      }\n    ],\n    \"events\": [\n      {\n        \"id\": \"workflows/T-1/events/repair-3.yaml\",\n        \"ref\": \"workflows/T-1/events/repair-3.yaml\",\n        \"fields\": {\n          \"schema\": \"worktree-receipt/v2\",\n          \"receipt_id\": \"repair-3\",\n          \"workflow_id\": \"T-1\",\n          \"event\": \"operator-approval\",\n          \"phase\": \"start\",\n          \"status\": \"approved\",\n          \"attempt\": 0,\n          \"parent_receipt\": \"checkpoint-2\",\n          \"repository\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n          \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"source_branch\": \"feature/T-1\",\n          \"base_branch\": \"main\",\n          \"source_commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n          \"source_tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\",\n          \"created_at\": \"2026-11-21T07:54:16.002Z\",\n          \"muxer\": \"herdr-app\",\n          \"agent\": \"omp\",\n          \"pane_id\": \"smoke-child\",\n          \"session_id\": \"8e8480fd-1616-4a9a-a6dc-3c1f72f3b7ad\",\n          \"ticket\": {\n            \"backend\": \"local-markdown\",\n            \"id\": \"T-1\",\n            \"ref\": \"tracker/tickets/T-1.md\"\n          },\n          \"ticket_ref\": \"tracker/tickets/T-1.md\",\n          \"workflow\": {\n            \"store\": \"repository\",\n            \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n            \"ref\": \"workflows/T-1\"\n          },\n          \"inputs\": [\n            {\n              \"kind\": \"receipt\",\n              \"ref\": \"workflows/T-1/events/start-1.json\"\n            },\n            {\n              \"kind\": \"launch\",\n              \"ref\": \"workflows/T-1/artifacts/snapshots/run.json\"\n            },\n            {\n              \"kind\": \"source\",\n              \"ref\": \"workflows/T-1/artifacts/snapshots/source-start.json\"\n            }\n          ],\n          \"outputs\": [\n            {\n              \"kind\": \"receipt\",\n              \"ref\": \"workflows/T-1/events/repair-3.yaml\"\n            }\n          ],\n          \"history_repair_reason\": \"Approved targeted source path repair\",\n          \"history_repair_authorization\": \"Disposable fixture exact-plan approval only\",\n          \"history_repair_plan\": {\n            \"schema\": \"worktree-path-repair-plan/v1\",\n            \"request\": {\n              \"ticket_ref\": \"tracker/tickets/T-1.md\",\n              \"targets\": [\n                {\n                  \"ref\": \"workflows/T-1/events/start-1.json\",\n                  \"source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                  \"launch_ref\": \"workflows/T-1/artifacts/snapshots/run.json\",\n                  \"source_ref\": \"workflows/T-1/artifacts/snapshots/source-start.json\"\n                }\n              ]\n            },\n            \"workflow\": {\n              \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n              \"ref\": \"workflows/T-1\",\n              \"path\": \"/tmp/fix-0011-smoke-OKIaya/repo/workflows/T-1\",\n              \"store\": \"repository\"\n            },\n            \"inventory\": [\n              {\n                \"ref\": \"workflows/T-1/events/checkpoint-2.yaml\",\n                \"sha256\": \"c340b93f14d9e13616178cb053a563609943a645f2b639da1ea06a19389eb646\"\n              },\n              {\n                \"ref\": \"workflows/T-1/events/start-1.json\",\n                \"sha256\": \"18b092e7b54e6f908f8b57aefbdf2dd966c8f408c822146017d3c204156d058c\"\n              }\n            ],\n            \"repairs\": [\n              {\n                \"ref\": \"workflows/T-1/events/start-1.json\",\n                \"sha256\": \"18b092e7b54e6f908f8b57aefbdf2dd966c8f408c822146017d3c204156d058c\",\n                \"path_correction\": {\n                  \"source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                  \"original_paths\": {\n                    \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                    \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo\"\n                  },\n                  \"original_roots\": {\n                    \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                    \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo\"\n                  },\n                  \"source\": {\n                    \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                    \"git_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git/worktrees/feature-T-1\",\n                    \"common_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n                    \"branch\": \"feature/T-1\",\n                    \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n                    \"tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\"\n                  },\n                  \"parent\": {\n                    \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n                    \"git_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n                    \"common_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n                    \"branch\": \"main\",\n                    \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n                    \"tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\"\n                  },\n                  \"launch_source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                  \"launch_source_root\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                  \"launch_ref\": \"workflows/T-1/artifacts/snapshots/run.json\",\n                  \"launch_sha256\": \"e2e01acf1dc444f5247b50026ba2eb9f698e4bf0634f3be0885510e154311097\",\n                  \"source_ref\": \"workflows/T-1/artifacts/snapshots/source-start.json\",\n                  \"source_sha256\": \"b73054c089665d732361592089125e5a3230d8134981dfa00082ae33bad2379f\"\n                }\n              }\n            ],\n            \"blockers\": []\n          },\n          \"history_repair_plan_sha256\": \"6c5246ec514ee1cb002b2c2287e29bd3983c353e15a0e166f0b99a63a8f227cf\",\n          \"history_supplements\": [\n            {\n              \"ref\": \"workflows/T-1/events/start-1.json\",\n              \"sha256\": \"18b092e7b54e6f908f8b57aefbdf2dd966c8f408c822146017d3c204156d058c\",\n              \"path_correction\": {\n                \"source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                \"original_paths\": {\n                  \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                  \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo\"\n                },\n                \"original_roots\": {\n                  \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                  \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo\"\n                },\n                \"source\": {\n                  \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                  \"git_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git/worktrees/feature-T-1\",\n                  \"common_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n                  \"branch\": \"feature/T-1\",\n                  \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n                  \"tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\"\n                },\n                \"parent\": {\n                  \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n                  \"git_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n                  \"common_dir\": \"/tmp/fix-0011-smoke-OKIaya/repo/.git\",\n                  \"branch\": \"main\",\n                  \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n                  \"tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\"\n                },\n                \"launch_source_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                \"launch_source_root\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n                \"launch_ref\": \"workflows/T-1/artifacts/snapshots/run.json\",\n                \"launch_sha256\": \"e2e01acf1dc444f5247b50026ba2eb9f698e4bf0634f3be0885510e154311097\",\n                \"source_ref\": \"workflows/T-1/artifacts/snapshots/source-start.json\",\n                \"source_sha256\": \"b73054c089665d732361592089125e5a3230d8134981dfa00082ae33bad2379f\"\n              }\n            }\n          ]\n        },\n        \"body\": \"\"\n      },\n      {\n        \"id\": \"workflows/T-1/events/checkpoint-2.yaml\",\n        \"ref\": \"workflows/T-1/events/checkpoint-2.yaml\",\n        \"fields\": {\n          \"schema\": \"worktree-receipt/v1\",\n          \"receipt_id\": \"checkpoint-2\",\n          \"workflow_id\": \"T-1\",\n          \"event\": \"phase-checkpoint\",\n          \"phase\": \"start\",\n          \"status\": \"started\",\n          \"attempt\": 1,\n          \"parent_receipt\": \"start-1\",\n          \"repository\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n          \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"source_branch\": \"feature/T-1\",\n          \"base_branch\": \"main\",\n          \"source_commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n          \"source_tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\",\n          \"created_at\": \"2026-11-21T07:54:15.254Z\",\n          \"muxer\": \"herdr-app\",\n          \"agent\": \"omp\",\n          \"pane_id\": \"smoke-child\",\n          \"session_id\": \"8e8480fd-1616-4a9a-a6dc-3c1f72f3b7ad\",\n          \"ticket\": {\n            \"backend\": \"local-markdown\",\n            \"id\": \"T-1\",\n            \"ref\": \"tracker/tickets/T-1.md\"\n          },\n          \"ticket_ref\": \"tracker/tickets/T-1.md\",\n          \"workflow\": {\n            \"store\": \"repository\",\n            \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n            \"ref\": \"workflows/T-1\"\n          },\n          \"inputs\": [],\n          \"outputs\": []\n        },\n        \"body\": \"\"\n      },\n      {\n        \"id\": \"workflows/T-1/events/start-1.json\",\n        \"ref\": \"workflows/T-1/events/start-1.json\",\n        \"fields\": {\n          \"schema\": \"worktree-receipt/v1\",\n          \"receipt_id\": \"start-1\",\n          \"workflow_id\": \"T-1\",\n          \"event\": \"phase-start\",\n          \"phase\": \"start\",\n          \"status\": \"started\",\n          \"attempt\": 1,\n          \"parent_receipt\": null,\n          \"repository\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n          \"worktree\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"workspace_path\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n          \"source_branch\": \"feature/T-1\",\n          \"base_branch\": \"main\",\n          \"source_commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n          \"source_tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\",\n          \"created_at\": \"2026-10-01T00:00:00Z\",\n          \"muxer\": \"herdr-app\",\n          \"agent\": \"omp\",\n          \"pane_id\": \"smoke-child\",\n          \"session_id\": \"8e8480fd-1616-4a9a-a6dc-3c1f72f3b7ad\",\n          \"ticket\": {\n            \"backend\": \"local-markdown\",\n            \"id\": \"T-1\",\n            \"ref\": \"tracker/tickets/T-1.md\"\n          },\n          \"ticket_ref\": \"tracker/tickets/T-1.md\",\n          \"workflow\": {\n            \"store\": \"repository\",\n            \"root\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n            \"ref\": \"workflows/T-1\"\n          },\n          \"inputs\": [],\n          \"outputs\": []\n        },\n        \"body\": \"\"\n      }\n    ],\n    \"inspection\": {\n      \"historyValid\": true,\n      \"source\": {\n        \"state\": \"available\",\n        \"path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n        \"branch\": \"feature/T-1\",\n        \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n        \"tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\",\n        \"dirty\": false,\n        \"candidates\": 1\n      },\n      \"ownership\": \"unknown\",\n      \"worktrees\": [\n        {\n          \"path\": \"/tmp/fix-0011-smoke-OKIaya/repo\",\n          \"branch\": \"main\"\n        },\n        {\n          \"path\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\",\n          \"branch\": \"feature/T-1\"\n        }\n      ],\n      \"commits\": [\n        {\n          \"commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n          \"paths\": [\n            \"docs/agents/issue-tracker.md\",\n            \"tracker/tickets/T-1.md\"\n          ],\n          \"kind\": \"source\",\n          \"relatedBy\": \"receipt\"\n        }\n      ],\n      \"artifacts\": []\n    },\n    \"diagnostics\": [\n      {\n        \"ref\": \"workflows/T-1/events/repair-3.yaml\",\n        \"code\": \"history_supplement_applied\",\n        \"severity\": \"info\",\n        \"message\": \"Validated checksum-bound supplements repair earlier envelopes without changing their bytes.\"\n      }\n    ],\n    \"recordedAttempts\": {\n      \"review\": 0,\n      \"fix\": 0\n    },\n    \"sourceCommit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n    \"sourceTree\": \"023fd4254dfe43a4b65f2002668afe1341596324\"\n  },\n  \"decision\": {\n    \"action\": \"start\",\n    \"mode\": \"reconcile\",\n    \"label\": \"Reconcile start outcome\",\n    \"reason\": \"Start lifecycle completion alone does not prove implementation. Inspect the child outcome and actual source before recording a product result.\",\n    \"requiredApproval\": true,\n    \"parentReceipt\": \"workflows/T-1/events/repair-3.yaml\",\n    \"inputs\": [\n      \"tracker/tickets/T-1.md\",\n      \"workflows/T-1/events/repair-3.yaml\",\n      \"workflows/T-1/events/checkpoint-2.yaml\",\n      \"workflows/T-1/events/start-1.json\"\n    ]\n  },\n  \"blockers\": [\n    {\n      \"code\": \"unknown_ownership\",\n      \"receiptRefs\": [\n        \"workflows/T-1/events/repair-3.yaml\",\n        \"workflows/T-1/events/checkpoint-2.yaml\",\n        \"workflows/T-1/events/start-1.json\"\n      ],\n      \"evidence\": {\n        \"ownership\": \"unknown\",\n        \"workspace\": \"/tmp/fix-0011-smoke-OKIaya/repo.worktrees/feature-T-1\"\n      },\n      \"missingEvidence\": [\n        \"Verified session liveness, reservations, and scoped ownership or takeover approval before mutation.\"\n      ],\n      \"requiredApproval\": true,\n      \"recoveryActions\": [\n        {\n          \"action\": \"start\",\n          \"mode\": \"reconcile\",\n          \"requiredApproval\": true\n        }\n      ]\n    }\n  ]\n}\n",
+      "stderr": ""
+    }
+  ]
+}

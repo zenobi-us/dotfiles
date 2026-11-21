@@ -1,0 +1,60 @@
+{
+  "validation_results": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/repair.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair",
+      "exit_code": 0,
+      "source_commit": "07c1cc32fcc9d2012dd3a370236100034ad6f51f",
+      "source_tree": "183718852c78b9f84cce3deb3b514244ff67e998",
+      "output": "bun test v1.4.4 (38afee6c8)\n\n 11 pass\n 0 fail\n 77 expect() calls\nRan 11 tests across 1 file. [13.08s]\n\n\nWall time: 13.50 seconds"
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/tmp/worktree-fix-0011-smoke.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-worktree-receipt-recovery-04-repair",
+      "exit_code": 0,
+      "source_commit": "07c1cc32fcc9d2012dd3a370236100034ad6f51f",
+      "source_tree": "183718852c78b9f84cce3deb3b514244ff67e998",
+      "output": "{\n  \"status\": \"passed\",\n  \"actual_cli\": true,\n  \"before_history_valid\": false,\n  \"after_history_valid\": true,\n  \"ambiguous_rejected\": true,\n  \"changed_checksum_rejected\": true,\n  \"common_lock_rejected_writer_and_repair\": true,\n  \"stale_competing_publication_rejected\": true,\n  \"partial_repair\": false,\n  \"original_sha256\": \"18b092e7b54e6f908f8b57aefbdf2dd966c8f408c822146017d3c204156d058c\",\n  \"native_launch_sha256\": \"e2e01acf1dc444f5247b50026ba2eb9f698e4bf0634f3be0885510e154311097\",\n  \"source_record_sha256\": \"b73054c089665d732361592089125e5a3230d8134981dfa00082ae33bad2379f\",\n  \"repaired_event\": \"workflows/T-1/events/repair-3.yaml\",\n  \"original_records_preserved\": true,\n  \"fixture_source_commit\": \"c935609496dc49dc0ea5773f919fe2facf1d9b08\",\n  \"fixture_source_tree\": \"023fd4254dfe43a4b65f2002668afe1341596324\",\n  \"checks\": \"21 command observations retained in smoke-result.json\"\n}\n\n\nWall time: 2.55 seconds\nRan in a temporary shell while the session shell is busy with another command: session variables and functions were unavailable, and nothing set here persists."
+    }
+  ],
+  "earlier_validation_attempts": [
+    {
+      "exit_code": 1,
+      "reason": "Fixture local run variable shadowed command helper; renamed launchRun."
+    },
+    {
+      "exit_code": 1,
+      "result": "9 pass; 1 fail",
+      "reason": "Existing workflow error wording assertion no longer matched; replaced with behavior assertion that no correction is planned."
+    },
+    {
+      "exit_code": 0,
+      "result": "10 pass; 74 assertions"
+    },
+    {
+      "exit_code": 0,
+      "result": "11 pass; 77 assertions after production session and source-advance coverage"
+    }
+  ],
+  "limits": [
+    "No base integration candidate, full worktree suite, typecheck, independent review, push, tracker completion or historical repair performed."
+  ],
+  "resources": {
+    "phase_owned_services": [],
+    "fixture_runs": "Native producer fixture runs removed after retaining original bytes.",
+    "fixture_worktrees": "Disposable Worktrunk source checkouts removed by each fixture."
+  }
+}

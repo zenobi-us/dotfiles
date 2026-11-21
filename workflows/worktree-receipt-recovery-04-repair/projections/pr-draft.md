@@ -1,5 +1,6 @@
 ---
-title: "Implementation draft: receipt path repair"
+description: Fix SPEC-1 and SPEC-2 with committed source and observed validation
+title: "Current draft: receipt path repair"
 type: Concept
 ---
 
@@ -7,25 +8,19 @@ type: Concept
 
 ## Ticket summary
 
-Implement targeted, approved path repair for `tracker/tickets/worktree-receipt-recovery-04-repair.md`.
+Repair proven receipt path errors for `tracker/tickets/worktree-receipt-recovery-04-repair.md`. Use exact-plan approval and append-only supplements.
 
 ## Problem
 
-A proven source path error can block receipt inspection. Rewriting an old event would erase its provenance.
+The earlier implementation required a synthetic launch schema that no production launcher emitted. Its repair-only lock also allowed a normal writer to publish during final repair checks.
 
-## Implementation
+## Implementation summary
 
-- **Read-only plans:** Capture original SHA-256 values, original paths, corrections, source and parent identities, retained launch evidence, inventory, and blockers.
-- **Exact approval:** Recheck all observed preconditions and serialize concurrent repairs before one immutable append.
-- **Source proof:** Require retained launch and source evidence for parent-checkout mismatches. Common Git identity alone cannot select source.
-- **History:** Consume path corrections through existing supplements. Preserve originals, outcomes, parents, source objects, and verdicts. Retained proof survives detached HEAD and normal source removal.
-- **Compatibility:** Keep v1 history and v2 execution envelopes. Existing supplement types remain supported. No recovery worktree or interrupted-phase execution was added.
+SPEC-1: replace synthetic launch schema with unchanged native muxer run.json plus checksum-bound retained v1/v2 phase-start source receipts. Bind pane, muxer, agent, checkout, ticket, workflow, phase, branch and source history; preserve original bytes. SPEC-2: use one publication lock for normal writer and repair; retain final inventory, tip, source and evidence checks under the lock through immutable append.
 
 ## Source
 
-Commit: `edf4e5585799abb093d1b8df3211fe72c72da93c`. Tree: `defadfc579887d577800e27302621fbbb756757d`. Branch: `feature/worktree-receipt-recovery-04-repair`. Source is clean.
-
-Commits: `1ce4136927e0db878272b924b4f7e39ede46d6c9` and `edf4e5585799abb093d1b8df3211fe72c72da93c`. Commit hooks updated the two plugin version records.
+Commit: `07c1cc32fcc9d2012dd3a370236100034ad6f51f`. Tree: `183718852c78b9f84cce3deb3b514244ff67e998`. Branch: `feature/worktree-receipt-recovery-04-repair`. Base: `master`. Source commits: `3cdf8c17` and `07c1cc32`. Source is committed and clean. Commit hooks updated the source developer bundle to `0.2.62`; parent integration must preserve later base version history.
 
 ## Changed files
 
@@ -33,46 +28,48 @@ Commits: `1ce4136927e0db878272b924b4f7e39ede46d6c9` and `edf4e5585799abb093d1b8d
 - **File:** `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
 - **File:** `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/receipts.md`
 - **File:** `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/path-repair.ts`
+- **File:** `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/publication-lock.ts`
 - **File:** `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/repair.test.ts`
 - **File:** `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/repair.ts`
 - **File:** `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/workflow.ts`
+- **File:** `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/write-result.ts`
 
-## Validation
+## Validation results
 
-- **Scoped tests:** 147 passed, zero failed, 817 assertions across 11 files.
-- **Changed-file types:** Strict TypeScript check passed with isolated Bun and Node types.
-- **Actual CLI:** Approved repair and inspector passed in an isolated fixture. Ambiguous launch and changed checksums were rejected without a partial append. Original bytes remained unchanged.
+- **Scoped suite:** 11 tests passed, zero failed, 77 assertions on the exact committed source.
+- **Actual CLI:** Disposable repair/inspect commands changed invalid fixture history to valid history. Missing evidence, changed checksums, lock contention and a competing writer's stale plan were rejected without partial repair. Original receipt, native run and retained source bytes remained unchanged.
+- **Boundary regression:** An actual normal writer process attempted publication while apply held the common lock. A separate scenario published during apply before lock acquisition and invalidated the approved inventory.
 
-The initial bundle-wide typecheck was not clean. It included versioned Crust imports and unrelated collect-feedback errors. One local store-narrowing error was fixed; the changed-file check then passed. The final bundle-wide check was not rerun.
-
-See [validation results](../artifacts/evidence/repair-cli-smoke-0001/validation-results.json), [actual CLI result](../artifacts/evidence/repair-cli-smoke-0001/smoke-result.json), and [exercised fixture](../artifacts/evidence/repair-cli-smoke-0001/repair-cli-smoke.ts). No historical repair was applied.
+See [validation results](../artifacts/evidence/fix-0011/validation-results.json) and [CLI observations](../artifacts/evidence/fix-0011/smoke-result.json). Earlier validation exposed a fixture variable shadow and an incidental wording assertion; both were corrected. The child ran no full suite or typecheck; parent full-suite results appear below. No integration or independent review occurred.
 
 ## Review history
 
-Attempt 1 stopped after [review-start-0004](../events/review-start-0004.yaml), without a verdict. User-approved takeover is recorded in [review-takeover-0005](../events/review-takeover-0005.yaml). Attempt 2 completed with **FAILURE** in [review-0007](../events/review-0007.yaml), with [parent completion](../events/review-complete-0008.yaml). The [immutable review](../artifacts/reviews/review-review-0007.md) holds both axis reports and findings.
+1. [Implementation](../events/implementation-0002.yaml) followed [start](../events/start-0001.yaml); [parent completion](../events/start-complete-0003.yaml) retained the original source.
+2. [Review attempt 1](../events/review-start-0004.yaml) stopped without a verdict. [Authorized takeover](../events/review-takeover-0005.yaml) preserved that attempt.
+3. [Review attempt 2](../events/review-start-0006.yaml) produced [review-0007](../events/review-0007.yaml) and [immutable findings](../artifacts/reviews/review-review-0007.md). Verdict: FAILURE for `edf4e5585799abb093d1b8df3211fe72c72da93c`; Standards: no blocking findings; Spec: SPEC-1 and SPEC-2. [Review completion](../events/review-complete-0008.yaml) remains unchanged.
+4. [Ownership handoff](../events/fix-handoff-0009.yaml) authorized [fix attempt 1](../events/fix-start-0010.yaml). [Fix result](../events/fix-0011.yaml) resolves both selected findings. Parent completion is recorded in fix-complete-0012.
 
-
-Internal standards and specification checks found two issues: ignored aggregate history failures and reliance on live historical worktrees. Both were fixed and covered by passing regression cases. These checks are advisory, not the independent review phase.
+Internal implementation advisory checks were not independent review. The [original implementation draft](../artifacts/snapshots/pr-draft-implementation-0002.md) remains unchanged.
 
 ## Resolved findings
 
-- **Aggregate failures:** Plans now block broken supplements and non-path envelope defects.
-- **Retained history:** Inspection now uses approved retained proof after source removal and detached HEAD.
+- **SPEC-1:** Consume production-produced launch manifests and retained v1/v2 source receipts. Regression coverage includes session IDs distinct from run IDs and implementation commits after launch.
+- **SPEC-2:** Serialize normal event publication and repair with one lock. Real competing processes cannot append inside the repair boundary; a winning earlier publication makes the plan stale.
 
 ## Remaining findings
 
-Blocking findings SPEC-1 and SPEC-2 remain open. See [review-0007](../events/review-0007.yaml). No fix phase has run.
+No selected finding remains unresolved by this fixer. Independent review must verify both contract changes.
 
 ## Latest reviewer verdict
 
-FAILURE for `edf4e5585799abb093d1b8df3211fe72c72da93c`; Standards: zero blocking findings; Spec: two P1 findings.
+No current verdict covers `07c1cc32fcc9d2012dd3a370236100034ad6f51f`. The retained FAILURE verdict applies only to the old source. Fresh independent review is required.
 
 ## Merge status
 
-Independently reviewed with FAILURE. Not merged, pushed, or marked complete in the tracker. Parent phase completion is recorded in [start-complete-0003](../events/start-complete-0003.yaml). The parent independently exercised the CLI smoke and confirmed child shutdown. Workflow metadata is local; remote publication remains pending.
+Not integrated, pushed, or marked complete. No historical repair was authorized or applied. The base-only inspector correction `9f693d9b` was not cherry-picked or rebased into source. Parent integration must combine the common-lock change with the newer generated-context writer and preserve the inspector correction. Workflow publication is recorded by parent completion fix-complete-0012.
 
-## Receipts
 
-- **Launch:** [start-0001](../events/start-0001.yaml).
-- **Implementation:** [implementation-0002](../events/implementation-0002.yaml).
 
+## Parent completion
+
+[Parent completion](../events/fix-complete-0012.yaml) validates the exact clean source and the delivered authoritative event. All 151 worktree tests passed with 844 assertions. Retained CLI evidence checksums match. Delivery was acknowledged; fresh fixer tab agent-aa52253e in space Syncthing-Zenobius was removed, and owned-process shutdown was confirmed. Fresh independent review is required. Metadata is committed locally after this projection is generated; nothing was pushed or integrated.
