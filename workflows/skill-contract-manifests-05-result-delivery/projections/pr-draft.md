@@ -53,7 +53,7 @@ Source commit: `ffe96b173909ba6836cc2ef419d97055582df8bc`. Source tree: `d42d9df
 
 ## Review history
 
-No formal review was requested or launched. The parent owns the next phase.
+Review review-0006 returned SUCCESS. See the review completion section below.
 
 ## Resolved findings
 
@@ -65,7 +65,7 @@ None recorded.
 
 ## Latest reviewer verdict
 
-Not reviewed.
+SUCCESS for source ffe96b173909ba6836cc2ef419d97055582df8bc.
 
 ## Merge status
 
@@ -81,3 +81,13 @@ No smoke service was started. Smoke commands exited and temporary smoke files we
 - [Implementation result](../events/implementation-0002.yaml)
 - [Immutable implementation snapshot](../artifacts/snapshots/pr-draft-implementation-0002.md)
 
+
+## Review completion — review-0006
+
+Verdict: SUCCESS for source `ffe96b173909ba6836cc2ef419d97055582df8bc`. Standards: 0 findings. Spec: 0 findings. No findings remain.
+
+Reviewer validation: 147 tests passed and 13 real CLI scenarios passed. Parent regression: 41 tests passed. All review processes stopped; reviewer tab removed. Prior implementation shutdown is confirmed. Earlier pending resource observations are historical. No merge or push occurred.
+
+- [Immutable review](../artifacts/reviews/review-review-0006.md)
+- [Review result](../events/review-0006.yaml)
+- [Parent review completion](../events/review-complete-0007.yaml)
