@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "--install=fallback",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.ts",
+    "update",
+    "--repository",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "--ticket",
+    "skill-contract-manifests-04-tracker",
+    "--request",
+    "/tmp/repair-review-ikMAs8/complete-ticket.json"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "exit_code": 0,
+  "stdout": "{\n  \"backend\": \"local-markdown\",\n  \"changes\": {\n    \"dependency_edges_added\": [],\n    \"dependency_edges_removed\": [],\n    \"fields\": {\n      \"schema\": {\n        \"after\": null,\n        \"before\": \"tracker-ticket/v1\"\n      },\n      \"schemaVersion\": {\n        \"after\": \"tracker-ticket/v2\",\n        \"before\": null\n      },\n      \"work_status\": {\n        \"after\": \"completed\",\n        \"before\": \"claimed\"\n      }\n    }\n  },\n  \"initiatives\": [],\n  \"ok\": true,\n  \"operation\": \"update\",\n  \"publication\": {\n    \"details\": [\n      \"Commit and publish the updated record if its store uses Git.\"\n    ],\n    \"status\": \"required\"\n  },\n  \"rendered\": null,\n  \"schemaVersion\": \"tracker-result/v2\",\n  \"tickets\": [\n    {\n      \"blocked_by\": [\n        \"skill-contract-manifests-03-safe-upgrades\"\n      ],\n      \"id\": \"skill-contract-manifests-04-tracker\",\n      \"ref\": \"tracker/tickets/skill-contract-manifests-04-tracker.md\",\n      \"state\": \"completed\",\n      \"title\": \"Adopt contracts in tracker operations\"\n    }\n  ],\n  \"upgrade\": {\n    \"artifact\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/tickets/skill-contract-manifests-04-tracker.md\",\n    \"changed\": true,\n    \"from\": \"tracker-ticket/v1\",\n    \"status\": \"completed\",\n    \"to\": \"tracker-ticket/v2\"\n  },\n  \"validation\": {\n    \"details\": [\n      \"Validated source, lossless conversion and requested mutation before atomic persistence.\"\n    ],\n    \"status\": \"passed\"\n  }\n}\n",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\nmise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\nmise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n",
+  "runtime_limit": "Direct shebang could not resolve qualified Ajv; explicit Bun --install=fallback was required."
+}

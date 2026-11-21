@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/skills/git/cleanup-merged/scripts/cleanup-merged.ts",
+    "remove",
+    "feature/skill-contract-manifests-04-tracker",
+    "integration/b1a5bd0c-20ab-4bdf-8ff6-b09abe7a669e",
+    "--min-age=0s"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "exit_code": 0,
+  "stdout": "{\n  \"removed\": [\n    \"feature/skill-contract-manifests-04-tracker\",\n    \"integration/b1a5bd0c-20ab-4bdf-8ff6-b09abe7a669e\"\n  ],\n  \"refused\": []\n}\n",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+}

@@ -5,8 +5,8 @@ initiative: skill-contract-manifests
 event_root: events
 artifact_root: artifacts
 projection_root: projections
-latest_receipt: review-complete-0012
-state: REVIEW_PASSED
+latest_receipt: finish-complete-0019
+state: FINISHED
 latest_source_commit: 007dbbf52e4fc2da57ac10ebdafcf9e23c1adf4d
 latest_source_tree: 232b6a74548c15731a6fba4290a21936357c6ece
 parent_completion_pending: false
@@ -16,3 +16,9 @@ retained_review_verdict: FAILURE
 retained_review_current: false
 latest_review: review-0011
 latest_review_verdict: SUCCESS
+integration_commit: 5dc5d095cf0d81bc7e91566708adfee8402c6600
+integration_method: squash
+pushed: true
+ticket_completed: true
+worktree_removed: true
+workspace_closed: true

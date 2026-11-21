@@ -49,4 +49,17 @@ See [immutable review](../artifacts/reviews/review-review-0011.md), [review resu
 
 Declared checks passed 145 owner/result tests, 33 delivery tests and five filtered explorer checks. Production CLI scenarios passed and the parent exercised the current owning check. The known broad explorer failures remain outside this claim. The quoted-# probe rejected at source validation; only the valid commented-YAML probe independently proves comment-guard execution.
 
-Delivery acknowledged. All owned reviewer processes stopped and panes closed. Source and workspace remain available. No integration, merge or push has run; finish must validate the actual combined candidate.
+Delivery acknowledged. All owned reviewer processes stopped and panes closed. Reviewed objects are retained; named source and candidate workspaces are removed. The actual combined squash candidate was validated and published; completion is recorded below.
+
+
+## Finished integration
+
+**FINISHED**. Reviewed source `007dbbf52e4fc2da57ac10ebdafcf9e23c1adf4d` passed [review-0011](../events/review-0011.yaml). Squash integration `5dc5d095cf0d81bc7e91566708adfee8402c6600` matches expected tree `42b5e46f9706b0b9ede1d154599831df2b98a6f8` with base parent `2da9b2c47bbd2535e4465f90a34789ff45e5aba1`.
+
+The separate candidate passed all declared scoped checks and the actual owner CLI scenario before Worktrunk advanced `master`. Integration and canonical tracker completion were published to `origin/master`. The owning update safely converted only this ticket to `tracker-ticket/v2` while setting `completed`.
+
+Only the named source and integration branches/workspaces were removed. Worktrunk inventory, physical path checks and app inventory verified absence. Reviewed objects remain under `refs/worktree-reviews/007dbbf52e4fc2da57ac10ebdafcf9e23c1adf4d`. Unrelated OMP/Zsh edits and other worktrees remain untouched.
+
+See [terminal receipt](../events/finish-complete-0019.yaml), [candidate result](../artifacts/evidence/finish-0013/integration-result.json), [tracker operation](../artifacts/evidence/finish-0013/tracker-completion-update.json), [cleanup](../artifacts/evidence/finish-0013/cleanup-execution.json) and [final observations](../artifacts/evidence/finish-0013/final-observations.json).
+
+Runtime limit: in this checkout the owning records CLI requires `mise exec -- bun --install=fallback <absolute-records.ts> ...` to resolve qualified Ajv. An unexpected HTTPS authentication dialog was reported during validation; its expired subprocess could not be identified. Real publication used SSH and all remaining automation disabled interactive authentication without changing persistent Git settings.

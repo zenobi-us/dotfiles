@@ -1,0 +1,18 @@
+{
+  "branches": [
+    "feature/skill-contract-manifests-04-tracker",
+    "integration/b1a5bd0c-20ab-4bdf-8ff6-b09abe7a669e"
+  ],
+  "source_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-04-tracker",
+  "candidate_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-b1a5bd0c-20ab-4bdf-8ff6-b09abe7a669e",
+  "ports": [
+    13320,
+    17936
+  ],
+  "listeners": [],
+  "app_spaces": [],
+  "tracker_state": "completed",
+  "remote_observed_commit": "a27e850e394de9861741c2418cbfd120a551b797",
+  "integration_commit": "5dc5d095cf0d81bc7e91566708adfee8402c6600",
+  "user_authorization": "finish command authorizes only these named integrated branches after publication and tracker completion"
+}

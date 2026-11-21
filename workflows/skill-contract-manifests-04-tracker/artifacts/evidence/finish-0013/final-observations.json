@@ -1,0 +1,16 @@
+{
+  "source_branch": "feature/skill-contract-manifests-04-tracker",
+  "source_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-04-tracker",
+  "source_absent": true,
+  "candidate_branch": "integration/b1a5bd0c-20ab-4bdf-8ff6-b09abe7a669e",
+  "candidate_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-b1a5bd0c-20ab-4bdf-8ff6-b09abe7a669e",
+  "candidate_absent": true,
+  "branches_absent": true,
+  "app_workspaces_absent": true,
+  "tracker_ref": "tracker/tickets/skill-contract-manifests-04-tracker.md",
+  "tracker_state": "completed",
+  "tracker_publication_commit": "a27e850e394de9861741c2418cbfd120a551b797",
+  "remote_observed_commit": "a27e850e394de9861741c2418cbfd120a551b797",
+  "integration_reachable": true,
+  "tracker_reachable": true
+}
