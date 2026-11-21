@@ -5,9 +5,9 @@ initiative: worktree-receipt-recovery
 event_root: events
 artifact_root: artifacts
 projection_root: projections
-latest_receipt: fix-complete-0012
-state: FIXED
+latest_receipt: review-complete-0015
+state: REVIEW_PASSED
 parent_completion_pending: false
-reviewed: false
+reviewed: true
 merged: false
 publication_pending: true

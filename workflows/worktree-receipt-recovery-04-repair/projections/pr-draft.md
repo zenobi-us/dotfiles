@@ -40,7 +40,7 @@ Commit: `07c1cc32fcc9d2012dd3a370236100034ad6f51f`. Tree: `183718852c78b9f84cce3
 - **Actual CLI:** Disposable repair/inspect commands changed invalid fixture history to valid history. Missing evidence, changed checksums, lock contention and a competing writer's stale plan were rejected without partial repair. Original receipt, native run and retained source bytes remained unchanged.
 - **Boundary regression:** An actual normal writer process attempted publication while apply held the common lock. A separate scenario published during apply before lock acquisition and invalidated the approved inventory.
 
-See [validation results](../artifacts/evidence/fix-0011/validation-results.json) and [CLI observations](../artifacts/evidence/fix-0011/smoke-result.json). Earlier validation exposed a fixture variable shadow and an incidental wording assertion; both were corrected. The child ran no full suite or typecheck; parent full-suite results appear below. No integration or independent review occurred.
+See [validation results](../artifacts/evidence/fix-0011/validation-results.json) and [CLI observations](../artifacts/evidence/fix-0011/smoke-result.json). Earlier validation exposed a fixture variable shadow and an incidental wording assertion; both were corrected. The child ran no full suite or typecheck; parent full-suite results appear below. No integration occurred. Subsequent independent review-0014 is recorded below.
 
 ## Review history
 
@@ -58,11 +58,11 @@ Internal implementation advisory checks were not independent review. The [origin
 
 ## Remaining findings
 
-No selected finding remains unresolved by this fixer. Independent review must verify both contract changes.
+No blocking finding remains. Independent review-0014 verified both changed contracts on the frozen source.
 
 ## Latest reviewer verdict
 
-No current verdict covers `07c1cc32fcc9d2012dd3a370236100034ad6f51f`. The retained FAILURE verdict applies only to the old source. Fresh independent review is required.
+SUCCESS for `07c1cc32fcc9d2012dd3a370236100034ad6f51f` in [review-0014](../events/review-0014.yaml), with [parent completion](../events/review-complete-0015.yaml). The retained FAILURE applies only to the old source.
 
 ## Merge status
 
@@ -72,4 +72,21 @@ Not integrated, pushed, or marked complete. No historical repair was authorized 
 
 ## Parent completion
 
-[Parent completion](../events/fix-complete-0012.yaml) validates the exact clean source and the delivered authoritative event. All 151 worktree tests passed with 844 assertions. Retained CLI evidence checksums match. Delivery was acknowledged; fresh fixer tab agent-aa52253e in space Syncthing-Zenobius was removed, and owned-process shutdown was confirmed. Fresh independent review is required. Metadata is committed locally after this projection is generated; nothing was pushed or integrated.
+[Parent completion](../events/fix-complete-0012.yaml) validates the exact clean source and the delivered authoritative event. All 151 worktree tests passed with 844 assertions. Retained CLI evidence checksums match. Delivery was acknowledged; fresh fixer tab agent-aa52253e in space Syncthing-Zenobius was removed, and owned-process shutdown was confirmed. Subsequent independent review-0014 records SUCCESS below. Metadata is committed locally after this projection is generated; nothing was pushed or integrated.
+
+
+## review-0014
+
+[Independent review](../artifacts/reviews/review-review-0014.md) records SUCCESS for `07c1cc32fcc9d2012dd3a370236100034ad6f51f`, tree `183718852c78b9f84cce3deb3b514244ff67e998`, against base `b28ac03c576f12248bccdabe3f55636c35d5e668`. Standards: zero findings. Spec: zero findings. [Parent completion](../events/review-complete-0015.yaml) validates the [review result](../events/review-0014.yaml), unchanged source, tracker comment, and resource shutdown. Earlier review artifacts and receipts remain unchanged.
+
+### Verification
+
+The reviewer ran 151 worktree tests and 22 muxer spawn tests with no failures. The actual plan/apply/inspect CLI smoke passed and rejected stale-plan reuse without altering original records. The parent acceptance command ran 11 repair tests with no failures. No typecheck or combined integration candidate was run.
+
+### Publication and cleanup
+
+The ticket comment is committed locally in `06561664`. Delivery is acknowledged. All three new review tabs are closed and owned-process shutdown is confirmed. The reviewer reported SIGKILL escalation for one stuck owned Standards child; exact identities and observations remain in the immutable artifact and completion receipt. Source is preserved; nothing was merged or pushed.
+
+### Integration requirements
+
+Preserve the newer generated-context writer, base inspector approval handling, and later aligned plugin versions when combining this source with base. Run the recorded integration checks on the combined candidate. SUCCESS covers frozen source only.
