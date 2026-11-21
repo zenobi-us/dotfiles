@@ -19,9 +19,10 @@ For worktree child phase results, use the worktree scripts/write-result.ts comma
 
 ## Record contract
 
-Context schema is result-delivery/v1, kind context. Required fields are audience and mode. Artifact mode requires runId, operationId and target with an absolute path, approved ref and expected domain schema. Artifact audience is agent. Human and machine contexts do not need a target.
+New contexts use schemaVersion: result-delivery/v2 and kind context. The explicit historical reader accepts schema: result-delivery/v1 without changing the file. Required fields are audience and mode. Artifact mode requires runId, operationId and target with an absolute path, approved ref and expected domain schema. Artifact audience is agent. Human and machine contexts do not need a target.
 
-The immutable transport record uses the same family, kind result. It binds the run, operation, reference, expected schema, canonical payload hash and unchanged domain object. A reference uses kind reference. Matching duplicate delivery succeeds without rewriting the record. Conflicting content or identity fails. Unknown context versions fail.
+New immutable transport records use schemaVersion: result-delivery/v2 and kind result. References and acknowledgements use that same current identity. Historical v1 envelopes, references and acknowledgement sidecars remain readable without conversion. See contracts.md for the authoritative definitions. It binds the run, operation, reference, expected schema, canonical payload hash and unchanged domain object. A reference uses kind reference. Matching duplicate delivery succeeds without rewriting the record. Conflicting content or identity fails. Unknown context versions fail.
 
 Write only to a caller-approved target with existing parent directories. Publication is atomic and exclusive. The parent validates the complete result before use. Result files remain outside transient muxer signal storage and survive terminal waits. An acknowledgement sidecar records acceptance; cleanup of an owned transport spool is a separate explicit action.
+
 

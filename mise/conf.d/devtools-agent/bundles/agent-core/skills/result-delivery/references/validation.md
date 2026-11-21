@@ -1,6 +1,6 @@
 # Result delivery validation
 
-Version: result-delivery/v1. Reader: skill maintainers. Purpose: record the observed output failure and the checks that prevent its return.
+Version: result-delivery/v2. Historical input: result-delivery/v1. Reader: skill maintainers. Purpose: record the observed output failure and the checks that prevent its return.
 
 - [Observed baseline](#observed-baseline)
 - [Pressure cases and counters](#pressure-cases-and-counters)
@@ -63,4 +63,9 @@ The human-session walkthrough chose references/human-session.md and retained loc
 This cutover adds the result-delivery router and four delivery playbooks. It adds immutable transport envelopes and acknowledgements without changing tracker-result/v1 or worktree-receipt/v1. It adds explicit muxer session metadata and retained parent-assigned targets. The ticket CLI binds only selected terminal operations. The worktree result writer stores authoritative YAML and transports the same object in one command.
 
 Artifact storage currently requires Linux, /proc/self/fd and shared filesystem access. Other artifact backends and native structured-result adapters are not implemented or advertised. Transport does not commit, push or replace domain publication rules.
+
+
+## Contract cutover checks
+
+Run the delivery and router tests with the muxer spawn/session-context tests, worktree delivery integration tests and tracker records tests. Exercise the actual router from an unrelated directory. Check human and machine output, required child delivery despite --format human, read, ack and recovery after a lost reference. Read retained v1 contexts, envelopes, references and acknowledgements. Confirm identical bytes after recovery, duplicate delivery and rejected payloads. Reject unknown, missing, dual and relabelled identities. Resolve both manifest definitions through the shared skill-contracts router.
 

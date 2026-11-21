@@ -15,7 +15,7 @@ const result = { schema: "example-result/v1", summary: "Operation failed", statu
 beforeEach(async () => {
   root = await mkdtemp(join(tmpdir(), "result-delivery-cli-"));
   const path = join(root, "result.json");
-  context = { schema: "result-delivery/v1", kind: "context", audience: "agent", mode: "artifact-reference", runId: "cli-run", operationId: "cli-operation", target: { path, ref: pathToFileURL(path).href, schema: result.schema } };
+  context = { schemaVersion: "result-delivery/v2", kind: "context", audience: "agent", mode: "artifact-reference", runId: "cli-run", operationId: "cli-operation", target: { path, ref: pathToFileURL(path).href, schema: result.schema } };
   contextFile = join(root, "context.json");
   await writeFile(contextFile, JSON.stringify(context));
 });
@@ -45,13 +45,13 @@ describe("public delivery CLI", () => {
     const routed = await cli(["route"]);
     expect(routed.code).toBe(0);
     expect(routed.stderr).toBe("");
-    expect(JSON.parse(routed.stdout)).toEqual({ schema: "result-delivery/v1", kind: "context", audience: "human", mode: "human" });
+    expect(JSON.parse(routed.stdout)).toEqual({ schemaVersion: "result-delivery/v2", kind: "context", audience: "human", mode: "human" });
     expect(await readdir(root)).toEqual(["context.json"]);
   });
 
   test("explicit context overrides the environment and relative explicit paths fail", async () => {
     const humanFile = join(root, "human.json");
-    const human = { schema: "result-delivery/v1", kind: "context", audience: "human", mode: "human" };
+    const human = { schemaVersion: "result-delivery/v2", kind: "context", audience: "human", mode: "human" };
     await writeFile(humanFile, JSON.stringify(human));
     const routed = await cli(["route", "--context", humanFile], { context: contextFile });
     expect(routed.code).toBe(0);
@@ -189,6 +189,85 @@ describe("child context and concise CLI presentation", () => {
     const json = await cli(["emit", "--format", "json"], { stdin: JSON.stringify(domain) });
     expect(json.code).toBe(0);
     expect(JSON.parse(json.stdout)).toEqual(domain);
+  });
+});
+
+describe("historical transport recovery", () => {
+  test("recovers v1 context, envelope, reference and acknowledgement without rewriting history", async () => {
+    const emitted = await cli(["emit"], { context: contextFile, stdin: JSON.stringify(result) });
+    expect(emitted.code).toBe(0);
+    const currentReference = JSON.parse(emitted.stdout);
+    const historical = (value: Record<string, unknown>) => {
+      const { schemaVersion: _identity, ...fields } = value;
+      return { schema: "result-delivery/v1", ...fields };
+    };
+    const referenceFile = join(root, "reference.json");
+    const acknowledgementFile = `${context.target!.path}.ack.json`;
+    const retained = new Map([
+      [contextFile, JSON.stringify(historical(context as unknown as Record<string, unknown>), null, 2)],
+      [context.target!.path, JSON.stringify(historical(JSON.parse(await readFile(context.target!.path, "utf8"))), null, 2)],
+      [referenceFile, JSON.stringify(historical(currentReference), null, 2)],
+      [acknowledgementFile, JSON.stringify({ ...historical(currentReference), kind: "acknowledgement" }, null, 2)],
+    ]);
+    for (const [file, bytes] of retained) await writeFile(file, bytes);
+    const routed = await cli(["route"], { context: contextFile });
+    expect(routed.code).toBe(0);
+    expect(JSON.parse(routed.stdout)).toEqual(context);
+    const recovered = await cli(["read", "--reference", referenceFile], { context: contextFile });
+    expect(recovered.code).toBe(0);
+    expect(JSON.parse(recovered.stdout)).toEqual(result);
+    const duplicate = await cli(["emit"], { context: contextFile, stdin: JSON.stringify(result) });
+    expect(duplicate.code).toBe(0);
+    expect(JSON.parse(duplicate.stdout)).toEqual(currentReference);
+    const ack = await cli(["ack", "--sha256", currentReference.sha256], { context: contextFile });
+    expect(ack.code).toBe(0);
+    expect(JSON.parse(ack.stdout)).toEqual({ ...currentReference, kind: "acknowledgement" });
+    const conflict = await cli(["emit"], { context: contextFile, stdin: JSON.stringify({ ...result, status: "changed" }) });
+    expect(conflict.code).not.toBe(0);
+    expect(conflict.stdout).toBe("");
+    for (const [file, bytes] of retained) expect(await readFile(file, "utf8")).toBe(bytes);
+  });
+
+  test("rejects unknown, unversioned, dual and relabelled transport without changing retained bytes", async () => {
+    const emitted = await cli(["emit"], { context: contextFile, stdin: JSON.stringify(result) });
+    expect(emitted.code).toBe(0);
+    const reference = JSON.parse(emitted.stdout);
+    const referenceFile = join(root, "reference.json");
+    const originalEnvelope = await readFile(context.target!.path, "utf8");
+    const { schemaVersion: _identity, ...unversioned } = reference;
+    for (const invalid of [
+      unversioned,
+      { ...reference, schemaVersion: "result-delivery/v99" },
+      { ...reference, schema: "result-delivery/v1" },
+      { ...reference, schemaVersion: "result-delivery/v1" },
+      { ...unversioned, schema: "result-delivery/v2" },
+      { ...reference, sha256: "0".repeat(64) },
+      { ...reference, operationId: "different-operation" },
+    ]) {
+      const bytes = JSON.stringify(invalid);
+      await writeFile(referenceFile, bytes);
+      const rejected = await cli(["read", "--reference", referenceFile], { context: contextFile });
+      expect(rejected.code).not.toBe(0);
+      expect(rejected.stdout).toBe("");
+      expect(await readFile(referenceFile, "utf8")).toBe(bytes);
+      expect(await readFile(context.target!.path, "utf8")).toBe(originalEnvelope);
+    }
+    for (const identity of [
+      { schemaVersion: "result-delivery/v99" },
+      { schemaVersion: "result-delivery/v1" },
+      { schema: "result-delivery/v2" },
+      { schema: "result-delivery/v1", schemaVersion: "result-delivery/v2" },
+      {},
+    ]) {
+      const { schemaVersion: _contextIdentity, ...fields } = context;
+      const bytes = JSON.stringify({ ...fields, ...identity });
+      await writeFile(contextFile, bytes);
+      const rejected = await cli(["emit"], { context: contextFile, stdin: JSON.stringify(result) });
+      expect(rejected.code).not.toBe(0);
+      expect(rejected.stdout).toBe("");
+      expect(await readFile(contextFile, "utf8")).toBe(bytes);
+      expect(await readFile(context.target!.path, "utf8")).toBe(originalEnvelope);
+    }
   });
 });
 

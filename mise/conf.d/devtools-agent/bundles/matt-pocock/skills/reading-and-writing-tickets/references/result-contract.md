@@ -81,7 +81,7 @@ For an unsupported backend or missing prerequisite, return a failed validation a
 
 ## Historical result and migration contracts
 
-New results use only `schemaVersion: tracker-result/v2`. The delivery target names `tracker-result/v2`; transport contexts and envelopes retain their independently owned `result-delivery/v1` fields. Explicit historical results use only `schema: tracker-result/v1`. Reject dual identity fields and unknown explicit identifiers. Historical acceptance does not permit new v1 output.
+New results use only `schemaVersion: tracker-result/v2`. The delivery target names `tracker-result/v2`; transport contexts and envelopes use their independently owned `schemaVersion: result-delivery/v2` contract. Explicit historical v1 transport remains readable without rewriting stored bytes. Explicit historical results use only `schema: tracker-result/v1`. Reject dual identity fields and unknown explicit identifiers. Historical acceptance does not permit new v1 output.
 
 New migration plans use `schemaVersion: tracker-migration-plan/v2`. New immutable migration events use `schemaVersion: tracker-migration/v2`. Read retained v1 plans and event chains through explicit v1 readers without changing stored bytes, property order, IDs, or hashes. Already-applied v1 plans support read-only check and idempotent apply. For an unapplied v1 plan, verify its retained semantics, then create and approve a v2 plan before any new record writes.
 
@@ -98,3 +98,4 @@ The records CLI validates each domain result before delivery. Resolve the instal
 ```
 
 The command validates the exact current or historical contract and prints the unchanged result. It does not rewrite the input or consume an inherited delivery handoff. Unknown identifiers, dual identity fields and malformed record membership fail without output. Transport identity checks do not replace this owning content validator.
+

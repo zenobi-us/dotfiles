@@ -14,7 +14,8 @@ Produce the domain result once. Deliver it through the caller's contract. Show h
 3. At the selected result boundary, load the explicit context file or RESULT_DELIVERY_CONTEXT. Without a contract, use human presentation. An explicit child role without a context is an error, not permission to choose human output. A muxer name, depth, agent executable or TTY is not an audience decision.
 4. Select one reference from the table. Keep a required parent artifact handoff even when a human presentation flag is present. Read the recovery reference if delivery fails.
 5. Bind only the selected final operation. Intermediate checks must not fill the parent's final-result target. The ticket records CLI uses --deliver or an explicit --delivery-context to select that boundary. Use the operation CLI or import scripts/delivery.ts at the operation boundary. Do not add a second child reporting call merely to copy the result. The emit command is also available for prepared results and explicit delivery recovery.
-6. Keep transport status separate from domain outcome, phase receipts and process completion. Never repeat a completed mutation to repair delivery.
+6. Read references/contracts.md for accepted versions, authoritative definitions and immutable-history rules. New transport output uses only schemaVersion: result-delivery/v2.
+7. Keep transport status separate from domain outcome, phase receipts and process completion. Never repeat a completed mutation to repair delivery.
 
 ## Reference router
 
@@ -41,4 +42,5 @@ Artifact I/O currently requires Linux with /proc/self/fd and existing target par
 - **Completed review means success:** Show the review verdict and blocking findings. A completed review can have verdict FAILURE.
 
 Read references/validation.md when changing the route or checking the observed baseline, pressure cases and regression coverage.
+
 

@@ -2,7 +2,7 @@
 // This CLI exposes the same delivery boundary used directly by operation CLIs.
 import { Crust } from "@crustjs/core@^0.0.19";
 import { helpPlugin } from "@crustjs/plugins@^0.1.2";
-import { acknowledgeResult, deliverResult, loadDeliveryContext, readDeliveredResult } from "./delivery.ts";
+import { acknowledgeResult, deliverResult, loadDeliveryContext, readDeliveredResult, readDeliveryReference } from "./delivery.ts";
 
 const app = new Crust("result-delivery").meta({
   description: "Route result output, publish durable artifacts, and verify or acknowledge a handoff.",
@@ -52,10 +52,15 @@ const emit = app.sub("emit")
 
 const read = app.sub("read")
   .meta({ description: "Verify artifact schema, identity and hash, then print the unchanged domain result as JSON." })
-  .flags(contextFlag)
+  .flags({
+    ...contextFlag,
+    reference: { type: "string", description: "Verify a retained v1 or current reference file against the assigned artifact before reading." },
+  })
   .run(async ({ flags }) => {
     await reportErrors(async () => {
-      const delivered = await readDeliveredResult(await loadDeliveryContext(flags.context));
+      const context = await loadDeliveryContext(flags.context);
+      if (flags.reference !== undefined) await readDeliveryReference(flags.reference, context);
+      const delivered = await readDeliveredResult(context);
       console.log(JSON.stringify(delivered.result, null, 2));
     });
   });
@@ -71,7 +76,7 @@ const ack = app.sub("ack")
       if (flags.sha256 === undefined) throw new Error("ack requires --sha256.");
       const context = await loadDeliveryContext(flags.context);
       await acknowledgeResult(context, flags.sha256);
-      console.log(JSON.stringify({ schema: "result-delivery/v1", kind: "acknowledgement", runId: context.runId, operationId: context.operationId, sha256: flags.sha256, ref: context.target!.ref, resultSchema: context.target!.schema }));
+      console.log(JSON.stringify({ schemaVersion: "result-delivery/v2", kind: "acknowledgement", runId: context.runId, operationId: context.operationId, sha256: flags.sha256, ref: context.target!.ref, resultSchema: context.target!.schema }));
     });
   });
 

@@ -61,7 +61,7 @@ async function fixture(retained = true) {
   async function context(schema: string, operationId: string) {
     const file = join(directory, operationId + ".context.json");
     const target = join(directory, operationId + ".result.json");
-    await writeFile(file, JSON.stringify({ schema: "result-delivery/v1", kind: "context", audience: "agent", mode: "artifact-reference", runId: "integration-run", operationId, target: { path: target, ref: pathToFileURL(target).href, schema } }));
+    await writeFile(file, JSON.stringify({ schemaVersion: "result-delivery/v2", kind: "context", audience: "agent", mode: "artifact-reference", runId: "integration-run", operationId, target: { path: target, ref: pathToFileURL(target).href, schema } }));
     return { file, target };
   }
   const receipt: Record<string, unknown> = { schema: "worktree-receipt/v1", event: "phase-result", receipt_id: "implementation-0002", workflow_id: "TASK-1", phase: "implementation", attempt: 1, parent_receipt: "start-0001", repository, worktree: repository, source_branch: "main", base_branch: "main", source_commit: commit, source_tree: tree, created_at: new Date().toISOString(), muxer: "tmux", workspace_path: repository, pane_id: "test-pane", agent: "omp", session_id: "test-session", ticket: { backend: "local-markdown", id: "TASK-1", ref: "tracker/tickets/TASK-1.md" }, workflow: { store: workflow.store, root: workflow.root, ref: workflow.ref }, ticket_ref: "tracker/tickets/TASK-1.md", inputs: [{ kind: "receipt", ref: "start-0001" }], outputs: [{ kind: "receipt", ref: "implementation-0002" }], status: "completed", changed_files: [], validation: [{ command: "smoke", result: "passed" }], summary: "Checked the delivery workflow", open_questions: [] };

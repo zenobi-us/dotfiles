@@ -4,9 +4,14 @@ import { createHash, randomUUID } from "node:crypto";
 import { constants } from "node:fs";
 import { link, open, unlink, type FileHandle } from "node:fs/promises";
 import { basename, dirname, isAbsolute, normalize } from "node:path";
+import Ajv from "ajv@^8.17.1";
+import { fileURLToPath } from "node:url";
+import { loadContracts } from "../../skill-contracts/scripts/contracts.ts";
+import currentDefinition from "../references/contracts/delivery-v2.json";
+import historicalDefinition from "../references/contracts/delivery-v1.json";
 
 export interface DeliveryContext {
-  schema: "result-delivery/v1";
+  schemaVersion: "result-delivery/v2";
   kind: "context";
   audience: "human" | "agent" | "machine";
   mode: "human" | "json" | "artifact-reference";
@@ -20,14 +25,19 @@ type ArtifactContext = DeliveryContext & {
   operationId: string;
   target: { path: string; ref: string; schema: string };
 };
-const SCHEMA = "result-delivery/v1";
+const SCHEMA = "result-delivery/v2";
+const skillRoot = fileURLToPath(new URL("../", import.meta.url));
+const ajv = new Ajv({ allErrors: true, ownProperties: true });
+const validators = {
+  "result-delivery/v1": ajv.compile(historicalDefinition),
+  "result-delivery/v2": ajv.compile(currentDefinition),
+};
 
 /** Rejects malformed contexts, including incomplete artifact identities. */
 export function parseDeliveryContext(value: unknown): DeliveryContext {
   const context = object(value, "Delivery context");
-  if (context.schema !== SCHEMA || context.kind !== "context") {
-    throw new Error("Delivery context must use schema result-delivery/v1 and kind context.");
-  }
+  assertTransportIdentity(context);
+  if (context.kind !== "context") throw new Error("Delivery context must use kind context.");
   if (!["human", "agent", "machine"].includes(context.audience as string)) {
     throw new Error("Delivery audience must be human, agent, or machine.");
   }
@@ -37,7 +47,7 @@ export function parseDeliveryContext(value: unknown): DeliveryContext {
   const expectedAudience = context.mode === "human" ? "human" : context.mode === "json" ? "machine" : "agent";
   if (context.audience !== expectedAudience) throw new Error("Delivery audience must match mode: human/human, machine/json, or agent/artifact-reference.");
   const parsed: DeliveryContext = {
-    schema: SCHEMA,
+    schemaVersion: SCHEMA,
     kind: "context",
     audience: context.audience as DeliveryContext["audience"],
     mode: context.mode as DeliveryContext["mode"],
@@ -54,15 +64,17 @@ export function parseDeliveryContext(value: unknown): DeliveryContext {
     };
   }
   if (parsed.mode === "artifact-reference") artifactContext(parsed);
+  assertTransport(context, "context");
   return parsed;
 }
 
 /** Explicit paths take precedence over RESULT_DELIVERY_CONTEXT; otherwise use human output. */
 export async function loadDeliveryContext(file?: string): Promise<DeliveryContext> {
+  await loadContracts(skillRoot);
   const path = file ?? process.env.RESULT_DELIVERY_CONTEXT;
   if (path === undefined) {
     if (process.env.MUXER_SUBAGENT_ROLE === "child") throw new Error("Child result delivery requires an explicit context file or RESULT_DELIVERY_CONTEXT.");
-    return { schema: SCHEMA, kind: "context", audience: "human", mode: "human" };
+    return { schemaVersion: SCHEMA, kind: "context", audience: "human", mode: "human" };
   }
   if (!isAbsolute(path)) throw new Error("Delivery context file must be an absolute path.");
   return parseDeliveryContext(await readJsonFile(path));
@@ -70,6 +82,7 @@ export async function loadDeliveryContext(file?: string): Promise<DeliveryContex
 
 /** Returns display text, or a reference only after durable artifact publication. */
 export async function deliverResult(result: Record<string, unknown>, context: DeliveryContext): Promise<string> {
+  await loadContracts(skillRoot);
   const parsed = parseDeliveryContext(context);
   object(result, "Domain result");
   const canonical = canonicalJson(result);
@@ -78,10 +91,10 @@ export async function deliverResult(result: Record<string, unknown>, context: De
   const artifact = artifactContext(parsed);
   validateResult(result, artifact);
   const sha256 = digest(canonical);
-  const envelope = { schema: SCHEMA, kind: "result", runId: artifact.runId, operationId: artifact.operationId, sha256, ref: artifact.target.ref, resultSchema: artifact.target.schema, result: JSON.parse(canonical) };
+  const envelope = { schemaVersion: SCHEMA, kind: "result", runId: artifact.runId, operationId: artifact.operationId, sha256, ref: artifact.target.ref, resultSchema: artifact.target.schema, result: JSON.parse(canonical) };
   const directory = await openParent(artifact.target.path);
   try {
-    await publishImmutableAt(directory, basename(artifact.target.path), `${canonicalJson(envelope)}\n`);
+    await publishTransportAt(directory, basename(artifact.target.path), envelope);
     await readEnvelope(directory, basename(artifact.target.path), artifact);
   } finally {
     await directory.close();
@@ -91,6 +104,7 @@ export async function deliverResult(result: Record<string, unknown>, context: De
 
 /** Verifies identity, expected domain schema, and canonical content hash before returning data. */
 export async function readDeliveredResult(context: DeliveryContext): Promise<{ result: Record<string, unknown>; reference: Record<string, unknown> }> {
+  await loadContracts(skillRoot);
   const artifact = artifactContext(parseDeliveryContext(context));
   const directory = await openParent(artifact.target.path);
   try {
@@ -102,13 +116,14 @@ export async function readDeliveredResult(context: DeliveryContext): Promise<{ r
 
 /** Writes an immutable matching .ack.json sidecar; never removes the canonical result. */
 export async function acknowledgeResult(context: DeliveryContext, sha256: string): Promise<void> {
+  await loadContracts(skillRoot);
   if (!/^[a-f0-9]{64}$/.test(sha256)) throw new Error("Acknowledgement sha256 must be 64 lowercase hexadecimal characters.");
   const artifact = artifactContext(parseDeliveryContext(context));
   const directory = await openParent(artifact.target.path);
   try {
     const delivered = await readEnvelope(directory, basename(artifact.target.path), artifact);
     if (delivered.reference.sha256 !== sha256) throw new Error("Acknowledgement hash does not match the delivered result.");
-    await publishImmutableAt(directory, `${basename(artifact.target.path)}.ack.json`, `${canonicalJson({ ...delivered.reference, kind: "acknowledgement" })}\n`);
+    await publishTransportAt(directory, `${basename(artifact.target.path)}.ack.json`, { ...delivered.reference, kind: "acknowledgement" });
   } finally {
     await directory.close();
   }
@@ -157,10 +172,9 @@ function text(value: unknown, field: string): string {
 }
 
 function validateResult(result: Record<string, unknown>, context: ArtifactContext): void {
-  // Tracker owns the v2 field cutover. Other domain families retain their contracts.
-  const currentTracker = context.target.schema === "tracker-result/v2";
-  const identity = currentTracker ? result.schemaVersion : result.schema;
-  if (identity !== context.target.schema || (currentTracker && Object.hasOwn(result, "schema")) || (context.target.schema === "tracker-result/v1" && Object.hasOwn(result, "schemaVersion"))) throw new Error("Domain result schema does not match target.schema.");
+  // The owner validates domain structure. Transport checks only the assigned identity.
+  const identity = Object.hasOwn(result, "schemaVersion") ? result.schemaVersion : result.schema;
+  if (identity !== context.target.schema || (Object.hasOwn(result, "schema") && Object.hasOwn(result, "schemaVersion"))) throw new Error("Domain result schema does not match target.schema.");
 }
 
 function canonicalJson(value: unknown, ancestors = new Set<object>()): string {
@@ -193,18 +207,64 @@ function digest(canonical: string): string {
 }
 
 function reference(context: ArtifactContext, sha256: string): Record<string, unknown> {
-  return { schema: SCHEMA, kind: "reference", runId: context.runId, operationId: context.operationId, sha256, ref: context.target.ref, resultSchema: context.target.schema };
+  return { schemaVersion: SCHEMA, kind: "reference", runId: context.runId, operationId: context.operationId, sha256, ref: context.target.ref, resultSchema: context.target.schema };
 }
 
 async function readEnvelope(directory: FileHandle, name: string, context: ArtifactContext): Promise<{ result: Record<string, unknown>; reference: Record<string, unknown> }> {
   const envelope = object(await readJsonFile(at(directory, name)), "Result envelope");
-  if (envelope.schema !== SCHEMA || envelope.kind !== "result") throw new Error("Invalid result envelope schema or kind.");
+  assertTransport(envelope, "result");
   if (envelope.runId !== context.runId || envelope.operationId !== context.operationId || envelope.ref !== context.target.ref || envelope.resultSchema !== context.target.schema) throw new Error("Result envelope identity does not match the delivery context.");
   const result = object(envelope.result, "Domain result");
   validateResult(result, context);
   const sha256 = digest(canonicalJson(result));
   if (envelope.sha256 !== sha256) throw new Error("Result envelope hash does not match its content.");
   return { result, reference: reference(context, sha256) };
+}
+
+/** Read a retained v1 or current reference without rewriting it or trusting its payload hash. */
+export async function readDeliveryReference(file: string, context: DeliveryContext): Promise<Record<string, unknown>> {
+  await loadContracts(skillRoot);
+  const retained = object(await readJsonFile(absoluteFilePath(file)), "Delivery reference");
+  assertTransport(retained, "reference");
+  const delivered = await readDeliveredResult(context);
+  for (const field of ["runId", "operationId", "ref", "resultSchema", "sha256"]) {
+    if (retained[field] !== delivered.reference[field]) throw new Error("Delivery reference identity or hash does not match the delivered result.");
+  }
+  return retained;
+}
+
+function assertTransportIdentity(record: Record<string, unknown>): keyof typeof validators {
+  if (Object.hasOwn(record, "schema") && Object.hasOwn(record, "schemaVersion")) throw new Error("Delivery schema cannot declare both schema and schemaVersion.");
+  const identity = Object.hasOwn(record, "schemaVersion") ? record.schemaVersion : record.schema;
+  if (identity !== "result-delivery/v1" && identity !== SCHEMA) throw new Error("Unsupported delivery schema contract.");
+  if ((identity === SCHEMA) !== Object.hasOwn(record, "schemaVersion")) throw new Error("Delivery schema uses the wrong identity field.");
+  return identity;
+}
+
+function assertTransport(record: Record<string, unknown>, kind: string): void {
+  const validator = validators[assertTransportIdentity(record)];
+  if (record.kind !== kind || !validator(record)) throw new Error(`Invalid delivery schema or kind: ${ajv.errorsText(validator.errors)}`);
+}
+
+class DeliveryConflict extends Error { }
+
+async function publishTransportAt(directory: FileHandle, name: string, record: Record<string, unknown>): Promise<void> {
+  assertTransport(record, String(record.kind));
+  try {
+    await publishImmutableAt(directory, name, `${canonicalJson(record)}\n`);
+  } catch (error) {
+    if (!(error instanceof DeliveryConflict)) throw error;
+    // A retained v1 record is not a conversion target. Compare in memory only.
+    try {
+      const retained = object(await readJsonFile(at(directory, name)), "Retained delivery record");
+      assertTransport(retained, String(record.kind));
+      const normalized: Record<string, unknown> = { ...retained, schemaVersion: SCHEMA };
+      delete normalized.schema;
+      if (canonicalJson(normalized) !== canonicalJson(record)) throw error;
+    } catch {
+      throw error;
+    }
+  }
 }
 
 async function openParent(path: string): Promise<FileHandle> {
@@ -274,7 +334,7 @@ async function publishImmutableAt(directory: FileHandle, name: string, content: 
       created = true;
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
-      if (!(await readBytesFile(destination)).equals(Buffer.from(content, "utf8"))) throw new Error("Delivery conflict: the assigned artifact already contains different data or identity.");
+      if (!(await readBytesFile(destination)).equals(Buffer.from(content, "utf8"))) throw new DeliveryConflict("Delivery conflict: the assigned artifact already contains different data or identity.");
     }
     await directory.sync();
     return created;

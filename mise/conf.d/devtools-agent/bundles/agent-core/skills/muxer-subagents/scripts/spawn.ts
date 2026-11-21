@@ -71,7 +71,7 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
     const operationId = options.operationId ?? run.runId;
     const resultPath = options.resultTarget ?? join(deliveryDirectory, "result.json");
     const deliveryContext = parseDeliveryContext({
-      schema: "result-delivery/v1",
+      schemaVersion: "result-delivery/v2",
       kind: "context",
       audience: "agent",
       mode: "artifact-reference",

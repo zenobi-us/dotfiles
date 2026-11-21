@@ -80,7 +80,7 @@ describe("explicit session delivery metadata", () => {
     directory = mkdtempSync(join(tmpdir(), "muxer-session-test-"));
     const contextFile = join(directory, "context.json");
     writeFileSync(contextFile, JSON.stringify({
-      schema: "result-delivery/v1", kind: "context", audience: "agent", mode: "artifact-reference",
+      schemaVersion: "result-delivery/v2", kind: "context", audience: "agent", mode: "artifact-reference",
       runId: "assigned-run", operationId: "assigned-operation",
       target: { path: join(directory, "result.json"), ref: "artifact://assigned", schema: "test-result/v1" },
     }));

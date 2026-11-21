@@ -12,3 +12,10 @@ Read this reference after a missing, conflicting or interrupted delivery.
 
 If the operation succeeded but delivery failed, report both facts. If canonical state remains uncertain, report that uncertainty. A pretty summary must not hide a failed check or pending publication.
 
+
+## Historical handoffs
+
+Use the original context file. The reader accepts explicit v1 and v2 transport identities. To verify a retained reference, run scripts/router.ts read --context /absolute/context.json --reference /absolute/reference.json. The reader compares the reference identity and hash with the assigned envelope before it returns the domain result.
+
+New output uses schemaVersion: result-delivery/v2. Matching re-delivery and acknowledgement compare historical v1 records in memory. They leave stored context, envelope, reference and acknowledgement bytes unchanged. Never relabel an immutable record or add both identity fields. Unknown versions, absent identities and unsupported field/version combinations fail. No automatic or bulk conversion path is declared.
+

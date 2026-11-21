@@ -14,7 +14,7 @@ const result = { schema: "example-result/v1", status: "failed", checks: [{ name:
 beforeEach(async () => {
   root = await mkdtemp(join(tmpdir(), "result-delivery-"));
   const path = join(root, "result.json");
-  context = { schema: "result-delivery/v1", kind: "context", audience: "agent", mode: "artifact-reference", runId: "run-1", operationId: "operation-1", target: { path, ref: pathToFileURL(path).href, schema: result.schema } };
+  context = { schemaVersion: "result-delivery/v2", kind: "context", audience: "agent", mode: "artifact-reference", runId: "run-1", operationId: "operation-1", target: { path, ref: pathToFileURL(path).href, schema: result.schema } };
 });
 afterEach(async () => {
   await rm(root, { recursive: true, force: true });
@@ -25,10 +25,10 @@ describe("durable artifact delivery", () => {
     const output = JSON.parse(await deliverResult(result, context));
     const canonical = '{"checks":[{"name":"unit","passed":false}],"publication":{"state":"not-published"},"ref":"ticket://123","schema":"example-result/v1","status":"failed"}';
     const sha256 = createHash("sha256").update(canonical).digest("hex");
-    expect(output).toEqual({ schema: "result-delivery/v1", kind: "reference", runId: "run-1", operationId: "operation-1", sha256, ref: context.target!.ref, resultSchema: result.schema });
+    expect(output).toEqual({ schemaVersion: "result-delivery/v2", kind: "reference", runId: "run-1", operationId: "operation-1", sha256, ref: context.target!.ref, resultSchema: result.schema });
     expect(output).not.toHaveProperty("result");
     const envelope = JSON.parse(await readFile(context.target!.path, "utf8"));
-    expect(envelope).toEqual({ schema: "result-delivery/v1", kind: "result", runId: "run-1", operationId: "operation-1", sha256, ref: context.target!.ref, resultSchema: result.schema, result });
+    expect(envelope).toEqual({ schemaVersion: "result-delivery/v2", kind: "result", runId: "run-1", operationId: "operation-1", sha256, ref: context.target!.ref, resultSchema: result.schema, result });
     expect((await stat(context.target!.path)).mode & 0o777).toBe(0o600);
     expect(await readDeliveredResult(context)).toEqual({ result, reference: output });
     expect(await readdir(root)).toEqual(["result.json"]);
@@ -79,7 +79,7 @@ describe("durable artifact delivery", () => {
   test("delivers current tracker identities and retains explicit v1 reads without rewriting", async () => {
     const current = { schemaVersion: "tracker-result/v2", operation: "check", ok: true };
     const trackerContext = { ...context, target: { ...context.target!, schema: "tracker-result/v2" } };
-    for (const invalid of [{ ...current, schema: "tracker-result/v1" }, { ...current, schemaVersion: "tracker-result/v99" }, { schema: "tracker-result/v2" }]) {
+    for (const invalid of [{ ...current, schema: "tracker-result/v1" }, { ...current, schemaVersion: "tracker-result/v99" }]) {
       await expect(deliverResult(invalid, trackerContext)).rejects.toThrow("schema");
     }
     expect(await readdir(root)).toEqual([]);
@@ -239,7 +239,7 @@ describe("context and JSON validation", () => {
 
 describe("human and machine presentation", () => {
   test("human output retains failures, checks, publication and canonical references without terminal controls", async () => {
-    const human: DeliveryContext = { schema: "result-delivery/v1", kind: "context", audience: "human", mode: "human" };
+    const human: DeliveryContext = { schemaVersion: "result-delivery/v2", kind: "context", audience: "human", mode: "human" };
     const output = await deliverResult({ ...result, summary: "Operation failed\n\u001b[31mdo not rerun", errors: ["bad\routput\u202e"], nested: { failed: false, count: 0, absent: null }, notes: [] }, human);
     for (const expected of ["Operation failed\\u000a\\u001b[31mdo not rerun", "failed", "unit: failed", "not-published", "ticket://123", "bad\\u000doutput\\u202e"]) expect(output).toContain(expected);
     expect(output).not.toContain("\u001b");
@@ -250,7 +250,7 @@ describe("human and machine presentation", () => {
   });
 
   test("ordinary ticket success is a short outcome, canonical record and validation summary", async () => {
-    const human: DeliveryContext = { schema: "result-delivery/v1", kind: "context", audience: "human", mode: "human" };
+    const human: DeliveryContext = { schemaVersion: "result-delivery/v2", kind: "context", audience: "human", mode: "human" };
     const domain = {
       schema: "tracker-record-result/v1", operation: "check", ok: true, backend: "local-markdown",
       initiatives: [{ id: "initiative-1", title: "One initiative", ref: "initiative://1", children: [] }],
@@ -267,7 +267,7 @@ describe("human and machine presentation", () => {
   });
 
   test("passed validation never hides required or unverified publication and blockers", async () => {
-    const human: DeliveryContext = { schema: "result-delivery/v1", kind: "context", audience: "human", mode: "human" };
+    const human: DeliveryContext = { schemaVersion: "result-delivery/v2", kind: "context", audience: "human", mode: "human" };
     const output = await deliverResult({
       schema: "tracker-record-result/v1", operation: "migrate check", ok: true,
       workflow: "workflow://migration-1", validation: { status: "passed", details: ["Verbose success evidence"] },
@@ -280,7 +280,7 @@ describe("human and machine presentation", () => {
   });
 
   test("failure details, limits and open questions survive concise presentation", async () => {
-    const human: DeliveryContext = { schema: "result-delivery/v1", kind: "context", audience: "human", mode: "human" };
+    const human: DeliveryContext = { schemaVersion: "result-delivery/v2", kind: "context", audience: "human", mode: "human" };
     const output = await deliverResult({
       schema: "tracker-record-result/v1", operation: "migrate plan", ok: false,
       validation: { status: "conflict", details: ["Destination already exists.", { record: "ticket://1", reason: "Hash changed." }] },
@@ -293,7 +293,7 @@ describe("human and machine presentation", () => {
   });
 
   test("unknown result fallback reports identity and explicit state without dumping payload", async () => {
-    const human: DeliveryContext = { schema: "result-delivery/v1", kind: "context", audience: "human", mode: "human" };
+    const human: DeliveryContext = { schemaVersion: "result-delivery/v2", kind: "context", audience: "human", mode: "human" };
     expect(await deliverResult({ schema: "unfamiliar-result/v1", status: "blocked", ref: "record://1", metadata: { secretNoise: "not part of summary" } }, human))
       .toBe("unfamiliar-result/v1: blocked\nRecords: record://1");
     expect(await deliverResult({ schema: "unfamiliar-result/v1", payload: [1, 2, 3] }, human))
@@ -308,7 +308,7 @@ describe("human and machine presentation", () => {
   });
 
   test("artifact read and acknowledgement require an artifact context", async () => {
-    const human: DeliveryContext = { schema: "result-delivery/v1", kind: "context", audience: "human", mode: "human" };
+    const human: DeliveryContext = { schemaVersion: "result-delivery/v2", kind: "context", audience: "human", mode: "human" };
     await expect(readDeliveredResult(human)).rejects.toThrow("artifact-reference");
     await expect(acknowledgeResult(human, "0".repeat(64))).rejects.toThrow("artifact-reference");
   });
@@ -373,7 +373,7 @@ describe("consistent delivery audiences", () => {
 
 describe("review verdict and domain validation presentation", () => {
   test("a completed review with a failure verdict exposes blocking findings and failed validation", async () => {
-    const human: DeliveryContext = { schema: "result-delivery/v1", kind: "context", audience: "human", mode: "human" };
+    const human: DeliveryContext = { schemaVersion: "result-delivery/v2", kind: "context", audience: "human", mode: "human" };
     const receipt = {
       schema: "worktree-receipt/v1", event: "phase-result", phase: "review", status: "completed", verdict: "FAILURE",
       ticket_ref: "ticket://TASK-1", workflow: { ref: "workflow://review-1" },
@@ -394,7 +394,7 @@ describe("review verdict and domain validation presentation", () => {
   });
 
   test("explicit blocking finding lists retain identifiers and nested locations without a verdict", async () => {
-    const human: DeliveryContext = { schema: "result-delivery/v1", kind: "context", audience: "human", mode: "human" };
+    const human: DeliveryContext = { schemaVersion: "result-delivery/v2", kind: "context", audience: "human", mode: "human" };
     const output = await deliverResult({
       phase: "review", status: "blocked",
       blocking_findings: [{ finding_id: "R-3", severity: "medium", location: { file: "src/check.ts", line: 7 }, summary: "Validation cannot proceed." }],

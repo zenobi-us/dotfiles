@@ -353,7 +353,7 @@ if (args[0] === "ls") {
     });
     expect(spawned.parentRunId).toBe("parent-run");
     expect(spawned.deliveryContext).toEqual({
-      schema: "result-delivery/v1", kind: "context", audience: "agent", mode: "artifact-reference",
+      schemaVersion: "result-delivery/v2", kind: "context", audience: "agent", mode: "artifact-reference",
       runId: spawned.runId, operationId: "ticket-123", target: spawned.resultTarget,
     });
     expect(JSON.parse(readFileSync(spawned.contextFile, "utf8"))).toEqual(spawned.deliveryContext);

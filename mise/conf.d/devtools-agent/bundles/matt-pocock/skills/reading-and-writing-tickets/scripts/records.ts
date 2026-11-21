@@ -131,7 +131,7 @@ async function recordDeliveryContext(file?: string, format?: string, bind = fals
   if (bind && !file && !process.env.RESULT_DELIVERY_CONTEXT) throw new Error("--deliver requires a delivery context");
   const context: DeliveryContext = file || bind
     ? await loadDeliveryContext(file)
-    : { schema: "result-delivery/v1", kind: "context", audience: "machine", mode: "json" };
+    : { schemaVersion: "result-delivery/v2", kind: "context", audience: "machine", mode: "json" };
   if (context.mode === "artifact-reference") {
     if (context.target?.schema !== RESULT_SCHEMA) throw new Error("The delivery target must expect tracker-result/v2");
     return context;

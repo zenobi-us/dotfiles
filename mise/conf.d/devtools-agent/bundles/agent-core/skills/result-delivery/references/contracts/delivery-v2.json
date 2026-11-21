@@ -1,0 +1,183 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "result-delivery/v2",
+  "description": "Current transport. Domain payloads remain owned and validated by their domain.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "kind"
+  ],
+  "not": {
+    "required": [
+      "schema"
+    ]
+  },
+  "properties": {
+    "schemaVersion": {
+      "const": "result-delivery/v2"
+    },
+    "kind": {
+      "enum": [
+        "context",
+        "result",
+        "reference",
+        "acknowledgement"
+      ]
+    },
+    "runId": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]*$",
+      "not": { "pattern": "^\\s*$" }
+    },
+    "operationId": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]*$",
+      "not": { "pattern": "^\\s*$" }
+    },
+    "audience": {
+      "enum": [
+        "human",
+        "machine",
+        "agent"
+      ]
+    },
+    "mode": {
+      "enum": [
+        "human",
+        "json",
+        "artifact-reference"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "required": [
+        "path",
+        "ref",
+        "schema"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^/"
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]*$",
+          "not": { "pattern": "^\\s*$" }
+        },
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]*$",
+          "not": { "pattern": "^\\s*$" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "ref": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]*$",
+      "not": { "pattern": "^\\s*$" }
+    },
+    "resultSchema": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]*$",
+      "not": { "pattern": "^\\s*$" }
+    },
+    "result": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "oneOf": [
+    {
+      "properties": {
+        "kind": {
+          "const": "context"
+        }
+      },
+      "required": [
+        "audience",
+        "mode"
+      ],
+      "oneOf": [
+        {
+          "properties": {
+            "audience": {
+              "const": "human"
+            },
+            "mode": {
+              "const": "human"
+            }
+          }
+        },
+        {
+          "properties": {
+            "audience": {
+              "const": "machine"
+            },
+            "mode": {
+              "const": "json"
+            }
+          }
+        },
+        {
+          "properties": {
+            "audience": {
+              "const": "agent"
+            },
+            "mode": {
+              "const": "artifact-reference"
+            }
+          },
+          "required": [
+            "runId",
+            "operationId",
+            "target"
+          ]
+        }
+      ]
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "result"
+        }
+      },
+      "required": [
+        "runId",
+        "operationId",
+        "sha256",
+        "ref",
+        "resultSchema",
+        "result"
+      ]
+    },
+    {
+      "properties": {
+        "kind": {
+          "enum": [
+            "reference",
+            "acknowledgement"
+          ]
+        }
+      },
+      "required": [
+        "runId",
+        "operationId",
+        "sha256",
+        "ref",
+        "resultSchema"
+      ]
+    }
+  ]
+}
