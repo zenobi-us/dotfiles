@@ -8,7 +8,7 @@ sequence: 4
 title: Adopt contracts in tracker operations
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: claimed
 ---
 
 ## What to build
