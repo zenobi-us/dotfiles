@@ -69,7 +69,7 @@ SUCCESS for source ffe96b173909ba6836cc2ef419d97055582df8bc.
 
 ## Merge status
 
-Not merged. Not pushed. The ticket remains claimed.
+Squash integration fae0653e33c5d3f704fe71caf73bd6cda836b6f1 is published to origin/master. The ticket is completed.
 
 ## Resources
 
@@ -91,3 +91,9 @@ Reviewer validation: 147 tests passed and 13 real CLI scenarios passed. Parent r
 - [Immutable review](../artifacts/reviews/review-review-0006.md)
 - [Review result](../events/review-0006.yaml)
 - [Parent review completion](../events/review-complete-0007.yaml)
+
+## Finish — finish-0021
+
+Status: FINISHED. [Terminal receipt](../events/finish-0021.yaml). [Candidate-bound checks and publication](../artifacts/snapshots/integration-result-0017.json). Ticket completion is published in d366870b91d7079a2008937ed0ce010ec9faeaaf.
+
+All four recorded source/candidate branches and worktrees were removed. Owned app workspaces are absent. Process shutdown is confirmed. Earlier not-merged and pending-cleanup observations are historical. Two failed candidate preparations remain in append-only evidence; neither advanced the base.
