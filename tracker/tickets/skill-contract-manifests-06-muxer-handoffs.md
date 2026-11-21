@@ -1,14 +1,14 @@
 ---
+schemaVersion: tracker-ticket/v2
 blocked_by: 
   - skill-contract-manifests-05-result-delivery
 id: skill-contract-manifests-06-muxer-handoffs
 parent: skill-contract-manifests
-schema: tracker-ticket/v1
 sequence: 6
 title: Adopt contracts in muxer handoffs
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: "claimed"
 ---
 
 ## What to build
