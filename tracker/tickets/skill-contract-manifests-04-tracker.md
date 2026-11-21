@@ -31,3 +31,6 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 
 ## Comments
 
+
+
+- **Review:** FAILURE. Reviewed commit `b062761b4a31681f4e826c4e3dad8770e8944607`; tree `c741f5a04985243460a9677166ab9d049d836e9b`. Timestamp: `2026-11-21T02:58:33.596Z`. [Independent review](../../workflows/skill-contract-manifests-04-tracker/artifacts/reviews/review-review-0005.md); [review receipt](../../workflows/skill-contract-manifests-04-tracker/events/review-0005.yaml).
