@@ -9,7 +9,7 @@ type: Concept
 
 [Implementation result](../events/implementation-0002.yaml), following [start-0001](../events/start-0001.yaml).
 
-Source: `edf4e5585799abb093d1b8df3211fe72c72da93c`; tree: `defadfc579887d577800e27302621fbbb756757d`. Status: implemented; [parent completion](../events/start-complete-0003.yaml) recorded. Independent review remains pending.
+Source: `edf4e5585799abb093d1b8df3211fe72c72da93c`; tree: `defadfc579887d577800e27302621fbbb756757d`. Status: implemented; [parent completion](../events/start-complete-0003.yaml) recorded. Independent review completed with FAILURE; see [review-0007](../events/review-0007.yaml) and [parent completion](../events/review-complete-0008.yaml).
 
 ### Changed files
 
@@ -31,5 +31,5 @@ No fix phase has run. Internal advisory findings were corrected during implement
 
 ### Unresolved questions
 
-None. Independent review and parent publication remain required.
+SPEC-1 and SPEC-2 remain open in [review-0007](../events/review-0007.yaml). No fix phase has run.
 

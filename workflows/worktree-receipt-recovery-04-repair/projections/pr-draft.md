@@ -49,6 +49,9 @@ See [validation results](../artifacts/evidence/repair-cli-smoke-0001/validation-
 
 ## Review history
 
+Attempt 1 stopped after [review-start-0004](../events/review-start-0004.yaml), without a verdict. User-approved takeover is recorded in [review-takeover-0005](../events/review-takeover-0005.yaml). Attempt 2 completed with **FAILURE** in [review-0007](../events/review-0007.yaml), with [parent completion](../events/review-complete-0008.yaml). The [immutable review](../artifacts/reviews/review-review-0007.md) holds both axis reports and findings.
+
+
 Internal standards and specification checks found two issues: ignored aggregate history failures and reliance on live historical worktrees. Both were fixed and covered by passing regression cases. These checks are advisory, not the independent review phase.
 
 ## Resolved findings
@@ -58,15 +61,15 @@ Internal standards and specification checks found two issues: ignored aggregate 
 
 ## Remaining findings
 
-No unresolved implementation finding is known. Independent review is pending.
+Blocking findings SPEC-1 and SPEC-2 remain open. See [review-0007](../events/review-0007.yaml). No fix phase has run.
 
 ## Latest reviewer verdict
 
-None. No review receipt exists.
+FAILURE for `edf4e5585799abb093d1b8df3211fe72c72da93c`; Standards: zero blocking findings; Spec: two P1 findings.
 
 ## Merge status
 
-Implemented and committed only. Not independently reviewed, merged, pushed, or marked complete in the tracker. Parent phase completion is recorded in [start-complete-0003](../events/start-complete-0003.yaml). The parent independently exercised the CLI smoke and confirmed child shutdown. Workflow metadata is local; remote publication remains pending.
+Independently reviewed with FAILURE. Not merged, pushed, or marked complete in the tracker. Parent phase completion is recorded in [start-complete-0003](../events/start-complete-0003.yaml). The parent independently exercised the CLI smoke and confirmed child shutdown. Workflow metadata is local; remote publication remains pending.
 
 ## Receipts
 
