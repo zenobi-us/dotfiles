@@ -1,8 +1,8 @@
 schema: worktree-latest-status/v1
 workflow_id: worktree-receipt-recovery-02-identity
 ticket: tracker/tickets/worktree-receipt-recovery-02-identity.md
-state: REVIEW_PASSED
-latest_receipt: review-complete-0041
+state: FINISHED
+latest_receipt: finish-0048
 latest_source_commit: 30080a8a3302ee803cf5beeb4dd3cef1573bdf9c
 latest_source_tree: 8a718a84f6809a1d5ac63589a1ced4a6cc295b62
 latest_review_verdict: SUCCESS
@@ -34,3 +34,10 @@ advisory_findings:
     severity: low
     blocking: false
     review_receipt: review-0036
+merged_commit: f901b27b0b144f3a8559d4788580555489c137b1
+integration_method: squash
+pushed: true
+ticket_completed: true
+worktree_removed: true
+workspace_closed: true
+finish_receipt: workflows/worktree-receipt-recovery-02-identity/events/finish-0048.yaml

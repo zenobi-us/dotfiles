@@ -190,3 +190,9 @@ Scoped suite: 131 pass, 0 fail, 767 assertions. Actual inspector/writer CLI smok
 
 [Review-0040](../artifacts/reviews/review-review-0040.md), [result](../events/review-0040.yaml), and [completion](../events/review-complete-0041.yaml) independently approve resolved source `30080a8a3302ee803cf5beeb4dd3cef1573bdf9c` (tree `8a718a84f6809a1d5ac63589a1ced4a6cc295b62`). The original source and review-0036 remain unchanged. Only generated developer versions conflicted; both remain0.2.63 under the existing generator. Combined suite passed151 tests/913 assertions; actual combined inspector/writer CLI smoke passed. Reviewer and axes are closed with confirmed shutdown. Integration remains pending.
 
+
+## Finish recovery — current state
+
+FINISHED. Ticket completed and published. Independent [resolved-source review](../artifacts/reviews/review-review-0040.md) approved commit `30080a8a3302ee803cf5beeb4dd3cef1573bdf9c`. Published squash `f901b27b0b144f3a8559d4788580555489c137b1` matches the prepared parent and expected tree. Recovery reran candidate-bound checks: 151 tests passed, zero failed, 913 assertions; actual inspector smoke passed. Earlier sections retain historical phase states. No open blocking findings.
+
+[Takeover approval](../events/finish-approval-0043.yaml), [integration validation](../events/finish-merged-0044.yaml), [publication](../events/finish-pushed-0045.yaml), [published ticket completion](../events/finish-ticket-completed-0046.yaml), [verified cleanup](../events/finish-cleanup-0047.yaml), [terminal receipt](../events/finish-0048.yaml). Original source, resolved source and integration candidate worktrees were removed through scoped cleanup; both reviewer runs have confirmed shutdown. Unrelated changes and legacy coordination defects remain unchanged.

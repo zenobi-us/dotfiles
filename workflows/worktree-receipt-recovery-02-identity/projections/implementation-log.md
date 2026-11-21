@@ -231,3 +231,7 @@ Scoped suite: 131 pass, 0 fail, 767 assertions. Actual inspector/writer CLI smok
 
 [Review-0040](../artifacts/reviews/review-review-0040.md), [result](../events/review-0040.yaml), and [completion](../events/review-complete-0041.yaml) independently approve resolved source `30080a8a3302ee803cf5beeb4dd3cef1573bdf9c` (tree `8a718a84f6809a1d5ac63589a1ced4a6cc295b62`). The original source and review-0036 remain unchanged. Only generated developer versions conflicted; both remain0.2.63 under the existing generator. Combined suite passed151 tests/913 assertions; actual combined inspector/writer CLI smoke passed. Reviewer and axes are closed with confirmed shutdown. Integration remains pending.
 
+
+## Finish recovery
+
+[finish-0048](../events/finish-0048.yaml): FINISHED. Published squash `f901b27b0b144f3a8559d4788580555489c137b1`; ticket completed; all three recorded worktrees removed. [Candidate validation](../events/finish-merged-0044.yaml): 151 tests passed, zero failed, 913 assertions; actual inspector smoke passed. The original implementation, fixes and immutable reviews above remain historical evidence. No new implementation or merge ran during recovery.
