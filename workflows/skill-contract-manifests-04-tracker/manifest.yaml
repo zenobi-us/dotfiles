@@ -5,8 +5,8 @@ initiative: skill-contract-manifests
 event_root: events
 artifact_root: artifacts
 projection_root: projections
-latest_receipt: fix-complete-0009
-state: FIXED
+latest_receipt: review-complete-0012
+state: REVIEW_PASSED
 latest_source_commit: 007dbbf52e4fc2da57ac10ebdafcf9e23c1adf4d
 latest_source_tree: 232b6a74548c15731a6fba4290a21936357c6ece
 parent_completion_pending: false
@@ -14,3 +14,5 @@ latest_snapshot: artifacts/snapshots/pr-draft-fix-0008.md
 retained_review: review-0005
 retained_review_verdict: FAILURE
 retained_review_current: false
+latest_review: review-0011
+latest_review_verdict: SUCCESS

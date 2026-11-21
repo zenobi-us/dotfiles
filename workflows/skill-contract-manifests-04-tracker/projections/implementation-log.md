@@ -27,11 +27,11 @@ Validation: 85 tests passed in the scoped run; six failed fixture/import cases p
 - Known broad explorer failures data.test.ts:296 and :609 were not rerun.
 - Bun test required isolated temporary Ajv and Crust dependencies with qualified-name links. All temporary source links/dependencies and smoke scripts/fixtures were removed; no source resolver shim.
 - The YAML guard conservatively rejects any # in non-JSON YAML, including quoted strings; documented.
-- No live tracker/workflow migration, immutable plan/event rewrite, merge, push, tracker completion, or independent formal review occurred.
+- During the fix phase, no live tracker/workflow migration, immutable plan/event rewrite, merge, push, tracker completion, or formal review occurred.
 
 ## Next action
 
-Parent acknowledged the result, verified process shutdown and recorded [fix-complete-0009](../events/fix-complete-0009.yaml). Parent CLI checks exercised both safety boundaries with exact byte preservation and a supported uncommented-answer control. Then run a fresh independent review of the new source. Do not complete the ticket or integrate from the old FAILURE.
+Parent acknowledged the result, verified process shutdown and recorded [fix-complete-0009](../events/fix-complete-0009.yaml). Parent CLI checks exercised both safety boundaries with exact byte preservation and a supported uncommented-answer control. A fresh post-fix review now records SUCCESS below. Do not complete the ticket or integrate from the old FAILURE.
 
 ## Supporting records
 
@@ -39,3 +39,14 @@ Parent acknowledged the result, verified process shutdown and recorded [fix-comp
 - [Fix snapshot](../artifacts/snapshots/pr-draft-fix-0008.md).
 - [Fix result](../events/fix-0008.yaml).
 
+
+
+## Current post-fix review
+
+**SUCCESS** for `007dbbf52e4fc2da57ac10ebdafcf9e23c1adf4d`, tree `232b6a74548c15731a6fba4290a21936357c6ece`. Standards: zero findings. Spec: zero findings. SPEC-1 and SPEC-2 are independently resolved.
+
+See [immutable review](../artifacts/reviews/review-review-0011.md), [review result](../events/review-0011.yaml), and [parent completion](../events/review-complete-0012.yaml). Prior [FAILURE review](../events/review-0005.yaml) remains immutable history for its old source.
+
+Declared checks passed 145 owner/result tests, 33 delivery tests and five filtered explorer checks. Production CLI scenarios passed and the parent exercised the current owning check. The known broad explorer failures remain outside this claim. The quoted-# probe rejected at source validation; only the valid commented-YAML probe independently proves comment-guard execution.
+
+Delivery acknowledged. All owned reviewer processes stopped and panes closed. Source and workspace remain available. No integration, merge or push has run; finish must validate the actual combined candidate.

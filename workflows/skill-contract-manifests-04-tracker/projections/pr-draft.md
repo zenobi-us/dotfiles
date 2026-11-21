@@ -24,7 +24,7 @@ Validate ticket parent initiative membership before shared safe/bulk persistence
 
 Consumed review: [review-0005](../events/review-0005.yaml) and [review artifact](../artifacts/reviews/review-review-0005.md). SPEC-1 and SPEC-2 are fixed and verified by the fixer. No selected findings remain unresolved. These are repair claims, not an independent review verdict.
 
-The retained FAILURE applies to source `b062761b4a31681f4e826c4e3dad8770e8944607` and is stale for the new source. A fresh independent review must inspect the new commit/tree before integration.
+The retained FAILURE applies to source `b062761b4a31681f4e826c4e3dad8770e8944607` and is stale for the new source. The current post-fix review below records SUCCESS; integration still requires a separately validated candidate.
 
 ## Changed files
 
@@ -43,7 +43,7 @@ The retained FAILURE applies to source `b062761b4a31681f4e826c4e3dad8770e8944607
 - Known broad explorer failures data.test.ts:296 and :609 were not rerun.
 - Bun test required isolated temporary Ajv and Crust dependencies with qualified-name links. All temporary source links/dependencies and smoke scripts/fixtures were removed; no source resolver shim.
 - The YAML guard conservatively rejects any # in non-JSON YAML, including quoted strings; documented.
-- No live tracker/workflow migration, immutable plan/event rewrite, merge, push, tracker completion, or independent formal review occurred.
+- During the fix phase, no live tracker/workflow migration, immutable plan/event rewrite, merge, push, tracker completion, or formal review occurred.
 
 The actual owning CLI smoke passed: invalid membership update and bulk reject byte-identically; unrelated bulk items upgrade independently; valid direct, hierarchical and standalone updates/checks work. Commented historical answers reject unchanged through the declared shared safe-upgrade command. Uncommented safe-upgrade, read-only plan/check and authorized setup init work. The smoke script and all disposable fixtures were removed.
 
@@ -316,3 +316,14 @@ Not merged or pushed. Canonical ticket and immutable history remain unchanged. P
 
 The [immutable implementation draft](../artifacts/snapshots/pr-draft-implementation-0002.md) and [implementation receipt](../events/implementation-0002.yaml) retain the original 53-file cutover and its validation.
 
+
+
+## Current post-fix review
+
+**SUCCESS** for `007dbbf52e4fc2da57ac10ebdafcf9e23c1adf4d`, tree `232b6a74548c15731a6fba4290a21936357c6ece`. Standards: zero findings. Spec: zero findings. SPEC-1 and SPEC-2 are independently resolved.
+
+See [immutable review](../artifacts/reviews/review-review-0011.md), [review result](../events/review-0011.yaml), and [parent completion](../events/review-complete-0012.yaml). Prior [FAILURE review](../events/review-0005.yaml) remains immutable history for its old source.
+
+Declared checks passed 145 owner/result tests, 33 delivery tests and five filtered explorer checks. Production CLI scenarios passed and the parent exercised the current owning check. The known broad explorer failures remain outside this claim. The quoted-# probe rejected at source validation; only the valid commented-YAML probe independently proves comment-guard execution.
+
+Delivery acknowledged. All owned reviewer processes stopped and panes closed. Source and workspace remain available. No integration, merge or push has run; finish must validate the actual combined candidate.

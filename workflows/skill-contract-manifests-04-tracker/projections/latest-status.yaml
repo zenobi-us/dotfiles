@@ -1,26 +1,30 @@
 schema: worktree-latest-status/v1
 workflow_id: skill-contract-manifests-04-tracker
 ticket: tracker/tickets/skill-contract-manifests-04-tracker.md
-state: FIXED
-latest_receipt: fix-complete-0009
+state: REVIEW_PASSED
+latest_receipt: review-complete-0012
 latest_source_commit: 007dbbf52e4fc2da57ac10ebdafcf9e23c1adf4d
 latest_source_tree: 232b6a74548c15731a6fba4290a21936357c6ece
-latest_review_receipt: review-0005
-latest_review_verdict: FAILURE
-latest_review_source_commit: b062761b4a31681f4e826c4e3dad8770e8944607
-latest_review_current: false
-review_status: "fresh independent review required; retained FAILURE stale for new source"
+latest_review_receipt: review-0011
+latest_review_verdict: SUCCESS
+latest_review_source_commit: 007dbbf52e4fc2da57ac10ebdafcf9e23c1adf4d
+latest_review_current: true
+review_status: "current clean source reviewed successfully; integration remains separate"
 resolved_findings: [SPEC-1, SPEC-2]
 open_findings: []
 validation_limits:
-  - "No full-suite pass is claimed. The scoped run passed 85 tests; the six failed cases passed after fixture/dependency repair in a targeted retry."
+  - "Post-fix review passed 145 owner/result tests, 33 delivery tests and 5 filtered explorer tests; no full explorer-suite pass is claimed."
   - "Known broad explorer failures data.test.ts:296 and :609 were not rerun."
   - "Bun test required isolated temporary Ajv and Crust dependencies with qualified-name links. All temporary source links/dependencies and smoke scripts/fixtures were removed; no source resolver shim."
   - "The YAML guard conservatively rejects any # in non-JSON YAML, including quoted strings; documented."
-  - "No live tracker/workflow migration, immutable plan/event rewrite, merge, push, tracker completion, or independent formal review occurred."
-formal_review: required for new source
+  - "No live tracker/workflow migration, immutable plan/event rewrite, merge, push or tracker completion occurred."
+  - "The quoted-# runtime probe rejected during source-content validation; it does not prove the later preservation guard ran. The valid commented-YAML probe independently reached that guard."
+formal_review: completed
 source_clean: true
 owned_children: []
 owned_services: []
 fixer_shutdown: confirmed
 parent_completion_pending: false
+reviewer_shutdown: confirmed
+retained_review_receipt: review-0005
+retained_review_verdict: FAILURE
