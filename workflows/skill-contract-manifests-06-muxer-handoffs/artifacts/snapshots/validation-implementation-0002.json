@@ -1,0 +1,140 @@
+{
+  "ticket": "tracker/tickets/skill-contract-manifests-06-muxer-handoffs.md",
+  "source_commit": "e8d4f1d2b5a1ea6d16248ba79426e80558a9f357",
+  "source_tree": "a52fb75b3f43306ade529d963e1351223ed1bfc5",
+  "tests": {
+    "command": "mise exec -- bun test mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts",
+    "exit_code": 0,
+    "passed": 54,
+    "failed": 0,
+    "assertions": 153,
+    "files": 5,
+    "setup": "Bun test did not resolve versioned package imports. Installed exact dependencies in /tmp, used temporary ignored node_modules links, and removed all test scaffolding after the passing suite. The CLI test subprocess now requests --install=force. Earlier dependency-only attempts failed before tests ran; one intermediate run had 52 pass and one CLI dependency failure, then the scoped check passed."
+  },
+  "manifest": {
+    "command": "skill-contracts/scripts/router.ts validate --skill <source muxer skill>",
+    "exit_code": 0,
+    "definitions": 15,
+    "transport_owner": "result-delivery"
+  },
+  "smoke": {
+    "run_id": "7163c67f-61ca-4ed9-81e7-e63f941d32fb",
+    "operation_id": "muxer-contracts-current-smoke",
+    "parent_run_id": "101d6e73-bf8d-49ee-88cf-50b5f3818d0a",
+    "depth": 2,
+    "target": "t1wr",
+    "completion": {
+      "schemaVersion": "muxer-completion/v2",
+      "runId": "7163c67f-61ca-4ed9-81e7-e63f941d32fb",
+      "sequence": 2,
+      "state": "completed",
+      "source": "agent",
+      "timestamp": "2026-11-21T13:21:45.495Z"
+    },
+    "resources": {
+      "schemaVersion": "muxer-resources/v2",
+      "runId": "7163c67f-61ca-4ed9-81e7-e63f941d32fb",
+      "observedAt": "2026-11-21T13:31:56.168Z",
+      "processes": [
+        {
+          "pid": 2538277,
+          "bootId": "a4785729-8c92-4fb0-87cc-1ec1194cecc3",
+          "startTicks": "14568677",
+          "command": "omp",
+          "parentPid": 2537976,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-06-muxer-handoffs",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    },
+    "result": {
+      "schemaVersion": "muxer-smoke/v1",
+      "reason": "intentional-domain-failure",
+      "status": "failed"
+    },
+    "result_sha256": "0dcf42ba715954682873b72de2699f59db2f22113e764b706102e6ec932983cf",
+    "acknowledged": true,
+    "terminal_removed": true,
+    "app_selection": {
+      "shown_space": "spe45e3a290a7169a83b0357ebf63b9682",
+      "shown_tab": "tbae75d29018190fc873ff17539081b275",
+      "source_selected_tab": "tbe529530d9019124d1c472229acac6fa7",
+      "unchanged": true
+    },
+    "transport_hashes": [
+      [
+        "context.json",
+        "76bbf6e61d8351ed70c94943a8b7eb5912819def079c578aeb8899594c27e1f6"
+      ],
+      [
+        "result.json",
+        "fe6b9da721a46fa2f962867af56ffce428b046ed193c5e3dab98c86debedb04b"
+      ],
+      [
+        "result.json.ack.json",
+        "1d8c829ca3da2f5d7dd4ac6603660c25795f5d06f03e988082f5ec526c4434e8"
+      ]
+    ]
+  },
+  "historical": {
+    "run_id": "aa52253e-c682-4444-8842-9ca6e2aa51b9",
+    "read_command": "router.ts read aa52253e-c682-4444-8842-9ca6e2aa51b9 --historical",
+    "wait_command": "router.ts wait aa52253e-c682-4444-8842-9ca6e2aa51b9 --historical",
+    "exit_code": 0,
+    "bytes_unchanged": [
+      [
+        "run.json",
+        "4e346fc68cc7fa5cb0bfaebd05966825fff49556c8b6c2f682fe2ae517168578"
+      ],
+      [
+        "signal.json",
+        "a676add3e9f7030286a01314b3ca40a541cb2cf220da5f521762b77054e2081c"
+      ],
+      [
+        "resources.json",
+        "6d97e07bd74c04f487394f2fabcdb4a3c155b7c0e34e31fb1095feecac87c382"
+      ]
+    ],
+    "default_reader_rejected": true,
+    "legacy_delivery_fixture": {
+      "context": "schema: result-delivery/v1",
+      "result": "schema: result-delivery/v1",
+      "owning_read_exit_code": 0,
+      "muxer_contracts_exit_code": 0,
+      "source_bytes_unchanged": true,
+      "fixture_removed": true
+    }
+  },
+  "rejections": {
+    "unknown_version": [
+      {
+        "command": "router.ts read 7163c67f-61ca-4ed9-81e7-e63f941d32fb --historical",
+        "exit_code": 1,
+        "error": "Could not read run evidence: Unsupported muxer-completion schemaVersion"
+      },
+      {
+        "command": "router.ts wait 7163c67f-61ca-4ed9-81e7-e63f941d32fb",
+        "exit_code": 1,
+        "error": "Could not wait for child run: Unsupported muxer-completion schemaVersion"
+      },
+      {
+        "command": "router.ts resources 7163c67f-61ca-4ed9-81e7-e63f941d32fb",
+        "exit_code": 1,
+        "error": "Could not observe owned resources: Unsupported muxer-completion schemaVersion"
+      }
+    ],
+    "unsafe_symlink": {
+      "exit_code": 1,
+      "error": "Could not observe owned resources: Unsafe symlink in run path: /tmp/muxer-contracts-smoke-tj5nVW/muxer-subagents/runs/7163c67f-61ca-4ed9-81e7-e63f941d32fb/resources.json"
+    },
+    "rejected_bytes_unchanged": true,
+    "authoritative_transport_unchanged": true
+  },
+  "limits": [
+    "TypeScript LSP could not initialize because it could not find a TypeScript installation. No typecheck result is claimed.",
+    "Independent review, parent phase completion, merge, and ticket completion remain parent work."
+  ],
+  "source_clean": true,
+  "commit_hook_metadata": "The normal commit hook bumped agent-core plugin and marketplace versions from 0.1.35 to 0.1.36."
+}
