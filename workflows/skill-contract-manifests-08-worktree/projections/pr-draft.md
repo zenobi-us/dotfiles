@@ -1,5 +1,5 @@
 ---
-receipt_id: fix-0009
+receipt_id: review-0012
 schemaVersion: worktree-pr-draft/v1
 source_commit: 4a0df18caa4d1ee1c1aaca2729291e0e66c59823
 source_tree: efbb160b9d23b9088416d8bd239c2d9ce011882f
@@ -8,7 +8,13 @@ workflow_id: skill-contract-manifests-08-worktree
 
 # Fix SPEC-1 and SPEC-2
 
-## Current result
+## Current review
+
+State: REVIEW_FAILED. Attempt 2 returned FAILURE for source `4a0df18caa4d1ee1c1aaca2729291e0e66c59823`. Standards: one P2 finding. Spec: two P2 findings. Open: STANDARDS-1, SPEC-3, SPEC-4. SPEC-2 is resolved; SPEC-1 fresh-start rejection is fixed but retained completion has regression SPEC-3.
+
+See [review body](../artifacts/reviews/review-review-0012.md), [result](../events/review-0012.yaml), and [parent completion](../events/review-complete-0013.yaml).
+
+## Prior fix result
 
 State: FIXED. Both blocking findings from review-0006 are resolved. Fresh independent review is required for the new source. The latest reviewer verdict remains historical FAILURE for a20008e3e548e98ecf568b06d1c762898337bcb3; it does not cover this fix. No review, merge, push or ticket completion ran in this phase.
 
@@ -49,7 +55,7 @@ Source commit: `4a0df18caa4d1ee1c1aaca2729291e0e66c59823`. Source tree: `efbb160
 
 The earlier targeted delivery run exposed an incidental error-wording assertion; it was removed. Compiler setup first lacked explicit package type entrypoints and identified a test mapping type error. The final compiler and targeted delivery runs passed. The smoke fixture first assumed an array from Worktrunk; its corrected run and post-commit run passed. Temporary compiler/smoke fixtures are removed after proof. No evidence run was invented.
 
-## Findings and remaining work
+## Fix-stage findings before review attempt 2
 
 Resolved: SPEC-1, SPEC-2. Unresolved: none. Ticket remains claimed. The parent owns fresh review and result acknowledgement. The assigned retained v2 handoff stays v2; current product output stays v3.
 
@@ -183,3 +189,8 @@ Produced:
 ## Parent fix completion
 
 [fix-complete-0010](../events/fix-complete-0010.yaml) validates the assigned result and clean source `4a0df18caa4d1ee1c1aaca2729291e0e66c59823`. Parent regressions passed 53 tests. Delivery acknowledged; fixer terminal removed and all owned processes stopped. The current source has no review verdict; historical FAILURE review remains linked above. Fresh independent review is required. No merge or push.
+
+
+## Review attempt 2 verification
+
+Reviewer full suite: 176 pass, 0 fail. Owning commands reproduced missing-initiative acceptance and retained start-completion rejection. External owner resolution was checked separately. Parent view-contract checks: 14 pass, 0 fail. Source unchanged; reviewer and helper shutdown confirmed. No independent typecheck this attempt. No merge or push.

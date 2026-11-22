@@ -43,3 +43,10 @@ See [review body](../artifacts/reviews/review-review-0006.md), [review result](.
 ## Parent fix completion
 
 [fix-complete-0010](../events/fix-complete-0010.yaml) confirms fix-0009, resolved findings SPEC-1 and SPEC-2, 53 passing parent regression tests, acknowledged delivery and confirmed fixer process shutdown. Source `4a0df18caa4d1ee1c1aaca2729291e0e66c59823` is clean and awaits fresh review. Previous FAILURE remains historical evidence, not a current verdict.
+
+
+## Independent review attempt 2
+
+[review-0012](../events/review-0012.yaml) returned FAILURE for source `4a0df18caa4d1ee1c1aaca2729291e0e66c59823`. Open findings: STANDARDS-1, SPEC-3, SPEC-4. SPEC-2 is resolved; SPEC-1 fresh-start rejection is fixed but retained start completion needs SPEC-3.
+
+See [immutable review body](../artifacts/reviews/review-review-0012.md) and [parent completion](../events/review-complete-0013.yaml). Reviewer checks passed 176 tests; parent checks passed 14 tests. Owning-command scenarios exposed remaining gaps despite passing tests. Source unchanged. Reviewer and helpers closed; process shutdown confirmed. No merge or push.
