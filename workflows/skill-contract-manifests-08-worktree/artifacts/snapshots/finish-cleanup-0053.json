@@ -1,0 +1,46 @@
+{
+  "removed_branches": [
+    "integration/0e13013f-64aa-4e2e-8c37-ee2d5d01f37c",
+    "resolve/skill-contract-manifests-08-worktree-finish"
+  ],
+  "removed_workspaces": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-0e13013f-64aa-4e2e-8c37-ee2d5d01f37c",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-08-worktree-finish"
+  ],
+  "refused": [],
+  "verification": "cleanup-merged remove --min-age=0s verified exact deleted branch outcomes and missing workspaces; herdr-app inventory has no matching source/candidate spaces.",
+  "pre_remove_hook_ports": {
+    "ports": [
+      14869,
+      13085
+    ],
+    "listeners": [],
+    "observation": "lsof -nP on both listener ports returned no rows before approved cleanup."
+  },
+  "preserved_original_source": {
+    "branch": "feature/skill-contract-manifests-08-worktree",
+    "workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-08-worktree",
+    "commit": "8ce850b641b29d052f9549f956f93dfd655e2c6b",
+    "reason": "Superseded original source retained. Worktrunk does not classify it as integrated; clean workspace with merge_conflicts true. No forced deletion and no mutation."
+  },
+  "history_preservation": {
+    "baseline_ref": "workflows/skill-contract-manifests-08-worktree/artifacts/snapshots/retained-history-sha256-0035.json",
+    "files_checked": 29,
+    "changed": [],
+    "integration_workflow_tree_unchanged": true,
+    "verification_argv": [
+      "git",
+      "diff",
+      "--quiet",
+      "41b9f70ae986da65e2c1ebf2c50cacbdb9ffa5e3",
+      "4b1bf266c44e34dd49c5bfe91f97327dcb3c3cdc",
+      "--",
+      "workflows"
+    ]
+  },
+  "preserved_user_configuration": {
+    "path": "mise/conf.d/devtools-omp/config.yml",
+    "sha256": "03cf0d843d270f9589c8379fcf1466436104c31184e262e213a672416cad9875",
+    "unchanged": true
+  }
+}

@@ -1,5 +1,5 @@
 ---
-receipt_id: finish-pushed-0051
+receipt_id: finish-0054
 schemaVersion: worktree-pr-draft/v1
 source_commit: 6daa5d3e79d37c104edeed3135182f933933fd28
 source_tree: f1997420352dcd30b27793ad842ad97e38e79214
@@ -335,3 +335,10 @@ Current-base read-only squash preparation is clean. Integration, publication and
 All three candidate-bound checks passed:pre-merge hooks, full worktree suite, and an actual inspector smoke proving current/historical receipt history valid, diagnostics empty, and exact source identity. [Integration output](../artifacts/snapshots/finish-integration-0050.json) retains commands, absolute candidate cwd and exact commit/tree bindings. Unrelated dirty OMP configuration retained SHA-256 `03cf0d843d270f9589c8379fcf1466436104c31184e262e213a672416cad9875` across Worktrunk integration.
 
 Tracker completion and acceptance checkboxes are applied locally after product publication; tracker commit/push and named-worktree cleanup remain pending. Original source and immutable history remain preserved.
+## FINISHED — published acceptance and active-worktree cleanup
+
+[Terminal finish](../events/finish-0054.yaml) records squash integration `4b1bf266c44e34dd49c5bfe91f97327dcb3c3cdc`, exact reviewed source `6daa5d3e79d37c104edeed3135182f933933fd28`, SUCCESS review, passing candidate-bound checks, remote reachability and completed/published tracker state. [Tracker checkpoint](../events/finish-ticket-0052.yaml) identifies publication commit `407b5d46535924c648289790284596061381b7bf`.
+
+[Cleanup checkpoint](../events/finish-cleanup-0053.yaml) and [cleanup observations](../artifacts/snapshots/finish-cleanup-0053.json) verify deletion of the active resolved-source and integration branches/workspaces; matching desktop spaces are absent. All required recorded integration candidates are removed.
+
+The superseded original branch `feature/skill-contract-manifests-08-worktree` remains at `8ce850b641b29d052f9549f956f93dfd655e2c6b` in its original clean workspace because Worktrunk does not classify it as integrated. It was preserved, not force-deleted. The integration changes no workflow tree bytes; all29 retained baseline receipt/review hashes remain identical. Unrelated dirty OMP configuration retains its exact checksum.
