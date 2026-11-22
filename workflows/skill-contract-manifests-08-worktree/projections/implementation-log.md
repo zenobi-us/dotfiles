@@ -128,3 +128,9 @@ No source integration or ticket completion ran. Preliminary finish-check/message
 [Fix result](../events/fix-0036.yaml) implements inferred source identity authorization, including absent markers and frozen commit substitutions. [Parent completion](../events/fix-complete-0037.yaml) records current clean source `53bd338d03bed788b9a716372dffba7ad5b6719a`, exact history inspection with no diagnostics, confirmed fixer shutdown, and truthful full-suite failure:222 pass,7 fail from two obsolete stderr wording assertions. These assertions must be removed, not re-pinned. No runtime acceptance or integration is claimed.
 
 [Review start](../events/review-start-0038.yaml) freezes this source for independent assessment. Both prior invariant findings are implemented in source; the known test-cleanup blocker remains. Details and changed files: [immutable fix snapshot](../artifacts/snapshots/pr-draft-fix-0036.md).
+
+## Sixth review and scoped standards fix
+
+[Review result](../events/review-0039.yaml) and [immutable review](../artifacts/reviews/review-review-0039.md) accept all five specification criteria and both runtime repairs. Standards finding STD-1 requires deleting three incidental error-wording assertions while preserving rejection, no-persist and byte checks. [Fresh fix start](../events/fix-start-0042.yaml) limits work to this test cleanup.
+
+[Parent completion](../events/review-complete-0041.yaml) confirms delivery and all relevant process shutdown. Four review processes survived normal terminal closure. The user explicitly approved their exact identities in [shutdown approval](../events/shutdown-approval-0040.yaml); pidfd-bound TERM (plus CONT for suspended identities) stopped only those processes. Both review and helper resource observers confirm shutdown. No runtime integration or ticket completion yet.
