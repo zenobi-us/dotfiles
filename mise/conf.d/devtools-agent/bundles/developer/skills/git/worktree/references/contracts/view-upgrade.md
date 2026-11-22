@@ -8,3 +8,7 @@ This procedure applies only to generated `manifest.yaml` and `projections/latest
 4. Validate the destination and the requested generated-field update before replacing bytes through the shared safe-upgrade operation. All writers must honor its sibling lock.
 
 No unversioned detector is declared. Unknown or conflicting identifiers fail. Events, receipts, reviews, snapshots and hash-linked history are immutable and have no upgrade path. Read them through their explicit historical readers. Rejected requests leave source bytes unchanged.
+
+## Initiative boundary
+
+Current manifests require `initiative: null` or a nonempty initiative ID containing letters, digits, dots, underscores or hyphens. Historical v2 validation retains its original semantics. Conversion requires an explicit valid initiative. Missing or invalid historical membership needs an owner decision; the converter never invents membership or writes a supposedly lossless upgrade.

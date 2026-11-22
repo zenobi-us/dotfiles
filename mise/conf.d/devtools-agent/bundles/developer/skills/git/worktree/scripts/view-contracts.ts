@@ -28,7 +28,12 @@ const owner: UpgradeOwner = {
       if (owner.identify(content) !== contract) return false;
       for (const key of ["workflow_id", "state", "latest_receipt"]) if (typeof fields[key] !== "string" || !fields[key]) return false;
       if (!/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(String(fields.workflow_id))) return false;
-      if (contract.startsWith("worktree-workflow/")) return typeof fields.ticket_ref === "string" && fields.ticket_ref.length > 0 && fields.event_root === "events" && fields.artifact_root === "artifacts" && fields.projection_root === "projections";
+      if (contract.startsWith("worktree-workflow/")) {
+        const initiative = fields.initiative;
+        const validInitiative = initiative === null || typeof initiative === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(initiative);
+        if (contract === "worktree-workflow/v3" && !validInitiative) return false;
+        return typeof fields.ticket_ref === "string" && fields.ticket_ref.length > 0 && fields.event_root === "events" && fields.artifact_root === "artifacts" && fields.projection_root === "projections";
+      }
       return typeof fields.ticket === "string" && fields.ticket.length > 0 && ["latest_source_commit", "latest_source_tree"].every(key => typeof fields[key] === "string" && /^(?:[a-f0-9]{40}|[a-f0-9]{64})$/.test(fields[key] as string)) && (fields.latest_review_verdict === null || ["SUCCESS", "FAILURE"].includes(String(fields.latest_review_verdict))) && Array.isArray(fields.open_findings);
     } catch { return false; }
   },
@@ -57,6 +62,12 @@ const owner: UpgradeOwner = {
   convert(ref, from, to, content) {
     if (ref !== procedure || versions[from as keyof typeof versions] !== to) throw new Error("Undeclared view upgrade.");
     const doc = document(content);
+    if (from === "worktree-workflow/v2") {
+      const initiative = values(content).initiative;
+      if (!(initiative === null || typeof initiative === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(initiative))) {
+        throw new Error("Historical initiative requires an owner decision before upgrade.");
+      }
+    }
     const pair = doc.contents.items.find(item => isScalar(item.key) && item.key.value === "schema")!;
     if (!isScalar(pair.key) || !isScalar(pair.value)) throw new Error("View contract must be scalar.");
     pair.key.value = "schemaVersion";

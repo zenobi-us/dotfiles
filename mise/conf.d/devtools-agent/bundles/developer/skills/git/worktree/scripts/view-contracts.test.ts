@@ -14,6 +14,7 @@ const source = `# Authored operator note
 schema: worktree-workflow/v2 # Identity note
 workflow_id: TASK-1
 ticket_ref: tracker/tickets/TASK-1.md
+initiative: null
 event_root: events
 artifact_root: artifacts
 projection_root: projections
@@ -124,6 +125,47 @@ test("latest-status upgrades preserve authored data at the correct path", async 
   expect((await safeUpgrade({ ...request, operation: "upgrade" })).changed).toBe(false);
   expect(await readFile(request.artifact, "utf8")).toBe(content);
 });
+
+test.each([null, "example-initiative"])("owning creation preserves explicit initiative %j", async initiative => {
+  const root = await mkdtemp(join(tmpdir(), "worktree-initiative-"));
+  roots.push(root);
+  execFileSync("git", ["init", "--quiet", root]);
+  execFileSync("git", ["-C", root, "remote", "add", "origin", "https://github.com/view-tests/" + crypto.randomUUID() + ".git"]);
+  const request = join(root, "request.json");
+  const manifest: Record<string, unknown> = { ...Bun.YAML.parse(source) as Record<string, unknown>, schemaVersion: "worktree-workflow/v3", initiative };
+  delete manifest.schema;
+  await writeFile(request, JSON.stringify(manifest));
+  const result = await command(fileURLToPath(new URL("./write-view.ts", import.meta.url)), ["--repository", root, "--id", "TASK-1", "--kind", "manifest", "--input", request], root);
+  expect(result.code).toBe(0);
+  expect((Bun.YAML.parse(await readFile(join(root, "workflows/TASK-1/manifest.yaml"), "utf8")) as Record<string, unknown>).initiative).toBe(initiative);
+}, 120_000);
+
+test.each([undefined, "", " ", 1, false, [], {}, "bad/id", " padded"].map(initiative => [initiative]))("owning creation rejects invalid initiative %j without a manifest", async initiative => {
+  const root = await mkdtemp(join(tmpdir(), "worktree-initiative-reject-"));
+  roots.push(root);
+  execFileSync("git", ["init", "--quiet", root]);
+  execFileSync("git", ["-C", root, "remote", "add", "origin", "https://github.com/view-tests/" + crypto.randomUUID() + ".git"]);
+  const request = join(root, "request.json");
+  const manifest: Record<string, unknown> = { ...Bun.YAML.parse(source) as Record<string, unknown>, schemaVersion: "worktree-workflow/v3", initiative };
+  delete manifest.schema;
+  await writeFile(request, JSON.stringify(manifest));
+  const result = await command(fileURLToPath(new URL("./write-view.ts", import.meta.url)), ["--repository", root, "--id", "TASK-1", "--kind", "manifest", "--input", request], root);
+  expect(result.code).not.toBe(0);
+  expect(await Bun.file(join(root, "workflows/TASK-1/manifest.yaml")).exists()).toBe(false);
+}, 120_000);
+
+test.each([null, "example-initiative"])("historical upgrade preserves initiative %j", async initiative => {
+  const request = await fixture(source.replace("initiative: null", "initiative: " + JSON.stringify(initiative)));
+  await safeUpgrade({ ...request, operation: "upgrade" });
+  expect((Bun.YAML.parse(await readFile(request.artifact, "utf8")) as Record<string, unknown>).initiative).toBe(initiative);
+}, 120_000);
+
+test.each(["", "initiative: invalid/id\n", "initiative: false\n"])("historical ambiguous initiative needs a decision and preserves bytes (%#)", async field => {
+  const request = await fixture(source.replace("initiative: null\n", field));
+  const before = await readFile(request.artifact);
+  await expect(safeUpgrade({ ...request, operation: "upgrade" })).rejects.toThrow();
+  expect(await readFile(request.artifact)).toEqual(before);
+}, 120_000);
 
 async function command(script: string, args: string[], cwd: string) {
   const child = Bun.spawn([process.execPath, "--install=fallback", script, ...args], { cwd, stdout: "pipe", stderr: "pipe" });
