@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "muxer-resource-report/v2",
+  "manifest": {
+    "schemaVersion": "muxer-run/v2",
+    "runId": "624252b2-5446-4845-a35d-3ad0ee71e9ea",
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "target": "t218",
+    "createdAt": "2026-11-22T11:41:53.993Z",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+    "operationId": "skill-contract-manifests-11-artifact-sharing-fix-2"
+  },
+  "resources": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "624252b2-5446-4845-a35d-3ad0ee71e9ea",
+    "observedAt": "2026-11-22T11:59:35.363Z",
+    "processes": [
+      {
+        "pid": 2543240,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5301608",
+        "command": "omp",
+        "parentPid": 2542819,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 2549945,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5308270",
+        "command": "omp",
+        "parentPid": 2543240,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 2558455,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5311296",
+        "command": "omp daemon brok",
+        "parentPid": 2543240,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 2558502,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5311301",
+        "command": "omp",
+        "parentPid": 2558455,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 2558543,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5311306",
+        "command": "node",
+        "parentPid": 2558502,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 2558607,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5311314",
+        "command": "node",
+        "parentPid": 2558543,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 2558610,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5311314",
+        "command": "node",
+        "parentPid": 2558543,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 2558634,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5311334",
+        "command": "node",
+        "parentPid": 2558610,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 2589643,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5355900",
+        "command": "bun",
+        "parentPid": 2543240,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core",
+        "state": "stopped"
+      },
+      {
+        "pid": 2591451,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5358862",
+        "command": "bun",
+        "parentPid": 2589643,
+        "cwd": "/tmp/artifact-consumers-fRPby3",
+        "state": "stopped"
+      },
+      {
+        "pid": 2591744,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5358953",
+        "command": "mise",
+        "parentPid": 2591451,
+        "cwd": "/tmp/artifact-consumers-fRPby3/private",
+        "state": "stopped"
+      },
+      {
+        "pid": 2591823,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5358977",
+        "command": "bun",
+        "parentPid": 2591744,
+        "cwd": "/tmp/artifact-consumers-fRPby3/private",
+        "state": "stopped"
+      },
+      {
+        "pid": 2591874,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5358990",
+        "command": "trufflehog",
+        "parentPid": 2591823,
+        "cwd": "/tmp/artifact-consumers-fRPby3/private",
+        "state": "stopped"
+      },
+      {
+        "pid": 2589385,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5353845",
+        "command": "python",
+        "parentPid": 2543240,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 2597167,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5371823",
+        "command": "bun",
+        "parentPid": 2543240,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 2599758,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "5384084",
+        "command": "bun",
+        "parentPid": 2549945,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      }
+    ],
+    "shutdown": "confirmed"
+  }
+}

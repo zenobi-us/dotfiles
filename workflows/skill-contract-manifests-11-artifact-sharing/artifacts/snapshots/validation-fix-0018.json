@@ -1,0 +1,156 @@
+{
+  "source_commit": "3378f0d89811c8ce67feadcc0326f8c86764a0ae",
+  "source_tree": "6138a98322ac55a4bb0cc4b5a0a10c2f3578c27b",
+  "source_commits": [
+    "9d8754211e8178c43beccc97e02e4f4b66adb5e3",
+    "3378f0d89811c8ce67feadcc0326f8c86764a0ae"
+  ],
+  "observed_before": "Review-result-0014 already reproduced the failing frozen-base checker and historical site loader; not rerun merely to confirm.",
+  "validation_results": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test/site.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "exit_code": 0,
+      "result": "Actual Fumapress site regression: 1 pass, 16 assertions. Three accepted builds rendered exact hash text; numeric v2 and explicit unknown versions rejected. Stored page bytes unchanged for all five cases."
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test/consumers.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "exit_code": 0,
+      "result": "Initial frozen-base upgrade regressions: 2 pass, 78 assertions. Explicit command preview/apply/no-op, custom registry/site settings/content/check preservation, unsafe refusal, actual CLI v2 generation/retrieval and repository checks passed."
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "skills/artifact-shares/scripts/artifact-shares/test"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "result": "Final coherent suite: 36 pass, 0 fail, 232 assertions across four files. Includes the added required-check failure rollback regression and all actual site/frozen-base integrations."
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core",
+      "exit_code": 0,
+      "result": "Bundle TypeScript check passed."
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "exit_code": 0,
+      "result": "Manifest, all five definitions and config upgrade procedure resolved successfully."
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "mq",
+        "--allow-http-import",
+        "-I",
+        "raw",
+        "-F",
+        "json",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_validate(okf::okf_parse(.))",
+        "workflows/skill-contract-manifests-11-artifact-sharing/artifacts/snapshots/pr-draft-fix-0018.md",
+        "workflows/skill-contract-manifests-11-artifact-sharing/projections/pr-draft.md",
+        "workflows/skill-contract-manifests-11-artifact-sharing/projections/implementation-log.md"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "result": "All three generated documents returned [] validation errors. Full OKF bundle validation is not applicable: this is a worktree workflow with its own layout, not an OKF bundle."
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "upgrade",
+        "--help"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "exit_code": 0,
+      "result": "Actual new command help shows local-only semantics, required name, --dry-run and --confirm."
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "list"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "exit_code": 0,
+      "result": "Read-only configured share inventory returned normally; no clone or remote mutation."
+    }
+  ],
+  "site_cases": [
+    {
+      "version": "unversioned",
+      "hash": "860951705127",
+      "result": "build passes; exact rendered data-interpreted-hash; page unchanged"
+    },
+    {
+      "version": "artifact-share-metadata/v1",
+      "hash": "000000000123",
+      "result": "build passes; leading zeros rendered exactly; page unchanged"
+    },
+    {
+      "version": "artifact-share-metadata/v2",
+      "hash": "860951705127",
+      "scalar": "quoted string",
+      "result": "build passes; exact rendered hash; page unchanged"
+    },
+    {
+      "version": "artifact-share-metadata/v2",
+      "scalar": "numeric",
+      "result": "build rejected; page unchanged"
+    },
+    {
+      "version": "artifact-share-metadata/v999",
+      "result": "build rejected; page unchanged"
+    }
+  ],
+  "frozen_base": "69794e4eb60f7dbe26af658805c4876310d7e8ae",
+  "consumer_command": "cli.ts upgrade private --dry-run; cli.ts upgrade private --confirm private",
+  "required_checks": [
+    "checks:types",
+    "checks:size",
+    "checks:metadata",
+    "checks:secrets"
+  ],
+  "safety": [
+    "Original registry/component registry/content/assets/tool settings/workflows/hooks/scanner configs retain bytes after upgrade. Site name remains authored.",
+    "Unknown customized checker/schema and symlink targets refuse without mutation. Required-check failure rolls all consumer files back.",
+    "Config bytes unchanged, repeated upgrade byte-identical, new generation blocked before v2 staging on old consumers.",
+    "Real CLI share --dry-run generates quoted v2 after upgrade; actual clone checks pass with generated page; subsequent retrieval returns unchanged."
+  ],
+  "remote_operations_performed": false,
+  "temporary_scaffolds_removed": true
+}

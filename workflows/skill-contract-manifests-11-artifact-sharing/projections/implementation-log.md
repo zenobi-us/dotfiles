@@ -102,3 +102,43 @@ The suite passed 32 tests and bundle typecheck passed. Actual owning CLI smoke p
 [Review start](../events/review-start-0013.yaml), [review result](../events/review-result-0014.yaml), [parent completion](../events/review-complete-0015.yaml), [coordination](../artifacts/snapshots/coordination-review-0013.json), and [shutdown observation](../artifacts/snapshots/resources-review-complete-0015.json) retain the evidence. Reviewer and both nested sessions were closed; shutdown confirmed; no domain service ran.
 
 Next action from fresh inspection: authorize a fresh fixer with these exact findings. No fix, merge, push or remote publication ran in this review phase.
+
+
+## Fix result 0018 — FIXED, pending fresh review
+
+Consumed [review-result-0014](../events/review-result-0014.yaml) and its unchanged [review artifact](../artifacts/reviews/review-review-result-0014.md), with [approval](../events/fix-approval-0016.yaml) and [fix-start-0017](../events/fix-start-0017.yaml). All four IDs are fixed: STANDARDS-001, SPEC-002, STANDARDS-002, SPEC-003. Historical SPEC-001 remains resolved.
+
+Source: `3378f0d89811c8ce67feadcc0326f8c86764a0ae`, tree `6138a98322ac55a4bb0cc4b5a0a10c2f3578c27b`. Commits: 9d8754211e8178c43beccc97e02e4f4b66adb5e3, 3378f0d89811c8ce67feadcc0326f8c86764a0ae.
+
+Changed files:
+
+- `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
+- `mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/SKILL.md`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/assets/consumer-history.json`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/assets/repo-template/README.md`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/assets/repo-template/press.config.tsx`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/assets/repo-template/src/share-metadata.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/references/contracts/metadata-v1.json`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/references/contracts/metadata-v2.json`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/references/share.md`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/references/template.md`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/consumers.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test/consumers.test.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test/site.test.ts`
+
+Explicit local consumer upgrade preserves authored code outside the owned consumers, site settings and required checks. It refuses unknown customized consumers and symlinks; required-check failure restores all consumer files. The actual MDX schema interprets original historical hash scalars without rewriting pages. Numeric v2 and unknown explicit versions still fail.
+
+Validation: final affected suite 36 pass, 0 fail, 232 assertions; bundle typecheck and contract validation passed. Actual frozen-base upgrade, CLI v2 generation/retrieval, all required repository checks, byte-stable refusal/rollback and real Fumapress builds passed. Accepted builds render exact leading zeros. [Detailed validation](../artifacts/snapshots/validation-fix-0018.json).
+
+[Result](../events/fix-result-0018.yaml), [versioned draft](../artifacts/snapshots/pr-draft-fix-0018.md), [resources](../artifacts/snapshots/resources-fix-0018.json). No open implementation questions. Latest historical verdict remains FAILURE, stale for this source. Fresh independent review is required. No remote operation, tracker mutation or metadata commit. No domain services; parent owns pane closure and workflow publication.
+
+
+## Parent compatibility fix completion
+
+The parent verified typed delivery against [fix-result-0018](../events/fix-result-0018.yaml) and all seven output paths. An independent actual CLI smoke on the frozen-base template passed preview, confirmed upgrade with all required checks, repeat no-op, persisted consumer updates and unchanged authored configuration. Temporary fixture removed.
+
+[Parent completion](../events/fix-complete-0019.yaml) records the outcome. The fixer pane was removed; [owned-resource observation](../artifacts/snapshots/resources-fix-complete-0019.json) confirms shutdown. No domain service or remote mutation ran.
+
+Fresh shared inspection confirms clean source `3378f0d89811c8ce67feadcc0326f8c86764a0ae`, valid receipt history and no diagnostics. It selects fresh independent review because source changed; the previous FAILURE remains historical, not a current-source verdict.
