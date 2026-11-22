@@ -39,3 +39,7 @@ See [review body](../artifacts/reviews/review-review-0006.md), [review result](.
 - Snapshot: `workflows/skill-contract-manifests-08-worktree/artifacts/snapshots/pr-draft-fix-0009.md`.
 - Receipt: `workflows/skill-contract-manifests-08-worktree/events/fix-0009.yaml`.
 - Prior FAILURE review remains historical. The fixed source needs fresh review. No merge, push or tracker mutation ran.
+
+## Parent fix completion
+
+[fix-complete-0010](../events/fix-complete-0010.yaml) confirms fix-0009, resolved findings SPEC-1 and SPEC-2, 53 passing parent regression tests, acknowledged delivery and confirmed fixer process shutdown. Source `4a0df18caa4d1ee1c1aaca2729291e0e66c59823` is clean and awaits fresh review. Previous FAILURE remains historical evidence, not a current verdict.
