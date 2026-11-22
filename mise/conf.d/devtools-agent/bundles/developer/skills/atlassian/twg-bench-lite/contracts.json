@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": ["twg-benchmark-configuration/v2", "twg-benchmark-result/v2", "twg-benchmark-manifest/v2", "twg-benchmark-judgement/v2", "twg-benchmark-run/v2", "twg-benchmark-progress/v2"],
+  "accepts": ["twg-benchmark-configuration/v1", "twg-benchmark-configuration/v2", "twg-benchmark-result/v1", "twg-benchmark-result/v2", "twg-benchmark-manifest/v1", "twg-benchmark-manifest/v2", "twg-benchmark-judgement/v1", "twg-benchmark-judgement/v2", "twg-benchmark-run/v1", "twg-benchmark-run/v2", "twg-benchmark-progress/v1", "twg-benchmark-progress/v2"],
+  "contracts": {
+    "twg-benchmark-configuration/v1": "file:references/contracts.json",
+    "twg-benchmark-configuration/v2": "file:references/contracts.json",
+    "twg-benchmark-result/v1": "file:references/contracts.json",
+    "twg-benchmark-result/v2": "file:references/contracts.json",
+    "twg-benchmark-manifest/v1": "file:references/contracts.json",
+    "twg-benchmark-manifest/v2": "file:references/contracts.json",
+    "twg-benchmark-judgement/v1": "file:references/contracts.json",
+    "twg-benchmark-judgement/v2": "file:references/contracts.json",
+    "twg-benchmark-run/v1": "file:references/contracts.json",
+    "twg-benchmark-run/v2": "file:references/contracts.json",
+    "twg-benchmark-progress/v1": "file:references/contracts.json",
+    "twg-benchmark-progress/v2": "file:references/contracts.json"
+  },
+  "upgrades": [
+    {"from": "twg-benchmark-configuration/v1", "to": "twg-benchmark-configuration/v2", "procedure": "file:references/configuration-upgrade.json"}
+  ]
+}

@@ -2,8 +2,6 @@
 // @ts-nocheck
 // Benchmark-lite portable export source. Downstream copies are generated; edit
 // this file only in the benchmark repository.
-import { Crust } from "@crustjs/core@^0.0.19";
-import { helpPlugin } from "@crustjs/plugins@^0.1.2";
 import { execFileSync, spawn } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
@@ -12,6 +10,10 @@ import { homedir, tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import contract from "./contract.json" with { type: "json" };
 import { renderBenchmarkLiteReport } from "./report-renderer.ts"
+import { ids, readRecord, readRecordFile, reserveRunDirectory, writeReport } from "./records.mjs";
+import { runCli, isEntrypoint } from "./cli.mjs";
+
+readRecord(contract, "configuration");
 
 export const DEFAULT_RUN_ROOT = ".twg/bench-lite/runs";
 export const DEFAULT_JUDGE_MODEL = "gpt-5.5";
@@ -1802,6 +1804,7 @@ function parseQualityWinner(value, optionName) {
 }
 
 function normalizeQualityEvaluation(raw, source, judge) {
+  readRecord(raw, "judgement");
   const classification = parseClassification(
     optionalString(raw.classification) ?? "",
     source === "manual" ? "--classification" : "quality.classification"
@@ -1826,6 +1829,7 @@ function normalizeQualityEvaluation(raw, source, judge) {
           );
         }
         return {
+          ...record,
           name,
           winner: parseQualityWinner(record.winner, `quality.dimensions[${index}]`),
           explanation,
@@ -1834,6 +1838,8 @@ function normalizeQualityEvaluation(raw, source, judge) {
     : [];
 
   return {
+    ...raw,
+    schemaVersion: ids.judgement,
     classification,
     summary,
     dimensions,
@@ -1943,8 +1949,9 @@ function judgeOutputSchema() {
   return {
     type: "object",
     additionalProperties: false,
-    required: ["classification", "summary", "dimensions"],
+    required: ["schemaVersion", "classification", "summary", "dimensions"],
     properties: {
+      schemaVersion: { type: "string", const: ids.judgement },
       classification: {
         type: "string",
         enum: contract.qualityClassifications,
@@ -2348,7 +2355,7 @@ function buildResult({ prompt, promptWarnings, agent, options, control, test, tw
   const controlTools = parseTools(options.controlTools);
   const testTools = parseTools(options.testTools);
   return {
-    schemaVersion: contract.schemaVersion,
+    schemaVersion: ids.result,
     contractVersion: contract.contractVersion,
     prompt: {
       text: prompt,
@@ -2356,7 +2363,7 @@ function buildResult({ prompt, promptWarnings, agent, options, control, test, tw
     },
     ...(twgRoutePlan ? { twgRoutePlan } : {}),
     manifest: {
-      schemaVersion: contract.schemaVersion,
+      schemaVersion: ids.manifest,
       contractVersion: contract.contractVersion,
       agent,
       model: options.model ?? test.model ?? control.model ?? "unspecified",
@@ -2426,6 +2433,7 @@ function maxMeasured(...values) {
 }
 
 async function writeRunArtifacts(outputDir, result) {
+  readRecord(result, "result");
   const absoluteDir = resolve(outputDir);
   await mkdir(absoluteDir, { recursive: true });
   const manifestPath = resolve(absoluteDir, "manifest.json");
@@ -2437,6 +2445,7 @@ async function writeRunArtifacts(outputDir, result) {
   await writeFile(reportPath, renderBenchmarkLiteReport(result), "utf8");
   const progress = [
     {
+      schemaVersion: ids.progress,
       status: "initialized",
       elapsedMs: null,
       toolCalls: null,
@@ -2444,6 +2453,7 @@ async function writeRunArtifacts(outputDir, result) {
       lastActivity: "created",
     },
     {
+      schemaVersion: ids.progress,
       status: result.integrity.valid ? "completed" : "completed-with-warnings",
       elapsedMs: maxMeasured(result.control.durationMs, result.test.durationMs),
       toolCalls: sumMeasured(result.control.toolCalls, result.test.toolCalls),
@@ -2457,6 +2467,7 @@ async function writeRunArtifacts(outputDir, result) {
 
 export async function runBenchmarkLite(options, hooks = {}) {
   validateQualityOptions(options);
+  readRecord(contract, "configuration");
   const agent = parseAgent(options.agent);
   const outputDir = options.outputDir ?? resolve(DEFAULT_RUN_ROOT, nowRunId());
   const liveRun = !hasArmArtifacts(options);
@@ -2468,6 +2479,7 @@ export async function runBenchmarkLite(options, hooks = {}) {
   if (liveRun && !explicitPrompt) {
     throw new Error("Pass --prompt or --prompt-file for a live benchmark-lite run.");
   }
+  await reserveRunDirectory(outputDir);
   const { control, test, twgRoutePlan } = liveRun
     ? await runLiveArms(options, hooks, explicitPrompt, outputDir, agent)
     : await Promise.all([
@@ -2512,6 +2524,7 @@ export async function runBenchmarkLite(options, hooks = {}) {
     result,
     artifacts,
     payload: {
+      schemaVersion: ids.run,
       contract: {
         name: contract.contractName,
         version: contract.contractVersion,
@@ -2527,12 +2540,11 @@ export async function runBenchmarkLite(options, hooks = {}) {
 
 export async function reportBenchmarkLite(resultPath, options = {}) {
   const absoluteResultPath = resolve(resultPath);
-  const result = await readJsonObject(absoluteResultPath);
+  const result = readRecordFile(absoluteResultPath, "result");
   const reportPath = resolve(
     options.reportFile ?? resolve(dirname(absoluteResultPath), "report.html")
   );
-  await mkdir(dirname(reportPath), { recursive: true });
-  await writeFile(reportPath, renderBenchmarkLiteReport(result), "utf8");
+  await writeReport(reportPath, absoluteResultPath, renderBenchmarkLiteReport(result));
   return { reportPath };
 }
 
@@ -2550,11 +2562,6 @@ export function doctorPayload() {
   };
 }
 
-const cli = new Crust("twg-bench-lite").meta({ description: "Run and report TWG benchmark-lite comparisons." });
-const doctor = cli.sub("doctor").meta({ description: "Report benchmark prerequisites." }).run(() => console.log(JSON.stringify(doctorPayload(), null, 2)));
-const render = cli.sub("render").meta({ description: "Render a result JSON file." }).args([{ name: "result", type: "string", required: true }]).run(async ({ args }) => console.log((await reportBenchmarkLite(args.result)).reportPath));
-const run = cli.sub("run").meta({ description: "Run a benchmark-lite comparison." }).flags({ prompt: { type: "string" }, "prompt-file": { type: "string" }, "output-dir": { type: "string" }, agent: { type: "string" }, judge: { type: "boolean" } }).run(async ({ flags }) => {
-  const result = await runBenchmarkLite({ prompt: flags.prompt, promptFile: flags["prompt-file"], outputDir: flags["output-dir"], agent: flags.agent, judge: flags.judge });
-  console.log(JSON.stringify(result.payload, null, 2));
-});
-cli.use(helpPlugin()).command(doctor).command(render).command(run).execute();
+if (isEntrypoint(import.meta.url)) {
+  await runCli({ runBenchmarkLite, reportBenchmarkLite, doctorPayload });
+}

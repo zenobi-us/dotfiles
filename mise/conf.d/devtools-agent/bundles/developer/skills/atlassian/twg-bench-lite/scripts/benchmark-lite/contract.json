@@ -109,5 +109,5 @@
       "claude"
     ]
   },
-  "schemaVersion": 1
+  "schemaVersion": "twg-benchmark-configuration/v2"
 }

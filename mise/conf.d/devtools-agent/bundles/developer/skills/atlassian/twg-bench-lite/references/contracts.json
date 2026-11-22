@@ -1,0 +1,48 @@
+{
+  "owner": "twg-bench-lite",
+  "validator": "scripts/benchmark-lite/records.mjs:readRecord",
+  "identity": {
+    "current": "schemaVersion is the exact twg-benchmark-{family}/v2 identifier. A schema field is forbidden.",
+    "historicalNumeric": "configuration, result and manifest v1 use schemaVersion: 1. Other numeric values, missing identifiers and explicit /v1 strings are unsupported for these wire formats.",
+    "historicalUnversioned": "judgement, run and progress v1 have no schemaVersion. Detect only by the complete family-specific shape. Explicit null, unknown identifiers and numeric values are not legacy inputs.",
+    "meaning": "contractVersion is the benchmark protocol revision, not schema identity. Runtime release versions and runtimeSupport.v1/v2Planned do not identify record schemas. Unknown authored properties remain part of the record."
+  },
+  "families": {
+    "configuration": {
+      "contracts": ["twg-benchmark-configuration/v1", "twg-benchmark-configuration/v2"],
+      "required": ["contractName", "contractVersion", "description", "displayName", "defaultArms", "integrityChecks", "progressFields", "publicSafety", "qualityClassifications", "qualityDimensionWinners", "qualityJudge", "report", "runtimeSupport"],
+      "rules": ["Names and descriptions are nonempty strings. List fields contain strings.", "defaultArms.control/test retain matching id, nonempty label/context and mustRecord arrays. Control has mustNotUse and test has mustUse arrays.", "All four publicSafety properties remain true. Runtime support, report sections and judge supported agents remain structured configuration.", "The bundled contract.json defines benchmark behaviour. Conversion preserves every property except the schema identifier."],
+      "upgrade": "Only mutable configuration can use the declared v1 to v2 upgrade. No automatic mutation occurs during reads."
+    },
+    "manifest": {
+      "contracts": ["twg-benchmark-manifest/v1", "twg-benchmark-manifest/v2"],
+      "required": ["contractVersion", "agent", "model", "promptHash", "arms"],
+      "rules": ["agent is codex or rovo. model and contractVersion are nonempty strings. promptHash is lowercase SHA-256 hex.", "arms.control/test each retain a nonempty label."],
+      "upgrade": "Immutable run evidence. Historical reader only."
+    },
+    "result": {
+      "contracts": ["twg-benchmark-result/v1", "twg-benchmark-result/v2"],
+      "required": ["contractVersion", "prompt", "manifest", "control", "test", "integrity"],
+      "rules": ["prompt.text is nonempty and prompt.hash equals SHA-256 of its exact UTF-8 bytes. manifest.promptHash and contractVersion match the result.", "Nested manifest uses the same contract generation. Both arms retain their manifest labels, string outputs, completed/blocked/failed status, toolSurface string arrays and toolCallLog arrays.", "tokens, toolCalls, twgCalls, durationMs and toolErrors are nonnegative finite measurements or null. Unknown measurements remain null, not zero.", "integrity retains boolean valid, checks and warning strings. Optional quality uses a supported judgement contract. A false integrity result is evidence, not validation failure.", "Findings, tool logs, route plans, token breakdowns, unknown properties and prompt bytes retain their recorded meaning."],
+      "upgrade": "Immutable run evidence. Historical reader only; never run a replacement task to interpret it."
+    },
+    "judgement": {
+      "contracts": ["twg-benchmark-judgement/v1", "twg-benchmark-judgement/v2"],
+      "required": ["classification", "summary", "dimensions"],
+      "rules": ["classification is equivalent, twg-better, control-better, capability-gain or not-comparable. summary is nonempty.", "dimensions contain nonempty name/explanation and winner control, test, tie or not-comparable. Historical input may omit dimensions, interpreted as an empty list without a write.", "source and judge metadata describe provenance, not schema identity. Normalized new judgements carry the v2 identifier."],
+      "upgrade": "Historical reader only. Generated judge output must carry the current identifier; reading stored quality never rewrites it."
+    },
+    "run": {
+      "contracts": ["twg-benchmark-run/v1", "twg-benchmark-run/v2"],
+      "required": ["contract", "agent", "promptHash", "integrity", "artifacts"],
+      "rules": ["Operation payload, not a second result. contract contains nonempty name/version. agent is codex or rovo; promptHash is lowercase SHA-256 hex.", "integrity retains valid, checks and warnings. Optional quality is a supported judgement. artifacts contains nonempty manifestPath, resultPath, reportPath and progressPath."],
+      "upgrade": "Historical reader only. Paths locate original artifacts; they never authorize rerunning a task."
+    },
+    "progress": {
+      "contracts": ["twg-benchmark-progress/v1", "twg-benchmark-progress/v2"],
+      "required": ["status", "elapsedMs", "toolCalls", "tokens", "lastActivity"],
+      "rules": ["Each progress.jsonl line is one record. status is initialized, completed or completed-with-warnings.", "Measurements are nonnegative finite numbers or null. lastActivity is nonempty."],
+      "upgrade": "Immutable run evidence. Historical reader only."
+    }
+  }
+}

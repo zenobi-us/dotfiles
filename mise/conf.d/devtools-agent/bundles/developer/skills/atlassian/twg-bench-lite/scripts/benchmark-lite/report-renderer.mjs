@@ -1,6 +1,9 @@
 // Benchmark-lite portable export source. Downstream copies are generated; edit
 // this file only in the benchmark repository.
+import { readRecord } from "./records.mjs";
+
 export function renderBenchmarkLiteReport(result) {
+  readRecord(result, "result");
   const escapeHtml = (value) =>
     String(value ?? "")
       .replaceAll("&", "&amp;")

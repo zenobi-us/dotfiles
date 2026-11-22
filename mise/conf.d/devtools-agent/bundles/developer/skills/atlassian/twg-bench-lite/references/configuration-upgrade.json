@@ -1,0 +1,15 @@
+{
+  "from": "twg-benchmark-configuration/v1",
+  "to": "twg-benchmark-configuration/v2",
+  "adapter": "file:scripts/benchmark-lite/configuration-owner.mjs",
+  "operation": "upgrade",
+  "procedure": [
+    "Validate all shared manifest declarations and the numeric v1 configuration content.",
+    "Refuse immutable content and paths in runs, events, artifacts or evidence. This operation grants no mutation authority.",
+    "Require exactly one root schemaVersion key. Replace only its numeric token 1 with the current identifier, without parsing and serializing authored data.",
+    "Preserve every other byte, including unknown properties, duplicate non-identity keys, numeric lexemes, prompts, whitespace, safety settings and protocol versions.",
+    "Validate destination content. Compare preservation snapshots with only the schema token removed.",
+    "Use the shared locked atomic writer. Rejection leaves source bytes unchanged. Current input remains byte-identical."
+  ],
+  "immutableHistory": "No run, manifest, result, progress or judgement upgrade is declared. Use historical readers."
+}

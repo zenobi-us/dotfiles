@@ -151,3 +151,52 @@ Return a compact report in the parent answer with:
 If token/session metrics are unavailable, say "not measured"; do not estimate.
 Describe the result as one observed prompt comparison, not a universal
 efficiency rate.
+
+## Record contracts
+
+Install the sibling `skill-contracts` skill with this skill. Both runtime entrypoints use its absolute router through the same reader. Manifest validation requires mise and Bun, including when Node runs the benchmark. Missing definitions stop the operation. Keep `contracts.json`, `references/`, and all `scripts/benchmark-lite/` modules together when copying this skill.
+
+New records use `schemaVersion: twg-benchmark-{family}/v2`. Families are configuration, result, manifest, judgement, run, and progress. The run record is the command JSON payload. Each progress JSONL line has its own identifier. `contractVersion` remains the benchmark protocol revision. It does not select a schema or runtime release.
+
+Read `references/contracts.json` for the owned definitions. Numeric `schemaVersion: 1` is supported only for historical configuration, result, and manifest records. Historical judgement, run, and progress records have no identifier and must match their known shape. Unknown explicit identifiers fail. Readers never stamp or upgrade stored evidence.
+
+Use the same commands in either runtime:
+
+```bash
+mise exec -- bun scripts/benchmark-lite/runner.ts check configuration scripts/benchmark-lite/contract.json
+node scripts/benchmark-lite/runner.mjs check result /absolute/run/result.json
+node scripts/benchmark-lite/runner.mjs check manifest /absolute/run/manifest.json
+node scripts/benchmark-lite/runner.mjs check progress /absolute/run/progress.jsonl
+node scripts/benchmark-lite/runner.mjs render /absolute/run/result.json --report-file /absolute/report.html
+```
+
+The `check` operation also reads judgement and saved run-payload files. It writes no artifact. Rendering uses the stored prompt, arm outputs, findings, and measurements. It never starts a replacement task. Report output must be a separate HTML file, not a symlink or hard link to evidence.
+
+Each `run` requires a new output directory. Existing directories fail before either live arm starts. Preserve result, manifest, progress, and raw arm evidence. Regenerate only the HTML view.
+
+For an isolated offline comparison, supply both completed arm artifacts and disable the judge:
+
+```bash
+node scripts/benchmark-lite/runner.mjs run --control-output-file /absolute/control.txt --test-output-file /absolute/test.txt --prompt-file /absolute/prompt.txt --output-dir /absolute/new-run --no-judge
+```
+
+This mode records missing measurements and unobserved isolation checks. It does not claim a valid live comparison. Existing external arm-result, trace, and answer formats remain externally owned; this skill does not add identifiers to them.
+
+Only configuration has a declared safe upgrade. Use an explicitly selected mutable configuration outside run/evidence directories:
+
+```bash
+node scripts/benchmark-lite/runner.mjs upgrade /absolute/configuration.json
+node scripts/benchmark-lite/runner.mjs bulk-upgrade /absolute/configuration-paths.json
+```
+
+The path-list file is a JSON array of distinct absolute paths. The shared writer validates, locks, and atomically replaces each selected configuration. Conversion changes only its root schema token. All other bytes remain unchanged, including unknown metadata and numeric lexemes. Current input remains byte-identical. Bulk failure can leave earlier valid configurations upgraded; inspect each reported result. Immutable and unsupported inputs remain unchanged. No result, manifest, judgement, run, or progress upgrade is declared.
+
+## Contract changes — 2026-11-22
+
+Added shared manifest declarations, explicit historical readers, and a configuration-only upgrade. Both runners and renderers now validate record identity and stored prompt hashes. Added matching Node/Bun commands and immutable run protection. Benchmark protocol `0.1.0`, paired-arm rules, judge meaning, and safety settings remain unchanged.
+
+Run the boundary regressions from the skill directory:
+
+```bash
+mise exec -- node --test scripts/benchmark-lite/contracts.test.mjs
+```
