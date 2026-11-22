@@ -7,7 +7,7 @@
 | [start-0001](../events/start-0001.yaml) | Start authorization | 0df9e026 | Parent authorized independent authoring scope |
 | [implementation-0002](../events/implementation-0002.yaml) | Implementation | e3f54b7b | Completed; no review verdict |
 
-No fix or review history exists.
+No fix history exists. [review-0006](../events/review-0006.yaml) returned SUCCESS; [review-complete-0007](../events/review-complete-0007.yaml) validates the frozen source, delivery and shutdown. [Immutable review](../artifacts/reviews/review-review-0006.md).
 
 ## Changed files by phase
 
@@ -33,6 +33,8 @@ The hook-generated metadata paths and corrected alias scope are recorded in [coo
 
 Implementation: 22 real public command checks with persisted values, unchanged-source checksums and expected rejections. Three fresh baseline/pressure sessions; no false policy-free baseline claim. All owned experiment processes closed with confirmed shutdown. See [verification report](../artifacts/evidence/authoring-0002/README.md), [raw command results](../artifacts/evidence/authoring-0002/public-command-results.json) and [versioned draft](../artifacts/snapshots/pr-draft-implementation-0002.md).
 
+Review: six public owner command scenarios passed with expected rejection exits. Parent manifest checks and tracker graph validation passed. Source remained clean; reviewer and both axis sessions have confirmed shutdown.
+
 ## Unresolved questions
 
-None for implementation. Review and current-base integration have not run. Scenario external-schema and destination blockers were deliberate inputs, not silently filled by invented contracts.
+None for implementation. Source review passed. Current-base integration has not run; regenerate overlapping plugin metadata in the integration candidate. Scenario external-schema and destination blockers were deliberate inputs, not silently filled by invented contracts.
