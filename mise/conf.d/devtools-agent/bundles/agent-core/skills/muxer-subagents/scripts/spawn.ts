@@ -15,6 +15,7 @@ import { sessionMetadata } from "./session-context.ts";
 import { agents, muxers } from "./modules/index.ts";
 import type { AgentModule, MuxerModule } from "./modules/types.ts";
 import { observeResources } from "./resources.ts";
+import { validateManifest } from "./records.ts";
 
 export type SpawnMuxer = Exclude<Muxer, "unknown-muxer">;
 export type SpawnAgent = Exclude<Agent, "unknown-agent">;
@@ -32,6 +33,7 @@ export interface SpawnOptions {
 }
 
 export interface SpawnResult {
+  schemaVersion: "muxer-spawn/v2";
   runId: string;
   target: string;
   parentRunId?: string;
@@ -42,6 +44,7 @@ export interface SpawnResult {
 }
 
 export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
+  await validateManifest();
   if (!options.resultSchema?.trim()) throw new Error("A non-empty result schema is required.");
   if ((options.resultTarget !== undefined) !== (options.resultRef !== undefined)) {
     throw new Error("Provide result target and result reference together.");
@@ -117,7 +120,7 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
     });
     await updateRunTarget(run.runId, target, agentName);
     await observeResources(run.runId);
-    return { runId: run.runId, target, parentRunId, operationId, contextFile, deliveryContext, resultTarget: deliveryContext.target! };
+    return { schemaVersion: "muxer-spawn/v2", runId: run.runId, target, parentRunId, operationId, contextFile, deliveryContext, resultTarget: deliveryContext.target! };
   } catch (error) {
     if (!launchAttempted) {
       if (directory) rmSync(directory, { recursive: true, force: true });

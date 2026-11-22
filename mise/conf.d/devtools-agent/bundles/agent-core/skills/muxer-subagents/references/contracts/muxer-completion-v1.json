@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "runId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "state": {
+      "enum": [
+        "starting",
+        "running",
+        "blocked",
+        "completed",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "source": {
+      "enum": [
+        "launcher",
+        "agent",
+        "process"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT",
+      "minLength": 20
+    },
+    "exitCode": {
+      "type": "integer"
+    },
+    "detail": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "const": 1
+    }
+  },
+  "required": [
+    "runId",
+    "sequence",
+    "state",
+    "source",
+    "timestamp",
+    "version"
+  ],
+  "description": "Historical input only. Explicit historical reader; never rewrite or upgrade. Missing schemaVersion is detected only by this complete legacy shape."
+}

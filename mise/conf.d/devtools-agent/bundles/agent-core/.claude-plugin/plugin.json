@@ -1,7 +1,7 @@
 {
   "name": "agent-core",
   "description": "Superpowers, skill management, and shell environment for pi",
-  "version": "0.1.35",
+  "version": "0.1.36",
   "skills": [
     "./skills/documents/",
     "./skills/skill-development/",
