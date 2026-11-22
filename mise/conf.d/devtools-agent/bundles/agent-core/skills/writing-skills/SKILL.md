@@ -26,6 +26,10 @@ Do not use this skill for ordinary project documentation unless the document wil
 
 Read `references/authoring-workflow.md` for the full procedure.
 
+## Contract inventory
+
+Before changing a skill, identify every independently consumed structured input and output. Read `references/contract-authoring.md` for the inventory, ownership and verification gate, even when the inventory is empty. Use `skill-contracts` for manifest rules, definition resolution and safe upgrades; this skill does not own another validator.
+
 ## Progressive disclosure
 
 Keep `SKILL.md` as a thin topic and use-case router.
@@ -52,6 +56,8 @@ Read `references/skill-anatomy.md` when you need frontmatter, directory, section
 |---|---|
 | Define metadata or searchable triggers | `references/cso-guide.md` |
 | Write or change the authoring workflow | `references/authoring-workflow.md` |
+| Define artifact scope, compatibility or upgrades | `references/contract-authoring.md` |
+| Exercise contract scope and conversion refusals | `references/contract-scenarios.md` |
 | Design baseline or pressure tests | `references/testing-methodology.md` |
 | Test with subagents | `references/testing-skills-with-subagents.md` |
 | Close behavioural loopholes | `references/rationalization-patterns.md` |

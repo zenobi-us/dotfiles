@@ -10,11 +10,10 @@ Do not create a skill for a one-off solution, a standard practice that is alread
 
 ## Frontmatter
 
-Require `name` and `description`. Also permit `schema` for a skill that owns versioned records and boolean `user-invocable` for explicit invocation.
+Require `name` and `description`. Also permit boolean `user-invocable` for explicit invocation.
 
 - `name`
 - `description`
-- `schema` (optional versioned record family)
 - `user-invocable` (optional boolean)
 
 The `name` MUST use letters, numbers, and hyphens. It MUST match the skill directory name.
@@ -26,6 +25,10 @@ The `description` MUST state:
 3. What result it produces.
 
 Write the description in third person. Use concrete triggers, symptoms, tools, and outcomes. Keep it below 500 characters where possible and below 1024 characters in total frontmatter.
+
+## Artifact contracts
+
+Every maintained skill includes `contracts.json`, including an explicit empty manifest when no record contracts apply. Read `contract-authoring.md` before choosing declarations. Contract identity belongs to independently consumed records, not skill frontmatter. Preserve externally owned skill metadata, DOT, SVG and other formats; do not inject `schemaVersion` where their owners do not permit it.
 
 ## Main file
 
