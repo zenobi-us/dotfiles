@@ -8,7 +8,7 @@ sequence: 8
 title: Adopt contracts in worktree operations
 triage: ready-for-agent
 type: enhancement
-work_status: "claimed"
+work_status: "completed"
 ---
 
 ## What to build
@@ -19,11 +19,11 @@ Implement this slice under the parent initiative. Preserve its contract ownershi
 
 ## Acceptance criteria
 
-- [ ] Declare owned receipt, coordinator-event, inspection/result, snapshot, and projection contracts where independently consumed. Reference tracker, delivery, and shared-context definitions rather than duplicating them.
-- [ ] For affected schemaVersion changes, introduce new versions and update current producers and all consumers, including recovery and explorer readers, together.
-- [ ] Exercise actual workflow start, inspection, recovery, and applicable result operations against supported current and historical records.
-- [ ] Keep existing events, receipts, review artifacts, and hash-linked history unchanged. Use explicit historical readers instead of reserialising history.
-- [ ] Apply safe upgrades only to mutable owned artifacts before an authorised mutation. Verify read-only access and rejected operations preserve stored bytes and valid provenance.
+- [x] Declare owned receipt, coordinator-event, inspection/result, snapshot, and projection contracts where independently consumed. Reference tracker, delivery, and shared-context definitions rather than duplicating them.
+- [x] For affected schemaVersion changes, introduce new versions and update current producers and all consumers, including recovery and explorer readers, together.
+- [x] Exercise actual workflow start, inspection, recovery, and applicable result operations against supported current and historical records.
+- [x] Keep existing events, receipts, review artifacts, and hash-linked history unchanged. Use explicit historical readers instead of reserialising history.
+- [x] Apply safe upgrades only to mutable owned artifacts before an authorised mutation. Verify read-only access and rejected operations preserve stored bytes and valid provenance.
 
 ## Verification
 
@@ -45,3 +45,5 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 - 2026-11-22T09:23:50.326Z — FAILURE. Reviewed commit `53bd338d03bed788b9a716372dffba7ad5b6719a`, tree `ac78aa317fb940477a765233356411e7ad2f3e1f`. [Independent review attempt 6](../../workflows/skill-contract-manifests-08-worktree/artifacts/reviews/review-review-0039.md).
 
 - 2026-11-22T10:06:09.913Z — SUCCESS. Reviewed commit `6daa5d3e79d37c104edeed3135182f933933fd28`, tree `f1997420352dcd30b27793ad842ad97e38e79214`. [Independent review attempt 7](../../workflows/skill-contract-manifests-08-worktree/artifacts/reviews/review-review-0046.md).
+
+- 2026-11-22T11:46:16.893Z — Completed after exact-source SUCCESS review [review-0046](../../workflows/skill-contract-manifests-08-worktree/artifacts/reviews/review-review-0046.md), squash integration `4b1bf266c44e34dd49c5bfe91f97327dcb3c3cdc` and verified push to `origin/master`. Source suite:229 pass,0 fail. Candidate-bound pre-merge, suite and actual inspector smoke all passed. Integration mapping: [finish-merged-0050](../../workflows/skill-contract-manifests-08-worktree/events/finish-merged-0050.yaml); publication: [finish-pushed-0051](../../workflows/skill-contract-manifests-08-worktree/events/finish-pushed-0051.yaml). Named-worktree cleanup remains pending.

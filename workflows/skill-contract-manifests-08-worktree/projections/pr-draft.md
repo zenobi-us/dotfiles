@@ -1,5 +1,5 @@
 ---
-receipt_id: review-complete-0048
+receipt_id: finish-pushed-0051
 schemaVersion: worktree-pr-draft/v1
 source_commit: 6daa5d3e79d37c104edeed3135182f933933fd28
 source_tree: f1997420352dcd30b27793ad842ad97e38e79214
@@ -328,3 +328,10 @@ The completed fixer terminal is removed, but four recorded process identities st
 [Parent completion](../events/review-complete-0048.yaml) verifies delivery and confirms reviewer, helpers and prior fixer shutdown after [explicit named-identity approval](../events/shutdown-approval-0047.yaml). Only five still-present approved process identities received TERM; two suspended identities also received CONT. PID2375034 was already absent and received no signal. Unrelated sessions remained untouched.
 
 Current-base read-only squash preparation is clean. Integration, publication and tracker completion remain pending; prior review failures remain immutable history.
+## Verified integration and publication
+
+[Prepared boundary](../events/finish-prepared-0049.yaml), [integration](../events/finish-merged-0050.yaml), and [publication](../events/finish-pushed-0051.yaml) map accepted source `6daa5d3e79d37c104edeed3135182f933933fd28` to squash commit `4b1bf266c44e34dd49c5bfe91f97327dcb3c3cdc`, tree `76927f4d6b655fd22830d471d7d4be93c0e259a6`, base parent `41b9f70ae986da65e2c1ebf2c50cacbdb9ffa5e3`. Origin master was observed at that commit and integration reachability verified.
+
+All three candidate-bound checks passed:pre-merge hooks, full worktree suite, and an actual inspector smoke proving current/historical receipt history valid, diagnostics empty, and exact source identity. [Integration output](../artifacts/snapshots/finish-integration-0050.json) retains commands, absolute candidate cwd and exact commit/tree bindings. Unrelated dirty OMP configuration retained SHA-256 `03cf0d843d270f9589c8379fcf1466436104c31184e262e213a672416cad9875` across Worktrunk integration.
+
+Tracker completion and acceptance checkboxes are applied locally after product publication; tracker commit/push and named-worktree cleanup remain pending. Original source and immutable history remain preserved.

@@ -1,0 +1,52 @@
+{
+  "review_source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-08-worktree-finish",
+    "branch": "resolve/skill-contract-manifests-08-worktree-finish",
+    "base_branch": "master",
+    "commit": "6daa5d3e79d37c104edeed3135182f933933fd28",
+    "tree": "f1997420352dcd30b27793ad842ad97e38e79214"
+  },
+  "review_receipt": "workflows/skill-contract-manifests-08-worktree/events/review-0046.yaml",
+  "review_completion": "workflows/skill-contract-manifests-08-worktree/events/review-complete-0048.yaml",
+  "review_base": "23b9c0d6e99d3af5d241b33e8ac4f55a7dfa1fe0",
+  "integration_base": "41b9f70ae986da65e2c1ebf2c50cacbdb9ffa5e3",
+  "method": "squash",
+  "base_source_changes_since_review": [],
+  "base_assessment": "git diff review_base..master excluding tracker/workflows returned no paths. Base advancement is metadata only. Frozen reviewed source and original source unchanged.",
+  "remote_observation": {
+    "command": "git fetch origin master; git rev-list --left-right --count master...origin/master",
+    "local_ahead": 14,
+    "local_behind": 0
+  },
+  "coordination_ref": "workflows/skill-contract-manifests-08-worktree/artifacts/snapshots/coordination-finish-0048.json",
+  "coordination_assessment": "Inventory incomplete from stale linked copies, historical unrelated goal kinds, missing unrelated prototype and deliberate coordination-only ancestry uncertainty. Canonical full inspector with Git access validates the entire source chain with no diagnostics. Proposed goal reservations empty; parent owns authorized ticket. Independent source sessions preserved.",
+  "resource_shutdown": "Current reviewer, helpers and all recorded fixer resources confirmed stopped; approvals0040/0047 cover exact surviving identities only.",
+  "unrelated_dirty_paths_preserved": [
+    "mise/conf.d/devtools-omp/config.yml",
+    "tracker/tickets/skill-contract-manifests-07-shared-context.md",
+    "workflows/skill-contract-manifests-07-shared-context",
+    "workflows/skill-contract-manifests-11-artifact-sharing"
+  ],
+  "integration_checks": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts"
+      ]
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "--eval",
+        "const p=Bun.spawnSync([process.cwd()+\"/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.ts\",\"tracker/tickets/skill-contract-manifests-08-worktree.md\",\"--json\"],{stdout:\"pipe\",stderr:\"pipe\"});if(p.exitCode!==0)throw Error(new TextDecoder().decode(p.stderr));const r=JSON.parse(new TextDecoder().decode(p.stdout));if(!r.workflow.inspection.historyValid||r.workflow.diagnostics.length||r.workflow.inspection.source.commit!==\"6daa5d3e79d37c104edeed3135182f933933fd28\"||r.workflow.inspection.source.tree!==\"f1997420352dcd30b27793ad842ad97e38e79214\")throw Error(JSON.stringify({history:r.workflow.inspection.historyValid,diagnostics:r.workflow.diagnostics,source:r.workflow.inspection.source}));console.log(JSON.stringify({schemaVersion:r.schemaVersion,historyValid:true,source:r.workflow.inspection.source.commit,diagnostics:r.workflow.diagnostics}));"
+      ]
+    }
+  ]
+}

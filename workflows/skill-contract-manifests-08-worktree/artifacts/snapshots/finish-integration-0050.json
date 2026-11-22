@@ -1,0 +1,71 @@
+{
+  "schema": "worktree-integration/v2",
+  "integration_method": "squash",
+  "reviewed_source_commit": "6daa5d3e79d37c104edeed3135182f933933fd28",
+  "reviewed_source_tree": "f1997420352dcd30b27793ad842ad97e38e79214",
+  "base_branch": "master",
+  "base_before": "41b9f70ae986da65e2c1ebf2c50cacbdb9ffa5e3",
+  "expected_merge_tree": "76927f4d6b655fd22830d471d7d4be93c0e259a6",
+  "merged_commit": "4b1bf266c44e34dd49c5bfe91f97327dcb3c3cdc",
+  "merged_tree": "76927f4d6b655fd22830d471d7d4be93c0e259a6",
+  "merged_parents": [
+    "41b9f70ae986da65e2c1ebf2c50cacbdb9ffa5e3"
+  ],
+  "validation_results": [
+    {
+      "argv": [
+        "wt",
+        "-C",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-0e13013f-64aa-4e2e-8c37-ee2d5d01f37c",
+        "hook",
+        "pre-merge",
+        "--var",
+        "target=master",
+        "--var",
+        "target_worktree_path=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-0e13013f-64aa-4e2e-8c37-ee2d5d01f37c",
+      "exit_code": 0,
+      "output": "",
+      "source_commit": "4b1bf266c44e34dd49c5bfe91f97327dcb3c3cdc",
+      "source_tree": "76927f4d6b655fd22830d471d7d4be93c0e259a6"
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-0e13013f-64aa-4e2e-8c37-ee2d5d01f37c",
+      "exit_code": 0,
+      "output": "bun test v1.4.4 (38afee6c8)\n",
+      "source_commit": "4b1bf266c44e34dd49c5bfe91f97327dcb3c3cdc",
+      "source_tree": "76927f4d6b655fd22830d471d7d4be93c0e259a6"
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "--eval",
+        "const p=Bun.spawnSync([process.cwd()+\"/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.ts\",\"tracker/tickets/skill-contract-manifests-08-worktree.md\",\"--json\"],{stdout:\"pipe\",stderr:\"pipe\"});if(p.exitCode!==0)throw Error(new TextDecoder().decode(p.stderr));const r=JSON.parse(new TextDecoder().decode(p.stdout));if(!r.workflow.inspection.historyValid||r.workflow.diagnostics.length||r.workflow.inspection.source.commit!==\"6daa5d3e79d37c104edeed3135182f933933fd28\"||r.workflow.inspection.source.tree!==\"f1997420352dcd30b27793ad842ad97e38e79214\")throw Error(JSON.stringify({history:r.workflow.inspection.historyValid,diagnostics:r.workflow.diagnostics,source:r.workflow.inspection.source}));console.log(JSON.stringify({schemaVersion:r.schemaVersion,historyValid:true,source:r.workflow.inspection.source.commit,diagnostics:r.workflow.diagnostics}));"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-0e13013f-64aa-4e2e-8c37-ee2d5d01f37c",
+      "exit_code": 0,
+      "output": "{\"schemaVersion\":\"worktree-inspection/v1\",\"historyValid\":true,\"source\":\"6daa5d3e79d37c104edeed3135182f933933fd28\",\"diagnostics\":[]}\n",
+      "source_commit": "4b1bf266c44e34dd49c5bfe91f97327dcb3c3cdc",
+      "source_tree": "76927f4d6b655fd22830d471d7d4be93c0e259a6"
+    }
+  ],
+  "candidate_branch": "integration/0e13013f-64aa-4e2e-8c37-ee2d5d01f37c",
+  "candidate_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-0e13013f-64aa-4e2e-8c37-ee2d5d01f37c",
+  "pushed": true,
+  "reviewed_source_ref": "refs/worktree-reviews/6daa5d3e79d37c104edeed3135182f933933fd28",
+  "already_published": false,
+  "remote_observed_commit": "4b1bf266c44e34dd49c5bfe91f97327dcb3c3cdc",
+  "integration_reachable": true
+}
