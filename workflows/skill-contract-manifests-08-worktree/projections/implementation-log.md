@@ -50,3 +50,32 @@ See [review body](../artifacts/reviews/review-review-0006.md), [review result](.
 [review-0012](../events/review-0012.yaml) returned FAILURE for source `4a0df18caa4d1ee1c1aaca2729291e0e66c59823`. Open findings: STANDARDS-1, SPEC-3, SPEC-4. SPEC-2 is resolved; SPEC-1 fresh-start rejection is fixed but retained start completion needs SPEC-3.
 
 See [immutable review body](../artifacts/reviews/review-review-0012.md) and [parent completion](../events/review-complete-0013.yaml). Reviewer checks passed 176 tests; parent checks passed 14 tests. Owning-command scenarios exposed remaining gaps despite passing tests. Source unchanged. Reviewer and helpers closed; process shutdown confirmed. No merge or push.
+
+## Fix attempt 2
+
+- [fix-start-0014](../events/fix-start-0014.yaml) authorized the independent fixer for review-0012.
+- [fix-0015](../events/fix-0015.yaml): FIXED; source `8ce850b641b29d052f9549f956f93dfd655e2c6b`, tree `02afddcab23399930e7d9ce14c461b1c4e9684c2`.
+- Resolved STANDARDS-1 (`b7f72d50`), SPEC-3 (`f7897d5f`), SPEC-4 (`8ce850b6`). No unresolved findings or questions.
+- Current review verdict is null. Both earlier FAILURE reviews remain historical; fresh review is required.
+- Full suite: 212 pass, 0 fail, 1104 assertions. Targeted delivery: 39 pass, 347 assertions. Targeted views: 30 pass, 78 assertions. Typecheck and post-commit combined owning-command smoke passed.
+- Approved owner definition: commit `3a70f87bac3f44cd6ceb41cebd0887c11ebdbb59`; SHA-256 `9523366fbe7c608d248a131604cab4adb456879cb283904b336a45aafbc090ae`. Definition only, at the authoritative owner path. No owner runtime adoption.
+- [Immutable snapshot](../artifacts/snapshots/pr-draft-fix-0015.md) records validation details, changed files and retained snapshot hash compatibility.
+- Changed files by this phase:
+  - `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
+  - `mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json`
+  - `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/references/contracts.md`
+  - `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/CHANGELOG.md`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/contracts.json`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/contracts.md`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/contracts/view-upgrade.md`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/contracts/workflow-v3.json`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/context-resolution.test.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/context-resolution.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/phase-context.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/view-contracts.test.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/view-contracts.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/write-result.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/write-view.ts`
+- No merge, push, ticket completion or independent review ran. Parent owns acknowledgement and terminal closure.

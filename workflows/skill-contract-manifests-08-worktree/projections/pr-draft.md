@@ -1,10 +1,74 @@
 ---
-receipt_id: review-0012
+receipt_id: fix-0015
 schemaVersion: worktree-pr-draft/v1
-source_commit: 4a0df18caa4d1ee1c1aaca2729291e0e66c59823
-source_tree: efbb160b9d23b9088416d8bd239c2d9ce011882f
+source_commit: 8ce850b641b29d052f9549f956f93dfd655e2c6b
+source_tree: 02afddcab23399930e7d9ce14c461b1c4e9684c2
+type: Report
 workflow_id: skill-contract-manifests-08-worktree
 ---
+
+# Fix attempt 2: STANDARDS-1, SPEC-3, SPEC-4
+
+## Current result
+
+State: FIXED. All three assigned findings from review-0012 are resolved. Source: `8ce850b641b29d052f9549f956f93dfd655e2c6b`; tree: `02afddcab23399930e7d9ce14c461b1c4e9684c2`. Current reviewer verdict: null. Historical FAILURE reviews remain linked below. Fresh independent review is required. No review, merge, push or ticket-state change ran.
+
+## Changes and commits
+
+- STANDARDS-1, `b7f72d50`: require explicit current initiative (null or a valid ID). Historical v2 validation stays unchanged. Missing/invalid historical membership stops conversion for an owner decision; it is not silently filled or declared lossless.
+- SPEC-3, `f7897d5f`: use the established start-completion to implementation-result mapping in retained v2 reconciliation. Fresh, unassigned and mismatched v2 writes still fail.
+- SPEC-4, `8ce850b6`: resolve the authoritative shared-context definition. Validate both explicit v1 and one unversioned retained location shape at consumer publication boundaries. Project location semantics separately in memory, without changing persisted identity, ordering, bytes or hashes.
+
+## Owner coordination
+
+The parent approved exact definition-only adoption from commit `3a70f87bac3f44cd6ceb41cebd0887c11ebdbb59`. Adopted path: `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/references/contracts.md`. SHA-256: `9523366fbe7c608d248a131604cab4adb456879cb283904b336a45aafbc090ae`. The relative layout.md link stays unchanged. The consumer accepts shared-context-resolution/v1; it does not produce it. No owner runtime, manifest, configuration or history was adopted. The combined temporary installation used owner runtime read-only for smoke proof only. Owner HEAD still matched the approved source commit. Ticket07 remains separately owned and review-FAILED; this fix does not approve its runtime.
+
+## Changed files
+
+- `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
+- `mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/references/contracts.md`
+- `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/CHANGELOG.md`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/contracts.json`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/contracts.md`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/contracts/view-upgrade.md`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/contracts/workflow-v3.json`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/context-resolution.test.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/context-resolution.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/phase-context.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/view-contracts.test.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/view-contracts.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/write-result.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/write-view.ts`
+
+Repository commit hooks updated the developer, agent-core and marketplace version metadata. No foreign staged paths were included.
+
+## Validation
+
+- `mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts`: exit 0. 212 pass, 0 fail, 1104 assertions across 12 files.
+- `mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts`: exit 0. 39 pass, 0 fail, 347 assertions. Actual retained v2 start -> implementation -> start completion, inspection/recovery, invalid v2 rejections and unchanged bytes.
+- `mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/view-contracts.test.ts`: exit 0. 30 pass, 0 fail, 78 assertions. Actual owning CLI rejects omitted/invalid initiative without manifest; null/ID accepted; historical membership preserved or conversion refused without writes.
+- `/tmp/worktree-fix-0015-types/node_modules/.bin/tsc --noEmit -p /tmp/worktree-fix-0015-types/tsconfig.json`: exit 0. All worktree sources/tests and imported dependencies pass with real dependency entrypoints in isolated temporary compiler installation.
+- `mise exec -- bun /tmp/worktree-fix-0015-smoke.ts /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-08-worktree`: exit 0. Post-commit actual owning command groups pass: current v3 combined installation with real tagged owner output; retained v2 frozen dependency output; start/result/delivery/start-completion/inspection/recovery; initiative rejection/acceptance; prior receipt bytes unchanged. Retained snapshot hashes d8229e579f8d5eb521b9d938577fdd0ae764f0cb5486bfaa18ed1d2b3504fa11 and cf6686b8e64495360eab21199f29fb1f98f10b9c06ebc5a8a57f0e6be6f64395 unchanged.
+- `/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts validate --skill /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-08-worktree/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree`: exit 0. Public validate and resolve shared-context-resolution/v1 succeed from unrelated cwd with installed owner-relative file definition; combined installation also validated and resolved.
+
+Early runs exposed an empty-array test.each row being treated as a callback-style test. Explicit one-argument rows fixed that harness issue. The first compiler setup needed unversioned package aliases and test type annotations; the final compiler run passed. The first standalone smoke needed separate linked source/publication checkouts; the final combined smoke passed. No reported reviewer defect was rerun merely to confirm it.
+
+## Findings and publication
+
+Resolved: STANDARDS-1, SPEC-3, SPEC-4. Unresolved findings and open questions: none. The assigned delivery stays worktree-receipt/v2 through phase-context/v1; current product receipts stay v3.
+
+- Authorization: [fix-start-0014](../events/fix-start-0014.yaml).
+- Consumed review: [review-0012](../events/review-0012.yaml), [review body](../reviews/review-review-0012.md), [parent completion](../events/review-complete-0013.yaml).
+- New result: [fix-0015](../events/fix-0015.yaml).
+- Snapshot: `workflows/skill-contract-manifests-08-worktree/artifacts/snapshots/pr-draft-fix-0015.md`.
+- Projections: `workflows/skill-contract-manifests-08-worktree/projections/pr-draft.md`, `workflows/skill-contract-manifests-08-worktree/projections/implementation-log.md`, `workflows/skill-contract-manifests-08-worktree/projections/latest-status.yaml`.
+
+## Retained history
+
+All sections below describe earlier source and verdicts. They are historical, not a verdict on the current fixed source.
 
 # Fix SPEC-1 and SPEC-2
 
