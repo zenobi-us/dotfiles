@@ -37,4 +37,8 @@ Review: six public owner command scenarios passed with expected rejection exits.
 
 ## Unresolved questions
 
-None for implementation. Source review passed. Current-base integration has not run; regenerate overlapping plugin metadata in the integration candidate. Scenario external-schema and destination blockers were deliberate inputs, not silently filled by invented contracts.
+None for implementation. Source review and current-base integration passed. Shared plugin metadata merged cleanly and its versions match. Ticket completion is published; guarded cleanup removed source and candidate worktrees. Scenario external-schema and destination blockers were deliberate inputs, not silently filled by invented contracts.
+
+## Finish history
+
+[finish-finished-0016](../events/finish-finished-0016.yaml): FINISHED. Squash commit `f6cf243b39e0aba397de7dc0cc7ff9c57b8ea899` published on `origin/master`. The first preparation stopped before candidate creation because an unrelated workflow receipt advanced master; the second preparation integrated without source changes. [Integration result](../artifacts/snapshots/integration-result-0012.json) binds all checks to the actual merged commit and tree. [Cleanup result](../artifacts/snapshots/cleanup-result-0015.json) confirms removal of both recorded branches and worktrees.

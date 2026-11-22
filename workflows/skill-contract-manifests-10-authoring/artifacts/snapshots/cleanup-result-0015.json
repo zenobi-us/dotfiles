@@ -1,0 +1,12 @@
+{
+  "removed": [
+    "feature/skill-contract-manifests-10-authoring",
+    "integration/df1102aa-fe17-484c-9692-a161b5369078"
+  ],
+  "refused": [],
+  "source_worktree_absent": true,
+  "candidate_worktree_absent": true,
+  "source_workspace_absent": true,
+  "candidate_workspace_absent": true,
+  "verification": "cleanup-merged returned removed for exactly both named branches. Its guarded removal validates Worktrunk deletion and filesystem absence. Desktop inventory has no workspace for either source or candidate."
+}

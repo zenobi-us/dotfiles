@@ -59,7 +59,7 @@ SUCCESS — review-0006 covers the exact clean source commit and tree above.
 
 ## Merge status
 
-Not merged, not submitted, ticket not completed. Source is clean and committed; workflow files are published in the designated context checkout.
+FINISHED. Squash integration `f6cf243b39e0aba397de7dc0cc7ff9c57b8ea899` is published on `origin/master`. Candidate-bound checks passed. Ticket completion is published in `86d5ca208464f8fe4981abb0cbb4198c8fd8b531`. Source and candidate branches/worktrees were removed through guarded Worktrunk cleanup.
 
 ## Supporting records
 
@@ -76,4 +76,11 @@ Not merged, not submitted, ticket not completed. Source is clean and committed; 
 
 ## Open questions
 
-None for this authoring implementation. Missing external authority and destination policy are intentional scenario blockers, not unfinished repository functionality. Source review passed. Integration remains pending; shared plugin metadata must be regenerated against the combined candidate.
+None for this authoring implementation. Missing external authority and destination policy are intentional scenario blockers, not unfinished repository functionality. Review and candidate validation passed. Plugin metadata merged cleanly and versions match. No unresolved integration or cleanup work remains.
+
+## Finish records
+
+- [Terminal finish](../events/finish-finished-0016.yaml)
+- [Integration plan](../artifacts/snapshots/integration-plan-0011.json)
+- [Candidate checks and publication](../artifacts/snapshots/integration-result-0012.json)
+- [Cleanup verification](../artifacts/snapshots/cleanup-result-0015.json)
