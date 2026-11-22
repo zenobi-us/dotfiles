@@ -1,0 +1,5 @@
+feat: finish skill-contract-manifests-13-twg-benchmark
+
+Integrate reviewed source 33b388888ecb2dbbe46cde0d76f604946c925734.
+Review: workflows/skill-contract-manifests-13-twg-benchmark/events/review-0005.yaml
+Preserve current release metadata and validate both benchmark runtimes.

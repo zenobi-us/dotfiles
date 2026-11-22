@@ -1,0 +1,105 @@
+{
+  "schema": "worktree-integration/v2",
+  "integration_method": "squash",
+  "reviewed_source_commit": "33b388888ecb2dbbe46cde0d76f604946c925734",
+  "reviewed_source_tree": "6bf7cadb7209cb53e0a85d62d7107ae201c38c2f",
+  "base_branch": "master",
+  "base_before": "1814c27f98f1fd1640b149836012a631cfa71226",
+  "expected_merge_tree": "99721fdf2ad0554b565054880c006e36b0a8348d",
+  "merged_commit": "21e3f6c74e2461fdc2850f063656ff07f3872c93",
+  "merged_tree": "99721fdf2ad0554b565054880c006e36b0a8348d",
+  "merged_parents": [
+    "1814c27f98f1fd1640b149836012a631cfa71226"
+  ],
+  "validation_results": [
+    {
+      "argv": [
+        "wt",
+        "-C",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-264764db-4a22-4b23-8030-2f439cb658ff",
+        "hook",
+        "pre-merge",
+        "--var",
+        "target=master",
+        "--var",
+        "target_worktree_path=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-264764db-4a22-4b23-8030-2f439cb658ff",
+      "exit_code": 0,
+      "output": "",
+      "source_commit": "21e3f6c74e2461fdc2850f063656ff07f3872c93",
+      "source_tree": "99721fdf2ad0554b565054880c006e36b0a8348d"
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "node",
+        "--test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite/scripts/benchmark-lite/contracts.test.mjs"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-264764db-4a22-4b23-8030-2f439cb658ff",
+      "exit_code": 0,
+      "output": "TAP version 13\n# Subtest: bun: preserve run meaning and immutable history through owning commands\nok 1 - bun: preserve run meaning and immutable history through owning commands\n  ---\n  duration_ms: 8216.207174\n  type: 'test'\n  ...\n# Subtest: node: preserve run meaning and immutable history through owning commands\nok 2 - node: preserve run meaning and immutable history through owning commands\n  ---\n  duration_ms: 8974.799645\n  type: 'test'\n  ...\n1..2\n# tests 2\n# suites 0\n# pass 2\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 17245.034768\n",
+      "source_commit": "21e3f6c74e2461fdc2850f063656ff07f3872c93",
+      "source_tree": "99721fdf2ad0554b565054880c006e36b0a8348d"
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite/scripts/benchmark-lite/runner.ts",
+        "check",
+        "configuration",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite/scripts/benchmark-lite/contract.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-264764db-4a22-4b23-8030-2f439cb658ff",
+      "exit_code": 0,
+      "output": "{\n  \"contractName\": \"twg-bench-lite\",\n  \"contractVersion\": \"0.1.0\",\n  \"defaultArms\": {\n    \"control\": {\n      \"context\": \"Free Atlassian tools plus user-local MCP/connectors exposed to the agent runtime.\",\n      \"id\": \"control\",\n      \"label\": \"Free Atlassian with Local MCPs Context\",\n      \"mustNotUse\": [\n        \"twg CLI\",\n        \"TWG skills\",\n        \"paid Atlassian graph tools\",\n        \"shell or filesystem discovery as evidence\",\n        \"prior benchmark artifacts or cached answers\"\n      ],\n      \"mustRecord\": [\n        \"observed MCP/tool surface\",\n        \"missing auth or missing tool limitations\"\n      ]\n    },\n    \"test\": {\n      \"context\": \"TWG CLI full graph context with bundled TWG skill guidance.\",\n      \"id\": \"test\",\n      \"label\": \"Paid Atlassian Teamwork Graph Context\",\n      \"mustRecord\": [\n        \"TWG commands\",\n        \"TWG guidance resources\",\n        \"TWG version when available\"\n      ],\n      \"mustUse\": [\n        \"twg CLI\"\n      ]\n    }\n  },\n  \"description\": \"Portable single-prompt A/B comparison between free context and TWG CLI graph context.\",\n  \"displayName\": \"TWG Bench Lite\",\n  \"integrityChecks\": [\n    \"samePrompt\",\n    \"sameParentSession\",\n    \"sameAgentRuntime\",\n    \"sameModelWhenObservable\",\n    \"sameReasoningWhenObservable\",\n    \"controlDidNotUseTwg\",\n    \"controlDidNotUsePaidGraphTools\",\n    \"testUsedTwg\",\n    \"noParentTaskSolving\",\n    \"noCrossArmContext\"\n  ],\n  \"progressFields\": [\n    \"status\",\n    \"elapsedMs\",\n    \"toolCalls\",\n    \"tokens\",\n    \"lastActivity\"\n  ],\n  \"publicSafety\": {\n    \"noInternalTenantsOrCloudIds\": true,\n    \"noInternalUrls\": true,\n    \"noPublishCommand\": true,\n    \"noRawSecrets\": true\n  },\n  \"qualityClassifications\": [\n    \"equivalent\",\n    \"twg-better\",\n    \"control-better\",\n    \"capability-gain\",\n    \"not-comparable\"\n  ],\n  \"qualityDimensionWinners\": [\n    \"control\",\n    \"test\",\n    \"tie\",\n    \"not-comparable\"\n  ],\n  \"qualityJudge\": {\n    \"codexModel\": \"gpt-5.5\",\n    \"codexReasoningEffort\": \"xhigh\",\n    \"defaultAgent\": \"selected-agent\",\n    \"defaultEnabled\": true,\n    \"disableFlag\": \"--no-judge\",\n    \"overrideFlag\": \"--judge-agent\",\n    \"supportedAgents\": [\n      \"codex\",\n      \"rovo\"\n    ]\n  },\n  \"report\": {\n    \"defaultLocalOnly\": true,\n    \"includeRawTraceByDefault\": false,\n    \"sections\": [\n      \"summary\",\n      \"progress\",\n      \"integrity\",\n      \"tokenAndCost\",\n      \"quality\",\n      \"toolSurface\",\n      \"toolCallSequence\",\n      \"armOutputs\",\n      \"limitations\"\n    ]\n  },\n  \"runtimeSupport\": {\n    \"unsupportedBehavior\": \"Report unsupported runtimes before launching either arm.\",\n    \"v1\": [\n      \"codex\",\n      \"rovo\"\n    ],\n    \"v2Planned\": [\n      \"claude\"\n    ]\n  },\n  \"schemaVersion\": \"twg-benchmark-configuration/v2\"\n}\n",
+      "source_commit": "21e3f6c74e2461fdc2850f063656ff07f3872c93",
+      "source_tree": "99721fdf2ad0554b565054880c006e36b0a8348d"
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "node",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite/scripts/benchmark-lite/runner.mjs",
+        "check",
+        "configuration",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite/scripts/benchmark-lite/contract.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-264764db-4a22-4b23-8030-2f439cb658ff",
+      "exit_code": 0,
+      "output": "{\n  \"contractName\": \"twg-bench-lite\",\n  \"contractVersion\": \"0.1.0\",\n  \"defaultArms\": {\n    \"control\": {\n      \"context\": \"Free Atlassian tools plus user-local MCP/connectors exposed to the agent runtime.\",\n      \"id\": \"control\",\n      \"label\": \"Free Atlassian with Local MCPs Context\",\n      \"mustNotUse\": [\n        \"twg CLI\",\n        \"TWG skills\",\n        \"paid Atlassian graph tools\",\n        \"shell or filesystem discovery as evidence\",\n        \"prior benchmark artifacts or cached answers\"\n      ],\n      \"mustRecord\": [\n        \"observed MCP/tool surface\",\n        \"missing auth or missing tool limitations\"\n      ]\n    },\n    \"test\": {\n      \"context\": \"TWG CLI full graph context with bundled TWG skill guidance.\",\n      \"id\": \"test\",\n      \"label\": \"Paid Atlassian Teamwork Graph Context\",\n      \"mustRecord\": [\n        \"TWG commands\",\n        \"TWG guidance resources\",\n        \"TWG version when available\"\n      ],\n      \"mustUse\": [\n        \"twg CLI\"\n      ]\n    }\n  },\n  \"description\": \"Portable single-prompt A/B comparison between free context and TWG CLI graph context.\",\n  \"displayName\": \"TWG Bench Lite\",\n  \"integrityChecks\": [\n    \"samePrompt\",\n    \"sameParentSession\",\n    \"sameAgentRuntime\",\n    \"sameModelWhenObservable\",\n    \"sameReasoningWhenObservable\",\n    \"controlDidNotUseTwg\",\n    \"controlDidNotUsePaidGraphTools\",\n    \"testUsedTwg\",\n    \"noParentTaskSolving\",\n    \"noCrossArmContext\"\n  ],\n  \"progressFields\": [\n    \"status\",\n    \"elapsedMs\",\n    \"toolCalls\",\n    \"tokens\",\n    \"lastActivity\"\n  ],\n  \"publicSafety\": {\n    \"noInternalTenantsOrCloudIds\": true,\n    \"noInternalUrls\": true,\n    \"noPublishCommand\": true,\n    \"noRawSecrets\": true\n  },\n  \"qualityClassifications\": [\n    \"equivalent\",\n    \"twg-better\",\n    \"control-better\",\n    \"capability-gain\",\n    \"not-comparable\"\n  ],\n  \"qualityDimensionWinners\": [\n    \"control\",\n    \"test\",\n    \"tie\",\n    \"not-comparable\"\n  ],\n  \"qualityJudge\": {\n    \"codexModel\": \"gpt-5.5\",\n    \"codexReasoningEffort\": \"xhigh\",\n    \"defaultAgent\": \"selected-agent\",\n    \"defaultEnabled\": true,\n    \"disableFlag\": \"--no-judge\",\n    \"overrideFlag\": \"--judge-agent\",\n    \"supportedAgents\": [\n      \"codex\",\n      \"rovo\"\n    ]\n  },\n  \"report\": {\n    \"defaultLocalOnly\": true,\n    \"includeRawTraceByDefault\": false,\n    \"sections\": [\n      \"summary\",\n      \"progress\",\n      \"integrity\",\n      \"tokenAndCost\",\n      \"quality\",\n      \"toolSurface\",\n      \"toolCallSequence\",\n      \"armOutputs\",\n      \"limitations\"\n    ]\n  },\n  \"runtimeSupport\": {\n    \"unsupportedBehavior\": \"Report unsupported runtimes before launching either arm.\",\n    \"v1\": [\n      \"codex\",\n      \"rovo\"\n    ],\n    \"v2Planned\": [\n      \"claude\"\n    ]\n  },\n  \"schemaVersion\": \"twg-benchmark-configuration/v2\"\n}\n",
+      "source_commit": "21e3f6c74e2461fdc2850f063656ff07f3872c93",
+      "source_tree": "99721fdf2ad0554b565054880c006e36b0a8348d"
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "node",
+        "-e",
+        "const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),cp=require('node:child_process'),assert=require('node:assert/strict'); const dir=fs.mkdtempSync(path.join(os.tmpdir(),'twg-integrated-')); const prompt='Read only these offline fixtures.\\nKeep caf\u00e9 and task identity.  \\n'; const bench=path.resolve('mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite/scripts/benchmark-lite'); try { for(const [runtime,file] of [['bun','runner.ts'],['node','runner.mjs']]) { const root=path.join(dir,runtime);fs.mkdirSync(root);fs.writeFileSync(path.join(root,'prompt.txt'),prompt);fs.writeFileSync(path.join(root,'control.txt'),'Control fixture: stable stored observation.');fs.writeFileSync(path.join(root,'test.txt'),'TWG fixture: stable stored observation.');const run=(...args)=>{const r=cp.spawnSync(runtime,[path.join(bench,file),...args],{encoding:'utf8'});assert.equal(r.status,0,r.stderr+r.stdout);return r;};const out=path.join(root,'run');run('run','--control-output-file',path.join(root,'control.txt'),'--test-output-file',path.join(root,'test.txt'),'--prompt-file',path.join(root,'prompt.txt'),'--output-dir',out,'--classification','equivalent','--summary','Offline stored observations.','--no-judge');const resultPath=path.join(out,'result.json'),before=fs.readFileSync(resultPath),result=JSON.parse(before);assert.equal(result.schemaVersion,'twg-benchmark-result/v2');assert.equal(result.contractVersion,'0.1.0');assert.equal(result.prompt.text,prompt);assert.equal(result.control.label,'Free Atlassian with Local MCPs Context');assert.equal(result.test.label,'Paid Atlassian Teamwork Graph Context');run('render',resultPath);assert.deepEqual(fs.readFileSync(resultPath),before);console.log(runtime+': owning run/render passed; prompt, arm identity and immutable result bytes preserved');}const market=JSON.parse(fs.readFileSync('mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json'));const plugin=JSON.parse(fs.readFileSync('mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json'));assert.equal(market.plugins.find(x=>x.name==='developer').version,plugin.version);assert.equal(plugin.version,'0.2.67');assert.equal(market.plugins.find(x=>x.name==='agent-core').version,'0.1.37');console.log('release metadata: developer 0.2.67 synchronized; agent-core 0.1.37 preserved');} finally {fs.rmSync(dir,{recursive:true,force:true});}"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-264764db-4a22-4b23-8030-2f439cb658ff",
+      "exit_code": 0,
+      "output": "bun: owning run/render passed; prompt, arm identity and immutable result bytes preserved\nnode: owning run/render passed; prompt, arm identity and immutable result bytes preserved\nrelease metadata: developer 0.2.67 synchronized; agent-core 0.1.37 preserved\n",
+      "source_commit": "21e3f6c74e2461fdc2850f063656ff07f3872c93",
+      "source_tree": "99721fdf2ad0554b565054880c006e36b0a8348d"
+    }
+  ],
+  "candidate_branch": "integration/264764db-4a22-4b23-8030-2f439cb658ff",
+  "candidate_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-264764db-4a22-4b23-8030-2f439cb658ff",
+  "pushed": true,
+  "reviewed_source_ref": "refs/worktree-reviews/33b388888ecb2dbbe46cde0d76f604946c925734",
+  "already_published": false,
+  "remote_observed_commit": "21e3f6c74e2461fdc2850f063656ff07f3872c93",
+  "integration_reachable": true
+}

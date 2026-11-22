@@ -1,0 +1,12 @@
+{
+  "review_receipt": "workflows/skill-contract-manifests-13-twg-benchmark/events/review-0005.yaml",
+  "review_base_commit": "22c0a8274bc66d3e41aad29bf03351864c561ced",
+  "base_before": "c6af9bab3fecbae6f140e26b75a313fad4c74340",
+  "source_unchanged": true,
+  "method_policy": "Worktrunk configured merge.squash=true; preserve reviewed source via integration helper retention ref.",
+  "compatibility": "Base advances add unrelated backlog contracts and workflow/muxer metadata; benchmark source and its shared contract API unchanged. Only generated developer release-version fields conflicted. Aligning base to reviewed 0.2.67 eliminated that metadata conflict while preserving current agent-core 0.1.37; no source or product-code conflict resolution was performed. Candidate checks exercise both runtimes and exact release compatibility.",
+  "metadata_alignment_commit": "fc2db7e8",
+  "ownership": "This parent owns the workflow. Both implementation and independent review runs confirmed stopped. No target reservation or hard prerequisite blocker. Other active streams retained.",
+  "inventory_uncertainty": "Unrelated stale linked records, historical Pi journal diagnostics and absent old prototype checkout; no benchmark owner, resource or dependency ambiguity.",
+  "local_changes": "Other ticket workflow writes are unrelated and preserved. Path-only commits avoid shared-index staging races. Base input is rechecked before helper application."
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "node",
+      "--test",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite/scripts/benchmark-lite/contracts.test.mjs"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite/scripts/benchmark-lite/runner.ts",
+      "check",
+      "configuration",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite/scripts/benchmark-lite/contract.json"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "node",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite/scripts/benchmark-lite/runner.mjs",
+      "check",
+      "configuration",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite/scripts/benchmark-lite/contract.json"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "node",
+      "-e",
+      "const fs=require('node:fs'),os=require('node:os'),path=require('node:path'),cp=require('node:child_process'),assert=require('node:assert/strict'); const dir=fs.mkdtempSync(path.join(os.tmpdir(),'twg-integrated-')); const prompt='Read only these offline fixtures.\\nKeep caf\u00e9 and task identity.  \\n'; const bench=path.resolve('mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite/scripts/benchmark-lite'); try { for(const [runtime,file] of [['bun','runner.ts'],['node','runner.mjs']]) { const root=path.join(dir,runtime);fs.mkdirSync(root);fs.writeFileSync(path.join(root,'prompt.txt'),prompt);fs.writeFileSync(path.join(root,'control.txt'),'Control fixture: stable stored observation.');fs.writeFileSync(path.join(root,'test.txt'),'TWG fixture: stable stored observation.');const run=(...args)=>{const r=cp.spawnSync(runtime,[path.join(bench,file),...args],{encoding:'utf8'});assert.equal(r.status,0,r.stderr+r.stdout);return r;};const out=path.join(root,'run');run('run','--control-output-file',path.join(root,'control.txt'),'--test-output-file',path.join(root,'test.txt'),'--prompt-file',path.join(root,'prompt.txt'),'--output-dir',out,'--classification','equivalent','--summary','Offline stored observations.','--no-judge');const resultPath=path.join(out,'result.json'),before=fs.readFileSync(resultPath),result=JSON.parse(before);assert.equal(result.schemaVersion,'twg-benchmark-result/v2');assert.equal(result.contractVersion,'0.1.0');assert.equal(result.prompt.text,prompt);assert.equal(result.control.label,'Free Atlassian with Local MCPs Context');assert.equal(result.test.label,'Paid Atlassian Teamwork Graph Context');run('render',resultPath);assert.deepEqual(fs.readFileSync(resultPath),before);console.log(runtime+': owning run/render passed; prompt, arm identity and immutable result bytes preserved');}const market=JSON.parse(fs.readFileSync('mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json'));const plugin=JSON.parse(fs.readFileSync('mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json'));assert.equal(market.plugins.find(x=>x.name==='developer').version,plugin.version);assert.equal(plugin.version,'0.2.67');assert.equal(market.plugins.find(x=>x.name==='agent-core').version,'0.1.37');console.log('release metadata: developer 0.2.67 synchronized; agent-core 0.1.37 preserved');} finally {fs.rmSync(dir,{recursive:true,force:true});}"
+    ]
+  }
+]
