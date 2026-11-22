@@ -15,6 +15,22 @@ export async function generateReceipt(context: Fields, outcome: Fields, reposito
   if (!supported.includes(String(context.receipt_schema))) throw new Error("Phase context requires its supported receipt_schema");
   if (context.receipt_schema === "worktree-receipt/v1" && (!handoff || parent?.schema !== "worktree-receipt/v1" || parent.event !== "phase-start" || context.event !== "phase-result")) throw new Error("Generated v1 identity requires a retained v1 phase-start and assigned handoff; new executions use v3");
   if (context.receipt_schema === "worktree-receipt/v1" && parent?.phase !== (context.phase === "implementation" ? "start" : context.phase)) throw new Error("Generated v1 identity requires a matching parent phase");
+  if (context.receipt_schema === "worktree-receipt/v2") {
+    const retained = parent?.schema === "worktree-receipt/v2";
+    const parentPhase = context.phase === "implementation" ? "start" : context.phase;
+    const assignedResult = handoff && context.event === "phase-result" && context.phase !== "finish"
+      && parent?.event === "phase-start" && parent.phase === parentPhase;
+    const reconciliation = !handoff && (
+      context.event === "phase-complete" && (
+        parent?.event === "phase-result" && parent.phase === context.phase
+        || parent?.event === "phase-start" && parent.phase === parentPhase
+          && outcome.result_missing === true && ["failed", "blocked"].includes(String(outcome.status))
+      )
+      || context.phase === "finish" && parent?.phase === "finish"
+        && ["phase-checkpoint", "phase-result"].includes(String(context.event))
+    );
+    if (!retained || !(assignedResult || reconciliation)) throw new Error("Generated v2 identity requires retained v2 authorization and an assigned handoff or historical reconciliation; new executions use v3");
+  }
   for (const key of identityKeys) if (Object.hasOwn(outcome, key)) throw new Error("Outcome must not supply receipt identity: " + key);
   const ticket = record(context.ticket, "phase ticket");
   for (const key of ["backend", "id", "ref"]) text(ticket[key], "phase ticket " + key);

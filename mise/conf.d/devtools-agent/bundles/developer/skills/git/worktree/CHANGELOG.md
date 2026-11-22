@@ -2,6 +2,8 @@
 
 ## 2026-11-22
 
+- Reject fresh v2 starts; restrict v2 production to retained assigned results and historical reconciliation.
+
 - Declare worktree-owned contracts and references to tracker, delivery and shared-context owners.
 - Produce v3 receipts through v2 phase contexts; retain v1/v2 history and assigned delivery handoffs unchanged.
 - Read v2 coordinator events without rewriting retained journals. Version inspection and coordination output.
