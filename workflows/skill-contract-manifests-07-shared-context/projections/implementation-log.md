@@ -95,3 +95,44 @@ No merge, push, ticket completion, or parent lifecycle closure occurred.
 ## review-0011
 
 [Independent review](../artifacts/reviews/review-review-0011.md): FAILURE for commit `3a70f87bac3f44cd6ceb41cebd0887c11ebdbb59`. Standards: one P1 blocker. Spec: one P1 and one P2 blocker. All three scenarios reproduced. Exact archived-source suite passed 117 tests and 494 assertions. Source unchanged. Result acknowledged. Reviewer and axis sessions closed; retained reviewer processes terminated after explicit user approval and identity checks, with shutdown confirmed.
+
+## fix-0015
+
+Source: `fc4bf19ed4d42aae5fb246e40904f4be956d3298`. Tree: `7f3a38fb53fa37605d2128815c2c3d9f8041b122`.
+Parent: fix-start-0014. Consumed review: review-0011. Authorization: fix-approval-0013.
+
+Preserve lexical caller paths in public upgrade results while keeping canonical filesystem guards. Read retained migration resolutions under their historical shape without rewriting plan IDs, property order, snapshots, or event hashes. Preserve equivalent authored project identity bytes; reject canonical remote mismatches during init and migration.
+
+### Changed files
+
+- `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
+- `mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json`
+- `mise/conf.d/devtools-agent/bundles/matt-pocock/.claude-plugin/plugin.json`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/references/upgrades.md`
+- `mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/references/tasks/migrate.md`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/references/changelog.md`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/contracts.test.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/upgrades.ts`
+- `mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/record-migration.ts`
+- `mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.test.ts`
+
+### Validation
+
+- Affected suite: 152 passed; one new alias fixture failed because its routes were incomplete. Corrected that fixture; targeted rerun passed (1 test, 4 assertions). No production-code change followed the suite. The seven-file run made 698 assertions.
+- Actual source records.ts upgrade through an ancestor-aliased shared-store root: partial result retains both selected paths, persists v2 for the valid ticket, preserves the rejected ticket, and reports changed fields and required publication.
+- Exact fixed-base archive e89668ebab19e7b40b7cb03edcf59a2c2e3ba0ba produced and applied plan e84129a50ebec9bde7851b25. Actual source migrate check returned contentVerified:true; idempotent apply returned idempotent:true. Original plan and every event remained byte-identical.
+- Actual source shared-context migrate sources --to shared and init --store shared: equivalent historical .git origins, with and without authored extra fields, remained byte-identical. Both commands rejected a different remote without replacing metadata.
+- Source resolution emitted shared-context-resolution/v1. New-plan regression keeps current versioned route snapshots.
+- TypeScript LSP could not initialize: TypeScript is absent. No typecheck claimed.
+- Tests used copied source and real Ajv 8.20.0, YAML 2.9.1, Crust core 0.0.19/plugins 0.1.2, with qualified aliases only outside source. Initial isolated HOME smoke setup could not find Bun/mq; corrected PATH and used the existing mise environment for explicit disposable tracker paths.
+
+### Findings and questions
+
+Resolved review-0011: STD-001, SPEC-01, SPEC-02. Unresolved: none. Open questions: none. New source awaits fresh review; both prior FAILURE verdicts remain scoped to their original commits. No merge, push, rebase, ticket mutation, or parent lifecycle completion.
+
+[Fix result](../events/fix-0015.yaml). [Immutable snapshot](../artifacts/snapshots/pr-draft-fix-0015.md).
+
+## fix-complete-0016
+
+[Parent completion](../events/fix-complete-0016.yaml) validates fix-0015 against its authoritative event and exact clean source. Delivery acknowledged; fixer terminal removed; all registered processes confirmed stopped. Parent resolver smoke passed. All three selected findings resolved; fresh independent review required. No merge, push, or ticket completion occurred.
