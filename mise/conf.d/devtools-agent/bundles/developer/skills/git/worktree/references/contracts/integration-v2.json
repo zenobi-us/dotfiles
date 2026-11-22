@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "worktree-integration/v2",
+  "title": "worktree-integration/v2",
+  "type": "object",
+  "required": [
+    "schema",
+    "integration_method",
+    "reviewed_source_commit",
+    "reviewed_source_tree",
+    "base_branch",
+    "base_before",
+    "expected_merge_tree"
+  ],
+  "properties": {
+    "schema": {
+      "const": "worktree-integration/v2"
+    },
+    "integration_method": {
+      "enum": [
+        "merge",
+        "squash"
+      ]
+    },
+    "reviewed_source_commit": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "reviewed_source_tree": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "base_branch": {
+      "type": "string",
+      "minLength": 1
+    },
+    "base_before": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "expected_merge_tree": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    }
+  },
+  "not": {
+    "required": [
+      "schemaVersion"
+    ]
+  },
+  "additionalProperties": true,
+  "x-compatibility": "Retained internal integration-plan wire format. integration.ts owns validation; a receipt identifier cutover does not alter or upgrade saved integration plans."
+}

@@ -1,5 +1,6 @@
 // Shared relationship checks keep publication and read-only inspection consistent.
 import type { Exec } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
+import { approvedSourceTransition, sourceIdentityChanged, sourceTransitionAncestryIssue } from "./source-transition";
 
 type Fields = Record<string, unknown>;
 export interface ReceiptIssue {
@@ -12,7 +13,7 @@ export interface ReceiptDiagnostic extends ReceiptIssue { ref: string }
 /** V1 source changes remain visible as warnings; new v2 completions must bind their result exactly. */
 export function receiptParentIssues(receipt: Fields, parent?: Fields): ReceiptIssue[] {
   const issues: ReceiptIssue[] = [];
-  const strict = receipt.schema === "worktree-receipt/v2";
+  const strict = receipt.schema === "worktree-receipt/v2" || receipt.schemaVersion === "worktree-receipt/v3";
   if (receipt.parent_receipt == null) {
     if (strict && ((receipt.event === "phase-result" && receipt.phase !== "finish") || (receipt.event === "phase-complete" && receipt.status === "completed"))) issues.push({ code: "missing_parent", severity: "error", message: "A child result or successful phase completion requires its parent receipt." });
     return issues;
@@ -24,6 +25,7 @@ export function receiptParentIssues(receipt: Fields, parent?: Fields): ReceiptIs
   if (receipt.receipt_id === parent.receipt_id) issues.push({ code: "self_parent", severity: "error", message: "A receipt cannot name itself as its parent." });
   if (Date.parse(String(parent.created_at)) > Date.parse(String(receipt.created_at))) issues.push({ code: "parent_after_child", severity: "error", message: "The receipt timestamp precedes its parent timestamp." });
   if (strict && receipt.ticket_ref !== parent.ticket_ref) issues.push({ code: "parent_ticket_mismatch", severity: "error", message: "The parent event identifies a different ticket." });
+  if ((receipt.source_transition != null || strict && sourceIdentityChanged(receipt, parent)) && !approvedSourceTransition(receipt, parent)) issues.push({ code: "invalid_source_transition", severity: "error", message: "A source transition requires an exact approved candidate and a fresh review start." });
   if (strict && receipt.event === "phase-result" && ["implementation", "review", "fix"].includes(String(receipt.phase))) {
     const phase = receipt.phase === "implementation" ? "start" : receipt.phase;
     if (parent.event !== "phase-start" || parent.phase !== phase) issues.push({ code: "result_parent_not_start", severity: "error", message: "A child result must name its matching phase-start receipt as parent." });
@@ -54,6 +56,11 @@ export async function inspectReceiptDiagnostics(entries: { ref: string; fields: 
   const trees = new Map<string, Promise<{ code: number; stdout: string }>>();
   for (const { ref, fields } of entries) {
     for (const issue of receiptParentIssues(fields, byId.get(fields.parent_receipt))) diagnostics.push({ ref, ...issue });
+    const parent = byId.get(fields.parent_receipt);
+    if (parent && approvedSourceTransition(fields, parent)) {
+      const issue = await sourceTransitionAncestryIssue(fields, parent, repository, exec);
+      if (issue) diagnostics.push({ ref, ...issue });
+    }
     if (Array.isArray(fields.history_supplements) && fields.history_supplements.length > 0) diagnostics.push({ ref, code: "history_supplement_applied", severity: "info", message: "Validated checksum-bound supplements repair earlier envelopes without changing their bytes." });
     if (!repository || !exec || typeof fields.source_commit !== "string" || !/^(?:[a-f0-9]{40}|[a-f0-9]{64})$/.test(fields.source_commit)) continue;
     let tree = trees.get(fields.source_commit);

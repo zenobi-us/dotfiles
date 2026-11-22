@@ -10,6 +10,7 @@ import type { TicketWorkflow } from "./model";
 import type { WorkflowInspection } from "./recovery";
 import { receiptEvent, receiptPhase } from "./recovery";
 import { verifyIntegration } from "./integration";
+import { strictReceipt } from "./contract-identity";
 
 export async function inspectWorkflow(context: SharedAgentContext, ticket: TicketRecord, workflow: TicketWorkflow, exec: Exec): Promise<WorkflowInspection> {
   const inspection: WorkflowInspection = {
@@ -160,8 +161,8 @@ async function inspectFinish(context: SharedAgentContext, ticket: TicketRecord, 
     if (receiptEvent(review) === "phase-result" && !chain.some(receipt => receiptPhase(receipt) === "review" && receiptEvent(receipt) === "phase-complete" && receipt.parentReceipt === review.id && receipt.status === "completed")) throw new Error("The successful review child has no validated parent completion in the finish chain.");
     const parents = (await run(exec, "git", ["-C", context.repositoryRoot, "show", "-s", "--format=%P", mapping.merged_commit!])).trim().split(/\s+/);
     const mergedTree = (await run(exec, "git", ["-C", context.repositoryRoot, "rev-parse", "--verify", `${mapping.merged_commit}^{tree}`])).trim();
-    if ((finish.fields.schema !== "worktree-receipt/v2" && (parents.length !== 1 || parents[0] !== mapping.base_before)) || mergedTree !== mapping.expected_merge_tree || (field("merged_tree") != null && field("merged_tree") !== mergedTree)) throw new Error("The integration commit does not match the recorded base parent and expected merge tree.");
-    if (finish.fields.schema === "worktree-receipt/v2") {
+    if ((!strictReceipt(finish.fields) && (parents.length !== 1 || parents[0] !== mapping.base_before)) || mergedTree !== mapping.expected_merge_tree || (field("merged_tree") != null && field("merged_tree") !== mergedTree)) throw new Error("The integration commit does not match the recorded base parent and expected merge tree.");
+    if (strictReceipt(finish.fields)) {
       await verifyIntegration(context.repositoryRoot, {
         schema: "worktree-integration/v2",
         integration_method: field("integration_method") as "merge" | "squash",
@@ -185,7 +186,7 @@ async function inspectFinish(context: SharedAgentContext, ticket: TicketRecord, 
     const workspace = inspection.source;
     const removed = workspace.state === "missing" && !inspection.inventoryError && !inspection.worktrees.some(row => row.path === finish.workspacePath);
     let candidatesRemoved = true;
-    if (finish.fields.schema === "worktree-receipt/v2") {
+    if (strictReceipt(finish.fields)) {
       const candidates = chain.filter(receipt => receipt.fields.candidate_workspace != null || receipt.fields.candidate_branch != null);
       if (!candidates.length) throw new Error("V2 finish mapping has no exact candidate workspace and branch.");
       for (const receipt of candidates) {

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "worktree-goal/v1",
+  "title": "worktree-goal/v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "event_id",
+    "parent_event",
+    "kind",
+    "run_id",
+    "repository",
+    "workflow",
+    "created_at",
+    "frozen_ticket_refs",
+    "initiative_ref",
+    "coordinator"
+  ],
+  "properties": {
+    "schema": {
+      "const": "worktree-goal/v1"
+    },
+    "kind": {
+      "type": "string",
+      "pattern": "^[a-z]+(?:_[a-z]+)*$"
+    },
+    "frozen_ticket_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "workflow": {
+      "type": "object",
+      "required": [
+        "store",
+        "root",
+        "ref"
+      ]
+    }
+  },
+  "not": {
+    "required": [
+      "schemaVersion"
+    ]
+  },
+  "additionalProperties": true,
+  "x-compatibility": "Immutable coordinator journal. Coordination validates canonical kinds, repository/store identity, copies, parent graph and chronological ancestors before trusting reservations. Never rewrite hash-linked history."
+}

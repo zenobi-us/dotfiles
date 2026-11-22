@@ -1,8 +1,8 @@
-// V1 history remains immutable; v2 separates reviewed source from integration shape.
+// V1/v2 history stays immutable; v3 keeps v2 semantics with an explicit schemaVersion field.
 import { isAbsolute } from "node:path";
+import { strictReceipt } from "./contract-identity";
 export function validateReceiptContract(fields: Record<string, unknown>): void {
-  if (fields.schema !== "worktree-receipt/v1" && fields.schema !== "worktree-receipt/v2") throw new Error("Event must use schema worktree-receipt/v1 or worktree-receipt/v2.");
-  if (fields.schema !== "worktree-receipt/v2") return;
+  if (!strictReceipt(fields)) return;
   if (!["start", "implementation", "review", "fix", "submit", "finish"].includes(String(fields.phase))) throw new Error("V2 receipts require a canonical phase name.");
   if (fields.phase === "review" && fields.event === "phase-complete" && fields.verdict != null) throw new Error("A parent review completion cannot supply its own verdict.");
   if (fields.phase === "review" && fields.status === "completed" && fields.event !== "phase-complete") {

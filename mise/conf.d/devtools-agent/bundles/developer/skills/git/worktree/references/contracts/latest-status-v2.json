@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "worktree-latest-status/v2",
+  "title": "worktree-latest-status/v2",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "workflow_id",
+    "ticket",
+    "state",
+    "latest_receipt",
+    "latest_source_commit",
+    "latest_source_tree",
+    "latest_review_verdict",
+    "open_findings"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "worktree-latest-status/v2"
+    },
+    "workflow_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ticket": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "type": "string",
+      "minLength": 1
+    },
+    "latest_receipt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "latest_source_commit": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "latest_source_tree": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "latest_review_verdict": {
+      "enum": [
+        "SUCCESS",
+        "FAILURE",
+        null
+      ]
+    },
+    "open_findings": {
+      "type": "array"
+    }
+  },
+  "not": {
+    "required": [
+      "schema"
+    ]
+  },
+  "additionalProperties": true,
+  "x-compatibility": "Mutable generated status, never recovery authority. Upgrades change only the identifier field before an authorized status update."
+}

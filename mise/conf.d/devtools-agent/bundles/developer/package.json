@@ -8,7 +8,8 @@
   ],
   "dependencies": {
     "@crustjs/core": "^0.0.19",
-    "@crustjs/plugins": "^0.1.2"
+    "@crustjs/plugins": "^0.1.2",
+    "yaml": "2.8.1"
   },
   "pi": {
     "skills": [

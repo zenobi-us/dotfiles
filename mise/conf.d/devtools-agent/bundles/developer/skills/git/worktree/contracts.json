@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": [
+    "worktree-receipt/v3",
+    "worktree-receipt/v1",
+    "worktree-receipt/v2",
+    "worktree-phase-context/v2",
+    "worktree-goal/v2",
+    "worktree-inspection/v1",
+    "worktree-inspection-error/v1",
+    "worktree-coordination/v2",
+    "worktree-workflow/v3",
+    "worktree-latest-status/v2",
+    "worktree-view-result/v1",
+    "worktree-pr-draft/v1",
+    "worktree-integration/v2"
+  ],
+  "accepts": [
+    "worktree-receipt/v3",
+    "worktree-phase-context/v2",
+    "worktree-goal/v2",
+    "worktree-workflow/v3",
+    "worktree-latest-status/v2",
+    "worktree-pr-draft/v1",
+    "worktree-integration/v2",
+    "worktree-receipt/v1",
+    "worktree-receipt/v2",
+    "worktree-phase-context/v1",
+    "worktree-goal/v1",
+    "worktree-workflow/v2",
+    "worktree-latest-status/v1",
+    "tracker-ticket/v1",
+    "tracker-ticket/v2",
+    "tracker-initiative/v1",
+    "tracker-initiative/v2",
+    "result-delivery/v1",
+    "result-delivery/v2",
+    "shared-context-resolution/v1"
+  ],
+  "contracts": {
+    "worktree-receipt/v1": "file:references/contracts/receipt-v1.json",
+    "worktree-receipt/v2": "file:references/contracts/receipt-v2.json",
+    "worktree-receipt/v3": "file:references/contracts/receipt-v3.json",
+    "worktree-phase-context/v1": "file:references/contracts/phase-context-v1.json",
+    "worktree-phase-context/v2": "file:references/contracts/phase-context-v2.json",
+    "worktree-goal/v1": "file:references/contracts/goal-v1.json",
+    "worktree-goal/v2": "file:references/contracts/goal-v2.json",
+    "worktree-workflow/v2": "file:references/contracts/workflow-v2.json",
+    "worktree-workflow/v3": "file:references/contracts/workflow-v3.json",
+    "worktree-latest-status/v1": "file:references/contracts/latest-status-v1.json",
+    "worktree-latest-status/v2": "file:references/contracts/latest-status-v2.json",
+    "worktree-inspection/v1": "file:references/contracts/inspection-v1.json",
+    "worktree-inspection-error/v1": "file:references/contracts/inspection-error-v1.json",
+    "worktree-coordination/v1": "file:references/contracts/coordination-v1.json",
+    "worktree-coordination/v2": "file:references/contracts/coordination-v2.json",
+    "worktree-view-result/v1": "file:references/contracts/view-result-v1.json",
+    "worktree-pr-draft/v1": "file:references/contracts/pr-draft-v1.json",
+    "worktree-integration/v2": "file:references/contracts/integration-v2.json",
+    "tracker-ticket/v1": "file:../../../../matt-pocock/skills/reading-and-writing-tickets/references/contracts/ticket-v1.json",
+    "tracker-ticket/v2": "file:../../../../matt-pocock/skills/reading-and-writing-tickets/references/contracts/ticket-v2.json",
+    "tracker-initiative/v1": "file:../../../../matt-pocock/skills/reading-and-writing-tickets/references/contracts/initiative-v1.json",
+    "tracker-initiative/v2": "file:../../../../matt-pocock/skills/reading-and-writing-tickets/references/contracts/initiative-v2.json",
+    "result-delivery/v1": "file:../../../../agent-core/skills/result-delivery/references/contracts/delivery-v1.json",
+    "result-delivery/v2": "file:../../../../agent-core/skills/result-delivery/references/contracts/delivery-v2.json",
+    "shared-context-resolution/v1": "file:../../../../agent-core/skills/shared-context/references/contracts.md"
+  },
+  "upgrades": [
+    {
+      "from": "worktree-workflow/v2",
+      "to": "worktree-workflow/v3",
+      "procedure": "file:references/contracts/view-upgrade.md"
+    },
+    {
+      "from": "worktree-latest-status/v1",
+      "to": "worktree-latest-status/v2",
+      "procedure": "file:references/contracts/view-upgrade.md"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "worktree-phase-context/v2",
+  "title": "worktree-phase-context/v2",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "receipt_schema",
+    "receipt_id",
+    "workflow_id",
+    "event",
+    "phase",
+    "attempt",
+    "parent_receipt",
+    "ticket",
+    "source",
+    "session"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "worktree-phase-context/v2"
+    },
+    "receipt_schema": {
+      "enum": [
+        "worktree-receipt/v3"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "worktree",
+        "branch",
+        "base_branch"
+      ]
+    },
+    "session": {
+      "type": "object",
+      "required": [
+        "muxer",
+        "agent",
+        "pane_id",
+        "session_id"
+      ]
+    }
+  },
+  "not": {
+    "required": [
+      "schema"
+    ]
+  },
+  "additionalProperties": true,
+  "x-compatibility": "Authorization input, not a receipt. phase-context.ts observes Git state and validates source, retained parent and assigned handoff. Retained v1 contexts keep assigned v1/v2 delivery identities; never relabel them."
+}

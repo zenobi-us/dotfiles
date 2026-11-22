@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "worktree-inspection/v1",
+  "title": "worktree-inspection/v1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "ticket",
+    "workflow",
+    "decision",
+    "blockers"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "worktree-inspection/v1"
+    },
+    "ticket": {
+      "type": "object"
+    },
+    "workflow": {
+      "type": "object"
+    },
+    "decision": {
+      "type": "object",
+      "required": [
+        "mode",
+        "label",
+        "reason",
+        "requiredApproval",
+        "inputs"
+      ]
+    },
+    "blockers": {
+      "type": "array"
+    }
+  },
+  "not": {
+    "required": [
+      "schema"
+    ]
+  },
+  "additionalProperties": true,
+  "x-compatibility": "Read-only command result. Original receipt fields remain unchanged inside workflow. The shared recoveryDecision is a recommendation, not permission or domain success. Tracker normalized models belong to reading-and-writing-tickets."
+}

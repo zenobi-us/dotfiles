@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "worktree-receipt/v1",
+  "title": "worktree-receipt/v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "receipt_id",
+    "workflow_id",
+    "phase",
+    "status",
+    "attempt",
+    "parent_receipt",
+    "repository",
+    "worktree",
+    "workspace_path",
+    "source_branch",
+    "base_branch",
+    "source_commit",
+    "source_tree",
+    "created_at",
+    "muxer",
+    "agent",
+    "pane_id",
+    "session_id",
+    "ticket",
+    "ticket_ref",
+    "workflow",
+    "inputs",
+    "outputs"
+  ],
+  "properties": {
+    "schema": {
+      "const": "worktree-receipt/v1"
+    },
+    "source_commit": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "source_tree": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "attempt": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "ticket": {
+      "type": "object",
+      "required": [
+        "backend",
+        "id",
+        "ref"
+      ]
+    },
+    "workflow": {
+      "type": "object",
+      "required": [
+        "store",
+        "root",
+        "ref"
+      ]
+    },
+    "inputs": {
+      "type": "array"
+    },
+    "outputs": {
+      "type": "array"
+    }
+  },
+  "not": {
+    "required": [
+      "schemaVersion"
+    ]
+  },
+  "additionalProperties": true,
+  "x-owner-validator": "scripts/receipt-validation.ts",
+  "x-compatibility": "Immutable. V1 retains legacy phases and finish semantics. Use receipt-validation.ts, receipt-contract.ts and receipt-diagnostics.ts together. Do not upgrade events; mixed-version parent chains are supported."
+}

@@ -3,16 +3,35 @@ import { realpath } from "node:fs/promises";
 import { isAbsolute } from "node:path";
 import type { Exec } from "../../../../../agent-core/skills/shared-context/scripts/shared-context/lib";
 import { linkedWorkflowRoot, validateReceipt } from "./receipt-validation";
+import { contractIdentity } from "./contract-identity";
+import { approvedSourceTransition, frozenSource, sourceIdentityChanged, sourceTransitionAncestryIssue } from "./source-transition";
 
 type Fields = Record<string, unknown>;
-const identityKeys = ["schema", "receipt_id", "event", "phase", "attempt", "parent_receipt", "repository", "worktree", "workspace_path", "source_branch", "base_branch", "source_commit", "source_tree", "source_dirty", "ticket", "ticket_ref", "workflow_id", "workflow", "muxer", "agent", "pane_id", "session_id", "goal_run_id", "goal_dispatch_ref"];
+const identityKeys = ["schema", "schemaVersion", "receipt_id", "event", "phase", "attempt", "parent_receipt", "repository", "worktree", "workspace_path", "source_branch", "base_branch", "source_commit", "source_tree", "source_dirty", "ticket", "ticket_ref", "workflow_id", "workflow", "muxer", "agent", "pane_id", "session_id", "goal_run_id", "goal_dispatch_ref"];
 
 /** Validate the complete context before the writer creates directories or delivers a result. */
 export async function generateReceipt(context: Fields, outcome: Fields, repository: string, workflow: Fields, parent: Fields | undefined, exec: Exec, handoff?: { runId?: string; operationId?: string }): Promise<Fields> {
-  if (context.schema !== "worktree-phase-context/v1") throw new Error("Expected worktree-phase-context/v1");
-  if (!["worktree-receipt/v1", "worktree-receipt/v2"].includes(String(context.receipt_schema))) throw new Error("Phase context requires a supported receipt_schema");
-  if (context.receipt_schema === "worktree-receipt/v1" && (!handoff || parent?.schema !== "worktree-receipt/v1" || parent.event !== "phase-start" || context.event !== "phase-result")) throw new Error("Generated v1 identity requires a retained v1 phase-start and assigned handoff; new executions use v2");
+  const contextContract = contractIdentity(context, "worktree-phase-context", 2, [1]);
+  const supported = contextContract === "worktree-phase-context/v2" ? ["worktree-receipt/v3"] : ["worktree-receipt/v1", "worktree-receipt/v2"];
+  if (!supported.includes(String(context.receipt_schema))) throw new Error("Phase context requires its supported receipt_schema");
+  if (context.receipt_schema === "worktree-receipt/v1" && (!handoff || parent?.schema !== "worktree-receipt/v1" || parent.event !== "phase-start" || context.event !== "phase-result")) throw new Error("Generated v1 identity requires a retained v1 phase-start and assigned handoff; new executions use v3");
   if (context.receipt_schema === "worktree-receipt/v1" && parent?.phase !== (context.phase === "implementation" ? "start" : context.phase)) throw new Error("Generated v1 identity requires a matching parent phase");
+  if (context.receipt_schema === "worktree-receipt/v2") {
+    const retained = parent?.schema === "worktree-receipt/v2";
+    const parentPhase = context.phase === "implementation" ? "start" : context.phase;
+    const assignedResult = handoff && context.event === "phase-result" && context.phase !== "finish"
+      && parent?.event === "phase-start" && parent.phase === parentPhase;
+    const reconciliation = !handoff && (
+      context.event === "phase-complete" && (
+        parent?.event === "phase-result" && parent.phase === (context.phase === "start" ? "implementation" : context.phase)
+        || parent?.event === "phase-start" && parent.phase === parentPhase
+        && outcome.result_missing === true && ["failed", "blocked"].includes(String(outcome.status))
+      )
+      || context.phase === "finish" && parent?.phase === "finish"
+      && ["phase-checkpoint", "phase-result"].includes(String(context.event))
+    );
+    if (!retained || !(assignedResult || reconciliation)) throw new Error("Generated v2 identity requires retained v2 authorization and an assigned handoff or historical reconciliation; new executions use v3");
+  }
   for (const key of identityKeys) if (Object.hasOwn(outcome, key)) throw new Error("Outcome must not supply receipt identity: " + key);
   const ticket = record(context.ticket, "phase ticket");
   for (const key of ["backend", "id", "ref"]) text(ticket[key], "phase ticket " + key);
@@ -44,7 +63,7 @@ export async function generateReceipt(context: Fields, outcome: Fields, reposito
   const partialClosure = event === "phase-complete" && ["start", "implementation", "fix"].includes(phase)
     && ["failed", "blocked"].includes(String(outcome.status)) && outcome.result_missing === true
     && parent?.event === "phase-start" && parent.phase === (phase === "implementation" ? "start" : phase);
-  const frozen = phase === "review" || phase === "submit" || phase === "finish" || (event === "phase-complete" && !partialClosure);
+  const frozen = frozenSource({ ...outcome, event, phase }, parent);
   if ((source.commit == null) !== (source.tree == null)) throw new Error("Source commit and tree expectations must be supplied together");
   if (frozen && (source.commit == null || source.tree == null)) throw new Error("This phase requires frozen source commit and tree expectations");
   let root: string;
@@ -60,8 +79,17 @@ export async function generateReceipt(context: Fields, outcome: Fields, reposito
       if (removed && (error as NodeJS.ErrnoException).code === "ENOENT") return parent.worktree;
       throw error;
     });
-    if (root !== parentRoot || branch !== parent.source_branch || base !== parent.base_branch) throw new Error("Phase source checkout, branch or base does not match its parent");
-    if (frozen && (source.commit !== parent.source_commit || source.tree !== parent.source_tree)) throw new Error("Frozen source identity does not match the parent");
+    const identity = {
+      ...outcome, event, phase, ticket_ref: ticket.ref, workflow_id: workflowId,
+      worktree: root, workspace_path: root, source_branch: branch, base_branch: base,
+      source_commit: source.commit, source_tree: source.tree,
+    };
+    const transition = approvedSourceTransition(identity, parent);
+    if ((outcome.source_transition != null || sourceIdentityChanged(identity, { ...parent, worktree: parentRoot, workspace_path: parentRoot })) && !transition) throw new Error("Source transition requires exact operator-approved candidate identity and a fresh review start");
+    if (transition) {
+      const issue = await sourceTransitionAncestryIssue({ source_commit: source.commit }, parent, repository, exec);
+      if (issue) throw new Error(issue.message);
+    }
   }
   let commit: string;
   let tree: string;
@@ -84,7 +112,7 @@ export async function generateReceipt(context: Fields, outcome: Fields, reposito
     if (frozen && dirty) throw new Error("Frozen source worktree has uncommitted changes");
   }
   const receipt: Fields = {
-    ...outcome, schema: context.receipt_schema, receipt_id: text(context.receipt_id, "phase receipt_id"), event, phase,
+    ...outcome, ...(context.receipt_schema === "worktree-receipt/v3" ? { schemaVersion: context.receipt_schema } : { schema: context.receipt_schema }), receipt_id: text(context.receipt_id, "phase receipt_id"), event, phase,
     attempt: context.attempt, parent_receipt: context.parent_receipt, repository,
     worktree: root, workspace_path: root, source_branch: branch, base_branch: base, source_commit: commit, source_tree: tree,
     ticket: { backend: ticket.backend, id: ticket.id, ref: ticket.ref }, ticket_ref: ticket.ref, workflow_id: workflowId,

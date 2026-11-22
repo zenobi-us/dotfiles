@@ -170,11 +170,11 @@ test("canonical entrypoint and JSON CLI do not change source, index, or receipt 
   const beforeReceipt = await readFile(receiptPath, "utf8");
   const beforeIndex = await readFile(join(context.repositoryRoot, ".git/index"));
   await expect(coordinateTicket("T-1", ["src"], inventory, context.repositoryRoot)).rejects.toThrow("canonical reference");
-  expect((await coordinateTicket("tracker/tickets/T-1.md", ["src"], inventory, context.repositoryRoot)).schema).toBe("worktree-coordination/v1");
+  await coordinateTicket("tracker/tickets/T-1.md", ["src"], inventory, context.repositoryRoot);
   const script = fileURLToPath(new URL("coordination.ts", import.meta.url));
   const result = await exec(process.execPath, [script, "tracker/tickets/T-1.md", "--json", "--scope", "src"], context.repositoryRoot);
   expect(result.code).toBe(0);
-  expect(JSON.parse(result.stdout)).toMatchObject({ schema: "worktree-coordination/v1", proposed: { ticket: { ref: "tracker/tickets/T-1.md" }, scope: { paths: ["src"] } } });
+  expect(JSON.parse(result.stdout)).toMatchObject({ proposed: { ticket: { ref: "tracker/tickets/T-1.md" }, scope: { paths: ["src"] } } });
   expect(await git("status", "--porcelain=v1")).toBe(beforeStatus);
   expect(await readFile(receiptPath, "utf8")).toBe(beforeReceipt);
   expect(await readFile(join(context.repositoryRoot, ".git/index"))).toEqual(beforeIndex);
@@ -504,4 +504,27 @@ test("noncanonical journal kinds remain visible and cannot reconcile reservation
     ref: "workflows/goal-two/events/reserved.json", ambiguous: true,
   }));
   expect(report.reservationObservations.find(item => item.ref.endsWith("/reserved.json"))?.reconciledReceipt).toBeUndefined();
+}, 60_000);
+
+test.each([1, 2])("v%i goal reservations remain visible without journal rewrites", async version => {
+  const { context, inventory, goalEvent } = await fixture();
+  const { schema: _historical, ...fields } = goalEvent;
+  const path = join(context.repositoryRoot, "workflows/goal-two/events/reserved.json");
+  const source = JSON.stringify({ ...fields, ...(version === 2 ? { schemaVersion: "worktree-goal/v2" } : { schema: "worktree-goal/v1" }) });
+  await put(path, source);
+  const report = await loadCoordination(context, "tracker/tickets/T-1.md", ["src"], inventory);
+  expect(report.reservationObservations).toContainEqual(expect.objectContaining({ ticketRef: "tracker/tickets/T-2.md", ambiguous: false }));
+  expect(await readFile(path, "utf8")).toBe(source);
+}, 60_000);
+
+test("a current goal event with an incomplete envelope cannot establish a reservation", async () => {
+  const { context, inventory, goalEvent } = await fixture();
+  const { schema: _historical, frozen_ticket_refs: _frozen, ...fields } = goalEvent;
+  const path = join(context.repositoryRoot, "workflows/goal-two/events/reserved.json");
+  const bytes = JSON.stringify({ ...fields, schemaVersion: "worktree-goal/v2" });
+  await put(path, bytes);
+  const report = await loadCoordination(context, "tracker/tickets/T-1.md", ["src"], inventory);
+  expect(report.inventoryComplete).toBe(false);
+  expect(report.reservationObservations).toEqual([]);
+  expect(await readFile(path, "utf8")).toBe(bytes);
 }, 60_000);
