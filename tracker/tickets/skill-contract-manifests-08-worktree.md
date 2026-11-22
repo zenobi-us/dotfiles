@@ -1,14 +1,14 @@
 ---
+schemaVersion: tracker-ticket/v2
 blocked_by: 
   - skill-contract-manifests-03-safe-upgrades
 id: skill-contract-manifests-08-worktree
 parent: skill-contract-manifests
-schema: tracker-ticket/v1
 sequence: 8
 title: Adopt contracts in worktree operations
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: "claimed"
 ---
 
 ## What to build
