@@ -33,5 +33,9 @@ Source: 33b388888ecb2dbbe46cde0d76f604946c925734, tree 6bf7cadb7209cb53e0a85d62d
 
 Receipts: [start-0001](../events/start-0001.yaml), [implementation-0002](../events/implementation-0002.yaml). Draft: [immutable snapshot](../artifacts/snapshots/pr-draft-implementation-0002.md).
 
-No fix or independent review phase has run. No unresolved questions.
+No fix phase has run. No unresolved questions.
+
+## Review history
+
+Review review-0005 returned SUCCESS for `33b388888ecb2dbbe46cde0d76f604946c925734`. No blocking findings. [Review artifact](../artifacts/reviews/review-review-0005.md), [review receipt](../events/review-0005.yaml), [parent completion](../events/review-complete-0006.yaml). Both runtime checks and independent offline smoke passed; source remained unchanged.
 
