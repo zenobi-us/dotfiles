@@ -51,7 +51,7 @@ Initial suite attempts exposed missing version-qualified runtime dependencies. T
 
 ## Review history
 
-No independent review has run. The parent owns fresh review dispatch. No review verdict exists.
+2026-11-22T04:10:19.730Z: [review-0005](../artifacts/reviews/review-review-0005.md) returned FAILURE for commit `2d5779034ef9f36b24356632a327070ae61daea0`.
 
 ## Resolved findings
 
@@ -59,11 +59,11 @@ No prior review findings.
 
 ## Remaining findings
 
-None recorded. This implementation does not establish review approval.
+Standards-1, Standards-2, SPEC-01, SPEC-02, SPEC-03, SPEC-04, and SPEC-05 remain open. See the immutable review for evidence and required changes.
 
 ## Latest reviewer verdict
 
-None.
+FAILURE.
 
 ## Merge status
 
