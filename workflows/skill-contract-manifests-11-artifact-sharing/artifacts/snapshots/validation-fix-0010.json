@@ -1,0 +1,319 @@
+{
+  "status": "passed",
+  "regression": {
+    "before": "3 failed: historical retrieval, numeric hash reader, new generation",
+    "after": "3 passed, 29 assertions"
+  },
+  "suite": "32 passed, 0 failed, 132 assertions",
+  "typecheck": "passed",
+  "smoke": {
+    "commands": [
+      {
+        "argv": [
+          "git",
+          "init",
+          "-q",
+          "/tmp/artifact-fix-smoke-wY5Djm/private"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+          "list"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "private  [0 shares]\n  repo:  private/example\n  pages: disabled\n  clone: /tmp/artifact-fix-smoke-wY5Djm/private\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+          "share",
+          "doc",
+          "/tmp/artifact-fix-smoke-wY5Djm/report.html",
+          "--dry-run",
+          "--description",
+          "Authored description"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "size check: ok (0 KiB published)\nmetadata check: ok (0 image(s))\nsecrets check: ok (offline scan of /tmp/artifact-share-860951705127-gwcXhu)\n{\n  \"dryRun\": true,\n  \"name\": \"private\",\n  \"repo\": \"private/example\",\n  \"kind\": \"doc\",\n  \"hash\": \"860951705127\",\n  \"title\": \"Review 376\",\n  \"url\": null,\n  \"repositoryPath\": \"content/shares/860951705127.mdx\",\n  \"page\": \"/tmp/artifact-share-860951705127-gwcXhu/content/shares/860951705127.mdx\",\n  \"stage\": \"/tmp/artifact-share-860951705127-gwcXhu\",\n  \"files\": [\n    \"report.html\"\n  ]\n}\n\nNothing was written to the clone and nothing was pushed.\nRead the page before you publish it:\n  cat /tmp/artifact-share-860951705127-gwcXhu/content/shares/860951705127.mdx\n",
+        "stderr": "[checks:size] $ /tmp/artifact-fix-smoke-wY5Djm/private/.mise/tasks/checks/size.…\n[checks:metadata] $ /tmp/artifact-fix-smoke-wY5Djm/private/.mise/tasks/checks/m…\n[checks:secrets] $ /tmp/artifact-fix-smoke-wY5Djm/private/.mise/tasks/checks/se…\n"
+      },
+      {
+        "argv": [
+          "mise",
+          "exec",
+          "--",
+          "mq",
+          "--allow-http-import",
+          "--lockfile",
+          "/tmp/artifact-fix-mq.lock",
+          "-I",
+          "raw",
+          "-F",
+          "raw",
+          "import \"github.com/harehare/okf.mq\" | .",
+          "/tmp/artifact-share-860951705127-gwcXhu/content/shares/860951705127.mdx"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "---\nschemaVersion: artifact-share-metadata/v2\ntitle: \"Review 376\"\ndescription: \"Authored description\"\nkind: doc\nhash: \"860951705127\"\ndate: 2026-11-22\nsource: \"report.html\"\n---\n\n<ShareMeta kind=\"doc\" hash=\"860951705127\" date=\"2026-11-22\" source=\"report.html\" raw=\"s/860951705127/\" />\n\n## Files\n\n<FileTree root=\"s/860951705127\" files={[\n  { path: \"s/860951705127/report.html\" }\n]} />\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "mise",
+          "exec",
+          "--",
+          "mq",
+          "--allow-http-import",
+          "--lockfile",
+          "/tmp/artifact-fix-mq.lock",
+          "-I",
+          "raw",
+          "-F",
+          "raw",
+          "-o",
+          "/tmp/artifact-fix-smoke-wY5Djm/private/content/shares/860951705127.mdx",
+          "import \"github.com/harehare/okf.mq\" | replace(\"schemaVersion: artifact-share-metadata/v2\\n\", \"\") | replace(\"hash: \\\"860951705127\\\"\", \"hash: 860951705127\")",
+          "/tmp/artifact-share-860951705127-gwcXhu/content/shares/860951705127.mdx"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "mise",
+          "exec",
+          "--",
+          "mq",
+          "--allow-http-import",
+          "--lockfile",
+          "/tmp/artifact-fix-mq.lock",
+          "-I",
+          "raw",
+          "-F",
+          "raw",
+          "import \"github.com/harehare/okf.mq\" | .",
+          "/tmp/artifact-fix-smoke-wY5Djm/private/content/shares/860951705127.mdx"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "---\ntitle: \"Review 376\"\ndescription: \"Authored description\"\nkind: doc\nhash: 860951705127\ndate: 2026-11-22\nsource: \"report.html\"\n---\n\n<ShareMeta kind=\"doc\" hash=\"860951705127\" date=\"2026-11-22\" source=\"report.html\" raw=\"s/860951705127/\" />\n\n## Files\n\n<FileTree root=\"s/860951705127\" files={[\n  { path: \"s/860951705127/report.html\" }\n]} />\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+          "share",
+          "doc",
+          "/tmp/artifact-fix-smoke-wY5Djm/report.html",
+          "--dry-run"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "{\n  \"hash\": \"860951705127\",\n  \"kind\": \"doc\",\n  \"url\": null,\n  \"repositoryPath\": \"content/shares/860951705127.mdx\",\n  \"unchanged\": true,\n  \"dryRun\": true\n}\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/tmp/artifact-fix-smoke-wY5Djm/private/.mise/tasks/checks/types.ts"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "types validation: ok (1 shares)\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "mise",
+          "exec",
+          "--",
+          "mq",
+          "--allow-http-import",
+          "--lockfile",
+          "/tmp/artifact-fix-mq.lock",
+          "-I",
+          "raw",
+          "-F",
+          "raw",
+          "-o",
+          "/tmp/artifact-fix-smoke-wY5Djm/private/content/shares/000000000123.mdx",
+          "import \"github.com/harehare/okf.mq\" | replace(\"860951705127\", \"000000000123\")",
+          "/tmp/artifact-fix-smoke-wY5Djm/private/content/shares/860951705127.mdx"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/tmp/artifact-fix-smoke-wY5Djm/private/.mise/tasks/checks/types.ts"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "types validation: ok (2 shares)\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "mise",
+          "exec",
+          "--",
+          "mq",
+          "--allow-http-import",
+          "--lockfile",
+          "/tmp/artifact-fix-mq.lock",
+          "-I",
+          "raw",
+          "-F",
+          "raw",
+          "-o",
+          "/tmp/artifact-fix-smoke-wY5Djm/private/content/shares/860951705127.mdx",
+          "import \"github.com/harehare/okf.mq\" | replace(\"---\\ntitle:\", \"---\\nschemaVersion: artifact-share-metadata/v1\\ntitle:\")",
+          "/tmp/artifact-fix-smoke-wY5Djm/private/content/shares/860951705127.mdx.fixture"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+          "share",
+          "doc",
+          "/tmp/artifact-fix-smoke-wY5Djm/report.html",
+          "--dry-run"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "{\n  \"hash\": \"860951705127\",\n  \"kind\": \"doc\",\n  \"url\": null,\n  \"repositoryPath\": \"content/shares/860951705127.mdx\",\n  \"unchanged\": true,\n  \"dryRun\": true\n}\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "mise",
+          "exec",
+          "--",
+          "mq",
+          "--allow-http-import",
+          "--lockfile",
+          "/tmp/artifact-fix-mq.lock",
+          "-I",
+          "raw",
+          "-F",
+          "raw",
+          "-o",
+          "/tmp/artifact-fix-smoke-wY5Djm/private/content/shares/860951705127.mdx",
+          "import \"github.com/harehare/okf.mq\" | replace(\"---\\ntitle:\", \"---\\nschemaVersion: artifact-share-metadata/v2\\ntitle:\")",
+          "/tmp/artifact-fix-smoke-wY5Djm/private/content/shares/860951705127.mdx.fixture"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+          "share",
+          "doc",
+          "/tmp/artifact-fix-smoke-wY5Djm/report.html",
+          "--dry-run"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Error: Share metadata hash must be a string.\n"
+      },
+      {
+        "argv": [
+          "mise",
+          "exec",
+          "--",
+          "mq",
+          "--allow-http-import",
+          "--lockfile",
+          "/tmp/artifact-fix-mq.lock",
+          "-I",
+          "raw",
+          "-F",
+          "raw",
+          "-o",
+          "/tmp/artifact-fix-smoke-wY5Djm/private/content/shares/860951705127.mdx",
+          "import \"github.com/harehare/okf.mq\" | replace(\"---\\ntitle:\", \"---\\nschemaVersion: artifact-share-metadata/v999\\ntitle:\")",
+          "/tmp/artifact-fix-smoke-wY5Djm/private/content/shares/860951705127.mdx.fixture"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+          "share",
+          "doc",
+          "/tmp/artifact-fix-smoke-wY5Djm/report.html",
+          "--dry-run"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Error: Unsupported explicit share metadata contract.\n"
+      },
+      {
+        "argv": [
+          "mise",
+          "exec",
+          "--",
+          "mq",
+          "--allow-http-import",
+          "--lockfile",
+          "/tmp/artifact-fix-mq.lock",
+          "-I",
+          "raw",
+          "-F",
+          "raw",
+          "-o",
+          "/tmp/artifact-fix-smoke-wY5Djm/private/content/shares/860951705127.mdx",
+          "import \"github.com/harehare/okf.mq\" | replace(\"hash: 860951705127\", \"hash: [860951705127]\")",
+          "/tmp/artifact-fix-smoke-wY5Djm/private/content/shares/860951705127.mdx.fixture"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+          "share",
+          "doc",
+          "/tmp/artifact-fix-smoke-wY5Djm/report.html",
+          "--dry-run"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "Error: Share metadata hash must be a string.\n"
+      }
+    ],
+    "clone_equality": true,
+    "source_equality": true,
+    "config_equality": true,
+    "leading_zero": "000000000123 repository identity check passed without rewrites",
+    "remote_operations": false
+  },
+  "cleanup": "Temporary isolated clone, config, source, generated stage removed. No domain services."
+}

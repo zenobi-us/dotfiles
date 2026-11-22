@@ -60,3 +60,34 @@ The parent suite passed 30 tests. Parent configuration smoke preserved read-only
 The reviewer and nested review processes stopped; owned panes were removed. No domain service remains. The earlier implementation resource paragraph describes its historical handoff.
 
 Records: [review start](../events/review-start-0005.yaml), [review result](../events/review-result-0006.yaml), [parent completion](../events/review-complete-0007.yaml), [coordination](../artifacts/snapshots/coordination-review-0005.json).
+
+
+## Fix result 0010 — FIXED, pending fresh review
+
+Consumed [review-result-0006](../events/review-result-0006.yaml) and [immutable review](../artifacts/reviews/review-review-result-0006.md). Historical FAILURE and SPEC-001 remain in history, stale for source 2b9160cdac8a7c413944876c87292d0d023eeaf1 (fb5625ebed3cdf92b322286d5c50aee485b887a1).
+
+[Fix result](../events/fix-result-0010.yaml) resolves SPEC-001; no unresolved implementation finding. New v2 hashes are quoted; unversioned/v1 plain numeric hashes retain exact text, including leading zeros.
+
+Changed files:
+
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json
+- mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/assets/repo-template/src/share-metadata.ts
+- mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/references/contracts/metadata-v1.json
+- mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/references/contracts/metadata-v2.json
+- mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/references/share.md
+- mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts
+- mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test/contracts.test.ts
+
+Validation: 3 regressions failed before and passed after; final suite 32 passes, 132 assertions; typecheck passed. Real isolated CLI generation/retrieval and repository checker passed, including exact leading-zero identity and byte equality. [Observations](../artifacts/snapshots/validation-fix-0010.json).
+
+[Versioned fix draft](../artifacts/snapshots/pr-draft-fix-0010.md). No open implementation questions. Fresh review required. No remote mutation, tracker edit or domain service. Parent owns workflow commits and child-pane shutdown; [resources](../artifacts/snapshots/resources-fix-0010.json) remain pending.
+
+
+## Parent fix completion
+
+The parent verified the assigned fix envelope against the authoritative receipt and all output paths. Actual owning CLI retrieval of historical numeric-only hash `860951705127` passed with `unchanged: true`, `dryRun: true`, and `url: null`; source and page bytes were unchanged.
+
+The fixer pane was removed. [Shutdown observation](../artifacts/snapshots/resources-fix-complete-0011.json) confirms all owned processes stopped. No domain service ran. Source remains clean at `2b9160cdac8a7c413944876c87292d0d023eeaf1`.
+
+[Fix completion](../events/fix-complete-0011.yaml) records validation and shutdown. Fresh shared inspection selects independent review of changed source; no merge or push ran.

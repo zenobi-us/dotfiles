@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "muxer-resource-report/v2",
+  "manifest": {
+    "schemaVersion": "muxer-run/v2",
+    "runId": "e51da8bd-cb06-4932-9c48-866bffeec5dd",
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "target": "t207",
+    "createdAt": "2026-11-22T08:45:10.005Z",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+    "operationId": "skill-contract-manifests-11-artifact-sharing-fix-1"
+  },
+  "resources": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "e51da8bd-cb06-4932-9c48-866bffeec5dd",
+    "observedAt": "2026-11-22T08:51:46.482Z",
+    "processes": [
+      {
+        "pid": 2110618,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "4241212",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 2110990,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "4242399",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 2113866,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "4246529",
+        "command": "omp daemon brok",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 2113892,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "4246534",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 2113915,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "4246539",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 2113927,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "4246546",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 2113928,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "4246547",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 2113941,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "4246566",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 2127396,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "4257447",
+        "command": "bun",
+        "parentPid": 2110618,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 2147772,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "4280618",
+        "command": "bun",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      }
+    ],
+    "shutdown": "pending"
+  },
+  "domain_services": [],
+  "note": "No domain service launched. Parent owns child-pane closure; live agent/tool processes remain pending."
+}

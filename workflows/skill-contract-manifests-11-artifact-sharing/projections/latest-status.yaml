@@ -2,10 +2,17 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "skill-contract-manifests-11-artifact-sharing",
   "ticket": "tracker/tickets/skill-contract-manifests-11-artifact-sharing.md",
-  "state": "REVIEW_FAILED",
-  "latest_receipt": "review-complete-0007",
-  "latest_source_commit": "8d83701befd83473f2a3fb38162cbef0c5082e38",
-  "latest_source_tree": "6da0a4fe4f9809120bab3bc7c11cddd78e87ac22",
+  "state": "FIXED",
+  "latest_receipt": "fix-complete-0011",
+  "latest_source_commit": "2b9160cdac8a7c413944876c87292d0d023eeaf1",
+  "latest_source_tree": "fb5625ebed3cdf92b322286d5c50aee485b887a1",
   "latest_review_verdict": "FAILURE",
-  "open_findings": ["SPEC-001"]
+  "review_stale": true,
+  "current_source_review_verdict": null,
+  "review_receipt": "review-result-0006",
+  "resolved_findings": [
+    "SPEC-001"
+  ],
+  "open_findings": [],
+  "next_action": "fresh independent review of changed clean source"
 }
