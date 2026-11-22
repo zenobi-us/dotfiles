@@ -1,14 +1,23 @@
-schema: worktree-latest-status/v1
-workflow_id: skill-contract-manifests-07-shared-context
-ticket: tracker/tickets/skill-contract-manifests-07-shared-context.md
-state: REVIEW_FAILED
-latest_receipt: review-complete-0019
-latest_source_commit: fc4bf19ed4d42aae5fb246e40904f4be956d3298
-latest_source_tree: 7f3a38fb53fa37605d2128815c2c3d9f8041b122
-latest_review_verdict: FAILURE
-latest_review_receipt: review-0018
-latest_review_source_commit: fc4bf19ed4d42aae5fb246e40904f4be956d3298
-open_findings: [SPEC-0018-01]
-resolved_review: review-0011
-resolved_findings: [STD-001, SPEC-01, SPEC-02]
-next_action: fix current blocking review finding
+{
+  "schema": "worktree-latest-status/v1",
+  "workflow_id": "skill-contract-manifests-07-shared-context",
+  "ticket": "tracker/tickets/skill-contract-manifests-07-shared-context.md",
+  "state": "FIXED",
+  "latest_receipt": "fix-complete-0022",
+  "latest_source_commit": "79250a53fad0780ac51d40f17121b50d8d76ef6f",
+  "latest_source_tree": "a4d55e717aa5beb4b31871622db5788e82519908",
+  "latest_review_verdict": null,
+  "latest_review_receipt": "review-0018",
+  "latest_review_source_commit": "fc4bf19ed4d42aae5fb246e40904f4be956d3298",
+  "historical_review_verdict": "FAILURE",
+  "review_stale": true,
+  "open_findings": [],
+  "nonblocking_findings": [
+    "STD-0018-01"
+  ],
+  "resolved_review": "review-0018",
+  "resolved_findings": [
+    "SPEC-0018-01"
+  ],
+  "next_action": "fresh independent review"
+}

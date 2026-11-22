@@ -1,3 +1,63 @@
+# Fix-0021: validated logical index identity
+
+## Ticket summary
+Ticket: skill-contract-manifests-07-shared-context. Initiative: skill-contract-manifests.
+Source: 79250a53fad0780ac51d40f17121b50d8d76ef6f. Tree: a4d55e717aa5beb4b31871622db5788e82519908. State: FIXED; independent review required.
+
+## Problem
+Review-0018 found SPEC-0018-01: the producer derived source identity from a canonical directory basename and wrote metadata its next owning read rejected.
+
+## Implementation summary
+Capture logical source and scope before canonicalization. Keep canonical target and immutable-history checks. Validate generated frontmatter before persistence. Quote generated values with JSON string encoding. Existing source metadata precedence and managed-block preservation remain unchanged.
+
+## Changed files
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json
+- mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/references/changelog.md
+- mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts
+- mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/contracts.test.ts
+
+The commit hook updated the two bundle version files. No tracker or workflow contract changed.
+
+## Validation results
+- The source suite attempt could not resolve qualified YAML/AJV packages: 33 passed, 6 errors. No assertion failure was reported.
+- The exact copied source used real YAML 2.8.1, AJV 8.20.0, Crust core 0.0.19 and plugins 0.1.2 with qualified aliases outside source. All 2246 copied files/link targets matched before validation. The exercised producer and regression files still matched after commit.
+- Isolated affected suite: 155 passed, 0 failed, 710 assertions, seven files, 70.23 seconds. Missing-record diagnostics were expected rejection output.
+- Actual CLI smoke passed eight owning invocations: repeated logical web alias to CanonicalSources; authored notes and source-copy byte preservation; future and malformed index identity rejection without changes; direct Web rejection without creating an index; repeated ordinary lowercase document indexing.
+- TypeScript LSP initialization failed because workspace TypeScript is absent. No typecheck claimed.
+
+## Review history
+Review-0018 returned FAILURE for fc4bf19ed4d42aae5fb246e40904f4be956d3298. The source changed, so that verdict is stale for this source. Earlier implementation/fix/review history is retained below without rewriting its claims.
+
+## Resolved findings
+SPEC-0018-01 from review-0018. Prior review-scoped resolutions remain in their original records.
+
+## Remaining findings
+STD-0018-01 remains unchanged: a non-blocking P3 layout-validation duplication heuristic, excluded by fix-start-0020. No unresolved blocker from the consumed review.
+
+## Latest reviewer verdict
+Historical FAILURE from review-0018. No review verdict exists for 79250a53fad0780ac51d40f17121b50d8d76ef6f.
+
+## Merge status
+Not merged, rebased, or pushed. Ticket unchanged. Parent checked and acknowledged the result, closed the fixer terminal, and confirmed all registered process shutdown after approved cleanup.
+
+## Open questions
+None. A fresh independent review and combined-candidate checks remain required before integration.
+
+## Supporting records
+- [Fix authorization](../events/fix-start-0020.yaml)
+- [Fix result](../events/fix-0021.yaml)
+- [Consumed review](../events/review-0018.yaml)
+- [Immutable review](../artifacts/reviews/review-review-0018.md)
+- [Prior fix](../events/fix-0015.yaml)
+- [Prior completion](../events/fix-complete-0016.yaml)
+- [Current snapshot](../artifacts/snapshots/pr-draft-fix-0021.md)
+
+
+# Historical projection retained from review-complete-0019
+
+The following text records earlier sources and checks. It does not describe current acceptance.
+
 # Adopt contracts in shared-context operations
 
 ## Ticket summary
@@ -101,3 +161,9 @@ None. Parent validated and acknowledged the result, closed the fixer terminal, a
 The independent review returned FAILURE for the unchanged source. Standards: one non-blocking P3 heuristic. Spec: one blocking P2 finding. The affected suite passed 153 tests and 701 assertions. Owning CLI scenarios exposed the blocking index producer/read mismatch. No typecheck or combined current-base integration approval is claimed.
 
 [Immutable review](../artifacts/reviews/review-review-0018.md), [review result](../events/review-0018.yaml), and [parent completion](../events/review-complete-0019.yaml) contain the evidence. The parent checked delivery, appended the ticket verdict, closed the reviewer, and confirmed process shutdown. Source remains clean and unmodified. Nothing was merged or pushed.
+
+# Parent completion 0022
+
+[fix-complete-0022](../events/fix-complete-0022.yaml) records the exact clean source, verified delivery, passing parent resolver smoke, and confirmed process shutdown. The user approved termination of the four remaining fixer identities. Fresh independent review is required because the source changed. No merge or push occurred.
+
+[Parent snapshot](../artifacts/snapshots/pr-draft-fix-complete-0022.md) provides snapshot-relative links. The original child snapshot remains immutable.

@@ -1,3 +1,36 @@
+# Fix-0021 implementation log update
+
+Source: 79250a53fad0780ac51d40f17121b50d8d76ef6f. Tree: a4d55e717aa5beb4b31871622db5788e82519908.
+Consumed review: review-0018. Resolved: SPEC-0018-01. Unchanged non-blocking: STD-0018-01.
+
+## Implementation summary
+Capture logical source and scope before canonicalization. Keep canonical target and immutable-history checks. Validate generated frontmatter before persistence. Quote generated values with JSON string encoding. Existing source metadata precedence and managed-block preservation remain unchanged.
+
+## Changed files
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json
+- mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/references/changelog.md
+- mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts
+- mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/contracts.test.ts
+
+The commit hook updated the two bundle version files. No tracker or workflow contract changed.
+
+## Validation results
+- The source suite attempt could not resolve qualified YAML/AJV packages: 33 passed, 6 errors. No assertion failure was reported.
+- The exact copied source used real YAML 2.8.1, AJV 8.20.0, Crust core 0.0.19 and plugins 0.1.2 with qualified aliases outside source. All 2246 copied files/link targets matched before validation. The exercised producer and regression files still matched after commit.
+- Isolated affected suite: 155 passed, 0 failed, 710 assertions, seven files, 70.23 seconds. Missing-record diagnostics were expected rejection output.
+- Actual CLI smoke passed eight owning invocations: repeated logical web alias to CanonicalSources; authored notes and source-copy byte preservation; future and malformed index identity rejection without changes; direct Web rejection without creating an index; repeated ordinary lowercase document indexing.
+- TypeScript LSP initialization failed because workspace TypeScript is absent. No typecheck claimed.
+
+
+## Questions and next action
+None. Obtain a fresh independent review. Parent owns completion and terminal closure.
+
+[Fix result](../events/fix-0021.yaml); [authorization](../events/fix-start-0020.yaml); [snapshot](../artifacts/snapshots/pr-draft-fix-0021.md).
+
+
+# Retained implementation and fix history
+
 # Implementation log
 
 ## implementation-0002
@@ -142,3 +175,7 @@ Resolved review-0011: STD-001, SPEC-01, SPEC-02. Unresolved: none. Open question
 The independent review returned FAILURE for the unchanged fix-0015 source. One blocking Spec P2 finding remains: SPEC-0018-01. Standards reported one non-blocking P3 heuristic. The affected suite passed 153 tests and 701 assertions. The actual owning index command exposed a producer/read contract failure. No implementation files changed during review.
 
 [Review artifact](../artifacts/reviews/review-review-0018.md), [review result](../events/review-0018.yaml), and [parent completion](../events/review-complete-0019.yaml) retain the evidence. Parent delivery acknowledgement, canonical ticket comment, resolver smoke, and all registered process shutdown are complete. Fix the blocking finding before another independent review. No merge or push occurred.
+
+## fix-complete-0022
+
+[Parent completion](../events/fix-complete-0022.yaml) validates fix-0021 and the exact clean source. The delivered result equals its authoritative event. Parent resolver smoke passed. Delivery is acknowledged. The fixer terminal is closed and all registered processes are stopped after the user approved cleanup. SPEC-0018-01 is resolved. STD-0018-01 remains a non-blocking excluded heuristic. Fresh independent review is required. Nothing was merged or pushed.
