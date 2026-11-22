@@ -80,7 +80,7 @@ SUCCESS.
 
 ## Merge status
 
-Not merged or pushed. Ticket remains claimed.
+Merged and pushed; ticket completed; source and candidate resources removed.
 
 ## Supporting receipts and artifacts
 
@@ -94,3 +94,11 @@ Not merged or pushed. Ticket remains claimed.
 - [Review result](../events/review-0005.yaml): SUCCESS for `4d56acb1e2863fd616577cae0afb3edc1a3cb8d3`.
 - [Review completion](../events/review-complete-0006.yaml): source unchanged; parent tests passed; reviewer shutdown confirmed.
 - [Immutable review](../artifacts/reviews/review-review-0005.md).
+
+## Finish evidence
+
+[Finish receipt](../events/finish-0011.yaml): FINISHED. Merge `085002c45dbc0658076843cfd307e3b92287d8b2` published to `origin/master`. Ticket completion published in `40b2d4197970ef20d32c0be8110fff21eb27084b`. Source and candidate branches/workspaces removed.
+
+Candidate report command tests, CLI help, and historical action-reader smoke passed. Historical reader preserved the action identity and evidence. Optional STANDARDS-01 remains nonblocking.
+
+[Approval](../events/finish-approval-0007.yaml), [prepared plan](../events/finish-prepared-0008.yaml), [published integration](../events/finish-pushed-0009.yaml), [ticket completion](../events/finish-ticket-0010.yaml), [integration checks](../artifacts/snapshots/finish-integration-0009.json).
