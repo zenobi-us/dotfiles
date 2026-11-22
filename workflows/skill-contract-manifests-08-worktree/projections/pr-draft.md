@@ -1,5 +1,5 @@
 ---
-receipt_id: fix-complete-0031
+receipt_id: fix-start-0035
 schemaVersion: worktree-pr-draft/v1
 source_commit: 2c8ef45d4987cead7ba120d64e3e5c896575ebc2
 source_tree: 3f61dab6d0018150e4a214b20f9e63e698d1c4c2
@@ -301,3 +301,8 @@ No product integration or ticket completion occurred. Both source worktrees rema
 [Review 4](../artifacts/reviews/review-review-0027.md) returned FAILURE for a5fd7c0e4f0241d6a5a3f6ad7cb357d78b884190: recovery did not enforce ancestry and original base. [Fix result](../events/fix-0030.yaml) and [parent completion](../events/fix-complete-0031.yaml) resolve SPEC-1 through shared writer/reader ancestry checks and unchanged-base validation. Current clean source: `2c8ef45d4987cead7ba120d64e3e5c896575ebc2`, tree `3f61dab6d0018150e4a214b20f9e63e698d1c4c2`. Fresh independent review is required.
 
 Changed files and owning-command smoke details: [immutable fix snapshot](../artifacts/snapshots/pr-draft-fix-0030.md). Parent full suite: 218 pass, 0 fail, 1141 assertions. Actual inspector: diagnostics []; new source identity exact. Fixer delivery acknowledged; all observed owned processes stopped. No integration, push or ticket completion yet. Earlier reviews and receipts remain historical and unchanged.
+## Independent review attempt 5 and identity repair
+
+[Review result](../events/review-0033.yaml) and [immutable review](../artifacts/reviews/review-review-0033.md) returned FAILURE for `2c8ef45d4987cead7ba120d64e3e5c896575ebc2`: SPEC-1 is resolved; SPEC-2 requires detecting unapproved source changes even without a marker. [Parent completion](../events/review-complete-0034.yaml) records verified delivery and confirmed reviewer/helper shutdown. [Fresh fix dispatch](../events/fix-start-0035.yaml) authorizes only SPEC-2.
+
+No source integration or ticket completion ran. Preliminary finish-check/message snapshots numbered 0035 were prepared before this verdict and are not executed integration evidence; a new exact-source plan and message are required after review succeeds. Prior receipts and artifacts remain unchanged.

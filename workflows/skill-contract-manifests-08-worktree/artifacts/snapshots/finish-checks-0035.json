@@ -1,0 +1,22 @@
+[
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "--eval",
+      "const p=Bun.spawnSync([process.cwd()+\"/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.ts\",\"tracker/tickets/skill-contract-manifests-08-worktree.md\",\"--json\"],{stdout:\"pipe\",stderr:\"pipe\"});if(p.exitCode!==0)throw Error(new TextDecoder().decode(p.stderr));const r=JSON.parse(new TextDecoder().decode(p.stdout));if(!r.workflow.inspection.historyValid||r.workflow.diagnostics.length||r.workflow.inspection.source.commit!==\"2c8ef45d4987cead7ba120d64e3e5c896575ebc2\"||r.workflow.inspection.source.tree!==\"3f61dab6d0018150e4a214b20f9e63e698d1c4c2\")throw Error(JSON.stringify({history:r.workflow.inspection.historyValid,diagnostics:r.workflow.diagnostics,source:r.workflow.inspection.source}));console.log(JSON.stringify({schemaVersion:r.schemaVersion,historyValid:true,source:r.workflow.inspection.source.commit,diagnostics:r.workflow.diagnostics}));"
+    ]
+  }
+]
