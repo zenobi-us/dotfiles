@@ -258,3 +258,7 @@ Produced:
 ## Review attempt 2 verification
 
 Reviewer full suite: 176 pass, 0 fail. Owning commands reproduced missing-initiative acceptance and retained start-completion rejection. External owner resolution was checked separately. Parent view-contract checks: 14 pass, 0 fail. Source unchanged; reviewer and helper shutdown confirmed. No independent typecheck this attempt. No merge or push.
+
+## Parent fix attempt 2 completion
+
+[fix-complete-0016](../events/fix-complete-0016.yaml) confirms fix-0015, resolved STANDARDS-1/SPEC-3/SPEC-4, 89 passing parent regressions, correct installed owner-definition resolution and exact approved definition checksum. Delivery acknowledged; fixer terminal removed and all observed processes stopped. Source `8ce850b641b29d052f9549f956f93dfd655e2c6b` is clean. Current review verdict is null; fresh independent review is required. No merge or push.
