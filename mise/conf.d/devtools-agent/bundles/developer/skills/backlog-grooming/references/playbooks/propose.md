@@ -4,7 +4,7 @@ Ask the user which proposed actions to apply, then apply only those. Do this aft
 
 ## 1. Read the actions
 
-Read `$RUN_DIR/actions.json`. It is a list of tickets, each with its verdict and its `proposed_actions`. Skip tickets with no actions.
+Run `"$GROOMING_SKILL_ROOT/scripts/grooming-report.ts" check-actions "$RUN_DIR/actions.json"` before asking or applying anything. Stop on failure. It validates current v2 envelopes and historical v1 arrays without rewriting them. Use the returned ticket list, each verdict, and its `proposed_actions`. Keep `(ticket, id)` as the action identity. Skip tickets with no actions.
 
 ## 2. Ask
 

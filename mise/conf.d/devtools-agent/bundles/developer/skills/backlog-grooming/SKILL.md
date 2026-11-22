@@ -34,6 +34,8 @@ ticket list  reports/   index.html   chosen actions
 | Collate | Every subagent finished, or timed out and was recorded | [Collate and publish](references/playbooks/collate.md) |
 | Propose | The report is published and `actions.json` lists one or more actions | [Propose actions](references/playbooks/propose.md) |
 
+Read [Contracts and upgrades](references/upgrades.md) before interpreting historical artifacts or explicitly converting selected mutable reports or action records. The shared `skill-contracts` APIs validate `contracts.json`; owner commands validate content.
+
 The report file contract is in [Report contract](references/report-contract.md). Read it before you write or check a report.
 
 The steps a person sees are in [Groom backlog tickets](how-to-groom-backlog.md). Read it when the user asks how the skill works or what a summary line means.
