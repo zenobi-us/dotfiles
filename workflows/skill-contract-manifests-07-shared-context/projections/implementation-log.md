@@ -91,3 +91,7 @@ No merge, push, ticket completion, or parent lifecycle closure occurred.
 
 [Fix snapshot](../artifacts/snapshots/pr-draft-fix-0008.md). [Fix result](../events/fix-0008.yaml).
 
+
+## review-0011
+
+[Independent review](../artifacts/reviews/review-review-0011.md): FAILURE for commit `3a70f87bac3f44cd6ceb41cebd0887c11ebdbb59`. Standards: one P1 blocker. Spec: one P1 and one P2 blocker. All three scenarios reproduced. Exact archived-source suite passed 117 tests and 494 assertions. Source unchanged. Result acknowledged. Reviewer and axis sessions closed; retained reviewer processes terminated after explicit user approval and identity checks, with shutdown confirmed.

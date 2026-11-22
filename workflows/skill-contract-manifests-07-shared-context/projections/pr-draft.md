@@ -4,7 +4,7 @@
 
 Ticket: skill-contract-manifests-07-shared-context. Initiative: skill-contract-manifests.
 Source: `3a70f87bac3f44cd6ceb41cebd0887c11ebdbb59`. Tree: `42436c397dfe6d48d33d8c592d25283cdf94cd38`.
-State: awaiting fresh independent review. Ticket claim and triage remain unchanged.
+State: REVIEW_FAILED after review-0011. Ticket claim and triage remain unchanged.
 
 ## Problem
 
@@ -47,17 +47,19 @@ The workspace TypeScript LSP could not initialize because TypeScript is absent. 
 
 Review review-0005 returned FAILURE for `2d5779034ef9f36b24356632a327070ae61daea0`. Its immutable artifact and every prior event remain unchanged. This fix changes source and does not replace that verdict.
 
+2026-11-22T05:18:47.214Z: [review-0011](../artifacts/reviews/review-review-0011.md) returned FAILURE for current source. Prior review and fix history remain unchanged.
+
 ## Resolved findings
 
-Standards-1, Standards-2, SPEC-01, SPEC-02, SPEC-03, SPEC-04, SPEC-05. Resolution is supported by the checks above, not a new review verdict.
+Review-0005 findings Standards-1, Standards-2, SPEC-01, SPEC-02, SPEC-03, SPEC-04, and SPEC-05 were addressed by fix-0008. Review-0011 findings belong to a separate review attempt.
 
 ## Remaining findings
 
-No unresolved selected finding IDs. Fresh independent review is required for the new source.
+Review-0011 records STD-001, SPEC-01, and SPEC-02 as current blockers. See the immutable review artifact for evidence and required changes.
 
 ## Latest reviewer verdict
 
-FAILURE for the previous source. No verdict exists for the current source.
+FAILURE from [review-0011](../artifacts/reviews/review-review-0011.md) for current source `3a70f87bac3f44cd6ceb41cebd0887c11ebdbb59`.
 
 ## Merge status
 

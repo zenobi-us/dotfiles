@@ -1,15 +1,19 @@
 schema: worktree-latest-status/v1
 workflow_id: skill-contract-manifests-07-shared-context
 ticket: tracker/tickets/skill-contract-manifests-07-shared-context.md
-state: AWAITING_REVIEW
-latest_receipt: fix-complete-0009
+state: REVIEW_FAILED
+latest_receipt: review-complete-0012
 latest_source_commit: 3a70f87bac3f44cd6ceb41cebd0887c11ebdbb59
 latest_source_tree: 42436c397dfe6d48d33d8c592d25283cdf94cd38
 latest_review_verdict: FAILURE
-latest_review_receipt: review-0005
-latest_review_source_commit: 2d5779034ef9f36b24356632a327070ae61daea0
-current_source_reviewed: false
-open_findings: []
+latest_review_receipt: review-0011
+latest_review_source_commit: 3a70f87bac3f44cd6ceb41cebd0887c11ebdbb59
+current_source_reviewed: true
+open_findings:
+  - STD-001
+  - SPEC-01
+  - SPEC-02
+resolved_findings_review_receipt: review-0005
 resolved_finding_ids:
   - Standards-1
   - Standards-2
