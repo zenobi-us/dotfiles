@@ -22,7 +22,7 @@ export async function generateReceipt(context: Fields, outcome: Fields, reposito
       && parent?.event === "phase-start" && parent.phase === parentPhase;
     const reconciliation = !handoff && (
       context.event === "phase-complete" && (
-        parent?.event === "phase-result" && parent.phase === context.phase
+        parent?.event === "phase-result" && parent.phase === (context.phase === "start" ? "implementation" : context.phase)
         || parent?.event === "phase-start" && parent.phase === parentPhase
           && outcome.result_missing === true && ["failed", "blocked"].includes(String(outcome.status))
       )
