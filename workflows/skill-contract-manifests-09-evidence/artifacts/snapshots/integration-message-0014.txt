@@ -1,0 +1,5 @@
+feat(evidence): skill-contract-manifests-09-evidence
+
+Adopt explicit evidence contracts and preserve immutable historical records.
+Integrate reviewed source 62f26327084f0dca065ee8ec065c0437cdc54c7d.
+Review: workflows/skill-contract-manifests-09-evidence/events/review-0011.yaml
