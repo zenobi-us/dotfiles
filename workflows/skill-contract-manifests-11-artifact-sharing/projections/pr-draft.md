@@ -87,3 +87,14 @@ The parent verified the assigned fix envelope against the authoritative receipt 
 The fixer pane was removed. [Shutdown observation](../artifacts/snapshots/resources-fix-complete-0011.json) confirms all owned processes stopped. No domain service ran. Source remains clean at `2b9160cdac8a7c413944876c87292d0d023eeaf1`.
 
 [Fix completion](../events/fix-complete-0011.yaml) records validation and shutdown. Fresh shared inspection selects independent review of changed source; no merge or push ran.
+
+
+## Independent review 0014 — FAILURE
+
+Current verdict: FAILURE for `2b9160cdac8a7c413944876c87292d0d023eeaf1`, tree `fb5625ebed3cdf92b322286d5c50aee485b887a1`. This supersedes the pending-review statements above. Original SPEC-001 CLI generation/retrieval fix is confirmed. New open findings: STANDARDS-001, STANDARDS-002, SPEC-002, SPEC-003. The standards/spec axes each report two blocking compatibility findings, worst P1. See the [single immutable review](../artifacts/reviews/review-review-result-0014.md) for details and required changes.
+
+The suite passed 32 tests and bundle typecheck passed. Actual owning CLI smoke passed; frozen-base repository checks and historical site builds failed. A quoted v2 site-build control passed. Source stayed clean and unchanged.
+
+[Review start](../events/review-start-0013.yaml), [review result](../events/review-result-0014.yaml), [parent completion](../events/review-complete-0015.yaml), [coordination](../artifacts/snapshots/coordination-review-0013.json), and [shutdown observation](../artifacts/snapshots/resources-review-complete-0015.json) retain the evidence. Reviewer and both nested sessions were closed; shutdown confirmed; no domain service ran.
+
+Next action from fresh inspection: authorize a fresh fixer with these exact findings. No fix, merge, push or remote publication ran in this review phase.
