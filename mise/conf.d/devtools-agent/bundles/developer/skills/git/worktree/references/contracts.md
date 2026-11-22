@@ -28,3 +28,11 @@ Before an authorized generated-view mutation, use the absolute installed `script
 The shared safe-upgrade operation validates source, destination, and preservation before writing. The owner preserves YAML comments and all unknown data. It rejects aliases, explicit tags, unsupported numbers, unknown fields in update requests, and immutable paths. A rejected update preserves original bytes. Read-only access does not call this operation. Explicit bulk upgrades use the shared router with `file:scripts/view-contracts.ts`, never event files.
 
 Create new PR draft snapshots with mq, exclusive writes and frontmatter containing `schemaVersion: worktree-pr-draft/v1`, `workflow_id`, `receipt_id`, `source_commit` and `source_tree`. Include implementation summary, changed files, validation results, open questions, and consumed/produced canonical references in the body. Copy the current snapshot into the replaceable PR draft projection. Ordinary implementation-log prose has no independent schema. Never stamp or rewrite historical reviews or snapshots.
+
+## Retained completion and resolution inputs
+
+A retained v2 `start` completion names an `implementation` phase-result. The owning writer uses the same completion/result mapping as receipt diagnostics. Fresh v2 starts, unassigned results and mismatched phases remain rejected.
+
+`shared-context-resolution/v1` is accepted, not produced. Its authoritative definition is the shared-context owner’s `references/contracts.md`, extending `layout.md`. The adopted definition is byte-identical to commit `3a70f87bac3f44cd6ceb41cebd0887c11ebdbb59` (SHA-256 `9523366fbe7c608d248a131604cab4adb456879cb283904b336a45aafbc090ae`), under the same owner path. This definition-only adoption does not adopt or approve the owner runtime.
+
+At publication boundaries, `context-resolution.ts` accepts tagged v1 output or one retained unversioned shape with neither identity field. Both require the same valid kind, adapter, store, absolute contained paths, reference and publication. Explicit unknown or mixed identities fail. The reader projects location fields separately in memory for comparison. It never stamps, sorts or rewrites retained snapshots; their bytes and hashes remain authoritative. Current typed producer output must remain v1. Legacy input support does not authorize legacy production.

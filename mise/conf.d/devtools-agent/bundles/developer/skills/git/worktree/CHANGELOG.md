@@ -10,3 +10,7 @@
 - Produce v3 receipts through v2 phase contexts; retain v1/v2 history and assigned delivery handoffs unchanged.
 - Read v2 coordinator events without rewriting retained journals. Version inspection and coordination output.
 - Upgrade mutable manifests and latest-status views only before authorized status updates. Preserve YAML comments and reject unsafe or immutable input.
+
+- Require explicit current manifest initiative; preserve historical validation and stop ambiguous upgrades for an owner decision.
+- Reconcile retained v2 start completions with implementation results without weakening new-write gates.
+- Resolve the approved shared-context owner definition and validate current/retained location inputs without rewriting snapshot hashes.

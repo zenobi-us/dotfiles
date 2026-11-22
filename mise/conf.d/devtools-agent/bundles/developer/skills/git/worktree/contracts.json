@@ -62,7 +62,7 @@
     "tracker-initiative/v2": "file:../../../../matt-pocock/skills/reading-and-writing-tickets/references/contracts/initiative-v2.json",
     "result-delivery/v1": "file:../../../../agent-core/skills/result-delivery/references/contracts/delivery-v1.json",
     "result-delivery/v2": "file:../../../../agent-core/skills/result-delivery/references/contracts/delivery-v2.json",
-    "shared-context-resolution/v1": "file:../../../../agent-core/skills/shared-context/references/layout.md"
+    "shared-context-resolution/v1": "file:../../../../agent-core/skills/shared-context/references/contracts.md"
   },
   "upgrades": [
     {

@@ -9,6 +9,7 @@ import { publishImmutableFile } from "../../../../../agent-core/skills/result-de
 import { safeUpgrade } from "../../../../../agent-core/skills/skill-contracts/scripts/upgrades";
 import { loadContracts } from "../../../../../agent-core/skills/skill-contracts/scripts/contracts";
 import owner from "./view-contracts";
+import { readContextResolution } from "./context-resolution";
 
 if (import.meta.main) {
   try {
@@ -28,7 +29,7 @@ if (import.meta.main) {
     };
     const context = await resolveSharedContext(exec, options["--repository"]);
     if (!context || context.error) throw new Error(context?.error ?? "View publication requires shared-context routing.");
-    const target = await resolveContextRecord(context, { kind: "workflow", id: options["--id"]! });
+    const target = await readContextResolution(await resolveContextRecord(context, { kind: "workflow", id: options["--id"]! }));
     if (!target.root || !target.path) throw new Error("Workflow must be file-backed.");
     const canonicalRoot = await realpath(target.root);
     const path = join(canonicalRoot, relative(target.root, target.path), options["--kind"] === "manifest" ? "manifest.yaml" : "projections/latest-status.yaml");

@@ -13,6 +13,7 @@ import { verifyIntegration } from "./integration";
 import { validateReceipt as validateEnvelope, validateSourceWorktree } from "./receipt-validation";
 import { generateReceipt } from "./phase-context";
 import { receiptIdentity, strictReceipt } from "./contract-identity";
+import { readContextResolution } from "./context-resolution";
 
 const sharedContextCli = fileURLToPath(new URL("../../../../../agent-core/skills/shared-context/scripts/shared-context/cli.ts", import.meta.url));
 const app = new Crust("write-worktree-result").meta({ description: "Write one immutable worktree phase-result receipt and deliver the same object to its caller." }).flags({
@@ -41,7 +42,8 @@ const app = new Crust("write-worktree-result").meta({ description: "Write one im
     if (typeof workflowId !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(workflowId)) throw new Error("Phase workflow_id must be a safe identifier");
     const resolution = Bun.spawnSync([sharedContextCli, "resolve", "workflow", "--id", workflowId, "--json"], { cwd: flags.repository, stdout: "pipe", stderr: "pipe" });
     if (resolution.exitCode !== 0) throw new Error("Shared-context could not resolve the workflow. No receipt was written.");
-    const target = object(JSON.parse(new TextDecoder().decode(resolution.stdout)));
+    const target = { ...await readContextResolution(JSON.parse(new TextDecoder().decode(resolution.stdout))) };
+    if (target.kind !== "workflow") throw new Error("Expected a workflow resolution.");
     let parent: Record<string, unknown> | undefined;
     const parentId = phaseContext?.parent_receipt ?? input.parent_receipt;
     if (parentId != null) {
