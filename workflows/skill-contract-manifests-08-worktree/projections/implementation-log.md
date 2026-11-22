@@ -122,3 +122,9 @@ Changed files and owning-command smoke details: [immutable fix snapshot](../arti
 [Review result](../events/review-0033.yaml) and [immutable review](../artifacts/reviews/review-review-0033.md) returned FAILURE for `2c8ef45d4987cead7ba120d64e3e5c896575ebc2`: SPEC-1 is resolved; SPEC-2 requires detecting unapproved source changes even without a marker. [Parent completion](../events/review-complete-0034.yaml) records verified delivery and confirmed reviewer/helper shutdown. [Fresh fix dispatch](../events/fix-start-0035.yaml) authorizes only SPEC-2.
 
 No source integration or ticket completion ran. Preliminary finish-check/message snapshots numbered 0035 were prepared before this verdict and are not executed integration evidence; a new exact-source plan and message are required after review succeeds. Prior receipts and artifacts remain unchanged.
+
+## Identity-based repair and sixth review
+
+[Fix result](../events/fix-0036.yaml) implements inferred source identity authorization, including absent markers and frozen commit substitutions. [Parent completion](../events/fix-complete-0037.yaml) records current clean source `53bd338d03bed788b9a716372dffba7ad5b6719a`, exact history inspection with no diagnostics, confirmed fixer shutdown, and truthful full-suite failure:222 pass,7 fail from two obsolete stderr wording assertions. These assertions must be removed, not re-pinned. No runtime acceptance or integration is claimed.
+
+[Review start](../events/review-start-0038.yaml) freezes this source for independent assessment. Both prior invariant findings are implemented in source; the known test-cleanup blocker remains. Details and changed files: [immutable fix snapshot](../artifacts/snapshots/pr-draft-fix-0036.md).

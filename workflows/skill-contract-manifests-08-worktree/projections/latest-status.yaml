@@ -2,10 +2,10 @@
   schemaVersion: worktree-latest-status/v2,
   workflow_id: skill-contract-manifests-08-worktree,
   ticket: tracker/tickets/skill-contract-manifests-08-worktree.md,
-  state: FIXING,
-  latest_receipt: fix-start-0035,
-  latest_source_commit: 2c8ef45d4987cead7ba120d64e3e5c896575ebc2,
-  latest_source_tree: 3f61dab6d0018150e4a214b20f9e63e698d1c4c2,
-  latest_review_verdict: FAILURE,
-  open_findings: [ SPEC-2 ]
+  state: REVIEWING,
+  latest_receipt: review-start-0038,
+  latest_source_commit: 53bd338d03bed788b9a716372dffba7ad5b6719a,
+  latest_source_tree: ac78aa317fb940477a765233356411e7ad2f3e1f,
+  latest_review_verdict: null,
+  open_findings: [ WORDING-ASSERTIONS ]
 }
