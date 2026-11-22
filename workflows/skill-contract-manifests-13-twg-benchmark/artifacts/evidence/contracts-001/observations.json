@@ -1,0 +1,30 @@
+[
+  {
+    "runtime": "bun",
+    "agent": "codex",
+    "prompt_bytes_preserved": true,
+    "measurements_unobserved_remain_null": true,
+    "integrity_findings_preserved": true,
+    "current_read_bytes_preserved": true,
+    "historical_read_bytes_preserved": true,
+    "rejected_run_bytes_preserved": true,
+    "rejected_upgrade_bytes_preserved": true,
+    "unsupported_read_bytes_preserved": true,
+    "result_sha256": "ac4a743edd0cca4c5e49244c102d5877bfba8bf40c30054272ed92458b62a2a0",
+    "historical_sha256": "f70b9c0e386a132753b73a3cf4eb56e26b0d26c8c1a557e956a82d28b5ed8562"
+  },
+  {
+    "runtime": "node",
+    "agent": "rovo",
+    "prompt_bytes_preserved": true,
+    "measurements_unobserved_remain_null": true,
+    "integrity_findings_preserved": true,
+    "current_read_bytes_preserved": true,
+    "historical_read_bytes_preserved": true,
+    "rejected_run_bytes_preserved": true,
+    "rejected_upgrade_bytes_preserved": true,
+    "unsupported_read_bytes_preserved": true,
+    "result_sha256": "4e69af72576f8a623f7bd661714a31a119d128b7d10d33237d601faab2a411c8",
+    "historical_sha256": "f582513ad09f3e6111fa1ffe80629d9bb687aa6721d2de3d0e904c35fca89337"
+  }
+]

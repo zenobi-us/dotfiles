@@ -1,0 +1,108 @@
+{
+  "kind": "result",
+  "operationId": "a976134a-4c58-4251-be6b-698d41747846",
+  "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/a976134a-4c58-4251-be6b-698d41747846/result.json",
+  "result": {
+    "baseline": "current-installed-guidance",
+    "baselineOutcome": "Existing guidance already refuses numeric destination ranking, read-time stamping and metadata loss. Refusal is a passing baseline behavior, not an artificially manufactured authoring failure.",
+    "blockers": [
+      "External application's JSON Schema identifier, authoritative definition and owner content validation are unavailable.",
+      "Second equally valid current destination identifier/definition and operation-specific destination choice are unavailable.",
+      "Actual note-writing runtime and content-level production/conversion verification are outside this authoring-only experiment; draft is not deployable."
+    ],
+    "choices": {
+      "accepts": [
+        "example-note/v1",
+        "example-note/v2"
+      ],
+      "copyExternalSchema": "Rejected: missing identity and definition; do not invent, copy or reconstruct external content. External support remains undeclared and release-blocking.",
+      "dropMetadata": "Rejected: preserve unknown authored properties and exact JSON values, text and meaningful ordering.",
+      "history": "Historical readers without write-on-read; immutable records never converted; no fabricated Git pins.",
+      "identity": "Exact schemaVersion identities from installed example definitions; built-in skill-contract-manifest/v1 for declarations.",
+      "largestVersion": "Rejected: two equally valid current destinations require operation-specific selection; numeric version ordering has no role.",
+      "ownership": "Reference installed example owner definitions and procedure using relative file references; no copies or invented ownership.",
+      "produces": [
+        "example-note/v2"
+      ],
+      "proseSibling": "Explicit empty manifest at advice/contracts.json; no invented record contract for advice or opaque PNG screenshots.",
+      "stampOnRead": "Rejected: read-only resolution never mutates notes; relabel-only conversion violates v2 structure.",
+      "supportScope": "Known-subset draft declaration only; not proof of implemented input/output support or a resolution of ambiguous destinations.",
+      "upgrades": [
+        {
+          "executed": false,
+          "from": "example-note/v1",
+          "procedure": "file:../../home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/upgrade.txt",
+          "to": "example-note/v2"
+        }
+      ],
+      "validators": "Shared validator checks declarations and references; installed example owner adapter owns content validation. No converter or validator implemented."
+    },
+    "definitionSources": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/contracts.json",
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt",
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/upgrade.txt",
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/empty/contracts.json"
+    ],
+    "files": [
+      "/tmp/authoring-current-baseline-case/contracts.json",
+      "/tmp/authoring-current-baseline-case/author-decisions.txt",
+      "/tmp/authoring-current-baseline-case/SKILL.md",
+      "/tmp/authoring-current-baseline-case/advice/contracts.json",
+      "/tmp/authoring-current-baseline-case/experiment-result.json"
+    ],
+    "limits": [
+      "No proposed source-worktree guidance loaded.",
+      "No repository edits or nested agents.",
+      "No converters implemented or executed.",
+      "Declaration validation does not prove domain content correctness.",
+      "Transport completion is separate from blocked release readiness."
+    ],
+    "loadedPolicyPaths": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/writing-skills/SKILL.md",
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/writing-skills/references/authoring-workflow.md",
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/writing-skills/references/skill-types.md",
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/writing-skills/references/skill-anatomy.md",
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/SKILL.md",
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/references/manifest.md",
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/references/upgrades.md",
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/SKILL.md",
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/references/delegated-agent.md",
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery/references/contracts.md",
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/iso-24495-1/SKILL.md"
+    ],
+    "observedValidation": [
+      {
+        "command": "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts validate --skill /tmp/authoring-current-baseline-case",
+        "observed": "Returned manifest, both installed note definitions and installed upgrade procedure.",
+        "outcome": "success"
+      },
+      {
+        "command": "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts resolve --skill /tmp/authoring-current-baseline-case --contract example-note/v1",
+        "observed": "Returned authoritative installed definitions.txt path and full content.",
+        "outcome": "success"
+      },
+      {
+        "command": "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts resolve --skill /tmp/authoring-current-baseline-case --contract example-note/v2",
+        "observed": "Returned authoritative installed definitions.txt path and full content.",
+        "outcome": "success"
+      },
+      {
+        "command": "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts validate --skill /tmp/authoring-current-baseline-case/advice",
+        "observed": "Returned four explicit empty collections, empty definitions and procedures.",
+        "outcome": "success"
+      },
+      {
+        "observed": "Confirmed actual support arrays, installed file references, single known upgrade edge and empty prose sibling.",
+        "operation": "read persisted declarations and author-decisions.txt",
+        "outcome": "success"
+      }
+    ],
+    "releaseStatus": "blocked",
+    "schemaVersion": "authoring-experiment/v1",
+    "status": "completed"
+  },
+  "resultSchema": "authoring-experiment/v1",
+  "runId": "a976134a-4c58-4251-be6b-698d41747846",
+  "schemaVersion": "result-delivery/v2",
+  "sha256": "4c0fb0e89add9d07faf6da7ec0ca86696cd0ec68f77d3376aca81c0d653b07b7"
+}

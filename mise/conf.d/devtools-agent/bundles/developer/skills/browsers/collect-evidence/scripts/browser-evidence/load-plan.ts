@@ -13,8 +13,8 @@ export async function loadPlan(dir: string): Promise<Plan> {
   if (!mod.plan) die(`${file} must export a const named 'plan'`);
   const plan = mod.plan;
   checkPlan(plan);
-  if (plan.schema !== "collect-evidence/v1" || plan.kind !== "plan") {
-    die(`${file} requires schema: "collect-evidence/v1" and kind: "plan"`, 2);
+  if (plan.schemaVersion !== "collect-evidence/v2" || plan.kind !== "plan") {
+    die(`${file} requires schemaVersion: "collect-evidence/v2" and kind: "plan"`, 2);
   }
   if (!/^[A-Za-z0-9._-]+$/.test(plan.workId) || !["surf", "playwright", "tui", "gui"].includes(plan.driver)) {
     die(`${file} has an invalid workId or driver`, 2);

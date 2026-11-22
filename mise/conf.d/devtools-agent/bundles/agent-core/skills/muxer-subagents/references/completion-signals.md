@@ -12,11 +12,13 @@ Run records live under `$XDG_STATE_HOME/muxer-subagents/runs/<run-id>`. If `XDG_
 
 ## Signal record
 
-The router stores one versioned JSON signal per run. It replaces the record atomically when the state changes.
+The router produces `muxer-run/v2`, `muxer-completion/v2`, `muxer-resources/v2`, and `muxer-owned-process/v2`. Each record uses only `schemaVersion`. `contracts.json` references the authoritative JSON definitions under `references/contracts/`. No upgrades are declared for immutable history.
+
+The router writes each completion to an exclusive `signal-<sequence>.json` file, then replaces the `signal.json` projection atomically. Terminal completion is immutable. Cleanup retains the run, completion sequences, ownership records, delivery context, result, and acknowledgement. Only temporary prompts are removed.
 
 ```json
 {
-  "version": 1,
+  "schemaVersion": "muxer-completion/v2",
   "runId": "<uuid>",
   "sequence": 2,
   "state": "completed",
@@ -45,7 +47,7 @@ For tmux and Zellij, a shell wrapper writes `running` before it starts the agent
 
 ## Waiting and resuming
 
-`wait <run-id>` blocks until it receives `blocked` or a terminal state. It prints the signal as JSON with a separate `resources` observation. A timeout returns exit code `124` and a record with `state: "running"` and `timedOut: true`.
+`wait <run-id>` blocks until it receives `blocked` or a terminal state. It prints `schemaVersion: muxer-wait/v2`, the unchanged completion record under `signal`, and a separate `resources` observation. A timeout returns exit code `124`, the current record under `signal`, and `timedOut: true`.
 
 If a run is blocked, resume it through its muxer or agent. Then pass the blocked signal's sequence to the next wait:
 
@@ -63,7 +65,21 @@ The child receives `RESULT_DELIVERY_CONTEXT`, `MUXER_SUBAGENT_RUN_ID`, and an ex
 
 Default contexts and transport artifacts live under `$XDG_STATE_HOME/result-delivery/runs/<run-id>`, or `~/.local/state/result-delivery/runs/<run-id>`. Terminal muxer cleanup does not remove them. Custom `--result-target <absolute-file>` and `--result-ref <approved-reference>` must be paired. The target parent directory must already exist. `--operation-id` defaults to the child run ID.
 
-A completed process can return a failed domain result. A published result can exist before the process completes. Neither artifact presence nor exit code zero establishes domain success. Keep the signal protocol unchanged: after completion, the parent reads and verifies the result with the saved delivery context, validates the domain result, and acknowledges the verified hash. Acknowledgement creates `<target>.ack.json`; it does not delete the result.
+A completed process can return a failed domain result. A published result can exist before the process completes. Neither artifact presence nor exit code zero establishes domain success. After completion, the parent reads and verifies the result with the saved delivery context, validates the domain result, and acknowledges the verified hash. Acknowledgement creates `<target>.ack.json`; it does not delete the result.
+
+## Historical reads
+
+Use the absolute installed router path from any caller directory:
+
+```sh
+"$SKILL_DIR/scripts/router.ts" read <run-id>
+"$SKILL_DIR/scripts/router.ts" read <old-run-id> --historical
+"$SKILL_DIR/scripts/router.ts" wait <old-run-id> --historical
+```
+
+The historical reader accepts the complete legacy unversioned run and owned-process shapes, and `version: 1` completion and resource shapes. It preserves original fields and bytes. Unknown explicit `schemaVersion` values, mixed run/signal generations, malformed identities, conflicting fields, and symlinked state descendants fail before mutation. The default reader accepts only current records. The read response uses `muxer-evidence/v1`; resource observations use `muxer-resource-report/v2`. These CLI views do not relabel their nested evidence records. Historical waits return existing blocked or terminal evidence only. They do not observe resources or delete prompts. Start a new run for new execution.
+
+Transport history belongs to result-delivery. Its explicit historical reader accepts `schema: result-delivery/v1`; new contexts, envelopes, references, and acknowledgements use `schemaVersion: result-delivery/v2`. Muxer does not redefine either version.
 
 ## Limits
 

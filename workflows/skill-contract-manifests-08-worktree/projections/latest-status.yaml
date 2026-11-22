@@ -1,0 +1,11 @@
+{
+  schemaVersion: worktree-latest-status/v2,
+  workflow_id: skill-contract-manifests-08-worktree,
+  ticket: tracker/tickets/skill-contract-manifests-08-worktree.md,
+  state: FINISH_FAILED,
+  latest_receipt: finish-failed-0021,
+  latest_source_commit: 8ce850b641b29d052f9549f956f93dfd655e2c6b,
+  latest_source_tree: 02afddcab23399930e7d9ce14c461b1c4e9684c2,
+  latest_review_verdict: SUCCESS,
+  open_findings: []
+}

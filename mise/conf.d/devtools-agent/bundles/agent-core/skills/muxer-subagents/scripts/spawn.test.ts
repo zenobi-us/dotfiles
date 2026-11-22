@@ -138,6 +138,24 @@ await deliverResult({ schema: context.target.schema, status: "failed", checks: [
     expect(existsSync(join(root, "state", "muxer-subagents", "runs"))).toBe(false);
   });
 
+  test.each(["", " \t\n"])("rejects a blank title %j before allocating resources", async (title) => {
+    await expect(spawnAgent({
+      muxer: "herdr-app", agent: "omp", prompt: "task", cwd: root, depth: 1,
+      resultSchema: "test-result/v1", title,
+    })).rejects.toThrow("non-empty title");
+    expect(existsSync(join(root, "state"))).toBe(false);
+    expect(existsSync(log)).toBe(false);
+  });
+
+  test.each(["herdr", "tmux", "zellij"] as const)("rejects a title for %s before allocating resources", async (muxer) => {
+    await expect(spawnAgent({
+      muxer, agent: "omp", prompt: "task", cwd: root, depth: 1,
+      resultSchema: "test-result/v1", title: "TICKET-123",
+    })).rejects.toThrow("does not support custom titles");
+    expect(existsSync(join(root, "state"))).toBe(false);
+    expect(existsSync(log)).toBe(false);
+  });
+
   function prepareDesktop(spaces: Array<Record<string, unknown>>, binary = "herdr-app"): () => Array<{ command: string; request: Record<string, unknown> }> {
     process.env.HC_TERMINAL_ID = "t7";
     // Machine-routing fixtures must not resolve an installed native app before

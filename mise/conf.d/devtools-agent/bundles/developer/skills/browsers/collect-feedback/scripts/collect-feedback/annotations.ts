@@ -5,11 +5,11 @@ import { constants } from "node:fs";
 import { link, lstat, mkdir, open, readdir, realpath, rename, unlink, type FileHandle } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { isDeepStrictEqual } from "node:util";
-import { assetBytes, boundedFile, checkId, safeComponents, schema, validateSession, type FeedbackView } from "./records.ts";
+import { assetBytes, boundedFile, checkId, safeComponents, schemaVersion, validateSession, type FeedbackView } from "./records.ts";
 
 interface Geometry { x: number; y: number; width: number; height: number }
 interface AnnotationInput {
-  schema: typeof schema; kind: "annotation"; id: string;
+  schemaVersion?: typeof schemaVersion; schema?: "collect-feedback/v1"; kind: "annotation"; id: string;
   sessionId: string; caseId: string; assetId: string; sourceSha256: string;
   originalWidth: number; originalHeight: number; geometry: Geometry;
   priority: "P1" | "P2" | "P3"; comment: string;
@@ -25,6 +25,7 @@ export class AnnotationError extends Error {
 
 export async function createAnnotation(view: FeedbackView, input: unknown): Promise<Annotation> {
   view = await validateSession(view.directory);
+  requireAnnotation(view.session.schemaVersion === schemaVersion, "Historical sessions are read-only; import the sealed source with a new session identity", 409);
   const annotation = validateInput(view, input);
   const asset = view.cases.find(record => record.id === annotation.caseId)!.assets.find(record => record.id === annotation.assetId)!;
   await verifySource(view.directory, asset);
@@ -45,12 +46,14 @@ export async function mutateAnnotation(view: FeedbackView, id: string, input: un
   requireAnnotation(ifMatch !== null, "If-Match revision is required", 428);
   // Revalidate the store before every mutation, not just at server startup.
   const currentView = await validateSession(view.directory);
+  requireAnnotation(currentView.session.schemaVersion === schemaVersion, "Historical sessions are read-only; import the sealed source with a new session identity", 409);
   const existing = (await listAnnotations(currentView)).find(record => record.id === id);
   requireAnnotation(existing, "Annotation not found", 404);
+  requireAnnotation(existing.schemaVersion === schemaVersion, "Historical annotations are read-only", 409);
   requireAnnotation(ifMatch === `"${existing.id}:${existing.revision}"`, "Annotation changed in another editor. Keep your draft and reload the saved note.", 412);
   requireAnnotation(isObject(input), "Mutation must be an object");
-  requireAnnotation(input.schema === schema && input.kind === "annotation", "Unsupported annotation schema or kind");
-  const allowed = method === "DELETE" ? ["schema", "kind"] : ["schema", "kind", "comment", "priority", "geometry", "deletedAt"];
+  requireAnnotation(input.schemaVersion === schemaVersion && input.kind === "annotation", "Unsupported annotation schemaVersion or kind");
+  const allowed = method === "DELETE" ? ["schemaVersion", "kind"] : ["schemaVersion", "kind", "comment", "priority", "geometry", "deletedAt"];
   requireAnnotation(Object.keys(input).every(key => allowed.includes(key)), "Unsupported mutation fields");
   if (method === "PATCH") {
     requireAnnotation(Object.keys(input).length > 2, "PATCH requires a change");
@@ -58,7 +61,7 @@ export async function mutateAnnotation(view: FeedbackView, id: string, input: un
     requireAnnotation(!existing.deletedAt || input.deletedAt === null, "Restore the deleted annotation before editing", 409);
   }
   const { revision, createdAt, updatedAt: _updatedAt, pixelGeometry: _pixels, deletedAt, ...original } = existing;
-  const { schema: _schema, kind: _kind, deletedAt: _restore, ...changes } = input;
+  const { schemaVersion: _schema, kind: _kind, deletedAt: _restore, ...changes } = input;
   const validated = validateInput(currentView, { ...original, ...changes });
   const asset = currentView.cases.find(record => record.id === existing.caseId)!.assets.find(asset => asset.id === existing.assetId)!;
   await verifySource(view.directory, asset);
@@ -104,7 +107,7 @@ export async function listAnnotations(view: FeedbackView): Promise<Annotation[]>
 }
 
 export async function exportSession(directory: string): Promise<{
-  schema: typeof schema; kind: "export"; success: true;
+  schemaVersion: typeof schemaVersion; kind: "export"; success: true;
   session: FeedbackView["session"]; cases: FeedbackView["cases"];
   assets: FeedbackView["cases"][number]["assets"]; annotations: Annotation[];
 }> {
@@ -112,15 +115,16 @@ export async function exportSession(directory: string): Promise<{
   const annotations = await listAnnotations(view);
   const assets = view.cases.flatMap(record => record.assets);
   for (const asset of assets) await verifySource(view.directory, asset);
-  return { schema, kind: "export", success: true, session: view.session, cases: view.cases, assets, annotations };
+  return { schemaVersion, kind: "export", success: true, session: view.session, cases: view.cases, assets, annotations };
 }
 
-function validateInput(view: FeedbackView, value: unknown): AnnotationInput {
+function validateInput(view: FeedbackView, value: unknown, historical = false): AnnotationInput {
   requireAnnotation(isObject(value), "Annotation must be an object");
-  const keys = ["schema", "kind", "id", "sessionId", "caseId", "assetId", "sourceSha256", "originalWidth", "originalHeight", "geometry", "priority", "comment"];
+  const legacy = historical && value.schema === "collect-feedback/v1" && !Object.hasOwn(value, "schemaVersion");
+  const keys = [legacy ? "schema" : "schemaVersion", "kind", "id", "sessionId", "caseId", "assetId", "sourceSha256", "originalWidth", "originalHeight", "geometry", "priority", "comment"];
   const videoKeys = ["mediaTimeSeconds", "displayedWidth", "displayedHeight"];
-  requireAnnotation(keys.every(key => Object.hasOwn(value, key)) && Object.keys(value).every(key => keys.includes(key) || videoKeys.includes(key)), "Annotation fields do not match the supported schema");
-  requireAnnotation(value.schema === schema && value.kind === "annotation", "Unsupported annotation schema or kind");
+  requireAnnotation(keys.every(key => Object.hasOwn(value, key)) && Object.keys(value).every(key => keys.includes(key) || videoKeys.includes(key)), "Annotation fields do not match the supported schemaVersion");
+  requireAnnotation((legacy || value.schemaVersion === schemaVersion) && value.kind === "annotation", "Unsupported annotation schema or kind");
   for (const key of ["id", "sessionId", "caseId", "assetId"]) {
     try { checkId(value[key]); } catch { throw new AnnotationError("Annotation identity must use a safe stable ID"); }
   }
@@ -142,13 +146,13 @@ function validateInput(view: FeedbackView, value: unknown): AnnotationInput {
   const { x, y, width, height } = geometry as unknown as Geometry;
   requireAnnotation(x + width <= 1 && y + height <= 1, "Annotation geometry exceeds the image bounds");
   requireAnnotation((width === 0 && height === 0) || (width > 0 && height > 0), "Annotation must be a point or a positive-area box");
-  return { schema, kind: "annotation", id: value.id as string, sessionId: value.sessionId as string, caseId: value.caseId as string, assetId: value.assetId as string, sourceSha256: asset.sha256, originalWidth: asset.width, originalHeight: asset.height, geometry: { x: x || 0, y: y || 0, width: width || 0, height: height || 0 }, priority: value.priority, comment: value.comment, ...(asset.mediaType === "video/webm" ? { mediaTimeSeconds: value.mediaTimeSeconds as number, displayedWidth: value.displayedWidth as number, displayedHeight: value.displayedHeight as number } : {}) };
+  return { ...(legacy ? { schema: "collect-feedback/v1" as const } : { schemaVersion }), kind: "annotation", id: value.id as string, sessionId: value.sessionId as string, caseId: value.caseId as string, assetId: value.assetId as string, sourceSha256: asset.sha256, originalWidth: asset.width, originalHeight: asset.height, geometry: { x: x || 0, y: y || 0, width: width || 0, height: height || 0 }, priority: value.priority, comment: value.comment, ...(asset.mediaType === "video/webm" ? { mediaTimeSeconds: value.mediaTimeSeconds as number, displayedWidth: value.displayedWidth as number, displayedHeight: value.displayedHeight as number } : {}) };
 }
 
 function validateStored(view: FeedbackView, value: unknown): Annotation {
   requireAnnotation(isObject(value), "Annotation record must be an object");
   const { revision, createdAt, updatedAt, pixelGeometry, deletedAt, ...input } = value;
-  const annotation = validateInput(view, input);
+  const annotation = validateInput(view, input, true);
   const timestamp = (value: unknown): value is string => typeof value === "string" && Number.isFinite(Date.parse(value)) && new Date(value).toISOString() === value;
   requireAnnotation(Number.isSafeInteger(revision) && (revision as number) >= 1 && timestamp(createdAt) && timestamp(updatedAt) && updatedAt >= createdAt, "Invalid annotation revision or timestamps");
   requireAnnotation(deletedAt === undefined || deletedAt === null || (timestamp(deletedAt) && deletedAt >= createdAt && deletedAt <= updatedAt), "Invalid annotation tombstone");

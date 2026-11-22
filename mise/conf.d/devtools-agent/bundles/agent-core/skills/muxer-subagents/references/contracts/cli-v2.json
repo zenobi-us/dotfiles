@@ -1,0 +1,34 @@
+{
+  "owner": "muxer-subagents",
+  "contracts": {
+    "muxer-contracts/v2": {
+      "identity": {"schemaVersion": "muxer-contracts/v2"},
+      "required": ["session", "delivery", "muxer", "agent", "muxerContract", "agentContract", "limits", "needsOperatorInput"],
+      "semantics": "Resolved session mechanics and capabilities only. Paths identify installed prose contracts. Delivery context uses the result-delivery owner's accepted contract. No completion or domain-success claim. Replaces schema muxer-subagents/contracts and version 1."
+    },
+    "muxer-wait/v2": {
+      "identity": {"schemaVersion": "muxer-wait/v2"},
+      "required": ["signal"],
+      "optional": ["resources", "timedOut"],
+      "semantics": "signal is an unchanged muxer-completion/v2 record, or a retained v1 record only with --historical. resources, when present, is the separate matching resource observation. timedOut true is a wait timeout, never domain failure. Replaces the flat version 1 wait response. Historical waits never write evidence."
+    },
+    "muxer-resource-report/v2": {
+      "identity": {"schemaVersion": "muxer-resource-report/v2"},
+      "required": ["manifest", "resources"],
+      "semantics": "Current muxer-run/v2 manifest and muxer-resources/v2 observation for the same run. Exit zero means confirmed process shutdown only. Replaces the unversioned resource response."
+    },
+    "muxer-evidence/v1": {
+      "identity": {"schemaVersion": "muxer-evidence/v1"},
+      "required": ["manifest", "signal", "completions", "processes"],
+      "optional": ["resources"],
+      "semantics": "Read-only view. Nested records preserve their own current identities or explicit historical wire fields. Completion sequences and process filenames must match their payload identities. No observation, normalization, conversion, cleanup or domain acceptance."
+    },
+    "muxer-spawn/v2": {
+      "identity": {"schemaVersion": "muxer-spawn/v2"},
+      "required": ["runId", "target", "operationId", "contextFile", "deliveryContext", "resultTarget"],
+      "optional": ["parentRunId", "muxer", "agent", "depth"],
+      "semantics": "Allocated run and launched target. Context creation emits result-delivery/v2. Run identity is not operation identity; launch does not prove completion, transport delivery, domain success, or resource shutdown. Replaces the unversioned spawn response."
+    }
+  },
+  "compatibility": "New outputs only; no aliases, conversion, or historical response input. Persisted run and completion readers use their separate definitions."
+}

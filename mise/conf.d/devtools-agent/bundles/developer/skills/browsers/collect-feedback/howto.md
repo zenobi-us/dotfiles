@@ -1,5 +1,4 @@
 ---
-schema: collect-feedback/v1
 kind: procedure
 title: Review your application with your coding agent
 ---

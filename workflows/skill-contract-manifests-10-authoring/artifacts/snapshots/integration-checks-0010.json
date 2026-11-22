@@ -1,0 +1,45 @@
+[
+  {
+    "argv": [
+      "mise",
+      "trust"
+    ]
+  },
+  {
+    "argv": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+      "validate",
+      "--skill",
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/writing-skills"
+    ]
+  },
+  {
+    "argv": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+      "validate",
+      "--skill",
+      "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/writing-great-skills"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "--install=force",
+      "-e",
+      "import {mkdtempSync,writeFileSync,readFileSync,rmSync} from 'node:fs'; import {tmpdir} from 'node:os'; import {join,resolve} from 'node:path'; import assert from 'node:assert/strict';\nconst root=process.cwd();const owner=resolve('mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/examples/upgrades');const router=resolve('mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts');const dir=mkdtempSync(join(tmpdir(),'authoring-candidate-')); const note={schemaVersion:'example-note/v1',title:'Old',body:'Authored body\\nKeep this.',metadata:{nested:['a',{b:2}]}};\nfunction put(name,value){const p=join(dir,name);writeFileSync(p,JSON.stringify(value));return p}function run(args,exit){const p=Bun.spawnSync([router,...args],{cwd:root,stdout:'pipe',stderr:'pipe'});assert.equal(p.exitCode,exit,new TextDecoder().decode(p.stderr));return new TextDecoder().decode(p.stdout)}function bytes(p){return readFileSync(p,'utf8')}const options=['--skill',owner,'--owner','file:owner.ts'];try{const path=put('note.json',note);const before=bytes(path);run(['resolve','--skill',owner,'--contract','example-note/v1'],0);assert.equal(bytes(path),before);const req=put('request.json',{title:'New'});run(['safe-upgrade',...options,'--artifact',path,'--operation','rename','--request',req],0);assert.deepEqual(JSON.parse(bytes(path)),{schemaVersion:'example-note/v2',document:{heading:'New',text:note.body},metadata:note.metadata});const unknown=put('unknown.json',{...note,schemaVersion:'example-note/v999'});const unknownBefore=bytes(unknown);run(['safe-upgrade',...options,'--artifact',unknown,'--operation','upgrade'],1);assert.equal(bytes(unknown),unknownBefore);const immutable=put('immutable.json',{...note,immutable:true});const immutableBefore=bytes(immutable);const mutable=put('mutable.json',note);const selected=put('selected.json',[mutable,immutable]);const bulk=JSON.parse(run(['bulk-upgrade',...options,'--artifacts',selected],1));assert.equal(bulk.status,'partial');assert.equal(bytes(immutable),immutableBefore);assert.deepEqual(JSON.parse(bytes(mutable)),{schemaVersion:'example-note/v2',document:{heading:'Old',text:note.body},metadata:note.metadata});console.log('PASS: read-only bytes, authorized rename, unknown explicit rejection, partial bulk, authored metadata preservation.');}finally{rmSync(dir,{recursive:true,force:true})}"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "-e",
+      "import assert from 'node:assert/strict'; const root='mise/conf.d/devtools-agent/bundles';const market=await Bun.file(root+'/.claude-plugin/marketplace.json').json();for(const name of ['agent-core','matt-pocock']){const plugin=await Bun.file(root+'/'+name+'/.claude-plugin/plugin.json').json();const entry=market.plugins.find(p=>p.name===name);assert.equal(entry.version,plugin.version);console.log(name+': '+plugin.version+' matches marketplace');}"
+    ]
+  }
+]

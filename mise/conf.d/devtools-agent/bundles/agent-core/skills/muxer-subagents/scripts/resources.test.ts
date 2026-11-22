@@ -61,7 +61,7 @@ test("PID reuse cannot claim or signal the current unrelated process", async () 
   const ticks = stat.slice(stat.lastIndexOf(")") + 2).trim().split(/\s+/)[19]!;
   const bootId = (await readFile("/proc/sys/kernel/random/boot_id", "utf8")).trim();
   await writeFile(join(dirname(runSignalPath(run.runId)), "resources.json"), JSON.stringify({
-    version: 1, runId: run.runId, observedAt: new Date().toISOString(), shutdown: "pending",
+    schemaVersion: "muxer-resources/v2", runId: run.runId, observedAt: new Date().toISOString(), shutdown: "pending",
     processes: [{ pid: unrelated.pid, bootId, startTicks: String(BigInt(ticks) + 1n), command: "old-owner", state: "running" }],
   }));
   const result = await observeResources(run.runId);
@@ -74,7 +74,9 @@ test("immutable ownership survives a stale observation overwriting the summary",
   const owned = Bun.spawn(["sleep", "30"], { env: { ...process.env, MUXER_SUBAGENT_RUN_ID: run.runId } });
   children.push(owned);
   await observeResources(run.runId);
-  await writeFile(join(dirname(runSignalPath(run.runId)), "resources.json"), JSON.stringify({ version: 1, runId: run.runId, processes: [] }));
+  await writeFile(join(dirname(runSignalPath(run.runId)), "resources.json"), JSON.stringify({
+    schemaVersion: "muxer-resources/v2", runId: run.runId, observedAt: new Date().toISOString(), shutdown: "unconfirmed", processes: [],
+  }));
   owned.kill();
   await owned.exited;
   expect(await observeResources(run.runId)).toMatchObject({ shutdown: "confirmed", processes: [expect.objectContaining({ pid: owned.pid, state: "stopped" })] });

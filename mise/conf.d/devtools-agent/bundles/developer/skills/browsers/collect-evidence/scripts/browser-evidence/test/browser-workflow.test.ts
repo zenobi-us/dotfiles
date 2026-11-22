@@ -65,7 +65,7 @@ process.exit(code);
         const work = join(root, id);
         const initialized = await invoke(["init", work, "--repository", repository, "--workflow", "prerequisite", "--run", id]);
         await writeFile(join(work, "plan.ts"), `export const plan = ${JSON.stringify({
-          schema: "collect-evidence/v1", kind: "plan", workId: "prerequisite", driver: "playwright",
+          schemaVersion: "collect-evidence/v2", kind: "plan", workId: "prerequisite", driver: "playwright",
           base: "http://127.0.0.1:8090", approval: { origins: ["http://127.0.0.1:8090"], confirmations: [] },
           tests: [{ id: "never", claim: "Do not start capture", pass: "No capture", fail: "Capture started", steps: [{ do: "navigate", says: "Never open the capture page", to: "/" }] }],
         })};`);
@@ -148,7 +148,7 @@ process.exit(code);
         const initialized = await invoke(["init", work, "--repository", repository, "--workflow", "browser-public", "--run", "controlled", "--driver", driver]);
         if (initialized.code) throw new Error(initialized.err);
         await writeFile(join(work, "plan.ts"), `export const plan = ${JSON.stringify({
-          schema: "collect-evidence/v1", kind: "plan", workId: "browser-public", driver, video: driver === "surf", base: origin, approval: { origins: [origin], confirmations: ["pass.3", "approved-space.2"] }, tests: [
+          schemaVersion: "collect-evidence/v2", kind: "plan", workId: "browser-public", driver, video: driver === "surf", base: origin, approval: { origins: [origin], confirmations: ["pass.3", "approved-space.2"] }, tests: [
             {
               id: "pass", claim: "Select the named project", pass: "Aurora is selected", fail: "Aurora is not selected", steps: [
                 { do: "navigate", says: "Open the owned page", to: "/" },
@@ -256,7 +256,7 @@ process.exit(code);
           const missingWork = join(root, "missing-working");
           expect((await invoke(["init", missingWork, "--repository", repository, "--workflow", "browser-public", "--run", "missing", "--driver", driver])).code).toBe(0);
           await writeFile(join(missingWork, "plan.ts"), `export const plan = ${JSON.stringify({
-            schema: "collect-evidence/v1", kind: "plan", workId: "missing-media", driver, base: origin,
+            schemaVersion: "collect-evidence/v2", kind: "plan", workId: "missing-media", driver, base: origin,
             approval: { origins: [origin], confirmations: [] },
             tests: [{ id: "media", claim: "Reject lost media", pass: "Missing media is rejected", fail: "A partial run is sealed", steps: [
               { do: "navigate", says: "Open the owned evidence page", to: "/" },
@@ -297,7 +297,7 @@ process.stdout.write(out); process.stderr.write(err); process.exitCode = code;
         const interruptedWork = join(root, "interrupted-working");
         expect((await invoke(["init", interruptedWork, "--repository", repository, "--workflow", "browser-public", "--run", "interrupted", "--driver", driver])).code).toBe(0);
         await writeFile(join(interruptedWork, "plan.ts"), `export const plan = ${JSON.stringify({
-          schema: "collect-evidence/v1", kind: "plan", workId: "interrupted", driver, base: origin,
+          schemaVersion: "collect-evidence/v2", kind: "plan", workId: "interrupted", driver, base: origin,
           approval: { origins: [origin], confirmations: [] },
           tests: [{
             id: "1", claim: "Interrupt owned collection", pass: "No partial run is sealed", fail: "An interrupted run is sealed", steps: [

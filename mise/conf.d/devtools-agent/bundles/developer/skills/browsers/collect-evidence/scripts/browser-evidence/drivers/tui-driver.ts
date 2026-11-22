@@ -29,7 +29,7 @@ class NativeCaptureError extends Error {}
 export const tuiDriver: Driver = {
   name: "tui", attended: false,
   scriptName: (_plan, id) => `tui-${id}.json`,
-  compile: (plan, test) => ({ [`tui-${test.id}.json`]: JSON.stringify({ schema: "collect-evidence/v1", kind: "plan", terminal: plan.terminal, test }, null, 2) + "\n" }),
+  compile: (plan, test) => ({ [`tui-${test.id}.json`]: JSON.stringify({ schemaVersion: "collect-evidence/v2", kind: "plan", terminal: plan.terminal, test }, null, 2) + "\n" }),
   sessionName: () => `ce-tui-${randomUUID()}`,
   open: openTerminal,
   async checkPrecondition(plan, p, name) {

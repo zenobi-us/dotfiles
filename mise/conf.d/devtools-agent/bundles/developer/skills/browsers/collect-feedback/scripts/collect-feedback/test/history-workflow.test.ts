@@ -71,7 +71,7 @@ test("explicit earlier-run imports and repeated common-record reports preserve e
     reader.releaseLock(); expect(JSON.parse(ready).success).toBe(true);
     const origin = `http://127.0.0.1:${port}`;
     const { writeToken, session: served } = await (await fetch(origin + "/api/v1/session")).json(); expect(served.historical).toBe(true);
-    const payload = { schema: "collect-feedback/v1", kind: "annotation", id: crypto.randomUUID(), sessionId: "review", caseId: asset.caseId, assetId: asset.id, sourceSha256: asset.sha256, originalWidth: asset.width, originalHeight: asset.height, geometry: { x: .1, y: .2, width: 0, height: 0 }, priority: "P2", comment: "Earlier run: preserve this original heading" };
+    const payload = { schemaVersion: "collect-feedback/v2", kind: "annotation", id: crypto.randomUUID(), sessionId: "review", caseId: asset.caseId, assetId: asset.id, sourceSha256: asset.sha256, originalWidth: asset.width, originalHeight: asset.height, geometry: { x: .1, y: .2, width: 0, height: 0 }, priority: "P2", comment: "Earlier run: preserve this original heading" };
     expect((await fetch(origin + "/api/v1/annotations", { method: "POST", headers: { Origin: origin, "X-Write-Token": writeToken, "Content-Type": "application/json" }, body: JSON.stringify(payload) })).status).toBe(201);
     server.kill("SIGTERM"); expect(await server.exited).toBe(0);
     const saved = await hashes(session);
@@ -86,6 +86,35 @@ test("explicit earlier-run imports and repeated common-record reports preserve e
       expect((await invoke(feedback, ["export", session])).data).toEqual(exported.data);
     }
     expect(await hashes(source)).toEqual(originals); expect(await hashes(session)).toEqual(saved);
+    // A disposable v1 feedback session uses the same real archived source pixels.
+    const legacySession = join(root, "legacy-session");
+    await cp(session, legacySession, { recursive: true });
+    for (const path of ["session.json", `cases/${asset.caseId}/case.json`, `cases/${asset.caseId}/annotations/${payload.id}.json`]) {
+      const file = join(legacySession, path);
+      const record = JSON.parse(await readFile(file, "utf8"));
+      const legacy = Object.fromEntries(Object.entries(record).map(([key, value]) => key === "schemaVersion" ? ["schema", "collect-feedback/v1"] : [key, value]));
+      await writeFile(file, JSON.stringify(legacy));
+    }
+    const legacyBefore = await hashes(legacySession);
+    const legacyExport = await invoke(feedback, ["export", legacySession]);
+    expect(legacyExport.code).toBe(0);
+    expect(legacyExport.data.session.schema).toBe("collect-feedback/v1");
+    expect(legacyExport.data.annotations[0].schema).toBe("collect-feedback/v1");
+    expect(legacyExport.data.assets).toEqual(exported.data.assets);
+    const legacyServer = Bun.spawn([feedback, "serve", legacySession, "--port", String(port), "--json"], { cwd: root, stdout: "pipe", stderr: "pipe" }); children.push(legacyServer);
+    const legacyReader = legacyServer.stdout.getReader(); let legacyReady = "";
+    while (!legacyReady.includes("\n")) { const part = await legacyReader.read(); if (part.done) throw Error("Legacy viewer stopped before readiness"); legacyReady += new TextDecoder().decode(part.value); }
+    legacyReader.releaseLock();
+    const legacyApi = await (await fetch(origin + "/api/v1/session")).json();
+    const headers = { Origin: origin, "X-Write-Token": legacyApi.writeToken, "Content-Type": "application/json" };
+    const rejected = await fetch(origin + "/api/v1/annotations", { method: "POST", headers, body: JSON.stringify({ ...payload, id: crypto.randomUUID() }) });
+    expect(rejected.status).toBe(409);
+    expect((await rejected.json()).message).toContain("Historical sessions are read-only");
+    expect((await fetch(origin + `/api/v1/annotations/${payload.id}`, { method: "DELETE", headers: { ...headers, "If-Match": `"${payload.id}:1"` }, body: JSON.stringify({ schemaVersion: "collect-feedback/v2", kind: "annotation" }) })).status).toBe(409);
+    legacyServer.kill("SIGTERM"); expect(await legacyServer.exited).toBe(0);
+    expect(await hashes(legacySession)).toEqual(legacyBefore);
+    expect((await invoke(evidence, ["render", source, "--force"])).code).toBe(2);
+    expect(await hashes(source)).toEqual(originals);
     // Root bypasses mode bits; exercise EACCES only where chmod denies the read.
     if (process.getuid?.() !== 0) {
       const copied = join(root, "unreadable-records");
@@ -98,7 +127,7 @@ test("explicit earlier-run imports and repeated common-record reports preserve e
         try {
           const failed = await invoke(reports, ["evidence", copied, "--feedback"]);
           expect(failed.code).toBe(1);
-          expect(failed.data).toMatchObject({ schema: "collect-evidence/v1", kind: "error", success: false, code: 1 });
+          expect(failed.data).toMatchObject({ schemaVersion: "collect-evidence/v2", kind: "error", success: false, code: 1 });
           expect(failed.err.trim()).toBe(failed.data.message);
         } finally {
           await chmod(file, mode);
@@ -110,35 +139,35 @@ test("explicit earlier-run imports and repeated common-record reports preserve e
       expect(await hashes(copied)).toEqual(before);
     }
     for (const path of ["session.json", "source/run.json", "source/plan.json", `cases/${asset.caseId}/case.json`]) {
-      for (const corruption of ["unsupported-schema", "malformed-json", "invalid-shape"]) {
+      for (const corruption of ["unsupported-schemaVersion", "malformed-json", "invalid-shape"]) {
         const copied = join(root, `${path.replaceAll("/", "-")}-${corruption}`);
         await cp(session, copied, { recursive: true });
         const file = join(copied, path), mode = (await stat(file)).mode & 0o7777;
         const record = JSON.parse(await readFile(file, "utf8"));
         await chmod(file, 0o600);
         try {
-          await writeFile(file, corruption === "unsupported-schema" ? JSON.stringify({ ...record, schema: "unsupported/v999" }) : corruption === "malformed-json" ? "{" : "null");
+          await writeFile(file, corruption === "unsupported-schemaVersion" ? JSON.stringify({ ...record, schemaVersion: "unsupported/v999" }) : corruption === "malformed-json" ? "{" : "null");
         } finally {
           await chmod(file, mode);
         }
         const before = await hashes(copied);
         const invalid = await invoke(reports, ["evidence", copied, "--feedback"]);
         expect(invalid.code).toBe(2);
-        expect(invalid.data).toMatchObject({ schema: "collect-evidence/v1", kind: "error", success: false, code: 2 });
+        expect(invalid.data).toMatchObject({ schemaVersion: "collect-evidence/v2", kind: "error", success: false, code: 2 });
         expect(invalid.err.trim()).toBe(invalid.data.message);
         expect(await hashes(copied)).toEqual(before);
       }
     }
-    for (const corruption of ["unsupported-schema", "malformed-json"]) {
+    for (const corruption of ["unsupported-schemaVersion", "malformed-json"]) {
       const copied = join(root, corruption);
       await cp(session, copied, { recursive: true });
       const annotation = join(copied, "cases", asset.caseId, "annotations", `${payload.id}.json`);
       const record = JSON.parse(await readFile(annotation, "utf8"));
-      await writeFile(annotation, corruption === "unsupported-schema" ? JSON.stringify({ ...record, schema: "collect-feedback/v999" }) : "{");
+      await writeFile(annotation, corruption === "unsupported-schemaVersion" ? JSON.stringify({ ...record, schemaVersion: "collect-feedback/v999" }) : "{");
       const before = await hashes(copied);
       const invalid = await invoke(reports, ["evidence", copied, "--feedback"]);
       expect(invalid.code).toBe(2);
-      expect(invalid.data).toMatchObject({ schema: "collect-evidence/v1", kind: "error", success: false, code: 2 });
+      expect(invalid.data).toMatchObject({ schemaVersion: "collect-evidence/v2", kind: "error", success: false, code: 2 });
       expect(invalid.err.trim()).toBe(invalid.data.message);
       expect(await hashes(copied)).toEqual(before);
     }
@@ -167,7 +196,7 @@ test("explicit earlier-run imports and repeated common-record reports preserve e
     const beforeInvalid = await readdir(join(repository, "workflows/history/artifacts/evidence"));
     for (const version of ["collect-evidence/v999", undefined]) {
       const invalid = join(root, version ? "unsupported" : "unversioned"); await mkdir(invalid);
-      await writeFile(join(invalid, "run.json"), JSON.stringify({ schema: version, kind: "run" }));
+      await writeFile(join(invalid, "run.json"), JSON.stringify({ schemaVersion: version, kind: "run" }));
       expect((await invoke(feedback, ["init", invalid, ...options])).code).toBe(2);
       expect((await invoke(reports, ["evidence", invalid, "--historical"])).code).toBe(2);
     }

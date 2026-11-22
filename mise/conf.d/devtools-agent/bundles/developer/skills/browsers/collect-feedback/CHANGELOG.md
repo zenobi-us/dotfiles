@@ -1,10 +1,11 @@
 ---
-schema: collect-feedback/v1
 kind: changelog
 ---
 # Changelog
 
 ## Unreleased
+
+- **Declare evidence contracts:** Produce `schemaVersion` v2 plans, runs, acceptance records, feedback records and results. Resolve both manifests through the shared validator. Keep v1 archives, source hashes and media unchanged with explicit historical readers. Reject historical workspace and session mutations before writes. Keep report presentation and external publication approval separate.
 
 - **Write for people using coding agents:** Replace CLI-heavy human guides with prompt-led capture, approval, annotation, handoff, export, and reopening steps. Explain required skills and optional ticket/session integrations.
 - **Consolidate guide discovery:** Keep one feedback how-to, retain its real screenshots, move the manual collector example into technical references, update backlinks, and remove the dedicated topbar links. Browser checks verified both guide routes, loaded screenshots, and navigation without the removed item.

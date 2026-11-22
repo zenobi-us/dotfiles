@@ -1,0 +1,44 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "pid": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "bootId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "startTicks": {
+      "type": "string",
+      "pattern": "^\\d+$"
+    },
+    "command": {
+      "type": "string"
+    },
+    "cwd": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "enum": [
+        "running",
+        "stopped",
+        "unconfirmed"
+      ]
+    },
+    "parentPid": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "required": [
+    "pid",
+    "bootId",
+    "startTicks",
+    "command",
+    "state"
+  ],
+  "description": "Historical input only. Explicit historical reader; never rewrite or upgrade. Missing schemaVersion is detected only by this complete legacy shape."
+}

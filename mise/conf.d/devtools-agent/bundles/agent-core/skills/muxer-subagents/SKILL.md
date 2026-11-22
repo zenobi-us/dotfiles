@@ -43,7 +43,7 @@ The hooks can supply `omp`, `pi`, `zot`, `codex`, `claude`, or `unknown-agent`. 
 scripts/router.ts contracts --muxer <resolved-muxer> --agent <resolved-agent>
 ```
 
-Always pass `--muxer` and `--agent` explicitly. The command prints versioned JSON with `muxer`, `agent`, contract paths, `limits` (`maxSubagentsPerSession`, `maxDepth`, `currentDepth`), and `needsOperatorInput`. `session` reports the explicit role, run identity, parent run identity, operation identity, and context file. `delivery` reports the assigned context and supported transport capabilities. An absent role stays `unspecified`; muxer detection and depth do not establish a role. Native structured-result transport is not implemented.
+Always pass `--muxer` and `--agent` explicitly. The command prints `schemaVersion: muxer-contracts/v2` JSON with `muxer`, `agent`, contract paths, `limits` (`maxSubagentsPerSession`, `maxDepth`, `currentDepth`), and `needsOperatorInput`. `session` reports the explicit role, run identity, parent run identity, operation identity, and context file. `delivery` reports the assigned context and supported transport capabilities. An absent role stays `unspecified`; muxer detection and depth do not establish a role. Native structured-result transport is not implemented.
 
 1. Read `muxerContract` before you open, wait on, read, or close a pane.
 2. Read `agentContract` before you launch an agent.
@@ -63,18 +63,20 @@ The current limits are five concurrently active direct child agents per parent s
 Use the router when you need to launch a child agent directly:
 
 ```bash
-scripts/router.ts spawn --result-schema <domain-schema> [--prompt <text> | --prompt-file <path>] [--cwd <path>] [--muxer <muxer>] [--agent <agent>] [--result-target <absolute-file> --result-ref <approved-reference>] [--operation-id <id>]
+scripts/router.ts spawn --result-schema <domain-schema> [--prompt <text> | --prompt-file <path>] [--cwd <path>] [--muxer <muxer>] [--agent <agent>] [--result-target <absolute-file> --result-ref <approved-reference>] [--operation-id <id>] [--title <text>]
 ```
 
 - If you set neither prompt option, the router reads stdin.
 - If stdin is empty, pass `--prompt` or `--prompt-file`.
 - Do not pass both prompt options.
 - The child runs in `--cwd`, or in the current directory by default.
+- For ticket work in herdr-app, the caller MUST pass `--title` with the active ticket ID. For concurrent children on one ticket, append the role, such as `TICKET-123 · review`. The caller resolves the ticket; this skill does not infer it.
+- `--title` sets the herdr-app tab display name without changing run IDs or terminal addresses. Blank titles and explicit titles for other muxers are rejected before resource creation. Without a title, herdr-app uses `agent-<first-eight-run-id-characters>`.
 - The router sets `MUXER_SUBAGENT_DEPTH` to the parent depth plus one.
 - The router rejects invalid depth and depth at or above the configured maximum.
 - If muxer or agent detection is unknown, pass its explicit option.
 
-The command prints a JSON record with `runId`, muxer, agent, target identifier, child depth, `parentRunId` when known, `operationId`, `contextFile`, `deliveryContext`, and `resultTarget`. Save the delivery fields before waiting. Run and resource records survive completion for the next phase.
+The command prints a `schemaVersion: muxer-spawn/v2` JSON record with `runId`, muxer, agent, target identifier, child depth, `parentRunId` when known, `operationId`, `contextFile`, `deliveryContext`, and `resultTarget`. Save the delivery fields before waiting. Run and resource records survive completion for the next phase.
 
 - `--result-schema` is required for the formal typed handoff. Use the domain operation's existing result schema.
 - `--result-target` and `--result-ref` must be supplied together. The target must be absolute and its parent directory must already exist.
@@ -88,7 +90,10 @@ The command prints a JSON record with `runId`, muxer, agent, target identifier, 
 - Wait for completion with `scripts/router.ts wait <runId>`.
 - If the signal is `blocked`, resume the agent, then pass the signal's sequence with `--after-sequence`.
 - Do not treat pane idleness or pane text as proof of completion.
-- See `references/completion-signals.md` for signal states and limits.
+- See `references/completion-signals.md` for signal states, artifact contracts, and explicit historical readers.
+- `contracts.json` declares owned records and accepted transport contracts. Resolve transport definitions from the result-delivery owner; do not copy them.
+- Use `scripts/router.ts read <runId>` for read-only current evidence. Add `--historical` only for retained legacy records. Never rewrite old runs to resume them; allocate a new run.
+- `wait <runId> --historical` returns retained blocked or terminal evidence without observing processes or deleting prompts. It cannot wait on an active legacy run.
 
 Herdr's `agent start` does not support `zot`. The router reports this combination as an error before it creates a tab.
 

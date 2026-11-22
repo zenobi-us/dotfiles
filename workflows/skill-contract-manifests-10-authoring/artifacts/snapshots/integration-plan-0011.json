@@ -1,0 +1,9 @@
+{
+  "schema": "worktree-integration/v2",
+  "integration_method": "squash",
+  "reviewed_source_commit": "e3f54b7b2a8e71b12b70399c95261128a95468f2",
+  "reviewed_source_tree": "1b993463da850f5d389927a481609980ff972001",
+  "base_branch": "master",
+  "base_before": "d74e52db71e411d252419065b0db1d74fe75e0a9",
+  "expected_merge_tree": "2b6ab2a654d3deb6d29faaecc63be7423cd287c5"
+}

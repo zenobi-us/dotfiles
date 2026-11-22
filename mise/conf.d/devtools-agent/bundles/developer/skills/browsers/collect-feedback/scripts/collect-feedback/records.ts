@@ -6,23 +6,25 @@ import { chmod, cp, lstat, mkdir, mkdtemp, open, readdir, realpath, rename, rm, 
 import { dirname, join, relative, resolve, sep } from "node:path";
 import { validateRun, type AssetRecord, type CaseRecord, type RunRecord } from "../../../collect-evidence/scripts/browser-evidence/records.ts";
 import { CliError } from "../../../collect-evidence/scripts/browser-evidence/sh.ts";
+import { loadContracts } from "../../../../../../agent-core/skills/skill-contracts/scripts/contracts.ts";
 
-export const schema = "collect-feedback/v1" as const;
+export const schemaVersion = "collect-feedback/v2" as const;
 const MAX_RECORD = 4 * 1024 * 1024;
 export const MAX_ASSET = 128 * 1024 * 1024;
 export interface Session {
-  schema: typeof schema; kind: "session"; id: string; createdAt: string;
+  schemaVersion?: typeof schemaVersion; schema?: "collect-feedback/v1"; kind: "session"; id: string; createdAt: string;
   historical?: true;
   source: RunRecord & { runId: string; manifestSha256: string };
   cases: Array<{ id: string; path: string }>;
 }
-export interface FeedbackCase extends Omit<CaseRecord, "schema" | "runId"> {
-  schema: typeof schema; sessionId: string; source: { runId: string; caseId: string };
+export interface FeedbackCase extends Omit<CaseRecord, "schemaVersion" | "schema" | "runId"> {
+  schemaVersion?: typeof schemaVersion; schema?: "collect-feedback/v1"; sessionId: string; source: { runId: string; caseId: string };
 }
 export interface FeedbackView { directory: string; session: Session; cases: FeedbackCase[] }
 export interface ImportOptions { repository: string; workflow: string; session: string; historical?: boolean; dryRun?: boolean }
 
 export async function importSession(source: string, options: ImportOptions): Promise<object> {
+  await loadContracts(resolve(import.meta.dir, "../.."));
   checkId(options.session); checkId(options.workflow);
   const evidence = await validateRun(source);
   const destination = await route(options);
@@ -37,7 +39,7 @@ export async function importSession(source: string, options: ImportOptions): Pro
     await cp(evidence.directory, join(staging, "source"), { recursive: true, errorOnExist: true, force: false });
     const snapshot = await validateRun(join(staging, "source"));
     const session: Session = {
-      schema, kind: "session", id: options.session, createdAt: new Date().toISOString(),
+      schemaVersion, kind: "session", id: options.session, createdAt: new Date().toISOString(),
       ...(options.historical ? { historical: true as const } : {}),
       source: { ...snapshot.run, runId: snapshot.run.id, manifestSha256: digest(await boundedFile(join(staging, "source"), "run.json", MAX_RECORD)) },
       cases: snapshot.run.cases,
@@ -66,11 +68,12 @@ export async function importSession(source: string, options: ImportOptions): Pro
 
 export async function validateSession(directory: string, importing = false): Promise<FeedbackView> {
   try {
+    await loadContracts(resolve(import.meta.dir, "../.."));
     directory = resolve(directory);
     requireValue(importing || !directory.split(sep).at(-1)!.startsWith(".incomplete-feedback-"), "Session finalization is incomplete");
     await safeComponents(directory);
     const session = await readJson<Session>(directory, "session.json");
-    requireValue(session.schema === schema && session.kind === "session", "Unsupported feedback session schema or kind");
+    checkHeader(session, "session");
     checkId(session.id);
     requireValue(typeof session.createdAt === "string" && Number.isFinite(Date.parse(session.createdAt)), "Invalid session creation time");
     requireValue(session.historical === undefined || session.historical === true, "Invalid historical selection");
@@ -83,8 +86,8 @@ export async function validateSession(directory: string, importing = false): Pro
     const ids = new Set<string>();
     for (const original of source.cases) {
       const record = await readJson<FeedbackCase>(directory, `cases/${original.id}/case.json`);
-      requireValue(record.schema === schema && record.kind === "case", "Unsupported feedback case schema or kind");
-      requireValue(same(record, feedbackCase(original, session.id)), "Feedback case differs from its sealed source");
+      checkHeader(record, "case");
+      requireValue(same(record, feedbackCase(original, session.id, session.schema === "collect-feedback/v1")), "Feedback case differs from its sealed source");
       for (const asset of record.assets) {
         requireValue(!ids.has(asset.id) && ids.size < 10000, "Duplicate asset ID or asset limit exceeded"); ids.add(asset.id);
         await assetBytes(directory, asset);
@@ -139,9 +142,15 @@ export function checkId(value: unknown): asserts value is string { requireValue(
 function inside(root: string, path: string): boolean { const r = relative(root, path); return r === "" || (!r.startsWith(`..${sep}`) && r !== ".." && !r.startsWith(sep)); }
 function digest(bytes: Buffer): string { return createHash("sha256").update(bytes).digest("hex"); }
 function same(a: unknown, b: unknown): boolean { return JSON.stringify(a) === JSON.stringify(b); }
-function feedbackCase(record: CaseRecord, sessionId: string): FeedbackCase {
-  const { runId, schema: _schema, ...fields } = record;
-  return { ...fields, events: `source/${record.events}`, schema, sessionId, source: { runId, caseId: record.id } };
+function checkHeader(value: unknown, kind: string): void {
+  requireValue(value && typeof value === "object" && "kind" in value && value.kind === kind &&
+    (("schemaVersion" in value && value.schemaVersion === schemaVersion && !("schema" in value)) ||
+      ("schema" in value && value.schema === "collect-feedback/v1" && !("schemaVersion" in value))),
+    "Unsupported feedback schema or kind");
+}
+function feedbackCase(record: CaseRecord, sessionId: string, historical = false): FeedbackCase {
+  const { runId, schemaVersion: _version, schema: _schema, ...fields } = record;
+  return { ...fields, events: `source/${record.events}`, ...(historical ? { schema: "collect-feedback/v1" as const } : { schemaVersion }), sessionId, source: { runId, caseId: record.id } };
 }
 async function readJson<T>(root: string, path: string): Promise<T> { return JSON.parse((await boundedFile(root, path, MAX_RECORD)).toString("utf8")); }
 async function jsonFile(path: string, data: unknown): Promise<void> { await writeFile(path, JSON.stringify(data, null, 2) + "\n", { flag: "wx" }); }
@@ -154,7 +163,7 @@ async function route(options: ImportOptions): Promise<{ path: string; ref: strin
 }
 async function markdown(path: string, kind: string, text: string): Promise<void> {
   const child = Bun.spawn(["mise", "exec", "--", "mq", "--allow-http-import", "--no-lockfile", "-I", "raw", "-F", "raw", "--no-clobber", "-o", path, 'import "github.com/harehare/okf.mq" | .'], { stdin: "pipe", stdout: "pipe", stderr: "pipe" });
-  child.stdin.write(`---\nschema: ${schema}\nkind: ${kind}\n---\n${text}`);
+  child.stdin.write(`---\nschemaVersion: ${schemaVersion}\nkind: ${kind}\n---\n${text}`);
   await child.stdin.end();
   const err = await new Response(child.stderr).text();
   if (await child.exited !== 0) throw new CliError(`Markdown generation failed: ${err}`, 3);

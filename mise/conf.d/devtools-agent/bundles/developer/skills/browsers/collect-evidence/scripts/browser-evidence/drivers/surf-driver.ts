@@ -373,7 +373,7 @@ export const surfDriver: Driver = {
  compile(plan, test, shotsDir) {
   const { workflow, map } = compileSurf(plan, test, shotsDir);
   const name = this.scriptName(plan, test.id);
-  return { [name]: workflow, [`${name}.map`]: JSON.stringify({ schema: "collect-evidence/v1", kind: "driver-map", entries: map }, null, 2) };
+  return { [name]: workflow, [`${name}.map`]: JSON.stringify({ schemaVersion: "collect-evidence/v2", kind: "driver-map", entries: map }, null, 2) };
  },
 
  // surf session names allow letters, digits, dot, underscore and hyphen, up to 64.
@@ -434,8 +434,8 @@ export const surfDriver: Driver = {
   if (!ownedSessions.has(ctx.session)) return { records: [], failure: { step: `${ctx.test.id}.1`, message: `Surf session is not owned: ${ctx.session}`, blocked: true }, raw: "", attempts: 0 };
   const name = this.scriptName(ctx.plan, ctx.test.id);
   const workflow = join(ctx.workflowDir, name);
-  const envelope = JSON.parse(await readFile(`${workflow}.map`, "utf8")) as { schema: string; kind: string; entries: StepMapEntry[] };
-  if (envelope.schema !== "collect-evidence/v1" || envelope.kind !== "driver-map" || !Array.isArray(envelope.entries)) throw new Error("Unsupported Surf driver map schema");
+  const envelope = JSON.parse(await readFile(`${workflow}.map`, "utf8")) as { schemaVersion: string; kind: string; entries: StepMapEntry[] };
+  if (envelope.schemaVersion !== "collect-evidence/v2" || envelope.kind !== "driver-map" || !Array.isArray(envelope.entries)) throw new Error("Unsupported Surf driver map schemaVersion");
   const map = envelope.entries;
   const shots = join(ctx.reportDir, "shots");
 

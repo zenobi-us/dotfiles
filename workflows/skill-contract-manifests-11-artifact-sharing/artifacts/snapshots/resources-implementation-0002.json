@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "muxer-resource-report/v2",
+  "manifest": {
+    "schemaVersion": "muxer-run/v2",
+    "runId": "5cb3a356-32a3-4672-9588-f907aaba1ee6",
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "target": "t1zb",
+    "createdAt": "2026-11-22T06:36:42.663Z",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+    "operationId": "skill-contract-manifests-11-artifact-sharing-start-1"
+  },
+  "resources": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "5cb3a356-32a3-4672-9588-f907aaba1ee6",
+    "observedAt": "2026-11-22T06:59:56.026Z",
+    "processes": [
+      {
+        "pid": 1498627,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "3470501",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1501235,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "3471197",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1528981,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "3477452",
+        "command": "omp daemon brok",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1529013,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "3477457",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1570636,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "3541834",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1570653,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "3541842",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1570655,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "3541842",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1570670,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "3541862",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1620222,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "3609574",
+        "command": "bun",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1611093,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "3577501",
+        "command": "python",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      }
+    ],
+    "shutdown": "pending"
+  }
+}

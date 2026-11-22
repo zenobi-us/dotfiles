@@ -31,16 +31,16 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     await writeFile(join(repository, ".context-routes.toml"), 'schema = 2\n[records.alignment]\nadapter = "markdown"\nstore = "repository"\n[records.tickets]\nadapter = "local-markdown"\nstore = "repository"\n[records.initiatives]\nadapter = "markdown"\nstore = "repository"\n[records.sources]\nadapter = "files"\nstore = "inherit:alignment"\n[records.workflows]\nadapter = "files"\nstore = "repository"\n[records.evidence]\nadapter = "files"\nstore = "repository"\n');
     const work = join(root, "working");
     const initial = await collect(["init", work, "--repository", repository, "--workflow", "public", "--run", "source", "--driver", "playwright"]);
-    await writeFile(join(work, "plan.ts"), `export const plan = ${JSON.stringify({ schema: "collect-evidence/v1", kind: "plan", workId: "public", driver: "playwright", base: page.url.origin, approval: { origins: [page.url.origin], confirmations: [] }, tests: ["original", "other"].map(id => ({ id, claim: "Inspect original pixels", pass: "Heading is present", fail: "Heading is absent", steps: [{ do: "navigate", says: "Open owned page", to: "/", shot: "initial" }, { do: "expect", says: "Read heading", locator: "h1", text: "Original evidence", shot: "original" }] })) })};`);
+    await writeFile(join(work, "plan.ts"), `export const plan = ${JSON.stringify({ schemaVersion: "collect-evidence/v2", kind: "plan", workId: "public", driver: "playwright", base: page.url.origin, approval: { origins: [page.url.origin], confirmations: [] }, tests: ["original", "other"].map(id => ({ id, claim: "Inspect original pixels", pass: "Heading is present", fail: "Heading is absent", steps: [{ do: "navigate", says: "Open owned page", to: "/", shot: "initial" }, { do: "expect", says: "Read heading", locator: "h1", text: "Original evidence", shot: "original" }] })) })};`);
     await collect(["render", work]); await collect(["compile", work]); await collect(["run", work]);
     const source = initial.destination.path;
     const options = ["--repository", repository, "--workflow", "public", "--session", "review"];
     const before = await readdir(join(repository, "workflows/public/artifacts/evidence"));
     const unsupported = join(root, "unsupported");
     await mkdir(unsupported);
-    await writeFile(join(unsupported, "run.json"), JSON.stringify({ schema: "collect-evidence/v999", kind: "run" }));
+    await writeFile(join(unsupported, "run.json"), JSON.stringify({ schemaVersion: "collect-evidence/v999", kind: "run" }));
     expect((await invoke(["init", unsupported, ...options])).code).toBe(2);
-    expect((await invoke(["init", join(root, "missing"), ...options])).code).toBe(2);
+    expect((await invoke(["init", join(root, "missing"), ...options])).code).toBe(1);
     expect(await readdir(join(repository, "workflows/public/artifacts/evidence"))).toEqual(before);
     expect((await invoke(["init", source, ...options, "--dry-run"])).data.dryRun).toBe(true);
     expect(await readdir(join(repository, "workflows/public/artifacts/evidence"))).toEqual(before);
@@ -58,7 +58,7 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     expect(plainValidation.out).toContain("valid: true\n");
     expect(plainValidation.out).toContain(`cases.0.assets.0.sha256: ${asset.sha256}\n`);
     expect(() => JSON.parse(plainValidation.out)).toThrow();
-    expect(valid.data).toMatchObject({ schema: "collect-feedback/v1", kind: "event", command: "validate", success: true });
+    expect(valid.data).toMatchObject({ schemaVersion: "collect-feedback/v2", kind: "event", command: "validate", success: true });
     const quietValidation = await invoke(["validate", dir, "--plain", "--json"], cli, "--quiet");
     expect(quietValidation.code).toBe(0);
     expect(quietValidation.out).toBe("");
@@ -76,7 +76,7 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     expect((await invoke(["validate", dir, "--unknown-option"])).code).toBe(2);
     const copiedRun = join(dir, "source/run.json"), copiedRunText = await readFile(copiedRun, "utf8");
     await chmod(copiedRun, 0o600);
-    await writeFile(copiedRun, copiedRunText.replace("collect-evidence/v1", "collect-evidence/v999"));
+    await writeFile(copiedRun, copiedRunText.replace("collect-evidence/v2", "collect-evidence/v999"));
     expect((await invoke(["validate", dir])).code).toBe(2);
     await writeFile(copiedRun, copiedRunText); await chmod(copiedRun, 0o444);
     const occupied = Bun.serve({ hostname: "127.0.0.1", port: 0, fetch: () => new Response("owned") });
@@ -88,7 +88,7 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     expect(Buffer.from(await (await fetch(origin + "/api/v1/assets/" + asset.id)).arrayBuffer())).toEqual(original);
     const { writeToken } = await (await fetch(origin + "/api/v1/session")).json();
     const headers = { Origin: origin, "X-Write-Token": writeToken, "Content-Type": "application/json" };
-    const input = { schema: "collect-feedback/v1", kind: "annotation", id: crypto.randomUUID(), sessionId: "review", caseId: "original", assetId: asset.id, sourceSha256: asset.sha256, originalWidth: asset.width, originalHeight: asset.height, geometry: { x: 0.333, y: 0.25, width: 0.667, height: 0.5 }, priority: "P2", comment: "Keep this original target visible" };
+    const input = { schemaVersion: "collect-feedback/v2", kind: "annotation", id: crypto.randomUUID(), sessionId: "review", caseId: "original", assetId: asset.id, sourceSha256: asset.sha256, originalWidth: asset.width, originalHeight: asset.height, geometry: { x: 0.333, y: 0.25, width: 0.667, height: 0.5 }, priority: "P2", comment: "Keep this original target visible" };
     const save = (body: unknown, overrides = {}) => fetch(origin + "/api/v1/annotations", { method: "POST", headers: { ...headers, ...overrides }, body: JSON.stringify(body) });
     expect((await save(input, { "X-Write-Token": "incorrect" })).status).toBe(403);
     expect((await save(input, { Origin: "https://attacker.invalid" })).status).toBe(403);
@@ -109,12 +109,12 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     const update = (body: unknown, tag: string | null, method = "PATCH", token = writeToken) => fetch(endpoint, {
       method, headers: { ...headers, "X-Write-Token": token, ...(tag === null ? {} : { "If-Match": tag }) }, body: JSON.stringify(body),
     });
-    const envelope = { schema: "collect-feedback/v1", kind: "annotation" };
+    const envelope = { schemaVersion: "collect-feedback/v2", kind: "annotation" };
     const tag = `"${input.id}:1"`;
     const originalSaved = saved;
     for (const method of ["PATCH", "DELETE"]) expect((await update(envelope, null, method)).status).toBe(428);
     expect((await update({ ...envelope, comment: "unauthorized" }, tag, "PATCH", "wrong")).status).toBe(403);
-    expect((await update({ ...envelope, schema: "collect-feedback/v999", comment: "invalid" }, tag)).status).toBe(400);
+    expect((await update({ ...envelope, schemaVersion: "collect-feedback/v999", comment: "invalid" }, tag)).status).toBe(400);
     expect((await update({ ...envelope, assetId: "different" }, tag)).status).toBe(400);
     expect((await update({ ...envelope, geometry: { x: 1, y: 1, width: 1, height: 1 } }, tag)).status).toBe(400);
     const competing = await Promise.all([
@@ -145,10 +145,10 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
       expect((await update(envelope, `"${input.id}:4"`, method, "wrong")).status).toBe(403);
       expect((await fetch(endpoint, { method, headers: { ...headers, Origin: "https://attacker.invalid", "If-Match": `"${input.id}:4"` }, body: JSON.stringify(envelope) })).status).toBe(403);
       expect((await fetch(endpoint, { method, headers: { ...headers, "If-Match": `"${input.id}:4"` }, body: "{" })).status).toBe(400);
-      expect((await update({ ...envelope, schema: "collect-feedback/v999" }, `"${input.id}:4"`, method)).status).toBe(400);
+      expect((await update({ ...envelope, schemaVersion: "collect-feedback/v999" }, `"${input.id}:4"`, method)).status).toBe(400);
     }
     const sessionManifest = join(dir, "session.json"), sessionText = await readFile(sessionManifest, "utf8");
-    await writeFile(sessionManifest, sessionText.replace("collect-feedback/v1", "collect-feedback/v999"));
+    await writeFile(sessionManifest, sessionText.replace("collect-feedback/v2", "collect-feedback/v999"));
     expect((await update({ ...envelope, comment: "Unsupported store" }, `"${input.id}:4"`)).status).toBe(409);
     expect((await update(envelope, `"${input.id}:4"`, "DELETE")).status).toBe(409);
     await writeFile(sessionManifest, sessionText);
@@ -268,8 +268,8 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
           const restored = await second.evaluate(async () => (await (await fetch('/api/v1/export')).json()).annotations[0]);
           if (restored.revision !== 12 || restored.comment !== final.comment || restored.priority !== final.priority || restored.deletedAt !== null) throw Error('Restoration automatically saved draft');
           if (JSON.stringify(writes) !== JSON.stringify([
-            { tag: '"' + final.id + ':9"', body: { schema: 'collect-feedback/v1', kind: 'annotation', deletedAt: null } },
-            { tag: '"' + final.id + ':11"', body: { schema: 'collect-feedback/v1', kind: 'annotation', deletedAt: null } },
+            { tag: '"' + final.id + ':9"', body: { schemaVersion: 'collect-feedback/v2', kind: 'annotation', deletedAt: null } },
+            { tag: '"' + final.id + ':11"', body: { schemaVersion: 'collect-feedback/v2', kind: 'annotation', deletedAt: null } },
           ])) throw Error('Restoration did not use displayed tombstone revisions or saved automatically');
           await second.getByRole('button', { name: 'Save note', exact: true }).click();
           await second.getByRole('status').filter({ hasText: 'Saved · revision 13' }).waitFor();
@@ -371,7 +371,7 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     await unlink(media); await symlink(join(source, asset.path), media);
     expect((await fetch(origin + "/api/v1/assets/" + asset.id)).status).toBe(409);
     expect((await invoke(["validate", dir])).code).toBe(2);
-    await unlink(media); expect((await invoke(["validate", dir])).code).toBe(2);
+    await unlink(media); expect((await invoke(["validate", dir])).code).toBe(1);
     await writeFile(media, original, { mode: 0o444 });
     child.kill("SIGTERM"); expect(await child.exited).toBe(0);
     expect(await Bun.file(join(dir, ".writer.lock")).exists()).toBe(false);
@@ -381,19 +381,19 @@ test("installed workflow preserves source bytes and refuses unsafe service and s
     restarted.kill("SIGINT"); expect(await restarted.exited).toBe(0);
     expect(await Bun.file(join(dir, ".writer.lock")).exists()).toBe(false);
     const annotationPath = join(dir, "cases/original/annotations", input.id + ".json");
-    await writeFile(annotationPath, JSON.stringify({ ...saved, schema: "collect-feedback/v999" }));
+    await writeFile(annotationPath, JSON.stringify({ ...saved, schemaVersion: "collect-feedback/v999" }));
     expect((await invoke(["validate", dir])).code).toBe(2);
     expect((await invoke(["export", dir])).code).toBe(2);
     expect((await invoke(["serve", dir, "--port", String(port)])).code).toBe(2);
     expect(await Bun.file(join(dir, ".writer.lock")).exists()).toBe(false);
     await writeFile(annotationPath, JSON.stringify(saved));
     const manifest = join(dir, "session.json"), text = await readFile(manifest, "utf8");
-    await writeFile(manifest, text.replace("collect-feedback/v1", "collect-feedback/v999")); expect((await invoke(["validate", dir])).code).toBe(2);
+    await writeFile(manifest, text.replace("collect-feedback/v2", "collect-feedback/v999")); expect((await invoke(["validate", dir])).code).toBe(2);
     expect((await invoke(["serve", dir, "--port", String(port)])).code).toBe(2);
     expect(await Bun.file(join(dir, ".writer.lock")).exists()).toBe(false);
     await writeFile(manifest, text);
     const casePath = join(dir, "cases/original/case.json"), caseText = await readFile(casePath, "utf8");
-    await writeFile(casePath, caseText.replace("collect-feedback/v1", "collect-feedback/v999")); expect((await invoke(["validate", dir])).code).toBe(2);
+    await writeFile(casePath, caseText.replace("collect-feedback/v2", "collect-feedback/v999")); expect((await invoke(["validate", dir])).code).toBe(2);
     await writeFile(casePath, caseText.replace(asset.path, "../../unrelated")); expect((await invoke(["validate", dir])).code).toBe(2);
     expect(await readFile(join(source, asset.path))).toEqual(original);
   } finally {

@@ -45,7 +45,7 @@ test.skipIf(process.env.RUN_GUI_EVIDENCE_TESTS !== "1")("installed GUI workflow 
       await checked([cli, "init", dir, "--repository", repository, "--workflow", "gui", "--run", scenario, "--driver", "gui", "--json"]);
       const selected = scenario === "identity" ? { ...scope, title: "Different approved window" } : scope;
       const plan: Plan = {
-        schema: "collect-evidence/v1", kind: "plan", workId: "gui", driver: "gui", base: "gui://local", gui: selected,
+        schemaVersion: "collect-evidence/v2", kind: "plan", workId: "gui", driver: "gui", base: "gui://local", gui: selected,
         approval: { origins: [], confirmations: ["case.1"], gui: scenario === "scope" ? { ...scope, window: "root" } : selected },
         video: true,
         tests: [{ id: "case", claim: "Inspect selected native GUI surface", pass: "Selected native pixels match", fail: "Selected native pixels differ", steps: scenario === "credential-input"

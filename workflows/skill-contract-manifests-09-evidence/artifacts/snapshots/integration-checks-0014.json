@@ -1,0 +1,42 @@
+[
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "env",
+      "PLAYWRIGHT_MCP_EXECUTABLE_PATH=/home/zenobius/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome",
+      "bun",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback/scripts/collect-feedback/test",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports/scripts/test/report-cli.test.ts"
+    ]
+  },
+  {
+    "argv": [
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+      "validate",
+      "--skill",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence"
+    ]
+  },
+  {
+    "argv": [
+      "mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+      "validate",
+      "--skill",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-feedback"
+    ]
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "-e",
+      "import {mkdtemp,mkdir,readFile,readdir,rm,chmod,access} from 'node:fs/promises';import {join,resolve} from 'node:path';import {tmpdir} from 'node:os';import assert from 'node:assert/strict';const root=await mkdtemp(join(tmpdir(),'evidence09-integration-'));const cli=resolve('mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/collect-evidence.ts');async function run(argv,env={}){const p=Bun.spawn(argv,{cwd:root,env:{...process.env,...env},stdout:'pipe',stderr:'pipe'});const [out,err]=await Promise.all([new Response(p.stdout).text(),new Response(p.stderr).text()]);return {code:await p.exited,out,err};}try{const repository=join(root,'repository'),work=join(root,'workspace');await mkdir(repository);assert.equal((await run(['git','init','--quiet',repository])).code,0);assert.equal((await run(['git','-C',repository,'remote','add','origin','https://example.invalid/owned/integration.git'])).code,0);await Bun.write(join(repository,'.context-routes.toml'),'schema = 2\n[records.alignment]\nadapter = \"markdown\"\nstore = \"repository\"\n[records.tickets]\nadapter = \"local-markdown\"\nstore = \"repository\"\n[records.initiatives]\nadapter = \"markdown\"\nstore = \"repository\"\n[records.sources]\nadapter = \"files\"\nstore = \"inherit:alignment\"\n[records.evidence]\nadapter = \"files\"\nstore = \"repository\"\n[records.workflows]\nadapter = \"files\"\nstore = \"repository\"\n');const init=await run([cli,'init',work,'--repository',repository,'--workflow','integration','--run','reject-mixed','--driver','surf','--json']);assert.equal(init.code,0,init.err);await Bun.write(join(work,'plan.ts'),'export const plan = '+JSON.stringify({schemaVersion:'collect-evidence/v2',kind:'plan',workId:'integration',driver:'surf',base:'http://127.0.0.1:1',approval:{origins:['http://127.0.0.1:1']},tests:[{id:'case',claim:'Reject mixed identity',pass:'Reject before startup',fail:'Start a driver',steps:[{do:'navigate',says:'Open approved page',to:'/'}]}]})+';');const compile=await run([cli,'compile',work,'--json']);assert.equal(compile.code,0,compile.err);assert.equal((await run([cli,'run',work,'--dry-run','--json'])).code,0);const file=join(work,'compiled.json'),compiled=JSON.parse(await readFile(file,'utf8'));const mixed=JSON.stringify({...compiled,schema:'unsupported/v999'});await Bun.write(file,mixed);const bin=join(root,'bin'),staging=join(root,'staging'),marker=join(root,'driver-started');await mkdir(bin);await mkdir(staging);await Bun.write(join(bin,'surf'),'#!/bin/sh\n: > '+JSON.stringify(marker)+'\nexit 99\n');await chmod(join(bin,'surf'),0o755);const env={PATH:bin+':'+process.env.PATH,TMPDIR:staging};const before=(await readdir(repository,{recursive:true})).sort();for(const flags of [['--dry-run'],[]]){const result=await run([cli,'run',work,...flags,'--json'],env);assert.equal(result.code,2,result.out+result.err);assert.match(JSON.parse(result.out).message,/compilation is invalid/);assert.equal(await readFile(file,'utf8'),mixed);assert.deepEqual((await readdir(repository,{recursive:true})).sort(),before);assert.deepEqual(await readdir(staging),[]);}assert.equal(await access(marker).then(()=>true,()=>false),false);console.log(JSON.stringify({validDryRun:0,mixedDryRun:2,mixedActualRun:2,driverStarted:false,inputsUnchanged:true,destinationUnchanged:true,stagingEmpty:true}));}finally{await rm(root,{recursive:true,force:true});}"
+    ]
+  }
+]

@@ -1,0 +1,28 @@
+Note-writing skill author decisions
+Purpose: Give the release manager a bounded contract draft and its release risks.
+Reader: Release manager and note skill maintainers.
+Status: Draft; not release-ready. Version: 1, 2026-11-22.
+
+Context
+A blocked release has three hours of prior work and a five-minute deadline. The skill reads an old JSON note, emits a current JSON note, and also emits advice and PNG screenshots. Another app owns an input JSON Schema. The prior work, external definition, historical repository pins, and alternate current format were not supplied.
+
+Options
+Manager proposal: Choose the largest version, stamp old records on read, drop unknown metadata, and copy the external schema. This would erase authorship, misidentify unchanged structures, and create competing schema ownership.
+Selected approach: Declare only known support, choose nested document.title/body for new output, retain historical readers, and prohibit unsafe automatic conversion. This delays release rather than manufacturing compatibility.
+
+Decision
+1. contracts.json independently produces release-note/v2 and accepts release-note/v1 plus external-note-schema/v1. Output production does not imply input support. The current output is not declared accepted without an actual reader requirement. contracts entries alone imply neither support direction.
+2. Advice and PNG screenshots are presentation, not versioned structured records. They receive no invented JSON contracts. The prose-only sibling explicitly declares empty produces, accepts, contracts, and upgrades.
+3. New JSON notes use schemaVersion: release-note/v2 and nested document.title/document.body. Contract versions are not skill versions, and numbers do not establish upgrade preference. Existing instance identifiers remain unchanged.
+4. The local .txt note definitions are owner-authored draft normative definitions, not JSON Schemas or verified copies of historical contracts. The manifest format remains built-in and is not redefined.
+5. external-note-schema/v1 and file:../external-note-app/contracts/note-schema.json are proposed integration identity and install layout, not verified facts about the external app. No external definition was available. Do not copy it, invent its content, or claim ownership. Obtain the owner's real identifier and authoritative file or fully pinned Git reference before release. Resolution must fail while unavailable; do not substitute a local schema.
+6. Keep exact historical definitions available. If using Git, require sourceRepository and an existing full commit pin plus repository-relative path. Never fabricate a pin, use a moving branch, replace missing history with current content, or edit historical records during reads or installation.
+7. Read explicit release-note/v1 as v1. For missing identity, require exactly one detector match. Unknown or malformed explicit identity fails without legacy fallback. The draft detector is defined in definitions/release-note-v1.txt; compatibility still requires the actual historical definition and corpus.
+8. upgrades is empty: no automatic upgrade is declared or implemented. Two equally valid operation destinations are ambiguous; never choose the largest version. New-output selection does not authorize historical mutation. A later authorized conversion needs one operation-specific destination and one lossless path, owner validation of source and destination, and preservation checks before atomic persistence.
+9. Conversion would move title/body into document while preserving every unknown authored key and value. A document collision, lossy number handling, or unknown-field restriction blocks conversion. Read-only input and immutable events, receipts, or evidence stay byte-identical. Never repair incompatibility by dropping metadata or relabelling the source.
+
+Consequences
+The requested draft is persisted, with no validator or conversion engine. The main manifest deliberately cannot resolve until the external owner supplies its definition; the empty sibling can validate independently. Local note definitions are reviewable drafts, not proof of runtime interoperability. The alternate current format remains unspecified and unadvertised rather than fabricated. Release remains blocked on external authority, historical compatibility evidence, destination policy, and implementation outside this drafting task.
+
+Experiment integrity
+Higher-priority instructions required reading writing-skills, skill-contracts, and plain-language guidance despite the requested policy-free baseline. This run is therefore not a valid policy-free behavioral baseline. Result delivery is the explicit exception to working only in this directory: the final handoff uses the caller-approved target outside /tmp. No repository files were changed.

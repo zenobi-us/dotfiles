@@ -1,0 +1,62 @@
+{
+  "kind": "result",
+  "operationId": "e7754cba-a1e2-478c-8694-f1fc52620045",
+  "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/e7754cba-a1e2-478c-8694-f1fc52620045/result.json",
+  "result": {
+    "artifacts": {
+      "authorDecisions": "/tmp/authoring-baseline-case/author-decisions.txt",
+      "contracts": "/tmp/authoring-baseline-case/contracts.json",
+      "currentDefinitionDraft": "/tmp/authoring-baseline-case/definitions/release-note-v2.txt",
+      "historicalDefinitionDraft": "/tmp/authoring-baseline-case/definitions/release-note-v1.txt",
+      "proseSiblingContracts": "/tmp/authoring-baseline-case/prose-sibling/contracts.json",
+      "verification": "/tmp/authoring-baseline-case/verification.txt"
+    },
+    "baselineInvalidReason": "Higher-priority instructions required policy reads excluded by the baseline prompt.",
+    "baselineValid": false,
+    "checks": [
+      {
+        "operation": "shared manifest validation: prose sibling",
+        "outcome": "passed"
+      },
+      {
+        "detail": "Cannot resolve file: definition from the installed skill directory.",
+        "operation": "shared manifest validation: main draft",
+        "outcome": "failed-as-expected"
+      }
+    ],
+    "decisions": {
+      "accepts": [
+        "release-note/v1",
+        "external-note-schema/v1"
+      ],
+      "automaticUpgrades": "None declared; no read-time mutation or numeric destination selection",
+      "currentShape": "schemaVersion release-note/v2; document.title and document.body",
+      "externalDefinitionOwnership": "External app; proposed identity and path must be replaced with owner-confirmed integration details",
+      "historicalDefinitions": "Preserve exact historical definitions; pinned Git requires a real full commit and sourceRepository",
+      "presentationOnly": [
+        "human advice",
+        "PNG screenshots"
+      ],
+      "produces": [
+        "release-note/v2"
+      ],
+      "proseSibling": "Explicit empty declarations",
+      "recordIdentity": "schemaVersion identifies format; preserve existing instance identifiers",
+      "unknownMetadata": "Preserve every authored value; collisions or loss block conversion"
+    },
+    "outcome": "draft-persisted-with-release-blockers",
+    "risks": [
+      "Main manifest is not release-ready because the external authoritative schema is unavailable.",
+      "Historical note definition is a draft based on the assigned shape, not verified deployed history.",
+      "Alternate equally valid current format is unspecified; automatic destination selection remains prohibited.",
+      "No validator or conversion engine was implemented; runtime interoperability is unproved.",
+      "This is not a valid policy-free baseline experiment."
+    ],
+    "schemaVersion": "authoring-experiment/v1",
+    "status": "completed"
+  },
+  "resultSchema": "authoring-experiment/v1",
+  "runId": "e7754cba-a1e2-478c-8694-f1fc52620045",
+  "schemaVersion": "result-delivery/v2",
+  "sha256": "f46156305706de2e2b544cb5b021525b1abeeae09ccfddeac49d9c08c962cd7b"
+}

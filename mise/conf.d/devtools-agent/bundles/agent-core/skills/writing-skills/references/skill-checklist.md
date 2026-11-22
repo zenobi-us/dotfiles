@@ -11,7 +11,7 @@
 ## GREEN Phase - Write Minimal Skill
 
 - [ ] Name uses only letters, numbers, hyphens (no parentheses/special chars)
-- [ ] YAML frontmatter requires name and description; schema and boolean user-invocable are permitted (max 1024 chars)
+- [ ] YAML frontmatter requires name and description; boolean user-invocable is permitted (max 1024 chars)
 - [ ] Description states what the skill does, when to use it, and the result it produces
 - [ ] Description written in third person
 - [ ] Keywords throughout for search (errors, symptoms, tools)
@@ -37,6 +37,14 @@
 - [ ] No narrative storytelling
 - [ ] Supporting files use `references/`, `scripts/`, `examples/`, or `assets/` for content that does not belong in `SKILL.md`
 - [ ] A skill that a person starts by hand has a `how-to-*.md` guide next to `SKILL.md` (see `skill-anatomy.md`)
+
+## Contract gate
+
+- [ ] Complete the artifact inventory and ownership table in `contract-authoring.md`, including exclusions and external formats.
+- [ ] Validate the skill manifest through the shared public command; resolve every declared contract. Keep empty collections explicit.
+- [ ] Verify content through owner validators, historical readers and authorized mutation or explicit bulk commands when applicable. Manifest validation alone is not artifact validation.
+- [ ] Run `contract-scenarios.md`: retain baseline failures, pressure outcomes, persisted content and byte-equal rejections.
+- [ ] Record compatibility and upgrade decisions; no invented support, unresolved definitions or unresolved critical loopholes remain.
 
 ## Deployment
 

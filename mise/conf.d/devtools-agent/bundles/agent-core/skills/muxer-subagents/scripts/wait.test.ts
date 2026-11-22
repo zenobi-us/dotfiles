@@ -61,11 +61,11 @@ for (const reason of ["timeout", "message"]) {
 
 test("CLI completion retains lifecycle and shutdown observations for handoff", async () => {
   reply({ reason: "status", status: "done" });
-  const child = Bun.spawn([process.execPath, join(import.meta.dir, "router.ts"), "wait", runId], {
+  const child = Bun.spawn([process.execPath, "--install=force", join(import.meta.dir, "router.ts"), "wait", runId], {
     stdout: "pipe", stderr: "pipe", env: process.env,
   });
   const [stdout, stderr, code] = await Promise.all([new Response(child.stdout).text(), new Response(child.stderr).text(), child.exited]);
   expect(code, stderr).toBe(0);
-  expect(JSON.parse(stdout)).toMatchObject({ state: "completed", resources: { runId, shutdown: "unconfirmed" } });
+  expect(JSON.parse(stdout)).toMatchObject({ signal: { state: "completed" }, resources: { runId, shutdown: "unconfirmed" } });
   expect((await readRun(runId)).manifest.target).toBe("t7");
 });

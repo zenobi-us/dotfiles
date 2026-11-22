@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "collect-feedback/v2",
+  "kind": "annotation",
+  "id": "ddd19459-931d-4684-be01-e6cc53769f33",
+  "sessionId": "contracts-feedback-current-0001",
+  "caseId": "current",
+  "assetId": "current.1.capture-001",
+  "sourceSha256": "80b3e55a45d9f6543a6004e1f85bc87799285e822d32eb9e232c7f9c3f655b14",
+  "originalWidth": 1280,
+  "originalHeight": 720,
+  "geometry": {
+    "x": 0.5,
+    "y": 0.5,
+    "width": 0,
+    "height": 0
+  },
+  "priority": "P2",
+  "comment": "Current contract note: real native capture retains source hash.",
+  "revision": 1,
+  "createdAt": "2026-11-22T02:35:16.143Z",
+  "updatedAt": "2026-11-22T02:35:16.143Z",
+  "pixelGeometry": {
+    "x": 640,
+    "y": 360,
+    "width": 0,
+    "height": 0
+  }
+}

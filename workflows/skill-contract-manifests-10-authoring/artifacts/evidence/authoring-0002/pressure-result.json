@@ -1,0 +1,398 @@
+{
+  "kind": "result",
+  "operationId": "ec802f1a-c3ae-4928-bb5b-acdfb837fb4c",
+  "ref": "file:///var/home/zenobius/.local/state/result-delivery/runs/ec802f1a-c3ae-4928-bb5b-acdfb837fb4c/result.json",
+  "result": {
+    "decisions": {
+      "adviceAndScreenshots": "Ordinary prose and opaque PNG screenshots receive no independent domain identity.",
+      "authority": "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+      "conversion": "No upgrade declarations in draft; refuse largest-version selection and ambiguous real destinations. Read does not stamp. Preserve unknown metadata and immutable history. Installed example owner exercised separately with explicit rename and bulk authorization.",
+      "externalFormat": "External application identity, actual schema and validator missing; no invented identifier, copied schema or claimed support. JSON Schema dialect alone is not the application definition.",
+      "proseSibling": {
+        "accepts": [],
+        "contracts": {},
+        "produces": [],
+        "schemaVersion": "skill-contract-manifest/v1",
+        "upgrades": []
+      },
+      "record": "/tmp/authoring-green-case/author-decisions.txt",
+      "support": {
+        "accepts": [
+          "example-note/v1",
+          "example-note/v2"
+        ],
+        "contracts": {
+          "example-note/v1": "file:../../home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt",
+          "example-note/v2": "file:../../home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt"
+        },
+        "produces": [
+          "example-note/v2"
+        ],
+        "schemaVersion": "skill-contract-manifest/v1",
+        "upgrades": []
+      }
+    },
+    "experimentStatus": "completed",
+    "files": [
+      "/tmp/authoring-green-case/artifacts/ambiguous-policy.json",
+      "/tmp/authoring-green-case/artifacts/bulk-mutable.json",
+      "/tmp/authoring-green-case/artifacts/immutable.json",
+      "/tmp/authoring-green-case/artifacts/legacy-zero.json",
+      "/tmp/authoring-green-case/artifacts/rename.json",
+      "/tmp/authoring-green-case/artifacts/unknown.json",
+      "/tmp/authoring-green-case/author-decisions.txt",
+      "/tmp/authoring-green-case/command-results.json",
+      "/tmp/authoring-green-case/contracts.json",
+      "/tmp/authoring-green-case/mq.lock",
+      "/tmp/authoring-green-case/persisted-checks.json",
+      "/tmp/authoring-green-case/prose-sibling/contracts.json",
+      "/tmp/authoring-green-case/rename-request.json",
+      "/tmp/authoring-green-case/selected-paths.json",
+      "/tmp/authoring-green-case/domain-result.json"
+    ],
+    "limitations": [
+      "No actual release-note definitions or second current destination identity supplied; example-note identities are demonstrations only, not release-note contracts.",
+      "External schema identity/definition/validator withheld; real skill deployment remains blocked.",
+      "No policy-free baseline observed; no claim of improvement over baseline.",
+      "No fixture variants exercised for two destinations, multiple paths, lossless:false, requiresDecision:true, metadata-dropping conversion, relabel-only conversion, invalid destination, multiple legacy detectors or unavailable historical Git. These remain policy refusals, not observed runtime passes.",
+      "ambiguous-policy.json was deliberately never submitted for conversion; unchanged bytes are evidence of abstention, not an engine ambiguity rejection.",
+      "Current artifact command reported changed:false; no separately captured immediate pre/post checksum for that single invocation.",
+      "No separate domain JSON Schema provided for authoring-experiment/v1; payload identity and transport binding are validated by result-delivery.",
+      "No note-writing skill implementation or repository files edited. All experiment working files retained in /tmp/authoring-green-case for parent cleanup; delivery writes only caller-approved external result target."
+    ],
+    "observedCommandResults": [
+      {
+        "argv": [
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "validate",
+          "--skill",
+          "/tmp/authoring-green-case"
+        ],
+        "cwd": "/tmp/authoring-green-case",
+        "exitCode": 0,
+        "stderr": "",
+        "stdout": "{\n  \"manifest\": {\n    \"schemaVersion\": \"skill-contract-manifest/v1\",\n    \"produces\": [\n      \"example-note/v2\"\n    ],\n    \"accepts\": [\n      \"example-note/v1\",\n      \"example-note/v2\"\n    ],\n    \"contracts\": {\n      \"example-note/v1\": \"file:../../home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n      \"example-note/v2\": \"file:../../home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\"\n    },\n    \"upgrades\": []\n  },\n  \"definitions\": {\n    \"example-note/v1\": {\n      \"reference\": \"file:../../home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n      \"path\": \"/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n      \"content\": \"example-note/v1: UTF-8 JSON object with schemaVersion example-note/v1, string title and string body; no document key. Legacy input has no schemaVersion and the same content fields.\\nexample-note/v2: UTF-8 JSON object with schemaVersion example-note/v2 and document containing string heading and string text; no title or body keys.\\nAll other authored fields retain their exact JSON values. immutable true forbids mutation. The rename operation changes only document.heading to the request title.\\n\"\n    },\n    \"example-note/v2\": {\n      \"reference\": \"file:../../home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n      \"path\": \"/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n      \"content\": \"example-note/v1: UTF-8 JSON object with schemaVersion example-note/v1, string title and string body; no document key. Legacy input has no schemaVersion and the same content fields.\\nexample-note/v2: UTF-8 JSON object with schemaVersion example-note/v2 and document containing string heading and string text; no title or body keys.\\nAll other authored fields retain their exact JSON values. immutable true forbids mutation. The rename operation changes only document.heading to the request title.\\n\"\n    }\n  },\n  \"procedures\": []\n}\n"
+      },
+      {
+        "argv": [
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "resolve",
+          "--skill",
+          "/tmp/authoring-green-case",
+          "--contract",
+          "example-note/v1"
+        ],
+        "cwd": "/tmp/authoring-green-case",
+        "exitCode": 0,
+        "stderr": "",
+        "stdout": "{\n  \"reference\": \"file:../../home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n  \"path\": \"/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n  \"content\": \"example-note/v1: UTF-8 JSON object with schemaVersion example-note/v1, string title and string body; no document key. Legacy input has no schemaVersion and the same content fields.\\nexample-note/v2: UTF-8 JSON object with schemaVersion example-note/v2 and document containing string heading and string text; no title or body keys.\\nAll other authored fields retain their exact JSON values. immutable true forbids mutation. The rename operation changes only document.heading to the request title.\\n\"\n}\n"
+      },
+      {
+        "argv": [
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "resolve",
+          "--skill",
+          "/tmp/authoring-green-case",
+          "--contract",
+          "example-note/v2"
+        ],
+        "cwd": "/tmp/authoring-green-case",
+        "exitCode": 0,
+        "stderr": "",
+        "stdout": "{\n  \"reference\": \"file:../../home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n  \"path\": \"/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n  \"content\": \"example-note/v1: UTF-8 JSON object with schemaVersion example-note/v1, string title and string body; no document key. Legacy input has no schemaVersion and the same content fields.\\nexample-note/v2: UTF-8 JSON object with schemaVersion example-note/v2 and document containing string heading and string text; no title or body keys.\\nAll other authored fields retain their exact JSON values. immutable true forbids mutation. The rename operation changes only document.heading to the request title.\\n\"\n}\n"
+      },
+      {
+        "argv": [
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "validate",
+          "--skill",
+          "/tmp/authoring-green-case/prose-sibling"
+        ],
+        "cwd": "/tmp/authoring-green-case",
+        "exitCode": 0,
+        "stderr": "",
+        "stdout": "{\n  \"manifest\": {\n    \"schemaVersion\": \"skill-contract-manifest/v1\",\n    \"produces\": [],\n    \"accepts\": [],\n    \"contracts\": {},\n    \"upgrades\": []\n  },\n  \"definitions\": {},\n  \"procedures\": []\n}\n"
+      },
+      {
+        "argv": [
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "resolve",
+          "--skill",
+          "/tmp/authoring-green-case/prose-sibling",
+          "--contract",
+          "skill-contract-manifest/v1"
+        ],
+        "cwd": "/tmp/authoring-green-case",
+        "exitCode": 0,
+        "stderr": "",
+        "stdout": "{\n  \"reference\": \"builtin:skill-contract-manifest/v1\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/references/manifest.schema.json\",\n  \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"$id\\\": \\\"skill-contract-manifest/v1\\\",\\n  \\\"title\\\": \\\"Skill contract manifest\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"additionalProperties\\\": false,\\n  \\\"required\\\": [\\\"schemaVersion\\\", \\\"produces\\\", \\\"accepts\\\", \\\"contracts\\\", \\\"upgrades\\\"],\\n  \\\"properties\\\": {\\n    \\\"schemaVersion\\\": { \\\"const\\\": \\\"skill-contract-manifest/v1\\\" },\\n    \\\"sourceRepository\\\": { \\\"type\\\": \\\"string\\\", \\\"minLength\\\": 1 },\\n    \\\"produces\\\": { \\\"$ref\\\": \\\"#/definitions/identifiers\\\" },\\n    \\\"accepts\\\": { \\\"$ref\\\": \\\"#/definitions/identifiers\\\" },\\n    \\\"contracts\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"propertyNames\\\": { \\\"$ref\\\": \\\"#/definitions/identifier\\\" },\\n      \\\"additionalProperties\\\": { \\\"$ref\\\": \\\"#/definitions/reference\\\" }\\n    },\\n    \\\"upgrades\\\": {\\n      \\\"type\\\": \\\"array\\\",\\n      \\\"uniqueItems\\\": true,\\n      \\\"items\\\": {\\n        \\\"type\\\": \\\"object\\\",\\n        \\\"additionalProperties\\\": false,\\n        \\\"required\\\": [\\\"from\\\", \\\"to\\\", \\\"procedure\\\"],\\n        \\\"properties\\\": {\\n          \\\"from\\\": { \\\"$ref\\\": \\\"#/definitions/identifier\\\" },\\n          \\\"to\\\": { \\\"$ref\\\": \\\"#/definitions/identifier\\\" },\\n          \\\"procedure\\\": { \\\"$ref\\\": \\\"#/definitions/reference\\\" }\\n        }\\n      }\\n    }\\n  },\\n  \\\"definitions\\\": {\\n    \\\"identifier\\\": { \\\"type\\\": \\\"string\\\", \\\"pattern\\\": \\\"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*/v[1-9][0-9]*(?![\\\\\\\\s\\\\\\\\S])\\\" },\\n    \\\"identifiers\\\": { \\\"type\\\": \\\"array\\\", \\\"uniqueItems\\\": true, \\\"items\\\": { \\\"$ref\\\": \\\"#/definitions/identifier\\\" } },\\n    \\\"reference\\\": { \\\"type\\\": \\\"string\\\", \\\"minLength\\\": 1 }\\n  }\\n}\\n\"\n}\n"
+      },
+      {
+        "argv": [
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "validate",
+          "--skill",
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades"
+        ],
+        "cwd": "/tmp/authoring-green-case",
+        "exitCode": 0,
+        "stderr": "",
+        "stdout": "{\n  \"manifest\": {\n    \"schemaVersion\": \"skill-contract-manifest/v1\",\n    \"produces\": [\n      \"example-note/v2\"\n    ],\n    \"accepts\": [\n      \"example-note/v1\",\n      \"example-note/v2\"\n    ],\n    \"contracts\": {\n      \"example-note/v1\": \"file:definitions.txt\",\n      \"example-note/v2\": \"file:definitions.txt\"\n    },\n    \"upgrades\": [\n      {\n        \"from\": \"example-note/v1\",\n        \"to\": \"example-note/v2\",\n        \"procedure\": \"file:upgrade.txt\"\n      }\n    ]\n  },\n  \"definitions\": {\n    \"example-note/v1\": {\n      \"reference\": \"file:definitions.txt\",\n      \"path\": \"/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n      \"content\": \"example-note/v1: UTF-8 JSON object with schemaVersion example-note/v1, string title and string body; no document key. Legacy input has no schemaVersion and the same content fields.\\nexample-note/v2: UTF-8 JSON object with schemaVersion example-note/v2 and document containing string heading and string text; no title or body keys.\\nAll other authored fields retain their exact JSON values. immutable true forbids mutation. The rename operation changes only document.heading to the request title.\\n\"\n    },\n    \"example-note/v2\": {\n      \"reference\": \"file:definitions.txt\",\n      \"path\": \"/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n      \"content\": \"example-note/v1: UTF-8 JSON object with schemaVersion example-note/v1, string title and string body; no document key. Legacy input has no schemaVersion and the same content fields.\\nexample-note/v2: UTF-8 JSON object with schemaVersion example-note/v2 and document containing string heading and string text; no title or body keys.\\nAll other authored fields retain their exact JSON values. immutable true forbids mutation. The rename operation changes only document.heading to the request title.\\n\"\n    }\n  },\n  \"procedures\": [\n    {\n      \"reference\": \"file:upgrade.txt\",\n      \"path\": \"/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/upgrade.txt\",\n      \"content\": \"The installed owner.ts adapter executes this procedure for example-note/v1 to example-note/v2 only. Validate the source. Move title to document.heading and body to document.text. Retain all other authored properties and values. Preserve text exactly, including whitespace and Unicode. Validate the destination and compare normalized full authored content before persistence. A schemaVersion-only replacement is invalid because the destination requires document and forbids title and body.\\n\"\n    }\n  ]\n}\n"
+      },
+      {
+        "argv": [
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "resolve",
+          "--skill",
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+          "--contract",
+          "example-note/v1"
+        ],
+        "cwd": "/tmp/authoring-green-case",
+        "exitCode": 0,
+        "stderr": "",
+        "stdout": "{\n  \"reference\": \"file:definitions.txt\",\n  \"path\": \"/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n  \"content\": \"example-note/v1: UTF-8 JSON object with schemaVersion example-note/v1, string title and string body; no document key. Legacy input has no schemaVersion and the same content fields.\\nexample-note/v2: UTF-8 JSON object with schemaVersion example-note/v2 and document containing string heading and string text; no title or body keys.\\nAll other authored fields retain their exact JSON values. immutable true forbids mutation. The rename operation changes only document.heading to the request title.\\n\"\n}\n"
+      },
+      {
+        "argv": [
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "safe-upgrade",
+          "--skill",
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+          "--owner",
+          "file:owner.ts",
+          "--artifact",
+          "/tmp/authoring-green-case/artifacts/rename.json",
+          "--operation",
+          "rename",
+          "--request",
+          "/tmp/authoring-green-case/rename-request.json"
+        ],
+        "cwd": "/tmp/authoring-green-case",
+        "exitCode": 0,
+        "stderr": "",
+        "stdout": "{\n  \"artifact\": \"/tmp/authoring-green-case/artifacts/rename.json\",\n  \"changed\": true,\n  \"from\": \"example-note/v1\",\n  \"to\": \"example-note/v2\",\n  \"status\": \"completed\"\n}\n"
+      },
+      {
+        "argv": [
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "bulk-upgrade",
+          "--skill",
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+          "--owner",
+          "file:owner.ts",
+          "--artifacts",
+          "/tmp/authoring-green-case/selected-paths.json"
+        ],
+        "cwd": "/tmp/authoring-green-case",
+        "exitCode": 1,
+        "stderr": "",
+        "stdout": "{\n  \"status\": \"partial\",\n  \"results\": [\n    {\n      \"artifact\": \"/tmp/authoring-green-case/artifacts/bulk-mutable.json\",\n      \"changed\": true,\n      \"from\": \"example-note/v1\",\n      \"to\": \"example-note/v2\",\n      \"status\": \"completed\"\n    },\n    {\n      \"artifact\": \"/tmp/authoring-green-case/artifacts/immutable.json\",\n      \"status\": \"failed\",\n      \"changed\": false,\n      \"error\": \"Immutable artifact requires a historical reader; conversion is forbidden.\"\n    }\n  ]\n}\n"
+      },
+      {
+        "argv": [
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "safe-upgrade",
+          "--skill",
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+          "--owner",
+          "file:owner.ts",
+          "--artifact",
+          "/tmp/authoring-green-case/artifacts/unknown.json",
+          "--operation",
+          "upgrade"
+        ],
+        "cwd": "/tmp/authoring-green-case",
+        "exitCode": 1,
+        "stderr": "Unsupported explicit contract identifier; legacy detection is forbidden.\n",
+        "stdout": ""
+      },
+      {
+        "argv": [
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "safe-upgrade",
+          "--skill",
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+          "--owner",
+          "file:owner.ts",
+          "--artifact",
+          "/tmp/authoring-green-case/artifacts/legacy-zero.json",
+          "--operation",
+          "upgrade"
+        ],
+        "cwd": "/tmp/authoring-green-case",
+        "exitCode": 1,
+        "stderr": "Legacy detection must match exactly one supported source contract.\n",
+        "stdout": ""
+      },
+      {
+        "argv": [
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "safe-upgrade",
+          "--skill",
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+          "--owner",
+          "file:owner.ts",
+          "--artifact",
+          "/tmp/authoring-green-case/artifacts/immutable.json",
+          "--operation",
+          "upgrade"
+        ],
+        "cwd": "/tmp/authoring-green-case",
+        "exitCode": 1,
+        "stderr": "Immutable artifact requires a historical reader; conversion is forbidden.\n",
+        "stdout": ""
+      },
+      {
+        "argv": [
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "safe-upgrade",
+          "--skill",
+          "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+          "--owner",
+          "file:owner.ts",
+          "--artifact",
+          "/tmp/authoring-green-case/artifacts/bulk-mutable.json",
+          "--operation",
+          "upgrade"
+        ],
+        "cwd": "/tmp/authoring-green-case",
+        "exitCode": 0,
+        "stderr": "",
+        "stdout": "{\n  \"artifact\": \"/tmp/authoring-green-case/artifacts/bulk-mutable.json\",\n  \"changed\": false,\n  \"from\": \"example-note/v2\",\n  \"to\": \"example-note/v2\",\n  \"status\": \"completed\"\n}\n"
+      }
+    ],
+    "persistedChecks": {
+      "artifacts": {
+        "ambiguous-policy.json": {
+          "afterSha256": "a598724b8073b234ee81c6faf821d94898c0dadfd05ae61398e6e588930781e0",
+          "beforeSha256": "a598724b8073b234ee81c6faf821d94898c0dadfd05ae61398e6e588930781e0",
+          "byteEqual": true,
+          "persisted": {
+            "body": "Authored body\nsecond line",
+            "metadata": {
+              "author": "release writer",
+              "unknown": {
+                "reviewed": false,
+                "tags": [
+                  "z",
+                  "a"
+                ]
+              }
+            },
+            "schemaVersion": "example-note/v1",
+            "title": "Original"
+          }
+        },
+        "bulk-mutable.json": {
+          "afterSha256": "183ceec7d36a4ff4fae919f0fd32530abdea3f224128b81b07459e4074df8711",
+          "beforeSha256": "a598724b8073b234ee81c6faf821d94898c0dadfd05ae61398e6e588930781e0",
+          "byteEqual": false,
+          "persisted": {
+            "document": {
+              "heading": "Original",
+              "text": "Authored body\nsecond line"
+            },
+            "metadata": {
+              "author": "release writer",
+              "unknown": {
+                "reviewed": false,
+                "tags": [
+                  "z",
+                  "a"
+                ]
+              }
+            },
+            "schemaVersion": "example-note/v2"
+          }
+        },
+        "immutable.json": {
+          "afterSha256": "ea77b9778501a1bef3ba1d92b6d922951aad2fed648665fcbfeb305b11861c1d",
+          "beforeSha256": "ea77b9778501a1bef3ba1d92b6d922951aad2fed648665fcbfeb305b11861c1d",
+          "byteEqual": true,
+          "persisted": {
+            "body": "Authored body\nsecond line",
+            "immutable": true,
+            "metadata": {
+              "author": "release writer",
+              "unknown": {
+                "reviewed": false,
+                "tags": [
+                  "z",
+                  "a"
+                ]
+              }
+            },
+            "schemaVersion": "example-note/v1",
+            "title": "Original"
+          }
+        },
+        "legacy-zero.json": {
+          "afterSha256": "59ab04f148048adfc9ada88c75f9b72c10088d916c3109e1f55829d54630d941",
+          "beforeSha256": "59ab04f148048adfc9ada88c75f9b72c10088d916c3109e1f55829d54630d941",
+          "byteEqual": true,
+          "persisted": {
+            "metadata": {
+              "keep": true
+            }
+          }
+        },
+        "rename.json": {
+          "afterSha256": "3b7b3d15f03d00fdbda9fee9929eb6fe4f4d0aa7c178b4ce77fd3d4738a4e5eb",
+          "beforeSha256": "a598724b8073b234ee81c6faf821d94898c0dadfd05ae61398e6e588930781e0",
+          "byteEqual": false,
+          "persisted": {
+            "document": {
+              "heading": "Approved rename",
+              "text": "Authored body\nsecond line"
+            },
+            "metadata": {
+              "author": "release writer",
+              "unknown": {
+                "reviewed": false,
+                "tags": [
+                  "z",
+                  "a"
+                ]
+              }
+            },
+            "schemaVersion": "example-note/v2"
+          }
+        },
+        "unknown.json": {
+          "afterSha256": "71c432462f2bb78a3ba2e843eb82ffe3f291d061bb72f3272aacb0337dc03fd0",
+          "beforeSha256": "71c432462f2bb78a3ba2e843eb82ffe3f291d061bb72f3272aacb0337dc03fd0",
+          "byteEqual": true,
+          "persisted": {
+            "body": "Authored body\nsecond line",
+            "metadata": {
+              "author": "release writer",
+              "unknown": {
+                "reviewed": false,
+                "tags": [
+                  "z",
+                  "a"
+                ]
+              }
+            },
+            "schemaVersion": "example-note/v999",
+            "title": "Original"
+          }
+        }
+      },
+      "bulkPreservesBodyAndMetadata": true,
+      "readOnlyByteEquality": true,
+      "renamePreservesBodyAndMetadata": true
+    },
+    "process": {
+      "cleanup": "Leave working artifacts and process lifetime to parent; no self-termination or cleanup commands."
+    },
+    "releaseStatus": "blocked",
+    "schemaVersion": "authoring-experiment/v1",
+    "status": "completed-with-blockers"
+  },
+  "resultSchema": "authoring-experiment/v1",
+  "runId": "ec802f1a-c3ae-4928-bb5b-acdfb837fb4c",
+  "schemaVersion": "result-delivery/v2",
+  "sha256": "66df2bf89c3f322723ffa2df4833ab4bf6a781b336187223d70a6847e1d21f6f"
+}

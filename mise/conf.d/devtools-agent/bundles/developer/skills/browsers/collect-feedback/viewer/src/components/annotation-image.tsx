@@ -91,7 +91,7 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
     setLoadError('');
     fetch('/api/v1/annotations', { signal: abort.signal, credentials: 'same-origin' }).then(async response => {
       const body: AnnotationsResponse = await response.json();
-      if (!response.ok || body.schema !== 'collect-feedback/v1' || body.kind !== 'annotations' || body.success !== true) throw new Error('Could not load saved annotations.');
+      if (!response.ok || body.schemaVersion !== 'collect-feedback/v2' || body.kind !== 'annotations' || body.success !== true) throw new Error('Could not load saved annotations.');
       setAnnotations(body.annotations.filter(note => note.sessionId === sessionId && note.assetId === asset.id && note.sourceSha256 === asset.sha256));
     }).catch((cause: unknown) => { if (!abort.signal.aborted) setLoadError(cause instanceof Error ? cause.message : String(cause)); })
       .finally(() => { if (!abort.signal.aborted) setLoading(false); });
@@ -173,7 +173,7 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
     setSavedId(undefined);
     setSelectedId(undefined);
     const frame = stage.current!.getBoundingClientRect();
-    store.put({ schema: 'collect-feedback/v1', kind: 'draft', startingRevision: null, annotation: { schema: 'collect-feedback/v1', kind: 'annotation', id: crypto.randomUUID(), sessionId, caseId: asset.caseId, assetId: asset.id, sourceSha256: asset.sha256, originalWidth: asset.width!, originalHeight: asset.height!, geometry, priority: 'P2', comment: '', ...(isVideo ? { mediaTimeSeconds: video.current!.currentTime, displayedWidth: frame.width, displayedHeight: frame.height } : {}) } });
+    store.put({ schemaVersion: 'collect-feedback/v2', kind: 'draft', startingRevision: null, annotation: { schemaVersion: 'collect-feedback/v2', kind: 'annotation', id: crypto.randomUUID(), sessionId, caseId: asset.caseId, assetId: asset.id, sourceSha256: asset.sha256, originalWidth: asset.width!, originalHeight: asset.height!, geometry, priority: 'P2', comment: '', ...(isVideo ? { mediaTimeSeconds: video.current!.currentTime, displayedWidth: frame.width, displayedHeight: frame.height } : {}) } });
     if (focus) requestAnimationFrame(() => draftPin.current?.focus());
   }
   function cancel() {
@@ -209,7 +209,7 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
   }
   function edit(note: Annotation) {
     const { revision, createdAt: _createdAt, updatedAt: _updatedAt, pixelGeometry: _pixels, deletedAt: _deletedAt, ...input } = note;
-    store.put({ schema: 'collect-feedback/v1', kind: 'draft', startingRevision: revision, annotation: input });
+    store.put({ schemaVersion: 'collect-feedback/v2', kind: 'draft', startingRevision: revision, annotation: input });
     setSaveError('');
     setConflict(undefined);
     submitted.current = undefined;
@@ -221,17 +221,17 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
       const response = await fetch(`/api/v1/annotations/${note.id}`, {
         method: restore ? 'PATCH' : 'DELETE', credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json', 'X-Write-Token': writeToken, 'If-Match': `"${note.id}:${note.revision}"` },
-        body: JSON.stringify({ schema: 'collect-feedback/v1', kind: 'annotation', ...(restore ? { deletedAt: null } : {}) }),
+        body: JSON.stringify({ schemaVersion: 'collect-feedback/v2', kind: 'annotation', ...(restore ? { deletedAt: null } : {}) }),
       });
       if (response.status === 412 && keepDraft) {
         const latestResponse = await fetch('/api/v1/annotations', { credentials: 'same-origin' });
         const latest: AnnotationsResponse = await latestResponse.json();
-        if (!latestResponse.ok || latest.schema !== 'collect-feedback/v1' || latest.kind !== 'annotations' || !latest.success) throw new Error('Could not read the current saved note. Retry restoration to check it again.');
+        if (!latestResponse.ok || latest.schemaVersion !== 'collect-feedback/v2' || latest.kind !== 'annotations' || !latest.success) throw new Error('Could not read the current saved note. Retry restoration to check it again.');
         setConflict(latest.annotations.find(item => item.id === note.id));
         throw new Error('Annotation changed again. Review the saved version before restoring. Draft kept in memory.');
       }
       const body = await response.json();
-      if (!response.ok || body.schema !== 'collect-feedback/v1' || body.kind !== 'annotation' || !body.success) throw new Error(body.message ?? `Mutation failed: HTTP ${response.status}`);
+      if (!response.ok || body.schemaVersion !== 'collect-feedback/v2' || body.kind !== 'annotation' || !body.success) throw new Error(body.message ?? `Mutation failed: HTTP ${response.status}`);
       if (keepDraft && (body.annotation.id !== note.id || !Number.isInteger(body.annotation.revision) || body.annotation.deletedAt !== null)) throw new Error('Restoration acknowledgement is incomplete. Draft kept in memory.');
       setAnnotations(current => current.map(item => item.id === note.id ? body.annotation : item));
       if (keepDraft) {
@@ -259,11 +259,11 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
       const editing = baseRevision !== undefined;
       let revision = baseRevision;
       for (let attempt = 0; attempt < 2; attempt++) {
-        const response = await fetch(editing ? `/api/v1/annotations/${payload.id}` : '/api/v1/annotations', { method: editing ? 'PATCH' : 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json', 'X-Write-Token': writeToken, ...(editing ? { 'If-Match': `"${payload.id}:${revision}"` } : {}) }, body: JSON.stringify(editing ? { schema: payload.schema, kind: payload.kind, comment: payload.comment, priority: payload.priority, geometry: payload.geometry } : payload) });
+        const response = await fetch(editing ? `/api/v1/annotations/${payload.id}` : '/api/v1/annotations', { method: editing ? 'PATCH' : 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json', 'X-Write-Token': writeToken, ...(editing ? { 'If-Match': `"${payload.id}:${revision}"` } : {}) }, body: JSON.stringify(editing ? { schemaVersion: payload.schemaVersion, kind: payload.kind, comment: payload.comment, priority: payload.priority, geometry: payload.geometry } : payload) });
         if (response.status === 412 && editing) {
           const latestResponse = await fetch('/api/v1/annotations', { credentials: 'same-origin' });
           const latest: AnnotationsResponse = await latestResponse.json();
-          if (!latestResponse.ok || latest.schema !== 'collect-feedback/v1' || latest.kind !== 'annotations' || !latest.success) throw new Error('Could not read the current saved note. Retry to check it again.');
+          if (!latestResponse.ok || latest.schemaVersion !== 'collect-feedback/v2' || latest.kind !== 'annotations' || !latest.success) throw new Error('Could not read the current saved note. Retry to check it again.');
           const current = latest.annotations.find(note => note.id === payload.id);
           // An uncertain PATCH may already be on disk. Re-save only identical content with
           // its current precondition, so the next acknowledgement still guarantees durability.
@@ -277,7 +277,7 @@ export function AnnotationImage({ asset, sessionId, writeToken, onError }: {
           throw new Error('Annotation changed in another editor. Review the saved version before replacing it.');
         }
         const body: (AnnotationResponse & { message?: unknown }) | null = await response.json().catch(() => null);
-        if (!response.ok || !body || body.schema !== 'collect-feedback/v1' || body.kind !== 'annotation' || body.success !== true) {
+        if (!response.ok || !body || body.schemaVersion !== 'collect-feedback/v2' || body.kind !== 'annotation' || body.success !== true) {
           throw new Error(typeof body?.message === 'string' && body.message.trim() ? body.message : `Save failed: HTTP ${response.status}`);
         }
         const tag = response.headers.get('ETag');

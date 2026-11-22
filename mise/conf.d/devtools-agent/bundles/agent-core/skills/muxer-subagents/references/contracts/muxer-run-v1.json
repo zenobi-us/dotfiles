@@ -1,0 +1,59 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "runId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "muxer": {
+      "enum": [
+        "herdr",
+        "herdr-app",
+        "tmux",
+        "zellij"
+      ]
+    },
+    "agent": {
+      "enum": [
+        "omp",
+        "pi",
+        "zot",
+        "claude",
+        "codex"
+      ]
+    },
+    "target": {
+      "type": "string"
+    },
+    "agentName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "cwd": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operationId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parentRunId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "createdAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT",
+      "minLength": 20
+    }
+  },
+  "required": [
+    "runId",
+    "muxer",
+    "agent",
+    "target",
+    "createdAt"
+  ],
+  "description": "Historical input only. Explicit historical reader; never rewrite or upgrade. Missing schemaVersion is detected only by this complete legacy shape."
+}

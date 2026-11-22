@@ -3,7 +3,7 @@ import { Crust } from "@crustjs/core@0.0.19";
 import { helpPlugin } from "@crustjs/plugins@0.1.2";
 import { resolve } from "node:path";
 import { CliError } from "../../../collect-evidence/scripts/browser-evidence/sh.ts";
-import { importSession, requireValue, schema, validateSession } from "./records.ts";
+import { importSession, requireValue, schemaVersion, validateSession } from "./records.ts";
 import { serveSession } from "./server.ts";
 import { AnnotationError, exportSession, listAnnotations } from "./annotations.ts";
 import { requestFeedback } from "./request.ts";
@@ -24,7 +24,7 @@ const flags = {
 
 export async function runCli(directServe = false): Promise<void> {
   if (process.argv.includes("--version") && !process.argv.some(a => a === "--help" || a === "-h")) {
-    console.log(process.argv.includes("--json") ? JSON.stringify({ schema, kind: "event", success: true, version: "1.0.0" }) : "1.0.0");
+    console.log(process.argv.includes("--json") ? JSON.stringify({ schemaVersion, kind: "event", success: true, version: "1.0.0" }) : "1.0.0");
     return;
   }
   const errors = { name: "versioned-errors", middleware: async (_context: unknown, next: () => Promise<void>) => {
@@ -46,7 +46,7 @@ function command(name: string) {
         if (name !== "init" && name !== "request" && options.historical !== undefined) throw new CliError("--historical applies only to init or request", 2);
         const emit = (data: object) => {
           if (options.quiet) return;
-          const result = { schema, kind: "event", command: name, success: true, ...data };
+          const result = { schemaVersion, kind: "event", command: name, success: true, ...data };
           console.log(options.plain && !options.json ? plainResult(result) : JSON.stringify(result, null, options.json ? undefined : 2));
         };
         if (name === "init" || name === "request") {
@@ -83,6 +83,6 @@ function plainResult(data: object, prefix = ""): string {
 function failure(error: unknown, fallback = 1): void {
   const code = error instanceof CliError ? error.exitCode : error instanceof SyntaxError || (error instanceof AnnotationError && error.status === 400) ? 2 : fallback;
   const message = error instanceof CliError || error instanceof AnnotationError ? error.message : "Feedback operation failed; check input files, permissions and explicit port availability";
-  if (process.argv.includes("--json")) console.log(JSON.stringify({ schema, kind: "error", success: false, code, message }));
+  if (process.argv.includes("--json")) console.log(JSON.stringify({ schemaVersion, kind: "error", success: false, code, message }));
   console.error(message); process.exitCode = code;
 }

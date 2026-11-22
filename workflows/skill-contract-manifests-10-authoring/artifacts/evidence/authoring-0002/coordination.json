@@ -1,0 +1,12 @@
+{
+  "decision": "Retain standard commit-hook-generated version metadata; parent t1x3 explicitly approved retention after notification. No shared contract implementation changed.",
+  "source_commit": "e3f54b7b2a8e71b12b70399c95261128a95468f2",
+  "corrected_alias_scope": "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/writing-great-skills",
+  "hook_generated_paths": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/matt-pocock/.claude-plugin/plugin.json"
+  ],
+  "parent_approval": "2026-11-22 parent t1x3: Retain standard hook-generated version bumps; they are required publication metadata, not a second contract owner. Other streams also bump metadata; source review stays exact and integration will assess current base later.",
+  "remaining_uncertainty": "No integration, merge or review performed; parent owns later current-base compatibility."
+}

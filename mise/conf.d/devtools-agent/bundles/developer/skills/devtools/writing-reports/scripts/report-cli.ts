@@ -2,7 +2,7 @@
 import { Crust } from "@crustjs/core@^0.0.19";
 import { helpPlugin } from "@crustjs/plugins@^0.1.2";
 import { dirname, join, resolve } from "node:path";
-import { reportRun, schema } from "../../../browsers/collect-evidence/scripts/browser-evidence/pipeline.ts";
+import { reportRun, schemaVersion } from "../../../browsers/collect-evidence/scripts/browser-evidence/pipeline.ts";
 import { CliError } from "../../../browsers/collect-evidence/scripts/browser-evidence/sh.ts";
 import { AnnotationError, exportSession } from "../../../browsers/collect-feedback/scripts/collect-feedback/annotations.ts";
 
@@ -29,11 +29,11 @@ const evidence = cli.sub("evidence").meta({ description: "Read common evidence, 
       const directory = resolve(args.directory);
       const feedback = flags.feedback ? await exportSession(directory) : undefined;
       const report = await reportRun(feedback ? join(directory, "source") : directory, feedback ? feedback.session.historical === true : Boolean(flags.historical));
-      console.log(flags.json ? JSON.stringify({ schema, kind: "event", command: "report", success: true, ...report, ...(feedback ? { feedback } : {}) }) : report.html);
+      console.log(flags.json ? JSON.stringify({ schemaVersion, kind: "event", command: "report", success: true, ...report, ...(feedback ? { feedback } : {}) }) : report.html);
     } catch (error) {
       const code = error instanceof CliError ? error.exitCode : error instanceof SyntaxError || (error instanceof AnnotationError && error.status === 400) ? 2 : 1;
       const message = error instanceof Error ? error.message : String(error);
-      if (flags.json) console.log(JSON.stringify({ schema, kind: "error", success: false, code, message }));
+      if (flags.json) console.log(JSON.stringify({ schemaVersion, kind: "error", success: false, code, message }));
       console.error(message); process.exitCode = code;
     }
   });
@@ -45,7 +45,7 @@ await cli.use({
     catch (error) {
       if (context.route?.command.meta.name !== "evidence") throw error;
       const message = error instanceof Error ? error.message : String(error);
-      if (context.argv.includes("--json")) console.log(JSON.stringify({ schema, kind: "error", success: false, code: 2, message }));
+      if (context.argv.includes("--json")) console.log(JSON.stringify({ schemaVersion, kind: "error", success: false, code: 2, message }));
       console.error(message);
       process.exitCode = 2;
     }

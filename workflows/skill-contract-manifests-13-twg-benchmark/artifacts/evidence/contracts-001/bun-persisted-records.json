@@ -1,0 +1,325 @@
+{
+  "runtime": "bun",
+  "agent": "codex",
+  "result": {
+    "schemaVersion": "twg-benchmark-result/v2",
+    "contractVersion": "0.1.0",
+    "prompt": {
+      "text": "Inspect only these stored fixtures.\nKeep café, trailing spaces, and the task identity.  \n",
+      "hash": "1c3191eaea0f5f3fac810c1880b66edcedc5f368f48d8093f064f3590a1906dc"
+    },
+    "manifest": {
+      "schemaVersion": "twg-benchmark-manifest/v2",
+      "contractVersion": "0.1.0",
+      "agent": "codex",
+      "model": "unspecified",
+      "promptHash": "1c3191eaea0f5f3fac810c1880b66edcedc5f368f48d8093f064f3590a1906dc",
+      "arms": {
+        "control": {
+          "label": "Free Atlassian with Local MCPs Context"
+        },
+        "test": {
+          "label": "Paid Atlassian Teamwork Graph Context"
+        }
+      }
+    },
+    "control": {
+      "label": "Free Atlassian with Local MCPs Context",
+      "status": "completed",
+      "output": "Control fixture answer.",
+      "tokens": null,
+      "toolCalls": null,
+      "twgCalls": null,
+      "durationMs": null,
+      "toolErrors": null,
+      "outputBytes": 23,
+      "outputChars": 23,
+      "outputLines": 1,
+      "toolSurface": [],
+      "toolCallLog": [],
+      "source": "output-file"
+    },
+    "test": {
+      "label": "Paid Atlassian Teamwork Graph Context",
+      "status": "completed",
+      "output": "Test fixture answer.",
+      "tokens": null,
+      "toolCalls": null,
+      "twgCalls": null,
+      "durationMs": null,
+      "toolErrors": null,
+      "outputBytes": 20,
+      "outputChars": 20,
+      "outputLines": 1,
+      "toolSurface": [],
+      "toolCallLog": [],
+      "source": "output-file"
+    },
+    "integrity": {
+      "valid": false,
+      "checks": {
+        "samePrompt": true,
+        "sameParentSession": null,
+        "sameAgentRuntime": true,
+        "sameModelWhenObservable": null,
+        "sameReasoningWhenObservable": null,
+        "controlDidNotUseTwg": true,
+        "controlDidNotUseForbiddenAtlassianMcp": true,
+        "controlDidNotUsePaidGraphTools": true,
+        "testUsedTwg": false,
+        "noParentTaskSolving": null,
+        "noCrossArmContext": null
+      },
+      "warnings": [
+        "sameParentSession was not observable in this benchmark-lite run.",
+        "sameModelWhenObservable was not observable in this benchmark-lite run.",
+        "sameReasoningWhenObservable was not observable in this benchmark-lite run.",
+        "noParentTaskSolving was not observable in this benchmark-lite run.",
+        "noCrossArmContext was not observable in this benchmark-lite run.",
+        "Test arm TWG usage was not observed. Pass --test-used-twg after verifying it."
+      ]
+    },
+    "quality": {
+      "classification": "equivalent",
+      "summary": "Stored fixture evidence is equivalent.",
+      "dimensions": [],
+      "schemaVersion": "twg-benchmark-judgement/v2",
+      "source": "manual"
+    }
+  },
+  "payload": {
+    "schemaVersion": "twg-benchmark-run/v2",
+    "contract": {
+      "name": "twg-bench-lite",
+      "version": "0.1.0"
+    },
+    "agent": "codex",
+    "promptHash": "1c3191eaea0f5f3fac810c1880b66edcedc5f368f48d8093f064f3590a1906dc",
+    "integrity": {
+      "valid": false,
+      "checks": {
+        "samePrompt": true,
+        "sameParentSession": null,
+        "sameAgentRuntime": true,
+        "sameModelWhenObservable": null,
+        "sameReasoningWhenObservable": null,
+        "controlDidNotUseTwg": true,
+        "controlDidNotUseForbiddenAtlassianMcp": true,
+        "controlDidNotUsePaidGraphTools": true,
+        "testUsedTwg": false,
+        "noParentTaskSolving": null,
+        "noCrossArmContext": null
+      },
+      "warnings": [
+        "sameParentSession was not observable in this benchmark-lite run.",
+        "sameModelWhenObservable was not observable in this benchmark-lite run.",
+        "sameReasoningWhenObservable was not observable in this benchmark-lite run.",
+        "noParentTaskSolving was not observable in this benchmark-lite run.",
+        "noCrossArmContext was not observable in this benchmark-lite run.",
+        "Test arm TWG usage was not observed. Pass --test-used-twg after verifying it."
+      ]
+    },
+    "quality": {
+      "classification": "equivalent",
+      "summary": "Stored fixture evidence is equivalent.",
+      "dimensions": [],
+      "schemaVersion": "twg-benchmark-judgement/v2",
+      "source": "manual"
+    },
+    "artifacts": {
+      "manifestPath": "/tmp/twg-owned-smoke-dvvXd4/bun/run/manifest.json",
+      "resultPath": "/tmp/twg-owned-smoke-dvvXd4/bun/run/result.json",
+      "reportPath": "/tmp/twg-owned-smoke-dvvXd4/bun/run/report.html",
+      "progressPath": "/tmp/twg-owned-smoke-dvvXd4/bun/run/progress.jsonl"
+    }
+  },
+  "manifest": {
+    "schemaVersion": "twg-benchmark-manifest/v2",
+    "contractVersion": "0.1.0",
+    "agent": "codex",
+    "model": "unspecified",
+    "promptHash": "1c3191eaea0f5f3fac810c1880b66edcedc5f368f48d8093f064f3590a1906dc",
+    "arms": {
+      "control": {
+        "label": "Free Atlassian with Local MCPs Context"
+      },
+      "test": {
+        "label": "Paid Atlassian Teamwork Graph Context"
+      }
+    }
+  },
+  "progress": "{\"schemaVersion\":\"twg-benchmark-progress/v2\",\"status\":\"initialized\",\"elapsedMs\":null,\"toolCalls\":null,\"tokens\":null,\"lastActivity\":\"created\"}\n{\"schemaVersion\":\"twg-benchmark-progress/v2\",\"status\":\"completed-with-warnings\",\"elapsedMs\":null,\"toolCalls\":null,\"tokens\":null,\"lastActivity\":\"artifacts-written\"}\n",
+  "historical": {
+    "schemaVersion": 1,
+    "contractVersion": "0.1.0",
+    "prompt": {
+      "text": "Inspect only these stored fixtures.\nKeep café, trailing spaces, and the task identity.  \n",
+      "hash": "1c3191eaea0f5f3fac810c1880b66edcedc5f368f48d8093f064f3590a1906dc"
+    },
+    "manifest": {
+      "schemaVersion": 1,
+      "contractVersion": "0.1.0",
+      "agent": "codex",
+      "model": "unspecified",
+      "promptHash": "1c3191eaea0f5f3fac810c1880b66edcedc5f368f48d8093f064f3590a1906dc",
+      "arms": {
+        "control": {
+          "label": "Free Atlassian with Local MCPs Context"
+        },
+        "test": {
+          "label": "Paid Atlassian Teamwork Graph Context"
+        }
+      }
+    },
+    "control": {
+      "label": "Free Atlassian with Local MCPs Context",
+      "status": "completed",
+      "output": "Control fixture answer.",
+      "tokens": null,
+      "toolCalls": null,
+      "twgCalls": null,
+      "durationMs": null,
+      "toolErrors": null,
+      "outputBytes": 23,
+      "outputChars": 23,
+      "outputLines": 1,
+      "toolSurface": [],
+      "toolCallLog": [],
+      "source": "output-file"
+    },
+    "test": {
+      "label": "Paid Atlassian Teamwork Graph Context",
+      "status": "completed",
+      "output": "Test fixture answer.",
+      "tokens": null,
+      "toolCalls": null,
+      "twgCalls": null,
+      "durationMs": null,
+      "toolErrors": null,
+      "outputBytes": 20,
+      "outputChars": 20,
+      "outputLines": 1,
+      "toolSurface": [],
+      "toolCallLog": [],
+      "source": "output-file"
+    },
+    "integrity": {
+      "valid": false,
+      "checks": {
+        "samePrompt": true,
+        "sameParentSession": null,
+        "sameAgentRuntime": true,
+        "sameModelWhenObservable": null,
+        "sameReasoningWhenObservable": null,
+        "controlDidNotUseTwg": true,
+        "controlDidNotUseForbiddenAtlassianMcp": true,
+        "controlDidNotUsePaidGraphTools": true,
+        "testUsedTwg": false,
+        "noParentTaskSolving": null,
+        "noCrossArmContext": null
+      },
+      "warnings": [
+        "sameParentSession was not observable in this benchmark-lite run.",
+        "sameModelWhenObservable was not observable in this benchmark-lite run.",
+        "sameReasoningWhenObservable was not observable in this benchmark-lite run.",
+        "noParentTaskSolving was not observable in this benchmark-lite run.",
+        "noCrossArmContext was not observable in this benchmark-lite run.",
+        "Test arm TWG usage was not observed. Pass --test-used-twg after verifying it."
+      ]
+    },
+    "quality": {
+      "classification": "equivalent",
+      "summary": "Stored fixture evidence is equivalent.",
+      "dimensions": [],
+      "source": "manual"
+    }
+  },
+  "unsupported": {
+    "schemaVersion": "twg-benchmark-result/v99",
+    "contractVersion": "0.1.0",
+    "prompt": {
+      "text": "Inspect only these stored fixtures.\nKeep café, trailing spaces, and the task identity.  \n",
+      "hash": "1c3191eaea0f5f3fac810c1880b66edcedc5f368f48d8093f064f3590a1906dc"
+    },
+    "manifest": {
+      "schemaVersion": "twg-benchmark-manifest/v2",
+      "contractVersion": "0.1.0",
+      "agent": "codex",
+      "model": "unspecified",
+      "promptHash": "1c3191eaea0f5f3fac810c1880b66edcedc5f368f48d8093f064f3590a1906dc",
+      "arms": {
+        "control": {
+          "label": "Free Atlassian with Local MCPs Context"
+        },
+        "test": {
+          "label": "Paid Atlassian Teamwork Graph Context"
+        }
+      }
+    },
+    "control": {
+      "label": "Free Atlassian with Local MCPs Context",
+      "status": "completed",
+      "output": "Control fixture answer.",
+      "tokens": null,
+      "toolCalls": null,
+      "twgCalls": null,
+      "durationMs": null,
+      "toolErrors": null,
+      "outputBytes": 23,
+      "outputChars": 23,
+      "outputLines": 1,
+      "toolSurface": [],
+      "toolCallLog": [],
+      "source": "output-file"
+    },
+    "test": {
+      "label": "Paid Atlassian Teamwork Graph Context",
+      "status": "completed",
+      "output": "Test fixture answer.",
+      "tokens": null,
+      "toolCalls": null,
+      "twgCalls": null,
+      "durationMs": null,
+      "toolErrors": null,
+      "outputBytes": 20,
+      "outputChars": 20,
+      "outputLines": 1,
+      "toolSurface": [],
+      "toolCallLog": [],
+      "source": "output-file"
+    },
+    "integrity": {
+      "valid": false,
+      "checks": {
+        "samePrompt": true,
+        "sameParentSession": null,
+        "sameAgentRuntime": true,
+        "sameModelWhenObservable": null,
+        "sameReasoningWhenObservable": null,
+        "controlDidNotUseTwg": true,
+        "controlDidNotUseForbiddenAtlassianMcp": true,
+        "controlDidNotUsePaidGraphTools": true,
+        "testUsedTwg": false,
+        "noParentTaskSolving": null,
+        "noCrossArmContext": null
+      },
+      "warnings": [
+        "sameParentSession was not observable in this benchmark-lite run.",
+        "sameModelWhenObservable was not observable in this benchmark-lite run.",
+        "sameReasoningWhenObservable was not observable in this benchmark-lite run.",
+        "noParentTaskSolving was not observable in this benchmark-lite run.",
+        "noCrossArmContext was not observable in this benchmark-lite run.",
+        "Test arm TWG usage was not observed. Pass --test-used-twg after verifying it."
+      ]
+    },
+    "quality": {
+      "classification": "equivalent",
+      "summary": "Stored fixture evidence is equivalent.",
+      "dimensions": [],
+      "schemaVersion": "twg-benchmark-judgement/v2",
+      "source": "manual"
+    }
+  },
+  "configurationBefore": "{\n  \"contractName\": \"twg-bench-lite\",\n  \"contractVersion\": \"0.1.0\",\n  \"defaultArms\": {\n    \"control\": {\n      \"context\": \"Free Atlassian tools plus user-local MCP/connectors exposed to the agent runtime.\",\n      \"id\": \"control\",\n      \"label\": \"Free Atlassian with Local MCPs Context\",\n      \"mustNotUse\": [\n        \"twg CLI\",\n        \"TWG skills\",\n        \"paid Atlassian graph tools\",\n        \"shell or filesystem discovery as evidence\",\n        \"prior benchmark artifacts or cached answers\"\n      ],\n      \"mustRecord\": [\n        \"observed MCP/tool surface\",\n        \"missing auth or missing tool limitations\"\n      ]\n    },\n    \"test\": {\n      \"context\": \"TWG CLI full graph context with bundled TWG skill guidance.\",\n      \"id\": \"test\",\n      \"label\": \"Paid Atlassian Teamwork Graph Context\",\n      \"mustRecord\": [\n        \"TWG commands\",\n        \"TWG guidance resources\",\n        \"TWG version when available\"\n      ],\n      \"mustUse\": [\n        \"twg CLI\"\n      ]\n    }\n  },\n  \"description\": \"Portable single-prompt A/B comparison between free context and TWG CLI graph context.\",\n  \"displayName\": \"TWG Bench Lite\",\n  \"integrityChecks\": [\n    \"samePrompt\",\n    \"sameParentSession\",\n    \"sameAgentRuntime\",\n    \"sameModelWhenObservable\",\n    \"sameReasoningWhenObservable\",\n    \"controlDidNotUseTwg\",\n    \"controlDidNotUsePaidGraphTools\",\n    \"testUsedTwg\",\n    \"noParentTaskSolving\",\n    \"noCrossArmContext\"\n  ],\n  \"progressFields\": [\n    \"status\",\n    \"elapsedMs\",\n    \"toolCalls\",\n    \"tokens\",\n    \"lastActivity\"\n  ],\n  \"publicSafety\": {\n    \"noInternalTenantsOrCloudIds\": true,\n    \"noInternalUrls\": true,\n    \"noPublishCommand\": true,\n    \"noRawSecrets\": true\n  },\n  \"qualityClassifications\": [\n    \"equivalent\",\n    \"twg-better\",\n    \"control-better\",\n    \"capability-gain\",\n    \"not-comparable\"\n  ],\n  \"qualityDimensionWinners\": [\n    \"control\",\n    \"test\",\n    \"tie\",\n    \"not-comparable\"\n  ],\n  \"qualityJudge\": {\n    \"codexModel\": \"gpt-5.5\",\n    \"codexReasoningEffort\": \"xhigh\",\n    \"defaultAgent\": \"selected-agent\",\n    \"defaultEnabled\": true,\n    \"disableFlag\": \"--no-judge\",\n    \"overrideFlag\": \"--judge-agent\",\n    \"supportedAgents\": [\n      \"codex\",\n      \"rovo\"\n    ]\n  },\n  \"report\": {\n    \"defaultLocalOnly\": true,\n    \"includeRawTraceByDefault\": false,\n    \"sections\": [\n      \"summary\",\n      \"progress\",\n      \"integrity\",\n      \"tokenAndCost\",\n      \"quality\",\n      \"toolSurface\",\n      \"toolCallSequence\",\n      \"armOutputs\",\n      \"limitations\"\n    ]\n  },\n  \"runtimeSupport\": {\n    \"unsupportedBehavior\": \"Report unsupported runtimes before launching either arm.\",\n    \"v1\": [\n      \"codex\",\n      \"rovo\"\n    ],\n    \"v2Planned\": [\n      \"claude\"\n    ]\n  },\n  \"schemaVersion\": 1\n}\n",
+  "configurationAfter": "{\n  \"contractName\": \"twg-bench-lite\",\n  \"contractVersion\": \"0.1.0\",\n  \"defaultArms\": {\n    \"control\": {\n      \"context\": \"Free Atlassian tools plus user-local MCP/connectors exposed to the agent runtime.\",\n      \"id\": \"control\",\n      \"label\": \"Free Atlassian with Local MCPs Context\",\n      \"mustNotUse\": [\n        \"twg CLI\",\n        \"TWG skills\",\n        \"paid Atlassian graph tools\",\n        \"shell or filesystem discovery as evidence\",\n        \"prior benchmark artifacts or cached answers\"\n      ],\n      \"mustRecord\": [\n        \"observed MCP/tool surface\",\n        \"missing auth or missing tool limitations\"\n      ]\n    },\n    \"test\": {\n      \"context\": \"TWG CLI full graph context with bundled TWG skill guidance.\",\n      \"id\": \"test\",\n      \"label\": \"Paid Atlassian Teamwork Graph Context\",\n      \"mustRecord\": [\n        \"TWG commands\",\n        \"TWG guidance resources\",\n        \"TWG version when available\"\n      ],\n      \"mustUse\": [\n        \"twg CLI\"\n      ]\n    }\n  },\n  \"description\": \"Portable single-prompt A/B comparison between free context and TWG CLI graph context.\",\n  \"displayName\": \"TWG Bench Lite\",\n  \"integrityChecks\": [\n    \"samePrompt\",\n    \"sameParentSession\",\n    \"sameAgentRuntime\",\n    \"sameModelWhenObservable\",\n    \"sameReasoningWhenObservable\",\n    \"controlDidNotUseTwg\",\n    \"controlDidNotUsePaidGraphTools\",\n    \"testUsedTwg\",\n    \"noParentTaskSolving\",\n    \"noCrossArmContext\"\n  ],\n  \"progressFields\": [\n    \"status\",\n    \"elapsedMs\",\n    \"toolCalls\",\n    \"tokens\",\n    \"lastActivity\"\n  ],\n  \"publicSafety\": {\n    \"noInternalTenantsOrCloudIds\": true,\n    \"noInternalUrls\": true,\n    \"noPublishCommand\": true,\n    \"noRawSecrets\": true\n  },\n  \"qualityClassifications\": [\n    \"equivalent\",\n    \"twg-better\",\n    \"control-better\",\n    \"capability-gain\",\n    \"not-comparable\"\n  ],\n  \"qualityDimensionWinners\": [\n    \"control\",\n    \"test\",\n    \"tie\",\n    \"not-comparable\"\n  ],\n  \"qualityJudge\": {\n    \"codexModel\": \"gpt-5.5\",\n    \"codexReasoningEffort\": \"xhigh\",\n    \"defaultAgent\": \"selected-agent\",\n    \"defaultEnabled\": true,\n    \"disableFlag\": \"--no-judge\",\n    \"overrideFlag\": \"--judge-agent\",\n    \"supportedAgents\": [\n      \"codex\",\n      \"rovo\"\n    ]\n  },\n  \"report\": {\n    \"defaultLocalOnly\": true,\n    \"includeRawTraceByDefault\": false,\n    \"sections\": [\n      \"summary\",\n      \"progress\",\n      \"integrity\",\n      \"tokenAndCost\",\n      \"quality\",\n      \"toolSurface\",\n      \"toolCallSequence\",\n      \"armOutputs\",\n      \"limitations\"\n    ]\n  },\n  \"runtimeSupport\": {\n    \"unsupportedBehavior\": \"Report unsupported runtimes before launching either arm.\",\n    \"v1\": [\n      \"codex\",\n      \"rovo\"\n    ],\n    \"v2Planned\": [\n      \"claude\"\n    ]\n  },\n  \"schemaVersion\": \"twg-benchmark-configuration/v2\"\n}\n"
+}

@@ -1,0 +1,162 @@
+{
+  "status": "passed",
+  "summary": "Real list, authorized local mutation, no-op upgrade, metadata generation/retrieval, repository metadata checks, byte-equal rejections and partial bulk conversion passed. No remote operations.",
+  "records": [
+    {
+      "argv": [
+        "git",
+        "init",
+        "-q",
+        "/tmp/artifact-contract-smoke-cqGfi8/named-share"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "list"
+      ],
+      "exit_code": 0,
+      "stdout": "named-share  [0 shares]\n  repo:  private/example\n  pages: disabled\n  clone: /tmp/artifact-contract-smoke-cqGfi8/named-share\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "config",
+        "clone-root",
+        "/tmp/artifact-contract-smoke-cqGfi8"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"artifact\": \"/tmp/artifact-contract-smoke-cqGfi8/config.json\",\n  \"changed\": true,\n  \"from\": \"artifact-share-config/v1\",\n  \"to\": \"artifact-share-config/v2\",\n  \"status\": \"completed\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "config",
+        "upgrade"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"artifact\": \"/tmp/artifact-contract-smoke-cqGfi8/config.json\",\n  \"changed\": false,\n  \"from\": \"artifact-share-config/v2\",\n  \"to\": \"artifact-share-config/v2\",\n  \"status\": \"completed\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "share",
+        "doc",
+        "/tmp/artifact-contract-smoke-cqGfi8/report.html",
+        "--dry-run",
+        "--into",
+        "named-share",
+        "--description",
+        "Authored description"
+      ],
+      "exit_code": 0,
+      "stdout": "size check: ok (1 KiB published)\nmetadata check: ok (0 image(s))\nsecrets check: ok (offline scan of /tmp/artifact-share-f039b5c0be8d-1YCDnz)\n{\n  \"dryRun\": true,\n  \"name\": \"named-share\",\n  \"repo\": \"private/example\",\n  \"kind\": \"doc\",\n  \"hash\": \"f039b5c0be8d\",\n  \"title\": \"Authored title\",\n  \"url\": null,\n  \"repositoryPath\": \"content/shares/f039b5c0be8d.mdx\",\n  \"page\": \"/tmp/artifact-share-f039b5c0be8d-1YCDnz/content/shares/f039b5c0be8d.mdx\",\n  \"stage\": \"/tmp/artifact-share-f039b5c0be8d-1YCDnz\",\n  \"files\": [\n    \"report.html\"\n  ]\n}\n\nNothing was written to the clone and nothing was pushed.\nRead the page before you publish it:\n  cat /tmp/artifact-share-f039b5c0be8d-1YCDnz/content/shares/f039b5c0be8d.mdx\n",
+      "stderr": "[checks:size] $ /tmp/artifact-contract-smoke-cqGfi8/named-share/.mise/tasks/checks/size.ts --root /tmp/artifact-share-f039b5c0be8d-1YCDnz\n[checks:metadata] $ /tmp/artifact-contract-smoke-cqGfi8/named-share/.mise/tasks/checks/metadata.ts --root /tmp/artifact-share-f039b5c0be8d-1YCDnz\n[checks:secrets] $ /tmp/artifact-contract-smoke-cqGfi8/named-share/.mise/tasks/checks/secrets.ts --root /tmp/artifact-share-f039b5c0be8d-1YCDnz\n"
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "mq",
+        "--allow-http-import",
+        "-I",
+        "raw",
+        "-F",
+        "raw",
+        "import \"github.com/harehare/okf.mq\" | .",
+        "/tmp/artifact-share-f039b5c0be8d-1YCDnz/content/shares/f039b5c0be8d.mdx"
+      ],
+      "exit_code": 0,
+      "stdout": "---\nschemaVersion: artifact-share-metadata/v2\ntitle: \"Authored title\"\ndescription: \"Authored description\"\nkind: doc\nhash: f039b5c0be8d\ndate: 2026-11-22\nsource: \"report.html\"\n---\n\n<ShareMeta kind=\"doc\" hash=\"f039b5c0be8d\" date=\"2026-11-22\" source=\"report.html\" raw=\"s/f039b5c0be8d/\" />\n\nOriginal source bytes.\n\n## Files\n\n<FileTree root=\"s/f039b5c0be8d\" files={[\n  { path: \"s/f039b5c0be8d/report.html\" }\n]} />\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/tmp/artifact-contract-smoke-cqGfi8/named-share/.mise/tasks/checks/types.ts"
+      ],
+      "exit_code": 0,
+      "stdout": "types validation: ok (1 shares)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "share",
+        "doc",
+        "/tmp/artifact-contract-smoke-cqGfi8/report.html",
+        "--dry-run",
+        "--into",
+        "named-share"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"hash\": \"f039b5c0be8d\",\n  \"kind\": \"doc\",\n  \"url\": null,\n  \"repositoryPath\": \"content/shares/f039b5c0be8d.mdx\",\n  \"unchanged\": true,\n  \"dryRun\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "config",
+        "clone-root",
+        "/not-used"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Error: Unsupported explicit contract identifier; legacy detection is forbidden.\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "config",
+        "clone-root",
+        "/not-used"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Error: Configuration number cannot round-trip without loss.\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "config",
+        "clone-root",
+        "/not-used"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Error: Duplicate configuration keys cannot be converted safely.\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "config",
+        "clone-root",
+        "/not-used"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Error: Immutable artifact requires a historical reader; conversion is forbidden.\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "bulk-upgrade",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares",
+        "--owner",
+        "file:scripts/artifact-shares/config-owner.ts",
+        "--artifacts",
+        "/tmp/artifact-contract-smoke-cqGfi8/selected.json"
+      ],
+      "exit_code": 1,
+      "stdout": "{\n  \"status\": \"partial\",\n  \"results\": [\n    {\n      \"artifact\": \"/tmp/artifact-contract-smoke-cqGfi8/valid.json\",\n      \"changed\": true,\n      \"from\": \"artifact-share-config/v1\",\n      \"to\": \"artifact-share-config/v2\",\n      \"status\": \"completed\"\n    },\n    {\n      \"artifact\": \"/tmp/artifact-contract-smoke-cqGfi8/invalid.json\",\n      \"status\": \"failed\",\n      \"changed\": false,\n      \"error\": \"Unsupported explicit contract identifier; legacy detection is forbidden.\"\n    }\n  ]\n}\n",
+      "stderr": ""
+    }
+  ]
+}

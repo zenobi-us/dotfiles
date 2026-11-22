@@ -1,10 +1,11 @@
 ---
-schema: collect-feedback/v1
 name: collect-feedback
 description: Collects approved web, TUI or GUI workflows through collect-evidence, opens local feedback, and exports saved annotations with verified source identities. Use for fresh workflow requests or explicit historical review.
 user-invocable: true
 ---
 # collect-feedback
+
+`contracts.json` declares v2 production and v1 historical acceptance. Read the [feedback contract](references/viewer-contract.md) before interpreting stored records. Historical v1 sessions and annotations are read-only; import their sealed source under a new session identity to add notes.
 
 Collect fresh evidence through the installed `collect-evidence` driver, or explicitly select historical evidence. Keep source identities, capture times and image bytes unchanged. Create point or box annotations without changing source media.
 
@@ -44,7 +45,7 @@ The request owns its foreground server until SIGINT or SIGTERM. Register live ow
 | `serve <session> --port <port>` | Start the bundled loopback annotation viewer. Never choose a fallback port. |
 | `export <session>` | Read saved annotations and verified source references without changing the session. |
 
-Use `--help`, `--version`, `--json`, `--plain`, `--quiet`, `--no-color` and `--no-input`. Output is uncoloured and commands never prompt. JSON results use `collect-feedback/v1` with `kind` and `success`; diagnostics go to stderr. `--dry-run` validates without writes or server startup. Exit codes: 0 completed, 1 operation failure, 2 invalid input or schema, 3 blocked store resolution or unavailable writer lock.
+Use `--help`, `--version`, `--json`, `--plain`, `--quiet`, `--no-color` and `--no-input`. Output is uncoloured and commands never prompt. JSON results use `collect-feedback/v2` with `kind` and `success`; diagnostics go to stderr. `--dry-run` validates without writes or server startup. Exit codes: 0 completed, 1 operation failure, 2 invalid input or schemaVersion, 3 blocked store resolution or unavailable writer lock.
 
 ## Safety and limits
 

@@ -1,14 +1,14 @@
 ---
+schemaVersion: tracker-ticket/v2
 blocked_by: 
   - skill-contract-manifests-03-safe-upgrades
 id: skill-contract-manifests-09-evidence
 parent: skill-contract-manifests
-schema: tracker-ticket/v1
 sequence: 9
 title: Adopt contracts in evidence operations
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: "completed"
 ---
 
 ## What to build
@@ -31,3 +31,9 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 
 ## Comments
 
+
+- 2026-11-22T04:07:36.566Z — FAILURE. Reviewed commit `dc75b3b33ab1f81c3c312cc38510dc3254ac2c5a`, tree `4e9cb559406b7b44edff21343b39f715e90194d0`. [Independent review](../../workflows/skill-contract-manifests-09-evidence/artifacts/reviews/review-review-0005.md).
+
+- 2026-11-22T05:52:25.836Z — SUCCESS. Reviewed commit `62f26327084f0dca065ee8ec065c0437cdc54c7d`, tree `d802a953960f01c104a02959652453b55cc37201`. [Independent review](../../workflows/skill-contract-manifests-09-evidence/artifacts/reviews/review-review-0011.md).
+
+- Completed after squash integration `0df154b1564fbc7d393ccc913192f73daf8e394c` and verified publication to `origin/master`. Candidate-bound suite, both contract manifests and public-command smoke passed. [Integration evidence](../../workflows/skill-contract-manifests-09-evidence/artifacts/snapshots/integration-result-0016.json).

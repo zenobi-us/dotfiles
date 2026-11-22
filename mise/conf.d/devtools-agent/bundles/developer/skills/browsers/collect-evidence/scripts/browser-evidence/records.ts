@@ -11,10 +11,11 @@ import type { Evidence, Plan, Step, Test } from "./plan.ts";
 import { CliError } from "./sh.ts";
 import { checkTuiPlan } from "./tui-plan.ts";
 import { checkGuiPlan } from "./gui-plan.ts";
+import { loadContracts } from "../../../../../../agent-core/skills/skill-contracts/scripts/contracts.ts";
 
-export const SCHEMA = "collect-evidence/v1" as const;
+export const SCHEMA = "collect-evidence/v2" as const;
 type Kind = "run" | "plan" | "case" | "asset" | "event" | "error";
-interface RecordHeader { schema: typeof SCHEMA; kind: Kind }
+interface RecordHeader { schemaVersion?: typeof SCHEMA; schema?: "collect-evidence/v1"; kind: Kind }
 export type AssertionResult = "passed" | "failed" | "not-run" | "not-applicable";
 export type CaptureStatus = "captured" | "failed" | "not-requested";
 type CaptureEvidence = Evidence & {
@@ -38,7 +39,7 @@ export interface VideoAssetRecord extends Omit<ImageAssetRecord, "mediaType"> {
 }
 export type AssetRecord = ImageAssetRecord | VideoAssetRecord;
 interface VideoCaptureMetadata {
-  schema: typeof SCHEMA; kind: "asset"; capturedAt?: string;
+  schemaVersion: typeof SCHEMA; kind: "asset"; capturedAt?: string;
   viewport?: CaptureEvidence["viewport"]; durationMs?: number; toolVersion?: string;
 }
 export interface ErrorRecord extends RecordHeader {
@@ -74,6 +75,8 @@ export interface FinalizeRunOptions {
 
 /** Build privately, validate, seal, then publish without replacing any destination. */
 export async function finalizeRun(options: FinalizeRunOptions): Promise<ValidatedRun> {
+  await loadContracts(resolve(import.meta.dir, "../.."));
+  requireValue(options.plan.schemaVersion === SCHEMA && !("schema" in options.plan), "New runs require a current plan; historical runs are read-only");
   checkPlan(options.plan);
   checkId(options.runId);
   checkTime(options.startedAt); checkTime(options.finishedAt);
@@ -97,7 +100,7 @@ export async function finalizeRun(options: FinalizeRunOptions): Promise<Validate
   try {
     await copyTree(staging, join(temporary, "native"));
     await copyFile(await safeFile(staging, "plan.ts"), join(temporary, "plan.ts"));
-    await jsonFile(join(temporary, "plan.json"), { schema: SCHEMA, kind: "plan", data: options.plan });
+    await jsonFile(join(temporary, "plan.json"), { schemaVersion: SCHEMA, kind: "plan", data: options.plan });
     const cases: CaseRecord[] = [];
     for (const [index, test] of options.plan.tests.entries()) {
       const directory = join(temporary, "cases", test.id);
@@ -121,7 +124,7 @@ export async function finalizeRun(options: FinalizeRunOptions): Promise<Validate
           const path = `cases/${test.id}/media/${name}`;
           await writeFile(join(temporary, path), bytes, { flag: "wx" });
           asset = {
-            schema: SCHEMA, kind: "asset", id: `${evidence.step}.capture-${pad(sequence)}`,
+            schemaVersion: SCHEMA, kind: "asset", id: `${evidence.step}.capture-${pad(sequence)}`,
             caseId: test.id, stepId: evidence.step, path, captureSequence: sequence,
             sha256: hash(bytes), mediaType: "image/png", ...dimensions,
             capturedAt: evidence.capturedAt ?? null, viewport: evidence.viewport ?? null,
@@ -133,7 +136,7 @@ export async function finalizeRun(options: FinalizeRunOptions): Promise<Validate
           assets.push(asset);
         }
         events.push({
-          schema: SCHEMA, kind: "event", id: `${test.id}.event-${pad(events.length + 1)}`,
+          schemaVersion: SCHEMA, kind: "event", id: `${test.id}.event-${pad(events.length + 1)}`,
           caseId: test.id, stepId: evidence.step, order: events.length + 1,
           assertionResult: assertion(step, evidence), captureStatus: capture(step, evidence),
           assetId: asset?.id ?? null, evidence,
@@ -152,7 +155,7 @@ export async function finalizeRun(options: FinalizeRunOptions): Promise<Validate
     }
     await markdown(join(temporary, "index.md"), "run", `# Evidence ${options.runId}\n\nDriver: ${options.plan.driver} (${options.driverVersion})\n\n${cases.map((record) => `- [Case ${record.id}](cases/${record.id}/index.md): ${record.purpose}`).join("\n")}\n\nAssertions and captures have separate results. Unknown capture times remain unknown.\n`);
     const run: RunRecord = {
-      schema: SCHEMA, kind: "run", id: options.runId, status: "sealed",
+      schemaVersion: SCHEMA, kind: "run", id: options.runId, status: "sealed",
       startedAt: options.startedAt, finishedAt: options.finishedAt, surface: options.plan.driver === "gui" ? "gui" : options.plan.driver === "tui" ? "tui" : "web",
       driver: options.plan.driver, driverVersion: options.driverVersion, plan: "plan.json",
       cases: cases.map((record) => ({ id: record.id, path: `cases/${record.id}/case.json` })),
@@ -180,6 +183,7 @@ export async function finalizeRun(options: FinalizeRunOptions): Promise<Validate
 /** Read without executing plan.ts. Recheck all references, hashes and PNG bytes. */
 export async function validateRun(directory: string): Promise<ValidatedRun> {
   try {
+    await loadContracts(resolve(import.meta.dir, "../.."));
     const root = resolve(directory);
     requireValue(!basename(root).startsWith(".incomplete-"), "Run finalization is incomplete");
     await rejectSymlinkComponents(root);
@@ -200,8 +204,10 @@ async function inspectRun(root: string): Promise<ValidatedRun> {
   requireValue(run.status === "sealed" && ["web", "tui", "gui"].includes(run.surface) && run.plan === "plan.json", "Invalid run state");
   requireValue(typeof run.driverVersion === "string" && run.driverVersion.length > 0, "Missing driver provenance");
   const envelope = await readJson<RecordHeader & { data: Plan }>(root, "plan.json", "plan");
+  requireValue(envelope.schemaVersion === run.schemaVersion && envelope.schema === run.schema, "Plan and run contract versions differ");
   const plan = envelope.data;
   checkPlan(plan);
+  if (run.schemaVersion === SCHEMA) requireValue(plan.schemaVersion === SCHEMA && plan.kind === "plan", "Current runs require a versioned plan");
   requireValue(run.driver === plan.driver, "Run driver differs from plan");
   requireValue(run.surface === (plan.driver === "gui" ? "gui" : plan.driver === "tui" ? "tui" : "web"), "Run surface differs from plan");
   await safeFile(root, "plan.ts");
@@ -224,6 +230,7 @@ async function inspectRun(root: string): Promise<ValidatedRun> {
     const sequences = new Map<string, number>();
     for (const [eventIndex, event] of events.entries()) {
       header(event, "event");
+      requireValue(event.schemaVersion === run.schemaVersion && event.schema === run.schema, "Event and run contract versions differ");
       const position = test.steps.findIndex((_, i) => stepId(test.id, i) === event.stepId);
       const step = test.steps[position]!;
       requireValue(event.id === `${test.id}.event-${pad(eventIndex + 1)}` && event.order === eventIndex + 1 && event.caseId === test.id && event.stepId === event.evidence.step, "Invalid event identity, reference or order");
@@ -236,6 +243,7 @@ async function inspectRun(root: string): Promise<ValidatedRun> {
       requireValue(asset && !usedAssets.has(asset.id), "Missing or reused event asset");
       usedAssets.add(asset.id);
       header(asset, "asset");
+      requireValue(asset.schemaVersion === run.schemaVersion && asset.schema === run.schema, "Asset and run contract versions differ");
       const sequence = event.evidence.captureSequence ?? (sequences.get(event.stepId) ?? 0) + 1;
       requireValue(sequence > (sequences.get(event.stepId) ?? 0), "Invalid capture order");
       sequences.set(event.stepId, sequence);
@@ -256,7 +264,7 @@ async function inspectRun(root: string): Promise<ValidatedRun> {
         requireValue(same(asset.terminal, event.evidence.terminal) && asset.terminal?.cleanup === "released" && asset.terminal.session && asset.terminal.socket && asset.terminal.pane && asset.terminal.tty && asset.terminal.display && asset.terminal.runtime && Number.isInteger(asset.terminal.cagePid) && Number.isInteger(asset.terminal.footPid), "Missing native terminal identity or owned cleanup");
       }
     }
-    const video = await readVideoAsset(root, "native/", plan, test, run.driverVersion);
+    const video = await readVideoAsset(root, "native/", plan, test, run.driverVersion, run.schema === "collect-evidence/v1");
     if (video) {
       const registered = assets.find((asset) => asset.id === video.id);
       requireValue(same(registered, video), "Video asset metadata differs from native recording");
@@ -265,7 +273,7 @@ async function inspectRun(root: string): Promise<ValidatedRun> {
       usedAssets.add(video.id);
     }
     requireValue(usedAssets.size === assets.length, "Unreferenced or duplicate case assets");
-    requireValue(same(record, buildCase(run.id, plan, test, index, events, assets)), "Case steps, assertions, errors or references differ from events and plan");
+    requireValue(same(record, buildCase(run.id, plan, test, index, events, assets, run.schema === "collect-evidence/v1")), "Case steps, assertions, errors or references differ from events and plan");
     if (events.some(event => event.evidence.verdict === "PASS")) {
       requireValue(assets.some(asset => asset.mediaType === "image/png") &&
         record.steps.some(step => step.assertionResult === "passed") &&
@@ -279,9 +287,9 @@ async function inspectRun(root: string): Promise<ValidatedRun> {
   return { directory: root, run, plan, cases, records };
 }
 
-function buildCase(runId: string, plan: Plan, test: Test, index: number, events: EventRecord[], assets: AssetRecord[]): CaseRecord {
+function buildCase(runId: string, plan: Plan, test: Test, index: number, events: EventRecord[], assets: AssetRecord[], historical = false): CaseRecord {
   return {
-    schema: SCHEMA, kind: "case", id: test.id, runId, order: index + 1, purpose: test.claim,
+    ...recordVersion(historical), kind: "case", id: test.id, runId, order: index + 1, purpose: test.claim,
     preconditions: (test.requires ?? []).map((id) => plan.preconditions!.find((item) => item.id === id)!),
     expected: { pass: test.pass, fail: test.fail },
     steps: test.steps.map((step, position): StepRecord => {
@@ -297,7 +305,7 @@ function buildCase(runId: string, plan: Plan, test: Test, index: number, events:
     }),
     events: `cases/${test.id}/events.jsonl`, assets,
     errors: events.filter((event) => event.evidence.verdict === "FAIL" || event.evidence.verdict === "BLOCKED" || event.captureStatus === "failed").map((event, i): ErrorRecord => ({
-      schema: SCHEMA, kind: "error", id: `${test.id}.error-${pad(i + 1)}`, caseId: test.id, stepId: event.stepId,
+      ...recordVersion(historical), kind: "error", id: `${test.id}.error-${pad(i + 1)}`, caseId: test.id, stepId: event.stepId,
       category: event.evidence.verdict === "BLOCKED" ? "blocked" : event.assertionResult === "failed" ? "assertion" : event.captureStatus === "failed" ? "capture" : "operation",
       message: event.evidence.observed || event.evidence.note || "Driver reported failure",
     })),
@@ -326,7 +334,7 @@ function groupEvidence(plan: Plan, records: Evidence[]): Map<string, CaptureEvid
   let previous = -1;
   for (const record of records as CaptureEvidence[]) {
     requireValue(record && typeof record === "object", "Evidence must be a record");
-    if ("schema" in record) requireValue(record.schema === SCHEMA, "Unsupported explicit evidence schema");
+    if ("schemaVersion" in record || "schema" in record) header(record, "event");
     if ("kind" in record) requireValue(record.kind === "event", "Invalid explicit evidence kind");
     for (const key of ["test", "step", "action", "target", "resolved", "url", "screenshot", "observed", "verdict", "note"] as const) requireValue(typeof record[key] === "string", "Evidence fields must be strings");
     requireValue(["", "PASS", "FAIL", "PARTIAL", "BLOCKED", "WARN"].includes(record.verdict), "Invalid evidence verdict");
@@ -349,7 +357,7 @@ function groupEvidence(plan: Plan, records: Evidence[]): Map<string, CaptureEvid
 }
 export function checkPlan(plan: Plan): void {
   requireValue(plan && typeof plan === "object", "Plan must be an object");
-  if ("schema" in plan) requireValue(plan.schema === SCHEMA, "Unsupported explicit plan schema");
+  if ("schemaVersion" in plan || "schema" in plan) header(plan, "plan");
   if ("kind" in plan) requireValue(plan.kind === "plan", "Invalid explicit plan kind");
   requireValue(["surf", "playwright", "tui", "gui"].includes(plan.driver) && typeof plan.workId === "string" && typeof plan.base === "string" && Array.isArray(plan.tests) && plan.tests.length > 0, "Invalid evidence plan");
   requireValue(plan.preconditions === undefined || Array.isArray(plan.preconditions), "Preconditions must be an array");
@@ -416,8 +424,14 @@ export function checkPlan(plan: Plan): void {
   if (plan.driver === "tui") checkTuiPlan(plan);
   if (plan.driver === "gui") checkGuiPlan(plan);
 }
+function recordVersion(historical = false): Pick<RecordHeader, "schema" | "schemaVersion"> {
+  return historical ? { schema: "collect-evidence/v1" } : { schemaVersion: SCHEMA };
+}
 function header(value: unknown, kind: Kind): asserts value is RecordHeader {
-  requireValue(value && typeof value === "object" && "schema" in value && value.schema === SCHEMA && "kind" in value && value.kind === kind, "Unsupported schema or invalid record kind");
+  requireValue(value && typeof value === "object" && "kind" in value && value.kind === kind &&
+    (("schemaVersion" in value && value.schemaVersion === SCHEMA && !("schema" in value)) ||
+      ("schema" in value && value.schema === "collect-evidence/v1" && !("schemaVersion" in value))),
+    "Unsupported schema or invalid record kind");
 }
 function checkId(value: unknown): asserts value is string {
   requireValue(typeof value === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]*$/.test(value) && value !== "." && value !== ".." && value.length <= 160, "ID must use 1–160 safe letters, digits, dots, underscores or hyphens");
@@ -497,7 +511,7 @@ async function readJson<T>(root: string, path: string, kind: Kind): Promise<T> {
   return value as T;
 }
 async function markdown(path: string, kind: "run" | "case", body: string): Promise<void> {
-  const raw = `---\nschema: ${SCHEMA}\nkind: ${kind}\n---\n${body}`;
+  const raw = `---\nschemaVersion: ${SCHEMA}\nkind: ${kind}\n---\n${body}`;
   await command("mise", ["exec", "--", "mq", "--allow-http-import", "--no-lockfile", "-I", "raw", "-F", "text", "--no-clobber", "-o", path, 'import "github.com/harehare/okf.mq" | .'], raw, dirname(path));
 }
 async function command(binary: string, args: string[], input?: string, cwd?: string): Promise<void> {
@@ -561,7 +575,7 @@ function crc32(bytes: Buffer): number {
   return (crc ^ 0xffffffff) >>> 0;
 }
 
-async function readVideoAsset(root: string, prefix: "" | "native/", plan: Plan, test: Test, driverVersion: string): Promise<VideoAssetRecord | null> {
+async function readVideoAsset(root: string, prefix: "" | "native/", plan: Plan, test: Test, driverVersion: string, historical = false): Promise<VideoAssetRecord | null> {
   const source = `report/videos/test-${test.id}.webm`;
   const unavailablePath = `${prefix}${source}.unavailable.json`;
   if (await optionalFile(root, unavailablePath)) {
@@ -585,7 +599,7 @@ async function readVideoAsset(root: string, prefix: "" | "native/", plan: Plan, 
     if (metadata.viewport !== undefined) requireValue(metadata.viewport && metadata.viewport.width > 0 && metadata.viewport.height > 0 && metadata.viewport.deviceScaleFactor > 0 && [metadata.viewport.width, metadata.viewport.height, metadata.viewport.deviceScaleFactor].every(Number.isFinite), "Invalid video viewport");
   }
   return {
-    schema: SCHEMA, kind: "asset", id: `${test.id}.video.capture-001`, caseId: test.id,
+    ...recordVersion(historical), kind: "asset", id: `${test.id}.video.capture-001`, caseId: test.id,
     stepId: stepId(test.id, 0), scope: "case", path: `cases/${test.id}/media/step-001-case-recording--capture-001.webm`,
     sourcePath: `native/${source}`, captureSequence: 1, sha256: hash(bytes),
     mediaType: "video/webm", width: dimensions.width, height: dimensions.height,

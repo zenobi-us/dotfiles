@@ -77,6 +77,7 @@ the ticket collection, or the source collection.
 # Rule 1: resolve the muxer and agent
 
 Load the `muxer-subagents` skill before any playbook that opens a pane or launches a child agent. It owns muxer detection, agent detection, the spawn contracts, and the fresh-session mechanic.
+For herdr-app ticket phases, MUST pass `--title "<ticket-id>"` to the child spawn command. Use the ticket ID resolved by the ticket skill. For concurrent children on the same ticket, append the phase or role, such as `TICKET-123 · review`. Keep the existing worktree space name and use run IDs for commands.
 
 Run the `muxer-subagents` skill’s `scripts/router.ts` script with the `contracts` argument.
 

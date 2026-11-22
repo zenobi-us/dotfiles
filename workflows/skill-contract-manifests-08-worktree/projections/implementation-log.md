@@ -1,0 +1,98 @@
+---
+type: Log
+workflow_id: skill-contract-manifests-08-worktree
+---
+
+# Implementation log
+
+- `start-0001`: started; canonical event `workflows/skill-contract-manifests-08-worktree/events/start-0001.yaml`.
+- `implementation-0002`: completed local implementation; source `a20008e3e548e98ecf568b06d1c762898337bcb3`, tree `aacf1e028ca5c8c221138b2deeb96d4f00467909`. Declare worktree-owned contracts and external owner references. Emit current v3 receipts through v2 phase contexts; preserve explicit v1/v2 history, live v2 handoffs and checksum-bound recovery. Validate current coordinator events and version inspection/coordination output. Upgrade only mutable generated manifests/status views before authorized updates, preserving YAML comments and unknown metadata.
+- Checks: 168 tests passed; scoped typecheck passed; seven post-commit owning-command smoke groups passed.
+- Immutable draft: `workflows/skill-contract-manifests-08-worktree/artifacts/snapshots/pr-draft-implementation-0002.md`.
+- No review, merge, push or ticket completion ran. Parent owns resource shutdown after validating the assigned typed handoff.
+
+
+## Independent review
+
+Review attempt 1 returned FAILURE for source `a20008e3e548e98ecf568b06d1c762898337bcb3`. No source change occurred. Open findings: `SPEC-1`, `SPEC-2`; none resolved.
+
+See [review body](../artifacts/reviews/review-review-0006.md), [review result](../events/review-0006.yaml), and [parent completion](../events/review-complete-0007.yaml). The reviewer recorded 168 passing tests and owning-command reproductions. Parent checks passed 9 tests. All owned reviewer/helper processes stopped.
+
+## Fix attempt 1
+
+- `fix-start-0008`: authorized fresh fixer for SPEC-1 and SPEC-2; consumes review-0006.
+- `fix-0009`: FIXED; source `4a0df18caa4d1ee1c1aaca2729291e0e66c59823`, tree `efbb160b9d23b9088416d8bd239c2d9ce011882f`.
+- SPEC-1 commit: `2783e66e`; SPEC-2 commit: `4a0df18c`.
+- Resolved findings: SPEC-1, SPEC-2. Unresolved findings and questions: none.
+- Changed files by fix phase:
+  - `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
+  - `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/CHANGELOG.md`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/contracts.md`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/contracts/view-upgrade.md`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/receipts.md`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/phase-context.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/view-contracts.test.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/view-contracts.ts`
+- Validation by fix phase: 39 delivery tests, 14 view tests, full suite 176 tests / 1025 assertions, scoped TypeScript check, and two post-commit owning-command scenario groups passed.
+- Snapshot: `workflows/skill-contract-manifests-08-worktree/artifacts/snapshots/pr-draft-fix-0009.md`.
+- Receipt: `workflows/skill-contract-manifests-08-worktree/events/fix-0009.yaml`.
+- Prior FAILURE review remains historical. The fixed source needs fresh review. No merge, push or tracker mutation ran.
+
+## Parent fix completion
+
+[fix-complete-0010](../events/fix-complete-0010.yaml) confirms fix-0009, resolved findings SPEC-1 and SPEC-2, 53 passing parent regression tests, acknowledged delivery and confirmed fixer process shutdown. Source `4a0df18caa4d1ee1c1aaca2729291e0e66c59823` is clean and awaits fresh review. Previous FAILURE remains historical evidence, not a current verdict.
+
+
+## Independent review attempt 2
+
+[review-0012](../events/review-0012.yaml) returned FAILURE for source `4a0df18caa4d1ee1c1aaca2729291e0e66c59823`. Open findings: STANDARDS-1, SPEC-3, SPEC-4. SPEC-2 is resolved; SPEC-1 fresh-start rejection is fixed but retained start completion needs SPEC-3.
+
+See [immutable review body](../artifacts/reviews/review-review-0012.md) and [parent completion](../events/review-complete-0013.yaml). Reviewer checks passed 176 tests; parent checks passed 14 tests. Owning-command scenarios exposed remaining gaps despite passing tests. Source unchanged. Reviewer and helpers closed; process shutdown confirmed. No merge or push.
+
+## Fix attempt 2
+
+- [fix-start-0014](../events/fix-start-0014.yaml) authorized the independent fixer for review-0012.
+- [fix-0015](../events/fix-0015.yaml): FIXED; source `8ce850b641b29d052f9549f956f93dfd655e2c6b`, tree `02afddcab23399930e7d9ce14c461b1c4e9684c2`.
+- Resolved STANDARDS-1 (`b7f72d50`), SPEC-3 (`f7897d5f`), SPEC-4 (`8ce850b6`). No unresolved findings or questions.
+- Current review verdict is null. Both earlier FAILURE reviews remain historical; fresh review is required.
+- Full suite: 212 pass, 0 fail, 1104 assertions. Targeted delivery: 39 pass, 347 assertions. Targeted views: 30 pass, 78 assertions. Typecheck and post-commit combined owning-command smoke passed.
+- Approved owner definition: commit `3a70f87bac3f44cd6ceb41cebd0887c11ebdbb59`; SHA-256 `9523366fbe7c608d248a131604cab4adb456879cb283904b336a45aafbc090ae`. Definition only, at the authoritative owner path. No owner runtime adoption.
+- [Immutable snapshot](../artifacts/snapshots/pr-draft-fix-0015.md) records validation details, changed files and retained snapshot hash compatibility.
+- Changed files by this phase:
+  - `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
+  - `mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json`
+  - `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/references/contracts.md`
+  - `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/CHANGELOG.md`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/contracts.json`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/contracts.md`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/contracts/view-upgrade.md`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/contracts/workflow-v3.json`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/context-resolution.test.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/context-resolution.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/phase-context.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/view-contracts.test.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/view-contracts.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/write-result.ts`
+  - `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/write-view.ts`
+- No merge, push, ticket completion or independent review ran. Parent owns acknowledgement and terminal closure.
+
+
+## Parent fix attempt 2 completion
+
+[fix-complete-0016](../events/fix-complete-0016.yaml) validates fix-0015 and all three assigned finding resolutions. Parent checks: 89 tests passed; actual installed owner-relative definition resolves; owner-approved SHA-256 matches; 12024 baseline source historical artifacts remain unchanged. Fixer delivery acknowledged, terminal removed and owned process shutdown confirmed. New clean source `8ce850b641b29d052f9549f956f93dfd655e2c6b` awaits fresh review. No merge or push.
+
+
+## Independent review attempt 3
+
+[review-0018](../events/review-0018.yaml) returned SUCCESS for clean source `8ce850b641b29d052f9549f956f93dfd655e2c6b`. Standards and Spec each found zero blocking findings; all five historical finding IDs are resolved. See [immutable review body](../artifacts/reviews/review-review-0018.md) and [parent completion](../events/review-complete-0019.yaml).
+
+Reviewer checks: 212 tests and real current/historical owning-command smokes passed. Parent checks: 30 tests passed. Configured typecheck not independently reverified due missing local compiler/dependencies; prior same-source fix check stays separate. Delivery acknowledged; reviewer/helpers closed with confirmed shutdown. Source unchanged; no merge or push.
+
+
+## Finish attempt 1: preparation failed
+
+[finish-failed-0021](../events/finish-failed-0021.yaml) retains the failed read-only squash preparation. Three generated bundle-version files conflict with the advanced base. See [preflight observations](../artifacts/snapshots/finish-preflight-0020.json). No candidate validation, integration, push, ticket completion or cleanup occurred. Original source `8ce850b641b29d052f9549f956f93dfd655e2c6b` and its source-bound SUCCESS remain unchanged. A separately resolved candidate needs independent review before another integration attempt.

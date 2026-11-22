@@ -11,7 +11,7 @@ export const muxer = {
   detect: (environment) => Boolean(environment.HC_TERMINAL_ID),
   supports: () => true,
   async launch(request) {
-    const target = spawnHerdrApp(request.agent, request.cwd, request.depth, request.environment, request.runId);
+    const target = spawnHerdrApp(request.agent, request.cwd, request.depth, request.environment, request.runId, request.title);
     await writeRunSignal(request.runId, "running", "launcher");
     return { target };
   },
@@ -40,6 +40,7 @@ function spawnHerdrApp(
   depth: number,
   environment: Record<string, string>,
   runId: string,
+  title?: string,
 ): string {
   const parent = process.env.HC_TERMINAL_ID;
   if (!parent) throw new Error("herdr-app requires HC_TERMINAL_ID to locate the parent space.");
@@ -70,7 +71,7 @@ function spawnHerdrApp(
     ...agent.argv,
   ];
   const space = matches[0];
-  const name = `agent-${runId.slice(0, 8)}`;
+  const name = title ?? `agent-${runId.slice(0, 8)}`;
   const opened = space
     ? call(app, ["do", "tab.new", JSON.stringify({ space: space.id, name, folder, argv, focus: false })])
     : call(app, ["do", "space.new", JSON.stringify({

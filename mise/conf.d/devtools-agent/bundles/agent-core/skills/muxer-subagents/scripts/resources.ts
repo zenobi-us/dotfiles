@@ -3,6 +3,7 @@
 import { readdir, readFile, readlink, rename, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { readRun, runSignalPath } from "./signals.ts";
+import { readRecord, validateRecord, assertRunPath } from "./records.ts";
 
 export interface OwnedProcess {
   pid: number;
@@ -14,7 +15,7 @@ export interface OwnedProcess {
 }
 
 export interface ResourceObservation {
-  version: 1;
+  schemaVersion: "muxer-resources/v2";
   runId: string;
   observedAt: string;
   shutdown: "pending" | "confirmed" | "unconfirmed";
@@ -43,15 +44,22 @@ export async function observeResources(runId: string, launcherPid?: number, acce
   await readRun(runId);
   const path = join(dirname(runSignalPath(runId)), "resources.json");
   let previous: ResourceObservation | undefined;
-  try { previous = JSON.parse(await readFile(path, "utf8")); }
+  try {
+    const record = await readRecord(path);
+    validateRecord(record, "muxer-resources", runId);
+    previous = record as unknown as ResourceObservation;
+  }
   catch (error) { if (!isMissing(error)) throw error; }
   const owned = new Map((previous?.processes ?? []).map(item => [identity(item), item]));
   // Separate immutable identities prevent simultaneous launcher and parent
   // observations from erasing each other's newly discovered processes.
   for (const entry of await readdir(dirname(path))) {
     if (!/^owned-[0-9a-f-]+-\d+-\d+\.json$/.test(entry)) continue;
-    const item = JSON.parse(await readFile(join(dirname(path), entry), "utf8")) as OwnedProcess;
-    owned.set(identity(item), item);
+    const record = await readRecord(join(dirname(path), entry));
+    validateRecord(record, "muxer-owned-process", runId);
+    if (entry !== `owned-${record.bootId}-${record.pid}-${record.startTicks}.json`) throw new Error("Process identity does not match filename");
+    const { schemaVersion: _, runId: __, ...item } = record;
+    owned.set(identity(item as unknown as OwnedProcess), item as unknown as OwnedProcess);
   }
   let bootId: string;
   let entries: string[];
@@ -107,9 +115,13 @@ export async function observeResources(runId: string, launcherPid?: number, acce
   const processes: OwnedProcess[] = [];
   for (const item of owned.values()) {
     const recordPath = join(dirname(path), `owned-${item.bootId}-${item.pid}-${item.startTicks}.json`);
-    try { await writeFile(recordPath, `${JSON.stringify(item)}\n`, { flag: "wx", mode: 0o600 }); }
+    await assertRunPath(recordPath);
+    const record = { schemaVersion: "muxer-owned-process/v2", runId, ...item };
+    validateRecord(record, "muxer-owned-process", runId);
+    try { await writeFile(recordPath, `${JSON.stringify(record)}\n`, { flag: "wx", mode: 0o600 }); }
     catch (error) {
       if (!(error instanceof Error && "code" in error && error.code === "EEXIST")) throw error;
+      validateRecord(await readRecord(recordPath), "muxer-owned-process", runId);
     }
     const current = snapshots.get(item.pid);
     if (item.bootId !== bootId || (current && identity(current) !== identity(item))) {
@@ -152,12 +164,14 @@ async function inspectProcess(pid: number, bootId: string, access: ProcessAccess
 
 async function saveObservation(path: string, runId: string, processes: OwnedProcess[], complete: boolean): Promise<ResourceObservation> {
   const observation: ResourceObservation = {
-    version: 1, runId, observedAt: new Date().toISOString(), processes,
+    schemaVersion: "muxer-resources/v2", runId, observedAt: new Date().toISOString(), processes,
     shutdown: processes.some(item => item.state === "running") ? "pending"
       : complete && processes.length > 0 && processes.every(item => item.state === "stopped") ? "confirmed" : "unconfirmed",
   };
+  validateRecord(observation, "muxer-resources", runId);
+  await assertRunPath(path);
   const temporary = `${path}.${process.pid}.tmp`;
-  await writeFile(temporary, `${JSON.stringify(observation)}\n`, { mode: 0o600 });
+  await writeFile(temporary, `${JSON.stringify(observation)}\n`, { mode: 0o600, flag: "wx" });
   await rename(temporary, path);
   return observation;
 }

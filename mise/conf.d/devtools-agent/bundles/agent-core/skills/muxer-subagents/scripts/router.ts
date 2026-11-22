@@ -20,6 +20,8 @@ import { readRun } from "./signals.ts";
 import { observeResources } from "./resources.ts";
 import { waitForAgent } from "./wait.ts";
 import { agents, muxers } from "./modules/index.ts";
+import { validateManifest } from "./records.ts";
+import { readRunEvidence } from "./evidence.ts";
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const skillDir = resolve(scriptDir, "..");
@@ -97,7 +99,8 @@ const contractsCmd = app
       description: `Override auto-detected agent (${AGENTS.join(", ")}). Required for zot or when detection returns unknown-agent.`,
     },
   })
-  .run(({ flags }) => {
+  .run(async ({ flags }) => {
+    await validateManifest();
     const muxer = flags.muxer ?? detectMuxer();
     const agent = flags.agent ?? detectAgent();
     if (!isMuxer(muxer)) {
@@ -127,8 +130,7 @@ const contractsCmd = app
     console.log(
       JSON.stringify(
         {
-          schema: "muxer-subagents/contracts",
-          version: 1,
+          schemaVersion: "muxer-contracts/v2",
           session,
           delivery: {
             context: deliveryContext ?? null,
@@ -182,6 +184,10 @@ const spawnCmd = app
     cwd: {
       type: "string",
       description: "Working directory for the child. Defaults to the current directory.",
+    },
+    title: {
+      type: "string",
+      description: "Display title for a herdr-app child tab, such as a ticket ID.",
     },
     "result-schema": {
       type: "string",
@@ -257,6 +263,7 @@ const spawnCmd = app
         resultTarget: flags["result-target"],
         resultRef: flags["result-ref"],
         operationId: flags["operation-id"],
+        title: flags.title,
       });
       console.log(JSON.stringify({ ...result, muxer, agent, depth: depth + 1 }));
     } catch (error) {
@@ -278,6 +285,10 @@ const waitCmd = app
     },
   ])
   .flags({
+    historical: {
+      type: "boolean",
+      description: "Read retained legacy completion only; never update evidence or clean prompts.",
+    },
     "after-sequence": {
       type: "string",
       description: "Ignore signals at or below this sequence. Use the sequence returned by a blocked wait before waiting again.",
@@ -302,15 +313,15 @@ const waitCmd = app
     }
 
     try {
-      const signal = await waitForAgent({ runId: args.runId, afterSequence, timeoutMs });
+      const signal = await waitForAgent({ runId: args.runId, afterSequence, timeoutMs, historical: flags.historical });
       if (signal === null) {
-        const { signal: current } = await readRun(args.runId);
-        console.log(JSON.stringify({ ...current, timedOut: true }));
+        const { signal: current } = await readRun(args.runId, flags.historical);
+        console.log(JSON.stringify({ schemaVersion: "muxer-wait/v2", signal: current, timedOut: true }));
         process.exitCode = 124;
         return;
       }
-      const resources = await observeResources(args.runId);
-      console.log(JSON.stringify({ ...signal, resources }));
+      const resources = flags.historical ? (await readRunEvidence(args.runId, true)).resources : await observeResources(args.runId);
+      console.log(JSON.stringify({ schemaVersion: "muxer-wait/v2", signal, resources }));
       if (signal.state === "failed") process.exitCode = 1;
       if (signal.state === "cancelled") process.exitCode = 130;
     } catch (error) {
@@ -327,7 +338,7 @@ const resourcesCmd = app
     try {
       const { manifest } = await readRun(args.runId);
       const resources = await observeResources(args.runId);
-      console.log(JSON.stringify({ manifest, resources }));
+      console.log(JSON.stringify({ schemaVersion: "muxer-resource-report/v2", manifest, resources }));
       if (resources.shutdown !== "confirmed") process.exitCode = 1;
     } catch (error) {
       console.error(`Could not observe owned resources: ${error instanceof Error ? error.message : String(error)}`);
@@ -335,6 +346,19 @@ const resourcesCmd = app
     }
   });
 
+
+const readCmd = app
+  .sub("read")
+  .meta({ description: "Read validated run, completion and resource evidence without writes." })
+  .args([{ name: "runId", type: "string", required: true, description: "Retained run identity." }])
+  .flags({ historical: { type: "boolean", description: "Permit explicit legacy contracts without conversion." } })
+  .run(async ({ args, flags }) => {
+    try { console.log(JSON.stringify(await readRunEvidence(args.runId, flags.historical))); }
+    catch (error) {
+      console.error(`Could not read run evidence: ${error instanceof Error ? error.message : String(error)}`);
+      process.exitCode = 1;
+    }
+  });
 app
   .use(helpPlugin())
   .command(detectMuxerCmd)
@@ -345,4 +369,5 @@ app
   .command(spawnCmd)
   .command(waitCmd)
   .command(resourcesCmd)
+  .command(readCmd)
   .execute();

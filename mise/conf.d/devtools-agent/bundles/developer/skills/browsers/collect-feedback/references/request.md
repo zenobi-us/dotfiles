@@ -1,5 +1,4 @@
 ---
-schema: collect-feedback/v1
 kind: procedure
 ---
 # Collect feedback from one request

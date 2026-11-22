@@ -1,0 +1,12 @@
+import type { Plan } from "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-09-evidence/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/plan.ts";
+
+const command = ["/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun", "-e", 'process.stdout.write("\x1b[?25l\x1b[2J\x1b[H\x1b[38;2;230;225;242mContract capture\r\nCurrent record\r\n\x1b[48;2;201;166;255m" + " ".repeat(30) + "\x1b[0m"); setInterval(() => {}, 1000);'];
+export const plan: Plan = {
+  schemaVersion: "collect-evidence/v2", kind: "plan",
+  workId: "skill-contract-manifests-09-evidence", driver: "tui", base: "terminal://private",
+  terminal: { command, cwd: "/tmp", columns: 80, rows: 24, font: "monospace:size=12", lineHeight: 20 },
+  approval: { origins: [], confirmations: [], terminal: { command, cwd: "/tmp" } },
+  tests: [{ id: "current", claim: "Capture a real private terminal under the current contract", pass: "Native text and image assertions pass", fail: "Native text or image assertions fail", steps: [
+    { do: "expect", says: "Read the contract capture screen.", locator: "screen", text: "Contract capture", shot: "contract-screen", image: { width: 1280, height: 720, pixels: [{ x: 10, y: 55, rgb: [201, 166, 255] }], lines: [{ text: "Contract capture", top: 11 }, { text: "Current record", top: 31 }] } }
+  ] }]
+};

@@ -15,6 +15,7 @@ import { sessionMetadata } from "./session-context.ts";
 import { agents, muxers } from "./modules/index.ts";
 import type { AgentModule, MuxerModule } from "./modules/types.ts";
 import { observeResources } from "./resources.ts";
+import { validateManifest } from "./records.ts";
 
 export type SpawnMuxer = Exclude<Muxer, "unknown-muxer">;
 export type SpawnAgent = Exclude<Agent, "unknown-agent">;
@@ -29,9 +30,11 @@ export interface SpawnOptions {
   resultTarget?: string;
   resultRef?: string;
   operationId?: string;
+  title?: string;
 }
 
 export interface SpawnResult {
+  schemaVersion: "muxer-spawn/v2";
   runId: string;
   target: string;
   parentRunId?: string;
@@ -42,6 +45,7 @@ export interface SpawnResult {
 }
 
 export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
+  await validateManifest();
   if (!options.resultSchema?.trim()) throw new Error("A non-empty result schema is required.");
   if ((options.resultTarget !== undefined) !== (options.resultRef !== undefined)) {
     throw new Error("Provide result target and result reference together.");
@@ -55,6 +59,10 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
   const agent: AgentModule = agents[options.agent];
   if (!muxer.supports(agent.id)) {
     throw new Error(`${muxer.id} does not support ${agent.id}.`);
+  }
+  if (options.title !== undefined) {
+    if (!options.title.trim()) throw new Error("A non-empty title is required.");
+    if (muxer.id !== "herdr-app") throw new Error(`${muxer.id} does not support custom titles.`);
   }
   const parentRunId = sessionMetadata().runId;
   const run = await createRun(options.muxer, options.agent, {
@@ -110,6 +118,7 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
       depth: options.depth,
       promptFile: handoffFile,
       environment,
+      title: options.title,
       agent: {
         id: agent.id,
         argv: agent.command({ muxer: muxer.id, promptFile: handoffFile }),
@@ -117,7 +126,7 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
     });
     await updateRunTarget(run.runId, target, agentName);
     await observeResources(run.runId);
-    return { runId: run.runId, target, parentRunId, operationId, contextFile, deliveryContext, resultTarget: deliveryContext.target! };
+    return { schemaVersion: "muxer-spawn/v2", runId: run.runId, target, parentRunId, operationId, contextFile, deliveryContext, resultTarget: deliveryContext.target! };
   } catch (error) {
     if (!launchAttempted) {
       if (directory) rmSync(directory, { recursive: true, force: true });

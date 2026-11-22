@@ -294,13 +294,13 @@ export const playwrightDriver: Driver = {
   const unavailable = videoResults.find(result => result.code !== 0 || /^### Error/m.test(result.out));
   if (unavailable) {
    await writeFile(videoFile + ".unavailable.json", JSON.stringify({
-    schema: "collect-evidence/v1", kind: "error", id: `${ctx.test.id}.video-unavailable`,
+    schemaVersion: "collect-evidence/v2", kind: "error", id: `${ctx.test.id}.video-unavailable`,
     category: "capture", message: "Optional video is unavailable; native command diagnostics are preserved.",
     phase: unavailable.phase, exitCode: unavailable.code,
    }) + "\n", { flag: "wx" });
   } else if (recording) {
    await writeFile(videoFile + ".metadata.json", JSON.stringify({
-    schema: "collect-evidence/v1", kind: "asset", capturedAt: recordingStartedAt,
+    schemaVersion: "collect-evidence/v2", kind: "asset", capturedAt: recordingStartedAt,
    }) + "\n", { flag: "wx" });
   }
   let records: Evidence[] = [];

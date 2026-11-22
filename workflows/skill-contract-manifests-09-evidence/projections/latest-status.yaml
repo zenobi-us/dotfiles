@@ -1,0 +1,22 @@
+schema: worktree-latest-status/v1
+workflow_id: skill-contract-manifests-09-evidence
+ticket: tracker/tickets/skill-contract-manifests-09-evidence.md
+state: FINISHED
+latest_receipt: finish-complete-0021
+latest_source_commit: 62f26327084f0dca065ee8ec065c0437cdc54c7d
+latest_source_tree: d802a953960f01c104a02959652453b55cc37201
+latest_review_verdict: SUCCESS
+latest_review_receipt: review-0011
+prior_review_verdict: FAILURE
+prior_review_receipt: review-0005
+open_findings: []
+resolved_findings:
+  - EVIDENCE09-SPEC-001
+review_required: false
+integration_method: squash
+merged_commit: 0df154b1564fbc7d393ccc913192f73daf8e394c
+merged_tree: 1918805705f83879f8e12598739cfc7661771399
+pushed: true
+ticket_completed: true
+worktree_removed: true
+workspace_closed: true

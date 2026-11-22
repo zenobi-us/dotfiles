@@ -1,10 +1,10 @@
 ---
-schema: collect-evidence/v1
+schemaVersion: collect-evidence/v2
 kind: contract
 ---
 # Common evidence contract
 
-Every first-party JSON file and JSONL record uses schema collect-evidence/v1 and a kind. Owned Markdown has the same schema in frontmatter. Preserve tool-native bytes under native/.
+Every first-party JSON file and JSONL record uses schemaVersion collect-evidence/v2 and a kind. Owned Markdown has the same schemaVersion in frontmatter. Preserve tool-native bytes under native/.
 
 | Kind | Authoritative content |
 |---|---|
@@ -51,3 +51,16 @@ GUI assets use captureMethod x11-imagemagick-import. Their gui identity records 
 ## Historical reports
 
 `report <selected-run> --historical` labels a read-only HTML or JSON report as historical. It does not modify `run.json` or claim that the run represents current application state. Known capture dates and null dates remain unchanged. Feedback imports use their own explicit `--historical` selection and retain the original sealed snapshot.
+
+## Contract versions and ownership
+
+`contracts.json` declares `collect-evidence/v2` production and independent `collect-evidence/v1` acceptance. The v2 discriminated family uses `schemaVersion: collect-evidence/v2` plus `kind`. It owns authored plans, workspace and compilation metadata, sealed runs, case acceptance records, asset metadata, ordered events, errors, driver maps, command results and generated manual comments. Plan, run and case fields retain the structures above. Workspace and compilation records use kind `event`; workspace fields bind repository, workflow, runId and destination, while compilation fields bind driver and planHash. Command success and failure use kind `event` or `error`, command, success and command-specific fields; errors add code and message. A typed authored plan has the version and kind directly; a persisted plan envelope has them beside `data`.
+
+Historical v1 uses `schema: collect-evidence/v1`. Its authoritative retained definition is [evidence-v1.md](evidence-v1.md). Readers preserve returned historical headers and validate all original hashes without executing archived plan.ts. Explicit unknown identifiers, mixed identity fields and unversioned sealed record envelopes fail. Only historical plan data and native driver observations can omit a header; their enclosing registered records identify their interpretation.
+
+No upgrade path is declared. Sealed runs, captured assets and original native files are immutable. Historical authored workspaces cannot render, compile or run in place. Initialize a new identity and author a current approved plan. Read-only validate, verdicts, report and comment commands never migrate stored bytes. Native PNG, WebM, logs and third-party outputs receive no version injection. Local finalization publishes only to the resolved evidence store; external sharing needs separate access approval. Evidence is not a worktree receipt or proof of implementation completion.
+
+The collector owns capture and acceptance meaning. `writing-reports` retains presentation ownership and consumes the validated records; this manifest does not claim report-generation contracts.
+
+Current compiled.json metadata must not contain schema, even when schemaVersion, kind and planHash match. Both run and run --dry-run reject mixed identities with exit code 2 before driver startup or staging and destination writes. Recompile current authored plans; do not rewrite sealed historical records.
+

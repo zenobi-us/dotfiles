@@ -1,0 +1,79 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "muxer-resources/v2"
+    },
+    "runId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "observedAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT",
+      "minLength": 20
+    },
+    "shutdown": {
+      "enum": [
+        "pending",
+        "confirmed",
+        "unconfirmed"
+      ]
+    },
+    "processes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "pid": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "bootId": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+          },
+          "startTicks": {
+            "type": "string",
+            "pattern": "^\\d+$"
+          },
+          "command": {
+            "type": "string"
+          },
+          "cwd": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "enum": [
+              "running",
+              "stopped",
+              "unconfirmed"
+            ]
+          },
+          "parentPid": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "pid",
+          "bootId",
+          "startTicks",
+          "command",
+          "state"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "runId",
+    "observedAt",
+    "shutdown",
+    "processes"
+  ],
+  "description": "Current output. Run identity, process completion, resource shutdown and domain success remain independent. Completion sequence files and owned process records are immutable; summaries are projections."
+}

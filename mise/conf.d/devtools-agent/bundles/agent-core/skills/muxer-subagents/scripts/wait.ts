@@ -7,6 +7,7 @@ export interface WaitOptions {
   runId: string;
   afterSequence: number;
   timeoutMs?: number;
+  historical?: boolean;
 }
 
 
@@ -22,7 +23,11 @@ async function removePromptWhenEnded(signal: RunSignal | null): Promise<RunSigna
 }
 
 export async function waitForAgent(options: WaitOptions): Promise<RunSignal | null> {
-  const { manifest, signal } = await readRun(options.runId);
+  const { manifest, signal } = await readRun(options.runId, options.historical);
+  if (options.historical) {
+    if (signal.sequence > options.afterSequence && (signal.state === "blocked" || isTerminal(signal))) return signal;
+    throw new Error("Historical reader cannot wait on or mutate an active run");
+  }
   await observeResources(options.runId);
   if (signal.sequence > options.afterSequence && (signal.state === "blocked" || isTerminal(signal))) {
     return removePromptWhenEnded(signal);

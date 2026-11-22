@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": [
+    "muxer-run/v2",
+    "muxer-completion/v2",
+    "muxer-resources/v2",
+    "muxer-owned-process/v2",
+    "muxer-contracts/v2",
+    "muxer-spawn/v2",
+    "muxer-wait/v2",
+    "muxer-resource-report/v2",
+    "muxer-evidence/v1",
+    "result-delivery/v2"
+  ],
+  "accepts": [
+    "muxer-run/v1",
+    "muxer-run/v2",
+    "muxer-completion/v1",
+    "muxer-completion/v2",
+    "muxer-resources/v1",
+    "muxer-resources/v2",
+    "muxer-owned-process/v1",
+    "muxer-owned-process/v2",
+    "result-delivery/v1",
+    "result-delivery/v2"
+  ],
+  "contracts": {
+    "muxer-run/v1": "file:references/contracts/muxer-run-v1.json",
+    "muxer-run/v2": "file:references/contracts/muxer-run-v2.json",
+    "muxer-completion/v1": "file:references/contracts/muxer-completion-v1.json",
+    "muxer-completion/v2": "file:references/contracts/muxer-completion-v2.json",
+    "muxer-resources/v1": "file:references/contracts/muxer-resources-v1.json",
+    "muxer-resources/v2": "file:references/contracts/muxer-resources-v2.json",
+    "muxer-owned-process/v1": "file:references/contracts/muxer-owned-process-v1.json",
+    "muxer-owned-process/v2": "file:references/contracts/muxer-owned-process-v2.json",
+    "muxer-contracts/v2": "file:references/contracts/cli-v2.json",
+    "muxer-spawn/v2": "file:references/contracts/cli-v2.json",
+    "muxer-wait/v2": "file:references/contracts/cli-v2.json",
+    "muxer-resource-report/v2": "file:references/contracts/cli-v2.json",
+    "muxer-evidence/v1": "file:references/contracts/cli-v2.json",
+    "result-delivery/v1": "file:../result-delivery/references/contracts/delivery-v1.json",
+    "result-delivery/v2": "file:../result-delivery/references/contracts/delivery-v2.json"
+  },
+  "upgrades": []
+}
