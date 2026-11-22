@@ -1,0 +1,10 @@
+{
+  "inventory_complete": false,
+  "hard_blockers": [],
+  "reservations_for_ticket": [],
+  "ownership": "Current session session-c4KMpd wrote review-complete-0007. User explicitly requested finish; no ownership transfer.",
+  "compatibility": "Base changes since frozen review base affect tracker/workflow records only in reviewed contracts. No changes to muxer-subagents, result-delivery, skill-contracts, agent-core plugin or marketplace metadata. Retained hc-spawn and other source streams remain isolated. No product conflict resolution required.",
+  "resource_shutdown": "Review run ea1d84af-4b39-4b63-9129-d27c615af4f2 confirmed stopped. Source workspace closed in desktop.",
+  "method": "squash per Worktrunk merge.squash=true; exact reviewed source retained under refs/worktree-reviews/<sha>.",
+  "verification": "Copy exact candidate skill directories to external temporary location, install exact reviewer dependency versions, run focused suite; candidate-owned manifest validate and real retained smoke retrieval. Candidate stays clean."
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "worktree-integration/v2",
+  "integration_method": "squash",
+  "reviewed_source_commit": "e8d4f1d2b5a1ea6d16248ba79426e80558a9f357",
+  "reviewed_source_tree": "a52fb75b3f43306ade529d963e1351223ed1bfc5",
+  "base_branch": "master",
+  "base_before": "127f82005f743e7f6f9d79760ed93a60161816f6",
+  "expected_merge_tree": "de2e275e48e97ecb04c75be0f510f945e7c9c766",
+  "merged_commit": "ee9f31d63ddf5e1dc0ccead80e73c483e267490f",
+  "merged_tree": "de2e275e48e97ecb04c75be0f510f945e7c9c766",
+  "merged_parents": [
+    "127f82005f743e7f6f9d79760ed93a60161816f6"
+  ],
+  "candidate_branch": "integration/6a81fbcc-cf4f-47cb-bb17-b96ee84f105d",
+  "candidate_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-6a81fbcc-cf4f-47cb-bb17-b96ee84f105d",
+  "pushed": true,
+  "reviewed_source_ref": "refs/worktree-reviews/e8d4f1d2b5a1ea6d16248ba79426e80558a9f357",
+  "already_published": false,
+  "remote_observed_commit": "ee9f31d63ddf5e1dc0ccead80e73c483e267490f",
+  "integration_reachable": true,
+  "validation_results": [
+    {
+      "argv": [
+        "wt",
+        "-C",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-6a81fbcc-cf4f-47cb-bb17-b96ee84f105d",
+        "hook",
+        "pre-merge",
+        "--var",
+        "target=master",
+        "--var",
+        "target_worktree_path=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-6a81fbcc-cf4f-47cb-bb17-b96ee84f105d",
+      "exit_code": 0,
+      "output": "",
+      "source_commit": "ee9f31d63ddf5e1dc0ccead80e73c483e267490f",
+      "source_tree": "de2e275e48e97ecb04c75be0f510f945e7c9c766"
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/tmp/muxer-finish-c4KMpd/check.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-6a81fbcc-cf4f-47cb-bb17-b96ee84f105d",
+      "exit_code": 0,
+      "output": "bun install v1.4.4 (38afee6c8)\n\n+ @crustjs/core@0.0.19\n+ @crustjs/plugins@0.1.2\n+ ajv@8.20.0\n\n10 packages installed [400.00ms]\nbun test v1.4.4 (38afee6c8)\nCandidate manifest and actual current evidence retrieval passed.\n",
+      "source_commit": "ee9f31d63ddf5e1dc0ccead80e73c483e267490f",
+      "source_tree": "de2e275e48e97ecb04c75be0f510f945e7c9c766"
+    }
+  ]
+}

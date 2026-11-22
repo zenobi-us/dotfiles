@@ -1,0 +1,11 @@
+[
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "/tmp/muxer-finish-c4KMpd/check.ts"
+    ]
+  }
+]

@@ -1,0 +1,1 @@
+feat(skill-contract-manifests-06-muxer-handoffs): adopt contracts
