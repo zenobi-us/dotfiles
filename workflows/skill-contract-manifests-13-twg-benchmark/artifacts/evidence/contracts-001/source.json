@@ -1,0 +1,41 @@
+{
+  "source_commit": "33b388888ecb2dbbe46cde0d76f604946c925734",
+  "source_tree": "6bf7cadb7209cb53e0a85d62d7107ae201c38c2f",
+  "final_commands": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "node",
+        "--test",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-13-twg-benchmark/mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite/scripts/benchmark-lite/contracts.test.mjs"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-13-twg-benchmark",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-13-twg-benchmark/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-13-twg-benchmark/mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-13-twg-benchmark",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-13-twg-benchmark/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-13-twg-benchmark/mise/conf.d/devtools-agent/bundles/developer/skills/atlassian/twg-bench-lite",
+        "--contract",
+        "twg-benchmark-result/v1"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-13-twg-benchmark",
+      "exit_code": 0
+    }
+  ],
+  "scope_limit": "No paid live agent research or external mutation was run. Direct smoke used deterministic stored arm fixtures. No browser visual audit was performed."
+}
