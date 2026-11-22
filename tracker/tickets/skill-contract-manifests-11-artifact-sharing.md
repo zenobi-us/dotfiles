@@ -31,3 +31,8 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 
 ## Comments
 
+
+
+### Review 2026-11-22T08:25:01.795Z
+
+Verdict: FAILURE. Reviewed commit: 8d83701befd83473f2a3fb38162cbef0c5082e38. Reviewed tree: 6da0a4fe4f9809120bab3bc7c11cddd78e87ac22. [Review artifact](../../workflows/skill-contract-manifests-11-artifact-sharing/artifacts/reviews/review-review-result-0006.md).
