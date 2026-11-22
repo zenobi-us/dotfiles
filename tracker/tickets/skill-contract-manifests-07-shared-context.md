@@ -32,3 +32,5 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 
 
 - 2026-11-22T04:10:19.730Z — FAILURE. Reviewed commit `2d5779034ef9f36b24356632a327070ae61daea0`, tree `dc28c302db0cd500e2ca3f11ba9771ec884b328d`. [Independent review](../../workflows/skill-contract-manifests-07-shared-context/artifacts/reviews/review-review-0005.md).
+
+- 2026-11-22T05:18:47.214Z — FAILURE. Reviewed commit `3a70f87bac3f44cd6ceb41cebd0887c11ebdbb59`, tree `42436c397dfe6d48d33d8c592d25283cdf94cd38`. [Independent review](../../workflows/skill-contract-manifests-07-shared-context/artifacts/reviews/review-review-0011.md).
