@@ -1,0 +1,5 @@
+feat: finish skill-contract-manifests-08-worktree
+
+Ticket: tracker/tickets/skill-contract-manifests-08-worktree.md
+Review: workflows/skill-contract-manifests-08-worktree/events/review-0046.yaml
+Reviewed source: 6daa5d3e79d37c104edeed3135182f933933fd28

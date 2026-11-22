@@ -43,3 +43,5 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 - 2026-11-22T09:03:07.885Z — FAILURE. Reviewed commit `2c8ef45d4987cead7ba120d64e3e5c896575ebc2`, tree `3f61dab6d0018150e4a214b20f9e63e698d1c4c2`. [Independent review attempt 5](../../workflows/skill-contract-manifests-08-worktree/artifacts/reviews/review-review-0033.md).
 
 - 2026-11-22T09:23:50.326Z — FAILURE. Reviewed commit `53bd338d03bed788b9a716372dffba7ad5b6719a`, tree `ac78aa317fb940477a765233356411e7ad2f3e1f`. [Independent review attempt 6](../../workflows/skill-contract-manifests-08-worktree/artifacts/reviews/review-review-0039.md).
+
+- 2026-11-22T10:06:09.913Z — SUCCESS. Reviewed commit `6daa5d3e79d37c104edeed3135182f933933fd28`, tree `f1997420352dcd30b27793ad842ad97e38e79214`. [Independent review attempt 7](../../workflows/skill-contract-manifests-08-worktree/artifacts/reviews/review-review-0046.md).
