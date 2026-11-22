@@ -475,3 +475,11 @@ The version hook added out-of-scope metadata during source commit 905748b5. Corr
 ## Review review-0011
 
 SUCCESS for `62f26327084f0dca065ee8ec065c0437cdc54c7d`, tree `d802a953960f01c104a02959652453b55cc37201`. Standards and Spec found no blockers. Prior finding EVIDENCE09-SPEC-001 is confirmed resolved. [Review result](../events/review-0011.yaml), [immutable artifact](../artifacts/reviews/review-review-0011.md), [parent completion](../events/review-complete-0012.yaml). Validation: 112 passed, 33 skipped; real capture and current/historical consumers passed; stored bytes stayed unchanged. Source was not modified. Prior review and fix entries above remain historical.
+
+## Finish
+
+[finish-0020](../events/finish-0020.yaml): FINISHED. Reviewed source `62f26327084f0dca065ee8ec065c0437cdc54c7d` maps to squash commit `0df154b1564fbc7d393ccc913192f73daf8e394c`, tree `1918805705f83879f8e12598739cfc7661771399`. Candidate-bound suite, both manifest validations, and independent public-command smoke passed. [Integration result](../artifacts/snapshots/integration-result-0016.json). [Verified named cleanup](../artifacts/snapshots/cleanup-result-0019.json). No remaining workflow action.
+
+The merge and push boundaries are preserved in [finish-merged-0016](../events/finish-merged-0016.yaml) and [finish-pushed-0017](../events/finish-pushed-0017.yaml). [finish-ticket-completed-0018](../events/finish-ticket-completed-0018.yaml) records canonical ticket publication. [finish-worktree-removed-0019](../events/finish-worktree-removed-0019.yaml) records verified branch and workspace removal. Historical records remain append-only.
+
+[finish-complete-0021](../events/finish-complete-0021.yaml) is the final parent completion. It validates finish-0020 and the preserved snapshot without changing prior events.

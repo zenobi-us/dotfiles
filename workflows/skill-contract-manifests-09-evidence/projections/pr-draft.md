@@ -17,7 +17,7 @@ Current compilation metadata accepted mixed schemaVersion and schema fields.
 
 The current guard now rejects schema presence and retains schemaVersion, kind and planHash checks. The public regression covers dry-run and actual run before driver startup or writes. Guidance documents rejection and historical immutability.
 
-Current source: 62f26327084f0dca065ee8ec065c0437cdc54c7d; tree d802a953960f01c104a02959652453b55cc37201. Branch: feature/skill-contract-manifests-09-evidence; base: master. State: REVIEW_PASSED.
+Current source: 62f26327084f0dca065ee8ec065c0437cdc54c7d; tree d802a953960f01c104a02959652453b55cc37201. Branch: feature/skill-contract-manifests-09-evidence; base: master. State: FINISHED.
 
 ## Changed files
 
@@ -58,7 +58,7 @@ SUCCESS for `62f26327084f0dca065ee8ec065c0437cdc54c7d`, recorded in [review-0011
 
 ## Merge status
 
-Not merged. Ticket remains claimed. Parent owns review, phase completion and integration.
+Squash-integrated as `0df154b1564fbc7d393ccc913192f73daf8e394c` and published to `origin/master`. Ticket completed and published in `0282186b3c0e98e43f3eb9322db22ceee339f268`. The source and integration candidate branches and workspaces were removed through guarded Worktrunk cleanup.
 
 
 ## Fix parent validation
@@ -68,3 +68,9 @@ Not merged. Ticket remains claimed. Parent owns review, phase completion and int
 ## Review attempt 2
 
 [review-0011](../events/review-0011.yaml): SUCCESS. [Immutable review](../artifacts/reviews/review-review-0011.md). [Parent completion](../events/review-complete-0012.yaml). Standards: no blocking findings. Spec: no blocking findings. The suite passed with 112 tests and 33 skips. Independent real capture, current/historical readers, preservation checks and mixed-identity rejection passed. This verdict approves the frozen source only; integration requires candidate-bound checks.
+
+## Finish
+
+[finish-0020](../events/finish-0020.yaml): FINISHED. Reviewed source `62f26327084f0dca065ee8ec065c0437cdc54c7d` maps to squash commit `0df154b1564fbc7d393ccc913192f73daf8e394c`, tree `1918805705f83879f8e12598739cfc7661771399`. Candidate-bound suite, both manifest validations, and independent public-command smoke passed. [Integration result](../artifacts/snapshots/integration-result-0016.json). [Verified named cleanup](../artifacts/snapshots/cleanup-result-0019.json). No remaining workflow action.
+
+[finish-complete-0021](../events/finish-complete-0021.yaml) records parent validation of the terminal outcome, exact source mapping, artifacts, published ticket and owned-session shutdown.
