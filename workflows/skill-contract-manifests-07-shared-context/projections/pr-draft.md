@@ -4,7 +4,7 @@
 
 Ticket: skill-contract-manifests-07-shared-context. Initiative: skill-contract-manifests.
 Source: `fc4bf19ed4d42aae5fb246e40904f4be956d3298`. Tree: `7f3a38fb53fa37605d2128815c2c3d9f8041b122`.
-State: FIXED; awaiting fresh independent review.
+State: REVIEW_FAILED; fix the current blocking finding before another review.
 
 ## Problem
 
@@ -55,11 +55,11 @@ Review-0011: STD-001, SPEC-01, SPEC-02. Review-0005 resolutions remain recorded 
 
 ## Remaining findings
 
-No unresolved selected findings. Fresh independent review and later combined consumer integration checks remain required.
+Review-0018 has one blocking finding, SPEC-0018-01. STD-0018-01 is a non-blocking heuristic. Prior resolved findings remain recorded under their original reviews.
 
 ## Latest reviewer verdict
 
-FAILURE from review-0011 for the previous source. No verdict exists for fc4bf19ed4d42aae5fb246e40904f4be956d3298.
+FAILURE from review-0018 for fc4bf19ed4d42aae5fb246e40904f4be956d3298. See the immutable review artifact for findings and evidence.
 
 ## Merge status
 
@@ -67,7 +67,7 @@ Not merged, rebased, or pushed. Ticket remains claimed and unchanged. Source com
 
 ## Open questions
 
-None. Parent validated and acknowledged the result, closed the fixer terminal, and confirmed all registered process shutdown. Fresh independent review remains required.
+None. Parent validated and acknowledged the result, closed the fixer terminal, and confirmed all registered process shutdown. The current blocking finding requires a fix.
 
 ## Supporting records
 
@@ -95,3 +95,9 @@ None. Parent validated and acknowledged the result, closed the fixer terminal, a
 ## Parent completion
 
 [fix-complete-0016](../events/fix-complete-0016.yaml) records verified delivery, exact clean source, passing parent resolver smoke, and confirmed child resource shutdown. No merge or push occurred.
+
+## Review-0018 outcome
+
+The independent review returned FAILURE for the unchanged source. Standards: one non-blocking P3 heuristic. Spec: one blocking P2 finding. The affected suite passed 153 tests and 701 assertions. Owning CLI scenarios exposed the blocking index producer/read mismatch. No typecheck or combined current-base integration approval is claimed.
+
+[Immutable review](../artifacts/reviews/review-review-0018.md), [review result](../events/review-0018.yaml), and [parent completion](../events/review-complete-0019.yaml) contain the evidence. The parent checked delivery, appended the ticket verdict, closed the reviewer, and confirmed process shutdown. Source remains clean and unmodified. Nothing was merged or pushed.

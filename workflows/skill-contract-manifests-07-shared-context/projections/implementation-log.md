@@ -136,3 +136,9 @@ Resolved review-0011: STD-001, SPEC-01, SPEC-02. Unresolved: none. Open question
 ## fix-complete-0016
 
 [Parent completion](../events/fix-complete-0016.yaml) validates fix-0015 against its authoritative event and exact clean source. Delivery acknowledged; fixer terminal removed; all registered processes confirmed stopped. Parent resolver smoke passed. All three selected findings resolved; fresh independent review required. No merge, push, or ticket completion occurred.
+
+## review-0018 / review-complete-0019
+
+The independent review returned FAILURE for the unchanged fix-0015 source. One blocking Spec P2 finding remains: SPEC-0018-01. Standards reported one non-blocking P3 heuristic. The affected suite passed 153 tests and 701 assertions. The actual owning index command exposed a producer/read contract failure. No implementation files changed during review.
+
+[Review artifact](../artifacts/reviews/review-review-0018.md), [review result](../events/review-0018.yaml), and [parent completion](../events/review-complete-0019.yaml) retain the evidence. Parent delivery acknowledgement, canonical ticket comment, resolver smoke, and all registered process shutdown are complete. Fix the blocking finding before another independent review. No merge or push occurred.
