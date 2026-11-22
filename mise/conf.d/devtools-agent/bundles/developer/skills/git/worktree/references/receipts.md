@@ -1,8 +1,8 @@
 # Worktree receipts
 
-Use receipts as the durable record for every worktree phase.
+Use receipts as the durable record for every worktree phase. Read [Contract boundaries](contracts.md) for owner definitions, current output, retained handoffs and authorized view upgrades.
 
-New phase executions use `worktree-receipt/v2`. Retained `worktree-receipt/v1` events and explicitly authorized v1 envelope repairs keep their original semantics. Preserve original bytes. Mixed parent chains are valid. Read [Concurrent work streams](concurrency.md) before start, review, goal dispatch or finish. It owns cross-initiative coordination and the distinction between source review and integration validation.
+New phase executions use `worktree-receipt/v3`. Retained `worktree-receipt/v1` and `worktree-receipt/v2` events and explicitly authorized v1 envelope repairs keep their original semantics. Preserve original bytes. Mixed parent chains are valid. Read [Concurrent work streams](concurrency.md) before start, review, goal dispatch or finish. It owns cross-initiative coordination and the distinction between source review and integration validation.
 
 Use the absolute installed `scripts/write-result.ts` with `--parent-event --repository <absolute-repository> --phase-context <phase-context.json> --input <outcome.json>` for parent records. Omit `--parent-event` for child results and use the assigned v2 delivery context. Parent writes do not consume child result slots. The writer validates store/source identity and refuses duplicate events. It resolves the configured store root to its physical path for publication, so system aliases such as `/home` work without changing receipt root fields or stable references. Workflow descendants still use no-follow traversal; symlinked event directories and event files remain rejected. Before publishing v2 events, it also checks the parent identity and timestamp. A child result must name its matching phase-start receipt for the same ticket. A successful phase completion must name its matching child result and preserve that result’s source commit, tree, branch and status. Failed launches can close an attempt without a child result.
 
@@ -55,7 +55,7 @@ write workflow state to `.scratch/`, `<ticket>/local/`, the ticket collection, o
 - Record the exact source commit and tree that the agent inspected or changed.
 - Link each receipt to its parent receipt.
 - Treat chat, pane output, and `/tmp` handoffs as transport only. They are not workflow state.
-- Treat `manifest.yaml` and `projections/` as generated views.
+- Treat `manifest.yaml` and `projections/` as generated views. Before an authorized manifest or latest-status update, use the installed `scripts/write-view.ts` command from [Contract boundaries](contracts.md). It upgrades only mutable owned views and preserves rejected inputs.
 - Name each review artifact `artifacts/reviews/review-<receipt-id>.md`. A relative artifact `ref` that is not found from the repository root resolves inside the receipt's `workflow.ref` folder.
 - Put `verdict` only on the review phase-result receipt. The inspector reads the verdict and artifact from the result that a review phase-complete receipt names as its parent.
 
@@ -138,7 +138,7 @@ For active workflows, `repository` MAY name another existing checkout of the sam
 Every ticket-phase receipt MUST include:
 
 ```yaml
-schema: worktree-receipt/v2
+schemaVersion: worktree-receipt/v3
 receipt_id: review-0003
 workflow_id: GH-42
 phase: review
@@ -149,8 +149,8 @@ repository: /absolute/path/to/repository
 worktree: /absolute/path/to/worktree
 source_branch: feature/ABC-123-example
 base_branch: main
-source_commit: 0123456789abcdef
-source_tree: 0123456789abcdef
+source_commit: 0123456789abcdef0123456789abcdef01234567
+source_tree: 89abcdef0123456789abcdef0123456789abcdef01
 created_at: 2026-09-29T12:00:00Z
 
 muxer: herdr-app
@@ -218,8 +218,8 @@ The parent prepares the context from resolved phase authorization, not from exec
 
 ```json
 {
-  "schema": "worktree-phase-context/v1",
-  "receipt_schema": "worktree-receipt/v2",
+  "schemaVersion": "worktree-phase-context/v2",
+  "receipt_schema": "worktree-receipt/v3",
   "receipt_id": "implementation-0002",
   "workflow_id": "TASK-1",
   "event": "phase-result",
@@ -240,9 +240,9 @@ Finish may execute from the parent checkout or another directory. After verified
 
 ## Child result delivery
 
-Use the agent-core result-delivery skill for transport, not workflow authority. Before launch, select worktree-receipt/v2 as the result schema and retain the muxer delivery context and target. Retained v1 handoffs must still receive v1 results; do not change a live handoff's schema.
+Use the agent-core result-delivery skill for transport, not workflow authority. Before launch, select worktree-receipt/v3 as the result schema and retain the muxer delivery context and target. Retained v1 handoffs must still receive v1 results; do not change a live handoff's schema.
 
-Launch the child through the muxer spawn router with --result-schema worktree-receipt/v2. The router opens the fresh pane, sets RESULT_DELIVERY_CONTEXT and binds the run identity. Include the phase-start reference and result requirements. Do not launch the child twice.
+Launch the child through the muxer spawn router with --result-schema worktree-receipt/v3. The router opens the fresh pane, sets RESULT_DELIVERY_CONTEXT and binds the run identity. Include the phase-start reference and result requirements. Do not launch the child twice.
 
 The child prepares outcome and evidence as one JSON object, plus the validated phase context below. Resolve WORKTREE_SKILL_ROOT to this installed skill directory. From the source repository, invoke its absolute scripts/write-result.ts entrypoint with --repository, --phase-context and --input pointing to the context and outcome JSON files. Its mise shebang selects Bun. The command resolves the workflow through shared-context, checks the envelope and current source identities, writes an immutable YAML event and delivers the same object to the parent. It does not approve the phase, claim a ticket, merge, commit or push. Existing phase preconditions still apply.
 
@@ -343,7 +343,7 @@ Older receipts remain readable. Missing recovery fields are not permission to fa
 
 This journal is not a ticket-phase receipt. For an initiative, resolve its workflow with `resolve workflow --id goal-<initiative-id> --json`. For an explicit ticket collection, sort and deduplicate canonical ticket references, serialize them as a compact JSON array, and compute the SHA-256 of its UTF-8 bytes. Use `resolve workflow --id goal-tickets-<sha256> --json`. Reordered selectors must resolve to the same journal. Verify that the returned location does not hold another workflow. Preparation reads existing journal events only. Create the journal after the user authorizes execution.
 
-Store append-only YAML events under that workflow's `events/`, with schema `worktree-goal/v1`. Use the receipt protocol's exclusive, no-clobber writes and parent links. Keep projections replaceable. Every event records its unique ID, parent event, timestamp, repository identity, canonical initiative reference (null for an explicit collection), frozen ticket references, workflow store/ref, coordinator session/muxer identity, and event kind.
+Store append-only YAML events under that workflow's `events/`, with `schemaVersion: worktree-goal/v2`. Use the receipt protocol's exclusive, no-clobber writes and parent links. Keep projections replaceable. Every event records its unique ID, parent event, timestamp, repository identity, canonical initiative reference (null for an explicit collection), frozen ticket references, workflow store/ref, coordinator session/muxer identity, and event kind.
 
 The first `goal_started` event records the run ID, initial ticket receipt baseline, takeover approvals, per-ticket fix limit, dispatch limit, configured token budget, and associated OMP session/goal ID. The run ID survives coordinator restarts. A new invocation for the same unfinished initiative or exact ticket collection resumes that run; it does not create fresh allowances. A changed collection requires explicit scope approval and reconciliation of existing runs, claims, and consumed allowances before dispatch; a different hash is not permission to reset limits or duplicate work.
 
@@ -364,7 +364,7 @@ Append a checkpoint at pause, blocked, capped, and completion boundaries. Record
 `manifest.yaml` MUST contain:
 
 ```yaml
-schema: worktree-workflow/v2
+schemaVersion: worktree-workflow/v3
 workflow_id: ABC-123
 ticket_ref: https://github.com/owner/repository/issues/42
 initiative: example-initiative
@@ -401,7 +401,7 @@ Use `null` for `initiative` when no initiative applies.
 `projections/latest-status.yaml` MUST contain:
 
 ```yaml
-schema: worktree-latest-status/v1
+schemaVersion: worktree-latest-status/v2
 workflow_id: ...
 ticket: ...
 state: ...

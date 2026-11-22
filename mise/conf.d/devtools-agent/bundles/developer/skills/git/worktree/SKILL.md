@@ -6,7 +6,9 @@ user-invocable: true
 
 Route `UserRequest` to the correct worktree workflow. This skill dispatches only. It does not resolve tickets, run validation, or launch agents itself. All of that lives in the playbook it points to.
 
-Use the agent-core `result-delivery` skill for operation output. Keep new `worktree-receipt/v2` phase records, retained v1 history and muxer process signals separate. Human sessions receive outcome, canonical references, checks, publication and blockers. Delegated phases use the caller's typed handoff; pane text is not workflow state.
+Use the agent-core `result-delivery` skill for operation output. Keep new `worktree-receipt/v3` phase records, retained v1/v2 history and muxer process signals separate. Human sessions receive outcome, canonical references, checks, publication and blockers. Delegated phases use the caller's typed handoff; pane text is not workflow state.
+
+Use [Contract boundaries](references/contracts.md) before producing or interpreting structured worktree artifacts. New executions use v3 receipts and v2 phase contexts. Retained v1/v2 events and assigned handoffs keep their original wire identities.
 
 # Global workflow rules
 
@@ -78,7 +80,7 @@ Load the `muxer-subagents` skill before any playbook that opens a pane or launch
 
 Run the `muxer-subagents` skill’s `scripts/router.ts` script with the `contracts` argument.
 
-Take `muxer`, `agent`, contracts, session context and transport capabilities from the output. Before a new formal child launch, pass `--result-schema worktree-receipt/v2`. Retain the delivery context and assigned target. Validate the delivered receipt against its authoritative event before acknowledgement. Retained live v1 handoffs keep v1. A transport envelope does not authorize a phase or prove completion. If `needsOperatorInput` is true, ask the user.
+Take `muxer`, `agent`, contracts, session context and transport capabilities from the output. Before a new formal child launch, pass `--result-schema worktree-receipt/v3`. Retain the delivery context and assigned target. Validate the delivered receipt against its authoritative event before acknowledgement. Retained live v1 handoffs keep v1. A transport envelope does not authorize a phase or prove completion. If `needsOperatorInput` is true, ask the user.
 
 `submit`, `tasks`, and goal preparation do not launch an agent. Skip launch setup for them. Goal preparation may resolve/read contracts for read-only liveness inspection. Authorized goal execution applies launch setup through each mutating phase playbook.
 

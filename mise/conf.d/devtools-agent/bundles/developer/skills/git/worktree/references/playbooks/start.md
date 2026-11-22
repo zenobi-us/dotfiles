@@ -87,7 +87,7 @@ Record the assessed scope as optional `scope_paths` in the new phase-start recei
      `projections/implementation-log.md`, and
      `projections/latest-status.yaml`.
    - Preserve failed or blocked outcomes in the result. Do not paste the full receipt or a completion marker into final chat.
-6. Use the `muxer-subagents` spawn router with the worktree, handoff file, explicit muxer and agent, and `--result-schema worktree-receipt/v2`. Retain its delivery context and assigned target. The router opens and launches the fresh session; do not launch it again.
+6. Use the `muxer-subagents` spawn router with the worktree, handoff file, explicit muxer and agent, and `--result-schema worktree-receipt/v3`. Retain its delivery context and assigned target. The router opens and launches the fresh session; do not launch it again.
 7. Do not open another implementation session for this worktree while one is active.
 8. Wait for completion using the muxer contract. Read the assigned result through result-delivery, then validate the authoritative result and artifacts independently. Acknowledge the transport after domain checks. Do not scrape final pane text for JSON or a completion marker.
 9. If the result is blocked, validation fails, or no usable result exists, append an accurate failed/blocked phase-complete receipt and keep the worktree and partial source. A later start recovers this attempt through a fresh session after the recovery gates.

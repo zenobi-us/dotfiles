@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "worktree-pr-draft/v1",
+  "title": "worktree-pr-draft/v1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "workflow_id",
+    "receipt_id",
+    "source_commit",
+    "source_tree"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "worktree-pr-draft/v1"
+    },
+    "workflow_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "receipt_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_commit": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    },
+    "source_tree": {
+      "type": "string",
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+    }
+  },
+  "not": {
+    "required": [
+      "schema"
+    ]
+  },
+  "additionalProperties": true,
+  "x-compatibility": "Markdown frontmatter contract. Body records implementation summary, changed files, validation results, open questions, and consumed/produced canonical references. Immutable snapshots use exclusive writes. Current prose projections are replaceable copies; historical unversioned prose is read as prose, never relabeled or treated as structured current input."
+}

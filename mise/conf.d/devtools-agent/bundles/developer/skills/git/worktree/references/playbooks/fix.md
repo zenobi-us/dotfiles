@@ -39,7 +39,7 @@ Follow the shared decision and execution gates in `references/receipts.md` befor
 5. Write a temporary fix handoff containing the source worktree, source and
    base branches, current source commit, workflow store and reference, selected
    engineering skill, review receipt, blocking findings, and expected validation.
-6. Use the muxer spawn router in the existing worktree workspace with the fix handoff and `--result-schema worktree-receipt/v2`. It opens a fresh session. Retain its delivery context and assigned result target. Do not send text to the prior session.
+6. Use the muxer spawn router in the existing worktree workspace with the fix handoff and `--result-schema worktree-receipt/v3`. It opens a fresh session. Retain its delivery context and assigned result target. Do not send text to the prior session.
 7. Require the fixer to write its phase-result through `scripts/write-result.ts`, following `references/receipts.md`. This writes the authoritative YAML event and delivers the same object without a second reporting call. Do not launch it a second time.
 8. Wait through the muxer contract. Read the assigned result through result-delivery, then validate the authoritative receipt, source and artifacts. Acknowledge only after domain checks. No completion marker is required.
 9. If the fixer is blocked, fails validation, or has no usable durable result, append an accurate failed/blocked fix phase-complete receipt and preserve the worktree and partial source. A process signal or transport reference is not proof. Do not start review until a valid clean implementation/fix target is established.

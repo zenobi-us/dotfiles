@@ -10,7 +10,7 @@ import { loadExplorerSnapshot, loadTicketWorkflow } from "./workflow";
 import { formatInspection, inspectionBlockers } from "./inspection-blockers";
 import type { InspectionBlocker } from "./inspection-blockers";
 
-export async function inspectTicket(ref: string, exec: Exec, cwd = process.cwd()): Promise<{ ticket: TicketRecord; workflow: TicketWorkflow; decision: RecoveryDecision; blockers: InspectionBlocker[] }> {
+export async function inspectTicket(ref: string, exec: Exec, cwd = process.cwd()): Promise<{ schemaVersion: "worktree-inspection/v1"; ticket: TicketRecord; workflow: TicketWorkflow; decision: RecoveryDecision; blockers: InspectionBlocker[] }> {
   const context = await resolveSharedContext(exec, cwd);
   if (!context) throw new Error("Inspection requires a repository with a canonical origin and configured ticket adapter.");
   if (context.error) throw new Error(context.error);
@@ -19,7 +19,7 @@ export async function inspectTicket(ref: string, exec: Exec, cwd = process.cwd()
   if (!ticket) throw new Error("No ticket matches the canonical reference. Use the resolved ticket adapter's exact reference.");
   const workflow = await loadTicketWorkflow(context, ticket, exec);
   const decision = recoveryDecision(ticket, snapshot, workflow);
-  return { ticket, workflow, decision, blockers: inspectionBlockers(workflow, decision) };
+  return { schemaVersion: "worktree-inspection/v1", ticket, workflow, decision, blockers: inspectionBlockers(workflow, decision) };
 }
 
 export async function runInspectCommand(ref: string, json: boolean): Promise<void> {
@@ -36,7 +36,7 @@ export async function runInspectCommand(ref: string, json: boolean): Promise<voi
     console.log(json ? JSON.stringify(result, null, 2) : formatInspection(result));
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    if (json) console.log(JSON.stringify({ error: message }));
+    if (json) console.log(JSON.stringify({ schemaVersion: "worktree-inspection-error/v1", error: message }));
     else console.error(message);
     process.exitCode = 1;
   }

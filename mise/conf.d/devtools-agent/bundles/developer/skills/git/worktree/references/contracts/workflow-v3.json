@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "worktree-workflow/v3",
+  "title": "worktree-workflow/v3",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "workflow_id",
+    "ticket_ref",
+    "event_root",
+    "artifact_root",
+    "projection_root",
+    "latest_receipt",
+    "state"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "worktree-workflow/v3"
+    },
+    "workflow_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ticket_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_root": {
+      "const": "events"
+    },
+    "artifact_root": {
+      "const": "artifacts"
+    },
+    "projection_root": {
+      "const": "projections"
+    },
+    "latest_receipt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "not": {
+    "required": [
+      "schema"
+    ]
+  },
+  "additionalProperties": true,
+  "x-compatibility": "Mutable generated manifest, not authority. view-contracts.ts validates and preserves all unknown data and YAML comments. Only declared status updates may mutate it."
+}

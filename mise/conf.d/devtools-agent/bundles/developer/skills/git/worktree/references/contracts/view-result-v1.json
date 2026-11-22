@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "worktree-view-result/v1",
+  "title": "worktree-view-result/v1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "status",
+    "artifact",
+    "changed",
+    "from",
+    "to"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "worktree-view-result/v1"
+    },
+    "status": {
+      "enum": [
+        "completed",
+        "failed"
+      ]
+    },
+    "artifact": {
+      "type": "string",
+      "minLength": 1
+    },
+    "changed": {
+      "type": "boolean"
+    },
+    "from": {
+      "type": "string",
+      "minLength": 1
+    },
+    "to": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "not": {
+    "required": [
+      "schema"
+    ]
+  },
+  "additionalProperties": true,
+  "x-compatibility": "One mutable artifact update outcome, not workflow progress."
+}

@@ -1,0 +1,10 @@
+# Mutable view upgrade
+
+This procedure applies only to generated `manifest.yaml` and `projections/latest-status.yaml` in the resolved workflow. It is not authority to mutate a workflow.
+
+1. Validate the exact source contract and path with `scripts/view-contracts.ts`.
+2. For `worktree-workflow/v2` to `worktree-workflow/v3`, rename the scalar key `schema` to `schemaVersion` and change its value. For `worktree-latest-status/v1` to `worktree-latest-status/v2`, apply the same field change.
+3. Preserve every other YAML node, unknown property, comment and authored value. Compare canonical YAML after normalizing only the contract key/value. Reject aliases, explicit tags and numeric values that cannot be represented safely.
+4. Validate the destination and the requested generated-field update before replacing bytes through the shared safe-upgrade operation. All writers must honor its sibling lock.
+
+No unversioned detector is declared. Unknown or conflicting identifiers fail. Events, receipts, reviews, snapshots and hash-linked history are immutable and have no upgrade path. Read them through their explicit historical readers. Rejected requests leave source bytes unchanged.

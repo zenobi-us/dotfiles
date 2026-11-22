@@ -12,12 +12,13 @@ import { receiptParentIssues } from "./receipt-diagnostics";
 import { verifyIntegration } from "./integration";
 import { validateReceipt as validateEnvelope, validateSourceWorktree } from "./receipt-validation";
 import { generateReceipt } from "./phase-context";
+import { receiptIdentity, strictReceipt } from "./contract-identity";
 
 const sharedContextCli = fileURLToPath(new URL("../../../../../agent-core/skills/shared-context/scripts/shared-context/cli.ts", import.meta.url));
 const app = new Crust("write-worktree-result").meta({ description: "Write one immutable worktree phase-result receipt and deliver the same object to its caller." }).flags({
   repository: { type: "string", description: "Absolute repository path used by shared-context.", required: true },
   input: { type: "string", description: "JSON receipt file. Read stdin when omitted." },
-  "phase-context": { type: "string", description: "Validated worktree-phase-context/v1 JSON; input then contains only outcome and evidence." },
+  "phase-context": { type: "string", description: "Validated worktree-phase-context/v2 JSON (retained v1 handoffs supported); input contains only outcome and evidence." },
   "repair-authorization": { type: "string", description: "Retained operator-approval event ID authorizing the SHA-256 of an exact v1 input file." },
   "delivery-context": { type: "string", description: "Absolute result-delivery context file; otherwise use RESULT_DELIVERY_CONTEXT." },
   format: { type: "string", description: "human or json for an unbound caller. Required artifact handoffs take precedence." },
@@ -30,7 +31,7 @@ const app = new Crust("write-worktree-result").meta({ description: "Write one im
     if (!isAbsolute(flags.repository)) throw new Error("--repository must be absolute");
     if (flags.format !== undefined && flags.format !== "human" && flags.format !== "json") throw new Error("--format must be human or json");
     let context = flags["parent-event"] ? undefined : await loadDeliveryContext(flags["delivery-context"]);
-    if (context?.mode === "artifact-reference" && !["worktree-receipt/v1", "worktree-receipt/v2"].includes(context.target?.schema ?? "")) throw new Error("The handoff must expect a supported worktree-receipt schema");
+    if (context?.mode === "artifact-reference" && !["worktree-receipt/v1", "worktree-receipt/v2", "worktree-receipt/v3"].includes(context.target?.schema ?? "")) throw new Error("The handoff must expect a supported worktree-receipt schema");
     if (context && context.mode !== "artifact-reference" && flags.format) context = { ...context, mode: flags.format, audience: flags.format === "human" ? "human" : "machine" };
     const text = flags.input ? await Bun.file(flags.input).text() : await Bun.stdin.text();
     const input = object(JSON.parse(text));
@@ -55,7 +56,7 @@ const app = new Crust("write-worktree-result").meta({ description: "Write one im
     }, context?.mode === "artifact-reference" ? { runId: context.runId, operationId: context.operationId } : undefined) : input;
     receipt.created_at ??= new Date().toISOString();
     validateReceipt(receipt, Boolean(flags["parent-event"]));
-    if (context?.mode === "artifact-reference" && context.target?.schema !== receipt.schema) throw new Error("Receipt schema must match the assigned result handoff");
+    if (context?.mode === "artifact-reference" && context.target?.schema !== receiptIdentity(receipt)) throw new Error("Receipt schema must match the assigned result handoff");
     if (!phaseContext) await validateSourceWorktree(receipt, async (command, args) => {
       const result = Bun.spawnSync([command, ...args], { stdout: "pipe", stderr: "pipe" });
       return { code: result.exitCode, stdout: new TextDecoder().decode(result.stdout) };
@@ -64,7 +65,7 @@ const app = new Crust("write-worktree-result").meta({ description: "Write one im
     if (!isAbsolute(String(target.path)) || target.store !== workflow.store || target.root !== workflow.root || target.ref !== workflow.ref) throw new Error("The receipt workflow does not match the resolved store, root and reference");
     const repositories = await Promise.all([flags.repository, String(receipt.repository), ...(!flags["parent-event"] ? [String(receipt.worktree)] : [])].map(gitCommonDirectory));
     if (repositories.some((directory) => directory !== repositories[0])) throw new Error("The caller, receipt and worktree must belong to the same Git repository");
-    if (receipt.schema === "worktree-receipt/v2" && target.store === "repository") {
+    if (strictReceipt(receipt) && target.store === "repository") {
       const sourceRoot = phaseContext ? String(receipt.worktree) : await realpath(String(receipt.worktree)).catch(error => {
         if ((error as NodeJS.ErrnoException).code === "ENOENT" && flags["parent-event"]) return undefined;
         throw error;
@@ -108,7 +109,7 @@ const app = new Crust("write-worktree-result").meta({ description: "Write one im
         }
       }
     } else if (flags["repair-authorization"]) throw new Error("Repair authorization applies only to retained full v1 envelopes");
-    if (receipt.schema === "worktree-receipt/v2" && receipt.phase === "finish" && receipt.merged_commit != null && receipt.status !== "FINISH_FAILED") {
+    if (strictReceipt(receipt) && receipt.phase === "finish" && receipt.merged_commit != null && receipt.status !== "FINISH_FAILED") {
       await verifyIntegration(flags.repository, { schema: "worktree-integration/v2", integration_method: receipt.integration_method as "merge" | "squash", reviewed_source_commit: String(receipt.reviewed_source_commit), reviewed_source_tree: String(receipt.reviewed_source_tree), base_branch: String(receipt.base_branch), base_before: String(receipt.base_before), expected_merge_tree: String(receipt.expected_merge_tree) }, String(receipt.merged_commit), async (command, args) => {
         const result = Bun.spawnSync([command, ...args], { stdout: "pipe", stderr: "pipe" });
         return { code: result.exitCode, stdout: new TextDecoder().decode(result.exitCode ? result.stderr : result.stdout) };
@@ -116,7 +117,7 @@ const app = new Crust("write-worktree-result").meta({ description: "Write one im
     }
     const destination = join(String(target.path), "events", String(receipt.receipt_id) + ".yaml");
     if (context?.target?.path === destination) throw new Error("The transport target must not replace the authoritative receipt");
-    if (receipt.schema === "worktree-receipt/v2") {
+    if (strictReceipt(receipt)) {
       if (parent) validateReceiptContract(parent);
       const issues = receiptParentIssues(receipt, parent).filter(issue => issue.severity === "error");
       if (issues.length) throw new Error(issues.map(issue => `[${issue.code}] ${issue.message}`).join("\n"));

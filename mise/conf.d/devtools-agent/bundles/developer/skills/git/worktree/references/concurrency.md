@@ -55,7 +55,7 @@ If a reservation remains after interruption, inspect its owner record and proces
 
 ## Receipts and completion
 
-New records use `worktree-receipt/v2`; retained v1 records keep their original semantics and bytes. Mixed parent chains are allowed. The v2 finish mapping records integration method, base, reviewed source, expected tree, actual commit and parents, candidate workspace and passing checks bound to that commit/tree. Preserve source-review evidence separately from integration validation.
+New records use `worktree-receipt/v3`; retained v1/v2 records keep their original semantics and bytes. Mixed parent chains are allowed. The v2 finish mapping records integration method, base, reviewed source, expected tree, actual commit and parents, candidate workspace and passing checks bound to that commit/tree. Preserve source-review evidence separately from integration validation.
 
 Use `scripts/write-result.ts --parent-event --repository <absolute-repository> --phase-context <phase-context.json> --input <outcome.json>` for parent lifecycle, checkpoint and finish records. Child results omit `--parent-event` and use their assigned v2 handoff. The writer checks the envelope, store route and source identity, rejects duplicate files, and verifies completed integration mappings. Parent writes do not consume child delivery slots.
 

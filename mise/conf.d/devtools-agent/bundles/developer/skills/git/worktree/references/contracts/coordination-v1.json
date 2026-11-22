@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "worktree-coordination/v1",
+  "title": "worktree-coordination/v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "repository",
+    "inventoryComplete",
+    "checkouts",
+    "ambiguities",
+    "recordDiagnostics",
+    "proposed",
+    "reservationObservations",
+    "hardBlockers",
+    "streams",
+    "errors"
+  ],
+  "properties": {
+    "schema": {
+      "const": "worktree-coordination/v1"
+    },
+    "inventoryComplete": {
+      "type": "boolean"
+    },
+    "proposed": {
+      "type": "object"
+    },
+    "streams": {
+      "type": "array"
+    },
+    "errors": {
+      "type": "array"
+    }
+  },
+  "not": {
+    "required": [
+      "schemaVersion"
+    ]
+  },
+  "additionalProperties": true,
+  "x-compatibility": "Read-only hazard inventory, not launch authorization. Current producer uses v2; no persisted v1 report is upgraded."
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "worktree-inspection-error/v1",
+  "title": "worktree-inspection-error/v1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "error"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "worktree-inspection-error/v1"
+    },
+    "error": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "not": {
+    "required": [
+      "schema"
+    ]
+  },
+  "additionalProperties": true,
+  "x-compatibility": ""
+}

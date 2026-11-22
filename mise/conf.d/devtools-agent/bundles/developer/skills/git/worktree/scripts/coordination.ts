@@ -1,5 +1,7 @@
 #!/usr/bin/env -S mise x -- bun --install=fallback
 // Reports cross-initiative hazards without claiming work or granting launch permission.
+import { receiptIdentity } from "./contract-identity";
+import { validateGoalContract } from "./goal-contract";
 import { createHash } from "node:crypto";
 import { readdir, realpath } from "node:fs/promises";
 import { dirname, isAbsolute, join, relative } from "node:path";
@@ -47,7 +49,7 @@ interface Stream {
   errors: string[];
 }
 export interface CoordinationReport {
-  schema: "worktree-coordination/v1";
+  schemaVersion: "worktree-coordination/v2";
   repository: string;
   inventoryComplete: boolean;
   checkouts: string[];
@@ -242,7 +244,7 @@ export async function loadCoordination(context: SharedAgentContext, ref: string,
   streams.sort((left, right) => left.ticket.ref.localeCompare(right.ticket.ref));
   if (errors.length || streams.some(stream => !stream.cleanupOnly && stream.errors.length)) inventoryComplete = false;
   return {
-    schema: "worktree-coordination/v1", repository: context.repositoryRoot, inventoryComplete, checkouts: contexts.map(checkout => checkout.repositoryRoot), ambiguities, recordDiagnostics,
+    schemaVersion: "worktree-coordination/v2", repository: context.repositoryRoot, inventoryComplete, checkouts: contexts.map(checkout => checkout.repositoryRoot), ambiguities, recordDiagnostics,
     proposed: { ticket, initiatives: memberships(snapshot, ticket.id), scope: { state: proposedPaths.length ? "declared" : "unknown", plannedScope: proposedPaths.length ? "known" : "unknown", paths: proposedPaths, evidence: proposedPaths.length ? [{ ref: ticket.ref, paths: proposedPaths, kind: "declared" }] : [] }, reservations: proposedReservations, ownership: proposedOwnership, owners: proposedOwners, sourceObservations: proposedSourceObservations, receiptRefs: [...proposedReceiptRefs] },
     reservationObservations: reservations.map(reservation => ({ ref: reservation.ref, runId: reservation.runId, ticketRef: reservation.ticketRef, phase: reservation.phase, coordinator: reservation.coordinator, reconciledReceipt: reservation.reconciledReceipt, locations: reservation.locations, ambiguous: reservation.ambiguous, reconciliationVerified: reservation.reconciliationVerified, verificationError: reservation.verificationError })),
     hardBlockers, streams,
@@ -348,7 +350,8 @@ async function archivedWorkspaces(context: SharedAgentContext, ticket: TicketRec
     if (errors.size) return undefined;
     for (const document of documents.values()) {
       const fields = document.fields;
-      if (!["worktree-receipt/v1", "worktree-receipt/v2"].includes(String(fields.schema)) || fields.workflow_id !== id || fields.ticket_ref !== ticket.ref) return undefined;
+      receiptIdentity(fields);
+      if (fields.workflow_id !== id || fields.ticket_ref !== ticket.ref) return undefined;
       for (const workspace of workspaces) {
         if ((typeof fields.source_branch === "string" && workspace.branch === fields.source_branch)
           || (typeof fields.worktree === "string" && workspace.path === fields.worktree)
@@ -448,7 +451,8 @@ async function goalReservations(contexts: SharedAgentContext[], ticket: TicketRe
         const ref = `${collectionRef}/${relative(collection, file).split("\\").join("/")}`;
         if (readErrors.has(file)) { errors.push(`${ref} (${file}): ${message(readErrors.get(file))}`); continue; }
         const fields = documents.get(file)!.fields;
-        if (fields.schema !== "worktree-goal/v1") { errors.push(`${ref}: unsupported goal journal schema.`); continue; }
+        try { validateGoalContract(fields); }
+        catch (error) { errors.push(`${ref}: unsupported or invalid goal journal: ${message(error)}`); continue; }
         const workflow = fields.workflow;
         const expectedRef = `${collectionRef}/${relative(collection, dirname(dirname(file))).split("\\").join("/")}`;
         if (!workflow || typeof workflow !== "object" || Array.isArray(workflow) || (workflow as Fields).ref !== expectedRef || (workflow as Fields).store !== target.store
