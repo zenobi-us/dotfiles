@@ -63,13 +63,15 @@ The current limits are five concurrently active direct child agents per parent s
 Use the router when you need to launch a child agent directly:
 
 ```bash
-scripts/router.ts spawn --result-schema <domain-schema> [--prompt <text> | --prompt-file <path>] [--cwd <path>] [--muxer <muxer>] [--agent <agent>] [--result-target <absolute-file> --result-ref <approved-reference>] [--operation-id <id>]
+scripts/router.ts spawn --result-schema <domain-schema> [--prompt <text> | --prompt-file <path>] [--cwd <path>] [--muxer <muxer>] [--agent <agent>] [--result-target <absolute-file> --result-ref <approved-reference>] [--operation-id <id>] [--title <text>]
 ```
 
 - If you set neither prompt option, the router reads stdin.
 - If stdin is empty, pass `--prompt` or `--prompt-file`.
 - Do not pass both prompt options.
 - The child runs in `--cwd`, or in the current directory by default.
+- For ticket work in herdr-app, the caller MUST pass `--title` with the active ticket ID. For concurrent children on one ticket, append the role, such as `TICKET-123 · review`. The caller resolves the ticket; this skill does not infer it.
+- `--title` sets the herdr-app tab display name without changing run IDs or terminal addresses. Blank titles and explicit titles for other muxers are rejected before resource creation. Without a title, herdr-app uses `agent-<first-eight-run-id-characters>`.
 - The router sets `MUXER_SUBAGENT_DEPTH` to the parent depth plus one.
 - The router rejects invalid depth and depth at or above the configured maximum.
 - If muxer or agent detection is unknown, pass its explicit option.

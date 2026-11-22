@@ -30,6 +30,7 @@ export interface SpawnOptions {
   resultTarget?: string;
   resultRef?: string;
   operationId?: string;
+  title?: string;
 }
 
 export interface SpawnResult {
@@ -58,6 +59,10 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
   const agent: AgentModule = agents[options.agent];
   if (!muxer.supports(agent.id)) {
     throw new Error(`${muxer.id} does not support ${agent.id}.`);
+  }
+  if (options.title !== undefined) {
+    if (!options.title.trim()) throw new Error("A non-empty title is required.");
+    if (muxer.id !== "herdr-app") throw new Error(`${muxer.id} does not support custom titles.`);
   }
   const parentRunId = sessionMetadata().runId;
   const run = await createRun(options.muxer, options.agent, {
@@ -113,6 +118,7 @@ export async function spawnAgent(options: SpawnOptions): Promise<SpawnResult> {
       depth: options.depth,
       promptFile: handoffFile,
       environment,
+      title: options.title,
       agent: {
         id: agent.id,
         argv: agent.command({ muxer: muxer.id, promptFile: handoffFile }),

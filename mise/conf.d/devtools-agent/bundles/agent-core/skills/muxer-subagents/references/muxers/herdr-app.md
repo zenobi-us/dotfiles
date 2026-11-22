@@ -49,7 +49,7 @@ IDs are for commands. Names are for the user. The user cannot see terminal addre
 - Messages to the user MUST name the child by its space name and tab name, for example: space `dotfiles`, tab `agent-1a2b3c4d`.
 - Messages to the user MUST NOT use a bare ID or terminal address as the only reference. An ID MAY follow the names in parentheses.
 
-To resolve the names, find the terminal in `herdr-app ls`. On another machine, match the prefixed address, such as `wsl-docker/t34`. Report the `name` of the containing space and tab. If the terminal has a non-null `name`, report it as well. The router names each child tab `agent-` plus the first eight characters of the run ID, so the tab name is known at spawn time. Resolve the space name from `herdr-app ls`, because a reused space keeps its own name, which can differ from the folder name.
+To resolve the names, find the terminal in `herdr-app ls`. On another machine, match the prefixed address, such as `wsl-docker/t34`. Report the `name` of the containing space and tab. If the terminal has a non-null `name`, report it as well. The router uses `--title` as the child tab name when supplied; otherwise it uses `agent-` plus the first eight characters of the run ID. This applies to both an existing space and the first tab in a new space. The tab name is known at spawn time. Titles do not change space names or command identifiers. Resolve the space name from `herdr-app ls`, because a reused space keeps its own name, which can differ from the folder name.
 
 ## Machine scope
 
@@ -113,3 +113,5 @@ Checked 2026-11-12 from WSL with the Windows app. Before the fix, the spawn fail
 Checked 2026-11-17 against installed `herdr-app commands` and `herdr-app --skill`. Both `space.new` and `tab.new` support `focus: false`; `pane.split` does not expose that argument. The desktop launcher now supplies `focus: false` for both creation paths.
 
 All 48 existing tests passed across the four muxer test files. Real launcher smoke programs verified a fresh tab in another existing space, creation of a missing space, and another fresh tab in that new space. Each program printed its readiness marker. The shown space, tab, focused pane, and existing spaces' selected tabs remained unchanged. Smoke terminals were killed and removed; the temporary space disappeared automatically, and its directory was removed.
+
+Checked 2026-11-22. Optional `--title` names child tabs in both existing and newly created spaces; omitted titles retain the run-ID default. Real desktop smoke programs verified all three cases through `herdr-app ls`, preserved existing selections, and produced a window screenshot showing the custom title. Smoke terminals and the temporary folder were removed. All 59 muxer tests passed with a temporary alias to real AJV 8.20.0 and `BUN_OPTIONS=--install=fallback` for subprocess dependency resolution. Blank-title and unsupported-muxer checks reject before resource allocation.

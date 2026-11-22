@@ -185,6 +185,10 @@ const spawnCmd = app
       type: "string",
       description: "Working directory for the child. Defaults to the current directory.",
     },
+    title: {
+      type: "string",
+      description: "Display title for a herdr-app child tab, such as a ticket ID.",
+    },
     "result-schema": {
       type: "string",
       description: "Required domain result schema for the child handoff.",
@@ -259,6 +263,7 @@ const spawnCmd = app
         resultTarget: flags["result-target"],
         resultRef: flags["result-ref"],
         operationId: flags["operation-id"],
+        title: flags.title,
       });
       console.log(JSON.stringify({ ...result, muxer, agent, depth: depth + 1 }));
     } catch (error) {

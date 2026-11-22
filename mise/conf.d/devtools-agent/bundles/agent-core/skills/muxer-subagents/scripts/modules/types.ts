@@ -28,6 +28,7 @@ export interface LaunchRequest {
   readonly promptFile: string;
   readonly environment: Readonly<Record<string, string>>;
   readonly agent: AgentInvocation;
+  readonly title?: string;
 }
 
 export interface LaunchResult {
