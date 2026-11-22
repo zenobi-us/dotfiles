@@ -467,3 +467,7 @@ Validation: final public regression passed (1 test, 13 assertions). Full suite: 
 
 The version hook added out-of-scope metadata during source commit 905748b5. Corrective commit 62f26327 restored only those generated changes. No previous history was amended. No independent verdict covers this new source. Open questions: none.
 
+
+## Fix parent validation
+
+[fix-complete-0009](../events/fix-complete-0009.yaml) validates the clean fixed source, delivered result and snapshot. The targeted public-command regression passed. The fixer pane is closed and owned process shutdown is confirmed after approved cleanup. Fresh independent review is required.

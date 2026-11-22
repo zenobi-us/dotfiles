@@ -2,7 +2,7 @@ schema: worktree-latest-status/v1
 workflow_id: skill-contract-manifests-09-evidence
 ticket: tracker/tickets/skill-contract-manifests-09-evidence.md
 state: FIXED
-latest_receipt: fix-0008
+latest_receipt: fix-complete-0009
 latest_source_commit: 62f26327084f0dca065ee8ec065c0437cdc54c7d
 latest_source_tree: d802a953960f01c104a02959652453b55cc37201
 latest_review_verdict: null

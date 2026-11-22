@@ -60,3 +60,7 @@ No current verdict. Prior FAILURE applies only to its recorded original commit. 
 
 Not merged. Ticket remains claimed. Parent owns review, phase completion and integration.
 
+
+## Fix parent validation
+
+[fix-complete-0009](../events/fix-complete-0009.yaml) validates the clean fixed source, delivered result and snapshot. The targeted public-command regression passed. The fixer pane is closed and owned process shutdown is confirmed after approved cleanup. Fresh independent review is required.
