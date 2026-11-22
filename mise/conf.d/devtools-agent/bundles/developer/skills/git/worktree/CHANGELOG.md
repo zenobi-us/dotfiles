@@ -2,6 +2,8 @@
 
 ## 2026-11-22
 
+- Reject swapped manifest/status contract families before owning updates and bulk upgrades.
+
 - Reject fresh v2 starts; restrict v2 production to retained assigned results and historical reconciliation.
 
 - Declare worktree-owned contracts and references to tracker, delivery and shared-context owners.

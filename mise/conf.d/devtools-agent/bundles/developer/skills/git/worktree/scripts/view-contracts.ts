@@ -42,8 +42,13 @@ const owner: UpgradeOwner = {
   },
   mutable(path, content) {
     const fields = values(content);
-    const root = basename(path) === "manifest.yaml" ? dirname(path) : basename(path) === "latest-status.yaml" && basename(dirname(path)) === "projections" ? dirname(dirname(path)) : undefined;
-    return root !== undefined && basename(root) === fields.workflow_id && !path.split("/").some(part => ["events", "artifacts"].includes(part));
+    const manifest = basename(path) === "manifest.yaml";
+    const status = basename(path) === "latest-status.yaml" && basename(dirname(path)) === "projections";
+    const root = manifest ? dirname(path) : status ? dirname(dirname(path)) : undefined;
+    const contract = owner.identify(content);
+    const family = manifest ? "worktree-workflow/" : "worktree-latest-status/";
+    return root !== undefined && typeof contract === "string" && contract.startsWith(family)
+      && basename(root) === fields.workflow_id && !path.split("/").some(part => ["events", "artifacts"].includes(part));
   },
   destinations(operation) {
     if (!["upgrade", "update"].includes(operation)) throw new Error("Supported view operations: upgrade, update.");
