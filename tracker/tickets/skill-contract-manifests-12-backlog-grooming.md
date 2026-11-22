@@ -8,7 +8,7 @@ sequence: 12
 title: Adopt contracts in backlog grooming
 triage: ready-for-agent
 type: enhancement
-work_status: "claimed"
+work_status: "completed"
 ---
 
 ## What to build
