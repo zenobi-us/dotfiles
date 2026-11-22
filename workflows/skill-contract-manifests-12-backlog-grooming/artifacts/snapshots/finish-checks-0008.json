@@ -1,0 +1,18 @@
+[
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "mise/conf.d/devtools-agent/bundles/developer/skills/backlog-grooming/scripts/grooming-report.test.ts"
+    ]
+  },
+  {
+    "argv": [
+      "mise/conf.d/devtools-agent/bundles/developer/skills/backlog-grooming/scripts/grooming-report.ts",
+      "--help"
+    ]
+  }
+]

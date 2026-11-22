@@ -1,0 +1,3 @@
+feat(skills): integrate skill-contract-manifests-12-backlog-grooming
+
+Review: review-0005 (SUCCESS).

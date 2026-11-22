@@ -1,0 +1,46 @@
+{
+  "schema": "worktree-integration/v2",
+  "integration_method": "merge",
+  "reviewed_source_commit": "4d56acb1e2863fd616577cae0afb3edc1a3cb8d3",
+  "reviewed_source_tree": "27b7aacba6e27c3ba0e5c043e724591f06333190",
+  "base_branch": "master",
+  "base_before": "dd4b031776a98d56c935cd1f54633e1af9a554cf",
+  "expected_merge_tree": "d2320cc8a950d28cffbda55409ba3ff767891b64",
+  "merged_commit": "085002c45dbc0658076843cfd307e3b92287d8b2",
+  "merged_tree": "d2320cc8a950d28cffbda55409ba3ff767891b64",
+  "merged_parents": [
+    "dd4b031776a98d56c935cd1f54633e1af9a554cf",
+    "4d56acb1e2863fd616577cae0afb3edc1a3cb8d3"
+  ],
+  "candidate_branch": "integration/099db08e-a061-46d8-8684-8f32c1644e67",
+  "candidate_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-099db08e-a061-46d8-8684-8f32c1644e67",
+  "pushed": true,
+  "remote_observed_commit": "085002c45dbc0658076843cfd307e3b92287d8b2",
+  "integration_reachable": true,
+  "validation_results": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/backlog-grooming/scripts/grooming-report.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-099db08e-a061-46d8-8684-8f32c1644e67",
+      "exit_code": 0,
+      "source_commit": "085002c45dbc0658076843cfd307e3b92287d8b2",
+      "source_tree": "d2320cc8a950d28cffbda55409ba3ff767891b64"
+    },
+    {
+      "argv": [
+        "mise/conf.d/devtools-agent/bundles/developer/skills/backlog-grooming/scripts/grooming-report.ts",
+        "--help"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-099db08e-a061-46d8-8684-8f32c1644e67",
+      "exit_code": 0,
+      "source_commit": "085002c45dbc0658076843cfd307e3b92287d8b2",
+      "source_tree": "d2320cc8a950d28cffbda55409ba3ff767891b64"
+    }
+  ]
+}
