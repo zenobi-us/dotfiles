@@ -1,0 +1,521 @@
+{
+  "checks": [
+    {
+      "name": "validate writing-skills",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-10-authoring/mise/conf.d/devtools-agent/bundles/agent-core/skills/writing-skills"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\n  \"manifest\": {\n    \"schemaVersion\": \"skill-contract-manifest/v1\",\n    \"produces\": [\n      \"skill-contract-manifest/v1\"\n    ],\n    \"accepts\": [\n      \"skill-contract-manifest/v1\"\n    ],\n    \"contracts\": {},\n    \"upgrades\": []\n  },\n  \"definitions\": {\n    \"skill-contract-manifest/v1\": {\n      \"reference\": \"builtin:skill-contract-manifest/v1\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/references/manifest.schema.json\",\n      \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"$id\\\": \\\"skill-contract-manifest/v1\\\",\\n  \\\"title\\\": \\\"Skill contract manifest\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"additionalProperties\\\": false,\\n  \\\"required\\\": [\\\"schemaVersion\\\", \\\"produces\\\", \\\"accepts\\\", \\\"contracts\\\", \\\"upgrades\\\"],\\n  \\\"properties\\\": {\\n    \\\"schemaVersion\\\": { \\\"const\\\": \\\"skill-contract-manifest/v1\\\" },\\n    \\\"sourceRepository\\\": { \\\"type\\\": \\\"string\\\", \\\"minLength\\\": 1 },\\n    \\\"produces\\\": { \\\"$ref\\\": \\\"#/definitions/identifiers\\\" },\\n    \\\"accepts\\\": { \\\"$ref\\\": \\\"#/definitions/identifiers\\\" },\\n    \\\"contracts\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"propertyNames\\\": { \\\"$ref\\\": \\\"#/definitions/identifier\\\" },\\n      \\\"additionalProperties\\\": { \\\"$ref\\\": \\\"#/definitions/reference\\\" }\\n    },\\n    \\\"upgrades\\\": {\\n      \\\"type\\\": \\\"array\\\",\\n      \\\"uniqueItems\\\": true,\\n      \\\"items\\\": {\\n        \\\"type\\\": \\\"object\\\",\\n        \\\"additionalProperties\\\": false,\\n        \\\"required\\\": [\\\"from\\\", \\\"to\\\", \\\"procedure\\\"],\\n        \\\"properties\\\": {\\n          \\\"from\\\": { \\\"$ref\\\": \\\"#/definitions/identifier\\\" },\\n          \\\"to\\\": { \\\"$ref\\\": \\\"#/definitions/identifier\\\" },\\n          \\\"procedure\\\": { \\\"$ref\\\": \\\"#/definitions/reference\\\" }\\n        }\\n      }\\n    }\\n  },\\n  \\\"definitions\\\": {\\n    \\\"identifier\\\": { \\\"type\\\": \\\"string\\\", \\\"pattern\\\": \\\"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*/v[1-9][0-9]*(?![\\\\\\\\s\\\\\\\\S])\\\" },\\n    \\\"identifiers\\\": { \\\"type\\\": \\\"array\\\", \\\"uniqueItems\\\": true, \\\"items\\\": { \\\"$ref\\\": \\\"#/definitions/identifier\\\" } },\\n    \\\"reference\\\": { \\\"type\\\": \\\"string\\\", \\\"minLength\\\": 1 }\\n  }\\n}\\n\"\n    }\n  },\n  \"procedures\": []\n}\n",
+      "stderr": "",
+      "before_sha256": {},
+      "after_sha256": {}
+    },
+    {
+      "name": "validate writing-great-skills",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-10-authoring/mise/conf.d/devtools-agent/bundles/matt-pocock/skills/writing-great-skills"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\n  \"manifest\": {\n    \"schemaVersion\": \"skill-contract-manifest/v1\",\n    \"produces\": [],\n    \"accepts\": [],\n    \"contracts\": {},\n    \"upgrades\": []\n  },\n  \"definitions\": {},\n  \"procedures\": []\n}\n",
+      "stderr": "",
+      "before_sha256": {},
+      "after_sha256": {}
+    },
+    {
+      "name": "resolve built-in manifest",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-10-authoring/mise/conf.d/devtools-agent/bundles/agent-core/skills/writing-skills",
+        "--contract",
+        "skill-contract-manifest/v1"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\n  \"reference\": \"builtin:skill-contract-manifest/v1\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/references/manifest.schema.json\",\n  \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"$id\\\": \\\"skill-contract-manifest/v1\\\",\\n  \\\"title\\\": \\\"Skill contract manifest\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"additionalProperties\\\": false,\\n  \\\"required\\\": [\\\"schemaVersion\\\", \\\"produces\\\", \\\"accepts\\\", \\\"contracts\\\", \\\"upgrades\\\"],\\n  \\\"properties\\\": {\\n    \\\"schemaVersion\\\": { \\\"const\\\": \\\"skill-contract-manifest/v1\\\" },\\n    \\\"sourceRepository\\\": { \\\"type\\\": \\\"string\\\", \\\"minLength\\\": 1 },\\n    \\\"produces\\\": { \\\"$ref\\\": \\\"#/definitions/identifiers\\\" },\\n    \\\"accepts\\\": { \\\"$ref\\\": \\\"#/definitions/identifiers\\\" },\\n    \\\"contracts\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"propertyNames\\\": { \\\"$ref\\\": \\\"#/definitions/identifier\\\" },\\n      \\\"additionalProperties\\\": { \\\"$ref\\\": \\\"#/definitions/reference\\\" }\\n    },\\n    \\\"upgrades\\\": {\\n      \\\"type\\\": \\\"array\\\",\\n      \\\"uniqueItems\\\": true,\\n      \\\"items\\\": {\\n        \\\"type\\\": \\\"object\\\",\\n        \\\"additionalProperties\\\": false,\\n        \\\"required\\\": [\\\"from\\\", \\\"to\\\", \\\"procedure\\\"],\\n        \\\"properties\\\": {\\n          \\\"from\\\": { \\\"$ref\\\": \\\"#/definitions/identifier\\\" },\\n          \\\"to\\\": { \\\"$ref\\\": \\\"#/definitions/identifier\\\" },\\n          \\\"procedure\\\": { \\\"$ref\\\": \\\"#/definitions/reference\\\" }\\n        }\\n      }\\n    }\\n  },\\n  \\\"definitions\\\": {\\n    \\\"identifier\\\": { \\\"type\\\": \\\"string\\\", \\\"pattern\\\": \\\"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*/v[1-9][0-9]*(?![\\\\\\\\s\\\\\\\\S])\\\" },\\n    \\\"identifiers\\\": { \\\"type\\\": \\\"array\\\", \\\"uniqueItems\\\": true, \\\"items\\\": { \\\"$ref\\\": \\\"#/definitions/identifier\\\" } },\\n    \\\"reference\\\": { \\\"type\\\": \\\"string\\\", \\\"minLength\\\": 1 }\\n  }\\n}\\n\"\n}\n",
+      "stderr": "",
+      "before_sha256": {},
+      "after_sha256": {}
+    },
+    {
+      "name": "read-only resolution preserves bytes",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+        "--contract",
+        "example-note/v1"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\n  \"reference\": \"file:definitions.txt\",\n  \"path\": \"/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n  \"content\": \"example-note/v1: UTF-8 JSON object with schemaVersion example-note/v1, string title and string body; no document key. Legacy input has no schemaVersion and the same content fields.\\nexample-note/v2: UTF-8 JSON object with schemaVersion example-note/v2 and document containing string heading and string text; no title or body keys.\\nAll other authored fields retain their exact JSON values. immutable true forbids mutation. The rename operation changes only document.heading to the request title.\\n\"\n}\n",
+      "stderr": "",
+      "before_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/rename.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      },
+      "after_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/rename.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      }
+    },
+    {
+      "name": "authorized rename converts and preserves",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+        "--owner",
+        "file:owner.ts",
+        "--artifact",
+        "/tmp/authoring-contract-smoke-llkzort4/rename.json",
+        "--operation",
+        "rename",
+        "--request",
+        "/tmp/authoring-contract-smoke-llkzort4/request.json"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\n  \"artifact\": \"/tmp/authoring-contract-smoke-llkzort4/rename.json\",\n  \"changed\": true,\n  \"from\": \"example-note/v1\",\n  \"to\": \"example-note/v2\",\n  \"status\": \"completed\"\n}\n",
+      "stderr": "",
+      "before_sha256": {},
+      "after_sha256": {},
+      "persisted": {
+        "metadata": {
+          "tags": [
+            "b",
+            "a"
+          ],
+          "unknown": {
+            "keep": true
+          }
+        },
+        "schemaVersion": "example-note/v2",
+        "document": {
+          "heading": "After",
+          "text": "Authored body\nsecond line"
+        }
+      }
+    },
+    {
+      "name": "current upgrade is byte-identical",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+        "--owner",
+        "file:owner.ts",
+        "--artifact",
+        "/tmp/authoring-contract-smoke-llkzort4/rename.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\n  \"artifact\": \"/tmp/authoring-contract-smoke-llkzort4/rename.json\",\n  \"changed\": false,\n  \"from\": \"example-note/v2\",\n  \"to\": \"example-note/v2\",\n  \"status\": \"completed\"\n}\n",
+      "stderr": "",
+      "before_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/rename.json": "99cc2bfab82407a7c8da932431a3d9258c50d07faec2de0c9742739a8428800e"
+      },
+      "after_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/rename.json": "99cc2bfab82407a7c8da932431a3d9258c50d07faec2de0c9742739a8428800e"
+      }
+    },
+    {
+      "name": "bulk partial result",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "bulk-upgrade",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+        "--owner",
+        "file:owner.ts",
+        "--artifacts",
+        "/tmp/authoring-contract-smoke-llkzort4/selected.json"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "{\n  \"status\": \"partial\",\n  \"results\": [\n    {\n      \"artifact\": \"/tmp/authoring-contract-smoke-llkzort4/bulk.json\",\n      \"changed\": true,\n      \"from\": \"example-note/v1\",\n      \"to\": \"example-note/v2\",\n      \"status\": \"completed\"\n    },\n    {\n      \"artifact\": \"/tmp/authoring-contract-smoke-llkzort4/immutable.json\",\n      \"status\": \"failed\",\n      \"changed\": false,\n      \"error\": \"Immutable artifact requires a historical reader; conversion is forbidden.\"\n    }\n  ]\n}\n",
+      "stderr": "",
+      "before_sha256": {},
+      "after_sha256": {},
+      "persisted": {
+        "mutable": {
+          "metadata": {
+            "tags": [
+              "b",
+              "a"
+            ],
+            "unknown": {
+              "keep": true
+            }
+          },
+          "schemaVersion": "example-note/v2",
+          "document": {
+            "heading": "Before",
+            "text": "Authored body\nsecond line"
+          }
+        },
+        "immutable_unchanged": true
+      }
+    },
+    {
+      "name": "unknown explicit",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+        "--owner",
+        "file:owner.ts",
+        "--artifact",
+        "/tmp/authoring-contract-smoke-llkzort4/unknown-explicit.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Unsupported explicit contract identifier; legacy detection is forbidden.\n",
+      "before_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/unknown-explicit.json": "a14335cb91b806f15bd6c95ad97b5155c662c8095ddc14b10d4d3cc9938f8c5f"
+      },
+      "after_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/unknown-explicit.json": "a14335cb91b806f15bd6c95ad97b5155c662c8095ddc14b10d4d3cc9938f8c5f"
+      }
+    },
+    {
+      "name": "zero legacy",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+        "--owner",
+        "file:owner.ts",
+        "--artifact",
+        "/tmp/authoring-contract-smoke-llkzort4/zero-legacy.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Legacy detection must match exactly one supported source contract.\n",
+      "before_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/zero-legacy.json": "a8c308d4cc12c4031f59a550ae2cf2d95858f9625c29d2a0fff2963b8281d518"
+      },
+      "after_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/zero-legacy.json": "a8c308d4cc12c4031f59a550ae2cf2d95858f9625c29d2a0fff2963b8281d518"
+      }
+    },
+    {
+      "name": "lossy numeric",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+        "--owner",
+        "file:owner.ts",
+        "--artifact",
+        "/tmp/authoring-contract-smoke-llkzort4/lossy-numeric.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Authored numeric value cannot round-trip without loss.\n",
+      "before_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/lossy-numeric.json": "930fa778f2b685d44635baa84a337c79eaffc133fb142faf55f12abf2049eb96"
+      },
+      "after_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/lossy-numeric.json": "930fa778f2b685d44635baa84a337c79eaffc133fb142faf55f12abf2049eb96"
+      }
+    },
+    {
+      "name": "relabel only",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades",
+        "--owner",
+        "file:owner.ts",
+        "--artifact",
+        "/tmp/authoring-contract-smoke-llkzort4/relabel-only.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Failed source content validation.\n",
+      "before_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/relabel-only.json": "6aca06dd670e54c0d1cff8cdce5754c8f85399d5f624e33aff08d28b71c8613d"
+      },
+      "after_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/relabel-only.json": "6aca06dd670e54c0d1cff8cdce5754c8f85399d5f624e33aff08d28b71c8613d"
+      }
+    },
+    {
+      "name": "ambiguous-destinations",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/tmp/authoring-contract-smoke-llkzort4/ambiguous-destinations",
+        "--owner",
+        "file:owner.ts",
+        "--artifact",
+        "/tmp/authoring-contract-smoke-llkzort4/ambiguous-destinations.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Ambiguous upgrade destination or path for this operation.\n",
+      "before_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/ambiguous-destinations.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      },
+      "after_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/ambiguous-destinations.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      }
+    },
+    {
+      "name": "lossy-procedure",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/tmp/authoring-contract-smoke-llkzort4/lossy-procedure",
+        "--owner",
+        "file:owner.ts",
+        "--artifact",
+        "/tmp/authoring-contract-smoke-llkzort4/lossy-procedure.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Conversion loses data or requires a user decision.\n",
+      "before_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/lossy-procedure.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      },
+      "after_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/lossy-procedure.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      }
+    },
+    {
+      "name": "decision-dependent",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/tmp/authoring-contract-smoke-llkzort4/decision-dependent",
+        "--owner",
+        "file:owner.ts",
+        "--artifact",
+        "/tmp/authoring-contract-smoke-llkzort4/decision-dependent.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Conversion loses data or requires a user decision.\n",
+      "before_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/decision-dependent.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      },
+      "after_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/decision-dependent.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      }
+    },
+    {
+      "name": "dropped-metadata",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/tmp/authoring-contract-smoke-llkzort4/dropped-metadata",
+        "--owner",
+        "file:owner.ts",
+        "--artifact",
+        "/tmp/authoring-contract-smoke-llkzort4/dropped-metadata.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Conversion changed meaning or authored content.\n",
+      "before_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/dropped-metadata.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      },
+      "after_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/dropped-metadata.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      }
+    },
+    {
+      "name": "multiple-legacy",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/tmp/authoring-contract-smoke-llkzort4/multiple-legacy",
+        "--owner",
+        "file:owner.ts",
+        "--artifact",
+        "/tmp/authoring-contract-smoke-llkzort4/multiple-legacy.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Legacy detection must match exactly one supported source contract.\n",
+      "before_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/multiple-legacy.json": "08e712cbe9f8b47480cc73f672b95db6b50e7d8ab6041ae65176105fb90a78c7"
+      },
+      "after_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/multiple-legacy.json": "08e712cbe9f8b47480cc73f672b95db6b50e7d8ab6041ae65176105fb90a78c7"
+      }
+    },
+    {
+      "name": "no-path",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/tmp/authoring-contract-smoke-llkzort4/no-path",
+        "--owner",
+        "file:owner.ts",
+        "--artifact",
+        "/tmp/authoring-contract-smoke-llkzort4/no-path.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "No declared upgrade path for this operation.\n",
+      "before_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/no-path.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      },
+      "after_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/no-path.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      }
+    },
+    {
+      "name": "moving-pin",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/tmp/authoring-contract-smoke-llkzort4/moving-pin"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "git: references require a full immutable commit ID and repository-root-relative path.\n",
+      "before_sha256": {},
+      "after_sha256": {}
+    },
+    {
+      "name": "missing-pin",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/tmp/authoring-contract-smoke-llkzort4/missing-pin"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Cannot resolve git: definition from sourceRepository at the exact pinned commit and path.\n",
+      "before_sha256": {},
+      "after_sha256": {}
+    },
+    {
+      "name": "invalid-destination",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/tmp/authoring-contract-smoke-llkzort4/invalid-destination",
+        "--owner",
+        "file:owner.ts",
+        "--artifact",
+        "/tmp/authoring-contract-smoke-llkzort4/invalid-destination.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Failed destination content validation.\n",
+      "before_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/invalid-destination.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      },
+      "after_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/invalid-destination.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      }
+    },
+    {
+      "name": "multiple-paths",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "safe-upgrade",
+        "--skill",
+        "/tmp/authoring-contract-smoke-llkzort4/multiple-paths",
+        "--owner",
+        "file:owner.ts",
+        "--artifact",
+        "/tmp/authoring-contract-smoke-llkzort4/multiple-paths.json",
+        "--operation",
+        "upgrade"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Ambiguous upgrade destination or path for this operation.\n",
+      "before_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/multiple-paths.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      },
+      "after_sha256": {
+        "/tmp/authoring-contract-smoke-llkzort4/multiple-paths.json": "ad4a893e861bd02f8c9c0a6b0e0ff81b72a85b1c56201e6c935934709452a452"
+      }
+    },
+    {
+      "name": "resolve exact historical pin",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/tmp/authoring-contract-smoke-llkzort4/pinned-history",
+        "--contract",
+        "example-note/v1"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "stdout": "{\n  \"reference\": \"git:0df9e026e0a8461e3ddba4ed620ac0efaf637320:mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n  \"path\": \"0df9e026e0a8461e3ddba4ed620ac0efaf637320:mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt\",\n  \"content\": \"example-note/v1: UTF-8 JSON object with schemaVersion example-note/v1, string title and string body; no document key. Legacy input has no schemaVersion and the same content fields.\\nexample-note/v2: UTF-8 JSON object with schemaVersion example-note/v2 and document containing string heading and string text; no title or body keys.\\nAll other authored fields retain their exact JSON values. immutable true forbids mutation. The rename operation changes only document.heading to the request title.\\n\"\n}\n",
+      "stderr": "",
+      "before_sha256": {},
+      "after_sha256": {}
+    }
+  ]
+}

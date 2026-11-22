@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": [
+    "example-note/v2"
+  ],
+  "accepts": [
+    "example-note/v1",
+    "example-note/v2"
+  ],
+  "contracts": {
+    "example-note/v1": "file:../../home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt",
+    "example-note/v2": "file:../../home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/examples/upgrades/definitions.txt"
+  },
+  "upgrades": []
+}

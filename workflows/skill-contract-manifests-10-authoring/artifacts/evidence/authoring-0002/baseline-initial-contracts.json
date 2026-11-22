@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": ["release-note/v2"],
+  "accepts": ["release-note/v1", "external-note-schema/v1"],
+  "contracts": {
+    "release-note/v1": "file:definitions/release-note-v1.txt",
+    "release-note/v2": "file:definitions/release-note-v2.txt",
+    "external-note-schema/v1": "file:../external-note-app/contracts/note-schema.json"
+  },
+  "upgrades": []
+}
