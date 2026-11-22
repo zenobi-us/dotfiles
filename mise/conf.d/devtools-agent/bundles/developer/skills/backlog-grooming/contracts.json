@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": ["grooming-report/v2", "grooming-actions/v2"],
+  "accepts": ["grooming-report/v1", "grooming-report/v2", "grooming-actions/v1", "grooming-actions/v2"],
+  "contracts": {
+    "grooming-report/v1": "file:references/contracts/report-v1.md",
+    "grooming-report/v2": "file:references/report-contract.md",
+    "grooming-actions/v1": "file:references/contracts/actions-v1.md",
+    "grooming-actions/v2": "file:references/contracts/actions-v2.md"
+  },
+  "upgrades": [
+    { "from": "grooming-report/v1", "to": "grooming-report/v2", "procedure": "file:references/upgrades.md" },
+    { "from": "grooming-actions/v1", "to": "grooming-actions/v2", "procedure": "file:references/upgrades.md" }
+  ]
+}

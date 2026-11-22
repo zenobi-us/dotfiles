@@ -2,10 +2,15 @@
 
 Each research subagent writes one Markdown file at `<RUN_DIR>/reports/<KEY>.md`. The file has YAML frontmatter and five sections, in this order. `scripts/grooming-report.ts check` enforces this contract.
 
+## Identity and compatibility
+
+New reports declare `schemaVersion: grooming-report/v2`. `check` and `render` also read explicit `grooming-report/v1` and unversioned historical reports without rewriting them. Unknown explicit identifiers and `schema` fields are rejected. The historical contract is [report v1](contracts/report-v1.md). Use the [explicit upgrade procedure](upgrades.md) only for mutable records.
+
 ## Frontmatter
 
 ```yaml
 ---
+schemaVersion: grooming-report/v2
 ticket: ABC-123
 title: Order summary shows wrong total
 url: https://tracker.example.com/ABC-123

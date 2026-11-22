@@ -14,7 +14,7 @@ The command checks every report first and stops on an error. It writes:
 |---|---|
 | `$RUN_DIR/index.html` | The summary and every report, self-contained |
 | `$RUN_DIR/summary.md` | The summary lines only |
-| `$RUN_DIR/actions.json` | Every proposed action, grouped by ticket |
+| `$RUN_DIR/actions.json` | A `grooming-actions/v2` envelope with every proposed action in `tickets`, grouped by ticket |
 
 The summary has one line for each ticket:
 
