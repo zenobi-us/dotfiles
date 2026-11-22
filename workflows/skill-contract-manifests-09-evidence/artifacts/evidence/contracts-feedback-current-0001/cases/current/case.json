@@ -1,0 +1,114 @@
+{
+  "kind": "case",
+  "id": "current",
+  "order": 1,
+  "purpose": "Capture a real private terminal under the current contract",
+  "preconditions": [],
+  "expected": {
+    "pass": "Native text and image assertions pass",
+    "fail": "Native text or image assertions fail"
+  },
+  "steps": [
+    {
+      "id": "current.1",
+      "order": 1,
+      "purpose": "Read the contract capture screen.",
+      "actions": {
+        "do": "expect",
+        "says": "Read the contract capture screen.",
+        "locator": "screen",
+        "text": "Contract capture",
+        "shot": "contract-screen",
+        "image": {
+          "width": 1280,
+          "height": 720,
+          "pixels": [
+            {
+              "x": 10,
+              "y": 55,
+              "rgb": [
+                201,
+                166,
+                255
+              ]
+            }
+          ],
+          "lines": [
+            {
+              "text": "Contract capture",
+              "top": 11
+            },
+            {
+              "text": "Selected item",
+              "top": 31
+            }
+          ]
+        }
+      },
+      "expected": {
+        "text": "Contract capture",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Expected screen, native dimensions, colour probes and text line positions match"
+      ],
+      "assertionResult": "passed"
+    }
+  ],
+  "events": "source/cases/current/events.jsonl",
+  "assets": [
+    {
+      "schemaVersion": "collect-evidence/v2",
+      "kind": "asset",
+      "id": "current.1.capture-001",
+      "caseId": "current",
+      "stepId": "current.1",
+      "path": "cases/current/media/step-001-step-current-001-contract-screen--capture-001--capture-001.png",
+      "captureSequence": 1,
+      "sha256": "80b3e55a45d9f6543a6004e1f85bc87799285e822d32eb9e232c7f9c3f655b14",
+      "mediaType": "image/png",
+      "width": 1280,
+      "height": 720,
+      "capturedAt": "2026-11-22T02:33:30.764Z",
+      "viewport": null,
+      "surface": "tui",
+      "driver": "tui",
+      "driverVersion": "termscope 0.1.1",
+      "captureMethod": "grim-native",
+      "url": "terminal://ce-tui-74320cfc-6440-4b38-8922-7d51c455d897",
+      "terminal": {
+        "session": "ce-tui-74320cfc-6440-4b38-8922-7d51c455d897",
+        "socket": "/tmp/ce-native-76PJ2D/tmux.sock",
+        "pane": "%0",
+        "tty": "/dev/pts/26",
+        "display": "wayland-0",
+        "runtime": "/tmp/ce-native-76PJ2D",
+        "cagePid": 254007,
+        "footPid": 254008,
+        "columns": 80,
+        "rows": 24,
+        "font": "monospace:size=12",
+        "lineHeight": 20,
+        "cleanup": "released"
+      }
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Native video is unavailable.",
+    "OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.",
+    "The private headless display does not reproduce a borrowed desktop terminal.",
+    "Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match."
+  ],
+  "sideEffects": [
+    "The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.",
+    "Collector-owned resources were released before sealing; borrowed terminals were not attached or closed."
+  ],
+  "schemaVersion": "collect-feedback/v2",
+  "sessionId": "contracts-feedback-current-0001",
+  "source": {
+    "runId": "contracts-current-0003",
+    "caseId": "current"
+  }
+}

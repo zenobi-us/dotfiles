@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "collect-evidence/v2",
+  "kind": "case",
+  "id": "current",
+  "runId": "contracts-current-0001",
+  "order": 1,
+  "purpose": "Capture a real private terminal under the current contract",
+  "preconditions": [],
+  "expected": {
+    "pass": "Native text and image assertions pass",
+    "fail": "Native text or image assertions fail"
+  },
+  "steps": [
+    {
+      "id": "current.1",
+      "order": 1,
+      "purpose": "Read the contract capture screen.",
+      "actions": {
+        "do": "expect",
+        "says": "Read the contract capture screen.",
+        "locator": "screen",
+        "text": "Contract capture",
+        "shot": "contract-screen",
+        "image": {
+          "width": 1280,
+          "height": 720,
+          "pixels": [
+            {
+              "x": 10,
+              "y": 55,
+              "rgb": [
+                201,
+                166,
+                255
+              ]
+            }
+          ],
+          "lines": [
+            {
+              "text": "Contract capture",
+              "top": 11
+            },
+            {
+              "text": "Current record",
+              "top": 31
+            }
+          ]
+        }
+      },
+      "expected": {
+        "text": "Contract capture",
+        "visible": null,
+        "url": null
+      },
+      "observed": [
+        "Native screen did not settle on the expected visible content before timeout"
+      ],
+      "assertionResult": "failed"
+    }
+  ],
+  "events": "cases/current/events.jsonl",
+  "assets": [],
+  "errors": [
+    {
+      "schemaVersion": "collect-evidence/v2",
+      "kind": "error",
+      "id": "current.error-001",
+      "caseId": "current",
+      "stepId": "current.1",
+      "category": "assertion",
+      "message": "Native screen did not settle on the expected visible content before timeout"
+    }
+  ],
+  "limits": [
+    "Native video is unavailable.",
+    "OCR and stable frame hashes check visible content, not usability. Inspect every original PNG.",
+    "The private headless display does not reproduce a borrowed desktop terminal.",
+    "Font metrics and output dimensions depend on installed foot/wlroots/fonts; explicit image expectations must match."
+  ],
+  "sideEffects": [
+    "The approved command ran in a private tmux pane. Inspect its application-specific side effects separately.",
+    "Collector-owned resources were released before sealing; borrowed terminals were not attached or closed."
+  ]
+}

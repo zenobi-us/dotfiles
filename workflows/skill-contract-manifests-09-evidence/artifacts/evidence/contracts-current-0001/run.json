@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "collect-evidence/v2",
+  "kind": "run",
+  "id": "contracts-current-0001",
+  "status": "sealed",
+  "startedAt": "2026-11-22T02:30:34.543Z",
+  "finishedAt": "2026-11-22T02:30:39.810Z",
+  "surface": "tui",
+  "driver": "tui",
+  "driverVersion": "termscope 0.1.1",
+  "plan": "plan.json",
+  "cases": [
+    {
+      "id": "current",
+      "path": "cases/current/case.json"
+    }
+  ],
+  "files": [
+    {
+      "path": "cases/current/case.json",
+      "sha256": "bc4ee96e15d475528b0c9f0100a341e8ebfec000662dc2e0b96e180095ea96a7"
+    },
+    {
+      "path": "cases/current/events.jsonl",
+      "sha256": "7a2919154c4cd92e4c40a12498ef924409302e745f383d3a6c8ac09aa96b1ebc"
+    },
+    {
+      "path": "cases/current/index.md",
+      "sha256": "a76efa4ab6240d05b597231cbba6b3e2df4e47604c02ed7971d2870ced871f76"
+    },
+    {
+      "path": "index.md",
+      "sha256": "65e75dee718526983d8d92eb9396f8cd98f807528f2f638a43fbf568e3a97d01"
+    },
+    {
+      "path": "native/plan.ts",
+      "sha256": "cc9b7abf3b1cd04dcc2381d51633b027ed125eba5893301310d511db2aef9a90"
+    },
+    {
+      "path": "native/runs/case-current.log",
+      "sha256": "f414870990d54bd3f1baf7305fbf3e8f617a43c8c2b818309fefe88349676898"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-cage.stderr",
+      "sha256": "87f2a3ef5d9e66668f4adada03d49576ef966fac533c1b2f5d527db2d815b597"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000001.png",
+      "sha256": "cec04114320172706aff70a86c72ac2add97865b96d57a5007f4f5afed47f356"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000002.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000003.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000004.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000005.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000006.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000007.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000008.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000009.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000010.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000011.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000012.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000013.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000014.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000015.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-frame-000016.png",
+      "sha256": "860587c984a1aa4c4d70da5ee76341f8889878b10a5a558d3aadab64fd517c10"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-termscope.jsonl",
+      "sha256": "61d5ee8f2e69761649bf765967580f557b47f8dde02aaa7123f3d7ca18d30994"
+    },
+    {
+      "path": "native/workflows/ce-tui-9f76e686-796d-476d-bf85-a565812cd684-termscope.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native/workflows/tui-current.json",
+      "sha256": "373e814bbf025e653f1f502144e722cf5c70b7926df5c29d80435674576ebd63"
+    },
+    {
+      "path": "native/workflows/tui-current.log",
+      "sha256": "f414870990d54bd3f1baf7305fbf3e8f617a43c8c2b818309fefe88349676898"
+    },
+    {
+      "path": "plan.json",
+      "sha256": "4639d3a16196e83800b7f98bc5456e9cabbb64472963f31671c803a3d33aed6b"
+    },
+    {
+      "path": "plan.ts",
+      "sha256": "cc9b7abf3b1cd04dcc2381d51633b027ed125eba5893301310d511db2aef9a90"
+    }
+  ]
+}
