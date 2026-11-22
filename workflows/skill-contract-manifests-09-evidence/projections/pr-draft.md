@@ -469,19 +469,19 @@ The current feedback session contains the browser-saved v2 annotation. The histo
 
 ## Review history
 
-Independent review has not been performed. This implementation does not supply a review verdict.
+[review-0005](../events/review-0005.yaml): FAILURE for `dc75b3b33ab1f81c3c312cc38510dc3254ac2c5a`. See the [immutable review](../artifacts/reviews/review-review-0005.md). Parent validation: [review-complete-0006](../events/review-complete-0006.yaml).
 
 ## Resolved findings
 
-No formal review findings exist yet.
+None resolved.
 
 ## Remaining findings
 
-No known implementation blocker remains. Independent review is the next phase. Native and Surf opt-in tests remain skipped in the general suite; native capture was exercised directly. External publication was not exercised because separate access approval was not supplied.
+Open finding: `EVIDENCE09-SPEC-001` (P2). Fix the mixed-identity compilation rejection described in the immutable review. Native and Surf opt-in tests remain skipped in the general suite; native capture was exercised directly. External publication was not exercised because separate access approval was not supplied.
 
 ## Latest reviewer verdict
 
-Not yet reviewed.
+FAILURE. Standards: 0 findings. Spec: 1 blocking finding.
 
 ## Merge status
 
@@ -490,7 +490,7 @@ Not merged or pushed. The ticket remains claimed. Global plugin and marketplace 
 ## Supporting receipts and artifacts
 
 - **Authorization:** [start-0001](../events/start-0001.yaml).
-- **Implementation result:** [implementation-0002](../events/implementation-0002.yaml), reserved for the owning writer after this snapshot.
+- **Implementation result:** [implementation-0002](../events/implementation-0002.yaml).
 - **Immutable snapshot:** `artifacts/snapshots/pr-draft-implementation-0002.md`.
 - **Current views:** `projections/pr-draft.md`, `projections/implementation-log.md`, `projections/latest-status.yaml`, `manifest.yaml`.
 

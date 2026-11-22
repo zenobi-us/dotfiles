@@ -444,7 +444,7 @@ CWD: `not applicable`. Outcome: passed; exit not applicable. Viewer tab closed; 
 
 ## Review history
 
-No review has been performed. No findings or verdict exist.
+[review-0005](../events/review-0005.yaml): FAILURE. One open finding, `EVIDENCE09-SPEC-001`. The frozen source remains unchanged. See the [immutable review](../artifacts/reviews/review-review-0005.md) and [parent completion](../events/review-complete-0006.yaml). Validation: 111 tests passed, 33 skipped; real Playwright capture passed; mixed-identity compiled metadata was incorrectly accepted in dry-run and real collection. No fixes are recorded.
 
 ## Unresolved questions
 
