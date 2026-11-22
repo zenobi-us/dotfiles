@@ -1,10 +1,69 @@
 ---
-receipt_id: implementation-0002
+receipt_id: fix-0009
 schemaVersion: worktree-pr-draft/v1
-source_commit: a20008e3e548e98ecf568b06d1c762898337bcb3
-source_tree: aacf1e028ca5c8c221138b2deeb96d4f00467909
+source_commit: 4a0df18caa4d1ee1c1aaca2729291e0e66c59823
+source_tree: efbb160b9d23b9088416d8bd239c2d9ce011882f
 workflow_id: skill-contract-manifests-08-worktree
 ---
+
+# Fix SPEC-1 and SPEC-2
+
+## Current result
+
+State: FIXED. Both blocking findings from review-0006 are resolved. Fresh independent review is required for the new source. The latest reviewer verdict remains historical FAILURE for a20008e3e548e98ecf568b06d1c762898337bcb3; it does not cover this fix. No review, merge, push or ticket completion ran in this phase.
+
+Source commit: `4a0df18caa4d1ee1c1aaca2729291e0e66c59823`. Source tree: `efbb160b9d23b9088416d8bd239c2d9ce011882f`.
+
+## Problem and changes
+
+- SPEC-1: fresh v2 starts bypassed the current output contract. Restrict generated v2 output to matching retained v2 phase-start handoffs and historical parent reconciliation. New phase starts use v3, including starts after retained history. Preserve v1/v2 readers and retained bytes.
+- SPEC-2: mutable paths did not bind contract families. Bind manifest.yaml to worktree-workflow and projections/latest-status.yaml to worktree-latest-status in the shared owner validator. Reject swapped current and historical families before write-view updates or public bulk conversion.
+- Update fixtures, contract guidance, receipt guidance and changelog. Remove the incidental missing-parent wording assertion instead of re-pinning it.
+
+## Fix commits
+
+- `2783e66e`: SPEC-1 production gate and regressions.
+- `4a0df18c`: SPEC-2 owner family boundary and regressions.
+- The repository commit automation updated only developer plugin and marketplace version metadata in each source commit. No unrelated staged metadata was included.
+
+## Fix changed files
+
+- `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
+- `mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/CHANGELOG.md`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/contracts.md`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/contracts/view-upgrade.md`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/references/receipts.md`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/phase-context.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/view-contracts.test.ts`
+- `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/view-contracts.ts`
+
+## Fix verification
+
+- `mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts`: exit 0. 39 pass, 0 fail, 342 assertions. Fresh/unassigned/mismatched v2 writes reject, retained results and parent reconciliation preserve bytes; current executions use v3.
+- `mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/view-contracts.test.ts`: exit 0. 14 pass, 0 fail, 48 assertions. Both swapped-family directions under current and historical identities reject in owning CLI and public bulk path with byte equality.
+- `mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts`: exit 0. 176 pass, 0 fail, 1025 assertions across 11 files. Run after both behavioral fixes; final targeted delivery rerun also covers the subsequent test-only type guard.
+- `/tmp/worktree-fix-0009-types/node_modules/.bin/tsc --noEmit -p /tmp/worktree-fix-0009-types/tsconfig.json`: exit 0. All worktree production/test sources and imported dependencies pass. Temporary real dependency type entrypoints supplied outside checkout; no runtime source remapping.
+- `mise exec -- bun /tmp/worktree-fix-0009-smoke.ts /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-08-worktree`: exit 0. Post-commit: two complete owning-command groups pass. Current v3 start/result; retained v2 handoff, inspection and parent reconciliation; rejected fresh/unassigned v2 writes; correct-family upgrades; both swapped-family versions through write-view and public bulk; partial bulk preserves immutable event bytes.
+
+The earlier targeted delivery run exposed an incidental error-wording assertion; it was removed. Compiler setup first lacked explicit package type entrypoints and identified a test mapping type error. The final compiler and targeted delivery runs passed. The smoke fixture first assumed an array from Worktrunk; its corrected run and post-commit run passed. Temporary compiler/smoke fixtures are removed after proof. No evidence run was invented.
+
+## Findings and remaining work
+
+Resolved: SPEC-1, SPEC-2. Unresolved: none. Ticket remains claimed. The parent owns fresh review and result acknowledgement. The assigned retained v2 handoff stays v2; current product output stays v3.
+
+## Canonical fix references
+
+- [Consumed review](../reviews/review-review-0006.md) and `workflows/skill-contract-manifests-08-worktree/events/review-0006.yaml`.
+- Fix authorization: `workflows/skill-contract-manifests-08-worktree/events/fix-start-0008.yaml`.
+- Fix result: `workflows/skill-contract-manifests-08-worktree/events/fix-0009.yaml`.
+- Snapshot: `workflows/skill-contract-manifests-08-worktree/artifacts/snapshots/pr-draft-fix-0009.md`.
+- Projections: `workflows/skill-contract-manifests-08-worktree/projections/pr-draft.md`, `workflows/skill-contract-manifests-08-worktree/projections/implementation-log.md`, `workflows/skill-contract-manifests-08-worktree/projections/latest-status.yaml`.
+
+## Prior implementation and FAILURE review publication
+
+The following publication records the earlier source and its review. It remains historical context, not a verdict on the fixed source.
 
 # Worktree contract adoption
 
