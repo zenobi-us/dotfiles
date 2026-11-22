@@ -1,5 +1,5 @@
 ---
-receipt_id: finish-failed-0021
+receipt_id: finish-reconciled-0023
 schemaVersion: worktree-pr-draft/v1
 source_commit: 8ce850b641b29d052f9549f956f93dfd655e2c6b
 source_tree: 02afddcab23399930e7d9ce14c461b1c4e9684c2
@@ -283,3 +283,17 @@ Reviewer full suite: 176 pass, 0 fail. Owning commands reproduced missing-initia
 Reviewer full suite: 212 pass, 0 fail. Actual workflow, delivery, recovery, manifest/view and resolution boundary smokes passed; historical hashes stayed unchanged. Parent owning-command regressions: 30 pass, 0 fail. Configured typecheck was not independently reverified because the local compiler/dependency installation is absent; no compiler success is inferred.
 
 Review delivery acknowledged; reviewer and helper terminals closed with confirmed process shutdown. Source unchanged. Preserve unrelated base edits and reassess current integration compatibility at finish. No merge, push or ticket completion. Earlier review attempts remain historical and unchanged.
+
+
+## Finish recovery 0023
+
+State: FINISH_FAILED. The operator approved scoped recovery in [finish-approval-0022](../events/finish-approval-0022.yaml).
+
+The separate resolution branch `resolve/skill-contract-manifests-08-worktree-finish` preserves commit `567ebd5964d94666d7646dbdfbd287138f5b7b3b`. It combines observed base `10048f87a705a20fe4c90080db74309528613599` with the original reviewed source. Version conflicts retain agent-core 0.1.37 and developer 0.2.71. The original source remains unchanged.
+
+Validation: 212 tests pass, zero fail, 1104 assertions. The resolved owning inspection command exits zero with no receipt diagnostics.
+
+Independent review could not start. The receipt writer rejects the separate source candidate: `Phase source checkout, branch or base does not match its parent`. No review start receipt was created. The workflow owner must provide a supported source-candidate transition before review and integration can proceed. The original SUCCESS does not cover the resolution.
+
+No product integration or ticket completion occurred. Both source worktrees remain preserved. See [recovery observations](../artifacts/snapshots/finish-recovery-0023.json) and [reconciled failure](../events/finish-reconciled-0023.yaml).
+

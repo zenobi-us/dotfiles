@@ -96,3 +96,17 @@ Reviewer checks: 212 tests and real current/historical owning-command smokes pas
 ## Finish attempt 1: preparation failed
 
 [finish-failed-0021](../events/finish-failed-0021.yaml) retains the failed read-only squash preparation. Three generated bundle-version files conflict with the advanced base. See [preflight observations](../artifacts/snapshots/finish-preflight-0020.json). No candidate validation, integration, push, ticket completion or cleanup occurred. Original source `8ce850b641b29d052f9549f956f93dfd655e2c6b` and its source-bound SUCCESS remain unchanged. A separately resolved candidate needs independent review before another integration attempt.
+
+
+## Finish recovery 0023
+
+State: FINISH_FAILED. The operator approved scoped recovery in [finish-approval-0022](../events/finish-approval-0022.yaml).
+
+The separate resolution branch `resolve/skill-contract-manifests-08-worktree-finish` preserves commit `567ebd5964d94666d7646dbdfbd287138f5b7b3b`. It combines observed base `10048f87a705a20fe4c90080db74309528613599` with the original reviewed source. Version conflicts retain agent-core 0.1.37 and developer 0.2.71. The original source remains unchanged.
+
+Validation: 212 tests pass, zero fail, 1104 assertions. The resolved owning inspection command exits zero with no receipt diagnostics.
+
+Independent review could not start. The receipt writer rejects the separate source candidate: `Phase source checkout, branch or base does not match its parent`. No review start receipt was created. The workflow owner must provide a supported source-candidate transition before review and integration can proceed. The original SUCCESS does not cover the resolution.
+
+No product integration or ticket completion occurred. Both source worktrees remain preserved. See [recovery observations](../artifacts/snapshots/finish-recovery-0023.json) and [reconciled failure](../events/finish-reconciled-0023.yaml).
+

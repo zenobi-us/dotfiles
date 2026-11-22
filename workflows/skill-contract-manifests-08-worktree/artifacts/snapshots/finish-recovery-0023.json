@@ -1,0 +1,72 @@
+{
+  "schema": "worktree-finish-recovery-observation/v1",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-08-worktree.md",
+  "approval_ref": "workflows/skill-contract-manifests-08-worktree/events/finish-approval-0022.yaml",
+  "original_source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-08-worktree",
+    "branch": "feature/skill-contract-manifests-08-worktree",
+    "base_branch": "master",
+    "commit": "8ce850b641b29d052f9549f956f93dfd655e2c6b",
+    "tree": "02afddcab23399930e7d9ce14c461b1c4e9684c2"
+  },
+  "resolution": {
+    "branch": "resolve/skill-contract-manifests-08-worktree-finish",
+    "workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-08-worktree-finish",
+    "commit": "567ebd5964d94666d7646dbdfbd287138f5b7b3b",
+    "tree": "a94d4aa82feaca982064d2bc26e7edbb6c7ce09e",
+    "base": "10048f87a705a20fe4c90080db74309528613599",
+    "agent_core_version": "0.1.37",
+    "developer_version": "0.2.71",
+    "review": "not_started"
+  },
+  "validation_results": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-08-worktree-finish",
+      "exit_code": 0,
+      "result": "212 pass, 0 fail, 1104 assertions, 12 files"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-08-worktree-finish/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/inspect.ts",
+        "tracker/tickets/skill-contract-manifests-08-worktree.md",
+        "--json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "result": "Inspection succeeds with no receipt diagnostics; finish remains reconcile"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/write-result.ts",
+        "--parent-event",
+        "--repository",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "--phase-context",
+        "<resolved-candidate-review-start>",
+        "--input",
+        "<started-outcome>"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 1,
+      "result": "Phase source checkout, branch or base does not match its parent; review start not published"
+    }
+  ],
+  "coordination": {
+    "inventoryComplete": false,
+    "evidence": "coordination.ts returned cross-checkout ambiguities and malformed retained goal kinds; no integration attempted"
+  },
+  "integration": {
+    "merged": false,
+    "pushed": false,
+    "ticket_completed": false
+  },
+  "next_step": "The workflow owner must supply a supported, approved source-candidate transition in the receipt chain. Then independently review the preserved resolution and validate integration. Do not rewrite old receipts or treat original SUCCESS as candidate approval."
+}
