@@ -2,15 +2,15 @@
   "schema": "worktree-latest-status/v1",
   "workflow_id": "skill-contract-manifests-07-shared-context",
   "ticket": "tracker/tickets/skill-contract-manifests-07-shared-context.md",
-  "state": "FIXED",
-  "latest_receipt": "fix-complete-0022",
+  "state": "REVIEW_PASSED",
+  "latest_receipt": "review-complete-0025",
   "latest_source_commit": "79250a53fad0780ac51d40f17121b50d8d76ef6f",
   "latest_source_tree": "a4d55e717aa5beb4b31871622db5788e82519908",
-  "latest_review_verdict": null,
-  "latest_review_receipt": "review-0018",
-  "latest_review_source_commit": "fc4bf19ed4d42aae5fb246e40904f4be956d3298",
+  "latest_review_verdict": "SUCCESS",
+  "latest_review_receipt": "review-0024",
+  "latest_review_source_commit": "79250a53fad0780ac51d40f17121b50d8d76ef6f",
   "historical_review_verdict": "FAILURE",
-  "review_stale": true,
+  "review_stale": false,
   "open_findings": [],
   "nonblocking_findings": [
     "STD-0018-01"
@@ -19,5 +19,5 @@
   "resolved_findings": [
     "SPEC-0018-01"
   ],
-  "next_action": "fresh independent review"
+  "next_action": "finish with combined-candidate integration validation"
 }
