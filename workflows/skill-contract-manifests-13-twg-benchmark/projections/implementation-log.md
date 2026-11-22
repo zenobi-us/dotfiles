@@ -39,3 +39,7 @@ No fix phase has run. No unresolved questions.
 
 Review review-0005 returned SUCCESS for `33b388888ecb2dbbe46cde0d76f604946c925734`. No blocking findings. [Review artifact](../artifacts/reviews/review-review-0005.md), [review receipt](../events/review-0005.yaml), [parent completion](../events/review-complete-0006.yaml). Both runtime checks and independent offline smoke passed; source remained unchanged.
 
+
+## Finish history
+
+Squash integration `21e3f6c74e2461fdc2850f063656ff07f3872c93` is published to `origin/master`. Ticket completed and published in `6b39c119aea0a1705e931b1438322c5e734581b8`. Candidate-bound checks and offline run/render smoke passed in both runtimes. Source and integration worktrees were removed; owned process shutdown is confirmed. [Terminal finish receipt](../events/finish-0013.yaml), [integration result](../artifacts/snapshots/integration-result-0008.json), [cleanup](../artifacts/snapshots/cleanup-result-0011.json).

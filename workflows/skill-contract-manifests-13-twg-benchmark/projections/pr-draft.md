@@ -61,7 +61,7 @@ None.
 
 ## Merge status
 
-Not merged, rebased or pushed. Source worktree retained. Ticket state unchanged. Parent selects the next phase.
+Squash integration `21e3f6c74e2461fdc2850f063656ff07f3872c93` is published to `origin/master`. Ticket completed and published in `6b39c119aea0a1705e931b1438322c5e734581b8`. Candidate-bound checks and offline run/render smoke passed in both runtimes. Source and integration worktrees were removed; owned process shutdown is confirmed. [Terminal finish receipt](../events/finish-0013.yaml), [integration result](../artifacts/snapshots/integration-result-0008.json), [cleanup](../artifacts/snapshots/cleanup-result-0011.json).
 
 ## Supporting records
 

@@ -1,8 +1,8 @@
 schema: worktree-latest-status/v1
 workflow_id: skill-contract-manifests-13-twg-benchmark
 ticket: tracker/tickets/skill-contract-manifests-13-twg-benchmark.md
-state: REVIEW_PASSED
-latest_receipt: review-complete-0006
+state: FINISHED
+latest_receipt: finish-0013
 latest_source_commit: 33b388888ecb2dbbe46cde0d76f604946c925734
 latest_source_tree: 6bf7cadb7209cb53e0a85d62d7107ae201c38c2f
 latest_review_verdict: SUCCESS
