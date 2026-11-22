@@ -8,7 +8,7 @@ sequence: 10
 title: Update skill-authoring rules
 triage: ready-for-agent
 type: enhancement
-work_status: "claimed"
+work_status: "completed"
 ---
 
 ## What to build
@@ -19,11 +19,11 @@ Implement this slice under the parent initiative. Preserve its contract ownershi
 
 ## Acceptance criteria
 
-- [ ] Update canonical guidance, anatomy rules, checklists, and behavioural scenarios together. Keep the compatibility alias as an alias, not a second policy owner.
-- [ ] Require authors to identify independently consumed structured inputs and outputs, ownership, authoritative definitions, validators, compatibility, manifests, and upgrade policies.
-- [ ] Cover independent produces and accepts declarations, explicit empty collections, schemaVersion record-family identifiers, historical definitions, and safe upgrade boundaries.
-- [ ] Exclude ordinary prose and opaque assets unless consumers depend on their structure or meaning. Preserve external format ownership.
-- [ ] Run baseline and pressure scenarios that show correct contract scope and refusal of ambiguous, lossy, or decision-dependent automatic conversion. Update the authoring skills own applicable manifests.
+- [x] Update canonical guidance, anatomy rules, checklists, and behavioural scenarios together. Keep the compatibility alias as an alias, not a second policy owner.
+- [x] Require authors to identify independently consumed structured inputs and outputs, ownership, authoritative definitions, validators, compatibility, manifests, and upgrade policies.
+- [x] Cover independent produces and accepts declarations, explicit empty collections, schemaVersion record-family identifiers, historical definitions, and safe upgrade boundaries.
+- [x] Exclude ordinary prose and opaque assets unless consumers depend on their structure or meaning. Preserve external format ownership.
+- [x] Run baseline and pressure scenarios that show correct contract scope and refusal of ambiguous, lossy, or decision-dependent automatic conversion. Update the authoring skills own applicable manifests.
 
 ## Verification
 
@@ -33,3 +33,5 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 
 
 2026-11-22T06:16:10.429Z — Review SUCCESS. Commit: `e3f54b7b2a8e71b12b70399c95261128a95468f2`. Tree: `1b993463da850f5d389927a481609980ff972001`. [Review artifact](../../workflows/skill-contract-manifests-10-authoring/artifacts/reviews/review-review-0006.md).
+
+2026-11-22 — Completed after SUCCESS review and candidate-bound validation. Squash integration: `f6cf243b39e0aba397de7dc0cc7ff9c57b8ea899`, published on `origin/master`. [Publication checkpoint](../../workflows/skill-contract-manifests-10-authoring/events/finish-pushed-0013.yaml).

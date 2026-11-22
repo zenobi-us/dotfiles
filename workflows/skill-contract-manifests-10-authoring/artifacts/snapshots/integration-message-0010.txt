@@ -1,0 +1,4 @@
+feat(skills): finish skill-contract-manifests-10-authoring
+
+Apply reviewed authoring policy and behavioral guidance.
+Review: workflows/skill-contract-manifests-10-authoring/events/review-0006.yaml
