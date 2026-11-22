@@ -2,7 +2,7 @@ schema: worktree-latest-status/v1
 workflow_id: skill-contract-manifests-10-authoring
 ticket: tracker/tickets/skill-contract-manifests-10-authoring.md
 state: IMPLEMENTED
-latest_receipt: implementation-0002
+latest_receipt: start-complete-0003
 latest_source_commit: e3f54b7b2a8e71b12b70399c95261128a95468f2
 latest_source_tree: 1b993463da850f5d389927a481609980ff972001
 latest_review_verdict: null
