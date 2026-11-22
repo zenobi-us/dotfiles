@@ -1,5 +1,5 @@
 ---
-receipt_id: review-0018
+receipt_id: finish-failed-0021
 schemaVersion: worktree-pr-draft/v1
 source_commit: 8ce850b641b29d052f9549f956f93dfd655e2c6b
 source_tree: 02afddcab23399930e7d9ce14c461b1c4e9684c2
@@ -8,6 +8,14 @@ workflow_id: skill-contract-manifests-08-worktree
 ---
 
 # Fix attempt 2: STANDARDS-1, SPEC-3, SPEC-4
+
+## Finish attempt 1
+
+State: FINISH_FAILED. Read-only integration preparation stopped on three generated bundle-version conflicts in marketplace.json and the agent-core/developer plugin.json files. No integration plan or candidate was produced. Candidate validation did not run. No merge, push, ticket completion or workspace cleanup occurred.
+
+The original source remains clean at `8ce850b641b29d052f9549f956f93dfd655e2c6b`. Its SUCCESS remains source-bound; it does not approve a conflict resolution. Preserve the original source, prepare a separately resolved candidate, obtain independent review and retry integration against the current base.
+
+See [preflight observations](../artifacts/snapshots/finish-preflight-0020.json), [finish start](../events/finish-start-0020.yaml) and [failed boundary](../events/finish-failed-0021.yaml). Ticket state remains claimed; worktree and workspace remain preserved.
 
 ## Current review
 

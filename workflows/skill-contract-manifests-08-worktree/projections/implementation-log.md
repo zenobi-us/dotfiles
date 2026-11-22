@@ -91,3 +91,8 @@ See [immutable review body](../artifacts/reviews/review-review-0012.md) and [par
 [review-0018](../events/review-0018.yaml) returned SUCCESS for clean source `8ce850b641b29d052f9549f956f93dfd655e2c6b`. Standards and Spec each found zero blocking findings; all five historical finding IDs are resolved. See [immutable review body](../artifacts/reviews/review-review-0018.md) and [parent completion](../events/review-complete-0019.yaml).
 
 Reviewer checks: 212 tests and real current/historical owning-command smokes passed. Parent checks: 30 tests passed. Configured typecheck not independently reverified due missing local compiler/dependencies; prior same-source fix check stays separate. Delivery acknowledged; reviewer/helpers closed with confirmed shutdown. Source unchanged; no merge or push.
+
+
+## Finish attempt 1: preparation failed
+
+[finish-failed-0021](../events/finish-failed-0021.yaml) retains the failed read-only squash preparation. Three generated bundle-version files conflict with the advanced base. See [preflight observations](../artifacts/snapshots/finish-preflight-0020.json). No candidate validation, integration, push, ticket completion or cleanup occurred. Original source `8ce850b641b29d052f9549f956f93dfd655e2c6b` and its source-bound SUCCESS remain unchanged. A separately resolved candidate needs independent review before another integration attempt.
