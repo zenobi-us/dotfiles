@@ -1,5 +1,4 @@
 ---
-schema: collect-evidence/v1
 kind: driver
 ---
 # Surf driver
@@ -8,7 +7,7 @@ Run doctor --driver surf before collection. Surf needs an installed Chrome exten
 
 The driver creates a fresh named session with session.new, records ownership and switches to its tab. It refuses an existing session name and closes only its owned session. Surf is attended: keep its browser visible during screenshots. A successful connection does not prove screenshot visibility.
 
-Compilation produces a tool-native Surf workflow ending in .json and a versioned driver map ending in .json.map. These private suffixes cannot collide, including for case IDs a and a.map. The map connects tool actions, assertion execution and distinct screenshots to stable plan steps. Preserve the native workflow and raw output without inserting schema fields into the tool's own format.
+Compilation produces a tool-native Surf workflow ending in .json and a versioned driver map ending in .json.map. These private suffixes cannot collide, including for case IDs a and a.map. The map connects tool actions, assertion execution and distinct screenshots to stable plan steps. Preserve the native workflow and raw output without inserting schemaVersion fields into the tool's own format.
 
 Surf accepts assertion-like workflow keywords that its runner can ignore. This driver uses JavaScript assertions that throw and poll for readiness. Keep those real checks; do not replace them with expect, when, retry or continueOnError fields. A process exit or screenshot alone cannot establish PASS.
 

@@ -18,7 +18,7 @@ for (const args of [
     const { out, err, code } = await invoke(args);
     expect(code).toBe(2);
     const record = JSON.parse(out);
-    expect(record).toMatchObject({ schema: "collect-evidence/v1", kind: "error", success: false, code: 2 });
+    expect(record).toMatchObject({ schemaVersion: "collect-evidence/v2", kind: "error", success: false, code: 2 });
     expect(record.message).toBeTypeOf("string");
     expect(err.trim()).toBe(record.message);
   });

@@ -1,12 +1,11 @@
 ---
-schema: collect-feedback/v1
 kind: explanation
 title: Evidence, feedback, and workflow records
 ---
 # Evidence, feedback, and workflow records
 
 The evidence workflow connects observed application behavior to saved feedback without changing ticket or phase authority.
-For operators, reviewers, and agents. Version: collect-feedback/v1 and collect-evidence/v1.
+For operators, reviewers, and agents. Version: collect-feedback/v2 and collect-evidence/v2.
 For actions, use the [how-to](../howto.md). For flags and statuses, use the [CLI reference](cli.md).
 
 ## Overview
@@ -90,10 +89,10 @@ The following names describe structure inside resolved locations. They do not ch
 ```
 
 Native files can also appear under case-specific paths. Their recorded references select their actual location.
-Third-party originals retain their original bytes, even when they do not use the common schema.
+Third-party originals retain their original bytes, even when they do not use the common schemaVersion.
 
-Evidence JSON and JSONL use `collect-evidence/v1` and a record `kind`.
-Feedback JSON and owned Markdown use `collect-feedback/v1` and a record `kind`.
+Evidence JSON and JSONL use `collect-evidence/v2` and a record `kind`.
+Feedback JSON and owned Markdown use `collect-feedback/v2` and a record `kind`.
 The source snapshot remains evidence, not rewritten feedback.
 Markdown indexes and reports present canonical records. They are not a second annotation database.
 Worktree `events/` phase receipts remain authoritative for phase progress. Tracker records remain authoritative for ticket state.

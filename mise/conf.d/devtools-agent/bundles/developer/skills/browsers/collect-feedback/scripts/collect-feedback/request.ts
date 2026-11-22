@@ -20,7 +20,7 @@ export async function requestFeedback(directory: string, options: RequestOptions
     let collection: object | undefined;
     if (!options.historical) {
       const workspace = JSON.parse((await boundedFile(directory, "workspace.json", 4 * 1024 * 1024)).toString("utf8"));
-      requireValue(workspace?.schema === "collect-evidence/v1" && workspace.kind === "event" && typeof workspace.repository === "string", "Fresh request requires a collector workspace; use --historical for an earlier sealed run");
+      requireValue(workspace?.schemaVersion === "collect-evidence/v2" && workspace.kind === "event" && typeof workspace.repository === "string", "Fresh request requires a collector workspace; use --historical for an earlier sealed run");
       requireValue(resolve(workspace.repository) === resolve(options.repository) && workspace.workflow === options.workflow, "Request repository and workflow must match the approved collector workspace");
       const executable = resolve(import.meta.dir, "../../../collect-evidence/scripts/collect-evidence.ts");
       const args = [executable, "run", directory, "--json", "--no-input", ...(options.dryRun ? ["--dry-run"] : [])];

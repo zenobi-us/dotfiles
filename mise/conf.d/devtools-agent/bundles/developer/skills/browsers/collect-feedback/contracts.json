@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": ["collect-feedback/v2"],
+  "accepts": ["collect-feedback/v2", "collect-feedback/v1", "collect-evidence/v2", "collect-evidence/v1"],
+  "contracts": {
+    "collect-feedback/v2": "file:references/viewer-contract.md",
+    "collect-feedback/v1": "file:references/feedback-v1.md",
+    "collect-evidence/v2": "file:../collect-evidence/references/evidence-schema.md",
+    "collect-evidence/v1": "file:../collect-evidence/references/evidence-v1.md"
+  },
+  "upgrades": []
+}

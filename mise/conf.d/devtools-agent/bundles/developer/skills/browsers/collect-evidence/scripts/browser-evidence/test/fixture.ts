@@ -1,7 +1,7 @@
 import type { Plan } from "../plan.ts";
 
 export const plan: Plan = {
-  schema: "collect-evidence/v1",
+  schemaVersion: "collect-evidence/v2",
   kind: "plan",
   approval: { origins: ["https://app.example.invalid"], confirmations: ["1.3", "1.5", "1.11"] },
   workId: "WORK-1",

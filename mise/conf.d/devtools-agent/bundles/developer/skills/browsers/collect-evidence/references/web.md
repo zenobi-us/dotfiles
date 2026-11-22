@@ -1,5 +1,4 @@
 ---
-schema: collect-evidence/v1
 kind: procedure
 ---
 # Web evidence
@@ -15,7 +14,7 @@ Resolve the installed skill directory. Use its absolute scripts/collect-evidence
 
 ## Plan approval
 
-The typed Plan requires schema collect-evidence/v1, kind plan, workId, driver, base, approval and tests. Each test has a stable id, claim, pass, fail and ordered steps. Declare preconditions once and select them with requires. Compilation and record validation share structural checks. Case and precondition IDs start with a letter or digit and contain at most 160 letters, digits, dots, underscores or hyphens. Invalid IDs and unknown precondition references stop compilation before browser execution. An unmet precondition produces BLOCKED without running the affected case. A human step produces PARTIAL and stops further actions in that case.
+The typed Plan requires schemaVersion collect-evidence/v2, kind plan, workId, driver, base, approval and tests. Each test has a stable id, claim, pass, fail and ordered steps. Declare preconditions once and select them with requires. Compilation and record validation share structural checks. Case and precondition IDs start with a letter or digit and contain at most 160 letters, digits, dots, underscores or hyphens. Invalid IDs and unknown precondition references stop compilation before browser execution. An unmet precondition produces BLOCKED without running the affected case. A human step produces PARTIAL and stops further actions in that case.
 
 Precondition check fields are optional. Present locator, text and goto fields must be strings. Present timeoutMs must be a finite non-negative number; zero and fractional values are valid. Invalid checks fail before generation or driver dispatch.
 

@@ -11,7 +11,7 @@ import type { DriverRun } from "../verdict.ts";
 export const guiDriver: Driver = {
   name: "gui", attended: true,
   scriptName: (_plan, id) => `gui-${id}.json`,
-  compile: (plan, test) => ({ [`gui-${test.id}.json`]: JSON.stringify({ schema: "collect-evidence/v1", kind: "plan", gui: plan.gui, test }, null, 2) + "\n" }),
+  compile: (plan, test) => ({ [`gui-${test.id}.json`]: JSON.stringify({ schemaVersion: "collect-evidence/v2", kind: "plan", gui: plan.gui, test }, null, 2) + "\n" }),
   sessionName: () => `ce-gui-${randomUUID()}`,
   async open() {},
   async close() {},

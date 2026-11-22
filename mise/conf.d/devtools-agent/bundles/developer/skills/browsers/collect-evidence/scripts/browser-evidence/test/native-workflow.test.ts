@@ -30,7 +30,7 @@ process.stdin.on("data", () => { screen("Loading screen"); setTimeout(() => scre
     const command = [process.execPath, fixture];
     const image = { width: 1280, height: 720, pixels: [{ x: 10, y: 55, rgb: [201, 166, 255] as [number, number, number] }], lines: [{ text: "Ready screen", top: 11 }, { text: "Selected item", top: 31 }] };
     const plan: Plan = {
-      schema: "collect-evidence/v1", kind: "plan", workId: "native", driver: "tui", base: "terminal://private",
+      schemaVersion: "collect-evidence/v2", kind: "plan", workId: "native", driver: "tui", base: "terminal://private",
       video: true,
       terminal: { command, cwd: root, columns: 80, rows: 24, font: "monospace:size=12", lineHeight: 20 },
       approval: { origins: [], confirmations: ["transition.2"], terminal: { command, cwd: root } },
@@ -106,7 +106,7 @@ process.stdin.on("data", data => appendFileSync(${JSON.stringify(input)}, data))
       const command = [process.execPath, fixture];
       const image = { width: scenario === "assertion" ? 1 : 1280, height: 720, pixels: [{ x: 0, y: 100, rgb: [36, 36, 36] as [number, number, number] }], lines: [{ text: "Ready screen", top: 11 }, { text: "Selected item", top: 31 }] };
       const plan: Plan = {
-        schema: "collect-evidence/v1", kind: "plan", workId: "native", driver: "tui", base: "terminal://private",
+        schemaVersion: "collect-evidence/v2", kind: "plan", workId: "native", driver: "tui", base: "terminal://private",
         terminal: { command, cwd: root, columns: 80, rows: 24, font: "monospace:size=12", lineHeight: 20 },
         approval: { origins: [], confirmations: unapprovedConfirmation ? [] : ["case.1"], terminal: { command, cwd: root } },
         ...(precondition ? { preconditions: [{ id: "ready", desc: "Required screen", check: { locator: "screen", text: scenario === "precondition" ? "Absent screen" : "Ready screen", timeoutMs: scenario === "precondition" ? 300 : 5000 } }] } : {}),

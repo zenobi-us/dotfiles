@@ -1,5 +1,5 @@
 ---
-schema: collect-feedback/v1
+schemaVersion: collect-feedback/v2
 kind: reference
 ---
 # Image and video feedback contract
@@ -9,7 +9,7 @@ and the [system explanation](system.md) for routing and record authority.
 
 ## Storage and identity
 
-Import sealed evidence through the existing shared-context evidence route. Preserve the source snapshot and immutable media. Each case stores annotations in `cases/<case-id>/annotations/<annotation-id>.json`. Each record uses `collect-feedback/v1`, kind `annotation`, stable annotation/session/case/asset IDs, source SHA-256, original dimensions, priority, comment, revision and creation/update timestamps.
+Import sealed evidence through the existing shared-context evidence route. Preserve the source snapshot and immutable media. Each case stores annotations in `cases/<case-id>/annotations/<annotation-id>.json`. Each record uses `collect-feedback/v2`, kind `annotation`, stable annotation/session/case/asset IDs, source SHA-256, original dimensions, priority, comment, revision and creation/update timestamps.
 
 Geometry uses normalized top-left `{x,y,width,height}` coordinates. A point has zero width and height. A box has positive width and height. Round the left, top, right and bottom original-pixel edges once. Derive pixel width and height from the rounded edges. Source identity changes require a new import.
 
@@ -27,13 +27,13 @@ Geometry uses normalized top-left `{x,y,width,height}` coordinates. A point has 
 | DELETE /api/v1/annotations/:id | Reversible tombstone and a new ETag. |
 | GET /api/v1/export | Verified session, cases, source assets and annotations. |
 
-JSON responses have schema, kind and success. Errors include a message. Every mutation requires Content-Type application/json, the exact same Origin and X-Write-Token from the session response. Tokens stay in memory and never appear in readiness output or logs.
+JSON responses have schemaVersion, kind and success. Errors include a message. Every mutation requires Content-Type application/json, the exact same Origin and X-Write-Token from the session response. Tokens stay in memory and never appear in readiness output or logs.
 
-The creation payload contains exactly schema, kind, id, sessionId, caseId, assetId, sourceSha256, originalWidth, originalHeight, geometry, priority and comment. Priority is P1, P2 or P3. The comment must contain text. A saved annotation adds revision 1, createdAt, updatedAt and pixelGeometry. Its ETag is `"<id>:1"`. Retrying an identical ID and payload returns the original record. Different content for that ID returns 409.
+The creation payload contains exactly schemaVersion, kind, id, sessionId, caseId, assetId, sourceSha256, originalWidth, originalHeight, geometry, priority and comment. Priority is P1, P2 or P3. The comment must contain text. A saved annotation adds revision 1, createdAt, updatedAt and pixelGeometry. Its ETag is `"<id>:1"`. Retrying an identical ID and payload returns the original record. Different content for that ID returns 409.
 
-PATCH requires schema collect-feedback/v1 and kind annotation, plus one or more of comment, priority or geometry. Source identity fields cannot change. DELETE requires exactly schema and kind. Undo uses PATCH with only schema, kind and deletedAt: null. PATCH and DELETE require If-Match containing the last acknowledged ETag, such as "note-id:1". A missing precondition returns 428; a stale revision returns 412. Successful mutations increment revision and update updatedAt. DELETE sets deletedAt while retaining all annotation content; undo clears deletedAt. Older creation records without deletedAt remain valid. Export includes tombstones.
+PATCH requires schemaVersion collect-feedback/v2 and kind annotation, plus one or more of comment, priority or geometry. Source identity fields cannot change. DELETE requires exactly schemaVersion and kind. Undo uses PATCH with only schemaVersion, kind and deletedAt: null. PATCH and DELETE require If-Match containing the last acknowledged ETag, such as "note-id:1". A missing precondition returns 428; a stale revision returns 412. Successful mutations increment revision and update updatedAt. DELETE sets deletedAt while retaining all annotation content; undo clears deletedAt. Older creation records without deletedAt remain valid. Export includes tombstones.
 
-The service checks source records and bytes before every mutation and export. It checks Host, Origin, Fetch Metadata, registered IDs, payload schema, geometry and request size before mutation. A changed source returns 409. Invalid payloads return 400. Authorization failures return 403. Unsupported content types return 415. Oversized requests return 413. Unknown routes return 404 and unsupported methods return 405.
+The service checks source records and bytes before every mutation and export. It checks Host, Origin, Fetch Metadata, registered IDs, payload schemaVersion, geometry and request size before mutation. A changed source returns 409. Invalid payloads return 400. Authorization failures return 403. Unsupported content types return 415. Oversized requests return 413. Unknown routes return 404 and unsupported methods return 405.
 
 ## Safety and shutdown
 
@@ -47,7 +47,7 @@ Publish complete annotation JSON atomically after syncing file data. Sync the co
 
 Click an image for a point or drag in either direction for a box. Point and Box controls provide keyboard creation. Arrows move; Shift plus arrows resize a box. Escape cancels. Ctrl or Meta plus Enter saves a nonblank comment. Select a saved pin to inspect it without a draft or write. Use Edit note for a draft and Delete note for a tombstone. Undo deletion remains available after reload and restart. A conflict keeps the draft and its starting revision and shows the current saved content, priority, geometry and deletion state. Use saved revision for next save explicitly adopts the displayed live revision; a subsequent save still uses If-Match. If a retry finds exactly the submitted live content, it re-saves that content with its current precondition for a durable acknowledgement. A further concurrent change still fails safely. Start at P2 Friction. Label P1 Blocker and P3 Polish. Show Saved only after the server confirms a durable write. Failed saves retain the draft, starting revision, stable ID and frozen retry payload across navigation and reload. Saved server annotations remain authoritative.
 
-Browser recovery records use `collect-feedback/v1`, kind `draft`, an `annotation` input, nullable `startingRevision`, optional frozen `submitted` input and optional error. New notes use a null starting revision. The input binds session, case, asset ID, source SHA-256 and original dimensions. Recovery requires an exact image identity match. It never adopts a newer saved revision automatically.
+Browser recovery records use `collect-feedback/v2`, kind `draft`, an `annotation` input, nullable `startingRevision`, optional frozen `submitted` input and optional error. New notes use a null starting revision. The input binds session, case, asset ID, source SHA-256 and original dimensions. Recovery requires an exact image identity match. It never adopts a newer saved revision automatically.
 
 Drafts use tab-local `sessionStorage`, keyed by session ID and source run at the current origin. They survive navigation and reload, not tab closure or a port change. Browser storage failures retain in-memory drafts and show a memory-only warning. Unsupported or unreadable stored drafts block UI export until explicitly discarded.
 
@@ -75,6 +75,14 @@ Undo deletion of a video note pauses playback and seeks to its bound timestamp. 
 
 ## Historical selection
 
-`init <sealed-run> --historical` explicitly selects an earlier run for a new session. The versioned session adds optional `historical: true`. Existing sessions without this field remain readable and unchanged. The viewer, exports and writing-reports preserve this selection. `false`, strings and unknown session schema versions are invalid. The sealed source snapshot is not relabelled or rewritten.
+`init <sealed-run> --historical` explicitly selects an earlier run for a new session. The versioned session adds optional `historical: true`. Existing sessions without this field remain readable and unchanged. The viewer, exports and writing-reports preserve this selection. `false`, strings and unknown session schemaVersion versions are invalid. The sealed source snapshot is not relabelled or rewritten.
 
-Capture dates remain those in each asset. Null dates remain unknown. The import timestamp describes only session creation. Source schema checks run before store writes. No legacy format is inferred from filenames.
+Capture dates remain those in each asset. Null dates remain unknown. The import timestamp describes only session creation. Source schemaVersion checks run before store writes. No legacy format is inferred from filenames.
+
+## Contract versions and immutable history
+
+`contracts.json` declares `collect-feedback/v2` output and accepts v2 and historical `collect-feedback/v1`, plus both evidence versions by reference to the collector owner. Current records use `schemaVersion: collect-feedback/v2` and `kind`. The discriminated family covers session metadata, case acceptance views, annotation inputs and saved revisions, browser draft recovery, exports, service responses, command results and lock metadata. Session fields bind id, createdAt, original source run plus manifestSha256 and ordered cases. Case views retain source case fields, replace runId with sessionId and bind source runId/caseId. Exports use kind `export`, success, session, cases, assets and annotations. Command results use kind `event` or `error`, success and command-specific fields. Errors include code and message. HTTP responses retain their existing /api/v1 routes; route versions are not record versions.
+
+The [retained v1 definition](feedback-v1.md) uses `schema: collect-feedback/v1`. Validation and exports retain historical session, case, annotation and nested source headers. New sessions can import either sealed evidence version without changing any source record or media byte. Imports preserve original references, capture dates and checksums. New exports use a v2 envelope even when their nested records are historical.
+
+No conversion is declared. Historical sessions and saved v1 annotations are read-only. Create a new session from its sealed source to add current notes. The mutation boundary rejects conversion before writing. Browser recovery keeps its stable storage key. A v1 draft is retained with an unreadable-recovery warning until the operator explicitly discards it; it is never silently relabelled or overwritten. Read-only validate and export operations do not acquire a writer lock or change stored bytes. The viewer remains loopback-only, with the existing source checks, write token and revision checks. Local serving does not approve external publication. Report-generation ownership remains separate.

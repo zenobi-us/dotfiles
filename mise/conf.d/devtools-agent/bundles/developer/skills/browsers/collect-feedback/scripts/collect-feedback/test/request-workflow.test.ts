@@ -51,7 +51,7 @@ test("installed request keeps historical identity and stops blocked fresh captur
     const workspace = join(root, "working");
     expect((await invoke(collector, ["init", workspace, "--repository", repository, "--workflow", "request", "--run", "blocked", "--driver", "gui"])).code).toBe(0);
     const scope = { display: ":65000", window: "root", title: "Unavailable private fixture" };
-    const plan = { schema: "collect-evidence/v1", kind: "plan", workId: "request", driver: "gui", base: "gui://local", gui: scope, approval: { origins: [], gui: scope }, tests: [{ id: "case", claim: "Inspect fixture", pass: "Fixture visible", fail: "Fixture differs", steps: [{ do: "expect", says: "Inspect selected pixels.", locator: "screen", visible: true, shot: "fixture", image: { width: 10, height: 10, pixels: [{ x: 0, y: 0, rgb: [0, 0, 0] }], lines: [] } }] }] };
+    const plan = { schemaVersion: "collect-evidence/v2", kind: "plan", workId: "request", driver: "gui", base: "gui://local", gui: scope, approval: { origins: [], gui: scope }, tests: [{ id: "case", claim: "Inspect fixture", pass: "Fixture visible", fail: "Fixture differs", steps: [{ do: "expect", says: "Inspect selected pixels.", locator: "screen", visible: true, shot: "fixture", image: { width: 10, height: 10, pixels: [{ x: 0, y: 0, rgb: [0, 0, 0] }], lines: [] } }] }] };
     await writeFile(join(workspace, "plan.ts"), `export const plan = ${JSON.stringify(plan)};`);
     for (const name of ["render", "compile"]) expect((await invoke(collector, [name, workspace])).code).toBe(0);
     const before = await readdir(repository);
@@ -104,7 +104,7 @@ test.skipIf(process.env.RUN_NATIVE_EVIDENCE_TESTS !== "1")("installed request re
       const id = mixed ? "mixed" : "assertion-only";
       const workspace = join(root, id);
       expect((await invoke(collector, ["init", workspace, "--repository", repository, "--workflow", "request", "--run", id, "--driver", "tui"])).code).toBe(0);
-      const plan = { schema: "collect-evidence/v1", kind: "plan", workId: "request", driver: "tui", base: "terminal://private", terminal, approval: { origins: [], terminal: { command: terminal.command, cwd: root } }, ...(mixed ? { preconditions: [{ id: "missing", desc: "Required screen is unavailable", check: { locator: "screen", text: "Unavailable required screen", timeoutMs: 500 } }] } : {}), tests: mixed ? [assertion, { ...assertion, id: "prerequisite", requires: ["missing"] }] : [assertion] };
+      const plan = { schemaVersion: "collect-evidence/v2", kind: "plan", workId: "request", driver: "tui", base: "terminal://private", terminal, approval: { origins: [], terminal: { command: terminal.command, cwd: root } }, ...(mixed ? { preconditions: [{ id: "missing", desc: "Required screen is unavailable", check: { locator: "screen", text: "Unavailable required screen", timeoutMs: 500 } }] } : {}), tests: mixed ? [assertion, { ...assertion, id: "prerequisite", requires: ["missing"] }] : [assertion] };
       await writeFile(join(workspace, "plan.ts"), `export const plan = ${JSON.stringify(plan)};`);
       for (const name of ["render", "compile"]) expect((await invoke(collector, [name, workspace])).code).toBe(0);
       const args = ["request", workspace, "--repository", repository, "--workflow", "request", "--session", `${id}-review`, "--port", String(port)];

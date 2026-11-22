@@ -1,12 +1,11 @@
 ---
-schema: collect-evidence/v1
 kind: procedure
 title: "Manual CLI example: collect a web image for feedback"
 ---
 # Manual CLI example: collect a web image for feedback
 
 Collect a real image of a controlled local page through the installed public CLI.
-For operators and agents. Version: collect-evidence/v1.
+For operators and agents. Version: collect-evidence/v2.
 For real application work, use the [web](web.md), [TUI](tui.md), or [GUI](gui.md) driver procedure.
 
 ## Prepare the tools and scope
@@ -48,7 +47,7 @@ Write this complete `plan.ts` into the workspace from the first terminal:
 ```sh
 cat > "$WORKSPACE/plan.ts" <<'PLAN'
 export const plan = {
-  schema: "collect-evidence/v1", kind: "plan",
+  schemaVersion: "collect-evidence/v2", kind: "plan",
   workId: "review-example", driver: "playwright",
   base: "http://127.0.0.1:8090",
   approval: { origins: ["http://127.0.0.1:8090"] },

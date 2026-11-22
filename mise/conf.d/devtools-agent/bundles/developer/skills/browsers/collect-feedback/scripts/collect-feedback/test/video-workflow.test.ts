@@ -26,7 +26,7 @@ test("video notes retain timing and source binding; registered media supports se
   try {
     const work = join(root, "work");
     const initialized = await invoke(evidence, ["init", work, "--repository", repository, "--workflow", "video", "--run", "source"]);
-    await writeFile(join(work, "plan.ts"), `export const plan = ${JSON.stringify({ schema: "collect-evidence/v1", kind: "plan", workId: "video", driver: "playwright", video: true, base: fixture.url.origin, approval: { origins: [fixture.url.origin], confirmations: [] }, tests: [{ id: "scene", claim: "Record transition", pass: "Final scene present", fail: "No transition", steps: [{ do: "navigate", says: "Open initial scene", to: "/", shot: "initial" }, { do: "expect", says: "Wait for final scene", locator: "#done", visible: true, shot: "final" }] }] })};`);
+    await writeFile(join(work, "plan.ts"), `export const plan = ${JSON.stringify({ schemaVersion: "collect-evidence/v2", kind: "plan", workId: "video", driver: "playwright", video: true, base: fixture.url.origin, approval: { origins: [fixture.url.origin], confirmations: [] }, tests: [{ id: "scene", claim: "Record transition", pass: "Final scene present", fail: "No transition", steps: [{ do: "navigate", says: "Open initial scene", to: "/", shot: "initial" }, { do: "expect", says: "Wait for final scene", locator: "#done", visible: true, shot: "final" }] }] })};`);
     for (const action of ["render", "compile", "run"]) await invoke(evidence, [action, work]);
     const imported = await invoke(feedback, ["init", initialized.destination.path, "--repository", repository, "--workflow", "video", "--session", "review"]);
     const directory = imported.destination.path;
@@ -54,13 +54,13 @@ test("video notes retain timing and source binding; registered media supports se
       expect(Buffer.from(await response.arrayBuffer())).toEqual(bytes.subarray(start, end + 1));
     }
     for (const range of ["bytes=-0", "bytes=4-1", `bytes=${bytes.length}-`, "bytes=0-1,4-5"]) expect((await fetch(mediaUrl, { headers: { Range: range } })).status).toBe(416);
-    const input = { schema: "collect-feedback/v1", kind: "annotation", id: crypto.randomUUID(), sessionId: "review", caseId: "scene", assetId: video.id, sourceSha256: video.sha256, originalWidth: video.width, originalHeight: video.height, mediaTimeSeconds: video.durationMs / 2000, displayedWidth: 640, displayedHeight: 360, geometry: { x: .25, y: .25, width: .5, height: .5 }, comment: "Inspect paused transition ".repeat(30).trim(), priority: "P1" };
+    const input = { schemaVersion: "collect-feedback/v2", kind: "annotation", id: crypto.randomUUID(), sessionId: "review", caseId: "scene", assetId: video.id, sourceSha256: video.sha256, originalWidth: video.width, originalHeight: video.height, mediaTimeSeconds: video.durationMs / 2000, displayedWidth: 640, displayedHeight: 360, geometry: { x: .25, y: .25, width: .5, height: .5 }, comment: "Inspect paused transition ".repeat(30).trim(), priority: "P1" };
     const save = (body: unknown) => fetch(origin + "/api/v1/annotations", { method: "POST", headers: { Origin: origin, "X-Write-Token": token, "Content-Type": "application/json" }, body: JSON.stringify(body) });
     for (const patch of [{ mediaTimeSeconds: -1 }, { mediaTimeSeconds: video.durationMs / 1000 + 1 }, { mediaTimeSeconds: null }, { displayedWidth: 0 }, { displayedHeight: null }, { assetId: image.id, sourceSha256: image.sha256, originalWidth: image.width, originalHeight: image.height }]) expect((await save({ ...input, ...patch })).status).toBe(400);
     expect((await save({ ...input, sourceSha256: "0".repeat(64) })).status).toBe(409);
     const response = await save(input); expect(response.status).toBe(201);
     let note = (await response.json()).annotation;
-    const update = await fetch(origin + "/api/v1/annotations/" + input.id, { method: "PATCH", headers: { Origin: origin, "X-Write-Token": token, "Content-Type": "application/json", "If-Match": `"${input.id}:1"` }, body: JSON.stringify({ schema: input.schema, kind: input.kind, mediaTimeSeconds: 0 }) });
+    const update = await fetch(origin + "/api/v1/annotations/" + input.id, { method: "PATCH", headers: { Origin: origin, "X-Write-Token": token, "Content-Type": "application/json", "If-Match": `"${input.id}:1"` }, body: JSON.stringify({ schemaVersion: input.schemaVersion, kind: input.kind, mediaTimeSeconds: 0 }) });
     expect(update.status).toBe(400); // Timing belongs to the source binding, not an editable comment field.
     const browserSession = `feedback-video-undo-${crypto.randomUUID()}`;
     async function browser(args: string[]) {

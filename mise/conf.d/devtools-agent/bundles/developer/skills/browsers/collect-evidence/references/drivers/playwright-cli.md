@@ -1,5 +1,4 @@
 ---
-schema: collect-evidence/v1
 kind: driver
 ---
 # Playwright driver

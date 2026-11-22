@@ -1,5 +1,4 @@
 ---
-schema: collect-evidence/v1
 kind: procedure
 title: Collect evidence with your coding agent
 ---

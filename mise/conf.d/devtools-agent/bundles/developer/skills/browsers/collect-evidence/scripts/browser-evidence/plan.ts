@@ -145,7 +145,7 @@ export type Test = {
 export type GuiScope = { display: string; window: string; title: string };
 
 export type Plan = {
- schema: "collect-evidence/v1";
+ schemaVersion: "collect-evidence/v2";
  kind: "plan";
  /** Origins and stable step IDs approved before collection starts. */
  approval: { origins: string[]; confirmations?: string[]; terminal?: { command: string[]; cwd: string }; gui?: GuiScope };

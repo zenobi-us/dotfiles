@@ -1,11 +1,12 @@
 ---
-schema: collect-evidence/v1
 name: collect-evidence
 description: Collects real browser and native terminal images, checked assertions and immutable evidence through Surf, Playwright, the Linux TUI driver or scoped Linux X11 GUI capture. Use for QA, acceptance checks, visual proof and screenshot handoffs. Produces versioned runs, case notes, verified media, reports and manual-step comments.
 user-invocable: true
 ---
 
 # collect-evidence
+
+`contracts.json` separates current v2 production from read-only v1 acceptance. Read the [evidence contract](references/evidence-schema.md) before interpreting stored records. Historical workspaces and sealed runs have no in-place upgrade path.
 
 Use one typed `Plan` and the existing `Driver` boundary. Capture completion and assertion results are separate. A screenshot alone is not a pass.
 
@@ -53,7 +54,7 @@ All commands use a mise Bun shebang and pinned CrustJS dependencies. Run the exe
 | `verdicts <run>` | Read the case verdicts from the same common records. |
 | `comment <run> --url <explicit-published-url>` | Print versioned Markdown with manual steps and the report link. Do not post it. |
 
-Use `--help` and `--version` for discovery. Put command flags after the command. `--json` emits `collect-evidence/v1` event or error records on stdout. Diagnostics go to stderr. `--plain`, `--quiet`, `--no-color` and `--no-input` support non-interactive use. Output has no colour by default and respects `NO_COLOR` and `TERM=dumb`.
+Use `--help` and `--version` for discovery. Put command flags after the command. `--json` emits `collect-evidence/v2` event or error records on stdout. Diagnostics go to stderr. `--plain`, `--quiet`, `--no-color` and `--no-input` support non-interactive use. Output has no colour by default and respects `NO_COLOR` and `TERM=dumb`.
 
 `--dry-run` performs no driver execution or writes. `--force` replaces only selected generated render or compile outputs. It cannot override approval, schemas, permissions, hashes or existing evidence identities. Flags override `COLLECT_EVIDENCE_REPOSITORY` and `COLLECT_EVIDENCE_DRIVER`. These non-secret defaults do not select a separate store.
 

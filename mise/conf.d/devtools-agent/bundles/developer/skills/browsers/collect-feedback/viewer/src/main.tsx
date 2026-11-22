@@ -22,7 +22,7 @@ async function request<T>(path: string, kind: string, signal: AbortSignal): Prom
   const response = await fetch(path, { signal, credentials: 'same-origin' });
   if (!response.ok) throw new Error(`${path}: HTTP ${response.status}`);
   const body = await response.json();
-  if (body.schema !== 'collect-feedback/v1' || body.kind !== kind || body.success !== true) {
+  if (body.schemaVersion !== 'collect-feedback/v2' || body.kind !== kind || body.success !== true) {
     throw new Error(text(body.error ?? `Unsupported ${kind} response`));
   }
   return body as T;

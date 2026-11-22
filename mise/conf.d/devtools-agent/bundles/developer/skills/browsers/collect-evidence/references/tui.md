@@ -1,5 +1,4 @@
 ---
-schema: collect-evidence/v1
 kind: playbook
 ---
 # Native Linux terminal evidence

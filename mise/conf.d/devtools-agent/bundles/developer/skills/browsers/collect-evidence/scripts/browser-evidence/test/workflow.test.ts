@@ -1,15 +1,15 @@
 // Consumer-visible command contracts. Real browser proof runs separately against
 // an owned HTTP page; these tests need no browser, credentials or network calls.
 import { afterAll, beforeAll, expect, test } from "bun:test";
-import { mkdtemp, writeFile, readFile, readdir, rm, mkdir } from "node:fs/promises";
+import { mkdtemp, writeFile, readFile, readdir, rm, mkdir, chmod } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 
 const cli = resolve(import.meta.dir, "../../collect-evidence.ts");
 let root: string;
 let repository: string;
-async function command(args: string[]) {
-  const p = Bun.spawn([cli, ...args], { cwd: root, stdout: "pipe", stderr: "pipe", env: { ...process.env, NO_COLOR: "1", TERM: "dumb" } });
+async function command(args: string[], env: Record<string, string> = {}) {
+  const p = Bun.spawn([cli, ...args], { cwd: root, stdout: "pipe", stderr: "pipe", env: { ...process.env, NO_COLOR: "1", TERM: "dumb", ...env } });
   const [out, err] = await Promise.all([new Response(p.stdout).text(), new Response(p.stderr).text()]);
   return { code: await p.exited, out, err };
 }
@@ -32,20 +32,64 @@ test("dry-run resolves a temporary store without creating a workspace or startin
   if (r.code) throw new Error(r.err || r.out);
   expect(r.code).toBe(0);
   const result = JSON.parse(r.out);
-  expect(result).toMatchObject({ schema: "collect-evidence/v1", kind: "event", success: true, dryRun: true, destination: { store: "repository", path: join(repository, "workflows/owned-workflow/artifacts/evidence/owned-run") } });
+  expect(result).toMatchObject({ schemaVersion: "collect-evidence/v2", kind: "event", success: true, dryRun: true, destination: { store: "repository", path: join(repository, "workflows/owned-workflow/artifacts/evidence/owned-run") } });
   expect(await readdir(root)).toEqual(before);
   expect(await readdir(repository)).toEqual([".context-routes.toml", ".git"]);
 });
 
-test("unsupported explicit schema is rejected by the public validator", async () => {
+test("unsupported explicit schemaVersion is rejected by the public validator", async () => {
   const dir = join(root, "future");
   await mkdir(dir);
-  await writeFile(join(dir, "run.json"), JSON.stringify({ schema: "collect-evidence/v999", kind: "run" }));
+  await writeFile(join(dir, "run.json"), JSON.stringify({ schemaVersion: "collect-evidence/v999", kind: "run" }));
   const before = await readdir(dir);
   const r = await command(["validate", dir, "--json"]);
   expect(r.code).toBe(2);
-  expect(JSON.parse(r.out)).toMatchObject({ schema: "collect-evidence/v1", kind: "error", success: false, code: 2 });
+  expect(JSON.parse(r.out)).toMatchObject({ schemaVersion: "collect-evidence/v2", kind: "error", success: false, code: 2 });
   expect(await readdir(dir)).toEqual(before);
+});
+
+test("run rejects mixed compiled identity before driver startup or any writes", async () => {
+  const dir = join(root, "mixed-compilation");
+  expect((await command(["init", dir, "--repository", repository, "--workflow", "mixed-compilation", "--run", "rejected", "--driver", "surf", "--json"])).code).toBe(0);
+  await writeFile(join(dir, "plan.ts"), `export const plan = ${JSON.stringify({
+    schemaVersion: "collect-evidence/v2", kind: "plan", workId: "mixed-compilation",
+    driver: "surf", base: "http://127.0.0.1:1",
+    approval: { origins: ["http://127.0.0.1:1"] },
+    tests: [{ id: "case", claim: "Reject mixed identity", pass: "Reject before startup", fail: "Start a driver", steps: [{ do: "navigate", says: "Open the approved page", to: "/" }] }],
+  })};`);
+  expect((await command(["compile", dir, "--json"])).code).toBe(0);
+  expect((await command(["run", dir, "--dry-run", "--json"])).code).toBe(0);
+  const compiledPath = join(dir, "compiled.json");
+  const compiled = JSON.parse(await readFile(compiledPath, "utf8"));
+  await writeFile(compiledPath, JSON.stringify({ ...compiled, schema: "unsupported/v999" }));
+
+  const bin = join(root, "driver-trap");
+  const staging = join(root, "isolated-staging");
+  await mkdir(bin);
+  await mkdir(staging);
+  const marker = join(root, "driver-started");
+  await writeFile(join(bin, "surf"), `#!/bin/sh\n: > '${marker}'\nexit 99\n`);
+  await chmod(join(bin, "surf"), 0o755);
+  const env = { PATH: `${bin}:${process.env.PATH}`, TMPDIR: staging };
+  async function snapshot(path: string): Promise<Record<string, string>> {
+    const files: Record<string, string> = {};
+    for (const entry of await readdir(path, { withFileTypes: true })) {
+      const child = join(path, entry.name);
+      if (entry.isDirectory()) Object.assign(files, await snapshot(child));
+      else files[child] = (await readFile(child)).toString("base64");
+    }
+    return files;
+  }
+  const before = await snapshot(root);
+  const repositoryEntries = (await readdir(repository, { recursive: true })).sort();
+  for (const flags of [["--dry-run"], []]) {
+    const result = await command(["run", dir, ...flags, "--json"], env);
+    expect(result.code).toBe(2);
+    expect(JSON.parse(result.out)).toMatchObject({ schemaVersion: "collect-evidence/v2", kind: "error", success: false, code: 2 });
+    expect(await snapshot(root)).toEqual(before);
+    expect((await readdir(repository, { recursive: true })).sort()).toEqual(repositoryEntries);
+    expect(await readdir(staging)).toEqual([]);
+  }
 });
 
 test("force cannot authorize evidence replacement", async () => {
@@ -67,7 +111,7 @@ test.each([
   const dir = join(root, `invalid-${id}`);
   expect((await command(["init", dir, "--repository", repository, "--workflow", "invalid-plan", "--run", id.replace("_", "x"), "--json"])).code).toBe(0);
   await writeFile(join(dir, "plan.ts"), `export const plan = ${JSON.stringify({
-    schema: "collect-evidence/v1", kind: "plan", workId: "invalid-plan",
+    schemaVersion: "collect-evidence/v2", kind: "plan", workId: "invalid-plan",
     driver: "playwright", base: "http://127.0.0.1:1",
     approval: { origins: ["http://127.0.0.1:1"], confirmations: [] },
     tests: [{ id, requires, claim: "Reject an invalid plan", pass: "No browser starts", fail: "A browser starts", steps: [{ do: "navigate", to: "/" }] }],
@@ -92,7 +136,7 @@ test.each(["", "../invalid", "bad slug"])("compile preserves empty screenshot sl
   const dir = join(root, `slug-${shot === "" ? "empty" : shot === "../invalid" ? "path" : "space"}`);
   expect((await command(["init", dir, "--repository", repository, "--workflow", "slug-plan", "--run", "slug", "--json"])).code).toBe(0);
   await writeFile(join(dir, "plan.ts"), `export const plan = ${JSON.stringify({
-    schema: "collect-evidence/v1", kind: "plan",
+    schemaVersion: "collect-evidence/v2", kind: "plan",
     workId: "slug-plan", driver: "surf", base: "http://127.0.0.1:1",
     approval: { origins: ["http://127.0.0.1:1"], confirmations: [] },
     tests: [{ id: "empty", claim: "Preserve screenshot intent", pass: "No implicit capture", fail: "An implicit capture occurs", steps: [{ do: "navigate", says: "Open without a screenshot", to: "/", shot }] }],
@@ -133,7 +177,7 @@ test.each([
   await rm(dir, { recursive: true });
   expect((await command(["init", dir, "--repository", repository, "--workflow", "step-validation", "--run", "invalid", "--json"])).code).toBe(0);
   await writeFile(join(dir, "plan.ts"), `export const plan = ${JSON.stringify({
-    schema: "collect-evidence/v1", kind: "plan", workId: "step-validation",
+    schemaVersion: "collect-evidence/v2", kind: "plan", workId: "step-validation",
     driver: "playwright", base: "http://127.0.0.1:1",
     approval: { origins: ["http://127.0.0.1:1"] },
     tests: [{ id: "case", claim: "Reject malformed steps", pass: "Reject before output", fail: "Accept malformed steps", steps: [step] }],
@@ -141,7 +185,7 @@ test.each([
   for (const operation of ["compile", "render", "run"]) {
     const result = await command([operation, dir, "--json"]);
     expect(result.code).toBe(2);
-    expect(JSON.parse(result.out)).toMatchObject({ schema: "collect-evidence/v1", kind: "error", success: false, code: 2 });
+    expect(JSON.parse(result.out)).toMatchObject({ schemaVersion: "collect-evidence/v2", kind: "error", success: false, code: 2 });
     expect(result.out).toContain("Step");
     expect((await readdir(dir)).sort()).toEqual(["plan.ts", "workspace.json"]);
   }
@@ -166,7 +210,7 @@ for (const driver of ["surf", "playwright"]) {
     const { timeoutMs, ...fields } = step as typeof step & { timeoutMs?: unknown };
     const source = timeoutMs === undefined ? JSON.stringify(step) : `{...${JSON.stringify(fields)}, timeoutMs: ${String(timeoutMs === null ? "null" : typeof timeoutMs === "string" ? JSON.stringify(timeoutMs) : timeoutMs)}}`;
     await writeFile(join(dir, "plan.ts"), `export const plan = {
-      schema: "collect-evidence/v1", kind: "plan", workId: "optional-validation",
+      schemaVersion: "collect-evidence/v2", kind: "plan", workId: "optional-validation",
       driver: ${JSON.stringify(driver)}, base: "http://127.0.0.1:1",
       approval: { origins: ["http://127.0.0.1:1"] },
       tests: [{ id: "case", claim: "Reject invalid optional fields", pass: "Reject before output", fail: "Accept malformed steps", steps: [${source}] }],
@@ -174,7 +218,7 @@ for (const driver of ["surf", "playwright"]) {
     for (const operation of ["compile", "render", "run"]) {
       const result = await command([operation, dir, "--json", "--no-input"]);
       expect(result.code).toBe(2);
-      expect(JSON.parse(result.out)).toMatchObject({ schema: "collect-evidence/v1", kind: "error", success: false, code: 2 });
+      expect(JSON.parse(result.out)).toMatchObject({ schemaVersion: "collect-evidence/v2", kind: "error", success: false, code: 2 });
       expect((await readdir(dir)).sort()).toEqual(["plan.ts", "workspace.json"]);
     }
   });
@@ -201,7 +245,7 @@ test.each(["surf", "playwright"])("compile and render preserve optional Step bou
     { do: "human", needs: "Review the page" },
   ];
   await writeFile(join(dir, "plan.ts"), `export const plan = ${JSON.stringify({
-    schema: "collect-evidence/v1", kind: "plan", workId: "step-validation", driver, base: "http://127.0.0.1:1",
+    schemaVersion: "collect-evidence/v2", kind: "plan", workId: "step-validation", driver, base: "http://127.0.0.1:1",
     approval: { origins: ["http://127.0.0.1:1"], confirmations: ["case.2"] },
     tests: [{ id: "case", claim: "Preserve optional fields", pass: "Accept valid steps", fail: "Reject valid steps", steps }],
   })};`);
@@ -223,7 +267,7 @@ for (const driver of ["surf", "playwright"]) {
     await rm(dir, { recursive: true });
     expect((await command(["init", dir, "--repository", repository, "--workflow", "precondition-validation", "--run", "invalid", "--driver", driver, "--json"])).code).toBe(0);
     await writeFile(join(dir, "plan.ts"), `export const plan = {
-      schema: "collect-evidence/v1", kind: "plan", workId: "precondition-validation",
+      schemaVersion: "collect-evidence/v2", kind: "plan", workId: "precondition-validation",
       driver: ${JSON.stringify(driver)}, base: "http://127.0.0.1:1",
       approval: { origins: ["http://127.0.0.1:1"] },
       preconditions: [{ id: "ready", desc: "The page is ready", check: ${check} }],
@@ -232,7 +276,7 @@ for (const driver of ["surf", "playwright"]) {
     for (const operation of ["compile", "render", "run"]) {
       const result = await command([operation, dir, "--json", "--no-input"]);
       expect(result.code).toBe(2);
-      expect(JSON.parse(result.out)).toMatchObject({ schema: "collect-evidence/v1", kind: "error", success: false, code: 2 });
+      expect(JSON.parse(result.out)).toMatchObject({ schemaVersion: "collect-evidence/v2", kind: "error", success: false, code: 2 });
       expect((await readdir(dir)).sort()).toEqual(["plan.ts", "workspace.json"]);
     }
   });
@@ -242,7 +286,7 @@ for (const driver of ["surf", "playwright"]) {
     expect((await command(["init", dir, "--repository", repository, "--workflow", "precondition-validation", "--run", "valid", "--driver", driver, "--json"])).code).toBe(0);
     const preconditions = [{}, { locator: "h1", text: "", goto: "/" }, ...[0, 0.5, Number.MAX_VALUE].map(timeoutMs => ({ locator: "h1", timeoutMs }))].map((check, i) => ({ id: `ready-${i}`, desc: "The page is ready", check }));
     await writeFile(join(dir, "plan.ts"), `export const plan = ${JSON.stringify({
-      schema: "collect-evidence/v1", kind: "plan", workId: "precondition-validation", driver, base: "http://127.0.0.1:1",
+      schemaVersion: "collect-evidence/v2", kind: "plan", workId: "precondition-validation", driver, base: "http://127.0.0.1:1",
       approval: { origins: ["http://127.0.0.1:1"] }, preconditions,
       tests: [{ id: "case", requires: preconditions.map(p => p.id), claim: "Preserve valid checks", pass: "Accept valid checks", fail: "Reject valid checks", steps: [{ do: "navigate", says: "Open the page", to: "/" }] }],
     })};`);
@@ -268,7 +312,7 @@ test.each(["scope", "screen", "image", "control", "confirmations"])("native TUI 
   const dir = join(root, `native-${fault}`);
   expect((await command(["init", dir, "--repository", repository, "--workflow", "native", "--run", fault, "--driver", "tui", "--json"])).code).toBe(0);
   const plan = {
-    schema: "collect-evidence/v1", kind: "plan", workId: "native", driver: "tui", base: "terminal://private",
+    schemaVersion: "collect-evidence/v2", kind: "plan", workId: "native", driver: "tui", base: "terminal://private",
     terminal: { command: ["/usr/bin/cat"], cwd: root, columns: 80, rows: 24, font: "monospace:size=12", lineHeight: 20 },
     approval: { origins: [], confirmations: ["1.1"], terminal: { command: ["/usr/bin/cat"], cwd: root } },
     tests: [{ id: "1", claim: "Read the selected screen", pass: "The screen is visible", fail: "The wrong screen is visible", steps: [
@@ -284,6 +328,6 @@ test.each(["scope", "screen", "image", "control", "confirmations"])("native TUI 
   await writeFile(join(dir, "plan.ts"), `export const plan = ${fault === "confirmations" ? source.replace('\"confirmations\":[\"1.1\"]', '\"confirmations\":true') : source};`);
   const result = await command(["compile", dir, "--json"]);
   expect(result.code).toBe(2);
-  expect(JSON.parse(result.out)).toMatchObject({ schema: "collect-evidence/v1", kind: "error", success: false, code: 2 });
+  expect(JSON.parse(result.out)).toMatchObject({ schemaVersion: "collect-evidence/v2", kind: "error", success: false, code: 2 });
   expect((await readdir(dir)).sort()).toEqual(["plan.ts", "workspace.json"]);
 });

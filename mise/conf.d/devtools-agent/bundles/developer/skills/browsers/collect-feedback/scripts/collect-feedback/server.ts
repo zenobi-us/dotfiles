@@ -3,7 +3,7 @@ import { constants } from "node:fs";
 import { lstat, open, unlink } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { CliError } from "../../../collect-evidence/scripts/browser-evidence/sh.ts";
-import { assetBytes, boundedFile, requireValue, safeComponents, schema, validateSession, type FeedbackView } from "./records.ts";
+import { assetBytes, boundedFile, requireValue, safeComponents, schemaVersion, validateSession, type FeedbackView } from "./records.ts";
 import { AnnotationError, createAnnotation, exportSession, listAnnotations, mutateAnnotation } from "./annotations.ts";
 
 export async function serveSession(directory: string, port: number, ready: (data: object) => void): Promise<void> {
@@ -21,7 +21,7 @@ export async function serveSession(directory: string, port: number, ready: (data
   const stop = () => { stopped = true; completion.resolve(); };
   process.on("SIGINT", stop); process.on("SIGTERM", stop);
   try {
-    await lock.writeFile(JSON.stringify({ schema, kind: "lock", pid: process.pid }) + "\n");
+    await lock.writeFile(JSON.stringify({ schemaVersion, kind: "lock", pid: process.pid }) + "\n");
     await lock.sync();
     const view = await validateSession(directory);
     await listAnnotations(view);
@@ -38,7 +38,7 @@ export async function serveSession(directory: string, port: number, ready: (data
       "Content-Security-Policy": "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; font-src data:; img-src 'self'; media-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
     };
     function json(kind: string, data: object, status = 200): Response {
-      return Response.json({ schema, kind, success: status < 400, ...data }, { status, headers });
+      return Response.json({ schemaVersion, kind, success: status < 400, ...data }, { status, headers });
     }
     server = Bun.serve({
       hostname: "127.0.0.1", port, reusePort: false, maxRequestBodySize: 65536, idleTimeout: 10,
@@ -110,7 +110,7 @@ export async function serveSession(directory: string, port: number, ready: (data
       },
       error() { return json("error", { message: "Request rejected" }, 400); },
     });
-    ready({ url: origin, port, sessionId: view.session.id, readOnly: false });
+    ready({ url: origin, port, sessionId: view.session.id, readOnly: view.session.schemaVersion !== schemaVersion });
     await completion.promise;
   } finally {
     stopped = true;

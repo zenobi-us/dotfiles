@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useSyncExternalStore } from 'reac
 import type { AnnotationInput, Asset } from './types';
 
 interface DraftRecord {
-  schema: 'collect-feedback/v1'; kind: 'draft'; annotation: AnnotationInput;
+  schemaVersion: 'collect-feedback/v2'; kind: 'draft'; annotation: AnnotationInput;
   startingRevision: number | null; submitted?: AnnotationInput; error?: string;
 }
 interface Snapshot { records: DraftRecord[]; memoryOnly: boolean; unreadable: boolean; busy: string[] }
@@ -14,7 +14,7 @@ const identity = (note: AnnotationInput | Asset) => 'sourceSha256' in note
 function validInput(value: unknown, sessionId: string): value is AnnotationInput {
   if (!value || typeof value !== 'object') return false;
   const note = value as AnnotationInput;
-  return note.schema === 'collect-feedback/v1' && note.kind === 'annotation' && note.sessionId === sessionId
+  return note.schemaVersion === 'collect-feedback/v2' && note.kind === 'annotation' && note.sessionId === sessionId
     && [note.id, note.caseId, note.assetId, note.sourceSha256].every(item => typeof item === 'string' && item.length > 0)
     && typeof note.comment === 'string' && ['P1', 'P2', 'P3'].includes(note.priority)
     && Number.isInteger(note.originalWidth) && note.originalWidth > 0 && Number.isInteger(note.originalHeight) && note.originalHeight > 0
@@ -33,7 +33,7 @@ export class DraftStore {
     try {
       if (raw !== null) {
         const records: DraftRecord[] = JSON.parse(raw);
-        if (!Array.isArray(records) || !records.every(record => record?.schema === 'collect-feedback/v1' && record.kind === 'draft'
+        if (!Array.isArray(records) || !records.every(record => record?.schemaVersion === 'collect-feedback/v2' && record.kind === 'draft'
           && validInput(record.annotation, sessionId)
           && (record.startingRevision === null || (Number.isInteger(record.startingRevision) && record.startingRevision > 0))
           && (record.submitted === undefined || (validInput(record.submitted, sessionId) && record.submitted.id === record.annotation.id && identity(record.submitted) === identity(record.annotation))))) throw Error('Unsupported drafts');

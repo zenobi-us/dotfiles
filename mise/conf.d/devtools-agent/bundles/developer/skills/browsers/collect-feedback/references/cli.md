@@ -1,12 +1,11 @@
 ---
-schema: collect-feedback/v1
 kind: reference
 title: Evidence and feedback CLI reference
 ---
 # Evidence and feedback CLI reference
 
 Look up public command inputs, outputs, and failure states.
-For operators and agents. Version: collect-feedback/v1 and collect-evidence/v1.
+For operators and agents. Version: collect-feedback/v2 and collect-evidence/v2.
 Use the [how-to](../howto.md) for procedures or the [system explanation](system.md) for record ownership.
 
 ## Overview
@@ -73,7 +72,7 @@ The direct `collect-feedback/scripts/collect-feedback/serve.ts <session> --port 
 
 ## Output and flags
 
-- **Machine output:** `--json` writes versioned JSON events or errors to stdout. Diagnostics use stderr. Schemas are `collect-evidence/v1` and `collect-feedback/v1`.
+- **Machine output:** `--json` writes versioned JSON events or errors to stdout. Diagnostics use stderr. Schemas are `collect-evidence/v2` and `collect-feedback/v2`.
 - **Collector defaults:** Human-oriented output is command-specific. `report` prints HTML and `comment` prints Markdown. `--json` wraps their text in events.
 - **Feedback defaults:** Commands print JSON with indentation. `--json` emits compact records. Export has kind `export`, not a readiness event.
 - **Plain output:** `--plain` selects compact collector JSON or dotted feedback fields. `--quiet` suppresses successful output, not failures.
@@ -91,7 +90,7 @@ A fresh request also returns its collector result. Readiness proves serving, not
 |---|---|---|
 | 0 | Command completed | Read-only consumers can complete while a recorded case failed. |
 | 1 | Operation or assertion failure | Collector `run` maps assertion FAIL to 1. A stopped operation is not a completed run. |
-| 2 | Invalid arguments, input, or schema | Unsupported evidence formats fail before feedback import. |
+| 2 | Invalid arguments, input, or schemaVersion | Unsupported evidence formats fail before feedback import. |
 | 3 | Blocked required prerequisite | Includes driver/store unavailability and feedback writer-lock contention. |
 
 Collector read-only consumers do not map stored case verdicts to their process status.
@@ -117,6 +116,6 @@ The existence of a driver does not prove coverage on an unexercised host.
 ## API and validation reference
 
 The [viewer contract](viewer-contract.md#http-api) defines routes, write tokens, payloads, revision ETags, and HTTP error codes.
-The [evidence schema](../../collect-evidence/references/evidence-schema.md) defines sealed runs, cases, events, and assets.
+The [evidence schemaVersion](../../collect-evidence/references/evidence-schema.md) defines sealed runs, cases, events, and assets.
 The [request contract](request.md) defines collection failure precedence and foreground ownership.
 Use the [how-to](../howto.md#export-your-feedback) for a saved-feedback export procedure.

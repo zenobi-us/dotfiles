@@ -1,5 +1,4 @@
 ---
-schema: collect-evidence/v1
 kind: playbook
 ---
 # Scoped native GUI collection
@@ -32,7 +31,7 @@ Put the exact selected scope in both `gui` and `approval.gui`. Set `base` to `gu
 
 ```ts
 export const plan = {
-  schema: "collect-evidence/v1", kind: "plan", workId: "gui-review",
+  schemaVersion: "collect-evidence/v2", kind: "plan", workId: "gui-review",
   driver: "gui", base: "gui://local",
   gui: { display: ":0", window: "0x123456", title: "Approved application" },
   approval: { origins: [], gui: { display: ":0", window: "0x123456", title: "Approved application" } },

@@ -4,7 +4,7 @@ import { Crust } from "@crustjs/core@0.0.19";
 import { helpPlugin } from "@crustjs/plugins@0.1.2";
 import { resolve } from "node:path";
 import { CliError } from "./browser-evidence/sh.ts";
-import { schema, doctor, initWorkspace, renderWorkspace, compileWorkspace, collect, validate, reportRun, generatedComment, type Options } from "./browser-evidence/pipeline.ts";
+import { schemaVersion, doctor, initWorkspace, renderWorkspace, compileWorkspace, collect, validate, reportRun, generatedComment, type Options } from "./browser-evidence/pipeline.ts";
 
 const VERSION = "1.1.0";
 const flags = {
@@ -60,7 +60,7 @@ async function execute(command: string, dir: string | undefined, raw: Record<str
       default: throw new CliError(`Unknown command ${command}`, 2);
     }
     if (!raw.quiet) {
-      if (raw.json) console.log(JSON.stringify({ schema, kind: "event", command, success: true, ...data }));
+      if (raw.json) console.log(JSON.stringify({ schemaVersion, kind: "event", command, success: true, ...data }));
       else if (command === "report") console.log(data.html);
       else if (command === "comment") console.log(data.markdown);
       else console.log(JSON.stringify(data, null, raw.plain ? undefined : 2));
@@ -72,14 +72,14 @@ async function execute(command: string, dir: string | undefined, raw: Record<str
   } catch (error) {
     const code = error instanceof CliError ? error.exitCode : error instanceof SyntaxError ? 2 : 1;
     const message = error instanceof Error ? error.message : String(error);
-    if (raw.json) console.log(JSON.stringify({ schema, kind: "error", command, success: false, code, message }));
+    if (raw.json) console.log(JSON.stringify({ schemaVersion, kind: "error", command, success: false, code, message }));
     console.error(message);
     process.exitCode = code;
   }
 }
 
 if (process.argv.includes("--version") && !process.argv.some(arg => arg === "--help" || arg === "-h")) {
-  console.log(process.argv.includes("--json") ? JSON.stringify({ schema, kind: "event", version: VERSION }) : VERSION);
+  console.log(process.argv.includes("--json") ? JSON.stringify({ schemaVersion, kind: "event", version: VERSION }) : VERSION);
 } else {
   let cli = new Crust("collect-evidence").meta({ description: "Collect immutable, versioned web, terminal and GUI evidence" })
     .use({
@@ -87,7 +87,7 @@ if (process.argv.includes("--version") && !process.argv.some(arg => arg === "--h
         try { await next(); }
         catch (error) {
           const message = error instanceof Error ? error.message : String(error);
-          if (process.argv.includes("--json")) console.log(JSON.stringify({ schema, kind: "error", success: false, code: 2, message }));
+          if (process.argv.includes("--json")) console.log(JSON.stringify({ schemaVersion, kind: "error", success: false, code: 2, message }));
           console.error(message);
           process.exitCode = 2;
         }
@@ -115,7 +115,7 @@ if (process.argv.includes("--version") && !process.argv.some(arg => arg === "--h
   try { await cli.execute(); }
   catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    if (process.argv.includes("--json")) console.log(JSON.stringify({ schema, kind: "error", success: false, code: 2, message }));
+    if (process.argv.includes("--json")) console.log(JSON.stringify({ schemaVersion, kind: "error", success: false, code: 2, message }));
     console.error(message);
     process.exitCode = 2;
   }

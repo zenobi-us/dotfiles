@@ -16,14 +16,15 @@ import { CliError, sh, cancelDriverCommands } from "./sh.ts";
 import { finalizeRun, validateRun } from "./records.ts";
 import { doctorTui } from "./drivers/tui-driver.ts";
 import { doctorGui } from "./drivers/gui-driver.ts";
+import { loadContracts } from "../../../../../../agent-core/skills/skill-contracts/scripts/contracts.ts";
 
-export const schema = "collect-evidence/v1";
+export const schemaVersion = "collect-evidence/v2";
 export type Options = {
   repository?: string; workflow?: string; run?: string; driver?: string;
   dryRun?: boolean; force?: boolean; test?: string; url?: string; title?: string; display?: string; window?: string;
 };
 const contextCli = resolve(import.meta.dir, "../../../../../../agent-core/skills/shared-context/scripts/shared-context/cli.ts");
-const json = (kind: string, fields: object) => JSON.stringify({ schema, kind, ...fields }, null, 2) + "\n";
+const json = (kind: string, fields: object) => JSON.stringify({ schemaVersion, kind, ...fields }, null, 2) + "\n";
 const digest = (plan: Plan) => createHash("sha256").update(JSON.stringify(plan)).digest("hex");
 function invalid(message: string): never { throw new CliError(message, 2); }
 
@@ -50,7 +51,7 @@ async function outsideSource(dir: string, repository: string): Promise<void> {
 export async function markdown(path: string, kind: string, body: string): Promise<void> {
   const p = Bun.spawn(["mise", "exec", "--", "mq", "--allow-http-import", "--lockfile", join(tmpdir(), "collect-evidence-mq.lock"), "-I", "raw", "-F", "raw", "-o", path,
     'import "github.com/harehare/okf.mq" | .'], { stdin: "pipe", stdout: "pipe", stderr: "pipe" });
-  p.stdin.write(`---\nschema: ${schema}\nkind: ${kind}\n---\n${body}`);
+  p.stdin.write(`---\nschemaVersion: ${schemaVersion}\nkind: ${kind}\n---\n${body}`);
   p.stdin.end();
   const err = await new Response(p.stderr).text();
   if (await p.exited !== 0) throw new CliError(`Markdown generation failed: ${err}`, 3);
@@ -128,6 +129,7 @@ async function checkPrerequisites(options: Options, state: Cancellation): Promis
 }
 
 export async function initWorkspace(dir: string, options: Options): Promise<object> {
+  await loadContracts(resolve(import.meta.dir, "../.."));
   const destination = await route(options);
   const driver = options.driver ?? "playwright";
   if (!["playwright", "surf", "tui", "gui"].includes(driver)) invalid("--driver must be surf, playwright, tui or gui");
@@ -140,15 +142,16 @@ export async function initWorkspace(dir: string, options: Options): Promise<obje
     ? `base: "terminal://private",\n  terminal: { command: [], cwd: ${JSON.stringify(resolve(options.repository!))}, columns: 80, rows: 24, font: "monospace:size=12", lineHeight: 20 },\n  approval: { origins: [], confirmations: [] },`
     : driver === "gui" ? `base: "gui://local",\n  gui: { display: "", window: "", title: "" },\n  approval: { origins: [], confirmations: [] },`
     : `base: "http://127.0.0.1:8090",\n  approval: { origins: ["http://127.0.0.1:8090"], confirmations: [] },`;
-  await writeFile(join(dir, "plan.ts"), `import type { Plan } from ${JSON.stringify(planModule)};\n\nexport const plan: Plan = {\n  schema: "collect-evidence/v1", kind: "plan",\n  workId: ${JSON.stringify(options.workflow)}, driver: ${JSON.stringify(driver)},\n  ${scope}\n  tests: [],\n};\n`, { flag: "wx" });
+  await writeFile(join(dir, "plan.ts"), `import type { Plan } from ${JSON.stringify(planModule)};\n\nexport const plan: Plan = {\n  schemaVersion: "collect-evidence/v2", kind: "plan",\n  workId: ${JSON.stringify(options.workflow)}, driver: ${JSON.stringify(driver)},\n  ${scope}\n  tests: [],\n};\n`, { flag: "wx" });
   await writeFile(join(dir, "workspace.json"), json("event", { repository: resolve(options.repository!), workflow: options.workflow, runId: options.run, destination }));
   return { directory: dir, destination, next: "Author cases in plan.ts, then render and compile. Confirm the plan before run." };
 }
 
 async function editable(dir: string): Promise<void> {
+  await loadContracts(resolve(import.meta.dir, "../.."));
   if (existsSync(join(dir, "run.json"))) invalid("Sealed runs are read-only; select a new run identity");
   const workspace = JSON.parse(await readFile(join(dir, "workspace.json"), "utf8"));
-  if (workspace.schema !== schema || workspace.kind !== "event") invalid("Unsupported workspace schema");
+  if (workspace.schemaVersion !== schemaVersion || "schema" in workspace || workspace.kind !== "event") invalid("Unsupported workspace schema; historical workspaces are read-only. Initialize a new identity.");
   await outsideSource(dir, workspace.repository);
 }
 
@@ -195,7 +198,7 @@ async function collectWithCancellation(dir: string, options: Options, state: Can
   if (destination.path !== workspace.destination.path) invalid("Evidence route changed; initialize a new workspace explicitly");
   if (existsSync(destination.path)) invalid("Run identity already exists; select a new run (force cannot overwrite evidence)");
   const compiled = JSON.parse(await readFile(join(dir, "compiled.json"), "utf8"));
-  if (compiled.schema !== schema || compiled.kind !== "event" || compiled.planHash !== digest(plan)) invalid("Plan changed or compilation is invalid; run compile --force");
+  if (compiled.schemaVersion !== schemaVersion || "schema" in compiled || compiled.kind !== "event" || compiled.planHash !== digest(plan)) invalid("Plan changed or compilation is invalid; run compile --force");
   const tests = options.test ? plan.tests.filter(t => t.id === options.test) : plan.tests;
   if (!tests.length) invalid("No selected cases");
   if (options.dryRun) return { dryRun: true, destination, driver: plan.driver, tests: tests.map(t => t.id) };
@@ -296,5 +299,5 @@ export async function reportRun(dir: string, historical = false): Promise<{ runI
 export async function generatedComment(dir: string, url: string | undefined, title?: string): Promise<object> {
   if (!url || !/^https?:\/\//.test(url)) invalid("--url must identify the explicitly published report");
   const { plan } = await validateRun(dir);
-  return { markdown: `---\nschema: ${schema}\nkind: comment\n---\n${renderComment(planJson(plan), url, title)}` };
+  return { markdown: `---\nschemaVersion: ${schemaVersion}\nkind: comment\n---\n${renderComment(planJson(plan), url, title)}` };
 }
