@@ -11,3 +11,9 @@ workflow_id: skill-contract-manifests-08-worktree
 - Immutable draft: `workflows/skill-contract-manifests-08-worktree/artifacts/snapshots/pr-draft-implementation-0002.md`.
 - No review, merge, push or ticket completion ran. Parent owns resource shutdown after validating the assigned typed handoff.
 
+
+## Independent review
+
+Review attempt 1 returned FAILURE for source `a20008e3e548e98ecf568b06d1c762898337bcb3`. No source change occurred. Open findings: `SPEC-1`, `SPEC-2`; none resolved.
+
+See [review body](../artifacts/reviews/review-review-0006.md), [review result](../events/review-0006.yaml), and [parent completion](../events/review-complete-0007.yaml). The reviewer recorded 168 passing tests and owning-command reproductions. Parent checks passed 9 tests. All owned reviewer/helper processes stopped.

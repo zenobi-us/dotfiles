@@ -110,3 +110,14 @@ Produced:
 - source-commit: `a20008e3e548e98ecf568b06d1c762898337bcb3`
 - source-contracts: `mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/contracts.json`
 
+
+## Review history
+
+- **Review attempt 1:** FAILURE for commit `a20008e3e548e98ecf568b06d1c762898337bcb3`. Standards: 0 findings. Spec: 2 blocking P2 findings, `SPEC-1` and `SPEC-2`.
+- **Review body:** [Immutable review](../artifacts/reviews/review-review-0006.md).
+- **Review result:** [review-0006](../events/review-0006.yaml).
+- **Parent completion:** [review-complete-0007](../events/review-complete-0007.yaml).
+- **Validation:** Reviewer full suite: 168 pass, 0 fail. Parent view-contract checks: 9 pass, 0 fail. Owning-command scenarios reproduced both findings.
+- **Resolved findings:** None.
+- **Remaining findings:** `SPEC-1`, `SPEC-2`. No merge or push.
+- **Lifecycle:** Reviewer and both helper terminals closed; owned process shutdown confirmed.
