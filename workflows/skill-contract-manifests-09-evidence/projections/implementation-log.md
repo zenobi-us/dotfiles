@@ -450,3 +450,20 @@ CWD: `not applicable`. Outcome: passed; exit not applicable. Viewer tab closed; 
 
 None. External publication requires separate access approval. Source and owned services are retained or stopped as recorded in the immutable snapshot.
 
+
+
+## Fix fix-0008
+
+Source: 62f26327084f0dca065ee8ec065c0437cdc54c7d, tree d802a953960f01c104a02959652453b55cc37201.
+
+Consumed [review-0005](../events/review-0005.yaml). EVIDENCE09-SPEC-001 is resolved by the fix, pending fresh review. [Fix result](../events/fix-0008.yaml). [Immutable fix snapshot](../artifacts/snapshots/pr-draft-fix-0008.md).
+
+Changed files:
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/references/evidence-schema.md
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/pipeline.ts
+- mise/conf.d/devtools-agent/bundles/developer/skills/browsers/collect-evidence/scripts/browser-evidence/test/workflow.test.ts
+
+Validation: final public regression passed (1 test, 13 assertions). Full suite: 112 pass, 33 skip, 0 fail. Separate public init/compile/valid dry-run exited 0. Mixed compiled metadata exited 2 for dry-run and actual run. Driver trap stayed unused; staging and destination stayed absent. Input and historical evidence hashes stayed unchanged. Temporary smoke files were removed. The snapshot records exact argv, exit codes and preservation checks.
+
+The version hook added out-of-scope metadata during source commit 905748b5. Corrective commit 62f26327 restored only those generated changes. No previous history was amended. No independent verdict covers this new source. Open questions: none.
+
