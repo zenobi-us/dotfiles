@@ -6,10 +6,10 @@
     "id": "skill-contract-manifests-12-backlog-grooming",
     "ref": "tracker/tickets/skill-contract-manifests-12-backlog-grooming.md"
   },
-  "state": "IMPLEMENTED",
-  "latest_receipt": "start-complete-0003",
+  "state": "REVIEW_PASSED",
+  "latest_receipt": "review-complete-0006",
   "latest_source_commit": "4d56acb1e2863fd616577cae0afb3edc1a3cb8d3",
   "latest_source_tree": "27b7aacba6e27c3ba0e5c043e724591f06333190",
-  "latest_review_verdict": null,
-  "open_findings": []
+  "latest_review_verdict": "SUCCESS",
+  "open_findings": [{"id":"STANDARDS-01","severity":"low","blocking":false,"ref":"../artifacts/reviews/review-review-0005.md"}]
 }

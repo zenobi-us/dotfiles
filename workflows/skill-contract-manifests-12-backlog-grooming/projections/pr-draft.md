@@ -64,19 +64,19 @@ The command regression suite passed 2 tests and 49 assertions. The owning-comman
 
 ## Review history
 
-No independent review result exists in the event history.
+Review attempt 1: SUCCESS. [Review result](../events/review-0005.yaml) and [immutable artifact](../artifacts/reviews/review-review-0005.md). Standards: no blocking findings and one low-severity note. Spec: no findings.
 
 ## Resolved findings
 
-No formal review findings yet.
+No blocking findings required resolution.
 
 ## Remaining findings
 
-None recorded. Independent review is the next parent-owned phase.
+STANDARDS-01 remains optional and nonblocking. See the immutable review; no source changes were made.
 
 ## Latest reviewer verdict
 
-None.
+SUCCESS.
 
 ## Merge status
 
@@ -88,3 +88,9 @@ Not merged or pushed. Ticket remains claimed.
 - [implementation-0002](../events/implementation-0002.yaml): implementation / completed.
 - [Immutable implementation snapshot](../artifacts/snapshots/pr-draft-implementation-0002.md)
 - [Exact validation evidence](../artifacts/snapshots/validation-implementation-0002.json)
+
+- [Start completion](../events/start-complete-0003.yaml).
+- [Review start](../events/review-start-0004.yaml).
+- [Review result](../events/review-0005.yaml): SUCCESS for `4d56acb1e2863fd616577cae0afb3edc1a3cb8d3`.
+- [Review completion](../events/review-complete-0006.yaml): source unchanged; parent tests passed; reviewer shutdown confirmed.
+- [Immutable review](../artifacts/reviews/review-review-0005.md).
