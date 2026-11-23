@@ -1,22 +1,47 @@
 {
-  "schema": "worktree-latest-status/v1",
+  "schemaVersion": "worktree-latest-status/v2",
   "workflow_id": "skill-contract-manifests-11-artifact-sharing",
   "ticket": "tracker/tickets/skill-contract-manifests-11-artifact-sharing.md",
-  "state": "FIXED",
-  "latest_receipt": "fix-complete-0019",
+  "state": "REVIEW_FAILED",
+  "latest_receipt": "review-complete-0023",
   "latest_source_commit": "3378f0d89811c8ce67feadcc0326f8c86764a0ae",
   "latest_source_tree": "6138a98322ac55a4bb0cc4b5a0a10c2f3578c27b",
-  "latest_review_verdict": "FAILURE",
+  "latest_review_verdict": FAILURE,
   "review_stale": true,
   "current_source_review_verdict": null,
   "review_receipt": "review-result-0014",
-  "resolved_findings": [
-    "SPEC-001",
-    "STANDARDS-001",
-    "STANDARDS-002",
-    "SPEC-002",
-    "SPEC-003"
-  ],
-  "open_findings": [],
+  "resolved_findings": [ "SPEC-001", "STANDARDS-001", "STANDARDS-002", "SPEC-002", "SPEC-003" ],
+  "open_findings":
+    [
+      {
+          adr: null,
+          description: 'Historical exponent-shaped hexadecimal hashes lose their identity
+            at the shared metadata reader. The old producer emitted bare hash
+            scalars. The valid SHA-256 prefix 42226e907802 for <h1>Historical
+            review 313</h1>\n parses as a YAML number. Recovery accepts only
+            [0-9]{12}, so actual share --dry-run retrieval rejects the unchanged
+            historical page with "Share metadata hash must be a string." The
+            owning check also rejects a historical 123456789e12 page. This
+            violates ticket preservation and historical-read requirements. The
+            MDX boundary uses the same incomplete recovery; its exponent case
+            was inspected, not separately built.',
+          file: mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/assets/repo-template/src/share-metadata.ts,
+          id: SPEC-004,
+          line: 30,
+          required_change: "For historical contracts only, recover an unambiguous original
+            plain hash scalar when it matches the complete 12-character
+            lowercase hexadecimal hash grammar, including exponent-shaped
+            hashes. Keep current-contract numeric scalars rejected. Cover
+            retrieval and MDX ingestion without rewriting historical pages.",
+          severity: medium,
+          validation_command: "Add historical hash 123456789e12 to the owning-command
+            retrieval and actual MDX ingestion cases, then run: mise exec -- bun
+            test
+            mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-share\
+            s/scripts/artifact-shares/test/contracts.test.ts
+            mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-share\
+            s/scripts/artifact-shares/test/site.test.ts"
+        }
+    ],
   "next_action": "Fresh independent review of current clean source."
 }

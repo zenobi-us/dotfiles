@@ -92,3 +92,11 @@ The parent verified typed delivery against [fix-result-0018](../events/fix-resul
 [Parent completion](../events/fix-complete-0019.yaml) records the outcome. The fixer pane was removed; [owned-resource observation](../artifacts/snapshots/resources-fix-complete-0019.json) confirms shutdown. No domain service or remote mutation ran.
 
 Fresh shared inspection confirms clean source `3378f0d89811c8ce67feadcc0326f8c86764a0ae`, valid receipt history and no diagnostics. It selects fresh independent review because source changed; the previous FAILURE remains historical, not a current-source verdict.
+
+## Current independent review — review-complete-0023
+
+State: REVIEW_FAILED. [Review result](../events/review-result-0022.yaml) records FAILURE at 3378f0d89811c8ce67feadcc0326f8c86764a0ae. [Immutable review](../artifacts/reviews/review-review-result-0022.md) contains both axis reports and owning-command evidence. Standards has no actionable finding; Spec has one blocking finding, SPEC-004. Earlier reviews and resolved findings above remain historical.
+
+The reviewer ran the existing suite: 36 passed, 0 failed, 232 assertions. Actual owning-command smoke found the untested historical exponent-hash compatibility failure. Parent validation: 6 contract tests passed with 53 assertions; actual configuration list and upgrade help ran.
+
+[Parent completion](../events/review-complete-0023.yaml) records verified delivery, unchanged frozen source, ticket comment, and [confirmed shutdown](../artifacts/snapshots/resources-review-complete-0023.json). The reviewer tab was removed. Source worktree is preserved; no merge or push ran. Next phase: fix SPEC-004, subject to fresh ownership and reservation checks.

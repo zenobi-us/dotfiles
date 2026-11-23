@@ -142,3 +142,9 @@ The parent verified typed delivery against [fix-result-0018](../events/fix-resul
 [Parent completion](../events/fix-complete-0019.yaml) records the outcome. The fixer pane was removed; [owned-resource observation](../artifacts/snapshots/resources-fix-complete-0019.json) confirms shutdown. No domain service or remote mutation ran.
 
 Fresh shared inspection confirms clean source `3378f0d89811c8ce67feadcc0326f8c86764a0ae`, valid receipt history and no diagnostics. It selects fresh independent review because source changed; the previous FAILURE remains historical, not a current-source verdict.
+
+## review-complete-0023
+
+[Independent review result](../events/review-result-0022.yaml): FAILURE at 3378f0d89811c8ce67feadcc0326f8c86764a0ae. [Immutable review](../artifacts/reviews/review-review-result-0022.md) retains Standards and Spec reports. SPEC-004 remains open. No source files changed.
+
+Existing suite: 36 passed, 232 assertions. Owning-command smoke reproduced the historical exponent-hash compatibility failure. Parent contract checks: 6 passed, 53 assertions. [Parent completion](../events/review-complete-0023.yaml) and [shutdown observation](../artifacts/snapshots/resources-review-complete-0023.json) retain verification and resource closure. Ticket remains claimed, unmerged and unpushed.
