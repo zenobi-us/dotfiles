@@ -3,7 +3,7 @@
   "workflow_id": "skill-contract-manifests-11-artifact-sharing",
   "ticket": "tracker/tickets/skill-contract-manifests-11-artifact-sharing.md",
   "state": "FIXED",
-  "latest_receipt": "fix-complete-0027",
+  "latest_receipt": "fix-cleanup-observed-0029",
   "latest_source_commit": "8b616592357dd7c5c7472b54d3e946029bd2d2a9",
   "latest_source_tree": "d3d9d6e312b93131799b44b1d11b49d07bd1ebb8",
   "latest_review_verdict": FAILURE,
@@ -20,5 +20,5 @@
       "SPEC-004"
     ],
   "open_findings": [],
-  "next_action": "Fresh independent review of the clean fixed source after scoped cleanup approval and confirmed owned-process shutdown."
+  "next_action": "Fresh independent review of the clean fixed source. Owned-process shutdown is confirmed."
 }

@@ -160,3 +160,10 @@ SPEC-004 is resolved by `8b616592357dd7c5c7472b54d3e946029bd2d2a9` (tree `d3d9d6
 
 The fixer tab was removed. Owned OMP and language-server processes remain live after terminal closure; cleanup is pending. [Resource observation](../artifacts/snapshots/resources-fix-complete-0027.json). Independent review is next after scoped cleanup approval and confirmed shutdown. No merge or push ran.
 
+
+## Authorized cleanup confirmed — 0029
+
+This supersedes the earlier cleanup-pending observations. [Explicit approval](../events/fix-cleanup-approval-0028.yaml) authorized stopping the eight surviving fixer-owned processes. Boot and start identities were checked before scoped SIGTERM; the stopped parent also received SIGCONT. The owner observer [confirms shutdown](../artifacts/snapshots/resources-fix-cleanup-0029.json). [Reconciliation provenance](../events/fix-cleanup-observed-0029.yaml). The fixer tab is removed; no domain services remain.
+
+Source stays clean at `8b616592357dd7c5c7472b54d3e946029bd2d2a9`. Next: fresh independent review. No merge or push ran.
+

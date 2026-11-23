@@ -62,3 +62,8 @@ Resolved: SPEC-001, STANDARDS-001, STANDARDS-002, SPEC-002, SPEC-003 and SPEC-00
 
 Unmerged and not pushed. Source is committed on `feature/skill-contract-manifests-11-artifact-sharing`; the worktree is retained. Cleanup remains pending as recorded above.
 
+
+## Current cleanup outcome — confirmed
+
+This supersedes all earlier cleanup-pending statements. After [scoped approval](../events/fix-cleanup-approval-0028.yaml), all eight surviving fixer-owned processes stopped with identity-verified signals. [Shutdown evidence](../artifacts/snapshots/resources-fix-cleanup-0029.json); [provenance](../events/fix-cleanup-observed-0029.yaml). Child tab removed; no domain service remains. Source is clean. Next: independent review, not merge.
+
