@@ -1,14 +1,14 @@
 ---
+schemaVersion: tracker-ticket/v2
 blocked_by: 
   - skill-contract-manifests-01-local-definitions
 id: skill-contract-manifests-18-manifest-coverage
 parent: skill-contract-manifests
-schema: tracker-ticket/v1
 sequence: 18
 title: Complete manifest coverage for other maintained skills
 triage: ready-for-agent
 type: enhancement
-work_status: unclaimed
+work_status: "claimed"
 ---
 
 ## What to build
