@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "muxer-resource-report/v2",
+  "manifest": {
+    "schemaVersion": "muxer-run/v2",
+    "runId": "483016b2-df2c-4b0c-9f63-5dd82bd59ace",
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "target": "t22s",
+    "createdAt": "2026-11-23T08:09:51.938Z",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+    "operationId": "483016b2-df2c-4b0c-9f63-5dd82bd59ace"
+  },
+  "resources": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "483016b2-df2c-4b0c-9f63-5dd82bd59ace",
+    "observedAt": "2026-11-23T10:01:05.834Z",
+    "processes": [
+      {
+        "pid": 3689900,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "12669403",
+        "command": "omp",
+        "parentPid": 3689540,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+        "state": "stopped"
+      },
+      {
+        "pid": 3699782,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "12706120",
+        "command": "omp",
+        "parentPid": 3689900,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+        "state": "stopped"
+      },
+      {
+        "pid": 3719688,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "12745375",
+        "command": "omp daemon brok",
+        "parentPid": 3689900,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+        "state": "stopped"
+      },
+      {
+        "pid": 3913602,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "12979054",
+        "command": "bun",
+        "parentPid": 3689900,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+        "state": "stopped"
+      },
+      {
+        "pid": 3928348,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "12995733",
+        "command": "bun",
+        "parentPid": 3913602,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+        "state": "stopped"
+      },
+      {
+        "pid": 3928464,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "12995783",
+        "command": "git",
+        "parentPid": 3928348,
+        "cwd": "/tmp/skill-contract-git-nkXjN6",
+        "state": "stopped"
+      },
+      {
+        "pid": 3928465,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "12995783",
+        "command": "git",
+        "parentPid": 3928464,
+        "cwd": "/tmp/skill-contract-git-nkXjN6",
+        "state": "stopped"
+      },
+      {
+        "pid": 3928466,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "12995783",
+        "command": "git-remote-http",
+        "parentPid": 3928465,
+        "cwd": "/tmp/skill-contract-git-nkXjN6",
+        "state": "stopped"
+      },
+      {
+        "pid": 3934772,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "12999135",
+        "command": "bun",
+        "parentPid": 3913602,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+        "state": "stopped"
+      },
+      {
+        "pid": 3935095,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "12999195",
+        "command": "git",
+        "parentPid": 3934772,
+        "cwd": "/tmp/skill-contract-git-EmAwo1",
+        "state": "stopped"
+      },
+      {
+        "pid": 3935096,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "12999195",
+        "command": "git",
+        "parentPid": 3935095,
+        "cwd": "/tmp/skill-contract-git-EmAwo1",
+        "state": "stopped"
+      },
+      {
+        "pid": 3935097,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "12999195",
+        "command": "git-remote-http",
+        "parentPid": 3935096,
+        "cwd": "/tmp/skill-contract-git-EmAwo1",
+        "state": "stopped"
+      },
+      {
+        "pid": 3938588,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "13001187",
+        "command": "git",
+        "parentPid": 3928464,
+        "cwd": "/tmp/skill-contract-git-nkXjN6",
+        "state": "stopped"
+      },
+      {
+        "pid": 3946126,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "13005186",
+        "command": "bun",
+        "parentPid": 3689900,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+        "state": "stopped"
+      },
+      {
+        "pid": 3946128,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "13005186",
+        "command": "bun",
+        "parentPid": 3689900,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+        "state": "stopped"
+      },
+      {
+        "pid": 3946313,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "13005248",
+        "command": "hc",
+        "parentPid": 3946126,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+        "state": "stopped"
+      },
+      {
+        "pid": 3946314,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "13005248",
+        "command": "hc",
+        "parentPid": 3946128,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+        "state": "stopped"
+      },
+      {
+        "pid": 3946705,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "13005513",
+        "command": "git",
+        "parentPid": 3935095,
+        "cwd": "/tmp/skill-contract-git-EmAwo1",
+        "state": "stopped"
+      },
+      {
+        "pid": 4005378,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "13169383",
+        "command": "mq",
+        "parentPid": 3689900,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "state": "stopped"
+      },
+      {
+        "pid": 4009530,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "13186526",
+        "command": "bun",
+        "parentPid": 3689900,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "state": "stopped"
+      },
+      {
+        "pid": 4009531,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "13186526",
+        "command": "mq",
+        "parentPid": 3689900,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "state": "stopped"
+      },
+      {
+        "pid": 4009532,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "13186526",
+        "command": "bun",
+        "parentPid": 3689900,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "state": "stopped"
+      },
+      {
+        "pid": 4009533,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "13186526",
+        "command": "mq",
+        "parentPid": 3689900,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "state": "stopped"
+      }
+    ],
+    "shutdown": "confirmed"
+  }
+}
