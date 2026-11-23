@@ -1,175 +1,75 @@
-# Fix-0021: validated logical index identity
-
-## Ticket summary
-Ticket: skill-contract-manifests-07-shared-context. Initiative: skill-contract-manifests.
-Source: 79250a53fad0780ac51d40f17121b50d8d76ef6f. Tree: a4d55e717aa5beb4b31871622db5788e82519908. State: REVIEW_PASSED; combined-candidate validation required before integration.
-
-## Problem
-Review-0018 found SPEC-0018-01: the producer derived source identity from a canonical directory basename and wrote metadata its next owning read rejected.
-
-## Implementation summary
-Capture logical source and scope before canonicalization. Keep canonical target and immutable-history checks. Validate generated frontmatter before persistence. Quote generated values with JSON string encoding. Existing source metadata precedence and managed-block preservation remain unchanged.
-
-## Changed files
-- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
-- mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json
-- mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/references/changelog.md
-- mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts
-- mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/contracts.test.ts
-
-The commit hook updated the two bundle version files. No tracker or workflow contract changed.
-
-## Validation results
-- The source suite attempt could not resolve qualified YAML/AJV packages: 33 passed, 6 errors. No assertion failure was reported.
-- The exact copied source used real YAML 2.8.1, AJV 8.20.0, Crust core 0.0.19 and plugins 0.1.2 with qualified aliases outside source. All 2246 copied files/link targets matched before validation. The exercised producer and regression files still matched after commit.
-- Isolated affected suite: 155 passed, 0 failed, 710 assertions, seven files, 70.23 seconds. Missing-record diagnostics were expected rejection output.
-- Actual CLI smoke passed eight owning invocations: repeated logical web alias to CanonicalSources; authored notes and source-copy byte preservation; future and malformed index identity rejection without changes; direct Web rejection without creating an index; repeated ordinary lowercase document indexing.
-- TypeScript LSP initialization failed because workspace TypeScript is absent. No typecheck claimed.
-
-## Review history
-Review-0018 returned FAILURE for fc4bf19ed4d42aae5fb246e40904f4be956d3298. The source changed, so that verdict is stale for this source. Earlier implementation/fix/review history is retained below without rewriting its claims.
-
-## Resolved findings
-SPEC-0018-01 from review-0018. Prior review-scoped resolutions remain in their original records.
-
-## Remaining findings
-STD-0018-01 remains unchanged: a non-blocking P3 layout-validation duplication heuristic, excluded by fix-start-0020. No unresolved blocker from the consumed review.
-
-## Latest reviewer verdict
-SUCCESS from review-0024 for 79250a53fad0780ac51d40f17121b50d8d76ef6f. No blocking findings remain. STD-0018-01 remains a non-blocking P3 heuristic.
-
-## Merge status
-Not merged, rebased, or pushed. Ticket unchanged. Parent checked and acknowledged the result, closed the fixer terminal, and confirmed all registered process shutdown after approved cleanup.
-
-## Open questions
-None. The source review passed. Combined-candidate checks remain required before integration.
-
-## Supporting records
-- [Fix authorization](../events/fix-start-0020.yaml)
-- [Fix result](../events/fix-0021.yaml)
-- [Consumed review](../events/review-0018.yaml)
-- [Immutable review](../artifacts/reviews/review-review-0018.md)
-- [Prior fix](../events/fix-0015.yaml)
-- [Prior completion](../events/fix-complete-0016.yaml)
-- [Current snapshot](../artifacts/snapshots/pr-draft-fix-0021.md)
-
-
-# Historical projection retained from review-complete-0019
-
-The following text records earlier sources and checks. It does not describe current acceptance.
-
-# Adopt contracts in shared-context operations
+---
+schemaVersion: worktree-pr-draft/v1
+workflow_id: skill-contract-manifests-07-shared-context
+receipt_id: review-start-0030
+source_commit: 109f3e0ebf668a6ab9d0002af19c906da4298c94
+source_tree: 290dad56a125ae56be029fa773889ef054d237da
+---
+# Resolved source candidate for independent review
 
 ## Ticket summary
 
-Ticket: skill-contract-manifests-07-shared-context. Initiative: skill-contract-manifests.
-Source: `fc4bf19ed4d42aae5fb246e40904f4be956d3298`. Tree: `7f3a38fb53fa37605d2128815c2c3d9f8041b122`.
-State: REVIEW_FAILED; fix the current blocking finding before another review.
+Ticket: `tracker/tickets/skill-contract-manifests-07-shared-context.md`. Initiative: `tracker/initiatives/skill-contract-manifests/index.md`.
 
-## Problem
+Source: `resolve/skill-contract-manifests-07-shared-context-finish` at `109f3e0ebf668a6ab9d0002af19c906da4298c94`, tree `290dad56a125ae56be029fa773889ef054d237da`. Base branch: `master`. Frozen review base: `6b64c4aaad9ebc97783aaf52d4a182e38b7eef5f`.
 
-Review-0011 found three compatibility failures: aliased upgrade reporting, retained migration-plan readers, and historical project identity preservation.
+## Problem and implementation
 
-## Implementation summary
+Declare shared-context-owned contracts and validate resolution, indexing, configuration, and supported upgrades at operation boundaries. Keep external tracker and workflow definitions with their owners. Preserve authored data and historical records.
 
-Preserve lexical caller paths in public upgrade results while keeping canonical filesystem guards. Read retained migration resolutions under their historical shape without rewriting plan IDs, property order, snapshots, or event hashes. Preserve equivalent authored project identity bytes; reject canonical remote mismatches during init and migration.
+The implementation keeps lexical upgrade reporting with canonical safety checks, reads retained migration-plan resolutions without rewriting them, and preserves historical project identity. The last fix derives index identity from the logical path before canonicalization and validates generated metadata before persistence.
 
-Commits: 58e472f0 (STD-001), 1101dfb2 (SPEC-01), fc4bf19e (SPEC-02). Existing commit hooks updated bundle metadata.
+The accepted base produced three version-file conflicts. This separate candidate retains original source `79250a53fad0780ac51d40f17121b50d8d76ef6f` as its first parent and accepted base `b31360101dafd23ae07fe82dc3813973a56935e8` as its second parent. Manual resolution preserves agent-core 0.1.42 and matt-pocock 0.1.16. The combined marketplace retains developer 0.2.77. No product-code hunk required manual resolution.
 
 ## Changed files
 
 - `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
 - `mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json`
-- `mise/conf.d/devtools-agent/bundles/matt-pocock/.claude-plugin/plugin.json`
-- `mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/references/upgrades.md`
-- `mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/references/tasks/migrate.md`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/SKILL.md`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/contracts.json`
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/references/changelog.md`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/references/configuration-upgrades.md`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/references/ingest.md`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/references/layout.md`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/README.md`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/config.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/contracts.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/layout.ts`
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/lib.ts`
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/contracts.test.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test/shared-context.test.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/references/upgrades.md`
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/upgrades.ts`
+- `mise/conf.d/devtools-agent/bundles/matt-pocock/.claude-plugin/plugin.json`
+- `mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/references/tasks/migrate.md`
 - `mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/record-migration.ts`
 - `mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.test.ts`
 
-## Validation results
+## Validation
 
-- Affected suite: 152 passed; one new alias fixture failed because its routes were incomplete. Corrected that fixture; targeted rerun passed (1 test, 4 assertions). No production-code change followed the suite. The seven-file run made 698 assertions.
-- Actual source records.ts upgrade through an ancestor-aliased shared-store root: partial result retains both selected paths, persists v2 for the valid ticket, preserves the rejected ticket, and reports changed fields and required publication.
-- Exact fixed-base archive e89668ebab19e7b40b7cb03edcf59a2c2e3ba0ba produced and applied plan e84129a50ebec9bde7851b25. Actual source migrate check returned contentVerified:true; idempotent apply returned idempotent:true. Original plan and every event remained byte-identical.
-- Actual source shared-context migrate sources --to shared and init --store shared: equivalent historical .git origins, with and without authored extra fields, remained byte-identical. Both commands rejected a different remote without replacing metadata.
-- Source resolution emitted shared-context-resolution/v1. New-plan regression keeps current versioned route snapshots.
-- TypeScript LSP could not initialize: TypeScript is absent. No typecheck claimed.
-- Tests used copied source and real Ajv 8.20.0, YAML 2.9.1, Crust core 0.0.19/plugins 0.1.2, with qualified aliases only outside source. Initial isolated HOME smoke setup could not find Bun/mq; corrected PATH and used the existing mise environment for explicit disposable tracker paths.
+The resolved staged tree passed 263 tests with 1,299 assertions and no failures across 11 files. The later merge commit freezes the same tested tree. Actual ticket resolution and shared-context, tracker, and worktree contract-manifest validation passed. These are preparation checks, not integration-commit-bound validation.
 
-## Review and implementation history
+Real dependencies: YAML 2.8.1, AJV 8.20.0, Crust core 0.0.19, and plugins 0.1.2. Qualified aliases are inside ignored candidate node_modules. No fake package or tracked dependency change was made. No typecheck is claimed.
 
-- implementation-0002 adopted owned contracts at 2d5779034ef9f36b24356632a327070ae61daea0; start and completion retained.
-- review-0005 returned FAILURE for that source with Standards-1, Standards-2 and SPEC-01 through SPEC-05.
-- fix-0008 addressed those seven findings at 3a70f87bac3f44cd6ceb41cebd0887c11ebdbb59; fix-complete-0009 retained. Prior validation: 117 passed, 494 assertions.
-- review-0011 returned FAILURE for 3a70f87bac3f44cd6ceb41cebd0887c11ebdbb59 with STD-001, SPEC-01 and SPEC-02. review-complete-0012 retained.
-- fix-approval-0013 authorized transfer after prior-owner exit. fix-start-0014 authorized this independent attempt.
-- fix-0015 resolves the three review-0011 findings at the new source above. Previous events and reviews remain unchanged.
+Full commands and outcomes: `workflows/skill-contract-manifests-07-shared-context/events/finish-failed-0027.yaml`. Detailed observation: `workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/finish-resolution-0026.json`. Runtime output: `workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/validation-finish-resolution-0026.log`.
 
-## Resolved findings
+## Review history and findings
 
-Review-0011: STD-001, SPEC-01, SPEC-02. Review-0005 resolutions remain recorded under fix-0008; finding IDs are scoped to their review.
+Earlier immutable reviews remain source-bound: review-0005 FAILURE at 2d577903; review-0011 FAILURE at 3a70f87b; review-0018 FAILURE at fc4bf19e; review-0024 SUCCESS at 79250a53. Their artifacts remain under `workflows/skill-contract-manifests-07-shared-context/artifacts/reviews/`. Implementation and fix receipts remain unchanged.
 
-## Remaining findings
+SPEC-0018-01 was resolved by fix-0021. STD-0018-01 remains an unchanged nonblocking P3 heuristic. The old SUCCESS does not apply to this new candidate. A new independent review is required.
 
-Review-0018 has one blocking finding, SPEC-0018-01. STD-0018-01 is a non-blocking heuristic. Prior resolved findings remain recorded under their original reviews.
+## Latest verdict and open questions
 
-## Latest reviewer verdict
+Review pending for the exact candidate above. The user selected “Review candidate, then finish” and approved this exact commit and tree. No unresolved design question remains. New blocking review findings would stop finish.
 
-FAILURE from review-0018 for fc4bf19ed4d42aae5fb246e40904f4be956d3298. See the immutable review artifact for findings and evidence.
+## Merge and publication status
 
-## Merge status
+No product integration or push occurred. Ticket status remains claimed. Original and resolved worktrees remain available. The unrelated `mise/conf.d/devtools-omp/config.yml` change remains untouched. Integration must use the configured squash policy, an accepted current base, and checks bound to the actual integration commit and tree.
 
-Not merged, rebased, or pushed. Ticket remains claimed and unchanged. Source commits are clean. Parent completion validates the delivered result and retains the source worktree.
+## Canonical inputs and outputs
 
-## Open questions
+Consumed: `tracker/tickets/skill-contract-manifests-07-shared-context.md`, `workflows/skill-contract-manifests-07-shared-context/events/fix-0021.yaml`, `workflows/skill-contract-manifests-07-shared-context/events/fix-complete-0022.yaml`, `workflows/skill-contract-manifests-07-shared-context/events/review-0024.yaml`, `workflows/skill-contract-manifests-07-shared-context/events/review-complete-0025.yaml`, `workflows/skill-contract-manifests-07-shared-context/events/finish-complete-0028.yaml`, and `workflows/skill-contract-manifests-07-shared-context/events/source-approval-0029.yaml`.
 
-None. Parent validated and acknowledged the result, closed the fixer terminal, and confirmed all registered process shutdown. The current blocking finding requires a fix.
-
-## Supporting records
-
-- [start-0001](../events/start-0001.yaml).
-- [implementation-0002](../events/implementation-0002.yaml).
-- [start-complete-0003](../events/start-complete-0003.yaml).
-- [review-start-0004](../events/review-start-0004.yaml).
-- [review-0005](../events/review-0005.yaml).
-- [review-complete-0006](../events/review-complete-0006.yaml).
-- [fix-start-0007](../events/fix-start-0007.yaml).
-- [fix-0008](../events/fix-0008.yaml).
-- [fix-complete-0009](../events/fix-complete-0009.yaml).
-- [review-start-0010](../events/review-start-0010.yaml).
-- [review-0011](../events/review-0011.yaml).
-- [review-complete-0012](../events/review-complete-0012.yaml).
-- [fix-approval-0013](../events/fix-approval-0013.yaml).
-- [fix-start-0014](../events/fix-start-0014.yaml).
-- [fix-0015](../events/fix-0015.yaml).
-- [review-review-0005.md](../artifacts/reviews/review-review-0005.md).
-- [review-review-0011.md](../artifacts/reviews/review-review-0011.md).
-- [pr-draft-implementation-0002.md](../artifacts/snapshots/pr-draft-implementation-0002.md).
-- [pr-draft-fix-0008.md](../artifacts/snapshots/pr-draft-fix-0008.md).
-- [pr-draft-fix-0015.md](../artifacts/snapshots/pr-draft-fix-0015.md).
-
-## Parent completion
-
-[fix-complete-0016](../events/fix-complete-0016.yaml) records verified delivery, exact clean source, passing parent resolver smoke, and confirmed child resource shutdown. No merge or push occurred.
-
-## Review-0018 outcome
-
-The independent review returned FAILURE for the unchanged source. Standards: one non-blocking P3 heuristic. Spec: one blocking P2 finding. The affected suite passed 153 tests and 701 assertions. Owning CLI scenarios exposed the blocking index producer/read mismatch. No typecheck or combined current-base integration approval is claimed.
-
-[Immutable review](../artifacts/reviews/review-review-0018.md), [review result](../events/review-0018.yaml), and [parent completion](../events/review-complete-0019.yaml) contain the evidence. The parent checked delivery, appended the ticket verdict, closed the reviewer, and confirmed process shutdown. Source remains clean and unmodified. Nothing was merged or pushed.
-
-# Parent completion 0022
-
-[fix-complete-0022](../events/fix-complete-0022.yaml) records the exact clean source, verified delivery, passing parent resolver smoke, and confirmed process shutdown. The user approved termination of the four remaining fixer identities. Fresh independent review is required because the source changed. No merge or push occurred.
-
-[Parent snapshot](../artifacts/snapshots/pr-draft-fix-complete-0022.md) provides snapshot-relative links. The original child snapshot remains immutable.
-
-# Review-0024 outcome
-
-The independent review returned SUCCESS for the unchanged source. Standards has no blockers and retains one unchanged P3 heuristic. Spec has no findings. The affected suite passed 155 tests and 710 assertions. A targeted pinned-base backlog consumer probe passed 2 tests and 49 assertions. Owning command scenarios passed. No typecheck or complete combined-candidate integration approval is claimed.
-
-[Immutable review](../artifacts/reviews/review-review-0024.md), [review result](../events/review-0024.yaml), and [parent completion](../events/review-complete-0025.yaml) retain the evidence. Parent delivery acknowledgement, canonical SUCCESS comment, resolver smoke and all registered reviewer/axis shutdown are complete. The user approved scoped cleanup. Source remains clean and unchanged. No merge or push occurred.
+Prepared review: `workflows/skill-contract-manifests-07-shared-context/events/review-start-0030.yaml`. The reviewer must publish one new immutable artifact at `workflows/skill-contract-manifests-07-shared-context/artifacts/reviews/review-review-0031.md` and one assigned review result. Neither exists as a completed result yet.
