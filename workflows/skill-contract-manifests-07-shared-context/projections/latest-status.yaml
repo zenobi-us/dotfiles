@@ -3,7 +3,7 @@
   "workflow_id": "skill-contract-manifests-07-shared-context",
   "ticket": "tracker/tickets/skill-contract-manifests-07-shared-context.md",
   "state": "FINISHING",
-  "latest_receipt": "finish-pushed-0036",
+  "latest_receipt": "finish-ticket-completed-0037",
   "latest_source_commit": "109f3e0ebf668a6ab9d0002af19c906da4298c94",
   "latest_source_tree": "290dad56a125ae56be029fa773889ef054d237da",
   "latest_review_verdict": SUCCESS,

@@ -1,3 +1,11 @@
+# Current published finish state
+
+Reviewed source `109f3e0ebf668a6ab9d0002af19c906da4298c94` is integrated by squash commit `ff00b84a216da298bfd46cd3f9f0bbd440dc81f5` and published on `origin/master`. Candidate-bound checks passed. The canonical ticket is completed and published at `ce509930c4e65b9b96c10f1c37a5d234087b5042`.
+
+[Ticket-completed checkpoint](../events/finish-ticket-completed-0037.yaml) records acceptance and publication. Cleanup remains gated: the original clean source at 79250a53 is not a Worktrunk prune candidate. The operator must approve a local fast-forward to the already-reviewed retained descendant 109f3e0e, or preserve the worktrees with cleanup pending. No force or remote branch change is proposed.
+
+# Previous implementation and review observations
+
 # Current review and finish recovery
 
 Source: `109f3e0ebf668a6ab9d0002af19c906da4298c94`. Tree: `290dad56a125ae56be029fa773889ef054d237da`.

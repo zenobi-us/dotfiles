@@ -1,0 +1,48 @@
+{
+  "backend": "local-markdown",
+  "changes": {
+    "dependency_edges_added": [],
+    "dependency_edges_removed": [],
+    "fields": {
+      "work_status": {
+        "after": "completed",
+        "before": "claimed"
+      }
+    }
+  },
+  "initiatives": [],
+  "ok": true,
+  "operation": "update",
+  "publication": {
+    "details": [
+      "Commit and publish the updated record if its store uses Git."
+    ],
+    "status": "required"
+  },
+  "rendered": null,
+  "schemaVersion": "tracker-result/v2",
+  "tickets": [
+    {
+      "blocked_by": [
+        "skill-contract-manifests-03-safe-upgrades"
+      ],
+      "id": "skill-contract-manifests-07-shared-context",
+      "ref": "tracker/tickets/skill-contract-manifests-07-shared-context.md",
+      "state": "completed",
+      "title": "Adopt contracts in shared-context operations"
+    }
+  ],
+  "upgrade": {
+    "artifact": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/tracker/tickets/skill-contract-manifests-07-shared-context.md",
+    "changed": true,
+    "from": "tracker-ticket/v2",
+    "status": "completed",
+    "to": "tracker-ticket/v2"
+  },
+  "validation": {
+    "details": [
+      "Validated source, lossless conversion and requested mutation before atomic persistence."
+    ],
+    "status": "passed"
+  }
+}

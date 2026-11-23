@@ -1,0 +1,51 @@
+{
+  "target": "master",
+  "authority": "cleanup-merged list --json --min-age=0s and one Worktrunk list --format=json --branches observation",
+  "removable": [
+    {
+      "branch": "integration/11b5ce0f-b62d-4cbc-86dc-8ecd0b3cc10a",
+      "workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-11b5ce0f-b62d-4cbc-86dc-8ecd0b3cc10a",
+      "worktrunk_reason": "ancestor"
+    },
+    {
+      "branch": "resolve/skill-contract-manifests-07-shared-context-finish",
+      "workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+      "worktrunk_reason": "merge_adds_nothing"
+    }
+  ],
+  "not_prune_candidate": {
+    "branch": "feature/skill-contract-manifests-07-shared-context",
+    "workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-07-shared-context",
+    "head": "79250a53fad0780ac51d40f17121b50d8d76ef6f",
+    "worktree_clean": true,
+    "state": "would_conflict",
+    "merge_conflicts": true
+  },
+  "retention": {
+    "ref": "refs/worktree-reviews/109f3e0ebf668a6ab9d0002af19c906da4298c94",
+    "commit": "109f3e0ebf668a6ab9d0002af19c906da4298c94",
+    "contains_original_source": true,
+    "verification": "Git object/ref check and ancestor check succeeded."
+  },
+  "proposed_operator_step": {
+    "operation": "Local Worktrunk fast-forward only",
+    "argv": [
+      "wt",
+      "-C",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+      "step",
+      "push",
+      "feature/skill-contract-manifests-07-shared-context",
+      "--format=json"
+    ],
+    "from": "79250a53fad0780ac51d40f17121b50d8d76ef6f",
+    "to": "109f3e0ebf668a6ab9d0002af19c906da4298c94",
+    "tree": "290dad56a125ae56be029fa773889ef054d237da",
+    "creates_commit": false,
+    "rewrites_commit": false,
+    "remote_push": false,
+    "force": false,
+    "purpose": "Then let cleanup-merged re-evaluate and remove only the three recorded resources normally."
+  },
+  "authorization": "Not executed. Exact operator approval required before advancing the preserved original branch."
+}
