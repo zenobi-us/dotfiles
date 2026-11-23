@@ -167,3 +167,12 @@ This supersedes the earlier cleanup-pending observations. [Explicit approval](..
 
 Source stays clean at `8b616592357dd7c5c7472b54d3e946029bd2d2a9`. Next: fresh independent review. No merge or push ran.
 
+
+## Independent review 0032 — FAILURE
+
+The [review result](../events/review-result-0032.yaml) covers clean source `8b616592357dd7c5c7472b54d3e946029bd2d2a9`, tree `d3d9d6e312b93131799b44b1d11b49d07bd1ebb8`, against base `47ad60c441602729d0c565125f8ae609211fe2d5`. It supersedes the previous pending-review statements. Standards has one P2 finding, STANDARDS-003. Spec has one P2 finding, SPEC-005. The [immutable artifact](../artifacts/reviews/review-review-result-0032.md) contains the separate reports, required changes and actual consumer reproductions.
+
+The affected suite passed 36 tests with 275 assertions. Actual MDX/checker and isolated upgrade scenarios reproduced both defects. Parent configuration smoke passed read-only byte preservation, authorized local mutation, no-op stability and unknown-version rejection. [Parent evidence](../artifacts/snapshots/validation-parent-review-0033.json).
+
+[Parent completion](../events/review-complete-0033.yaml) records validated typed delivery, unchanged frozen source and the canonical ticket comment. The reviewer and both nested axes stopped. Their owned tabs were removed. [Shutdown evidence](../artifacts/snapshots/resources-review-complete-0033.json). No source edit, merge or push ran. Next: authorize a fresh fixer for STANDARDS-003 and SPEC-005.
+

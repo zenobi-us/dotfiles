@@ -1,0 +1,353 @@
+{
+  "main": {
+    "schemaVersion": "muxer-resource-report/v2",
+    "manifest": {
+      "schemaVersion": "muxer-run/v2",
+      "runId": "66d1e3e1-4491-4025-a1af-a75f90701d8b",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t22r",
+      "createdAt": "2026-11-23T08:08:18.834Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "operationId": "skill-contract-manifests-11-artifact-sharing-review-4"
+    },
+    "resources": {
+      "schemaVersion": "muxer-resources/v2",
+      "runId": "66d1e3e1-4491-4025-a1af-a75f90701d8b",
+      "observedAt": "2026-11-23T08:23:23.444Z",
+      "processes": [
+        {
+          "pid": 3686648,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12660088",
+          "command": "omp",
+          "parentPid": 3686296,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3693609,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12680000",
+          "command": "omp daemon brok",
+          "parentPid": 3686648,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3693649,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12680005",
+          "command": "omp",
+          "parentPid": 3693609,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3693672,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12680011",
+          "command": "node",
+          "parentPid": 3693649,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3693684,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12680018",
+          "command": "node",
+          "parentPid": 3693672,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3693685,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12680018",
+          "command": "node",
+          "parentPid": 3693672,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3693699,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12680037",
+          "command": "node",
+          "parentPid": 3693685,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3690563,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12672112",
+          "command": "python",
+          "parentPid": 3686648,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3694642,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12688668",
+          "command": "omp",
+          "parentPid": 3686648,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3704216,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12716735",
+          "command": "bun",
+          "parentPid": 3686648,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3705705,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12720493",
+          "command": "bunx",
+          "parentPid": 3704216,
+          "cwd": "/tmp/artifact-site-contract-GXvz01",
+          "state": "stopped"
+        },
+        {
+          "pid": 3705745,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12720504",
+          "command": "MainThread",
+          "parentPid": 3705705,
+          "cwd": "/tmp/artifact-site-contract-GXvz01",
+          "state": "stopped"
+        },
+        {
+          "pid": 3716976,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12732305",
+          "command": "bun",
+          "parentPid": 3690563,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  },
+  "nested_sessions": [
+    {
+      "after": {
+        "manifest": {
+          "agent": "omp",
+          "createdAt": "2026-11-23T08:10:30.461Z",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "muxer": "herdr-app",
+          "operationId": "dcf4bf61-720c-463f-abb5-48ff2799d83d",
+          "parentRunId": "66d1e3e1-4491-4025-a1af-a75f90701d8b",
+          "runId": "dcf4bf61-720c-463f-abb5-48ff2799d83d",
+          "schemaVersion": "muxer-run/v2",
+          "target": "t22v"
+        },
+        "resources": {
+          "observedAt": "2026-11-23T08:19:10.702Z",
+          "processes": [
+            {
+              "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+              "command": "omp",
+              "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+              "parentPid": 3690998,
+              "pid": 3691577,
+              "startTicks": "12673327",
+              "state": "stopped"
+            },
+            {
+              "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+              "command": "bun",
+              "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+              "parentPid": 3691577,
+              "pid": 3699610,
+              "startTicks": "12705172",
+              "state": "stopped"
+            }
+          ],
+          "runId": "dcf4bf61-720c-463f-abb5-48ff2799d83d",
+          "schemaVersion": "muxer-resources/v2",
+          "shutdown": "confirmed"
+        },
+        "schemaVersion": "muxer-resource-report/v2"
+      },
+      "before": {
+        "manifest": {
+          "agent": "omp",
+          "createdAt": "2026-11-23T08:10:30.461Z",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "muxer": "herdr-app",
+          "operationId": "dcf4bf61-720c-463f-abb5-48ff2799d83d",
+          "parentRunId": "66d1e3e1-4491-4025-a1af-a75f90701d8b",
+          "runId": "dcf4bf61-720c-463f-abb5-48ff2799d83d",
+          "schemaVersion": "muxer-run/v2",
+          "target": "t22v"
+        },
+        "resources": {
+          "observedAt": "2026-11-23T08:19:09.693Z",
+          "processes": [
+            {
+              "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+              "command": "omp",
+              "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+              "pid": 3691577,
+              "startTicks": "12673327",
+              "state": "running"
+            },
+            {
+              "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+              "command": "bun",
+              "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+              "parentPid": 3691577,
+              "pid": 3699610,
+              "startTicks": "12705172",
+              "state": "stopped"
+            }
+          ],
+          "runId": "dcf4bf61-720c-463f-abb5-48ff2799d83d",
+          "schemaVersion": "muxer-resources/v2",
+          "shutdown": "pending"
+        },
+        "schemaVersion": "muxer-resource-report/v2"
+      },
+      "closure": [
+        {
+          "argv": [
+            "hc",
+            "kill",
+            "t22v"
+          ],
+          "exit_code": 0,
+          "stderr": "",
+          "stdout": "{\"address\":\"t22v\",\"argv\":[\"/usr/bin/zsh\",\"-ic\",\"\\\"$@\\\"; exec \\\"$0\\\" -i\",\"/usr/bin/zsh\",\"env\",\"MUXER_SUBAGENT_DEPTH=2\",\"XDG_STATE_HOME=/home/zenobius/.local/state\",\"RESULT_DELIVERY_CONTEXT=/var/home/zenobius/.local/state/result-delivery/runs/dcf4bf61-720c-463f-abb5-48ff2799d83d/context.json\",\"MUXER_SUBAGENT_RUN_ID=dcf4bf61-720c-463f-abb5-48ff2799d83d\",\"MUXER_SUBAGENT_ROLE=child\",\"MUXER_SUBAGENT_PARENT_RUN_ID=66d1e3e1-4491-4025-a1af-a75f90701d8b\",\"omp\",\"--\",\"@/home/zenobius/.local/state/muxer-subagents/runs/dcf4bf61-720c-463f-abb5-48ff2799d83d/prompt.md\"],\"cols\":443,\"created_ms\":1795421431031,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing\",\"die_with_parent\":false,\"exit_code\":1,\"finished_ms\":1795421950182,\"identity\":\"ghostty\",\"keep\":true,\"labels\":{\"herdr.seen\":\"0\",\"herdr.space\":\"sp9a003b579dc0c671f420b6a73517ad9a\",\"herdr.tab\":\"tb1b59495a2c8defa5bfac4ebd34a0e87a\",\"where\":\"feature-skill-contract-manifests-11-artifact-sharing / skill-contract-manifests-11-artifact-sharing \u00b7 Standards\"},\"name\":null,\"notify\":true,\"parent\":null,\"pid\":3690998,\"reason\":\"killed\",\"reported\":true,\"rm\":false,\"rows\":83,\"screen\":\"exact\",\"signal\":null,\"state\":\"finished\",\"status\":null,\"status_ms\":1795421950182,\"template\":null,\"title\":\"\u03c0 > \ud83d\udce6 SHARES: Review artifact shares contracts\",\"turn\":1}\n"
+        },
+        {
+          "argv": [
+            "hc",
+            "rm",
+            "t22v"
+          ],
+          "exit_code": 0,
+          "stderr": "",
+          "stdout": "{\"removed\":\"t22v\"}\n"
+        }
+      ],
+      "run_id": "dcf4bf61-720c-463f-abb5-48ff2799d83d",
+      "terminal": "t22v"
+    },
+    {
+      "after": {
+        "manifest": {
+          "agent": "omp",
+          "createdAt": "2026-11-23T08:10:31.647Z",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "muxer": "herdr-app",
+          "operationId": "de6c393e-c4ce-4f27-8bbd-62670422de2f",
+          "parentRunId": "66d1e3e1-4491-4025-a1af-a75f90701d8b",
+          "runId": "de6c393e-c4ce-4f27-8bbd-62670422de2f",
+          "schemaVersion": "muxer-run/v2",
+          "target": "t22w"
+        },
+        "resources": {
+          "observedAt": "2026-11-23T08:19:12.185Z",
+          "processes": [
+            {
+              "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+              "command": "omp",
+              "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+              "parentPid": 3691170,
+              "pid": 3691818,
+              "startTicks": "12673397",
+              "state": "stopped"
+            },
+            {
+              "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+              "command": "python",
+              "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+              "parentPid": 3691818,
+              "pid": 3703514,
+              "startTicks": "12713898",
+              "state": "stopped"
+            }
+          ],
+          "runId": "de6c393e-c4ce-4f27-8bbd-62670422de2f",
+          "schemaVersion": "muxer-resources/v2",
+          "shutdown": "confirmed"
+        },
+        "schemaVersion": "muxer-resource-report/v2"
+      },
+      "before": {
+        "manifest": {
+          "agent": "omp",
+          "createdAt": "2026-11-23T08:10:31.647Z",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "muxer": "herdr-app",
+          "operationId": "de6c393e-c4ce-4f27-8bbd-62670422de2f",
+          "parentRunId": "66d1e3e1-4491-4025-a1af-a75f90701d8b",
+          "runId": "de6c393e-c4ce-4f27-8bbd-62670422de2f",
+          "schemaVersion": "muxer-run/v2",
+          "target": "t22w"
+        },
+        "resources": {
+          "observedAt": "2026-11-23T08:19:11.190Z",
+          "processes": [
+            {
+              "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+              "command": "omp",
+              "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+              "pid": 3691818,
+              "startTicks": "12673397",
+              "state": "running"
+            },
+            {
+              "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+              "command": "python",
+              "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+              "pid": 3703514,
+              "startTicks": "12713898",
+              "state": "running"
+            }
+          ],
+          "runId": "de6c393e-c4ce-4f27-8bbd-62670422de2f",
+          "schemaVersion": "muxer-resources/v2",
+          "shutdown": "pending"
+        },
+        "schemaVersion": "muxer-resource-report/v2"
+      },
+      "closure": [
+        {
+          "argv": [
+            "hc",
+            "kill",
+            "t22w"
+          ],
+          "exit_code": 0,
+          "stderr": "",
+          "stdout": "{\"address\":\"t22w\",\"argv\":[\"/usr/bin/zsh\",\"-ic\",\"\\\"$@\\\"; exec \\\"$0\\\" -i\",\"/usr/bin/zsh\",\"env\",\"MUXER_SUBAGENT_DEPTH=2\",\"XDG_STATE_HOME=/home/zenobius/.local/state\",\"RESULT_DELIVERY_CONTEXT=/var/home/zenobius/.local/state/result-delivery/runs/de6c393e-c4ce-4f27-8bbd-62670422de2f/context.json\",\"MUXER_SUBAGENT_RUN_ID=de6c393e-c4ce-4f27-8bbd-62670422de2f\",\"MUXER_SUBAGENT_ROLE=child\",\"MUXER_SUBAGENT_PARENT_RUN_ID=66d1e3e1-4491-4025-a1af-a75f90701d8b\",\"omp\",\"--\",\"@/home/zenobius/.local/state/muxer-subagents/runs/de6c393e-c4ce-4f27-8bbd-62670422de2f/prompt.md\"],\"cols\":443,\"created_ms\":1795421431696,\"cwd\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing\",\"die_with_parent\":false,\"exit_code\":1,\"finished_ms\":1795421951671,\"identity\":\"ghostty\",\"keep\":true,\"labels\":{\"herdr.seen\":\"0\",\"herdr.space\":\"sp9a003b579dc0c671f420b6a73517ad9a\",\"herdr.tab\":\"tbb0650bdda87907d53b92833706e7ce50\",\"where\":\"feature-skill-contract-manifests-11-artifact-sharing / skill-contract-manifests-11-artifact-sharing \u00b7 Spec\"},\"name\":null,\"notify\":true,\"parent\":null,\"pid\":3691170,\"reason\":\"killed\",\"reported\":true,\"rm\":false,\"rows\":83,\"screen\":\"exact\",\"signal\":null,\"state\":\"finished\",\"status\":null,\"status_ms\":1795421951671,\"template\":null,\"title\":\"\u03c0 > \ud83d\udce6 SHARE: Review artifact sharing contract requirements\",\"turn\":1}\n"
+        },
+        {
+          "argv": [
+            "hc",
+            "rm",
+            "t22w"
+          ],
+          "exit_code": 0,
+          "stderr": "",
+          "stdout": "{\"removed\":\"t22w\"}\n"
+        }
+      ],
+      "run_id": "de6c393e-c4ce-4f27-8bbd-62670422de2f",
+      "terminal": "t22w"
+    }
+  ],
+  "pane_removed": true,
+  "domain_services": []
+}

@@ -1,14 +1,14 @@
 ---
-receipt_id: fix-result-0026
+receipt_id: review-result-0032
 schemaVersion: worktree-pr-draft/v1
 source_commit: 8b616592357dd7c5c7472b54d3e946029bd2d2a9
 source_tree: d3d9d6e312b93131799b44b1d11b49d07bd1ebb8
-title: SPEC-004 fix
+title: Artifact-share contracts review 0032
 type: Concept
 workflow_id: skill-contract-manifests-11-artifact-sharing
 ---
 
-# SPEC-004 fixed; independent review pending
+# Artifact-share contracts — REVIEW_FAILED
 
 Historical readers now recover the complete plain 12-character lowercase hexadecimal hash scalar, including exponent-shaped hashes. Current-contract numeric scalars remain rejected. No historical publications were converted. The supported local consumer upgrade recognizes the deployed pre-fix reader.
 
@@ -66,4 +66,11 @@ Unmerged and not pushed. Source is committed on `feature/skill-contract-manifest
 ## Current cleanup outcome — confirmed
 
 This supersedes all earlier cleanup-pending statements. After [scoped approval](../events/fix-cleanup-approval-0028.yaml), all eight surviving fixer-owned processes stopped with identity-verified signals. [Shutdown evidence](../artifacts/snapshots/resources-fix-cleanup-0029.json); [provenance](../events/fix-cleanup-observed-0029.yaml). Child tab removed; no domain service remains. Source is clean. Next: independent review, not merge.
+
+
+## Current independent review — 0032
+
+State: REVIEW_FAILED. Current reviewer verdict: FAILURE for `8b616592357dd7c5c7472b54d3e946029bd2d2a9`. This supersedes the earlier pending-review and no-open-findings statements. [Review result](../events/review-result-0032.yaml); [immutable review](../artifacts/reviews/review-review-result-0032.md). Standards: STANDARDS-003, P2, incomplete metadata validation at the MDX boundary. Spec: SPEC-005, P2, missing consumer-history contract and runtime validation. Both defects were reproduced through actual consumers. Earlier resolved finding IDs remain historical.
+
+The existing affected suite passed 36 tests and 275 assertions. The parent configuration smoke passed. [Parent completion](../events/review-complete-0033.yaml) records the verdict-only ticket comment, unchanged frozen source and typed delivery acknowledgement. All three reviewer sessions stopped and their owned tabs were removed. [Shutdown evidence](../artifacts/snapshots/resources-review-complete-0033.json). No merge or push ran. Next: a fresh authorized fixer for both current findings.
 

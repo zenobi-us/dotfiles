@@ -1,0 +1,52 @@
+{
+  "result": "PASS",
+  "scenario": "Actual CLI legacy read, authorized local upgrade, authored preservation, no-op stability and unknown-version byte-stable rejection",
+  "records": [
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "list"
+      ],
+      "cwd": "/tmp/artifact-review-parent-8TlfNb",
+      "stdout": "No shares configured in /tmp/artifact-review-parent-8TlfNb/config.json\nCreate one: artifact-shares create <name>\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "config",
+        "clone-root",
+        "/tmp/artifact-review-parent-8TlfNb"
+      ],
+      "cwd": "/tmp/artifact-review-parent-8TlfNb",
+      "stdout": "{\n  \"artifact\": \"/tmp/artifact-review-parent-8TlfNb/config.json\",\n  \"changed\": true,\n  \"from\": \"artifact-share-config/v1\",\n  \"to\": \"artifact-share-config/v2\",\n  \"status\": \"completed\"\n}\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "config",
+        "upgrade"
+      ],
+      "cwd": "/tmp/artifact-review-parent-8TlfNb",
+      "stdout": "{\n  \"artifact\": \"/tmp/artifact-review-parent-8TlfNb/config.json\",\n  \"changed\": false,\n  \"from\": \"artifact-share-config/v2\",\n  \"to\": \"artifact-share-config/v2\",\n  \"status\": \"completed\"\n}\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "config",
+        "upgrade"
+      ],
+      "cwd": "/tmp/artifact-review-parent-8TlfNb",
+      "stdout": "",
+      "stderr": "Error: Unsupported explicit contract identifier; legacy detection is forbidden.\n",
+      "exit_code": 1
+    }
+  ],
+  "source_commit": "8b616592357dd7c5c7472b54d3e946029bd2d2a9",
+  "source_tree": "d3d9d6e312b93131799b44b1d11b49d07bd1ebb8"
+}
