@@ -1,3 +1,19 @@
+# Current review and finish recovery
+
+Source: `109f3e0ebf668a6ab9d0002af19c906da4298c94`. Tree: `290dad56a125ae56be029fa773889ef054d237da`.
+
+Finish preparation encountered three bundle-version conflicts. A separate descendant candidate preserved the original reviewed source. The user approved the exact candidate in [source-approval-0029](../events/source-approval-0029.yaml).
+
+Fresh [review-0031](../artifacts/reviews/review-review-0031.md) returned SUCCESS after separate Standards and Spec sessions. The exact frozen source passed 263 tests and 1,299 assertions. Actual owning commands exercised preservation, supported upgrades, rejected mutations, retained plans, and advancing-base worktree/backlog consumers. Parent workflow-resolution smoke passed. No typecheck is claimed.
+
+No blocker remains. STD-0018-01, STD-0031-01 and STD-0031-02 are nonblocking P3 heuristics. The parent validated and acknowledged the typed result, closed only the three owned tabs, and observed confirmed shutdown for every registered review run. Both filesystem worktrees remain preserved.
+
+[Parent completion](../events/review-complete-0032.yaml) corrects the earlier claim that pre-commit preparation checked the same complete committed tree. Final bundle versions changed during commit. Fresh review-0031 provides exact committed-source proof. Historical bytes remain unchanged.
+
+Next action: finish with current-base compatibility checks, candidate-bound squash validation, non-force publication, tracker completion and scoped cleanup. No product integration or push has occurred yet.
+
+# Retained implementation and review history
+
 # Fix-0021 implementation log update
 
 Source: 79250a53fad0780ac51d40f17121b50d8d76ef6f. Tree: a4d55e717aa5beb4b31871622db5788e82519908.

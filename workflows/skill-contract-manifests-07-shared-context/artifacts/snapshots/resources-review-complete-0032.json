@@ -1,0 +1,121 @@
+[
+  {
+    "schemaVersion": "muxer-resource-report/v2",
+    "manifest": {
+      "schemaVersion": "muxer-run/v2",
+      "runId": "22cfc3b7-319f-4cdb-a467-9bae09ef4907",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t224",
+      "createdAt": "2026-11-23T05:09:01.804Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+      "operationId": "22cfc3b7-319f-4cdb-a467-9bae09ef4907"
+    },
+    "resources": {
+      "schemaVersion": "muxer-resources/v2",
+      "runId": "22cfc3b7-319f-4cdb-a467-9bae09ef4907",
+      "observedAt": "2026-11-23T05:23:03.953Z",
+      "processes": [
+        {
+          "pid": 3200157,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "11584393",
+          "command": "omp",
+          "parentPid": 3199813,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+          "state": "stopped"
+        },
+        {
+          "pid": 3203934,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "11590621",
+          "command": "omp",
+          "parentPid": 3200157,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+          "state": "stopped"
+        },
+        {
+          "pid": 3208349,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "11597552",
+          "command": "bun",
+          "parentPid": 3200157,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  },
+  {
+    "schemaVersion": "muxer-resource-report/v2",
+    "manifest": {
+      "schemaVersion": "muxer-run/v2",
+      "runId": "99780369-9a34-417e-8acf-5b75c6175d2a",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t226",
+      "createdAt": "2026-11-23T05:10:19.765Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+      "operationId": "99780369-9a34-417e-8acf-5b75c6175d2a",
+      "parentRunId": "22cfc3b7-319f-4cdb-a467-9bae09ef4907"
+    },
+    "resources": {
+      "schemaVersion": "muxer-resources/v2",
+      "runId": "99780369-9a34-417e-8acf-5b75c6175d2a",
+      "observedAt": "2026-11-23T05:23:04.409Z",
+      "processes": [
+        {
+          "pid": 3204838,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "11592215",
+          "command": "omp",
+          "parentPid": 3204226,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+          "state": "stopped"
+        },
+        {
+          "pid": 3220836,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "11604319",
+          "command": "omp",
+          "parentPid": 3204838,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  },
+  {
+    "schemaVersion": "muxer-resource-report/v2",
+    "manifest": {
+      "schemaVersion": "muxer-run/v2",
+      "runId": "fb2ab4f4-2a29-4a24-b549-457d5f3f0382",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t225",
+      "createdAt": "2026-11-23T05:10:19.761Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+      "operationId": "fb2ab4f4-2a29-4a24-b549-457d5f3f0382",
+      "parentRunId": "22cfc3b7-319f-4cdb-a467-9bae09ef4907"
+    },
+    "resources": {
+      "schemaVersion": "muxer-resources/v2",
+      "runId": "fb2ab4f4-2a29-4a24-b549-457d5f3f0382",
+      "observedAt": "2026-11-23T05:23:04.873Z",
+      "processes": [
+        {
+          "pid": 3204758,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "11592213",
+          "command": "omp",
+          "parentPid": 3204216,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  }
+]
