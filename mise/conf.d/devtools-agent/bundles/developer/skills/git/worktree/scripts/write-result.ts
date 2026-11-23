@@ -14,6 +14,7 @@ import { validateReceipt as validateEnvelope, validateSourceWorktree } from "./r
 import { generateReceipt } from "./phase-context";
 import { receiptIdentity, strictReceipt } from "./contract-identity";
 import { readContextResolution } from "./context-resolution";
+import { relocateRepository } from "./repository-relocation";
 
 const sharedContextCli = fileURLToPath(new URL("../../../../../agent-core/skills/shared-context/scripts/shared-context/cli.ts", import.meta.url));
 const app = new Crust("write-worktree-result").meta({ description: "Write one immutable worktree phase-result receipt and deliver the same object to its caller." }).flags({
@@ -51,6 +52,30 @@ const app = new Crust("write-worktree-result").meta({ description: "Write one im
       const yaml = Bun.file(join(String(target.path), "events", parentId + ".yaml"));
       const json = Bun.file(join(String(target.path), "events", parentId + ".json"));
       parent = await yaml.exists() ? object(Bun.YAML.parse(await yaml.text())) : await json.exists() ? object(await json.json()) : undefined;
+    }
+    if (parent && phaseContext?.event === "operator-approval" && input.status === "approved" && Array.isArray(input.history_supplements)) {
+      const ref = `${target.ref}/events/${parentId}`;
+      const supplement = input.history_supplements.find(value => value?.relocate_repository != null && [ref + ".yaml", ref + ".json"].includes(value.ref));
+      if (supplement) {
+        const bytes = await Bun.file(join(String(target.root), supplement.ref)).text();
+        if (createHash("sha256").update(bytes).digest("hex") !== supplement.sha256
+          || !Array.isArray(input.inputs) || !input.inputs.some(value => value?.ref === supplement.ref)) {
+          throw new Error("Repository relocation requires the exact parent receipt checksum and input reference.");
+        }
+        parent = await relocateRepository(parent, supplement.relocate_repository, { ...input, event: phaseContext.event }, flags.repository, String(target.ref), async (command, args) => {
+          const result = Bun.spawnSync([command, ...args], { stdout: "pipe", stderr: "pipe" });
+          return { code: result.exitCode, stdout: new TextDecoder().decode(result.stdout) };
+        });
+      }
+    }
+    if (parent && object(parent.workflow).root !== target.root) {
+      const inspected = Bun.spawnSync([fileURLToPath(new URL("./inspect.ts", import.meta.url)), String(parent.ticket_ref), "--json"], { cwd: flags.repository, stdout: "pipe", stderr: "pipe" });
+      if (inspected.exitCode !== 0) throw new Error("Inspect the historical parent before continuing publication.");
+      const history = object(object(JSON.parse(new TextDecoder().decode(inspected.stdout))).workflow);
+      if (object(history.inspection).historyValid !== true) throw new Error("Historical parent requires valid append-only repair before publication.");
+      const effective = Array.isArray(history.receipts) ? history.receipts.find(value => value.id === parentId) : undefined;
+      if (!effective?.fields) throw new Error("The validated historical parent is unavailable.");
+      parent = object(effective.fields);
     }
     receipt = phaseContext ? await generateReceipt(phaseContext, input, flags.repository, target, parent, async (command, args) => {
       const result = Bun.spawnSync([command, ...args], { stdout: "pipe", stderr: "pipe" });

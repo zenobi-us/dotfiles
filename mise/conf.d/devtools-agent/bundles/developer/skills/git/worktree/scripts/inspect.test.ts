@@ -842,3 +842,76 @@ test("blocked CLI workflows report evidence and preserve receipts, source, and i
     expect(await run("git", ["--no-optional-locks", "-C", repo, "status", "--porcelain=v1", "--untracked-files=all"])).toBe(status);
   }
 }, 120_000);
+
+test("approved relocation supplements recover a moved base without rewriting history or changing the blocked result", async () => {
+  const { context, ticket, root } = await fixture();
+  const base = context.repositoryRoot;
+  const source = join(root, "source");
+  await run("git", ["-C", base, "worktree", "add", "-b", "feature/T-1", source]);
+  await put(join(base, ".git/info/exclude"), "/workflows/\n");
+  const commit = await run("git", ["-C", source, "rev-parse", "HEAD"]);
+  const tree = await run("git", ["-C", source, "rev-parse", "HEAD^{tree}"]);
+  const old = join(root, "missing-base");
+  const ref = "workflows/T-1/events/start.json";
+  const historical = {
+    schemaVersion: "worktree-receipt/v3", workflow_id: ticket.id, receipt_id: "start-1",
+    phase: "start", event: "phase-start", status: "started", attempt: 1, parent_receipt: null,
+    repository: old, worktree: source, workspace_path: source, source_branch: "feature/T-1", base_branch: "main",
+    source_commit: commit, source_tree: tree, muxer: "herdr-app", pane_id: null, agent: "omp", session_id: "original",
+    created_at: "2026-10-01T00:00:00Z", ticket: { id: ticket.id, ref: ticket.ref, backend: ticket.backend },
+    ticket_ref: ticket.ref, workflow: { root: old, store: "repository", ref: "workflows/T-1" }, inputs: [], outputs: [],
+  };
+  const original = JSON.stringify(historical);
+  await put(join(base, ref), original);
+  const completionRef = "workflows/T-1/events/complete.json";
+  const completionBytes = JSON.stringify({ ...historical, receipt_id: "complete-2", parent_receipt: "start-1",
+    event: "phase-complete", status: "blocked", result_missing: true, created_at: "2026-10-02T00:00:00Z" });
+  await put(join(base, completionRef), completionBytes);
+  const inventory: Exec = async (command, args, cwd) => command === "wt"
+    ? { code: 0, stdout: JSON.stringify({ schema: 2, items: [{ branch: "feature/T-1", worktree: { path: source } }] }) }
+    : exec(command, args, cwd);
+  expect((await loadTicketWorkflow(context, ticket, inventory)).inspection?.historyValid).toBe(false);
+  const supplements = [[ref, original], [completionRef, completionBytes]].map(([ref, bytes]) => ({
+    ref, sha256: createHash("sha256").update(bytes!).digest("hex"), relocate_repository: { from: old, to: base },
+  }));
+  const repair = {
+    ...historical, repository: base, workflow: { ...historical.workflow, root: base },
+    receipt_id: "repair-3", parent_receipt: "complete-2", event: "operator-approval", status: "approved", attempt: 0,
+    session_id: "repair-owner", created_at: "2026-10-03T00:00:00Z",
+    inputs: supplements.map(item => ({ kind: "receipt", ref: item.ref })), history_supplements: supplements,
+    history_repair_reason: "The base checkout moved; the source worktree still proves Git identity.",
+    history_repair_authorization: "Explicit operator approval for append-only relocation repair.",
+  };
+  const repairFile = join(base, "workflows/T-1/events/repair.json");
+  await put(repairFile, JSON.stringify(repair));
+  const workflow = await loadTicketWorkflow(context, ticket, inventory);
+  expect(workflow.inspection?.historyValid).toBe(true);
+  expect(workflow.receipts.find(item => item.id === "complete-2")?.fields.status).toBe("blocked");
+  expect(workflow.events?.find(item => item.ref === ref)?.fields?.repository).toBe(old);
+  expect(await readFile(join(base, ref), "utf8")).toBe(original);
+  for (const invalid of [
+    { ...repair, event: "phase-checkpoint", status: "started" },
+    { ...repair, history_supplements: [{ ...supplements[0], sha256: "0".repeat(64) }, supplements[1]] },
+    { ...repair, history_supplements: [{ ...supplements[0], relocate_repository: { from: old, to: source } }, supplements[1]] },
+  ]) {
+    await put(repairFile, JSON.stringify(invalid));
+    expect((await loadTicketWorkflow(context, ticket, inventory)).inspection?.historyValid).toBe(false);
+  }
+  const unrelated = join(root, "clone");
+  await run("git", ["clone", "--quiet", base, unrelated]);
+  for (const changed of [
+    { ...historical, worktree: unrelated, workspace_path: unrelated },
+    { ...historical, source_tree: "0".repeat(40) },
+  ]) {
+    const bytes = JSON.stringify(changed);
+    await put(join(base, ref), bytes);
+    await put(repairFile, JSON.stringify({ ...repair, history_supplements: [
+      { ...supplements[0], sha256: createHash("sha256").update(bytes).digest("hex") }, supplements[1],
+    ] }));
+    expect((await loadTicketWorkflow(context, ticket, inventory)).inspection?.historyValid).toBe(false);
+  }
+  await put(join(base, ref), original);
+  await put(repairFile, JSON.stringify(repair));
+  await mkdir(old);
+  expect((await loadTicketWorkflow(context, ticket, inventory)).inspection?.historyValid).toBe(false);
+});

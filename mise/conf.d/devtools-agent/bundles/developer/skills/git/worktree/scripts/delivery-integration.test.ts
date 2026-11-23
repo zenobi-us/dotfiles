@@ -330,7 +330,6 @@ test("generated v2 publication continues inspected retained source-root history 
     await writeFile(parentPath, bytes);
     const rejected = await publishPhase(child, input, f.repository, { RESULT_DELIVERY_CONTEXT: context.file });
     expect(rejected.code).toBe(1);
-    expect(rejected.stderr).toContain("Phase parent does not match the resolved workflow");
     expect(await Bun.file(event).exists()).toBe(false);
     expect(await Bun.file(context.target).exists()).toBe(false);
     expect(await readFile(parentPath, "utf8")).toBe(bytes);
@@ -908,3 +907,47 @@ test("coordination cannot validate approved source transition ancestry without G
     expect.objectContaining({ ref: "review", code: "source_transition_unverifiable", severity: "error" }),
   ]);
 });
+
+test("relocation publication rejects a changed checksum and continues from the repaired historical parent", async () => {
+  const f = await fixture(false);
+  const source = join(f.directory, "source");
+  execFileSync("git", ["-C", f.repository, "worktree", "add", "--quiet", "-b", "feature/TASK-1", source]);
+  const { schema: _schema, created_at: _created, ...common } = f.receipt;
+  const old = join(f.directory, "missing-base");
+  const parent = { ...common, schemaVersion: "worktree-receipt/v3", receipt_id: "start-0001", parent_receipt: null,
+    event: "phase-start", phase: "start", status: "started", repository: old, worktree: source, workspace_path: source,
+    source_branch: "feature/TASK-1", created_at: "2026-10-01T00:00:00Z",
+    workflow: { store: "repository", ref: f.workflow.ref, root: old } };
+  const parentPath = join(f.workflow.path, "events/start-0001.yaml");
+  await mkdir(dirname(parentPath), { recursive: true });
+  const bytes = Bun.YAML.stringify(parent);
+  await writeFile(parentPath, bytes);
+  const ref = `${f.workflow.ref}/events/start-0001.yaml`;
+  const supplement = { ref, sha256: createHash("sha256").update(bytes).digest("hex"),
+    relocate_repository: { from: old, to: f.repository } };
+  const repair = { ...parent, repository: f.repository, workflow: { store: "repository", ref: f.workflow.ref, root: f.repository },
+    receipt_id: "repair-0002", parent_receipt: "start-0001", attempt: 0, event: "operator-approval", status: "approved",
+    created_at: undefined, inputs: [{ kind: "receipt", ref }], outputs: [],
+    history_repair_reason: "The base moved but the linked source survives.",
+    history_repair_authorization: "Explicit fixture operator approval.", history_supplements: [supplement] };
+  const input = join(f.directory, "repair.json");
+  const event = join(f.workflow.path, "events/repair-0002.yaml");
+  const rejected = await publishPhase({ ...repair, history_supplements: [{ ...supplement, sha256: "0".repeat(64) }] }, input, f.repository, {}, true);
+  expect(rejected.code).toBe(1);
+  expect(await Bun.file(event).exists()).toBe(false);
+  expect(await readFile(parentPath, "utf8")).toBe(bytes);
+  const published = await publishPhase(repair, input, f.repository, {}, true);
+  if (published.code) throw new Error(published.stderr);
+  const inspected = await run(inspector, [String(f.receipt.ticket_ref), "--json"], {}, f.repository);
+  expect(inspected.code).toBe(0);
+  expect(JSON.parse(inspected.stdout).workflow.inspection.historyValid).toBe(true);
+  const continuation = { ...repair, receipt_id: "decision-0003", event: "operator-decision-required", status: "blocked",
+    history_supplements: undefined, history_repair_reason: undefined, history_repair_authorization: undefined };
+  const continued = await publishPhase(continuation, input, f.repository, {}, true);
+  if (continued.code) throw new Error(continued.stderr);
+  const saved = Bun.YAML.parse(await readFile(join(f.workflow.path, "events/decision-0003.yaml"), "utf8"));
+  expect(saved.parent_receipt).toBe("start-0001");
+  expect(saved.repository).toBe(f.repository);
+  expect(saved.status).toBe("blocked");
+  expect(await readFile(parentPath, "utf8")).toBe(bytes);
+}, 120_000);

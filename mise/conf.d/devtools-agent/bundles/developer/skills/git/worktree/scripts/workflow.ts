@@ -17,6 +17,7 @@ import { validateReceiptContract } from "./receipt-contract";
 import { inspectReceiptDiagnostics } from "./receipt-diagnostics";
 import type { ReceiptDiagnostic } from "./receipt-diagnostics";
 import { linkedWorkflowRoot, repositoryIdentity, validateReceipt, validateSourcePaths, validateSourceWorktree } from "./receipt-validation";
+import { relocateRepository } from "./repository-relocation";
 
 type Fields = Record<string, unknown>;
 type Document = ParsedDocument;
@@ -210,7 +211,7 @@ async function loadWorkflowHistory(context: SharedAgentContext, ticket: TicketRe
   const eventFiles = await session.collect(events, /\.(md|yaml|yml|json)$/, record.root);
   const { documents, errors: readErrors } = await session.readAll(eventFiles.map(file => ({ file, root: record.root! })));
   const repositoryIdentities = options?.repositoryIdentities ?? new Map<string, Promise<string | undefined>>();
-  const supplements = await historySupplements(documents, { root: record.root, ref: record.ref }, context, workflowId, session);
+  const supplements = await historySupplements(documents, { root: record.root, ref: record.ref }, context, workflowId, session, exec);
   const envelopes: { ref: string; fields: Fields }[] = [];
   const validationCodes = new Map<string, string>();
   for (const file of eventFiles) {
@@ -336,6 +337,7 @@ async function historySupplements(
  context: SharedAgentContext,
  workflowId: string,
  session: DocumentReadSession,
+ exec: Exec,
 ): Promise<Map<string, Fields>> {
  const effective = new Map<string, Fields>();
  const evidenceRoot = await resolveContextRecord(context, { kind: "evidence", workflow: workflowId, run: "history-repair" });
@@ -346,7 +348,7 @@ async function historySupplements(
   const inputs = references(doc.fields.inputs, "history repair inputs");
   for (const value of list(doc.fields.history_supplements, "history supplements")) {
    const supplement = object(value, "history supplement");
-   if (Object.keys(supplement).some(key => !["ref", "sha256", "evidence", "normalize_workflow_root", "normalize_finish_workspace", "input_refs"].includes(key))) throw new Error("History supplements may only repair missing evidence, workflow roots, historical finish workspaces or absent input refs.");
+   if (Object.keys(supplement).some(key => !["ref", "sha256", "evidence", "normalize_workflow_root", "normalize_finish_workspace", "input_refs", "relocate_repository"].includes(key))) throw new Error("History supplements may only repair missing evidence, workflow roots, historical finish workspaces, absent input refs or moved repositories.");
    const ref = text(supplement.ref, "history supplement ref");
    const file = join(record.root, ref);
    const original = documents.get(file);
@@ -355,7 +357,10 @@ async function historySupplements(
    if (!(Date.parse(String(original.fields.created_at)) < Date.parse(String(doc.fields.created_at)))) throw new Error("History supplement must follow its target.");
    const digest = session.digest(file);
    if (supplement.sha256 !== digest) throw new Error(`History supplement checksum mismatch: ${ref}`);
-   const fields = { ...original.fields };
+   let fields = { ...original.fields };
+   if (supplement.relocate_repository != null) {
+    fields = await relocateRepository(fields, supplement.relocate_repository, doc.fields, context.repositoryRoot, record.ref, exec);
+   }
    if (supplement.evidence != null) {
     if (fields.evidence != null) throw new Error("History supplements cannot replace existing evidence.");
     const evidence = object(supplement.evidence, "supplement evidence");
@@ -399,7 +404,7 @@ async function historySupplements(
     }
     fields.inputs = patched;
    }
-   if (supplement.evidence == null && supplement.normalize_workflow_root == null && supplement.normalize_finish_workspace == null && supplement.input_refs == null) throw new Error("History supplement has no envelope repair.");
+   if (supplement.evidence == null && supplement.normalize_workflow_root == null && supplement.normalize_finish_workspace == null && supplement.input_refs == null && supplement.relocate_repository == null) throw new Error("History supplement has no envelope repair.");
    effective.set(file, fields);
   }
  }

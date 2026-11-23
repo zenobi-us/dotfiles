@@ -122,6 +122,16 @@ The inspector validates supplements before constructing the parent graph. Target
 
 For a terminal v1 finish repair, retain the exact reviewed source commit/tree and source worktree in the appended finish envelope. Record the current repair checkout, commit/tree and session separately in recovery provenance. Reverify the integration mapping, remote reachability, tracker state and source removal before retaining `FINISHED`; do not claim that historical validation ran again. The repair records the current observation of an old integration, not a new finish execution.
 
+### Moved publication checkout
+
+For a moved base checkout, use `relocate_repository: {from, to}` in each checksum-bound history supplement. Append a v3 `operator-approval` with `status: approved`, explicit repair authorization, all target receipts in `inputs`, and a valid parent. Publish it with the installed `scripts/write-result.ts --parent-event --repository <current-checkout> --phase-context <context.json> --input <outcome.json>`.
+
+The old path MUST be absent. Its recorded `repository` and `workflow.root` MUST both equal `from`; `to` MUST equal the current publication checkout. The workflow store and reference MUST remain unchanged. A surviving source worktree MUST share the current checkout's real Git common directory. Its recorded commit/tree MUST exist, and the commit MUST be an ancestor of its current HEAD. A matching remote or copied commit is insufficient.
+
+The supplement changes only effective `repository` and `workflow.root` fields. Preserve original bytes, source paths, commit/tree, timestamps, parent links, status and verdict. The writer validates the repair's parent checksum before publication. Later publication reads the validated effective parent through the inspector.
+
+Reinspect after publication. Require valid history and unchanged original checksums. A relocation approval authorizes neither a new phase nor implementation takeover. If the source worktree is gone or belongs to another Git common directory, stop and recover repository identity first.
+
 ## Partial source closure
 
 A failed or blocked `phase-complete` for start, implementation, or fix can preserve incomplete source when `result_missing: true` names its matching phase-start parent. The writer observes the current commit, tree, and `source_dirty` instead of freezing the launch commit. Keep the source worktree and all partial files. The writer still checks the checkout, branch, repository, attempt, ticket, workflow, and session context.
