@@ -1,0 +1,45 @@
+{
+  "creation": {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "mq",
+      "--allow-http-import",
+      "-I",
+      "null",
+      "-F",
+      "text",
+      "import \"github.com/harehare/okf.mq\" | okf::okf_new(\"Concept\", {title: \"Coverage smoke\", custom_field: \"keep\"}, \"# Coverage smoke\\n\\nPreserve external metadata.\") | okf::okf_stringify(.)",
+      "-o",
+      "/tmp/coverage-okf-smoke-concept.md",
+      "--no-clobber"
+    ],
+    "exit_code": 0
+  },
+  "parse": {
+    "exit_code": 0,
+    "observed": {
+      "frontmatter": {
+        "custom_field": "keep",
+        "title": "Coverage smoke",
+        "type": "Concept"
+      },
+      "body": "# Coverage smoke\n\nPreserve external metadata."
+    }
+  },
+  "content_validation": {
+    "exit_code": 0,
+    "observed": {
+      "valid": [],
+      "invalid": [
+        {
+          "rule": "missing_required_field",
+          "field": "type",
+          "message": "frontmatter must have a 'type' field, but it is missing"
+        }
+      ]
+    }
+  },
+  "qualification": "Actual mq/okf creation, parsing and content validation. External type/custom_field were retained; no internal schemaVersion was inserted. Missing type produced an explicit finding, not a process exit error."
+}

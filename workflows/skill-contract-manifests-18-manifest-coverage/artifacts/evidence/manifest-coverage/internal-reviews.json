@@ -1,0 +1,87 @@
+{
+  "initial": [
+    {
+      "axis": "standards",
+      "run": "25a40025-0fca-4114-bcd3-e3c28ad7eef2",
+      "result": {
+        "axis": "standards",
+        "findings": [
+          {
+            "evidence": "The manifest declares no outputs or definitions. commit/SKILL.md, Commit messages, requires the structured Conventional Commit header <type>(<scope>): <description>. release-please/SKILL.md explicitly consumes Conventional Commits for version bumps and changelog generation. The combined audit excludes this output because Conventional Commits are externally owned, marks commit added, and records no unresolved boundary. External ownership does not make this machine-interpreted format ordinary prose.",
+            "fix": "Inventory Conventional Commit messages as an externally owned structured output. Declare the verified output contract with its authoritative pinned specification, without changing commit bytes. If the definition or validator remains unresolved, record the boundary as partial or blocked instead of treating this empty manifest as complete coverage. Check release-please's corresponding input inventory as well.",
+            "path": "mise/conf.d/devtools-agent/bundles/developer/skills/git/commit/contracts.json:3-5",
+            "requirement": "writing-skills/references/contract-authoring.md, Inventory before declarations: inventory every independently consumed structured output; external formats must reference their actual specification and validator. Ticket 18 permits empty collections only when no applicable contracts exist and requires supported external formats to reference authoritative definitions.",
+            "severity": "medium"
+          }
+        ],
+        "schemaVersion": "manifest-review/v1",
+        "scope": "Read-only internal Standards review of git diff --cached: 197 new manifests and the validation guide; compared with /tmp/coverage-combined-draft.json and /tmp/coverage-source-changed-files.json. Branch feature/skill-contract-manifests-18-manifest-coverage, base master. Not an official worktree review receipt; no tracker or source changes.",
+        "source_base": "d34d7d0f618d122e4bacf63c37c6397e7e3786e8",
+        "summary": "One documented-standard finding: commit incorrectly excludes a structured external output. No competing local definitions, owner migrations, external identity injection, or program-logic smells appeared in the reviewed declarations. The guide correctly separates manifest validity from semantic coverage. The draft accounts for 261 skills, with 209 manifests, 52 missing manifests and 130 partial skills; these numbers do not establish full support. Tests, builds and validators were not run, as assigned. Reference reachability and public validation remain the parent's checks.",
+        "verdict": "FAILURE"
+      }
+    },
+    {
+      "axis": "spec",
+      "run": "d7f30624-5bd3-4dcf-b176-47f386f8a147",
+      "result": {
+        "axis": "spec",
+        "findings": [
+          {
+            "evidence": "Both chrome-devtools and chrome-devtools-cli declare CDP browser/JavaScript production and acceptance. Their SKILL.md workflows use chrome-devtools-mcp tools: take_snapshot returns uid-based text; click takes pageId/uid. These are MCP tool contracts, not CDP command/result payloads. The audit acknowledges missing wrapper definitions but still advertises native CDP support without a documented raw-CDP boundary.",
+            "fix": "Remove unsupported CDP declarations from these two manifests. Resolve and declare the actual MCP/CLI boundary, or retain that portion as explicitly blocked. Keep any direct-CDP claim only with an identified workflow that actually exchanges native CDP records.",
+            "path": "mise/conf.d/devtools-agent/bundles/developer/skills/browsers/chrome-devtools/contracts.json:4-8",
+            "requirement": "Ticket AC2: declare supported externally owned structured formats and authoritative definitions. Initiative Per-skill manifest: produces lists output contracts; accepts lists supported input contracts. Definition discovery does not establish support.",
+            "severity": "high"
+          },
+          {
+            "evidence": "The manifest is empty. SKILL.md requires semantic Conventional Commit subjects using <type>(<scope>): <description>. The audit marks this skill added/complete and excludes its commits because Git objects and Conventional Commits are external formats. External ownership alone is not an exemption for structured output.",
+            "fix": "Declare Conventional Commit output against its pinned authoritative external specification without changing commit bytes. If its authority cannot yet resolve, record that boundary as unresolved and mark this skill partial instead of complete.",
+            "path": "mise/conf.d/devtools-agent/bundles/developer/skills/git/commit/contracts.json:3-5",
+            "requirement": "Ticket AC2 permits empty collections only when no applicable contracts exist. Initiative Authoring guidance requires contracts when consumers depend on structure or meaning and preserves externally owned formats rather than excluding them wholesale.",
+            "severity": "medium"
+          }
+        ],
+        "schemaVersion": "manifest-review/v1",
+        "scope": "Internal spec review of git diff --cached, coverage-combined-draft.json, and coverage-source-changed-files.json on feature/skill-contract-manifests-18-manifest-coverage against master. No source/context changes, tracker changes, workflow events, child launches, or test/build/lint/validator execution.",
+        "source_base": "d34d7d0f618d122e4bacf63c37c6397e7e3786e8",
+        "summary": "Two semantic coverage findings. AC1/AC5 accounting contains 261 unique skills, 209 manifests, 52 missing and 130 partial; full_coverage is correctly false. AC3 owner-relative shared references normalize consistently. AC4 missing persistent owners remain expected blockers, not permission for migrations or fake empty declarations. AC6 changed paths contain only 197 new manifests and one guide. Tests and public validation were intentionally not run; the parent owns those checks. This is not an official worktree review receipt.",
+        "verdict": "FAILURE"
+      }
+    }
+  ],
+  "corrected": [
+    {
+      "axis": "standards",
+      "run": "25a40025-0fca-4114-bcd3-e3c28ad7eef2",
+      "context": "/var/home/zenobius/.local/state/result-delivery/runs/25a40025-0fca-4114-bcd3-e3c28ad7eef2/corrected-context.json",
+      "sha256": "1aa619c5339416d2672caf3c2bfdbf7061a21981a6fc1bb05564fd990af7635a",
+      "result": {
+        "axis": "standards",
+        "findings": [],
+        "schemaVersion": "manifest-review/v1",
+        "scope": "Read-only internal correction check of six staged manifests: developer/skills/git/commit and developer/skills/browsers/{chrome-devtools,chrome-devtools-cli,cookie-debugging,debug-optimize-lcp,memory-leak-debugging}, under mise/conf.d/devtools-agent/bundles. Compared with their workflow instructions, pinned upstream definitions and updated /tmp/coverage-combined-draft.json. Branch feature/skill-contract-manifests-18-manifest-coverage; base master. Not a formal worktree review receipt. Original review artifact remains immutable.",
+        "source_base": "d34d7d0f618d122e4bacf63c37c6397e7e3786e8",
+        "summary": "The previous Conventional Commit finding is fixed. git/commit now declares conventional-commit/v1 as an output and references the official 1.0.0 specification at commit 7d293dc59e88abc8ce6c6698344d4da518ff3f27. The fetched definition supplies the required header, body, footer and breaking-change rules. The updated audit no longer excludes the structured message as prose. release-please explicitly records its corresponding input as an unresolved cross-repository mapping, rather than claiming support. The five browser manifests now declare MCP request parameters and tool results instead of inferred raw CDP support. Their workflow instructions use the named MCP tools. At commit ab911a6dd71ed4960c1c679f831c7b5607bc5505, docs/tool-reference.md documents those tools and their parameters; src/McpResponse.ts defines and constructs content text/image blocks and structuredContent. Both pinned definitions were fetched and inspected. The audit keeps browser coverage partial and separates snapshot, trace, heap and Lighthouse artifact semantics. No new unsupported claim was found within this correction scope. No tests, validators, builds or source edits were run. This verdict does not certify full manifest coverage or runtime behavior.",
+        "verdict": "SUCCESS"
+      }
+    },
+    {
+      "axis": "spec",
+      "run": "d7f30624-5bd3-4dcf-b176-47f386f8a147",
+      "context": "/var/home/zenobius/.local/state/result-delivery/runs/d7f30624-5bd3-4dcf-b176-47f386f8a147/corrected-context.json",
+      "sha256": "750fc60448aa393c4a8263fe8b4e4510d60675f5d742174d1f61dc458ecb6652",
+      "result": {
+        "axis": "spec",
+        "findings": [],
+        "schemaVersion": "manifest-review/v1",
+        "scope": "New internal correction-check operation d7f30624-5bd3-4dcf-b176-47f386f8a147-correction-check-1. Reviewed six staged contracts.json manifests: developer/skills/git/commit and developer/skills/browsers/{chrome-devtools,chrome-devtools-cli,cookie-debugging,debug-optimize-lcp,memory-leak-debugging}; corresponding workflow guidance; pinned official definitions; corrected coverage-combined-draft.json. Branch feature/skill-contract-manifests-18-manifest-coverage. Original delivered review remains immutable.",
+        "source_base": "d34d7d0f618d122e4bacf63c37c6397e7e3786e8",
+        "summary": "Both original findings are fixed within this correction scope. Ticket AC2: git/commit now declares conventional-commit/v1 production against the official pinned Conventional Commits 1.0.0 specification; its required subject format matches that definition. All five browser manifests replace inferred CDP support with separate MCP request acceptance and result production. The pinned tool-reference.md defines the pageId/uid, network, performance and memory tool parameters used by their workflows. Pinned McpResponse.ts defines content text/image blocks and structuredContent, including network, trace and heap summaries. No raw CDP, standalone trace/heap serialization or complete Lighthouse artifact support is inferred. AC3: all five use the same authoritative ChromeDevTools repository and commit; no competing definitions were added. AC4/AC5: remaining browser boundaries stay partial, synchronized in unresolved_owners and unresolved_boundaries. Release Please explicitly records Conventional Commit input as an unresolved cross-repository mapping. Coverage remains 209 manifests, 52 missing and 130 partial across 261 accounted skills; full_coverage remains false. AC6: this read-only correction check made no source/context changes and ran no tests or validators. SUCCESS clears these findings only; it does not certify full coverage or constitute a formal worktree review receipt.",
+        "verdict": "SUCCESS"
+      }
+    }
+  ],
+  "formal_worktree_review": false,
+  "qualification": "Corrected SUCCESS verdicts cover the six changed manifests; original review scope and findings are retained. No formal worktree review or full-coverage success is claimed."
+}

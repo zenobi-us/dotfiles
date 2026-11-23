@@ -1,0 +1,50 @@
+[
+  {
+    "argv": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+      "resolve",
+      "--skill",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/agent-core/skills/lynx-web-search",
+      "--contract",
+      "whatwg-html/v1"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "reference": "git:6eac2b50b1af183f30fa2760b0269a0410f58a91:source",
+    "path": "6eac2b50b1af183f30fa2760b0269a0410f58a91:source",
+    "content_bytes": 8131205,
+    "content_sha256": "34da99576e546e9594e7f7f0e62b797772d8950093ba6dcf9277de60a8580b3a"
+  },
+  {
+    "argv": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+      "resolve",
+      "--skill",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-hunter",
+      "--contract",
+      "agent-skill/v1"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "reference": "git:83021e2be457a9b6679148719c1f6074f0ad975e:docs/specification.mdx",
+    "path": "83021e2be457a9b6679148719c1f6074f0ad975e:docs/specification.mdx",
+    "content_bytes": 7166,
+    "content_sha256": "b9079c0c10b7930e8c6a20ff2bc10cda2a3343c55185120e3f1116a1a529b220"
+  },
+  {
+    "argv": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+      "resolve",
+      "--skill",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts",
+      "--contract",
+      "skill-contract-manifest/v1"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 0,
+    "reference": "builtin:skill-contract-manifest/v1",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/references/manifest.schema.json",
+    "content_bytes": 1433,
+    "content_sha256": "f9171ee773f429f533ad96fc795e79d7b644e04dfad57472ddaeef7b159065f4"
+  }
+]

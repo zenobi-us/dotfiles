@@ -1,0 +1,3795 @@
+{
+  "public_operation": "skill-contracts validate",
+  "results": [
+    {
+      "skill": "agent-core/skills/artifact-shares",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/artifact-shares"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/asd-ste100",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/asd-ste100"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/converting-and-parsing-documents",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/converting-and-parsing-documents"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/explain",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/explain"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/iso-24495",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/iso-24495"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/iso-24495-1",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/iso-24495-1"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/iso-24495-2",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/iso-24495-2"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/iso-24495-3",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/iso-24495-3"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/iso-24495-4",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/iso-24495-4"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/iso-24495-5",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/iso-24495-5"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/iso-24495-code",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/iso-24495-code"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/iso-24495-text-audit",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/iso-24495-text-audit"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/lynx-web-search",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/lynx-web-search"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/mq-query",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/mq-query"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/muxer-subagents",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/muxer-subagents"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "produces": [
+          "muxer-run/v2",
+          "muxer-completion/v2",
+          "muxer-resources/v2",
+          "muxer-owned-process/v2",
+          "muxer-contracts/v2",
+          "muxer-spawn/v2",
+          "muxer-wait/v2",
+          "muxer-resource-report/v2",
+          "muxer-evidence/v1",
+          "result-delivery/v2"
+        ],
+        "accepts": [
+          "muxer-run/v1",
+          "muxer-run/v2",
+          "muxer-completion/v1",
+          "muxer-completion/v2",
+          "muxer-resources/v1",
+          "muxer-resources/v2",
+          "muxer-owned-process/v1",
+          "muxer-owned-process/v2",
+          "result-delivery/v1",
+          "result-delivery/v2"
+        ],
+        "contracts": {
+          "muxer-run/v1": "file:references/contracts/muxer-run-v1.json",
+          "muxer-run/v2": "file:references/contracts/muxer-run-v2.json",
+          "muxer-completion/v1": "file:references/contracts/muxer-completion-v1.json",
+          "muxer-completion/v2": "file:references/contracts/muxer-completion-v2.json",
+          "muxer-resources/v1": "file:references/contracts/muxer-resources-v1.json",
+          "muxer-resources/v2": "file:references/contracts/muxer-resources-v2.json",
+          "muxer-owned-process/v1": "file:references/contracts/muxer-owned-process-v1.json",
+          "muxer-owned-process/v2": "file:references/contracts/muxer-owned-process-v2.json",
+          "muxer-contracts/v2": "file:references/contracts/cli-v2.json",
+          "muxer-spawn/v2": "file:references/contracts/cli-v2.json",
+          "muxer-wait/v2": "file:references/contracts/cli-v2.json",
+          "muxer-resource-report/v2": "file:references/contracts/cli-v2.json",
+          "muxer-evidence/v1": "file:references/contracts/cli-v2.json",
+          "result-delivery/v1": "file:../result-delivery/references/contracts/delivery-v1.json",
+          "result-delivery/v2": "file:../result-delivery/references/contracts/delivery-v2.json"
+        },
+        "upgrades": []
+      },
+      "output_sha256": "79926623d189ef817a7ef4bf87dc5450e483b02e2f6b23dc67dec7ae351ac102"
+    },
+    {
+      "skill": "agent-core/skills/research",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/research"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/result-delivery",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/result-delivery"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "produces": [
+          "result-delivery/v2"
+        ],
+        "accepts": [
+          "result-delivery/v1",
+          "result-delivery/v2"
+        ],
+        "contracts": {
+          "result-delivery/v1": "file:references/contracts/delivery-v1.json",
+          "result-delivery/v2": "file:references/contracts/delivery-v2.json"
+        },
+        "upgrades": []
+      },
+      "output_sha256": "999a630f9884458179d240bae7b91cd96d86cf0739665c3828149d5142878aec"
+    },
+    {
+      "skill": "agent-core/skills/review-documentation",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/review-documentation"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/searxng-web-search",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/searxng-web-search"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/shared-context",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/shared-context"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "produces": [
+          "shared-context-routes/v3",
+          "shared-context-layout/v2",
+          "shared-context-project/v1",
+          "shared-context-source/v1",
+          "shared-context-index/v1",
+          "shared-context-resolution/v1"
+        ],
+        "accepts": [
+          "shared-context-routes/v2",
+          "shared-context-routes/v3",
+          "shared-context-layout/v1",
+          "shared-context-layout/v2",
+          "shared-context-config/v1",
+          "shared-context-project/v1",
+          "shared-context-source/v1",
+          "shared-context-index/v1"
+        ],
+        "contracts": {
+          "shared-context-routes/v2": "file:references/contracts.md",
+          "shared-context-routes/v3": "file:references/contracts.md",
+          "shared-context-layout/v1": "file:references/contracts.md",
+          "shared-context-layout/v2": "file:references/contracts.md",
+          "shared-context-config/v1": "file:references/contracts.md",
+          "shared-context-project/v1": "file:references/contracts.md",
+          "shared-context-source/v1": "file:references/contracts.md",
+          "shared-context-index/v1": "file:references/contracts.md",
+          "shared-context-resolution/v1": "file:references/contracts.md"
+        },
+        "upgrades": [
+          {
+            "from": "shared-context-routes/v2",
+            "to": "shared-context-routes/v3",
+            "procedure": "file:references/configuration-upgrades.md"
+          },
+          {
+            "from": "shared-context-layout/v1",
+            "to": "shared-context-layout/v2",
+            "procedure": "file:references/configuration-upgrades.md"
+          }
+        ]
+      },
+      "output_sha256": "32ca82667dd322bc61ddaf1562c733ad71fcfa37d8f3477f77c840b6781211f4"
+    },
+    {
+      "skill": "agent-core/skills/skill-contracts",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "produces": [],
+        "accepts": [
+          "skill-contract-manifest/v1"
+        ],
+        "contracts": {},
+        "upgrades": []
+      },
+      "output_sha256": "dad396c42c87895e681b180fcfb318ba2b17f944863e3c50889d0f7f8a0fe047"
+    },
+    {
+      "skill": "agent-core/skills/skill-hunter",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-hunter"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/sop-authoring",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/sop-authoring"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/sop-maintenance",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/sop-maintenance"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/sop-rfc2119",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/sop-rfc2119"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/sop-structure",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/sop-structure"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "agent-core/skills/writing-skills",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/writing-skills"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "produces": [
+          "skill-contract-manifest/v1"
+        ],
+        "accepts": [
+          "skill-contract-manifest/v1"
+        ],
+        "contracts": {},
+        "upgrades": []
+      },
+      "output_sha256": "3d0a1fdb84617b9e56bf75dc94f4a6ef5da3356089fbe3db0afe395893082ebe"
+    },
+    {
+      "skill": "creator/skills/comfy",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/creator/skills/comfy"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "creator/skills/comfy-build",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/creator/skills/comfy-build"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "creator/skills/comfy-debug",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/creator/skills/comfy-debug"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "creator/skills/comfy-deploy",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/creator/skills/comfy-deploy"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "creator/skills/comfy-director",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/creator/skills/comfy-director"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "creator/skills/comfy-relay",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/creator/skills/comfy-relay"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "creator/skills/comfyui",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/creator/skills/comfyui"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "creator/skills/generate-images-with-takumi",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/creator/skills/generate-images-with-takumi"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "creator/skills/html-artifact",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/creator/skills/html-artifact"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "creator/skills/minimax-music-gen",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/creator/skills/minimax-music-gen"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "creator/skills/web-design",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/creator/skills/web-design"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/atlassian/twg",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/atlassian/twg"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/atlassian/twg-agentic-search",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/atlassian/twg-agentic-search"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/atlassian/twg-bench-lite",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/atlassian/twg-bench-lite"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "produces": [
+          "twg-benchmark-configuration/v2",
+          "twg-benchmark-result/v2",
+          "twg-benchmark-manifest/v2",
+          "twg-benchmark-judgement/v2",
+          "twg-benchmark-run/v2",
+          "twg-benchmark-progress/v2"
+        ],
+        "accepts": [
+          "twg-benchmark-configuration/v1",
+          "twg-benchmark-configuration/v2",
+          "twg-benchmark-result/v1",
+          "twg-benchmark-result/v2",
+          "twg-benchmark-manifest/v1",
+          "twg-benchmark-manifest/v2",
+          "twg-benchmark-judgement/v1",
+          "twg-benchmark-judgement/v2",
+          "twg-benchmark-run/v1",
+          "twg-benchmark-run/v2",
+          "twg-benchmark-progress/v1",
+          "twg-benchmark-progress/v2"
+        ],
+        "contracts": {
+          "twg-benchmark-configuration/v1": "file:references/contracts.json",
+          "twg-benchmark-configuration/v2": "file:references/contracts.json",
+          "twg-benchmark-result/v1": "file:references/contracts.json",
+          "twg-benchmark-result/v2": "file:references/contracts.json",
+          "twg-benchmark-manifest/v1": "file:references/contracts.json",
+          "twg-benchmark-manifest/v2": "file:references/contracts.json",
+          "twg-benchmark-judgement/v1": "file:references/contracts.json",
+          "twg-benchmark-judgement/v2": "file:references/contracts.json",
+          "twg-benchmark-run/v1": "file:references/contracts.json",
+          "twg-benchmark-run/v2": "file:references/contracts.json",
+          "twg-benchmark-progress/v1": "file:references/contracts.json",
+          "twg-benchmark-progress/v2": "file:references/contracts.json"
+        },
+        "upgrades": [
+          {
+            "from": "twg-benchmark-configuration/v1",
+            "to": "twg-benchmark-configuration/v2",
+            "procedure": "file:references/configuration-upgrade.json"
+          }
+        ]
+      },
+      "output_sha256": "8e307da9040dc4af251e0c1b47c6c26a340b996d20a7401a41d73cd66f858c1b"
+    },
+    {
+      "skill": "developer/skills/atlassian/twg-confluence",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/atlassian/twg-confluence"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/atlassian/twg-context-discovery",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/atlassian/twg-context-discovery"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/atlassian/twg-engineering-work",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/atlassian/twg-engineering-work"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/atlassian/twg-jira",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/atlassian/twg-jira"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/atlassian/twg-jira-resolve-merged-work",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/atlassian/twg-jira-resolve-merged-work"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/atlassian/twg-operational-health",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/atlassian/twg-operational-health"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/atlassian/twg-responsibility-routing",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/atlassian/twg-responsibility-routing"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/atlassian/twg-status-rollups",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/atlassian/twg-status-rollups"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/backlog-grooming",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/backlog-grooming"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "produces": [
+          "grooming-report/v2",
+          "grooming-actions/v2"
+        ],
+        "accepts": [
+          "grooming-report/v1",
+          "grooming-report/v2",
+          "grooming-actions/v1",
+          "grooming-actions/v2"
+        ],
+        "contracts": {
+          "grooming-report/v1": "file:references/contracts/report-v1.md",
+          "grooming-report/v2": "file:references/report-contract.md",
+          "grooming-actions/v1": "file:references/contracts/actions-v1.md",
+          "grooming-actions/v2": "file:references/contracts/actions-v2.md"
+        },
+        "upgrades": [
+          {
+            "from": "grooming-report/v1",
+            "to": "grooming-report/v2",
+            "procedure": "file:references/upgrades.md"
+          },
+          {
+            "from": "grooming-actions/v1",
+            "to": "grooming-actions/v2",
+            "procedure": "file:references/upgrades.md"
+          }
+        ]
+      },
+      "output_sha256": "8676368bc2b5a49f545d0a25e3f1a48c43a4201d4ba65ae24b038a1d47992349"
+    },
+    {
+      "skill": "developer/skills/browsers/a11y-debugging",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/browsers/a11y-debugging"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/browsers/agent-browser",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/browsers/agent-browser"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/browsers/chrome-devtools",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/browsers/chrome-devtools"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/browsers/chrome-devtools-cli",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/browsers/chrome-devtools-cli"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/browsers/collect-evidence",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/browsers/collect-evidence"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "produces": [
+          "collect-evidence/v2"
+        ],
+        "accepts": [
+          "collect-evidence/v2",
+          "collect-evidence/v1"
+        ],
+        "contracts": {
+          "collect-evidence/v2": "file:references/evidence-schema.md",
+          "collect-evidence/v1": "file:references/evidence-v1.md"
+        },
+        "upgrades": []
+      },
+      "output_sha256": "ebe7cd5d2f88c35e281875b3b8528db4d3867a34c9a664b57ac5779ec09bf687"
+    },
+    {
+      "skill": "developer/skills/browsers/collect-feedback",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/browsers/collect-feedback"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "produces": [
+          "collect-feedback/v2"
+        ],
+        "accepts": [
+          "collect-feedback/v2",
+          "collect-feedback/v1",
+          "collect-evidence/v2",
+          "collect-evidence/v1"
+        ],
+        "contracts": {
+          "collect-feedback/v2": "file:references/viewer-contract.md",
+          "collect-feedback/v1": "file:references/feedback-v1.md",
+          "collect-evidence/v2": "file:../collect-evidence/references/evidence-schema.md",
+          "collect-evidence/v1": "file:../collect-evidence/references/evidence-v1.md"
+        },
+        "upgrades": []
+      },
+      "output_sha256": "6c0bf3ae3d2460a345a65ea4cd04b2052f103cd9209cd65e9ce121a39670ce6c"
+    },
+    {
+      "skill": "developer/skills/browsers/cookie-debugging",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/browsers/cookie-debugging"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/browsers/debug-optimize-lcp",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/browsers/debug-optimize-lcp"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/browsers/firefox-devtools",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/browsers/firefox-devtools"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/browsers/memory-leak-debugging",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/browsers/memory-leak-debugging"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/browsers/surf",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/browsers/surf"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/browsers/troubleshooting",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/browsers/troubleshooting"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/devtools/bats-testing",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/devtools/bats-testing"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/devtools/code-comments",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/devtools/code-comments"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/devtools/codemapper",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/devtools/codemapper"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/devtools/create-new-bun-package-repo",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/devtools/create-new-bun-package-repo"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/devtools/creating-cli-tools",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/devtools/creating-cli-tools"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/devtools/dead-code-sweep",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/devtools/dead-code-sweep"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/devtools/outline-wiki-reports",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/devtools/outline-wiki-reports"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/devtools/publishing-with-release-please-and-moonrepo-on-github-actions",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/devtools/publishing-with-release-please-and-moonrepo-on-github-actions"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/devtools/release-please",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/devtools/release-please"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/devtools/termscope",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/devtools/termscope"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/devtools/writing-reports",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/devtools/writing-reports"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberpunk-help",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberpunk-help"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise-backstory",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-backstory"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise-conflicts",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-conflicts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise-crashes",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-crashes"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise-feedback",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-feedback"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise-hotkeys",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-hotkeys"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise-modbase",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-modbase"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise-netsec",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-netsec"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise-recommends",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-recommends"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise-reports",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-reports"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise-reshade",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-reshade"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise-saves",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-saves"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise-sitebuilder",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-sitebuilder"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise-tweaks",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-tweaks"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/cyberwise-wiki",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-wiki"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/2d-essentials",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/2d-essentials"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/3d-essentials",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/3d-essentials"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/ability-system",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/ability-system"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/addon-development",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/addon-development"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/ai-navigation",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/ai-navigation"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/animation-system",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/animation-system"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/assets-pipeline",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/assets-pipeline"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/audio-system",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/audio-system"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/beehave",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/beehave"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/camera-system",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/camera-system"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/component-system",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/component-system"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/csharp-godot",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/csharp-godot"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/csharp-signals",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/csharp-signals"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/dedicated-server",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/dedicated-server"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/dependency-injection",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/dependency-injection"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/dialogue-manager",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/dialogue-manager"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/dialogue-system",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/dialogue-system"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/event-bus",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/event-bus"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/export-pipeline",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/export-pipeline"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/gdextension",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/gdextension"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/gdscript-advanced",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/gdscript-advanced"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/gdscript-patterns",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/gdscript-patterns"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-brainstorming",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/godot-brainstorming"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-code-review",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/godot-code-review"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-debugging",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/godot-debugging"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-mentor",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/godot-mentor"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-optimization",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/godot-optimization"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-project-setup",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/godot-project-setup"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-testing",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/godot-testing"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-ui",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/godot-ui"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/hud-system",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/hud-system"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/input-handling",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/input-handling"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/inventory-system",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/inventory-system"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/limboai",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/limboai"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/localization",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/localization"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/math-essentials",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/math-essentials"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/mobile-development",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/mobile-development"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/multiplayer-basics",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/multiplayer-basics"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/multiplayer-sync",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/multiplayer-sync"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/multithreading",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/multithreading"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/particles-vfx",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/particles-vfx"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/phantom-camera",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/phantom-camera"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/physics-system",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/physics-system"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/player-controller",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/player-controller"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/popochiu",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/popochiu"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/procedural-generation",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/procedural-generation"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/project",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/project"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/resource-pattern",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/resource-pattern"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/responsive-ui",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/responsive-ui"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/save-load",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/save-load"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/scene-organization",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/scene-organization"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/shader-basics",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/shader-basics"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/state-machine",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/state-machine"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/tween-animation",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/tween-animation"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/using-godot-prompter",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/using-godot-prompter"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/xr-development",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/godot/xr-development"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/shader-effects",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/shader-effects"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/shader-fundamentals",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/shader-fundamentals"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/shader-noise",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/shader-noise"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/shader-router",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/shader-router"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/ttrpg-gm",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/ttrpg-gm"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/game-dev/webgl",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/webgl"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/git/cleanup-merged",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/git/cleanup-merged"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/git/commit",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/git/commit"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/git/pr",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/git/pr"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/git/worktree",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "produces": [
+          "worktree-receipt/v3",
+          "worktree-receipt/v1",
+          "worktree-receipt/v2",
+          "worktree-phase-context/v2",
+          "worktree-goal/v2",
+          "worktree-inspection/v1",
+          "worktree-inspection-error/v1",
+          "worktree-coordination/v2",
+          "worktree-workflow/v3",
+          "worktree-latest-status/v2",
+          "worktree-view-result/v1",
+          "worktree-pr-draft/v1",
+          "worktree-integration/v2"
+        ],
+        "accepts": [
+          "worktree-receipt/v3",
+          "worktree-phase-context/v2",
+          "worktree-goal/v2",
+          "worktree-workflow/v3",
+          "worktree-latest-status/v2",
+          "worktree-pr-draft/v1",
+          "worktree-integration/v2",
+          "worktree-receipt/v1",
+          "worktree-receipt/v2",
+          "worktree-phase-context/v1",
+          "worktree-goal/v1",
+          "worktree-workflow/v2",
+          "worktree-latest-status/v1",
+          "tracker-ticket/v1",
+          "tracker-ticket/v2",
+          "tracker-initiative/v1",
+          "tracker-initiative/v2",
+          "result-delivery/v1",
+          "result-delivery/v2",
+          "shared-context-resolution/v1"
+        ],
+        "contracts": {
+          "worktree-receipt/v1": "file:references/contracts/receipt-v1.json",
+          "worktree-receipt/v2": "file:references/contracts/receipt-v2.json",
+          "worktree-receipt/v3": "file:references/contracts/receipt-v3.json",
+          "worktree-phase-context/v1": "file:references/contracts/phase-context-v1.json",
+          "worktree-phase-context/v2": "file:references/contracts/phase-context-v2.json",
+          "worktree-goal/v1": "file:references/contracts/goal-v1.json",
+          "worktree-goal/v2": "file:references/contracts/goal-v2.json",
+          "worktree-workflow/v2": "file:references/contracts/workflow-v2.json",
+          "worktree-workflow/v3": "file:references/contracts/workflow-v3.json",
+          "worktree-latest-status/v1": "file:references/contracts/latest-status-v1.json",
+          "worktree-latest-status/v2": "file:references/contracts/latest-status-v2.json",
+          "worktree-inspection/v1": "file:references/contracts/inspection-v1.json",
+          "worktree-inspection-error/v1": "file:references/contracts/inspection-error-v1.json",
+          "worktree-coordination/v1": "file:references/contracts/coordination-v1.json",
+          "worktree-coordination/v2": "file:references/contracts/coordination-v2.json",
+          "worktree-view-result/v1": "file:references/contracts/view-result-v1.json",
+          "worktree-pr-draft/v1": "file:references/contracts/pr-draft-v1.json",
+          "worktree-integration/v2": "file:references/contracts/integration-v2.json",
+          "tracker-ticket/v1": "file:../../../../matt-pocock/skills/reading-and-writing-tickets/references/contracts/ticket-v1.json",
+          "tracker-ticket/v2": "file:../../../../matt-pocock/skills/reading-and-writing-tickets/references/contracts/ticket-v2.json",
+          "tracker-initiative/v1": "file:../../../../matt-pocock/skills/reading-and-writing-tickets/references/contracts/initiative-v1.json",
+          "tracker-initiative/v2": "file:../../../../matt-pocock/skills/reading-and-writing-tickets/references/contracts/initiative-v2.json",
+          "result-delivery/v1": "file:../../../../agent-core/skills/result-delivery/references/contracts/delivery-v1.json",
+          "result-delivery/v2": "file:../../../../agent-core/skills/result-delivery/references/contracts/delivery-v2.json",
+          "shared-context-resolution/v1": "file:../../../../agent-core/skills/shared-context/references/contracts.md"
+        },
+        "upgrades": [
+          {
+            "from": "worktree-workflow/v2",
+            "to": "worktree-workflow/v3",
+            "procedure": "file:references/contracts/view-upgrade.md"
+          },
+          {
+            "from": "worktree-latest-status/v1",
+            "to": "worktree-latest-status/v2",
+            "procedure": "file:references/contracts/view-upgrade.md"
+          }
+        ]
+      },
+      "output_sha256": "90726ee353bc7c80ff313aa0e9ed9cf302598857fc87ad177617916c342ea82e"
+    },
+    {
+      "skill": "developer/skills/git/worktrunk",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktrunk"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/shells/creating-herdr-app-mods",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/shells/creating-herdr-app-mods"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/shells/neovim/lazy-nvim-optimization",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/shells/neovim/lazy-nvim-optimization"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/shells/neovim/neovim-best-practices",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/shells/neovim/neovim-best-practices"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/shells/zellij",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/shells/zellij"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/software-design",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/software-design"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/basic-design-principles",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/basic-design-principles"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/cyberpunk-ui",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/cyberpunk-ui"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/feature-arch",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/feature-arch"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/framer-motion-animator",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/framer-motion-animator"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/frontend-design",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/frontend-design"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/frontend-patterns",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/frontend-patterns"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/gsap-framer-scroll-animation",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/gsap-framer-scroll-animation"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/playwright",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/playwright"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/react",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/react"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/react-doctor",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/react-doctor"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/react-hook-form",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/react-hook-form"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/react-patterns",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/react-patterns"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/shadcn",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/shadcn"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/shadcn-installing-components",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/shadcn-installing-components"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/tailwind",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/tailwind"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/tanstack-query",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/tanstack-query"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/test-driven-development",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/test-driven-development"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/typescript",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/typescript"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/ui-design",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/ui-design"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/ux-preview",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/ux-preview"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "developer/skills/uidev/vitest",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/vitest"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/ask-matt",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/ask-matt"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/code-review",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/code-review"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/codebase-design",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/codebase-design"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/diagnosing-bugs",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/diagnosing-bugs"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/domain-modeling",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/domain-modeling"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/feature-request",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/feature-request"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/grill-me",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/grill-me"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/grill-with-docs",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/grill-with-docs"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/grilling",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/grilling"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/handoff",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/handoff"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/implement",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/implement"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/improve-codebase-architecture",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/improve-codebase-architecture"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/prototype",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/prototype"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/reading-and-writing-tickets",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/reading-and-writing-tickets"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "produces": [
+          "tracker-ticket/v2",
+          "tracker-initiative/v2",
+          "tracker-result/v2",
+          "tracker-migration-plan/v2",
+          "tracker-migration/v2",
+          "tracker-setup-answers/v2",
+          "tracker-setup-state/v2",
+          "tracker-setup-result/v1",
+          "tracker-setup-error/v1"
+        ],
+        "accepts": [
+          "tracker-ticket/v2",
+          "tracker-initiative/v2",
+          "tracker-result/v2",
+          "tracker-migration-plan/v2",
+          "tracker-migration/v2",
+          "tracker-ticket/v1",
+          "tracker-initiative/v1",
+          "tracker-result/v1",
+          "tracker-migration-plan/v1",
+          "tracker-migration/v1",
+          "tracker-ticket-legacy/v1",
+          "tracker-initiative-legacy/v1",
+          "result-delivery/v1",
+          "result-delivery/v2",
+          "tracker-setup-answers/v1",
+          "tracker-setup-answers/v2",
+          "tracker-setup-state/v1",
+          "tracker-setup-state/v2"
+        ],
+        "contracts": {
+          "tracker-ticket/v2": "file:references/contracts/ticket-v2.json",
+          "tracker-initiative/v2": "file:references/contracts/initiative-v2.json",
+          "tracker-result/v2": "file:references/contracts/result-v2.json",
+          "tracker-migration-plan/v2": "file:references/contracts/migration-plan-v2.json",
+          "tracker-migration/v2": "file:references/contracts/migration-v2.json",
+          "tracker-ticket/v1": "file:references/contracts/ticket-v1.json",
+          "tracker-initiative/v1": "file:references/contracts/initiative-v1.json",
+          "tracker-result/v1": "file:references/contracts/result-v1.json",
+          "tracker-migration-plan/v1": "file:references/contracts/migration-plan-v1.json",
+          "tracker-migration/v1": "file:references/contracts/migration-v1.json",
+          "tracker-ticket-legacy/v1": "file:references/contracts/ticket-legacy-v1.json",
+          "tracker-initiative-legacy/v1": "file:references/contracts/initiative-legacy-v1.json",
+          "result-delivery/v1": "file:../../../agent-core/skills/result-delivery/references/contracts/delivery-v1.json",
+          "result-delivery/v2": "file:../../../agent-core/skills/result-delivery/references/contracts/delivery-v2.json",
+          "tracker-setup-answers/v1": "file:references/setup-contracts/answers-v1.json",
+          "tracker-setup-answers/v2": "file:references/setup-contracts/answers-v2.json",
+          "tracker-setup-state/v1": "file:references/setup-contracts/state-v1.json",
+          "tracker-setup-state/v2": "file:references/setup-contracts/state-v2.json",
+          "tracker-setup-result/v1": "file:references/setup-contracts/result-v1.json",
+          "tracker-setup-error/v1": "file:references/setup-contracts/error-v1.json"
+        },
+        "upgrades": [
+          {
+            "from": "tracker-ticket/v1",
+            "to": "tracker-ticket/v2",
+            "procedure": "file:references/contracts/record-upgrade.md"
+          },
+          {
+            "from": "tracker-ticket-legacy/v1",
+            "to": "tracker-ticket/v2",
+            "procedure": "file:references/contracts/record-upgrade.md"
+          },
+          {
+            "from": "tracker-initiative/v1",
+            "to": "tracker-initiative/v2",
+            "procedure": "file:references/contracts/record-upgrade.md"
+          },
+          {
+            "from": "tracker-initiative-legacy/v1",
+            "to": "tracker-initiative/v2",
+            "procedure": "file:references/contracts/record-upgrade.md"
+          },
+          {
+            "from": "tracker-setup-answers/v1",
+            "to": "tracker-setup-answers/v2",
+            "procedure": "file:references/setup-contracts/upgrade-v1-v2.md"
+          },
+          {
+            "from": "tracker-setup-state/v1",
+            "to": "tracker-setup-state/v2",
+            "procedure": "file:references/setup-contracts/upgrade-v1-v2.md"
+          }
+        ]
+      },
+      "output_sha256": "5c9ab5a7822cbf87018204df83e1d8a0f296760f47a195ef2da6a90b04e67ce5"
+    },
+    {
+      "skill": "matt-pocock/skills/research",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/research"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/resolving-merge-conflicts",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/resolving-merge-conflicts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/setup-matt-pocock-skills",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/setup-matt-pocock-skills"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/tdd",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/tdd"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/teach",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/teach"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/to-questionnaire",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/to-questionnaire"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/to-spec",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/to-spec"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/to-tickets",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/to-tickets"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/triage",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/triage"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/wait-what",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/wait-what"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/wayfinder",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/wayfinder"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/wizard",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/wizard"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/writing-for-agents",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/writing-for-agents"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "matt-pocock/skills/writing-great-skills",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/writing-great-skills"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "produces": [],
+        "accepts": [],
+        "contracts": {},
+        "upgrades": []
+      },
+      "output_sha256": "ec57ec8ddc8af497e0f8232f363e490b41e4b863b8963a009a64342c7d0e9fc6"
+    },
+    {
+      "skill": "platform/skills/devtools/cloudflare/cloudflare-api",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/cloudflare/cloudflare-api"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/cloudflare/cloudflare-worker-builder",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/cloudflare/cloudflare-worker-builder"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/cloudflare/d1-drizzle-schema",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/cloudflare/d1-drizzle-schema"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/cloudflare/d1-migration",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/cloudflare/d1-migration"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/cloudflare/db-seed",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/cloudflare/db-seed"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/cloudflare/hono-api-scaffolder",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/cloudflare/hono-api-scaffolder"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/cloudflare/tanstack-start",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/cloudflare/tanstack-start"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/cloudflare/vite-flare-starter",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/cloudflare/vite-flare-starter"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/github-settings-as-code",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/github-settings-as-code"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/mise",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/mise"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/mise/writing-mise-file-tasks",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/mise/writing-mise-file-tasks"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/moonrepo/adding-new-tasks",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/moonrepo/adding-new-tasks"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/moonrepo/create-project",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/moonrepo/create-project"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/moonrepo/optimise-tasks",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/moonrepo/optimise-tasks"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/moonrepo/project-generators",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/moonrepo/project-generators"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/moonrepo/proto-non-wasm-plugin",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/moonrepo/proto-non-wasm-plugin"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/moonrepo/run-tasks",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/moonrepo/run-tasks"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/moonrepo/with-bun",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/moonrepo/with-bun"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/pi-mono",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/pi-mono"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/pi-mono/creating-pi-extensions",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/pi-mono/creating-pi-extensions"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/pi-mono/downloading-pi-extensions",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/pi-mono/downloading-pi-extensions"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/pi-mono/working-with-pi-coding-agent-shared-sessions",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/pi-mono/working-with-pi-coding-agent-shared-sessions"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/proxmox-skill-robnew",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/proxmox-skill-robnew"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/devtools/proxmox-skill-sunwood",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/devtools/proxmox-skill-sunwood"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/homeassistant/home-assistant-best-practices",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/homeassistant/home-assistant-best-practices"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/homeassistant/home-assistant-cli-ops",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/homeassistant/home-assistant-cli-ops"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/homeassistant/homeassistant-ops",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/homeassistant/homeassistant-ops"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "platform/skills/homeassistant/homeassistant-router",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/platform/skills/homeassistant/homeassistant-router"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/better-writing",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/better-writing"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/business/aussie-business-english",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/business/aussie-business-english"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/business/award-application",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/business/award-application"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/business/nz-business-english",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/business/nz-business-english"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/business/proposal-writer",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/business/proposal-writer"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/business/resume-cover-letter",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/business/resume-cover-letter"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/business/strategy-document",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/business/strategy-document"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/business/uk-business-english",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/business/uk-business-english"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/business/us-business-english",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/business/us-business-english"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/fictional/arc-cartographer",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/fictional/arc-cartographer"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/fictional/ask-narrative",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/fictional/ask-narrative"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/fictional/canon-steward",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/fictional/canon-steward"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/fictional/character-designer",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/fictional/character-designer"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/fictional/continuity-keeper",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/fictional/continuity-keeper"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/fictional/faction-designer",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/fictional/faction-designer"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/fictional/grill-with-narrative-rules",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/fictional/grill-with-narrative-rules"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/fictional/narrative-publishing-manager",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/fictional/narrative-publishing-manager"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/fictional/narrative-repo-setup",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/fictional/narrative-repo-setup"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/fictional/narrative-session-recorder",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/fictional/narrative-session-recorder"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/fictional/narrative-style-editor",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/fictional/narrative-style-editor"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/fictional/plot-doctor",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/fictional/plot-doctor"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/fictional/story-architect",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/fictional/story-architect"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "skill": "writing/skills/fictional/world-builder",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/home/zenobius/.omp/agent/bundles/writing/skills/fictional/world-builder"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 1,
+      "error": "Cannot read contracts.json as JSON from the installed skill directory.",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

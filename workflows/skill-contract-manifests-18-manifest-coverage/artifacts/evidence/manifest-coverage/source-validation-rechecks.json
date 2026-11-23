@@ -1,0 +1,176 @@
+{
+  "public_operation": "skill-contracts validate",
+  "results": [
+    {
+      "skill": "developer/skills/browsers/chrome-devtools",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/chrome-devtools"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "sourceRepository": "https://github.com/ChromeDevTools/chrome-devtools-mcp.git",
+        "produces": [
+          "chrome-devtools-mcp-result/v1"
+        ],
+        "accepts": [
+          "chrome-devtools-mcp-request/v1"
+        ],
+        "contracts": {
+          "chrome-devtools-mcp-request/v1": "git:ab911a6dd71ed4960c1c679f831c7b5607bc5505:docs/tool-reference.md",
+          "chrome-devtools-mcp-result/v1": "git:ab911a6dd71ed4960c1c679f831c7b5607bc5505:src/McpResponse.ts"
+        },
+        "upgrades": []
+      },
+      "output_sha256": "6f7e4e4564e09b6f936d3b700660f4b6a568dd3803e7c595d3e97227fd25d930",
+      "manifest_before_sha256": "603d90954997564dad4615dac1114cfcb99acc74f87974c09e587598b5e4d482",
+      "manifest_after_sha256": "603d90954997564dad4615dac1114cfcb99acc74f87974c09e587598b5e4d482"
+    },
+    {
+      "skill": "developer/skills/browsers/chrome-devtools-cli",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/chrome-devtools-cli"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "sourceRepository": "https://github.com/ChromeDevTools/chrome-devtools-mcp.git",
+        "produces": [
+          "chrome-devtools-mcp-result/v1"
+        ],
+        "accepts": [
+          "chrome-devtools-mcp-request/v1"
+        ],
+        "contracts": {
+          "chrome-devtools-mcp-request/v1": "git:ab911a6dd71ed4960c1c679f831c7b5607bc5505:docs/tool-reference.md",
+          "chrome-devtools-mcp-result/v1": "git:ab911a6dd71ed4960c1c679f831c7b5607bc5505:src/McpResponse.ts"
+        },
+        "upgrades": []
+      },
+      "output_sha256": "6f7e4e4564e09b6f936d3b700660f4b6a568dd3803e7c595d3e97227fd25d930",
+      "manifest_before_sha256": "603d90954997564dad4615dac1114cfcb99acc74f87974c09e587598b5e4d482",
+      "manifest_after_sha256": "603d90954997564dad4615dac1114cfcb99acc74f87974c09e587598b5e4d482"
+    },
+    {
+      "skill": "developer/skills/browsers/cookie-debugging",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/cookie-debugging"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "sourceRepository": "https://github.com/ChromeDevTools/chrome-devtools-mcp.git",
+        "produces": [
+          "chrome-devtools-mcp-result/v1"
+        ],
+        "accepts": [
+          "chrome-devtools-mcp-request/v1"
+        ],
+        "contracts": {
+          "chrome-devtools-mcp-request/v1": "git:ab911a6dd71ed4960c1c679f831c7b5607bc5505:docs/tool-reference.md",
+          "chrome-devtools-mcp-result/v1": "git:ab911a6dd71ed4960c1c679f831c7b5607bc5505:src/McpResponse.ts"
+        },
+        "upgrades": []
+      },
+      "output_sha256": "6f7e4e4564e09b6f936d3b700660f4b6a568dd3803e7c595d3e97227fd25d930",
+      "manifest_before_sha256": "603d90954997564dad4615dac1114cfcb99acc74f87974c09e587598b5e4d482",
+      "manifest_after_sha256": "603d90954997564dad4615dac1114cfcb99acc74f87974c09e587598b5e4d482"
+    },
+    {
+      "skill": "developer/skills/browsers/debug-optimize-lcp",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/debug-optimize-lcp"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "sourceRepository": "https://github.com/ChromeDevTools/chrome-devtools-mcp.git",
+        "produces": [
+          "chrome-devtools-mcp-result/v1"
+        ],
+        "accepts": [
+          "chrome-devtools-mcp-request/v1"
+        ],
+        "contracts": {
+          "chrome-devtools-mcp-request/v1": "git:ab911a6dd71ed4960c1c679f831c7b5607bc5505:docs/tool-reference.md",
+          "chrome-devtools-mcp-result/v1": "git:ab911a6dd71ed4960c1c679f831c7b5607bc5505:src/McpResponse.ts"
+        },
+        "upgrades": []
+      },
+      "output_sha256": "6f7e4e4564e09b6f936d3b700660f4b6a568dd3803e7c595d3e97227fd25d930",
+      "manifest_before_sha256": "603d90954997564dad4615dac1114cfcb99acc74f87974c09e587598b5e4d482",
+      "manifest_after_sha256": "603d90954997564dad4615dac1114cfcb99acc74f87974c09e587598b5e4d482"
+    },
+    {
+      "skill": "developer/skills/browsers/memory-leak-debugging",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/developer/skills/browsers/memory-leak-debugging"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "sourceRepository": "https://github.com/ChromeDevTools/chrome-devtools-mcp.git",
+        "produces": [
+          "chrome-devtools-mcp-result/v1"
+        ],
+        "accepts": [
+          "chrome-devtools-mcp-request/v1"
+        ],
+        "contracts": {
+          "chrome-devtools-mcp-request/v1": "git:ab911a6dd71ed4960c1c679f831c7b5607bc5505:docs/tool-reference.md",
+          "chrome-devtools-mcp-result/v1": "git:ab911a6dd71ed4960c1c679f831c7b5607bc5505:src/McpResponse.ts"
+        },
+        "upgrades": []
+      },
+      "output_sha256": "6f7e4e4564e09b6f936d3b700660f4b6a568dd3803e7c595d3e97227fd25d930",
+      "manifest_before_sha256": "603d90954997564dad4615dac1114cfcb99acc74f87974c09e587598b5e4d482",
+      "manifest_after_sha256": "603d90954997564dad4615dac1114cfcb99acc74f87974c09e587598b5e4d482"
+    },
+    {
+      "skill": "developer/skills/git/commit",
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/developer/skills/git/commit"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+      "exit_code": 0,
+      "declarations": {
+        "schemaVersion": "skill-contract-manifest/v1",
+        "sourceRepository": "https://github.com/conventional-commits/conventionalcommits.org.git",
+        "produces": [
+          "conventional-commit/v1"
+        ],
+        "accepts": [],
+        "contracts": {
+          "conventional-commit/v1": "git:7d293dc59e88abc8ce6c6698344d4da518ff3f27:content/v1.0.0/index.md"
+        },
+        "upgrades": []
+      },
+      "output_sha256": "9c63581710a8bdbf76f21f7734fa1ede75ada2bf03aecdd606537b629edd91c9",
+      "manifest_before_sha256": "77807ca8d186c95f08b8ac106b6737d3ca054ca63208e6391ab3e1b114437cbf",
+      "manifest_after_sha256": "77807ca8d186c95f08b8ac106b6737d3ca054ca63208e6391ab3e1b114437cbf"
+    }
+  ]
+}

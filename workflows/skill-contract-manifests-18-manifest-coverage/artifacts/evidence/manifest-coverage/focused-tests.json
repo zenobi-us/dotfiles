@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "test",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/contracts.test.ts",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/upgrades.test.ts"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+  "exit_code": 0,
+  "observed_summary": {
+    "passed": 72,
+    "failed": 0,
+    "assertions": 291,
+    "files": 2,
+    "elapsed_seconds": 11.79
+  },
+  "qualification": "Run once after implementation. The commit hook later changed bundle version metadata only; shared contract code/tests and all validated manifest bytes remained unchanged."
+}

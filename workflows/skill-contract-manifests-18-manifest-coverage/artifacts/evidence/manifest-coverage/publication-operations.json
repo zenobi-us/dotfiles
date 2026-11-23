@@ -1,0 +1,224 @@
+{
+  "probes": [
+    {
+      "name": "mise resolution in publication checkout",
+      "argv": [
+        "/usr/bin/timeout",
+        "-k",
+        "2s",
+        "15s",
+        "/home/zenobius/.local/bin/mise",
+        "which",
+        "mq"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "stdout": "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq\n",
+      "stderr": "",
+      "elapsed_ms": 267
+    },
+    {
+      "name": "mise execution in publication checkout",
+      "argv": [
+        "/usr/bin/timeout",
+        "-k",
+        "2s",
+        "15s",
+        "/home/zenobius/.local/bin/mise",
+        "exec",
+        "--",
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--version"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "stdout": "mq 0.9.2\n",
+      "stderr": "",
+      "elapsed_ms": 378
+    },
+    {
+      "name": "direct mise-installed binary in active environment",
+      "argv": [
+        "/usr/bin/timeout",
+        "-k",
+        "2s",
+        "15s",
+        "/home/zenobius/.local/share/mise/installs/github-harehare-mq/latest/mq",
+        "--version"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "stdout": "mq 0.9.2\n",
+      "stderr": "",
+      "elapsed_ms": 4
+    }
+  ],
+  "actual_authoring": [
+    {
+      "name": "immutable PR draft",
+      "argv": [
+        "/home/zenobius/.local/bin/mise",
+        "exec",
+        "--",
+        "mq",
+        "--allow-http-import",
+        "-I",
+        "json",
+        "-F",
+        "text",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_stringify(.)",
+        "/tmp/coverage-pr-draft-document.json",
+        "-o",
+        "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/snapshots/pr-draft-implementation-0002.md",
+        "--no-clobber"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_ms": 366
+    },
+    {
+      "name": "implementation log",
+      "argv": [
+        "/home/zenobius/.local/bin/mise",
+        "exec",
+        "--",
+        "mq",
+        "--allow-http-import",
+        "-I",
+        "json",
+        "-F",
+        "text",
+        "import \"github.com/harehare/okf.mq\" | get(\"body\")",
+        "/tmp/coverage-implementation-log-document.json",
+        "-o",
+        "workflows/skill-contract-manifests-18-manifest-coverage/projections/implementation-log.md",
+        "--no-clobber"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "elapsed_ms": 362
+    },
+    {
+      "name": "workflow manifest",
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-view.ts",
+        "--repository",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "--id",
+        "skill-contract-manifests-18-manifest-coverage",
+        "--kind",
+        "manifest",
+        "--input",
+        "/tmp/coverage-manifest-view.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "stdout": "{\"schemaVersion\":\"worktree-view-result/v1\",\"status\":\"completed\",\"artifact\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-18-manifest-coverage/manifest.yaml\",\"changed\":true,\"from\":\"worktree-workflow/v3\",\"to\":\"worktree-workflow/v3\"}\n",
+      "stderr": "",
+      "elapsed_ms": 307
+    },
+    {
+      "name": "latest blocked status",
+      "argv": [
+        "/home/zenobius/.local/share/mise/installs/bun/latest/bin/bun",
+        "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-view.ts",
+        "--repository",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "--id",
+        "skill-contract-manifests-18-manifest-coverage",
+        "--kind",
+        "latest-status",
+        "--input",
+        "/tmp/coverage-latest-view.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "exit_code": 0,
+      "stdout": "{\"schemaVersion\":\"worktree-view-result/v1\",\"status\":\"completed\",\"artifact\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-18-manifest-coverage/projections/latest-status.yaml\",\"changed\":true,\"from\":\"worktree-latest-status/v2\",\"to\":\"worktree-latest-status/v2\"}\n",
+      "stderr": "",
+      "elapsed_ms": 295
+    }
+  ],
+  "projection": {
+    "argv": [
+      "/home/zenobius/.local/bin/mise",
+      "exec",
+      "--",
+      "mq",
+      "--allow-http-import",
+      "-I",
+      "raw",
+      "-F",
+      "raw",
+      "import \"github.com/harehare/okf.mq\" | replace(\"../evidence/manifest-coverage/\", \"../artifacts/evidence/manifest-coverage/\")",
+      "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/snapshots/pr-draft-implementation-0002.md",
+      "-o",
+      "workflows/skill-contract-manifests-18-manifest-coverage/projections/pr-draft.md",
+      "--no-clobber"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "draft_checks": [
+    {
+      "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/snapshots/pr-draft-implementation-0002.md",
+      "argv": [
+        "/home/zenobius/.local/bin/mise",
+        "exec",
+        "--",
+        "mq",
+        "--allow-http-import",
+        "-I",
+        "raw",
+        "-F",
+        "json",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_parse(.)",
+        "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/snapshots/pr-draft-implementation-0002.md"
+      ],
+      "exit_code": 0,
+      "frontmatter": {
+        "receipt_id": "implementation-0002",
+        "schemaVersion": "worktree-pr-draft/v1",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50",
+        "source_tree": "703803167df3fe130224a2dcca7a37cec26d1ff8",
+        "ticket_ref": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+        "workflow_id": "skill-contract-manifests-18-manifest-coverage"
+      },
+      "body_bytes": 35448,
+      "schemaVersion_injected_into_foreign_data": false
+    },
+    {
+      "ref": "workflows/skill-contract-manifests-18-manifest-coverage/projections/pr-draft.md",
+      "argv": [
+        "/home/zenobius/.local/bin/mise",
+        "exec",
+        "--",
+        "mq",
+        "--allow-http-import",
+        "-I",
+        "raw",
+        "-F",
+        "json",
+        "import \"github.com/harehare/okf.mq\" | okf::okf_parse(.)",
+        "workflows/skill-contract-manifests-18-manifest-coverage/projections/pr-draft.md"
+      ],
+      "exit_code": 0,
+      "frontmatter": {
+        "receipt_id": "implementation-0002",
+        "schemaVersion": "worktree-pr-draft/v1",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50",
+        "source_tree": "703803167df3fe130224a2dcca7a37cec26d1ff8",
+        "ticket_ref": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+        "workflow_id": "skill-contract-manifests-18-manifest-coverage"
+      },
+      "body_bytes": 35568,
+      "schemaVersion_injected_into_foreign_data": false
+    }
+  ],
+  "observation": "Direct process execution in the publication checkout completed all required operations. Shell-mediated publication calls timed out; no shell settings were changed."
+}

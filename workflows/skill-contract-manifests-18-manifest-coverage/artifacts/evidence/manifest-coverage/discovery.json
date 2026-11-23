@@ -1,0 +1,285 @@
+{
+  "bundles": [
+    {
+      "bundle": "agent-core",
+      "installed": "/home/zenobius/.omp/agent/bundles/agent-core",
+      "realpath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core",
+      "source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/agent-core",
+      "skills": 27,
+      "declared_roots": [
+        {
+          "kind": "extension",
+          "path": "./skills",
+          "exists": true
+        },
+        {
+          "kind": "pi-package",
+          "path": "./skills",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/documents/",
+          "exists": false
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/skill-development/",
+          "exists": false
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/sop/",
+          "exists": false
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/artifact-shares/",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/dumbzone/",
+          "exists": false
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/explain/",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/install-skill/",
+          "exists": false
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/mq-query/",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/shared-context/",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "bundle": "creator",
+      "installed": "/home/zenobius/.omp/agent/bundles/creator",
+      "realpath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/creator",
+      "source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/creator",
+      "skills": 11,
+      "declared_roots": [
+        {
+          "kind": "extension",
+          "path": "./skills",
+          "exists": true
+        },
+        {
+          "kind": "pi-package",
+          "path": "./skills",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/imagegen/comfyui",
+          "exists": false
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/imagegen/generate-images-with-takumi",
+          "exists": false
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/html-artifact/",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/web-design",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "bundle": "developer",
+      "installed": "/home/zenobius/.omp/agent/bundles/developer",
+      "realpath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/developer",
+      "source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/developer",
+      "skills": 144,
+      "declared_roots": [
+        {
+          "kind": "extension",
+          "path": "./skills",
+          "exists": true
+        },
+        {
+          "kind": "pi-package",
+          "path": "./skills",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/atlassian/",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/better-auth/",
+          "exists": false
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/browsers/",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/devtools/",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/game-dev/",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/git/",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/shells/",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/shells/neovim/",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/uidev/",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "bundle": "matt-pocock",
+      "installed": "/home/zenobius/.omp/agent/bundles/matt-pocock",
+      "realpath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/matt-pocock",
+      "source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/matt-pocock",
+      "skills": 28,
+      "declared_roots": [
+        {
+          "kind": "extension",
+          "path": "./skills",
+          "exists": true
+        },
+        {
+          "kind": "pi-package",
+          "path": "./skills",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "bundle": "platform",
+      "installed": "/home/zenobius/.omp/agent/bundles/platform",
+      "realpath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/platform",
+      "source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/platform",
+      "skills": 28,
+      "declared_roots": [
+        {
+          "kind": "extension",
+          "path": "./skills",
+          "exists": true
+        },
+        {
+          "kind": "pi-package",
+          "path": "./skills",
+          "exists": true
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/files/devtools/",
+          "exists": false
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/files/devtools/cloudflare/",
+          "exists": false
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/files/devtools/mise/",
+          "exists": false
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/files/devtools/moonrepo/",
+          "exists": false
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/files/devtools/pi-mono/",
+          "exists": false
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/homeassistant/",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "bundle": "researcher",
+      "installed": "/home/zenobius/.omp/agent/bundles/researcher",
+      "realpath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/researcher",
+      "source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/researcher",
+      "skills": 0,
+      "declared_roots": [
+        {
+          "kind": "extension",
+          "path": "./skills",
+          "exists": false
+        },
+        {
+          "kind": "pi-package",
+          "path": "./skills",
+          "exists": false
+        },
+        {
+          "kind": "claude-plugin",
+          "path": "./skills/files/devtools/",
+          "exists": false
+        }
+      ]
+    },
+    {
+      "bundle": "writing",
+      "installed": "/home/zenobius/.omp/agent/bundles/writing",
+      "realpath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/writing",
+      "source": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles/writing",
+      "skills": 23,
+      "declared_roots": [
+        {
+          "kind": "extension",
+          "path": "./skills",
+          "exists": true
+        },
+        {
+          "kind": "pi-package",
+          "path": "./skills",
+          "exists": true
+        }
+      ]
+    }
+  ],
+  "installed_skill_count": 261,
+  "source_skill_count": 261,
+  "inventory_rule": "Recursive SKILL.md discovery from installed extension.json and package.json pi.skills roots; source roots reconciled one-to-one. Claude plugin stale root declarations are diagnostics only, not a replacement inventory."
+}

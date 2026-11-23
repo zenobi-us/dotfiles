@@ -1,0 +1,53 @@
+[
+  {
+    "case": "unknown-field",
+    "argv": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+      "validate",
+      "--skill",
+      "/tmp/manifest-coverage-rejections-483016b2-df2c-4b0c-9f63-5dd82bd59ace/unknown-field"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 1,
+    "error": "Invalid skill contract manifest: / must NOT have additional properties",
+    "stdout": "",
+    "unchanged": true,
+    "before_sha256": "574afed14680e32d6f9932c5ea23b8d8df675e3877e23e6df917e17ddf25c9be",
+    "after_sha256": "574afed14680e32d6f9932c5ea23b8d8df675e3877e23e6df917e17ddf25c9be",
+    "fixture": {
+      "schemaVersion": "skill-contract-manifest/v1",
+      "produces": [],
+      "accepts": [],
+      "contracts": {},
+      "upgrades": [],
+      "unexpected": true
+    }
+  },
+  {
+    "case": "missing-definition",
+    "argv": [
+      "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+      "validate",
+      "--skill",
+      "/tmp/manifest-coverage-rejections-483016b2-df2c-4b0c-9f63-5dd82bd59ace/missing-definition"
+    ],
+    "cwd": "/tmp",
+    "exit_code": 1,
+    "error": "Cannot resolve file: definition from the installed skill directory.",
+    "stdout": "",
+    "unchanged": true,
+    "before_sha256": "6a6c95ab4418e9086d0267d37518b3c79c3a8c972aaa487749b2273d77b63ce3",
+    "after_sha256": "6a6c95ab4418e9086d0267d37518b3c79c3a8c972aaa487749b2273d77b63ce3",
+    "fixture": {
+      "schemaVersion": "skill-contract-manifest/v1",
+      "produces": [
+        "missing-record/v1"
+      ],
+      "accepts": [],
+      "contracts": {
+        "missing-record/v1": "file:absent.json"
+      },
+      "upgrades": []
+    }
+  }
+]

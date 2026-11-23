@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "herdr-app",
+    "ls"
+  ],
+  "exit_code": 0,
+  "closed_terminals": [
+    "t230",
+    "t231",
+    "t232",
+    "t233",
+    "t237",
+    "t238",
+    "t23m",
+    "t23n"
+  ],
+  "remaining_closed_terminals": [],
+  "source_workspace_left_available": true,
+  "source_workspace_present": true
+}

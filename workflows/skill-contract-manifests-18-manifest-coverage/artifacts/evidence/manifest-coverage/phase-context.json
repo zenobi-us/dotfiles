@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "worktree-phase-context/v2",
+  "receipt_schema": "worktree-receipt/v3",
+  "receipt_id": "implementation-0002",
+  "workflow_id": "skill-contract-manifests-18-manifest-coverage",
+  "event": "phase-result",
+  "phase": "implementation",
+  "attempt": 1,
+  "parent_receipt": "start-0001",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-18-manifest-coverage",
+    "ref": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md"
+  },
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+    "branch": "feature/skill-contract-manifests-18-manifest-coverage",
+    "base_branch": "master",
+    "commit": "3a1279b8cea5fe19588a815535546001d4f0cb50",
+    "tree": "703803167df3fe130224a2dcca7a37cec26d1ff8"
+  },
+  "session": {
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "pane_id": "t22s",
+    "session_id": "01a20774-542b-776a-95d7-06c26afe5d45",
+    "run_id": "483016b2-df2c-4b0c-9f63-5dd82bd59ace",
+    "operation_id": "483016b2-df2c-4b0c-9f63-5dd82bd59ace"
+  }
+}
