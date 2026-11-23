@@ -1,0 +1,239 @@
+{
+  "source_commit": "7eeefdfed44d18bc6bea9c482b438bf4e43f6ef8",
+  "source_tree": "b70d4a21bb53f54c5c41a47e036842d192add4ca",
+  "tested_source_base_commit": "8b616592357dd7c5c7472b54d3e946029bd2d2a9",
+  "tested_changes": "Final source behavior exercised before commit; commit hooks added only required plugin/marketplace bumps.",
+  "validation_results": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "exit_code": 0,
+      "result": "37 pass, 0 fail, 801 expect() calls across 4 files; 156.41 seconds. Real MDX builds, installed CLI upgrades, configuration changes, retrieval and repository checks."
+    },
+    {
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "exit_code": 0,
+      "result": "All owner declarations, definitions and procedures resolved."
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bunx",
+        "--no-install",
+        "fumapress",
+        "build"
+      ],
+      "cwd": "/tmp/artifact-inspect-fZoTSf",
+      "startedAt": "2026-11-23T08:56:10.232Z",
+      "stdout": "[1/5] analyze client references...\nvite v8.3.0 building rsc environment for production...\ntransforming...\n✓ 2314 modules transformed.\n",
+      "stderr": "✗ Build failed in 1.41s\nBuild failed with 2 errors:\n\n[plugin fumadocs-mdx:mdx] /tmp/artifact-inspect-fZoTSf/content/shares/smoke.mdx?macro_id=press.config.tsx%23docs&only=frontmatter\nReferenceError: Bun is not defined\n    at readShareMetadata (/tmp/artifact-inspect-fZoTSf/src/share-metadata.ts:12:16)\n    at Object.eval [as transform] (/tmp/artifact-inspect-fZoTSf/press.config.tsx:32:161)\n    at inst._zod.parse (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/classic/schemas.js:1218:28)\n    at Internals.wrapped (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/memoizer.js:213:24)\n    at inst._zod.parse (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:2281:34)\n    at validateAsync (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:135:46)\n    at Object.validate (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:148:20)\n    at validate (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:98:44)\n    at transformMetadata (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:123:39)\n    at Object.transformFrontmatter (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:263:17)\n[plugin fumadocs-mdx:mdx] /tmp/artifact-inspect-fZoTSf/content/shares/smoke.mdx?macro_id=press.config.tsx%23docs\nReferenceError: Bun is not defined\n    at readShareMetadata (/tmp/artifact-inspect-fZoTSf/src/share-metadata.ts:12:16)\n    at Object.eval [as transform] (/tmp/artifact-inspect-fZoTSf/press.config.tsx:32:161)\n    at inst._zod.parse (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/classic/schemas.js:1218:28)\n    at Internals.wrapped (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/memoizer.js:213:24)\n    at inst._zod.parse (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:2281:34)\n    at validateAsync (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:135:46)\n    at Object.validate (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:148:20)\n    at validate (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:98:44)\n    at transformMetadata (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:123:39)\n    at Object.transformFrontmatter (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:263:17)\n    at aggregateBindingErrorsIntoJsError (file:///tmp/artifact-inspect-fZoTSf/node_modules/rolldown/dist/shared/error-CGhV1ebk.mjs:48:18)\n    at unwrapBindingResult (file:///tmp/artifact-inspect-fZoTSf/node_modules/rolldown/dist/shared/error-CGhV1ebk.mjs:18:128)\n    at #build (file:///tmp/artifact-inspect-fZoTSf/node_modules/rolldown/dist/shared/rolldown-Ld3ZGGCt.mjs:133:34)\n    at async buildEnvironment (file:///tmp/artifact-inspect-fZoTSf/node_modules/vite/dist/node/chunks/node.js:34082:66)\n    at async Object.build (file:///tmp/artifact-inspect-fZoTSf/node_modules/vite/dist/node/chunks/node.js:34503:19)\n    at async buildApp (file:///tmp/artifact-inspect-fZoTSf/node_modules/@vitejs/plugin-rsc/dist/plugin-CLvIS10V.js:727:3)\n    at async BasicMinimalPluginContext.handler (file:///tmp/artifact-inspect-fZoTSf/node_modules/@vitejs/plugin-rsc/dist/plugin-CLvIS10V.js:856:43)\n    at async Object.buildApp (file:///tmp/artifact-inspect-fZoTSf/node_modules/vite/dist/node/chunks/node.js:34497:5)\n    at async runBuild (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumapress/dist/cli.js:181:2)\n    at async run (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumapress/dist/cli.js:43:3) {\n  errors: [Getter/Setter]\n}\n",
+      "exit_code": 1
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bunx",
+        "--no-install",
+        "fumapress",
+        "build"
+      ],
+      "cwd": "/tmp/artifact-inspect-fZoTSf",
+      "startedAt": "2026-11-23T08:58:04.602Z",
+      "stdout": "[1/5] analyze client references...\nvite v8.3.0 building rsc environment for production...\ntransforming...\n✓ 2316 modules transformed.\nrendering chunks...\n✓ built in 1.38s\n[2/5] analyze server references...\nvite v8.3.0 building ssr environment for production...\ntransforming...\n✓ 2543 modules transformed.\nrendering chunks...\n✓ built in 1.06s\n[3/5] build rsc environment...\nvite v8.3.0 building rsc environment for production...\ntransforming...\n✓ 2323 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/server/assets/app-DyQtEh_u.css                                       91.21 kB │ gzip:  15.97 kB\ndist/server/assets/server-B9fLX5V2.js                                      0.09 kB │ gzip:   0.09 kB\ndist/server/assets/wasm-init-DzwbPAKW-CmOYU6IK.js                          0.11 kB │ gzip:   0.10 kB\ndist/server/assets/react.react-server-WDZhNQe2.js                          0.14 kB │ gzip:   0.10 kB\ndist/server/assets/server.react-server-CXYXbdGd.js                         0.16 kB │ gzip:   0.13 kB\ndist/server/assets/__vite-optional-peer-dep_sharp_fumapress-DAocKYHi.js    0.28 kB │ gzip:   0.18 kB\ndist/server/assets/flexsearch-static-BmxZmrnf.js                           0.40 kB │ gzip:   0.27 kB\ndist/server/assets/not-found-BkL2Sx9F.js                                   0.48 kB │ gzip:   0.33 kB\ndist/server/assets/interceptors-BnjFUYp3.js                                0.49 kB │ gzip:   0.26 kB\ndist/server/index.js                                                       0.51 kB │ gzip:   0.27 kB\ndist/server/assets/wasm-node-BsD8jxba-CTUBy662.js                          0.51 kB │ gzip:   0.31 kB\ndist/server/assets/pathname-Bus_fpf1.js                                    0.93 kB │ gzip:   0.51 kB\ndist/server/assets/smoke.mdx_macro_id_press.config-Dkw725pF.js             1.15 kB │ gzip:   0.57 kB\ndist/server/assets/runtime-BkT71AZE.js                                     1.21 kB │ gzip:   0.60 kB\ndist/server/build.js                                                       1.25 kB │ gzip:   0.59 kB\ndist/server/assets/server-BrXSolTi.js                                      1.26 kB │ gzip:   0.48 kB\ndist/server/assets/rolldown-runtime-B4iAMlE-.js                            1.58 kB │ gzip:   0.74 kB\ndist/server/assets/flexsearch-C-gPQNI2.js                                  1.63 kB │ gzip:   0.77 kB\ndist/server/assets/robots-1BQsyzwQ.js                                      1.65 kB │ gzip:   0.71 kB\ndist/server/assets/jsx-runtime.react-server-AzYEXWxo.js                    1.89 kB │ gzip:   0.85 kB\ndist/server/assets/routes-Bgh2vv8M.js                                      2.22 kB │ gzip:   0.87 kB\ndist/server/assets/i18n-B8bJBSED.js                                        2.29 kB │ gzip:   1.00 kB\ndist/server/assets/renderer-COaJLMlr.js                                    2.44 kB │ gzip:   1.12 kB\ndist/server/assets/rss-DSw8CIMl.js                                         4.07 kB │ gzip:   1.59 kB\ndist/server/assets/utils-DEVq3cEC-DMfnMxy1.js                              4.41 kB │ gzip:   1.80 kB\ndist/server/assets/root--fhxLM8m.js                                        4.88 kB │ gzip:   1.76 kB\ndist/server/assets/index.mdx_macro_id_press.config-DIC8569M.js             5.15 kB │ gzip:   1.23 kB\ndist/server/assets/fonts-CBLz8Mte-tJo9sz-D.js                              5.19 kB │ gzip:   2.08 kB\ndist/server/assets/sitemap-DaTHuh77.js                                     6.67 kB │ gzip:   2.11 kB\ndist/server/assets/docs-DRNp4a8F.js                                        8.34 kB │ gzip:   2.35 kB\ndist/server/assets/react.react-server-C39npT6p.js                         12.60 kB │ gzip:   3.63 kB\ndist/server/assets/server-DOGiU9WB.js                                     13.84 kB │ gzip:   4.67 kB\ndist/server/assets/wasm-init-DzwbPAKW-B8qJGjCO.js                         20.66 kB │ gzip:   5.89 kB\ndist/server/assets/llms.txt-CMqVdvee.js                                   21.93 kB │ gzip:   6.35 kB\ndist/server/assets/export-DhDZCyxc.js                                     31.08 kB │ gzip:   3.27 kB\ndist/server/assets/self-hosted-xlQyRGin.js                                35.15 kB │ gzip:   9.90 kB\ndist/server/assets/takumi-zp_p2WQc.js                                     49.36 kB │ gzip:  16.38 kB\ndist/server/assets/context-DNoO0G9J.js                                    50.48 kB │ gzip:  14.44 kB\ndist/server/assets/client-DfQz5kxd.js                                     62.51 kB │ gzip:  13.40 kB\ndist/server/assets/lib-wthhZ1WI.js                                        65.15 kB │ gzip:  13.94 kB\ndist/server/assets/server-CMJFiU2n.js                                     66.65 kB │ gzip:  15.85 kB\ndist/server/assets/rsc-DAVEMUIZ.js                                       119.24 kB │ gzip:  25.50 kB\ndist/server/assets/server-entry-DQ0uQO0y.js                              377.30 kB │ gzip:  94.44 kB\ndist/server/assets/flexsearch-CNE_IWeS.js                                456.92 kB │ gzip: 103.70 kB\n\n✓ built in 1.06s\n[4/5] build client environment...\nvite v8.3.0 building client environment for production...\ntransforming...\n✓ 2555 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/public/index.html                                      0.02 kB │ gzip:  0.03 kB\ndist/public/assets/app-DyQtEh_u.css                        91.21 kB │ gzip: 15.97 kB\ndist/public/assets/__vite-browser-external-eavpuZ69.js      0.07 kB │ gzip:  0.08 kB\ndist/public/assets/pathname-CUk7x3fl.js                     0.11 kB │ gzip:  0.11 kB\ndist/public/assets/DirectionContext-CW0ly45B.js             0.16 kB │ gzip:  0.15 kB\ndist/public/assets/client-7-yV8XTc.js                       0.20 kB │ gzip:  0.18 kB\ndist/public/assets/remove-undefined-CzMSKybq-CUTPf38U.js    0.34 kB │ gzip:  0.22 kB\ndist/public/assets/link-CYO292_a.js                         0.37 kB │ gzip:  0.26 kB\ndist/public/assets/fetch-BVOwM3R8.js                        0.50 kB │ gzip:  0.34 kB\ndist/public/assets/self-hosted-DCbV4ffj.js                  0.70 kB │ gzip:  0.46 kB\ndist/public/assets/algolia-J2mAyok6.js                      0.75 kB │ gzip:  0.47 kB\ndist/public/assets/search-BwJsvFDS.js                       1.00 kB │ gzip:  0.53 kB\ndist/public/assets/orama-cloud-legacy-D8QiFw1u.js           1.11 kB │ gzip:  0.58 kB\ndist/public/assets/orama-cloud-Bn4d5Ttr.js                  1.17 kB │ gzip:  0.60 kB\ndist/public/assets/not-found-DkvVV4_A.js                    1.20 kB │ gzip:  0.68 kB\ndist/public/assets/search-default-CtBPHFq-.js               1.70 kB │ gzip:  0.89 kB\ndist/public/assets/image-DhIuQlzi.js                        2.38 kB │ gzip:  1.22 kB\ndist/public/assets/root-BVqcQHMm.js                         2.71 kB │ gzip:  1.37 kB\ndist/public/assets/dist-BHNzd8Uq.js                         2.81 kB │ gzip:  1.17 kB\ndist/public/assets/use-copy-button-CTvCc-33.js              3.17 kB │ gzip:  1.45 kB\ndist/public/assets/dist-Du8R79f9.js                         6.34 kB │ gzip:  2.65 kB\ndist/public/assets/useOpenChangeComplete-Bp_lB3gf.js        6.69 kB │ gzip:  2.97 kB\ndist/public/assets/inertValue-snni-pUi.js                   7.59 kB │ gzip:  3.00 kB\ndist/public/assets/mixedbread-DFXYoRbb.js                  11.96 kB │ gzip:  5.38 kB\ndist/public/assets/i18n-jJHoSyRC.js                        16.88 kB │ gzip:  5.83 kB\ndist/public/assets/framework-Ii3cwvrH.js                   29.07 kB │ gzip: 10.47 kB\ndist/public/assets/createLucideIcon-BxiVVUjt.js            29.96 kB │ gzip: 12.38 kB\ndist/public/assets/url-BVHvi3_K-QKA_huKI.js                30.93 kB │ gzip: 11.34 kB\ndist/public/assets/flexsearch-static-b1xUHe5x.js           51.85 kB │ gzip: 17.79 kB\ndist/public/assets/orama-static-Dc5YIAuA.js                73.98 kB │ gzip: 25.72 kB\ndist/public/assets/docs-QC78ovZE.js                       128.55 kB │ gzip: 43.25 kB\ndist/public/assets/index-CB4ycDnC.js                      275.79 kB │ gzip: 87.64 kB\ndist/public/assets/client-B9lxqD0d.js                     318.87 kB │ gzip: 96.37 kB\n\n✓ built in 1.06s\n[5/5] build ssr environment...\nvite v8.3.0 building ssr environment for production...\ntransforming...\n✓ 2559 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/server/ssr/assets/pathname-CYLPlOwU.js                     0.31 kB │ gzip:   0.22 kB\ndist/server/ssr/assets/DirectionContext-C5R0DL2v.js             0.46 kB │ gzip:   0.27 kB\ndist/server/ssr/assets/client-C6m6CoYZ.js                       0.46 kB │ gzip:   0.28 kB\ndist/server/ssr/assets/link-8oFvHVfP.js                         0.70 kB │ gzip:   0.40 kB\ndist/server/ssr/assets/remove-undefined-CzMSKybq-wawLFuP2.js    0.77 kB │ gzip:   0.37 kB\ndist/server/ssr/assets/fetch-BUj69WRq.js                        0.87 kB │ gzip:   0.50 kB\ndist/server/ssr/assets/algolia-hzcp-hsQ.js                      1.43 kB │ gzip:   0.69 kB\ndist/server/ssr/assets/self-hosted-C3dgBznY.js                  1.45 kB │ gzip:   0.71 kB\ndist/server/ssr/assets/search-BEP2P1yr.js                       2.07 kB │ gzip:   0.88 kB\ndist/server/ssr/assets/orama-cloud-legacy-B_xDcyWu.js           2.19 kB │ gzip:   0.85 kB\ndist/server/ssr/assets/orama-cloud-DttF9nfG.js                  2.24 kB │ gzip:   0.87 kB\ndist/server/ssr/assets/not-found-C87MGVdK.js                    2.41 kB │ gzip:   1.10 kB\ndist/server/ssr/assets/search-default-B8A3eazl.js               2.79 kB │ gzip:   1.04 kB\ndist/server/ssr/assets/image-CynYGsKy.js                        5.09 kB │ gzip:   1.88 kB\ndist/server/ssr/assets/root-DPL5OgPj.js                         5.88 kB │ gzip:   2.13 kB\ndist/server/ssr/assets/dist-CgCk13CT.js                         6.28 kB │ gzip:   1.80 kB\ndist/server/ssr/assets/use-copy-button-BPui7v7t.js              9.03 kB │ gzip:   2.72 kB\ndist/server/ssr/assets/dist-BFq0vv4f.js                        15.91 kB │ gzip:   5.30 kB\ndist/server/ssr/assets/mixedbread-WSXT_DPS.js                  15.96 kB │ gzip:   6.59 kB\ndist/server/ssr/assets/client-vLuqtVPq.js                      17.91 kB │ gzip:   5.52 kB\ndist/server/ssr/assets/react-DvKm3E9D.js                       19.33 kB │ gzip:   5.17 kB\ndist/server/ssr/assets/useOpenChangeComplete-BAFdKl1k.js       21.42 kB │ gzip:   6.78 kB\ndist/server/ssr/assets/inertValue-Dh6tvwoo.js                  22.85 kB │ gzip:   6.33 kB\ndist/server/ssr/assets/i18n-DJtUno1M.js                        55.82 kB │ gzip:  15.16 kB\ndist/server/ssr/assets/createLucideIcon-D3Ls_j7V.js            56.17 kB │ gzip:  16.86 kB\ndist/server/ssr/assets/framework-BzwNOiMM.js                   66.85 kB │ gzip:  16.63 kB\ndist/server/ssr/assets/flexsearch-static-DvNrh7YI.js           73.78 kB │ gzip:  21.55 kB\ndist/server/ssr/assets/url-BVHvi3_K-BG8Vd4qf.js                80.39 kB │ gzip:  19.23 kB\ndist/server/ssr/assets/orama-static-BYQIO_nV.js               149.97 kB │ gzip:  36.36 kB\ndist/server/ssr/assets/docs-SQCpTQVK.js                       298.77 kB │ gzip:  67.08 kB\ndist/server/ssr/index.js                                      546.99 kB │ gzip: 108.20 kB\ndist/server/ssr/assets/client-C3389TmW.js                     811.08 kB │ gzip: 184.15 kB\n\n✓ built in 1.18s\n[ssg] processing static generation...\n✓ 17 files generated in 219ms\n",
+      "stderr": "[Fumapress] \"site.baseUrl\" is not set; sitemap and RSS will fall back to relative URLs.\n",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bunx",
+        "--no-install",
+        "tsc",
+        "--noEmit"
+      ],
+      "cwd": "/tmp/artifact-inspect-fZoTSf",
+      "startedAt": "2026-11-23T08:58:11.824Z",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "git",
+        "init",
+        "-q",
+        "/tmp/artifact-cli-smoke-apZWJY/private"
+      ],
+      "cwd": "/tmp/artifact-cli-smoke-apZWJY",
+      "startedAt": "2026-11-23T08:58:50.931Z",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "/tmp/artifact-cli-smoke-apZWJY/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "upgrade",
+        "private",
+        "--dry-run"
+      ],
+      "cwd": "/tmp/artifact-cli-smoke-apZWJY",
+      "startedAt": "2026-11-23T08:58:50.937Z",
+      "stdout": "",
+      "stderr": "Error: Unsupported explicit consumer history contract.\n",
+      "exit_code": 1
+    },
+    {
+      "argv": [
+        "/tmp/artifact-cli-smoke-apZWJY/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "upgrade",
+        "private",
+        "--confirm",
+        "private"
+      ],
+      "cwd": "/tmp/artifact-cli-smoke-apZWJY",
+      "startedAt": "2026-11-23T08:58:51.195Z",
+      "stdout": "",
+      "stderr": "Error: Unsupported explicit consumer history contract.\n",
+      "exit_code": 1
+    },
+    {
+      "argv": [
+        "/tmp/artifact-cli-smoke-apZWJY/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "upgrade",
+        "private",
+        "--dry-run"
+      ],
+      "cwd": "/tmp/artifact-cli-smoke-apZWJY",
+      "startedAt": "2026-11-23T08:58:51.457Z",
+      "stdout": "{\n  \"dryRun\": true,\n  \"changedFiles\": [\n    \"src/share-metadata.ts\",\n    \"press.config.tsx\"\n  ],\n  \"unchanged\": false,\n  \"remoteOperations\": false\n}\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "/tmp/artifact-cli-smoke-apZWJY/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "upgrade",
+        "private",
+        "--confirm",
+        "private"
+      ],
+      "cwd": "/tmp/artifact-cli-smoke-apZWJY",
+      "startedAt": "2026-11-23T08:58:51.680Z",
+      "stdout": "types validation: ok (0 shares)\nsize check: ok (1 KiB published)\nmetadata check: ok (0 image(s))\nsecrets check: ok (offline scan of .)\n{\n  \"changedFiles\": [\n    \"src/share-metadata.ts\",\n    \"press.config.tsx\"\n  ],\n  \"remoteOperations\": false,\n  \"next\": \"Review and commit these local consumer changes before publishing.\"\n}\n",
+      "stderr": "[checks:types] $ /tmp/artifact-cli-smoke-apZWJY/private/.mise/tasks/checks/type…\n[checks:size] $ /tmp/artifact-cli-smoke-apZWJY/private/.mise/tasks/checks/size.…\n[checks:metadata] $ /tmp/artifact-cli-smoke-apZWJY/private/.mise/tasks/checks/m…\n[checks:secrets] $ /tmp/artifact-cli-smoke-apZWJY/private/.mise/tasks/checks/se…\n",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bunx",
+        "--no-install",
+        "fumapress",
+        "build"
+      ],
+      "cwd": "/tmp/artifact-inspect-fZoTSf",
+      "startedAt": "2026-11-23T08:59:03.892Z",
+      "stdout": "[1/5] analyze client references...\nvite v8.3.0 building rsc environment for production...\ntransforming...\n✓ 2314 modules transformed.\n",
+      "stderr": "✗ Build failed in 1.46s\nBuild failed with 2 errors:\n\n[plugin fumadocs-mdx:mdx] /tmp/artifact-inspect-fZoTSf/content/shares/smoke.mdx?macro_id=press.config.tsx%23docs&only=frontmatter\nError: Share metadata requires a kind, 12-character hash and YYYY-MM-DD date.\n    at interpretShareMetadata (/tmp/artifact-inspect-fZoTSf/src/share-metadata.ts:43:9)\n    at Object.eval [as transform] (/tmp/artifact-inspect-fZoTSf/press.config.tsx:32:170)\n    at inst._zod.parse (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/classic/schemas.js:1218:28)\n    at Internals.wrapped (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/memoizer.js:213:24)\n    at inst._zod.parse (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:2281:34)\n    at validateAsync (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:135:46)\n    at Object.validate (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:148:20)\n    at validate (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:98:44)\n    at transformMetadata (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:123:39)\n    at Object.transformFrontmatter (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:263:17)\n[plugin fumadocs-mdx:mdx] /tmp/artifact-inspect-fZoTSf/content/shares/smoke.mdx?macro_id=press.config.tsx%23docs\nError: Share metadata requires a kind, 12-character hash and YYYY-MM-DD date.\n    at interpretShareMetadata (/tmp/artifact-inspect-fZoTSf/src/share-metadata.ts:43:9)\n    at Object.eval [as transform] (/tmp/artifact-inspect-fZoTSf/press.config.tsx:32:170)\n    at inst._zod.parse (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/classic/schemas.js:1218:28)\n    at Internals.wrapped (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/memoizer.js:213:24)\n    at inst._zod.parse (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:2281:34)\n    at validateAsync (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:135:46)\n    at Object.validate (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:148:20)\n    at validate (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:98:44)\n    at transformMetadata (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:123:39)\n    at Object.transformFrontmatter (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:263:17)\n    at aggregateBindingErrorsIntoJsError (file:///tmp/artifact-inspect-fZoTSf/node_modules/rolldown/dist/shared/error-CGhV1ebk.mjs:48:18)\n    at unwrapBindingResult (file:///tmp/artifact-inspect-fZoTSf/node_modules/rolldown/dist/shared/error-CGhV1ebk.mjs:18:128)\n    at #build (file:///tmp/artifact-inspect-fZoTSf/node_modules/rolldown/dist/shared/rolldown-Ld3ZGGCt.mjs:133:34)\n    at async buildEnvironment (file:///tmp/artifact-inspect-fZoTSf/node_modules/vite/dist/node/chunks/node.js:34082:66)\n    at async Object.build (file:///tmp/artifact-inspect-fZoTSf/node_modules/vite/dist/node/chunks/node.js:34503:19)\n    at async buildApp (file:///tmp/artifact-inspect-fZoTSf/node_modules/@vitejs/plugin-rsc/dist/plugin-CLvIS10V.js:727:3)\n    at async BasicMinimalPluginContext.handler (file:///tmp/artifact-inspect-fZoTSf/node_modules/@vitejs/plugin-rsc/dist/plugin-CLvIS10V.js:856:43)\n    at async Object.buildApp (file:///tmp/artifact-inspect-fZoTSf/node_modules/vite/dist/node/chunks/node.js:34497:5)\n    at async runBuild (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumapress/dist/cli.js:181:2)\n    at async run (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumapress/dist/cli.js:43:3) {\n  errors: [Getter/Setter]\n}\n",
+      "exit_code": 1
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bunx",
+        "--no-install",
+        "fumapress",
+        "build"
+      ],
+      "cwd": "/tmp/artifact-inspect-fZoTSf",
+      "startedAt": "2026-11-23T08:59:06.656Z",
+      "stdout": "[1/5] analyze client references...\nvite v8.3.0 building rsc environment for production...\ntransforming...\n✓ 2314 modules transformed.\n",
+      "stderr": "✗ Build failed in 1.48s\nBuild failed with 2 errors:\n\n[plugin fumadocs-mdx:mdx] /tmp/artifact-inspect-fZoTSf/content/shares/smoke.mdx?macro_id=press.config.tsx%23docs\nError: Share metadata source must be a string.\n    at interpretShareMetadata (/tmp/artifact-inspect-fZoTSf/src/share-metadata.ts:39:44)\n    at Object.eval [as transform] (/tmp/artifact-inspect-fZoTSf/press.config.tsx:32:170)\n    at inst._zod.parse (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/classic/schemas.js:1218:28)\n    at Internals.wrapped (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/memoizer.js:213:24)\n    at inst._zod.parse (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:2281:34)\n    at validateAsync (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:135:46)\n    at Object.validate (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:148:20)\n    at validate (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:98:44)\n    at transformMetadata (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:123:39)\n    at Object.transformFrontmatter (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:263:17)\n[plugin fumadocs-mdx:mdx] /tmp/artifact-inspect-fZoTSf/content/shares/smoke.mdx?macro_id=press.config.tsx%23docs&only=frontmatter\nError: Share metadata source must be a string.\n    at interpretShareMetadata (/tmp/artifact-inspect-fZoTSf/src/share-metadata.ts:39:44)\n    at Object.eval [as transform] (/tmp/artifact-inspect-fZoTSf/press.config.tsx:32:170)\n    at inst._zod.parse (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/classic/schemas.js:1218:28)\n    at Internals.wrapped (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/memoizer.js:213:24)\n    at inst._zod.parse (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:2281:34)\n    at validateAsync (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:135:46)\n    at Object.validate (file:///tmp/artifact-inspect-fZoTSf/node_modules/zod/v4/core/schemas.js:148:20)\n    at validate (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:98:44)\n    at transformMetadata (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:123:39)\n    at Object.transformFrontmatter (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumadocs-mdx/dist/core-BHawVsTm.js:263:17)\n    at aggregateBindingErrorsIntoJsError (file:///tmp/artifact-inspect-fZoTSf/node_modules/rolldown/dist/shared/error-CGhV1ebk.mjs:48:18)\n    at unwrapBindingResult (file:///tmp/artifact-inspect-fZoTSf/node_modules/rolldown/dist/shared/error-CGhV1ebk.mjs:18:128)\n    at #build (file:///tmp/artifact-inspect-fZoTSf/node_modules/rolldown/dist/shared/rolldown-Ld3ZGGCt.mjs:133:34)\n    at async buildEnvironment (file:///tmp/artifact-inspect-fZoTSf/node_modules/vite/dist/node/chunks/node.js:34082:66)\n    at async Object.build (file:///tmp/artifact-inspect-fZoTSf/node_modules/vite/dist/node/chunks/node.js:34503:19)\n    at async buildApp (file:///tmp/artifact-inspect-fZoTSf/node_modules/@vitejs/plugin-rsc/dist/plugin-CLvIS10V.js:727:3)\n    at async BasicMinimalPluginContext.handler (file:///tmp/artifact-inspect-fZoTSf/node_modules/@vitejs/plugin-rsc/dist/plugin-CLvIS10V.js:856:43)\n    at async Object.buildApp (file:///tmp/artifact-inspect-fZoTSf/node_modules/vite/dist/node/chunks/node.js:34497:5)\n    at async runBuild (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumapress/dist/cli.js:181:2)\n    at async run (file:///tmp/artifact-inspect-fZoTSf/node_modules/fumapress/dist/cli.js:43:3) {\n  errors: [Getter/Setter]\n}\n",
+      "exit_code": 1
+    },
+    {
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares",
+        "--contract",
+        "artifact-share-consumer-history/v1"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "startedAt": "2026-11-23T08:59:21.855Z",
+      "stdout": "{\n  \"reference\": \"file:references/contracts/consumer-history-v1.json\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/references/contracts/consumer-history-v1.json\",\n  \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"title\\\": \\\"artifact-share-consumer-history/v1\\\",\\n  \\\"description\\\": \\\"Owner-maintained replacement allowlist. File strings are exact historical evidence, not executable upgrade procedures. Each commit is a full source pin. Current assets emit schemaVersion. The sole accepted unversioned historical format has this complete structure without schemaVersion; readers validate its structure as v1 without rewriting it. Unknown explicit identifiers, duplicate JSON keys, unknown fields and malformed snapshots reject before clone planning or mutation. Historical evidence strings and pins remain unchanged when adding snapshots. No automatic asset conversion or publication authorization is declared.\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"additionalProperties\\\": false,\\n  \\\"required\\\": [\\\"schemaVersion\\\", \\\"sourceRepository\\\", \\\"commit\\\", \\\"files\\\", \\\"previous\\\", \\\"initial\\\", \\\"latest\\\"],\\n  \\\"properties\\\": {\\n    \\\"schemaVersion\\\": {\\\"const\\\": \\\"artifact-share-consumer-history/v1\\\"},\\n    \\\"sourceRepository\\\": {\\\"type\\\": \\\"string\\\", \\\"pattern\\\": \\\"^https://[^/]+/.+\\\"},\\n    \\\"commit\\\": {\\\"$ref\\\": \\\"#/definitions/commit\\\"},\\n    \\\"files\\\": {\\\"$ref\\\": \\\"#/definitions/baseFiles\\\"},\\n    \\\"previous\\\": {\\\"$ref\\\": \\\"#/definitions/pairSnapshot\\\"},\\n    \\\"initial\\\": {\\\"$ref\\\": \\\"#/definitions/metadataSnapshot\\\"},\\n    \\\"latest\\\": {\\\"$ref\\\": \\\"#/definitions/metadataSnapshot\\\"},\\n    \\\"reviewed\\\": {\\\"$ref\\\": \\\"#/definitions/pairSnapshot\\\"}\\n  },\\n  \\\"definitions\\\": {\\n    \\\"commit\\\": {\\\"type\\\": \\\"string\\\", \\\"pattern\\\": \\\"^(?:[a-f0-9]{40}|[a-f0-9]{64})$\\\"},\\n    \\\"source\\\": {\\\"type\\\": \\\"string\\\", \\\"minLength\\\": 1},\\n    \\\"baseFiles\\\": {\\n      \\\"type\\\": \\\"object\\\", \\\"additionalProperties\\\": false,\\n      \\\"required\\\": [\\\".mise/tasks/checks/types.ts\\\", \\\"press.config.tsx\\\"],\\n      \\\"properties\\\": {\\n        \\\".mise/tasks/checks/types.ts\\\": {\\\"$ref\\\": \\\"#/definitions/source\\\"},\\n        \\\"press.config.tsx\\\": {\\\"$ref\\\": \\\"#/definitions/source\\\"}\\n      }\\n    },\\n    \\\"pairFiles\\\": {\\n      \\\"type\\\": \\\"object\\\", \\\"additionalProperties\\\": false,\\n      \\\"required\\\": [\\\"src/share-metadata.ts\\\", \\\"press.config.tsx\\\"],\\n      \\\"properties\\\": {\\n        \\\"src/share-metadata.ts\\\": {\\\"$ref\\\": \\\"#/definitions/source\\\"},\\n        \\\"press.config.tsx\\\": {\\\"$ref\\\": \\\"#/definitions/source\\\"}\\n      }\\n    },\\n    \\\"metadataFiles\\\": {\\n      \\\"type\\\": \\\"object\\\", \\\"additionalProperties\\\": false,\\n      \\\"required\\\": [\\\"src/share-metadata.ts\\\"],\\n      \\\"properties\\\": {\\\"src/share-metadata.ts\\\": {\\\"$ref\\\": \\\"#/definitions/source\\\"}}\\n    },\\n    \\\"pairSnapshot\\\": {\\n      \\\"type\\\": \\\"object\\\", \\\"additionalProperties\\\": false, \\\"required\\\": [\\\"commit\\\", \\\"files\\\"],\\n      \\\"properties\\\": {\\\"commit\\\": {\\\"$ref\\\": \\\"#/definitions/commit\\\"}, \\\"files\\\": {\\\"$ref\\\": \\\"#/definitions/pairFiles\\\"}}\\n    },\\n    \\\"metadataSnapshot\\\": {\\n      \\\"type\\\": \\\"object\\\", \\\"additionalProperties\\\": false, \\\"required\\\": [\\\"commit\\\", \\\"files\\\"],\\n      \\\"properties\\\": {\\\"commit\\\": {\\\"$ref\\\": \\\"#/definitions/commit\\\"}, \\\"files\\\": {\\\"$ref\\\": \\\"#/definitions/metadataFiles\\\"}}\\n    }\\n  }\\n}\\n\"\n}\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "intermediate_failures": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "exit_code": 1,
+      "result": "36 pass, 1 fail, 708 assertions: Node MDX build cannot call Bun.YAML. Corrected by routing parsed loader data through the shared pure metadata interpreter; final suite passed."
+    }
+  ],
+  "byte_preservation": {
+    "unknown_history_preview": true,
+    "unknown_history_confirm": true,
+    "preview_clone": true,
+    "configuration": true,
+    "historical_evidence": true,
+    "rejected_mdx": true
+  },
+  "behavior": {
+    "real_current_mdx_rendered_hash": "abc123def456",
+    "invalid_hash_rejected": true,
+    "missing_source_rejected": true,
+    "full_suite_historical_and_current_boundaries": true,
+    "complete_history_structure_and_duplicates": true,
+    "temporary_no_remote_fixtures": true
+  },
+  "tooling_notes": [
+    "TypeScript language server did not return a diagnostics report after two requests; not counted as a check. Isolated site tsc --noEmit passed."
+  ],
+  "resources": {
+    "run_id": "dfff9576-c77a-4db4-b340-e506c75ed528",
+    "pane_id": "t23d",
+    "temporary_fixtures_removed": [
+      "/tmp/artifact-inspect-fZoTSf",
+      "/tmp/artifact-cli-smoke-apZWJY"
+    ],
+    "owned_domain_services": [],
+    "child_shutdown": "pending-parent"
+  },
+  "remote_operations": false
+}

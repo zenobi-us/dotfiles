@@ -1,0 +1,125 @@
+{
+  "report": {
+    "schemaVersion": "muxer-resource-report/v2",
+    "manifest": {
+      "schemaVersion": "muxer-run/v2",
+      "runId": "dfff9576-c77a-4db4-b340-e506c75ed528",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t23d",
+      "createdAt": "2026-11-23T08:48:09.096Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "operationId": "skill-contract-manifests-11-artifact-sharing-fix-5"
+    },
+    "resources": {
+      "schemaVersion": "muxer-resources/v2",
+      "runId": "dfff9576-c77a-4db4-b340-e506c75ed528",
+      "observedAt": "2026-11-23T09:06:14.685Z",
+      "processes": [
+        {
+          "pid": 3837877,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12899117",
+          "command": "omp",
+          "parentPid": 3837516,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3839523,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12906224",
+          "command": "omp daemon brok",
+          "parentPid": 3837877,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3839549,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12906229",
+          "command": "omp",
+          "parentPid": 3839523,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3839572,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12906235",
+          "command": "node",
+          "parentPid": 3839549,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3839584,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12906242",
+          "command": "node",
+          "parentPid": 3839572,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3839585,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12906242",
+          "command": "node",
+          "parentPid": 3839572,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3839598,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12906260",
+          "command": "node",
+          "parentPid": 3839585,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3840702,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12908995",
+          "command": "omp",
+          "parentPid": 3837877,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3883534,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12957135",
+          "command": "bun",
+          "parentPid": 3837877,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        },
+        {
+          "pid": 3884120,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12958618",
+          "command": "bunx",
+          "parentPid": 3883534,
+          "cwd": "/tmp/artifact-site-contract-2qYjpc",
+          "state": "stopped"
+        },
+        {
+          "pid": 3884160,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12958628",
+          "command": "MainThread",
+          "parentPid": 3884120,
+          "cwd": "/tmp/artifact-site-contract-2qYjpc",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  },
+  "pane_removed": true,
+  "domain_services": [],
+  "closure": "Graceful Ctrl-D stopped owned agent/workers before shell terminal removal."
+}

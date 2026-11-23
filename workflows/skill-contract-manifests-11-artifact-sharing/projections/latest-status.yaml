@@ -2,13 +2,13 @@
   "schemaVersion": "worktree-latest-status/v2",
   "workflow_id": "skill-contract-manifests-11-artifact-sharing",
   "ticket": "tracker/tickets/skill-contract-manifests-11-artifact-sharing.md",
-  "state": "REVIEW_FAILED",
-  "latest_receipt": "review-complete-0033",
-  "latest_source_commit": "8b616592357dd7c5c7472b54d3e946029bd2d2a9",
-  "latest_source_tree": "d3d9d6e312b93131799b44b1d11b49d07bd1ebb8",
+  "state": "FIXED",
+  "latest_receipt": "fix-complete-0041",
+  "latest_source_commit": "7eeefdfed44d18bc6bea9c482b438bf4e43f6ef8",
+  "latest_source_tree": "b70d4a21bb53f54c5c41a47e036842d192add4ca",
   "latest_review_verdict": FAILURE,
-  "review_stale": false,
-  "current_source_review_verdict": FAILURE,
+  "review_stale": true,
+  "current_source_review_verdict": null,
   "review_receipt": "review-result-0032",
   "resolved_findings":
     [
@@ -17,53 +17,10 @@
       "STANDARDS-002",
       "SPEC-002",
       "SPEC-003",
-      "SPEC-004"
+      "SPEC-004",
+      "STANDARDS-003",
+      "SPEC-005"
     ],
-  "open_findings":
-    [
-      {
-          adr: NO ADR,
-          description: The actual MDX consumer applies an optional z.string() hash and
-            optional owned fields rather than the declared metadata/v2 contract.
-            An explicit v2 page with hash xyz can build successfully while
-            readShareMetadata and the repository checker reject it.
-            metadata-v2.json requires the owned fields and a 12-character
-            lowercase hexadecimal hash. This blocks consistent contract
-            validation at the independently consumed site boundary.,
-          file: mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/assets/repo-template/press.config.tsx,
-          id: STANDARDS-003,
-          line: 15,
-          required_change: Apply the complete owned metadata validation after historical
-            interpretation for share documents at the MDX boundary. Preserve
-            support for ordinary non-share content pages.,
-          severity: P2,
-          validation_command: mise exec -- bun test
-            mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test/site.test.ts
-            (include malformed string hashes and missing required fields)
-        },
-      {
-          adr: NO ADR,
-          description: "The new consumer-history.json structured asset controls the
-            replacement allowlist but has no declared contract, accepted-format
-            policy, or content validator. consumers.ts uses only a TypeScript
-            assertion. The initiative says structured assets need contracts when
-            consumers depend on their structure or meaning, and unknown explicit
-            identifiers must reject interpretation. An unknown explicit asset
-            version is ignored before consumer replacement.",
-          file: mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/consumers.ts,
-          id: SPEC-005,
-          line: 11,
-          required_change: "Declare the owned consumer-history asset contract,
-            authoritative definition, accepted formats and handling of the
-            present unversioned asset. Validate identity and complete structure
-            before planning or writing replacements; preserve clone bytes on
-            rejection.",
-          severity: P2,
-          validation_command: "In an isolated skill installation, invoke cli.ts upgrade
-            private --dry-run and cli.ts upgrade private --confirm private with
-            consumer-history.json declaring an unknown explicit version; both
-            must reject with clone bytes unchanged."
-        }
-    ],
-  "next_action": "Fresh authorized fixer for STANDARDS-003 and SPEC-005 after ownership and liveness checks. Reviewer shutdown is confirmed."
+  "open_findings": [],
+  "next_action": "Fresh independent review of committed source 7eeefdfed44d18bc6bea9c482b438bf4e43f6ef8. Owned-process shutdown is confirmed."
 }

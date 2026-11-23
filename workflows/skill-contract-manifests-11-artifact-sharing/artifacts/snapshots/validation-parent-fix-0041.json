@@ -1,0 +1,43 @@
+{
+  "result": "PASS",
+  "scenario": "Supported history preview succeeds; unknown history version rejects preview and confirmed upgrade without changing any clone or config byte",
+  "records": [
+    {
+      "argv": [
+        "/tmp/artifact-contract-parent-gBjCt2/runtime/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "upgrade",
+        "private",
+        "--dry-run"
+      ],
+      "cwd": "/tmp/artifact-contract-parent-gBjCt2",
+      "stdout": "{\n  \"dryRun\": true,\n  \"changedFiles\": [\n    \".mise/tasks/checks/types.ts\",\n    \"src/share-metadata.ts\",\n    \"press.config.tsx\"\n  ],\n  \"unchanged\": false,\n  \"remoteOperations\": false\n}\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "/tmp/artifact-contract-parent-gBjCt2/runtime/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "upgrade",
+        "private",
+        "--dry-run"
+      ],
+      "cwd": "/tmp/artifact-contract-parent-gBjCt2",
+      "stdout": "",
+      "stderr": "Error: Unsupported explicit consumer history contract.\n",
+      "exit_code": 1
+    },
+    {
+      "argv": [
+        "/tmp/artifact-contract-parent-gBjCt2/runtime/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "upgrade",
+        "private",
+        "--confirm",
+        "private"
+      ],
+      "cwd": "/tmp/artifact-contract-parent-gBjCt2",
+      "stdout": "",
+      "stderr": "Error: Unsupported explicit consumer history contract.\n",
+      "exit_code": 1
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "run_id": "abac5480-cdf6-4521-bf10-4f5d61ed4a01",
+  "operation_id": "skill-contract-manifests-11-artifact-sharing-fix-4",
+  "terminal": "t23b",
+  "failure": "Codex is at capacity, please try again later",
+  "code": "turn_rate_limit_exceeded",
+  "retry_after_ms": 431000,
+  "runtime_failure": "Provider requested 431000ms wait, exceeds retry.maxDelayMs (300000ms)",
+  "completion_signal": "failed",
+  "source_changed": false,
+  "source_commit": "8b616592357dd7c5c7472b54d3e946029bd2d2a9",
+  "source_tree": "d3d9d6e312b93131799b44b1d11b49d07bd1ebb8",
+  "source_dirty": false,
+  "shutdown": {
+    "schemaVersion": "muxer-resource-report/v2",
+    "manifest": {
+      "schemaVersion": "muxer-run/v2",
+      "runId": "abac5480-cdf6-4521-bf10-4f5d61ed4a01",
+      "muxer": "herdr-app",
+      "agent": "omp",
+      "target": "t23b",
+      "createdAt": "2026-11-23T08:39:03.111Z",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "operationId": "skill-contract-manifests-11-artifact-sharing-fix-4"
+    },
+    "resources": {
+      "schemaVersion": "muxer-resources/v2",
+      "runId": "abac5480-cdf6-4521-bf10-4f5d61ed4a01",
+      "observedAt": "2026-11-23T08:40:30.457Z",
+      "processes": [
+        {
+          "pid": 3785477,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "12844519",
+          "command": "omp",
+          "parentPid": 3785106,
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+          "state": "stopped"
+        }
+      ],
+      "shutdown": "confirmed"
+    }
+  },
+  "pane_removed": true,
+  "retry_policy": "Observe the requested delay, then allocate one fresh fixer session. Do not reuse failed process or invent child result."
+}

@@ -176,3 +176,25 @@ The affected suite passed 36 tests with 275 assertions. Actual MDX/checker and i
 
 [Parent completion](../events/review-complete-0033.yaml) records validated typed delivery, unchanged frozen source and the canonical ticket comment. The reviewer and both nested axes stopped. Their owned tabs were removed. [Shutdown evidence](../artifacts/snapshots/resources-review-complete-0033.json). No source edit, merge or push ran. Next: authorize a fresh fixer for STANDARDS-003 and SPEC-005.
 
+
+## Fix attempt 4 — provider launch failure
+
+The fresh fixer failed before any implementation because the provider returned `turn_rate_limit_exceeded` with a 431000ms retry delay. The runtime rejected that delay because it exceeds its 300000ms limit. [Failure evidence](../artifacts/snapshots/launch-failure-fix-0037.json); [accurate missing-result closure](../events/fix-launch-failed-0037.yaml). No child result or resolved finding was invented. Source remains clean at `8b616592357dd7c5c7472b54d3e946029bd2d2a9`. The failed process stopped and its owned tab was removed.
+
+The parent will observe the provider delay, then inspect ownership and reservations before a new fixer session. STANDARDS-003 and SPEC-005 remain open.
+
+
+
+## Fix 0040 — FIXED, pending fresh independent review
+
+Source `7eeefdfed44d18bc6bea9c482b438bf4e43f6ef8` / `b70d4a21bb53f54c5c41a47e036842d192add4ca`. STANDARDS-003 and SPEC-005 now pass actual MDX and owning CLI behavior checks. The affected suite passed 37 tests and 801 assertions. Current review verdict is null; all historical FAILURE records remain retained and stale for this source.
+
+Inputs: `review-result-0032`, `fix-approval-0038`, `fix-start-0039`, recovery `fix-approval-0034` / `fix-launch-failed-0037`, and `artifacts/snapshots/coordination-fix-0039.json`. Outputs: `events/fix-result-0040.yaml`, `artifacts/snapshots/validation-fix-0040.json`, `artifacts/snapshots/pr-draft-fix-0040.md`. No tracker mutation, merge, push or remote publication. Parent owns fresh review, workflow commits and live child shutdown.
+
+
+## Parent fix completion 0041
+
+[fix-complete-0041](../events/fix-complete-0041.yaml) validates [fix-result-0040](../events/fix-result-0040.yaml), the assigned delivery and clean committed source `7eeefdfed44d18bc6bea9c482b438bf4e43f6ef8`. STANDARDS-003 and SPEC-005 are resolved. The parent exercised the actual isolated upgrade CLI: supported history preview passed; unknown history versions rejected preview and confirmed replacement with clone and configuration bytes unchanged. [Parent proof](../artifacts/snapshots/validation-parent-fix-0041.json).
+
+The fixer exited with Ctrl-D before its terminal was removed. [Owned-resource observation](../artifacts/snapshots/resources-fix-complete-0041.json) confirms shutdown. No domain service remains. The provider-failed attempt and recovery approvals remain in history. No merge or push ran. Fresh independent review is next because the source changed.
+
