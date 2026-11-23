@@ -1,0 +1,265 @@
+{
+  "observations": [
+    {
+      "schemaVersion": "muxer-resource-report/v2",
+      "manifest": {
+        "schemaVersion": "muxer-run/v2",
+        "runId": "094b6415-2eba-41d0-b48a-e8bd909eab50",
+        "muxer": "herdr-app",
+        "agent": "omp",
+        "target": "t251",
+        "createdAt": "2026-11-23T11:13:15.353Z",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "operationId": "skill-contract-manifests-11-artifact-sharing-review-5"
+      },
+      "resources": {
+        "schemaVersion": "muxer-resources/v2",
+        "runId": "094b6415-2eba-41d0-b48a-e8bd909eab50",
+        "observedAt": "2026-11-23T11:38:47.625Z",
+        "processes": [
+          {
+            "pid": 139132,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "13769744",
+            "command": "omp",
+            "parentPid": 138749,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+            "state": "stopped"
+          },
+          {
+            "pid": 143703,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "13776380",
+            "command": "omp",
+            "parentPid": 139132,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+            "state": "stopped"
+          },
+          {
+            "pid": 161362,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "13785647",
+            "command": "omp daemon brok",
+            "parentPid": 139132,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+            "state": "stopped"
+          },
+          {
+            "pid": 161413,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "13785653",
+            "command": "omp",
+            "parentPid": 161362,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+            "state": "stopped"
+          },
+          {
+            "pid": 161458,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "13785658",
+            "command": "node",
+            "parentPid": 161413,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+            "state": "stopped"
+          },
+          {
+            "pid": 161479,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "13785665",
+            "command": "node",
+            "parentPid": 161458,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+            "state": "stopped"
+          },
+          {
+            "pid": 161480,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "13785666",
+            "command": "node",
+            "parentPid": 161458,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+            "state": "stopped"
+          },
+          {
+            "pid": 161552,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "13785686",
+            "command": "node",
+            "parentPid": 161480,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+            "state": "stopped"
+          }
+        ],
+        "shutdown": "confirmed"
+      }
+    },
+    {
+      "schemaVersion": "muxer-resource-report/v2",
+      "manifest": {
+        "schemaVersion": "muxer-run/v2",
+        "runId": "aa2c49a7-03d2-43fd-854a-3cff98b87483",
+        "muxer": "herdr-app",
+        "agent": "omp",
+        "target": "t254",
+        "createdAt": "2026-11-23T11:14:35.633Z",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "operationId": "aa2c49a7-03d2-43fd-854a-3cff98b87483",
+        "parentRunId": "094b6415-2eba-41d0-b48a-e8bd909eab50"
+      },
+      "resources": {
+        "schemaVersion": "muxer-resources/v2",
+        "runId": "aa2c49a7-03d2-43fd-854a-3cff98b87483",
+        "observedAt": "2026-11-23T11:38:48.063Z",
+        "processes": [
+          {
+            "pid": 145222,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "13777795",
+            "command": "omp",
+            "parentPid": 144603,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+            "state": "stopped"
+          },
+          {
+            "pid": 162287,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "13785911",
+            "command": "omp",
+            "parentPid": 145222,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+            "state": "stopped"
+          }
+        ],
+        "shutdown": "confirmed"
+      }
+    },
+    {
+      "schemaVersion": "muxer-resource-report/v2",
+      "manifest": {
+        "schemaVersion": "muxer-run/v2",
+        "runId": "7a5b19a2-3197-4ae0-a718-be25710fc3f8",
+        "muxer": "herdr-app",
+        "agent": "omp",
+        "target": "t255",
+        "createdAt": "2026-11-23T11:14:35.624Z",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "operationId": "7a5b19a2-3197-4ae0-a718-be25710fc3f8",
+        "parentRunId": "094b6415-2eba-41d0-b48a-e8bd909eab50"
+      },
+      "resources": {
+        "schemaVersion": "muxer-resources/v2",
+        "runId": "7a5b19a2-3197-4ae0-a718-be25710fc3f8",
+        "observedAt": "2026-11-23T11:38:48.494Z",
+        "processes": [
+          {
+            "pid": 145264,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "13777796",
+            "command": "omp",
+            "parentPid": 144613,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+            "state": "stopped"
+          }
+        ],
+        "shutdown": "confirmed"
+      }
+    }
+  ],
+  "pane_removed": true,
+  "owned_terminals": [
+    "t251",
+    "t254",
+    "t255"
+  ],
+  "extra_cleanup": [
+    {
+      "pid": 145222,
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "13777795",
+      "signal": "SIGTERM",
+      "authorization": "User selected Stop owned review processes"
+    },
+    {
+      "pid": 162287,
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "13785911",
+      "signal": "SIGTERM",
+      "authorization": "User selected Stop owned review processes"
+    },
+    {
+      "pid": 161362,
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "13785647",
+      "command": "omp daemon brok",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "state": "running",
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 161413,
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "13785653",
+      "command": "omp",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "state": "running",
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 161458,
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "13785658",
+      "command": "node",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "state": "running",
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 161479,
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "13785665",
+      "command": "node",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "state": "running",
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 161480,
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "13785666",
+      "command": "node",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "state": "running",
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 161552,
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "13785686",
+      "command": "node",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "state": "running",
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 145222,
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "13777795",
+      "command": "omp",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "state": "running",
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 145222,
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "13777795",
+      "command": "omp",
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "state": "running",
+      "signal": "SIGKILL",
+      "observed_state": "T"
+    }
+  ],
+  "authorization": "User approved named Standards SIGTERM and then targeted remaining review process cleanup, with SIGKILL if necessary. Boot ID and start ticks rechecked before every signal.",
+  "domain_services": []
+}
