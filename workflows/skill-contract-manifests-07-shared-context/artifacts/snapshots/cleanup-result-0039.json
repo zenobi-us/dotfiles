@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "/home/zenobius/.omp/agent/bundles/developer/skills/git/cleanup-merged/scripts/cleanup-merged.ts",
+    "remove",
+    "feature/skill-contract-manifests-07-shared-context",
+    "resolve/skill-contract-manifests-07-shared-context-finish",
+    "integration/11b5ce0f-b62d-4cbc-86dc-8ecd0b3cc10a",
+    "--min-age=0s"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "exit_code": 0,
+  "stdout": "{\n  \"removed\": [\n    \"feature/skill-contract-manifests-07-shared-context\",\n    \"resolve/skill-contract-manifests-07-shared-context-finish\",\n    \"integration/11b5ce0f-b62d-4cbc-86dc-8ecd0b3cc10a\"\n  ],\n  \"refused\": []\n}\n",
+  "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+}

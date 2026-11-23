@@ -1,25 +1,25 @@
 ---
 schemaVersion: worktree-pr-draft/v1
 workflow_id: skill-contract-manifests-07-shared-context
-receipt_id: finish-ticket-completed-0037
+receipt_id: finish-complete-0041
 source_commit: 109f3e0ebf668a6ab9d0002af19c906da4298c94
 source_tree: 290dad56a125ae56be029fa773889ef054d237da
 ---
-# Published implementation; cleanup decision pending
+# Finished: shared-context contract adoption
 
-## Ticket and implementation
+## Outcome and ticket
 
-Ticket: `tracker/tickets/skill-contract-manifests-07-shared-context.md`. State: completed and published. Initiative: `tracker/initiatives/skill-contract-manifests/index.md`.
+FINISHED. Ticket `tracker/tickets/skill-contract-manifests-07-shared-context.md` is completed and published. Initiative: `tracker/initiatives/skill-contract-manifests/index.md`. No required action remains.
 
-The implementation declares shared-context-owned contracts, validates actual resolution/index/configuration boundaries, supports explicit safe upgrades, and preserves authored data and historical records. External tracker and workflow definitions remain with their owners. Logical identity and lexical upgrade reporting retain canonical safety guards.
+## Implementation and accepted identities
 
-## Accepted source and integration
+The implementation declares shared-context-owned formats and validates resolution, indexing, configuration, and explicit supported upgrades at operation boundaries. It preserves authored data, historical records, lexical upgrade reporting and canonical safety checks. External tracker and workflow definitions remain with their owners.
 
-Reviewed branch: `resolve/skill-contract-manifests-07-shared-context-finish`. Source commit: `109f3e0ebf668a6ab9d0002af19c906da4298c94`. Source tree: `290dad56a125ae56be029fa773889ef054d237da`. Review: SUCCESS, review-0031.
+Reviewed source: `109f3e0ebf668a6ab9d0002af19c906da4298c94`, tree `290dad56a125ae56be029fa773889ef054d237da`. Reviewed branch `resolve/skill-contract-manifests-07-shared-context-finish` is now removed. Independent review-0031 returned SUCCESS.
 
-Squash integration: `ff00b84a216da298bfd46cd3f9f0bbd440dc81f5`. Tree: `f816e88568c1c48a94cf7cb1f7755f16aa002cbf`. Sole parent: `0a368e83c2e88715b2e2095ce0135b790c6b7916`. Target: `origin/master`. Non-force publication succeeded. The later tracker commit `ce509930c4e65b9b96c10f1c37a5d234087b5042` is published and contains the integration in its ancestry.
+Squash integration: `ff00b84a216da298bfd46cd3f9f0bbd440dc81f5`. Integration tree: `f816e88568c1c48a94cf7cb1f7755f16aa002cbf`. Sole parent: `0a368e83c2e88715b2e2095ce0135b790c6b7916`. Source and tracker publication were verified on `origin/master`; tracker commit `ce509930c4e65b9b96c10f1c37a5d234087b5042` and integration commit are reachable from observed remote tip `ce509930c4e65b9b96c10f1c37a5d234087b5042`. Later journal commits do not change that acceptance mapping.
 
-## Changed files
+## Product changed files
 
 - `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
 - `mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json`
@@ -46,26 +46,42 @@ Squash integration: `ff00b84a216da298bfd46cd3f9f0bbd440dc81f5`. Tree: `f816e8856
 
 ## Verification
 
-Fresh source review ran 263 tests with 1,299 assertions and no failures. Actual owning commands proved preservation, supported upgrades, rejected writes, retained migration plans, identity recovery and worktree/backlog consumers. No typecheck is claimed.
+Exact source review passed 263 tests with 1,299 assertions and no failures. Actual owning commands proved logical alias indexing, authored-byte preservation, rejected persistence, route changes, supported partial bulk upgrades, retained migration plans, physical source-copy preservation, equivalent identity recovery, and worktree/backlog consumer compatibility.
 
-The integration helper ran configured pre-merge hooks, real dependency preparation, the affected suite, and actual ticket resolution. All four commands returned exit 0 and bind to the exact integration commit/tree. Successful retained suite stdout does not include assertion totals; no separate integration count is claimed.
+The integration helper ran configured pre-merge hooks, real dependency preparation, the affected suite and actual ticket resolution. Every command returned exit 0 and is bound to the actual integration commit/tree. Retained successful suite stdout omits assertion totals; no separate integration count is claimed. Canonical backend update, readback, publication ancestry and cleanup guards passed. No typecheck is claimed.
 
-Canonical backend update and readback confirmed completed. Source and tracker commits are reachable from observed remote tip `ce509930c4e65b9b96c10f1c37a5d234087b5042`. The unrelated `mise/conf.d/devtools-omp/config.yml` bytes match the private pre-integration fingerprint.
+## Review history and findings
 
-## Review history and remaining findings
+| Review | Source | Verdict |
+| --- | --- | --- |
+| review-0005 | 2d577903 | FAILURE |
+| review-0011 | 3a70f87b | FAILURE |
+| review-0018 | fc4bf19e | FAILURE |
+| review-0024 | 79250a53 | SUCCESS for original source |
+| review-0031 | 109f3e0e | SUCCESS for resolved source |
 
-Reviews remain immutable: review-0005 FAILURE at 2d577903; review-0011 FAILURE at 3a70f87b; review-0018 FAILURE at fc4bf19e; review-0024 SUCCESS at 79250a53; review-0031 SUCCESS at 109f3e0e. Their artifacts remain under `workflows/skill-contract-manifests-07-shared-context/artifacts/reviews/`. Earlier implementation and fix history is retained.
+Review artifacts remain immutable under `workflows/skill-contract-manifests-07-shared-context/artifacts/reviews/`. Earlier implementation and fix history remains intact. Parent completion review-complete-0032 corrects earlier pre-commit tree annotations; the fresh source and integration checks bind to their exact committed identities.
 
-No blocker remains in the implementation. STD-0018-01, STD-0031-01 and STD-0031-02 are nonblocking P3 heuristics. Parent completion review-complete-0032 corrects earlier pre-commit tree claims without rewriting historical records.
+No blocker remains. STD-0018-01, STD-0031-01 and STD-0031-02 are nonblocking P3 heuristics. No optional refactor was added.
 
-## Cleanup gate and open decision
+## Cleanup and preservation
 
-All registered review processes stopped; their tabs and source app space are absent. The three filesystem worktrees remain preserved. Worktrunk reports integration/11b5ce0f-b62d-4cbc-86dc-8ecd0b3cc10a as ancestor and the resolved source as merge_adds_nothing. It does not list the original feature source as a prune candidate: that clean branch at 79250a53 would_conflict with master.
+All three registered review runs stopped and their tabs closed. No recorded source/candidate app space remains. cleanup-merged removed exactly these local branches and worktrees, with no refusal:
 
-The original commit remains an ancestor of the retained `refs/worktree-reviews/109f3e0ebf668a6ab9d0002af19c906da4298c94` at 109f3e0e. Proposed operator step: fast-forward only the local original branch to that exact approved descendant through Worktrunk, then let cleanup-merged recheck all three named resources. This creates no commit, rewrites no commit, uses no force and changes no remote source branch. It has not been executed.
+- `feature/skill-contract-manifests-07-shared-context` — removed.
+- `resolve/skill-contract-manifests-07-shared-context-finish` — removed.
+- `integration/11b5ce0f-b62d-4cbc-86dc-8ecd0b3cc10a` — removed.
 
-Finish is not yet FINISHED. The user must approve that local cleanup step or preserve the worktrees with cleanup pending. Published implementation and ticket completion remain accepted.
+The user explicitly approved the original branch's local fast-forward from 79250a53 to the already-reviewed descendant 109f3e0e. Worktrunk performed the fast-forward without creating or rewriting commits. Normal prune guards then accepted all three branches. No force, hook-approval bypass, broad kill or remote branch deletion was used. Fresh remove-hook port checks found no listeners.
+
+The reviewed source remains under local `refs/worktree-reviews/109f3e0ebf668a6ab9d0002af19c906da4298c94`; original commit 79250a53 remains its ancestor. This local retention is not remote source-object publication. The unrelated `mise/conf.d/devtools-omp/config.yml` bytes are unchanged. Unrelated workspaces and branches remain untouched.
+
+## Coverage limits and remote notice
+
+TypeScript was unavailable in the prior workspace, so no typecheck is claimed. The GitHub push reported four dependency vulnerability alerts, including one high and three moderate. This task did not assess those alerts.
 
 ## Canonical evidence
 
-Review: `workflows/skill-contract-manifests-07-shared-context/events/review-0031.yaml` and `workflows/skill-contract-manifests-07-shared-context/artifacts/reviews/review-review-0031.md`. Integration: `workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/integration-result-finish-0033.json`. Publication checkpoint: `workflows/skill-contract-manifests-07-shared-context/events/finish-pushed-0036.yaml`. Completed ticket checkpoint: `workflows/skill-contract-manifests-07-shared-context/events/finish-ticket-completed-0037.yaml`. Cleanup assessment: `workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/cleanup-assessment-finish-0033.json`.
+Final receipt: `workflows/skill-contract-manifests-07-shared-context/events/finish-complete-0041.yaml`. Terminal result: `workflows/skill-contract-manifests-07-shared-context/events/finish-0040.yaml`. Review: `workflows/skill-contract-manifests-07-shared-context/events/review-0031.yaml` and `workflows/skill-contract-manifests-07-shared-context/artifacts/reviews/review-review-0031.md`.
+
+Publication: `workflows/skill-contract-manifests-07-shared-context/events/finish-pushed-0036.yaml`. Ticket: `workflows/skill-contract-manifests-07-shared-context/events/finish-ticket-completed-0037.yaml`. Cleanup approval: `workflows/skill-contract-manifests-07-shared-context/events/cleanup-approval-0038.yaml`. Removal: `workflows/skill-contract-manifests-07-shared-context/events/finish-worktrees-removed-0039.yaml`. Detailed operation outputs remain under `workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/`.

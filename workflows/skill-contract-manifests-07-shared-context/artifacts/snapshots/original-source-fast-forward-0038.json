@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "wt",
+    "-C",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+    "step",
+    "push",
+    "feature/skill-contract-manifests-07-shared-context",
+    "--format=json"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "exit_code": 0,
+  "output": {
+    "commits": 116,
+    "outcome": "fast_forwarded",
+    "target": "feature/skill-contract-manifests-07-shared-context"
+  }
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "branch": "feature/skill-contract-manifests-07-shared-context",
+    "workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-07-shared-context",
+    "preview": "○ pre-remove user:server would run:\n  lsof -ti :15522 -sTCP:LISTEN | xargs kill 2>/dev/null || true\n\n",
+    "argv": [
+      "lsof",
+      "-nP",
+      "-t",
+      "-iTCP:15522",
+      "-sTCP:LISTEN"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "",
+    "observed_at": "2026-11-23T06:33:53.486Z",
+    "listeners": []
+  },
+  {
+    "branch": "resolve/skill-contract-manifests-07-shared-context-finish",
+    "workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+    "preview": "○ pre-remove user:server would run:\n  lsof -ti :15088 -sTCP:LISTEN | xargs kill 2>/dev/null || true\n\n",
+    "argv": [
+      "lsof",
+      "-nP",
+      "-t",
+      "-iTCP:15088",
+      "-sTCP:LISTEN"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "",
+    "observed_at": "2026-11-23T06:33:53.641Z",
+    "listeners": []
+  },
+  {
+    "branch": "integration/11b5ce0f-b62d-4cbc-86dc-8ecd0b3cc10a",
+    "workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-11b5ce0f-b62d-4cbc-86dc-8ecd0b3cc10a",
+    "preview": "○ pre-remove user:server would run:\n  lsof -ti :18906 -sTCP:LISTEN | xargs kill 2>/dev/null || true\n\n",
+    "argv": [
+      "lsof",
+      "-nP",
+      "-t",
+      "-iTCP:18906",
+      "-sTCP:LISTEN"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "",
+    "observed_at": "2026-11-23T06:33:53.794Z",
+    "listeners": []
+  }
+]

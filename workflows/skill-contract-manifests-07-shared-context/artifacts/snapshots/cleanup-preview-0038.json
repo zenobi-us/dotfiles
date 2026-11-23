@@ -1,0 +1,31 @@
+{
+  "repo": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "target": "master",
+  "removable": [
+    {
+      "branch": "feature/skill-contract-manifests-07-shared-context",
+      "branch_deleted": true,
+      "kind": "worktree",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-07-shared-context",
+      "reason": "all changes in",
+      "target": "master"
+    },
+    {
+      "branch": "integration/11b5ce0f-b62d-4cbc-86dc-8ecd0b3cc10a",
+      "branch_deleted": true,
+      "kind": "worktree",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-11b5ce0f-b62d-4cbc-86dc-8ecd0b3cc10a",
+      "reason": "ancestor of",
+      "target": "master"
+    },
+    {
+      "branch": "resolve/skill-contract-manifests-07-shared-context-finish",
+      "branch_deleted": true,
+      "kind": "worktree",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+      "reason": "all changes in",
+      "target": "master"
+    }
+  ],
+  "kept": []
+}
