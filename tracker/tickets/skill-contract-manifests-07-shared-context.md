@@ -8,7 +8,7 @@ sequence: 7
 title: Adopt contracts in shared-context operations
 triage: ready-for-agent
 type: enhancement
-work_status: "claimed"
+work_status: "completed"
 ---
 
 ## What to build
@@ -39,3 +39,4 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 
 - 2026-11-22T10:11:30.604Z — SUCCESS. Reviewed commit `79250a53fad0780ac51d40f17121b50d8d76ef6f`, tree `a4d55e717aa5beb4b31871622db5788e82519908`. [Independent review](../../workflows/skill-contract-manifests-07-shared-context/artifacts/reviews/review-review-0024.md).
 - 2026-11-23T05:17:27.508Z — SUCCESS. Reviewed commit `109f3e0ebf668a6ab9d0002af19c906da4298c94`, tree `290dad56a125ae56be029fa773889ef054d237da`. [Independent review](../../workflows/skill-contract-manifests-07-shared-context/artifacts/reviews/review-review-0031.md).
+- 2026-11-23T05:48:43.366Z — COMPLETED. Squash integration `ff00b84a216da298bfd46cd3f9f0bbd440dc81f5` is published on `origin/master`. Reviewed source `109f3e0ebf668a6ab9d0002af19c906da4298c94` passed independent review. [Published integration checkpoint](../../workflows/skill-contract-manifests-07-shared-context/events/finish-pushed-0036.yaml).
