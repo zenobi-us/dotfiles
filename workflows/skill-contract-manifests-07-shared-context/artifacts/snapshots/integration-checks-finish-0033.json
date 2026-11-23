@@ -1,0 +1,40 @@
+[
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "/tmp/shared-context-finish-Awgys9/prepare-dependencies.ts"
+    ]
+  },
+  {
+    "argv": [
+      "env",
+      "BUN_OPTIONS=--install=fallback",
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "test",
+      "./mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test",
+      "./mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/upgrades.test.ts",
+      "./mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.test.ts",
+      "./mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/record-upgrade.test.ts",
+      "./mise/conf.d/devtools-agent/bundles/developer/skills/backlog-grooming/scripts/grooming-report.test.ts",
+      "./mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/context-resolution.test.ts",
+      "./mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/view-contracts.test.ts",
+      "./mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts"
+    ]
+  },
+  {
+    "argv": [
+      "./mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts",
+      "resolve",
+      "ticket",
+      "--id",
+      "skill-contract-manifests-07-shared-context",
+      "--json"
+    ]
+  }
+]

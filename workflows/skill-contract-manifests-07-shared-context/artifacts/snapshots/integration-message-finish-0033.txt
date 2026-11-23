@@ -1,0 +1,8 @@
+feat: skill-contract-manifests-07-shared-context adopt contracts
+
+Ticket: tracker/tickets/skill-contract-manifests-07-shared-context.md
+Review: workflows/skill-contract-manifests-07-shared-context/events/review-0031.yaml
+Reviewed source: 109f3e0ebf668a6ab9d0002af19c906da4298c94
+Reviewed tree: 290dad56a125ae56be029fa773889ef054d237da
+
+Adopt shared-context contracts and safe supported upgrades. Preserve authored configuration, historical records, lexical reporting, and canonical guards. Integrate the approved resolved source with the current accepted base using the configured squash policy. Candidate checks must pass before publication.

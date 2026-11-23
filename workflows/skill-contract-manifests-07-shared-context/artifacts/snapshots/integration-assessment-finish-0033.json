@@ -1,0 +1,81 @@
+{
+  "review_receipt": "review-0031",
+  "review_source_commit": "109f3e0ebf668a6ab9d0002af19c906da4298c94",
+  "review_source_tree": "290dad56a125ae56be029fa773889ef054d237da",
+  "review_base_commit": "6b64c4aaad9ebc97783aaf52d4a182e38b7eef5f",
+  "base_before": "0a368e83c2e88715b2e2095ce0135b790c6b7916",
+  "base_changes_since_review": [
+    "tracker/tickets/skill-contract-manifests-07-shared-context.md",
+    "workflows/skill-contract-manifests-07-shared-context/artifacts/reviews/review-review-0031.md",
+    "workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/coordination-finish-0033.json",
+    "workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/coordination-review-0030.json",
+    "workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/pr-draft-review-complete-0032.md",
+    "workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/pr-draft-review-start-0030.md",
+    "workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/resources-review-0031-before-close.json",
+    "workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/resources-review-complete-0032.json",
+    "workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/review-inputs-0030.json",
+    "workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/review-launch-0030.json",
+    "workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/tracker-check-finish-0033.json",
+    "workflows/skill-contract-manifests-07-shared-context/events/finish-start-0033.yaml",
+    "workflows/skill-contract-manifests-07-shared-context/events/review-0031.yaml",
+    "workflows/skill-contract-manifests-07-shared-context/events/review-complete-0032.yaml",
+    "workflows/skill-contract-manifests-07-shared-context/events/review-start-0030.yaml",
+    "workflows/skill-contract-manifests-07-shared-context/events/source-approval-0029.yaml",
+    "workflows/skill-contract-manifests-07-shared-context/manifest.yaml",
+    "workflows/skill-contract-manifests-07-shared-context/projections/implementation-log.md",
+    "workflows/skill-contract-manifests-07-shared-context/projections/latest-status.yaml",
+    "workflows/skill-contract-manifests-07-shared-context/projections/pr-draft.md"
+  ],
+  "assessment": "Advancement only changes tracker/workflow metadata. No affected product interface, schema, dependency or generated bundle version changed on the base. The source candidate already includes accepted-base worktree v3/view and backlog consumers. Fresh source review plus actual candidate-bound checks establish the required compatibility boundary.",
+  "integration_method": "squash",
+  "method_policy": "Effective Worktrunk [merge] squash=true; no repository override was present.",
+  "pre_merge_hooks": "Configured hooks run through the helper with normal approval. Effective configuration showed no pre-merge or post-merge hooks.",
+  "source_resources": "Original source and approved resolved source remain preserved; all review runs stopped and source app spaces absent.",
+  "unrelated_changes": "mise/conf.d/devtools-omp/config.yml stays outside the changed paths. Private preservation fingerprint retained.",
+  "coordination_ref": "workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/coordination-finish-0033.json",
+  "coordination_inventory_complete": false,
+  "coordination_limit": "Unrelated stale linked copies/history and envelope-only source-transition observation; Git-enabled inspector validates the approved ancestry.",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_observed_before": "5248a5092e69ad4d9caa0f507bd4c37d023b5581",
+  "checks": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/tmp/shared-context-finish-Awgys9/prepare-dependencies.ts"
+      ]
+    },
+    {
+      "argv": [
+        "env",
+        "BUN_OPTIONS=--install=fallback",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "./mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/test",
+        "./mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/upgrades.test.ts",
+        "./mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.test.ts",
+        "./mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/record-upgrade.test.ts",
+        "./mise/conf.d/devtools-agent/bundles/developer/skills/backlog-grooming/scripts/grooming-report.test.ts",
+        "./mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/context-resolution.test.ts",
+        "./mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/view-contracts.test.ts",
+        "./mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts"
+      ]
+    },
+    {
+      "argv": [
+        "./mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context/scripts/shared-context/cli.ts",
+        "resolve",
+        "ticket",
+        "--id",
+        "skill-contract-manifests-07-shared-context",
+        "--json"
+      ]
+    }
+  ]
+}
