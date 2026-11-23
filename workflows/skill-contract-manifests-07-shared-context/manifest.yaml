@@ -1,11 +1,11 @@
 {
-  "schema": "worktree-workflow/v2",
+  "schemaVersion": "worktree-workflow/v3",
   "workflow_id": "skill-contract-manifests-07-shared-context",
   "ticket_ref": "tracker/tickets/skill-contract-manifests-07-shared-context.md",
   "initiative": "skill-contract-manifests",
   "event_root": "events",
   "artifact_root": "artifacts",
   "projection_root": "projections",
-  "latest_receipt": "review-complete-0025",
-  "state": "REVIEW_PASSED"
+  "latest_receipt": "finish-failed-0027",
+  "state": "FINISH_FAILED"
 }

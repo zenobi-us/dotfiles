@@ -1,0 +1,89 @@
+{
+  "original_source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-07-shared-context",
+    "branch": "feature/skill-contract-manifests-07-shared-context",
+    "base_branch": "master",
+    "commit": "79250a53fad0780ac51d40f17121b50d8d76ef6f",
+    "tree": "a4d55e717aa5beb4b31871622db5788e82519908"
+  },
+  "accepted_base": "b31360101dafd23ae07fe82dc3813973a56935e8",
+  "candidate": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+    "branch": "resolve/skill-contract-manifests-07-shared-context-finish",
+    "base_branch": "master",
+    "commit": "109f3e0ebf668a6ab9d0002af19c906da4298c94",
+    "tree": "290dad56a125ae56be029fa773889ef054d237da"
+  },
+  "candidate_parents": [
+    "79250a53fad0780ac51d40f17121b50d8d76ef6f",
+    "b31360101dafd23ae07fe82dc3813973a56935e8"
+  ],
+  "conflict_paths": [
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/matt-pocock/.claude-plugin/plugin.json"
+  ],
+  "resolution": "Preserve the higher existing version from each recorded side: agent-core 0.1.42 and matt-pocock 0.1.16. Preserve advancing-base developer 0.2.77. No product-code hunk required manual resolution.",
+  "validation": {
+    "execution_stage": "Resolved staged merge before commit; commit 109f3e0e freezes the same tested tree. Not integration-bound validation.",
+    "checked_tree": "290dad56a125ae56be029fa773889ef054d237da",
+    "head_at_execution": "79250a53fad0780ac51d40f17121b50d8d76ef6f",
+    "tests": 263,
+    "assertions": 1299,
+    "failures": 0,
+    "duration_seconds": 269.12,
+    "log": "workflows/skill-contract-manifests-07-shared-context/artifacts/snapshots/validation-finish-resolution-0026.log",
+    "actual_cli": "shared-context resolve ticket --id skill-contract-manifests-07-shared-context --json passed",
+    "manifest_checks": [
+      {
+        "argv": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "validate",
+          "--skill",
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish/mise/conf.d/devtools-agent/bundles/agent-core/skills/shared-context"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+        "exit_code": 0
+      },
+      {
+        "argv": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "validate",
+          "--skill",
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish/mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+        "exit_code": 0
+      },
+      {
+        "argv": [
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish/mise/conf.d/devtools-agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+          "validate",
+          "--skill",
+          "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish/mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree"
+        ],
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-07-shared-context-finish",
+        "exit_code": 0
+      }
+    ]
+  },
+  "coordination": {
+    "inventory_complete": false,
+    "owners": [
+      "herdr-app:t1yx"
+    ],
+    "reservations": [],
+    "hard_blockers": [],
+    "limitations": "Stale linked tracker copies, an unavailable prototype worktree, and unrelated historical goal event spelling errors. No observed source ownership or integration reservation conflict. Preserve unrelated processes and workflows."
+  },
+  "preserved_paths": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-07-shared-context",
+    "mise/conf.d/devtools-omp/config.yml"
+  ],
+  "publication": {
+    "integrated": false,
+    "pushed": false,
+    "ticket_completed": false
+  },
+  "next_step": "Explicit approval of this exact clean source candidate, then a fresh independent review with source_transition approval marker. Original SUCCESS is not transferred."
+}
