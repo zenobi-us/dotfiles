@@ -48,10 +48,11 @@ of one source is a defect.
 
 ## Frontmatter contract
 
-Every ingested Markdown file **MUST** open with these six fields, in this order:
+Every ingested Markdown file **MUST** open with these seven fields, in this order:
 
 ```yaml
 ---
+schemaVersion: "shared-context-source/v1"
 source: "confluence"
 id: "4280287398"
 title: "Leave Management - Phase 1 - Leave screen"
@@ -61,6 +62,7 @@ linked_from: ["RWR-16627"]
 ---
 ```
 
+- `schemaVersion` — `shared-context-source/v1` for a new or refreshed owned source copy.
 - `source` — the source directory name.
 - `id` — the native identifier. Use the filename stem when there is none.
 - `title` — the title the source itself reports. Trust the fetch over an older
@@ -71,8 +73,10 @@ linked_from: ["RWR-16627"]
 - `fetched_at` — UTC, ISO 8601.
 - `linked_from` — work keys that reference this file. `[]` for a `library/` file.
 
-Add source-specific fields after those six: `space`, `version`, `parent_id`,
+Add source-specific fields after those seven: `space`, `version`, `parent_id`,
 `status`, `assignee`, `updated`, `sha256`, `converter`, `page_count`, `local_copy`.
+
+Historical unversioned source copies remain readable without writes. Externally owned explicit formats remain opaque; do not stamp or convert them during indexing.
 
 `page_id` is a legacy alias for `id`, and older files use other shapes. A refresh
 is a rewrite: bring the frontmatter to this contract in the same write. Do not open
@@ -171,7 +175,7 @@ directory **inside that selected store**. Neither setting changes the other.
 Optionally add `docs/agents/context-layout.toml` under the active alignment root:
 
 ```toml
-schema = 1
+schemaVersion = "shared-context-layout/v2"
 
 [paths]
 tracker = "docs/tracker"
@@ -209,3 +213,4 @@ collection paths. Alignment migration carries the layout and tracker configurati
 with the other alignment records. Initialization carries these two configuration
 files into a newly selected shared alignment root without overwriting existing
 files. Resolve again after changing routes or configuration.
+

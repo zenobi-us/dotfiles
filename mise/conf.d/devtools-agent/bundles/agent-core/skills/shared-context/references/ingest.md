@@ -30,8 +30,9 @@ resolved storage has a usable remote.
    own skill beats the tool named there. Check `.agents/skills/` in the repository
    first.
 7. You **MUST** write the file with the full frontmatter contract from
-   `references/layout.md`. A file with no frontmatter is not ingested, it is
-   litter.
+   `references/layout.md`. Start new or refreshed owned copies with
+   `schemaVersion: "shared-context-source/v1"`. Keep externally owned formats
+   unchanged. Do not rewrite historical copies during inspection.
 8. You **MUST** run `shared-context index "<source directory>"`.
 9. If `storage` is `shared`, you **MUST** publish. Follow `references/publishing.md`
    in the same turn. The branch check there can stop the push. Report it if so.
@@ -40,7 +41,7 @@ resolved storage has a usable remote.
 
 - [ ] `shared-context` reports the active storage and the write is under its `root`.
 - [ ] The file sits in the typed source directory under the name the filename rule chose.
-- [ ] The first six frontmatter fields are present and correct.
+- [ ] The seven frontmatter fields are present and correct, including `schemaVersion: shared-context-source/v1`.
 - [ ] `index.md` lists the file with a working link, and any hand-written text in
       that index survived.
 - [ ] A second run of the same request overwrites or skips. It never creates a
@@ -63,3 +64,4 @@ end, not once per file. Commit once.
   Stop and ask.
 - A file already sits at the target path holding hand-written analysis. Stop and
   ask. See the authored-content guard in `references/layout.md`.
+

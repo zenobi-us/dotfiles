@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": ["shared-context-routes/v3", "shared-context-layout/v2", "shared-context-project/v1", "shared-context-source/v1", "shared-context-index/v1", "shared-context-resolution/v1"],
+  "accepts": ["shared-context-routes/v2", "shared-context-routes/v3", "shared-context-layout/v1", "shared-context-layout/v2", "shared-context-config/v1", "shared-context-project/v1", "shared-context-source/v1", "shared-context-index/v1"],
+  "contracts": {
+    "shared-context-routes/v2": "file:references/contracts.md",
+    "shared-context-routes/v3": "file:references/contracts.md",
+    "shared-context-layout/v1": "file:references/contracts.md",
+    "shared-context-layout/v2": "file:references/contracts.md",
+    "shared-context-config/v1": "file:references/contracts.md",
+    "shared-context-project/v1": "file:references/contracts.md",
+    "shared-context-source/v1": "file:references/contracts.md",
+    "shared-context-index/v1": "file:references/contracts.md",
+    "shared-context-resolution/v1": "file:references/contracts.md"
+  },
+  "upgrades": [
+    {"from": "shared-context-routes/v2", "to": "shared-context-routes/v3", "procedure": "file:references/configuration-upgrades.md"},
+    {"from": "shared-context-layout/v1", "to": "shared-context-layout/v2", "procedure": "file:references/configuration-upgrades.md"}
+  ]
+}

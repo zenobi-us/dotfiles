@@ -1,3 +1,6 @@
+import { readConfiguration, skillRoot } from "./contracts";
+import { preflightUpgrade, safeUpgrade } from "../../../skill-contracts/scripts/upgrades";
+import { parseDocument } from "yaml@^2.8.1";
 import { createHash } from "node:crypto";
 import { constants, promises as fs } from "node:fs";
 import path from "node:path";
@@ -32,6 +35,7 @@ export type RecordRoute = {
 export type ContextRoutes = Record<RecordKind, RecordRoute>;
 
 export type ResolvedRecord = {
+  schemaVersion: "shared-context-resolution/v1";
   kind: RecordKind | "adr" | "tracker" | "ticket" | "initiative" | "workflow" | "source";
   adapter: string;
   store?: Store;
@@ -155,13 +159,9 @@ function defaultRoutes(store: Store, trackerAdapter = "local-markdown"): Context
 }
 
 function parseRouteManifest(source: string): Partial<Record<RecordKind, RecordRoute>> {
-  const raw = Bun.TOML.parse(source) as {
-    schema?: number;
-    records?: Partial<Record<RecordKind, { adapter?: string; store?: string }>>;
+  const raw = readConfiguration(source, "routes") as {
+    records: Record<RecordKind, { adapter: string; store?: string }>;
   };
-  if (raw.schema !== 2 || !raw.records || typeof raw.records !== "object") {
-    throw new Error(`${ROUTE_MANIFEST_FILE} must use schema = 2 and define [records.*]`);
-  }
 
   const routes: Partial<Record<RecordKind, RecordRoute>> = {};
   for (const kind of ["alignment", "tickets", "initiatives", "workflows", "evidence", "sources"] as const) {
@@ -217,19 +217,18 @@ async function loadRoutes(candidateSharedRoot: string, repositoryRoot: string): 
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
   }
+  // An explicit repository policy outranks inferred storage from copied instructions.
+  const repositoryManifest = path.join(repositoryRoot, ROUTE_MANIFEST_FILE);
+  try {
+    return {
+      routes: parseRouteManifest(await fs.readFile(repositoryManifest, "utf8")) as ContextRoutes,
+      routeSource: repositoryManifest,
+    };
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+  }
   const legacy = await readStoragePreference(candidateSharedRoot);
   const shared = legacy === undefined ? await readSharedInstructions(candidateSharedRoot) : undefined;
-  if (!legacy && !shared?.instructions) {
-    const repositoryManifest = path.join(repositoryRoot, ROUTE_MANIFEST_FILE);
-    try {
-      return {
-        routes: parseRouteManifest(await fs.readFile(repositoryManifest, "utf8")) as ContextRoutes,
-        routeSource: repositoryManifest,
-      };
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
-    }
-  }
   const store = legacy ?? (shared?.instructions ? "shared" : "repository");
   let routeSource = legacy ? path.join(candidateSharedRoot, LEGACY_STORAGE_FILE) : shared?.source;
   let trackerAdapter = "local-markdown";
@@ -285,7 +284,9 @@ export async function resolveSharedContext(
 export async function resolveStoredContext(project: StoredContext): Promise<SharedAgentContext> {
   await validateStorePath(project.root, PROJECT_IDENTITY_FILE);
   const stored = await readIfPresent(path.join(project.root, PROJECT_IDENTITY_FILE));
-  const origin: unknown = stored === undefined ? project.origin ?? "" : JSON.parse(stored).origin;
+  const identity = stored === undefined ? undefined : JSON.parse(stored);
+  if (identity && Object.hasOwn(identity, "schemaVersion") && identity.schemaVersion !== "shared-context-project/v1") throw new Error("Unsupported project identity contract");
+  const origin: unknown = identity === undefined ? project.origin ?? "" : identity.origin;
   if (typeof origin !== "string") throw new Error("Stored project origin must be a Git remote.");
   if (origin && slugifyGitRemote(origin) !== project.slug) throw new Error("Stored project origin does not match its context directory.");
   if (!origin) {
@@ -323,7 +324,7 @@ export async function recoverStoredContextIdentity(
   if (!(await fs.stat(project.root)).isDirectory()) throw new Error("The selected context store is not a directory.");
   const identityPath = path.join(project.root, PROJECT_IDENTITY_FILE);
   try {
-    await fs.writeFile(identityPath, `${JSON.stringify({ origin: `https://${canonicalOrigin}` })}\n`, { flag: "wx" });
+    await fs.writeFile(identityPath, serializeProjectIdentity(canonicalOrigin), { flag: "wx" });
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
     const existing = await resolveStoredContext(project);
@@ -332,10 +333,24 @@ export async function recoverStoredContextIdentity(
   return resolveStoredContext(project);
 }
 
+function serializeProjectIdentity(canonicalOrigin: string): string {
+  return `${JSON.stringify({ schemaVersion: "shared-context-project/v1", origin: `https://${canonicalOrigin}` })}\n`;
+}
+
 async function writeProjectIdentity(context: SharedAgentContext): Promise<void> {
   if (!context.candidateSharedRoot) return;
   await validateStorePath(context.candidateSharedRoot, PROJECT_IDENTITY_FILE);
-  await fs.writeFile(path.join(context.candidateSharedRoot, PROJECT_IDENTITY_FILE), `${JSON.stringify({ origin: `https://${context.canonicalOrigin}` })}\n`);
+  const file = path.join(context.candidateSharedRoot, PROJECT_IDENTITY_FILE);
+  const previous = await readIfPresent(file);
+  if (previous === undefined) {
+    await fs.writeFile(file, serializeProjectIdentity(context.canonicalOrigin), { flag: "wx" });
+    return;
+  }
+  const identity = JSON.parse(previous);
+  if (!identity || typeof identity !== "object" || Array.isArray(identity) || (Object.hasOwn(identity, "schemaVersion") && identity.schemaVersion !== "shared-context-project/v1")) throw new Error("Unsupported project identity contract");
+  if (typeof identity.origin !== "string" || canonicalizeGitRemote(identity.origin) !== context.canonicalOrigin) {
+    throw new Error("Stored project identity already exists and differs. It was not changed.");
+  }
 }
 
 async function resolveProjectRoutes(
@@ -437,7 +452,12 @@ export async function initializeSharedContext(context: SharedAgentContext): Prom
 }
 
 async function writeRouteManifest(sharedRoot: string, routes: ContextRoutes, preserveExisting = false): Promise<void> {
-  const lines = ["schema = 2", ""];
+  const destination = path.join(sharedRoot, ROUTE_MANIFEST_FILE);
+  if (await exists(destination)) {
+    if (preserveExisting) return;
+    throw new Error("Existing authored routing policy requires an explicit configuration operation");
+  }
+  const lines = ['schemaVersion = "shared-context-routes/v3"', ""];
   for (const kind of ["alignment", "tickets", "initiatives", "workflows", "evidence", "sources"] as const) {
     const route = routes[kind];
     lines.push(`[records.${kind}]`, `adapter = "${route.adapter}"`);
@@ -527,6 +547,7 @@ export async function resolveContextRecord(
     ? store === "shared" ? `shared://${relative.split(path.sep).join("/")}` : relative.split(path.sep).join("/")
     : store === "shared" ? "shared://." : ".";
   return {
+    schemaVersion: "shared-context-resolution/v1",
     kind: options.kind,
     adapter: route.adapter,
     store,
@@ -678,15 +699,24 @@ export async function migrateContextRoute(
     if (!sourceContent.equals(targetContent)) conflicts.push(file.target);
   }
   if (conflicts.length > 0) throw new Error(`Migration target differs:\n${conflicts.join("\n")}`);
+  if (context.routeSource?.endsWith(ROUTE_MANIFEST_FILE)) {
+    await preflightUpgrade({ skill: skillRoot, owner: "file:scripts/shared-context/contracts.ts", artifact: context.routeSource, operation: "set-route", request: { kind, store: targetStore } });
+  }
+  // Identity creation must succeed before committing a route, including an empty collection.
+  await fs.mkdir(context.candidateSharedRoot, { recursive: true });
+  await writeProjectIdentity(context);
   for (const file of missing) {
     await fs.mkdir(path.dirname(file.target), { recursive: true });
     await fs.copyFile(file.source, file.target, constants.COPYFILE_EXCL);
   }
 
-  await fs.mkdir(context.candidateSharedRoot, { recursive: true });
-  await writeProjectIdentity(context);
   const updatedRoutes = routeWithStore(context.routes, kind, targetStore);
-  await writeRouteManifest(context.candidateSharedRoot, updatedRoutes);
+  if (context.routeSource?.endsWith(ROUTE_MANIFEST_FILE)) {
+    const result = await safeUpgrade({ skill: skillRoot, owner: "file:scripts/shared-context/contracts.ts", artifact: context.routeSource, operation: "set-route", request: { kind, store: targetStore } });
+    if (result.status !== "completed") throw new Error("Route update committed but cleanup failed");
+  } else {
+    await writeRouteManifest(context.candidateSharedRoot, updatedRoutes);
+  }
   return { from, to, store: targetStore, kind, copied: entries.map((entry) => entry.relative) };
 }
 
@@ -806,16 +836,38 @@ export async function resolveContextPath(context: SharedAgentContext, options: C
 }
 
 export function parseFrontmatter(text: string): Record<string, string> {
+  const fields = structuredFrontmatter(text);
+  return Object.fromEntries(Object.entries(fields).filter(([, value]) => ["string", "number", "boolean"].includes(typeof value)).map(([key, value]) => [key, String(value)]));
+}
+
+function structuredFrontmatter(text: string): Record<string, unknown> {
   const block = text.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
   if (!block) return {};
+  const document = parseDocument(block[1], { uniqueKeys: true });
+  if (document.errors.length) throw new Error(`Invalid frontmatter: ${document.errors[0].message}`);
+  const fields: unknown = document.toJS({ maxAliasCount: 100 });
+  if (!fields || typeof fields !== "object" || Array.isArray(fields)) throw new Error("Frontmatter must be a mapping");
+  return fields as Record<string, unknown>;
+}
 
-  const fields: Record<string, string> = {};
-  for (const line of block[1].split(/\r?\n/)) {
-    const entry = line.match(/^([A-Za-z0-9_-]+):[ \t]*(.*)$/);
-    if (!entry) continue;
-    fields[entry[1]] = entry[2].trim().replace(/^"([\s\S]*)"$/, "$1").replace(/^'([\s\S]*)'$/, "$1");
+function validateSourceMetadata(fields: Record<string, unknown>): void {
+  if (Object.hasOwn(fields, "schemaVersion") && fields.schemaVersion !== "shared-context-source/v1") {
+    if (typeof fields.schemaVersion !== "string" || fields.schemaVersion.startsWith("shared-context-")) throw new Error("Unsupported source contract");
+    return;
   }
-  return fields;
+  for (const key of ["source", "title", "url"]) {
+    if (Object.hasOwn(fields, key) && typeof fields[key] !== "string") throw new Error(`Source ${key} must be a string`);
+  }
+  if (typeof fields.source === "string" && !SOURCE_PATTERN.test(fields.source)) throw new Error("Invalid source metadata");
+}
+
+function validateIndexMetadata(fields: Record<string, unknown>): void {
+  if (!Object.hasOwn(fields, "schemaVersion")) return;
+  if (fields.schemaVersion !== "shared-context-index/v1") throw new Error("Unsupported index contract");
+  for (const key of ["source", "scope", "generated_at"]) {
+    if (typeof fields[key] !== "string" || !fields[key]) throw new Error(`Index requires ${key}`);
+  }
+  if (!SOURCE_PATTERN.test(fields.source as string) || fields.generated_by !== "shared-context" || !/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?Z$/.test(fields.generated_at as string) || !Number.isFinite(Date.parse(fields.generated_at as string))) throw new Error("Invalid owned index metadata");
 }
 
 export type ContextIndexEntry = {
@@ -849,9 +901,14 @@ export async function buildContextIndex(
   directory: string,
   options: { force?: boolean; root?: string } = {},
 ): Promise<{ path: string; entries: ContextIndexEntry[]; preserved: boolean }> {
+  if (directory.split(path.sep).some(part => ["events", "artifacts"].includes(part))) throw new Error("Immutable history cannot be indexed in place");
   if (options.root) await validateIndexTarget(options.root, directory);
 
+  let source = path.basename(directory);
+  const scope = path.basename(path.dirname(directory));
   const directoryReal = await fs.realpath(directory);
+  if (directoryReal.split(path.sep).some(part => ["events", "artifacts"].includes(part))) throw new Error("Immutable history cannot be indexed in place");
+  directory = directoryReal;
   const names = (await fs.readdir(directory, { withFileTypes: true }))
     .filter((entry) => entry.isFile() && entry.name.endsWith(".md") && entry.name !== "index.md")
     .map((entry) => entry.name)
@@ -864,14 +921,14 @@ export async function buildContextIndex(
     }
   }
 
-  let source = path.basename(directory);
+  // Canonical paths guard filesystem access, not the logical record identity.
   const entries = await Promise.all(names.map(async (file): Promise<ContextIndexEntry> => {
-    const fields = parseFrontmatter(await fs.readFile(path.join(directory, file), "utf8"));
-    if (fields.source) source = fields.source;
-    return { file, title: fields.title || path.basename(file, ".md"), url: fields.url || undefined };
+    const fields = structuredFrontmatter(await fs.readFile(path.join(directory, file), "utf8"));
+    validateSourceMetadata(fields);
+    if (typeof fields.source === "string" && SOURCE_PATTERN.test(fields.source)) source = fields.source;
+    return { file, title: typeof fields.title === "string" && fields.title ? fields.title : path.basename(file, ".md"), url: typeof fields.url === "string" ? fields.url : undefined };
   }));
 
-  const scope = path.basename(path.dirname(directory));
   const lines = entries.map((entry) => (entry.url
     ? `- [${entry.title}](${entry.url}) — local copy: [${entry.file}](${entry.file})`
     : `- ${entry.title} — local copy: [${entry.file}](${entry.file})`));
@@ -879,6 +936,7 @@ export async function buildContextIndex(
   const indexPath = path.join(directory, "index.md");
   try {
     const indexReal = await fs.realpath(indexPath);
+    if (indexReal.split(path.sep).some(part => ["events", "artifacts"].includes(part))) throw new Error("Immutable history cannot be indexed in place");
     if (!isWithinRoot(directoryReal, indexReal)) {
       throw new Error(`Index file ${indexPath} escapes its target through a symlink`);
     }
@@ -888,8 +946,14 @@ export async function buildContextIndex(
 
   const existing = await readIfPresent(indexPath);
   if (existing !== undefined) {
+    const fields = structuredFrontmatter(existing);
+    validateIndexMetadata(fields);
+    const starts = existing.split(INDEX_MARKER_START).length - 1;
+    const ends = existing.split(INDEX_MARKER_END).length - 1;
+    if (starts !== ends || starts > 1 || (starts === 1 && existing.indexOf(INDEX_MARKER_END) < existing.indexOf(INDEX_MARKER_START))) throw new Error("Ambiguous managed index markers");
     const start = existing.indexOf(INDEX_MARKER_START);
     const end = existing.indexOf(INDEX_MARKER_END);
+    if (fields.schemaVersion === "shared-context-index/v1" && starts !== 1) throw new Error("Owned index requires a managed block");
     if (start !== -1 && end > start) {
       const updated = `${existing.slice(0, start)}${block}${existing.slice(end + INDEX_MARKER_END.length)}`;
       await fs.writeFile(indexPath, updated);
@@ -904,10 +968,11 @@ export async function buildContextIndex(
     }
   }
 
-  await fs.writeFile(indexPath, [
+  const generated = [
     "---",
-    `source: "${source}"`,
-    `scope: "${scope}"`,
+    'schemaVersion: "shared-context-index/v1"',
+    `source: ${JSON.stringify(source)}`,
+    `scope: ${JSON.stringify(scope)}`,
     `generated_by: "shared-context"`,
     `generated_at: "${new Date().toISOString()}"`,
     "---",
@@ -916,7 +981,9 @@ export async function buildContextIndex(
     "",
     block,
     "",
-  ].join("\n"));
+  ].join("\n");
+  validateIndexMetadata(structuredFrontmatter(generated));
+  await fs.writeFile(indexPath, generated);
   return { path: indexPath, entries, preserved: false };
 }
 

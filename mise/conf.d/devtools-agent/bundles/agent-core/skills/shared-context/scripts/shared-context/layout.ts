@@ -1,5 +1,6 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import { readConfiguration } from "./contracts";
 
 export const LAYOUT_FILE = "docs/agents/context-layout.toml";
 export type ContextLayout = { tracker: string; sources: string; tickets: string; initiatives: string };
@@ -24,11 +25,7 @@ export async function readLayout(alignmentRoot: string): Promise<ContextLayout> 
     if ((error as NodeJS.ErrnoException).code === "ENOENT") return { ...DEFAULT_LAYOUT };
     throw error;
   }
-  const raw = Bun.TOML.parse(source) as Record<string, unknown>;
-  if (raw.schema !== 1 || Object.keys(raw).some((key) => key !== "schema" && key !== "paths")
-    || (raw.paths !== undefined && (typeof raw.paths !== "object" || raw.paths === null || Array.isArray(raw.paths)))) {
-    throw new Error(`${LAYOUT_FILE} requires schema = 1 and only an optional [paths] table`);
-  }
+  const raw = readConfiguration(source, "layout");
   const paths = (raw.paths ?? {}) as Record<string, unknown>;
   if (Object.keys(paths).some((key) => key !== "tracker" && key !== "sources")) {
     throw new Error(`${LAYOUT_FILE} accepts only paths.tracker and paths.sources`);

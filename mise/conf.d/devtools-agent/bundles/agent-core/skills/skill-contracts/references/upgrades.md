@@ -32,14 +32,23 @@ The shared layer resolves the complete manifest before loading the adapter. It p
 
 Source identifiers must appear in accepts. Intermediate upgrade endpoints need authoritative definitions and owner validation; acceptance does not authorize undeclared edges. Select one reachable destination and one path among the owner's operation destinations. No path or multiple paths stop conversion. Numeric version order has no role. Each intermediate destination must validate and preserve content before the next edge. The final requested mutation must validate before persistence. A schema label change alone must fail the owner's destination validator when the structure or meaning has changed.
 
+## Read-only preflight
+
+Code callers can use `preflightUpgrade(request)` from `scripts/upgrades.ts` before copying related records. It runs the same manifest resolution, source identification, content validation, conversion, preservation, destination validation, and requested mutation as `safeUpgrade`, without locks or writes. It does not authorize mutation or reserve the artifact. Call `safeUpgrade` afterward to repeat validation and commit under its lock.
+
 ## Persistence boundary
 
 All conversion and mutation occurs in memory. The shared writer replaces the artifact only after every check passes. Pre-commit rejections preserve original bytes. Cleanup attempts run independently; post-commit cleanup failure preserves the committed outcome in the report. Only regular, singly linked UTF-8 files are writable; symlinks, hard links, malformed UTF-8, and immutable artifacts fail. Permissions are retained subject to the process umask. A same-directory temporary file holds validated content before atomic rename.
 
-A sibling .contract-upgrade.lock file excludes cooperating writers. A byte and file-identity check rejects intervening changes before rename. All artifact writers must honor the same lock; this is not a transaction against uncooperative writers. A crashed process can leave a lock. Establish that its owner has stopped before manually removing it. Read-only resolution does not acquire artifact locks. Owner import and hooks must obey the purity contract.
+Ancestor directories resolve to their canonical filesystem target before locking. The lock, owner mutable check, identity check, and final write use that same target; the final file component still rejects symlinks. A sibling .contract-upgrade.lock file excludes cooperating writers. A byte and file-identity check rejects intervening changes before rename. All artifact writers must honor the same lock; this is not a transaction against uncooperative writers. A crashed process can leave a lock. Establish that its owner has stopped before manually removing it. Read-only resolution does not acquire artifact locks. Owner import and hooks must obey the purity contract.
 
 ## Runnable example
 
 Use examples/upgrades as the installed owner. Its adapter moves title and body into document.heading and document.text, while preserving all other authored fields. The rename operation changes only the heading. immutable true requires a historical reader. The definitions forbid a relabel-only conversion. The example rejects numeric values that cannot round-trip exactly through its JSON implementation, including rounded large integers and negative zero. Its source-lexeme check prevents equal lossy parses from hiding a change.
 
 Create a temporary v1 JSON note with schemaVersion example-note/v1, title, body, and authored metadata. Create a request containing a string title. Run safe-upgrade with --owner file:owner.ts and --operation rename. Confirm the body and metadata remain equal. Run bulk-upgrade over a mutable note and an immutable note. Confirm a nonzero partial result, a converted mutable note, and byte-identical immutable input.
+
+
+## Public artifact identity
+
+Successful and failed item results retain the caller artifact path resolved against the caller directory. Ancestor aliases remain in that public path. Canonical filesystem targets remain internal to locks, mutable checks, identity checks, and writes. Consumers can therefore join results to their original selections and report persisted changes and required publication.

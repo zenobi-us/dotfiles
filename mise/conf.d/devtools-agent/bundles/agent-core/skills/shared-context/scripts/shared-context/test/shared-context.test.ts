@@ -243,7 +243,6 @@ describe("context resolution", () => {
     expect(result.created).toBe(true);
     expect(result.agents).toBe(path.join(context!.candidateSharedRoot!, "AGENTS.md"));
     expect(await fs.readFile(result.agents, "utf8")).toContain("# Shared agent context");
-    expect(await fs.readFile(path.join(context!.candidateSharedRoot!, ROUTE_MANIFEST_FILE), "utf8")).toContain('schema = 2');
     expect(await fs.readFile(path.join(context!.candidateSharedRoot!, "CONTEXT-MAP.md"), "utf8")).toContain("# Context map");
     await expect(fs.stat(path.join(context!.candidateSharedRoot!, ".storage"))).rejects.toMatchObject({ code: "ENOENT" });
     await expect(fs.stat(path.join(repositoryRoot, "AGENTS.md"))).rejects.toMatchObject({ code: "ENOENT" });

@@ -1,6 +1,6 @@
 // Owners interpret content. This module plans declared paths and commits only validated bytes.
-import { lstat, open, readFile, rename, unlink } from "node:fs/promises";
-import { dirname, isAbsolute, relative, resolve } from "node:path";
+import { lstat, open, readFile, realpath, rename, unlink } from "node:fs/promises";
+import { basename, dirname, isAbsolute, relative, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { isDeepStrictEqual } from "node:util";
 import { loadContracts, type ResolvedContracts } from "./contracts.ts";
@@ -40,7 +40,7 @@ export interface BulkUpgradeResult {
 export async function safeUpgrade(request: UpgradeRequest): Promise<UpgradeResult> {
   const contracts = await loadContracts(request.skill);
   const owner = await loadOwner(request.skill, request.owner);
-  const path = resolve(request.artifact);
+  const path = await canonicalArtifact(request.artifact);
   const lock = await open(`${path}.contract-upgrade.lock`, "wx", 0o600);
   let temporary: string | undefined;
   let outcome: Omit<UpgradeResult, "status" | "cleanup_errors"> | undefined;
@@ -52,36 +52,7 @@ export async function safeUpgrade(request: UpgradeRequest): Promise<UpgradeResul
     const content = original.toString("utf8");
     if (!Buffer.from(content).equals(original)) throw new Error("Artifact must contain losslessly decoded UTF-8 text.");
     if (await owner.mutable(path, content) !== true) throw new Error("Immutable artifact requires a historical reader; conversion is forbidden.");
-    const from = await sourceContract(owner, contracts, content);
-    await validateContent(owner, from, content, "source");
-    const destinations = await owner.destinations(request.operation);
-    if (!Array.isArray(destinations) || destinations.length === 0 || new Set(destinations).size !== destinations.length || destinations.some((id) => !contracts.manifest.produces.includes(id))) {
-      throw new Error("Operation destinations must be distinct declared produced contracts.");
-    }
-    const paths = upgradePaths(contracts, from, new Set(destinations));
-    if (paths.length !== 1) throw new Error(paths.length === 0 ? "No declared upgrade path for this operation." : "Ambiguous upgrade destination or path for this operation.");
-    let converted = content;
-    let current = from;
-    for (const edge of paths[0]) {
-      const result = await owner.convert(edge.procedure, edge.from, edge.to, converted);
-      if (result.lossless !== true || result.requiresDecision !== false || typeof result.content !== "string") {
-        throw new Error("Conversion loses data or requires a user decision.");
-      }
-      await validateContent(owner, edge.to, result.content, "destination");
-      if (await owner.identify(result.content) !== edge.to) throw new Error("Conversion did not produce the declared destination identifier.");
-      const before = await owner.preservation(current, converted);
-      const after = await owner.preservation(edge.to, result.content);
-      if (before === undefined || after === undefined || !isDeepStrictEqual(before, after)) {
-        throw new Error("Conversion changed meaning or authored content.");
-      }
-      converted = result.content;
-      current = edge.to;
-    }
-    if (request.operation !== "upgrade") {
-      converted = await owner.mutate(request.operation, current, converted, request.request);
-      if (typeof converted !== "string" || await owner.identify(converted) !== current) throw new Error("Mutation changed the destination contract.");
-      await validateContent(owner, current, converted, "mutation");
-    }
+    const { from, to: current, content: converted } = await prepareContent(request, owner, contracts, content);
     const changed = converted !== content;
     if (changed) {
       temporary = resolve(dirname(path), `.contract-upgrade-${crypto.randomUUID()}`);
@@ -94,7 +65,7 @@ export async function safeUpgrade(request: UpgradeRequest): Promise<UpgradeResul
       await rename(temporary, path);
       temporary = undefined;
     }
-    outcome = { artifact: path, changed, from, to: current };
+    outcome = { artifact: resolve(request.artifact), changed, from, to: current };
   } catch (error) {
     failure = { error };
   }
@@ -112,6 +83,60 @@ export async function safeUpgrade(request: UpgradeRequest): Promise<UpgradeResul
   }
   if (!outcome) throw new Error("Upgrade did not produce an outcome.");
   return { ...outcome, status: cleanupErrors.length ? "failed" : "completed", ...(cleanupErrors.length ? { cleanup_errors: cleanupErrors } : {}) };
+}
+
+/** Validate the complete operation without locks or writes before an owner copies related records. */
+export async function preflightUpgrade(request: UpgradeRequest): Promise<void> {
+  const contracts = await loadContracts(request.skill);
+  const owner = await loadOwner(request.skill, request.owner);
+  const path = await canonicalArtifact(request.artifact);
+  const stat = await lstat(path);
+  if (!stat.isFile() || stat.nlink !== 1) throw new Error("Artifact must be a regular, non-symlink, singly linked file.");
+  const original = await readFile(path);
+  const content = original.toString("utf8");
+  if (!Buffer.from(content).equals(original)) throw new Error("Artifact must contain losslessly decoded UTF-8 text.");
+  if (await owner.mutable(path, content) !== true) throw new Error("Immutable artifact requires a historical reader; conversion is forbidden.");
+  await prepareContent(request, owner, contracts, content);
+}
+
+async function canonicalArtifact(artifact: string): Promise<string> {
+  const lexical = resolve(artifact);
+  // Resolve ancestors, but retain the final component so lstat still rejects a file symlink.
+  return resolve(await realpath(dirname(lexical)), basename(lexical));
+}
+
+async function prepareContent(request: UpgradeRequest, owner: UpgradeOwner, contracts: ResolvedContracts, content: string): Promise<{ from: string; to: string; content: string }> {
+  const from = await sourceContract(owner, contracts, content);
+  await validateContent(owner, from, content, "source");
+  const destinations = await owner.destinations(request.operation);
+  if (!Array.isArray(destinations) || destinations.length === 0 || new Set(destinations).size !== destinations.length || destinations.some((id) => !contracts.manifest.produces.includes(id))) {
+    throw new Error("Operation destinations must be distinct declared produced contracts.");
+  }
+  const paths = upgradePaths(contracts, from, new Set(destinations));
+  if (paths.length !== 1) throw new Error(paths.length === 0 ? "No declared upgrade path for this operation." : "Ambiguous upgrade destination or path for this operation.");
+  let converted = content;
+  let current = from;
+  for (const edge of paths[0]) {
+    const result = await owner.convert(edge.procedure, edge.from, edge.to, converted);
+    if (result.lossless !== true || result.requiresDecision !== false || typeof result.content !== "string") {
+      throw new Error("Conversion loses data or requires a user decision.");
+    }
+    await validateContent(owner, edge.to, result.content, "destination");
+    if (await owner.identify(result.content) !== edge.to) throw new Error("Conversion did not produce the declared destination identifier.");
+    const before = await owner.preservation(current, converted);
+    const after = await owner.preservation(edge.to, result.content);
+    if (before === undefined || after === undefined || !isDeepStrictEqual(before, after)) {
+      throw new Error("Conversion changed meaning or authored content.");
+    }
+    converted = result.content;
+    current = edge.to;
+  }
+  if (request.operation !== "upgrade") {
+    converted = await owner.mutate(request.operation, current, converted, request.request);
+    if (typeof converted !== "string" || await owner.identify(converted) !== current) throw new Error("Mutation changed the destination contract.");
+    await validateContent(owner, current, converted, "mutation");
+  }
+  return { from, to: current, content: converted };
 }
 
 /** Each item commits independently. Partial persistence is explicitly unsuccessful overall. */

@@ -56,6 +56,17 @@ origin: <git origin>
 slug: <origin-derived directory name>
 ```
 
+## Content contracts
+
+Read [Contract definitions and upgrades](references/contracts.md) before interpreting versioned configuration or converting content. New resolution JSON declares `shared-context-resolution/v1`; all existing location fields retain their meanings. Route v2 and layout v1 remain read-only compatible. Use the absolute installed CLI for explicit content operations:
+
+```sh
+"$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts" upgrade --artifacts /absolute/selected-paths.json
+"$SHARED_CONTEXT_SKILL_ROOT/scripts/shared-context/cli.ts" configure-route --kind sources --store repository
+```
+
+The selection file is a JSON array of mutable route/layout paths. Bulk conversion reports each outcome and exits nonzero for partial success. Configuration updates preserve authored text and pin inherited child stores before changing their parent. Neither command copies stored files. Use storage migration separately. Preserve immutable history and external formats. Never convert source copies through the configuration adapter.
+
 ## Recovery boundary
 
 A typed `resolve workflow` result identifies a location, not an existing workflow, valid receipt chain, running phase, or completed implementation. Resolve and inspect existing records without creating directories during read-only recovery. Evidence has its own route and publication rules; evidence runs are not phase receipts and do not establish workflow progress. The worktree skill owns recovery decisions and append-only workflow provenance. Never run `init` or `migrate` as an implied recovery step; both require an explicit request naming that storage operation.

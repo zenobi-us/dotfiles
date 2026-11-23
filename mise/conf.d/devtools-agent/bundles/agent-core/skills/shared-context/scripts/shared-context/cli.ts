@@ -1,5 +1,8 @@
 #!/usr/bin/env -S mise x -- bun --install=fallback
 import path from "node:path";
+import { readFile } from "node:fs/promises";
+import { skillRoot, routeKinds } from "./contracts";
+import { bulkUpgrade, safeUpgrade } from "../../../skill-contracts/scripts/upgrades";
 import { buildSharedContextReport, initializeContextForCwd } from "./api";
 import { Crust } from "@crustjs/core@^0.0.19";
 import { helpPlugin } from "@crustjs/plugins@^0.1.2";
@@ -326,9 +329,35 @@ async function runReport(ctx: { args: { command: string[] } }): Promise<void> {
   console.log(report);
 }
 
+async function runUpgrade(ctx: { flags: { artifacts: string } }): Promise<void> {
+  const paths: unknown = JSON.parse(await readFile(ctx.flags.artifacts, "utf8"));
+  if (!Array.isArray(paths) || paths.some(item => typeof item !== "string")) throw new Error("--artifacts must contain a JSON array of paths");
+  const result = await bulkUpgrade({ skill: skillRoot, owner: "file:scripts/shared-context/contracts.ts" }, paths);
+  console.log(JSON.stringify(result, null, 2));
+  if (result.status !== "completed") process.exitCode = 1;
+}
+
+async function runConfigureRoute(ctx: { flags: { kind: string; store: string } }): Promise<void> {
+  if (!routeKinds.includes(ctx.flags.kind as typeof routeKinds[number]) || !["shared", "repository"].includes(ctx.flags.store)) throw new Error("Choose a known route kind and repository or shared store");
+  const context = await requireContext();
+  if (!context) return;
+  if (!context.routeSource?.endsWith(".context-routes.toml")) throw new Error("Explicit routing configuration is required; use init to establish it");
+  const result = await safeUpgrade({ skill: skillRoot, owner: "file:scripts/shared-context/contracts.ts", artifact: context.routeSource, operation: "set-route", request: { kind: ctx.flags.kind, store: ctx.flags.store } });
+  console.log(JSON.stringify(result, null, 2));
+  if (result.status !== "completed") process.exitCode = 1;
+}
+
 const cli = new Crust("shared-context")
   .meta({ description: "Origin-keyed shared engineering context" })
   .use(helpPlugin())
+  .command("upgrade", cmd => cmd
+    .meta({ description: "Explicitly upgrade selected route/layout content; does not move storage" })
+    .flags({ artifacts: { type: "string", required: true } })
+    .run(runUpgrade))
+  .command("configure-route", cmd => cmd
+    .meta({ description: "Update a routing policy without copying stored files" })
+    .flags({ kind: { type: "string", required: true }, store: { type: "string", required: true } })
+    .run(runConfigureRoute))
   .command("inject", (cmd) => cmd
     .meta({ description: "Emit hook JSON injecting shared context for the current session" })
     .run(runInject))

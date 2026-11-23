@@ -24,13 +24,14 @@ type Change = { oldPath: string; newPath: string; oldRef: string; newRef: string
 type PlanIdentity = { schemaVersion: "tracker-migration-plan/v2"; schema?: never } | { schema: "tracker-migration-plan/v1"; schemaVersion?: never };
 export type MigrationPlan = PlanIdentity & {
   id: string; repository: string; origin: string; slug: string; selector: Selector;
-  routes: { tickets: ResolvedRecord; initiatives: ResolvedRecord; tracker: ResolvedRecord; workflow: ResolvedRecord };
+  routes: { tickets: ResolutionSnapshot; initiatives: ResolutionSnapshot; tracker: ResolutionSnapshot; workflow: ResolutionSnapshot };
   selected: string[]; affectedChildren: string[]; inboundReferences: { from: string; url: string; to: string }[];
   coverage: { roots: string[]; scope: string; excluded: string[] }; inputs: Input[]; changes: Change[];
   conflicts: string[]; validation: string[]; writerSafety: string;
 };
 type State = ({ schemaVersion: "tracker-migration/v2"; schema?: never } | { schema: "tracker-migration/v1"; schemaVersion?: never }) & { migration: string; sequence: number; previousHash: string | null; state: "applying" | "applied" | "rolled-back" | "recovery-required"; planHash: string; at: string; error?: string; recovery?: string[] };
 type Environment = { context: SharedAgentContext; tickets: ResolvedRecord; initiatives: ResolvedRecord; tracker: ResolvedRecord };
+type ResolutionSnapshot = Omit<ResolvedRecord, "schemaVersion"> & { schemaVersion?: ResolvedRecord["schemaVersion"] };
 type RecordProjection = { initiatives: Record<string, unknown>[]; tickets: Record<string, unknown>[] };
 const helper = fileURLToPath(new URL("./record-markdown.mq", import.meta.url));
 // The skill's tracked lock pins the remote okf.mq module, wherever the caller runs.
@@ -44,7 +45,7 @@ export async function planMigration(options: Options, selector: Selector): Promi
 
 // Historical reconstruction keeps the old identity, field spelling and snapshot hashes.
 // It never upgrades a retained plan or writes a historical record.
-async function buildMigrationPlan(options: Options, selector: Selector, historical: boolean): Promise<MigrationPlan> {
+async function buildMigrationPlan(options: Options, selector: Selector, historical: boolean, retainedRoutes?: MigrationPlan["routes"]): Promise<MigrationPlan> {
   const env = await environment(options);
   const documents = await discover(env);
   const selectedTarget = await resolveContextRecord(env.context, selector.kind === "initiative-spec" ? { kind: "initiative", id: selector.id } : { kind: "ticket", id: selector.id });
@@ -115,7 +116,12 @@ async function buildMigrationPlan(options: Options, selector: Selector, historic
   const workflowPlaceholder = await resolveContextRecord(env.context, { kind: "workflow", id: "migration-plan" });
   const core = {
     ...(historical ? { schema: "tracker-migration-plan/v1" as const } : { schemaVersion: "tracker-migration-plan/v2" as const }), repository: env.context.repositoryRoot, origin: env.context.canonicalOrigin, slug: env.context.slug, selector,
-    routes: { tickets: env.tickets, initiatives: env.initiatives, tracker: env.tracker, workflow: workflowPlaceholder },
+    routes: {
+      tickets: resolutionSnapshot(env.tickets, retainedRoutes?.tickets),
+      initiatives: resolutionSnapshot(env.initiatives, retainedRoutes?.initiatives),
+      tracker: resolutionSnapshot(env.tracker, retainedRoutes?.tracker),
+      workflow: resolutionSnapshot(workflowPlaceholder, retainedRoutes?.workflow),
+    },
     selected: [source.ref], affectedChildren: children.map((child) => child.ref).sort(), inboundReferences,
     coverage: { roots: [...new Set([requiredPath(env.tracker), requiredPath(env.tickets), requiredPath(env.initiatives)])].sort(), scope: "Live Markdown in resolved tracker, ticket and initiative collections only. Ordinary repository docs, external repositories and sources are not searched: review those references manually before publication.", excluded: ["events", "reviews", "artifacts", "immutable workflow history"] },
     inputs, changes, conflicts: [...new Set(conflicts)], validation: ["shared-context roots resolved", "unknown schemas rejected", "target schema validated", "source and inbound snapshots hashed", "destination must be absent", "children IDs, parents, status and dependencies retained"],
@@ -123,7 +129,7 @@ async function buildMigrationPlan(options: Options, selector: Selector, historic
   };
   const id = hash(JSON.stringify(core)).slice(0, 24);
   const workflow = await resolveContextRecord(env.context, { kind: "workflow", id: `migration-${id}` });
-  return { ...core, id, routes: { ...core.routes, workflow } };
+  return { ...core, id, routes: { ...core.routes, workflow: resolutionSnapshot(workflow, retainedRoutes?.workflow) } };
 }
 
 export async function applyMigration(options: Options, plan: MigrationPlan, acknowledgeWriterSafety: boolean): Promise<Record<string, unknown>> {
@@ -144,7 +150,7 @@ export async function applyMigration(options: Options, plan: MigrationPlan, ackn
   if (await exists(directory) && (await fs.readdir(directory)).length) throw new Error("Migration workflow collision: existing content has no approved migration plan");
   await blockIncompleteMigrations(env, plan.id);
   const historical = plan.schema === "tracker-migration-plan/v1";
-  const rebuilt = await buildMigrationPlan(options, plan.selector, historical);
+  const rebuilt = await buildMigrationPlan(options, plan.selector, historical, plan.routes);
   if (JSON.stringify(rebuilt) !== JSON.stringify(plan)) throw new Error("Stale or altered plan: routes, selected records, collection membership, Git source or destination changed; create a new plan");
   if (historical) throw new Error("Historical v1 plan verified without changes; create and approve a new v2 plan before applying new record writes");
   if (plan.conflicts.length) throw new Error(`Plan has conflicts: ${plan.conflicts.join("; ")}`);
@@ -156,7 +162,7 @@ export async function applyMigration(options: Options, plan: MigrationPlan, ackn
   let stateStarted = false;
   try {
     // Recheck inside the local lock. This lock does not coordinate non-CLI writers.
-    const lockedPlan = await buildMigrationPlan(options, plan.selector, false);
+    const lockedPlan = await buildMigrationPlan(options, plan.selector, false, plan.routes);
     if (JSON.stringify(lockedPlan) !== JSON.stringify(plan)) throw new Error("Inputs changed before apply acquired its local lock");
     await fs.mkdir(path.dirname(planFile), { recursive: true });
     await durableWrite(planFile, JSON.stringify(plan, null, 2) + "\n", true);
@@ -481,8 +487,8 @@ function linkPath(filename: string, url: string): string | undefined {
 function relativeLink(from: string, to: string): string {
   return path.relative(path.dirname(from), to).split(path.sep).map((segment) => encodeURIComponent(segment).replace(/[!'()*]/g, (character) => `%${character.charCodeAt(0).toString(16).toUpperCase()}`)).join("/");
 }
-function reference(target: ResolvedRecord, filename: string): string { return `${target.store === "shared" ? "shared://" : ""}${path.relative(target.root!, filename).split(path.sep).join("/")}`; }
-function requiredPath(target: ResolvedRecord): string { if (!target.path || !target.root) throw new Error("A resolved file-backed record is required"); return target.path; }
+function reference(target: ResolutionSnapshot, filename: string): string { return `${target.store === "shared" ? "shared://" : ""}${path.relative(target.root!, filename).split(path.sep).join("/")}`; }
+function requiredPath(target: ResolutionSnapshot): string { if (!target.path || !target.root) throw new Error("A resolved file-backed record is required"); return target.path; }
 function change(source: Document, target: ResolvedRecord, destination: string, after: string): Change {
   return { oldPath: source.path, newPath: destination, oldRef: source.ref, newRef: reference(target, destination), oldRoot: source.root, newRoot: target.root!, before: source.text, after, beforeHash: hash(source.text), afterHash: hash(after) };
 }
@@ -504,10 +510,25 @@ function validatePlanShape(plan: MigrationPlan): void {
   for (const entry of plan.changes) if (hash(entry.before) !== entry.beforeHash || hash(entry.after) !== entry.afterHash) throw new Error("Migration snapshot bytes do not match their hashes");
   for (const input of plan.inputs) if (hash(input.text) !== input.hash) throw new Error("Migration input snapshot does not match its hash");
 }
+
+// Retained plans hash the resolution shape that existed when they were authored.
+function resolutionSnapshot(current: ResolvedRecord, retained?: ResolutionSnapshot): ResolutionSnapshot {
+  if (!retained || Object.hasOwn(retained, "schemaVersion")) {
+    if (retained && retained.schemaVersion !== current.schemaVersion) throw new Error("Unsupported migration resolution contract");
+    return current;
+  }
+  const { schemaVersion, ...historical } = current;
+  return historical;
+}
 async function validatePlanPaths(env: Environment, plan: MigrationPlan): Promise<void> {
   if (plan.repository !== env.context.repositoryRoot || plan.origin !== env.context.canonicalOrigin || plan.slug !== env.context.slug) throw new Error("Plan repository identity changed");
   const workflow = await resolveContextRecord(env.context, { kind: "workflow", id: `migration-${plan.id}` });
-  const routes = { tickets: env.tickets, initiatives: env.initiatives, tracker: env.tracker, workflow };
+  const routes = {
+    tickets: resolutionSnapshot(env.tickets, plan.routes.tickets),
+    initiatives: resolutionSnapshot(env.initiatives, plan.routes.initiatives),
+    tracker: resolutionSnapshot(env.tracker, plan.routes.tracker),
+    workflow: resolutionSnapshot(workflow, plan.routes.workflow),
+  };
   if (JSON.stringify(routes) !== JSON.stringify(plan.routes)) throw new Error("Plan roots or routes do not match fresh shared-context resolution");
   for (const suffix of ["artifacts/snapshots/migration-plan.json", "events", ".migration-writer.lock"]) {
     await validateStorePath(workflow.root!, path.relative(workflow.root!, path.join(requiredPath(workflow), suffix)));
@@ -521,7 +542,7 @@ async function validatePlanPaths(env: Environment, plan: MigrationPlan): Promise
   }
   const { id, ...core } = plan;
   const placeholder = await resolveContextRecord(env.context, { kind: "workflow", id: "migration-plan" });
-  if (hash(JSON.stringify({ ...core, routes: { ...core.routes, workflow: placeholder } })).slice(0, 24) !== id) throw new Error("Migration plan content does not match its immutable id");
+  if (hash(JSON.stringify({ ...core, routes: { ...core.routes, workflow: resolutionSnapshot(placeholder, plan.routes.workflow) } })).slice(0, 24) !== id) throw new Error("Migration plan content does not match its immutable id");
 }
 async function validateStaged(options: Options, plan: MigrationPlan): Promise<void> {
   const env = await environment(options);

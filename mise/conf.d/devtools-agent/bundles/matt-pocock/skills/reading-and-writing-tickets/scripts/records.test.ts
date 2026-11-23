@@ -581,3 +581,62 @@ test("ticket updates support direct and hierarchical membership without changing
   expect(recordDocument(nested).body).toContain("<!-- retain -->");
   expect(await markdown(index)).toBe(indexBefore);
 }, timeout);
+
+test("bulk upgrade through an ancestor alias reports persisted and rejected items with publication", async () => {
+  const f = await fixture();
+  const alias = path.join(f.directory, "shared-alias");
+  await fs.symlink(f.sharedContextBase, alias);
+  const routes = ["schema = 2"];
+  for (const kind of ["alignment", "tickets", "initiatives", "workflows", "evidence", "sources"]) {
+    routes.push(`[records.${kind}]`, `adapter = "${kind === "tickets" ? "local-markdown" : "files"}"`, `store = "${kind === "tickets" ? "shared" : "repository"}"`);
+  }
+  await fs.writeFile(path.join(f.repository, ".context-routes.toml"), routes.join("\n") + "\n");
+  const physical = path.join(f.sharedRoot, "records/issues");
+  await fs.mkdir(physical, { recursive: true });
+  const valid = path.join(physical, "valid.md");
+  const invalid = path.join(physical, "invalid.md");
+  await markdown(valid, "---\nschema: tracker-ticket/v1\nid: valid\ntitle: Valid\nwork_status: unclaimed\nblocked_by: []\n---\nAuthored body.\n");
+  const rejected = "---\nschemaVersion: tracker-ticket/v99\nid: invalid\ntitle: Invalid\n---\nRetain.\n";
+  await markdown(invalid, rejected);
+  const selected = [valid, invalid].map(filename => filename.replace(f.sharedContextBase, alias));
+  const list = path.join(f.directory, "selected.json");
+  await fs.writeFile(list, JSON.stringify(selected));
+  const result = commandResult(["upgrade", "--repository", f.repository, "--shared-context-base", alias, "--artifacts", list]);
+  expect(result).toMatchObject({ ok: false, upgrade: { status: "partial", results: [
+    { artifact: selected[0], changed: true, status: "completed" },
+    { artifact: selected[1], changed: false, status: "failed" },
+  ] }, publication: { status: "required" } });
+  expect(recordDocument(valid).frontmatter.schemaVersion).toBe("tracker-ticket/v2");
+  expect(await markdown(invalid)).toBe(rejected);
+  expect(result.changes).not.toBeNull();
+}, timeout);
+
+test("retained unversioned resolution snapshots keep immutable plan IDs and journal bytes", async () => {
+  const f = await fixture();
+  await markdown(path.join(f.issues, "standalone.md"), "---\nid: standalone\ntitle: Standalone\n---\nRetained body.\n");
+  const plan = await planMigration(f, { kind: "ticket", id: "standalone" });
+  expect(plan.routes.workflow.schemaVersion).toBe("shared-context-resolution/v1");
+  for (const route of Object.values(plan.routes)) delete route.schemaVersion;
+  const { id: currentId, ...core } = plan;
+  const placeholder = { ...core.routes.workflow };
+  placeholder.path = placeholder.path!.replace(`migration-${currentId}`, "migration-plan");
+  placeholder.ref = placeholder.ref!.replace(`migration-${currentId}`, "migration-plan");
+  plan.id = createHash("sha256").update(JSON.stringify({ ...core, routes: { ...core.routes, workflow: placeholder } })).digest("hex").slice(0, 24);
+  plan.routes.workflow.path = plan.routes.workflow.path!.replace(`migration-${currentId}`, `migration-${plan.id}`);
+  plan.routes.workflow.ref = plan.routes.workflow.ref!.replace(`migration-${currentId}`, `migration-${plan.id}`);
+  const filename = path.join(f.directory, "retained-plan.json");
+  const original = JSON.stringify(plan, null, 2) + "\n";
+  await fs.writeFile(filename, original);
+  const flags = ["--repository", f.repository, "--shared-context-base", f.sharedContextBase];
+  expect(commandResult(["migrate", "apply", ...flags, "--plan", filename, "--acknowledge-writer-safety"])).toMatchObject({ ok: true, contentVerified: true });
+  const workflow = plan.routes.workflow.path!;
+  const stored = path.join(workflow, "artifacts/snapshots/migration-plan.json");
+  const events = await fs.readdir(path.join(workflow, "events"));
+  const journal = await Promise.all(events.map(name => fs.readFile(path.join(workflow, "events", name), "utf8")));
+  expect(commandResult(["migrate", "check", ...flags, "--migration", plan.id])).toMatchObject({ ok: true, contentVerified: true });
+  expect(commandResult(["migrate", "apply", ...flags, "--plan", filename, "--acknowledge-writer-safety"])).toMatchObject({ ok: true, idempotent: true });
+  expect(await fs.readFile(stored, "utf8")).toBe(original);
+  expect(await fs.readFile(filename, "utf8")).toBe(original);
+  expect(await fs.readdir(path.join(workflow, "events"))).toEqual(events);
+  expect(await Promise.all(events.map(name => fs.readFile(path.join(workflow, "events", name), "utf8")))).toEqual(journal);
+}, timeout);

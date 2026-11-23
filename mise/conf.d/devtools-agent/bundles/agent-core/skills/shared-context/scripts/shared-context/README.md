@@ -92,7 +92,7 @@ registration when neither exists. Machine-local `storage_path` remains in
 `~/.config/shared-agent-context/config.json`.
 
 ```toml
-schema = 2
+schemaVersion = "shared-context-routes/v3"
 
 [records.alignment]
 adapter = "markdown"
@@ -159,7 +159,7 @@ directory **inside that selected store**. Neither setting changes the other.
 Optionally add `docs/agents/context-layout.toml` under the active alignment root:
 
 ```toml
-schema = 1
+schemaVersion = "shared-context-layout/v2"
 
 [paths]
 tracker = "docs/tracker"

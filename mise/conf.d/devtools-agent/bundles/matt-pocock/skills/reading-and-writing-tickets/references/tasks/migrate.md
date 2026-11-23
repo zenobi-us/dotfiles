@@ -70,3 +70,7 @@ Require saved hashes, schema validation, matching parent/index membership, an in
 The CLI does not commit or push. Apply the configured store's commit and publication procedure separately and report actual status. Uncommitted Git records are not a successful publication. Cross-store changes require validation and publication in every affected store. A publication failure blocks implementation until reconciled.
 
 For an unsupported hosted backend, report the missing content-migration operation without changing routes or creating substitute local records.
+
+## Retained resolution snapshots
+
+New plans embed `shared-context-resolution/v1` route objects. Retained v1 and v2 plans can contain route snapshots without that identifier. Readers compare fresh routes under each retained snapshot shape and reconstruct the immutable plan ID with that same shape. Check and idempotent apply preserve plan bytes, property order, event hashes, and IDs. Unknown explicit resolution versions still block interpretation.

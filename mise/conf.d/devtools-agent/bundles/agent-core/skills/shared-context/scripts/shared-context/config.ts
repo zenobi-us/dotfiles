@@ -17,21 +17,13 @@ function expandHome(value: string): string {
 export async function loadConfig(): Promise<SharedAgentContextConfig> {
   try {
     const raw = await fs.readFile(CONFIG_FILE, "utf8");
-    const parsed = JSON.parse(raw) as { storage_path?: string };
-    if (parsed.storage_path) return { storagePath: expandHome(parsed.storage_path) };
+    const parsed = JSON.parse(raw) as { schemaVersion?: unknown; storage_path?: unknown };
+    if (Object.hasOwn(parsed, "schemaVersion") && parsed.schemaVersion !== "shared-context-config/v1") throw new Error("Unsupported machine configuration contract");
+    if (typeof parsed.storage_path !== "string" || !parsed.storage_path.trim()) throw new Error("storage_path must be a nonempty string");
+    return { storagePath: expandHome(parsed.storage_path) };
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
   }
 
-  await fs.mkdir(CONFIG_DIR, { recursive: true });
-  try {
-    await fs.writeFile(
-      CONFIG_FILE,
-      `${JSON.stringify({ storage_path: DEFAULT_STORAGE_PATH }, null, 2)}\n`,
-      { flag: "wx" },
-    );
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
-  }
   return { storagePath: expandHome(DEFAULT_STORAGE_PATH) };
 }
