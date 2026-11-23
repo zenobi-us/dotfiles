@@ -148,3 +148,15 @@ Fresh shared inspection confirms clean source `3378f0d89811c8ce67feadcc0326f8c86
 [Independent review result](../events/review-result-0022.yaml): FAILURE at 3378f0d89811c8ce67feadcc0326f8c86764a0ae. [Immutable review](../artifacts/reviews/review-review-result-0022.md) retains Standards and Spec reports. SPEC-004 remains open. No source files changed.
 
 Existing suite: 36 passed, 232 assertions. Owning-command smoke reproduced the historical exponent-hash compatibility failure. Parent contract checks: 6 passed, 53 assertions. [Parent completion](../events/review-complete-0023.yaml) and [shutdown observation](../artifacts/snapshots/resources-review-complete-0023.json) retain verification and resource closure. Ticket remains claimed, unmerged and unpushed.
+
+
+## Fix result 0026 — FIXED, pending independent review
+
+SPEC-004 is resolved by `8b616592357dd7c5c7472b54d3e946029bd2d2a9` (tree `d3d9d6e312b93131799b44b1d11b49d07bd1ebb8`). Historical FAILURE from review-result-0022 is stale; current verdict is null. No open findings. See [fix draft](../artifacts/snapshots/pr-draft-fix-0026.md) and [validation](../artifacts/snapshots/validation-fix-0026.json). The affected suites pass 7 tests and 112 assertions. Actual CLI retrieval, checks and consumer upgrade pass with byte-preserved historical pages, source and asset. Parent owns workflow commits and child shutdown, which is pending. No tracker edit, merge or push ran.
+
+## Parent fix completion 0027
+
+[fix-complete-0027](../events/fix-complete-0027.yaml) validates [fix-result-0026](../events/fix-result-0026.yaml), its typed delivery and the clean source commit `8b616592357dd7c5c7472b54d3e946029bd2d2a9`. SPEC-004 is resolved. Parent CLI smoke verified unversioned/v1 exponent-hash retrieval, numeric-v2 rejection and byte preservation. [Validation](../artifacts/snapshots/validation-parent-fix-0027.json).
+
+The fixer tab was removed. Owned OMP and language-server processes remain live after terminal closure; cleanup is pending. [Resource observation](../artifacts/snapshots/resources-fix-complete-0027.json). Independent review is next after scoped cleanup approval and confirmed shutdown. No merge or push ran.
+

@@ -1,0 +1,54 @@
+{
+  "result": "PASS",
+  "scenario": "Real exponent-shaped hash retrieval preserves exact bytes for unversioned/v1; numeric v2 remains rejected",
+  "records": [
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "share",
+        "doc",
+        "/tmp/artifact-sharing-parent-g5vEJH/report.html",
+        "--into",
+        "private",
+        "--dry-run"
+      ],
+      "cwd": "/tmp/artifact-sharing-parent-g5vEJH",
+      "version": "unversioned",
+      "exit_code": 0,
+      "stdout": "{\n  \"hash\": \"42226e907802\",\n  \"kind\": \"doc\",\n  \"url\": null,\n  \"repositoryPath\": \"content/shares/42226e907802.mdx\",\n  \"unchanged\": true,\n  \"dryRun\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "share",
+        "doc",
+        "/tmp/artifact-sharing-parent-g5vEJH/report.html",
+        "--into",
+        "private",
+        "--dry-run"
+      ],
+      "cwd": "/tmp/artifact-sharing-parent-g5vEJH",
+      "version": "artifact-share-metadata/v1",
+      "exit_code": 0,
+      "stdout": "{\n  \"hash\": \"42226e907802\",\n  \"kind\": \"doc\",\n  \"url\": null,\n  \"repositoryPath\": \"content/shares/42226e907802.mdx\",\n  \"unchanged\": true,\n  \"dryRun\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "share",
+        "doc",
+        "/tmp/artifact-sharing-parent-g5vEJH/report.html",
+        "--into",
+        "private",
+        "--dry-run"
+      ],
+      "cwd": "/tmp/artifact-sharing-parent-g5vEJH",
+      "version": "artifact-share-metadata/v2",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Error: Share metadata hash must be a string.\n"
+    }
+  ]
+}

@@ -1,102 +1,64 @@
 ---
-title: Artifact-share contracts — current fix
+receipt_id: fix-result-0026
+schemaVersion: worktree-pr-draft/v1
+source_commit: 8b616592357dd7c5c7472b54d3e946029bd2d2a9
+source_tree: d3d9d6e312b93131799b44b1d11b49d07bd1ebb8
+title: SPEC-004 fix
 type: Concept
+workflow_id: skill-contract-manifests-11-artifact-sharing
 ---
 
-# Artifact-share contracts — FIXED, pending fresh review
+# SPEC-004 fixed; independent review pending
 
-## Ticket summary
-
-[skill-contract-manifests-11-artifact-sharing](../../../tracker/tickets/skill-contract-manifests-11-artifact-sharing.md) remains claimed. This fix addresses all four current finding IDs.
-
-## Problem
-
-Existing repositories retained metadata consumers that rejected quoted v2 hashes. The real MDX loader also rejected historical numeric-only hashes.
-
-## Implementation
-
-`cli.ts upgrade <name> --dry-run` previews the owned consumer changes. `--confirm <name>` applies known changes locally and runs all four required publication checks. It never fetches, commits or pushes. The installed historical evidence pins the frozen base and earlier supported consumers. Unknown customized code and symlinks refuse without writes. Failed checks restore the original consumer files.
-
-Only the type-check consumer, metadata helper, and schema/docs block plus import in `press.config.tsx` change. Registries, authored content, assets, site settings, hooks, workflows, scanner settings and other checks stay intact. New generation requires current consumers. Historical retrieval and read-only commands never upgrade code.
-
-The MDX schema reads the loader context source before string validation. It shares the historical hash interpretation with the CLI/checker. Leading zeros remain exact; numeric v2 and unknown explicit versions still fail. Stored page bytes and external package/hosting formats do not change.
-
-## Source identity
-
-Branch: `feature/skill-contract-manifests-11-artifact-sharing`. Base: `master`. Source commit: `3378f0d89811c8ce67feadcc0326f8c86764a0ae`. Source tree: `6138a98322ac55a4bb0cc4b5a0a10c2f3578c27b`.
-
-Commits: `9d8754211e8178c43beccc97e02e4f4b66adb5e3`, `3378f0d89811c8ce67feadcc0326f8c86764a0ae`. Required hook registry bumps retained: agent-core 0.1.40 and 0.1.41. Unrelated formatter churn removed.
+Historical readers now recover the complete plain 12-character lowercase hexadecimal hash scalar, including exponent-shaped hashes. Current-contract numeric scalars remain rejected. No historical publications were converted. The supported local consumer upgrade recognizes the deployed pre-fix reader.
 
 ## Changed files
 
 - `mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json`
 - `mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json`
-- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/SKILL.md`
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/assets/consumer-history.json`
-- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/assets/repo-template/README.md`
-- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/assets/repo-template/press.config.tsx`
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/assets/repo-template/src/share-metadata.ts`
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/references/contracts/metadata-v1.json`
-- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/references/contracts/metadata-v2.json`
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/references/share.md`
-- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/references/template.md`
-- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts`
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/consumers.ts`
-- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test/consumers.test.ts`
+- `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test/contracts.test.ts`
 - `mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test/site.test.ts`
 
 ## Validation
 
-| Check | Observed result |
-| --- | --- |
-| Final affected suite | 36 pass, 0 fail, 232 assertions |
-| Bundle typecheck | Passed |
-| Contract declarations | Manifest, five definitions and config procedure resolved |
-| Frozen base `69794e4eb60f7dbe26af658805c4876310d7e8ae` | Owning preview/apply/no-op passed; customized registry/content/site settings/config/checks preserved |
-| Required publication checks | Actual CLI generated v2 passed all four checks after upgrade; subsequent retrieval returned unchanged |
-| Unsafe consumers and required-check failure | Byte-stable refusal and complete consumer rollback passed |
-| Actual Fumapress builds | Unversioned 860951705127, v1 000000000123 and quoted v2 passed with exact rendered hashes |
-| Rejected site inputs | Numeric v2 and unknown explicit version failed; stored bytes unchanged |
+Affected suites: 7 pass, 0 fail, 112 assertions. Actual MDX ingestion covers `123456789e12`, `42226e907802`, ordinary numeric text and leading zeros. Numeric v2 and unsupported versions fail. Actual CLI `list`, `share doc <source> --dry-run`, `check`, and `upgrade private --confirm private` exit 0. Historical pages, source and published asset remain byte-identical. Exact argv, cwd, exit codes and resources: [validation snapshot](validation-fix-0026.json).
 
-[Detailed validation](../artifacts/snapshots/validation-fix-0018.json). The original failing cases were established by review-result-0014, not repeated merely to confirm them. The regression suite exercises actual owning commands, scanners and builds, without replacement mocks. Temporary inspection copies, fixtures and stages were removed.
+## References
+
+Consumed review: `review-result-0022`, artifact `artifacts/reviews/review-review-result-0022.md`. Authorization: `fix-approval-0024`; start: `fix-start-0025`. Produced result: `fix-result-0026`. Source commit: `8b616592357dd7c5c7472b54d3e946029bd2d2a9`; tree: `d3d9d6e312b93131799b44b1d11b49d07bd1ebb8`.
+
+## Open questions
+
+None. FIXED, not SUCCESS. Historical FAILURE is stale; current verdict is null. Parent owns independent review, workflow commits, and live child shutdown. No merge, push, or tracker mutation ran.
+
+
+## Parent completion and cleanup
+
+[fix-complete-0027](../events/fix-complete-0027.yaml) records verified typed delivery, clean source and passing [parent CLI smoke](../artifacts/snapshots/validation-parent-fix-0027.json). The fixer tab was removed; OMP and language-server processes remain live. [Cleanup evidence](../artifacts/snapshots/resources-fix-complete-0027.json). Shutdown requires scoped approval before independent review. No merge or push ran.
+
+
+## Ticket and implementation context
+
+[Ticket](../../../tracker/tickets/skill-contract-manifests-11-artifact-sharing.md): adopt configuration and publication metadata contracts while preserving historical records and authored data. The [initial implementation](../events/implementation-0002.yaml) introduced contracts; [compatibility fix 0018](../events/fix-result-0018.yaml) added safe local upgrades for existing consumers and lossless numeric-hash MDX ingestion. This fix closes the remaining exponent-hash gap.
 
 ## Review history
 
-- [implementation-0002](../events/implementation-0002.yaml) introduced contracts; [original draft](../artifacts/snapshots/pr-draft-implementation-0002.md) retains the first implementation.
-- [review-result-0006](../events/review-result-0006.yaml): FAILURE with SPEC-001. [Review artifact](../artifacts/reviews/review-review-result-0006.md).
-- [fix-result-0010](../events/fix-result-0010.yaml) fixed SPEC-001; [draft](../artifacts/snapshots/pr-draft-fix-0010.md) and [parent completion](../events/fix-complete-0011.yaml) retain its validation and shutdown.
-- [review-result-0014](../events/review-result-0014.yaml): FAILURE at `2b9160cdac8a7c413944876c87292d0d023eeaf1`. STANDARDS-001/SPEC-002 report existing consumer incompatibility; STANDARDS-002/SPEC-003 report historical site ingestion. [Immutable review](../artifacts/reviews/review-review-result-0014.md) and [parent completion](../events/review-complete-0015.yaml) remain unchanged.
-- [fix-approval-0016](../events/fix-approval-0016.yaml) and [fix-start-0017](../events/fix-start-0017.yaml) authorize this fresh fix. [fix-result-0018](../events/fix-result-0018.yaml) records the new source.
+- [Review 0006](../events/review-result-0006.yaml): FAILURE, SPEC-001. [Artifact](../artifacts/reviews/review-review-result-0006.md). [Fix 0010](../events/fix-result-0010.yaml) resolved SPEC-001; [completion](../events/fix-complete-0011.yaml).
+- [Review 0014](../events/review-result-0014.yaml): FAILURE at `2b9160cdac8a7c413944876c87292d0d023eeaf1`, findings STANDARDS-001, STANDARDS-002, SPEC-002 and SPEC-003. [Artifact](../artifacts/reviews/review-review-result-0014.md); [completion](../events/review-complete-0015.yaml).
+- [Fix approval 0016](../events/fix-approval-0016.yaml) and [start 0017](../events/fix-start-0017.yaml) authorized [fix 0018](../events/fix-result-0018.yaml), which resolved those four findings. [Draft](../artifacts/snapshots/pr-draft-fix-0018.md); [completion](../events/fix-complete-0019.yaml).
+- [Review 0022](../events/review-result-0022.yaml): FAILURE at `3378f0d89811c8ce67feadcc0326f8c86764a0ae`, SPEC-004. Standards had no actionable finding. [Artifact](../artifacts/reviews/review-review-result-0022.md); [completion](../events/review-complete-0023.yaml). Existing suite passed 36 tests; owning-command smoke exposed the untested exponent-hash failure.
+- [Fix approval 0024](../events/fix-approval-0024.yaml) and [start 0025](../events/fix-start-0025.yaml) authorized [fix 0026](../events/fix-result-0026.yaml). [Immutable draft](../artifacts/snapshots/pr-draft-fix-0026.md); [completion](../events/fix-complete-0027.yaml).
 
-## Resolved findings
+## Resolved and remaining findings
 
-SPEC-001 remains resolved from fix-result-0010. This fix resolves STANDARDS-001, SPEC-002, STANDARDS-002 and SPEC-003. Every finding remains in its original immutable review.
-
-## Remaining findings
-
-No unresolved implementation finding. Latest historical reviewer verdict: FAILURE, now stale. Current-source reviewer verdict: none. State: FIXED, pending a fresh independent review. This is not SUCCESS or merge approval.
+Resolved: SPEC-001, STANDARDS-001, STANDARDS-002, SPEC-002, SPEC-003 and SPEC-004. No unresolved implementation finding. Latest reviewer verdict remains historical FAILURE, stale after the fix. Current-source verdict is null; independent review is required.
 
 ## Merge status
 
-Unmerged and not pushed. No remote operation, tracker mutation or metadata commit ran. Parent owns workflow commits, phase completion and pane closure.
+Unmerged and not pushed. Source is committed on `feature/skill-contract-manifests-11-artifact-sharing`; the worktree is retained. Cleanup remains pending as recorded above.
 
-## Resources
-
-[Owned-resource observation](../artifacts/snapshots/resources-fix-0018.json). No domain service was launched. Agent/tool processes remain live for parent-owned child-pane closure. Shutdown is pending, not confirmed.
-
-
-## Parent compatibility fix completion
-
-The parent verified typed delivery against [fix-result-0018](../events/fix-result-0018.yaml) and all seven output paths. An independent actual CLI smoke on the frozen-base template passed preview, confirmed upgrade with all required checks, repeat no-op, persisted consumer updates and unchanged authored configuration. Temporary fixture removed.
-
-[Parent completion](../events/fix-complete-0019.yaml) records the outcome. The fixer pane was removed; [owned-resource observation](../artifacts/snapshots/resources-fix-complete-0019.json) confirms shutdown. No domain service or remote mutation ran.
-
-Fresh shared inspection confirms clean source `3378f0d89811c8ce67feadcc0326f8c86764a0ae`, valid receipt history and no diagnostics. It selects fresh independent review because source changed; the previous FAILURE remains historical, not a current-source verdict.
-
-## Current independent review — review-complete-0023
-
-State: REVIEW_FAILED. [Review result](../events/review-result-0022.yaml) records FAILURE at 3378f0d89811c8ce67feadcc0326f8c86764a0ae. [Immutable review](../artifacts/reviews/review-review-result-0022.md) contains both axis reports and owning-command evidence. Standards has no actionable finding; Spec has one blocking finding, SPEC-004. Earlier reviews and resolved findings above remain historical.
-
-The reviewer ran the existing suite: 36 passed, 0 failed, 232 assertions. Actual owning-command smoke found the untested historical exponent-hash compatibility failure. Parent validation: 6 contract tests passed with 53 assertions; actual configuration list and upgrade help ran.
-
-[Parent completion](../events/review-complete-0023.yaml) records verified delivery, unchanged frozen source, ticket comment, and [confirmed shutdown](../artifacts/snapshots/resources-review-complete-0023.json). The reviewer tab was removed. Source worktree is preserved; no merge or push ran. Next phase: fix SPEC-004, subject to fresh ownership and reservation checks.
