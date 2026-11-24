@@ -1,0 +1,6 @@
+{
+  "version": "1.0.0",
+  "title": "Equalise panes",
+  "description": "Equalises pane widths and heights after splits and closes. Manual resizing stays until the next pane change. Click Equalise or press Ctrl+Alt+E to equalise the current tab. Requires Bun (from PATH or mise) and hc.",
+  "place": "none"
+}
