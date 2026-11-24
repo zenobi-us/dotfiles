@@ -1,0 +1,125 @@
+{
+  "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+  "scoped_paths": [
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberpunk-help",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberpunk-help",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-backstory",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-backstory",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-conflicts",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-conflicts",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-crashes",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-crashes",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-feedback",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-feedback",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-hotkeys",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-hotkeys",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-modbase",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-modbase",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-netsec",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-netsec",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-recommends",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-recommends",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-reports",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-reports",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-reshade",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-reshade",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-saves",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-saves",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-sitebuilder",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-sitebuilder",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-tweaks",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-tweaks",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-wiki",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/game-dev/cyberwise-wiki",
+      "installed_exists": false,
+      "discovered": false
+    },
+    {
+      "source": "mise/conf.d/devtools-agent/bundles/developer/skills/uidev/cyberpunk-ui",
+      "source_directory_exists": false,
+      "installed_directory": "/home/zenobius/.omp/agent/bundles/developer/skills/uidev/cyberpunk-ui",
+      "installed_exists": false,
+      "discovered": false
+    }
+  ],
+  "source_orphan_manifests": []
+}

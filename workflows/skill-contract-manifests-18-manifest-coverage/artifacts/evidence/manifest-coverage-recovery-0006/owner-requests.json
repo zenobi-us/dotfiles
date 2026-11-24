@@ -1,0 +1,1136 @@
+{
+  "requests": [
+    {
+      "evidence_refs": [
+        "SKILL.md: Agent Instructions Injection",
+        "../godot-mentor/SKILL.md: Turning it on and off"
+      ],
+      "owner": "godot/godot-mentor for per-project preference state",
+      "required_action": "Separate owner ticket for the mentor/project preference state shared with godot-mentor and project. Human plans/designs are excluded; they do not justify an empty manifest for the preference writes.",
+      "skill_directory": "developer/skills/game-dev/godot/godot-brainstorming",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/godot/godot-brainstorming",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 14,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "evidence_refs": [
+        "SKILL.md: Turning it on and off"
+      ],
+      "owner": "godot/godot-mentor",
+      "required_action": "Separate owner ticket for the persistent mentor preference contract, its path/hash identity, merge rules and compatibility. No schema injection or automatic conversion in this coverage slice.",
+      "skill_directory": "developer/skills/game-dev/godot/godot-mentor",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/godot/godot-mentor",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 15,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "evidence_refs": [
+        "scripts/session_start.ts:19-30",
+        "SKILL.md: Session-start rules",
+        "../godot-mentor/SKILL.md"
+      ],
+      "owner": "godot/project for host-hook integration; godot/godot-mentor for stated preference state",
+      "required_action": "Separate owner ticket for shared mentor state and explicit supported host SessionStart definitions. The source hook and prose differ on mentor restoration; report without changing behavior or installation hooks.",
+      "skill_directory": "developer/skills/game-dev/godot/project",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/godot/project",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 16,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "evidence_refs": [
+        "session-management.md: Campaign File Format",
+        "SKILL.md: Campaign File",
+        "package.ts"
+      ],
+      "owner": "ttrpg-gm",
+      "required_action": "Separate owner ticket for structured campaign persistence and reader compatibility, including hidden-state/comment delimiters. Preserve authored narrative and safety settings; do not migrate campaigns as a coverage declaration.",
+      "skill_directory": "developer/skills/game-dev/ttrpg-gm",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/ttrpg-gm",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 17,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "artifacts": [
+        "persisted two-axis review body",
+        "native tracker review comment or immutable artifacts/reviews/review-<receipt-id>.md"
+      ],
+      "definition_refs": [
+        "SKILL.md#aggregate",
+        "SKILL.md#persist-the-review"
+      ],
+      "kind": "ownership-decision",
+      "owner": "code-review / worktree review storage (ticket 08)",
+      "reason": "Review body is an independently consumed durable review with required identity, axes, verdict and timestamp. Worktree owns immutable storage and receipts, but its current manifest has no separate review-body definition. Separate owner decision must establish that definition without duplicating worktree ownership.",
+      "required_action": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/code-review",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/code-review",
+      "qualification": "Worktree ticket 08 is already completed. Resolve review-body prose versus independently structured record classification with its existing owners; do not create a competing worktree definition.",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 18,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "artifacts": [
+        "CONTEXT.md domain glossary",
+        "CONTEXT-MAP.md navigation and relationships",
+        "docs/adr/ numbered decisions and index"
+      ],
+      "definition_refs": [
+        "CONTEXT-FORMAT.md",
+        "ADR-FORMAT.md",
+        "SKILL.md#file-structure"
+      ],
+      "kind": "new-persistent-owner",
+      "owner": "domain-modeling",
+      "reason": "Owns persistent domain vocabulary, context maps and ADR records, with optional status metadata and supersession. No established contract identifiers or content upgrade policy found.",
+      "required_action": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/domain-modeling",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/domain-modeling",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 19,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "artifacts": [
+        "MISSION.md",
+        "RESOURCES.md",
+        "GLOSSARY.md",
+        "learning-records/*.md",
+        "lessons/*.html",
+        "reference/*.html",
+        "files/assets/*"
+      ],
+      "definition_refs": [
+        "MISSION-FORMAT.md",
+        "RESOURCES-FORMAT.md",
+        "GLOSSARY-FORMAT.md",
+        "LEARNING-RECORD-FORMAT.md",
+        "SKILL.md#teaching-workspace"
+      ],
+      "kind": "new-persistent-owner",
+      "owner": "teach",
+      "reason": "Owns persistent learning state used across sessions, including mission constraints, resource categories, canonical terms and superseding numbered learning records. Needs an owner ticket; HTML/CSS/JS outputs also retain their external formats.",
+      "required_action": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/teach",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/teach",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 20,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "artifacts": [
+        ".out-of-scope/<concept>.md rejection knowledge base",
+        "Agent Brief structured tracker comment",
+        "Triage Notes comment"
+      ],
+      "definition_refs": [
+        "OUT-OF-SCOPE.md",
+        "AGENT-BRIEF.md",
+        "SKILL.md#needs-info-template"
+      ],
+      "kind": "new-persistent-owner",
+      "owner": "triage",
+      "reason": "Owns persistent concept-deduplicated rejection records and agent-consumed briefs. Definitions disagree on rejection record fields (relaxed headings versus Decision/Reason/Prior requests example). Tracker owner retains comment storage, not these domain semantics.",
+      "required_action": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/triage",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/triage",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 21,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "artifacts": [
+        "docs/sources/*.md source records",
+        "docs/canon/*-reconciliation.md",
+        "sourced claims and canon labels"
+      ],
+      "definition_refs": [
+        "SKILL.md#source-record",
+        "SKILL.md#canon-layers",
+        "SKILL.md#conflict-rules",
+        "references/source-use-for-character-and-lore.md"
+      ],
+      "kind": "new-persistent-owner",
+      "owner": "canon-steward",
+      "reason": "Owns source metadata, source-locator claims and resolved/provisional/unresolved reconciliation records. No authoritative versioned identity or reader policy exists.",
+      "required_action": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/writing/skills/fictional/canon-steward",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/writing/skills/fictional/canon-steward",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 22,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "artifacts": [
+        "characters/*.md character facets",
+        "character knowledge, debt, secrets and personal arc",
+        "linked timeline updates"
+      ],
+      "definition_refs": [
+        "SKILL.md#facet-storage",
+        "SKILL.md#character-record",
+        "references/causal-backstory.md",
+        "references/dialogue-as-action.md"
+      ],
+      "kind": "new-persistent-owner",
+      "owner": "character-designer",
+      "reason": "Owns reusable character records with stable metadata and cross-record identity; consumes narrative facet, canon and timeline formats whose owner migration is also unresolved.",
+      "required_action": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/writing/skills/fictional/character-designer",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/writing/skills/fictional/character-designer",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 23,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "artifacts": [
+        "continuity findings and retained continuity records",
+        "promise/reveal tracking",
+        "connected narrative facet inputs"
+      ],
+      "definition_refs": [
+        "SKILL.md#review-contract",
+        "SKILL.md#review-output",
+        "SKILL.md#record-approved-changes",
+        "references/promise-and-reveal-tracking.md"
+      ],
+      "kind": "new-persistent-owner",
+      "owner": "continuity-keeper",
+      "reason": "Defines severity/status findings with explicit decision owner and preserved historical claims; consumes unresolved narrative record contracts. Separate owner ticket must decide persistence and versioned finding/tracking boundaries.",
+      "required_action": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/writing/skills/fictional/continuity-keeper",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/writing/skills/fictional/continuity-keeper",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 24,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "artifacts": [
+        "world/factions/*.md faction facets",
+        "time-bound directed faction relationships",
+        "linked place and timeline updates"
+      ],
+      "definition_refs": [
+        "SKILL.md#facet-storage",
+        "SKILL.md#faction-design-model",
+        "references/social-status-and-agenda.md"
+      ],
+      "kind": "new-persistent-owner",
+      "owner": "faction-designer",
+      "reason": "Owns reusable faction records with metadata, directed relationships and shared continuity semantics; needs separate definition and content-validator decisions.",
+      "required_action": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/writing/skills/fictional/faction-designer",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/writing/skills/fictional/faction-designer",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 25,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "artifacts": [
+        "docs/agents/narrative-domain.md",
+        "docs/agents/narrative-workflow.md",
+        "CONTEXT.md narrative anchors",
+        "Markdown facet metadata"
+      ],
+      "definition_refs": [
+        "SKILL.md#facet-model",
+        "SKILL.md#create-the-domain-document-when-absent",
+        "SKILL.md#create-the-workflow-document-when-absent"
+      ],
+      "kind": "new-persistent-owner",
+      "owner": "narrative-repo-setup",
+      "reason": "Owns persistent narrative facet model and setup configuration. Uses type, stable IDs, status and canon fields, while specialist character/faction defaults use kind. Owner must resolve local-field precedence and validators without replacing existing metadata.",
+      "required_action": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/writing/skills/fictional/narrative-repo-setup",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/writing/skills/fictional/narrative-repo-setup",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 26,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "artifacts": [
+        "stories/*.md story plans with frontmatter",
+        "shared facet changes",
+        "timeline consequences"
+      ],
+      "definition_refs": [
+        "SKILL.md#story-storage",
+        "SKILL.md#story-contract",
+        "references/dramatic-tension.md"
+      ],
+      "kind": "new-persistent-owner",
+      "owner": "story-architect",
+      "reason": "Owns persistent story-plan metadata and causal arc structure, reused with linked facets and timelines. No established contract identity or owning validator exists.",
+      "required_action": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/writing/skills/fictional/story-architect",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/writing/skills/fictional/story-architect",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 27,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "artifacts": [
+        "world/places/*.md",
+        "world/technology/*.md",
+        "world/history/*.md",
+        "world/terms/*.md",
+        "timeline/*.md",
+        "faction placeholders"
+      ],
+      "definition_refs": [
+        "SKILL.md#facet-storage",
+        "SKILL.md#create-the-facet-package",
+        "references/showing-lore-through-pressure.md"
+      ],
+      "kind": "new-persistent-owner",
+      "owner": "world-builder",
+      "reason": "Owns persistent place, technology, history, term and event facets. Shares narrative metadata and source claims whose definitions need an owner ticket, not invented identifiers.",
+      "required_action": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/writing/skills/fictional/world-builder",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/writing/skills/fictional/world-builder",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 28,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "boundary": "Persistent throttle JSON and candidate/removal command results; SessionStart hook input/output",
+      "definition": "scripts/cleanup-merged.ts:20-48,197-209,228-241",
+      "need": "Separate owner ticket must define and version {checkedAt,repo} persisted state and owned CLI results, preserve hook host format and Worktrunk inventory, and establish historical readers. No manifest added.",
+      "owner": "cleanup-merged",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/git/cleanup-merged",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/git/cleanup-merged",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 29,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "boundary": "Owned meta, review-state, thread and watch JSON command results independently consumed by playbooks",
+      "definition": "scripts/commands/meta.ts:15-34; scripts/commands/threads.ts:121-128,159-167,195-201; references/github-api.md",
+      "need": "Separate owner ticket must inventory the script-owned result families, define identities and readers, and distinguish GitHub-native responses from derived records. No invented contract or empty manifest.",
+      "owner": "pr",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/git/pr",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/git/pr",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 30,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "boundary": "publish-package client_payload, target-only publish matrix, and source-derived publish metadata JSON",
+      "definition": "SKILL.md; references/release-publish-channel-and-metadata-plan.md; references/pkgs-tools-deployment/resolve-publish-metadata:84-100",
+      "need": "Separate owner ticket must reconcile proposed versus executable metadata shapes, define owned payload contracts and consumers, and retain GitHub Actions/Release Please/Moon external formats. No domain migration in coverage ticket.",
+      "owner": "publishing-with-release-please-and-moonrepo-on-github-actions",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/devtools/publishing-with-release-please-and-moonrepo-on-github-actions",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/devtools/publishing-with-release-please-and-moonrepo-on-github-actions",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 31,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "boundary": "Validated persistent HTML report layout/assets and CLI report JSON; consumes collect-evidence and collect-feedback records",
+      "definition": "references/markup.md; scripts/validate-report.ts; scripts/report-cli.ts:20-38",
+      "need": "Reserved owner ticket 17 must supply its report declaration/definition and correct current/historical evidence claims. Leave missing manifest rather than assert no report contract or duplicate owner work.",
+      "owner": "writing-reports",
+      "owner_ticket": "skill-contract-manifests-17-report-generation",
+      "source_relative_skill_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports",
+      "kind": "existing-owner-ticket",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/devtools/writing-reports",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 32,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "kind": "new-persistent-owner",
+      "owner": "comfy-director",
+      "reason": "Job-name/prompt-id mapping job_ids.txt and append-only LOG.md/qc/QC_LOG.md recovery/QC records require a separate comfy-director owner ticket. No definitions, migrations or manifest were added.",
+      "required_action": "Request a separate owner-specific ticket for this persistent interchange/recovery record. Do not introduce its definition, conversion or artifact mutation in this coverage slice.",
+      "skill": "mise/conf.d/devtools-agent/bundles/creator/skills/comfy-director",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/creator/skills/comfy-director",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 33,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "kind": "new-persistent-owner",
+      "owner": "cloudflare-api",
+      "reason": "DNS/redirect CSV interchange and dns-export.csv require a separate cloudflare-api owner ticket; no migration is authorized.",
+      "required_action": "Request a separate owner-specific ticket for this persistent interchange/recovery record. Do not introduce its definition, conversion or artifact mutation in this coverage slice.",
+      "skill": "mise/conf.d/devtools-agent/bundles/platform/skills/devtools/cloudflare/cloudflare-api",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/platform/skills/devtools/cloudflare/cloudflare-api",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 34,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    },
+    {
+      "kind": "new-persistent-owner",
+      "owner": "structured-research",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/agent-core/skills/research",
+      "artifacts": [
+        "research-{hash}-{parent_topic}-{child_topic}.md required sections and source/confidence metadata"
+      ],
+      "required_action": "Request a separate owner-specific definition, validation and compatibility ticket. Keep this declaration portion stopped.",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 35,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      }
+    }
+  ],
+  "retired_requests": [
+    {
+      "evidence_refs": [
+        "get_cp2077_help_context.py:439-446,521-594",
+        "SKILL.md: Session bootstrap"
+      ],
+      "owner": "cyberpunk-help",
+      "required_action": "Separate owner ticket for discovery-result and persisted inventory-state identity, authoritative definition, validation and historical readers. External Vortex/save/VDF definitions also need verified authority.",
+      "skill_directory": "developer/skills/game-dev/cyberpunk-help",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberpunk-help",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 0,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      },
+      "classification": "retired",
+      "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+      "source_removal_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65"
+    },
+    {
+      "evidence_refs": [
+        "references/formats.md",
+        "../cyberwise-wiki/wiki/formats/character-document-formats.md: A play dossier"
+      ],
+      "owner": "cyberwise-backstory",
+      "required_action": "Separate owner ticket for the machine-consumed play dossier; define its supported structure and consumer compatibility. Other character formats remain human prose.",
+      "skill_directory": "developer/skills/game-dev/cyberwise-backstory",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-backstory",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 1,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      },
+      "classification": "retired",
+      "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+      "source_removal_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65"
+    },
+    {
+      "evidence_refs": [
+        "tools/Repair-LoadOrder.ps1:112-155,399-400",
+        "data/ATTRIBUTION.md",
+        "tools/Resolve-ResourcePath.ps1"
+      ],
+      "owner": "cyberwise-conflicts",
+      "required_action": "Separate owner ticket for loadorder-rules.psd1 and any CWPX data contract. Retain the actual PSD1/archive formats; establish authoritative external definitions without invented identifiers.",
+      "skill_directory": "developer/skills/game-dev/cyberwise-conflicts",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-conflicts",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 2,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      },
+      "classification": "retired",
+      "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+      "source_removal_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65"
+    },
+    {
+      "evidence_refs": [
+        "tools/Invoke-BisectRound.ps1:128-183,299-307",
+        "tools/New-InputSnapshot.ps1",
+        "tools/New-InstallSnapshot.ps1",
+        "tools/Compare-InputSnapshot.ps1",
+        "tools/Compare-InstallSnapshot.ps1",
+        "tools/Save-CrashSnapshot.ps1",
+        "tools/Watch-Crashes.ps1:198-200"
+      ],
+      "owner": "cyberwise-crashes",
+      "required_action": "Separate owner ticket for snapshot, bisect-round and sampler-record definitions, validation and safe compatibility. Do not migrate diagnostic evidence or restore manifests in this ticket.",
+      "skill_directory": "developer/skills/game-dev/cyberwise-crashes",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-crashes",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 3,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      },
+      "classification": "retired",
+      "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+      "source_removal_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65"
+    },
+    {
+      "evidence_refs": [
+        "tools/DeviceGeometry.ps1",
+        "tools/Get-Hotkeys.ps1",
+        "tools/Get-MouseProfile.ps1",
+        "tools/New-HotkeySheet.ps1:170-171,287-373,1519-1522",
+        "../cyberwise-wiki/wiki/input/describing-a-device-physical-geometry.md"
+      ],
+      "owner": "cyberwise-hotkeys",
+      "required_action": "Separate owner ticket for device geometry, hidden-sheet preferences, notes input and structured binding/profile output. Verify external game/CET/iCUE definitions, preserve their formats.",
+      "skill_directory": "developer/skills/game-dev/cyberwise-hotkeys",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-hotkeys",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 4,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      },
+      "classification": "retired",
+      "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+      "source_removal_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65"
+    },
+    {
+      "evidence_refs": [
+        "tools/Get-ModInventory.ps1:51-58,182-188",
+        "tools/New-ModStubs.ps1:47-49,163-164",
+        "../cyberwise-wiki/SKILL.md"
+      ],
+      "owner": "cyberwise-modbase",
+      "required_action": "Separate owner ticket for independently consumed inventory JSON. Share verified OKF/Vortex definitions rather than defining local substitutes.",
+      "skill_directory": "developer/skills/game-dev/cyberwise-modbase",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-modbase",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 5,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      },
+      "classification": "retired",
+      "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+      "source_removal_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65"
+    },
+    {
+      "evidence_refs": [
+        "SKILL.md: What a GAP is, and why it only exists in a log; Why CETMonkey and not AMM",
+        "tools/New-GapWaypoints.ps1"
+      ],
+      "owner": "NetSec and CETMonkey (external); cyberwise-netsec consumer/generator",
+      "required_action": "Authoritative NetSec log grammar and CETMonkey waypoint definition from the installed producer/consumer are not present in this scope. Resolve them in a separate format-owner ticket; preserve Lua and log syntax.",
+      "skill_directory": "developer/skills/game-dev/cyberwise-netsec",
+      "kind": "external-definition-unresolved",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-netsec",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 6,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      },
+      "classification": "retired",
+      "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+      "source_removal_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65"
+    },
+    {
+      "evidence_refs": [
+        "tools/ModPreference.ps1:65-66,114-123",
+        "tools/Test-Capabilities.ps1:179,194",
+        "SKILL.md: Where the preference lives, and why not in memory"
+      ],
+      "owner": "cyberwise-recommends",
+      "required_action": "Separate owner ticket for persisted recommendations/preferences and capability-result definitions, fail-closed reader compatibility and authorised mutation policy.",
+      "skill_directory": "developer/skills/game-dev/cyberwise-recommends",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-recommends",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 7,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      },
+      "classification": "retired",
+      "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+      "source_removal_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65"
+    },
+    {
+      "evidence_refs": [
+        "tools/New-ModManifest.ps1:256-295,350-352",
+        "tools/New-ModCredits.ps1:72-74",
+        "tools/Compare-Collection.ps1:113-134,213-214",
+        "tools/New-ModDossier.ps1:322-326",
+        "tools/New-SystemProfile.ps1:922-929"
+      ],
+      "owner": "cyberwise-reports",
+      "required_action": "Separate Cyberwise report-data owner ticket for cache, override and collection payload/result contracts. Ticket 17 report-generation retains its existing unrelated ownership; do not assign Cyberwise data to it without an explicit decision.",
+      "skill_directory": "developer/skills/game-dev/cyberwise-reports",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-reports",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 8,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      },
+      "classification": "retired",
+      "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+      "source_removal_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65"
+    },
+    {
+      "evidence_refs": [
+        "tools/Expand-Save.ps1",
+        "tools/Decode-Preset.ps1:49-50",
+        "../cyberwise-wiki/wiki/formats/cyberpunk-save-container.md",
+        "../cyberwise-wiki/wiki/formats/acu-preset.md"
+      ],
+      "owner": "CDPR save format and ACU preset producer (external); cyberwise-saves decoder",
+      "required_action": "Missing upstream authoritative supported-format definitions and stable version coverage for CDPR save/ACU formats. Local reverse-engineering prose is evidence, not permission to invent new internal record identities or modify external bytes.",
+      "skill_directory": "developer/skills/game-dev/cyberwise-saves",
+      "kind": "external-definition-unresolved",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-saves",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 9,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      },
+      "classification": "retired",
+      "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+      "source_removal_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65"
+    },
+    {
+      "evidence_refs": [
+        "SKILL.md: The layout it reads; What it must never do: flatten the documents",
+        "tools/New-CharacterSite.ps1",
+        "tools/ConvertFrom-Markdown.ps1"
+      ],
+      "owner": "cyberwise-sitebuilder; character content owner to resolve",
+      "required_action": "Separate owner ticket for the program-consumed character directory/document-marker contract and theme selection semantics. HTML/CSS/JS remain native external formats, not injected schemaVersion records.",
+      "skill_directory": "developer/skills/game-dev/cyberwise-sitebuilder",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-sitebuilder",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 10,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      },
+      "classification": "retired",
+      "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+      "source_removal_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65"
+    },
+    {
+      "evidence_refs": [
+        "SKILL.md: Never patch another author's file in place without a snapshot",
+        "../cyberwise/tools/ModFileBackup.ps1",
+        "references/cet-lua.md",
+        "references/redscript.md",
+        "references/tweakdb-and-text.md"
+      ],
+      "owner": "cyberwise for backup/patch records; external TweakXL/CET/redscript owners",
+      "required_action": "Depends on newly uncovered Cyberwise backup/patch record owner. Separate owner ticket must define it; external source formats remain unchanged and must not receive fabricated identifiers.",
+      "skill_directory": "developer/skills/game-dev/cyberwise-tweaks",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-tweaks",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 11,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      },
+      "classification": "retired",
+      "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+      "source_removal_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65"
+    },
+    {
+      "evidence_refs": [
+        "SKILL.md: The article format; Conformance and quality are different questions",
+        "tools/Test-Wiki.ps1:299-308",
+        "tools/Initialize-UserWiki.ps1"
+      ],
+      "owner": "cyberwise-wiki for validation result and distribution-boundary semantics; OKF external owner",
+      "required_action": "Separate owner ticket for the independently consumed wiki-validation JSON and any Cyberwise-specific record semantics. Resolve authoritative OKF 0.2 definitions and share them across wiki producers, without changing existing frontmatter.",
+      "skill_directory": "developer/skills/game-dev/cyberwise-wiki",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise-wiki",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 12,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      },
+      "classification": "retired",
+      "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+      "source_removal_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65"
+    },
+    {
+      "evidence_refs": [
+        "tools/ModFileBackup.ps1:56-64",
+        "tools/ModPatchWatch.ps1:70-81",
+        "tools/UpstreamGuard.ps1",
+        "tools/Start-CwEndpoint.ps1:153-154,232,254,315-319",
+        "tools/Test-InstallReady.ps1:270-271",
+        "endpoint.actions.json",
+        "references/cetmonkey.md",
+        "references/environment.md"
+      ],
+      "owner": "cyberwise",
+      "required_action": "Separate owner ticket(s) for backup index, patch/change registers, upstream guard manifest, endpoint protocol/state and readiness output. Audit historical readers and mutation authority there; no installation/update changes here.",
+      "skill_directory": "developer/skills/game-dev/cyberwise",
+      "kind": "new-persistent-owner",
+      "source_directory": "mise/conf.d/devtools-agent/bundles/developer/skills/game-dev/cyberwise",
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+        "request_index": 13,
+        "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+      },
+      "classification": "retired",
+      "removal_commit": "a675b089877ae74a6d77e2b5f5e0c91fa81e7505",
+      "source_removal_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65"
+    }
+  ],
+  "proposed_groups": [
+    {
+      "id": "godot-preference-contract",
+      "classification": "proposed-owner-work",
+      "owner": "godot/godot-mentor",
+      "consumers": [
+        "godot-brainstorming",
+        "project"
+      ],
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 14,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        },
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 15,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        },
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 16,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "scope": "One shared per-project preference JSON contract: canonical project path/hash, project/mode/level/language/section_offer fields, merge and compatibility rules. Preserve current owner.",
+      "depends_on": [],
+      "evidence": [
+        "developer/skills/game-dev/godot/godot-mentor/SKILL.md: Turning it on and off",
+        "developer/skills/game-dev/godot/godot-brainstorming/SKILL.md: Agent Instructions Injection",
+        "developer/skills/game-dev/godot/project/SKILL.md: Session-start rules"
+      ]
+    },
+    {
+      "id": "godot-session-integration-question",
+      "classification": "behavior-decision",
+      "owner": "godot/project",
+      "depends_on": [
+        "godot-preference-contract"
+      ],
+      "question": "Should SessionStart restore mentor preferences, or should prose stop claiming restoration? Current hook reads project.godot and session card only; it never reads the preference JSON. Resolve host hook authority separately.",
+      "evidence": [
+        "developer/skills/game-dev/godot/project/scripts/session_start.ts:18-30"
+      ],
+      "scope_exclusion": "No restoration or preference writes authorised here."
+    },
+    {
+      "id": "owner-request-4",
+      "classification": "proposed-owner-work",
+      "owner": "ttrpg-gm",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 17,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Separate owner ticket for structured campaign persistence and reader compatibility, including hidden-state/comment delimiters. Preserve authored narrative and safety settings; do not migrate campaigns as a coverage declaration.",
+      "evidence": [
+        "session-management.md: Campaign File Format",
+        "SKILL.md: Campaign File",
+        "package.ts"
+      ],
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-5",
+      "classification": "proposed-owner-work",
+      "owner": "code-review / worktree review storage (ticket 08)",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 18,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [
+        "skill-contract-manifests-08-worktree"
+      ],
+      "scope": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "evidence": [
+        "SKILL.md#aggregate",
+        "SKILL.md#persist-the-review"
+      ],
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-6",
+      "classification": "proposed-owner-work",
+      "owner": "domain-modeling",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 19,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "evidence": [
+        "CONTEXT-FORMAT.md",
+        "ADR-FORMAT.md",
+        "SKILL.md#file-structure"
+      ],
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-7",
+      "classification": "proposed-owner-work",
+      "owner": "teach",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 20,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "evidence": [
+        "MISSION-FORMAT.md",
+        "RESOURCES-FORMAT.md",
+        "GLOSSARY-FORMAT.md",
+        "LEARNING-RECORD-FORMAT.md",
+        "SKILL.md#teaching-workspace"
+      ],
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-8",
+      "classification": "proposed-owner-work",
+      "owner": "triage",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 21,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "evidence": [
+        "OUT-OF-SCOPE.md",
+        "AGENT-BRIEF.md",
+        "SKILL.md#needs-info-template"
+      ],
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-9",
+      "classification": "proposed-owner-work",
+      "owner": "canon-steward",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 22,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "evidence": [
+        "SKILL.md#source-record",
+        "SKILL.md#canon-layers",
+        "SKILL.md#conflict-rules",
+        "references/source-use-for-character-and-lore.md"
+      ],
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-10",
+      "classification": "proposed-owner-work",
+      "owner": "character-designer",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 23,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "evidence": [
+        "SKILL.md#facet-storage",
+        "SKILL.md#character-record",
+        "references/causal-backstory.md",
+        "references/dialogue-as-action.md"
+      ],
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-11",
+      "classification": "proposed-owner-work",
+      "owner": "continuity-keeper",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 24,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "evidence": [
+        "SKILL.md#review-contract",
+        "SKILL.md#review-output",
+        "SKILL.md#record-approved-changes",
+        "references/promise-and-reveal-tracking.md"
+      ],
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-12",
+      "classification": "proposed-owner-work",
+      "owner": "faction-designer",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 25,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "evidence": [
+        "SKILL.md#facet-storage",
+        "SKILL.md#faction-design-model",
+        "references/social-status-and-agenda.md"
+      ],
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-13",
+      "classification": "proposed-owner-work",
+      "owner": "narrative-repo-setup",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 26,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "evidence": [
+        "SKILL.md#facet-model",
+        "SKILL.md#create-the-domain-document-when-absent",
+        "SKILL.md#create-the-workflow-document-when-absent"
+      ],
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-14",
+      "classification": "proposed-owner-work",
+      "owner": "story-architect",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 27,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "evidence": [
+        "SKILL.md#story-storage",
+        "SKILL.md#story-contract",
+        "references/dramatic-tension.md"
+      ],
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-15",
+      "classification": "proposed-owner-work",
+      "owner": "world-builder",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 28,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Create a separately scoped owner ticket for identity, authoritative definition, content validation, compatibility and migration decisions before declaring support.",
+      "evidence": [
+        "SKILL.md#facet-storage",
+        "SKILL.md#create-the-facet-package",
+        "references/showing-lore-through-pressure.md"
+      ],
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-16",
+      "classification": "proposed-owner-work",
+      "owner": "cleanup-merged",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 29,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Separate owner ticket must define and version {checkedAt,repo} persisted state and owned CLI results, preserve hook host format and Worktrunk inventory, and establish historical readers. No manifest added.",
+      "evidence": "scripts/cleanup-merged.ts:20-48,197-209,228-241",
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-17",
+      "classification": "proposed-owner-work",
+      "owner": "pr",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 30,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Separate owner ticket must inventory the script-owned result families, define identities and readers, and distinguish GitHub-native responses from derived records. No invented contract or empty manifest.",
+      "evidence": "scripts/commands/meta.ts:15-34; scripts/commands/threads.ts:121-128,159-167,195-201; references/github-api.md",
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-18",
+      "classification": "proposed-owner-work",
+      "owner": "publishing-with-release-please-and-moonrepo-on-github-actions",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 31,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Separate owner ticket must reconcile proposed versus executable metadata shapes, define owned payload contracts and consumers, and retain GitHub Actions/Release Please/Moon external formats. No domain migration in coverage ticket.",
+      "evidence": "SKILL.md; references/release-publish-channel-and-metadata-plan.md; references/pkgs-tools-deployment/resolve-publish-metadata:84-100",
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-19",
+      "classification": "proposed-owner-work",
+      "owner": "writing-reports",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 32,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [
+        "skill-contract-manifests-17-report-generation"
+      ],
+      "scope": "Reserved owner ticket 17 must supply its report declaration/definition and correct current/historical evidence claims. Leave missing manifest rather than assert no report contract or duplicate owner work.",
+      "evidence": "references/markup.md; scripts/validate-report.ts; scripts/report-cli.ts:20-38",
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-20",
+      "classification": "proposed-owner-work",
+      "owner": "comfy-director",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 33,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Request a separate owner-specific ticket for this persistent interchange/recovery record. Do not introduce its definition, conversion or artifact mutation in this coverage slice.",
+      "evidence": "Job-name/prompt-id mapping job_ids.txt and append-only LOG.md/qc/QC_LOG.md recovery/QC records require a separate comfy-director owner ticket. No definitions, migrations or manifest were added.",
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-21",
+      "classification": "proposed-owner-work",
+      "owner": "cloudflare-api",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 34,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Request a separate owner-specific ticket for this persistent interchange/recovery record. Do not introduce its definition, conversion or artifact mutation in this coverage slice.",
+      "evidence": "DNS/redirect CSV interchange and dns-export.csv require a separate cloudflare-api owner ticket; no migration is authorized.",
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    },
+    {
+      "id": "owner-request-22",
+      "classification": "proposed-owner-work",
+      "owner": "structured-research",
+      "requests": [
+        {
+          "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "request_index": 35,
+          "sha256": "0e884e1462725776b786c6e486de0bc0d949bab2e49e3e3618ca7be5a57869ae"
+        }
+      ],
+      "depends_on": [],
+      "scope": "Request a separate owner-specific definition, validation and compatibility ticket. Keep this declaration portion stopped.",
+      "evidence": null,
+      "grouping_decision": "Separate scope: no proven common wire format with another request. Shared narrative dependencies do not merge specialist contracts."
+    }
+  ],
+  "ticket_mutations": false,
+  "qualification": "Request owner-specific work for confirmed new persistent boundaries. Existing owners retain ownership. External authority gaps and review-body classification are separate from creating local replacement definitions."
+}

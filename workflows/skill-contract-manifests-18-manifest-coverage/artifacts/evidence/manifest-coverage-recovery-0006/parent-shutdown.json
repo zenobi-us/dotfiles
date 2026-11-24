@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "muxer-resource-report/v2",
+  "manifest": {
+    "schemaVersion": "muxer-run/v2",
+    "runId": "a264ba09-eceb-46ca-917a-72f161cf9853",
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "target": "t2bw",
+    "createdAt": "2026-11-24T02:44:35.482Z",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+    "operationId": "a264ba09-eceb-46ca-917a-72f161cf9853"
+  },
+  "resources": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "a264ba09-eceb-46ca-917a-72f161cf9853",
+    "observedAt": "2026-11-24T03:00:13.723Z",
+    "processes": [
+      {
+        "pid": 1513702,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19357770",
+        "command": "omp",
+        "parentPid": 1513382,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+        "state": "stopped"
+      },
+      {
+        "pid": 1514879,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19361575",
+        "command": "python",
+        "parentPid": 1513702,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+        "state": "stopped"
+      }
+    ],
+    "shutdown": "confirmed"
+  }
+}

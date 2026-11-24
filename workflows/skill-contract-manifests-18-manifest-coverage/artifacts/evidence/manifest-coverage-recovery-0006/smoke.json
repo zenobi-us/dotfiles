@@ -1,0 +1,159 @@
+{
+  "source_commit": "32f03b1de98d9a5de018ab21106e22fbc6395c65",
+  "source_tree": "e1819e996b9bcd6a00e8c4441cf0e158e6b428b1",
+  "removed_directories_absent": true,
+  "installed_removed_lookup_absent": true,
+  "orphan_manifests": [],
+  "retained_source_unchanged": true,
+  "historical_evidence_unchanged": true,
+  "retained_reference_scan": {
+    "markdown_exit": 0,
+    "markdown_matches": [],
+    "nonmarkdown_matches": []
+  },
+  "validation_runs": 488,
+  "validation_duplicates": 0,
+  "stale_or_missing_roots": [
+    {
+      "bundle": "agent-core",
+      "kind": "claude-plugin",
+      "path": "./skills/documents/",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/agent-core/.claude-plugin/plugin.json",
+      "sha256": "c89e98378c7fe9890abe7271d9c83aa9c4097aaf7b9f674c297748249552ffcf"
+    },
+    {
+      "bundle": "agent-core",
+      "kind": "claude-plugin",
+      "path": "./skills/skill-development/",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/agent-core/.claude-plugin/plugin.json",
+      "sha256": "c89e98378c7fe9890abe7271d9c83aa9c4097aaf7b9f674c297748249552ffcf"
+    },
+    {
+      "bundle": "agent-core",
+      "kind": "claude-plugin",
+      "path": "./skills/sop/",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/agent-core/.claude-plugin/plugin.json",
+      "sha256": "c89e98378c7fe9890abe7271d9c83aa9c4097aaf7b9f674c297748249552ffcf"
+    },
+    {
+      "bundle": "agent-core",
+      "kind": "claude-plugin",
+      "path": "./skills/dumbzone/",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/agent-core/.claude-plugin/plugin.json",
+      "sha256": "c89e98378c7fe9890abe7271d9c83aa9c4097aaf7b9f674c297748249552ffcf"
+    },
+    {
+      "bundle": "agent-core",
+      "kind": "claude-plugin",
+      "path": "./skills/install-skill/",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/agent-core/.claude-plugin/plugin.json",
+      "sha256": "c89e98378c7fe9890abe7271d9c83aa9c4097aaf7b9f674c297748249552ffcf"
+    },
+    {
+      "bundle": "creator",
+      "kind": "claude-plugin",
+      "path": "./skills/imagegen/comfyui",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/creator/.claude-plugin/plugin.json",
+      "sha256": "e9308f05b42557ca56090040931157458e14385fe4bb68438f14f9aa7b422cc4"
+    },
+    {
+      "bundle": "creator",
+      "kind": "claude-plugin",
+      "path": "./skills/imagegen/generate-images-with-takumi",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/creator/.claude-plugin/plugin.json",
+      "sha256": "e9308f05b42557ca56090040931157458e14385fe4bb68438f14f9aa7b422cc4"
+    },
+    {
+      "bundle": "developer",
+      "kind": "claude-plugin",
+      "path": "./skills/better-auth/",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/developer/.claude-plugin/plugin.json",
+      "sha256": "fb813db9eadf7913fc323b4805a75ffd9de002463c690bd0ebab4803ad60a346"
+    },
+    {
+      "bundle": "platform",
+      "kind": "claude-plugin",
+      "path": "./skills/files/devtools/",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/platform/.claude-plugin/plugin.json",
+      "sha256": "beda616ead12328631ef4464cca5a30c5f9ba32b28b0a28e7cf21596d5582288"
+    },
+    {
+      "bundle": "platform",
+      "kind": "claude-plugin",
+      "path": "./skills/files/devtools/cloudflare/",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/platform/.claude-plugin/plugin.json",
+      "sha256": "beda616ead12328631ef4464cca5a30c5f9ba32b28b0a28e7cf21596d5582288"
+    },
+    {
+      "bundle": "platform",
+      "kind": "claude-plugin",
+      "path": "./skills/files/devtools/mise/",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/platform/.claude-plugin/plugin.json",
+      "sha256": "beda616ead12328631ef4464cca5a30c5f9ba32b28b0a28e7cf21596d5582288"
+    },
+    {
+      "bundle": "platform",
+      "kind": "claude-plugin",
+      "path": "./skills/files/devtools/moonrepo/",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/platform/.claude-plugin/plugin.json",
+      "sha256": "beda616ead12328631ef4464cca5a30c5f9ba32b28b0a28e7cf21596d5582288"
+    },
+    {
+      "bundle": "platform",
+      "kind": "claude-plugin",
+      "path": "./skills/files/devtools/pi-mono/",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/platform/.claude-plugin/plugin.json",
+      "sha256": "beda616ead12328631ef4464cca5a30c5f9ba32b28b0a28e7cf21596d5582288"
+    },
+    {
+      "bundle": "researcher",
+      "kind": "extension",
+      "path": "./skills",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/researcher/extension.json",
+      "sha256": "7ab754090de3d62c968590378766e45d86d841f53c6520fedd777f7b9d8c6470"
+    },
+    {
+      "bundle": "researcher",
+      "kind": "pi-package",
+      "path": "./skills",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/researcher/package.json",
+      "sha256": "bc62ba533e890650f30e111cdaa697076c469dc533fd15c9caf79300a493990f"
+    },
+    {
+      "bundle": "researcher",
+      "kind": "claude-plugin",
+      "path": "./skills/files/devtools/",
+      "exists": false,
+      "declaration": "/home/zenobius/.omp/agent/bundles/researcher/.claude-plugin/plugin.json",
+      "sha256": "533272f99e6b17c7a3b7aadb2534d71fbae27628c1dc53704fb4eaa2f2c25cdc"
+    }
+  ],
+  "owned_services": [],
+  "installed_master_commit": "94141cadd3a9602b12787f7bfdd40abf5f649ba3",
+  "source_status": {
+    "argv": [
+      "git",
+      "status",
+      "--porcelain"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+}

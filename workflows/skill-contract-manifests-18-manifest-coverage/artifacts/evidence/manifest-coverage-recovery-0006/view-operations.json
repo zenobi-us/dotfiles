@@ -1,0 +1,36 @@
+[
+  {
+    "argv": [
+      "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-view.ts",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--id",
+      "skill-contract-manifests-18-manifest-coverage",
+      "--kind",
+      "manifest",
+      "--input",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/manifest-update.json"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "exit_code": 0,
+    "stdout": "{\"schemaVersion\":\"worktree-view-result/v1\",\"artifact\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-18-manifest-coverage/manifest.yaml\",\"changed\":true,\"from\":\"worktree-workflow/v3\",\"to\":\"worktree-workflow/v3\",\"status\":\"completed\"}\n",
+    "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+  },
+  {
+    "argv": [
+      "/home/zenobius/.omp/agent/bundles/developer/skills/git/worktree/scripts/write-view.ts",
+      "--repository",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+      "--id",
+      "skill-contract-manifests-18-manifest-coverage",
+      "--kind",
+      "latest-status",
+      "--input",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/latest-status-update.json"
+    ],
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "exit_code": 0,
+    "stdout": "{\"schemaVersion\":\"worktree-view-result/v1\",\"artifact\":\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-18-manifest-coverage/projections/latest-status.yaml\",\"changed\":true,\"from\":\"worktree-latest-status/v2\",\"to\":\"worktree-latest-status/v2\",\"status\":\"completed\"}\n",
+    "stderr": "mise WARN  env var 'DOTFILE_REPO_ROOT' is not defined and will be left unexpanded, referenced by `AGENT_BUNDLE_STORAGE_PATH_PATTERN` in /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/mise.unix.toml. Use ${DOTFILE_REPO_ROOT:-} to default to an empty string and suppress this warning.\n"
+  }
+]

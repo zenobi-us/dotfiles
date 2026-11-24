@@ -1,0 +1,15 @@
+{
+  "qualification": "Lossless publication representation only. Original validator JSON bytes and child receipt remain unchanged. Raw JSON retained locally; compressed archive is the Git-tracked copy.",
+  "archives": [
+    {
+      "raw_ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/source-validation.json",
+      "archive_ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/source-validation.json.gz",
+      "encoding": "gzip",
+      "raw_sha256": "8cdae5f192188cf38526c2409393cc5636ca2511d7eb31938d3879b5c7d87873",
+      "archive_sha256": "a7e90d3425386fe220f18f39be3c98d3ba09a294eea86d122ab1ddd76da1e7e5",
+      "raw_bytes": 153440897,
+      "archive_bytes": 22611536,
+      "decompression_verified": true
+    }
+  ]
+}

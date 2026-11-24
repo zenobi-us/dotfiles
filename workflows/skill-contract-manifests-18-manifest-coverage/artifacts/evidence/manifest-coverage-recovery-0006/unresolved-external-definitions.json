@@ -1,0 +1,1952 @@
+{
+  "qualification": "Retained partial boundaries. May include owner-specific or runtime questions alongside external definitions; individual text controls. No new authoritative definitions inferred.",
+  "boundaries": [
+    {
+      "skill": "agent-core/skills/explain",
+      "boundaries": [
+        "SVG output and arbitrary supplied document input formats need verified authoritative definition mappings. HTML declaration is valid but does not establish complete skill coverage."
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "agent-core/skills/mq-query",
+      "boundaries": [
+        "The generic JSON/YAML/TOML/XML/CSV conversion formats and the mq/okf command-result families remain undeclared. Exact external definition and support-version mappings are still required."
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "agent-core/skills/skill-hunter",
+      "boundaries": [
+        "GitHub CLI search-result JSON requires its own pinned authoritative external definition. The Agent Skills declaration covers downloaded bundles only."
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "creator/skills/comfy",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "comfy",
+          "reason": "ComfyUI UI/API workflow JSON and object_info.json remain undeclared; CLI workflow-result schemas describe command payloads, not the graph or node catalog.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "creator/skills/comfy-build",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "comfy-build",
+          "reason": "Desktop snapshot JSON and ComfyUI UI/API workflow JSON remain undeclared; the build command payload schemas are not definitions of those input files.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "creator/skills/comfy-debug",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "comfy-debug",
+          "reason": "ComfyUI workflow JSON and object_info.json remain undeclared; emit-workflow graph output is not the jobs result or the envelope schema.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "creator/skills/comfy-deploy",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "comfy-deploy",
+          "reason": "ComfyUI API workflow JSON remains undeclared; command-result payload schemas do not define the submitted graph.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "creator/skills/generate-images-with-takumi",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "generate-images-with-takumi",
+          "reason": "Takumi JSON node trees, RenderOptions and animation scenes, JSX and SVG remain undeclared; HTML is only the externally owned HTML input.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "creator/skills/html-artifact",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "html-artifact",
+          "reason": "Standalone CSS/JavaScript and embedded SVG retain their external owners; the HTML declaration does not claim independent CSS, ECMAScript or SVG contracts.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/browsers/a11y-debugging",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/GoogleChrome/lighthouse.git",
+          "reason": "Native Lighthouse result only; accessibility snapshot and tool wrapper schemas remain undeclared."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/browsers/agent-browser",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/vercel-labs/agent-browser.git",
+          "reason": "Configuration schema only. Auth/session state, action policies, batches, HAR, traces and CLI result wrappers remain undeclared."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/browsers/chrome-devtools",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "ChromeDevTools/chrome-devtools-mcp and selected artifact owners",
+          "reason": "Raw CDP support is not inferred from MCP implementation. Snapshot UID/text semantics, trace/heap serialization and selected Lighthouse artifact formats remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/browsers/chrome-devtools-cli",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "ChromeDevTools/chrome-devtools-mcp and selected artifact owners",
+          "reason": "Raw CDP support is not inferred from MCP implementation. Snapshot UID/text semantics, trace/heap serialization and selected Lighthouse artifact formats remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/browsers/cookie-debugging",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "ChromeDevTools/chrome-devtools-mcp and selected artifact owners",
+          "reason": "Raw CDP support is not inferred from MCP implementation. Snapshot UID/text semantics, trace/heap serialization and selected Lighthouse artifact formats remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/browsers/debug-optimize-lcp",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "ChromeDevTools/chrome-devtools-mcp and selected artifact owners",
+          "reason": "Raw CDP support is not inferred from MCP implementation. Snapshot UID/text semantics, trace/heap serialization and selected Lighthouse artifact formats remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/browsers/firefox-devtools",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/mozilla-firefox/firefox.git",
+          "reason": "Native Mozilla RDP packets and actor protocol only. Host debugger/MCP configuration and local analysis-summary wrappers remain distinct undeclared formats."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/browsers/memory-leak-debugging",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "ChromeDevTools/chrome-devtools-mcp and selected artifact owners",
+          "reason": "Raw CDP support is not inferred from MCP implementation. Snapshot UID/text semantics, trace/heap serialization and selected Lighthouse artifact formats remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/browsers/surf",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/nicobailon/surf-cli.git",
+          "reason": "Native workflow/playbook input/output definition only. Auth/session/oracle/CLI-result records, HAR and shared-context output are not covered by these aliases."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/devtools/bats-testing",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/bats-core/bats-core.git",
+          "reason": "Native Bats test-file syntax and conventions only. TAP result grammar, reusable plain Bash helpers and target REST payloads retain separate undeclared definitions."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/devtools/codemapper",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/p1rallels/codemapper.git",
+          "reason": "Native AI-format command rendering only. Supported source-language grammars, model-specific data and snapshot/cache formats retain separate undeclared definitions."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/devtools/create-new-bun-package-repo",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/npm/cli.git",
+          "reason": "npm metadata only. tsconfig and GitHub Actions/workflow definitions remain undeclared."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/devtools/creating-cli-tools",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/microsoft/TypeScript.git",
+          "reason": "Only executable Bun TypeScript/JavaScript source syntax is declared. CLI specification prose is excluded; target API payloads retain target ownership."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/devtools/outline-wiki-reports",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/outline/openapi.git",
+          "reason": "Native Outline API request/response records only. Report prose and opaque attachment bytes are excluded; local publication-summary fields are not an API definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/devtools/release-please",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/googleapis/release-please.git",
+          "reason": "Configuration/version manifest only. Action output wrappers and GitHub Actions workflow syntax require separate definitions."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "conventional-commits/conventionalcommits.org",
+          "reason": "Conventional Commit input is identified and defined at git:7d293dc59e88abc8ce6c6698344d4da518ff3f27:content/v1.0.0/index.md. It remains undeclared here because sourceRepository is bound to googleapis/release-please for the configuration and version-manifest definitions."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/devtools/termscope",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/mwunsch/termscope.git",
+          "reason": "Native termscope JSONL protocol only. Snapshot representations, HTML/SVG rendering and terminal source formats require separate support mappings."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/2d-essentials",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/3d-essentials",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/ability-system",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/addon-development",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/ai-navigation",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/animation-system",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/assets-pipeline",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/audio-system",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/beehave",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/camera-system",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/component-system",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/csharp-godot",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/dotnet/csharpstandard.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/csharp-signals",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/dotnet/csharpstandard.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/dedicated-server",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/dependency-injection",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/dialogue-manager",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/dialogue-system",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/event-bus",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/export-pipeline",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/gdextension",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/gdscript-advanced",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/gdscript-patterns",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-brainstorming",
+      "boundaries": [
+        {
+          "owner": "godot/godot-mentor for per-project preference state",
+          "required_action": "Separate owner ticket for the mentor/project preference state shared with godot-mentor and project. Human plans/designs are excluded; they do not justify an empty manifest for the preference writes."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Separate owner ticket for the mentor/project preference state shared with godot-mentor and project. Human plans/designs are excluded; they do not justify an empty manifest for the preference writes."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-code-review",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-debugging",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-mentor",
+      "boundaries": [
+        {
+          "owner": "godot/godot-mentor",
+          "required_action": "Separate owner ticket for the persistent mentor preference contract, its path/hash identity, merge rules and compatibility. No schema injection or automatic conversion in this coverage slice."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Separate owner ticket for the persistent mentor preference contract, its path/hash identity, merge rules and compatibility. No schema injection or automatic conversion in this coverage slice."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-optimization",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-project-setup",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-testing",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/godot-ui",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/hud-system",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/input-handling",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/inventory-system",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/limboai",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/localization",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/math-essentials",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/mobile-development",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/multiplayer-basics",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/multiplayer-sync",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/multithreading",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/particles-vfx",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/phantom-camera",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/physics-system",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/player-controller",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/popochiu",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/procedural-generation",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/resource-pattern",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/responsive-ui",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/save-load",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/scene-organization",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/shader-basics",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/state-machine",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/tween-animation",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/godot/xr-development",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/godotengine/godot-docs.git",
+          "reason": "Native formats outside this manifest sourceRepository remain undeclared; C# or GDScript counterpart, binary Resources, JSON save semantics, addon-native files and platform/build configurations require their own exact authoritative definitions where used. Existing human examples remain unchanged."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/shader-effects",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/KhronosGroup/GLSL.git",
+          "reason": "Host JavaScript/TypeScript/HTML and binary graphics assets are not defined by the Khronos GLSL source. No cross-repository support claim is added."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/shader-fundamentals",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/KhronosGroup/GLSL.git",
+          "reason": "Host JavaScript/TypeScript/HTML and binary graphics assets are not defined by the Khronos GLSL source. No cross-repository support claim is added."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/shader-noise",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/KhronosGroup/GLSL.git",
+          "reason": "Host JavaScript/TypeScript/HTML and binary graphics assets are not defined by the Khronos GLSL source. No cross-repository support claim is added."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/game-dev/webgl",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/KhronosGroup/GLSL.git",
+          "reason": "Host JavaScript/TypeScript/HTML and binary graphics assets are not defined by the Khronos GLSL source. No cross-repository support claim is added."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/git/worktrunk",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/max-sixty/worktrunk.git",
+          "reason": "Native user/project configuration only. Approval-state and inventory/result definitions remain undeclared."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/shells/creating-herdr-app-mods",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/herdrdev/herdr-app.git",
+          "reason": "Native mod metadata and layout/lifecycle specification only; application-specific state payloads remain project-owned, code is source and screenshots are opaque."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/shells/neovim/lazy-nvim-optimization",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/LuaJIT/LuaJIT.git",
+          "reason": "LuaJIT source syntax only. Neovim/plugin configuration semantics, lazy.nvim spec fields and profiler data remain undeclared; ordinary performance advice is prose."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/shells/neovim/neovim-best-practices",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/LuaJIT/LuaJIT.git",
+          "reason": "LuaJIT source syntax only. Neovim/plugin configuration semantics, lazy.nvim spec fields and profiler data remain undeclared; ordinary performance advice is prose."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/shells/zellij",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/zellij-org/zellij.git",
+          "reason": "Native KDL layout grammar only. CLI identifiers and human text are scalar/prose; configuration and inventory JSON are not claimed by this alias."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/basic-design-principles",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/w3c/csswg-drafts.git",
+          "reason": "CSS stylesheet syntax only. Property/value specifications, Tailwind directive semantics, HTML and framework source remain separate undeclared families."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/feature-arch",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/microsoft/TypeScript.git",
+          "reason": "Only native TypeScript/JavaScript/JSX source syntax is declared from the owner parser. Framework configuration, runtime data, component prop semantics and runner-specific snapshots/results remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/framer-motion-animator",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/microsoft/TypeScript.git",
+          "reason": "Only native TypeScript/JavaScript/JSX source syntax is declared from the owner parser. Framework configuration, runtime data, component prop semantics and runner-specific snapshots/results remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/frontend-design",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/whatwg/html.git",
+          "reason": "Native HTML document/fragment syntax only. CSS, JavaScript/JSX source and framework-specific interfaces remain separate external families."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/frontend-patterns",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/microsoft/TypeScript.git",
+          "reason": "Only native TypeScript/JavaScript/JSX source syntax is declared from the owner parser. Framework configuration, runtime data, component prop semantics and runner-specific snapshots/results remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/gsap-framer-scroll-animation",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/microsoft/TypeScript.git",
+          "reason": "Only native TypeScript/JavaScript/JSX source syntax is declared from the owner parser. Framework configuration, runtime data, component prop semantics and runner-specific snapshots/results remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/playwright",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/microsoft/playwright.git",
+          "reason": "Only native BrowserContext storageState cookies/origins/credentials are declared. HAR, traces, runner reports and project-owned fixtures retain distinct undeclared formats."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/react",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/microsoft/TypeScript.git",
+          "reason": "Only native TypeScript/JavaScript/JSX source syntax is declared from the owner parser. Framework configuration, runtime data, component prop semantics and runner-specific snapshots/results remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/react-doctor",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/millionco/react-doctor.git",
+          "reason": "Native React Doctor configuration object only, including package.json.reactDoctor object content. npm metadata and diagnostic/report envelopes retain separate undeclared definitions."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/react-hook-form",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/microsoft/TypeScript.git",
+          "reason": "Only native TypeScript/JavaScript/JSX source syntax is declared from the owner parser. Framework configuration, runtime data, component prop semantics and runner-specific snapshots/results remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/react-patterns",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/microsoft/TypeScript.git",
+          "reason": "Only native TypeScript/JavaScript/JSX source syntax is declared from the owner parser. Framework configuration, runtime data, component prop semantics and runner-specific snapshots/results remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/shadcn",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/microsoft/TypeScript.git",
+          "reason": "Only native TypeScript/JavaScript/JSX source syntax is declared from the owner parser. Framework configuration, runtime data, component prop semantics and runner-specific snapshots/results remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/shadcn-installing-components",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/shadcn-ui/ui.git",
+          "reason": "Registry item acceptance only. npm package exports remain undeclared; component implementation is application source."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/tailwind",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/w3c/csswg-drafts.git",
+          "reason": "CSS stylesheet syntax only. Property/value specifications, Tailwind directive semantics, HTML and framework source remain separate undeclared families."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/tanstack-query",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/microsoft/TypeScript.git",
+          "reason": "Only native TypeScript/JavaScript/JSX source syntax is declared from the owner parser. Framework configuration, runtime data, component prop semantics and runner-specific snapshots/results remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/typescript",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/microsoft/TypeScript.git",
+          "reason": "Compiler configuration only. Program source is code, not a newly defined domain record; diagnostic envelopes are not claimed."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/ui-design",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/whatwg/html.git",
+          "reason": "Native HTML document/fragment syntax only. CSS, JavaScript/JSX source and framework-specific interfaces remain separate external families."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/ux-preview",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/whatwg/html.git",
+          "reason": "HTML report only. Embedded SVG/CSS, TUI framework payloads and runtime evidence schemas remain undeclared."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "developer/skills/uidev/vitest",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "https://github.com/microsoft/TypeScript.git",
+          "reason": "Only native TypeScript/JavaScript/JSX source syntax is declared from the owner parser. Framework configuration, runtime data, component prop semantics and runner-specific snapshots/results remain separate undeclared boundaries."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "matt-pocock/skills/diagnosing-bugs",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "diagnosing-bugs",
+          "reason": "Replay traces/event logs and arbitrary request payloads are producer-specific; no universal trace schema is claimed."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "diagnosing-bugs",
+          "reason": "Crash dumps and recordings are opaque diagnostic evidence unless a concrete producer format is selected."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "diagnosing-bugs",
+          "reason": "Generated feedback-loop Bash harness has a separately discovered GNU Bash definition, but manifest sourceRepository is bound to the HAR specification repository."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "matt-pocock/skills/improve-codebase-architecture",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "improve-codebase-architecture",
+          "reason": "Embedded Mermaid flowchart/graph and sequence syntax are authored by this skill. A pinned upstream Mermaid flowchart authority was discovered at git:6374e521f43fde5cfc60d65410c1aa033af29aaf:packages/mermaid/src/docs/syntax/flowchart.md in https://github.com/mermaid-js/mermaid.git. It cannot be resolved under this manifest\u2019s WHATWG sourceRepository."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "improve-codebase-architecture",
+          "reason": "Embedded SVG and CSS remain external web platform formats. No complete independent SVG/CSS declaration is claimed."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "improve-codebase-architecture",
+          "reason": "Report-generation ownership remains ticket 17; no parallel report schema or validator was created."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "matt-pocock/skills/to-spec",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "to-spec",
+          "reason": "SKILL.md requests new tracker-initiative/v1 and tracker-result/v1, while the current authoritative ticket owner prohibits new v1 output and produces v2."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "to-spec",
+          "reason": "Manifest declares actual owner-current v2 production and historical v1 acceptance, not impossible new v1 output. Consumer instruction migration remains owner ticket 04 / parent integration."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "matt-pocock/skills/to-tickets",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "to-tickets",
+          "reason": "SKILL.md requests new tracker-ticket/v1, tracker-initiative/v1 and tracker-result/v1, while the current authoritative owner requires v2 production."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "to-tickets",
+          "reason": "Manifest declares current v2 owner outputs and historical v1 acceptance. Consumer instruction migration remains owner ticket 04 / parent integration."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "matt-pocock/skills/wizard",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "wizard",
+          "reason": "Dotenv key/value files remain native. Template write_env emits raw KEY=VALUE; no universal dotenv dialect compatibility is promised."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "wizard",
+          "reason": "GitHub Actions workflow input and gh secret/variable commands retain GitHub-owned formats. No independent serialized GitHub secret-result object is produced."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "wizard",
+          "reason": "Additional authoritative dotenv/GitHub definitions require a different repository from the chosen single sourceRepository."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "platform/skills/devtools/cloudflare/cloudflare-api",
+      "boundaries": [
+        {
+          "kind": "new-persistent-owner",
+          "owner": "cloudflare-api",
+          "reason": "DNS/redirect CSV interchange and dns-export.csv require a separate cloudflare-api owner ticket; no migration is authorized.",
+          "required_action": "Use the separate owner-specific ticket; do not introduce a definition or migration in coverage work."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "cloudflare-api",
+          "reason": "Cloudflare GraphQL query/response shapes are not defined by the REST OpenAPI specification.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "platform/skills/devtools/cloudflare/cloudflare-worker-builder",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "cloudflare-worker-builder",
+          "reason": "npm package.json, TypeScript tsconfig, Vite and Hono configuration remain undeclared.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "platform/skills/devtools/cloudflare/d1-drizzle-schema",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "d1-drizzle-schema",
+          "reason": "Drizzle schema/configuration and SQLite/D1 SQL schema/migrations remain undeclared; npm metadata does not define them.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "platform/skills/devtools/cloudflare/d1-migration",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "d1-migration",
+          "reason": "SQLite/D1 SQL migration grammar and D1 migration tracking rows remain undeclared; Wrangler config does not define those records.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "platform/skills/devtools/cloudflare/tanstack-start",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "tanstack-start",
+          "reason": "npm package.json, tsconfig, Drizzle/SQL migrations, Vite/TanStack/React/Better Auth and dotenv configurations remain undeclared.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "platform/skills/devtools/cloudflare/vite-flare-starter",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "vite-flare-starter",
+          "reason": "npm package.json, starter-specific configuration, dotenv and SQL migrations remain undeclared.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "platform/skills/devtools/mise/writing-mise-file-tasks",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "writing-mise-file-tasks",
+          "reason": "The mise-owned file-task specification covers #MISE and embedding #USAGE comments; the full external Usage argument grammar is not separately declared.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "platform/skills/devtools/moonrepo/project-generators",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "project-generators",
+          "reason": "moon template/list command-result JSON is not the template configuration schema; its result model remains unmapped.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "platform/skills/devtools/moonrepo/with-bun",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "with-bun",
+          "reason": "npm package.json scripts remain undeclared; sourceRepository is bound to moonrepo/moon, not npm/cli.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "platform/skills/devtools/pi-mono/creating-pi-extensions",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "creating-pi-extensions",
+          "reason": "Pi ExtensionAPI, pi-extension-config and extension-owned configuration/state remain undeclared; npm package metadata does not define these interfaces.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "platform/skills/devtools/pi-mono/downloading-pi-extensions",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "downloading-pi-extensions",
+          "reason": "Pi-specific package metadata and entrypoint interfaces remain undeclared; npm package metadata covers only the npm-owned portion.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    },
+    {
+      "skill": "platform/skills/devtools/pi-mono/working-with-pi-coding-agent-shared-sessions",
+      "boundaries": [
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "working-with-pi-coding-agent-shared-sessions",
+          "reason": "GitHub gist API JSON and gh tabular listing remain undeclared.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        },
+        {
+          "kind": "remaining-external-mapping",
+          "owner": "working-with-pi-coding-agent-shared-sessions",
+          "reason": "The Pi Session Export title marker is a Pi-specific semantic constraint, not defined by WHATWG HTML.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        },
+        {
+          "kind": "helper-owner-contract",
+          "owner": "working-with-pi-coding-agent-shared-sessions",
+          "reason": "Local doctor JSON bun/gh/authenticated is an unversioned helper envelope requiring an owner contract; no upstream API or HTML schema describes it.",
+          "required_action": "Resolve the remaining format against its actual owner specification/model; do not treat the declared envelope or adjacent format as its definition."
+        }
+      ],
+      "provenance": {
+        "ref": "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+        "sha256": "66ebeadb9481a74ac41dedec7750ba77327af94d50ba43e81f37d823406217bf",
+        "source_commit": "3a1279b8cea5fe19588a815535546001d4f0cb50"
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+[
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "mq",
+      "--allow-http-import",
+      "-I",
+      "raw",
+      "-F",
+      "raw",
+      "import \"github.com/harehare/okf.mq\" | .",
+      "-o",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-18-manifest-coverage/artifacts/snapshots/pr-draft-implementation-0006.md",
+      "--no-clobber"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "mq",
+      "--allow-http-import",
+      "-I",
+      "raw",
+      "-F",
+      "raw",
+      "import \"github.com/harehare/okf.mq\" | .",
+      "-o",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-18-manifest-coverage/projections/pr-draft.md"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "mise",
+      "exec",
+      "--",
+      "mq",
+      "--allow-http-import",
+      "-I",
+      "raw",
+      "-F",
+      "raw",
+      "import \"github.com/harehare/okf.mq\" | .",
+      "-o",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-18-manifest-coverage/projections/implementation-log.md"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

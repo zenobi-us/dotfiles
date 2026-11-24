@@ -1,0 +1,40 @@
+{
+  "transport_equals_authoritative_event": true,
+  "transport_sha256": "dd8ee02083b41de0f9f83577a101f2668b45f807165a44f0f1dea32a195d9e7a",
+  "outputs_exist": true,
+  "retained_source_hash_checks": 2216,
+  "historical_hash_checks": 24,
+  "removed_directories_absent_in_source_and_install": 17,
+  "source_validation_rows_checked": 244,
+  "installed_validation_rows_checked": 244,
+  "all_validation_rows_bound_to_current_manifest_bytes": true,
+  "owned_process_closure": {
+    "normal_terminal_close": [
+      "hc kill t2bw",
+      "hc rm t2bw"
+    ],
+    "retained_process_identity_checks": {
+      "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "processes": [
+        {
+          "pid": 1513702,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "19357770",
+          "command": "omp",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+          "state": "running"
+        },
+        {
+          "pid": 1514879,
+          "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+          "startTicks": "19361575",
+          "command": "python",
+          "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage",
+          "state": "running"
+        }
+      ]
+    },
+    "action": "SIGTERM to exact verified Python child and OMP owner; SIGCONT to stopped OMP so normal termination can complete",
+    "final_shutdown": "confirmed"
+  }
+}

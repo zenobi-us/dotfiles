@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "mise",
+    "exec",
+    "--",
+    "mq",
+    "--allow-http-import",
+    "--allow-read=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles",
+    "-I",
+    "null",
+    "-F",
+    "json",
+    "import \"github.com/harehare/okf.mq\" | walk_files(\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles\", \"**/*.md\") | filter(fn(p): contains(read_file(\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles\" + \"/\" + p), \"cyberwise\") || contains(read_file(\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles\" + \"/\" + p), \"cyberpunk-help\") || contains(read_file(\"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-18-manifest-coverage/mise/conf.d/devtools-agent/bundles\" + \"/\" + p), \"cyberpunk-ui\");)"
+  ],
+  "cwd": "/tmp",
+  "exit_code": 0,
+  "stdout": "[]\n",
+  "stderr": ""
+}

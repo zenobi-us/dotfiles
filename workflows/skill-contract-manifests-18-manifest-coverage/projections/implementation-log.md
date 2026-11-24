@@ -1,16 +1,13 @@
-# Implementation log
+# Implementation history
 
-## implementation-0002
+## implementation-0002 — blocked
 
-Status: blocked. Source commit: `3a1279b8cea5fe19588a815535546001d4f0cb50`. Source tree: `703803167df3fe130224a2dcca7a37cec26d1ff8`.
+Source: 3a1279b8cea5fe19588a815535546001d4f0cb50. Added 197 manifests and guidance; retained 12 owner manifests. Historical validation: 261 skills, 209 valid, 52 missing, 130 partial. Evidence: workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage. Snapshot: workflows/skill-contract-manifests-18-manifest-coverage/artifacts/snapshots/pr-draft-implementation-0002.md. Parent closure: start-complete-0003.
 
-The implementation added reachable declarations, preserved owner boundaries, and updated coverage guidance. Every discovered maintained skill has an audit row. Public validation found 209 current source manifests and 52 missing manifests. Another 130 skill boundaries remain partial. No invalid present declaration remains. Full coverage is not complete.
+## implementation-0006 — blocked
 
-The shared contract suite passed 72 tests. Public definition-resolution and rejection commands exercised real operation boundaries. Validators preserved manifest bytes. Internal review findings were corrected and the two focused correction checks returned SUCCESS. No formal worktree review was performed.
+Source: 32f03b1de98d9a5de018ab21106e22fbc6395c65; tree: e1819e996b9bcd6a00e8c4441cf0e158e6b428b1. Reconciled all 17 retired Cyberpunk/Cyberwise source directories and eight branch-only manifests in one scoped removal commit. Preserved every retained source file and all historical evidence. Rediscovered 244 maintained skills through installed entry points and validated all 244 installed plus all 244 source directories. Source has 201 valid manifests, 43 missing, zero invalid present; 124 retained semantic boundaries remain partial. Full coverage is false. No owner migration, installation, updater change, ticket mutation, review, merge or push.
 
-The repository commit hook changed only bundle and marketplace version metadata. The unrelated user configuration edit was not staged. All owned audit/reviewer terminals and their observed child processes stopped. The source checkout remains available.
+Changed files by phase: 294 removals listed in workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/source-binding.json. Current checks: 488 public validation operations; removed installed/source directories absent; retained files and historical artifacts unchanged. No formal review or fix history exists.
 
-Read the [immutable PR draft](../artifacts/snapshots/pr-draft-implementation-0002.md), [coverage inventory](../artifacts/evidence/manifest-coverage/coverage-inventory.json), [owner requests](../artifacts/evidence/manifest-coverage/owner-requests.json) and [validation evidence](../artifacts/evidence/manifest-coverage/source-validation-current.json).
-
-Source and context publication remain local. The parent must validate the result receipt and handle remote publication. Preserve the existing claim and leave ticket completion unchanged.
-
+Unresolved questions and proposed dependency groups: workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/owner-requests.json. Partial and missing coverage: workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/coverage-inventory.json. Current immutable snapshot: workflows/skill-contract-manifests-18-manifest-coverage/artifacts/snapshots/pr-draft-implementation-0006.md. Parent attempt: start-0005, approval: takeover-approval-0004. No owned services remain.
