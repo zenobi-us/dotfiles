@@ -1,4 +1,68 @@
 ---
+receipt_id: review-complete-0068
+schemaVersion: worktree-pr-draft/v1
+source_commit: 6b0b445fa85328c90de214e257e23451a7e9aa6a
+source_tree: cd8e06c0e0f6ce08aeb7cdc5c224bdbb0718889c
+title: Artifact-share resolved candidate review
+type: Concept
+workflow_id: skill-contract-manifests-11-artifact-sharing
+---
+
+# Artifact-share contracts — REVIEW_PASSED
+
+## Approved resolved candidate
+
+Review 0066 is SUCCESS for candidate 6b0b445fa85328c90de214e257e23451a7e9aa6a, tree cd8e06c0e0f6ce08aeb7cdc5c224bdbb0718889c. Standards: no findings. Spec: no findings. Required suite: 37 pass, 801 assertions. Nine owning-CLI cases matched expected outcomes. [Review](../artifacts/reviews/review-review-result-0066.md), [result](../events/review-result-0066.yaml), [parent completion](../events/review-complete-0068.yaml).
+
+The candidate preserves original source e01e451f and merges pinned base 9ff41745. Manual version conflicts kept the newer artifact-share bundle; the commit hook produced matching agent-core 0.1.45 versions. User approved the exact candidate through [source-candidate-approval-0056](../events/source-candidate-approval-0056.yaml). Earlier 0.1.44 prose is corrected by [candidate version evidence](../artifacts/snapshots/candidate-version-correction-0057.json).
+
+## Environment and resources
+
+Review 0058 remains immutable FAILURE for missing declared turndown dependencies. Parent provisioned locked declared dependencies without source changes. Fresh environment-only [fix 0062](../events/fix-result-0062.yaml) and [completion 0063](../events/fix-complete-0063.yaml) passed all checks with unchanged source. Review 0066 independently passed. Source changes were not required for VALIDATION-002.
+
+Review/axis terminals are closed. After normal closure left owned processes, the user approved only their named identities. Fresh boot/start checks guarded SIGTERM and SIGKILL. [Final observations](../artifacts/snapshots/resources-review-final-0068.json) confirm all stopped. Prior targetless preflight failures have a separate [no-resource-creation disposition](../artifacts/snapshots/prelaunch-disposition-finish-0055.json); their original observer records remain unchanged.
+
+## Publication
+
+No integration or push yet. Resume finish against the current accepted base with candidate-bound dependency installation, the complete affected suite and an actual owning-CLI smoke. Keep unrelated user changes untouched.
+
+## Retained implementation and review history
+
+The material below describes prior states. Current acceptance is stated above.
+
+# Artifact-share contracts — environment-only FIXED
+
+## Ticket and implementation
+
+Adopt declared contracts for artifact-sharing configuration, metadata and historical consumers. The existing implementation supplies versioned readers and authorized upgrades that preserve authored content. This phase changes no product behavior, tracked source, lockfile or source identity.
+
+## Fix 0062
+
+VALIDATION-002 is resolved by the declared dependency environment, provisioned by the parent before this fresh fixer launched. The fixer installed nothing. turndown 7.2.4 and turndown-plugin-gfm 1.0.2 resolve from ignored node_modules paths; both match agent-core/package.json declarations. No alias, mock or shim was used.
+
+Source commit: 6b0b445fa85328c90de214e257e23451a7e9aa6a. Source tree: cd8e06c0e0f6ce08aeb7cdc5c224bdbb0718889c. Branch: resolve/skill-contract-manifests-11-artifact-sharing-finish. Base: master. Tracked source remains clean. Changed files in this phase: none.
+
+## Validation
+
+The required full affected suite ran once after the authorized environment correction: 37 pass, 0 fail, 801 assertions, exit 0. The parent-prepared integration-smoke.js ran once, exit 0. Its actual owning CLI checks passed legacy-read byte preservation, authorized configuration upgrade with authored fields preserved, and unknown-version rejection without byte changes. Fixtures were cleaned by the script; the parent retains ownership of the script itself. Exact argv, cwd, exits and outputs are in [validation-fix-0062.json](../artifacts/snapshots/validation-fix-0062.json).
+
+## Review history and findings
+
+[review-result-0058](../events/review-result-0058.yaml) remains FAILURE: Standards and Spec had zero findings; runtime had VALIDATION-002 because turndown could not resolve (32 pass, 5 fail, 791 assertions). Its [immutable review](../artifacts/reviews/review-review-result-0058.md) and all earlier evidence remain unchanged. No production defect was established. This fix resolves VALIDATION-002; unresolved findings: none. Current verdict: null, pending fresh independent review. This fix is not a review SUCCESS.
+
+## Merge and resources
+
+No commit, merge, rebase, push, tracker edit or remote publication ran. No domain services or extra agents were launched. Parent owns result verification, acknowledgement, terminal t2d3 closure, shutdown observation and phase completion. The terminal remains live for that handoff. Open questions: none.
+
+## Canonical references
+
+Inputs: [source approval](../events/source-candidate-approval-0056.yaml), [review](../events/review-result-0058.yaml), [review artifact](../artifacts/reviews/review-review-result-0058.md), [fix approval](../events/fix-approval-0060.yaml), [parent environment evidence](../artifacts/snapshots/validation-environment-0060.json), [fix start](../events/fix-start-0061.yaml).
+
+Outputs: [fix result](../events/fix-result-0062.yaml), [validation snapshot](../artifacts/snapshots/validation-fix-0062.json), [draft snapshot](../artifacts/snapshots/pr-draft-fix-0062.md), [manifest](../manifest.yaml), [latest status](latest-status.yaml), [PR projection](pr-draft.md), [implementation log](implementation-log.md).
+
+## Retained prior draft and review history
+
+---
 receipt_id: review-complete-0053
 schemaVersion: worktree-pr-draft/v1
 source_commit: e01e451f90a426b9cf24e8432035e2ba775a04e4

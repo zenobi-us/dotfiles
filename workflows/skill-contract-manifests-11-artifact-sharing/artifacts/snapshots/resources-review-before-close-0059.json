@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "muxer-resource-report/v2",
+  "manifest": {
+    "schemaVersion": "muxer-run/v2",
+    "runId": "1a814f0f-0b71-4d91-9987-7e48d17caf4a",
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "target": "t2cy",
+    "createdAt": "2026-11-24T05:30:53.128Z",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+    "operationId": "1a814f0f-0b71-4d91-9987-7e48d17caf4a"
+  },
+  "resources": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "1a814f0f-0b71-4d91-9987-7e48d17caf4a",
+    "observedAt": "2026-11-24T05:41:33.861Z",
+    "processes": [
+      {
+        "pid": 1852077,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "20355564",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+        "state": "running"
+      },
+      {
+        "pid": 1855130,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "20361999",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+        "state": "running"
+      },
+      {
+        "pid": 1860021,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "20373007",
+        "command": "bun",
+        "parentPid": 1852077,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+        "state": "stopped"
+      },
+      {
+        "pid": 1860231,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "20373074",
+        "command": "hc",
+        "parentPid": 1860021,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+        "state": "stopped"
+      },
+      {
+        "pid": 1867163,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "20382065",
+        "command": "omp daemon brok",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+        "state": "running"
+      },
+      {
+        "pid": 1867189,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "20382070",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+        "state": "running"
+      },
+      {
+        "pid": 1869063,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "20385631",
+        "command": "bun",
+        "parentPid": 1852077,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+        "state": "stopped"
+      }
+    ],
+    "shutdown": "pending"
+  }
+}

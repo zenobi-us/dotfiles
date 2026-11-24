@@ -252,3 +252,43 @@ Parent validated the typed delivery against the immutable [fix result](../events
 
 SUCCESS at e01e451f90a426b9cf24e8432035e2ba775a04e4. Standards: one low advisory STD-001; Spec: no findings. Complete suite: 37 pass, 801 assertions; nine CLI operations passed expected outcomes; parent regression: 1 pass, 25 assertions. Source unchanged. [Review](../artifacts/reviews/review-review-result-0052.md), [result](../events/review-result-0052.yaml), [completion](../events/review-complete-0053.yaml). Actual reviewer and axes shut down. Two targetless failed prelaunch registrations retain unconfirmed cleanup. No merge or push.
 
+
+
+## Environment-only fix result 0062
+
+# Artifact-share contracts — environment-only FIXED
+
+## Ticket and implementation
+
+Adopt declared contracts for artifact-sharing configuration, metadata and historical consumers. The existing implementation supplies versioned readers and authorized upgrades that preserve authored content. This phase changes no product behavior, tracked source, lockfile or source identity.
+
+## Fix 0062
+
+VALIDATION-002 is resolved by the declared dependency environment, provisioned by the parent before this fresh fixer launched. The fixer installed nothing. turndown 7.2.4 and turndown-plugin-gfm 1.0.2 resolve from ignored node_modules paths; both match agent-core/package.json declarations. No alias, mock or shim was used.
+
+Source commit: 6b0b445fa85328c90de214e257e23451a7e9aa6a. Source tree: cd8e06c0e0f6ce08aeb7cdc5c224bdbb0718889c. Branch: resolve/skill-contract-manifests-11-artifact-sharing-finish. Base: master. Tracked source remains clean. Changed files in this phase: none.
+
+## Validation
+
+The required full affected suite ran once after the authorized environment correction: 37 pass, 0 fail, 801 assertions, exit 0. The parent-prepared integration-smoke.js ran once, exit 0. Its actual owning CLI checks passed legacy-read byte preservation, authorized configuration upgrade with authored fields preserved, and unknown-version rejection without byte changes. Fixtures were cleaned by the script; the parent retains ownership of the script itself. Exact argv, cwd, exits and outputs are in [validation-fix-0062.json](../artifacts/snapshots/validation-fix-0062.json).
+
+## Review history and findings
+
+[review-result-0058](../events/review-result-0058.yaml) remains FAILURE: Standards and Spec had zero findings; runtime had VALIDATION-002 because turndown could not resolve (32 pass, 5 fail, 791 assertions). Its [immutable review](../artifacts/reviews/review-review-result-0058.md) and all earlier evidence remain unchanged. No production defect was established. This fix resolves VALIDATION-002; unresolved findings: none. Current verdict: null, pending fresh independent review. This fix is not a review SUCCESS.
+
+## Merge and resources
+
+No commit, merge, rebase, push, tracker edit or remote publication ran. No domain services or extra agents were launched. Parent owns result verification, acknowledgement, terminal t2d3 closure, shutdown observation and phase completion. The terminal remains live for that handoff. Open questions: none.
+
+## Canonical references
+
+Inputs: [source approval](../events/source-candidate-approval-0056.yaml), [review](../events/review-result-0058.yaml), [review artifact](../artifacts/reviews/review-review-result-0058.md), [fix approval](../events/fix-approval-0060.yaml), [parent environment evidence](../artifacts/snapshots/validation-environment-0060.json), [fix start](../events/fix-start-0061.yaml).
+
+Outputs: [fix result](../events/fix-result-0062.yaml), [validation snapshot](../artifacts/snapshots/validation-fix-0062.json), [draft snapshot](../artifacts/snapshots/pr-draft-fix-0062.md), [manifest](../manifest.yaml), [latest status](latest-status.yaml), [PR projection](pr-draft.md), [implementation log](implementation-log.md).
+
+
+
+## Candidate review completion 0068
+
+Resolved candidate 6b0b445f retains source e01e451f and merges pinned base 9ff41745 with matching agent-core 0.1.45. Review 0058 failed only for missing validation dependencies. Environment-only fix 0062 changed no tracked source and passed 37 tests/801 assertions. Fresh review 0066 is SUCCESS; both axes have no findings, full suite and nine CLI cases pass. User-approved identity-bound shutdown confirmed all remaining owned processes stopped. [Review](../artifacts/reviews/review-review-result-0066.md), [completion](../events/review-complete-0068.yaml), [resources](../artifacts/snapshots/resources-review-final-0068.json). No merge or push yet.
+

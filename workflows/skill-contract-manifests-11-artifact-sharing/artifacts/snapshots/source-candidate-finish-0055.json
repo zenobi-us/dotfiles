@@ -1,0 +1,63 @@
+{
+  "original_source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+    "branch": "feature/skill-contract-manifests-11-artifact-sharing",
+    "base_branch": "master",
+    "commit": "e01e451f90a426b9cf24e8432035e2ba775a04e4",
+    "tree": "909dd320a0fab5690f7b334d317bcdab254e9c3a"
+  },
+  "candidate": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+    "branch": "resolve/skill-contract-manifests-11-artifact-sharing-finish",
+    "base_branch": "master",
+    "commit": "6b0b445fa85328c90de214e257e23451a7e9aa6a",
+    "tree": "cd8e06c0e0f6ce08aeb7cdc5c224bdbb0718889c",
+    "clean": true
+  },
+  "merged_base": "9ff41745acaa630301ca73cc32eb59106a14ed65",
+  "resolution": {
+    "agent_core": "0.1.44 retained in both registry files",
+    "other_plugins": "current pinned-base versions retained",
+    "artifact_share_delta": "28 files, 1233 insertions, 99 deletions against pinned base"
+  },
+  "validation_results": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test/contracts.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+      "exit_code": 0,
+      "result": "6 pass, 0 fail, 81 assertions; 11.82 seconds",
+      "source_commit": "6b0b445fa85328c90de214e257e23451a7e9aa6a",
+      "source_tree": "cd8e06c0e0f6ce08aeb7cdc5c224bdbb0718889c"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "list"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+      "exit_code": 1,
+      "result": "Expected rejection for smoke fixture missing required clone_root; not a product regression. Fixture corrected according to config-v2 contract."
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish/mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/cli.ts",
+        "list"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+      "exit_code": 0,
+      "result": "No shares configured in isolated valid v2 fixture."
+    }
+  ],
+  "publication": {
+    "merged_to_master": false,
+    "pushed": false,
+    "ticket_completed": false
+  }
+}

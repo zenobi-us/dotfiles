@@ -1,0 +1,10 @@
+{
+  "retained_run_ids": [
+    "febfdb40-315b-4e3c-8a5b-ccdf34309a4a",
+    "0a5863e9-7c8d-4c80-a9a4-2c3cc5331cb2"
+  ],
+  "retained_observer_state": "unconfirmed empty process registries; original records unchanged",
+  "reviewer_evidence": "review-result-0052 resources.launch_failures records missing HC_TERMINAL_ID before target allocation",
+  "owner_implementation": "mise/conf.d/devtools-agent/bundles/agent-core/skills/muxer-subagents/scripts/modules/muxer-herdr-app.ts: spawnHerdrApp checks HC_TERMINAL_ID before appCommand, herdr-app ls, tab.new or space.new",
+  "disposition": "No target creation was attempted for these preflight failures. There is no phase-owned pane or process to close or signal. This is not an observation of stopped processes. Actual successful reviewer and axis runs have confirmed shutdown."
+}

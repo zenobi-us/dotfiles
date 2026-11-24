@@ -3,13 +3,13 @@
   "workflow_id": "skill-contract-manifests-11-artifact-sharing",
   "ticket": "tracker/tickets/skill-contract-manifests-11-artifact-sharing.md",
   "state": "REVIEW_PASSED",
-  "latest_receipt": "review-complete-0053",
-  "latest_source_commit": "e01e451f90a426b9cf24e8432035e2ba775a04e4",
-  "latest_source_tree": "909dd320a0fab5690f7b334d317bcdab254e9c3a",
+  "latest_receipt": "review-complete-0068",
+  "latest_source_commit": "6b0b445fa85328c90de214e257e23451a7e9aa6a",
+  "latest_source_tree": "cd8e06c0e0f6ce08aeb7cdc5c224bdbb0718889c",
   "latest_review_verdict": SUCCESS,
   "review_stale": false,
   "current_source_review_verdict": SUCCESS,
-  "review_receipt": "review-result-0052",
+  "review_receipt": "review-result-0066",
   "resolved_findings":
     [
       "SPEC-001",
@@ -20,10 +20,11 @@
       "SPEC-004",
       "STANDARDS-003",
       "SPEC-005",
-      "VALIDATION-001"
+      "VALIDATION-001",
+      "VALIDATION-002"
     ],
   "open_findings": [],
-  "advisory_findings": ["STD-001"],
-  "cleanup_pending": true,
-  "next_action": "Finish or submit requires fresh inspection and current-base integration checks. Review acceptance is valid; two failed targetless prelaunch records retain unconfirmed cleanup."
+  "advisory_findings": [],
+  "cleanup_pending": false,
+  "next_action": "Resume authorized finish for the approved resolved candidate. Install declared locked dependencies and validate the isolated integration candidate before publication. All actual phase-owned processes stopped."
 }

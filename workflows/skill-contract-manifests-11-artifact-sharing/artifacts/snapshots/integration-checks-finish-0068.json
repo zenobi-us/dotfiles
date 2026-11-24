@@ -1,0 +1,5 @@
+[
+  {"argv":["mise","exec","--","bun","install","--filter","@zenobis/agent-bundle-agent-core","--frozen-lockfile","--ignore-scripts"]},
+  {"argv":["mise","exec","--","bun","test","mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test"]},
+  {"argv":["mise","exec","--","bun","/tmp/artifact-finish-0055-ulrl26c6/integration-smoke.js"]}
+]

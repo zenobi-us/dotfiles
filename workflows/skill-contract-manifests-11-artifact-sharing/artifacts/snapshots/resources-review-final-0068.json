@@ -1,0 +1,283 @@
+{
+  "approval": "review-cleanup-approval-0067",
+  "signals": [
+    {
+      "pid": 2006614,
+      "signal": "SIGTERM",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "20493884"
+    },
+    {
+      "pid": 2006924,
+      "signal": "SIGTERM",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "20494668"
+    },
+    {
+      "pid": 2011081,
+      "signal": "SIGTERM",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "20511066"
+    },
+    {
+      "pid": 2009792,
+      "signal": "SIGTERM",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "20504561"
+    },
+    {
+      "pid": 2011293,
+      "signal": "SIGTERM",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "20512260"
+    },
+    {
+      "pid": 2009750,
+      "signal": "SIGTERM",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "20504560"
+    },
+    {
+      "pid": 2012291,
+      "signal": "SIGTERM",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "20517379"
+    },
+    {
+      "pid": 2006614,
+      "signal": "SIGKILL",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "20493884"
+    },
+    {
+      "pid": 2006924,
+      "signal": "SIGKILL",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "20494668"
+    },
+    {
+      "pid": 2011081,
+      "signal": "SIGKILL",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "20511066"
+    },
+    {
+      "pid": 2009792,
+      "signal": "SIGKILL",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "20504561"
+    },
+    {
+      "pid": 2011293,
+      "signal": "SIGKILL",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "20512260"
+    },
+    {
+      "pid": 2009750,
+      "signal": "SIGKILL",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "20504560"
+    },
+    {
+      "pid": 2012291,
+      "signal": "SIGKILL",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "startTicks": "20517379"
+    }
+  ],
+  "observations": [
+    {
+      "schemaVersion": "muxer-resource-report/v2",
+      "manifest": {
+        "schemaVersion": "muxer-run/v2",
+        "runId": "550ab18f-9276-4338-aa3a-9fd07084ed8f",
+        "muxer": "herdr-app",
+        "agent": "omp",
+        "target": "t2d4",
+        "createdAt": "2026-11-24T05:53:56.683Z",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+        "operationId": "550ab18f-9276-4338-aa3a-9fd07084ed8f"
+      },
+      "resources": {
+        "schemaVersion": "muxer-resources/v2",
+        "runId": "550ab18f-9276-4338-aa3a-9fd07084ed8f",
+        "observedAt": "2026-11-24T13:13:50.106Z",
+        "processes": [
+          {
+            "pid": 2006614,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "20493884",
+            "command": "omp",
+            "parentPid": 2006299,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+            "state": "stopped"
+          },
+          {
+            "pid": 2006924,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "20494668",
+            "command": "omp",
+            "parentPid": 2006614,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+            "state": "stopped"
+          },
+          {
+            "pid": 2011081,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "20511066",
+            "command": "omp daemon brok",
+            "parentPid": 2006614,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+            "state": "stopped"
+          },
+          {
+            "pid": 2011108,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "20511071",
+            "command": "omp",
+            "parentPid": 2011081,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+            "state": "stopped"
+          },
+          {
+            "pid": 2011783,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "20514323",
+            "command": "bun",
+            "parentPid": 2006614,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+            "state": "stopped"
+          },
+          {
+            "pid": 2011845,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "20514378",
+            "command": "hc",
+            "parentPid": 2011783,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+            "state": "stopped"
+          },
+          {
+            "pid": 2012775,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "20520114",
+            "command": "bun",
+            "parentPid": 2006614,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+            "state": "stopped"
+          },
+          {
+            "pid": 2026842,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "20535709",
+            "command": "bun",
+            "parentPid": 2012775,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+            "state": "stopped"
+          },
+          {
+            "pid": 2027030,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "20535800",
+            "command": "mise",
+            "parentPid": 2026842,
+            "cwd": "/tmp/artifact-contracts-zqizh4/private",
+            "state": "stopped"
+          },
+          {
+            "pid": 2027106,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "20535828",
+            "command": "bun",
+            "parentPid": 2027030,
+            "cwd": "/tmp/artifact-contracts-zqizh4/private",
+            "state": "stopped"
+          }
+        ],
+        "shutdown": "confirmed"
+      }
+    },
+    {
+      "schemaVersion": "muxer-resource-report/v2",
+      "manifest": {
+        "schemaVersion": "muxer-run/v2",
+        "runId": "eb9f278a-3842-4d5f-a4ee-459d1c3bdb53",
+        "muxer": "herdr-app",
+        "agent": "omp",
+        "target": "t2d6",
+        "createdAt": "2026-11-24T05:55:43.189Z",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+        "operationId": "eb9f278a-3842-4d5f-a4ee-459d1c3bdb53",
+        "parentRunId": "550ab18f-9276-4338-aa3a-9fd07084ed8f"
+      },
+      "resources": {
+        "schemaVersion": "muxer-resources/v2",
+        "runId": "eb9f278a-3842-4d5f-a4ee-459d1c3bdb53",
+        "observedAt": "2026-11-24T13:13:50.577Z",
+        "processes": [
+          {
+            "pid": 2009792,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "20504561",
+            "command": "omp",
+            "parentPid": 2009194,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+            "state": "stopped"
+          },
+          {
+            "pid": 2011293,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "20512260",
+            "command": "omp",
+            "parentPid": 2009792,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+            "state": "stopped"
+          }
+        ],
+        "shutdown": "confirmed"
+      }
+    },
+    {
+      "schemaVersion": "muxer-resource-report/v2",
+      "manifest": {
+        "schemaVersion": "muxer-run/v2",
+        "runId": "89f8279e-4737-4dc8-bf8d-a3499a483a8a",
+        "muxer": "herdr-app",
+        "agent": "omp",
+        "target": "t2d5",
+        "createdAt": "2026-11-24T05:55:43.191Z",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+        "operationId": "89f8279e-4737-4dc8-bf8d-a3499a483a8a",
+        "parentRunId": "550ab18f-9276-4338-aa3a-9fd07084ed8f"
+      },
+      "resources": {
+        "schemaVersion": "muxer-resources/v2",
+        "runId": "89f8279e-4737-4dc8-bf8d-a3499a483a8a",
+        "observedAt": "2026-11-24T13:13:51.037Z",
+        "processes": [
+          {
+            "pid": 2009750,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "20504560",
+            "command": "omp",
+            "parentPid": 2009183,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+            "state": "stopped"
+          },
+          {
+            "pid": 2012291,
+            "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+            "startTicks": "20517379",
+            "command": "python",
+            "parentPid": 2009750,
+            "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+            "state": "stopped"
+          }
+        ],
+        "shutdown": "confirmed"
+      }
+    }
+  ],
+  "shutdown": "confirmed"
+}
