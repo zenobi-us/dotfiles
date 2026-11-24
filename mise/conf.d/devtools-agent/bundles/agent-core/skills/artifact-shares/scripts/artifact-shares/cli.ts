@@ -48,11 +48,14 @@ import {
   yamlString,
 } from "./lib";
 import { convertHtmlToMdx, frontmatterValue, isRemote, splitFrontmatter } from "./html";
+import { SHARE_METADATA_VERSION, readShareMetadata } from "../../assets/repo-template/src/share-metadata.ts";
+import { planConsumerUpgrade } from "./consumers";
 import {
   CONFIG_FILE,
   clonePathFor,
   loadConfig,
   saveConfig,
+  updateConfig,
   type ArtifactSharesConfig,
 } from "./config";
 
@@ -413,10 +416,11 @@ function buildMdx(input: {
 }): string {
   const front = [
     "---",
+    `schemaVersion: ${SHARE_METADATA_VERSION}`,
     `title: ${yamlString(input.title)}`,
     input.description ? `description: ${yamlString(input.description)}` : undefined,
     `kind: ${input.kind}`,
-    `hash: ${input.hash}`,
+    `hash: ${yamlString(input.hash)}`,
     `date: ${input.date}`,
     `source: ${yamlString(input.source)}`,
     "---",
@@ -465,8 +469,12 @@ async function share(kind: string, target: string, options: ShareOptions): Promi
 
   const hash = hashPath(source, isDirectory);
   const shareUrl = chosen.pagesUrl ? `${chosen.pagesUrl}shares/${hash}/` : null;
+  // Existing publications must be understood before treating a hash as already shared.
   const types = readTypes(chosen.clone);
   if (types.has(hash)) {
+    const existingPage = path.join(chosen.clone, "content", "shares", `${hash}.mdx`);
+    const metadata = readShareMetadata(readFileSync(existingPage, "utf8"));
+    if (metadata.hash !== hash || metadata.kind !== types.get(hash)) fail("Existing share metadata disagrees with its index.");
     const url = shareUrl;
     console.log(JSON.stringify({
       hash,
@@ -477,6 +485,10 @@ async function share(kind: string, target: string, options: ShareOptions): Promi
       ...(dryRun ? { dryRun: true } : {}),
     }, null, 2));
     return;
+  }
+
+  if (planConsumerUpgrade(chosen.clone, skillRoot).length > 0) {
+    fail(`Repository metadata consumers need an explicit upgrade before v2 generation. Run: cli.ts upgrade ${chosen.name} --dry-run, then cli.ts upgrade ${chosen.name} --confirm ${chosen.name}.`);
   }
 
   // A dry run stages the same layout somewhere disposable, so the clone stays
@@ -536,6 +548,12 @@ async function share(kind: string, target: string, options: ShareOptions): Promi
       files,
     }),
   );
+  try {
+    readShareMetadata(readFileSync(page, "utf8"));
+  } catch (error) {
+    removeShareFiles(stage, hash);
+    throw error;
+  }
 
   if (dryRun) {
     runShareChecks(chosen.clone, {
@@ -726,7 +744,7 @@ async function recreate(name: string, options: { confirm?: string; owner?: strin
 
   const pagesReady = chosen.pagesUrl ? enablePages(chosen.repo) : false;
   const pagesUrl = chosen.pagesUrl ? pagesUrlFor(chosen.repo) : null;
-  config.shares[chosen.name] = { repo: chosen.repo, branch: chosen.branch, pages_url: pagesUrl };
+  config.shares[chosen.name] = { ...config.shares[chosen.name], repo: chosen.repo, branch: chosen.branch, pages_url: pagesUrl };
   await saveConfig(config);
 
   console.log(
@@ -896,6 +914,30 @@ async function sync(name: string): Promise<void> {
   );
 }
 
+/** Local-only, explicit upgrade. Required repository checks still decide whether it is safe to keep. */
+async function upgradeConsumers(name: string, options: { dryRun?: boolean; confirm?: string }): Promise<void> {
+  const chosen = resolveShare(await loadConfig(), name);
+  assertShareClone(chosen.clone);
+  const changes = planConsumerUpgrade(chosen.clone, skillRoot);
+  if (options.dryRun || changes.length === 0) {
+    console.log(JSON.stringify({ dryRun: options.dryRun === true, changedFiles: changes.map(({ file }) => file), unchanged: changes.length === 0, remoteOperations: false }, null, 2));
+    return;
+  }
+  if (options.confirm !== name) fail(`Repeat the share name: cli.ts upgrade ${name} --confirm ${name}. Preview with --dry-run.`);
+  try {
+    for (const change of changes) writeFileSync(path.join(chosen.clone, change.file), change.after);
+    runShareChecks(chosen.clone);
+  } catch (error) {
+    for (const change of changes) {
+      const file = path.join(chosen.clone, change.file);
+      if (change.before === null) rmSync(file, { force: true });
+      else writeFileSync(file, change.before);
+    }
+    throw error;
+  }
+  console.log(JSON.stringify({ changedFiles: changes.map(({ file }) => file), remoteOperations: false, next: "Review and commit these local consumer changes before publishing." }, null, 2));
+}
+
 // ---------------------------------------------------------------------------
 // read-only commands
 // ---------------------------------------------------------------------------
@@ -1029,6 +1071,14 @@ const recreateCmd = app
   })
   .run(({ args, flags }: any) => recreate(args.name, { confirm: flags.confirm, owner: flags.owner }));
 
+const configCmd = app
+  .sub("config")
+  .meta({ description: "Upgrade local configuration or change its clone root; never publishes" })
+  .command(new Crust("upgrade").run(() => updateConfig("upgrade")))
+  .command(new Crust("clone-root")
+    .args([{ name: "path", type: "string", required: true, description: "New local clone root (does not move clones)" }])
+    .run(({ args }) => updateConfig("clone-root", args.path)));
+
 const listCmd = app
   .sub("list")
   .meta({ description: "List the share repositories this machine knows" })
@@ -1039,6 +1089,16 @@ const syncCmd = app
   .meta({ description: "Bring a clone up to date with its remote" })
   .args([{ name: "name", type: "string", description: "Share name", required: true }])
   .run(({ args }: any) => sync(args.name));
+
+const upgradeCmd = app
+  .sub("upgrade")
+  .meta({ description: "Upgrade known local repository consumers; never fetch, commit, or push" })
+  .args([{ name: "name", type: "string", required: true, description: "Configured share name" }])
+  .flags({
+    "dry-run": { type: "boolean", description: "Preview owned consumer files without writing" },
+    confirm: { type: "string", description: "Repeat the share name to authorize the local upgrade" },
+  })
+  .run(({ args, flags }) => upgradeConsumers(args.name, { dryRun: flags["dry-run"], confirm: flags.confirm }));
 
 const doctorCmd = app
   .sub("doctor")
@@ -1076,6 +1136,8 @@ const COMMANDS = [
   "check",
   "self-test",
   "pages",
+  "config",
+  "upgrade",
 ];
 
 // Crust prints "Unknown command" and returns normally, which exits 0. A caller
@@ -1100,6 +1162,8 @@ try {
     .command(checkCmd)
     .command(selfTestCmd)
     .command(pagesCmd)
+    .command(configCmd)
+    .command(upgradeCmd)
     .execute();
 } catch (error) {
   if (error instanceof CliError) {

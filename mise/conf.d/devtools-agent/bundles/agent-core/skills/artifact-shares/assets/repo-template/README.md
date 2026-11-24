@@ -7,6 +7,21 @@ A private site for published agent artifacts. Built with
 Created and written to by the `artifact-shares` skill. Read that skill before
 you edit anything here by hand.
 
+## Existing repositories
+
+If this repository predates metadata v2, use the artifact-shares CLI:
+
+```bash
+cli.ts upgrade <name> --dry-run
+cli.ts upgrade <name> --confirm <name>
+```
+
+This local-only command preserves registries, content, site settings and required
+checks. It refuses unknown customized consumers without writing. Review and
+commit the consumer changes before publishing. Historical numeric hash scalars
+are interpreted at the MDX loader boundary without rewriting pages or dropping
+leading zeros. Numeric v2 hashes remain invalid.
+
 ## Layout
 
 ```text

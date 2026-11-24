@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "artifact-share-metadata/v1",
+  "description": "Owned YAML frontmatter on content/shares/<hash>.mdx. Version 1 also accepts an absent identifier. Historical plain hash scalars match the complete 12-character lowercase hexadecimal grammar. When YAML interprets them as numbers, readers recover their original text, including leading zeros and exponent-shaped hashes, never reconstructing identity from the number. Body, component props, unknown frontmatter, and original asset bytes are authored content; historical publications have no automatic upgrade. The CLI, checks:types and actual MDX schema boundary share this lossless historical interpretation.",
+  "type": "object",
+  "required": [
+    "title",
+    "kind",
+    "hash",
+    "date",
+    "source"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "artifact-share-metadata/v1"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "minLength": 1
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{12}$"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "source": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

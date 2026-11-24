@@ -149,8 +149,11 @@ export function readTypes(repoDir: string): Map<string, string> {
     const line = rawLine.trim();
     if (!line || line.startsWith("#")) continue;
     const cut = line.indexOf("=");
-    if (cut === -1) continue;
-    types.set(line.slice(0, cut).trim(), line.slice(cut + 1).trim());
+    if (cut === -1) fail("Invalid share index: expected <hash>=<kind>.");
+    const hash = line.slice(0, cut).trim();
+    const kind = line.slice(cut + 1).trim();
+    if (!/^[a-f0-9]{12}$/.test(hash) || !kind || types.has(hash)) fail("Invalid share index hash, kind or duplicate entry.");
+    types.set(hash, kind);
   }
   return types;
 }

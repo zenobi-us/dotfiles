@@ -1,0 +1,3 @@
+artifact-share-index/v1
+
+The owned .types file is an unversioned text index. Blank lines and lines whose trimmed form starts with # are comments. Other lines are <hash>=<kind>, with surrounding whitespace ignored. Each hash is 12 lowercase hexadecimal characters and occurs once. A nonempty kind must exist in the repository kind registry. Each indexed hash has one matching content/shares/<hash>.mdx page, and every such page has one index entry. The page metadata kind and hash must agree. New writers retain this format; no schemaVersion header or conversion is required. Read-only readers never rewrite comments or ordering. Removal deletes only the selected hash entry.

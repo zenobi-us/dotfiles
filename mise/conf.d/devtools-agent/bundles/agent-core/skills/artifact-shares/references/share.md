@@ -98,6 +98,12 @@ except inside code, where MDX already treats them as text.
 The hash is the first 12 hex characters of the SHA-256 of the artifact. A
 directory hashes over its sorted relative paths and their contents.
 
+New v2 metadata quotes the hash as a YAML string. Historical unversioned and
+v1 pages keep their original bytes: readers recover plain 12-character lowercase
+hexadecimal hash text, including leading zeros and exponent-shaped hashes such
+as `123456789e12` and `42226e907802`. Explicit v2 metadata requires a string; unknown
+versions and malformed hashes are rejected.
+
 The same bytes give the same hash. Re-sharing an unchanged artifact prints the
 existing URL and changes nothing:
 
@@ -165,3 +171,72 @@ Stop. Do not retry, and do not look for a flag.
 2. If the share never reached GitHub, the rollback already removed it. Fix the
    source artifact and share again.
 3. If it did reach GitHub, read `references/redact.md`.
+
+
+## Upgrade an existing repository
+
+Before generating v2 metadata, run the local preview:
+
+```bash
+cli.ts upgrade work-shares --dry-run
+cli.ts upgrade work-shares --confirm work-shares
+```
+
+The command updates only `.mise/tasks/checks/types.ts`, `src/share-metadata.ts`,
+and the owned schema/docs block plus one import in `press.config.tsx`. It
+recognizes the frozen base template and the declared earlier consumer code from
+installed `assets/consumer-history.json`. It does not fetch, commit, push,
+change visibility, or enable Pages. Review and commit the local changes before
+publishing. Run `share --dry-run` again and read its page.
+
+The kind registry, component registry, authored content, assets, site settings,
+workflow files, hook files, tool pins, scanner configuration and other checks
+keep their bytes. The existing four publication checks must pass. If a check
+fails, the command restores every changed consumer file. Repeating an applied
+upgrade is a no-op. Read-only commands and historical retrieval never upgrade
+consumer code. New generation refuses outdated consumers before staging v2.
+
+Customized owned checker/helper code, unknown schema/docs blocks, ambiguous
+imports and symlink targets require manual review. The command refuses these
+without writing. It does not replace customized files or offer a force flag.
+Port the consumer changes through a separate reviewed source change, retain all
+required checks, and use the real site build and repository checks to verify it.
+
+The MDX loader validates every required owned field through the same interpreter as
+the CLI and repository checker, without coercing owned wire types. This applies to
+`content/shares/` pages only; ordinary content pages keep the normal page schema.
+Historical unversioned and v1 hashes retain leading zeros and exponent-shaped
+text. Numeric v2, malformed hashes, missing fields and unknown explicit versions
+fail. The loader never rewrites stored pages.
+
+The installed replacement allowlist declares
+`schemaVersion: artifact-share-consumer-history/v1`. Its authoritative definition
+is `references/contracts/consumer-history-v1.json`. The owner produces and accepts
+v1. It also accepts exactly one historical unversioned shape: the complete v1
+structure without `schemaVersion`. This is read-only interpretation, not an
+automatic asset conversion. Original file strings and commit pins remain evidence.
+The optional `reviewed` snapshot retains the last released consumers.
+
+Before either upgrade preview or confirmed replacement, the owner validates the
+identity, repository reference, commit pins, required snapshots and exact file
+maps. Unknown explicit identities, duplicate keys, missing evidence, unknown
+fields and malformed values reject without changing clone or asset bytes.
+
+## Publication metadata contracts
+
+New generated pages declare `schemaVersion: artifact-share-metadata/v2` in their owned YAML frontmatter. The CLI and template readers also accept explicit v1 and supported unversioned historical frontmatter. They reject unknown explicit identifiers. The kind and hash must agree with `.types`; existing-page retrieval validates this agreement before returning `unchanged`. Historical reads preserve the page body, authored metadata and original asset bytes.
+
+The `.types` wire format remains `artifact-share-index/v1`: comments, blank lines and `<hash>=<kind>` entries. It gets no version header. Package manifests, MDX syntax, GitHub responses and Pages formats keep their external contracts. New template checks consume both supported frontmatter versions. Existing clones require the explicit consumer upgrade above before generating v2 pages. A fetch or pull does not install consumers.
+
+No published-page upgrade is declared. Do not rewrite published history to add an identifier. Use historical readers. A valid contract does not authorize sharing, make a private repository public, enable Pages, or establish successful publication. Keep every dry-run, credential, metadata and Pages approval rule above.
+
+
+
+## Historical retrieval regression checks
+
+Use a 30-second deadline for the historical retrieval integration test, as for
+nearby owning-command tests. Keep its fixture outside the shared `afterEach`
+registry. Remove it in the test body’s `finally` block after all commands and
+byte-preservation assertions settle. A runner timeout must not remove files
+while the asynchronous test body still uses them.
+

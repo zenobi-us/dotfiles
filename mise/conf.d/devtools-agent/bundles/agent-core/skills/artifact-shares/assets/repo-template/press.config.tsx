@@ -4,6 +4,7 @@ import { metaSchema, pageSchema } from "fumapress/adapters/mdx/schema";
 import { defineDocs } from "fumadocs-mdx/macro";
 import { z } from "zod";
 import { mdxComponents } from "./src/components/registry";
+import { interpretShareMetadata } from "./src/share-metadata";
 
 // One collection over `content/`. Shares live under `content/shares/`.
 //
@@ -12,9 +13,10 @@ import { mdxComponents } from "./src/components/registry";
 // `.types` at the repository root is the filesystem record of the same value,
 // and `bun run validate` fails when the two disagree.
 const shareSchema = pageSchema.extend({
+  schemaVersion: z.enum(["artifact-share-metadata/v1", "artifact-share-metadata/v2"]).optional(),
   kind: z.string().optional(),
   hash: z.string().optional(),
-  date: z.coerce.date().optional(),
+  date: z.string().optional(),
   source: z.string().optional(),
   files: z
     .array(z.object({ path: z.string(), label: z.string().optional() }))
@@ -25,7 +27,10 @@ const docs = defineDocs({
   dir: "content",
   docs: {
     async: true,
-    schema: shareSchema,
+    // The owned reader validates share fields without coercing their wire types.
+    schema: ({ source, path }) => /[/\\]content[/\\]shares[/\\]/.test(path)
+      ? z.preprocess((data) => interpretShareMetadata(data as Record<string, unknown>, source), shareSchema)
+      : pageSchema,
     lastModified: true,
     postprocess: {
       includeProcessedMarkdown: true,

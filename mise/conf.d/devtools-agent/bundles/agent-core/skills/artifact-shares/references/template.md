@@ -205,8 +205,10 @@ breaks every published share that names it. Add, do not remove.
    cd "<skillroot>/scripts/artifact-shares" && bun test
    ```
 
-A template change reaches an existing share repository only when a person copies
-it there. `create` uses the template once.
+General template changes still require a reviewed source update. For the owned
+metadata consumers, use `cli.ts upgrade <name> --dry-run` and the explicit
+confirmed upgrade in `references/share.md`. It preserves authored settings and
+refuses unknown customized consumer code. `create` uses the template once.
 
 ## What the checks may touch
 

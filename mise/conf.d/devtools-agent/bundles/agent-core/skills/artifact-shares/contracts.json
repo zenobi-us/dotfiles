@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": ["artifact-share-config/v2", "artifact-share-metadata/v2", "artifact-share-index/v1", "artifact-share-consumer-history/v1"],
+  "accepts": ["artifact-share-config/v1", "artifact-share-config/v2", "artifact-share-metadata/v1", "artifact-share-metadata/v2", "artifact-share-index/v1", "artifact-share-consumer-history/v1"],
+  "contracts": {
+    "artifact-share-config/v1": "file:references/contracts/config-v1.json",
+    "artifact-share-config/v2": "file:references/contracts/config-v2.json",
+    "artifact-share-metadata/v1": "file:references/contracts/metadata-v1.json",
+    "artifact-share-metadata/v2": "file:references/contracts/metadata-v2.json",
+    "artifact-share-index/v1": "file:references/contracts/index-v1.txt",
+    "artifact-share-consumer-history/v1": "file:references/contracts/consumer-history-v1.json"
+  },
+  "upgrades": [
+    {"from": "artifact-share-config/v1", "to": "artifact-share-config/v2", "procedure": "file:references/contracts/config-upgrade.txt"}
+  ]
+}

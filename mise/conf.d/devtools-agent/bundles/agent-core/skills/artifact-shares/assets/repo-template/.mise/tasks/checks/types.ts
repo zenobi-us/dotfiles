@@ -13,6 +13,7 @@ import { readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { isKnownKind } from "../../../src/components/kinds";
+import { readShareMetadata } from "../../../src/share-metadata";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const TYPES_FILE = path.join(repoRoot, ".types");
@@ -64,9 +65,15 @@ for (const [index, rawLine] of lines.entries()) {
   }
 
   const text = await page.text();
-  const front = text.startsWith("---") ? text.slice(3, text.indexOf("\n---", 3)) : "";
-  const frontKind = /^kind:\s*(\S+)\s*$/m.exec(front)?.[1];
-  const frontHash = /^hash:\s*(\S+)\s*$/m.exec(front)?.[1];
+  let metadata: Record<string, unknown>;
+  try {
+    metadata = readShareMetadata(text);
+  } catch (error) {
+    fail(`content/shares/${hash}.mdx: ${error instanceof Error ? error.message : "Invalid metadata"}`);
+    continue;
+  }
+  const frontKind = metadata.kind;
+  const frontHash = metadata.hash;
 
   if (frontKind !== kind) {
     fail(`content/shares/${hash}.mdx frontmatter kind is ${frontKind ?? "missing"}, .types says ${kind}`);

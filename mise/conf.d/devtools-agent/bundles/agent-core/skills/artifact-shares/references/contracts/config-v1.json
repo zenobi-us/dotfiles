@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "artifact-share-config/v1",
+  "type": "object",
+  "required": [],
+  "properties": {
+    "schemaVersion": {
+      "const": "artifact-share-config/v1"
+    },
+    "clone_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shares": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "repo",
+          "branch",
+          "pages_url"
+        ],
+        "properties": {
+          "repo": {
+            "type": "string",
+            "minLength": 1
+          },
+          "branch": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pages_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

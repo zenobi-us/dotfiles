@@ -35,6 +35,7 @@ installed copy that has no dependencies.
 | See the share repositories on this machine | `references/list.md` |
 | Enable Pages on a repository-only share | `references/pages.md` |
 | Bring a clone up to date | `references/sync.md` |
+| Upgrade existing metadata consumers | `references/share.md` |
 | Take a published share down | `references/redact.md` |
 | Get published bytes off GitHub | `references/recreate.md` |
 | Add or change a share kind | `references/types.md` |
@@ -53,6 +54,8 @@ cli.ts redact <hash>                   # take one published share down
 cli.ts recreate <name>                 # delete the repository, rebuild it cleaned
 cli.ts list                            # what this machine knows
 cli.ts sync <name>                     # pull a clone
+cli.ts upgrade <name> --dry-run       # preview local consumer upgrades
+cli.ts upgrade <name> --confirm <name> # upgrade known consumers; never pushes
 cli.ts doctor                          # check prerequisites
 cli.ts check                           # run a repository's own checks
 cli.ts self-test                       # check the helpers
@@ -60,7 +63,9 @@ cli.ts --help
 ```
 `create`, `share`, `redact`, `recreate`, `sync`, and `pages enable` change
 remote state. `doctor`, `check`, `self-test`, `--help`, and `share --dry-run`
-do not.
+do not. `upgrade --dry-run` previews local consumer changes. `upgrade --confirm`
+changes only known local consumer code and runs the required checks. Read
+`references/share.md` before upgrading. It never fetches, commits, or pushes.
 
 ## Before the first repository: check the plan
 
@@ -134,3 +139,7 @@ four tasks from the repository itself.
 
 `checks:secrets` scans the whole repository every run, not only the new share. A
 scan that skipped old shares would report a repository clean when it is not.
+
+## Contract compatibility
+
+`contracts.json` declares owned configuration, share frontmatter and `.types` contracts. Read `references/list.md` before changing configuration or upgrading selected config files. Read `references/share.md` for publication metadata compatibility. Contract validation grants no publication approval and does not prove a push or deploy succeeded.

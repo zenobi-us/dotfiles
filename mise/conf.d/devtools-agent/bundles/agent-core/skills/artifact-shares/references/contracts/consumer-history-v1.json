@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "artifact-share-consumer-history/v1",
+  "description": "Owner-maintained replacement allowlist. File strings are exact historical evidence, not executable upgrade procedures. Each commit is a full source pin. Current assets emit schemaVersion. The sole accepted unversioned historical format has this complete structure without schemaVersion; readers validate its structure as v1 without rewriting it. Unknown explicit identifiers, duplicate JSON keys, unknown fields and malformed snapshots reject before clone planning or mutation. Historical evidence strings and pins remain unchanged when adding snapshots. No automatic asset conversion or publication authorization is declared.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "sourceRepository", "commit", "files", "previous", "initial", "latest"],
+  "properties": {
+    "schemaVersion": {"const": "artifact-share-consumer-history/v1"},
+    "sourceRepository": {"type": "string", "pattern": "^https://[^/]+/.+"},
+    "commit": {"$ref": "#/definitions/commit"},
+    "files": {"$ref": "#/definitions/baseFiles"},
+    "previous": {"$ref": "#/definitions/pairSnapshot"},
+    "initial": {"$ref": "#/definitions/metadataSnapshot"},
+    "latest": {"$ref": "#/definitions/metadataSnapshot"},
+    "reviewed": {"$ref": "#/definitions/pairSnapshot"}
+  },
+  "definitions": {
+    "commit": {"type": "string", "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"},
+    "source": {"type": "string", "minLength": 1},
+    "baseFiles": {
+      "type": "object", "additionalProperties": false,
+      "required": [".mise/tasks/checks/types.ts", "press.config.tsx"],
+      "properties": {
+        ".mise/tasks/checks/types.ts": {"$ref": "#/definitions/source"},
+        "press.config.tsx": {"$ref": "#/definitions/source"}
+      }
+    },
+    "pairFiles": {
+      "type": "object", "additionalProperties": false,
+      "required": ["src/share-metadata.ts", "press.config.tsx"],
+      "properties": {
+        "src/share-metadata.ts": {"$ref": "#/definitions/source"},
+        "press.config.tsx": {"$ref": "#/definitions/source"}
+      }
+    },
+    "metadataFiles": {
+      "type": "object", "additionalProperties": false,
+      "required": ["src/share-metadata.ts"],
+      "properties": {"src/share-metadata.ts": {"$ref": "#/definitions/source"}}
+    },
+    "pairSnapshot": {
+      "type": "object", "additionalProperties": false, "required": ["commit", "files"],
+      "properties": {"commit": {"$ref": "#/definitions/commit"}, "files": {"$ref": "#/definitions/pairFiles"}}
+    },
+    "metadataSnapshot": {
+      "type": "object", "additionalProperties": false, "required": ["commit", "files"],
+      "properties": {"commit": {"$ref": "#/definitions/commit"}, "files": {"$ref": "#/definitions/metadataFiles"}}
+    }
+  }
+}

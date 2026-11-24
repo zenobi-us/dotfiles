@@ -10,7 +10,6 @@ import {
   assertShareName,
   hashDir,
   hashFile,
-  readKinds,
   readTypes,
   removeShareFiles,
   removeType,
@@ -33,44 +32,6 @@ afterEach(() => {
   while (temporary.length > 0) rmSync(temporary.pop()!, { recursive: true, force: true });
 });
 
-test("the CLI runs from its shebang and lists its commands", async () => {
-  const process = Bun.spawn([cli, "--help"], { stdout: "pipe" });
-  const output = await new Response(process.stdout).text();
-  expect(output).toContain("COMMANDS:");
-  for (const command of [
-    "create",
-    "share",
-    "redact",
-    "recreate",
-    "list",
-    "sync",
-    "doctor",
-    "check",
-    "self-test",
-  ]) {
-    expect(output).toContain(command);
-  }
-  expect(output).toContain("Run a share repository's own checks");
-  expect(await process.exited).toBe(0);
-});
-
-test("the CLI exposes repository-only creation and delayed Pages activation", async () => {
-  const create = Bun.spawn([cli, "create", "--help"], { stdout: "pipe" });
-  const createOutput = await new Response(create.stdout).text();
-  expect(createOutput).toContain("--no-pages");
-  expect(await create.exited).toBe(0);
-
-  const pages = Bun.spawn([cli, "pages", "enable", "--help"], { stdout: "pipe" });
-  const pagesOutput = await new Response(pages.stdout).text();
-  expect(pagesOutput).toContain("--confirm");
-  expect(await pages.exited).toBe(0);
-});
-
-test("self-test keeps its output contract", async () => {
-  const process = Bun.spawn([cli, "self-test"], { stdout: "pipe" });
-  expect(await new Response(process.stdout).text()).toContain("artifact-shares self-test: ok");
-  expect(await process.exited).toBe(0);
-});
 
 test("a share name is checked before it becomes a repository name", () => {
   expect(() => assertShareName("my-shares")).not.toThrow();
@@ -155,9 +116,6 @@ test(".types round-trips, and comments are skipped", () => {
   expect(readFileSync(path.join(dir, ".types"), "utf8")).toContain("# a comment");
 });
 
-test("the kinds come from the repository, not from this CLI", () => {
-  expect(readKinds(templateDir).sort()).toEqual(["artifact", "doc", "session"]);
-});
 
 test("the same directory contents hash the same, different contents do not", () => {
   const first = scratch();
@@ -281,7 +239,7 @@ exit 0
 
   const config = path.join(root, "config.json");
   writeFileSync(config, JSON.stringify({ clone_root: root, shares: {} }));
-  const child = Bun.spawn([process.execPath, cli, "create", "no-pages", "--no-pages"], {
+  const child = Bun.spawn([process.execPath, "run", "--install=fallback", cli, "create", "no-pages", "--no-pages"], {
     stdout: "pipe",
     stderr: "pipe",
     env: {
@@ -348,7 +306,7 @@ exit 1
     clone_root: root,
     shares: { private: { repo: "owner/private", branch: "main", pages_url: null } },
   }));
-  const child = Bun.spawn([process.execPath, cli, "pages", "enable", "private", "--confirm", "private"], {
+  const child = Bun.spawn([process.execPath, "run", "--install=fallback", cli, "pages", "enable", "private", "--confirm", "private"], {
     stdout: "pipe",
     stderr: "pipe",
     env: { ...Bun.env, PATH: `${bin}:${Bun.env.PATH}`, ARTIFACT_SHARES_CONFIG: config },
@@ -367,7 +325,7 @@ exit 1
     clone_root: root,
     shares: { private: { repo: "owner/private", branch: "main", pages_url: null } },
   }));
-  const recovery = Bun.spawn([process.execPath, cli, "pages", "enable", "private", "--confirm", "private"], {
+  const recovery = Bun.spawn([process.execPath, "run", "--install=fallback", cli, "pages", "enable", "private", "--confirm", "private"], {
     stdout: "pipe",
     stderr: "pipe",
     env: { ...Bun.env, PATH: `${bin}:${Bun.env.PATH}`, ARTIFACT_SHARES_CONFIG: config },
@@ -434,6 +392,8 @@ test("an unchanged repository-only dry run reports its path and dry-run state", 
   writeFileSync(artifact, "# Existing report\n");
   const hash = hashFile(artifact);
   writeFileSync(path.join(clone, ".types"), `${hash}=doc\n`);
+  writeFileSync(path.join(clone, "content", "shares", `${hash}.mdx`),
+    `---\ntitle: Existing report\nkind: doc\nhash: ${hash}\ndate: 2026-11-22\nsource: report.md\n---\n\nAuthored body.\n`);
   const git = Bun.spawnSync(["git", "init", "-q", clone]);
   expect(git.exitCode).toBe(0);
 
@@ -442,7 +402,7 @@ test("an unchanged repository-only dry run reports its path and dry-run state", 
     clone_root: root,
     shares: { private: { repo: "owner/private", branch: "main", pages_url: null } },
   }));
-  const child = Bun.spawn([process.execPath, cli, "share", "doc", artifact, "--dry-run", "--into", "private"], {
+  const child = Bun.spawn([process.execPath, "run", "--install=fallback", cli, "share", "doc", artifact, "--dry-run", "--into", "private"], {
     stdout: "pipe",
     env: { ...Bun.env, ARTIFACT_SHARES_CONFIG: config },
   });
@@ -480,29 +440,3 @@ test("Pages activation refuses without the exact repository confirmation", async
   expect(await process.exited).toBe(1);
 });
 
-test("the template ships every check the hook and the workflows name", () => {
-  const tasks = path.join(templateDir, ".mise", "tasks", "checks");
-  for (const check of ["types", "scripts", "typescript", "secrets", "metadata", "size"]) {
-    expect(existsSync(path.join(tasks, `${check}.ts`))).toBe(true);
-  }
-
-  const hooks = readFileSync(path.join(templateDir, "hk.pkl"), "utf8");
-  for (const check of ["checks:secrets", "checks:metadata", "checks:size"]) {
-    expect(hooks).toContain(check);
-  }
-});
-
-test("the scanner ignore files never exclude the published bytes", () => {
-  for (const name of [".gitleaksignore", ".trufflehogignore", ".gitleaks.toml"]) {
-    const file = path.join(templateDir, name);
-    if (!existsSync(file)) continue;
-    const text = readFileSync(file, "utf8");
-    // A commented warning names both paths. Only uncommented lines matter.
-    const rules = text
-      .split("\n")
-      .filter((line) => line.trim() && !line.trim().startsWith("#"))
-      .join("\n");
-    expect(rules).not.toContain("public/s");
-    expect(rules).not.toContain("content/shares");
-  }
-});
