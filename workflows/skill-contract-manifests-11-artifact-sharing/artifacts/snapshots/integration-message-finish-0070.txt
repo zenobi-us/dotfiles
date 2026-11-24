@@ -1,0 +1,4 @@
+feat: skill-contract-manifests-11-artifact-sharing
+
+Integrate exact reviewed source 6b0b445fa85328c90de214e257e23451a7e9aa6a.
+Review: workflows/skill-contract-manifests-11-artifact-sharing/events/review-result-0066.yaml
