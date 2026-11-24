@@ -8,7 +8,7 @@ sequence: 11
 title: Adopt contracts in artifact sharing
 triage: ready-for-agent
 type: enhancement
-work_status: "claimed"
+work_status: "completed"
 ---
 
 ## What to build
@@ -72,4 +72,10 @@ Verdict: FAILURE. Reviewed commit: 6b0b445fa85328c90de214e257e23451a7e9aa6a. Rev
 ### Review 2026-11-24T06:02:48.232Z
 
 Verdict: SUCCESS. Reviewed commit: 6b0b445fa85328c90de214e257e23451a7e9aa6a. Reviewed tree: cd8e06c0e0f6ce08aeb7cdc5c224bdbb0718889c. [Review artifact](../../workflows/skill-contract-manifests-11-artifact-sharing/artifacts/reviews/review-review-result-0066.md).
+
+
+
+### Completion
+
+Completed after successful exact-source review [review-result-0066](../../workflows/skill-contract-manifests-11-artifact-sharing/events/review-result-0066.yaml) and verified squash integration `4db47d2abe719ab669360bc1eaa5f9417ef00973` on `origin/master`. Candidate-bound dependency installation, affected suite and actual owning-CLI preservation/upgrade/rejection smoke passed. [Integration evidence](../../workflows/skill-contract-manifests-11-artifact-sharing/artifacts/snapshots/integration-result-finish-0071.json). Worktree cleanup is recorded separately in finish receipts.
 
