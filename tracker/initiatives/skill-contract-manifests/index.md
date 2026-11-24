@@ -1,6 +1,6 @@
 ---
+schemaVersion: tracker-initiative/v2
 id: skill-contract-manifests
-schema: tracker-initiative/v1
 title: Skill contract manifests and safe automatic upgrades
 type: Initiative
 ---
@@ -144,7 +144,30 @@ Git history availability does not prove that a definition or upgrade is safe. Th
 - [Adopt contracts in report generation](../../tickets/skill-contract-manifests-17-report-generation.md)
 - [Complete manifest coverage for other maintained skills](../../tickets/skill-contract-manifests-18-manifest-coverage.md)
 
+- [Adopt contracts in shared Godot mentor preferences](../../tickets/skill-contract-manifests-19-godot-preferences.md)
+- [Resolve the Godot mentor restoration mismatch](../../tickets/skill-contract-manifests-20-godot-session-decision.md)
+- [Adopt contracts in campaign persistence](../../tickets/skill-contract-manifests-21-campaign-persistence.md)
+- [Declare code-review storage boundaries](../../tickets/skill-contract-manifests-22-review-body-boundary.md)
+- [Adopt contracts in domain records](../../tickets/skill-contract-manifests-23-domain-records.md)
+- [Adopt contracts in learning workspace records](../../tickets/skill-contract-manifests-24-learning-records.md)
+- [Adopt contracts in triage handoff records](../../tickets/skill-contract-manifests-25-triage-records.md)
+- [Adopt contracts in canon source records](../../tickets/skill-contract-manifests-26-canon-records.md)
+- [Adopt contracts in character records](../../tickets/skill-contract-manifests-27-character-records.md)
+- [Adopt contracts in continuity review records](../../tickets/skill-contract-manifests-28-continuity-records.md)
+- [Adopt contracts in faction records](../../tickets/skill-contract-manifests-29-faction-records.md)
+- [Adopt contracts in narrative workspace metadata](../../tickets/skill-contract-manifests-30-narrative-workspace.md)
+- [Adopt contracts in story records](../../tickets/skill-contract-manifests-31-story-records.md)
+- [Adopt contracts in world records](../../tickets/skill-contract-manifests-32-world-records.md)
+- [Adopt contracts in cleanup state and results](../../tickets/skill-contract-manifests-33-cleanup-records.md)
+- [Adopt contracts in derived PR results](../../tickets/skill-contract-manifests-34-pr-results.md)
+- [Adopt contracts in release publish metadata](../../tickets/skill-contract-manifests-35-release-metadata.md)
+- [Adopt contracts in director recovery records](../../tickets/skill-contract-manifests-36-comfy-director.md)
+- [Adopt contracts in Cloudflare interchange records](../../tickets/skill-contract-manifests-37-cloudflare-interchange.md)
+- [Adopt contracts in structured research records](../../tickets/skill-contract-manifests-38-research-records.md)
+
 ## Comments
 
 The user confirmed the shared design and the acceptance boundaries before publication.
 
+
+- Approved owner follow-up from the [recovery assessment](../../../workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/owner-requests.json): added tickets 19–38. Reuse ticket 17 for report generation. Ticket 18 remains the cross-skill coverage and guidance closeout; each owner ticket includes its own essential guidance and examples. Completed owner work remains a reference, not a new start-time blocker. Cyberpunk/Cyberwise requests remain retired.
