@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "skill-contract-manifest/v1",
+  "produces": [
+    "homeassistant-snapshot/v2",
+    "homeassistant-reference-report/v2"
+  ],
+  "accepts": [
+    "homeassistant-snapshot/v1",
+    "homeassistant-snapshot/v2",
+    "homeassistant-reference-report/v1",
+    "homeassistant-reference-report/v2",
+    "homeassistant-rename-map/v1",
+    "homeassistant-rename-map/v2"
+  ],
+  "contracts": {
+    "homeassistant-snapshot/v1": "file:references/contracts/homeassistant-snapshot-v1.schema.json",
+    "homeassistant-snapshot/v2": "file:references/contracts/homeassistant-snapshot-v2.schema.json",
+    "homeassistant-reference-report/v1": "file:references/contracts/homeassistant-reference-report-v1.schema.json",
+    "homeassistant-reference-report/v2": "file:references/contracts/homeassistant-reference-report-v2.schema.json",
+    "homeassistant-rename-map/v1": "file:references/contracts/homeassistant-rename-map-v1.schema.json",
+    "homeassistant-rename-map/v2": "file:references/contracts/homeassistant-rename-map-v2.schema.json"
+  },
+  "upgrades": []
+}

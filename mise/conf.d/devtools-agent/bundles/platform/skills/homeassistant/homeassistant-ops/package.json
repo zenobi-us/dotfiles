@@ -4,7 +4,8 @@
 	"type": "module",
 	"dependencies": {
 		"@crustjs/core": "^0.0.19",
-		"@crustjs/plugins": "^0.1.2"
+		"@crustjs/plugins": "^0.1.2",
+		"ajv": "^8.17.1"
 	},
 	"devDependencies": {
 		"@types/bun": "latest"

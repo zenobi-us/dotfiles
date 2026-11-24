@@ -23,6 +23,7 @@ Set `HA_URL` and `HA_TOKEN` in the environment. Never pass tokens on the command
 ./scripts/ha_ops.ts doctor
 ./scripts/ha_ops.ts cleanup --help
 ./scripts/ha_ops.ts snapshot
+./scripts/ha_ops.ts validate-record <snapshot.json>
 ./scripts/ha_ops.ts rollback <snapshot.json> --dry-run
 ./scripts/ha_ops.ts find-references --needle switch.bedroom_lights
 ./scripts/ha_ops.ts traces --help
@@ -32,10 +33,15 @@ Set `HA_URL` and `HA_TOKEN` in the environment. Never pass tokens on the command
 
 `cleanup` is dry-run by default. Use `--apply` to mutate Home Assistant. The existing operation groups preserve their plan/apply/validate behavior: `cleanup`, `snapshot`, `rollback`, `find-references`, `traces`, `tail-events`, and `name-review-from-backup`.
 
-The script requires Bun, Home Assistant access, and the external API/WebSocket services. It does not require npm runtime packages beyond Bun fallback installation of the CLI framework.
+The script requires Bun, Home Assistant access, and the external API/WebSocket services. Bun fallback installation resolves the CLI framework and shared contract validator dependencies. Offline record validation does not require Home Assistant access.
 
 ## Resources
 
 - `references/api.md`
 - `references/playbook.md`
 - `references/id_conventions.md`
+
+## Record contracts
+
+Before reading saved snapshots, rename maps or JSON reference reports, read [record contracts](references/contracts.md). Use `validate-record <file.json>` for offline validation. Snapshot and JSON report creation use new output paths. Historical inputs remain unchanged; no content upgrades are declared.
+

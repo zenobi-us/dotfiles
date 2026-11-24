@@ -17,7 +17,7 @@ Pick the smallest truth source that answers the question:
   - areas: `config/area_registry/list` (WS)
   - devices: `config/device_registry/list` (WS)
   - entities: `config/entity_registry/list` (WS)
-- **Snapshot for diff/rollback**: run `scripts/ha_ops.js snapshot` before/after bulk changes to capture registries + key configs in one JSON file.
+- **Snapshot for diff/rollback**: run `scripts/ha_ops.ts snapshot` before/after bulk changes to capture registries + key configs in one JSON file.
 - **Backup audit** (good for planning changes offline):
   - `.storage/core.entity_registry`, `.storage/core.device_registry`, `.storage/core.area_registry`
 
@@ -49,15 +49,15 @@ Entity ID changes can break references in:
 
 Make a plan to **search and update references** before applying large ID renames.
 
-Tip: use `scripts/ha_ops.js find-references` with `--map-json` to locate old ids in automations/dashboards/backups.
+Tip: use `scripts/ha_ops.ts find-references` with `--map-json` to locate old ids in automations/dashboards/backups.
 Add `--json-out ha_refs.json` when you want a machine-readable report for follow-up tooling.
 
 ### Rename/migrate checklist (entity_id or helper id)
 
 Use this whenever changing `entity_id`s (or helper ids) in bulk:
 
-1. Snapshot baseline: `scripts/ha_ops.js snapshot` (keep the JSON).
-2. Find references: `scripts/ha_ops.js find-references --needle <old>` (or `--map-json rename_map.json`).
+1. Snapshot baseline: `scripts/ha_ops.ts snapshot` (keep the JSON).
+2. Find references: `scripts/ha_ops.ts find-references --needle <old>` (or `--map-json rename_map.json`).
 3. Write a rename map (`old -> new`) and a timestamped change log (markdown).
 4. Apply renames via WS `config/entity_registry/update` in small batches (stop if a target id already exists).
 5. Update references (automations/scripts/scenes/dashboards/templates) and re-run the reference finder until clean.
@@ -138,7 +138,7 @@ Before risky operations:
 - Keep a mapping of `old -> new` for entity names and IDs.
 - Keep one markdown log per run (timestamped).
 - Keep pre/post `ha_snapshot_*.json` files so you can diff and reconstruct intent later.
-- To revert registry changes to a baseline snapshot: `scripts/ha_ops.js rollback <snapshot_before.json> --dry-run` then `--yes`.
+- To revert registry changes to a baseline snapshot: `scripts/ha_ops.ts rollback <snapshot_before.json> --dry-run` then `--yes`.
 - Prefer incremental changes so rollback is “undo the last run”, not “rebuild everything”.
 
 ## 9) Integrations and config entries
@@ -146,3 +146,4 @@ Before risky operations:
 - Many helpers/integrations are configured via config entry flows (and sometimes require reload/restart).
 - Prefer options flows over editing `.storage/*` when something is integration-owned.
 - After changing options, verify entities didn’t get re-created with new ids/names.
+
