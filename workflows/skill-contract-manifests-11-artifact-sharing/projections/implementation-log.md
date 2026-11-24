@@ -292,3 +292,10 @@ Outputs: [fix result](../events/fix-result-0062.yaml), [validation snapshot](../
 
 Resolved candidate 6b0b445f retains source e01e451f and merges pinned base 9ff41745 with matching agent-core 0.1.45. Review 0058 failed only for missing validation dependencies. Environment-only fix 0062 changed no tracked source and passed 37 tests/801 assertions. Fresh review 0066 is SUCCESS; both axes have no findings, full suite and nine CLI cases pass. User-approved identity-bound shutdown confirmed all remaining owned processes stopped. [Review](../artifacts/reviews/review-review-result-0066.md), [completion](../events/review-complete-0068.yaml), [resources](../artifacts/snapshots/resources-review-final-0068.json). No merge or push yet.
 
+## Finish 0076 — FINISHED
+
+Integrated reviewed source `6b0b445f` as verified squash `4db47d2a`; integration and ticket completion commit `299e1346` are published on `origin/master`. Candidate-bound locked dependency installation, complete affected suite and owning-CLI legacy-read/authorized-upgrade/unknown-identity smoke passed. Fresh independent review 0066 was SUCCESS (37 tests, 801 assertions; nine actual CLI cases).
+
+User approved advancing only the obsolete original branch to the published reviewed descendant. Normal guarded cleanup removed all three named worktrees/local branches, without force. Paths and app spaces are absent; all actual phase-owned processes stopped. Original source ancestry remains retained; unrelated user changes were not touched. Canonical ticket is completed.
+
+[Finish receipt](../events/finish-0076.yaml), [integration proof](../artifacts/snapshots/integration-result-finish-0071.json), [ticket publication](../artifacts/snapshots/ticket-publication-finish-0073.json), [cleanup proof](../artifacts/snapshots/cleanup-result-finish-0075.json). No remaining workflow action.

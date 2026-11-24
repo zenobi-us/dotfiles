@@ -1,0 +1,12 @@
+{
+  "integration_commit": "4db47d2abe719ab669360bc1eaa5f9417ef00973",
+  "tracker_commit": "299e134650d2159a93c238d3e5c517810d5e4e85",
+  "workflow_commit": "0ea663a5",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "remote_observed_commit": "0ea663a5c0321364e1eeed90d4992387485c8844",
+  "integration_reachable": true,
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-11-artifact-sharing.md",
+  "ticket_state": "completed",
+  "tracker_published": true
+}

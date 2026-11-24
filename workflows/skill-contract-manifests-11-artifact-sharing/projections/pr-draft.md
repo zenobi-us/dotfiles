@@ -1,12 +1,34 @@
 ---
-receipt_id: review-complete-0068
+receipt_id: finish-0076
 schemaVersion: worktree-pr-draft/v1
 source_commit: 6b0b445fa85328c90de214e257e23451a7e9aa6a
 source_tree: cd8e06c0e0f6ce08aeb7cdc5c224bdbb0718889c
-title: Artifact-share resolved candidate review
+title: Artifact-share contracts completed
 type: Concept
 workflow_id: skill-contract-manifests-11-artifact-sharing
 ---
+
+# Artifact-share contracts — FINISHED
+
+## Outcome
+
+Reviewed source `6b0b445fa85328c90de214e257e23451a7e9aa6a` was integrated by verified squash commit `4db47d2abe719ab669360bc1eaa5f9417ef00973`. Integration and canonical ticket completion are published on `origin/master`. The [canonical ticket](../../../tracker/tickets/skill-contract-manifests-11-artifact-sharing.md) is completed.
+
+## Verification
+
+Fresh independent [review 0066](../events/review-result-0066.yaml): SUCCESS, no Standards or Spec findings. The source suite passed 37 tests and 801 assertions; nine actual CLI cases matched their expected outcomes. The isolated integration commit passed locked dependency installation, the complete affected suite and actual owning-CLI smoke. That smoke proved legacy reads preserve bytes, authorized configuration upgrades preserve authored fields, and unknown identities reject without mutation. [Candidate-bound validation](../artifacts/snapshots/integration-result-finish-0071.json).
+
+## Publication and cleanup
+
+Tracker completion commit: `299e134650d2159a93c238d3e5c517810d5e4e85`. [Publication proof](../artifacts/snapshots/ticket-publication-finish-0073.json).
+
+The original feature branch was fast-forwarded only after explicit approval to the already-reviewed descendant. Normal guarded Worktrunk cleanup removed the original, resolved-source and integration worktrees and local branches without force. Their paths are absent, related app spaces are closed and all actual phase-owned processes are stopped. Unrelated user changes remain untouched. The reviewed source is retained at `refs/worktree-reviews/6b0b445fa85328c90de214e257e23451a7e9aa6a`. [Cleanup proof](../artifacts/snapshots/cleanup-result-finish-0075.json).
+
+Terminal receipt: [finish-0076](../events/finish-0076.yaml). No remaining workflow action.
+
+## Retained previous draft states
+
+Everything below describes earlier states and is superseded by the completed outcome above.
 
 # Artifact-share contracts — REVIEW_PASSED
 

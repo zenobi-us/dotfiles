@@ -2,8 +2,8 @@
   "schemaVersion": "worktree-latest-status/v2",
   "workflow_id": "skill-contract-manifests-11-artifact-sharing",
   "ticket": "tracker/tickets/skill-contract-manifests-11-artifact-sharing.md",
-  "state": "REVIEW_PASSED",
-  "latest_receipt": "review-complete-0068",
+  "state": "FINISHED",
+  "latest_receipt": "finish-0076",
   "latest_source_commit": "6b0b445fa85328c90de214e257e23451a7e9aa6a",
   "latest_source_tree": "cd8e06c0e0f6ce08aeb7cdc5c224bdbb0718889c",
   "latest_review_verdict": SUCCESS,
@@ -26,5 +26,5 @@
   "open_findings": [],
   "advisory_findings": [],
   "cleanup_pending": false,
-  "next_action": "Resume authorized finish for the approved resolved candidate. Install declared locked dependencies and validate the isolated integration candidate before publication. All actual phase-owned processes stopped."
+  "next_action": "Complete. Reviewed squash 4db47d2a and canonical ticket completion published on origin/master. All three named worktrees/local branches removed; all actual phase-owned processes stopped."
 }

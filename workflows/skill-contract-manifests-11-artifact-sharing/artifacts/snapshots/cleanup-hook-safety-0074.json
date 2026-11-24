@@ -1,0 +1,26 @@
+[
+  {
+    "branch": "feature/skill-contract-manifests-11-artifact-sharing",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+    "pre_remove_hook_port": "11919",
+    "listener_exit": 1,
+    "listener_output": "",
+    "listener_stderr": ""
+  },
+  {
+    "branch": "resolve/skill-contract-manifests-11-artifact-sharing-finish",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+    "pre_remove_hook_port": "12414",
+    "listener_exit": 1,
+    "listener_output": "",
+    "listener_stderr": ""
+  },
+  {
+    "branch": "integration/c4e02a70-e0a6-4a32-9808-c07ce7cf1d86",
+    "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-c4e02a70-e0a6-4a32-9808-c07ce7cf1d86",
+    "pre_remove_hook_port": "11715",
+    "listener_exit": 1,
+    "listener_output": "",
+    "listener_stderr": ""
+  }
+]

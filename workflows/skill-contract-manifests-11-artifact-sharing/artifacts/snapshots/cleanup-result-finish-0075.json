@@ -1,0 +1,28 @@
+{
+  "removed": [
+    "feature/skill-contract-manifests-11-artifact-sharing",
+    "resolve/skill-contract-manifests-11-artifact-sharing-finish",
+    "integration/c4e02a70-e0a6-4a32-9808-c07ce7cf1d86"
+  ],
+  "refused": [],
+  "workspaces": [
+    {
+      "branch": "feature/skill-contract-manifests-11-artifact-sharing",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "path_absent": true
+    },
+    {
+      "branch": "resolve/skill-contract-manifests-11-artifact-sharing-finish",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/resolve-skill-contract-manifests-11-artifact-sharing-finish",
+      "path_absent": true
+    },
+    {
+      "branch": "integration/c4e02a70-e0a6-4a32-9808-c07ce7cf1d86",
+      "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-c4e02a70-e0a6-4a32-9808-c07ce7cf1d86",
+      "path_absent": true
+    }
+  ],
+  "matching_app_spaces": [],
+  "owned_process_shutdown": "confirmed",
+  "source_retention": "refs/worktree-reviews/6b0b445fa85328c90de214e257e23451a7e9aa6a"
+}

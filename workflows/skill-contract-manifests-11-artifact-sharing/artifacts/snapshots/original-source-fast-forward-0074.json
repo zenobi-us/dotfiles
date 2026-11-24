@@ -1,0 +1,14 @@
+{
+  "approval": "finish-cleanup-approval-0074",
+  "target_commit": "6b0b445fa85328c90de214e257e23451a7e9aa6a",
+  "worktrunk_result": {
+    "branch": "resolve/skill-contract-manifests-11-artifact-sharing-finish",
+    "committed": false,
+    "rebased": false,
+    "removed": false,
+    "squashed": false,
+    "target": "feature/skill-contract-manifests-11-artifact-sharing"
+  },
+  "new_commit_created": false,
+  "original_commit_retained_in_reviewed_ancestry": true
+}
