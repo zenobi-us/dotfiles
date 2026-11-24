@@ -73,10 +73,26 @@
       "children": [
         {
           "id": "tabs",
-          "type": "block",
-          "content": {
-            "mod": "shared-context-tabs"
-          },
+          "type": "row",
+          "children": [
+            {
+              "id": "tab-bar",
+              "type": "block",
+              "content": {
+                "mod": "shared-context-tabs"
+              }
+            },
+            {
+              "id": "equalise-worker",
+              "type": "block",
+              "content": {
+                "mod": "equalise-panes"
+              },
+              "size": {
+                "px": 1
+              }
+            }
+          ],
           "size": {
             "px": 42
           },

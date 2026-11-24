@@ -54,6 +54,7 @@
     "ctrl-shift-,": "mod.open:better-config",
     "ctrl-shift-o": "pane.split:right",
     "ctrl-shift-e": "pane.split:down",
+    "ctrl-alt-e": "equalise-panes.equalize",
     "ctrl-shift-w": "tab.close",
     "ctrl-shift-x": "pane.close",
     "ctrl-shift-z": "pane.zoom",
