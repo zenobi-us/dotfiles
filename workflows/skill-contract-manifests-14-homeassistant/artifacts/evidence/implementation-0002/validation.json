@@ -1,0 +1,111 @@
+{
+  "checks": [
+    {
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "validate",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "output": "{\n  \"manifest\": {\n    \"schemaVersion\": \"skill-contract-manifest/v1\",\n    \"produces\": [\n      \"homeassistant-snapshot/v2\",\n      \"homeassistant-reference-report/v2\"\n    ],\n    \"accepts\": [\n      \"homeassistant-snapshot/v1\",\n      \"homeassistant-snapshot/v2\",\n      \"homeassistant-reference-report/v1\",\n      \"homeassistant-reference-report/v2\",\n      \"homeassistant-rename-map/v1\",\n      \"homeassistant-rename-map/v2\"\n    ],\n    \"contracts\": {\n      \"homeassistant-snapshot/v1\": \"file:references/contracts/homeassistant-snapshot-v1.schema.json\",\n      \"homeassistant-snapshot/v2\": \"file:references/contracts/homeassistant-snapshot-v2.schema.json\",\n      \"homeassistant-reference-report/v1\": \"file:references/contracts/homeassistant-reference-report-v1.schema.json\",\n      \"homeassistant-reference-report/v2\": \"file:references/contracts/homeassistant-reference-report-v2.schema.json\",\n      \"homeassistant-rename-map/v1\": \"file:references/contracts/homeassistant-rename-map-v1.schema.json\",\n      \"homeassistant-rename-map/v2\": \"file:references/contracts/homeassistant-rename-map-v2.schema.json\"\n    },\n    \"upgrades\": []\n  },\n  \"definitions\": {\n    \"homeassistant-snapshot/v1\": {\n      \"reference\": \"file:references/contracts/homeassistant-snapshot-v1.schema.json\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-snapshot-v1.schema.json\",\n      \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"title\\\": \\\"homeassistant-snapshot/v1\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"required\\\": [\\n    \\\"meta\\\",\\n    \\\"registries\\\",\\n    \\\"configs\\\",\\n    \\\"warnings\\\"\\n  ],\\n  \\\"properties\\\": {\\n    \\\"meta\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"required\\\": [\\n        \\\"generated_at\\\",\\n        \\\"url\\\"\\n      ],\\n      \\\"properties\\\": {\\n        \\\"generated_at\\\": {\\n          \\\"type\\\": \\\"string\\\",\\n          \\\"minLength\\\": 1\\n        },\\n        \\\"url\\\": {\\n          \\\"type\\\": \\\"string\\\",\\n          \\\"minLength\\\": 1\\n        }\\n      }\\n    },\\n    \\\"registries\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"properties\\\": {\\n        \\\"areas\\\": {\\n          \\\"type\\\": \\\"array\\\",\\n     …\n    },\n    \"homeassistant-snapshot/v2\": {\n      \"reference\": \"file:references/contracts/homeassistant-snapshot-v2.schema.json\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-snapshot-v2.schema.json\",\n      \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"title\\\": \\\"homeassistant-snapshot/v2\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"required\\\": [\\n    \\\"meta\\\",\\n    \\\"registries\\\",\\n    \\\"configs\\\",\\n    \\\"warnings\\\",\\n    \\\"schemaVersion\\\"\\n  ],\\n  \\\"properties\\\": {\\n    \\\"meta\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"required\\\": [\\n        \\\"generated_at\\\",\\n        \\\"url\\\"\\n      ],\\n      \\\"properties\\\": {\\n        \\\"generated_at\\\": {\\n          \\\"type\\\": \\\"string\\\",\\n          \\\"minLength\\\": 1\\n        },\\n        \\\"url\\\": {\\n          \\\"type\\\": \\\"string\\\",\\n          \\\"minLength\\\": 1\\n        }\\n      }\\n    },\\n    \\\"registries\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"properties\\\": {\\n        \\\"areas\\\": {\\n          \\\"t…\n    },\n    \"homeassistant-reference-report/v1\": {\n      \"reference\": \"file:references/contracts/homeassistant-reference-report-v1.schema.json\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-reference-report-v1.schema.json\",\n      \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"title\\\": \\\"homeassistant-reference-report/v1\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"required\\\": [\\n    \\\"meta\\\",\\n    \\\"live\\\",\\n    \\\"backup\\\"\\n  ],\\n  \\\"properties\\\": {\\n    \\\"meta\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"required\\\": [\\n        \\\"generated_at\\\",\\n        \\\"url\\\",\\n        \\\"backup_root\\\",\\n        \\\"needles\\\"\\n      ],\\n      \\\"properties\\\": {\\n        \\\"generated_at\\\": {\\n          \\\"type\\\": \\\"string\\\",\\n          \\\"minLength\\\": 1\\n        },\\n        \\\"url\\\": {\\n          \\\"type\\\": \\\"string\\\"\\n        },\\n        \\\"backup_root\\\": {\\n          \\\"type\\\": \\\"string\\\"\\n        },\\n        \\\"needles\\\": {\\n          \\\"type\\\": \\\"array\\\",\\n          \\\"items\\\": {\\…\n    },\n    \"homeassistant-reference-report/v2\": {\n      \"reference\": \"file:references/contracts/homeassistant-reference-report-v2.schema.json\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-reference-report-v2.schema.json\",\n      \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"title\\\": \\\"homeassistant-reference-report/v2\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"required\\\": [\\n    \\\"meta\\\",\\n    \\\"live\\\",\\n    \\\"backup\\\",\\n    \\\"schemaVersion\\\"\\n  ],\\n  \\\"properties\\\": {\\n    \\\"meta\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"required\\\": [\\n        \\\"generated_at\\\",\\n        \\\"url\\\",\\n        \\\"backup_root\\\",\\n        \\\"needles\\\"\\n      ],\\n      \\\"properties\\\": {\\n        \\\"generated_at\\\": {\\n          \\\"type\\\": \\\"string\\\",\\n          \\\"minLength\\\": 1\\n        },\\n        \\\"url\\\": {\\n          \\\"type\\\": \\\"string\\\"\\n        },\\n        \\\"backup_root\\\": {\\n          \\\"type\\\": \\\"string\\\"\\n        },\\n        \\\"needles\\\": {\\n          \\\"type\\\": \\\"array\\\",\\…\n    },\n    \"homeassistant-rename-map/v1\": {\n      \"reference\": \"file:references/contracts/homeassistant-rename-map-v1.schema.json\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-rename-map-v1.schema.json\",\n      \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"title\\\": \\\"homeassistant-rename-map/v1\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"minProperties\\\": 1,\\n  \\\"propertyNames\\\": {\\n    \\\"type\\\": \\\"string\\\",\\n    \\\"minLength\\\": 1,\\n    \\\"not\\\": {\\n      \\\"enum\\\": [\\n        \\\"schema\\\",\\n        \\\"schemaVersion\\\"\\n      ]\\n    }\\n  },\\n  \\\"additionalProperties\\\": {\\n    \\\"type\\\": \\\"string\\\",\\n    \\\"minLength\\\": 1\\n  },\\n  \\\"not\\\": {\\n    \\\"anyOf\\\": [\\n      {\\n        \\\"required\\\": [\\n          \\\"schema\\\"\\n        ]\\n      },\\n      {\\n        \\\"required\\\": [\\n          \\\"schemaVersion\\\"\\n        ]\\n      }\\n    ]\\n  }\\n}\\n\"\n    },\n    \"homeassistant-rename-map/v2\": {\n      \"reference\": \"file:references/contracts/homeassistant-rename-map-v2.schema.json\",\n      \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-rename-map-v2.schema.json\",\n      \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"title\\\": \\\"homeassistant-rename-map/v2\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"required\\\": [\\n    \\\"mappings\\\",\\n    \\\"schemaVersion\\\"\\n  ],\\n  \\\"properties\\\": {\\n    \\\"mappings\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"minProperties\\\": 1,\\n      \\\"propertyNames\\\": {\\n        \\\"type\\\": \\\"string\\\",\\n        \\\"minLength\\\": 1,\\n        \\\"not\\\": {\\n          \\\"enum\\\": [\\n            \\\"schema\\\",\\n            \\\"schemaVersion\\\"\\n          ]\\n        }\\n      },\\n      \\\"additionalProperties\\\": {\\n        \\\"type\\\": \\\"string\\\",\\n        \\\"minLength\\\": 1\\n      }\\n    },\\n    \\\"schemaVersion\\\": {\\n      \\\"const\\\": \\\"homeassistant-rename-map/v2\\\"\\n    }\\n  },\\n  \\\"not\\\": {\\n    \\\"require…\n    }\n  },\n  \"procedures\": []\n}\n\n\n[Some lines truncated to 768 bytes. Use artifact://34:raw:30-30 to read line 30 whole; cut lines run to line 55, each read the same way]"
+    },
+    {
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops",
+        "--contract",
+        "homeassistant-snapshot/v1"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "output": "{\n  \"reference\": \"file:references/contracts/homeassistant-snapshot-v1.schema.json\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-snapshot-v1.schema.json\",\n  \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"title\\\": \\\"homeassistant-snapshot/v1\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"required\\\": [\\n    \\\"meta\\\",\\n    \\\"registries\\\",\\n    \\\"configs\\\",\\n    \\\"warnings\\\"\\n  ],\\n  \\\"properties\\\": {\\n    \\\"meta\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"required\\\": [\\n        \\\"generated_at\\\",\\n        \\\"url\\\"\\n      ],\\n      \\\"properties\\\": {\\n        \\\"generated_at\\\": {\\n          \\\"type\\\": \\\"string\\\",\\n          \\\"minLength\\\": 1\\n        },\\n        \\\"url\\\": {\\n          \\\"type\\\": \\\"string\\\",\\n          \\\"minLength\\\": 1\\n        }\\n      }\\n    },\\n    \\\"registries\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"properties\\\": {\\n        \\\"areas\\\": {\\n          \\\"type\\\": \\\"array\\\",\\n         …\n}\n\n\n[Some lines truncated to 768 bytes. Use artifact://35:raw:4-4 to read line 4 whole]"
+    },
+    {
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops",
+        "--contract",
+        "homeassistant-snapshot/v2"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "output": "{\n  \"reference\": \"file:references/contracts/homeassistant-snapshot-v2.schema.json\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-snapshot-v2.schema.json\",\n  \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"title\\\": \\\"homeassistant-snapshot/v2\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"required\\\": [\\n    \\\"meta\\\",\\n    \\\"registries\\\",\\n    \\\"configs\\\",\\n    \\\"warnings\\\",\\n    \\\"schemaVersion\\\"\\n  ],\\n  \\\"properties\\\": {\\n    \\\"meta\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"required\\\": [\\n        \\\"generated_at\\\",\\n        \\\"url\\\"\\n      ],\\n      \\\"properties\\\": {\\n        \\\"generated_at\\\": {\\n          \\\"type\\\": \\\"string\\\",\\n          \\\"minLength\\\": 1\\n        },\\n        \\\"url\\\": {\\n          \\\"type\\\": \\\"string\\\",\\n          \\\"minLength\\\": 1\\n        }\\n      }\\n    },\\n    \\\"registries\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"properties\\\": {\\n        \\\"areas\\\": {\\n          \\\"type\\…\n}\n\n\n[Some lines truncated to 768 bytes. Use artifact://36:raw:4-4 to read line 4 whole]"
+    },
+    {
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops",
+        "--contract",
+        "homeassistant-reference-report/v1"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "output": "{\n  \"reference\": \"file:references/contracts/homeassistant-reference-report-v1.schema.json\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-reference-report-v1.schema.json\",\n  \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"title\\\": \\\"homeassistant-reference-report/v1\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"required\\\": [\\n    \\\"meta\\\",\\n    \\\"live\\\",\\n    \\\"backup\\\"\\n  ],\\n  \\\"properties\\\": {\\n    \\\"meta\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"required\\\": [\\n        \\\"generated_at\\\",\\n        \\\"url\\\",\\n        \\\"backup_root\\\",\\n        \\\"needles\\\"\\n      ],\\n      \\\"properties\\\": {\\n        \\\"generated_at\\\": {\\n          \\\"type\\\": \\\"string\\\",\\n          \\\"minLength\\\": 1\\n        },\\n        \\\"url\\\": {\\n          \\\"type\\\": \\\"string\\\"\\n        },\\n        \\\"backup_root\\\": {\\n          \\\"type\\\": \\\"string\\\"\\n        },\\n        \\\"needles\\\": {\\n          \\\"type\\\": \\\"array\\\",\\n          \\\"items\\\": {\\n   …\n}\n\n\n[Some lines truncated to 768 bytes. Use artifact://37:raw:4-4 to read line 4 whole]"
+    },
+    {
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops",
+        "--contract",
+        "homeassistant-reference-report/v2"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "output": "{\n  \"reference\": \"file:references/contracts/homeassistant-reference-report-v2.schema.json\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-reference-report-v2.schema.json\",\n  \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"title\\\": \\\"homeassistant-reference-report/v2\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"required\\\": [\\n    \\\"meta\\\",\\n    \\\"live\\\",\\n    \\\"backup\\\",\\n    \\\"schemaVersion\\\"\\n  ],\\n  \\\"properties\\\": {\\n    \\\"meta\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"required\\\": [\\n        \\\"generated_at\\\",\\n        \\\"url\\\",\\n        \\\"backup_root\\\",\\n        \\\"needles\\\"\\n      ],\\n      \\\"properties\\\": {\\n        \\\"generated_at\\\": {\\n          \\\"type\\\": \\\"string\\\",\\n          \\\"minLength\\\": 1\\n        },\\n        \\\"url\\\": {\\n          \\\"type\\\": \\\"string\\\"\\n        },\\n        \\\"backup_root\\\": {\\n          \\\"type\\\": \\\"string\\\"\\n        },\\n        \\\"needles\\\": {\\n          \\\"type\\\": \\\"array\\\",\\n   …\n}\n\n\n[Some lines truncated to 768 bytes. Use artifact://38:raw:4-4 to read line 4 whole]"
+    },
+    {
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops",
+        "--contract",
+        "homeassistant-rename-map/v1"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "output": "{\n  \"reference\": \"file:references/contracts/homeassistant-rename-map-v1.schema.json\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-rename-map-v1.schema.json\",\n  \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"title\\\": \\\"homeassistant-rename-map/v1\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"minProperties\\\": 1,\\n  \\\"propertyNames\\\": {\\n    \\\"type\\\": \\\"string\\\",\\n    \\\"minLength\\\": 1,\\n    \\\"not\\\": {\\n      \\\"enum\\\": [\\n        \\\"schema\\\",\\n        \\\"schemaVersion\\\"\\n      ]\\n    }\\n  },\\n  \\\"additionalProperties\\\": {\\n    \\\"type\\\": \\\"string\\\",\\n    \\\"minLength\\\": 1\\n  },\\n  \\\"not\\\": {\\n    \\\"anyOf\\\": [\\n      {\\n        \\\"required\\\": [\\n          \\\"schema\\\"\\n        ]\\n      },\\n      {\\n        \\\"required\\\": [\\n          \\\"schemaVersion\\\"\\n        ]\\n      }\\n    ]\\n  }\\n}\\n\"\n}\n"
+    },
+    {
+      "argv": [
+        "/home/zenobius/.omp/agent/bundles/agent-core/skills/skill-contracts/scripts/router.ts",
+        "resolve",
+        "--skill",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops",
+        "--contract",
+        "homeassistant-rename-map/v2"
+      ],
+      "cwd": "/tmp",
+      "exit_code": 0,
+      "output": "{\n  \"reference\": \"file:references/contracts/homeassistant-rename-map-v2.schema.json\",\n  \"path\": \"/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-rename-map-v2.schema.json\",\n  \"content\": \"{\\n  \\\"$schema\\\": \\\"http://json-schema.org/draft-07/schema#\\\",\\n  \\\"title\\\": \\\"homeassistant-rename-map/v2\\\",\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"required\\\": [\\n    \\\"mappings\\\",\\n    \\\"schemaVersion\\\"\\n  ],\\n  \\\"properties\\\": {\\n    \\\"mappings\\\": {\\n      \\\"type\\\": \\\"object\\\",\\n      \\\"minProperties\\\": 1,\\n      \\\"propertyNames\\\": {\\n        \\\"type\\\": \\\"string\\\",\\n        \\\"minLength\\\": 1,\\n        \\\"not\\\": {\\n          \\\"enum\\\": [\\n            \\\"schema\\\",\\n            \\\"schemaVersion\\\"\\n          ]\\n        }\\n      },\\n      \\\"additionalProperties\\\": {\\n        \\\"type\\\": \\\"string\\\",\\n        \\\"minLength\\\": 1\\n      }\\n    },\\n    \\\"schemaVersion\\\": {\\n      \\\"const\\\": \\\"homeassistant-rename-map/v2\\\"\\n    }\\n  },\\n  \\\"not\\\": {\\n    \\\"required\\\":…\n}\n\n\n[Some lines truncated to 768 bytes. Use artifact://40:raw:4-4 to read line 4 whole]"
+    },
+    {
+      "argv": [
+        "env",
+        "-u",
+        "HA_TOKEN",
+        "-u",
+        "HA_URL",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "tests/ha-ops.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops",
+      "exit_code": 0,
+      "output": "bun test v1.4.4 (38afee6c8)\n\n 2 pass\n 0 fail\n 11 expect() calls\nRan 2 tests across 1 file. [1.64s]\n\n\nWall time: 2.06 seconds"
+    }
+  ]
+}

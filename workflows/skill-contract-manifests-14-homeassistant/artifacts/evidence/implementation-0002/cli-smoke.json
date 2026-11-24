@@ -1,0 +1,634 @@
+{
+  "status": "passed",
+  "runs": [
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "snapshot",
+        "--out",
+        "/tmp/ha-cli-smoke-fHvccP/snapshot.json",
+        "--include-states"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "/tmp/ha-cli-smoke-fHvccP/snapshot.json\ncounts: {\"areas\":1,\"devices\":1,\"entities\":1,\"automations\":1,\"scripts\":0,\"scenes\":1,\"lovelace\":1}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-cli-smoke-fHvccP/snapshot.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-snapshot/v2\",\"valid\":true}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-cli-smoke-fHvccP/legacy.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-snapshot/v1\",\"valid\":true}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/tmp/ha-cli-smoke-fHvccP/snapshot.json",
+        "--dry-run"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "Found 1 entity registry rollback(s):\n\n- light.renamed -> light.original (unique_id=\"fixture-identity\")\n    - name: \"Original\"\n\n[dry-run] No changes applied\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/tmp/ha-cli-smoke-fHvccP/legacy.json",
+        "--dry-run"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "Found 1 entity registry rollback(s):\n\n- light.renamed -> light.original (unique_id=\"fixture-identity\")\n    - name: \"Original\"\n\n[dry-run] No changes applied\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/tmp/ha-cli-smoke-fHvccP/snapshot.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "Found 1 entity registry rollback(s):\n\n- light.renamed -> light.original (unique_id=\"fixture-identity\")\n    - name: \"Original\"\nApply these rollbacks? [y/N] Aborted\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-cli-smoke-fHvccP/unknown.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Unsupported record contract: homeassistant-snapshot/v999\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/tmp/ha-cli-smoke-fHvccP/unknown.json",
+        "--yes"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Failed to load snapshot: Unsupported record contract: homeassistant-snapshot/v999\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-cli-smoke-fHvccP/mixed.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Unsupported schema field; use a supported schemaVersion\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/tmp/ha-cli-smoke-fHvccP/mixed.json",
+        "--yes"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Failed to load snapshot: Unsupported schema field; use a supported schemaVersion\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-cli-smoke-fHvccP/unsafe.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Unsupported record contract: null\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/tmp/ha-cli-smoke-fHvccP/unsafe.json",
+        "--yes"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Failed to load snapshot: Unsupported record contract: null\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-cli-smoke-fHvccP/wrong.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Invalid homeassistant-reference-report/v2: [{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\",\"params\":{\"missingProperty\":\"live\"},\"message\":\"must have required property 'live'\"},{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\",\"params\":{\"missingProperty\":\"backup\"},\"message\":\"must have required property 'backup'\"},{\"instancePath\":\"/meta\",\"schemaPath\":\"#/properties/meta/required\",\"keyword\":\"required\",\"params\":{\"missingProperty\":\"backup_root\"},\"message\":\"must have required property 'backup_root'\"},{\"instancePath\":\"/meta\",\"schemaPath\":\"#/properties/meta/required\",\"keyword\":\"required\",\"params\":{\"missingProperty\":\"needles\"},\"message\":\"must have required property 'needles'\"}]\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/tmp/ha-cli-smoke-fHvccP/wrong.json",
+        "--yes"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Failed to load snapshot: Expected homeassistant-snapshot, got homeassistant-reference-report/v2\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-cli-smoke-fHvccP/malformed.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Invalid homeassistant-snapshot/v2: [{\"instancePath\":\"/registries/entities/0/entity_id\",\"schemaPath\":\"#/properties/registries/properties/entities/items/properties/entity_id/type\",\"keyword\":\"type\",\"params\":{\"type\":\"string\"},\"message\":\"must be string\"}]\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/tmp/ha-cli-smoke-fHvccP/malformed.json",
+        "--yes"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Failed to load snapshot: Invalid homeassistant-snapshot/v2: [{\"instancePath\":\"/registries/entities/0/entity_id\",\"schemaPath\":\"#/properties/registries/properties/entities/items/properties/entity_id/type\",\"keyword\":\"type\",\"params\":{\"type\":\"string\"},\"message\":\"must be string\"}]\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-cli-smoke-fHvccP/snapshot.json",
+        "--upgrade"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Error: Unknown flag \"--upgrade\"\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "snapshot",
+        "--out",
+        "/tmp/ha-cli-smoke-fHvccP/snapshot.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "EEXIST: file already exists, open '/tmp/ha-cli-smoke-fHvccP/snapshot.json'\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-cli-smoke-fHvccP/map.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-rename-map/v2\",\"valid\":true}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "find-references",
+        "--map-json",
+        "/tmp/ha-cli-smoke-fHvccP/map.json",
+        "--no-backup",
+        "--out",
+        "/tmp/ha-cli-smoke-fHvccP/references.md",
+        "--json-out",
+        "/tmp/ha-cli-smoke-fHvccP/references.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "/tmp/ha-cli-smoke-fHvccP/references.md\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-cli-smoke-fHvccP/references.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-reference-report/v2\",\"valid\":true}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-cli-smoke-fHvccP/old-report.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-reference-report/v1\",\"valid\":true}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/tmp/ha-cli-smoke-fHvccP/legacy-map.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-rename-map/v1\",\"valid\":true}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "find-references",
+        "--map-json",
+        "/tmp/ha-cli-smoke-fHvccP/legacy-map.json",
+        "--no-live",
+        "--no-backup",
+        "--out",
+        "/tmp/ha-cli-smoke-fHvccP/legacy-map-refs.md"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "/tmp/ha-cli-smoke-fHvccP/legacy-map-refs.md\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "find-references",
+        "--map-json",
+        "/tmp/ha-cli-smoke-fHvccP/invalid-map.json",
+        "--out",
+        "/tmp/ha-cli-smoke-fHvccP/rejected.md"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Unsupported record contract: homeassistant-rename-map/v999\n"
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/tmp/ha-cli-smoke-fHvccP/snapshot.json",
+        "--yes",
+        "--log",
+        "/tmp/ha-cli-smoke-fHvccP/rollback.md"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "Found 1 entity registry rollback(s):\n\n- light.renamed -> light.original (unique_id=\"fixture-identity\")\n    - name: \"Original\"\n\rRestoring entity_ids: 1/1 [==============================] 100%\rRestoring entity_ids: 1/1 [==============================] 100%\n\rRestoring registry fields: 1/1 [==============================] 100%\rRestoring registry fields: 1/1 [==============================] 100%\n\nLog: /tmp/ha-cli-smoke-fHvccP/rollback.md\n",
+      "stderr": ""
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/config"
+    },
+    {
+      "method": "GET",
+      "path": "/api/states"
+    },
+    {
+      "id": 1,
+      "type": "config/area_registry/list"
+    },
+    {
+      "id": 2,
+      "type": "config/device_registry/list"
+    },
+    {
+      "id": 3,
+      "type": "config/entity_registry/list"
+    },
+    {
+      "method": "GET",
+      "path": "/api/config/automation/config/fixture-automation"
+    },
+    {
+      "method": "GET",
+      "path": "/api/config/scene/config/fixture-scene"
+    },
+    {
+      "method": "GET",
+      "path": "/api/lovelace/dashboards"
+    },
+    {
+      "method": "GET",
+      "path": "/api/lovelace/config"
+    },
+    {
+      "id": 1,
+      "type": "config/entity_registry/list"
+    },
+    {
+      "id": 1,
+      "type": "config/entity_registry/list"
+    },
+    {
+      "id": 1,
+      "type": "config/entity_registry/list"
+    },
+    {
+      "method": "GET",
+      "path": "/api/config"
+    },
+    {
+      "method": "GET",
+      "path": "/api/states"
+    },
+    {
+      "id": 1,
+      "type": "config/area_registry/list"
+    },
+    {
+      "id": 2,
+      "type": "config/device_registry/list"
+    },
+    {
+      "id": 3,
+      "type": "config/entity_registry/list"
+    },
+    {
+      "method": "GET",
+      "path": "/api/config/automation/config/fixture-automation"
+    },
+    {
+      "method": "GET",
+      "path": "/api/config/scene/config/fixture-scene"
+    },
+    {
+      "method": "GET",
+      "path": "/api/lovelace/dashboards"
+    },
+    {
+      "method": "GET",
+      "path": "/api/lovelace/config"
+    },
+    {
+      "method": "GET",
+      "path": "/api/states"
+    },
+    {
+      "method": "GET",
+      "path": "/api/config/automation/config/fixture-automation"
+    },
+    {
+      "method": "GET",
+      "path": "/api/config/scene/config/fixture-scene"
+    },
+    {
+      "method": "GET",
+      "path": "/api/lovelace/dashboards"
+    },
+    {
+      "method": "GET",
+      "path": "/api/lovelace/config"
+    },
+    {
+      "id": 1,
+      "type": "config/entity_registry/list"
+    },
+    {
+      "id": 1,
+      "type": "config/entity_registry/update",
+      "entity_id": "light.renamed",
+      "new_entity_id": "light.original"
+    },
+    {
+      "id": 2,
+      "type": "config/entity_registry/update",
+      "entity_id": "light.original",
+      "name": "Original"
+    }
+  ],
+  "mutations": [
+    {
+      "id": 1,
+      "type": "config/entity_registry/update",
+      "entity_id": "light.renamed",
+      "new_entity_id": "light.original"
+    },
+    {
+      "id": 2,
+      "type": "config/entity_registry/update",
+      "entity_id": "light.original",
+      "name": "Original"
+    }
+  ],
+  "baseline": {
+    "entity_id": "light.original",
+    "unique_id": "fixture-identity",
+    "platform": "fixture",
+    "name": "Original",
+    "area_id": "room",
+    "disabled_by": null,
+    "hidden_by": null,
+    "icon": "mdi:lightbulb",
+    "external_metadata": {
+      "keep": [
+        "all",
+        "fields"
+      ]
+    }
+  },
+  "restored": [
+    {
+      "entity_id": "light.original",
+      "unique_id": "fixture-identity",
+      "platform": "fixture",
+      "name": "Original",
+      "area_id": "room",
+      "disabled_by": null,
+      "hidden_by": null,
+      "icon": "mdi:lightbulb",
+      "external_metadata": {
+        "keep": [
+          "all",
+          "fields"
+        ]
+      }
+    }
+  ],
+  "snapshot": {
+    "configs": {
+      "automations": {
+        "automation.example": {
+          "config": {
+            "action": [
+              {
+                "target": {
+                  "entity_id": "light.original"
+                }
+              }
+            ],
+            "id": "fixture-automation"
+          },
+          "id": "fixture-automation"
+        }
+      },
+      "lovelace": {
+        "default": {
+          "config": {
+            "error": "unhandled fixture route"
+          }
+        }
+      },
+      "scenes": {
+        "scene.example": {
+          "config": {
+            "entities": {
+              "light.original": "on"
+            }
+          },
+          "id": "fixture-scene"
+        }
+      },
+      "scripts": {}
+    },
+    "meta": {
+      "generated_at": "20261124T212507Z",
+      "ha_version": "fixture",
+      "location_name": "Fixture",
+      "time_zone": "UTC",
+      "url": "http://127.0.0.1:43853"
+    },
+    "registries": {
+      "areas": [
+        {
+          "area_id": "room",
+          "name": "Room"
+        }
+      ],
+      "devices": [
+        {
+          "id": "device",
+          "identifiers": [
+            [
+              "fixture",
+              "device"
+            ]
+          ]
+        }
+      ],
+      "entities": [
+        {
+          "area_id": "room",
+          "disabled_by": null,
+          "entity_id": "light.original",
+          "external_metadata": {
+            "keep": [
+              "all",
+              "fields"
+            ]
+          },
+          "hidden_by": null,
+          "icon": "mdi:lightbulb",
+          "name": "Original",
+          "platform": "fixture",
+          "unique_id": "fixture-identity"
+        }
+      ]
+    },
+    "schemaVersion": "homeassistant-snapshot/v2",
+    "states": [
+      {
+        "attributes": {
+          "id": "fixture-automation"
+        },
+        "entity_id": "automation.example"
+      },
+      {
+        "attributes": {},
+        "entity_id": "script.example"
+      },
+      {
+        "attributes": {
+          "id": "fixture-scene"
+        },
+        "entity_id": "scene.example"
+      }
+    ],
+    "warnings": []
+  },
+  "reference_report": {
+    "backup": {
+      "hits": [],
+      "warnings": [
+        "Backup scan skipped: --no-backup provided."
+      ]
+    },
+    "live": {
+      "hits": [
+        {
+          "kind": "automation",
+          "needle": "light.original",
+          "owner": "automation.example",
+          "owner_id": "fixture-automation",
+          "path": "action[0].target.entity_id"
+        }
+      ],
+      "warnings": []
+    },
+    "meta": {
+      "backup_root": "",
+      "generated_at": "20261124T212556Z",
+      "needles": [
+        "light.original"
+      ],
+      "url": "http://127.0.0.1:43853"
+    },
+    "schemaVersion": "homeassistant-reference-report/v2"
+  },
+  "rollback_log": "# Home Assistant rollback (20261124T212559Z)\n\n- Instance: `http://127.0.0.1:43853`\n- Snapshot: `/tmp/ha-cli-smoke-fHvccP/snapshot.json`\n\n## Applied entity_id renames\n- `light.renamed` -> `light.original`\n\n## Applied registry field updates\n- `light.original`\n  - name: \"Original\"\n\n## Warnings\n- (none)\n\n",
+  "checks": [
+    "snapshot preserves registry and external configuration payloads",
+    "current and legacy validation and rollback reads preserve bytes",
+    "dry-run and declined approval do not mutate remote state",
+    "unknown, mixed, malformed, wrong-family and null versions reject before network access",
+    "unsupported upgrade and evidence overwrite reject without rewriting bytes",
+    "current and historical maps preserve requested changes and reference needles",
+    "approved rollback restores entity identity and registry fields; log retains evidence"
+  ],
+  "service": {
+    "host": "127.0.0.1",
+    "port": 43853,
+    "stopped": true
+  }
+}
