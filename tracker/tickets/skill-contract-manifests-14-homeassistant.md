@@ -31,3 +31,5 @@ Exercise the changed behaviour through actual owning commands, not helper tests 
 
 ## Comments
 
+
+- 2026-11-24T21:50:58.841Z — FAILURE. Reviewed commit `a67bb9fe906d6a9214b1f718961e7c81e5076924`, tree `e2c1d6da0ce27dcd3b47ea56572c9144a8651258`. [Independent review](../../workflows/skill-contract-manifests-14-homeassistant/artifacts/reviews/review-review-0005.md).
