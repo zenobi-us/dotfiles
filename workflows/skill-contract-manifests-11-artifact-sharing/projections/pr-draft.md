@@ -1,12 +1,45 @@
 ---
+receipt_id: fix-result-0048
 schemaVersion: worktree-pr-draft/v1
-workflow_id: skill-contract-manifests-11-artifact-sharing
-receipt_id: review-complete-0045
-source_commit: 7eeefdfed44d18bc6bea9c482b438bf4e43f6ef8
-source_tree: b70d4a21bb53f54c5c41a47e036842d192add4ca
-title: Artifact-share contracts review status
+source_commit: e01e451f90a426b9cf24e8432035e2ba775a04e4
+source_tree: 909dd320a0fab5690f7b334d317bcdab254e9c3a
+title: Artifact-share contracts fix 0048
 type: Concept
+workflow_id: skill-contract-manifests-11-artifact-sharing
 ---
+
+# Artifact-share contracts — FIXED
+
+## Current fix 0048
+
+VALIDATION-001 is resolved. The historical retrieval test has a 30-second deadline. Its local fixture is removed in the asynchronous body’s finally block, not by shared afterEach cleanup. Every historical identity, rejection and byte-preservation assertion remains. Production behavior is unchanged.
+
+Source: e01e451f90a426b9cf24e8432035e2ba775a04e4; tree: 909dd320a0fab5690f7b334d317bcdab254e9c3a. The source checkout is clean. The commit hook updated agent-core registry versions from 0.1.43 to 0.1.44.
+
+## Changed files in this fix
+
+- mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test/contracts.test.ts
+- mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/references/share.md
+- mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json
+- mise/conf.d/devtools-agent/bundles/agent-core/.claude-plugin/plugin.json
+
+## Validation for this fix
+
+Required affected suite ran once: 37 pass, 0 fail, 801 assertions; historical retrieval took 4596.48 ms. Actual owning CLI smoke passed all eight historical retrieval/rejection cases. Configuration, index, page, source and asset SHA-256 values were unchanged. Fixtures and the throwaway smoke script were removed. [Exact command evidence](../artifacts/snapshots/validation-fix-0048.json).
+
+## Current findings and review
+
+Resolved: VALIDATION-001. Remaining findings: none. Current-source review verdict: null. The retained review-result-0044 FAILURE applies to the prior source and is stale. Fresh independent review is required. No merge, rebase, push, tracker mutation or remote publication ran. No domain services were launched. Parent owns result validation, completion, workflow commits and child-terminal shutdown. Open questions: none.
+
+## Canonical inputs and outputs
+
+[Review](../events/review-result-0044.yaml), [review artifact](../artifacts/reviews/review-review-result-0044.md), [approval](../events/fix-approval-0046.yaml), [start](../events/fix-start-0047.yaml), [implementation](../events/implementation-0002.yaml), [prior fix](../events/fix-result-0040.yaml), [prior draft](../artifacts/snapshots/pr-draft-fix-0040.md).
+
+[Fix result](../events/fix-result-0048.yaml), [validation snapshot](../artifacts/snapshots/validation-fix-0048.json), [draft snapshot](../artifacts/snapshots/pr-draft-fix-0048.md), [PR projection](../projections/pr-draft.md), [implementation log](../projections/implementation-log.md).
+
+## Retained previous projection
+
+The following statements describe review-complete-0045 and are superseded by the current fix above. All earlier review and fix records remain unchanged.
 
 # Artifact-share contracts — REVIEW_FAILED
 
@@ -70,3 +103,11 @@ Implementation: [0002](../events/implementation-0002.yaml). Fixes: [0010](../eve
 ## Merge and resources
 
 Unmerged; not pushed. Ticket remains claimed. [Cleanup evidence](../artifacts/snapshots/resources-review-complete-0045.json) confirms all reviewer and axis processes stopped. Source unchanged and clean. Fixing requires separate authorization and a fresh review.
+
+
+
+
+## Fix completion 0049
+
+Parent validated the typed delivery against the immutable [fix result](../events/fix-result-0048.yaml), exact clean source and passing suite/smoke evidence. Delivery acknowledged. The fixer terminal was removed; all phase-owned processes are confirmed stopped. [Completion](../events/fix-complete-0049.yaml), [parent validation](../artifacts/snapshots/validation-parent-fix-0049.json), [shutdown evidence](../artifacts/snapshots/resources-fix-complete-0049.json). Source and worktree remain available. Unmerged and not pushed. Next: fresh independent review of e01e451f90a426b9cf24e8432035e2ba775a04e4.
+

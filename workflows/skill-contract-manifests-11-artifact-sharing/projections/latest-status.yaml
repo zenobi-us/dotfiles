@@ -2,13 +2,13 @@
   "schemaVersion": "worktree-latest-status/v2",
   "workflow_id": "skill-contract-manifests-11-artifact-sharing",
   "ticket": "tracker/tickets/skill-contract-manifests-11-artifact-sharing.md",
-  "state": "REVIEW_FAILED",
-  "latest_receipt": "review-complete-0045",
-  "latest_source_commit": "7eeefdfed44d18bc6bea9c482b438bf4e43f6ef8",
-  "latest_source_tree": "b70d4a21bb53f54c5c41a47e036842d192add4ca",
-  "latest_review_verdict": FAILURE,
-  "review_stale": false,
-  "current_source_review_verdict": FAILURE,
+  "state": "FIXED",
+  "latest_receipt": "fix-complete-0049",
+  "latest_source_commit": "e01e451f90a426b9cf24e8432035e2ba775a04e4",
+  "latest_source_tree": "909dd320a0fab5690f7b334d317bcdab254e9c3a",
+  "latest_review_verdict": null,
+  "review_stale": true,
+  "current_source_review_verdict": null,
   "review_receipt": "review-result-0044",
   "resolved_findings":
     [
@@ -19,31 +19,9 @@
       "SPEC-003",
       "SPEC-004",
       "STANDARDS-003",
-      "SPEC-005"
+      "SPEC-005",
+      "VALIDATION-001"
     ],
-  "open_findings":
-    [
-      {
-          adr: No applicable ADR,
-          description: "The required affected suite fails. The new historical retrieval
-            regression times out at Bun's default 5000 ms after 5009.05 ms. Its
-            async body then reads a fixture already removed by afterEach,
-            producing an unhandled ENOENT at line 86. Observed result: 36 pass,
-            1 fail, 1 error. The separate owning-command scenario passed; no
-            product defect is established by this timeout.",
-          file: mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test/contracts.test.ts,
-          id: VALIDATION-001,
-          line: 62,
-          required_change: "Make the historical retrieval regression complete reliably
-            under its declared deadline. Use an explicit integration-test
-            timeout consistent with nearby owning-command tests, and ensure
-            fixture cleanup cannot race outstanding command work. Keep all
-            historical identity and byte-preservation assertions. Run the
-            required affected suite successfully before acceptance.",
-          severity: P2,
-          validation_command: mise exec -- bun test
-            mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test
-        }
-    ],
-  "next_action": "Fix VALIDATION-001 under separate authorization, then obtain a fresh independent review. All owned review processes stopped."
+  "open_findings": [],
+  "next_action": "Obtain a fresh independent review of e01e451f90a426b9cf24e8432035e2ba775a04e4. Fixer delivery acknowledged and all owned processes stopped."
 }

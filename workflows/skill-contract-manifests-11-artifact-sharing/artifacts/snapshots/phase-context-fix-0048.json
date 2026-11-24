@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "worktree-phase-context/v2",
+  "receipt_schema": "worktree-receipt/v3",
+  "receipt_id": "fix-result-0048",
+  "workflow_id": "skill-contract-manifests-11-artifact-sharing",
+  "event": "phase-result",
+  "phase": "fix",
+  "attempt": 6,
+  "parent_receipt": "fix-start-0047",
+  "ticket": {
+    "backend": "local-markdown",
+    "id": "skill-contract-manifests-11-artifact-sharing",
+    "ref": "tracker/tickets/skill-contract-manifests-11-artifact-sharing.md"
+  },
+  "source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+    "branch": "feature/skill-contract-manifests-11-artifact-sharing",
+    "base_branch": "master"
+  },
+  "session": {
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "pane_id": "t28r",
+    "session_id": "01a20b57-39a1-7138-b352-4ece0b63fd41",
+    "run_id": "e68b41b8-7163-4e3d-8bb2-1f5bca73a2a6",
+    "operation_id": "e68b41b8-7163-4e3d-8bb2-1f5bca73a2a6"
+  }
+}
