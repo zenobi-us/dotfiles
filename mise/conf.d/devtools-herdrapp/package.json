@@ -9,6 +9,8 @@
     "test:backend": "bun test build/"
   },
   "devDependencies": {
-    "@types/bun": "^1.4.4"
+    "@types/bun": "^1.4.4",
+    "ajv": "8.17.1",
+    "yaml": "2.8.1"
   }
 }

@@ -1,4 +1,5 @@
 // Bundle the canonical modules into the Bun helper deployed on each Core target.
+// Rebuild after canonical skill changes: deployed helpers use bundled validators, not live imports.
 import { chmod, mkdir } from "node:fs/promises";
 import path from "node:path";
 
@@ -8,6 +9,18 @@ const result = await Bun.build({
   target: "bun",
   format: "esm",
   minify: false,
+  // Bun's bundler does not resolve the versioned imports used by standalone skills.
+  plugins: [{
+    name: "canonical-dependencies",
+    setup(build) {
+      build.onResolve({ filter: /^yaml@(?:\^)?2\.8\.1$/ }, () => ({
+        path: Bun.resolveSync("yaml", root),
+      }));
+      build.onResolve({ filter: /^ajv@\^8\.17\.1$/ }, () => ({
+        path: Bun.resolveSync("ajv", root),
+      }));
+    },
+  }],
   // Imported canonical modules also expose CLIs. Their entry guards must stay off.
   define: { "import.meta.main": "false" },
 });
