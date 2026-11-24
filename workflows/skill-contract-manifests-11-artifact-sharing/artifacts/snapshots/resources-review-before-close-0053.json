@@ -1,0 +1,175 @@
+{
+  "schemaVersion": "muxer-resource-report/v2",
+  "manifest": {
+    "schemaVersion": "muxer-run/v2",
+    "runId": "d94b2ec0-6029-4d4b-8ef7-5fe32a29ea46",
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "target": "t2bq",
+    "createdAt": "2026-11-24T02:38:16.171Z",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+    "operationId": "d94b2ec0-6029-4d4b-8ef7-5fe32a29ea46"
+  },
+  "resources": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "d94b2ec0-6029-4d4b-8ef7-5fe32a29ea46",
+    "observedAt": "2026-11-24T02:51:23.662Z",
+    "processes": [
+      {
+        "pid": 1487739,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19319840",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1500683,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19336241",
+        "command": "bun",
+        "parentPid": 1487739,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 1500684,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19336241",
+        "command": "bun",
+        "parentPid": 1487739,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 1500870,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19336304",
+        "command": "hc",
+        "parentPid": 1500683,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 1500871,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19336304",
+        "command": "hc",
+        "parentPid": 1500684,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 1506276,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19339794",
+        "command": "omp daemon brok",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1506326,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19339799",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1506371,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19339804",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1506383,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19339813",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1506384,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19339813",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1506398,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19339876",
+        "command": "node",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1492347,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19329895",
+        "command": "python",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      },
+      {
+        "pid": 1515766,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19363013",
+        "command": "bun",
+        "parentPid": 1487739,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 1515811,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19363048",
+        "command": "bun",
+        "parentPid": 1515766,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 1548365,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19378480",
+        "command": "bun",
+        "parentPid": 1515811,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "stopped"
+      },
+      {
+        "pid": 1548802,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19378605",
+        "command": "mise",
+        "parentPid": 1548365,
+        "cwd": "/tmp/artifact-contracts-QRvLka/private",
+        "state": "stopped"
+      },
+      {
+        "pid": 1548901,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19378629",
+        "command": "bun",
+        "parentPid": 1548802,
+        "cwd": "/tmp/artifact-contracts-QRvLka/private",
+        "state": "stopped"
+      },
+      {
+        "pid": 1548954,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19378644",
+        "command": "trufflehog",
+        "parentPid": 1548901,
+        "cwd": "/tmp/artifact-contracts-QRvLka/private",
+        "state": "stopped"
+      }
+    ],
+    "shutdown": "pending"
+  }
+}

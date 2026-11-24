@@ -2,14 +2,14 @@
   "schemaVersion": "worktree-latest-status/v2",
   "workflow_id": "skill-contract-manifests-11-artifact-sharing",
   "ticket": "tracker/tickets/skill-contract-manifests-11-artifact-sharing.md",
-  "state": "FIXED",
-  "latest_receipt": "fix-complete-0049",
+  "state": "REVIEW_PASSED",
+  "latest_receipt": "review-complete-0053",
   "latest_source_commit": "e01e451f90a426b9cf24e8432035e2ba775a04e4",
   "latest_source_tree": "909dd320a0fab5690f7b334d317bcdab254e9c3a",
-  "latest_review_verdict": null,
-  "review_stale": true,
-  "current_source_review_verdict": null,
-  "review_receipt": "review-result-0044",
+  "latest_review_verdict": SUCCESS,
+  "review_stale": false,
+  "current_source_review_verdict": SUCCESS,
+  "review_receipt": "review-result-0052",
   "resolved_findings":
     [
       "SPEC-001",
@@ -23,5 +23,7 @@
       "VALIDATION-001"
     ],
   "open_findings": [],
-  "next_action": "Obtain a fresh independent review of e01e451f90a426b9cf24e8432035e2ba775a04e4. Fixer delivery acknowledged and all owned processes stopped."
+  "advisory_findings": ["STD-001"],
+  "cleanup_pending": true,
+  "next_action": "Finish or submit requires fresh inspection and current-base integration checks. Review acceptance is valid; two failed targetless prelaunch records retain unconfirmed cleanup."
 }

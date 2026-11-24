@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "muxer-resource-report/v2",
+  "manifest": {
+    "schemaVersion": "muxer-run/v2",
+    "runId": "d94b2ec0-6029-4d4b-8ef7-5fe32a29ea46",
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "target": "t2bq",
+    "createdAt": "2026-11-24T02:38:16.171Z",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+    "operationId": "d94b2ec0-6029-4d4b-8ef7-5fe32a29ea46"
+  },
+  "resources": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "d94b2ec0-6029-4d4b-8ef7-5fe32a29ea46",
+    "observedAt": "2026-11-24T02:38:28.077Z",
+    "processes": [
+      {
+        "pid": 1487739,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "19319840",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+        "state": "running"
+      }
+    ],
+    "shutdown": "pending"
+  }
+}

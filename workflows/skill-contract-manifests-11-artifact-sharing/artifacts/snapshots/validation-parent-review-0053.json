@@ -1,0 +1,12 @@
+{
+  "validation_results": [
+    {
+      "argv": ["mise", "exec", "--", "bun", "test", "mise/conf.d/devtools-agent/bundles/agent-core/skills/artifact-shares/scripts/artifact-shares/test/contracts.test.ts", "-t", "historical publication retrieval"],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-11-artifact-sharing",
+      "exit_code": 0,
+      "source_commit": "e01e451f90a426b9cf24e8432035e2ba775a04e4",
+      "source_tree": "909dd320a0fab5690f7b334d317bcdab254e9c3a",
+      "result": "1 pass; 5 filtered out; 0 fail; 25 expect() calls. Ran 1 test across 1 file in 3.54 seconds. Bun v1.4.4 (38afee6c8)."
+    }
+  ]
+}
