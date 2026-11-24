@@ -1,0 +1,4 @@
+{
+  "command": "env -u HA_URL -u HA_TOKEN mise exec -- bun test mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests/ha-ops.test.ts",
+  "output": "bun test v1.4.4 (38afee6c8)\n\n 2 pass\n 0 fail\n 11 expect() calls\nRan 2 tests across 1 file. [1314.00ms]\n\n\nWall time: 1.67 seconds"
+}

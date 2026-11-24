@@ -1,0 +1,9 @@
+{
+  "dry_run": true,
+  "steps": [
+    "rename-switch-suffix"
+  ],
+  "renames": [],
+  "group_changes": [],
+  "warnings": []
+}

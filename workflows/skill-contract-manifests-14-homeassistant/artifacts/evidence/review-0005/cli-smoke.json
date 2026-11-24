@@ -1,0 +1,211 @@
+{
+  "runs": [
+    {
+      "argv": [
+        "snapshot",
+        "--out",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/snapshot.json",
+        "--no-lovelace"
+      ],
+      "stdout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/snapshot.json\ncounts: {\"areas\":1,\"devices\":0,\"entities\":1,\"automations\":0,\"scripts\":0,\"scenes\":0,\"lovelace\":0}\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/snapshot.json"
+      ],
+      "stdout": "{\"contract\":\"homeassistant-snapshot/v2\",\"valid\":true}\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "rollback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/snapshot.json",
+        "--dry-run"
+      ],
+      "stdout": "Found 1 entity registry rollback(s):\n\n- light.renamed -> light.original (unique_id=\"review-fixture\")\n    - name: \"Original\"\n\n[dry-run] No changes applied\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "rollback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/snapshot.json"
+      ],
+      "stdout": "Found 1 entity registry rollback(s):\n\n- light.renamed -> light.original (unique_id=\"review-fixture\")\n    - name: \"Original\"\nApply these rollbacks? [y/N] Aborted\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "rollback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/snapshot.json",
+        "--yes",
+        "--log",
+        "/tmp/ha14-review-rollback.md"
+      ],
+      "stdout": "Found 1 entity registry rollback(s):\n\n- light.renamed -> light.original (unique_id=\"review-fixture\")\n    - name: \"Original\"\n\rRestoring entity_ids: 1/1 [==============================] 100%\rRestoring entity_ids: 1/1 [==============================] 100%\n\rRestoring registry fields: 1/1 [==============================] 100%\rRestoring registry fields: 1/1 [==============================] 100%\n\nLog: /tmp/ha14-review-rollback.md\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/historical-snapshot.json"
+      ],
+      "stdout": "{\"contract\":\"homeassistant-snapshot/v1\",\"valid\":true}\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "rollback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/historical-snapshot.json",
+        "--dry-run"
+      ],
+      "stdout": "No changes needed - current registry matches snapshot\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "cleanup",
+        "--steps",
+        "rename-switch-suffix",
+        "--json"
+      ],
+      "stdout": "{\n  \"dry_run\": true,\n  \"steps\": [\n    \"rename-switch-suffix\"\n  ],\n  \"renames\": [],\n  \"group_changes\": [],\n  \"warnings\": []\n}\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/cleanup-plan.json"
+      ],
+      "stdout": "",
+      "stderr": "Expected exactly one historical record format; found 0\n",
+      "exit_code": 2
+    },
+    {
+      "argv": [
+        "find-references",
+        "--needle",
+        "light.original",
+        "--no-live",
+        "--no-backup",
+        "--out",
+        "/tmp/ha14-review-refs.md",
+        "--json-out",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/reference-report.json"
+      ],
+      "stdout": "/tmp/ha14-review-refs.md\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/reference-report.json"
+      ],
+      "stdout": "{\"contract\":\"homeassistant-reference-report/v2\",\"valid\":true}\n",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/config"
+    },
+    {
+      "method": "GET",
+      "path": "/api/states"
+    },
+    {
+      "type": "config/area_registry/list"
+    },
+    {
+      "type": "config/device_registry/list"
+    },
+    {
+      "type": "config/entity_registry/list"
+    },
+    {
+      "type": "config/entity_registry/list"
+    },
+    {
+      "type": "config/entity_registry/list"
+    },
+    {
+      "type": "config/entity_registry/list"
+    },
+    {
+      "type": "config/entity_registry/update"
+    },
+    {
+      "type": "config/entity_registry/update"
+    },
+    {
+      "type": "config/entity_registry/list"
+    },
+    {
+      "method": "GET",
+      "path": "/api/states"
+    },
+    {
+      "type": "config/area_registry/list"
+    },
+    {
+      "type": "config/device_registry/list"
+    },
+    {
+      "type": "config/entity_registry/list"
+    }
+  ],
+  "mutations": [
+    {
+      "id": 1,
+      "type": "config/entity_registry/update",
+      "entity_id": "light.renamed",
+      "new_entity_id": "light.original"
+    },
+    {
+      "id": 2,
+      "type": "config/entity_registry/update",
+      "entity_id": "light.original",
+      "name": "Original"
+    }
+  ],
+  "baseline": {
+    "entity_id": "light.original",
+    "unique_id": "review-fixture",
+    "name": "Original",
+    "area_id": "room",
+    "disabled_by": null,
+    "hidden_by": null,
+    "icon": "mdi:lightbulb",
+    "external": {
+      "preserve": true
+    }
+  },
+  "restored": {
+    "entity_id": "light.original",
+    "unique_id": "review-fixture",
+    "name": "Original",
+    "area_id": "room",
+    "disabled_by": null,
+    "hidden_by": null,
+    "icon": "mdi:lightbulb",
+    "external": {
+      "preserve": true
+    }
+  },
+  "service": {
+    "host": "127.0.0.1",
+    "stopped": true
+  }
+}

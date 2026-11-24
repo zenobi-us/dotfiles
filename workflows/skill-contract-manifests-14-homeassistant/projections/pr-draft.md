@@ -58,11 +58,11 @@ None. No conversion is declared because no owning command edits saved records. A
 
 ## Review history
 
-No independent review yet. Latest reviewer verdict: none. Resolved findings: none. Remaining findings: none recorded; this is not a review verdict.
+Latest reviewer verdict: FAILURE for source a67bb9fe906d6a9214b1f718961e7c81e5076924. Review attempt review-0005 has one open blocking finding, SPEC-001. No findings are resolved.
 
 ## Merge status
 
-Not merged or pushed. Ticket remains claimed. The parent owns start completion and later review/finish.
+Not merged or pushed. Ticket remains claimed. Start and review are complete. Fix and a fresh review are required before integration.
 
 ## Canonical inputs
 
@@ -80,3 +80,9 @@ Not merged or pushed. Ticket remains claimed. The parent owns start completion a
 - Workflow manifest: `workflows/skill-contract-manifests-14-homeassistant/manifest.yaml`.
 - Evidence: `workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/implementation-0002`.
 
+
+## Review attempt review-0005
+
+[Independent review](../artifacts/reviews/review-review-0005.md) records FAILURE. Standards: no hard violations and one nonblocking judgement-call concern. Spec: one blocking finding, SPEC-001. See the artifact for finding details.
+
+[Review receipt](../events/review-0005.yaml) and [parent completion](../events/review-complete-0006.yaml) bind the verdict to the unchanged source. Reviewer tests passed (2 tests, 11 assertions); controlled CLI evidence includes the unsupported cleanup-plan rejection. Parent snapshot validation passed. No live Home Assistant operations ran. Reviewer and axis processes stopped.

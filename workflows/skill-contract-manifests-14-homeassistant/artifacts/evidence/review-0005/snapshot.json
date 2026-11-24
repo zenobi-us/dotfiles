@@ -1,0 +1,39 @@
+{
+  "configs": {
+    "automations": {},
+    "scenes": {},
+    "scripts": {}
+  },
+  "meta": {
+    "generated_at": "20261124T214630Z",
+    "ha_version": "fixture",
+    "location_name": "Review",
+    "time_zone": "UTC",
+    "url": "http://127.0.0.1:40749"
+  },
+  "registries": {
+    "areas": [
+      {
+        "area_id": "room",
+        "name": "Room"
+      }
+    ],
+    "devices": [],
+    "entities": [
+      {
+        "area_id": "room",
+        "disabled_by": null,
+        "entity_id": "light.original",
+        "external": {
+          "preserve": true
+        },
+        "hidden_by": null,
+        "icon": "mdi:lightbulb",
+        "name": "Original",
+        "unique_id": "review-fixture"
+      }
+    ]
+  },
+  "schemaVersion": "homeassistant-snapshot/v2",
+  "warnings": []
+}

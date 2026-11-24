@@ -1,1 +1,11 @@
-{schemaVersion: worktree-workflow/v3,workflow_id: skill-contract-manifests-14-homeassistant,ticket_ref: tracker/tickets/skill-contract-manifests-14-homeassistant.md,initiative: skill-contract-manifests,event_root: events,artifact_root: artifacts,projection_root: projections,latest_receipt: implementation-0002,state: IMPLEMENTED}
+{
+  schemaVersion: worktree-workflow/v3,
+  workflow_id: skill-contract-manifests-14-homeassistant,
+  ticket_ref: tracker/tickets/skill-contract-manifests-14-homeassistant.md,
+  initiative: skill-contract-manifests,
+  event_root: events,
+  artifact_root: artifacts,
+  projection_root: projections,
+  latest_receipt: review-complete-0006,
+  state: REVIEW_FAILED
+}
