@@ -4,7 +4,7 @@ import { runQuery, forgetTarget, targetKey, cancelled } from "./core.js";
 const READS = new Set(["context", "directory", "file", "tracker", "detail"]);
 const MAX_CELLS = 128;
 const MAX_BYTES = 8 * 1024 * 1024;
-const STORAGE = "shared-context:reads:v3";
+const STORAGE = "shared-context:reads:v4";
 
 export function query(operation, where, fields = {}, onProgress, options = {}) {
   return runQuery(operation, where, fields, onProgress, options.control ?? {});

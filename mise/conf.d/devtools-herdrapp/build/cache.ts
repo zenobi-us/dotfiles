@@ -11,7 +11,7 @@ import { withReadSession } from "./read-session";
 
 const SCHEMA = "herdr-read/v1";
 // Increment when canonical loaders or their result contracts change.
-const LOADER = "canonical-replay/v1";
+const LOADER = "canonical-replay/v2";
 const MAX_ENTRIES = 512, MAX_BYTES = 32 * 1024 * 1024;
 const MAX_ENTRY_BYTES = 6 * 1024 * 1024;
 const HEX = /^[a-f0-9]{64}$/;
@@ -23,7 +23,7 @@ const memory = new Map<string, { entry: Entry; bytes: number }>();
 let memoryBytes = 0;
 
 export class ReadCache {
-  constructor(private readonly load: Loader, private readonly context: (cwd: string) => Promise<unknown>, private readonly root = path.join(process.env.XDG_CACHE_HOME || path.join(os.homedir(), ".cache"), "herdr/shared-context-reads")) {}
+  constructor(private readonly load: Loader, private readonly context: (cwd: string) => Promise<unknown>, private readonly root = path.join(process.env.XDG_CACHE_HOME || path.join(os.homedir(), ".cache"), "herdr/shared-context-reads")) { }
 
   async read(request: Request, progress?: (value: Progress) => void): Promise<{ cache: Token; value: unknown }> {
     const context = await this.context(request.cwd);
