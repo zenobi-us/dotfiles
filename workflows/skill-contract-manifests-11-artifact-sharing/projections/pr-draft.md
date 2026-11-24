@@ -1,5 +1,5 @@
 ---
-receipt_id: finish-0076
+receipt_id: finish-complete-0078
 schemaVersion: worktree-pr-draft/v1
 source_commit: 6b0b445fa85328c90de214e257e23451a7e9aa6a
 source_tree: cd8e06c0e0f6ce08aeb7cdc5c224bdbb0718889c
@@ -24,7 +24,7 @@ Tracker completion commit: `299e134650d2159a93c238d3e5c517810d5e4e85`. [Publicat
 
 The original feature branch was fast-forwarded only after explicit approval to the already-reviewed descendant. Normal guarded Worktrunk cleanup removed the original, resolved-source and integration worktrees and local branches without force. Their paths are absent, related app spaces are closed and all actual phase-owned processes are stopped. Unrelated user changes remain untouched. The reviewed source is retained at `refs/worktree-reviews/6b0b445fa85328c90de214e257e23451a7e9aa6a`. [Cleanup proof](../artifacts/snapshots/cleanup-result-finish-0075.json).
 
-Terminal receipt: [finish-0076](../events/finish-0076.yaml). No remaining workflow action.
+Terminal receipt: [finish-0076](../events/finish-0076.yaml). [Parent completion 0078](../events/finish-complete-0078.yaml) confirms exact source, artifacts, publication and shutdown with the finish-specific terminal status. No remaining workflow action.
 
 ## Retained previous draft states
 

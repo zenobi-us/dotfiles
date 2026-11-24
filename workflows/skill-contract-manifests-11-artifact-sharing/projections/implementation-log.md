@@ -299,3 +299,7 @@ Integrated reviewed source `6b0b445f` as verified squash `4db47d2a`; integration
 User approved advancing only the obsolete original branch to the published reviewed descendant. Normal guarded cleanup removed all three named worktrees/local branches, without force. Paths and app spaces are absent; all actual phase-owned processes stopped. Original source ancestry remains retained; unrelated user changes were not touched. Canonical ticket is completed.
 
 [Finish receipt](../events/finish-0076.yaml), [integration proof](../artifacts/snapshots/integration-result-finish-0071.json), [ticket publication](../artifacts/snapshots/ticket-publication-finish-0073.json), [cleanup proof](../artifacts/snapshots/cleanup-result-finish-0075.json). No remaining workflow action.
+
+## Parent finish closure 0077–0078
+
+Validated [terminal finish 0076](../events/finish-0076.yaml), exact retained source and immutable review, candidate-bound integration evidence, published remote ancestry, canonical ticket completion and named resource shutdown. [Parent validation 0077](../events/finish-complete-0077.yaml) used the generic completed status; append-only [completion 0078](../events/finish-complete-0078.yaml) restates it with the required finish-specific FINISHED status. No product, tracker, integration or cleanup operation repeated.
