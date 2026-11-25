@@ -1,0 +1,35 @@
+{
+  "dimensions": {
+    "governance": {
+      "level": 2,
+      "missing": [
+        "resourced-mandated"
+      ]
+    },
+    "capability": {
+      "level": 1,
+      "missing": [
+        "training-delivered"
+      ]
+    },
+    "process": {
+      "level": 1,
+      "missing": [
+        "checks-in-workflow"
+      ]
+    },
+    "measurement": {
+      "level": 1,
+      "missing": [
+        "regular-sampling"
+      ]
+    },
+    "culture": {
+      "level": 1,
+      "missing": [
+        "leadership-champions"
+      ]
+    }
+  },
+  "overall": 1
+}

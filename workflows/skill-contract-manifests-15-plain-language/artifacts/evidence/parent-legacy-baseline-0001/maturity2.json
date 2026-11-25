@@ -1,0 +1,35 @@
+{
+  "dimensions": {
+    "governance": {
+      "level": 2,
+      "missing": [
+        "resourced-mandated"
+      ]
+    },
+    "capability": {
+      "level": 2,
+      "missing": [
+        "competence-maintained"
+      ]
+    },
+    "process": {
+      "level": 2,
+      "missing": [
+        "signoff-gates"
+      ]
+    },
+    "measurement": {
+      "level": 2,
+      "missing": [
+        "user-testing"
+      ]
+    },
+    "culture": {
+      "level": 2,
+      "missing": [
+        "feedback-loops"
+      ]
+    }
+  },
+  "overall": 2
+}

@@ -1,0 +1,191 @@
+{
+  "kind": "owned-isolated-fixture-legacy-cli-baseline",
+  "root": "/tmp/scm15-parent-baseline-odJX6W",
+  "source_checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "source_base_observed": "8196a694",
+  "commands": 9,
+  "all_commands_exit_zero": true,
+  "first_overall": 1,
+  "second_overall": 2,
+  "first_findings": {
+    "configHash": "ca6f9562",
+    "files": {
+      "sample.txt": {
+        "violations": [
+          {
+            "rule": "prose-enumeration",
+            "line": 1,
+            "detail": "enumeration ranks 1, 2, 3 in prose; consider a list"
+          },
+          {
+            "rule": "wordy-phrase",
+            "line": 1,
+            "detail": "\"in order to\" says what \"to\" says"
+          },
+          {
+            "rule": "wordy-phrase",
+            "line": 1,
+            "detail": "\"make a decision\" says what \"decide\" says"
+          },
+          {
+            "rule": "complex-word",
+            "line": 1,
+            "detail": "\"utilise\" where \"use\" would do"
+          }
+        ]
+      }
+    },
+    "totals": {
+      "prose-enumeration": 1,
+      "wordy-phrase": 2,
+      "complex-word": 1
+    }
+  },
+  "second_findings": {
+    "configHash": "ca6f9562",
+    "files": {
+      "sample.txt": {
+        "violations": []
+      }
+    },
+    "totals": {}
+  },
+  "evidence": {
+    "artefacts": {
+      "policy": {
+        "found": true,
+        "paths": [
+          "plain-language-policy.txt"
+        ]
+      },
+      "review-workflow": {
+        "found": true,
+        "paths": [
+          "review-workflow.txt"
+        ]
+      },
+      "automated-checks": {
+        "found": true,
+        "paths": [
+          ".vale.ini"
+        ]
+      },
+      "training": {
+        "found": true,
+        "paths": [
+          "training/lesson.txt"
+        ]
+      },
+      "glossary": {
+        "found": true,
+        "paths": [
+          "glossary.txt"
+        ]
+      }
+    }
+  },
+  "first_maturity": {
+    "dimensions": {
+      "governance": {
+        "level": 2,
+        "missing": [
+          "resourced-mandated"
+        ]
+      },
+      "capability": {
+        "level": 1,
+        "missing": [
+          "training-delivered"
+        ]
+      },
+      "process": {
+        "level": 1,
+        "missing": [
+          "checks-in-workflow"
+        ]
+      },
+      "measurement": {
+        "level": 1,
+        "missing": [
+          "regular-sampling"
+        ]
+      },
+      "culture": {
+        "level": 1,
+        "missing": [
+          "leadership-champions"
+        ]
+      }
+    },
+    "overall": 1
+  },
+  "second_maturity": {
+    "dimensions": {
+      "governance": {
+        "level": 2,
+        "missing": [
+          "resourced-mandated"
+        ]
+      },
+      "capability": {
+        "level": 2,
+        "missing": [
+          "competence-maintained"
+        ]
+      },
+      "process": {
+        "level": 2,
+        "missing": [
+          "signoff-gates"
+        ]
+      },
+      "measurement": {
+        "level": 2,
+        "missing": [
+          "user-testing"
+        ]
+      },
+      "culture": {
+        "level": 2,
+        "missing": [
+          "feedback-loops"
+        ]
+      }
+    },
+    "overall": 2
+  },
+  "first_state": {
+    "snapshots": [
+      {
+        "timestamp": "2026-11-25T22:29:20.760Z",
+        "totals": {
+          "prose-enumeration": 1,
+          "wordy-phrase": 2,
+          "complex-word": 1
+        },
+        "overall": 1
+      }
+    ]
+  },
+  "second_state": {
+    "snapshots": [
+      {
+        "timestamp": "2026-11-25T22:29:20.760Z",
+        "totals": {
+          "prose-enumeration": 1,
+          "wordy-phrase": 2,
+          "complex-word": 1
+        },
+        "overall": 1
+      },
+      {
+        "timestamp": "2026-11-25T22:29:20.809Z",
+        "totals": {},
+        "overall": 2
+      }
+    ]
+  },
+  "history_prefix_preserved": true,
+  "text_audit_findings_consumed_by_report": true,
+  "limitations": "Generated fixture only. This does not assess an organisation or establish ISO compliance. Current ticket15 implementation is being developed in a separate checkout; this is a baseline from the published legacy owner."
+}

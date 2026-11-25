@@ -1,0 +1,124 @@
+[
+  {
+    "argv": [
+      "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-evidence-cli.ts",
+      "/tmp/scm15-parent-baseline-odJX6W/workspace",
+      "--json",
+      "/tmp/scm15-parent-baseline-odJX6W/evidence.json"
+    ],
+    "exit_code": 0,
+    "stdout": "| Artefact category | Found | Paths |\n|-------------------|-------|-------|\n| policy | yes | plain-language-policy.txt |\n| review-workflow | yes | review-workflow.txt |\n| automated-checks | yes | .vale.ini |\n| training | yes | training/lesson.txt |\n| glossary | yes | glossary.txt |\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus-cli.ts",
+      "/tmp/scm15-parent-baseline-odJX6W/corpus",
+      "--json",
+      "/tmp/scm15-parent-baseline-odJX6W/findings1.json"
+    ],
+    "exit_code": 0,
+    "stdout": "| Rule | Violations |\n|------|------------|\n| prose-enumeration | 1 |\n| wordy-phrase | 2 |\n| complex-word | 1 |\n\nTotal: 4 across 1 files.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text-cli.ts",
+      "/tmp/scm15-parent-baseline-odJX6W/corpus/sample.txt",
+      "--project-dir",
+      "/tmp/scm15-parent-baseline-odJX6W",
+      "--no-front-matter",
+      "--json",
+      "/tmp/scm15-parent-baseline-odJX6W/text-findings1.json"
+    ],
+    "exit_code": 0,
+    "stdout": "| File | Line | Rule | Finding |\n|------|------|------|---------|\n| corpus/sample.txt | 1 | prose-enumeration | enumeration ranks 1, 2, 3 in prose; consider a list |\n| corpus/sample.txt | 1 | wordy-phrase | \"in order to\" says what \"to\" says |\n| corpus/sample.txt | 1 | wordy-phrase | \"make a decision\" says what \"decide\" says |\n| corpus/sample.txt | 1 | complex-word | \"utilise\" where \"use\" would do |\n\nFinding count: 4. Files read: 1. Skipped entries: 0.\nMechanical findings are proxies, not an ISO judgement.\nThe user decides whether the text suits its readers and purpose.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/score-maturity-cli.ts",
+      "/tmp/scm15-parent-baseline-odJX6W/answers1.json",
+      "--json",
+      "/tmp/scm15-parent-baseline-odJX6W/maturity1.json"
+    ],
+    "exit_code": 0,
+    "stdout": "| Dimension | Level | Blocking criteria |\n|-----------|-------|-------------------|\n| governance | 2 | resourced-mandated |\n| capability | 1 | training-delivered |\n| process | 1 | checks-in-workflow |\n| measurement | 1 | regular-sampling |\n| culture | 1 | leadership-champions |\n\nOverall (weakest dimension): 1\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+      "/tmp/scm15-parent-baseline-odJX6W/findings1.json",
+      "/tmp/scm15-parent-baseline-odJX6W/evidence.json",
+      "/tmp/scm15-parent-baseline-odJX6W/maturity1.json",
+      "--state",
+      "/tmp/scm15-parent-baseline-odJX6W/state.json",
+      "--out",
+      "/tmp/scm15-parent-baseline-odJX6W/report1.md"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/audit-corpus-cli.ts",
+      "/tmp/scm15-parent-baseline-odJX6W/corpus",
+      "--json",
+      "/tmp/scm15-parent-baseline-odJX6W/findings2.json"
+    ],
+    "exit_code": 0,
+    "stdout": "| Rule | Violations |\n|------|------------|\n\nTotal: 0 across 1 files.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit/scripts/audit-text-cli.ts",
+      "/tmp/scm15-parent-baseline-odJX6W/corpus/sample.txt",
+      "--project-dir",
+      "/tmp/scm15-parent-baseline-odJX6W",
+      "--no-front-matter",
+      "--json",
+      "/tmp/scm15-parent-baseline-odJX6W/text-findings2.json"
+    ],
+    "exit_code": 0,
+    "stdout": "| File | Line | Rule | Finding |\n|------|------|------|---------|\n\nFinding count: 0. Files read: 1. Skipped entries: 0.\nMechanical findings are proxies, not an ISO judgement.\nThe user decides whether the text suits its readers and purpose.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/score-maturity-cli.ts",
+      "/tmp/scm15-parent-baseline-odJX6W/answers2.json",
+      "--json",
+      "/tmp/scm15-parent-baseline-odJX6W/maturity2.json"
+    ],
+    "exit_code": 0,
+    "stdout": "| Dimension | Level | Blocking criteria |\n|-----------|-------|-------------------|\n| governance | 2 | resourced-mandated |\n| capability | 2 | competence-maintained |\n| process | 2 | signoff-gates |\n| measurement | 2 | user-testing |\n| culture | 2 | feedback-loops |\n\nOverall (weakest dimension): 2\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/var/home/zenobius/.local/share/mise/installs/bun/1.4.4/bin/bun",
+      "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4/scripts/generate-report-cli.ts",
+      "/tmp/scm15-parent-baseline-odJX6W/text-findings2.json",
+      "/tmp/scm15-parent-baseline-odJX6W/evidence.json",
+      "/tmp/scm15-parent-baseline-odJX6W/maturity2.json",
+      "--state",
+      "/tmp/scm15-parent-baseline-odJX6W/state.json",
+      "--out",
+      "/tmp/scm15-parent-baseline-odJX6W/report2.md"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

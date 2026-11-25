@@ -1,0 +1,34 @@
+{
+  "artefacts": {
+    "policy": {
+      "found": true,
+      "paths": [
+        "plain-language-policy.txt"
+      ]
+    },
+    "review-workflow": {
+      "found": true,
+      "paths": [
+        "review-workflow.txt"
+      ]
+    },
+    "automated-checks": {
+      "found": true,
+      "paths": [
+        ".vale.ini"
+      ]
+    },
+    "training": {
+      "found": true,
+      "paths": [
+        "training/lesson.txt"
+      ]
+    },
+    "glossary": {
+      "found": true,
+      "paths": [
+        "glossary.txt"
+      ]
+    }
+  }
+}

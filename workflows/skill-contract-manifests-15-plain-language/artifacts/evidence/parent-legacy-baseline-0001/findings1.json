@@ -1,0 +1,34 @@
+{
+  "configHash": "ca6f9562",
+  "files": {
+    "sample.txt": {
+      "violations": [
+        {
+          "rule": "prose-enumeration",
+          "line": 1,
+          "detail": "enumeration ranks 1, 2, 3 in prose; consider a list"
+        },
+        {
+          "rule": "wordy-phrase",
+          "line": 1,
+          "detail": "\"in order to\" says what \"to\" says"
+        },
+        {
+          "rule": "wordy-phrase",
+          "line": 1,
+          "detail": "\"make a decision\" says what \"decide\" says"
+        },
+        {
+          "rule": "complex-word",
+          "line": 1,
+          "detail": "\"utilise\" where \"use\" would do"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "prose-enumeration": 1,
+    "wordy-phrase": 2,
+    "complex-word": 1
+  }
+}
