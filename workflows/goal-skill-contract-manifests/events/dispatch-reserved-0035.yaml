@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reserved-0035",
+  "parent_event": "dispatch-reconciled-0034",
+  "kind": "dispatch_reserved",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+  "phase": "start",
+  "attempt": 5,
+  "ticket_attempt": 5,
+  "consumed_receipt_refs": [
+    "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0012.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/implementation-0011.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-0010.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0009.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/implementation-0008.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-0007.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0006.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/implementation-0005.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-0004.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0003.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/implementation-0002.yaml",
+    "workflows/skill-contract-manifests-15-plain-language/events/start-0001.yaml"
+  ],
+  "planned_source_branch": "feature/skill-contract-manifests-15-plain-language",
+  "base_branch": "master",
+  "scope_paths": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit"
+  ],
+  "remaining_allowances": {
+    "ticket_attempts": 95,
+    "dispatches": 2492
+  },
+  "coordination_assessment": {
+    "inventory_complete": false,
+    "hard_blockers": [],
+    "owners": [
+      {
+        "ref": "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0012.yaml",
+        "workspacePath": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "sourceBranch": "feature/skill-contract-manifests-15-plain-language",
+        "sessionId": "herdr-app:t2dv",
+        "agent": "omp",
+        "muxer": "herdr-app",
+        "paneId": "t2dv"
+      }
+    ],
+    "reservations": [],
+    "source_observations": [
+      {
+        "checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+        "source": {
+          "state": "available",
+          "path": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+          "branch": "feature/skill-contract-manifests-15-plain-language",
+          "commit": "b86a0bf271c034d7a644a699db06ff8b0dfa9078",
+          "candidates": 1
+        },
+        "errors": []
+      }
+    ],
+    "record_diagnostics": [],
+    "overlaps": [],
+    "decision": "Explicit same-owner takeover and actual runtime recovery approved. Current coordinator remains sole recorded owner; all four prior start reservations have verified parent completions, no active reservation or observed scoped conflict. Preserve21 dirty partial owner files at original HEAD. Unrelated stale linked inventory remains unknown, not global compatibility proof."
+  },
+  "implementation_boundaries": "Two related plain-language owner directories only, plus required generated plugin metadata. Do not change English heuristics, scoring policy, or actual user corpora/preferences. Exercise owned isolated fixtures, not real workspace sweeps. Preserve historical audit snapshots and all unrelated changes.",
+  "runtime_preparation": {
+    "typescript": "5.9.3",
+    "new_installation_performed": false,
+    "approved_runtime": "Per-command BUN_OPTIONS=--install=fallback, consistent owner guidance/callers; no global configuration or dependency-version changes."
+  },
+  "operator_approval_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0033.yaml",
+  "cleanup_observation": {
+    "run_id": "b219ab65-cb49-49e4-a623-b5568e230f71",
+    "shutdown": "confirmed",
+    "live_processes": [],
+    "desktop_owned_space_absent": true,
+    "desktop_owned_terminal_absent": true
+  },
+  "resolved_scope": "Preserve actual read-only selected text. Corrected parent handoff removed nonexistent stamping claim; no canonical acceptance criterion removed.",
+  "retained_partial_source": {
+    "dirty": true,
+    "new_commit": false,
+    "files": 21,
+    "source_binding_ref": "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/implementation-0011/source-binding.json",
+    "integrity_verified": true
+  },
+  "prerequisite_commit": "88bdcdf101a487b1cb0daa10bbebbf50d86a0128",
+  "created_at": "2026-11-25T23:53:47.478Z"
+}
