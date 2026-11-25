@@ -1,0 +1,428 @@
+{
+  "passed": true,
+  "runs": [
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "cleanup",
+        "--json",
+        "--steps",
+        "rename-switch-suffix,create-groups"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": false,
+      "exit_code": 0,
+      "stdout": "{\n  \"schemaVersion\": \"homeassistant-cleanup-plan/v2\",\n  \"dry_run\": true,\n  \"steps\": [\n    \"rename-switch-suffix\",\n    \"create-groups\"\n  ],\n  \"renames\": [\n    {\n      \"entity_id\": \"switch.kitchen\",\n      \"old\": \"Lights Kitchen Switch\",\n      \"new\": \"Lights Kitchen\",\n      \"category\": \"switch-suffix\"\n    }\n  ],\n  \"group_changes\": [\n    {\n      \"automation\": \"automation.sync_kitchen\",\n      \"group_id\": \"switch.kitchen_group\",\n      \"name\": \"Kitchen Lights\",\n      \"switches\": [\n        \"switch.kitchen\",\n        \"switch.kitchen_2\"\n      ],\n      \"action\": \"planned\"\n    }\n  ],\n  \"warnings\": [\n    \"Could not load device registry: WS call failed: result: {\\\"id\\\":2,\\\"type\\\":\\\"result\\\",\\\"success\\\":false,\\\"error\\\":{\\\"code\\\":\\\"fixture\\\",\\\"message\\\":\\\"Controlled device warning\\\"}}\"\n  ]\n}\n",
+      "stderr": "\rRenaming switch suffixes: 1/1 [==============================] 100%\rRenaming switch suffixes: 1/1 [==============================] 100%\n\rCreating/updating groups: 1/1 [==============================] 100%\rCreating/updating groups: 1/1 [==============================] 100%\n",
+      "request_count": 5,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/cleanup-plan.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": true,
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-cleanup-plan/v2\",\"valid\":true}\n",
+      "stderr": "",
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/cleanup-plan.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": true,
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-cleanup-plan/v1\",\"valid\":true}\n",
+      "stderr": "",
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "cleanup",
+        "--apply",
+        "--json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": false,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Cannot combine --apply and --json\n",
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/cleanup-plan.json",
+        "--yes"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": false,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Failed to load snapshot: Expected homeassistant-snapshot, got homeassistant-cleanup-plan/v2\n",
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "find-references",
+        "--map-json",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/cleanup-plan.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": false,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Expected homeassistant-rename-map, got homeassistant-cleanup-plan/v2\n",
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "snapshot",
+        "--out",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/snapshot.json",
+        "--include-states"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": false,
+      "exit_code": 0,
+      "stdout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/snapshot.json\ncounts: {\"areas\":1,\"devices\":1,\"entities\":1,\"automations\":1,\"scripts\":0,\"scenes\":0,\"lovelace\":0}\n",
+      "stderr": "",
+      "request_count": 7,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/snapshot.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": true,
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-snapshot/v2\",\"valid\":true}\n",
+      "stderr": "",
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/historical-snapshot.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": true,
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-snapshot/v1\",\"valid\":true}\n",
+      "stderr": "",
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/snapshot.json",
+        "--dry-run"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": false,
+      "exit_code": 0,
+      "stdout": "Found 1 entity registry rollback(s):\n\n- switch.renamed -> switch.kitchen (unique_id=\"fixture-kitchen\")\n    - area_id: \"kitchen\"\n    - icon: \"mdi:light\"\n    - name: \"Kitchen Original\"\n\n[dry-run] No changes applied\n",
+      "stderr": "",
+      "request_count": 1,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/historical-snapshot.json",
+        "--dry-run"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": false,
+      "exit_code": 0,
+      "stdout": "Found 1 entity registry rollback(s):\n\n- switch.renamed -> switch.kitchen (unique_id=\"fixture-kitchen\")\n    - area_id: \"kitchen\"\n    - icon: \"mdi:light\"\n    - name: \"Kitchen Original\"\n\n[dry-run] No changes applied\n",
+      "stderr": "",
+      "request_count": 1,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/snapshot.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": false,
+      "exit_code": 0,
+      "stdout": "Found 1 entity registry rollback(s):\n\n- switch.renamed -> switch.kitchen (unique_id=\"fixture-kitchen\")\n    - area_id: \"kitchen\"\n    - icon: \"mdi:light\"\n    - name: \"Kitchen Original\"\nApply these rollbacks? [y/N] Aborted\n",
+      "stderr": "",
+      "request_count": 1,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/snapshot.json",
+        "--yes",
+        "--log",
+        "/tmp/ha-review-0017-QhmEUE/rollback.md"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": false,
+      "exit_code": 0,
+      "stdout": "Found 1 entity registry rollback(s):\n\n- switch.renamed -> switch.kitchen (unique_id=\"fixture-kitchen\")\n    - area_id: \"kitchen\"\n    - icon: \"mdi:light\"\n    - name: \"Kitchen Original\"\n\rRestoring entity_ids: 1/1 [==============================] 100%\rRestoring entity_ids: 1/1 [==============================] 100%\n\rRestoring registry fields: 1/1 [==============================] 100%\rRestoring registry fields: 1/1 [==============================] 100%\n\nLog: /tmp/ha-review-0017-QhmEUE/rollback.md\n",
+      "stderr": "",
+      "request_count": 3,
+      "mutation_count": 2
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/rejected-unknown.json",
+        "--yes"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": false,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Failed to load snapshot: Unsupported record contract: homeassistant-snapshot/v999\n",
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/rejected-mixed.json",
+        "--yes"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": false,
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Failed to load snapshot: Unsupported schema field; use a supported schemaVersion\n",
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "snapshot",
+        "--out",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/snapshot.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": false,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "EEXIST: file already exists, open '/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/snapshot.json'\n",
+      "request_count": 7,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "find-references",
+        "--map-json",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/rename-map.json",
+        "--no-live",
+        "--no-backup",
+        "--out",
+        "/tmp/ha-review-0017-QhmEUE/refs.md",
+        "--json-out",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/reference-report.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": true,
+      "exit_code": 0,
+      "stdout": "/tmp/ha-review-0017-QhmEUE/refs.md\n",
+      "stderr": "",
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/reference-report.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "offline": true,
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-reference-report/v2\",\"valid\":true}\n",
+      "stderr": "",
+      "request_count": 0,
+      "mutation_count": 0
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/states"
+    },
+    {
+      "id": 1,
+      "type": "config/area_registry/list"
+    },
+    {
+      "id": 2,
+      "type": "config/device_registry/list"
+    },
+    {
+      "id": 3,
+      "type": "config/entity_registry/list"
+    },
+    {
+      "method": "GET",
+      "path": "/api/config/automation/config/fixture-sync"
+    },
+    {
+      "method": "GET",
+      "path": "/api/config"
+    },
+    {
+      "method": "GET",
+      "path": "/api/states"
+    },
+    {
+      "id": 1,
+      "type": "config/area_registry/list"
+    },
+    {
+      "id": 2,
+      "type": "config/device_registry/list"
+    },
+    {
+      "id": 3,
+      "type": "config/entity_registry/list"
+    },
+    {
+      "method": "GET",
+      "path": "/api/config/automation/config/fixture-sync"
+    },
+    {
+      "method": "GET",
+      "path": "/api/lovelace/dashboards"
+    },
+    {
+      "id": 1,
+      "type": "config/entity_registry/list"
+    },
+    {
+      "id": 1,
+      "type": "config/entity_registry/list"
+    },
+    {
+      "id": 1,
+      "type": "config/entity_registry/list"
+    },
+    {
+      "id": 1,
+      "type": "config/entity_registry/list"
+    },
+    {
+      "id": 1,
+      "type": "config/entity_registry/update",
+      "entity_id": "switch.renamed",
+      "new_entity_id": "switch.kitchen"
+    },
+    {
+      "id": 2,
+      "type": "config/entity_registry/update",
+      "entity_id": "switch.kitchen",
+      "name": "Kitchen Original",
+      "area_id": "kitchen",
+      "icon": "mdi:light"
+    },
+    {
+      "method": "GET",
+      "path": "/api/config"
+    },
+    {
+      "method": "GET",
+      "path": "/api/states"
+    },
+    {
+      "id": 1,
+      "type": "config/area_registry/list"
+    },
+    {
+      "id": 2,
+      "type": "config/device_registry/list"
+    },
+    {
+      "id": 3,
+      "type": "config/entity_registry/list"
+    },
+    {
+      "method": "GET",
+      "path": "/api/config/automation/config/fixture-sync"
+    },
+    {
+      "method": "GET",
+      "path": "/api/lovelace/dashboards"
+    }
+  ],
+  "mutations": [
+    {
+      "id": 1,
+      "type": "config/entity_registry/update",
+      "entity_id": "switch.renamed",
+      "new_entity_id": "switch.kitchen"
+    },
+    {
+      "id": 2,
+      "type": "config/entity_registry/update",
+      "entity_id": "switch.kitchen",
+      "name": "Kitchen Original",
+      "area_id": "kitchen",
+      "icon": "mdi:light"
+    }
+  ],
+  "baseline": {
+    "entity_id": "switch.kitchen",
+    "unique_id": "fixture-kitchen",
+    "name": "Kitchen Original",
+    "area_id": "kitchen",
+    "disabled_by": null,
+    "hidden_by": null,
+    "icon": "mdi:light",
+    "external_data": {
+      "preserved": true
+    }
+  },
+  "restored": {
+    "entity_id": "switch.kitchen",
+    "unique_id": "fixture-kitchen",
+    "name": "Kitchen Original",
+    "area_id": "kitchen",
+    "disabled_by": null,
+    "hidden_by": null,
+    "icon": "mdi:light",
+    "external_data": {
+      "preserved": true
+    }
+  },
+  "service_stopped": true
+}

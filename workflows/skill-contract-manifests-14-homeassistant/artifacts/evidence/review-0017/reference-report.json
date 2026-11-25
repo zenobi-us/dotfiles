@@ -1,0 +1,21 @@
+{
+  "backup": {
+    "hits": [],
+    "warnings": [
+      "Backup scan skipped: --no-backup provided."
+    ]
+  },
+  "live": {
+    "hits": [],
+    "warnings": []
+  },
+  "meta": {
+    "backup_root": "",
+    "generated_at": "20261125T203504Z",
+    "needles": [
+      "switch.kitchen"
+    ],
+    "url": ""
+  },
+  "schemaVersion": "homeassistant-reference-report/v2"
+}

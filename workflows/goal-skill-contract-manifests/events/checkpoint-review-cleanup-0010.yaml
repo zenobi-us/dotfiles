@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-review-cleanup-0010",
+  "parent_event": "checkpoint-baseline-0009",
+  "kind": "goal_checkpoint",
+  "status": "observing_review",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+  "child_report": "Reviewer reports both axes have no blockers; HA5/0, new dispatch regression1/0, fresh18-command loopback smoke passed. Formal receipt and independent parent validation still pending.",
+  "cleanup_authorization": {
+    "user_choice": "Stop recorded helpers",
+    "boot_id": "1093b557-9bca-45b2-a143-4217cd820f51",
+    "identities": [
+      {
+        "run_id": "a3e2c636-9691-49e4-888f-52803835dc2e",
+        "pid": 3416278,
+        "start_ticks": "34392622"
+      },
+      {
+        "run_id": "a3e2c636-9691-49e4-888f-52803835dc2e",
+        "pid": 3427648,
+        "start_ticks": "34402359"
+      },
+      {
+        "run_id": "f5424f53-bf21-435e-a127-725bcce11ac2",
+        "pid": 3416557,
+        "start_ticks": "34392632"
+      },
+      {
+        "run_id": "f5424f53-bf21-435e-a127-725bcce11ac2",
+        "pid": 3428224,
+        "start_ticks": "34406087"
+      }
+    ],
+    "signals": "SIGTERM; SIGKILL only if required after fresh exact identity/run-tag verification. Preserve unrelated processes.",
+    "delivered_to": "reviewer terminal t2g9"
+  },
+  "outstanding_dispatches": [
+    "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0007.yaml"
+  ],
+  "accounting": {
+    "ticket_attempts_consumed": 2,
+    "ticket_attempts_remaining": 98,
+    "dispatches_consumed": 2,
+    "dispatches_remaining": 2498,
+    "omp_token_budget": null,
+    "omp_tokens_used_observed": 449140,
+    "omp_observation": "goal get in current active goal before helper cleanup request; snapshot only, not reset accounting"
+  },
+  "created_at": "2026-11-25T20:38:00.237Z"
+}

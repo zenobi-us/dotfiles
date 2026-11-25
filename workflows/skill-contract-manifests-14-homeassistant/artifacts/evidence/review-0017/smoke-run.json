@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "env",
+    "-u",
+    "HA_URL",
+    "-u",
+    "HA_TOKEN",
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "--install=fallback",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0017/smoke.ts"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "exit_code": 0,
+  "stdout": "{\"passed\":true,\"commands\":18,\"mutations\":2,\"service_stopped\":true}\n",
+  "stderr": ""
+}

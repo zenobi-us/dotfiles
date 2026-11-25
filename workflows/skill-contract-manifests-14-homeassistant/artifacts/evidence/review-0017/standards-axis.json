@@ -1,0 +1,11 @@
+{
+  "assigned_axis": "standards",
+  "transport_context": "/var/home/zenobius/.local/state/result-delivery/runs/a3e2c636-9691-49e4-888f-52803835dc2e/context.json",
+  "result": {
+    "axis": "spec",
+    "findings": [],
+    "report": "## Scope\nRead-only review of tracker/tickets/skill-contract-manifests-14-homeassistant.md and its initiative. Reviewed b0c57a266b38c54f6a02ad1a2d4643f24c12398e, tree 59ddce610e75c9340a56b2bbbc69ce1c39fb47e1, against 62c66402d3e677c05eb501ca6ce1d712f6d3704d. Also reviewed publication prerequisites ab092148 and dcee9de0. Date: 2026-11-26.\n\n## Standards findings\nNo new hard breaches found. The shared manifest loader remains authoritative. The retained P3 serializer-duplication observation remains nonblocking; this review does not elevate it.\n\n## Spec findings\nNo blocking gaps found by static inspection. Snapshot, cleanup-plan, reference-report and rename-map declarations cover current and historical records. Readers reject unsupported identities without rewriting input. Snapshot and JSON report writes reject replacement. Approval boundaries remain unchanged. SPEC-001 remains resolved.\n\nVALIDATION-001 is addressed in tests/cleanup-plan.test.ts:19-37,55-76,105-129: the eight rejection cases remain serial, retain exit-code-2 and byte-preservation assertions, and use a 20000ms test bound. afterEach kills and reaps tracked children, then stops the fixture server.\n\nThe ab092148 phase-context.ts:123-127 exception applies only to goal_dispatch_ref on phase-start. goal_run_id remains fixed; child results and completions retain strict parent dispatch binding. Its integration test covers changed run, changed completion dispatch and changed child dispatch rejection. dcee9de0 changes dependency loading, not receipt identity.\n\n## Validation and verdict\nConfirmed exact source commit and tree. Inspected the complete diff, schemas, command paths, prerequisite diffs and relevant guidance. No tests, builds, formatters or Home Assistant commands ran, as instructed. Runtime timing and fixture outcomes are not independently verified.\n\nStatic review: PASS. Blocking findings: Standards 0; Spec 0.",
+    "schemaVersion": "review-axis/v1"
+  },
+  "note": "Helper mislabeled axis as spec; Standards findings section used for assigned Standards axis. Immutable result preserved."
+}

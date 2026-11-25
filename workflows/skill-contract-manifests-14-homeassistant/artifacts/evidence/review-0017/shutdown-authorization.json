@@ -1,0 +1,41 @@
+{
+  "approval": "User explicitly approved Stop recorded helpers via parent t2dv. Only four named PID/start/boot/run identities; TERM then KILL only if needed with fresh checks. Source and passing checks remain unchanged.",
+  "signals": [
+    {
+      "pid": 3416278,
+      "startTicks": "34392622",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "runId": "a3e2c636-9691-49e4-888f-52803835dc2e",
+      "signal": "SIGTERM",
+      "at": "2026-11-25T20:38:35.588Z",
+      "verified": true
+    },
+    {
+      "pid": 3427648,
+      "startTicks": "34402359",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "runId": "a3e2c636-9691-49e4-888f-52803835dc2e",
+      "signal": "SIGTERM",
+      "at": "2026-11-25T20:38:35.589Z",
+      "verified": true
+    },
+    {
+      "pid": 3416557,
+      "startTicks": "34392632",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "runId": "f5424f53-bf21-435e-a127-725bcce11ac2",
+      "signal": "SIGTERM",
+      "at": "2026-11-25T20:38:35.589Z",
+      "verified": true
+    },
+    {
+      "pid": 3428224,
+      "startTicks": "34406087",
+      "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+      "runId": "f5424f53-bf21-435e-a127-725bcce11ac2",
+      "signal": "SIGTERM",
+      "at": "2026-11-25T20:38:35.589Z",
+      "verified": true
+    }
+  ]
+}

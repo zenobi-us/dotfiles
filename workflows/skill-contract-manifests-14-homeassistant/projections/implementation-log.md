@@ -61,3 +61,7 @@ Validation: the required directory command ran once after the fix and passed 5 t
 
 VALIDATION-001 addressed; no selected blocking finding remains. Latest historical reviewer verdict remains FAILURE on the prior source. Fresh review required. P3 duplication unchanged. Open questions: none. No merge, push, ticket change or parent closure.
 
+
+## Review review-0017
+
+SUCCESS on `b0c57a266b38c54f6a02ad1a2d4643f24c12398e`; no blocking findings. [Review](../artifacts/reviews/review-review-0017.md) and [parent completion](../events/review-complete-0018.yaml) retain validation, prerequisite acceptance, and confirmed shutdown. Earlier failed reviews remain historical evidence. Finish is pending.

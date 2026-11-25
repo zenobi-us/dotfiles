@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "env",
+    "-u",
+    "HA_URL",
+    "-u",
+    "HA_TOKEN",
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "test",
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+  "name": "ha-suite",
+  "exit_code": 0,
+  "stdout": "bun test v1.4.4 (38afee6c8)\n",
+  "stderr": "\nmise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests/ha-ops.test.ts:\n(pass) doctor reports credential presence without exposing credentials [418.73ms]\n(pass) rollback rejects unknown and mixed identities before remote access without rewriting evidence [892.18ms]\n\nmise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests/cleanup-plan.test.ts:\n(pass) historical and current cleanup evidence validate offline without stamping or rewriting [903.50ms]\n(pass) cleanup plan readers reject unknown, mixed, wrong-family and malformed content without writes [3511.47ms]\n(pass) nonempty JSON cleanup plans preserve proposed changes and never mutate the fixture [10832.08ms]\n\n 5 pass\n 0 fail\n 39 expect() calls\nRan 5 tests across 2 files. [16.60s]\n"
+}

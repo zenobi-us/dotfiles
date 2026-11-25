@@ -1,0 +1,23 @@
+[
+  {
+    "commit": "ab092148a98741bfeb3582704aface14ad4dfe39",
+    "path": "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/phase-context.ts",
+    "exact": "0f1d685a64dd8a1424fce7e08c10069b2567a05d",
+    "current": "0f1d685a64dd8a1424fce7e08c10069b2567a05d",
+    "matches": true
+  },
+  {
+    "commit": "ab092148a98741bfeb3582704aface14ad4dfe39",
+    "path": "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts",
+    "exact": "12fce6426e6c4e85c80adc88ae70f4c2d5095c15",
+    "current": "12fce6426e6c4e85c80adc88ae70f4c2d5095c15",
+    "matches": true
+  },
+  {
+    "commit": "dcee9de03b64baeac8eff407413078ee1619f9df",
+    "path": "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.ts",
+    "exact": "764b9358585f09ec328102ed35ccc7ad59ebf6ba",
+    "current": "764b9358585f09ec328102ed35ccc7ad59ebf6ba",
+    "matches": true
+  }
+]

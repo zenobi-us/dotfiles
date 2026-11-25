@@ -1,0 +1,78 @@
+{
+  "configs": {
+    "automations": {
+      "automation.sync_kitchen": {
+        "config": {
+          "use_blueprint": {
+            "input": {
+              "switches": [
+                "switch.kitchen",
+                "switch.kitchen_2"
+              ]
+            },
+            "path": "fixture/sync_switch.yaml"
+          }
+        },
+        "id": "fixture-sync"
+      }
+    },
+    "lovelace": {},
+    "scenes": {},
+    "scripts": {}
+  },
+  "meta": {
+    "generated_at": "20261125T203410Z",
+    "ha_version": "fixture",
+    "location_name": "Review fixture",
+    "time_zone": "UTC",
+    "url": "http://127.0.0.1:35579"
+  },
+  "registries": {
+    "areas": [
+      {
+        "area_id": "kitchen",
+        "name": "Kitchen"
+      }
+    ],
+    "devices": [
+      {
+        "area_id": "kitchen",
+        "external_data": true,
+        "id": "fixture-device"
+      }
+    ],
+    "entities": [
+      {
+        "area_id": "kitchen",
+        "disabled_by": null,
+        "entity_id": "switch.kitchen",
+        "external_data": {
+          "preserved": true
+        },
+        "hidden_by": null,
+        "icon": "mdi:light",
+        "name": "Kitchen Original",
+        "unique_id": "fixture-kitchen"
+      }
+    ]
+  },
+  "schemaVersion": "homeassistant-snapshot/v2",
+  "states": [
+    {
+      "attributes": {
+        "friendly_name": "Lights Kitchen Switch"
+      },
+      "entity_id": "switch.kitchen",
+      "state": "off"
+    },
+    {
+      "attributes": {
+        "friendly_name": "Sync Kitchen Light Switches",
+        "id": "fixture-sync"
+      },
+      "entity_id": "automation.sync_kitchen",
+      "state": "on"
+    }
+  ],
+  "warnings": []
+}

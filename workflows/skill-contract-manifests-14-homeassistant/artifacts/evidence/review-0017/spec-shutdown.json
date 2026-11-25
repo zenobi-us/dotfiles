@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "muxer-resource-report/v2",
+  "manifest": {
+    "schemaVersion": "muxer-run/v2",
+    "runId": "f5424f53-bf21-435e-a127-725bcce11ac2",
+    "muxer": "herdr-app",
+    "agent": "omp",
+    "target": "t2gc",
+    "createdAt": "2026-11-25T20:30:23.786Z",
+    "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+    "operationId": "f5424f53-bf21-435e-a127-725bcce11ac2",
+    "parentRunId": "bdc7f05d-374c-4943-931a-3de2727f360c"
+  },
+  "resources": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "f5424f53-bf21-435e-a127-725bcce11ac2",
+    "observedAt": "2026-11-25T20:35:35.999Z",
+    "processes": [
+      {
+        "pid": 3416557,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "34392632",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+        "state": "running"
+      },
+      {
+        "pid": 3428224,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "34406087",
+        "command": "omp",
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+        "state": "running"
+      }
+    ],
+    "shutdown": "pending"
+  }
+}

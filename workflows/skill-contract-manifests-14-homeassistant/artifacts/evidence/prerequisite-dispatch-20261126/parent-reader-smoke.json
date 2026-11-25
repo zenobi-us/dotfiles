@@ -1,0 +1,38 @@
+{
+  "argv": [
+    "env",
+    "-u",
+    "HA_URL",
+    "-u",
+    "HA_TOKEN",
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "-e",
+    "import {mkdtemp,readFile,writeFile,rm} from 'node:fs/promises'; import {tmpdir} from 'node:os'; import {join,resolve} from 'node:path'; const dir=await mkdtemp(join(tmpdir(),'scm14-candidate-')); const cli=resolve('mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts'); const plan={dry_run:true,steps:['rename-switch-suffix'],renames:[{entity_id:'switch.kitchen',old:'Lights Kitchen Switch',new:'Lights Kitchen',category:'switch-suffix'}],group_changes:[],warnings:[]}; try {for(const [contract,expected] of [[undefined,0],['homeassistant-cleanup-plan/v2',0],['homeassistant-cleanup-plan/v999',2]]){const file=join(dir,'plan.json'); const bytes=JSON.stringify({...plan,...(contract?{schemaVersion:contract}:{})},null,3)+'\\n'; await writeFile(file,bytes); const p=Bun.spawn([cli,'validate-record',file],{stdout:'pipe',stderr:'pipe'}); const [out,err,code]=await Promise.all([new Response(p.stdout).text(),new Response(p.stderr).text(),p.exited]); if(code!==expected)throw new Error(JSON.stringify({contract,code,expected,err})); if(await readFile(file,'utf8')!==bytes)throw new Error('Reader changed saved plan'); if(expected===0){const result=JSON.parse(out);if(!result.valid||result.contract!==(contract??'homeassistant-cleanup-plan/v1'))throw new Error('Wrong interpreted contract');} console.log(JSON.stringify({contract:contract??'legacy',exit:code,bytes_preserved:true}));}}finally{await rm(dir,{recursive:true,force:true});}"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+  "source_commit": "b0c57a266b38c54f6a02ad1a2d4643f24c12398e",
+  "source_tree": "59ddce610e75c9340a56b2bbbc69ce1c39fb47e1",
+  "exit_code": 0,
+  "observed_results": [
+    {
+      "contract": "legacy",
+      "exit": 0,
+      "bytes_preserved": true
+    },
+    {
+      "contract": "homeassistant-cleanup-plan/v2",
+      "exit": 0,
+      "bytes_preserved": true
+    },
+    {
+      "contract": "homeassistant-cleanup-plan/v999",
+      "exit": 2,
+      "bytes_preserved": true
+    }
+  ],
+  "services": "none; offline owning reader",
+  "cleanup": "temporary fixtures removed; every CLI child exited and was awaited"
+}

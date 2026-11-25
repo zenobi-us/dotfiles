@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "mise",
+    "exec",
+    "--",
+    "bun",
+    "test",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts",
+    "-t",
+    "goal phases reserve distinct dispatches"
+  ],
+  "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "name": "dispatch-regression",
+  "exit_code": 0,
+  "stdout": "bun test v1.4.4 (38afee6c8)\n",
+  "stderr": "\nmise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts:\n(pass) goal phases reserve distinct dispatches without changing the run or child reservation [5625.09ms]\n\n 1 pass\n 57 filtered out\n 0 fail\n 14 expect() calls\nRan 1 test across 1 file. [5.68s]\n"
+}
