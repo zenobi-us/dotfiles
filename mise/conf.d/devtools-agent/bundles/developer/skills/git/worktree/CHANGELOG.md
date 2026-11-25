@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-26
+
+- Allow a new phase-start to use its own goal dispatch reservation. Keep the goal run fixed, and reject changed dispatch identity on child results and parent completions.
+
 ## 2026-11-22
 
 - Infer strict source identity changes independently of transition markers; require exact candidate approval for frozen substitutions while allowing same-source implementation and fix advancement.

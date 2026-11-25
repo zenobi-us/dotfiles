@@ -206,7 +206,7 @@ Every receipt MUST list the durable records it consumed in `inputs`.
 Every receipt MUST list the durable records it created in `outputs`.
 Temporary handoffs MUST NOT appear as authoritative outputs.
 
-When dispatched by a goal coordinator, every phase handoff and ticket-phase receipt MUST carry `goal_run_id` and `goal_dispatch_ref`. Include the reservation in receipt `inputs`; parent and child phases preserve these fields. A standalone worktree command omits them. Reconciliation may link older receipts through a new coordinator event without rewriting those receipts.
+When dispatched by a goal coordinator, every phase handoff and ticket-phase receipt MUST carry `goal_run_id` and `goal_dispatch_ref`. Include the reservation in receipt `inputs`; parent and child phases preserve these fields. A standalone worktree command omits them. Keep the goal run fixed across the receipt chain. Each new phase-start may name its own reserved dispatch; its child result and parent completion must retain that phase dispatch. Reconciliation may link older receipts through a new coordinator event without rewriting those receipts.
 
 When an input or output references an external evidence object, include its
 `sha256` checksum with the stable `ref`. Local file evidence does not need a

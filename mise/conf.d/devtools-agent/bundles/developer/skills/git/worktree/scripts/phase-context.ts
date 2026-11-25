@@ -122,7 +122,8 @@ export async function generateReceipt(context: Fields, outcome: Fields, reposito
   if (partialClosure) receipt.source_dirty = dirty;
   if ((context.goal_run_id == null) !== (context.goal_dispatch_ref == null)) throw new Error("Phase goal run and dispatch identity are required together");
   for (const key of ["goal_run_id", "goal_dispatch_ref"]) {
-    if (parent?.[key] != null && context[key] !== parent[key]) throw new Error("Phase goal identity differs from its parent");
+    // Each phase start reserves a new dispatch; its result and completion retain that reservation.
+    if (parent?.[key] != null && context[key] !== parent[key] && !(key === "goal_dispatch_ref" && event === "phase-start")) throw new Error("Phase goal identity differs from its parent");
     if (context[key] != null) receipt[key] = text(context[key], "phase " + key);
   }
   return receipt;
