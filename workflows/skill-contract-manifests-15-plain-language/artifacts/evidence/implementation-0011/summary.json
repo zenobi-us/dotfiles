@@ -1,0 +1,27 @@
+{
+  "status": "blocked",
+  "failure_reason": "The required actual generate-report-cli.ts smoke exited 1 because Bun could not load ajv@^8.17.1 imported by the shared skill-contracts/scripts/contracts.ts library. The assigned stop policy requires ending this attempt after an actual required owning-CLI failure. No retry, dependency installation, source fix, suite run, or commit followed.",
+  "observed": {
+    "public_manifest_validation": "Both owners passed installed validate",
+    "definition_resolution": "Six installed resolve commands passed",
+    "evidence_cli": "Passed current output identity, policy category and path assertions on generated fixture",
+    "corpus_cli": "Passed current output identity and legalese=1 assertions on generated fixture",
+    "score_cli": "Legacy and current answers both produced identical current maturity JSON; overall and all five dimension levels were 1; answer bytes were unchanged",
+    "report_cli": "Failed before report execution during dependency loading"
+  },
+  "command_count": 13,
+  "passed_commands": 12,
+  "failed_commands": 1,
+  "not_run": [
+    "remaining report/state interoperability scenarios",
+    "text-audit scenarios",
+    "negative-path byte-equality scenarios",
+    "explicit safe/bulk conversion scenarios",
+    "required scoped Bun suite",
+    "final commit and normal hooks",
+    "independent review"
+  ],
+  "source_status": "21 partial owned files retained, uncommitted. No final-commit validation.",
+  "fixture_cleanup": "Synchronous owning processes exited. Smoke finally block removed its owned fixture directory. No services or helper agents launched.",
+  "artifacts_limit": "Raw command stdout/stderr and three legacy report inputs were retained before failure. Raw current producer JSON was not separately retained before fixture cleanup. Do not claim complete acceptance evidence."
+}

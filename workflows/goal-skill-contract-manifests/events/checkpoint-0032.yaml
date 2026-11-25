@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-0032",
+  "parent_event": "dispatch-observed-0031",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+  "status": "blocked",
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0030.yaml",
+  "phase_start_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/start-0010.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/implementation-0011.yaml",
+  "result_received": true,
+  "dispatch_reconciled": false,
+  "parent_completion_published": false,
+  "attempted_parent_completion_id": "start-complete-0012",
+  "delivery_acknowledged_sha256": "3dea28f9af8c7f843e76f64c8b7acee3c70a0bb5173e0f34a43f4843300bae39",
+  "blockers": [
+    {
+      "kind": "required_owning_cli_failure",
+      "command": "Actual generate-report-cli.ts smoke under plain Bun",
+      "error": "Cannot find package ajv@^8.17.1 from shared skill-contracts/scripts/contracts.ts",
+      "evidence_ref": "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/implementation-0011/commands-and-observations.json",
+      "observed_prefix": "12 of13 actual commands exited0; first report command failed. Required scoped suite not run. No retry or source commit."
+    },
+    {
+      "kind": "required_receipt_cli_failure",
+      "command": "write-result.ts --parent-event with blocked start-complete-0012, parent implementation-0011",
+      "error": "Frozen source worktree has uncommitted changes",
+      "evidence": "phase-context.ts:62-68,110-112 and source-transition.ts:7-12 exempt dirty partial closure only when result_missing=true and parent is a phase-start. This valid blocked result exists, so that exception does not apply.",
+      "safety_decision": "Do not falsely mark the result missing, manually create a receipt, commit unfinished feature source, or release the outstanding reservation."
+    }
+  ],
+  "partial_source": {
+    "worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+    "branch": "feature/skill-contract-manifests-15-plain-language",
+    "head": "b86a0bf271c034d7a644a699db06ff8b0dfa9078",
+    "dirty": true,
+    "new_commit": false,
+    "captured_files": 21,
+    "parent_sha256_verification_exit_code": 0,
+    "binding_ref": "workflows/skill-contract-manifests-15-plain-language/artifacts/evidence/implementation-0011/source-binding.json"
+  },
+  "canonical_decision": {
+    "action": "start",
+    "mode": "reconcile",
+    "requiredApproval": true,
+    "parentReceipt": "workflows/skill-contract-manifests-15-plain-language/events/implementation-0011.yaml"
+  },
+  "resources": {
+    "run_id": "b219ab65-cb49-49e4-a623-b5568e230f71",
+    "shutdown": "confirmed",
+    "live_processes": [],
+    "desktop_owned_space_absent": true,
+    "desktop_owned_terminal_absent": true
+  },
+  "proposed_recovery": {
+    "runtime": "Authorize per-invocation Bun fallback dependency resolution, consistent owning guidance/callers, no global configuration or dependency-version changes, then fresh attempt5.",
+    "receipt_cli": "Authorize narrow worktree owner repair: closing a matching failed/blocked implementation result may retain dirty partial source while preserving exact child commit/tree. Keep clean-source requirements for successful closure, review, submit and finish. Add real writer regression and retained guard checks, update owning guidance/changelog, commit with normal hooks. Only then publish parent completion12 and reconcile reservation30."
+  },
+  "accounting": {
+    "ticket_attempts_consumed": 4,
+    "ticket_attempts_remaining": 96,
+    "dispatches_consumed": 7,
+    "dispatches_remaining": 2493,
+    "omp_token_budget": null
+  },
+  "created_at": "2026-11-25T23:29:40.018Z"
+}
