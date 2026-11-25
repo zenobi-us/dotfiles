@@ -1,4 +1,4 @@
-#!/usr/bin/env -S mise x -- bun
+#!/usr/bin/env -S mise x -- bun --install=fallback
 // Explicit record checks and reviewed, repository-scoped Local Markdown migrations.
 import { promises as fs } from "node:fs";
 import path from "node:path";

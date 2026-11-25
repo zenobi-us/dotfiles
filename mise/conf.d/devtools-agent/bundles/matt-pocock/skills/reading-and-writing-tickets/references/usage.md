@@ -31,7 +31,7 @@ Use the configured tracker as the source of truth. Ticket bodies hold intent and
 
 Read and change ticket fields only through the selected store procedure. Preserve the store's claim, completion, verification, and publication rules. Do not substitute a guessed label, state, or assignee for an undefined operation.
 
-Resolve this installed skill directory as `TICKET_SKILL_ROOT`. Script paths in its playbooks are relative to that directory, not the repository. Invoke scripts by absolute path from the target repository.
+Resolve this installed skill directory as `TICKET_SKILL_ROOT`. Script paths in its playbooks are relative to that directory, not the repository. Invoke scripts by absolute path from the target repository. The records CLI uses Bun fallback installation to resolve its version-qualified dependencies even when the caller has a node_modules directory.
 
 Read [Result contract](result-contract.md) before returning the operation result.
 
