@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reconciled-0017",
+  "parent_event": "dispatch-observed-0016",
+  "kind": "dispatch_reconciled",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+  "phase": "start",
+  "attempt": 1,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0015.yaml",
+  "complete_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0003.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/implementation-0002.yaml",
+  "status": "blocked",
+  "failure_reason": "The required exported-symbol LSP references check failed during TypeScript server initialization: Could not find a valid TypeScript installation. The assigned handoff requires stopping after a required command/check failure. No source mutation, dependency preparation, or retry followed that failure.",
+  "delivery_acknowledged_sha256": "e98af6ff6021a569e1deba12906161bfa56d6a9f8102039f70b398308b745216",
+  "resource_shutdown": {
+    "schemaVersion": "muxer-resources/v2",
+    "runId": "ce950ca2-ed2d-4296-beac-0cf643859e79",
+    "observedAt": "2026-11-25T21:12:11.695Z",
+    "processes": [
+      {
+        "pid": 3565933,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "34616137",
+        "command": "omp",
+        "parentPid": 3565618,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "state": "stopped"
+      },
+      {
+        "pid": 3567909,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "34622371",
+        "command": "omp daemon brok",
+        "parentPid": 3565933,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "state": "stopped"
+      },
+      {
+        "pid": 3567936,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "34622376",
+        "command": "omp",
+        "parentPid": 3567909,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "state": "stopped"
+      },
+      {
+        "pid": 3568579,
+        "bootId": "1093b557-9bca-45b2-a143-4217cd820f51",
+        "startTicks": "34627944",
+        "command": "omp",
+        "parentPid": 3565933,
+        "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language",
+        "state": "stopped"
+      }
+    ],
+    "shutdown": "confirmed"
+  },
+  "accounting": {
+    "ticket_attempts_consumed": 1,
+    "ticket_attempts_remaining": 99,
+    "dispatches_consumed": 4,
+    "dispatches_remaining": 2496,
+    "omp_token_budget": null
+  },
+  "remaining_scope": "Ticket15 remains claimed and incomplete; all 24 frozen tickets after ticket14 remain unfinished. Do not advance to another ticket or retry before approval of required-check recovery.",
+  "created_at": "2026-11-25T21:13:36.426Z"
+}

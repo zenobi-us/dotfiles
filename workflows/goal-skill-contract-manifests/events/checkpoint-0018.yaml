@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-0018",
+  "parent_event": "dispatch-reconciled-0017",
+  "kind": "checkpoint",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+  "status": "blocked",
+  "reason": "Required TypeScript LSP initialization failed; goal policy requires operator approval before recovery or another attempt.",
+  "canonical_decision": {
+    "action": "start",
+    "mode": "takeover",
+    "label": "Recover implementation",
+    "reason": "Preserve existing work and inspect the interrupted start before a scoped takeover. Resolve liveness, reservations, and ownership first.",
+    "requiredApproval": true,
+    "parentReceipt": "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0003.yaml",
+    "inputs": [
+      "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+      "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0003.yaml",
+      "workflows/skill-contract-manifests-15-plain-language/events/implementation-0002.yaml",
+      "workflows/skill-contract-manifests-15-plain-language/events/start-0001.yaml"
+    ]
+  },
+  "canonical_blockers": [
+    {
+      "code": "unknown_ownership",
+      "receiptRefs": [
+        "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0003.yaml",
+        "workflows/skill-contract-manifests-15-plain-language/events/implementation-0002.yaml",
+        "workflows/skill-contract-manifests-15-plain-language/events/start-0001.yaml"
+      ],
+      "evidence": {
+        "ownership": "unknown",
+        "workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-15-plain-language"
+      },
+      "missingEvidence": [
+        "Verified session liveness, reservations, and scoped ownership or takeover approval before mutation."
+      ],
+      "requiredApproval": true,
+      "recoveryActions": [
+        {
+          "action": "start",
+          "mode": "takeover",
+          "requiredApproval": true
+        }
+      ]
+    }
+  ],
+  "dependency_evidence": {
+    "manifest": "package.json",
+    "declared_dev_dependency": {
+      "typescript": "^5.9.3"
+    },
+    "lockfile": "bun.lock",
+    "root_lifecycle_scripts": null,
+    "trusted_dependencies": null
+  },
+  "proposed_recovery": {
+    "scope": "Existing owned ticket15 source worktree only; no repository configuration, dependency versions, lockfile, or global configuration changes.",
+    "command": [
+      "mise",
+      "exec",
+      "--",
+      "bun",
+      "install",
+      "--frozen-lockfile",
+      "--ignore-scripts"
+    ],
+    "next": "Recheck scoped liveness/reservations, explicitly approved takeover, reserve attempt2, launch fresh implementation agent with preserved blocked history."
+  },
+  "accounting": {
+    "ticket_attempts_consumed": 1,
+    "ticket_attempts_remaining": 99,
+    "dispatches_consumed": 4,
+    "dispatches_remaining": 2496,
+    "omp_token_budget": null
+  },
+  "resources": "Owned terminal t2gt removed; muxer resource report confirms all four recorded OMP processes stopped. Source worktree preserved.",
+  "created_at": "2026-11-25T21:14:13.175Z"
+}
