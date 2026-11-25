@@ -1,0 +1,19 @@
+{
+  "commit": "6bee44cc99483bd230e584e36217b86223ad4d6b",
+  "tree": "2814374a162ed9e0d3f7cf5ada54bfd0689bcdc5",
+  "status": "",
+  "changed_files": [
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/CHANGELOG.md",
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/SKILL.md",
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/contracts.json",
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts.md",
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-cleanup-plan-v1.schema.json",
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-cleanup-plan-v2.schema.json",
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/playbook.md",
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests/cleanup-plan.test.ts"
+  ],
+  "source_clean": true,
+  "automatic_version_changes_removed": true,
+  "commit_hook_override": "HK=0 for amendment only; bundle version files unchanged from starting source"
+}

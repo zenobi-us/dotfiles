@@ -2,32 +2,10 @@
   schemaVersion: worktree-latest-status/v2,
   workflow_id: skill-contract-manifests-14-homeassistant,
   ticket: tracker/tickets/skill-contract-manifests-14-homeassistant.md,
-  state: REVIEW_FAILED,
-  latest_receipt: review-complete-0006,
-  latest_source_commit: a67bb9fe906d6a9214b1f718961e7c81e5076924,
-  latest_source_tree: e2c1d6da0ce27dcd3b47ea56572c9144a8651258,
-  latest_review_verdict: FAILURE,
-  open_findings:
-    [
-      {
-          adr_ref: NO ADR,
-          description: The manifest omits the independently consumed cleanup --json
-            operation plan. Its producer at scripts/ha_ops.ts:600-624 still
-            emits an unversioned owned JSON envelope. Actual capture succeeds
-            but validate-record rejects it with zero historical matches. This
-            leaves the declared operation-record adoption incomplete.,
-          file: mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/contracts.json,
-          id: SPEC-001,
-          line: 3,
-          required_change: "Declare the cleanup plan contract and its supported historical
-            format. Update the JSON producer, owner validator, relevant
-            consumers, examples and guidance together. Preserve dry-run,
-            requested changes, warnings and remote approval boundaries.",
-          severity: P2,
-          validation_command: env -u HA_URL -u HA_TOKEN mise exec -- bun
-            mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts
-            validate-record
-            /run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/cleanup-plan.json
-        }
-    ]
+  state: FIXED,
+  latest_receipt: fix-complete-0009,
+  latest_source_commit: 6bee44cc99483bd230e584e36217b86223ad4d6b,
+  latest_source_tree: 2814374a162ed9e0d3f7cf5ada54bfd0689bcdc5,
+  latest_review_verdict: null,
+  open_findings: []
 }

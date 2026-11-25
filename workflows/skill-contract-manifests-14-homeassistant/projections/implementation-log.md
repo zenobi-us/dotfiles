@@ -10,9 +10,35 @@ Changed files: owned homeassistant-ops manifest, six schemas, record validator, 
 
 Validation: 26 fixture-backed CLI invocations passed their expected success or rejection statuses; manifest validation and six definition resolutions passed; 2 scoped tests passed with 11 assertions. Exact argv, cwd and exit statuses are in [CLI evidence](../artifacts/evidence/implementation-0002/cli-smoke.json) and [validation evidence](../artifacts/evidence/implementation-0002/validation.json).
 
-No fix phase has run. Review history follows below. Ticket remains claimed; merge and push have not run.
+At implementation-0002, no fix phase had run. Review history follows below. Ticket remains claimed; merge and push have not run.
 
 
 ## review-0005
 
 [Independent review](../artifacts/reviews/review-review-0005.md) returned FAILURE for unchanged source a67bb9fe906d6a9214b1f718961e7c81e5076924. Open finding: SPEC-001. The reviewer changed no source files. [Review receipt](../events/review-0005.yaml) retains scoped test and controlled CLI results; [parent completion](../events/review-complete-0006.yaml) records offline snapshot validation and confirmed reviewer shutdown. No live Home Assistant operations ran.
+
+## fix-0008
+
+Source: `6bee44cc99483bd230e584e36217b86223ad4d6b`; tree: `2814374a162ed9e0d3f7cf5ada54bfd0689bcdc5`.
+
+[Fix authorization](../events/fix-start-0007.yaml), [fix result](../events/fix-0008.yaml), and [new draft](../artifacts/snapshots/pr-draft-fix-0008.md) record SPEC-001. The previous FAILURE remains historical and is stale for this new source. Fresh independent review is pending.
+
+Changed files:
+- `mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/CHANGELOG.md`
+- `mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/SKILL.md`
+- `mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/contracts.json`
+- `mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts.md`
+- `mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-cleanup-plan-v1.schema.json`
+- `mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/contracts/homeassistant-cleanup-plan-v2.schema.json`
+- `mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/references/playbook.md`
+- `mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts`
+- `mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests/cleanup-plan.test.ts`
+
+Validation: 15 real fixture CLI invocations; five scoped Bun tests, 39 assertions; eight manifest definitions resolved. Historical review plan accepted with unchanged bytes. Nonempty rename/group fields, warnings and empty generic categories preserved. Invalid plans and wrong-family consumers reject before remote calls. JSON planning made zero mutations. All fixture services stopped. See [CLI evidence](../artifacts/evidence/fix-0008/cli-smoke.json), [category evidence](../artifacts/evidence/fix-0008/generic-category-smoke.json), [validation](../artifacts/evidence/fix-0008/validation.json) and [source identity](../artifacts/evidence/fix-0008/source-identity.json).
+
+SPEC-001 addressed; independent confirmation pending. Nonblocking P3 duplication unchanged. Open questions: none. No live Home Assistant or typecheck claim. Ticket claim and review history preserved. No merge, push or ticket completion.
+
+
+## Parent fix completion
+
+[Parent completion](../events/fix-complete-0009.yaml) validates the exact clean source 6bee44cc99483bd230e584e36217b86223ad4d6b. The parent ran the final committed suite: 5 pass, 0 fail, 39 assertions. The historical review cleanup plan validates offline as homeassistant-cleanup-plan/v1. Fixer tab closed; four surviving owned processes stopped after scoped user approval and identity checks. Resource shutdown is confirmed. Fresh independent review remains required.

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "homeassistant-cleanup-plan/v2",
+  "dry_run": true,
+  "steps": [
+    "prefix-generic"
+  ],
+  "renames": [
+    {
+      "entity_id": "light.kitchen",
+      "old": "Lights",
+      "new": "Kitchen Lights",
+      "category": ""
+    }
+  ],
+  "group_changes": [],
+  "warnings": []
+}

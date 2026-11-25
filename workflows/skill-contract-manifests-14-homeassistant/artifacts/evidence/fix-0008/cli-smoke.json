@@ -1,0 +1,326 @@
+{
+  "passed": true,
+  "runs": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "cleanup",
+        "--json",
+        "--steps",
+        "rename-switch-suffix,create-groups"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "{\n  \"schemaVersion\": \"homeassistant-cleanup-plan/v2\",\n  \"dry_run\": true,\n  \"steps\": [\n    \"rename-switch-suffix\",\n    \"create-groups\"\n  ],\n  \"renames\": [\n    {\n      \"entity_id\": \"switch.kitchen\",\n      \"old\": \"Lights Kitchen Switch\",\n      \"new\": \"Lights Kitchen\",\n      \"category\": \"switch-suffix\"\n    }\n  ],\n  \"group_changes\": [\n    {\n      \"automation\": \"automation.sync_kitchen\",\n      \"group_id\": \"switch.kitchen_group\",\n      \"name\": \"Kitchen Lights\",\n      \"switches\": [\n        \"switch.kitchen\",\n        \"switch.kitchen_2\"\n      ],\n      \"action\": \"planned\"\n    }\n  ],\n  \"warnings\": [\n    \"Could not load device registry: WS call failed: result: {\\\"id\\\":2,\\\"type\\\":\\\"result\\\",\\\"success\\\":false,\\\"error\\\":{\\\"code\\\":\\\"fixture_warning\\\",\\\"message\\\":\\\"Device registry unavailable\\\"}}\"\n  ]\n}\n",
+      "stderr": "\rRenaming switch suffixes: 1/1 [==============================] 100%\rRenaming switch suffixes: 1/1 [==============================] 100%\n\rCreating/updating groups: 1/1 [==============================] 100%\rCreating/updating groups: 1/1 [==============================] 100%\n",
+      "offline": false,
+      "request_count": 6,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/cleanup-plan.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-cleanup-plan/v2\",\"valid\":true}\n",
+      "stderr": "",
+      "offline": true,
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "file": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/cleanup-plan.json",
+      "sha256_before": "4b4420c8138f0cb3b93aea691ea2d76f07627cef19a1d7fa5d9ad8d0a47384b7",
+      "sha256_after": "4b4420c8138f0cb3b93aea691ea2d76f07627cef19a1d7fa5d9ad8d0a47384b7",
+      "bytes_unchanged": true
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/cleanup-plan.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-cleanup-plan/v1\",\"valid\":true}\n",
+      "stderr": "",
+      "offline": true,
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "file": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/cleanup-plan.json",
+      "sha256_before": "10c5c4ebfe24ad74db7e83b8c1dfda8c53712438470d06b3d6decd3bf5624d30",
+      "sha256_after": "10c5c4ebfe24ad74db7e83b8c1dfda8c53712438470d06b3d6decd3bf5624d30",
+      "bytes_unchanged": true
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/historical-nonempty-plan.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-cleanup-plan/v1\",\"valid\":true}\n",
+      "stderr": "",
+      "offline": true,
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-unknown.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Unsupported record contract: homeassistant-cleanup-plan/v99\n",
+      "offline": false,
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "file": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-unknown.json",
+      "sha256_before": "ecf217f464d7d53ce2309a6c5c30a9408e9fad4cebeacc60d5d0b952f38a8ae3",
+      "sha256_after": "ecf217f464d7d53ce2309a6c5c30a9408e9fad4cebeacc60d5d0b952f38a8ae3",
+      "bytes_unchanged": true,
+      "remote_calls": 0
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-stamped_history.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Invalid homeassistant-cleanup-plan/v1: [{\"instancePath\":\"\",\"schemaPath\":\"#/additionalProperties\",\"keyword\":\"additionalProperties\",\"params\":{\"additionalProperty\":\"schemaVersion\"},\"message\":\"must NOT have additional properties\"}]\n",
+      "offline": false,
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "file": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-stamped_history.json",
+      "sha256_before": "41eef17a44fa6b6aa4b7b1bc7eaf6b33d19e10f18ebfd32f66df140749b6b861",
+      "sha256_after": "41eef17a44fa6b6aa4b7b1bc7eaf6b33d19e10f18ebfd32f66df140749b6b861",
+      "bytes_unchanged": true,
+      "remote_calls": 0
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-mixed.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Unsupported schema field; use a supported schemaVersion\n",
+      "offline": false,
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "file": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-mixed.json",
+      "sha256_before": "761159dcacd377cc81b45652f754f9fd28cceb3af736cbb95640dd51bbf5575f",
+      "sha256_after": "761159dcacd377cc81b45652f754f9fd28cceb3af736cbb95640dd51bbf5575f",
+      "bytes_unchanged": true,
+      "remote_calls": 0
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-wrong_family.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Invalid homeassistant-snapshot/v2: [{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\",\"params\":{\"missingProperty\":\"meta\"},\"message\":\"must have required property 'meta'\"},{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\",\"params\":{\"missingProperty\":\"registries\"},\"message\":\"must have required property 'registries'\"},{\"instancePath\":\"\",\"schemaPath\":\"#/required\",\"keyword\":\"required\",\"params\":{\"missingProperty\":\"configs\"},\"message\":\"must have required property 'configs'\"}]\n",
+      "offline": false,
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "file": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-wrong_family.json",
+      "sha256_before": "fd4843181d5a5bd1b615f9367085788af3f2d86af626844f61fd26a03adc9991",
+      "sha256_after": "fd4843181d5a5bd1b615f9367085788af3f2d86af626844f61fd26a03adc9991",
+      "bytes_unchanged": true,
+      "remote_calls": 0
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-malformed.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Invalid homeassistant-cleanup-plan/v2: [{\"instancePath\":\"/group_changes/0/switches/0\",\"schemaPath\":\"#/properties/group_changes/items/properties/switches/items/type\",\"keyword\":\"type\",\"params\":{\"type\":\"string\"},\"message\":\"must be string\"}]\n",
+      "offline": false,
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "file": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-malformed.json",
+      "sha256_before": "272b764f5016cf105341b4b138bc416bd0a290fca027ce4010d840a3b1069de0",
+      "sha256_after": "272b764f5016cf105341b4b138bc416bd0a290fca027ce4010d840a3b1069de0",
+      "bytes_unchanged": true,
+      "remote_calls": 0
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-unsafe.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Invalid homeassistant-cleanup-plan/v2: [{\"instancePath\":\"/dry_run\",\"schemaPath\":\"#/properties/dry_run/const\",\"keyword\":\"const\",\"params\":{\"allowedValue\":true},\"message\":\"must be equal to constant\"}]\n",
+      "offline": false,
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "file": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-unsafe.json",
+      "sha256_before": "5e4f9d9db99ff5f95f102cb0e4edff867c528269f62eb87b2f79e5c59b31e69e",
+      "sha256_after": "5e4f9d9db99ff5f95f102cb0e4edff867c528269f62eb87b2f79e5c59b31e69e",
+      "bytes_unchanged": true,
+      "remote_calls": 0
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "rollback",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/cleanup-plan.json",
+        "--yes"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Failed to load snapshot: Expected homeassistant-snapshot, got homeassistant-cleanup-plan/v2\n",
+      "offline": false,
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "find-references",
+        "--map-json",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/cleanup-plan.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Expected homeassistant-rename-map, got homeassistant-cleanup-plan/v2\n",
+      "offline": false,
+      "request_count": 0,
+      "mutation_count": 0
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "cleanup",
+        "--apply",
+        "--json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "Cannot combine --apply and --json\n",
+      "offline": false,
+      "request_count": 0,
+      "mutation_count": 0
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/states"
+    },
+    {
+      "type": "auth",
+      "token_supplied": true
+    },
+    {
+      "id": 1,
+      "type": "config/area_registry/list"
+    },
+    {
+      "id": 2,
+      "type": "config/device_registry/list"
+    },
+    {
+      "id": 3,
+      "type": "config/entity_registry/list"
+    },
+    {
+      "method": "GET",
+      "path": "/api/config/automation/config/sync-kitchen"
+    }
+  ],
+  "mutations": [],
+  "service_stopped": true
+}

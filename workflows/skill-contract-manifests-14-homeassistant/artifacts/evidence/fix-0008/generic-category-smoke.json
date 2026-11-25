@@ -1,0 +1,60 @@
+{
+  "runs": [
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "cleanup",
+        "--json",
+        "--steps",
+        "prefix-generic",
+        "--pattern",
+        ":^Lights"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "{\n  \"schemaVersion\": \"homeassistant-cleanup-plan/v2\",\n  \"dry_run\": true,\n  \"steps\": [\n    \"prefix-generic\"\n  ],\n  \"renames\": [\n    {\n      \"entity_id\": \"light.kitchen\",\n      \"old\": \"Lights\",\n      \"new\": \"Kitchen Lights\",\n      \"category\": \"\"\n    }\n  ],\n  \"group_changes\": [],\n  \"warnings\": []\n}\n",
+      "stderr": "\rPrefixing generic patterns: 1/1 [==============================] 100%\rPrefixing generic patterns: 1/1 [==============================] 100%\n"
+    },
+    {
+      "argv": [
+        "env",
+        "-u",
+        "HA_URL",
+        "-u",
+        "HA_TOKEN",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant/mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts",
+        "validate-record",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles/workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/empty-category-plan.json"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+      "exit_code": 0,
+      "stdout": "{\"contract\":\"homeassistant-cleanup-plan/v2\",\"valid\":true}\n",
+      "stderr": ""
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/states"
+    },
+    {
+      "type": "config/area_registry/list"
+    },
+    {
+      "type": "config/device_registry/list"
+    },
+    {
+      "type": "config/entity_registry/list"
+    }
+  ],
+  "mutations": [],
+  "service_stopped": true
+}

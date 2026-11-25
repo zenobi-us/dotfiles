@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "homeassistant-cleanup-plan/v2",
+  "dry_run": true,
+  "steps": [
+    "rename-switch-suffix",
+    "create-groups"
+  ],
+  "renames": [
+    {
+      "entity_id": "switch.kitchen",
+      "old": "Lights Kitchen Switch",
+      "new": "Lights Kitchen",
+      "category": "switch-suffix"
+    }
+  ],
+  "group_changes": [
+    {
+      "automation": "automation.sync_kitchen",
+      "group_id": "switch.kitchen_group",
+      "name": "Kitchen Lights",
+      "switches": [
+        "switch.kitchen",
+        "switch.kitchen_2"
+      ],
+      "action": "planned"
+    }
+  ],
+  "warnings": [
+    "Could not load device registry: WS call failed: result: {\"id\":2,\"type\":\"result\",\"success\":false,\"error\":{\"code\":\"fixture_warning\",\"message\":\"Device registry unavailable\"}}"
+  ],
+  "schema": "homeassistant-cleanup-plan/v1"
+}
