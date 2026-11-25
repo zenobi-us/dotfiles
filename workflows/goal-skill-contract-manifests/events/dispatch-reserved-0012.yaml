@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reserved-0012",
+  "parent_event": "dispatch-reconciled-0011",
+  "kind": "dispatch_reserved",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+  "phase": "finish",
+  "attempt": 1,
+  "ticket_attempt": 3,
+  "consumed_receipt_refs": [
+    "workflows/skill-contract-manifests-14-homeassistant/events/review-complete-0018.yaml",
+    "workflows/skill-contract-manifests-14-homeassistant/events/review-0017.yaml"
+  ],
+  "source_commit": "b0c57a266b38c54f6a02ad1a2d4643f24c12398e",
+  "source_tree": "59ddce610e75c9340a56b2bbbc69ce1c39fb47e1",
+  "review_base_commit": "62c66402d3e677c05eb501ca6ce1d712f6d3704d",
+  "remaining_allowances": {
+    "ticket_attempts": 97,
+    "dispatches": 2497
+  },
+  "scope_paths": [
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree",
+    "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/matt-pocock/.claude-plugin/plugin.json"
+  ],
+  "coordination_assessment": {
+    "inventory_complete": false,
+    "hard_blockers": [],
+    "owner": "Parent herdr-app:t2dv owns the run; all reviewer/axis processes have confirmed shutdown.",
+    "scope": "Combine frozen reviewed source with current published master; base product prerequisites were independently reviewed. Subsequent base commits contain workflow/tracker records only.",
+    "preserved_user_changes": [
+      "docs/website/src/components/SiteFooter/SiteFooter.tsx",
+      "docs/website/src/routeTree.gen.ts",
+      "docs/website/vite.config.ts",
+      "docs/website/src/components/ComponentExample/",
+      "docs/website/src/components/DesignSystem/",
+      "docs/website/src/routes/design-system.tsx",
+      "mise/conf.d/devtools-mcporter/atlassian/schema.json",
+      "mise/conf.d/devtools-mcporter/mcporter.json",
+      "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/source-validation.json"
+    ],
+    "inputs": [
+      "workflows/skill-contract-manifests-14-homeassistant/events/review-complete-0018.yaml",
+      "workflows/skill-contract-manifests-14-homeassistant/events/review-0017.yaml"
+    ],
+    "assessment": "Fresh finish coordination must be consumed before this reservation is appended. Review overlaps are read-only historical stream/docs or generated metadata. Integrate only after candidate-bound checks and exact review mapping; preserve unrelated workspaces and reservations."
+  },
+  "integration_reviewed_commits": [
+    "ab092148a98741bfeb3582704aface14ad4dfe39",
+    "dcee9de03b64baeac8eff407413078ee1619f9df"
+  ],
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "integration_method": "merge",
+  "created_at": "2026-11-25T20:47:00.622Z"
+}
