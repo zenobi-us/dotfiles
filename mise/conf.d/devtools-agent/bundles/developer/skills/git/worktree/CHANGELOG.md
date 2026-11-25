@@ -2,6 +2,8 @@
 
 ## 2026-11-26
 
+- Failed or blocked start, implementation and fix completions can retain dirty partial source from matching unsuccessful results. The child commit and tree remain fixed. Successful work, review, submit and finish still require clean source.
+
 - Allow a new phase-start to use its own goal dispatch reservation. Keep the goal run fixed, and reject changed dispatch identity on child results and parent completions.
 
 ## 2026-11-22

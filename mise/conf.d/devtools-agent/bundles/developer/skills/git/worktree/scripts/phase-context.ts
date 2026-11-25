@@ -63,6 +63,11 @@ export async function generateReceipt(context: Fields, outcome: Fields, reposito
   const partialClosure = event === "phase-complete" && ["start", "implementation", "fix"].includes(phase)
     && ["failed", "blocked"].includes(String(outcome.status)) && outcome.result_missing === true
     && parent?.event === "phase-start" && parent.phase === (phase === "implementation" ? "start" : phase);
+  // A blocked result pins Git identity without claiming that its partial checkout is clean.
+  const partialResultClosure = event === "phase-complete" && (phase === "start" || phase === "implementation" || phase === "fix")
+    && (outcome.status === "failed" || outcome.status === "blocked") && outcome.result_missing !== true
+    && parent?.event === "phase-result" && (parent.status === "failed" || parent.status === "blocked")
+    && parent.phase === (phase === "start" ? "implementation" : phase);
   const frozen = frozenSource({ ...outcome, event, phase }, parent);
   if ((source.commit == null) !== (source.tree == null)) throw new Error("Source commit and tree expectations must be supplied together");
   if (frozen && (source.commit == null || source.tree == null)) throw new Error("This phase requires frozen source commit and tree expectations");
@@ -109,7 +114,7 @@ export async function generateReceipt(context: Fields, outcome: Fields, reposito
     [commit, tree] = (await git(exec, root, ["rev-parse", "HEAD", "HEAD^{tree}"])).split("\n") as [string, string];
     if (!partialClosure && source.commit != null && (commit !== source.commit || tree !== source.tree)) throw new Error("Observed source commit or tree differs from phase expectations");
     if (frozen || partialClosure) dirty = Boolean(await git(exec, root, ["status", "--porcelain=v1", "--untracked-files=all"]));
-    if (frozen && dirty) throw new Error("Frozen source worktree has uncommitted changes");
+    if (frozen && dirty && !partialResultClosure) throw new Error("Frozen source worktree has uncommitted changes");
   }
   const receipt: Fields = {
     ...outcome, ...(context.receipt_schema === "worktree-receipt/v3" ? { schemaVersion: context.receipt_schema } : { schema: context.receipt_schema }), receipt_id: text(context.receipt_id, "phase receipt_id"), event, phase,
@@ -119,7 +124,7 @@ export async function generateReceipt(context: Fields, outcome: Fields, reposito
     workflow: { store: workflow.store, root: workflow.root, ref: workflow.ref },
     muxer: session.muxer, agent: session.agent, pane_id: session.pane_id, session_id: session.session_id,
   };
-  if (partialClosure) receipt.source_dirty = dirty;
+  if (partialClosure || partialResultClosure) receipt.source_dirty = dirty;
   if ((context.goal_run_id == null) !== (context.goal_dispatch_ref == null)) throw new Error("Phase goal run and dispatch identity are required together");
   for (const key of ["goal_run_id", "goal_dispatch_ref"]) {
     // Each phase start reserves a new dispatch; its result and completion retain that reservation.

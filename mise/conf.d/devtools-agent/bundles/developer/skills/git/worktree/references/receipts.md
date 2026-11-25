@@ -136,7 +136,9 @@ Reinspect after publication. Require valid history and unchanged original checks
 
 A failed or blocked `phase-complete` for start, implementation, or fix can preserve incomplete source when `result_missing: true` names its matching phase-start parent. The writer observes the current commit, tree, and `source_dirty` instead of freezing the launch commit. Keep the source worktree and all partial files. The writer still checks the checkout, branch, repository, attempt, ticket, workflow, and session context.
 
-Successful completion, completion of a retained child result, and review, submit, or finish phases keep frozen source checks. A missing result never authorizes a successful completion.
+For these phases, the parent can close a received failed or blocked result with a failed or blocked completion. The completion must name that result as its parent and keep the exact child commit and tree. The writer permits dirty partial source and records `source_dirty` from Git.
+
+Successful completions and review, submit, or finish phases still require a clean checkout and frozen source identities. A missing result never authorizes a successful completion.
 
 ## Receipt fields
 

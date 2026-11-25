@@ -709,6 +709,75 @@ test.each([
   expect(await readFile(join(f.workflow.path, "events", parentId + ".yaml"), "utf8")).toBe(prior);
 }, 120_000);
 
+test.each([
+  { phase: "start", status: "blocked", version: 3 },
+  { phase: "implementation", status: "failed", version: 3 },
+  { phase: "fix", status: "blocked", version: 3 },
+  { phase: "start", status: "blocked", version: 2 },
+])("blocked child result retains dirty source and exact identity in v$version $phase closure", async ({ phase, status, version }) => {
+  const f = await generatedFixture(version as 2 | 3);
+  let parentId = "start-0001";
+  const resultId = phase === "fix" ? "fix-result" : "implementation-0002";
+  if (phase === "fix") {
+    expect((await f.publish()).code).toBe(0);
+    parentId = "fix-start";
+    expect((await f.publish({ ...f.phase, receipt_id: parentId, parent_receipt: "implementation-0002", phase: "fix", event: "phase-start" }, { ...f.outcome, status: "started" }, true)).code).toBe(0);
+  }
+  await writeFile(join(f.source, "partial-source"), "unfinished implementation\n");
+  const delivery = await f.context(`worktree-receipt/v${version}`, "blocked-result");
+  const { schema: _legacy, ...identity } = f.receipt;
+  const child = {
+    ...identity, ...(version === 3 ? { schemaVersion: "worktree-receipt/v3" } : { schema: "worktree-receipt/v2" }),
+    created_at: undefined, receipt_id: resultId, event: "phase-result", phase: phase === "fix" ? "fix" : "implementation",
+    parent_receipt: parentId, status, worktree: f.source, workspace_path: f.source, source_branch: "feature/TASK-1",
+    inputs: [{ kind: "receipt", ref: parentId }], outputs: [{ kind: "receipt", ref: resultId }],
+  };
+  const publishedChild = await publishPhase(child, join(f.directory, "blocked-child.json"), f.repository, { RESULT_DELIVERY_CONTEXT: delivery.file });
+  expect(publishedChild.code).toBe(0);
+  const resultPath = join(f.workflow.path, "events", resultId + ".yaml");
+  const originalResult = await readFile(resultPath, "utf8");
+  const originalDelivery = await readFile(delivery.target, "utf8");
+  const closure = { ...f.phase, receipt_id: "blocked-complete", parent_receipt: resultId, event: "phase-complete", phase, source: { ...f.phase.source, commit: f.receipt.source_commit, tree: f.receipt.source_tree } };
+  const outcome = { status, inputs: [{ kind: "receipt", ref: resultId }], outputs: [{ kind: "receipt", ref: "blocked-complete" }] };
+  expect((await f.publish(closure, { ...outcome, status: "completed" }, true)).code).not.toBe(0);
+  expect(await Bun.file(join(f.workflow.path, "events/blocked-complete.yaml")).exists()).toBe(false);
+  const closed = await f.publish(closure, outcome, true);
+  expect(closed.code).toBe(0);
+  const receipt = Bun.YAML.parse(await readFile(join(f.workflow.path, "events/blocked-complete.yaml"), "utf8"));
+  expect(receipt).toMatchObject({ status, parent_receipt: resultId, source_dirty: true, source_commit: f.receipt.source_commit, source_tree: f.receipt.source_tree });
+  expect(receipt.result_missing).toBeUndefined();
+  expect(await readFile(join(f.source, "partial-source"), "utf8")).toBe("unfinished implementation\n");
+  expect(await readFile(resultPath, "utf8")).toBe(originalResult);
+  expect(await readFile(delivery.target, "utf8")).toBe(originalDelivery);
+}, 120_000);
+
+test("blocked-result closure cannot accept changed HEAD or repin its child identity", async () => {
+  const f = await generatedFixture();
+  expect((await f.publish(f.phase, { ...f.outcome, status: "blocked" })).code).toBe(0);
+  const childPath = join(f.workflow.path, "events/implementation-0002.yaml");
+  const originalChild = await readFile(childPath, "utf8");
+  await writeFile(join(f.source, "partial-source"), "new committed input\n");
+  execFileSync("git", ["-C", f.source, "add", "partial-source"]);
+  execFileSync("git", ["-C", f.source, "-c", "user.name=Delivery Tests", "-c", "user.email=delivery@example.invalid", "-c", "commit.gpgsign=false", "-c", "core.hooksPath=/dev/null", "commit", "--quiet", "-m", "test: changed source after blocked result"]);
+  const [commit, tree] = execFileSync("git", ["-C", f.source, "rev-parse", "HEAD", "HEAD^{tree}"], { encoding: "utf8" }).trim().split("\n");
+  const closure = { ...f.phase, receipt_id: "blocked-complete", parent_receipt: "implementation-0002", event: "phase-complete", phase: "start", source: { ...f.phase.source, commit: f.receipt.source_commit, tree: f.receipt.source_tree } };
+  const outcome = { ...f.outcome, status: "blocked" };
+  expect((await f.publish(closure, outcome, true)).code).not.toBe(0);
+  expect((await f.publish({ ...closure, source: { ...closure.source, commit, tree } }, outcome, true)).code).not.toBe(0);
+  expect(await Bun.file(join(f.workflow.path, "events/blocked-complete.yaml")).exists()).toBe(false);
+  expect(await readFile(childPath, "utf8")).toBe(originalChild);
+}, 120_000);
+
+test("completed child result cannot use blocked closure to accept dirty source", async () => {
+  const f = await generatedFixture();
+  expect((await f.publish()).code).toBe(0);
+  await writeFile(join(f.source, "partial-source"), "post-result mutation\n");
+  const closure = { ...f.phase, receipt_id: "blocked-complete", parent_receipt: "implementation-0002", event: "phase-complete", phase: "start", source: { ...f.phase.source, commit: f.receipt.source_commit, tree: f.receipt.source_tree } };
+  expect((await f.publish(closure, { ...f.outcome, status: "blocked" }, true)).code).not.toBe(0);
+  expect(await Bun.file(join(f.workflow.path, "events/blocked-complete.yaml")).exists()).toBe(false);
+  expect(await readFile(join(f.source, "partial-source"), "utf8")).toBe("post-result mutation\n");
+}, 120_000);
+
 test.each([2, 3] as const)("owning start/result/inspection preserves v%i history and recovers without replay", async version => {
   const f = await generatedFixture(version);
   const startPath = join(f.workflow.path, "events/start-0001.yaml");
