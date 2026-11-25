@@ -35,6 +35,8 @@ Set `HA_URL` and `HA_TOKEN` in the environment. Never pass tokens on the command
 
 The script requires Bun, Home Assistant access, and the external API/WebSocket services. Bun fallback installation resolves the CLI framework and shared contract validator dependencies. Offline record validation does not require Home Assistant access.
 
+`cleanup --json` produces `homeassistant-cleanup-plan/v2`. Validate saved plans with `scripts/ha_ops.ts validate-record <plan.json>`. The reader accepts historical unversioned plans without rewriting them. JSON planning never applies changes; a saved plan does not grant approval. See `references/contracts.md` for fields and compatibility.
+
 ## Resources
 
 - `references/api.md`

@@ -26,6 +26,17 @@ Snapshot tips:
 - Default output is already stable for diffs (sorted keys; registries sorted by id), so `diff -u before.json after.json` is usually enough.
 - Skip noisy sections when you don’t need them (e.g., `--no-lovelace`, `--no-scenes`); avoid `--include-states` for long-lived baselines.
 
+## Cleanup JSON plans
+
+Save a dry-run plan before downstream processing:
+
+```sh
+./scripts/ha_ops.ts cleanup --json > cleanup-plan.json
+./scripts/ha_ops.ts validate-record cleanup-plan.json
+```
+
+The plan uses `schemaVersion: homeassistant-cleanup-plan/v2`. Progress goes to stderr. Historical unversioned plans remain readable without conversion. A saved plan is evidence, not an apply input. Use `references/contracts.md` for fields and approval boundaries.
+
 ## 2) Naming and IDs
 
 ### Friendly names vs entity_id

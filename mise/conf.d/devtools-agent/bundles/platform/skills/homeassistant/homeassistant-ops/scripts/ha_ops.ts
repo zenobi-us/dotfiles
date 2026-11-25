@@ -21,7 +21,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import * as readlinePromises from "node:readline/promises";
 import * as util from "node:util";
-import { readRecord, writeRecord } from "./records.ts";
+import { readRecord, writeRecord, validateRecord } from "./records.ts";
 
 const { parseArgs } = util;
 
@@ -139,12 +139,13 @@ function resolveEntityArea(entry, deviceIdToAreaId) {
 }
 
 class ProgressReporter {
-	constructor(total, prefix = "", width = 30) {
+	constructor(total, prefix = "", width = 30, output = process.stdout) {
 		this.total = total;
 		this.current = 0;
 		this.prefix = prefix;
 		this.width = width;
 		this.lastLen = 0;
+		this.output = output;
 	}
 
 	update(n = 1) {
@@ -155,7 +156,7 @@ class ProgressReporter {
 	finish() {
 		this.current = this.total;
 		this.#print();
-		process.stdout.write("\n");
+		this.output.write("\n");
 	}
 
 	#print() {
@@ -169,7 +170,7 @@ class ProgressReporter {
 		if (filled >= this.width) bar = "=".repeat(this.width);
 		const output = `\r${this.prefix}${this.current}/${this.total} [${bar}] ${Math.round(pct * 100)}%`;
 		const padding = " ".repeat(Math.max(0, this.lastLen - output.length));
-		process.stdout.write(output + padding);
+		this.output.write(output + padding);
 		this.lastLen = output.length;
 	}
 }
@@ -585,6 +586,7 @@ async function cmdCleanup(argv) {
 	const ws = await new HAWebSocket().connect();
 	try {
 		const ctx = await cleanupLoadContext(rest, ws, states, dryRun);
+		ctx.progressOutput = values.json ? process.stderr : process.stdout;
 		for (const step of steps) {
 			if (step === "rename-switch-suffix") {
 				await cleanupStepRenameSwitchSuffix(ctx);
@@ -598,30 +600,27 @@ async function cmdCleanup(argv) {
 		}
 
 		if (values.json) {
-			console.log(
-				JSON.stringify(
-					{
-						dry_run: true,
-						steps,
-						renames: ctx.renames.map((r) => ({
-							entity_id: r.entityId,
-							old: r.oldName,
-							new: r.newName,
-							category: r.category,
-						})),
-						group_changes: ctx.groupChanges.map((g) => ({
-							automation: g.automationEntityId,
-							group_id: g.groupEntityId,
-							name: g.groupName,
-							switches: g.switches,
-							action: g.action,
-						})),
-						warnings: ctx.warnings,
-					},
-					null,
-					2,
-				),
-			);
+			const plan = {
+				schemaVersion: "homeassistant-cleanup-plan/v2",
+				dry_run: true,
+				steps,
+				renames: ctx.renames.map((r) => ({
+					entity_id: r.entityId,
+					old: r.oldName,
+					new: r.newName,
+					category: r.category,
+				})),
+				group_changes: ctx.groupChanges.map((g) => ({
+					automation: g.automationEntityId,
+					group_id: g.groupEntityId,
+					name: g.groupName,
+					switches: g.switches,
+					action: g.action,
+				})),
+				warnings: ctx.warnings,
+			};
+			await validateRecord(plan, "homeassistant-cleanup-plan");
+			console.log(JSON.stringify(plan, null, 2));
 			return 0;
 		}
 
@@ -746,6 +745,8 @@ async function cleanupStepRenameSwitchSuffix(ctx) {
 	const progress = new ProgressReporter(
 		candidates.length,
 		"Renaming switch suffixes: ",
+		30,
+		ctx.progressOutput,
 	);
 	for (const [entityId, friendly] of candidates) {
 		const newName = friendly.slice(0, -" Switch".length);
@@ -895,6 +896,8 @@ async function cleanupStepCreateGroups(ctx, blueprintPattern) {
 	const progress = new ProgressReporter(
 		candidates.length,
 		"Creating/updating groups: ",
+		30,
+		ctx.progressOutput,
 	);
 
 	for (const [automationEntityId, alias, parsed, switches] of candidates) {
@@ -1109,6 +1112,8 @@ async function cleanupStepPrefixLightsCove(ctx) {
 	const progress = new ProgressReporter(
 		candidates.length,
 		"Prefixing Lights/Cove names: ",
+		30,
+		ctx.progressOutput,
 	);
 	for (const [entityId, friendly] of candidates) {
 		const areaName = ctx.resolveAreaName(entityId);
@@ -1155,6 +1160,8 @@ async function cleanupStepPrefixGeneric(ctx, patterns) {
 	const progress = new ProgressReporter(
 		candidates.length,
 		"Prefixing generic patterns: ",
+		30,
+		ctx.progressOutput,
 	);
 	for (const [entityId, friendly, category] of candidates) {
 		const areaName = ctx.resolveAreaName(entityId);

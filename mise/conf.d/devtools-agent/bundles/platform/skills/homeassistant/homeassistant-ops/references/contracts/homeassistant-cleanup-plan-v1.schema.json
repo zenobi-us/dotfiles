@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "homeassistant-cleanup-plan/v1",
+  "description": "Historical unversioned cleanup --json dry-run plan. Read without stamping or conversion.",
+  "type": "object",
+  "required": [
+    "dry_run",
+    "steps",
+    "renames",
+    "group_changes",
+    "warnings"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "dry_run": {
+      "const": true
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "rename-switch-suffix",
+          "create-groups",
+          "prefix-lights-cove",
+          "prefix-generic"
+        ]
+      }
+    },
+    "renames": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "entity_id",
+          "old",
+          "new",
+          "category"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "entity_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "old": {
+            "type": "string"
+          },
+          "new": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "group_changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "automation",
+          "group_id",
+          "name",
+          "switches",
+          "action"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "automation": {
+            "type": "string",
+            "minLength": 1
+          },
+          "group_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string"
+          },
+          "switches": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "action": {
+            "const": "planned"
+          }
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
