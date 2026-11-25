@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reserved-0007",
+  "parent_event": "checkpoint-prerequisites-0006",
+  "kind": "dispatch_reserved",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+  "phase": "review",
+  "attempt": 3,
+  "ticket_attempt": 2,
+  "consumed_receipt_refs": [
+    "workflows/skill-contract-manifests-14-homeassistant/events/fix-complete-0015.yaml",
+    "workflows/skill-contract-manifests-14-homeassistant/events/fix-0014.yaml"
+  ],
+  "source_commit": "b0c57a266b38c54f6a02ad1a2d4643f24c12398e",
+  "source_tree": "59ddce610e75c9340a56b2bbbc69ce1c39fb47e1",
+  "review_base_commit": "62c66402d3e677c05eb501ca6ce1d712f6d3704d",
+  "remaining_allowances": {
+    "ticket_attempts": 98,
+    "dispatches": 2498
+  },
+  "scope_paths": [
+    "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops",
+    "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree",
+    "mise/conf.d/devtools-agent/bundles/matt-pocock/skills/reading-and-writing-tickets",
+    "mise/conf.d/devtools-agent/bundles/.claude-plugin/marketplace.json",
+    "mise/conf.d/devtools-agent/bundles/developer/.claude-plugin/plugin.json",
+    "mise/conf.d/devtools-agent/bundles/matt-pocock/.claude-plugin/plugin.json"
+  ],
+  "coordination_assessment": {
+    "inventory_complete": false,
+    "hard_blockers": [],
+    "proposed_reservations": [],
+    "owner": "Recorded herdr-app:t2dv equals current parent; fixer closed and shutdown confirmed.",
+    "overlaps": "Other retained streams overlap generated plugin versions and workflow docs. No competing ticket14 source or reservation. Review is read-only and includes prerequisite exact commits plus full candidate-bound producer/consumer checks; do not touch other workspaces.",
+    "uncertainty": "Unrelated stale linked ticket copies, malformed historical goal events and missing prototype checkout remain untouched; none affects completed direct prerequisite03 or owned source14.",
+    "inputs": [
+      "tracker/tickets/skill-contract-manifests-03-safe-upgrades.md",
+      "workflows/skill-contract-manifests-14-homeassistant/events/fix-complete-0015.yaml",
+      "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/prerequisite-dispatch-20261126/verification.json"
+    ]
+  },
+  "integration_reviewed_commits": [
+    "ab092148a98741bfeb3582704aface14ad4dfe39",
+    "dcee9de03b64baeac8eff407413078ee1619f9df"
+  ],
+  "created_at": "2026-11-25T20:28:32.751Z"
+}
