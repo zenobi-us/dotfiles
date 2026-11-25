@@ -1,0 +1,561 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "event_id": "goal-started-0001",
+  "parent_event": null,
+  "kind": "goal_started",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "created_at": "2026-11-25T05:17:54.747Z",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "initial_ticket_receipt_baseline": [
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+      "receipt_refs": [
+        "workflows/skill-contract-manifests-14-homeassistant/events/review-complete-0012.yaml",
+        "workflows/skill-contract-manifests-14-homeassistant/events/review-0011.yaml",
+        "workflows/skill-contract-manifests-14-homeassistant/events/review-start-0010.yaml",
+        "workflows/skill-contract-manifests-14-homeassistant/events/fix-complete-0009.yaml",
+        "workflows/skill-contract-manifests-14-homeassistant/events/fix-0008.yaml",
+        "workflows/skill-contract-manifests-14-homeassistant/events/fix-start-0007.yaml",
+        "workflows/skill-contract-manifests-14-homeassistant/events/review-complete-0006.yaml",
+        "workflows/skill-contract-manifests-14-homeassistant/events/review-0005.yaml",
+        "workflows/skill-contract-manifests-14-homeassistant/events/review-start-0004.yaml",
+        "workflows/skill-contract-manifests-14-homeassistant/events/start-complete-0003.yaml",
+        "workflows/skill-contract-manifests-14-homeassistant/events/implementation-0002.yaml",
+        "workflows/skill-contract-manifests-14-homeassistant/events/start-0001.yaml"
+      ],
+      "decision": {
+        "action": "fix",
+        "mode": "begin",
+        "label": "Fix review findings",
+        "reason": "The failed review has usable findings for the current source. Start a fresh fixer with those exact inputs.",
+        "requiredApproval": true,
+        "parentReceipt": "workflows/skill-contract-manifests-14-homeassistant/events/review-complete-0012.yaml",
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+          "workflows/skill-contract-manifests-14-homeassistant/events/review-complete-0012.yaml",
+          "workflows/skill-contract-manifests-14-homeassistant/events/review-0011.yaml",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/reviews/review-review-0011.md",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/smoke.ts",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/smoke-run.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/smoke-completion.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/cli-smoke.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/cleanup-plan.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/snapshot.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/historical-snapshot.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/rejected-unknown.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/rejected-mixed.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/rename-map.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/reference-report.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/tests.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/test-output.txt",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/manifest-validation.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/standards-axis.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/spec-axis.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/standards-shutdown.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/spec-shutdown-pending.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/coordination-limits.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/findings.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/phase-context.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0011/outcome.json",
+          "workflows/skill-contract-manifests-14-homeassistant/events/review-start-0010.yaml",
+          "workflows/skill-contract-manifests-14-homeassistant/events/fix-complete-0009.yaml",
+          "workflows/skill-contract-manifests-14-homeassistant/events/fix-0008.yaml",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/snapshots/pr-draft-fix-0008.md",
+          "workflows/skill-contract-manifests-14-homeassistant/manifest.yaml",
+          "workflows/skill-contract-manifests-14-homeassistant/projections/pr-draft.md",
+          "workflows/skill-contract-manifests-14-homeassistant/projections/implementation-log.md",
+          "workflows/skill-contract-manifests-14-homeassistant/projections/latest-status.yaml",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/cli-smoke.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/generic-category-smoke.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/validation.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/source-identity.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/cleanup-plan.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/historical-nonempty-plan.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/empty-category-plan.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-unknown.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-stamped_history.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-mixed.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-wrong_family.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-malformed.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/fix-0008/rejected-unsafe.json",
+          "workflows/skill-contract-manifests-14-homeassistant/events/fix-start-0007.yaml",
+          "workflows/skill-contract-manifests-14-homeassistant/events/review-complete-0006.yaml",
+          "workflows/skill-contract-manifests-14-homeassistant/events/review-0005.yaml",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/reviews/review-review-0005.md",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/snapshot.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/historical-snapshot.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/cleanup-plan.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/reference-report.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/cli-smoke.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/tests.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/review-0005/manifest-validation.json",
+          "workflows/skill-contract-manifests-14-homeassistant/events/review-start-0004.yaml",
+          "workflows/skill-contract-manifests-14-homeassistant/events/start-complete-0003.yaml",
+          "workflows/skill-contract-manifests-14-homeassistant/events/implementation-0002.yaml",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/snapshots/pr-draft-implementation-0002.md",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/implementation-0002/cli-smoke.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/implementation-0002/validation.json",
+          "workflows/skill-contract-manifests-14-homeassistant/artifacts/evidence/implementation-0002/implementation-context.json",
+          "workflows/skill-contract-manifests-14-homeassistant/events/start-0001.yaml"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-15-plain-language.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-17-report-generation.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+      "receipt_refs": [
+        "workflows/skill-contract-manifests-18-manifest-coverage/events/start-complete-0007.yaml",
+        "workflows/skill-contract-manifests-18-manifest-coverage/events/implementation-0006.yaml",
+        "workflows/skill-contract-manifests-18-manifest-coverage/events/start-0005.yaml",
+        "workflows/skill-contract-manifests-18-manifest-coverage/events/takeover-approval-0004.yaml",
+        "workflows/skill-contract-manifests-18-manifest-coverage/events/start-complete-0003.yaml",
+        "workflows/skill-contract-manifests-18-manifest-coverage/events/implementation-0002.yaml",
+        "workflows/skill-contract-manifests-18-manifest-coverage/events/start-0001.yaml"
+      ],
+      "decision": {
+        "mode": "blocked",
+        "label": "Resolve blockers",
+        "reason": "Unresolved prerequisites: skill-contract-manifests-14-homeassistant, skill-contract-manifests-15-plain-language, skill-contract-manifests-16-web-design-metadata, skill-contract-manifests-17-report-generation, skill-contract-manifests-20-godot-session-decision, skill-contract-manifests-21-campaign-persistence, skill-contract-manifests-22-review-body-boundary, skill-contract-manifests-23-domain-records, skill-contract-manifests-24-learning-records, skill-contract-manifests-25-triage-records, skill-contract-manifests-26-canon-records, skill-contract-manifests-27-character-records, skill-contract-manifests-28-continuity-records, skill-contract-manifests-29-faction-records, skill-contract-manifests-30-narrative-workspace, skill-contract-manifests-31-story-records, skill-contract-manifests-32-world-records, skill-contract-manifests-33-cleanup-records, skill-contract-manifests-34-pr-results, skill-contract-manifests-35-release-metadata, skill-contract-manifests-36-comfy-director, skill-contract-manifests-37-cloudflare-interchange, skill-contract-manifests-38-research-records.",
+        "requiredApproval": false,
+        "parentReceipt": "workflows/skill-contract-manifests-18-manifest-coverage/events/start-complete-0007.yaml",
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+          "workflows/skill-contract-manifests-18-manifest-coverage/events/start-complete-0007.yaml",
+          "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/parent-validation.json",
+          "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/parent-shutdown.json",
+          "workflows/skill-contract-manifests-18-manifest-coverage/events/implementation-0006.yaml",
+          "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/snapshots/pr-draft-implementation-0006.md",
+          "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006",
+          "workflows/skill-contract-manifests-18-manifest-coverage/events/start-0005.yaml",
+          "workflows/skill-contract-manifests-18-manifest-coverage/events/takeover-approval-0004.yaml",
+          "workflows/skill-contract-manifests-18-manifest-coverage/events/start-complete-0003.yaml",
+          "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/parent-shutdown.json",
+          "workflows/skill-contract-manifests-18-manifest-coverage/events/implementation-0002.yaml",
+          "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/snapshots/pr-draft-implementation-0002.md",
+          "workflows/skill-contract-manifests-18-manifest-coverage/manifest.yaml",
+          "workflows/skill-contract-manifests-18-manifest-coverage/projections/latest-status.yaml",
+          "workflows/skill-contract-manifests-18-manifest-coverage/projections/pr-draft.md",
+          "workflows/skill-contract-manifests-18-manifest-coverage/projections/implementation-log.md",
+          "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/coverage-inventory.json",
+          "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/owner-requests.json",
+          "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/source-validation-current.json",
+          "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/focused-tests.json",
+          "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/internal-reviews.json",
+          "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/worker-resources.json",
+          "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/source-binding.json",
+          "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage/publication-operations.json",
+          "workflows/skill-contract-manifests-18-manifest-coverage/events/start-0001.yaml"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-19-godot-preferences.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+      "receipt_refs": [],
+      "decision": {
+        "mode": "blocked",
+        "label": "Not executable",
+        "reason": "This record is not an executable ticket.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-23-domain-records.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-24-learning-records.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-25-triage-records.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-26-canon-records.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-27-character-records.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-27-character-records.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-28-continuity-records.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-29-faction-records.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-31-story-records.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-31-story-records.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-32-world-records.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-32-world-records.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-33-cleanup-records.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-34-pr-results.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-35-release-metadata.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-36-comfy-director.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md"
+        ]
+      }
+    },
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-38-research-records.md",
+      "receipt_refs": [],
+      "decision": {
+        "action": "start",
+        "mode": "begin",
+        "label": "Start",
+        "reason": "No implementation receipts, source commits, or source workspace were found. Check ownership and active reservations before starting.",
+        "requiredApproval": false,
+        "inputs": [
+          "tracker/tickets/skill-contract-manifests-38-research-records.md"
+        ]
+      }
+    }
+  ],
+  "takeover_approvals": [
+    {
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+      "authorization": "User selected Adopt and retry; existing recorded owner herdr-app:t2dv equals this session; prior review child resources have confirmed shutdown."
+    }
+  ],
+  "limits": {
+    "attempts_per_ticket": 100,
+    "fix_limit_per_ticket": 100,
+    "dispatch_limit": 2500,
+    "token_budget": null,
+    "attempt_definition": "Each mutating phase reservation consumes one attempt for its ticket, including failed or unresolved dispatches."
+  },
+  "omp": {
+    "goal": "Complete remaining skill-contract-manifests tickets",
+    "session": "herdr-app:t2dv",
+    "token_budget": null
+  },
+  "approved_operations": [
+    "scoped-source-changes",
+    "commit",
+    "independent-review",
+    "fix",
+    "merge",
+    "publish",
+    "ticket-completion",
+    "phase-receipt-cli",
+    "validated-coordinator-journal-append"
+  ],
+  "base_branch": "master",
+  "remote": "origin",
+  "remote_ref": "refs/heads/master",
+  "integration_method": "merge",
+  "context_checkout": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "stop_conditions": [
+    "ambiguous requirements",
+    "required CLI failure",
+    "risk to unrelated changes",
+    "100 attempts on one ticket",
+    "uncertain ownership or accounting"
+  ],
+  "preserved_user_changes": [
+    "docs/website/src/components/SiteFooter/SiteFooter.tsx",
+    "docs/website/src/routeTree.gen.ts",
+    "docs/website/vite.config.ts",
+    "docs/website/src/components/ComponentExample/",
+    "docs/website/src/components/DesignSystem/",
+    "docs/website/src/routes/design-system.tsx",
+    "workflows/skill-contract-manifests-18-manifest-coverage/artifacts/evidence/manifest-coverage-recovery-0006/source-validation.json"
+  ]
+}
