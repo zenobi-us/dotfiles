@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reconciled-0034",
+  "parent_event": "checkpoint-0033",
+  "kind": "dispatch_reconciled",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+  "phase": "start",
+  "attempt": 4,
+  "dispatch_ref": "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0030.yaml",
+  "complete_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/start-complete-0012.yaml",
+  "result_receipt_ref": "workflows/skill-contract-manifests-15-plain-language/events/implementation-0011.yaml",
+  "status": "blocked",
+  "source_identity": {
+    "commit": "b86a0bf271c034d7a644a699db06ff8b0dfa9078",
+    "tree": "2608c4d4ea4bfc15ecb52b031d0129c545ffd7dd",
+    "source_dirty": true,
+    "new_feature_commit": false,
+    "captured_partial_files": 21,
+    "integrity_check_exit_code": 0
+  },
+  "prerequisite_repair": {
+    "commit": "88bdcdf101a487b1cb0daa10bbebbf50d86a0128",
+    "scope": "worktree phase-context generator, actual writer regression cases, owning receipt guidance/changelog and normal-hook generated developer metadata",
+    "verification": {
+      "command": "BUN_OPTIONS=--install=fallback mise exec -- bun test mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts",
+      "passed": 64,
+      "failed": 0,
+      "assertions": 484,
+      "live_smoke": "Actual owning writer published start-complete-0012 with exact child commit/tree and source_dirty:true without changing or committing partial feature source.",
+      "public_manifest_validate_exit_code": 0,
+      "current_receipt_definition_resolve_exit_code": 0
+    },
+    "independent_review_requirement": "The next formal ticket15 review must explicitly inspect this prerequisite commit in addition to frozen ISO source."
+  },
+  "authorization_ref": "workflows/goal-skill-contract-manifests/events/checkpoint-0033.yaml",
+  "resolved_questions": "Operator approved scoped Bun fallback runtime repair and fresh attempt5. The earlier parent completion retains its historical question; this authorization resolves it.",
+  "resource_shutdown": "confirmed; all fourth-child processes stopped and owned desktop terminal/space absent",
+  "accounting": {
+    "ticket_attempts_consumed": 4,
+    "ticket_attempts_remaining": 96,
+    "dispatches_consumed": 7,
+    "dispatches_remaining": 2493,
+    "omp_token_budget": null
+  },
+  "remaining_scope": "Ticket15 remains claimed and incomplete. Finish all partial source in a fresh authorized attempt. Do not select another ticket.",
+  "created_at": "2026-11-25T23:50:09.621Z"
+}
