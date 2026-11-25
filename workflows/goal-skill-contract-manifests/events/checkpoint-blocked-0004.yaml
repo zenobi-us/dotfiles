@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "checkpoint-blocked-0004",
+  "parent_event": "dispatch-observed-0003",
+  "kind": "goal_checkpoint",
+  "status": "blocked",
+  "reason": "Required owning ticket CLI failed before execution: records.ts --help cannot resolve ajv@^8.17.1 from installed result-delivery/scripts/delivery.ts (Bun v1.4.4). User stop condition requires escalation; no retry or dependency modification authorized yet.",
+  "failed_command": [
+    "/home/zenobius/.omp/agent/bundles/matt-pocock/skills/reading-and-writing-tickets/scripts/records.ts",
+    "--help"
+  ],
+  "exit_code": 1,
+  "outstanding_dispatches": [
+    "workflows/goal-skill-contract-manifests/events/dispatch-reserved-0002.yaml"
+  ],
+  "active_agents": [
+    {
+      "run_id": "719559e3-ac41-4d62-9d49-a7937251fa13",
+      "terminal": "t2g0",
+      "ticket_ref": "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+      "phase": "fix",
+      "last_observed": "running; native muxer wait active; no completion receipt consumed"
+    }
+  ],
+  "latest_valid_receipt": "workflows/skill-contract-manifests-14-homeassistant/events/fix-start-0013.yaml",
+  "recovery_action": "Obtain authorization to repair local Bun dependency resolution. Observe existing fixer; do not duplicate, kill, review, or finish it without validated result and required gates.",
+  "accounting": {
+    "ticket_attempts_consumed": 1,
+    "ticket_attempts_remaining": 99,
+    "dispatches_consumed": 1,
+    "dispatches_remaining": 2499,
+    "omp_token_budget": null
+  },
+  "source_branch": "feature/skill-contract-manifests-14-homeassistant",
+  "source_worktree": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+  "created_at": "2026-11-25T05:55:59.071Z"
+}
