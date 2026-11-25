@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/home/zenobius/.omp/agent/bundles/developer/skills/git/cleanup-merged/scripts/cleanup-merged.ts",
+    "remove",
+    "feature/skill-contract-manifests-14-homeassistant",
+    "integration/a21ed3e1-efa8-4a3e-90ff-9f497f987484",
+    "--min-age=0s"
+  ],
+  "exit_code": 0,
+  "removed": [
+    "feature/skill-contract-manifests-14-homeassistant",
+    "integration/a21ed3e1-efa8-4a3e-90ff-9f497f987484"
+  ],
+  "refused": [],
+  "worktrunk_reason": "ancestor",
+  "workspaces_absent": [
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/feature-skill-contract-manifests-14-homeassistant",
+    "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-a21ed3e1-efa8-4a3e-90ff-9f497f987484"
+  ],
+  "app_observation": "herdr-app ls shows no active space for either recorded path; source remains only in recent history. Unrelated spaces preserved."
+}

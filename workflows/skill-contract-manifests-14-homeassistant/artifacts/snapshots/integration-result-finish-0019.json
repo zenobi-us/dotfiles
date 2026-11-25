@@ -1,0 +1,96 @@
+{
+  "schema": "worktree-integration/v2",
+  "integration_method": "merge",
+  "reviewed_source_commit": "b0c57a266b38c54f6a02ad1a2d4643f24c12398e",
+  "reviewed_source_tree": "59ddce610e75c9340a56b2bbbc69ce1c39fb47e1",
+  "base_branch": "master",
+  "base_before": "7fc755927186caeaf29ddb4f003825e41d052569",
+  "expected_merge_tree": "4f0df33f1ce431c0ea1a456edfd5a48e0389a259",
+  "merged_commit": "62735792a49c1b0579b5118381aa05df770af4d8",
+  "merged_tree": "4f0df33f1ce431c0ea1a456edfd5a48e0389a259",
+  "merged_parents": [
+    "7fc755927186caeaf29ddb4f003825e41d052569",
+    "b0c57a266b38c54f6a02ad1a2d4643f24c12398e"
+  ],
+  "validation_results": [
+    {
+      "argv": [
+        "wt",
+        "-C",
+        "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-a21ed3e1-efa8-4a3e-90ff-9f497f987484",
+        "hook",
+        "pre-merge",
+        "--var",
+        "target=master",
+        "--var",
+        "target_worktree_path=/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-a21ed3e1-efa8-4a3e-90ff-9f497f987484",
+      "exit_code": 0,
+      "output": "",
+      "source_commit": "62735792a49c1b0579b5118381aa05df770af4d8",
+      "source_tree": "4f0df33f1ce431c0ea1a456edfd5a48e0389a259"
+    },
+    {
+      "argv": [
+        "env",
+        "-u",
+        "HA_URL",
+        "-u",
+        "HA_TOKEN",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/tests"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-a21ed3e1-efa8-4a3e-90ff-9f497f987484",
+      "exit_code": 0,
+      "output": "bun test v1.4.4 (38afee6c8)\n",
+      "source_commit": "62735792a49c1b0579b5118381aa05df770af4d8",
+      "source_tree": "4f0df33f1ce431c0ea1a456edfd5a48e0389a259"
+    },
+    {
+      "argv": [
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "test",
+        "mise/conf.d/devtools-agent/bundles/developer/skills/git/worktree/scripts/delivery-integration.test.ts"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-a21ed3e1-efa8-4a3e-90ff-9f497f987484",
+      "exit_code": 0,
+      "output": "bun test v1.4.4 (38afee6c8)\n",
+      "source_commit": "62735792a49c1b0579b5118381aa05df770af4d8",
+      "source_tree": "4f0df33f1ce431c0ea1a456edfd5a48e0389a259"
+    },
+    {
+      "argv": [
+        "env",
+        "-u",
+        "HA_URL",
+        "-u",
+        "HA_TOKEN",
+        "mise",
+        "exec",
+        "--",
+        "bun",
+        "-e",
+        "import {mkdtemp,readFile,writeFile,rm} from 'node:fs/promises'; import {tmpdir} from 'node:os'; import {join,resolve} from 'node:path'; const dir=await mkdtemp(join(tmpdir(),'scm14-candidate-')); const cli=resolve('mise/conf.d/devtools-agent/bundles/platform/skills/homeassistant/homeassistant-ops/scripts/ha_ops.ts'); const plan={dry_run:true,steps:['rename-switch-suffix'],renames:[{entity_id:'switch.kitchen',old:'Lights Kitchen Switch',new:'Lights Kitchen',category:'switch-suffix'}],group_changes:[],warnings:[]}; try {for(const [contract,expected] of [[undefined,0],['homeassistant-cleanup-plan/v2',0],['homeassistant-cleanup-plan/v999',2]]){const file=join(dir,'plan.json'); const bytes=JSON.stringify({...plan,...(contract?{schemaVersion:contract}:{})},null,3)+'\\n'; await writeFile(file,bytes); const p=Bun.spawn([cli,'validate-record',file],{stdout:'pipe',stderr:'pipe'}); const [out,err,code]=await Promise.all([new Response(p.stdout).text(),new Response(p.stderr).text(),p.exited]); if(code!==expected)throw new Error(JSON.stringify({contract,code,expected,err})); if(await readFile(file,'utf8')!==bytes)throw new Error('Reader changed saved plan'); if(expected===0){const result=JSON.parse(out);if(!result.valid||result.contract!==(contract??'homeassistant-cleanup-plan/v1'))throw new Error('Wrong interpreted contract');} console.log(JSON.stringify({contract:contract??'legacy',exit:code,bytes_preserved:true}));}}finally{await rm(dir,{recursive:true,force:true});}"
+      ],
+      "cwd": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-a21ed3e1-efa8-4a3e-90ff-9f497f987484",
+      "exit_code": 0,
+      "output": "{\"contract\":\"legacy\",\"exit\":0,\"bytes_preserved\":true}\n{\"contract\":\"homeassistant-cleanup-plan/v2\",\"exit\":0,\"bytes_preserved\":true}\n{\"contract\":\"homeassistant-cleanup-plan/v999\",\"exit\":2,\"bytes_preserved\":true}\n",
+      "source_commit": "62735792a49c1b0579b5118381aa05df770af4d8",
+      "source_tree": "4f0df33f1ce431c0ea1a456edfd5a48e0389a259"
+    }
+  ],
+  "candidate_branch": "integration/a21ed3e1-efa8-4a3e-90ff-9f497f987484",
+  "candidate_workspace": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles.worktrees/integration-a21ed3e1-efa8-4a3e-90ff-9f497f987484",
+  "pushed": true,
+  "already_published": false,
+  "remote_observed_commit": "62735792a49c1b0579b5118381aa05df770af4d8",
+  "integration_reachable": true
+}

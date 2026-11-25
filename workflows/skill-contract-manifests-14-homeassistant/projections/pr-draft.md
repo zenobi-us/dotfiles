@@ -60,3 +60,7 @@ Source: b0c57a266b38c54f6a02ad1a2d4643f24c12398e; tree: 59ddce610e75c9340a56b2bb
 ## Accepted review review-0017
 
 Independent review: SUCCESS for source `b0c57a266b38c54f6a02ad1a2d4643f24c12398e`. Both prerequisite commits were also reviewed explicitly. [Immutable review](../artifacts/reviews/review-review-0017.md). [Parent completion](../events/review-complete-0018.yaml). All phase-owned review resources have confirmed shutdown. The current next action is finish; integration and ticket completion are not yet claimed.
+
+## Finished
+
+Merged and published as `62735792a49c1b0579b5118381aa05df770af4d8` using the reviewed source and current base. Candidate-bound checks passed. Ticket completed and published; recorded source/candidate resources removed. [Finish result](../events/finish-0025.yaml) and [parent completion](../events/finish-complete-0026.yaml). Current inspector decision: complete; no next action.

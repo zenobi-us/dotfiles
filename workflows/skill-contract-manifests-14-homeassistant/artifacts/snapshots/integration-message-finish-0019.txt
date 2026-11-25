@@ -1,0 +1,7 @@
+feat(homeassistant): complete skill-contract-manifests-14-homeassistant
+
+Ticket: tracker/tickets/skill-contract-manifests-14-homeassistant.md
+Review: workflows/skill-contract-manifests-14-homeassistant/events/review-0017.yaml
+Source: b0c57a266b38c54f6a02ad1a2d4643f24c12398e
+
+Preserve owned current/historical contracts, immutable evidence, and rollback approval boundaries.
