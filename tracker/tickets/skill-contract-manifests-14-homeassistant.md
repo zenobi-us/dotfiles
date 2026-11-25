@@ -8,7 +8,7 @@ sequence: 14
 title: Adopt contracts in Home Assistant bulk operations
 triage: ready-for-agent
 type: enhancement
-work_status: "claimed"
+work_status: "completed"
 ---
 
 ## What to build
