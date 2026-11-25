@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "worktree-goal/v2",
+  "run_id": "skill-contract-manifests-20261125-t2dv",
+  "repository": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+  "initiative_ref": "tracker/initiatives/skill-contract-manifests/index.md",
+  "frozen_ticket_refs": [
+    "tracker/tickets/skill-contract-manifests-14-homeassistant.md",
+    "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+    "tracker/tickets/skill-contract-manifests-16-web-design-metadata.md",
+    "tracker/tickets/skill-contract-manifests-17-report-generation.md",
+    "tracker/tickets/skill-contract-manifests-18-manifest-coverage.md",
+    "tracker/tickets/skill-contract-manifests-19-godot-preferences.md",
+    "tracker/tickets/skill-contract-manifests-20-godot-session-decision.md",
+    "tracker/tickets/skill-contract-manifests-21-campaign-persistence.md",
+    "tracker/tickets/skill-contract-manifests-22-review-body-boundary.md",
+    "tracker/tickets/skill-contract-manifests-23-domain-records.md",
+    "tracker/tickets/skill-contract-manifests-24-learning-records.md",
+    "tracker/tickets/skill-contract-manifests-25-triage-records.md",
+    "tracker/tickets/skill-contract-manifests-26-canon-records.md",
+    "tracker/tickets/skill-contract-manifests-27-character-records.md",
+    "tracker/tickets/skill-contract-manifests-28-continuity-records.md",
+    "tracker/tickets/skill-contract-manifests-29-faction-records.md",
+    "tracker/tickets/skill-contract-manifests-30-narrative-workspace.md",
+    "tracker/tickets/skill-contract-manifests-31-story-records.md",
+    "tracker/tickets/skill-contract-manifests-32-world-records.md",
+    "tracker/tickets/skill-contract-manifests-33-cleanup-records.md",
+    "tracker/tickets/skill-contract-manifests-34-pr-results.md",
+    "tracker/tickets/skill-contract-manifests-35-release-metadata.md",
+    "tracker/tickets/skill-contract-manifests-36-comfy-director.md",
+    "tracker/tickets/skill-contract-manifests-37-cloudflare-interchange.md",
+    "tracker/tickets/skill-contract-manifests-38-research-records.md"
+  ],
+  "workflow": {
+    "store": "repository",
+    "root": "/run/media/zenobius/Store/Projects/Mine/Github/Dotfiles",
+    "ref": "workflows/goal-skill-contract-manifests"
+  },
+  "coordinator": {
+    "session_id": "herdr-app:t2dv",
+    "muxer": "herdr-app",
+    "pane_id": "t2dv",
+    "agent": "omp"
+  },
+  "event_id": "dispatch-reserved-0015",
+  "parent_event": "dispatch-reconciled-0014",
+  "kind": "dispatch_reserved",
+  "ticket_ref": "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+  "phase": "start",
+  "attempt": 1,
+  "ticket_attempt": 1,
+  "consumed_receipt_refs": [],
+  "planned_source_branch": "feature/skill-contract-manifests-15-plain-language",
+  "base_branch": "master",
+  "scope_paths": [
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-4",
+    "mise/conf.d/devtools-agent/bundles/agent-core/skills/iso-24495-text-audit"
+  ],
+  "remaining_allowances": {
+    "ticket_attempts": 99,
+    "dispatches": 2496
+  },
+  "coordination_assessment": {
+    "inventory_complete": false,
+    "hard_blockers": [],
+    "owners": [],
+    "reservations": [],
+    "source_state": "missing; zero candidates",
+    "record_diagnostics": [],
+    "overlaps": [],
+    "decision": "Normal new start: ready/unclaimed ticket with completed direct blocker03; no source, phase history, prior owner or competing reservation. User authorized frozen initiative scope and new starts. Unrelated stale linked records and historical goal errors remain untouched; none affects this ticket or planned interfaces.",
+    "inputs": [
+      "tracker/tickets/skill-contract-manifests-15-plain-language.md",
+      "tracker/tickets/skill-contract-manifests-03-safe-upgrades.md",
+      "workflows/goal-skill-contract-manifests/events/dispatch-reconciled-0014.yaml"
+    ]
+  },
+  "implementation_boundaries": "Two related plain-language owner directories only, plus required generated plugin metadata. Do not change English heuristics, scoring policy, or actual user corpora/preferences. Exercise owned isolated fixtures, not real workspace sweeps. Preserve historical audit snapshots and all unrelated changes.",
+  "runtime_preparation": "Create source through Worktrunk with --no-hooks; implementation runs its own scoped checks. Do not rerun broad machine-bootstrap post-start setup or change global configuration.",
+  "created_at": "2026-11-25T21:01:15.279Z"
+}
