@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "homeassistant-snapshot/v2",
+  "type": "object",
+  "required": [
+    "meta",
+    "registries",
+    "configs",
+    "warnings",
+    "schemaVersion"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "generated_at",
+        "url"
+      ],
+      "properties": {
+        "generated_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "registries": {
+      "type": "object",
+      "properties": {
+        "areas": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "entity_id"
+            ],
+            "properties": {
+              "entity_id": {
+                "type": "string",
+                "pattern": "^[a-z0-9_]+\\.[a-z0-9_]+$"
+              },
+              "unique_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "name": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "area_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "disabled_by": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "hidden_by": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "icon": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "configs": {
+      "type": "object",
+      "properties": {
+        "automations": {
+          "type": "object"
+        },
+        "scripts": {
+          "type": "object"
+        },
+        "scenes": {
+          "type": "object"
+        },
+        "lovelace": {
+          "type": "object"
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "states": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "schemaVersion": {
+      "const": "homeassistant-snapshot/v2"
+    }
+  },
+  "not": {
+    "required": [
+      "schema"
+    ]
+  }
+}

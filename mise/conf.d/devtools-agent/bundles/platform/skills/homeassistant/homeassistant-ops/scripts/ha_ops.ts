@@ -21,6 +21,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import * as readlinePromises from "node:readline/promises";
 import * as util from "node:util";
+import { readRecord, writeRecord, validateRecord } from "./records.ts";
 
 const { parseArgs } = util;
 
@@ -138,12 +139,13 @@ function resolveEntityArea(entry, deviceIdToAreaId) {
 }
 
 class ProgressReporter {
-	constructor(total, prefix = "", width = 30) {
+	constructor(total, prefix = "", width = 30, output = process.stdout) {
 		this.total = total;
 		this.current = 0;
 		this.prefix = prefix;
 		this.width = width;
 		this.lastLen = 0;
+		this.output = output;
 	}
 
 	update(n = 1) {
@@ -154,7 +156,7 @@ class ProgressReporter {
 	finish() {
 		this.current = this.total;
 		this.#print();
-		process.stdout.write("\n");
+		this.output.write("\n");
 	}
 
 	#print() {
@@ -168,7 +170,7 @@ class ProgressReporter {
 		if (filled >= this.width) bar = "=".repeat(this.width);
 		const output = `\r${this.prefix}${this.current}/${this.total} [${bar}] ${Math.round(pct * 100)}%`;
 		const padding = " ".repeat(Math.max(0, this.lastLen - output.length));
-		process.stdout.write(output + padding);
+		this.output.write(output + padding);
 		this.lastLen = output.length;
 	}
 }
@@ -584,6 +586,7 @@ async function cmdCleanup(argv) {
 	const ws = await new HAWebSocket().connect();
 	try {
 		const ctx = await cleanupLoadContext(rest, ws, states, dryRun);
+		ctx.progressOutput = values.json ? process.stderr : process.stdout;
 		for (const step of steps) {
 			if (step === "rename-switch-suffix") {
 				await cleanupStepRenameSwitchSuffix(ctx);
@@ -597,30 +600,27 @@ async function cmdCleanup(argv) {
 		}
 
 		if (values.json) {
-			console.log(
-				JSON.stringify(
-					{
-						dry_run: true,
-						steps,
-						renames: ctx.renames.map((r) => ({
-							entity_id: r.entityId,
-							old: r.oldName,
-							new: r.newName,
-							category: r.category,
-						})),
-						group_changes: ctx.groupChanges.map((g) => ({
-							automation: g.automationEntityId,
-							group_id: g.groupEntityId,
-							name: g.groupName,
-							switches: g.switches,
-							action: g.action,
-						})),
-						warnings: ctx.warnings,
-					},
-					null,
-					2,
-				),
-			);
+			const plan = {
+				schemaVersion: "homeassistant-cleanup-plan/v2",
+				dry_run: true,
+				steps,
+				renames: ctx.renames.map((r) => ({
+					entity_id: r.entityId,
+					old: r.oldName,
+					new: r.newName,
+					category: r.category,
+				})),
+				group_changes: ctx.groupChanges.map((g) => ({
+					automation: g.automationEntityId,
+					group_id: g.groupEntityId,
+					name: g.groupName,
+					switches: g.switches,
+					action: g.action,
+				})),
+				warnings: ctx.warnings,
+			};
+			await validateRecord(plan, "homeassistant-cleanup-plan");
+			console.log(JSON.stringify(plan, null, 2));
 			return 0;
 		}
 
@@ -745,6 +745,8 @@ async function cleanupStepRenameSwitchSuffix(ctx) {
 	const progress = new ProgressReporter(
 		candidates.length,
 		"Renaming switch suffixes: ",
+		30,
+		ctx.progressOutput,
 	);
 	for (const [entityId, friendly] of candidates) {
 		const newName = friendly.slice(0, -" Switch".length);
@@ -894,6 +896,8 @@ async function cleanupStepCreateGroups(ctx, blueprintPattern) {
 	const progress = new ProgressReporter(
 		candidates.length,
 		"Creating/updating groups: ",
+		30,
+		ctx.progressOutput,
 	);
 
 	for (const [automationEntityId, alias, parsed, switches] of candidates) {
@@ -1108,6 +1112,8 @@ async function cleanupStepPrefixLightsCove(ctx) {
 	const progress = new ProgressReporter(
 		candidates.length,
 		"Prefixing Lights/Cove names: ",
+		30,
+		ctx.progressOutput,
 	);
 	for (const [entityId, friendly] of candidates) {
 		const areaName = ctx.resolveAreaName(entityId);
@@ -1154,6 +1160,8 @@ async function cleanupStepPrefixGeneric(ctx, patterns) {
 	const progress = new ProgressReporter(
 		candidates.length,
 		"Prefixing generic patterns: ",
+		30,
+		ctx.progressOutput,
 	);
 	for (const [entityId, friendly, category] of candidates) {
 		const areaName = ctx.resolveAreaName(entityId);
@@ -1293,6 +1301,7 @@ async function cmdSnapshot(argv) {
 		die(`Invalid --indent: ${values.indent}`, 2);
 
 	const snapshot = {
+		schemaVersion: "homeassistant-snapshot/v2",
 		meta: {
 			generated_at: timestamp,
 			url: rest.baseUrl,
@@ -1461,7 +1470,7 @@ async function cmdSnapshot(argv) {
 		);
 	}
 
-	fs.writeFileSync(outPath, stableStringify(snapshot, indent) + "\n", "utf-8");
+	await writeRecord(outPath, snapshot, indent);
 
 	const counts = {
 		areas: (snapshot.registries.areas || []).length,
@@ -1537,7 +1546,7 @@ async function cmdRollback(argv) {
 
 	let snapshot;
 	try {
-		snapshot = JSON.parse(fs.readFileSync(snapshotPath, "utf-8"));
+		snapshot = (await readRecord(snapshotPath, "homeassistant-snapshot")).value;
 	} catch (e) {
 		die(`Failed to load snapshot: ${e?.message || e}`, 2);
 	}
@@ -1837,7 +1846,7 @@ function compileUnionRegex(needles) {
 	return new RegExp(escaped.join("|"));
 }
 
-function loadNeedles(values) {
+async function loadNeedles(values) {
 	const needles = [];
 	for (const n of values.needle || []) {
 		const s = String(n).trim();
@@ -1852,12 +1861,8 @@ function loadNeedles(values) {
 		}
 	}
 	if (values["map-json"]) {
-		const mapping = JSON.parse(
-			fs.readFileSync(String(values["map-json"]), "utf-8"),
-		);
-		if (!mapping || typeof mapping !== "object" || Array.isArray(mapping)) {
-			throw new Error("--map-json must be a JSON object mapping old->new");
-		}
+		const { value } = await readRecord(String(values["map-json"]), "homeassistant-rename-map");
+		const mapping = value.schemaVersion ? value.mappings : value;
 		for (const k of Object.keys(mapping)) {
 			if (typeof k === "string" && k.trim()) needles.push(k.trim());
 		}
@@ -2107,7 +2112,7 @@ function writeRefsReport(
 	fs.writeFileSync(outPath, lines.join("\n") + "\n", "utf-8");
 }
 
-function writeRefsJsonReport(
+async function writeRefsJsonReport(
 	outPath,
 	url,
 	backupRoot,
@@ -2118,6 +2123,7 @@ function writeRefsJsonReport(
 	backupWarnings,
 ) {
 	const payload = {
+		schemaVersion: "homeassistant-reference-report/v2",
 		meta: {
 			generated_at: utcTimestamp(),
 			url,
@@ -2127,7 +2133,7 @@ function writeRefsJsonReport(
 		live: { hits: liveHits, warnings: liveWarnings },
 		backup: { hits: backupHits, warnings: backupWarnings },
 	};
-	fs.writeFileSync(outPath, stableStringify(payload, 2) + "\n", "utf-8");
+	await writeRecord(outPath, payload);
 }
 
 async function cmdFindReferences(argv) {
@@ -2155,7 +2161,7 @@ async function cmdFindReferences(argv) {
 
 	let needles;
 	try {
-		needles = loadNeedles(values);
+		needles = await loadNeedles(values);
 	} catch (e) {
 		die(e?.message || String(e), 2);
 	}
@@ -2220,7 +2226,7 @@ async function cmdFindReferences(argv) {
 		backupWarnings,
 	);
 	if (values["json-out"]) {
-		writeRefsJsonReport(
+		await writeRefsJsonReport(
 			String(values["json-out"]),
 			url,
 			values["backup-root"],
@@ -3037,6 +3043,14 @@ function add(name: string, description: string, handler: (args: string[]) => Pro
 }
 const cleanupCmd = add("cleanup", "Bulk cleanup (dry-run by default)", cmdCleanup);
 const snapshotCmd = add("snapshot", "Create a JSON snapshot", cmdSnapshot);
+const validateCmd = app.sub("validate-record").meta({ description: "Validate an owned JSON record without network access or writes" })
+	.args([{ name: "file", type: "string", required: true }])
+	.run(async ({ args }) => {
+		try {
+			const { identifier } = await readRecord(args.file);
+			console.log(JSON.stringify({ contract: identifier, valid: true }));
+		} catch (e) { die(e instanceof Error ? e.message : String(e), 2); }
+	});
 const rollbackCmd = add("rollback", "Rollback registry changes", cmdRollback);
 const referencesCmd = add("find-references", "Find entity references", cmdFindReferences);
 const tracesCmd = add("traces", "Inspect automation traces", cmdTraces);
@@ -3045,4 +3059,4 @@ const namesCmd = add("name-review-from-backup", "Review names from a backup", cm
 const doctorCmd = app.sub("doctor").meta({ description: "Check Home Assistant prerequisites" }).run(() => {
 	console.log(JSON.stringify({ bun: Bun.version, HA_URL: Boolean(process.env.HA_URL), HA_TOKEN: Boolean(process.env.HA_TOKEN) }, null, 2));
 });
-app.use(helpPlugin()).command(cleanupCmd).command(snapshotCmd).command(rollbackCmd).command(referencesCmd).command(tracesCmd).command(eventsCmd).command(namesCmd).command(doctorCmd).execute();
+app.use(helpPlugin()).command(cleanupCmd).command(snapshotCmd).command(validateCmd).command(rollbackCmd).command(referencesCmd).command(tracesCmd).command(eventsCmd).command(namesCmd).command(doctorCmd).execute();

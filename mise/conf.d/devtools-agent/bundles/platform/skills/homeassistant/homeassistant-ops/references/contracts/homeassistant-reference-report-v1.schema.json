@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "homeassistant-reference-report/v1",
+  "type": "object",
+  "required": [
+    "meta",
+    "live",
+    "backup"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "generated_at",
+        "url",
+        "backup_root",
+        "needles"
+      ],
+      "properties": {
+        "generated_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string"
+        },
+        "backup_root": {
+          "type": "string"
+        },
+        "needles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "live": {
+      "type": "object",
+      "required": [
+        "hits",
+        "warnings"
+      ],
+      "properties": {
+        "hits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "kind",
+              "owner",
+              "path",
+              "needle"
+            ],
+            "properties": {
+              "kind": {
+                "type": "string"
+              },
+              "owner": {
+                "type": "string"
+              },
+              "owner_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "path": {
+                "type": "string"
+              },
+              "needle": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "backup": {
+      "type": "object",
+      "required": [
+        "hits",
+        "warnings"
+      ],
+      "properties": {
+        "hits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "path",
+              "line",
+              "needle"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "line": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "needle": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "not": {
+    "anyOf": [
+      {
+        "required": [
+          "schema"
+        ]
+      },
+      {
+        "required": [
+          "schemaVersion"
+        ]
+      }
+    ]
+  }
+}

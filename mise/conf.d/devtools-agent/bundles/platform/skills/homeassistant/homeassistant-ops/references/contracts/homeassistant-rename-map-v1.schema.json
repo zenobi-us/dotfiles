@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "homeassistant-rename-map/v1",
+  "type": "object",
+  "minProperties": 1,
+  "propertyNames": {
+    "type": "string",
+    "minLength": 1,
+    "not": {
+      "enum": [
+        "schema",
+        "schemaVersion"
+      ]
+    }
+  },
+  "additionalProperties": {
+    "type": "string",
+    "minLength": 1
+  },
+  "not": {
+    "anyOf": [
+      {
+        "required": [
+          "schema"
+        ]
+      },
+      {
+        "required": [
+          "schemaVersion"
+        ]
+      }
+    ]
+  }
+}
